@@ -93,7 +93,7 @@ She ___ scrapbooking. → **is going to try** · is trying · try
 <!-- interaction_id: en:lesson-15:session-32:word:calligraphy; family: word_card -->
 > **calligraphy** — мистецтво красивого письма.
 
-**10 · Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous. Скажіть: «Ми пробуємо каліграфію завтра».**
+**10 · Ви з другом записалися на завтрашнє заняття красивим письмом. Скажіть, що це вже вирішено. Скажіть: «Ми пробуємо каліграфію завтра».**
 <!-- interaction_id: en:lesson-15:session-32:i07; family: phrase_builder -->
 Плитки: `tomorrow` `calligraphy` `trying` `are` `We` → **We are trying calligraphy tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ scrapbooking. → **is going to try** · is trying · try
 - We are going to try calligraphy tomorrow. — *У записі звучить We are trying calligraphy tomorrow.*
 - We is trying calligraphy tomorrow. — *У записі звучить We are trying calligraphy tomorrow.*
 
-**12 · Ви з другом записалися на завтрашнє заняття красивим письмом. Передайте домовленість через Present Continuous.**
+**12 · Ви з другом записалися на завтрашнє заняття красивим письмом. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-32:i09; family: context_gap_grammar -->
 We ___ calligraphy tomorrow. → **are trying** · are try · try
 - are try — *Після are потрібна форма з -ing: are trying.*
@@ -113,7 +113,7 @@ We ___ calligraphy tomorrow. → **are trying** · are try · try
 <!-- interaction_id: en:lesson-15:session-32:word:flower-pressing; family: word_card -->
 > **flower pressing** — висушування квітів під пресом для збереження форми.
 
-**14 · Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous. Скажіть: «Вони пробують сушити квіти під пресом у неділю».**
+**14 · Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Скажіть, що це вже вирішено. Скажіть: «Вони пробують сушити квіти під пресом у неділю».**
 <!-- interaction_id: en:lesson-15:session-32:i10; family: phrase_builder -->
 Плитки: `Sunday` `on` `pressing` `flower` `trying` `are` `They` → **They are trying flower pressing on Sunday.**
 
@@ -123,7 +123,7 @@ We ___ calligraphy tomorrow. → **are trying** · are try · try
 - They are going to try flower pressing on Sunday. — *У записі звучить They are trying flower pressing on Sunday.*
 - They is trying flower pressing on Sunday. — *У записі звучить They are trying flower pressing on Sunday.*
 
-**16 · Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Передайте домовленість через Present Continuous.**
+**16 · Ваші батьки підтвердили участь у недільному занятті із сушіння квітів під пресом. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-32:i12; family: context_gap_grammar -->
 They ___ flower pressing on Sunday. → **are trying** · are try · try
 - are try — *Після are потрібна форма з -ing: are trying.*
@@ -141,7 +141,7 @@ needlework — рукоділля з голкою й нитками · scrapbook
 <!-- interaction_id: en:lesson-15:session-32:i15; family: listen_build_dictation -->
 🔊 *We are attending a class tomorrow.* Плитки: `tomorrow` `class` `a` `attending` `are` `We` → **We are attending a class tomorrow.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-32:i16; family: scripted_repeat_compare -->
 🎙 **I am trying needlework tomorrow.**
 

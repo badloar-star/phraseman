@@ -93,7 +93,7 @@ She ___ cardamom. → **is going to try** · is trying · try
 <!-- interaction_id: en:lesson-15:session-38:word:cloves; family: word_card -->
 > **cloves** — гвоздика, пряність із висушених бутонів.
 
-**10 · Магазин відклав для вас пакунок пряної гвоздики й підтвердив отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо гвоздику завтра».**
+**10 · Магазин відклав для вас пакунок пряної гвоздики й підтвердив отримання на завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо гвоздику завтра».**
 <!-- interaction_id: en:lesson-15:session-38:i07; family: phrase_builder -->
 Плитки: `tomorrow` `cloves` `the` `collecting` `are` `We` → **We are collecting the cloves tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ cardamom. → **is going to try** · is trying · try
 - We are going to collect the cloves tomorrow. — *У записі звучить We are collecting the cloves tomorrow.*
 - We is collecting the cloves tomorrow. — *У записі звучить We are collecting the cloves tomorrow.*
 
-**12 · Магазин відклав для вас пакунок пряної гвоздики й підтвердив отримання на завтра. Передайте домовленість через Present Continuous.**
+**12 · Магазин відклав для вас пакунок пряної гвоздики й підтвердив отримання на завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-38:i09; family: context_gap_grammar -->
 We ___ the cloves tomorrow. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ the cloves tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-38:word:nutmeg; family: word_card -->
 > **nutmeg** — мускатний горіх, пряність.
 
-**14 · Ваші батьки домовилися з продавцем, що заберуть мускатний горіх у п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають мускатний горіх у п’ятницю».**
+**14 · Ваші батьки домовилися з продавцем, що заберуть мускатний горіх у п’ятницю. Скажіть, що це вже вирішено. Скажіть: «Вони забирають мускатний горіх у п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-38:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `nutmeg` `the` `collecting` `are` `They` → **They are collecting the nutmeg on Friday.**
 
@@ -123,7 +123,7 @@ We ___ the cloves tomorrow. → **are collecting** · are collect · collect
 - They are going to collect the nutmeg on Friday. — *У записі звучить They are collecting the nutmeg on Friday.*
 - They is collecting the nutmeg on Friday. — *У записі звучить They are collecting the nutmeg on Friday.*
 
-**16 · Ваші батьки домовилися з продавцем, що заберуть мускатний горіх у п’ятницю. Передайте домовленість через Present Continuous.**
+**16 · Ваші батьки домовилися з продавцем, що заберуть мускатний горіх у п’ятницю. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-38:i12; family: context_gap_grammar -->
 They ___ the nutmeg on Friday. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -141,7 +141,7 @@ turmeric — куркума, яскраво-жовта пряність · carda
 <!-- interaction_id: en:lesson-15:session-38:i15; family: listen_build_dictation -->
 🔊 *We are collecting the spices tomorrow.* Плитки: `tomorrow` `spices` `the` `collecting` `are` `We` → **We are collecting the spices tomorrow.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-38:i16; family: scripted_repeat_compare -->
 🎙 **I am buying turmeric tomorrow.**
 

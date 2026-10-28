@@ -93,7 +93,7 @@ She ___ her resourceful brother for help. → **is going to ask** · is asking �
 <!-- interaction_id: en:lesson-15:session-45:word:cooperative; family: word_card -->
 > **cooperative** — готовый сотрудничать и делать дело вместе.
 
-**10 · Вы с соседом согласовали на завтра совместную работу в саду; он охотно сотрудничает. Передайте договорённость через Present Continuous. Скажите: «Мы работаем с нашим готовым сотрудничать соседом завтра».**
+**10 · Вы с соседом согласовали на завтра совместную работу в саду; он охотно сотрудничает. Скажите, что это уже решено. Скажите: «Мы работаем с нашим готовым сотрудничать соседом завтра».**
 <!-- interaction_id: en:lesson-15:session-45:i07; family: phrase_builder -->
 Плитки: `tomorrow` `neighbour` `cooperative` `our` `with` `working` `are` `We` → **We are working with our cooperative neighbour tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ her resourceful brother for help. → **is going to ask** · is asking �
 - We are going to work with our cooperative neighbour tomorrow. — *В записи звучит We are working with our cooperative neighbour tomorrow.*
 - We is working with our cooperative neighbour tomorrow. — *В записи звучит We are working with our cooperative neighbour tomorrow.*
 
-**12 · Вы с соседом согласовали на завтра совместную работу в саду; он охотно сотрудничает. Передайте договорённость через Present Continuous.**
+**12 · Вы с соседом согласовали на завтра совместную работу в саду; он охотно сотрудничает. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-45:i09; family: context_gap_grammar -->
 We ___ with our cooperative neighbour tomorrow. → **are working** · are work · work
 - are work — *После are нужна форма с -ing: are working.*
@@ -113,7 +113,7 @@ We ___ with our cooperative neighbour tomorrow. → **are working** · are work 
 <!-- interaction_id: en:lesson-15:session-45:word:supportive; family: word_card -->
 > **supportive** — оказывающий поддержку и ободряющий.
 
-**14 · Ваши друзья договорились встретиться с учителем в пятницу; он всегда их ободряет. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с учителем, который их поддерживает, в пятницу».**
+**14 · Ваши друзья договорились встретиться с учителем в пятницу; он всегда их ободряет. Скажите, что это уже решено. Скажите: «Они встречаются с учителем, который их поддерживает, в пятницу».**
 <!-- interaction_id: en:lesson-15:session-45:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `teacher` `supportive` `their` `meeting` `are` `They` → **They are meeting their supportive teacher on Friday.**
 
@@ -123,7 +123,7 @@ We ___ with our cooperative neighbour tomorrow. → **are working** · are work 
 - They are going to meet their supportive teacher on Friday. — *В записи звучит They are meeting their supportive teacher on Friday.*
 - They is meeting their supportive teacher on Friday. — *В записи звучит They are meeting their supportive teacher on Friday.*
 
-**16 · Ваши друзья договорились встретиться с учителем в пятницу; он всегда их ободряет. Передайте договорённость через Present Continuous.**
+**16 · Ваши друзья договорились встретиться с учителем в пятницу; он всегда их ободряет. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-45:i12; family: context_gap_grammar -->
 They ___ their supportive teacher on Friday. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -141,7 +141,7 @@ adventurous — любящий приключения и новые впечат
 <!-- interaction_id: en:lesson-15:session-45:i15; family: listen_build_dictation -->
 🔊 *We are working in the garden tomorrow.* Плитки: `tomorrow` `garden` `the` `in` `working` `are` `We` → **We are working in the garden tomorrow.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-45:i16; family: scripted_repeat_compare -->
 🎙 **I am travelling with my adventurous friend tomorrow.**
 

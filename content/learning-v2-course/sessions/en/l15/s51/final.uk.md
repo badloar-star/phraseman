@@ -93,7 +93,7 @@ She ___ a tartan skirt. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-51:word:polka-dots; family: word_card -->
 > **polka dots** — візерунок із круглих горошин.
 
-**10 · Магазин відклав замовлену сукню в горошок; ви узгодили отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо сукню в горошок завтра».**
+**10 · Магазин відклав замовлену сукню в горошок; ви узгодили отримання на завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо сукню в горошок завтра».**
 <!-- interaction_id: en:lesson-15:session-51:i07; family: phrase_builder -->
 Плитки: `tomorrow` `dots` `polka` `with` `dress` `the` `collecting` `are` `We` → **We are collecting the dress with polka dots tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ a tartan skirt. → **is going to buy** · is buying · buy
 - We are going to collect the dress with polka dots tomorrow. — *У записі звучить We are collecting the dress with polka dots tomorrow.*
 - We is collecting the dress with polka dots tomorrow. — *У записі звучить We are collecting the dress with polka dots tomorrow.*
 
-**12 · Магазин відклав замовлену сукню в горошок; ви узгодили отримання на завтра. Передайте домовленість через Present Continuous.**
+**12 · Магазин відклав замовлену сукню в горошок; ви узгодили отримання на завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-51:i09; family: context_gap_grammar -->
 We ___ the dress with polka dots tomorrow. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ the dress with polka dots tomorrow. → **are collecting** · are collect
 <!-- interaction_id: en:lesson-15:session-51:word:herringbone; family: word_card -->
 > **herringbone** — візерунок або переплетення ялинкою.
 
-**14 · Ваші батьки замовили пальто з візерунком ялинкою; магазин підтвердив отримання на п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають пальто з візерунком ялинкою у п’ятницю».**
+**14 · Ваші батьки замовили пальто з візерунком ялинкою; магазин підтвердив отримання на п’ятницю. Скажіть, що це вже вирішено. Скажіть: «Вони забирають пальто з візерунком ялинкою у п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-51:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `coat` `herringbone` `the` `collecting` `are` `They` → **They are collecting the herringbone coat on Friday.**
 
@@ -123,7 +123,7 @@ We ___ the dress with polka dots tomorrow. → **are collecting** · are collect
 - They are going to collect the herringbone coat on Friday. — *У записі звучить They are collecting the herringbone coat on Friday.*
 - They is collecting the herringbone coat on Friday. — *У записі звучить They are collecting the herringbone coat on Friday.*
 
-**16 · Ваші батьки замовили пальто з візерунком ялинкою; магазин підтвердив отримання на п’ятницю. Передайте домовленість через Present Continuous.**
+**16 · Ваші батьки замовили пальто з візерунком ялинкою; магазин підтвердив отримання на п’ятницю. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-51:i12; family: context_gap_grammar -->
 They ___ the herringbone coat on Friday. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -141,7 +141,7 @@ paisley — візерунок із вигнутих краплеподібни�
 <!-- interaction_id: en:lesson-15:session-51:i15; family: listen_build_dictation -->
 🔊 *We are collecting the dress tomorrow.* Плитки: `tomorrow` `dress` `the` `collecting` `are` `We` → **We are collecting the dress tomorrow.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-51:i16; family: scripted_repeat_compare -->
 🎙 **I am buying a paisley scarf tomorrow.**
 

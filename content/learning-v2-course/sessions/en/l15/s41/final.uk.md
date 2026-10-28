@@ -93,7 +93,7 @@ She ___ a reliable builder. → **is going to find** · is finding · find
 <!-- interaction_id: en:lesson-15:session-41:word:sociable; family: word_card -->
 > **sociable** — товариський, який любить проводити час із людьми.
 
-**10 · Ви з чоловіком узгодили зустріч із сусідом, який любить спілкування, на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з товариським сусідом завтра».**
+**10 · Ви з чоловіком узгодили зустріч із сусідом, який любить спілкування, на завтра. Скажіть, що це вже вирішено. Скажіть: «Ми зустрічаємося з товариським сусідом завтра».**
 <!-- interaction_id: en:lesson-15:session-41:i07; family: phrase_builder -->
 Плитки: `tomorrow` `neighbour` `sociable` `our` `meeting` `are` `We` → **We are meeting our sociable neighbour tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ a reliable builder. → **is going to find** · is finding · find
 - We are going to meet our sociable neighbour tomorrow. — *У записі звучить We are meeting our sociable neighbour tomorrow.*
 - We is meeting our sociable neighbour tomorrow. — *У записі звучить We are meeting our sociable neighbour tomorrow.*
 
-**12 · Ви з чоловіком узгодили зустріч із сусідом, який любить спілкування, на завтра. Передайте домовленість через Present Continuous.**
+**12 · Ви з чоловіком узгодили зустріч із сусідом, який любить спілкування, на завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-41:i09; family: context_gap_grammar -->
 We ___ our sociable neighbour tomorrow. → **are meeting** · are meet · meet
 - are meet — *Після are потрібна форма з -ing: are meeting.*
@@ -113,7 +113,7 @@ We ___ our sociable neighbour tomorrow. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-41:word:sensitive; family: word_card -->
 > **sensitive** — чутливий, який глибоко переживає слова й події.
 
-**14 · Ваші друзі домовилися на суботу про зустріч із другом, який глибоко переживає все, що відбувається. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з чутливим другом у суботу».**
+**14 · Ваші друзі домовилися на суботу про зустріч із другом, який глибоко переживає все, що відбувається. Скажіть, що це вже вирішено. Скажіть: «Вони зустрічаються з чутливим другом у суботу».**
 <!-- interaction_id: en:lesson-15:session-41:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `friend` `sensitive` `their` `meeting` `are` `They` → **They are meeting their sensitive friend on Saturday.**
 
@@ -123,7 +123,7 @@ We ___ our sociable neighbour tomorrow. → **are meeting** · are meet · meet
 - They are going to meet their sensitive friend on Saturday. — *У записі звучить They are meeting their sensitive friend on Saturday.*
 - They is meeting their sensitive friend on Saturday. — *У записі звучить They are meeting their sensitive friend on Saturday.*
 
-**16 · Ваші друзі домовилися на суботу про зустріч із другом, який глибоко переживає все, що відбувається. Передайте домовленість через Present Continuous.**
+**16 · Ваші друзі домовилися на суботу про зустріч із другом, який глибоко переживає все, що відбувається. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-41:i12; family: context_gap_grammar -->
 They ___ their sensitive friend on Saturday. → **are meeting** · are meet · meet
 - are meet — *Після are потрібна форма з -ing: are meeting.*
@@ -141,7 +141,7 @@ picky — вередливий, який вибирає з великою кіл
 <!-- interaction_id: en:lesson-15:session-41:i15; family: listen_build_dictation -->
 🔊 *We are meeting our neighbour tomorrow.* Плитки: `tomorrow` `neighbour` `our` `meeting` `are` `We` → **We are meeting our neighbour tomorrow.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-41:i16; family: scripted_repeat_compare -->
 🎙 **I am cooking for my picky brother tomorrow.**
 

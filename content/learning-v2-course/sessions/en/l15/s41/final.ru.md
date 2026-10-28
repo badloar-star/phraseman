@@ -93,7 +93,7 @@ She ___ a reliable builder. → **is going to find** · is finding · find
 <!-- interaction_id: en:lesson-15:session-41:word:sociable; family: word_card -->
 > **sociable** — общительный, любящий проводить время с людьми.
 
-**10 · Вы с супругом согласовали встречу с соседом, который любит общение, на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с общительным соседом завтра».**
+**10 · Вы с супругом согласовали встречу с соседом, который любит общение, на завтра. Скажите, что это уже решено. Скажите: «Мы встречаемся с общительным соседом завтра».**
 <!-- interaction_id: en:lesson-15:session-41:i07; family: phrase_builder -->
 Плитки: `tomorrow` `neighbour` `sociable` `our` `meeting` `are` `We` → **We are meeting our sociable neighbour tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ a reliable builder. → **is going to find** · is finding · find
 - We are going to meet our sociable neighbour tomorrow. — *В записи звучит We are meeting our sociable neighbour tomorrow.*
 - We is meeting our sociable neighbour tomorrow. — *В записи звучит We are meeting our sociable neighbour tomorrow.*
 
-**12 · Вы с супругом согласовали встречу с соседом, который любит общение, на завтра. Передайте договорённость через Present Continuous.**
+**12 · Вы с супругом согласовали встречу с соседом, который любит общение, на завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-41:i09; family: context_gap_grammar -->
 We ___ our sociable neighbour tomorrow. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -113,7 +113,7 @@ We ___ our sociable neighbour tomorrow. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-41:word:sensitive; family: word_card -->
 > **sensitive** — чувствительный, глубоко переживающий слова и события.
 
-**14 · Ваши друзья договорились на субботу о встрече с другом, который глубоко переживает всё происходящее. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с чувствительным другом в субботу».**
+**14 · Ваши друзья договорились на субботу о встрече с другом, который глубоко переживает всё происходящее. Скажите, что это уже решено. Скажите: «Они встречаются с чувствительным другом в субботу».**
 <!-- interaction_id: en:lesson-15:session-41:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `friend` `sensitive` `their` `meeting` `are` `They` → **They are meeting their sensitive friend on Saturday.**
 
@@ -123,7 +123,7 @@ We ___ our sociable neighbour tomorrow. → **are meeting** · are meet · meet
 - They are going to meet their sensitive friend on Saturday. — *В записи звучит They are meeting their sensitive friend on Saturday.*
 - They is meeting their sensitive friend on Saturday. — *В записи звучит They are meeting their sensitive friend on Saturday.*
 
-**16 · Ваши друзья договорились на субботу о встрече с другом, который глубоко переживает всё происходящее. Передайте договорённость через Present Continuous.**
+**16 · Ваши друзья договорились на субботу о встрече с другом, который глубоко переживает всё происходящее. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-41:i12; family: context_gap_grammar -->
 They ___ their sensitive friend on Saturday. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -141,7 +141,7 @@ picky — привередливый, выбирающий с большим к�
 <!-- interaction_id: en:lesson-15:session-41:i15; family: listen_build_dictation -->
 🔊 *We are meeting our neighbour tomorrow.* Плитки: `tomorrow` `neighbour` `our` `meeting` `are` `We` → **We are meeting our neighbour tomorrow.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-41:i16; family: scripted_repeat_compare -->
 🎙 **I am cooking for my picky brother tomorrow.**
 

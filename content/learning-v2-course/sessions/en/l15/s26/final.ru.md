@@ -93,7 +93,7 @@ She ___ a season ticket. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-26:word:day-pass; family: word_card -->
 > **day pass** — билет или пропуск, действующий один день.
 
-**10 · Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем свой дневной пропуск завтра».**
+**10 · Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Скажите, что это уже решено. Скажите: «Мы забираем свой дневной пропуск завтра».**
 <!-- interaction_id: en:lesson-15:session-26:i07; family: phrase_builder -->
 Плитки: `tomorrow` `pass` `day` `our` `collecting` `are` `We` → **We are collecting our day pass tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ a season ticket. → **is going to buy** · is buying · buy
 - We are going to collect our day pass tomorrow. — *В записи звучит We are collecting our day pass tomorrow.*
 - We is collecting our day pass tomorrow. — *В записи звучит We are collecting our day pass tomorrow.*
 
-**12 · Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Передайте договорённость через Present Continuous.**
+**12 · Дневной пропуск в бассейн уже оплачен; вы договорились забрать его завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-26:i09; family: context_gap_grammar -->
 We ___ our day pass tomorrow. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ our day pass tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-26:word:family-pass; family: word_card -->
 > **family pass** — общий билет или пропуск для семьи.
 
-**14 · Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous. Скажите: «Они пользуются семейным билетом в воскресенье».**
+**14 · Ваши друзья забронировали семейное посещение музея на воскресенье. Скажите, что это уже решено. Скажите: «Они пользуются семейным билетом в воскресенье».**
 <!-- interaction_id: en:lesson-15:session-26:i10; family: phrase_builder -->
 Плитки: `Sunday` `on` `pass` `family` `their` `using` `are` `They` → **They are using their family pass on Sunday.**
 
@@ -123,7 +123,7 @@ We ___ our day pass tomorrow. → **are collecting** · are collect · collect
 - They are going to use their family pass on Sunday. — *В записи звучит They are using their family pass on Sunday.*
 - They is using their family pass on Sunday. — *В записи звучит They are using their family pass on Sunday.*
 
-**16 · Ваши друзья забронировали семейное посещение музея на воскресенье. Передайте договорённость через Present Continuous.**
+**16 · Ваши друзья забронировали семейное посещение музея на воскресенье. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-26:i12; family: context_gap_grammar -->
 They ___ their family pass on Sunday. → **are using** · are use · use
 - are use — *После are нужна форма с -ing: are using.*
@@ -141,7 +141,7 @@ subscription — регулярно оплачиваемая подписка н
 <!-- interaction_id: en:lesson-15:session-26:i15; family: listen_build_dictation -->
 🔊 *We are visiting the museum on Sunday.* Плитки: `Sunday` `on` `museum` `the` `visiting` `are` `We` → **We are visiting the museum on Sunday.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-26:i16; family: scripted_repeat_compare -->
 🎙 **I am buying a subscription tomorrow.**
 

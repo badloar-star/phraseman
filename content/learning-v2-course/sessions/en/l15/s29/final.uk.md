@@ -93,7 +93,7 @@ She ___ the tyre pressure. → **is going to check** · is checking · check
 <!-- interaction_id: en:lesson-15:session-29:word:hubcap; family: word_card -->
 > **hubcap** — декоративний ковпак автомобільного колеса.
 
-**10 · Магазин підтвердив надходження замовленого ковпака й домовився видати його вам завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо ковпак колеса завтра».**
+**10 · Магазин підтвердив надходження замовленого ковпака й домовився видати його вам завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо ковпак колеса завтра».**
 <!-- interaction_id: en:lesson-15:session-29:i07; family: phrase_builder -->
 Плитки: `tomorrow` `hubcap` `the` `collecting` `are` `We` → **We are collecting the hubcap tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ the tyre pressure. → **is going to check** · is checking · check
 - We are going to collect the hubcap tomorrow. — *У записі звучить We are collecting the hubcap tomorrow.*
 - We is collecting the hubcap tomorrow. — *У записі звучить We are collecting the hubcap tomorrow.*
 
-**12 · Магазин підтвердив надходження замовленого ковпака й домовився видати його вам завтра. Передайте домовленість через Present Continuous.**
+**12 · Магазин підтвердив надходження замовленого ковпака й домовився видати його вам завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-29:i09; family: context_gap_grammar -->
 We ___ the hubcap tomorrow. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ the hubcap tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-29:word:jump-leads; family: word_card -->
 > **jump leads** — дроти для запуску автомобіля від іншого акумулятора.
 
-**14 · Друзі погодилися привезти вам дроти завтра о дев’ятій. Передайте домовленість через Present Continuous. Скажіть: «Вони привозять дроти для запуску машини завтра о дев’ятій».**
+**14 · Друзі погодилися привезти вам дроти завтра о дев’ятій. Скажіть, що це вже вирішено. Скажіть: «Вони привозять дроти для запуску машини завтра о дев’ятій».**
 <!-- interaction_id: en:lesson-15:session-29:i10; family: phrase_builder -->
 Плитки: `tomorrow` `nine` `at` `leads` `jump` `bringing` `are` `They` → **They are bringing jump leads at nine tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ the hubcap tomorrow. → **are collecting** · are collect · collect
 - They are going to bring jump leads at nine tomorrow. — *У записі звучить They are bringing jump leads at nine tomorrow.*
 - They is bringing jump leads at nine tomorrow. — *У записі звучить They are bringing jump leads at nine tomorrow.*
 
-**16 · Друзі погодилися привезти вам дроти завтра о дев’ятій. Передайте домовленість через Present Continuous.**
+**16 · Друзі погодилися привезти вам дроти завтра о дев’ятій. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-29:i12; family: context_gap_grammar -->
 They ___ jump leads at nine tomorrow. → **are bringing** · are bring · bring
 - are bring — *Після are потрібна форма з -ing: are bringing.*
@@ -141,7 +141,7 @@ washer fluid — рідина для омивача автомобільного
 <!-- interaction_id: en:lesson-15:session-29:i15; family: listen_build_dictation -->
 🔊 *We are meeting the mechanic tomorrow.* Плитки: `tomorrow` `mechanic` `the` `meeting` `are` `We` → **We are meeting the mechanic tomorrow.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-29:i16; family: scripted_repeat_compare -->
 🎙 **I am buying washer fluid tomorrow.**
 

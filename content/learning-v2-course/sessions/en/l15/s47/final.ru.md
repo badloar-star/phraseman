@@ -93,7 +93,7 @@ She ___ an economical car. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-47:word:affordable; family: word_card -->
 > **affordable** — доступный по цене для своего бюджета.
 
-**10 · Цена квартиры укладывается в ваш бюджет; просмотр с хозяином согласован на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы смотрим доступную нам по цене квартиру завтра».**
+**10 · Цена квартиры укладывается в ваш бюджет; просмотр с хозяином согласован на завтра. Скажите, что это уже решено. Скажите: «Мы смотрим доступную нам по цене квартиру завтра».**
 <!-- interaction_id: en:lesson-15:session-47:i07; family: phrase_builder -->
 Плитки: `tomorrow` `flat` `affordable` `an` `viewing` `are` `We` → **We are viewing an affordable flat tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ an economical car. → **is going to buy** · is buying · buy
 - We are going to view an affordable flat tomorrow. — *В записи звучит We are viewing an affordable flat tomorrow.*
 - We is viewing an affordable flat tomorrow. — *В записи звучит We are viewing an affordable flat tomorrow.*
 
-**12 · Цена квартиры укладывается в ваш бюджет; просмотр с хозяином согласован на завтра. Передайте договорённость через Present Continuous.**
+**12 · Цена квартиры укладывается в ваш бюджет; просмотр с хозяином согласован на завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-47:i09; family: context_gap_grammar -->
 We ___ an affordable flat tomorrow. → **are viewing** · are view · view
 - are view — *После are нужна форма с -ing: are viewing.*
@@ -113,7 +113,7 @@ We ___ an affordable flat tomorrow. → **are viewing** · are view · view
 <!-- interaction_id: en:lesson-15:session-47:word:overpriced; family: word_card -->
 > **overpriced** — с завышенной ценой по сравнению с ценностью вещи.
 
-**14 · Друзья считают цену квартиры завышенной, но уже согласовали просмотр на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они смотрят квартиру с завышенной ценой в пятницу».**
+**14 · Друзья считают цену квартиры завышенной, но уже согласовали просмотр на пятницу. Скажите, что это уже решено. Скажите: «Они смотрят квартиру с завышенной ценой в пятницу».**
 <!-- interaction_id: en:lesson-15:session-47:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `flat` `overpriced` `an` `viewing` `are` `They` → **They are viewing an overpriced flat on Friday.**
 
@@ -123,7 +123,7 @@ We ___ an affordable flat tomorrow. → **are viewing** · are view · view
 - They are going to view an overpriced flat on Friday. — *В записи звучит They are viewing an overpriced flat on Friday.*
 - They is viewing an overpriced flat on Friday. — *В записи звучит They are viewing an overpriced flat on Friday.*
 
-**16 · Друзья считают цену квартиры завышенной, но уже согласовали просмотр на пятницу. Передайте договорённость через Present Continuous.**
+**16 · Друзья считают цену квартиры завышенной, но уже согласовали просмотр на пятницу. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-47:i12; family: context_gap_grammar -->
 They ___ an overpriced flat on Friday. → **are viewing** · are view · view
 - are view — *После are нужна форма с -ing: are viewing.*
@@ -141,7 +141,7 @@ practical — удобный и полезный в повседневном и�
 <!-- interaction_id: en:lesson-15:session-47:i15; family: listen_build_dictation -->
 🔊 *We are viewing the flat tomorrow.* Плитки: `tomorrow` `flat` `the` `viewing` `are` `We` → **We are viewing the flat tomorrow.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-47:i16; family: scripted_repeat_compare -->
 🎙 **I am buying a practical coat tomorrow.**
 

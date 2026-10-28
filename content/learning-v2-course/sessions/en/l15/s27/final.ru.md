@@ -93,7 +93,7 @@ She ___ for dry cleaning. → **is going to pay** · is paying · pay
 <!-- interaction_id: en:lesson-15:session-27:word:key-cutting; family: word_card -->
 > **key cutting** — изготовление копии ключа.
 
-**10 · Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous. Скажите: «Мы оплачиваем изготовление копии ключа завтра».**
+**10 · Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Скажите, что это уже решено. Скажите: «Мы оплачиваем изготовление копии ключа завтра».**
 <!-- interaction_id: en:lesson-15:session-27:i07; family: phrase_builder -->
 Плитки: `tomorrow` `cutting` `key` `for` `paying` `are` `We` → **We are paying for key cutting tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ for dry cleaning. → **is going to pay** · is paying · pay
 - We are going to pay for key cutting tomorrow. — *В записи звучит We are paying for key cutting tomorrow.*
 - We is paying for key cutting tomorrow. — *В записи звучит We are paying for key cutting tomorrow.*
 
-**12 · Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Передайте договорённость через Present Continuous.**
+**12 · Мастер подтвердил заказ копии ключа; вы договорились прийти и оплатить его завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-27:i09; family: context_gap_grammar -->
 We ___ for key cutting tomorrow. → **are paying** · are pay · pay
 - are pay — *После are нужна форма с -ing: are paying.*
@@ -113,7 +113,7 @@ We ___ for key cutting tomorrow. → **are paying** · are pay · pay
 <!-- interaction_id: en:lesson-15:session-27:word:shoe-repair; family: word_card -->
 > **shoe repair** — ремонт обуви.
 
-**14 · Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous. Скажите: «Они оплачивают ремонт обуви в пятницу».**
+**14 · Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Скажите, что это уже решено. Скажите: «Они оплачивают ремонт обуви в пятницу».**
 <!-- interaction_id: en:lesson-15:session-27:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `repair` `shoe` `for` `paying` `are` `They` → **They are paying for shoe repair on Friday.**
 
@@ -123,7 +123,7 @@ We ___ for key cutting tomorrow. → **are paying** · are pay · pay
 - They are going to pay for shoe repair on Friday. — *В записи звучит They are paying for shoe repair on Friday.*
 - They is paying for shoe repair on Friday. — *В записи звучит They are paying for shoe repair on Friday.*
 
-**16 · Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Передайте договорённость через Present Continuous.**
+**16 · Ваши родители договорились забрать и оплатить отремонтированную обувь в пятницу. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-27:i12; family: context_gap_grammar -->
 They ___ for shoe repair on Friday. → **are paying** · are pay · pay
 - are pay — *После are нужна форма с -ing: are paying.*
@@ -141,7 +141,7 @@ launderette — прачечная самообслуживания · dry clean
 <!-- interaction_id: en:lesson-15:session-27:i15; family: listen_build_dictation -->
 🔊 *We are collecting the shoes on Friday.* Плитки: `Friday` `on` `shoes` `the` `collecting` `are` `We` → **We are collecting the shoes on Friday.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-27:i16; family: scripted_repeat_compare -->
 🎙 **I am using the launderette tomorrow.**
 

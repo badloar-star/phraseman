@@ -93,7 +93,7 @@ She ___ a baby shower. → **is going to have** · is having · have
 <!-- interaction_id: en:lesson-15:session-33:word:hen-party; family: word_card -->
 > **hen party** — передвесільна вечірка нареченої, дівич-вечір.
 
-**10 · Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо на дівич-вечір у суботу».**
+**10 · Ви з подругою підтвердили запрошення на суботній дівич-вечір. Скажіть, що це вже вирішено. Скажіть: «Ми йдемо на дівич-вечір у суботу».**
 <!-- interaction_id: en:lesson-15:session-33:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `party` `hen` `a` `attending` `are` `We` → **We are attending a hen party on Saturday.**
 
@@ -103,7 +103,7 @@ She ___ a baby shower. → **is going to have** · is having · have
 - We are going to attend a hen party on Saturday. — *У записі звучить We are attending a hen party on Saturday.*
 - We is attending a hen party on Saturday. — *У записі звучить We are attending a hen party on Saturday.*
 
-**12 · Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous.**
+**12 · Ви з подругою підтвердили запрошення на суботній дівич-вечір. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-33:i09; family: context_gap_grammar -->
 We ___ a hen party on Saturday. → **are attending** · are attend · attend
 - are attend — *Після are потрібна форма з -ing: are attending.*
@@ -113,7 +113,7 @@ We ___ a hen party on Saturday. → **are attending** · are attend · attend
 <!-- interaction_id: en:lesson-15:session-33:word:stag-party; family: word_card -->
 > **stag party** — передвесільна вечірка нареченого, парубоча вечірка.
 
-**14 · Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони йдуть на парубочу вечірку в п’ятницю».**
+**14 · Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Скажіть, що це вже вирішено. Скажіть: «Вони йдуть на парубочу вечірку в п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-33:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `party` `stag` `a` `attending` `are` `They` → **They are attending a stag party on Friday.**
 
@@ -123,7 +123,7 @@ We ___ a hen party on Saturday. → **are attending** · are attend · attend
 - They are going to attend a stag party on Friday. — *У записі звучить They are attending a stag party on Friday.*
 - They is attending a stag party on Friday. — *У записі звучить They are attending a stag party on Friday.*
 
-**16 · Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous.**
+**16 · Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-33:i12; family: context_gap_grammar -->
 They ___ a stag party on Friday. → **are attending** · are attend · attend
 - are attend — *Після are потрібна форма з -ing: are attending.*
@@ -141,7 +141,7 @@ christening — християнський обряд хрещення, зазв
 <!-- interaction_id: en:lesson-15:session-33:i15; family: listen_build_dictation -->
 🔊 *We are attending a party on Saturday.* Плитки: `Saturday` `on` `party` `a` `attending` `are` `We` → **We are attending a party on Saturday.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-33:i16; family: scripted_repeat_compare -->
 🎙 **I am attending a christening tomorrow.**
 

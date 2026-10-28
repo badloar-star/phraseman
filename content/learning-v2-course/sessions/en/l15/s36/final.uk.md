@@ -93,7 +93,7 @@ She ___ a persimmon. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-36:word:quince; family: word_card -->
 > **quince** — айва.
 
-**10 · Продавець відклав для вас айву; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо айву завтра».**
+**10 · Продавець відклав для вас айву; ви домовилися забрати її завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо айву завтра».**
 <!-- interaction_id: en:lesson-15:session-36:i07; family: phrase_builder -->
 Плитки: `tomorrow` `quince` `the` `collecting` `are` `We` → **We are collecting the quince tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ a persimmon. → **is going to buy** · is buying · buy
 - We are going to collect the quince tomorrow. — *У записі звучить We are collecting the quince tomorrow.*
 - We is collecting the quince tomorrow. — *У записі звучить We are collecting the quince tomorrow.*
 
-**12 · Продавець відклав для вас айву; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous.**
+**12 · Продавець відклав для вас айву; ви домовилися забрати її завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-36:i09; family: context_gap_grammar -->
 We ___ the quince tomorrow. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ the quince tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-36:word:rhubarb; family: word_card -->
 > **rhubarb** — ревінь, рослина з кислими їстівними стеблами.
 
-**14 · Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають ревінь у п’ятницю».**
+**14 · Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. Скажіть, що це вже вирішено. Скажіть: «Вони забирають ревінь у п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-36:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `rhubarb` `the` `collecting` `are` `They` → **They are collecting the rhubarb on Friday.**
 
@@ -123,7 +123,7 @@ We ___ the quince tomorrow. → **are collecting** · are collect · collect
 - They are going to collect the rhubarb on Friday. — *У записі звучить They are collecting the rhubarb on Friday.*
 - They is collecting the rhubarb on Friday. — *У записі звучить They are collecting the rhubarb on Friday.*
 
-**16 · Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. Передайте домовленість через Present Continuous.**
+**16 · Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-36:i12; family: context_gap_grammar -->
 They ___ the rhubarb on Friday. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -141,7 +141,7 @@ guava — гуава, тропічний фрукт · persimmon — хурма 
 <!-- interaction_id: en:lesson-15:session-36:i15; family: listen_build_dictation -->
 🔊 *We are collecting our order tomorrow.* Плитки: `tomorrow` `order` `our` `collecting` `are` `We` → **We are collecting our order tomorrow.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-36:i16; family: scripted_repeat_compare -->
 🎙 **I am trying a guava tomorrow.**
 

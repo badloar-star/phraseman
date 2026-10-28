@@ -93,7 +93,7 @@ She ___ her pessimistic brother. → **is going to help** · is helping · help
 <!-- interaction_id: en:lesson-15:session-42:word:indecisive; family: word_card -->
 > **indecisive** — нерішучий, якому важко зробити вибір.
 
-**10 · Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з нерішучим двоюрідним братом у п’ятницю».**
+**10 · Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Скажіть, що це вже вирішено. Скажіть: «Ми зустрічаємося з нерішучим двоюрідним братом у п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-42:i07; family: phrase_builder -->
 Плитки: `Friday` `on` `cousin` `indecisive` `our` `meeting` `are` `We` → **We are meeting our indecisive cousin on Friday.**
 
@@ -103,7 +103,7 @@ She ___ her pessimistic brother. → **is going to help** · is helping · help
 - We are going to meet our indecisive cousin on Friday. — *У записі звучить We are meeting our indecisive cousin on Friday.*
 - We is meeting our indecisive cousin on Friday. — *У записі звучить We are meeting our indecisive cousin on Friday.*
 
-**12 · Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Передайте домовленість через Present Continuous.**
+**12 · Ви домовилися в п’ятницю допомогти двоюрідному братові вибрати поїздку; йому важко наважитися. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-42:i09; family: context_gap_grammar -->
 We ___ our indecisive cousin on Friday. → **are meeting** · are meet · meet
 - are meet — *Після are потрібна форма з -ing: are meeting.*
@@ -113,7 +113,7 @@ We ___ our indecisive cousin on Friday. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-42:word:decisive; family: word_card -->
 > **decisive** — рішучий, здатний швидко ухвалити чітке рішення.
 
-**14 · Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з рішучим тренером завтра».**
+**14 · Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Скажіть, що це вже вирішено. Скажіть: «Вони зустрічаються з рішучим тренером завтра».**
 <!-- interaction_id: en:lesson-15:session-42:i10; family: phrase_builder -->
 Плитки: `tomorrow` `coach` `decisive` `their` `meeting` `are` `They` → **They are meeting their decisive coach tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ our indecisive cousin on Friday. → **are meeting** · are meet · meet
 - They are going to meet their decisive coach tomorrow. — *У записі звучить They are meeting their decisive coach tomorrow.*
 - They is meeting their decisive coach tomorrow. — *У записі звучить They are meeting their decisive coach tomorrow.*
 
-**16 · Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Передайте домовленість через Present Continuous.**
+**16 · Ваші друзі узгодили зустріч на завтра з тренером, який швидко ухвалює рішення. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-42:i12; family: context_gap_grammar -->
 They ___ their decisive coach tomorrow. → **are meeting** · are meet · meet
 - are meet — *Після are потрібна форма з -ing: are meeting.*
@@ -141,7 +141,7 @@ optimistic — який очікує доброго, налаштований о
 <!-- interaction_id: en:lesson-15:session-42:i15; family: listen_build_dictation -->
 🔊 *We are meeting on Friday afternoon.* Плитки: `afternoon` `Friday` `on` `meeting` `are` `We` → **We are meeting on Friday afternoon.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-42:i16; family: scripted_repeat_compare -->
 🎙 **I am calling my optimistic friend tomorrow.**
 

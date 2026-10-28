@@ -93,7 +93,7 @@ She ___ an inland town. → **is going to visit** · is visiting · visit
 <!-- interaction_id: en:lesson-15:session-49:word:rural; family: word_card -->
 > **rural** — сельский, относящийся к местности за городами.
 
-**10 · Вы забронировали дом за городом на следующую неделю; хозяин подтвердил бронь. Передайте договорённость через Present Continuous. Скажите: «Мы останавливаемся в сельской местности на следующей неделе».**
+**10 · Вы забронировали дом за городом на следующую неделю; хозяин подтвердил бронь. Скажите, что это уже решено. Скажите: «Мы останавливаемся в сельской местности на следующей неделе».**
 <!-- interaction_id: en:lesson-15:session-49:i07; family: phrase_builder -->
 Плитки: `week` `next` `area` `rural` `a` `in` `staying` `are` `We` → **We are staying in a rural area next week.**
 
@@ -103,7 +103,7 @@ She ___ an inland town. → **is going to visit** · is visiting · visit
 - We are going to stay in a rural area next week. — *В записи звучит We are staying in a rural area next week.*
 - We is staying in a rural area next week. — *В записи звучит We are staying in a rural area next week.*
 
-**12 · Вы забронировали дом за городом на следующую неделю; хозяин подтвердил бронь. Передайте договорённость через Present Continuous.**
+**12 · Вы забронировали дом за городом на следующую неделю; хозяин подтвердил бронь. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-49:i09; family: context_gap_grammar -->
 We ___ in a rural area next week. → **are staying** · are stay · stay
 - are stay — *После are нужна форма с -ing: are staying.*
@@ -113,7 +113,7 @@ We ___ in a rural area next week. → **are staying** · are stay · stay
 <!-- interaction_id: en:lesson-15:session-49:word:urban; family: word_card -->
 > **urban** — городской, относящийся к городу.
 
-**14 · Ваши друзья договорились о завтрашней прогулке в парке внутри города. Передайте договорённость через Present Continuous. Скажите: «Они посещают городской парк завтра».**
+**14 · Ваши друзья договорились о завтрашней прогулке в парке внутри города. Скажите, что это уже решено. Скажите: «Они посещают городской парк завтра».**
 <!-- interaction_id: en:lesson-15:session-49:i10; family: phrase_builder -->
 Плитки: `tomorrow` `park` `urban` `an` `visiting` `are` `They` → **They are visiting an urban park tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ in a rural area next week. → **are staying** · are stay · stay
 - They are going to visit an urban park tomorrow. — *В записи звучит They are visiting an urban park tomorrow.*
 - They is visiting an urban park tomorrow. — *В записи звучит They are visiting an urban park tomorrow.*
 
-**16 · Ваши друзья договорились о завтрашней прогулке в парке внутри города. Передайте договорённость через Present Continuous.**
+**16 · Ваши друзья договорились о завтрашней прогулке в парке внутри города. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-49:i12; family: context_gap_grammar -->
 They ___ an urban park tomorrow. → **are visiting** · are visit · visit
 - are visit — *После are нужна форма с -ing: are visiting.*
@@ -141,7 +141,7 @@ coastal — расположенный у морского побережья ·
 <!-- interaction_id: en:lesson-15:session-49:i15; family: listen_build_dictation -->
 🔊 *We are staying there next week.* Плитки: `week` `next` `there` `staying` `are` `We` → **We are staying there next week.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-49:i16; family: scripted_repeat_compare -->
 🎙 **I am visiting a coastal town tomorrow.**
 

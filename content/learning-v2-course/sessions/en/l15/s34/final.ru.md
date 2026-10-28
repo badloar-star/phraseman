@@ -93,7 +93,7 @@ She ___ a driving lesson. → **is going to book** · is booking · book
 <!-- interaction_id: en:lesson-15:session-34:word:swimming-lesson; family: word_card -->
 > **swimming lesson** — занятие по обучению плаванию.
 
-**10 · Вы с другом записались на завтрашнее занятие в бассейне; инструктор подтвердил время. Передайте договорённость через Present Continuous. Скажите: «У нас занятие по плаванию завтра».**
+**10 · Вы с другом записались на завтрашнее занятие в бассейне; инструктор подтвердил время. Скажите, что это уже решено. Скажите: «У нас занятие по плаванию завтра».**
 <!-- interaction_id: en:lesson-15:session-34:i07; family: phrase_builder -->
 Плитки: `tomorrow` `lesson` `swimming` `a` `having` `are` `We` → **We are having a swimming lesson tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ a driving lesson. → **is going to book** · is booking · book
 - We are going to have a swimming lesson tomorrow. — *В записи звучит We are having a swimming lesson tomorrow.*
 - We is having a swimming lesson tomorrow. — *В записи звучит We are having a swimming lesson tomorrow.*
 
-**12 · Вы с другом записались на завтрашнее занятие в бассейне; инструктор подтвердил время. Передайте договорённость через Present Continuous.**
+**12 · Вы с другом записались на завтрашнее занятие в бассейне; инструктор подтвердил время. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-34:i09; family: context_gap_grammar -->
 We ___ a swimming lesson tomorrow. → **are having** · are going to have · have
 - are going to have — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
@@ -113,7 +113,7 @@ We ___ a swimming lesson tomorrow. → **are having** · are going to have · ha
 <!-- interaction_id: en:lesson-15:session-34:word:dance-class; family: word_card -->
 > **dance class** — занятие танцами.
 
-**14 · Ваши родители подтвердили участие в пятничном занятии танцами. Передайте договорённость через Present Continuous. Скажите: «Они идут на занятие танцами в пятницу».**
+**14 · Ваши родители подтвердили участие в пятничном занятии танцами. Скажите, что это уже решено. Скажите: «Они идут на занятие танцами в пятницу».**
 <!-- interaction_id: en:lesson-15:session-34:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `class` `dance` `a` `attending` `are` `They` → **They are attending a dance class on Friday.**
 
@@ -123,7 +123,7 @@ We ___ a swimming lesson tomorrow. → **are having** · are going to have · ha
 - They are going to attend a dance class on Friday. — *В записи звучит They are attending a dance class on Friday.*
 - They is attending a dance class on Friday. — *В записи звучит They are attending a dance class on Friday.*
 
-**16 · Ваши родители подтвердили участие в пятничном занятии танцами. Передайте договорённость через Present Continuous.**
+**16 · Ваши родители подтвердили участие в пятничном занятии танцами. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-34:i12; family: context_gap_grammar -->
 They ___ a dance class on Friday. → **are attending** · are attend · attend
 - are attend — *После are нужна форма с -ing: are attending.*
@@ -141,7 +141,7 @@ first aid — первая помощь при травме или внезап�
 <!-- interaction_id: en:lesson-15:session-34:i15; family: listen_build_dictation -->
 🔊 *We are meeting the instructor tomorrow.* Плитки: `tomorrow` `instructor` `the` `meeting` `are` `We` → **We are meeting the instructor tomorrow.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-34:i16; family: scripted_repeat_compare -->
 🎙 **I am learning first aid tomorrow.**
 

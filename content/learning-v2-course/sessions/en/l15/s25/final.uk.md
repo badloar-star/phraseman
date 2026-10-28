@@ -93,7 +93,7 @@ She ___ the waiting list. → **is going to join** · is joining · join
 <!-- interaction_id: en:lesson-15:session-25:word:appointment-card; family: word_card -->
 > **appointment card** — картка з датою й часом призначеного прийому.
 
-**10 · Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous. Скажіть: «Я приношу картку із записом на прийом завтра».**
+**10 · Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Скажіть, що це вже вирішено. Скажіть: «Я приношу картку із записом на прийом завтра».**
 <!-- interaction_id: en:lesson-15:session-25:i07; family: phrase_builder -->
 Плитки: `tomorrow` `card` `appointment` `my` `bringing` `am` `I` → **I am bringing my appointment card tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ the waiting list. → **is going to join** · is joining · join
 - I am going to bring my appointment card tomorrow. — *У записі звучить I am bringing my appointment card tomorrow.*
 - I is bringing my appointment card tomorrow. — *У записі звучить I am bringing my appointment card tomorrow.*
 
-**12 · Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous.**
+**12 · Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-25:i09; family: context_gap_grammar -->
 I ___ my appointment card tomorrow. → **am bringing** · am bring · bring
 - am bring — *Після am потрібна форма з -ing: am bringing.*
@@ -113,7 +113,7 @@ I ___ my appointment card tomorrow. → **am bringing** · am bring · bring
 <!-- interaction_id: en:lesson-15:session-25:word:membership; family: word_card -->
 > **membership** — членство в клубі чи організації.
 
-**14 · Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous. Скажіть: «Ми оплачуємо членство в п’ятницю».**
+**14 · Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Скажіть, що це вже вирішено. Скажіть: «Ми оплачуємо членство в п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-25:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `membership` `our` `for` `paying` `are` `We` → **We are paying for our membership on Friday.**
 
@@ -123,7 +123,7 @@ I ___ my appointment card tomorrow. → **am bringing** · am bring · bring
 - We are going to pay for our membership on Friday. — *У записі звучить We are paying for our membership on Friday.*
 - We is paying for our membership on Friday. — *У записі звучить We are paying for our membership on Friday.*
 
-**16 · Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous.**
+**16 · Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-25:i12; family: context_gap_grammar -->
 We ___ for our membership on Friday. → **are paying** · are pay · pay
 - are pay — *Після are потрібна форма з -ing: are paying.*
@@ -141,7 +141,7 @@ renew — продовжити строк дії, оформити на нови
 <!-- interaction_id: en:lesson-15:session-25:i15; family: listen_build_dictation -->
 🔊 *We are meeting on Friday.* Плитки: `Friday` `on` `meeting` `are` `We` → **We are meeting on Friday.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-25:i16; family: scripted_repeat_compare -->
 🎙 **I am renewing my pass tomorrow.**
 

@@ -93,7 +93,7 @@ She ___ corduroy trousers. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-52:word:flannel; family: word_card -->
 > **flannel** — фланель, мягкая ткань с лёгким начёсом.
 
-**10 · Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем фланелевую рубашку завтра».**
+**10 · Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Скажите, что это уже решено. Скажите: «Мы забираем фланелевую рубашку завтра».**
 <!-- interaction_id: en:lesson-15:session-52:i07; family: phrase_builder -->
 Плитки: `tomorrow` `shirt` `flannel` `the` `collecting` `are` `We` → **We are collecting the flannel shirt tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ corduroy trousers. → **is going to buy** · is buying · buy
 - We are going to collect the flannel shirt tomorrow. — *В записи звучит We are collecting the flannel shirt tomorrow.*
 - We is collecting the flannel shirt tomorrow. — *В записи звучит We are collecting the flannel shirt tomorrow.*
 
-**12 · Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Передайте договорённость через Present Continuous.**
+**12 · Магазин подтвердил заказ мягкой фланелевой рубашки и получение на завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-52:i09; family: context_gap_grammar -->
 We ___ the flannel shirt tomorrow. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ the flannel shirt tomorrow. → **are collecting** · are collect · coll
 <!-- interaction_id: en:lesson-15:session-52:word:muslin; family: word_card -->
 > **muslin** — муслин, тонкая лёгкая ткань, часто хлопковая.
 
-**14 · Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous. Скажите: «Они забирают муслиновую ткань в субботу».**
+**14 · Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Скажите, что это уже решено. Скажите: «Они забирают муслиновую ткань в субботу».**
 <!-- interaction_id: en:lesson-15:session-52:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `cloth` `muslin` `the` `collecting` `are` `They` → **They are collecting the muslin cloth on Saturday.**
 
@@ -123,7 +123,7 @@ We ___ the flannel shirt tomorrow. → **are collecting** · are collect · coll
 - They are going to collect the muslin cloth on Saturday. — *В записи звучит They are collecting the muslin cloth on Saturday.*
 - They is collecting the muslin cloth on Saturday. — *В записи звучит They are collecting the muslin cloth on Saturday.*
 
-**16 · Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Передайте договорённость через Present Continuous.**
+**16 · Ваши родители заказали тонкую муслиновую ткань и согласовали получение на субботу. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-52:i12; family: context_gap_grammar -->
 They ___ the muslin cloth on Saturday. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*
@@ -141,7 +141,7 @@ tweed — твид, плотная шерстяная ткань с заметн
 <!-- interaction_id: en:lesson-15:session-52:i15; family: listen_build_dictation -->
 🔊 *We are collecting the shirt tomorrow.* Плитки: `tomorrow` `shirt` `the` `collecting` `are` `We` → **We are collecting the shirt tomorrow.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-52:i16; family: scripted_repeat_compare -->
 🎙 **I am buying a tweed jacket tomorrow.**
 

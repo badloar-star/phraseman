@@ -93,7 +93,7 @@ She ___ woodworking. → **is going to learn** · is learning · learn
 <!-- interaction_id: en:lesson-15:session-31:word:birdwatching; family: word_card -->
 > **birdwatching** — наблюдение за птицами.
 
-**10 · Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous. Скажите: «Мы идём наблюдать за птицами в субботу».**
+**10 · Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Скажите, что это уже решено. Скажите: «Мы идём наблюдать за птицами в субботу».**
 <!-- interaction_id: en:lesson-15:session-31:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `birdwatching` `going` `are` `We` → **We are going birdwatching on Saturday.**
 
@@ -103,7 +103,7 @@ She ___ woodworking. → **is going to learn** · is learning · learn
 - We are going to go birdwatching on Saturday. — *В записи звучит We are going birdwatching on Saturday.*
 - We is going birdwatching on Saturday. — *В записи звучит We are going birdwatching on Saturday.*
 
-**12 · Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.**
+**12 · Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-31:i09; family: context_gap_grammar -->
 We ___ birdwatching on Saturday. → **are going** · are going to go · go
 - are going to go — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
@@ -113,7 +113,7 @@ We ___ birdwatching on Saturday. → **are going** · are going to go · go
 <!-- interaction_id: en:lesson-15:session-31:word:stargazing; family: word_card -->
 > **stargazing** — наблюдение за звёздами.
 
-**14 · Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous. Скажите: «Они идут наблюдать за звёздами сегодня вечером».**
+**14 · Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Скажите, что это уже решено. Скажите: «Они идут наблюдать за звёздами сегодня вечером».**
 <!-- interaction_id: en:lesson-15:session-31:i10; family: phrase_builder -->
 Плитки: `tonight` `stargazing` `going` `are` `They` → **They are going stargazing tonight.**
 
@@ -123,7 +123,7 @@ We ___ birdwatching on Saturday. → **are going** · are going to go · go
 - They are going to go stargazing tonight. — *В записи звучит They are going stargazing tonight.*
 - They is going stargazing tonight. — *В записи звучит They are going stargazing tonight.*
 
-**16 · Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.**
+**16 · Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-31:i12; family: context_gap_grammar -->
 They ___ stargazing tonight. → **are going** · are going to go · go
 - are going to go — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
@@ -141,7 +141,7 @@ origami — складывание фигурок из бумаги · woodworki
 <!-- interaction_id: en:lesson-15:session-31:i15; family: listen_build_dictation -->
 🔊 *We are meeting at the park on Saturday.* Плитки: `Saturday` `on` `park` `the` `at` `meeting` `are` `We` → **We are meeting at the park on Saturday.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-31:i16; family: scripted_repeat_compare -->
 🎙 **I am trying origami tomorrow.**
 

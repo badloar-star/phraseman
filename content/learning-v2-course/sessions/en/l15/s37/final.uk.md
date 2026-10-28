@@ -93,7 +93,7 @@ She ___ sage. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-37:word:coriander; family: word_card -->
 > **coriander** — коріандр, рослина, листя й насіння якої використовують як приправу.
 
-**10 · Продавець підтвердив замовлення коріандру й час отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо коріандр завтра».**
+**10 · Продавець підтвердив замовлення коріандру й час отримання на завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо коріандр завтра».**
 <!-- interaction_id: en:lesson-15:session-37:i07; family: phrase_builder -->
 Плитки: `tomorrow` `coriander` `the` `collecting` `are` `We` → **We are collecting the coriander tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ sage. → **is going to buy** · is buying · buy
 - We are going to collect the coriander tomorrow. — *У записі звучить We are collecting the coriander tomorrow.*
 - We is collecting the coriander tomorrow. — *У записі звучить We are collecting the coriander tomorrow.*
 
-**12 · Продавець підтвердив замовлення коріандру й час отримання на завтра. Передайте домовленість через Present Continuous.**
+**12 · Продавець підтвердив замовлення коріандру й час отримання на завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-37:i09; family: context_gap_grammar -->
 We ___ the coriander tomorrow. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ the coriander tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-37:word:cumin; family: word_card -->
 > **cumin** — кумин, зіра, пряність із насіння.
 
-**14 · Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають кумин у суботу».**
+**14 · Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Скажіть, що це вже вирішено. Скажіть: «Вони забирають кумин у суботу».**
 <!-- interaction_id: en:lesson-15:session-37:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `cumin` `the` `collecting` `are` `They` → **They are collecting the cumin on Saturday.**
 
@@ -123,7 +123,7 @@ We ___ the coriander tomorrow. → **are collecting** · are collect · collect
 - They are going to collect the cumin on Saturday. — *У записі звучить They are collecting the cumin on Saturday.*
 - They is collecting the cumin on Saturday. — *У записі звучить They are collecting the cumin on Saturday.*
 
-**16 · Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Передайте домовленість через Present Continuous.**
+**16 · Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-37:i12; family: context_gap_grammar -->
 They ___ the cumin on Saturday. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -141,7 +141,7 @@ oregano — орегано, духмяна трава для приправи ·
 <!-- interaction_id: en:lesson-15:session-37:i15; family: listen_build_dictation -->
 🔊 *We are visiting the market tomorrow.* Плитки: `tomorrow` `market` `the` `visiting` `are` `We` → **We are visiting the market tomorrow.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-37:i16; family: scripted_repeat_compare -->
 🎙 **I am buying oregano tomorrow.**
 

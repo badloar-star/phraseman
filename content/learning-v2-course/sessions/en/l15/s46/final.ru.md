@@ -93,7 +93,7 @@ She ___ to her inflexible manager. → **is going to speak** · is speaking · s
 <!-- interaction_id: en:lesson-15:session-46:word:narrow-minded; family: word_card -->
 > **narrow-minded** — не желающий рассматривать другие взгляды.
 
-**10 · Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с двоюродным братом, который не принимает другие взгляды, завтра».**
+**10 · Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Скажите, что это уже решено. Скажите: «Мы встречаемся с двоюродным братом, который не принимает другие взгляды, завтра».**
 <!-- interaction_id: en:lesson-15:session-46:i07; family: phrase_builder -->
 Плитки: `tomorrow` `cousin` `narrow-minded` `our` `meeting` `are` `We` → **We are meeting our narrow-minded cousin tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ to her inflexible manager. → **is going to speak** · is speaking · s
 - We are going to meet our narrow-minded cousin tomorrow. — *В записи звучит We are meeting our narrow-minded cousin tomorrow.*
 - We is meeting our narrow-minded cousin tomorrow. — *В записи звучит We are meeting our narrow-minded cousin tomorrow.*
 
-**12 · Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Передайте договорённость через Present Continuous.**
+**12 · Вы договорились о завтрашней встрече с двоюродным братом; он не любит обсуждать чужие взгляды. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-46:i09; family: context_gap_grammar -->
 We ___ our narrow-minded cousin tomorrow. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -113,7 +113,7 @@ We ___ our narrow-minded cousin tomorrow. → **are meeting** · are meet · mee
 <!-- interaction_id: en:lesson-15:session-46:word:ungrateful; family: word_card -->
 > **ungrateful** — неблагодарный, не ценящий сделанное для него.
 
-**14 · Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с неблагодарным другом в субботу».**
+**14 · Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Скажите, что это уже решено. Скажите: «Они встречаются с неблагодарным другом в субботу».**
 <!-- interaction_id: en:lesson-15:session-46:i10; family: phrase_builder -->
 Плитки: `Saturday` `on` `friend` `ungrateful` `their` `meeting` `are` `They` → **They are meeting their ungrateful friend on Saturday.**
 
@@ -123,7 +123,7 @@ We ___ our narrow-minded cousin tomorrow. → **are meeting** · are meet · mee
 - They are going to meet their ungrateful friend on Saturday. — *В записи звучит They are meeting their ungrateful friend on Saturday.*
 - They is meeting their ungrateful friend on Saturday. — *В записи звучит They are meeting their ungrateful friend on Saturday.*
 
-**16 · Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Передайте договорённость через Present Continuous.**
+**16 · Ваши друзья согласовали встречу на субботу с другом, который не ценит их помощь. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-46:i12; family: context_gap_grammar -->
 They ___ their ungrateful friend on Saturday. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -141,7 +141,7 @@ reckless — безрассудный, не учитывающий опасно�
 <!-- interaction_id: en:lesson-15:session-46:i15; family: listen_build_dictation -->
 🔊 *We are meeting tomorrow afternoon.* Плитки: `afternoon` `tomorrow` `meeting` `are` `We` → **We are meeting tomorrow afternoon.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-46:i16; family: scripted_repeat_compare -->
 🎙 **I am talking to my reckless brother tomorrow.**
 

@@ -93,7 +93,7 @@ She ___ the handle anticlockwise. → **is going to turn** · is turning · turn
 <!-- interaction_id: en:lesson-15:session-48:word:downstairs; family: word_card -->
 > **downstairs** — внизу, на нижнем этаже.
 
-**10 · Вы с друзьями договорились встретиться завтра на нижнем этаже дома. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся внизу завтра».**
+**10 · Вы с друзьями договорились встретиться завтра на нижнем этаже дома. Скажите, что это уже решено. Скажите: «Мы встречаемся внизу завтра».**
 <!-- interaction_id: en:lesson-15:session-48:i07; family: phrase_builder -->
 Плитки: `tomorrow` `downstairs` `meeting` `are` `We` → **We are meeting downstairs tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ the handle anticlockwise. → **is going to turn** · is turning · turn
 - We are going to meet downstairs tomorrow. — *В записи звучит We are meeting downstairs tomorrow.*
 - We is meeting downstairs tomorrow. — *В записи звучит We are meeting downstairs tomorrow.*
 
-**12 · Вы с друзьями договорились встретиться завтра на нижнем этаже дома. Передайте договорённость через Present Continuous.**
+**12 · Вы с друзьями договорились встретиться завтра на нижнем этаже дома. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-48:i09; family: context_gap_grammar -->
 We ___ downstairs tomorrow. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -113,7 +113,7 @@ We ___ downstairs tomorrow. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-48:word:overhead; family: word_card -->
 > **overhead** — над головой, сверху.
 
-**14 · Ваши друзья согласовали завтрашнее украшение зала: огни будут висеть над гостями. Передайте договорённость через Present Continuous. Скажите: «Они вешают огни над головой завтра».**
+**14 · Ваши друзья согласовали завтрашнее украшение зала: огни будут висеть над гостями. Скажите, что это уже решено. Скажите: «Они вешают огни над головой завтра».**
 <!-- interaction_id: en:lesson-15:session-48:i10; family: phrase_builder -->
 Плитки: `tomorrow` `overhead` `lights` `hanging` `are` `They` → **They are hanging lights overhead tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ downstairs tomorrow. → **are meeting** · are meet · meet
 - They are going to hang lights overhead tomorrow. — *В записи звучит They are hanging lights overhead tomorrow.*
 - They is hanging lights overhead tomorrow. — *В записи звучит They are hanging lights overhead tomorrow.*
 
-**16 · Ваши друзья согласовали завтрашнее украшение зала: огни будут висеть над гостями. Передайте договорённость через Present Continuous.**
+**16 · Ваши друзья согласовали завтрашнее украшение зала: огни будут висеть над гостями. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-48:i12; family: context_gap_grammar -->
 They ___ lights overhead tomorrow. → **are hanging** · are hang · hang
 - are hang — *После are нужна форма с -ing: are hanging.*
@@ -141,7 +141,7 @@ clockwise — по часовой стрелке · anticlockwise — проти
 <!-- interaction_id: en:lesson-15:session-48:i15; family: listen_build_dictation -->
 🔊 *We are meeting at the house tomorrow.* Плитки: `tomorrow` `house` `the` `at` `meeting` `are` `We` → **We are meeting at the house tomorrow.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-48:i16; family: scripted_repeat_compare -->
 🎙 **I am turning the handle clockwise tomorrow.**
 

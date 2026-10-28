@@ -93,7 +93,7 @@ She ___ a manicure. → **is going to book** · is booking · book
 <!-- interaction_id: en:lesson-15:session-35:word:pedicure; family: word_card -->
 > **pedicure** — уход за ногтями ног, педикюр.
 
-**10 · Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. Передайте договорённость через Present Continuous. Скажите: «Мы идём на педикюр в субботу».**
+**10 · Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. Скажите, что это уже решено. Скажите: «Мы идём на педикюр в субботу».**
 <!-- interaction_id: en:lesson-15:session-35:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `pedicure` `a` `having` `are` `We` → **We are having a pedicure on Saturday.**
 
@@ -103,7 +103,7 @@ She ___ a manicure. → **is going to book** · is booking · book
 - We are going to have a pedicure on Saturday. — *В записи звучит We are having a pedicure on Saturday.*
 - We is having a pedicure on Saturday. — *В записи звучит We are having a pedicure on Saturday.*
 
-**12 · Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. Передайте договорённость через Present Continuous.**
+**12 · Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-35:i09; family: context_gap_grammar -->
 We ___ a pedicure on Saturday. → **are having** · are going to have · have
 - are going to have — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
@@ -113,7 +113,7 @@ We ___ a pedicure on Saturday. → **are having** · are going to have · have
 <!-- interaction_id: en:lesson-15:session-35:word:hair-colouring; family: word_card -->
 > **hair colouring** — окрашивание волос.
 
-**14 · Ваши друзья записались на завтрашнее окрашивание; оплату согласовали на день визита. Передайте договорённость через Present Continuous. Скажите: «Они оплачивают окрашивание волос завтра».**
+**14 · Ваши друзья записались на завтрашнее окрашивание; оплату согласовали на день визита. Скажите, что это уже решено. Скажите: «Они оплачивают окрашивание волос завтра».**
 <!-- interaction_id: en:lesson-15:session-35:i10; family: phrase_builder -->
 Плитки: `tomorrow` `colouring` `hair` `for` `paying` `are` `They` → **They are paying for hair colouring tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ a pedicure on Saturday. → **are having** · are going to have · have
 - They are going to pay for hair colouring tomorrow. — *В записи звучит They are paying for hair colouring tomorrow.*
 - They is paying for hair colouring tomorrow. — *В записи звучит They are paying for hair colouring tomorrow.*
 
-**16 · Ваши друзья записались на завтрашнее окрашивание; оплату согласовали на день визита. Передайте договорённость через Present Continuous.**
+**16 · Ваши друзья записались на завтрашнее окрашивание; оплату согласовали на день визита. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-35:i12; family: context_gap_grammar -->
 They ___ for hair colouring tomorrow. → **are paying** · are pay · pay
 - are pay — *После are нужна форма с -ing: are paying.*
@@ -141,7 +141,7 @@ haircut — стрижка волос · manicure — уход за ногтям
 <!-- interaction_id: en:lesson-15:session-35:i15; family: listen_build_dictation -->
 🔊 *We are meeting the hairdresser on Saturday.* Плитки: `Saturday` `on` `hairdresser` `the` `meeting` `are` `We` → **We are meeting the hairdresser on Saturday.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-35:i16; family: scripted_repeat_compare -->
 🎙 **I am getting a haircut tomorrow.**
 

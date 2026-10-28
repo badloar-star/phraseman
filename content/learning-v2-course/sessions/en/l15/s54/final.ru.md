@@ -93,7 +93,7 @@ She ___ a party in the next leap year. → **is going to have** · is having · 
 <!-- interaction_id: en:lesson-15:session-54:word:half-term; family: word_card -->
 > **half-term** — школьные каникулы в середине учебного периода.
 
-**10 · Вы купили билеты на ближайшие каникулы в середине учебного периода. Передайте договорённость через Present Continuous. Скажите: «Мы едем на каникулы в середине учебного периода».**
+**10 · Вы купили билеты на ближайшие каникулы в середине учебного периода. Скажите, что это уже решено. Скажите: «Мы едем на каникулы в середине учебного периода».**
 <!-- interaction_id: en:lesson-15:session-54:i07; family: phrase_builder -->
 Плитки: `half-term` `at` `travelling` `are` `We` → **We are travelling at half-term.**
 
@@ -103,7 +103,7 @@ She ___ a party in the next leap year. → **is going to have** · is having · 
 - We are going to travel at half-term. — *В записи звучит We are travelling at half-term.*
 - We is travelling at half-term. — *В записи звучит We are travelling at half-term.*
 
-**12 · Вы купили билеты на ближайшие каникулы в середине учебного периода. Передайте договорённость через Present Continuous.**
+**12 · Вы купили билеты на ближайшие каникулы в середине учебного периода. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-54:i09; family: context_gap_grammar -->
 We ___ at half-term. → **are travelling** · are travel · travel
 - are travel — *После are нужна форма с -ing: are travelling.*
@@ -113,7 +113,7 @@ We ___ at half-term. → **are travelling** · are travel · travel
 <!-- interaction_id: en:lesson-15:session-54:word:term-time; family: word_card -->
 > **term time** — время учебных занятий, не каникулы.
 
-**14 · Ваши дети записаны на школьную экскурсию в музей; она пройдёт во время учебных занятий. Передайте договорённость через Present Continuous. Скажите: «Они посещают музей во время учебного периода».**
+**14 · Ваши дети записаны на школьную экскурсию в музей; она пройдёт во время учебных занятий. Скажите, что это уже решено. Скажите: «Они посещают музей во время учебного периода».**
 <!-- interaction_id: en:lesson-15:session-54:i10; family: phrase_builder -->
 Плитки: `time` `term` `in` `museum` `the` `visiting` `are` `They` → **They are visiting the museum in term time.**
 
@@ -123,7 +123,7 @@ We ___ at half-term. → **are travelling** · are travel · travel
 - They are going to visit the museum in term time. — *В записи звучит They are visiting the museum in term time.*
 - They is visiting the museum in term time. — *В записи звучит They are visiting the museum in term time.*
 
-**16 · Ваши дети записаны на школьную экскурсию в музей; она пройдёт во время учебных занятий. Передайте договорённость через Present Continuous.**
+**16 · Ваши дети записаны на школьную экскурсию в музей; она пройдёт во время учебных занятий. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-54:i12; family: context_gap_grammar -->
 They ___ the museum in term time. → **are visiting** · are visit · visit
 - are visit — *После are нужна форма с -ing: are visiting.*
@@ -141,7 +141,7 @@ fortnight — две недели · leap year — високосный год �
 <!-- interaction_id: en:lesson-15:session-54:i15; family: listen_build_dictation -->
 🔊 *We are visiting the museum next month.* Плитки: `month` `next` `museum` `the` `visiting` `are` `We` → **We are visiting the museum next month.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-54:i16; family: scripted_repeat_compare -->
 🎙 **I am travelling for a fortnight tomorrow.**
 

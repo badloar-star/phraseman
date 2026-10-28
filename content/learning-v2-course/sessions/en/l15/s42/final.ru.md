@@ -93,7 +93,7 @@ She ___ her pessimistic brother. → **is going to help** · is helping · help
 <!-- interaction_id: en:lesson-15:session-42:word:indecisive; family: word_card -->
 > **indecisive** — нерешительный, которому трудно сделать выбор.
 
-**10 · Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с нерешительным двоюродным братом в пятницу».**
+**10 · Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Скажите, что это уже решено. Скажите: «Мы встречаемся с нерешительным двоюродным братом в пятницу».**
 <!-- interaction_id: en:lesson-15:session-42:i07; family: phrase_builder -->
 Плитки: `Friday` `on` `cousin` `indecisive` `our` `meeting` `are` `We` → **We are meeting our indecisive cousin on Friday.**
 
@@ -103,7 +103,7 @@ She ___ her pessimistic brother. → **is going to help** · is helping · help
 - We are going to meet our indecisive cousin on Friday. — *В записи звучит We are meeting our indecisive cousin on Friday.*
 - We is meeting our indecisive cousin on Friday. — *В записи звучит We are meeting our indecisive cousin on Friday.*
 
-**12 · Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Передайте договорённость через Present Continuous.**
+**12 · Вы договорились в пятницу помочь двоюродному брату выбрать поездку; ему трудно решиться. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-42:i09; family: context_gap_grammar -->
 We ___ our indecisive cousin on Friday. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -113,7 +113,7 @@ We ___ our indecisive cousin on Friday. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-42:word:decisive; family: word_card -->
 > **decisive** — решительный, способный быстро принять ясное решение.
 
-**14 · Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с решительным тренером завтра».**
+**14 · Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Скажите, что это уже решено. Скажите: «Они встречаются с решительным тренером завтра».**
 <!-- interaction_id: en:lesson-15:session-42:i10; family: phrase_builder -->
 Плитки: `tomorrow` `coach` `decisive` `their` `meeting` `are` `They` → **They are meeting their decisive coach tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ our indecisive cousin on Friday. → **are meeting** · are meet · meet
 - They are going to meet their decisive coach tomorrow. — *В записи звучит They are meeting their decisive coach tomorrow.*
 - They is meeting their decisive coach tomorrow. — *В записи звучит They are meeting their decisive coach tomorrow.*
 
-**16 · Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Передайте договорённость через Present Continuous.**
+**16 · Ваши друзья согласовали встречу на завтра с тренером, который быстро принимает решения. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-42:i12; family: context_gap_grammar -->
 They ___ their decisive coach tomorrow. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -141,7 +141,7 @@ optimistic — ожидающий хорошего, настроенный оп�
 <!-- interaction_id: en:lesson-15:session-42:i15; family: listen_build_dictation -->
 🔊 *We are meeting on Friday afternoon.* Плитки: `afternoon` `Friday` `on` `meeting` `are` `We` → **We are meeting on Friday afternoon.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-42:i16; family: scripted_repeat_compare -->
 🎙 **I am calling my optimistic friend tomorrow.**
 

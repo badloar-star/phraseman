@@ -93,7 +93,7 @@ She ___ a manicure. → **is going to book** · is booking · book
 <!-- interaction_id: en:lesson-15:session-35:word:pedicure; family: word_card -->
 > **pedicure** — догляд за нігтями ніг, педикюр.
 
-**10 · Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо на педикюр у суботу».**
+**10 · Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Скажіть, що це вже вирішено. Скажіть: «Ми йдемо на педикюр у суботу».**
 <!-- interaction_id: en:lesson-15:session-35:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `pedicure` `a` `having` `are` `We` → **We are having a pedicure on Saturday.**
 
@@ -103,7 +103,7 @@ She ___ a manicure. → **is going to book** · is booking · book
 - We are going to have a pedicure on Saturday. — *У записі звучить We are having a pedicure on Saturday.*
 - We is having a pedicure on Saturday. — *У записі звучить We are having a pedicure on Saturday.*
 
-**12 · Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Передайте домовленість через Present Continuous.**
+**12 · Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-35:i09; family: context_gap_grammar -->
 We ___ a pedicure on Saturday. → **are having** · are going to have · have
 - are going to have — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
@@ -113,7 +113,7 @@ We ___ a pedicure on Saturday. → **are having** · are going to have · have
 <!-- interaction_id: en:lesson-15:session-35:word:hair-colouring; family: word_card -->
 > **hair colouring** — фарбування волосся.
 
-**14 · Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Передайте домовленість через Present Continuous. Скажіть: «Вони оплачують фарбування волосся завтра».**
+**14 · Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Скажіть, що це вже вирішено. Скажіть: «Вони оплачують фарбування волосся завтра».**
 <!-- interaction_id: en:lesson-15:session-35:i10; family: phrase_builder -->
 Плитки: `tomorrow` `colouring` `hair` `for` `paying` `are` `They` → **They are paying for hair colouring tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ a pedicure on Saturday. → **are having** · are going to have · have
 - They are going to pay for hair colouring tomorrow. — *У записі звучить They are paying for hair colouring tomorrow.*
 - They is paying for hair colouring tomorrow. — *У записі звучить They are paying for hair colouring tomorrow.*
 
-**16 · Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Передайте домовленість через Present Continuous.**
+**16 · Ваші друзі записалися на завтрашнє фарбування; оплату узгодили на день візиту. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-35:i12; family: context_gap_grammar -->
 They ___ for hair colouring tomorrow. → **are paying** · are pay · pay
 - are pay — *Після are потрібна форма з -ing: are paying.*
@@ -141,7 +141,7 @@ haircut — стрижка волосся · manicure — догляд за ні
 <!-- interaction_id: en:lesson-15:session-35:i15; family: listen_build_dictation -->
 🔊 *We are meeting the hairdresser on Saturday.* Плитки: `Saturday` `on` `hairdresser` `the` `meeting` `are` `We` → **We are meeting the hairdresser on Saturday.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-35:i16; family: scripted_repeat_compare -->
 🎙 **I am getting a haircut tomorrow.**
 

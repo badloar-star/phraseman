@@ -93,7 +93,7 @@ She ___ her artistic cousin. → **is going to visit** · is visiting · visit
 <!-- interaction_id: en:lesson-15:session-44:word:musical; family: word_card -->
 > **musical** — який має здібності до музики.
 
-**10 · Ви узгодили завтрашню зустріч із сусідом, який добре грає й співає. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з музично обдарованим сусідом завтра».**
+**10 · Ви узгодили завтрашню зустріч із сусідом, який добре грає й співає. Скажіть, що це вже вирішено. Скажіть: «Ми зустрічаємося з музично обдарованим сусідом завтра».**
 <!-- interaction_id: en:lesson-15:session-44:i07; family: phrase_builder -->
 Плитки: `tomorrow` `neighbour` `musical` `our` `meeting` `are` `We` → **We are meeting our musical neighbour tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ her artistic cousin. → **is going to visit** · is visiting · visit
 - We are going to meet our musical neighbour tomorrow. — *У записі звучить We are meeting our musical neighbour tomorrow.*
 - We is meeting our musical neighbour tomorrow. — *У записі звучить We are meeting our musical neighbour tomorrow.*
 
-**12 · Ви узгодили завтрашню зустріч із сусідом, який добре грає й співає. Передайте домовленість через Present Continuous.**
+**12 · Ви узгодили завтрашню зустріч із сусідом, який добре грає й співає. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-44:i09; family: context_gap_grammar -->
 We ___ our musical neighbour tomorrow. → **are meeting** · are meet · meet
 - are meet — *Після are потрібна форма з -ing: are meeting.*
@@ -113,7 +113,7 @@ We ___ our musical neighbour tomorrow. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-44:word:athletic; family: word_card -->
 > **athletic** — спортивний, фізично сильний і спритний.
 
-**14 · Ваші друзі домовилися про недільну прогулянку зі спортивним другом. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються зі своїм спортивним другом у неділю».**
+**14 · Ваші друзі домовилися про недільну прогулянку зі спортивним другом. Скажіть, що це вже вирішено. Скажіть: «Вони зустрічаються зі своїм спортивним другом у неділю».**
 <!-- interaction_id: en:lesson-15:session-44:i10; family: phrase_builder -->
 Плитки: `Sunday` `on` `friend` `athletic` `their` `meeting` `are` `They` → **They are meeting their athletic friend on Sunday.**
 
@@ -123,7 +123,7 @@ We ___ our musical neighbour tomorrow. → **are meeting** · are meet · meet
 - They are going to meet their athletic friend on Sunday. — *У записі звучить They are meeting their athletic friend on Sunday.*
 - They is meeting their athletic friend on Sunday. — *У записі звучить They are meeting their athletic friend on Sunday.*
 
-**16 · Ваші друзі домовилися про недільну прогулянку зі спортивним другом. Передайте домовленість через Present Continuous.**
+**16 · Ваші друзі домовилися про недільну прогулянку зі спортивним другом. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-44:i12; family: context_gap_grammar -->
 They ___ their athletic friend on Sunday. → **are meeting** · are meet · meet
 - are meet — *Після are потрібна форма з -ing: are meeting.*
@@ -141,7 +141,7 @@ creative — який уміє вигадувати нові ідеї · artisti
 <!-- interaction_id: en:lesson-15:session-44:i15; family: listen_build_dictation -->
 🔊 *We are meeting our neighbour tomorrow evening.* Плитки: `evening` `tomorrow` `neighbour` `our` `meeting` `are` `We` → **We are meeting our neighbour tomorrow evening.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-44:i16; family: scripted_repeat_compare -->
 🎙 **I am asking my creative friend for help tomorrow.**
 

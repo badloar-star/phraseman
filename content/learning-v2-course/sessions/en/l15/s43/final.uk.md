@@ -93,7 +93,7 @@ She ___ her ambitious son. → **is going to help** · is helping · help
 <!-- interaction_id: en:lesson-15:session-43:word:easy-going; family: word_card -->
 > **easy-going** — спокійний і невибагливий у спілкуванні.
 
-**10 · Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous. Скажіть: «Ми їдемо з нашим легким у спілкуванні другом у суботу».**
+**10 · Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Скажіть, що це вже вирішено. Скажіть: «Ми їдемо з нашим легким у спілкуванні другом у суботу».**
 <!-- interaction_id: en:lesson-15:session-43:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `friend` `easy-going` `our` `with` `travelling` `are` `We` → **We are travelling with our easy-going friend on Saturday.**
 
@@ -103,7 +103,7 @@ She ___ her ambitious son. → **is going to help** · is helping · help
 - We are going to travel with our easy-going friend on Saturday. — *У записі звучить We are travelling with our easy-going friend on Saturday.*
 - We is travelling with our easy-going friend on Saturday. — *У записі звучить We are travelling with our easy-going friend on Saturday.*
 
-**12 · Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Передайте домовленість через Present Continuous.**
+**12 · Квитки на суботу куплено; з вами їде друг, який спокійно ставиться до дрібниць. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-43:i09; family: context_gap_grammar -->
 We ___ with our easy-going friend on Saturday. → **are travelling** · are travel · travel
 - are travel — *Після are потрібна форма з -ing: are travelling.*
@@ -113,7 +113,7 @@ We ___ with our easy-going friend on Saturday. → **are travelling** · are tra
 <!-- interaction_id: en:lesson-15:session-43:word:bossy; family: word_card -->
 > **bossy** — який любить командувати іншими.
 
-**14 · Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з двоюрідним братом, який любить командувати, завтра».**
+**14 · Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Скажіть, що це вже вирішено. Скажіть: «Вони зустрічаються з двоюрідним братом, який любить командувати, завтра».**
 <!-- interaction_id: en:lesson-15:session-43:i10; family: phrase_builder -->
 Плитки: `tomorrow` `cousin` `bossy` `their` `meeting` `are` `They` → **They are meeting their bossy cousin tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ with our easy-going friend on Saturday. → **are travelling** · are tra
 - They are going to meet their bossy cousin tomorrow. — *У записі звучить They are meeting their bossy cousin tomorrow.*
 - They is meeting their bossy cousin tomorrow. — *У записі звучить They are meeting their bossy cousin tomorrow.*
 
-**16 · Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Передайте домовленість через Present Continuous.**
+**16 · Ваші друзі узгодили завтрашню зустріч із двоюрідним братом, який часто всіма командує. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-43:i12; family: context_gap_grammar -->
 They ___ their bossy cousin tomorrow. → **are meeting** · are meet · meet
 - are meet — *Після are потрібна форма з -ing: are meeting.*
@@ -141,7 +141,7 @@ modest — скромний, який не вихваляється своїми
 <!-- interaction_id: en:lesson-15:session-43:i15; family: listen_build_dictation -->
 🔊 *We are travelling on Saturday morning.* Плитки: `morning` `Saturday` `on` `travelling` `are` `We` → **We are travelling on Saturday morning.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-43:i16; family: scripted_repeat_compare -->
 🎙 **I am visiting my modest friend tomorrow.**
 

@@ -93,7 +93,7 @@ She ___ woodworking. → **is going to learn** · is learning · learn
 <!-- interaction_id: en:lesson-15:session-31:word:birdwatching; family: word_card -->
 > **birdwatching** — спостереження за птахами.
 
-**10 · Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо спостерігати за птахами в суботу».**
+**10 · Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Скажіть, що це вже вирішено. Скажіть: «Ми йдемо спостерігати за птахами в суботу».**
 <!-- interaction_id: en:lesson-15:session-31:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `birdwatching` `going` `are` `We` → **We are going birdwatching on Saturday.**
 
@@ -103,7 +103,7 @@ She ___ woodworking. → **is going to learn** · is learning · learn
 - We are going to go birdwatching on Saturday. — *У записі звучить We are going birdwatching on Saturday.*
 - We is going birdwatching on Saturday. — *У записі звучить We are going birdwatching on Saturday.*
 
-**12 · Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous.**
+**12 · Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-31:i09; family: context_gap_grammar -->
 We ___ birdwatching on Saturday. → **are going** · are going to go · go
 - are going to go — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
@@ -113,7 +113,7 @@ We ___ birdwatching on Saturday. → **are going** · are going to go · go
 <!-- interaction_id: en:lesson-15:session-31:word:stargazing; family: word_card -->
 > **stargazing** — спостереження за зорями.
 
-**14 · Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous. Скажіть: «Вони йдуть спостерігати за зорями сьогодні ввечері».**
+**14 · Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Скажіть, що це вже вирішено. Скажіть: «Вони йдуть спостерігати за зорями сьогодні ввечері».**
 <!-- interaction_id: en:lesson-15:session-31:i10; family: phrase_builder -->
 Плитки: `tonight` `stargazing` `going` `are` `They` → **They are going stargazing tonight.**
 
@@ -123,7 +123,7 @@ We ___ birdwatching on Saturday. → **are going** · are going to go · go
 - They are going to go stargazing tonight. — *У записі звучить They are going stargazing tonight.*
 - They is going stargazing tonight. — *У записі звучить They are going stargazing tonight.*
 
-**16 · Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous.**
+**16 · Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-31:i12; family: context_gap_grammar -->
 They ___ stargazing tonight. → **are going** · are going to go · go
 - are going to go — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
@@ -141,7 +141,7 @@ origami — складання фігурок із паперу · woodworking �
 <!-- interaction_id: en:lesson-15:session-31:i15; family: listen_build_dictation -->
 🔊 *We are meeting at the park on Saturday.* Плитки: `Saturday` `on` `park` `the` `at` `meeting` `are` `We` → **We are meeting at the park on Saturday.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-31:i16; family: scripted_repeat_compare -->
 🎙 **I am trying origami tomorrow.**
 

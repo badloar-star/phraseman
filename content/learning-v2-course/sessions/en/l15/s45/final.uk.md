@@ -93,7 +93,7 @@ She ___ her resourceful brother for help. → **is going to ask** · is asking �
 <!-- interaction_id: en:lesson-15:session-45:word:cooperative; family: word_card -->
 > **cooperative** — готовий співпрацювати й робити справу разом.
 
-**10 · Ви із сусідом узгодили на завтра спільну роботу в саду; він охоче співпрацює. Передайте домовленість через Present Continuous. Скажіть: «Ми працюємо з нашим готовим співпрацювати сусідом завтра».**
+**10 · Ви із сусідом узгодили на завтра спільну роботу в саду; він охоче співпрацює. Скажіть, що це вже вирішено. Скажіть: «Ми працюємо з нашим готовим співпрацювати сусідом завтра».**
 <!-- interaction_id: en:lesson-15:session-45:i07; family: phrase_builder -->
 Плитки: `tomorrow` `neighbour` `cooperative` `our` `with` `working` `are` `We` → **We are working with our cooperative neighbour tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ her resourceful brother for help. → **is going to ask** · is asking �
 - We are going to work with our cooperative neighbour tomorrow. — *У записі звучить We are working with our cooperative neighbour tomorrow.*
 - We is working with our cooperative neighbour tomorrow. — *У записі звучить We are working with our cooperative neighbour tomorrow.*
 
-**12 · Ви із сусідом узгодили на завтра спільну роботу в саду; він охоче співпрацює. Передайте домовленість через Present Continuous.**
+**12 · Ви із сусідом узгодили на завтра спільну роботу в саду; він охоче співпрацює. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-45:i09; family: context_gap_grammar -->
 We ___ with our cooperative neighbour tomorrow. → **are working** · are work · work
 - are work — *Після are потрібна форма з -ing: are working.*
@@ -113,7 +113,7 @@ We ___ with our cooperative neighbour tomorrow. → **are working** · are work 
 <!-- interaction_id: en:lesson-15:session-45:word:supportive; family: word_card -->
 > **supportive** — який надає підтримку й підбадьорює.
 
-**14 · Ваші друзі домовилися зустрітися з учителем у п’ятницю; він завжди їх підбадьорює. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з учителем, який їх підтримує, у п’ятницю».**
+**14 · Ваші друзі домовилися зустрітися з учителем у п’ятницю; він завжди їх підбадьорює. Скажіть, що це вже вирішено. Скажіть: «Вони зустрічаються з учителем, який їх підтримує, у п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-45:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `teacher` `supportive` `their` `meeting` `are` `They` → **They are meeting their supportive teacher on Friday.**
 
@@ -123,7 +123,7 @@ We ___ with our cooperative neighbour tomorrow. → **are working** · are work 
 - They are going to meet their supportive teacher on Friday. — *У записі звучить They are meeting their supportive teacher on Friday.*
 - They is meeting their supportive teacher on Friday. — *У записі звучить They are meeting their supportive teacher on Friday.*
 
-**16 · Ваші друзі домовилися зустрітися з учителем у п’ятницю; він завжди їх підбадьорює. Передайте домовленість через Present Continuous.**
+**16 · Ваші друзі домовилися зустрітися з учителем у п’ятницю; він завжди їх підбадьорює. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-45:i12; family: context_gap_grammar -->
 They ___ their supportive teacher on Friday. → **are meeting** · are meet · meet
 - are meet — *Після are потрібна форма з -ing: are meeting.*
@@ -141,7 +141,7 @@ adventurous — який любить пригоди й нові враженн�
 <!-- interaction_id: en:lesson-15:session-45:i15; family: listen_build_dictation -->
 🔊 *We are working in the garden tomorrow.* Плитки: `tomorrow` `garden` `the` `in` `working` `are` `We` → **We are working in the garden tomorrow.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-45:i16; family: scripted_repeat_compare -->
 🎙 **I am travelling with my adventurous friend tomorrow.**
 

@@ -93,7 +93,7 @@ She ___ the cards. → **is going to deal** · is dealing · deal
 <!-- interaction_id: en:lesson-15:session-56:word:aim; family: word_card -->
 > **aim** — целиться, направлять бросок в выбранную цель.
 
-**10 · Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous. Скажите: «Мы учимся целиться завтра».**
+**10 · Вы с другом записались на завтрашнее занятие бросками мяча в цель. Скажите, что это уже решено. Скажите: «Мы учимся целиться завтра».**
 <!-- interaction_id: en:lesson-15:session-56:i07; family: phrase_builder -->
 Плитки: `tomorrow` `aim` `to` `learning` `are` `We` → **We are learning to aim tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ the cards. → **is going to deal** · is dealing · deal
 - We are going to learn to aim tomorrow. — *В записи звучит We are learning to aim tomorrow.*
 - We is learning to aim tomorrow. — *В записи звучит We are learning to aim tomorrow.*
 
-**12 · Вы с другом записались на завтрашнее занятие бросками мяча в цель. Передайте договорённость через Present Continuous.**
+**12 · Вы с другом записались на завтрашнее занятие бросками мяча в цель. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-56:i09; family: context_gap_grammar -->
 We ___ to aim tomorrow. → **are learning** · are learn · learn
 - are learn — *После are нужна форма с -ing: are learning.*
@@ -113,7 +113,7 @@ We ___ to aim tomorrow. → **are learning** · are learn · learn
 <!-- interaction_id: en:lesson-15:session-56:word:bounce; family: word_card -->
 > **bounce** — отбивать мяч от пола или другой поверхности.
 
-**14 · Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous. Скажите: «Они учатся отбивать мяч от пола завтра».**
+**14 · Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Скажите, что это уже решено. Скажите: «Они учатся отбивать мяч от пола завтра».**
 <!-- interaction_id: en:lesson-15:session-56:i10; family: phrase_builder -->
 Плитки: `tomorrow` `ball` `a` `bounce` `to` `learning` `are` `They` → **They are learning to bounce a ball tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ to aim tomorrow. → **are learning** · are learn · learn
 - They are going to learn to bounce a ball tomorrow. — *В записи звучит They are learning to bounce a ball tomorrow.*
 - They is learning to bounce a ball tomorrow. — *В записи звучит They are learning to bounce a ball tomorrow.*
 
-**16 · Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Передайте договорённость через Present Continuous.**
+**16 · Ваши дети записаны на завтрашнее занятие, где научатся отбивать мяч от пола. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-56:i12; family: context_gap_grammar -->
 They ___ to bounce a ball tomorrow. → **are learning** · are learn · learn
 - are learn — *После are нужна форма с -ing: are learning.*
@@ -141,7 +141,7 @@ shuffle — перемешать игральные карты · deal — ра�
 <!-- interaction_id: en:lesson-15:session-56:i15; family: listen_build_dictation -->
 🔊 *We are having a lesson tomorrow.* Плитки: `tomorrow` `lesson` `a` `having` `are` `We` → **We are having a lesson tomorrow.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-56:i16; family: scripted_repeat_compare -->
 🎙 **I am shuffling the cards tomorrow.**
 

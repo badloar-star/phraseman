@@ -93,7 +93,7 @@ She ___ a season ticket. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-26:word:day-pass; family: word_card -->
 > **day pass** — квиток або перепустка, що діє один день.
 
-**10 · Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо свою денну перепустку завтра».**
+**10 · Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо свою денну перепустку завтра».**
 <!-- interaction_id: en:lesson-15:session-26:i07; family: phrase_builder -->
 Плитки: `tomorrow` `pass` `day` `our` `collecting` `are` `We` → **We are collecting our day pass tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ a season ticket. → **is going to buy** · is buying · buy
 - We are going to collect our day pass tomorrow. — *У записі звучить We are collecting our day pass tomorrow.*
 - We is collecting our day pass tomorrow. — *У записі звучить We are collecting our day pass tomorrow.*
 
-**12 · Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous.**
+**12 · Денну перепустку до басейну вже оплачено; ви домовилися забрати її завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-26:i09; family: context_gap_grammar -->
 We ___ our day pass tomorrow. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ our day pass tomorrow. → **are collecting** · are collect · collect
 <!-- interaction_id: en:lesson-15:session-26:word:family-pass; family: word_card -->
 > **family pass** — спільний квиток або перепустка для сім’ї.
 
-**14 · Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous. Скажіть: «Вони користуються сімейним квитком у неділю».**
+**14 · Ваші друзі забронювали сімейне відвідування музею на неділю. Скажіть, що це вже вирішено. Скажіть: «Вони користуються сімейним квитком у неділю».**
 <!-- interaction_id: en:lesson-15:session-26:i10; family: phrase_builder -->
 Плитки: `Sunday` `on` `pass` `family` `their` `using` `are` `They` → **They are using their family pass on Sunday.**
 
@@ -123,7 +123,7 @@ We ___ our day pass tomorrow. → **are collecting** · are collect · collect
 - They are going to use their family pass on Sunday. — *У записі звучить They are using their family pass on Sunday.*
 - They is using their family pass on Sunday. — *У записі звучить They are using their family pass on Sunday.*
 
-**16 · Ваші друзі забронювали сімейне відвідування музею на неділю. Передайте домовленість через Present Continuous.**
+**16 · Ваші друзі забронювали сімейне відвідування музею на неділю. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-26:i12; family: context_gap_grammar -->
 They ___ their family pass on Sunday. → **are using** · are use · use
 - are use — *Після are потрібна форма з -ing: are using.*
@@ -141,7 +141,7 @@ subscription — регулярно оплачувана передплата н
 <!-- interaction_id: en:lesson-15:session-26:i15; family: listen_build_dictation -->
 🔊 *We are visiting the museum on Sunday.* Плитки: `Sunday` `on` `museum` `the` `visiting` `are` `We` → **We are visiting the museum on Sunday.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-26:i16; family: scripted_repeat_compare -->
 🎙 **I am buying a subscription tomorrow.**
 

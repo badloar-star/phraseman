@@ -93,7 +93,7 @@ She ___ the collection point. → **is going to use** · is using · use
 <!-- interaction_id: en:lesson-15:session-28:word:click-and-collect; family: word_card -->
 > **click and collect** — заказ через интернет с получением в магазине.
 
-**10 · Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы получаем интернет-заказ в магазине завтра».**
+**10 · Магазин подтвердил ваш заказ; время получения назначено на завтра. Скажите, что это уже решено. Скажите: «Мы получаем интернет-заказ в магазине завтра».**
 <!-- interaction_id: en:lesson-15:session-28:i07; family: phrase_builder -->
 Плитки: `tomorrow` `collect` `and` `click` `using` `are` `We` → **We are using click and collect tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ the collection point. → **is going to use** · is using · use
 - We are going to use click and collect tomorrow. — *В записи звучит We are using click and collect tomorrow.*
 - We is using click and collect tomorrow. — *В записи звучит We are using click and collect tomorrow.*
 
-**12 · Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous.**
+**12 · Магазин подтвердил ваш заказ; время получения назначено на завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-28:i09; family: context_gap_grammar -->
 We ___ click and collect tomorrow. → **are using** · are use · use
 - are use — *После are нужна форма с -ing: are using.*
@@ -113,7 +113,7 @@ We ___ click and collect tomorrow. → **are using** · are use · use
 <!-- interaction_id: en:lesson-15:session-28:word:photo-booth; family: word_card -->
 > **photo booth** — кабина для автоматической фотосъёмки.
 
-**14 · Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous. Скажите: «Они встречаются возле фотокабины завтра в десять».**
+**14 · Ваши друзья согласовали встречу завтра в десять у фотокабины. Скажите, что это уже решено. Скажите: «Они встречаются возле фотокабины завтра в десять».**
 <!-- interaction_id: en:lesson-15:session-28:i10; family: phrase_builder -->
 Плитки: `tomorrow` `ten` `at` `booth` `photo` `the` `by` `meeting` `are` `They` → **They are meeting by the photo booth at ten tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ click and collect tomorrow. → **are using** · are use · use
 - They are going to meet by the photo booth at ten tomorrow. — *В записи звучит They are meeting by the photo booth at ten tomorrow.*
 - They is meeting by the photo booth at ten tomorrow. — *В записи звучит They are meeting by the photo booth at ten tomorrow.*
 
-**16 · Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous.**
+**16 · Ваши друзья согласовали встречу завтра в десять у фотокабины. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-28:i12; family: context_gap_grammar -->
 They ___ by the photo booth at ten tomorrow. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -141,7 +141,7 @@ delivery slot — выбранный промежуток времени дос�
 <!-- interaction_id: en:lesson-15:session-28:i15; family: listen_build_dictation -->
 🔊 *We are collecting the order tomorrow.* Плитки: `tomorrow` `order` `the` `collecting` `are` `We` → **We are collecting the order tomorrow.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-28:i16; family: scripted_repeat_compare -->
 🎙 **I am choosing a delivery slot tomorrow.**
 

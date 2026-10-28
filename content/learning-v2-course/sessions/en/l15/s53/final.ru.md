@@ -93,7 +93,7 @@ She ___ lactose-free milk. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-53:word:unsweetened; family: word_card -->
 > **unsweetened** — без добавленного сахара или других подсластителей.
 
-**10 · Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем йогурт без добавленного подслащивания завтра».**
+**10 · Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Скажите, что это уже решено. Скажите: «Мы забираем йогурт без добавленного подслащивания завтра».**
 <!-- interaction_id: en:lesson-15:session-53:i07; family: phrase_builder -->
 Плитки: `tomorrow` `yoghurt` `unsweetened` `the` `collecting` `are` `We` → **We are collecting the unsweetened yoghurt tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ lactose-free milk. → **is going to buy** · is buying · buy
 - We are going to collect the unsweetened yoghurt tomorrow. — *В записи звучит We are collecting the unsweetened yoghurt tomorrow.*
 - We is collecting the unsweetened yoghurt tomorrow. — *В записи звучит We are collecting the unsweetened yoghurt tomorrow.*
 
-**12 · Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Передайте договорённость через Present Continuous.**
+**12 · Вы заказали йогурт без добавленных подсластителей; получение согласовано на завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-53:i09; family: context_gap_grammar -->
 We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect �
 <!-- interaction_id: en:lesson-15:session-53:word:unsalted; family: word_card -->
 > **unsalted** — без добавленной соли.
 
-**14 · Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают несолёное масло в пятницу».**
+**14 · Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Скажите, что это уже решено. Скажите: «Они забирают несолёное масло в пятницу».**
 <!-- interaction_id: en:lesson-15:session-53:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `butter` `unsalted` `the` `collecting` `are` `They` → **They are collecting the unsalted butter on Friday.**
 
@@ -123,7 +123,7 @@ We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect �
 - They are going to collect the unsalted butter on Friday. — *В записи звучит They are collecting the unsalted butter on Friday.*
 - They is collecting the unsalted butter on Friday. — *В записи звучит They are collecting the unsalted butter on Friday.*
 
-**16 · Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Передайте договорённость через Present Continuous.**
+**16 · Ваши родители заказали масло без добавленной соли и согласовали получение на пятницу. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-53:i12; family: context_gap_grammar -->
 They ___ the unsalted butter on Friday. → **are collecting** · are collect · collect
 - are collect — *После are нужна форма с -ing: are collecting.*
@@ -141,7 +141,7 @@ gluten-free — без глютена · lactose-free — без лактозы,
 <!-- interaction_id: en:lesson-15:session-53:i15; family: listen_build_dictation -->
 🔊 *We are collecting the food tomorrow.* Плитки: `tomorrow` `food` `the` `collecting` `are` `We` → **We are collecting the food tomorrow.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-53:i16; family: scripted_repeat_compare -->
 🎙 **I am buying gluten-free bread tomorrow.**
 

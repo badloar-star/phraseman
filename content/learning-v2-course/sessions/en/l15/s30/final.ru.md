@@ -93,7 +93,7 @@ She ___ her half-sister. → **is going to visit** · is visiting · visit
 <!-- interaction_id: en:lesson-15:session-30:word:son-in-law; family: word_card -->
 > **son-in-law** — муж дочери, зять.
 
-**10 · Вы с супругом договорились встретиться с мужем вашей дочери в воскресенье. Передайте договорённость через Present Continuous. Скажите: «Мы встречаемся с зятем в воскресенье».**
+**10 · Вы с супругом договорились встретиться с мужем вашей дочери в воскресенье. Скажите, что это уже решено. Скажите: «Мы встречаемся с зятем в воскресенье».**
 <!-- interaction_id: en:lesson-15:session-30:i07; family: phrase_builder -->
 Плитки: `Sunday` `on` `son-in-law` `our` `meeting` `are` `We` → **We are meeting our son-in-law on Sunday.**
 
@@ -103,7 +103,7 @@ She ___ her half-sister. → **is going to visit** · is visiting · visit
 - We are going to meet our son-in-law on Sunday. — *В записи звучит We are meeting our son-in-law on Sunday.*
 - We is meeting our son-in-law on Sunday. — *В записи звучит We are meeting our son-in-law on Sunday.*
 
-**12 · Вы с супругом договорились встретиться с мужем вашей дочери в воскресенье. Передайте договорённость через Present Continuous.**
+**12 · Вы с супругом договорились встретиться с мужем вашей дочери в воскресенье. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-30:i09; family: context_gap_grammar -->
 We ___ our son-in-law on Sunday. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -113,7 +113,7 @@ We ___ our son-in-law on Sunday. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-30:word:daughter-in-law; family: word_card -->
 > **daughter-in-law** — жена сына, невестка.
 
-**14 · Ваши родители согласовали встречу с женой вашего брата на завтра. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с невесткой завтра».**
+**14 · Ваши родители согласовали встречу с женой вашего брата на завтра. Скажите, что это уже решено. Скажите: «Они встречаются с невесткой завтра».**
 <!-- interaction_id: en:lesson-15:session-30:i10; family: phrase_builder -->
 Плитки: `tomorrow` `daughter-in-law` `their` `meeting` `are` `They` → **They are meeting their daughter-in-law tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ our son-in-law on Sunday. → **are meeting** · are meet · meet
 - They are going to meet their daughter-in-law tomorrow. — *В записи звучит They are meeting their daughter-in-law tomorrow.*
 - They is meeting their daughter-in-law tomorrow. — *В записи звучит They are meeting their daughter-in-law tomorrow.*
 
-**16 · Ваши родители согласовали встречу с женой вашего брата на завтра. Передайте договорённость через Present Continuous.**
+**16 · Ваши родители согласовали встречу с женой вашего брата на завтра. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-30:i12; family: context_gap_grammar -->
 They ___ their daughter-in-law tomorrow. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -141,7 +141,7 @@ half-brother — брат, с которым общий только один р
 <!-- interaction_id: en:lesson-15:session-30:i15; family: listen_build_dictation -->
 🔊 *We are meeting on Sunday morning.* Плитки: `morning` `Sunday` `on` `meeting` `are` `We` → **We are meeting on Sunday morning.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-30:i16; family: scripted_repeat_compare -->
 🎙 **I am calling my half-brother tomorrow.**
 

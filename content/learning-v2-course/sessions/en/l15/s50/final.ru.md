@@ -93,7 +93,7 @@ She ___ an airy room. → **is going to choose** · is choosing · choose
 <!-- interaction_id: en:lesson-15:session-50:word:leafy; family: word_card -->
 > **leafy** — с множеством деревьев и зелени.
 
-**10 · Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous. Скажите: «Мы останавливаемся на зелёной улице со множеством деревьев на следующей неделе».**
+**10 · Бронь дома на улице с деревьями подтверждена на следующую неделю. Скажите, что это уже решено. Скажите: «Мы останавливаемся на зелёной улице со множеством деревьев на следующей неделе».**
 <!-- interaction_id: en:lesson-15:session-50:i07; family: phrase_builder -->
 Плитки: `week` `next` `street` `leafy` `a` `on` `staying` `are` `We` → **We are staying on a leafy street next week.**
 
@@ -103,7 +103,7 @@ She ___ an airy room. → **is going to choose** · is choosing · choose
 - We are going to stay on a leafy street next week. — *В записи звучит We are staying on a leafy street next week.*
 - We is staying on a leafy street next week. — *В записи звучит We are staying on a leafy street next week.*
 
-**12 · Бронь дома на улице с деревьями подтверждена на следующую неделю. Передайте договорённость через Present Continuous.**
+**12 · Бронь дома на улице с деревьями подтверждена на следующую неделю. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-50:i09; family: context_gap_grammar -->
 We ___ on a leafy street next week. → **are staying** · are stay · stay
 - are stay — *После are нужна форма с -ing: are staying.*
@@ -113,7 +113,7 @@ We ___ on a leafy street next week. → **are staying** · are stay · stay
 <!-- interaction_id: en:lesson-15:session-50:word:sheltered; family: word_card -->
 > **sheltered** — защищённый от ветра и непогоды.
 
-**14 · Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous. Скажите: «Они встречаются в защищённом от ветра саду завтра».**
+**14 · Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Скажите, что это уже решено. Скажите: «Они встречаются в защищённом от ветра саду завтра».**
 <!-- interaction_id: en:lesson-15:session-50:i10; family: phrase_builder -->
 Плитки: `tomorrow` `garden` `sheltered` `a` `in` `meeting` `are` `They` → **They are meeting in a sheltered garden tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ on a leafy street next week. → **are staying** · are stay · stay
 - They are going to meet in a sheltered garden tomorrow. — *В записи звучит They are meeting in a sheltered garden tomorrow.*
 - They is meeting in a sheltered garden tomorrow. — *В записи звучит They are meeting in a sheltered garden tomorrow.*
 
-**16 · Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Передайте договорённость через Present Continuous.**
+**16 · Ваши друзья договорились встретиться завтра в саду, где стены закрывают ветер. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-50:i12; family: context_gap_grammar -->
 They ___ in a sheltered garden tomorrow. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -141,7 +141,7 @@ secluded — уединённый, вдали от других людей и о
 <!-- interaction_id: en:lesson-15:session-50:i15; family: listen_build_dictation -->
 🔊 *We are staying at the house next week.* Плитки: `week` `next` `house` `the` `at` `staying` `are` `We` → **We are staying at the house next week.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-50:i16; family: scripted_repeat_compare -->
 🎙 **I am finding a secluded beach tomorrow.**
 

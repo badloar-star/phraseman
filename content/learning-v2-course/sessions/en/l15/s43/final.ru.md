@@ -93,7 +93,7 @@ She ___ her ambitious son. → **is going to help** · is helping · help
 <!-- interaction_id: en:lesson-15:session-43:word:easy-going; family: word_card -->
 > **easy-going** — спокойный и непритязательный в общении.
 
-**10 · Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous. Скажите: «Мы едем с нашим лёгким в общении другом в субботу».**
+**10 · Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Скажите, что это уже решено. Скажите: «Мы едем с нашим лёгким в общении другом в субботу».**
 <!-- interaction_id: en:lesson-15:session-43:i07; family: phrase_builder -->
 Плитки: `Saturday` `on` `friend` `easy-going` `our` `with` `travelling` `are` `We` → **We are travelling with our easy-going friend on Saturday.**
 
@@ -103,7 +103,7 @@ She ___ her ambitious son. → **is going to help** · is helping · help
 - We are going to travel with our easy-going friend on Saturday. — *В записи звучит We are travelling with our easy-going friend on Saturday.*
 - We is travelling with our easy-going friend on Saturday. — *В записи звучит We are travelling with our easy-going friend on Saturday.*
 
-**12 · Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Передайте договорённость через Present Continuous.**
+**12 · Билеты на субботу куплены; с вами едет друг, который спокойно относится к мелочам. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-43:i09; family: context_gap_grammar -->
 We ___ with our easy-going friend on Saturday. → **are travelling** · are travel · travel
 - are travel — *После are нужна форма с -ing: are travelling.*
@@ -113,7 +113,7 @@ We ___ with our easy-going friend on Saturday. → **are travelling** · are tra
 <!-- interaction_id: en:lesson-15:session-43:word:bossy; family: word_card -->
 > **bossy** — любящий командовать другими.
 
-**14 · Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous. Скажите: «Они встречаются с двоюродным братом, который любит командовать, завтра».**
+**14 · Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Скажите, что это уже решено. Скажите: «Они встречаются с двоюродным братом, который любит командовать, завтра».**
 <!-- interaction_id: en:lesson-15:session-43:i10; family: phrase_builder -->
 Плитки: `tomorrow` `cousin` `bossy` `their` `meeting` `are` `They` → **They are meeting their bossy cousin tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ with our easy-going friend on Saturday. → **are travelling** · are tra
 - They are going to meet their bossy cousin tomorrow. — *В записи звучит They are meeting their bossy cousin tomorrow.*
 - They is meeting their bossy cousin tomorrow. — *В записи звучит They are meeting their bossy cousin tomorrow.*
 
-**16 · Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Передайте договорённость через Present Continuous.**
+**16 · Ваши друзья согласовали завтрашнюю встречу с двоюродным братом, который часто всеми командует. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-43:i12; family: context_gap_grammar -->
 They ___ their bossy cousin tomorrow. → **are meeting** · are meet · meet
 - are meet — *После are нужна форма с -ing: are meeting.*
@@ -141,7 +141,7 @@ modest — скромный, не хвастающий своими достои
 <!-- interaction_id: en:lesson-15:session-43:i15; family: listen_build_dictation -->
 🔊 *We are travelling on Saturday morning.* Плитки: `morning` `Saturday` `on` `travelling` `are` `We` → **We are travelling on Saturday morning.**
 
-**20 · Теперь день уже согласован. Повторите договорённость через Present Continuous.**
+**20 · Теперь день уже согласован. Повторите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-43:i16; family: scripted_repeat_compare -->
 🎙 **I am visiting my modest friend tomorrow.**
 

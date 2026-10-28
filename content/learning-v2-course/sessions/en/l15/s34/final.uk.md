@@ -93,7 +93,7 @@ She ___ a driving lesson. → **is going to book** · is booking · book
 <!-- interaction_id: en:lesson-15:session-34:word:swimming-lesson; family: word_card -->
 > **swimming lesson** — заняття з навчання плавання.
 
-**10 · Ви з другом записалися на завтрашнє заняття в басейні; інструктор підтвердив час. Передайте домовленість через Present Continuous. Скажіть: «У нас заняття з плавання завтра».**
+**10 · Ви з другом записалися на завтрашнє заняття в басейні; інструктор підтвердив час. Скажіть, що це вже вирішено. Скажіть: «У нас заняття з плавання завтра».**
 <!-- interaction_id: en:lesson-15:session-34:i07; family: phrase_builder -->
 Плитки: `tomorrow` `lesson` `swimming` `a` `having` `are` `We` → **We are having a swimming lesson tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ a driving lesson. → **is going to book** · is booking · book
 - We are going to have a swimming lesson tomorrow. — *У записі звучить We are having a swimming lesson tomorrow.*
 - We is having a swimming lesson tomorrow. — *У записі звучить We are having a swimming lesson tomorrow.*
 
-**12 · Ви з другом записалися на завтрашнє заняття в басейні; інструктор підтвердив час. Передайте домовленість через Present Continuous.**
+**12 · Ви з другом записалися на завтрашнє заняття в басейні; інструктор підтвердив час. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-34:i09; family: context_gap_grammar -->
 We ___ a swimming lesson tomorrow. → **are having** · are going to have · have
 - are going to have — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
@@ -113,7 +113,7 @@ We ___ a swimming lesson tomorrow. → **are having** · are going to have · ha
 <!-- interaction_id: en:lesson-15:session-34:word:dance-class; family: word_card -->
 > **dance class** — заняття танцями.
 
-**14 · Ваші батьки підтвердили участь у п’ятничному занятті танцями. Передайте домовленість через Present Continuous. Скажіть: «Вони йдуть на заняття танцями в п’ятницю».**
+**14 · Ваші батьки підтвердили участь у п’ятничному занятті танцями. Скажіть, що це вже вирішено. Скажіть: «Вони йдуть на заняття танцями в п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-34:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `class` `dance` `a` `attending` `are` `They` → **They are attending a dance class on Friday.**
 
@@ -123,7 +123,7 @@ We ___ a swimming lesson tomorrow. → **are having** · are going to have · ha
 - They are going to attend a dance class on Friday. — *У записі звучить They are attending a dance class on Friday.*
 - They is attending a dance class on Friday. — *У записі звучить They are attending a dance class on Friday.*
 
-**16 · Ваші батьки підтвердили участь у п’ятничному занятті танцями. Передайте домовленість через Present Continuous.**
+**16 · Ваші батьки підтвердили участь у п’ятничному занятті танцями. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-34:i12; family: context_gap_grammar -->
 They ___ a dance class on Friday. → **are attending** · are attend · attend
 - are attend — *Після are потрібна форма з -ing: are attending.*
@@ -141,7 +141,7 @@ first aid — перша допомога при травмі або рапто�
 <!-- interaction_id: en:lesson-15:session-34:i15; family: listen_build_dictation -->
 🔊 *We are meeting the instructor tomorrow.* Плитки: `tomorrow` `instructor` `the` `meeting` `are` `We` → **We are meeting the instructor tomorrow.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-34:i16; family: scripted_repeat_compare -->
 🎙 **I am learning first aid tomorrow.**
 

@@ -93,7 +93,7 @@ She ___ a physiotherapist. → **is going to see** · is seeing · see
 <!-- interaction_id: en:lesson-15:session-39:word:midwife; family: word_card -->
 > **midwife** — акушерка, фахівчиня, яка допомагає під час вагітності й пологів.
 
-**10 · Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous. Скажіть: «Ми зустрічаємося з акушеркою в понеділок».**
+**10 · Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Скажіть, що це вже вирішено. Скажіть: «Ми зустрічаємося з акушеркою в понеділок».**
 <!-- interaction_id: en:lesson-15:session-39:i07; family: phrase_builder -->
 Плитки: `Monday` `on` `midwife` `the` `meeting` `are` `We` → **We are meeting the midwife on Monday.**
 
@@ -103,7 +103,7 @@ She ___ a physiotherapist. → **is going to see** · is seeing · see
 - We are going to meet the midwife on Monday. — *У записі звучить We are meeting the midwife on Monday.*
 - We is meeting the midwife on Monday. — *У записі звучить We are meeting the midwife on Monday.*
 
-**12 · Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Передайте домовленість через Present Continuous.**
+**12 · Ви з чоловіком узгодили зустріч з акушеркою на понеділок. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-39:i09; family: context_gap_grammar -->
 We ___ the midwife on Monday. → **are meeting** · are meet · meet
 - are meet — *Після are потрібна форма з -ing: are meeting.*
@@ -113,7 +113,7 @@ We ___ the midwife on Monday. → **are meeting** · are meet · meet
 <!-- interaction_id: en:lesson-15:session-39:word:beautician; family: word_card -->
 > **beautician** — фахівець із косметичного догляду за зовнішністю.
 
-**14 · Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються з фахівцем із косметичного догляду завтра».**
+**14 · Ваші подруги записалися до салону на завтра; майстер підтвердив час. Скажіть, що це вже вирішено. Скажіть: «Вони зустрічаються з фахівцем із косметичного догляду завтра».**
 <!-- interaction_id: en:lesson-15:session-39:i10; family: phrase_builder -->
 Плитки: `tomorrow` `beautician` `the` `meeting` `are` `They` → **They are meeting the beautician tomorrow.**
 
@@ -123,7 +123,7 @@ We ___ the midwife on Monday. → **are meeting** · are meet · meet
 - They are going to meet the beautician tomorrow. — *У записі звучить They are meeting the beautician tomorrow.*
 - They is meeting the beautician tomorrow. — *У записі звучить They are meeting the beautician tomorrow.*
 
-**16 · Ваші подруги записалися до салону на завтра; майстер підтвердив час. Передайте домовленість через Present Continuous.**
+**16 · Ваші подруги записалися до салону на завтра; майстер підтвердив час. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-39:i12; family: context_gap_grammar -->
 They ___ the beautician tomorrow. → **are meeting** · are meet · meet
 - are meet — *Після are потрібна форма з -ing: are meeting.*
@@ -141,7 +141,7 @@ dietitian — фахівець із харчування · physiotherapist — 
 <!-- interaction_id: en:lesson-15:session-39:i15; family: listen_build_dictation -->
 🔊 *We are meeting at the clinic on Monday.* Плитки: `Monday` `on` `clinic` `the` `at` `meeting` `are` `We` → **We are meeting at the clinic on Monday.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-39:i16; family: scripted_repeat_compare -->
 🎙 **I am seeing a dietitian tomorrow.**
 

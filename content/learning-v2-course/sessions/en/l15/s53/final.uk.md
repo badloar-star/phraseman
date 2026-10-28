@@ -93,7 +93,7 @@ She ___ lactose-free milk. → **is going to buy** · is buying · buy
 <!-- interaction_id: en:lesson-15:session-53:word:unsweetened; family: word_card -->
 > **unsweetened** — без доданого цукру або інших підсолоджувачів.
 
-**10 · Ви замовили йогурт без доданих підсолоджувачів; отримання узгоджено на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо йогурт без доданого підсолоджування завтра».**
+**10 · Ви замовили йогурт без доданих підсолоджувачів; отримання узгоджено на завтра. Скажіть, що це вже вирішено. Скажіть: «Ми забираємо йогурт без доданого підсолоджування завтра».**
 <!-- interaction_id: en:lesson-15:session-53:i07; family: phrase_builder -->
 Плитки: `tomorrow` `yoghurt` `unsweetened` `the` `collecting` `are` `We` → **We are collecting the unsweetened yoghurt tomorrow.**
 
@@ -103,7 +103,7 @@ She ___ lactose-free milk. → **is going to buy** · is buying · buy
 - We are going to collect the unsweetened yoghurt tomorrow. — *У записі звучить We are collecting the unsweetened yoghurt tomorrow.*
 - We is collecting the unsweetened yoghurt tomorrow. — *У записі звучить We are collecting the unsweetened yoghurt tomorrow.*
 
-**12 · Ви замовили йогурт без доданих підсолоджувачів; отримання узгоджено на завтра. Передайте домовленість через Present Continuous.**
+**12 · Ви замовили йогурт без доданих підсолоджувачів; отримання узгоджено на завтра. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-53:i09; family: context_gap_grammar -->
 We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -113,7 +113,7 @@ We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect �
 <!-- interaction_id: en:lesson-15:session-53:word:unsalted; family: word_card -->
 > **unsalted** — без доданої солі.
 
-**14 · Ваші батьки замовили масло без доданої солі й узгодили отримання на п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають несолоне масло в п’ятницю».**
+**14 · Ваші батьки замовили масло без доданої солі й узгодили отримання на п’ятницю. Скажіть, що це вже вирішено. Скажіть: «Вони забирають несолоне масло в п’ятницю».**
 <!-- interaction_id: en:lesson-15:session-53:i10; family: phrase_builder -->
 Плитки: `Friday` `on` `butter` `unsalted` `the` `collecting` `are` `They` → **They are collecting the unsalted butter on Friday.**
 
@@ -123,7 +123,7 @@ We ___ the unsweetened yoghurt tomorrow. → **are collecting** · are collect �
 - They are going to collect the unsalted butter on Friday. — *У записі звучить They are collecting the unsalted butter on Friday.*
 - They is collecting the unsalted butter on Friday. — *У записі звучить They are collecting the unsalted butter on Friday.*
 
-**16 · Ваші батьки замовили масло без доданої солі й узгодили отримання на п’ятницю. Передайте домовленість через Present Continuous.**
+**16 · Ваші батьки замовили масло без доданої солі й узгодили отримання на п’ятницю. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-53:i12; family: context_gap_grammar -->
 They ___ the unsalted butter on Friday. → **are collecting** · are collect · collect
 - are collect — *Після are потрібна форма з -ing: are collecting.*
@@ -141,7 +141,7 @@ gluten-free — без глютену · lactose-free — без лактози,
 <!-- interaction_id: en:lesson-15:session-53:i15; family: listen_build_dictation -->
 🔊 *We are collecting the food tomorrow.* Плитки: `tomorrow` `food` `the` `collecting` `are` `We` → **We are collecting the food tomorrow.**
 
-**20 · Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.**
+**20 · Тепер день уже узгоджено. Повторіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-53:i16; family: scripted_repeat_compare -->
 🎙 **I am buying gluten-free bread tomorrow.**
 

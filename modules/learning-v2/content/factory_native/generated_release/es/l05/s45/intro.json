@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "выразить ощущение жары сочетанием tener calor.",
+    "uk": "виразити відчуття спеки сполученням tener calor."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Хочется в тень",
+        "uk": "Хочеться в затінок"
+      },
+      "bodyByLocale": {
+        "ru": "На солнечной улице вам жарко. Скажите `Tengo calor` — «Мне жарко». Соберите `Tengo` + `calor`. Calor означает «жара, тепло». В tener calor мы называем ощущение человека. Это не описание горячего предмета. Перед calor в этой простой фразе нет артикля.",
+        "uk": "На сонячній вулиці вам жарко. Скажіть `Tengo calor` — «Мені жарко». Зберіть `Tengo` + `calor`. Calor означає «спека, тепло». У tener calor ми називаємо відчуття людини. Це не опис гарячого предмета. Перед calor у цій простій фразі немає артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мне жарко» с помощью calor. Начните с Tengo.",
+          "uk": "Скажіть «Мені жарко» за допомогою calor. Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-45:intro1:r1",
+              "text": "Tengo calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro1:r2",
+              "text": "Soy calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro1:r3",
+              "text": "Tengo un calor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-45:intro1:r1",
+              "text": "Tengo calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro1:r2",
+              "text": "Soy calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro1:r3",
+              "text": "Tengo un calor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мне жарко» с помощью calor. Начните с Tengo.",
+          "uk": "Скажіть «Мені жарко» за допомогою calor. Почніть з Tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ане жарко",
+        "uk": "Ані жарко"
+      },
+      "bodyByLocale": {
+        "ru": "Ана просит перейти в тень. Объясните другу `Ana tiene calor` — «Ане жарко». Соберите `Ana` + `tiene` + `calor`. С именем другого человека нужна форма tiene. Calor остаётся тем же словом: это существительное, оно не меняется из-за пола Аны.",
+        "uk": "Ана просить перейти в затінок. Поясніть другові `Ana tiene calor` — «Ані жарко». Зберіть `Ana` + `tiene` + `calor`. З ім’ям іншої людини потрібна форма tiene. Calor залишається тим самим словом: це іменник, він не змінюється через стать Ани."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ане жарко». Начните с Ana tiene, используйте calor.",
+          "uk": "Скажіть «Ані жарко». Почніть з Ana tiene, використайте calor."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-45:intro2:r1",
+              "text": "Ana tiene calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro2:r2",
+              "text": "Ana tengo calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro2:r3",
+              "text": "Ana es calor."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-45:intro2:r1",
+              "text": "Ana tiene calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro2:r2",
+              "text": "Ana tengo calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro2:r3",
+              "text": "Ana es calor."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ане жарко». Начните с Ana tiene, используйте calor.",
+          "uk": "Скажіть «Ані жарко». Почніть з Ana tiene, використайте calor."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В тени стало удобно",
+        "uk": "У затінку стало комфортно"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже посидели в тени и больше не ощущаете жары. Скажите `No tengo calor` — «Мне не жарко». Соберите `No` + `tengo` + `calor`. No ставим перед tengo. Фраза отрицает жару, но не утверждает, что вам холодно: для этого была бы другая фраза с frío.",
+        "uk": "Ви вже посиділи в затінку й більше не відчуваєте спеки. Скажіть `No tengo calor` — «Мені не жарко». Зберіть `No` + `tengo` + `calor`. No ставимо перед tengo. Фраза заперечує спеку, але не стверджує, що вам холодно: для цього була б інша фраза з frío."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мне не жарко». Начните с No tengo, используйте calor.",
+          "uk": "Скажіть «Мені не жарко». Почніть з No tengo, використайте calor."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-45:intro3:r1",
+              "text": "No tengo calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro3:r2",
+              "text": "Tengo no calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro3:r3",
+              "text": "Tengo frío."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-45:intro3:r1",
+              "text": "No tengo calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro3:r2",
+              "text": "Tengo no calor."
+            },
+            {
+              "responseId": "es:lesson-05:session-45:intro3:r3",
+              "text": "Tengo frío."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мне не жарко». Начните с No tengo, используйте calor.",
+          "uk": "Скажіть «Мені не жарко». Почніть з No tengo, використайте calor."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "99d7c3786dc38d654561cbce711656cdfbc14661c467e55dca8162175acf878a"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-46",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-46:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-46:intro1:r2": {
+          "ru": "Спешку выражаем через tengo prisa.",
+          "uk": "Поспіх виражаємо через tengo prisa."
+        },
+        "es:lesson-05:session-46:intro1:r3": {
+          "ru": "В этой простой фразе артикль не нужен.",
+          "uk": "У цій простій фразі артикль не потрібен."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-46:intro2:r2": {
+          "ru": "Об Ане используем tiene.",
+          "uk": "Про Ану використовуємо tiene."
+        },
+        "es:lesson-05:session-46:intro2:r3": {
+          "ru": "Спешку передаём сочетанием tiene prisa.",
+          "uk": "Поспіх передаємо сполученням tiene prisa."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-46:intro3:r2": {
+          "ru": "No ставим перед tengo.",
+          "uk": "No ставимо перед tengo."
+        },
+        "es:lesson-05:session-46:intro3:r3": {
+          "ru": "Используем no tengo prisa.",
+          "uk": "Використовуємо no tengo prisa."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ec40ab5353e532f44b12801c7f15782daf81cdd78cfc28444b411672e79ead10"
+}

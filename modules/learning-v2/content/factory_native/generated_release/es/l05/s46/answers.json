@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-46:i01",
+    "correctText": "prisa",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i02",
+    "correctText": "prisa",
+    "correctResponseId": "es:lesson-05:session-46:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i03",
+    "correctText": "prisa",
+    "correctResponseId": "es:lesson-05:session-46:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i04",
+    "correctText": "Tengo prisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i05",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-46:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i06",
+    "correctText": "Ana tiene prisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i07",
+    "correctText": "No tengo prisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i08",
+    "correctText": "Tengo prisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i09",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-05:session-46:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i10",
+    "correctText": "Tengo prisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i11",
+    "correctText": "Ana tiene prisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i12",
+    "correctText": "No tengo prisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-46:i13",
+    "correctText": "Tenemos prisa.",
+    "correctResponseId": null
+  }
+]

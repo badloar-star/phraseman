@@ -1883,4 +1883,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выразить ощущение холода сочетанием tener frío.","uk":"виразити відчуття холоду сполученням tener frío."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 45,
+    sourceFingerprint: "89d4da5f4bf7fe643a0da73ec43821d03e3ee6dbb9620fb0a294f613d5209f8e",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выразить ощущение жары сочетанием tener calor.","uk":"виразити відчуття спеки сполученням tener calor."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 46,
+    sourceFingerprint: "3c5744e3879f9c06e79709bcf715c9bba9e6b83839d418935ecfb0bd9353f13e",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, что спешите, сочетанием tener prisa.","uk":"сказати, що поспішаєте, сполученням tener prisa."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

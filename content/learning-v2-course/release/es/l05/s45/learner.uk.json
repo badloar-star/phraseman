@@ -1,0 +1,691 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-45",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-45:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — calor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-45:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — calor",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-45:i01:audio",
+          "transcript": "calor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-45:i01:r1",
+            "targetText": "calor",
+            "meaningByLocale": {
+              "ru": "жара, тепло; tener calor — ощущать жару, «мне жарко». 🔊 *calor*",
+              "uk": "спека, тепло; tener calor — відчувати спеку, «мені жарко». 🔊 *calor*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "calor",
+          "definitionByLocale": {
+            "ru": "жара, тепло; tener calor — ощущать жару, «мне жарко». 🔊 *calor*",
+            "uk": "спека, тепло; tener calor — відчувати спеку, «мені жарко». 🔊 *calor*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-45:i02:r1",
+          "text": "calor"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i02:r2",
+          "text": "frío"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-45:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-45:i02:audio",
+          "transcript": "calor"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-45:i02:r1",
+            "targetText": "calor",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-45:i02:r2",
+            "targetText": "frío",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-45:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит calor — жара, не frío — холод.",
+              "uk": "Звучить calor — спека, не frío — холод."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — мені жарко",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-45:i03:r1",
+          "text": "calor"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i03:r2",
+          "text": "frío"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i03:r3",
+          "text": "hambre"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — мені жарко",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мне жарко",
+          "uk": "Вставте слово — мені жарко"
+        },
+        "gappedTargetPhrase": "Tengo ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-45:i03:r1",
+            "text": "calor"
+          },
+          {
+            "responseId": "es:lesson-05:session-45:i03:r2",
+            "text": "frío"
+          },
+          {
+            "responseId": "es:lesson-05:session-45:i03:r3",
+            "text": "hambre"
+          }
+        ],
+        "testedDimension": "Вставте слово — мені жарко",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-45:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — мені жарко",
+            "feedbackByLocale": {
+              "ru": "Это холод; нужно calor.",
+              "uk": "Це холод; потрібно calor."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-45:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — мені жарко",
+            "feedbackByLocale": {
+              "ru": "Это голод; нужно ощущение жары: calor.",
+              "uk": "Це голод; потрібне відчуття спеки: calor."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — мені жарко; почніть з Tengo, використайте calor",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-45:i04:r1",
+          "text": "Плитки: calor"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i04:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i04:r3",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — мені жарко; почніть з Tengo, використайте calor",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo calor.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мне жарко; начните с Tengo, используйте calor",
+          "uk": "Зберіть фразу — мені жарко; почніть з Tengo, використайте calor"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "calor"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-45:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — мені жарко; почніть з Tengo, використайте calor",
+            "feedbackByLocale": {
+              "ru": "в этой простой фразе calor без артикля.",
+              "uk": "у цій простій фразі calor без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ані жарко",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-45:i05:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i05:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i05:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ані жарко",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ане жарко",
+          "uk": "Вставте слово — Ані жарко"
+        },
+        "gappedTargetPhrase": "Ana ___ calor.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-45:i05:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-45:i05:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-45:i05:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ані жарко",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-45:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ані жарко",
+            "feedbackByLocale": {
+              "ru": "Об Ане нужно tiene.",
+              "uk": "Про Ану потрібно tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-45:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ані жарко",
+            "feedbackByLocale": {
+              "ru": "Ощущение передаём через tiene calor.",
+              "uk": "Відчуття передаємо через tiene calor."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — Ані жарко; почніть з Ana, використайте calor",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-45:i06:r1",
+          "text": "Плитки: tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i06:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i06:r3",
+          "text": "calor"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i06:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — Ані жарко; почніть з Ana, використайте calor",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene calor.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ане жарко; начните с Ana, используйте calor",
+          "uk": "Зберіть фразу — Ані жарко; почніть з Ana, використайте calor"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "calor"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-45:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — Ані жарко; почніть з Ana, використайте calor",
+            "feedbackByLocale": {
+              "ru": "используем tiene calor.",
+              "uk": "використовуємо tiene calor."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — мені не жарко; почніть з No, використайте calor",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-45:i07:r1",
+          "text": "Плитки: calor"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i07:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i07:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i07:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — мені не жарко; почніть з No, використайте calor",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tengo calor.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мне не жарко; начните с No, используйте calor",
+          "uk": "Зберіть фразу — мені не жарко; почніть з No, використайте calor"
+        },
+        "orderedTokens": [
+          "No",
+          "tengo",
+          "calor"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-45:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — мені не жарко; почніть з No, використайте calor",
+            "feedbackByLocale": {
+              "ru": "используем tener calor.",
+              "uk": "використовуємо tener calor."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-45:i08:r1",
+          "text": "Плитки: Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i08:r2",
+          "text": "calor"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i08:r3",
+          "text": "frío."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-45:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-45:i08:audio",
+          "transcript": "Tengo calor."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tengo calor.",
+        "orderedTokens": [
+          "Tengo",
+          "calor"
+        ],
+        "authoredDistractorTokens": [
+          "frío"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-45:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит calor.",
+              "uk": "звучить calor."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — мені не жарко",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-45:i09:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i09:r2",
+          "text": "Un"
+        },
+        {
+          "responseId": "es:lesson-05:session-45:i09:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — мені не жарко",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мне не жарко",
+          "uk": "Вставте слово — мені не жарко"
+        },
+        "gappedTargetPhrase": "___ tengo calor.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-45:i09:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-05:session-45:i09:r2",
+            "text": "Un"
+          },
+          {
+            "responseId": "es:lesson-05:session-45:i09:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставте слово — мені не жарко",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-45:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — мені не жарко",
+            "feedbackByLocale": {
+              "ru": "Нужно отрицание no перед tengo.",
+              "uk": "Потрібне заперечення no перед tengo."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-45:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — мені не жарко",
+            "feedbackByLocale": {
+              "ru": "Артикль не отрицает ощущение: нужно no.",
+              "uk": "Артикль не заперечує відчуття: потрібно no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — мені жарко; почніть з Tengo, використайте calor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-45:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — мені жарко; почніть з Tengo, використайте calor",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-45:i10:audio",
+          "transcript": "Tengo calor."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo calor.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ані жарко; почніть з Ana tiene, використайте calor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-45:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ані жарко; почніть з Ana tiene, використайте calor",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-45:i11:audio",
+          "transcript": "Ana tiene calor."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene calor.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — мені не жарко; почніть з No tengo, використайте calor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-45:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — мені не жарко; почніть з No tengo, використайте calor",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-45:i12:audio",
+          "transcript": "No tengo calor."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tengo calor.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — нам жарко; почніть з Tenemos, використайте calor",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-45:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — нам жарко; почніть з Tenemos, використайте calor",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-45:i13:audio",
+          "transcript": "Tenemos calor."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos calor.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9575726692ba4f365c6c002e5c9e8523994c0221be81ba196c47d9bf3ed4771a"
+}

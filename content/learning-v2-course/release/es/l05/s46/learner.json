@@ -1,0 +1,691 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-46",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-46:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — prisa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-46:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — prisa",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-46:i01:audio",
+          "transcript": "prisa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-46:i01:r1",
+            "targetText": "prisa",
+            "meaningByLocale": {
+              "ru": "спешка; tener prisa — спешить. 🔊 *prisa*",
+              "uk": "поспіх; tener prisa — поспішати. 🔊 *prisa*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "prisa",
+          "definitionByLocale": {
+            "ru": "спешка; tener prisa — спешить. 🔊 *prisa*",
+            "uk": "поспіх; tener prisa — поспішати. 🔊 *prisa*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-46:i02:r1",
+          "text": "prisa"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i02:r2",
+          "text": "frío"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-46:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-46:i02:audio",
+          "transcript": "prisa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-46:i02:r1",
+            "targetText": "prisa",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-46:i02:r2",
+            "targetText": "frío",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит prisa — спешка, не frío — холод.",
+              "uk": "Звучить prisa — поспіх, не frío — холод."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — я спешу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-46:i03:r1",
+          "text": "prisa"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i03:r2",
+          "text": "hambre"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i03:r3",
+          "text": "sed"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — я спешу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я спешу",
+          "uk": "Вставте слово — я поспішаю"
+        },
+        "gappedTargetPhrase": "Tengo ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-46:i03:r1",
+            "text": "prisa"
+          },
+          {
+            "responseId": "es:lesson-05:session-46:i03:r2",
+            "text": "hambre"
+          },
+          {
+            "responseId": "es:lesson-05:session-46:i03:r3",
+            "text": "sed"
+          }
+        ],
+        "testedDimension": "Вставьте слово — я спешу",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-46:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — я спешу",
+            "feedbackByLocale": {
+              "ru": "Это голод; спешка — prisa.",
+              "uk": "Це голод; поспіх — prisa."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-46:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — я спешу",
+            "feedbackByLocale": {
+              "ru": "Это жажда; нужно prisa.",
+              "uk": "Це спрага; потрібно prisa."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — я спешу; начните с Tengo, используйте prisa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-46:i04:r1",
+          "text": "Плитки: prisa"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i04:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i04:r3",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — я спешу; начните с Tengo, используйте prisa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo prisa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — я спешу; начните с Tengo, используйте prisa",
+          "uk": "Зберіть фразу — я поспішаю; почніть з Tengo, використайте prisa"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "prisa"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-46:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — я спешу; начните с Tengo, используйте prisa",
+            "feedbackByLocale": {
+              "ru": "здесь prisa без артикля.",
+              "uk": "тут prisa без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Ана спешит",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-46:i05:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i05:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i05:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Ана спешит",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана спешит",
+          "uk": "Вставте слово — Ана поспішає"
+        },
+        "gappedTargetPhrase": "Ana ___ prisa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-46:i05:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-46:i05:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-46:i05:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Ана спешит",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-46:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана спешит",
+            "feedbackByLocale": {
+              "ru": "Об Ане нужно tiene.",
+              "uk": "Про Ану потрібно tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-46:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана спешит",
+            "feedbackByLocale": {
+              "ru": "Используем tener prisa.",
+              "uk": "Використовуємо tener prisa."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Ана спешит; начните с Ana, используйте prisa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-46:i06:r1",
+          "text": "Плитки: tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i06:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i06:r3",
+          "text": "prisa"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i06:r4",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Ана спешит; начните с Ana, используйте prisa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene prisa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ана спешит; начните с Ana, используйте prisa",
+          "uk": "Зберіть фразу — Ана поспішає; почніть з Ana, використайте prisa"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "prisa"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-46:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Ана спешит; начните с Ana, используйте prisa",
+            "feedbackByLocale": {
+              "ru": "используем tiene prisa.",
+              "uk": "використовуємо tiene prisa."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — я не спешу; начните с No, используйте prisa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-46:i07:r1",
+          "text": "Плитки: prisa"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i07:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i07:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i07:r4",
+          "text": "soy."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — я не спешу; начните с No, используйте prisa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tengo prisa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — я не спешу; начните с No, используйте prisa",
+          "uk": "Зберіть фразу — я не поспішаю; почніть з No, використайте prisa"
+        },
+        "orderedTokens": [
+          "No",
+          "tengo",
+          "prisa"
+        ],
+        "authoredDistractorTokens": [
+          "soy"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-46:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — я не спешу; начните с No, используйте prisa",
+            "feedbackByLocale": {
+              "ru": "используем tener prisa.",
+              "uk": "використовуємо tener prisa."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-46:i08:r1",
+          "text": "Плитки: Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i08:r2",
+          "text": "prisa"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i08:r3",
+          "text": "sed."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-46:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-46:i08:audio",
+          "transcript": "Tengo prisa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tengo prisa.",
+        "orderedTokens": [
+          "Tengo",
+          "prisa"
+        ],
+        "authoredDistractorTokens": [
+          "sed"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-46:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит prisa.",
+              "uk": "звучить prisa."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — я не спешу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-46:i09:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i09:r2",
+          "text": "Una"
+        },
+        {
+          "responseId": "es:lesson-05:session-46:i09:r3",
+          "text": "Un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — я не спешу",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я не спешу",
+          "uk": "Вставте слово — я не поспішаю"
+        },
+        "gappedTargetPhrase": "___ tengo prisa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-46:i09:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-05:session-46:i09:r2",
+            "text": "Una"
+          },
+          {
+            "responseId": "es:lesson-05:session-46:i09:r3",
+            "text": "Un"
+          }
+        ],
+        "testedDimension": "Вставьте слово — я не спешу",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-46:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — я не спешу",
+            "feedbackByLocale": {
+              "ru": "Нужно отрицание no.",
+              "uk": "Потрібне заперечення no."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-46:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — я не спешу",
+            "feedbackByLocale": {
+              "ru": "Артикль не отрицает спешку: нужно no.",
+              "uk": "Артикль не заперечує поспіху: потрібно no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — я спешу; начните с Tengo, используйте prisa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-46:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — я спешу; начните с Tengo, используйте prisa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-46:i10:audio",
+          "transcript": "Tengo prisa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo prisa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Ана спешит; начните с Ana tiene, используйте prisa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Ана спешит; начните с Ana tiene, используйте prisa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-46:i11:audio",
+          "transcript": "Ana tiene prisa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene prisa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — я не спешу; начните с No tengo, используйте prisa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-46:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — я не спешу; начните с No tengo, используйте prisa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-46:i12:audio",
+          "transcript": "No tengo prisa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No tengo prisa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-46:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мы спешим; начните с Tenemos, используйте prisa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-46:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мы спешим; начните с Tenemos, используйте prisa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-46:i13:audio",
+          "transcript": "Tenemos prisa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos prisa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ba661f5e4cf64681780b3c0bb420eb258dbf25a35acfb5c68f9219f46c115e10"
+}

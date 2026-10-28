@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-45",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-45:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-45:intro1:r2": {
+          "ru": "Ощущение жары выражаем через tengo calor.",
+          "uk": "Відчуття спеки виражаємо через tengo calor."
+        },
+        "es:lesson-05:session-45:intro1:r3": {
+          "ru": "В изучаемой простой фразе артикль не нужен.",
+          "uk": "У цій простій фразі артикль не потрібен."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-45:intro2:r2": {
+          "ru": "Об Ане нужна форма tiene.",
+          "uk": "Про Ану потрібна форма tiene."
+        },
+        "es:lesson-05:session-45:intro2:r3": {
+          "ru": "Используем tiene calor.",
+          "uk": "Використовуємо tiene calor."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-45:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-45:intro3:r2": {
+          "ru": "No должно стоять перед tengo.",
+          "uk": "No має стояти перед tengo."
+        },
+        "es:lesson-05:session-45:intro3:r3": {
+          "ru": "Это «мне холодно»; сейчас нужно только отрицать жару.",
+          "uk": "Це «мені холодно»; зараз потрібно лише заперечити спеку."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6aad74a2a4f2c6a9309cfb9c75c46090327aa68269670cfeae9f85e87cf16ba1"
+}

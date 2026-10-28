@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-49:i01",
+    "correctText": "bonita",
+    "correctResponseId": "es:lesson-03:session-49:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-49:i02",
+    "correctText": "bonita",
+    "correctResponseId": "es:lesson-03:session-49:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-49:i03",
+    "correctText": "La foto es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-49:i04",
+    "correctText": "muy",
+    "correctResponseId": "es:lesson-03:session-49:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-49:i05",
+    "correctText": "Es muy bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-49:i06",
+    "correctText": "Son muy bonitas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-49:i07",
+    "correctText": "Las fotos son muy bonitas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-49:i08",
+    "correctText": "bonitas",
+    "correctResponseId": "es:lesson-03:session-49:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-49:i09",
+    "correctText": "La foto es bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-49:i10",
+    "correctText": "Es muy bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-49:i11",
+    "correctText": "Son muy bonitas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-49:i12",
+    "correctText": "Las fotos son muy bonitas.",
+    "correctResponseId": null
+  }
+]

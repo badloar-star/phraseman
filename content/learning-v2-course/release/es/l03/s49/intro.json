@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "усилить описание с помощью muy.",
+    "uk": "посилити опис за допомогою muy."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один удачный снимок",
+        "uk": "Один вдалий знімок"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете красивую фотографию. Скажите `La foto es bonita` — «Фотография красивая». Соберите `la foto` + `es` + `bonita`. Хотя foto заканчивается на -o, это знакомое слово женского рода. Поэтому признак имеет форму bonita.",
+        "uk": "Показуєте гарну фотографію. Скажіть `La foto es bonita` — «Фотографія гарна». Зберіть `la foto` + `es` + `bonita`. Хоча foto закінчується на -o, це знайоме слово жіночого роду. Тому ознака має форму bonita."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Опишите красивую фотографию.",
+          "uk": "Опишіть гарну фотографію."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-49:intro1:r1",
+              "text": "La foto es bonita."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro1:r2",
+              "text": "La foto es bonito."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro1:r3",
+              "text": "La foto es bonitas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-49:intro1:r1",
+              "text": "La foto es bonita."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro1:r2",
+              "text": "La foto es bonito."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro1:r3",
+              "text": "La foto es bonitas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите красивую фотографию.",
+          "uk": "Опишіть гарну фотографію."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Особенно нравится",
+        "uk": "Особливо подобається"
+      },
+      "bodyByLocale": {
+        "ru": "Один снимок вам очень нравится. Скажите `Es muy bonita` — «Она очень красивая». Фотография уже перед глазами, поэтому можно не повторять la foto. Соберите `es` + `muy` + `bonita`. Muy означает «очень» и стоит непосредственно перед признаком. Женская форма bonita сохраняется.",
+        "uk": "Один знімок вам дуже подобається. Скажіть `Es muy bonita` — «Вона дуже гарна». Фотографія вже перед очима, тому можна не повторювати la foto. Зберіть `es` + `muy` + `bonita`. Muy означає «дуже» й стоїть безпосередньо перед ознакою. Жіноча форма bonita зберігається."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Похвалите фотографию: она очень красивая. Начните с Es, не повторяйте название предмета.",
+          "uk": "Похваліть фотографію: вона дуже гарна. Почніть з Es, не повторюйте назви предмета."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-49:intro2:r1",
+              "text": "Es muy bonita."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro2:r2",
+              "text": "Es muy bonito."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro2:r3",
+              "text": "Es mucha bonita."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-49:intro2:r1",
+              "text": "Es muy bonita."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro2:r2",
+              "text": "Es muy bonito."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro2:r3",
+              "text": "Es mucha bonita."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Похвалите фотографию: она очень красивая. Начните с Es, не повторяйте название предмета.",
+          "uk": "Похваліть фотографію: вона дуже гарна. Почніть з Es, не повторюйте назви предмета."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько снимков",
+        "uk": "Кілька знімків"
+      },
+      "bodyByLocale": {
+        "ru": "Выбрали несколько очень красивых фотографий. Скажите `Son muy bonitas` — «Они очень красивые». Соберите `son` + `muy` + `bonitas`. Для нескольких фото используйте son и bonitas с -s. Muy остаётся тем же: оно не меняется ни по роду, ни по числу.",
+        "uk": "Вибрали кілька дуже гарних фотографій. Скажіть `Son muy bonitas` — «Вони дуже гарні». Зберіть `son` + `muy` + `bonitas`. Для кількох фото використовуйте son і bonitas з -s. Muy залишається тим самим: воно не змінюється ні за родом, ні за числом."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Похвалите несколько фотографий, начав с Son и не повторяя название предметов.",
+          "uk": "Похваліть кілька фотографій, почавши з Son і не повторюючи назви предметів."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-49:intro3:r1",
+              "text": "Son muy bonitas."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro3:r2",
+              "text": "Son muys bonitas."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro3:r3",
+              "text": "Son muy bonita."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-49:intro3:r1",
+              "text": "Son muy bonitas."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro3:r2",
+              "text": "Son muys bonitas."
+            },
+            {
+              "responseId": "es:lesson-03:session-49:intro3:r3",
+              "text": "Son muy bonita."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Похвалите несколько фотографий, начав с Son и не повторяя название предметов.",
+          "uk": "Похваліть кілька фотографій, почавши з Son і не повторюючи назви предметів."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a8481027c4280f1d612c863f6136a05116c9e86ea40cc90b0b1895949e1c9031"
+}

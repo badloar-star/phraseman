@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-49",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-49:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-49:intro1:r2": {
+          "ru": "Окончание foto не делает слово мужским.",
+          "uk": "Закінчення foto не робить слово чоловічим."
+        },
+        "es:lesson-03:session-49:intro1:r3": {
+          "ru": "Одна фотография: bonita.",
+          "uk": "Одна фотографія: bonita."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-49:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-49:intro2:r2": {
+          "ru": "Речь о женском foto: bonita.",
+          "uk": "Йдеться про жіноче foto: bonita."
+        },
+        "es:lesson-03:session-49:intro2:r3": {
+          "ru": "Перед прилагательным «очень» — muy.",
+          "uk": "Перед прикметником «дуже» — muy."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-49:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-49:intro3:r2": {
+          "ru": "У muy нет формы muys.",
+          "uk": "У muy немає форми muys."
+        },
+        "es:lesson-03:session-49:intro3:r3": {
+          "ru": "Несколько фотографий: bonitas.",
+          "uk": "Кілька фотографій: bonitas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "224bd9aadbd0fa178d618a69ca0470bff3bb0262e3d82e957b76aebf5dcec8b2"
+}

@@ -1,0 +1,756 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-17",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-17:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — en",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — en",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-17:i01:audio",
+          "transcript": "en"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-17:i01:r1",
+            "targetText": "en",
+            "meaningByLocale": {
+              "ru": "в, на; в этом занятии en la habitación означает «в комнате». 🔊 *en*",
+              "uk": "у, в, на; у цьому занятті en la habitación означає «у кімнаті». 🔊 *en*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "en",
+          "definitionByLocale": {
+            "ru": "в, на; в этом занятии en la habitación означает «в комнате». 🔊 *en*",
+            "uk": "у, в, на; у цьому занятті en la habitación означає «у кімнаті». 🔊 *en*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-17:i02:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i02:r2",
+          "text": "de"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-17:i02:audio",
+          "transcript": "en"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-17:i02:r1",
+            "targetText": "en",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-17:i02:r2",
+            "targetText": "de",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит en; здесь оно связывает предмет с местом.",
+              "uk": "Звучить en; тут воно пов’язує предмет із місцем."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у кімнаті є стіл",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-17:i03:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i03:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i03:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у кімнаті є стіл",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате есть стол",
+          "uk": "Вставте слово — у кімнаті є стіл"
+        },
+        "gappedTargetPhrase": "Hay una mesa ___ la habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-17:i03:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-17:i03:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-17:i03:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — у кімнаті є стіл",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-17:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті є стіл",
+            "feedbackByLocale": {
+              "ru": "Для места «в комнате» нужно en.",
+              "uk": "Для місця «у кімнаті» потрібно en."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-17:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті є стіл",
+            "feedbackByLocale": {
+              "ru": "Между предметом и местом нужно en.",
+              "uk": "Між предметом і місцем потрібно en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у кімнаті є стіл; почніть з Hay, місце поставте після предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-17:i04:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i04:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i04:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i04:r4",
+          "text": "mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i04:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i04:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i04:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у кімнаті є стіл; почніть з Hay, місце поставте після предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay una mesa en la habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в комнате есть стол; начните с Hay, место поставьте после предмета",
+          "uk": "Зберіть фразу — у кімнаті є стіл; почніть з Hay, місце поставте після предмета"
+        },
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "mesa",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-17:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у кімнаті є стіл; почніть з Hay, місце поставте після предмета",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода, нужна la.",
+              "uk": "habitación жіночого роду, потрібна la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у кімнаті є стілець",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-17:i05:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i05:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i05:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у кімнаті є стілець",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате есть стул",
+          "uk": "Вставте слово — у кімнаті є стілець"
+        },
+        "gappedTargetPhrase": "Hay una silla en ___ habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-17:i05:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-06:session-17:i05:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-06:session-17:i05:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставте слово — у кімнаті є стілець",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-17:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті є стілець",
+            "feedbackByLocale": {
+              "ru": "Habitación женского рода: la.",
+              "uk": "Habitación жіночого роду: la."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-17:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті є стілець",
+            "feedbackByLocale": {
+              "ru": "Одна habitación женского рода: la.",
+              "uk": "Одна habitación жіночого роду: la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у кімнаті є стілець; почніть з Hay, місце поставте після предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-17:i06:r1",
+          "text": "Плитки: silla"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i06:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i06:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i06:r4",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i06:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i06:r6",
+          "text": "habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i06:r7",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у кімнаті є стілець; почніть з Hay, місце поставте після предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay una silla en la habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в комнате есть стул; начните с Hay, место поставьте после предмета",
+          "uk": "Зберіть фразу — у кімнаті є стілець; почніть з Hay, місце поставте після предмета"
+        },
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "silla",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-17:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у кімнаті є стілець; почніть з Hay, місце поставте після предмета",
+            "feedbackByLocale": {
+              "ru": "с silla нужна una.",
+              "uk": "з silla потрібна una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у кімнаті є книги; почніть з Hay, libros без артикля, місце після предметів",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-17:i07:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i07:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i07:r3",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i07:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i07:r5",
+          "text": "habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i07:r6",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у кімнаті є книги; почніть з Hay, libros без артикля, місце після предметів",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay libros en la habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в комнате есть книги; начните с Hay, libros без артикля, место после предметов",
+          "uk": "Зберіть фразу — у кімнаті є книги; почніть з Hay, libros без артикля, місце після предметів"
+        },
+        "orderedTokens": [
+          "Hay",
+          "libros",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-17:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у кімнаті є книги; почніть з Hay, libros без артикля, місце після предметів",
+            "feedbackByLocale": {
+              "ru": "в этой фразе libros без артикля.",
+              "uk": "у цій фразі libros без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-17:i08:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i08:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i08:r3",
+          "text": "mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i08:r4",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i08:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i08:r6",
+          "text": "habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i08:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-17:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-17:i08:audio",
+          "transcript": "Hay una mesa en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay una mesa en la habitación.",
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "mesa",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-17:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la.",
+              "uk": "звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у кімнаті є книги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-17:i09:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i09:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-17:i09:r3",
+          "text": "un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у кімнаті є книги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате есть книги",
+          "uk": "Вставте слово — у кімнаті є книги"
+        },
+        "gappedTargetPhrase": "Hay libros ___ la habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-17:i09:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-17:i09:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-17:i09:r3",
+            "text": "un"
+          }
+        ],
+        "testedDimension": "Вставте слово — у кімнаті є книги",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-17:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті є книги",
+            "feedbackByLocale": {
+              "ru": "Для места «в комнате» нужно en.",
+              "uk": "Для місця «у кімнаті» потрібно en."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-17:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті є книги",
+            "feedbackByLocale": {
+              "ru": "Место вводим словом en.",
+              "uk": "Місце вводимо словом en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у кімнаті є стіл; почніть з Hay, використайте una mesa, місце en la habitación поставте після предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-17:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у кімнаті є стіл; почніть з Hay, використайте una mesa, місце en la habitación поставте після предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-17:i10:audio",
+          "transcript": "Hay una mesa en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay una mesa en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у кімнаті є стілець; почніть з Hay, використайте una silla, місце поставте після предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у кімнаті є стілець; почніть з Hay, використайте una silla, місце поставте після предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-17:i11:audio",
+          "transcript": "Hay una silla en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay una silla en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у кімнаті є книги; почніть з Hay, libros без артикля, місце поставте після предметів",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-17:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у кімнаті є книги; почніть з Hay, libros без артикля, місце поставте після предметів",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-17:i12:audio",
+          "transcript": "Hay libros en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay libros en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у кімнаті є два стільці; почніть з Hay, місце поставте після dos sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-17:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у кімнаті є два стільці; почніть з Hay, місце поставте після dos sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-17:i13:audio",
+          "transcript": "Hay dos sillas en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay dos sillas en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ce704e46ce8508c1cf08bcf9e49de08c0583db14905306a5862d38a9eaf4bd87"
+}

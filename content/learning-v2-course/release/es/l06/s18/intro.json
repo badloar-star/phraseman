@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "сообщить о кровати и уточнить её наличие в комнате.",
+    "uk": "повідомити про ліжко й уточнити його наявність у кімнаті."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Увидеть спальное место",
+        "uk": "Побачити спальне місце"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заглянули в гостевую комнату и увидели кровать. Сообщите спутнику `Hay una cama` — «Есть кровать». Соберите `Hay` + `una cama`. Cama женского рода, поэтому una. Фраза сообщает о наличии спального места — спать на полу сегодня, похоже, не придётся.",
+        "uk": "Ви зазирнули до гостьової кімнати й побачили ліжко. Повідомте супутнику `Hay una cama` — «Є ліжко». Складіть `Hay` + `una cama`. Cama жіночого роду, тому una. Фраза повідомляє про наявність спального місця — спати на підлозі сьогодні, схоже, не доведеться."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть кровать». Начните с Hay, используйте una cama.",
+          "uk": "Повідомте «Є ліжко». Почніть з Hay, використайте una cama."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-18:intro1:r1",
+              "text": "Hay una cama."
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro1:r2",
+              "text": "Hay un cama."
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro1:r3",
+              "text": "Tengo una cama."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-18:intro1:r1",
+              "text": "Hay una cama."
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro1:r2",
+              "text": "Hay un cama."
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro1:r3",
+              "text": "Tengo una cama."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть кровать». Начните с Hay, используйте una cama.",
+          "uk": "Повідомте «Є ліжко». Почніть з Hay, використайте una cama."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить комнату",
+        "uk": "Уточнити кімнату"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ещё не видел комнату, которую вам предложили. Скажите `Hay una cama en la habitación` — «В комнате есть кровать». Соберите `Hay una cama` + `en la habitación`. Сначала сообщаем, что есть, потом называем место. En связывает кровать с комнатой.",
+        "uk": "Друг ще не бачив кімнату, яку вам запропонували. Скажіть `Hay una cama en la habitación` — «У кімнаті є ліжко». Складіть `Hay una cama` + `en la habitación`. Спочатку повідомляємо, що є, потім називаємо місце. En пов’язує ліжко з кімнатою."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В комнате есть кровать». Начните с Hay, место поставьте после предмета.",
+          "uk": "Повідомте «У кімнаті є ліжко». Почніть з Hay, місце поставте після предмета."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-18:intro2:r1",
+              "text": "Hay una cama en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro2:r2",
+              "text": "Hay una cama la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro2:r3",
+              "text": "Hay una cama en el habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-18:intro2:r1",
+              "text": "Hay una cama en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro2:r2",
+              "text": "Hay una cama la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro2:r3",
+              "text": "Hay una cama en el habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В комнате есть кровать». Начните с Hay, место поставьте после предмета.",
+          "uk": "Повідомте «У кімнаті є ліжко». Почніть з Hay, місце поставте після предмета."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить до заселения",
+        "uk": "Запитати до заселення"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ещё не вошли в другую комнату и уточняете у хозяина `¿Hay una cama en la habitación?` — «В комнате есть кровать?» Соберите `¿Hay una cama` + `en la habitación?`. Слова стоят в том же порядке, что в сообщении. Вопрос передаём интонацией и знаками ¿ ... ?.",
+        "uk": "Ви ще не ввійшли до іншої кімнати й уточнюєте в господаря `¿Hay una cama en la habitación?` — «У кімнаті є ліжко?» Складіть `¿Hay una cama` + `en la habitación?`. Слова стоять у тому самому порядку, що й у повідомленні. Запитання передаємо інтонацією та знаками ¿ ... ?."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «В комнате есть кровать?». Начните с ¿Hay, используйте una cama, место поставьте после предмета.",
+          "uk": "Запитайте «У кімнаті є ліжко?». Почніть з ¿Hay, використайте una cama, місце поставте після предмета."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-18:intro3:r1",
+              "text": "¿Hay una cama en la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro3:r2",
+              "text": "¿Hay un cama en la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro3:r3",
+              "text": "¿Hay una cama la habitación?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-18:intro3:r1",
+              "text": "¿Hay una cama en la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro3:r2",
+              "text": "¿Hay un cama en la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-18:intro3:r3",
+              "text": "¿Hay una cama la habitación?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «В комнате есть кровать?». Начните с ¿Hay, используйте una cama, место поставьте после предмета.",
+          "uk": "Запитайте «У кімнаті є ліжко?». Почніть з ¿Hay, використайте una cama, місце поставте після предмета."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "976402745b210949e794d9cf12dea81c6bbf6c96fa60aa25b8f2854ccf6f87e6"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "добавить en la mesa — «на столе» — к сообщению о наличии книги.",
+    "uk": "додати en la mesa — «на столі» — до повідомлення про наявність книжки."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уточнить поверхность",
+        "uk": "Уточнити поверхню"
+      },
+      "bodyByLocale": {
+        "ru": "В комнате ожидания вы заметили книгу на столе. Сообщите спутнику `Hay un libro en la mesa` — «На столе есть книга». Соберите `Hay un libro` + `en la mesa`. Знакомое en здесь переводится «на»: книга лежит на поверхности стола, а не спрятана внутри мебели. En не требует одного и того же русского перевода во всех местах.",
+        "uk": "У кімнаті очікування ви помітили книжку на столі. Повідомте супутнику `Hay un libro en la mesa` — «На столі є книжка». Складіть `Hay un libro` + `en la mesa`. Знайоме en тут перекладається «на»: книжка лежить на поверхні столу, а не схована всередині меблів. En не вимагає одного й того самого українського перекладу в усіх місцях."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «На столе есть книга». Начните с Hay, место поставьте после книги.",
+          "uk": "Повідомте «На столі є книжка». Почніть з Hay, місце поставте після книжки."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-20:intro1:r1",
+              "text": "Hay un libro en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro1:r2",
+              "text": "Hay un libro la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro1:r3",
+              "text": "Hay un libro en el mesa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-20:intro1:r1",
+              "text": "Hay un libro en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro1:r2",
+              "text": "Hay un libro la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro1:r3",
+              "text": "Hay un libro en el mesa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «На столе есть книга». Начните с Hay, место поставьте после книги.",
+          "uk": "Повідомте «На столі є книжка». Почніть з Hay, місце поставте після книжки."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Посчитать книги",
+        "uk": "Порахувати книжки"
+      },
+      "bodyByLocale": {
+        "ru": "На другом столе вы видите две книги. Скажите `Hay dos libros en la mesa` — «На столе есть две книги». Соберите `Hay` + `dos libros` + `en la mesa`. Перед dos не добавляйте un. Libros получает s, а hay остаётся прежним: две книги не требуют двух hay.",
+        "uk": "На іншому столі ви бачите дві книжки. Скажіть `Hay dos libros en la mesa` — «На столі є дві книжки». Складіть `Hay` + `dos libros` + `en la mesa`. Перед dos не додавайте un. Libros отримує s, а hay залишається незмінним: дві книжки не вимагають двох hay."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «На столе есть две книги». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «На столі є дві книжки». Почніть з Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-20:intro2:r1",
+              "text": "Hay dos libros en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro2:r2",
+              "text": "Hay dos libro en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro2:r3",
+              "text": "Hay un dos libros en la mesa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-20:intro2:r1",
+              "text": "Hay dos libros en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro2:r2",
+              "text": "Hay dos libro en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro2:r3",
+              "text": "Hay un dos libros en la mesa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «На столе есть две книги». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «На столі є дві книжки». Почніть з Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить о столе",
+        "uk": "Запитати про стіл"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ещё не входили в соседнюю комнату и спрашиваете друга `¿Hay un libro en la mesa?` — «На столе есть книга?» Соберите `¿Hay un libro` + `en la mesa?`. Для вопроса слова не переставляем. В речи используем вопросительную интонацию, на письме ставим ¿ и ?.",
+        "uk": "Ви ще не заходили до сусідньої кімнати й запитуєте друга `¿Hay un libro en la mesa?` — «На столі є книжка?» Складіть `¿Hay un libro` + `en la mesa?`. Для запитання слова не переставляємо. У мовленні використовуємо питальну інтонацію, на письмі ставимо ¿ і ?."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «На столе есть книга?». Начните с ¿Hay, используйте un libro, место поставьте в конце.",
+          "uk": "Запитайте «На столі є книжка?». Почніть з ¿Hay, використайте un libro, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-20:intro3:r1",
+              "text": "¿Hay un libro en la mesa?"
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro3:r2",
+              "text": "¿Hay una libro en la mesa?"
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro3:r3",
+              "text": "¿Hay un libro la mesa?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-20:intro3:r1",
+              "text": "¿Hay un libro en la mesa?"
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro3:r2",
+              "text": "¿Hay una libro en la mesa?"
+            },
+            {
+              "responseId": "es:lesson-06:session-20:intro3:r3",
+              "text": "¿Hay un libro la mesa?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «На столе есть книга?». Начните с ¿Hay, используйте un libro, место поставьте в конце.",
+          "uk": "Запитайте «На столі є книжка?». Почніть з ¿Hay, використайте un libro, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "27b6751a969bd27ceb14f7b88385249c728ae766012d7de3a8b77fd3c212a871"
+}

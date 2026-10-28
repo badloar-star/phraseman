@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "соединить hay с un sofá и назвать комнату, где он есть.",
+    "uk": "поєднати hay з un sofá й назвати кімнату, де він є."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти место для отдыха",
+        "uk": "Знайти місце для відпочинку"
+      },
+      "bodyByLocale": {
+        "ru": "После дороги вы заглянули в комнату отдыха и увидели диван. Сообщите другу `Hay un sofá` — «Есть диван». Соберите `Hay` + `un sofá`. Sofá мужского рода, хотя заканчивается на á. Поэтому нужен un: последняя буква не всегда выбирает артикль за нас.",
+        "uk": "Після дороги ви зазирнули до кімнати відпочинку й побачили диван. Повідомте другу `Hay un sofá` — «Є диван». Складіть `Hay` + `un sofá`. Sofá чоловічого роду, хоча закінчується на á. Тому потрібен un: остання літера не завжди обирає артикль за нас."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть диван». Начните с Hay, используйте un sofá.",
+          "uk": "Повідомте «Є диван». Почніть з Hay, використайте un sofá."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-19:intro1:r1",
+              "text": "Hay un sofá."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro1:r2",
+              "text": "Hay una sofá."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro1:r3",
+              "text": "Tengo un sofá."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-19:intro1:r1",
+              "text": "Hay un sofá."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro1:r2",
+              "text": "Hay una sofá."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro1:r3",
+              "text": "Tengo un sofá."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть диван». Начните с Hay, используйте un sofá.",
+          "uk": "Повідомте «Є диван». Почніть з Hay, використайте un sofá."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать комнату",
+        "uk": "Назвати кімнату"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает об обстановке комнаты, которую вы уже осмотрели. Скажите `Hay un sofá en la habitación` — «В комнате есть диван». Соберите `Hay un sofá` + `en la habitación`. Перед sofá нужен un, перед habitación — la. Два артикля относятся к разным словам и не обязаны совпадать.",
+        "uk": "Друг запитує про обстановку кімнати, яку ви вже оглянули. Скажіть `Hay un sofá en la habitación` — «У кімнаті є диван». Складіть `Hay un sofá` + `en la habitación`. Перед sofá потрібен un, перед habitación — la. Два артиклі стосуються різних слів і не мають обов’язково збігатися."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В комнате есть диван». Начните с Hay, место поставьте после предмета.",
+          "uk": "Повідомте «У кімнаті є диван». Почніть з Hay, місце поставте після предмета."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-19:intro2:r1",
+              "text": "Hay un sofá en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro2:r2",
+              "text": "Hay una sofá en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro2:r3",
+              "text": "Hay un sofá en el habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-19:intro2:r1",
+              "text": "Hay un sofá en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro2:r2",
+              "text": "Hay una sofá en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro2:r3",
+              "text": "Hay un sofá en el habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В комнате есть диван». Начните с Hay, место поставьте после предмета.",
+          "uk": "Повідомте «У кімнаті є диван». Почніть з Hay, місце поставте після предмета."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Добавить удобство",
+        "uk": "Додати зручність"
+      },
+      "bodyByLocale": {
+        "ru": "Вы присели на диван и поняли, что он удобный. Скажите `Hay un sofá cómodo` — «Есть удобный диван». Соберите `Hay` + `un sofá` + `cómodo`. Описание ставим после названия предмета. Sofá мужского рода, поэтому cómodo с o.",
+        "uk": "Ви сіли на диван і зрозуміли, що він зручний. Скажіть `Hay un sofá cómodo` — «Є зручний диван». Складіть `Hay` + `un sofá` + `cómodo`. Опис ставимо після назви предмета. Sofá чоловічого роду, тому cómodo з o."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть удобный диван». Начните с Hay, описание поставьте после sofá.",
+          "uk": "Повідомте «Є зручний диван». Почніть з Hay, опис поставте після sofá."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-19:intro3:r1",
+              "text": "Hay un sofá cómodo."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro3:r2",
+              "text": "Hay un sofá cómoda."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro3:r3",
+              "text": "Hay una sofá cómodo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-19:intro3:r1",
+              "text": "Hay un sofá cómodo."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro3:r2",
+              "text": "Hay un sofá cómoda."
+            },
+            {
+              "responseId": "es:lesson-06:session-19:intro3:r3",
+              "text": "Hay una sofá cómodo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть удобный диван». Начните с Hay, описание поставьте после sofá.",
+          "uk": "Повідомте «Є зручний диван». Почніть з Hay, опис поставте після sofá."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2d6c08d6cb59161194207d7d83de3ee3df8abe71606f3a012949aaf376b42db1"
+}

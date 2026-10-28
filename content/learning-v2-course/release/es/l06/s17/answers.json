@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-17:i01",
+    "correctText": "en",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i02",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-17:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i03",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-17:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i04",
+    "correctText": "Hay una mesa en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i05",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-06:session-17:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i06",
+    "correctText": "Hay una silla en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i07",
+    "correctText": "Hay libros en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i08",
+    "correctText": "Hay una mesa en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i09",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-17:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i10",
+    "correctText": "Hay una mesa en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i11",
+    "correctText": "Hay una silla en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i12",
+    "correctText": "Hay libros en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-17:i13",
+    "correctText": "Hay dos sillas en la habitación.",
+    "correctResponseId": null
+  }
+]

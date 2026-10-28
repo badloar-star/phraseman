@@ -1,0 +1,703 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-18",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-18:i01:r1",
+          "text": "cama"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i01:r2",
+          "text": "mesa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-18:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-18:i01:audio",
+          "transcript": "cama"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-18:i01:r1",
+            "targetText": "cama",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-18:i01:r2",
+            "targetText": "mesa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-18:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит cama — кровать.",
+              "uk": "Звучить cama — ліжко."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — есть кровать",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-18:i02:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i02:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i02:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — есть кровать",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть кровать",
+          "uk": "Вставте слово — є ліжко"
+        },
+        "gappedTargetPhrase": "Hay ___ cama.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-18:i02:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-06:session-18:i02:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-18:i02:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — есть кровать",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-18:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть кровать",
+            "feedbackByLocale": {
+              "ru": "Cama женского рода: una.",
+              "uk": "Cama жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-18:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть кровать",
+            "feedbackByLocale": {
+              "ru": "Одна cama: una.",
+              "uk": "Одна cama: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть кровать; начните с Hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-18:i03:r1",
+          "text": "Плитки: cama"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i03:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i03:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i03:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть кровать; начните с Hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay una cama.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть кровать; начните с Hay",
+          "uk": "Зберіть фразу — є ліжко; почніть з Hay"
+        },
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "cama"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-18:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть кровать; начните с Hay",
+            "feedbackByLocale": {
+              "ru": "cama женского рода.",
+              "uk": "cama жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в комнате есть кровать",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-18:i04:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i04:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i04:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в комнате есть кровать",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате есть кровать",
+          "uk": "Вставте слово — у кімнаті є ліжко"
+        },
+        "gappedTargetPhrase": "Hay una cama ___ la habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-18:i04:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-18:i04:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-18:i04:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в комнате есть кровать",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-18:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате есть кровать",
+            "feedbackByLocale": {
+              "ru": "Для места «в комнате» нужно en.",
+              "uk": "Для місця «у кімнаті» потрібно en."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-18:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате есть кровать",
+            "feedbackByLocale": {
+              "ru": "Место вводим словом en.",
+              "uk": "Місце вводимо словом en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — в комнате есть кровать; начните с Hay, место поставьте после предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-18:i05:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i05:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i05:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i05:r4",
+          "text": "cama"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i05:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i05:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i05:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — в комнате есть кровать; начните с Hay, место поставьте после предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay una cama en la habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в комнате есть кровать; начните с Hay, место поставьте после предмета",
+          "uk": "Зберіть фразу — у кімнаті є ліжко; почніть з Hay, місце поставте після предмета"
+        },
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "cama",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-18:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — в комнате есть кровать; начните с Hay, место поставьте после предмета",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода, нужна la.",
+              "uk": "habitación жіночого роду, потрібна la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — в комнате есть кровать?; начните с ¿Hay, место поставьте после предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-18:i06:r1",
+          "text": "Плитки: habitación?"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i06:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i06:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i06:r4",
+          "text": "cama"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i06:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i06:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i06:r7",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — в комнате есть кровать?; начните с ¿Hay, место поставьте после предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay una cama en la habitación?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в комнате есть кровать?; начните с ¿Hay, место поставьте после предмета",
+          "uk": "Зберіть фразу — у кімнаті є ліжко?; почніть з ¿Hay, місце поставте після предмета"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "una",
+          "cama",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-18:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — в комнате есть кровать?; начните с ¿Hay, место поставьте после предмета",
+            "feedbackByLocale": {
+              "ru": "с cama нужна una.",
+              "uk": "з cama потрібна una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-18:i07:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i07:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i07:r3",
+          "text": "cama"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i07:r4",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i07:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i07:r6",
+          "text": "habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i07:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-18:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-18:i07:audio",
+          "transcript": "Hay una cama en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay una cama en la habitación.",
+        "orderedTokens": [
+          "Hay",
+          "una",
+          "cama",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-18:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la.",
+              "uk": "звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в комнате есть кровать?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-18:i08:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i08:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-06:session-18:i08:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в комнате есть кровать?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате есть кровать?",
+          "uk": "Вставте слово — у кімнаті є ліжко?"
+        },
+        "gappedTargetPhrase": "¿Hay una cama en ___ habitación?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-18:i08:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-06:session-18:i08:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-06:session-18:i08:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в комнате есть кровать?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате есть кровать?",
+            "feedbackByLocale": {
+              "ru": "Habitación женского рода: la.",
+              "uk": "Habitación жіночого роду: la."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате есть кровать?",
+            "feedbackByLocale": {
+              "ru": "Одна habitación женского рода: la.",
+              "uk": "Одна habitación жіночого роду: la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть кровать; начните с Hay, используйте una cama",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-18:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть кровать; начните с Hay, используйте una cama",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-18:i09:audio",
+          "transcript": "Hay una cama."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay una cama.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — в комнате есть кровать; начните с Hay, используйте una cama, место поставьте после предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-18:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — в комнате есть кровать; начните с Hay, используйте una cama, место поставьте после предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-18:i10:audio",
+          "transcript": "Hay una cama en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay una cama en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — в комнате есть кровать?; начните с ¿Hay, используйте una cama, место поставьте после предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — в комнате есть кровать?; начните с ¿Hay, используйте una cama, место поставьте после предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-18:i11:audio",
+          "transcript": "¿Hay una cama en la habitación?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay una cama en la habitación?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы осматриваете другую комнату. Сообщите «Есть две кровати»; начните с Hay, число поставьте перед предметом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-18:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы осматриваете другую комнату. Сообщите «Есть две кровати»; начните с Hay, число поставьте перед предметом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-18:i12:audio",
+          "transcript": "Hay dos camas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay dos camas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "bd3677579d87504f2930a5c11beca50ec2d0eeda29ef47456fac6c935673ceb3"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-17",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-17:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-17:intro1:r2": {
+          "ru": "Между предметом и местом нужно en.",
+          "uk": "Між предметом і місцем потрібно en."
+        },
+        "es:lesson-06:session-17:intro1:r3": {
+          "ru": "Habitación женского рода: la habitación.",
+          "uk": "Habitación жіночого роду: la habitación."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-17:intro2:r2": {
+          "ru": "Silla женского рода: una.",
+          "uk": "Silla жіночого роду: una."
+        },
+        "es:lesson-06:session-17:intro2:r3": {
+          "ru": "Для связи с местом нужно en.",
+          "uk": "Для зв’язку з місцем потрібно en."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-17:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-17:intro3:r2": {
+          "ru": "Un не подходит к libros; здесь libros без артикля.",
+          "uk": "Un не підходить до libros; тут libros без артикля."
+        },
+        "es:lesson-06:session-17:intro3:r3": {
+          "ru": "Habitación женского рода: la.",
+          "uk": "Habitación жіночого роду: la."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d8f03a491b08ef2feabded2581a3b81c24721ee2f768c94729cccb89ba51c0d8"
+}

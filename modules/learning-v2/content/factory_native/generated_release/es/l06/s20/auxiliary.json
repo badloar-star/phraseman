@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-20",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-20:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-20:intro1:r2": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        },
+        "es:lesson-06:session-20:intro1:r3": {
+          "ru": "Mesa женского рода: la.",
+          "uk": "Mesa жіночого роду: la."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-20:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-20:intro2:r2": {
+          "ru": "После dos нужно libros.",
+          "uk": "Після dos потрібно libros."
+        },
+        "es:lesson-06:session-20:intro2:r3": {
+          "ru": "Перед числом dos не нужен un.",
+          "uk": "Перед числом dos не потрібен un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-20:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-20:intro3:r2": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        },
+        "es:lesson-06:session-20:intro3:r3": {
+          "ru": "Место вводим словом en.",
+          "uk": "Місце вводимо словом en."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9c6e533dd942bdf2602b2fcc8972f0350c7eb145c873bd5429502471e600c1fc"
+}

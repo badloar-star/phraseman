@@ -1,0 +1,693 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-19",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-19:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-19:i01:r1",
+          "text": "sofá"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i01:r2",
+          "text": "cama"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-19:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-19:i01:audio",
+          "transcript": "sofá"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-19:i01:r1",
+            "targetText": "sofá",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-19:i01:r2",
+            "targetText": "cama",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-19:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит sofá — диван.",
+              "uk": "Звучить sofá — диван."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є диван",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-19:i02:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i02:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i02:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є диван",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть диван",
+          "uk": "Вставте слово — є диван"
+        },
+        "gappedTargetPhrase": "Hay ___ sofá.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-19:i02:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-19:i02:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-06:session-19:i02:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставте слово — є диван",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є диван",
+            "feedbackByLocale": {
+              "ru": "Sofá мужского рода: un.",
+              "uk": "Sofá чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є диван",
+            "feedbackByLocale": {
+              "ru": "Один sofá мужского рода: un.",
+              "uk": "Один sofá чоловічого роду: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є диван; почніть з Hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-19:i03:r1",
+          "text": "Плитки: sofá"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i03:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i03:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i03:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є диван; почніть з Hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay un sofá.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть диван; начните с Hay",
+          "uk": "Зберіть фразу — є диван; почніть з Hay"
+        },
+        "orderedTokens": [
+          "Hay",
+          "un",
+          "sofá"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-19:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є диван; почніть з Hay",
+            "feedbackByLocale": {
+              "ru": "sofá мужского рода.",
+              "uk": "sofá чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у кімнаті є диван",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-19:i04:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i04:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i04:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у кімнаті є диван",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате есть диван",
+          "uk": "Вставте слово — у кімнаті є диван"
+        },
+        "gappedTargetPhrase": "Hay un sofá ___ la habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-19:i04:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-19:i04:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-19:i04:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — у кімнаті є диван",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-19:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті є диван",
+            "feedbackByLocale": {
+              "ru": "Для места «в комнате» нужно en.",
+              "uk": "Для місця «у кімнаті» потрібно en."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-19:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті є диван",
+            "feedbackByLocale": {
+              "ru": "Место вводим словом en.",
+              "uk": "Місце вводимо словом en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у кімнаті є диван; почніть з Hay, місце поставте після предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-19:i05:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i05:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i05:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i05:r4",
+          "text": "sofá"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i05:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i05:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i05:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у кімнаті є диван; почніть з Hay, місце поставте після предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay un sofá en la habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в комнате есть диван; начните с Hay, место поставьте после предмета",
+          "uk": "Зберіть фразу — у кімнаті є диван; почніть з Hay, місце поставте після предмета"
+        },
+        "orderedTokens": [
+          "Hay",
+          "un",
+          "sofá",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-19:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у кімнаті є диван; почніть з Hay, місце поставте після предмета",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода, нужна la.",
+              "uk": "habitación жіночого роду, потрібна la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є зручний диван; почніть з Hay, опис поставте після sofá",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-19:i06:r1",
+          "text": "Плитки: cómodo"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i06:r2",
+          "text": "sofá"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i06:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i06:r4",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i06:r5",
+          "text": "cómoda."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є зручний диван; почніть з Hay, опис поставте після sofá",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay un sofá cómodo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть удобный диван; начните с Hay, описание поставьте после sofá",
+          "uk": "Зберіть фразу — є зручний диван; почніть з Hay, опис поставте після sofá"
+        },
+        "orderedTokens": [
+          "Hay",
+          "un",
+          "sofá",
+          "cómodo"
+        ],
+        "authoredDistractorTokens": [
+          "cómoda"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-19:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є зручний диван; почніть з Hay, опис поставте після sofá",
+            "feedbackByLocale": {
+              "ru": "с sofá нужно cómodo.",
+              "uk": "із sofá потрібно cómodo."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-19:i07:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i07:r3",
+          "text": "sofá"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i07:r4",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i07:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i07:r6",
+          "text": "habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i07:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-19:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-19:i07:audio",
+          "transcript": "Hay un sofá en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay un sofá en la habitación.",
+        "orderedTokens": [
+          "Hay",
+          "un",
+          "sofá",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-19:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la.",
+              "uk": "звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є зручний диван",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-19:i08:r1",
+          "text": "cómodo"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i08:r2",
+          "text": "cómoda"
+        },
+        {
+          "responseId": "es:lesson-06:session-19:i08:r3",
+          "text": "cómodos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є зручний диван",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть удобный диван",
+          "uk": "Вставте слово — є зручний диван"
+        },
+        "gappedTargetPhrase": "Hay un sofá ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-19:i08:r1",
+            "text": "cómodo"
+          },
+          {
+            "responseId": "es:lesson-06:session-19:i08:r2",
+            "text": "cómoda"
+          },
+          {
+            "responseId": "es:lesson-06:session-19:i08:r3",
+            "text": "cómodos"
+          }
+        ],
+        "testedDimension": "Вставте слово — є зручний диван",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є зручний диван",
+            "feedbackByLocale": {
+              "ru": "Sofá мужского рода: cómodo.",
+              "uk": "Sofá чоловічого роду: cómodo."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є зручний диван",
+            "feedbackByLocale": {
+              "ru": "Диван один: cómodo.",
+              "uk": "Диван один: cómodo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є диван; почніть з Hay, використайте un sofá",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-19:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є диван; почніть з Hay, використайте un sofá",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-19:i09:audio",
+          "transcript": "Hay un sofá."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay un sofá.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у кімнаті є диван; почніть з Hay, місце поставте після предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-19:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у кімнаті є диван; почніть з Hay, місце поставте після предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-19:i10:audio",
+          "transcript": "Hay un sofá en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay un sofá en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є зручний диван; почніть з Hay, опис поставте після sofá",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є зручний диван; почніть з Hay, опис поставте після sofá",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-19:i11:audio",
+          "transcript": "Hay un sofá cómodo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay un sofá cómodo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви ще не бачили іншу кімнату. Запитайте «У кімнаті є диван?»; почніть з ¿Hay, використайте un sofá, місце поставте після предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-19:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви ще не бачили іншу кімнату. Запитайте «У кімнаті є диван?»; почніть з ¿Hay, використайте un sofá, місце поставте після предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-19:i12:audio",
+          "transcript": "¿Hay un sofá en la habitación?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay un sofá en la habitación?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "fc0b1bb92131fdd04e63a02f49cba7ad2ec77248032db52a5ae10668611d1945"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-18:i01",
+    "correctText": "cama",
+    "correctResponseId": "es:lesson-06:session-18:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-18:i02",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-06:session-18:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-18:i03",
+    "correctText": "Hay una cama.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-18:i04",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-18:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-18:i05",
+    "correctText": "Hay una cama en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-18:i06",
+    "correctText": "¿Hay una cama en la habitación?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-18:i07",
+    "correctText": "Hay una cama en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-18:i08",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-06:session-18:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-18:i09",
+    "correctText": "Hay una cama.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-18:i10",
+    "correctText": "Hay una cama en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-18:i11",
+    "correctText": "¿Hay una cama en la habitación?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-18:i12",
+    "correctText": "Hay dos camas.",
+    "correctResponseId": null
+  }
+]

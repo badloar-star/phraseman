@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-18",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-18:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-18:intro1:r2": {
+          "ru": "Cama женского рода: una.",
+          "uk": "Cama жіночого роду: una."
+        },
+        "es:lesson-06:session-18:intro1:r3": {
+          "ru": "Сообщаем о наличии в комнате: hay.",
+          "uk": "Повідомляємо про наявність у кімнаті: hay."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-18:intro2:r2": {
+          "ru": "Перед названием места нужно en.",
+          "uk": "Перед назвою місця потрібно en."
+        },
+        "es:lesson-06:session-18:intro2:r3": {
+          "ru": "Habitación женского рода: la.",
+          "uk": "Habitación жіночого роду: la."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-18:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-18:intro3:r2": {
+          "ru": "Cama женского рода: una.",
+          "uk": "Cama жіночого роду: una."
+        },
+        "es:lesson-06:session-18:intro3:r3": {
+          "ru": "Для места нужно en la habitación.",
+          "uk": "Для місця потрібно en la habitación."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8c4ab15dc05e413f3be473b1dd185731f0ac2a483031f0a65180201caccd28ef"
+}

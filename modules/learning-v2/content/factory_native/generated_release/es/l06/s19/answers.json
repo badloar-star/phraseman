@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-19:i01",
+    "correctText": "sofá",
+    "correctResponseId": "es:lesson-06:session-19:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-19:i02",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-06:session-19:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-19:i03",
+    "correctText": "Hay un sofá.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-19:i04",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-19:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-19:i05",
+    "correctText": "Hay un sofá en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-19:i06",
+    "correctText": "Hay un sofá cómodo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-19:i07",
+    "correctText": "Hay un sofá en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-19:i08",
+    "correctText": "cómodo",
+    "correctResponseId": "es:lesson-06:session-19:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-19:i09",
+    "correctText": "Hay un sofá.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-19:i10",
+    "correctText": "Hay un sofá en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-19:i11",
+    "correctText": "Hay un sofá cómodo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-19:i12",
+    "correctText": "¿Hay un sofá en la habitación?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-20:i01",
+    "correctText": "mesa",
+    "correctResponseId": "es:lesson-06:session-20:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-20:i02",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-20:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-20:i03",
+    "correctText": "Hay un libro en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-20:i04",
+    "correctText": "libros",
+    "correctResponseId": "es:lesson-06:session-20:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-20:i05",
+    "correctText": "Hay dos libros en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-20:i06",
+    "correctText": "¿Hay un libro en la mesa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-20:i07",
+    "correctText": "Hay un libro en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-20:i08",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-06:session-20:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-20:i09",
+    "correctText": "Hay un libro en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-20:i10",
+    "correctText": "Hay dos libros en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-20:i11",
+    "correctText": "¿Hay un libro en la mesa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-20:i12",
+    "correctText": "No hay libros en la mesa.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-19",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-19:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-19:intro1:r2": {
+          "ru": "Sofá мужского рода: un.",
+          "uk": "Sofá чоловічого роду: un."
+        },
+        "es:lesson-06:session-19:intro1:r3": {
+          "ru": "Сообщаем о наличии в месте, поэтому hay.",
+          "uk": "Повідомляємо про наявність у місці, тому hay."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-19:intro2:r2": {
+          "ru": "Sofá мужского рода: un.",
+          "uk": "Sofá чоловічого роду: un."
+        },
+        "es:lesson-06:session-19:intro2:r3": {
+          "ru": "Habitación женского рода: la.",
+          "uk": "Habitación жіночого роду: la."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-19:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-19:intro3:r2": {
+          "ru": "С sofá нужно cómodo.",
+          "uk": "Із sofá потрібно cómodo."
+        },
+        "es:lesson-06:session-19:intro3:r3": {
+          "ru": "С sofá нужен un.",
+          "uk": "Із sofá потрібен un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e45ebb6318f34091c5216efad4c1c1c86190d0ee43c0437534d76db8261e972b"
+}

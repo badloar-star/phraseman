@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The plant I bought is small. — Рослина, яку я купив, маленька. Складіть The plant + I bought + is small. Частина I bought уточнює plant. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The plant I bought is small. — Рослина, яку ви купили, маленька. Складіть The plant + I bought + is small. Частина I bought уточнює plant. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The path is wet, so it might ___ slippery. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-52:i06; family: word_card -->
 > **plant** — Рослина. Повторення знайомого слова.
 
-**7 · Рослина, яку я купив, маленька. Скажіть без that.**
+**7 · Рослина, яку ви купили, маленька. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-52:i07; family: scripted_repeat_compare -->
 🎙 **The plant I bought is small.**
 
-**8 · Рослина, яку я купив, маленька. Предмет уже названо — не повторюйте його.**
+**8 · Рослина, яку ви купили, маленька. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-52:i08; family: context_gap_grammar -->
 The plant I ___ is small. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*

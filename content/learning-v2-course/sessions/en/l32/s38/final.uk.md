@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The helmet I bought is new. — Шолом, який я купив, новий. Складіть The helmet + I bought + is new. Частина I bought уточнює helmet. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The helmet I bought is new. — Шолом, який ви купили, новий. Складіть The helmet + I bought + is new. Частина I bought уточнює helmet. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The bike is noisy, so it might ___ broken. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-38:i06; family: word_card -->
 > **helmet** — Шолом. Повторення знайомого слова.
 
-**7 · Шолом, який я купив, новий. Скажіть без that.**
+**7 · Шолом, який ви купили, новий. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-38:i07; family: scripted_repeat_compare -->
 🎙 **The helmet I bought is new.**
 
-**8 · Шолом, який я купив, новий. Предмет уже названо — не повторюйте його.**
+**8 · Шолом, який ви купили, новий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-38:i08; family: context_gap_grammar -->
 The helmet I ___ is new. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*

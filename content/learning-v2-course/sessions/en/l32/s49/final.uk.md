@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The cloth I washed is clean. — Ганчірка, яку я виправ, чиста. Складіть The cloth + I washed + is clean. Частина I washed уточнює cloth. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The cloth I washed is clean. — Ганчірка, яку ви випрали, чиста. Складіть The cloth + I washed + is clean. Частина I washed уточнює cloth. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The table is sticky, so it might ___ dirty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-49:i06; family: word_card -->
 > **cloth** — Ганчірка. Повторення знайомого слова.
 
-**7 · Ганчірка, яку я виправ, чиста. Скажіть без that.**
+**7 · Ганчірка, яку ви випрали, чиста. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-49:i07; family: scripted_repeat_compare -->
 🎙 **The cloth I washed is clean.**
 
-**8 · Ганчірка, яку я виправ, чиста. Предмет уже названо — не повторюйте його.**
+**8 · Ганчірка, яку ви випрали, чиста. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-49:i08; family: context_gap_grammar -->
 The cloth I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже названо: it не потрібне.*

@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The cake I chose is sweet. — Пиріг, який я вибрав, солодкий. Складіть The cake + I chose + is sweet. Частина I chose уточнює cake. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The cake I chose is sweet. — Пиріг, який ви вибрали, солодкий. Складіть The cake + I chose + is sweet. Частина I chose уточнює cake. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The cafe is busy, so it might ___ popular. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-51:i06; family: word_card -->
 > **cake** — Пиріг. Повторення знайомого слова.
 
-**7 · Пиріг, який я вибрав, солодкий. Скажіть без that.**
+**7 · Пиріг, який ви вибрали, солодкий. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-51:i07; family: scripted_repeat_compare -->
 🎙 **The cake I chose is sweet.**
 
-**8 · Пиріг, який я вибрав, солодкий. Предмет уже названо — не повторюйте його.**
+**8 · Пиріг, який ви вибрали, солодкий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-51:i08; family: context_gap_grammar -->
 The cake I ___ is sweet. → **chose** · chose it · choosing
 - chose it — *Предмет уже названо: it не потрібне.*

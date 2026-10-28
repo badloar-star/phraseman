@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The cake I chose is sweet. — Пирог, который я выбрал, сладкий. Соберите The cake + I chose + is sweet. Часть I chose уточняет cake. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The cake I chose is sweet. — Пирог, который вы выбрали, сладкий. Соберите The cake + I chose + is sweet. Часть I chose уточняет cake. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The cafe is busy, so it might ___ popular. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-51:i06; family: word_card -->
 > **cake** — Пирог. Повторение знакомого слова.
 
-**7 · Пирог, который я выбрал, сладкий. Скажите без that.**
+**7 · Пирог, который вы выбрали, сладкий. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-51:i07; family: scripted_repeat_compare -->
 🎙 **The cake I chose is sweet.**
 
-**8 · Пирог, который я выбрал, сладкий. Предмет уже назван — не повторяйте его.**
+**8 · Пирог, который вы выбрали, сладкий. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-51:i08; family: context_gap_grammar -->
 The cake I ___ is sweet. → **chose** · chose it · choosing
 - chose it — *Предмет уже назван: it не нужно.*

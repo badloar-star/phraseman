@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The helmet I bought is new. — Шлем, который я купил, новый. Соберите The helmet + I bought + is new. Часть I bought уточняет helmet. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The helmet I bought is new. — Шлем, который вы купили, новый. Соберите The helmet + I bought + is new. Часть I bought уточняет helmet. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The bike is noisy, so it might ___ broken. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-38:i06; family: word_card -->
 > **helmet** — Шлем. Повторение знакомого слова.
 
-**7 · Шлем, который я купил, новый. Скажите без that.**
+**7 · Шлем, который вы купили, новый. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-38:i07; family: scripted_repeat_compare -->
 🎙 **The helmet I bought is new.**
 
-**8 · Шлем, который я купил, новый. Предмет уже назван — не повторяйте его.**
+**8 · Шлем, который вы купили, новый. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-38:i08; family: context_gap_grammar -->
 The helmet I ___ is new. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*

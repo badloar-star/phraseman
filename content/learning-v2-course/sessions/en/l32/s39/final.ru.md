@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The knife I bought is sharp. — Нож, который я купил, острый. Соберите The knife + I bought + is sharp. Часть I bought уточняет knife. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The knife I bought is sharp. — Нож, который вы купили, острый. Соберите The knife + I bought + is sharp. Часть I bought уточняет knife. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The bread is warm, so it might ___ fresh. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-39:i06; family: word_card -->
 > **knife** — Нож. Повторение знакомого слова.
 
-**7 · Нож, который я купил, острый. Скажите без that.**
+**7 · Нож, который вы купили, острый. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-39:i07; family: scripted_repeat_compare -->
 🎙 **The knife I bought is sharp.**
 
-**8 · Нож, который я купил, острый. Предмет уже назван — не повторяйте его.**
+**8 · Нож, который вы купили, острый. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-39:i08; family: context_gap_grammar -->
 The knife I ___ is sharp. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*

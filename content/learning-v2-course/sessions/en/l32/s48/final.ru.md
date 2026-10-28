@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The cheese I bought is soft. — Сыр, который я купил, мягкий. Соберите The cheese + I bought + is soft. Часть I bought уточняет cheese. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The cheese I bought is soft. — Сыр, который вы купили, мягкий. Соберите The cheese + I bought + is soft. Часть I bought уточняет cheese. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The fridge is noisy, so it might ___ old. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-48:i06; family: word_card -->
 > **cheese** — Сыр. Повторение знакомого слова.
 
-**7 · Сыр, который я купил, мягкий. Скажите без that.**
+**7 · Сыр, который вы купили, мягкий. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-48:i07; family: scripted_repeat_compare -->
 🎙 **The cheese I bought is soft.**
 
-**8 · Сыр, который я купил, мягкий. Предмет уже назван — не повторяйте его.**
+**8 · Сыр, который вы купили, мягкий. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-48:i08; family: context_gap_grammar -->
 The cheese I ___ is soft. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*

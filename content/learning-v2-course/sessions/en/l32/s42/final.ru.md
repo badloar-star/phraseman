@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The blanket I washed is dry. — Одеяло, которое я постирал, сухое. Соберите The blanket + I washed + is dry. Часть I washed уточняет blanket. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The blanket I washed is dry. — Одеяло, которое вы постирали, сухое. Соберите The blanket + I washed + is dry. Часть I washed уточняет blanket. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The window is wet, so it might ___ cold. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-42:i06; family: word_card -->
 > **blanket** — Одеяло. Повторение знакомого слова.
 
-**7 · Одеяло, которое я постирал, сухое. Скажите без that.**
+**7 · Одеяло, которое вы постирали, сухое. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-42:i07; family: scripted_repeat_compare -->
 🎙 **The blanket I washed is dry.**
 
-**8 · Одеяло, которое я постирал, сухое. Предмет уже назван — не повторяйте его.**
+**8 · Одеяло, которое вы постирали, сухое. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-42:i08; family: context_gap_grammar -->
 The blanket I ___ is dry. → **washed** · washed it · washing
 - washed it — *Предмет уже назван: it не нужно.*

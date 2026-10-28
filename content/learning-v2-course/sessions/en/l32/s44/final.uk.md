@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The basket I bought is large. — Кошик, який я купив, великий. Складіть The basket + I bought + is large. Частина I bought уточнює basket. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The basket I bought is large. — Кошик, який ви купили, великий. Складіть The basket + I bought + is large. Частина I bought уточнює basket. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The shirt is light, so it might ___ dry. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-44:i06; family: word_card -->
 > **basket** — Кошик. Повторення знайомого слова.
 
-**7 · Кошик, який я купив, великий. Скажіть без that.**
+**7 · Кошик, який ви купили, великий. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-44:i07; family: scripted_repeat_compare -->
 🎙 **The basket I bought is large.**
 
-**8 · Кошик, який я купив, великий. Предмет уже названо — не повторюйте його.**
+**8 · Кошик, який ви купили, великий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-44:i08; family: context_gap_grammar -->
 The basket I ___ is large. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*

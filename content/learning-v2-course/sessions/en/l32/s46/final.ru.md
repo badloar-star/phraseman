@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The toy I found is small. — Игрушка, которую я нашёл, маленькая. Соберите The toy + I found + is small. Часть I found уточняет toy. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The toy I found is small. — Игрушка, которую вы нашли, маленькая. Соберите The toy + I found + is small. Часть I found уточняет toy. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The cat is quiet, so it might ___ asleep. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-46:i06; family: word_card -->
 > **toy** — Игрушка. Повторение знакомого слова.
 
-**7 · Игрушка, которую я нашёл, маленькая. Скажите без that.**
+**7 · Игрушка, которую вы нашли, маленькая. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-46:i07; family: scripted_repeat_compare -->
 🎙 **The toy I found is small.**
 
-**8 · Игрушка, которую я нашёл, маленькая. Предмет уже назван — не повторяйте его.**
+**8 · Игрушка, которую вы нашли, маленькая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-46:i08; family: context_gap_grammar -->
 The toy I ___ is small. → **found** · found it · finding
 - found it — *Предмет уже назван: it не нужно.*

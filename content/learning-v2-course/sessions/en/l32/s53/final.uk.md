@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The sandwich I made is large. — Бутерброд, який я зробив, великий. Складіть The sandwich + I made + is large. Частина I made уточнює sandwich. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The sandwich I made is large. — Бутерброд, який ви зробили, великий. Складіть The sandwich + I made + is large. Частина I made уточнює sandwich. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The bag is heavy, so it might ___ full. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-53:i06; family: word_card -->
 > **sandwich** — Бутерброд. Повторення знайомого слова.
 
-**7 · Бутерброд, який я зробив, великий. Скажіть без that.**
+**7 · Бутерброд, який ви зробили, великий. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-53:i07; family: scripted_repeat_compare -->
 🎙 **The sandwich I made is large.**
 
-**8 · Бутерброд, який я зробив, великий. Предмет уже названо — не повторюйте його.**
+**8 · Бутерброд, який ви зробили, великий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-53:i08; family: context_gap_grammar -->
 The sandwich I ___ is large. → **made** · made it · making
 - made it — *Предмет уже названо: it не потрібне.*

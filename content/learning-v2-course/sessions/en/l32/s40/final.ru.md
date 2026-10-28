@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The bag I packed is small. — Сумка, которую я собрал, маленькая. Соберите The bag + I packed + is small. Часть I packed уточняет bag. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The bag I packed is small. — Сумка, которую вы собрали, маленькая. Соберите The bag + I packed + is small. Часть I packed уточняет bag. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The towel is heavy, so it might ___ wet. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-40:i06; family: word_card -->
 > **bag** — Сумка. Повторение знакомого слова.
 
-**7 · Сумка, которую я собрал, маленькая. Скажите без that.**
+**7 · Сумка, которую вы собрали, маленькая. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-40:i07; family: scripted_repeat_compare -->
 🎙 **The bag I packed is small.**
 
-**8 · Сумка, которую я собрал, маленькая. Предмет уже назван — не повторяйте его.**
+**8 · Сумка, которую вы собрали, маленькая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-40:i08; family: context_gap_grammar -->
 The bag I ___ is small. → **packed** · packed it · packing
 - packed it — *Предмет уже назван: it не нужно.*

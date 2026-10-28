@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The ball I found is dirty. — М’яч, який я знайшов, брудний. Складіть The ball + I found + is dirty. Частина I found уточнює ball. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The ball I found is dirty. — М’яч, який ви знайшли, брудний. Складіть The ball + I found + is dirty. Частина I found уточнює ball. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The grass is long, so it might ___ wet. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-43:i06; family: word_card -->
 > **ball** — М’яч. Повторення знайомого слова.
 
-**7 · М’яч, який я знайшов, брудний. Скажіть без that.**
+**7 · М’яч, який ви знайшли, брудний. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-43:i07; family: scripted_repeat_compare -->
 🎙 **The ball I found is dirty.**
 
-**8 · М’яч, який я знайшов, брудний. Предмет уже названо — не повторюйте його.**
+**8 · М’яч, який ви знайшли, брудний. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-43:i08; family: context_gap_grammar -->
 The ball I ___ is dirty. → **found** · found it · finding
 - found it — *Предмет уже названо: it не потрібне.*

@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The plant I bought is small. — Растение, которое я купил, маленькое. Соберите The plant + I bought + is small. Часть I bought уточняет plant. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The plant I bought is small. — Растение, которое вы купили, маленькое. Соберите The plant + I bought + is small. Часть I bought уточняет plant. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The path is wet, so it might ___ slippery. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-52:i06; family: word_card -->
 > **plant** — Растение. Повторение знакомого слова.
 
-**7 · Растение, которое я купил, маленькое. Скажите без that.**
+**7 · Растение, которое вы купили, маленькое. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-52:i07; family: scripted_repeat_compare -->
 🎙 **The plant I bought is small.**
 
-**8 · Растение, которое я купил, маленькое. Предмет уже назван — не повторяйте его.**
+**8 · Растение, которое вы купили, маленькое. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-52:i08; family: context_gap_grammar -->
 The plant I ___ is small. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*

@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The plate I washed is clean. — Тарілка, яку я помив, чиста. Складіть The plate + I washed + is clean. Частина I washed уточнює plate. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The plate I washed is clean. — Тарілка, яку ви помили, чиста. Складіть The plate + I washed + is clean. Частина I washed уточнює plate. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The oven is warm, so it might ___ on. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-56:i06; family: word_card -->
 > **plate** — Тарілка. Повторення знайомого слова.
 
-**7 · Тарілка, яку я помив, чиста. Скажіть без that.**
+**7 · Тарілка, яку ви помили, чиста. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-56:i07; family: scripted_repeat_compare -->
 🎙 **The plate I washed is clean.**
 
-**8 · Тарілка, яку я помив, чиста. Предмет уже названо — не повторюйте його.**
+**8 · Тарілка, яку ви помили, чиста. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-56:i08; family: context_gap_grammar -->
 The plate I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже названо: it не потрібне.*

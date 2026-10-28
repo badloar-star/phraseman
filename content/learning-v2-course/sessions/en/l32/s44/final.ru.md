@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The basket I bought is large. — Корзина, которую я купил, большая. Соберите The basket + I bought + is large. Часть I bought уточняет basket. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The basket I bought is large. — Корзина, которую вы купили, большая. Соберите The basket + I bought + is large. Часть I bought уточняет basket. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The shirt is light, so it might ___ dry. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-44:i06; family: word_card -->
 > **basket** — Корзина. Повторение знакомого слова.
 
-**7 · Корзина, которую я купил, большая. Скажите без that.**
+**7 · Корзина, которую вы купили, большая. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-44:i07; family: scripted_repeat_compare -->
 🎙 **The basket I bought is large.**
 
-**8 · Корзина, которую я купил, большая. Предмет уже назван — не повторяйте его.**
+**8 · Корзина, которую вы купили, большая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-44:i08; family: context_gap_grammar -->
 The basket I ___ is large. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*

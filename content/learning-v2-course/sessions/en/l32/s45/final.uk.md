@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The apple I chose is green. — Яблуко, яке я вибрав, зелене. Складіть The apple + I chose + is green. Частина I chose уточнює apple. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The apple I chose is green. — Яблуко, яке ви вибрали, зелене. Складіть The apple + I chose + is green. Частина I chose уточнює apple. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The milk smells strange, so it might ___ bad. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-45:i06; family: word_card -->
 > **apple** — Яблуко. Повторення знайомого слова.
 
-**7 · Яблуко, яке я вибрав, зелене. Скажіть без that.**
+**7 · Яблуко, яке ви вибрали, зелене. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-45:i07; family: scripted_repeat_compare -->
 🎙 **The apple I chose is green.**
 
-**8 · Яблуко, яке я вибрав, зелене. Предмет уже названо — не повторюйте його.**
+**8 · Яблуко, яке ви вибрали, зелене. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-45:i08; family: context_gap_grammar -->
 The apple I ___ is green. → **chose** · chose it · choosing
 - chose it — *Предмет уже названо: it не потрібне.*

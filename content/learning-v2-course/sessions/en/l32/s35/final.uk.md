@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The book I borrowed is short. — Книжка, яку я позичив, коротка. Складіть The book + I borrowed + is short. Частина I borrowed уточнює book. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The book I borrowed is short. — Книжка, яку ви позичили, коротка. Складіть The book + I borrowed + is short. Частина I borrowed уточнює book. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The room is dark, so it might ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-35:i06; family: word_card -->
 > **book** — Книжка. Повторення знайомого слова.
 
-**7 · Книжка, яку я позичив, коротка. Скажіть без that.**
+**7 · Книжка, яку ви позичили, коротка. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-35:i07; family: scripted_repeat_compare -->
 🎙 **The book I borrowed is short.**
 
-**8 · Книжка, яку я позичив, коротка. Предмет уже названо — не повторюйте його.**
+**8 · Книжка, яку ви позичили, коротка. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-35:i08; family: context_gap_grammar -->
 The book I ___ is short. → **borrowed** · borrowed it · borrowing
 - borrowed it — *Предмет уже названо: it не потрібне.*

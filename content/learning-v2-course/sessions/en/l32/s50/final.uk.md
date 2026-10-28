@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The ticket I bought is expensive. — Квиток, який я купив, дорогий. Складіть The ticket + I bought + is expensive. Частина I bought уточнює ticket. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The ticket I bought is expensive. — Квиток, який ви купили, дорогий. Складіть The ticket + I bought + is expensive. Частина I bought уточнює ticket. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The train is quiet, so it might ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-50:i06; family: word_card -->
 > **ticket** — Квиток. Повторення знайомого слова.
 
-**7 · Квиток, який я купив, дорогий. Скажіть без that.**
+**7 · Квиток, який ви купили, дорогий. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-50:i07; family: scripted_repeat_compare -->
 🎙 **The ticket I bought is expensive.**
 
-**8 · Квиток, який я купив, дорогий. Предмет уже названо — не повторюйте його.**
+**8 · Квиток, який ви купили, дорогий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-50:i08; family: context_gap_grammar -->
 The ticket I ___ is expensive. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*

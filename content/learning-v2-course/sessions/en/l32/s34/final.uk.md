@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The bag I packed is heavy. — Сумка, яку я зібрав, важка. Складіть The bag + I packed + is heavy. Частина I packed уточнює bag. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The bag I packed is heavy. — Сумка, яку ви зібрали, важка. Складіть The bag + I packed + is heavy. Частина I packed уточнює bag. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The road is wet, so it might ___ slippery. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-34:i06; family: word_card -->
 > **bag** — Сумка. Повторення знайомого слова.
 
-**7 · Сумка, яку я зібрав, важка. Скажіть без that.**
+**7 · Сумка, яку ви зібрали, важка. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-34:i07; family: scripted_repeat_compare -->
 🎙 **The bag I packed is heavy.**
 
-**8 · Сумка, яку я зібрав, важка. Предмет уже названо — не повторюйте його.**
+**8 · Сумка, яку ви зібрали, важка. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-34:i08; family: context_gap_grammar -->
 The bag I ___ is heavy. → **packed** · packed it · packing
 - packed it — *Предмет уже названо: it не потрібне.*

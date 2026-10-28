@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The cloth I washed is clean. — Тряпка, которую я постирал, чистая. Соберите The cloth + I washed + is clean. Часть I washed уточняет cloth. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The cloth I washed is clean. — Тряпка, которую вы постирали, чистая. Соберите The cloth + I washed + is clean. Часть I washed уточняет cloth. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The table is sticky, so it might ___ dirty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-49:i06; family: word_card -->
 > **cloth** — Тряпка. Повторение знакомого слова.
 
-**7 · Тряпка, которую я постирал, чистая. Скажите без that.**
+**7 · Тряпка, которую вы постирали, чистая. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-49:i07; family: scripted_repeat_compare -->
 🎙 **The cloth I washed is clean.**
 
-**8 · Тряпка, которую я постирал, чистая. Предмет уже назван — не повторяйте его.**
+**8 · Тряпка, которую вы постирали, чистая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-49:i08; family: context_gap_grammar -->
 The cloth I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже назван: it не нужно.*

@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The knife I bought is sharp. — Ніж, який я купив, гострий. Складіть The knife + I bought + is sharp. Частина I bought уточнює knife. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The knife I bought is sharp. — Ніж, який ви купили, гострий. Складіть The knife + I bought + is sharp. Частина I bought уточнює knife. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The bread is warm, so it might ___ fresh. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-39:i06; family: word_card -->
 > **knife** — Ніж. Повторення знайомого слова.
 
-**7 · Ніж, який я купив, гострий. Скажіть без that.**
+**7 · Ніж, який ви купили, гострий. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-39:i07; family: scripted_repeat_compare -->
 🎙 **The knife I bought is sharp.**
 
-**8 · Ніж, який я купив, гострий. Предмет уже названо — не повторюйте його.**
+**8 · Ніж, який ви купили, гострий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-39:i08; family: context_gap_grammar -->
 The knife I ___ is sharp. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*

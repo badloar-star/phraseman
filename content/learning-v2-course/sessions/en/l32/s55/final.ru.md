@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The book I read is short. — Книга, которую я прочитал, короткая. Соберите The book + I read + is short. Часть I read уточняет book. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The book I read is short. — Книга, которую вы прочитали, короткая. Соберите The book + I read + is short. Часть I read уточняет book. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The bag is light, so it might ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-55:i06; family: word_card -->
 > **book** — Книга. Повторение знакомого слова.
 
-**7 · Книга, которую я прочитал, короткая. Скажите без that.**
+**7 · Книга, которую вы прочитали, короткая. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-55:i07; family: scripted_repeat_compare -->
 🎙 **The book I read is short.**
 
-**8 · Книга, которую я прочитал, короткая. Предмет уже назван — не повторяйте его.**
+**8 · Книга, которую вы прочитали, короткая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-55:i08; family: context_gap_grammar -->
 The book I ___ is short. → **read** · read it · reading
 - read it — *Предмет уже назван: it не нужно.*

@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The hat I bought is warm. — Шапка, яку я купив, тепла. Складіть The hat + I bought + is warm. Частина I bought уточнює hat. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The hat I bought is warm. — Шапка, яку ви купили, тепла. Складіть The hat + I bought + is warm. Частина I bought уточнює hat. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The coat is thin, so it might ___ light. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-47:i06; family: word_card -->
 > **hat** — Шапка. Повторення знайомого слова.
 
-**7 · Шапка, яку я купив, тепла. Скажіть без that.**
+**7 · Шапка, яку ви купили, тепла. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-47:i07; family: scripted_repeat_compare -->
 🎙 **The hat I bought is warm.**
 
-**8 · Шапка, яку я купив, тепла. Предмет уже названо — не повторюйте його.**
+**8 · Шапка, яку ви купили, тепла. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-47:i08; family: context_gap_grammar -->
 The hat I ___ is warm. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*

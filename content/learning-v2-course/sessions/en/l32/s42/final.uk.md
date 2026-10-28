@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні предмет й уточнюєте свою дію з ним: The blanket I washed is dry. — Ковдра, яку я виправ, суха. Складіть The blanket + I washed + is dry. Частина I washed уточнює blanket. That можна опустити: I вже називає того, хто виконав дію.
+Ви показуєте Анні предмет й уточнюєте свою дію з ним: The blanket I washed is dry. — Ковдра, яку ви випрали, суха. Складіть The blanket + I washed + is dry. Частина I washed уточнює blanket. That можна опустити: I вже називає того, хто виконав дію.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The window is wet, so it might ___ cold. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-42:i06; family: word_card -->
 > **blanket** — Ковдра. Повторення знайомого слова.
 
-**7 · Ковдра, яку я виправ, суха. Скажіть без that.**
+**7 · Ковдра, яку ви випрали, суха. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-42:i07; family: scripted_repeat_compare -->
 🎙 **The blanket I washed is dry.**
 
-**8 · Ковдра, яку я виправ, суха. Предмет уже названо — не повторюйте його.**
+**8 · Ковдра, яку ви випрали, суха. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-42:i08; family: context_gap_grammar -->
 The blanket I ___ is dry. → **washed** · washed it · washing
 - washed it — *Предмет уже названо: it не потрібне.*

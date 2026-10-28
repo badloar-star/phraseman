@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне предмет и уточняете своё действие с ним: The ticket I bought is cheap. — Билет, который я купил, дешёвый. Соберите The ticket + I bought + is cheap. Часть I bought уточняет ticket. That можно опустить: I уже называет того, кто выполнил действие.
+Вы показываете Анне предмет и уточняете своё действие с ним: The ticket I bought is cheap. — Билет, который вы купили, дешёвый. Соберите The ticket + I bought + is cheap. Часть I bought уточняет ticket. That можно опустить: I уже называет того, кто выполнил действие.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The bus is slow, so it might ___ late. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-41:i06; family: word_card -->
 > **ticket** — Билет. Повторение знакомого слова.
 
-**7 · Билет, который я купил, дешёвый. Скажите без that.**
+**7 · Билет, который вы купили, дешёвый. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-41:i07; family: scripted_repeat_compare -->
 🎙 **The ticket I bought is cheap.**
 
-**8 · Билет, который я купил, дешёвый. Предмет уже назван — не повторяйте его.**
+**8 · Билет, который вы купили, дешёвый. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-41:i08; family: context_gap_grammar -->
 The ticket I ___ is cheap. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*

@@ -1267,4 +1267,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"задать вопрос о принадлежности и отдельно ответить от своего лица.","uk":"поставити запитання про належність і окремо відповісти від свого імені."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 13,
+    sourceFingerprint: "796e2f2ea8f9d9a57369943488a9708ff6279490ca8f69c7d436b47fd47f0c95",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать tus для нескольких вещей собеседника.","uk":"використовувати tus для кількох речей співрозмовника."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 14,
+    sourceFingerprint: "754ec36ac7d0e398d59d65327aae013eca6d388eefc2d08499782546eb7fbfd6",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать tus с существительным женского рода во множественном числе.","uk":"використовувати tus з іменником жіночого роду в множині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

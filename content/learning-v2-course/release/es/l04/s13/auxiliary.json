@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-13",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-13:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-13:intro1:r2": {
+          "ru": "С единственным zapato нужно tu.",
+          "uk": "З одниною zapato потрібне tu."
+        },
+        "es:lesson-04:session-13:intro1:r3": {
+          "ru": "Перед tu здесь нет артикля.",
+          "uk": "Перед tu тут немає артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-13:intro2:r2": {
+          "ru": "Перед множественным zapatos нужно tus.",
+          "uk": "Перед множиною zapatos потрібне tus."
+        },
+        "es:lesson-04:session-13:intro2:r3": {
+          "ru": "Для нескольких предметов нужно son.",
+          "uk": "Для кількох предметів потрібне son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-13:intro3:r2": {
+          "ru": "Нужно множественное negros.",
+          "uk": "Потрібна множина negros."
+        },
+        "es:lesson-04:session-13:intro3:r3": {
+          "ru": "Zapatos мужского рода.",
+          "uk": "Zapatos чоловічого роду."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "46bba6fdbbc7cf54e176406d72dfde1c792222057e5c130de24c46215302215a"
+}

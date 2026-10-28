@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-14:i01",
+    "correctText": "bolsas",
+    "correctResponseId": "es:lesson-04:session-14:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-14:i02",
+    "correctText": "tu",
+    "correctResponseId": "es:lesson-04:session-14:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-14:i03",
+    "correctText": "Es tu bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-14:i04",
+    "correctText": "tus",
+    "correctResponseId": "es:lesson-04:session-14:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-14:i05",
+    "correctText": "Son tus bolsas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-14:i06",
+    "correctText": "Tus bolsas son rojas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-14:i07",
+    "correctText": "No son tus bolsas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-14:i08",
+    "correctText": "rojas",
+    "correctResponseId": "es:lesson-04:session-14:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-14:i09",
+    "correctText": "Es tu bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-14:i10",
+    "correctText": "Son tus bolsas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-14:i11",
+    "correctText": "Tus bolsas son rojas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-14:i12",
+    "correctText": "No son tus bolsas.",
+    "correctResponseId": null
+  }
+]

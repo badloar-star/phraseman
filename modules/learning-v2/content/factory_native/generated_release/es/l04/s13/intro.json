@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-13",
+  "learningOutcomeByLocale": {
+    "ru": "использовать tus для нескольких вещей собеседника.",
+    "uk": "використовувати tus для кількох речей співрозмовника."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-13:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна туфля",
+        "uk": "Одна туфля"
+      },
+      "bodyByLocale": {
+        "ru": "Нашли одну туфлю друга. Скажите `Es tu zapato` — «Это твоя туфля». Соберите `es` + `tu zapato`. Испанское zapato мужского рода. Вещь одна, поэтому tu, как в tu carro. Не добавляйте перед tu артикль el.",
+        "uk": "Знайшли одну туфлю друга. Скажіть `Es tu zapato` — «Це твоя туфля». Зберіть `es` + `tu zapato`. Іспанське zapato чоловічого роду. Річ одна, тому tu, як у tu carro. Не додавайте перед tu артикля el."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-13:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что это его туфля: «Это твоя туфля». Начните с Es.",
+          "uk": "Скажіть другу, що це його туфля: «Це твоя туфля». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-13:intro1:r1",
+              "text": "Es tu zapato."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro1:r2",
+              "text": "Es tus zapato."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro1:r3",
+              "text": "Es el tu zapato."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-13:intro1:r1",
+              "text": "Es tu zapato."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro1:r2",
+              "text": "Es tus zapato."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro1:r3",
+              "text": "Es el tu zapato."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что это его туфля: «Это твоя туфля». Начните с Es.",
+          "uk": "Скажіть другу, що це його туфля: «Це твоя туфля». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-13:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Найденная пара",
+        "uk": "Знайдена пара"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь нашли обе туфли. Скажите `Son tus zapatos` — «Это твои туфли». Соберите `son` + `tus zapatos`. К zapato добавьте -s, а tu замените на tus. Владелец один — ваш друг; tus выбираем потому, что вещей несколько.",
+        "uk": "Тепер знайшли обидві туфлі. Скажіть `Son tus zapatos` — «Це твої туфлі». Зберіть `son` + `tus zapatos`. До zapato додайте -s, а tu замініть на tus. Власник один — ваш друг; tus вибираємо тому, що речей кілька."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-13:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите другу: «Это твои туфли». Начните с Son.",
+          "uk": "Скажіть другу: «Це твої туфлі». Почніть з Son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-13:intro2:r1",
+              "text": "Son tus zapatos."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro2:r2",
+              "text": "Son tu zapatos."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro2:r3",
+              "text": "Es tus zapatos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-13:intro2:r1",
+              "text": "Son tus zapatos."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro2:r2",
+              "text": "Son tu zapatos."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro2:r3",
+              "text": "Es tus zapatos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу: «Это твои туфли». Начните с Son.",
+          "uk": "Скажіть другу: «Це твої туфлі». Почніть з Son."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-13:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Узнать по цвету",
+        "uk": "Упізнати за кольором"
+      },
+      "bodyByLocale": {
+        "ru": "У друга чёрные туфли. Напомните ему `Tus zapatos son negros` — «Твои туфли чёрные». Соберите `tus zapatos` + `son` + `negros`. Zapatos мужского рода и множественного числа, поэтому negros. Tus также показывает, что вещей несколько.",
+        "uk": "У друга чорні туфлі. Нагадайте йому `Tus zapatos son negros` — «Твої туфлі чорні». Зберіть `tus zapatos` + `son` + `negros`. Zapatos чоловічого роду й у множині, тому negros. Tus також показує, що речей кілька."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-13:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите другу, что его туфли чёрные, начав с Tus zapatos.",
+          "uk": "Скажіть другу, що його туфлі чорні, почавши з Tus zapatos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-13:intro3:r1",
+              "text": "Tus zapatos son negros."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro3:r2",
+              "text": "Tus zapatos son negro."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro3:r3",
+              "text": "Tus zapatos son negras."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-13:intro3:r1",
+              "text": "Tus zapatos son negros."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro3:r2",
+              "text": "Tus zapatos son negro."
+            },
+            {
+              "responseId": "es:lesson-04:session-13:intro3:r3",
+              "text": "Tus zapatos son negras."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу, что его туфли чёрные, начав с Tus zapatos.",
+          "uk": "Скажіть другу, що його туфлі чорні, почавши з Tus zapatos."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8a90f3bd617fe9bf6db97a166ea40e0b9c4bb0f278fd1dda59f7767137778a3d"
+}

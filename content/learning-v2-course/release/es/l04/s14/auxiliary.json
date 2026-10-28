@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-14",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-14:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-14:intro1:r2": {
+          "ru": "С одной вещью нужно tu.",
+          "uk": "З однією річчю потрібне tu."
+        },
+        "es:lesson-04:session-14:intro1:r3": {
+          "ru": "Перед tu здесь не ставим артикль.",
+          "uk": "Перед tu тут не ставимо артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-14:intro2:r2": {
+          "ru": "Для нескольких вещей нужно tus.",
+          "uk": "Для кількох речей потрібне tus."
+        },
+        "es:lesson-04:session-14:intro2:r3": {
+          "ru": "Для нескольких сумок нужно son.",
+          "uk": "Для кількох сумок потрібне son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-14:intro3:r2": {
+          "ru": "Rojos не подходит к женскому bolsas.",
+          "uk": "Rojos не підходить до жіночого bolsas."
+        },
+        "es:lesson-04:session-14:intro3:r3": {
+          "ru": "Сумок несколько: rojas.",
+          "uk": "Сумок кілька: rojas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "243372eee983ab12654ace01e31ae8018e29b2d88459516c38e178df92071848"
+}

@@ -1,0 +1,668 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-13",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-13:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-13:i01:r1",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i01:r2",
+          "text": "tu"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-13:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-13:i01:audio",
+          "transcript": "tus"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-13:i01:r1",
+            "targetText": "tus",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-13:i01:r2",
+            "targetText": "tu",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-13:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи есть конечное -s: tus.",
+              "uk": "У записі є кінцеве -s: tus."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це твоя туфля, одна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-13:i02:r1",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i02:r2",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i02:r3",
+          "text": "mi"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це твоя туфля, одна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это твоя туфля, одна",
+          "uk": "Вставте слово — це твоя туфля, одна"
+        },
+        "gappedTargetPhrase": "Es ___ zapato.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-13:i02:r1",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-13:i02:r2",
+            "text": "tus"
+          },
+          {
+            "responseId": "es:lesson-04:session-13:i02:r3",
+            "text": "mi"
+          }
+        ],
+        "testedDimension": "Вставте слово — це твоя туфля, одна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-13:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це твоя туфля, одна",
+            "feedbackByLocale": {
+              "ru": "Одна туфля: tu.",
+              "uk": "Одна туфля: tu."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-13:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це твоя туфля, одна",
+            "feedbackByLocale": {
+              "ru": "Речь о вещи собеседника, поэтому tu.",
+              "uk": "Йдеться про річ співрозмовника, тому tu."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це твоя туфля",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-13:i03:r1",
+          "text": "Плитки: zapato"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i03:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i03:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це твоя туфля",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es tu zapato.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это твоя туфля",
+          "uk": "Зберіть фразу — це твоя туфля"
+        },
+        "orderedTokens": [
+          "Es",
+          "tu",
+          "zapato"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-13:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це твоя туфля",
+            "feedbackByLocale": {
+              "ru": "перед tu здесь нет артикля.",
+              "uk": "перед tu тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це твої туфлі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-13:i04:r1",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i04:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i04:r3",
+          "text": "mis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це твої туфлі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это твои туфли",
+          "uk": "Вставте слово — це твої туфлі"
+        },
+        "gappedTargetPhrase": "Son ___ zapatos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-13:i04:r1",
+            "text": "tus"
+          },
+          {
+            "responseId": "es:lesson-04:session-13:i04:r2",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-13:i04:r3",
+            "text": "mis"
+          }
+        ],
+        "testedDimension": "Вставте слово — це твої туфлі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-13:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це твої туфлі",
+            "feedbackByLocale": {
+              "ru": "Несколько вещей: tus.",
+              "uk": "Кілька речей: tus."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-13:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це твої туфлі",
+            "feedbackByLocale": {
+              "ru": "Mis означает «мои», а нужно «твои»: tus.",
+              "uk": "Mis означає «мої», а потрібно «твої»: tus."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це твої туфлі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-13:i05:r1",
+          "text": "Плитки: zapatos"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i05:r2",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i05:r4",
+          "text": "tu."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це твої туфлі",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son tus zapatos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это твои туфли",
+          "uk": "Зберіть фразу — це твої туфлі"
+        },
+        "orderedTokens": [
+          "Son",
+          "tus",
+          "zapatos"
+        ],
+        "authoredDistractorTokens": [
+          "tu"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-13:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це твої туфлі",
+            "feedbackByLocale": {
+              "ru": "туфель несколько.",
+              "uk": "туфель кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — твої туфлі чорні",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-13:i06:r1",
+          "text": "Плитки: negros"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i06:r3",
+          "text": "zapatos"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i06:r4",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i06:r5",
+          "text": "negras."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — твої туфлі чорні",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tus zapatos son negros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — твои туфли чёрные",
+          "uk": "Зберіть фразу — твої туфлі чорні"
+        },
+        "orderedTokens": [
+          "Tus",
+          "zapatos",
+          "son",
+          "negros"
+        ],
+        "authoredDistractorTokens": [
+          "negras"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-13:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — твої туфлі чорні",
+            "feedbackByLocale": {
+              "ru": "zapatos мужского рода.",
+              "uk": "zapatos чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-13:i07:r1",
+          "text": "Плитки: zapatos"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i07:r2",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i07:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i07:r5",
+          "text": "tu."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-13:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-13:i07:audio",
+          "transcript": "No son tus zapatos."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No son tus zapatos.",
+        "orderedTokens": [
+          "No",
+          "son",
+          "tus",
+          "zapatos"
+        ],
+        "authoredDistractorTokens": [
+          "tu"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-13:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит tus.",
+              "uk": "звучить tus."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — твої туфлі чорні",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-13:i08:r1",
+          "text": "negros"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i08:r2",
+          "text": "negro"
+        },
+        {
+          "responseId": "es:lesson-04:session-13:i08:r3",
+          "text": "negras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — твої туфлі чорні",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — твои туфли чёрные",
+          "uk": "Вставте слово — твої туфлі чорні"
+        },
+        "gappedTargetPhrase": "Tus zapatos son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-13:i08:r1",
+            "text": "negros"
+          },
+          {
+            "responseId": "es:lesson-04:session-13:i08:r2",
+            "text": "negro"
+          },
+          {
+            "responseId": "es:lesson-04:session-13:i08:r3",
+            "text": "negras"
+          }
+        ],
+        "testedDimension": "Вставте слово — твої туфлі чорні",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-13:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — твої туфлі чорні",
+            "feedbackByLocale": {
+              "ru": "Туфель несколько: negros.",
+              "uk": "Туфель кілька: negros."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-13:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — твої туфлі чорні",
+            "feedbackByLocale": {
+              "ru": "Zapatos мужского рода.",
+              "uk": "Zapatos чоловічого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це твоя туфля, одна; почніть з Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-13:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це твоя туфля, одна; почніть з Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-13:i09:audio",
+          "transcript": "Es tu zapato."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es tu zapato.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це твої туфлі; почніть з Son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-13:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це твої туфлі; почніть з Son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-13:i10:audio",
+          "transcript": "Son tus zapatos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son tus zapatos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — твої туфлі чорні; почніть з Tus zapatos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-13:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — твої туфлі чорні; почніть з Tus zapatos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-13:i11:audio",
+          "transcript": "Tus zapatos son negros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tus zapatos son negros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-13:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це не твої туфлі; почніть з No son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-13:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це не твої туфлі; почніть з No son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-13:i12:audio",
+          "transcript": "No son tus zapatos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son tus zapatos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c5d0f2ce6953a5b6cdab3349147a79bf146a64d544e6d077514674870c16f7b7"
+}

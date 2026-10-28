@@ -1,0 +1,668 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-14",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-14:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-14:i01:r1",
+          "text": "bolsas"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i01:r2",
+          "text": "bolsa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-14:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-14:i01:audio",
+          "transcript": "bolsas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-14:i01:r1",
+            "targetText": "bolsas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-14:i01:r2",
+            "targetText": "bolsa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-14:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи множественное число: bolsas.",
+              "uk": "У записі множина: bolsas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это твоя сумка, одна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-14:i02:r1",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i02:r2",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i02:r3",
+          "text": "mis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это твоя сумка, одна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это твоя сумка, одна",
+          "uk": "Вставте слово — це твоя сумка, одна"
+        },
+        "gappedTargetPhrase": "Es ___ bolsa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-14:i02:r1",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-14:i02:r2",
+            "text": "tus"
+          },
+          {
+            "responseId": "es:lesson-04:session-14:i02:r3",
+            "text": "mis"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это твоя сумка, одна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-14:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твоя сумка, одна",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: tu.",
+              "uk": "Сумка одна: tu."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-14:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твоя сумка, одна",
+            "feedbackByLocale": {
+              "ru": "Нужно «твоя», одна вещь: tu.",
+              "uk": "Потрібно «твоя», одна річ: tu."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это твоя сумка; используйте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-14:i03:r1",
+          "text": "Плитки: bolsa"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i03:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i03:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это твоя сумка; используйте bolsa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es tu bolsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это твоя сумка; используйте bolsa",
+          "uk": "Зберіть фразу — це твоя сумка; використайте bolsa"
+        },
+        "orderedTokens": [
+          "Es",
+          "tu",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-14:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это твоя сумка; используйте bolsa",
+            "feedbackByLocale": {
+              "ru": "перед tu здесь нет артикля.",
+              "uk": "перед tu тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это твои сумки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-14:i04:r1",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i04:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i04:r3",
+          "text": "mis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это твои сумки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это твои сумки",
+          "uk": "Вставте слово — це твої сумки"
+        },
+        "gappedTargetPhrase": "Son ___ bolsas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-14:i04:r1",
+            "text": "tus"
+          },
+          {
+            "responseId": "es:lesson-04:session-14:i04:r2",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-14:i04:r3",
+            "text": "mis"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это твои сумки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-14:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твои сумки",
+            "feedbackByLocale": {
+              "ru": "Несколько вещей: tus.",
+              "uk": "Кілька речей: tus."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-14:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это твои сумки",
+            "feedbackByLocale": {
+              "ru": "Нужно «твои», а не «мои»: tus.",
+              "uk": "Потрібно «твої», а не «мої»: tus."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это твои сумки; используйте bolsas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-14:i05:r1",
+          "text": "Плитки: bolsas"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i05:r2",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i05:r4",
+          "text": "tu."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это твои сумки; используйте bolsas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son tus bolsas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это твои сумки; используйте bolsas",
+          "uk": "Зберіть фразу — це твої сумки; використайте bolsas"
+        },
+        "orderedTokens": [
+          "Son",
+          "tus",
+          "bolsas"
+        ],
+        "authoredDistractorTokens": [
+          "tu"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-14:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это твои сумки; используйте bolsas",
+            "feedbackByLocale": {
+              "ru": "сумок несколько.",
+              "uk": "сумок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — твои сумки красные; начните с Tus bolsas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-14:i06:r1",
+          "text": "Плитки: rojas"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i06:r3",
+          "text": "bolsas"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i06:r4",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i06:r5",
+          "text": "rojos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — твои сумки красные; начните с Tus bolsas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tus bolsas son rojas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — твои сумки красные; начните с Tus bolsas",
+          "uk": "Зберіть фразу — твої сумки червоні; почніть з Tus bolsas"
+        },
+        "orderedTokens": [
+          "Tus",
+          "bolsas",
+          "son",
+          "rojas"
+        ],
+        "authoredDistractorTokens": [
+          "rojos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-14:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — твои сумки красные; начните с Tus bolsas",
+            "feedbackByLocale": {
+              "ru": "bolsas женского рода.",
+              "uk": "bolsas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-14:i07:r1",
+          "text": "Плитки: bolsas"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i07:r2",
+          "text": "tus"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i07:r4",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i07:r5",
+          "text": "tu."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-14:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-14:i07:audio",
+          "transcript": "No son tus bolsas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No son tus bolsas.",
+        "orderedTokens": [
+          "No",
+          "son",
+          "tus",
+          "bolsas"
+        ],
+        "authoredDistractorTokens": [
+          "tu"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-14:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит tus.",
+              "uk": "звучить tus."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — твои сумки красные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-14:i08:r1",
+          "text": "rojas"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i08:r2",
+          "text": "rojos"
+        },
+        {
+          "responseId": "es:lesson-04:session-14:i08:r3",
+          "text": "roja"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — твои сумки красные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — твои сумки красные",
+          "uk": "Вставте слово — твої сумки червоні"
+        },
+        "gappedTargetPhrase": "Tus bolsas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-14:i08:r1",
+            "text": "rojas"
+          },
+          {
+            "responseId": "es:lesson-04:session-14:i08:r2",
+            "text": "rojos"
+          },
+          {
+            "responseId": "es:lesson-04:session-14:i08:r3",
+            "text": "roja"
+          }
+        ],
+        "testedDimension": "Вставьте слово — твои сумки красные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-14:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — твои сумки красные",
+            "feedbackByLocale": {
+              "ru": "Bolsas женского рода: rojas.",
+              "uk": "Bolsas жіночого роду: rojas."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-14:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — твои сумки красные",
+            "feedbackByLocale": {
+              "ru": "Сумок несколько: rojas.",
+              "uk": "Сумок кілька: rojas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это твоя сумка; начните с Es, используйте bolsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-14:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это твоя сумка; начните с Es, используйте bolsa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-14:i09:audio",
+          "transcript": "Es tu bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es tu bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это твои сумки; начните с Son, используйте bolsas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-14:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это твои сумки; начните с Son, используйте bolsas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-14:i10:audio",
+          "transcript": "Son tus bolsas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son tus bolsas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — твои сумки красные; начните с Tus bolsas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-14:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — твои сумки красные; начните с Tus bolsas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-14:i11:audio",
+          "transcript": "Tus bolsas son rojas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tus bolsas son rojas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-14:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это не твои сумки; начните с No son, используйте bolsas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-14:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это не твои сумки; начните с No son, используйте bolsas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-14:i12:audio",
+          "transcript": "No son tus bolsas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No son tus bolsas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "daffdd841f94d8591dbc1dfa6fd2fe533b758d7cdfbd47b54bcd37de207b0c0c"
+}

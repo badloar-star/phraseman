@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-13:i01",
+    "correctText": "tus",
+    "correctResponseId": "es:lesson-04:session-13:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-13:i02",
+    "correctText": "tu",
+    "correctResponseId": "es:lesson-04:session-13:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-13:i03",
+    "correctText": "Es tu zapato.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-13:i04",
+    "correctText": "tus",
+    "correctResponseId": "es:lesson-04:session-13:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-13:i05",
+    "correctText": "Son tus zapatos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-13:i06",
+    "correctText": "Tus zapatos son negros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-13:i07",
+    "correctText": "No son tus zapatos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-13:i08",
+    "correctText": "negros",
+    "correctResponseId": "es:lesson-04:session-13:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-13:i09",
+    "correctText": "Es tu zapato.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-13:i10",
+    "correctText": "Son tus zapatos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-13:i11",
+    "correctText": "Tus zapatos son negros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-13:i12",
+    "correctText": "No son tus zapatos.",
+    "correctResponseId": null
+  }
+]

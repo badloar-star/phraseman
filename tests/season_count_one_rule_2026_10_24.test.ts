@@ -38,7 +38,8 @@ describe('[SEASON-COUNT] одно правило числа', () => {
     expect(season).toContain('title: subtitle,');
     expect(season).not.toContain('info.tasksCount ?? 0');
     // зачем (Learning V2 af51c41b2): окно эпизода берёт число заданий из лёгкого индекса курса
-    expect(readSource('components/learning-v2/season/SeasonCourseConnected.tsx')).toContain('const tasksCount = factoryNativeLearningV2TaskCountV1(card.lessonOrdinal, card.sessionOrdinal);');
+    // перепин 28.10 (82cfea233, испанский): счётчик берётся по языку изучения — для es индекса нет, подписи нет
+    expect(readSource('components/learning-v2/season/SeasonCourseConnected.tsx')).toContain('const tasksCount = factoryNativeLearningV2TaskCountV1(card.lessonOrdinal, card.sessionOrdinal, studyTarget);');
     const home = readSource('app/(tabs)/home.tsx');
     expect(home).toContain('const homeSceneCount = homeSceneLessonCount({');
     expect(home).toContain('done: homeSceneCount.done,');

@@ -54,6 +54,9 @@ describe('Сезон: подпись экзамена по эталону', () =
     expect(course).toContain("secondary = { label: learningV2ChapterExamCopy(lang, 'later'), onPress: close };");
     expect(course).toContain("label: learningV2ChapterExamCopy(lang, 'start'), icon: 'play'");
     expect(readSource('components/learning-v2/season/SeasonCourseView.tsx')).toContain('examCaption?: (card: SeasonCard) => SeasonExamCaptionView | null;');
-    expect(readSource('components/learning-v2/season/SeasonCourseConnected.tsx')).toContain('examStatus={SEASON_CHAPTER_EXAM_ENABLED ? examStatus : undefined}');
+    // перепин 28.10 (82cfea233, испанский): экзамен главы есть только у английского курса — флаг И язык изучения en
+    const connected = readSource('components/learning-v2/season/SeasonCourseConnected.tsx');
+    expect(connected).toContain("const chapterExamsEnabled = studyTarget === 'en' && SEASON_CHAPTER_EXAM_ENABLED;");
+    expect(connected).toContain('examStatus={chapterExamsEnabled ? examStatus : undefined}');
   });
 });

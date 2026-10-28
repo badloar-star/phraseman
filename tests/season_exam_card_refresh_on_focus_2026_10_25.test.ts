@@ -59,7 +59,9 @@ describe('карточка экзамена в «Сезоне» после во�
     const effect = src.slice(at, src.indexOf('const examPassedChapters', at));
     expect(effect).toContain('if (!examScreenFocused) return undefined;');
     expect(effect).toContain('loadLearningV2ChapterExamRecordsV1(');
-    expect(effect).toMatch(/\}, \[examScreenFocused, lesson\]\);/);
+    // перепин 28.10 (82cfea233): эффект ещё и выключен для курса без экзаменов (es) — зависимость chapterExamsEnabled
+    expect(effect).toContain('if (!chapterExamsEnabled) return undefined;');
+    expect(effect).toMatch(/\}, \[chapterExamsEnabled, examScreenFocused, lesson\]\);/);
     expect(effect).not.toMatch(/firebase|getDoc|onSnapshot|fetch\(/);
   });
 });

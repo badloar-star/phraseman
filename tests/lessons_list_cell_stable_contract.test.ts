@@ -81,13 +81,14 @@ describe('L1: ячейки и экран подключены к стабиль�
 });
 
 describe('R1: каталог курса не собирается синхронно в рендере вкладки «Уроки» на странице списка', () => {
-  it('начальное состояние каталога: не-v2 страница — null (каталог подтянет прогрев), v2 — peek как раньше', () => {
+  // зачем (перепин 28.10): с 72f72a94e (22.10) каталог стартует с null на ЛЮБОЙ странице — синхронного peek в рендере нет совсем
+  it('начальное состояние каталога — null без синхронного peek в рендере (каталог подтянет прогрев)', () => {
     const src = read('app/(tabs)/lessons.tsx');
     const start = src.indexOf('const [learningV2Catalog, setLearningV2Catalog] =');
     expect(start).toBeGreaterThan(-1);
-    const block = src.slice(start, start + 2600);
-    expect(block).toContain('if (page !== "v2") return null;');
-    expect(block.indexOf('if (page !== "v2") return null;')).toBeLessThan(block.indexOf('peekLearningV2ActiveCourseCatalogV1('));
+    const block = src.slice(start, start + 200);
+    expect(block).toContain('useState<LearningV2ActiveCourseCatalogV1 | null>(null);');
+    expect(block).not.toContain('peekLearningV2ActiveCourseCatalogV1(');
   });
 
   it('названия уроков из каталога берутся только на странице v2 (список на странице lessons от каталога не зависит)', () => {
@@ -98,8 +99,11 @@ describe('R1: каталог курса не собирается синхрон
   it('прогрев каталога остаётся: peek + load в useFocusEffect, взводится после первого кадра и взаимодействий', () => {
     const src = read('app/(tabs)/lessons.tsx');
     // зачем (R1, Ядро 12.10): и в dev прогрев ждёт взвода после первого кадра и взаимодействий — dev не стартует его сразу
-    expect(src).toContain('const learningV2WarmupEnabled = page === "v2" || learningV2WarmupArmed;');
+    // перепин 28.10 (72f72a94e): и страница v2 ждёт взвода — переход на неё не разрешает занимать JS-поток; взвод только после простоя касаний
+    expect(src).toContain('const learningV2WarmupEnabled = learningV2WarmupArmed;');
     expect(src).toContain('void loadLearningV2ActiveCourseCatalogV1(learningV2CatalogLocator)');
-    expect(src).toContain('timer = setTimeout(() => setLearningV2WarmupArmed(true), 2000);');
+    expect(src).toContain('InteractionManager.runAfterInteractions(() => {');
+    expect(src).toContain('if (idleMs < 2500) {');
+    expect(src).toContain('setLearningV2WarmupArmed(true);');
   });
 });

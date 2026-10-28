@@ -50,7 +50,9 @@ describe('Сезон: экзамен главы (Learning V2 22.10)', () => {
     expect(flags).toMatch(/SEASON_CHAPTER_EXAM_ENABLED: boolean = true;/);
   });
   it('колода получает опции экзамена, результаты — из локального хранилища без сети', () => {
-    expect(wire).toContain('includeExam: SEASON_CHAPTER_EXAM_ENABLED, examAvailableWhenReached: true, examPassedChapters');
+    // перепин 28.10 (82cfea233, испанский): экзамены главы — только у английского курса
+    expect(wire).toContain("const chapterExamsEnabled = studyTarget === 'en' && SEASON_CHAPTER_EXAM_ENABLED;");
+    expect(wire).toContain('includeExam: chapterExamsEnabled, examAvailableWhenReached: true, examPassedChapters');
     expect(wire).toContain('peekLearningV2ChapterExamRecordsV1');
     expect(wire).toContain('loadLearningV2ChapterExamRecordsV1');
     expect(wire).toContain("learningV2PassedChaptersV1(examRecords, 'en', lesson)");
@@ -58,8 +60,9 @@ describe('Сезон: экзамен главы (Learning V2 22.10)', () => {
   // зачем (координатор 24.10, Р1): флаг запуска включён — карта экзамена с кнопкой «Начать экзамен», ⚡1 и строкой Plus, как в эталоне
   it('кнопки экзамена идут на экран Learning V2 по флагу запуска (включён 24.10)', () => {
     expect(flags).toMatch(/SEASON_CHAPTER_EXAM_START_ENABLED = true as boolean/);
-    expect(wire).toContain('onStartExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onStartExam : undefined}');
-    expect(wire).toContain('onOpenByExam={SEASON_CHAPTER_EXAM_START_ENABLED ? onOpenByExam : undefined}');
+    expect(wire).toContain('const chapterExamStartEnabled = chapterExamsEnabled && SEASON_CHAPTER_EXAM_START_ENABLED;');
+    expect(wire).toContain('onStartExam={chapterExamStartEnabled ? onStartExam : undefined}');
+    expect(wire).toContain('onOpenByExam={chapterExamStartEnabled ? onOpenByExam : undefined}');
     expect(wire).toContain("learningV2ChapterExamHrefV1({ lessonOrdinal: lesson, chapterOrdinal, source: 'exam_card' })");
     expect(wire).toContain("chapterOrdinal: chapterOrdinal - 1, source: 'open_by_exam'");
   });
@@ -189,7 +192,9 @@ describe('Сезон: прогресс классики на плитке и з�
   });
   it('звёзды: у пройденных — из звёзд занятий в памяти (не меньше одной), цвета seasonStarTones; в списке эпизодов справа вместо галочки', () => {
     expect(wire).toContain("const stars = card.state === 'done' ? (starsReady ? Math.max(1, props.stars[card.id] ?? 1) : 'pending' as const) : null;");
-    expect(wire).toContain('useSyncExternalStore(subscribeLearningV2SessionStarResults, isLearningV2SessionStarResultsHydrated');
+    // перепин 28.10 (82cfea233): звёзды подняты отдельно для каждого языка изучения
+    expect(wire).toContain('const peekStarsReady = useCallback(() => isLearningV2SessionStarResultsHydrated(studyTarget), [studyTarget]);');
+    expect(wire).toContain('useSyncExternalStore(subscribeLearningV2SessionStarResults, peekStarsReady, peekStarsReady)');
     expect(view4).toContain('seasonStarTones(themeHue)');
     expect(view4).toContain("stars={card.state === 'done' ? ep.stars ?? null : null} starTones={starTones}");
     expect(face).toContain('testID="season-card-stars"');
@@ -259,7 +264,9 @@ describe('Сезон: звёзды без прыжка, названия на 8 
   const face3 = readSource('components/learning-v2/season/SeasonCardFace.tsx');
   const store = readSource('app/learning_v2_session_star_results_store.ts');
   it('звёзды рисуются только после подъёма в память (флаг хранилища), мягкий fade 180 мс; до этого — без звёзд', () => {
-    expect(store).toContain('export function isLearningV2SessionStarResultsHydrated(): boolean');
+    // перепин 28.10 (82cfea233): флаг подъёма — по языку изучения (en по умолчанию)
+    expect(store).toContain('export function isLearningV2SessionStarResultsHydrated(');
+    expect(store).toContain('return memoryByTarget.has(targetLanguage);');
     expect(face3).toContain('const STARS_FADE_MS = 180;');
     expect(face3).toContain("typeof stars === 'number'");
     expect(face3).toContain('withTiming(starsShown ? 1 : 0, { duration: STARS_FADE_MS })');

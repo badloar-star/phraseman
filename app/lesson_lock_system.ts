@@ -45,6 +45,8 @@ import {
   requiresPremiumForLesson,
 } from './monetization_policy';
 import { isAlwaysOpenLesson, isMainCourseLesson } from './main_course_access';
+import { plusOpensLesson } from './plus_lessons_rule';
+import { notePlusLessonsDecision } from './plus_lessons_diagnostics';
 import { purchasedLessonsKey, readPurchasedLessons } from './lessons_pearl_unlock_storage';
 import {
   COURSE_LEVEL_RANGES,
@@ -227,6 +229,11 @@ export const resolveLastAvailableLessonId = async (
   if (!Number.isFinite(requestedLessonId)) return 1;
   let lessonId = Math.min(32, Math.max(1, Math.floor(requestedLessonId)));
   if (lessonId === 1) return 1;
+  // ЗАМОК ВЛАДЕЛЬЦА 28.10 ~21:05: у Plus открыты все 32 — «Продолжить» ведёт на запомненный урок как есть, без чтения диска.
+  if (isPremium && plusOpensLesson(lessonId)) {
+    notePlusLessonsDecision('continue', lessonId, true, 'available', 'plus_all');
+    return lessonId;
+  }
 
   const keys: string[] = [
     purchasedLessonsKey(studyTarget),
@@ -373,6 +380,13 @@ export const isLessonUnlockedByPremiumCourse = async (
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<boolean> => {
+  // ЗАМОК ВЛАДЕЛЬЦА 28.10 ~21:05 («Plus открывает все 32»): Plus открывает все 32 классических урока сразу — без 2★ за предыдущий и без секций 1/9/19/29.
+  // Эту функцию зовут и охранник урока, и меню, поэтому решение здесь одно на всех. Тариф проверяет вызывающий; на диск ничего не пишем — после окончания
+  // Plus ничего не стирается, Free-матрица считается по сохранённым ключам как раньше. Откат — PLUS_OPENS_ALL_LESSONS = false (app/plus_lessons_rule.ts).
+  if (plusOpensLesson(lessonId)) {
+    if (!isAlwaysOpenLesson(lessonId)) notePlusLessonsDecision('unlock', lessonId, true, 'available', 'plus_all');
+    return true;
+  }
   // Здесь тоже безусловен только урок 1: иначе покупка уроков 2–3 за 100
   // жемчужин была бы недостижима — buyLessonWithPearls отвечал бы already_accessible.
   if (isAlwaysOpenLesson(lessonId) || isUnconditionallyOpenLesson(lessonId)) return true;

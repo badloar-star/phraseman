@@ -87,15 +87,11 @@ describe('owner 2026-09-20: Free получает 3 урока, дальше н�
     expect(buildSequentialFreeLessonUnlocks({ scores })[8]).toBe(false);
   });
 
-  it('Plus сразу открывает старты A1/A2/B1/B2, но не весь раздел', () => {
+  // ЗАМОК ВЛАДЕЛЬЦА 28.10 ~21:05 («Plus открывает все 32», отменяет последовательную матрицу Plus 20.09): Plus открывает все 32, не только старты разделов.
+  it('Plus сразу открывает все 32 урока (замок владельца 28.10)', () => {
     const unlocked = buildPremiumLessonUnlocks({ scores: new Array(32).fill(0) });
-    expect(unlocked[0]).toBe(true);
-    expect(unlocked[8]).toBe(true);
-    expect(unlocked[18]).toBe(true);
-    expect(unlocked[28]).toBe(true);
-    expect(unlocked[9]).toBe(false);
-    expect(unlocked[19]).toBe(false);
-    expect(unlocked[29]).toBe(false);
+    expect(unlocked).toHaveLength(32);
+    expect(unlocked.every(Boolean)).toBe(true);
   });
 
   it('купленный за жемчуг урок открыт, но НЕ открывает следующий', async () => {

@@ -311,13 +311,10 @@ describe('Полный сценарий прохождения уровня A1',
 });
 
 describe('Premium-доступ по последовательному прогрессу', () => {
-  // Владелец 2026-09-20: Plus снимает пейвол, но не замок — уроки 2–3 тоже за бронзой.
-  it('Plus сразу открывает урок 1 и первый урок каждого раздела', async () => {
-    for (const lessonId of [1, 9, 19, 29]) {
+  // ЗАМОК ВЛАДЕЛЬЦА 28.10 ~21:05 («Plus открывает все 32», отменяет последовательную матрицу Plus 20.09): Plus открывает все 32 классических урока сразу, без 2★ за предыдущий и без секций 1/9/19/29.
+  it('Plus сразу открывает все 32 урока (замок владельца 28.10)', async () => {
+    for (let lessonId = 1; lessonId <= 32; lessonId++) {
       expect(await isLessonUnlockedByPremiumCourse(lessonId)).toBe(true);
-    }
-    for (const lessonId of [2, 3, 4, 8, 10, 18, 20, 28, 30, 32]) {
-      expect(await isLessonUnlockedByPremiumCourse(lessonId)).toBe(false);
     }
   });
 
@@ -329,15 +326,15 @@ describe('Premium-доступ по последовательному прог�
   it('бронза на предыдущем уроке открывает следующий Plus-урок', async () => {
     store.lesson9_best_score = '3';
     expect(await isLessonUnlockedByPremiumCourse(10)).toBe(true);
-    expect(await isLessonUnlockedByPremiumCourse(11)).toBe(false);
+    expect(await isLessonUnlockedByPremiumCourse(11)).toBe(true); // ЗАМОК ВЛАДЕЛЬЦА 28.10 ~21:05 («Plus открывает все 32», отменяет последовательную матрицу Plus 20.09): следующий открыт и без бронзы
   });
 
   it('достигнутый уровень не открывает Plus-раздел целиком', async () => {
     store['level_exam_A2_passed'] = '1';
     await markPremiumCourseLevelReached('B1');
     expect(await getPremiumCourseLevel()).toBe('B1');
-    expect(await isLessonUnlockedByPremiumCourse(20)).toBe(false);
-    expect(await isLessonUnlockedByPremiumCourse(28)).toBe(false);
+    expect(await isLessonUnlockedByPremiumCourse(20)).toBe(true); // замок владельца 28.10: Plus открыт целиком
+    expect(await isLessonUnlockedByPremiumCourse(28)).toBe(true);
   });
 
   it('купленный за жемчуг урок открыт и у подписчика', async () => {
@@ -413,7 +410,7 @@ describe('PM-147: premium continuation on new and old accounts', () => {
   it('old account (legacy cap 6): 4–6 open without Plus; Plus continues 7 after bronze on 6', async () => {
     store.legacy_free_lesson_cap_v1 = '6';
     expect(await isLessonUnlockedByEarnedProgress(6)).toBe(true);
-    expect(await isLessonUnlockedByPremiumCourse(7)).toBe(false);
+    expect(await isLessonUnlockedByPremiumCourse(7)).toBe(true); // замок владельца 28.10: у Plus открыты все 32, бронза на 6 не нужна
     store.lesson6_best_score = '3';
     expect(await isLessonUnlockedByPremiumCourse(7)).toBe(true);
   });

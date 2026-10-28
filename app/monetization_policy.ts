@@ -1,5 +1,6 @@
 import { isFeaturePremiumGated } from './feature_gates';
 import { isAlwaysOpenLesson, isMainCourseLesson } from './main_course_access';
+import { plusOpensLesson } from './plus_lessons_rule';
 import { LESSON_UNLOCK_SCORE, previousLessonScoreOpensNext } from './lesson_star_scale';
 
 /**
@@ -141,8 +142,8 @@ export function buildSequentialFreeLessonUnlocks(params: {
   return unlocked;
 }
 
-/** Plus projection: Free sample + section starters + exact pearl grants;
- * every other lesson still requires bronze on its immediate predecessor. */
+/** Plus projection. Owner 28.10 ~21:05 («Plus открывает все 32»): Plus opens ALL 32 main-course lessons at once (plusOpensLesson) — no 2★ on the
+ * predecessor, no section starters. The former sequential rule below is kept only as the rollback path (PLUS_OPENS_ALL_LESSONS = false). */
 export function buildPremiumLessonUnlocks(params: {
   scores: readonly number[];
   purchasedLessons?: readonly number[];
@@ -158,7 +159,8 @@ export function buildPremiumLessonUnlocks(params: {
     const lessonId = i + 1;
     // зачем: у Plus снят пейвол, но не замок прогресса. Безусловно открыт
     // первый урок и старты разделов 9/19/29; уроки 2–3 больше НЕ дарятся.
-    unlocked[i] = isUnconditionallyOpenLesson(lessonId)
+    unlocked[i] = plusOpensLesson(lessonId)
+      || isUnconditionallyOpenLesson(lessonId)
       || isPremiumSectionStarterLesson(lessonId)
       || purchased.has(lessonId)
       // зачем (D122): уроки до замороженного legacy-потолка были открыты и раньше.

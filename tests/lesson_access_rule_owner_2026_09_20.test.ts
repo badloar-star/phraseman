@@ -59,22 +59,23 @@ describe('СКВОЗНОЕ: что реально увидит человек', 
     expect(await resolveLessonRuntimeGate(3)).toBe('available');
     expect(await resolveLessonRuntimeGate(4)).toBe('premium_required');
   });
-  it('PLUS, новый аккаунт: открыты 1/9/19/29, а 2 и 3 заперты прогрессом', async () => {
+  // ЗАМОК ВЛАДЕЛЬЦА 28.10 ~21:05 («Plus открывает все 32», отменяет последовательную матрицу Plus 20.09): у Plus открыты ВСЕ 32 с первого дня.
+  it('PLUS, новый аккаунт: открыты все 32 урока (замок владельца 28.10)', async () => {
     (globalThis as any).__PLUS__ = true;
-    for (const id of [1, 9, 19, 29]) expect(await resolveLessonRuntimeGate(id)).toBe('available');
-    for (const id of [2, 3, 10, 20, 30]) expect(await resolveLessonRuntimeGate(id)).toBe('progress_required');
+    for (let id = 1; id <= 32; id++) expect(await resolveLessonRuntimeGate(id)).toBe('available');
   });
-  it('PLUS: 2★ открывает ровно следующий', async () => {
+  it('PLUS: 2★ не нужны — следующий урок открыт и без них (замок владельца 28.10)', async () => {
     (globalThis as any).__PLUS__ = true;
     await AsyncStorage.setItem(lessonBestScoreKey(9), String(LESSON_UNLOCK_SCORE));
     expect(await resolveLessonRuntimeGate(10)).toBe('available');
-    expect(await resolveLessonRuntimeGate(11)).toBe('progress_required');
+    expect(await resolveLessonRuntimeGate(11)).toBe('available');
   });
-  it('покупка за 100 жемчужин открывает РОВНО один урок', async () => {
-    (globalThis as any).__PLUS__ = true;
+  // Покупка за жемчуг — правило Free (у Plus открыты все 32): без Plus открывает РОВНО один урок.
+  it('покупка за 100 жемчужин открывает РОВНО один урок (без Plus)', async () => {
+    (globalThis as any).__PLUS__ = false;
     await AsyncStorage.setItem(purchasedLessonsKey(), JSON.stringify([15]));
     expect(await resolveLessonRuntimeGate(15)).toBe('available');
-    expect(await resolveLessonRuntimeGate(16)).toBe('progress_required');
+    expect(await resolveLessonRuntimeGate(16)).toBe('premium_required');
   });
   it('FREE со старым бесплатным потолком 5 (D122): уроки 4–5 открыты, 6 требует Plus', async () => {
     await AsyncStorage.setItem(legacyFreeLessonCapKey(), '5');

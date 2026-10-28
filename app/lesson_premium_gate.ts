@@ -10,8 +10,16 @@ import { markNextNavigationAsReplace } from './navigation_back';
 import { openPremiumPaywall } from './paywall_navigation';
 import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
+import { notePlusLessonsDecision, type PlusLessonsBranch } from './plus_lessons_diagnostics';
 
 export type LessonRuntimeGate = 'available' | 'premium_required' | 'level_required' | 'progress_required';
+
+// зачем (владелец 28.10 ~21:05, [PLUS-LESSONS]): каждое решение охранника уходит в журнал обращений с веткой, которая его приняла. Решения Plus («все 32
+// открыты») пишет общая функция isLessonUnlockedByPremiumCourse — здесь только остальные ветки.
+function decided(lessonId: number, gate: LessonRuntimeGate, branch: PlusLessonsBranch, premiumNow: boolean | null): LessonRuntimeGate {
+  notePlusLessonsDecision('gate', lessonId, premiumNow, gate, branch);
+  return gate;
+}
 
 export async function resolveLessonRuntimeGate(
   lessonId: number,
@@ -22,16 +30,17 @@ export async function resolveLessonRuntimeGate(
     // бронзу/покупку проверяет isLessonUnlockedByEarnedProgress ниже, и при отказе
     // они дают 'progress_required' (не пейвол) — requiresPremiumForLesson их не считает платными.
     if (isAlwaysOpenLesson(lessonId)) return 'available';
-    if (await isTesterNoLimitsActive()) return 'available';
+    if (await isTesterNoLimitsActive()) return decided(lessonId, 'available', 'tester', null);
 
     // The Free sample and exact pearl grants outrank subscription status.
-    if (await isLessonUnlockedByEarnedProgress(lessonId, studyTarget)) return 'available';
+    if (await isLessonUnlockedByEarnedProgress(lessonId, studyTarget)) return decided(lessonId, 'available', 'earned', null);
 
     const premium = await getVerifiedPremiumStatus().catch(noteSwallowedAs('lesson_premium_gate:promise_1', false));
     if (!premium) {
-      return requiresPremiumForLesson(lessonId) ? 'premium_required' : 'progress_required';
+      return decided(lessonId, requiresPremiumForLesson(lessonId) ? 'premium_required' : 'progress_required', 'free_matrix', false);
     }
-    if (!(await isLessonUnlockedByPremiumCourse(lessonId, studyTarget))) return 'progress_required';
+    // Plus: решение общей функции замка (все 32 открыты; откат — PLUS_OPENS_ALL_LESSONS), её же зовёт меню — охранник и меню не расходятся.
+    if (!(await isLessonUnlockedByPremiumCourse(lessonId, studyTarget))) return decided(lessonId, 'progress_required', 'plus_matrix', true);
     return 'available';
   } catch (e) {
     // Ошибка чтения локального прогресса не может превращаться в доступ к уроку.
@@ -40,7 +49,7 @@ export async function resolveLessonRuntimeGate(
       lessonId,
       reason: e instanceof Error ? e.message : String(e),
     }));
-    return 'progress_required';
+    return decided(lessonId, 'progress_required', 'error', null);
   }
 }
 

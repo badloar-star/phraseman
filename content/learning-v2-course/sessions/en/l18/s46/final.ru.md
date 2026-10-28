@@ -63,7 +63,7 @@
 - This job advert is such clear. — *В записи звучит This job advert is so clear.*
 - This job advert is much clear. — *В записи звучит This job advert is so clear.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-46:i03; family: context_gap_grammar -->
 This job advert is ___ clear. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ This job advert is ___ clear. → **so** · such · much
 - This is so an interesting job vacancy. — *В записи звучит This is such an interesting job vacancy.*
 - This is much an interesting job vacancy. — *В записи звучит This is such an interesting job vacancy.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-46:i06; family: context_gap_grammar -->
 This is ___ an interesting job vacancy. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -103,7 +103,7 @@ This is ___ an interesting job vacancy. → **such** · so · much
 - The working hours are such long. — *В записи звучит The working hours are so long.*
 - The working hours are much long. — *В записи звучит The working hours are so long.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-46:i09; family: context_gap_grammar -->
 The working hours are ___ long. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ The working hours are ___ long. → **so** · such · much
 - My annual leave is such short. — *В записи звучит My annual leave is so short.*
 - My annual leave is much short. — *В записи звучит My annual leave is so short.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-46:i12; family: context_gap_grammar -->
 My annual leave is ___ short. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*

@@ -63,7 +63,7 @@
 - You want another room type. — *В записи звучит I want another room type.*
 - People want another room type. — *В записи звучит I want another room type.*
 
-**4 · Речь об одном другом варианте.**
+**4 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-35:i03; family: context_gap_grammar -->
 I want ___ room type. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -83,7 +83,7 @@ I want ___ room type. → **another** · other · others
 - You need another bed size. — *В записи звучит I need another bed size.*
 - People need another bed size. — *В записи звучит I need another bed size.*
 
-**8 · Речь об одном другом варианте.**
+**8 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-35:i06; family: context_gap_grammar -->
 I need ___ bed size. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -103,7 +103,7 @@ I need ___ bed size. → **another** · other · others
 - You offer another room rate. — *В записи звучит They offer another room rate.*
 - People offer another room rate. — *В записи звучит They offer another room rate.*
 
-**12 · Речь об одном другом варианте.**
+**12 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-35:i09; family: context_gap_grammar -->
 They offer ___ room rate. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -123,7 +123,7 @@ They offer ___ room rate. → **another** · other · others
 - You have another breakfast time. — *В записи звучит We have another breakfast time.*
 - People have another breakfast time. — *В записи звучит We have another breakfast time.*
 
-**16 · Речь об одном другом варианте.**
+**16 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-35:i12; family: context_gap_grammar -->
 We have ___ breakfast time. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*

@@ -63,7 +63,7 @@
 - This light lunch is such fresh. — *У записі звучить This light lunch is so fresh.*
 - This light lunch is much fresh. — *У записі звучить This light lunch is so fresh.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-42:i03; family: context_gap_grammar -->
 This light lunch is ___ fresh. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ This light lunch is ___ fresh. → **so** · such · much
 - We had so a big breakfast. — *У записі звучить We had such a big breakfast.*
 - We had much a big breakfast. — *У записі звучить We had such a big breakfast.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-42:i06; family: context_gap_grammar -->
 We had ___ a big breakfast. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -103,7 +103,7 @@ We had ___ a big breakfast. → **such** · so · much
 - A quick snack is such useful. — *У записі звучить A quick snack is so useful.*
 - A quick snack is much useful. — *У записі звучить A quick snack is so useful.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-42:i09; family: context_gap_grammar -->
 A quick snack is ___ useful. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ A quick snack is ___ useful. → **so** · such · much
 - This is so a nice hot drink. — *У записі звучить This is such a nice hot drink.*
 - This is much a nice hot drink. — *У записі звучить This is such a nice hot drink.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-42:i12; family: context_gap_grammar -->
 This is ___ a nice hot drink. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*

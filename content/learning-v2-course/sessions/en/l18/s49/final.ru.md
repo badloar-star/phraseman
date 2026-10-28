@@ -63,7 +63,7 @@
 - You made so a great effort. — *В записи звучит You made such a great effort.*
 - You made much a great effort. — *В записи звучит You made such a great effort.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-49:i03; family: context_gap_grammar -->
 You made ___ a great effort. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -83,7 +83,7 @@ You made ___ a great effort. → **such** · so · much
 - This is so a great success. — *В записи звучит This is such a great success.*
 - This is much a great success. — *В записи звучит This is such a great success.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-49:i06; family: context_gap_grammar -->
 This is ___ a great success. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -103,7 +103,7 @@ This is ___ a great success. → **such** · so · much
 - This failure is such serious. — *В записи звучит This failure is so serious.*
 - This failure is much serious. — *В записи звучит This failure is so serious.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-49:i09; family: context_gap_grammar -->
 This failure is ___ serious. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ This failure is ___ serious. → **so** · such · much
 - This is so a big improvement. — *В записи звучит This is such a big improvement.*
 - This is much a big improvement. — *В записи звучит This is such a big improvement.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-49:i12; family: context_gap_grammar -->
 This is ___ a big improvement. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*

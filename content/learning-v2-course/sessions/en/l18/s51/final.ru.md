@@ -63,7 +63,7 @@
 - This is so a good opportunity. — *В записи звучит This is such a good opportunity.*
 - This is much a good opportunity. — *В записи звучит This is such a good opportunity.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-51:i03; family: context_gap_grammar -->
 This is ___ a good opportunity. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -83,7 +83,7 @@ This is ___ a good opportunity. → **such** · so · much
 - This needs so careful attention. — *В записи звучит This needs such careful attention.*
 - This needs much careful attention. — *В записи звучит This needs such careful attention.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-51:i06; family: context_gap_grammar -->
 This needs ___ careful attention. → **such** · so · much
 - so — *Здесь неисчисляемое значение: such без a.*
@@ -103,7 +103,7 @@ This needs ___ careful attention. → **such** · so · much
 - Your interest is such welcome. — *В записи звучит Your interest is so welcome.*
 - Your interest is much welcome. — *В записи звучит Your interest is so welcome.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-51:i09; family: context_gap_grammar -->
 Your interest is ___ welcome. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ Your interest is ___ welcome. → **so** · such · much
 - Your opinion is such useful. — *В записи звучит Your opinion is so useful.*
 - Your opinion is much useful. — *В записи звучит Your opinion is so useful.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-51:i12; family: context_gap_grammar -->
 Your opinion is ___ useful. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*

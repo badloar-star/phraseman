@@ -63,7 +63,7 @@
 - We check our diary to pick a time. — *В записи звучит I check my diary to pick a time.*
 - You check your diary to pick a time. — *В записи звучит I check my diary to pick a time.*
 
-**4 · Выберите слово, которое вводит цель.**
+**4 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-32:i03; family: context_gap_grammar -->
 I check my diary ___ pick a time. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -83,7 +83,7 @@ I check my diary ___ pick a time. → **to** · for · of
 - We call Anna to agree on a date. — *В записи звучит I call Anna to agree on a date.*
 - You call Anna to agree on a date. — *В записи звучит I call Anna to agree on a date.*
 
-**8 · Выберите слово, которое вводит цель.**
+**8 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-32:i06; family: context_gap_grammar -->
 I call Anna ___ agree on a date. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -103,7 +103,7 @@ I call Anna ___ agree on a date. → **to** · for · of
 - We phone the hotel to confirm a booking. — *В записи звучит I phone the hotel to confirm a booking.*
 - You phone the hotel to confirm a booking. — *В записи звучит I phone the hotel to confirm a booking.*
 
-**12 · Выберите слово, которое вводит цель.**
+**12 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-32:i09; family: context_gap_grammar -->
 I phone the hotel ___ confirm a booking. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -123,7 +123,7 @@ I phone the hotel ___ confirm a booking. → **to** · for · of
 - We use our phone to send an invitation. — *В записи звучит I use my phone to send an invitation.*
 - You use your phone to send an invitation. — *В записи звучит I use my phone to send an invitation.*
 
-**16 · Выберите слово, которое вводит цель.**
+**16 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-32:i12; family: context_gap_grammar -->
 I use my phone ___ send an invitation. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*

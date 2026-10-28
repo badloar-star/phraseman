@@ -63,7 +63,7 @@
 - This benefit is such important. — *У записі звучить This benefit is so important.*
 - This benefit is much important. — *У записі звучить This benefit is so important.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-52:i03; family: context_gap_grammar -->
 This benefit is ___ important. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ This benefit is ___ important. → **so** · such · much
 - This is so a big advantage. — *У записі звучить This is such a big advantage.*
 - This is much a big advantage. — *У записі звучить This is such a big advantage.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-52:i06; family: context_gap_grammar -->
 This is ___ a big advantage. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -103,7 +103,7 @@ This is ___ a big advantage. → **such** · so · much
 - This disadvantage is such serious. — *У записі звучить This disadvantage is so serious.*
 - This disadvantage is much serious. — *У записі звучить This disadvantage is so serious.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-52:i09; family: context_gap_grammar -->
 This disadvantage is ___ serious. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ This disadvantage is ___ serious. → **so** · such · much
 - There is so a big difference. — *У записі звучить There is such a big difference.*
 - There is much a big difference. — *У записі звучить There is such a big difference.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-52:i12; family: context_gap_grammar -->
 There is ___ a big difference. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*

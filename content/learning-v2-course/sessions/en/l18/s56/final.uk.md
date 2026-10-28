@@ -63,7 +63,7 @@
 - Good communication is such important. — *У записі звучить Good communication is so important.*
 - Good communication is much important. — *У записі звучить Good communication is so important.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-56:i03; family: context_gap_grammar -->
 Good communication is ___ important. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ Good communication is ___ important. → **so** · such · much
 - We have so a good relationship. — *У записі звучить We have such a good relationship.*
 - We have much a good relationship. — *У записі звучить We have such a good relationship.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-56:i06; family: context_gap_grammar -->
 We have ___ a good relationship. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -103,7 +103,7 @@ We have ___ a good relationship. → **such** · so · much
 - This is so a useful discussion. — *У записі звучить This is such a useful discussion.*
 - This is much a useful discussion. — *У записі звучить This is such a useful discussion.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-56:i09; family: context_gap_grammar -->
 This is ___ a useful discussion. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -123,7 +123,7 @@ This is ___ a useful discussion. → **such** · so · much
 - This argument is such serious. — *У записі звучить This argument is so serious.*
 - This argument is much serious. — *У записі звучить This argument is so serious.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-56:i12; family: context_gap_grammar -->
 This argument is ___ serious. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*

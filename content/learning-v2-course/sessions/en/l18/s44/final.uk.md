@@ -63,7 +63,7 @@
 - I am in so a good mood. — *У записі звучить I am in such a good mood.*
 - I am in much a good mood. — *У записі звучить I am in such a good mood.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-44:i03; family: context_gap_grammar -->
 I am in ___ a good mood. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -83,7 +83,7 @@ I am in ___ a good mood. → **such** · so · much
 - He is in so a bad mood. — *У записі звучить He is in such a bad mood.*
 - He is in much a bad mood. — *У записі звучить He is in such a bad mood.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-44:i06; family: context_gap_grammar -->
 He is in ___ a bad mood. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -103,7 +103,7 @@ He is in ___ a bad mood. → **such** · so · much
 - We have so high hopes. — *У записі звучить We have such high hopes.*
 - We have much high hopes. — *У записі звучить We have such high hopes.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-44:i09; family: context_gap_grammar -->
 We have ___ high hopes. → **such** · so · much
 - so — *Тут множина: such без a.*
@@ -123,7 +123,7 @@ We have ___ high hopes. → **such** · so · much
 - I have so mixed feelings. — *У записі звучить I have such mixed feelings.*
 - I have much mixed feelings. — *У записі звучить I have such mixed feelings.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-44:i12; family: context_gap_grammar -->
 I have ___ mixed feelings. → **such** · so · much
 - so — *Тут множина: such без a.*

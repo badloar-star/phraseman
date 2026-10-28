@@ -63,7 +63,7 @@
 - You made so a good first impression. — *В записи звучит You made such a good first impression.*
 - You made much a good first impression. — *В записи звучит You made such a good first impression.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-45:i03; family: context_gap_grammar -->
 You made ___ a good first impression. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -83,7 +83,7 @@ You made ___ a good first impression. → **such** · so · much
 - A second chance is such helpful. — *В записи звучит A second chance is so helpful.*
 - A second chance is much helpful. — *В записи звучит A second chance is so helpful.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-45:i06; family: context_gap_grammar -->
 A second chance is ___ helpful. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -103,7 +103,7 @@ A second chance is ___ helpful. → **so** · such · much
 - This last chance is such important. — *В записи звучит This last chance is so important.*
 - This last chance is much important. — *В записи звучит This last chance is so important.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-45:i09; family: context_gap_grammar -->
 This last chance is ___ important. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ This last chance is ___ important. → **so** · such · much
 - You have so a good reason. — *В записи звучит You have such a good reason.*
 - You have much a good reason. — *В записи звучит You have such a good reason.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-45:i12; family: context_gap_grammar -->
 You have ___ a good reason. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*

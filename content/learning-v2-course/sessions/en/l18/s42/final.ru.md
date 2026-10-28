@@ -63,7 +63,7 @@
 - This light lunch is such fresh. — *В записи звучит This light lunch is so fresh.*
 - This light lunch is much fresh. — *В записи звучит This light lunch is so fresh.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-42:i03; family: context_gap_grammar -->
 This light lunch is ___ fresh. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ This light lunch is ___ fresh. → **so** · such · much
 - We had so a big breakfast. — *В записи звучит We had such a big breakfast.*
 - We had much a big breakfast. — *В записи звучит We had such a big breakfast.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-42:i06; family: context_gap_grammar -->
 We had ___ a big breakfast. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -103,7 +103,7 @@ We had ___ a big breakfast. → **such** · so · much
 - A quick snack is such useful. — *В записи звучит A quick snack is so useful.*
 - A quick snack is much useful. — *В записи звучит A quick snack is so useful.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-42:i09; family: context_gap_grammar -->
 A quick snack is ___ useful. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ A quick snack is ___ useful. → **so** · such · much
 - This is so a nice hot drink. — *В записи звучит This is such a nice hot drink.*
 - This is much a nice hot drink. — *В записи звучит This is such a nice hot drink.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-42:i12; family: context_gap_grammar -->
 This is ___ a nice hot drink. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*

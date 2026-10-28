@@ -63,7 +63,7 @@
 - Mutual respect is such important. — *У записі звучить Mutual respect is so important.*
 - Mutual respect is much important. — *У записі звучить Mutual respect is so important.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-50:i03; family: context_gap_grammar -->
 Mutual respect is ___ important. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ Mutual respect is ___ important. → **so** · such · much
 - Freedom is such important. — *У записі звучить Freedom is so important.*
 - Freedom is much important. — *У записі звучить Freedom is so important.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-50:i06; family: context_gap_grammar -->
 Freedom is ___ important. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -103,7 +103,7 @@ Freedom is ___ important. → **so** · such · much
 - Independence is so a great feeling. — *У записі звучить Independence is such a great feeling.*
 - Independence is much a great feeling. — *У записі звучить Independence is such a great feeling.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-50:i09; family: context_gap_grammar -->
 Independence is ___ a great feeling. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -123,7 +123,7 @@ Independence is ___ a great feeling. → **such** · so · much
 - This is so a big responsibility. — *У записі звучить This is such a big responsibility.*
 - This is much a big responsibility. — *У записі звучить This is such a big responsibility.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-50:i12; family: context_gap_grammar -->
 This is ___ a big responsibility. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*

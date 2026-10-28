@@ -63,7 +63,7 @@
 - Free entry is such useful. — *У записі звучить Free entry is so useful.*
 - Free entry is much useful. — *У записі звучить Free entry is so useful.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-40:i03; family: context_gap_grammar -->
 Free entry is ___ useful. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ Free entry is ___ useful. → **so** · such · much
 - Free parking is so a great help. — *У записі звучить Free parking is such a great help.*
 - Free parking is much a great help. — *У записі звучить Free parking is such a great help.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-40:i06; family: context_gap_grammar -->
 Free parking is ___ a great help. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -103,7 +103,7 @@ Free parking is ___ a great help. → **such** · so · much
 - This is so a fun public event. — *У записі звучить This is such a fun public event.*
 - This is much a fun public event. — *У записі звучить This is such a fun public event.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-40:i09; family: context_gap_grammar -->
 This is ___ a fun public event. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -123,7 +123,7 @@ This is ___ a fun public event. → **such** · so · much
 - The charity event is such busy. — *У записі звучить The charity event is so busy.*
 - The charity event is much busy. — *У записі звучить The charity event is so busy.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-40:i12; family: context_gap_grammar -->
 The charity event is ___ busy. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*

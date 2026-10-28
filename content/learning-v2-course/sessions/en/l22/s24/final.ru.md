@@ -63,7 +63,7 @@
 - We leave early to catch a train. — *В записи звучит I leave early to catch a train.*
 - You leave early to catch a train. — *В записи звучит I leave early to catch a train.*
 
-**4 · Выберите слово, которое вводит цель.**
+**4 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-24:i03; family: context_gap_grammar -->
 I leave early ___ catch a train. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -83,7 +83,7 @@ I leave early ___ catch a train. → **to** · for · of
 - We use our phone to get a taxi. — *В записи звучит I use my phone to get a taxi.*
 - You use your phone to get a taxi. — *В записи звучит I use my phone to get a taxi.*
 
-**8 · Выберите слово, которое вводит цель.**
+**8 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-24:i06; family: context_gap_grammar -->
 I use my phone ___ get a taxi. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -103,7 +103,7 @@ I use my phone ___ get a taxi. → **to** · for · of
 - We use this path to take a shortcut. — *В записи звучит I use this path to take a shortcut.*
 - You use this path to take a shortcut. — *В записи звучит I use this path to take a shortcut.*
 
-**12 · Выберите слово, которое вводит цель.**
+**12 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-24:i09; family: context_gap_grammar -->
 I use this path ___ take a shortcut. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -123,7 +123,7 @@ I use this path ___ take a shortcut. → **to** · for · of
 - We use this crossing to cross the road. — *В записи звучит I use this crossing to cross the road.*
 - You use this crossing to cross the road. — *В записи звучит I use this crossing to cross the road.*
 
-**16 · Выберите слово, которое вводит цель.**
+**16 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-24:i12; family: context_gap_grammar -->
 I use this crossing ___ cross the road. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*

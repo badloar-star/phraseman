@@ -63,7 +63,7 @@
 - The food poisoning was such bad. — *У записі звучить The food poisoning was so bad.*
 - The food poisoning was much bad. — *У записі звучить The food poisoning was so bad.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-47:i03; family: context_gap_grammar -->
 The food poisoning was ___ bad. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ The food poisoning was ___ bad. → **so** · such · much
 - This hay fever is such annoying. — *У записі звучить This hay fever is so annoying.*
 - This hay fever is much annoying. — *У записі звучить This hay fever is so annoying.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-47:i06; family: context_gap_grammar -->
 This hay fever is ___ annoying. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -103,7 +103,7 @@ This hay fever is ___ annoying. → **so** · such · much
 - Travel sickness is so a problem for me. — *У записі звучить Travel sickness is such a problem for me.*
 - Travel sickness is much a problem for me. — *У записі звучить Travel sickness is such a problem for me.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-47:i09; family: context_gap_grammar -->
 Travel sickness is ___ a problem for me. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -123,7 +123,7 @@ Travel sickness is ___ a problem for me. → **such** · so · much
 - The chest pain is such bad. — *У записі звучить The chest pain is so bad.*
 - The chest pain is much bad. — *У записі звучить The chest pain is so bad.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-47:i12; family: context_gap_grammar -->
 The chest pain is ___ bad. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*

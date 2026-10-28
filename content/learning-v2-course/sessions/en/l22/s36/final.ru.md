@@ -63,7 +63,7 @@
 - You use another recipe book. — *В записи звучит I use another recipe book.*
 - People use another recipe book. — *В записи звучит I use another recipe book.*
 
-**4 · Речь об одном другом варианте.**
+**4 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-36:i03; family: context_gap_grammar -->
 I use ___ recipe book. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -83,7 +83,7 @@ I use ___ recipe book. → **another** · other · others
 - You use another main ingredient. — *В записи звучит We use another main ingredient.*
 - People use another main ingredient. — *В записи звучит We use another main ingredient.*
 
-**8 · Речь об одном другом варианте.**
+**8 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-36:i06; family: context_gap_grammar -->
 We use ___ main ingredient. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -103,7 +103,7 @@ We use ___ main ingredient. → **another** · other · others
 - You need another meal plan. — *В записи звучит I need another meal plan.*
 - People need another meal plan. — *В записи звучит I need another meal plan.*
 
-**12 · Речь об одном другом варианте.**
+**12 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-36:i09; family: context_gap_grammar -->
 I need ___ meal plan. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -123,7 +123,7 @@ I need ___ meal plan. → **another** · other · others
 - You agree on another shopping budget. — *В записи звучит We agree on another shopping budget.*
 - People agree on another shopping budget. — *В записи звучит We agree on another shopping budget.*
 
-**16 · Речь об одном другом варианте.**
+**16 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-36:i12; family: context_gap_grammar -->
 We agree on ___ shopping budget. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*

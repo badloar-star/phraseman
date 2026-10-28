@@ -63,7 +63,7 @@
 - Good communication is such important. — *В записи звучит Good communication is so important.*
 - Good communication is much important. — *В записи звучит Good communication is so important.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-56:i03; family: context_gap_grammar -->
 Good communication is ___ important. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ Good communication is ___ important. → **so** · such · much
 - We have so a good relationship. — *В записи звучит We have such a good relationship.*
 - We have much a good relationship. — *В записи звучит We have such a good relationship.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-56:i06; family: context_gap_grammar -->
 We have ___ a good relationship. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -103,7 +103,7 @@ We have ___ a good relationship. → **such** · so · much
 - This is so a useful discussion. — *В записи звучит This is such a useful discussion.*
 - This is much a useful discussion. — *В записи звучит This is such a useful discussion.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-56:i09; family: context_gap_grammar -->
 This is ___ a useful discussion. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -123,7 +123,7 @@ This is ___ a useful discussion. → **such** · so · much
 - This argument is such serious. — *В записи звучит This argument is so serious.*
 - This argument is much serious. — *В записи звучит This argument is so serious.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-56:i12; family: context_gap_grammar -->
 This argument is ___ serious. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*

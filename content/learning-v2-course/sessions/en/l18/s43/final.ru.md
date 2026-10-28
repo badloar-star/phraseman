@@ -63,7 +63,7 @@
 - We had so a busy day. — *В записи звучит We had such a busy day.*
 - We had much a busy day. — *В записи звучит We had such a busy day.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-43:i03; family: context_gap_grammar -->
 We had ___ a busy day. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -83,7 +83,7 @@ We had ___ a busy day. → **such** · so · much
 - This quiet evening is such nice. — *В записи звучит This quiet evening is so nice.*
 - This quiet evening is much nice. — *В записи звучит This quiet evening is so nice.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-43:i06; family: context_gap_grammar -->
 This quiet evening is ___ nice. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -103,7 +103,7 @@ This quiet evening is ___ nice. → **so** · such · much
 - We had so a lovely long weekend. — *В записи звучит We had such a lovely long weekend.*
 - We had much a lovely long weekend. — *В записи звучит We had such a lovely long weekend.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-43:i09; family: context_gap_grammar -->
 We had ___ a lovely long weekend. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -123,7 +123,7 @@ We had ___ a lovely long weekend. → **such** · so · much
 - This late lunch is such tasty. — *В записи звучит This late lunch is so tasty.*
 - This late lunch is much tasty. — *В записи звучит This late lunch is so tasty.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-43:i12; family: context_gap_grammar -->
 This late lunch is ___ tasty. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*

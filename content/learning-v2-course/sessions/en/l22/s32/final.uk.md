@@ -63,7 +63,7 @@
 - We check our diary to pick a time. — *У записі звучить I check my diary to pick a time.*
 - You check your diary to pick a time. — *У записі звучить I check my diary to pick a time.*
 
-**4 · Виберіть слово, яке вводить мету.**
+**4 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-32:i03; family: context_gap_grammar -->
 I check my diary ___ pick a time. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -83,7 +83,7 @@ I check my diary ___ pick a time. → **to** · for · of
 - We call Anna to agree on a date. — *У записі звучить I call Anna to agree on a date.*
 - You call Anna to agree on a date. — *У записі звучить I call Anna to agree on a date.*
 
-**8 · Виберіть слово, яке вводить мету.**
+**8 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-32:i06; family: context_gap_grammar -->
 I call Anna ___ agree on a date. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -103,7 +103,7 @@ I call Anna ___ agree on a date. → **to** · for · of
 - We phone the hotel to confirm a booking. — *У записі звучить I phone the hotel to confirm a booking.*
 - You phone the hotel to confirm a booking. — *У записі звучить I phone the hotel to confirm a booking.*
 
-**12 · Виберіть слово, яке вводить мету.**
+**12 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-32:i09; family: context_gap_grammar -->
 I phone the hotel ___ confirm a booking. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -123,7 +123,7 @@ I phone the hotel ___ confirm a booking. → **to** · for · of
 - We use our phone to send an invitation. — *У записі звучить I use my phone to send an invitation.*
 - You use your phone to send an invitation. — *У записі звучить I use my phone to send an invitation.*
 
-**16 · Виберіть слово, яке вводить мету.**
+**16 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-32:i12; family: context_gap_grammar -->
 I use my phone ___ send an invitation. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*

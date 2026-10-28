@@ -63,7 +63,7 @@
 - This causes so great stress. — *У записі звучить This causes such great stress.*
 - This causes much great stress. — *У записі звучить This causes such great stress.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-55:i03; family: context_gap_grammar -->
 This causes ___ great stress. → **such** · so · much
 - so — *Тут незлічуване значення: such без a.*
@@ -83,7 +83,7 @@ This causes ___ great stress. → **such** · so · much
 - The pressure is such high. — *У записі звучить The pressure is so high.*
 - The pressure is much high. — *У записі звучить The pressure is so high.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-55:i06; family: context_gap_grammar -->
 The pressure is ___ high. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -103,7 +103,7 @@ The pressure is ___ high. → **so** · such · much
 - The tension is such strong. — *У записі звучить The tension is so strong.*
 - The tension is much strong. — *У записі звучить The tension is so strong.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-55:i09; family: context_gap_grammar -->
 The tension is ___ strong. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ The tension is ___ strong. → **so** · such · much
 - Comfort is such important. — *У записі звучить Comfort is so important.*
 - Comfort is much important. — *У записі звучить Comfort is so important.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-55:i12; family: context_gap_grammar -->
 Comfort is ___ important. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*

@@ -63,7 +63,7 @@
 - The train delay is such long. — *В записи звучит The train delay is so long.*
 - The train delay is much long. — *В записи звучит The train delay is so long.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-48:i03; family: context_gap_grammar -->
 The train delay is ___ long. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ The train delay is ___ long. → **so** · such · much
 - This is so a long flight delay. — *В записи звучит This is such a long flight delay.*
 - This is much a long flight delay. — *В записи звучит This is such a long flight delay.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-48:i06; family: context_gap_grammar -->
 This is ___ a long flight delay. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -103,7 +103,7 @@ This is ___ a long flight delay. → **such** · so · much
 - The traffic noise is such loud. — *В записи звучит The traffic noise is so loud.*
 - The traffic noise is much loud. — *В записи звучит The traffic noise is so loud.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-48:i09; family: context_gap_grammar -->
 The traffic noise is ___ loud. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ The traffic noise is ___ loud. → **so** · such · much
 - There is so loud background noise. — *В записи звучит There is such loud background noise.*
 - There is much loud background noise. — *В записи звучит There is such loud background noise.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-48:i12; family: context_gap_grammar -->
 There is ___ loud background noise. → **such** · so · much
 - so — *Здесь неисчисляемое значение: such без a.*

@@ -63,7 +63,7 @@
 - Mutual respect is such important. — *В записи звучит Mutual respect is so important.*
 - Mutual respect is much important. — *В записи звучит Mutual respect is so important.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-50:i03; family: context_gap_grammar -->
 Mutual respect is ___ important. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ Mutual respect is ___ important. → **so** · such · much
 - Freedom is such important. — *В записи звучит Freedom is so important.*
 - Freedom is much important. — *В записи звучит Freedom is so important.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-50:i06; family: context_gap_grammar -->
 Freedom is ___ important. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -103,7 +103,7 @@ Freedom is ___ important. → **so** · such · much
 - Independence is so a great feeling. — *В записи звучит Independence is such a great feeling.*
 - Independence is much a great feeling. — *В записи звучит Independence is such a great feeling.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-50:i09; family: context_gap_grammar -->
 Independence is ___ a great feeling. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -123,7 +123,7 @@ Independence is ___ a great feeling. → **such** · so · much
 - This is so a big responsibility. — *В записи звучит This is such a big responsibility.*
 - This is much a big responsibility. — *В записи звучит This is such a big responsibility.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-50:i12; family: context_gap_grammar -->
 This is ___ a big responsibility. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*

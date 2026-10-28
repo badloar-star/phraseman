@@ -63,7 +63,7 @@
 - We need another payment method. — *В записи звучит I need another payment method.*
 - You need another payment method. — *В записи звучит I need another payment method.*
 
-**4 · Попросите один другой вариант.**
+**4 · Попросите ещё один вариант.**
 <!-- interaction_id: en:lesson-22:session-33:i03; family: context_gap_grammar -->
 I need ___ payment method. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -83,7 +83,7 @@ I need ___ payment method. → **another** · other · others
 - We need another meeting place. — *В записи звучит I need another meeting place.*
 - You need another meeting place. — *В записи звучит I need another meeting place.*
 
-**8 · Попросите один другой вариант.**
+**8 · Попросите ещё один вариант.**
 <!-- interaction_id: en:lesson-22:session-33:i06; family: context_gap_grammar -->
 I need ___ meeting place. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -103,7 +103,7 @@ I need ___ meeting place. → **another** · other · others
 - We need another delivery date. — *В записи звучит I need another delivery date.*
 - You need another delivery date. — *В записи звучит I need another delivery date.*
 
-**12 · Попросите один другой вариант.**
+**12 · Попросите ещё один вариант.**
 <!-- interaction_id: en:lesson-22:session-33:i09; family: context_gap_grammar -->
 I need ___ delivery date. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -123,7 +123,7 @@ I need ___ delivery date. → **another** · other · others
 - We need another collection time. — *В записи звучит I need another collection time.*
 - You need another collection time. — *В записи звучит I need another collection time.*
 
-**16 · Попросите один другой вариант.**
+**16 · Попросите ещё один вариант.**
 <!-- interaction_id: en:lesson-22:session-33:i12; family: context_gap_grammar -->
 I need ___ collection time. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*

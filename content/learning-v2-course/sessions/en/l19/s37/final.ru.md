@@ -63,7 +63,7 @@
 - This time is such inconvenient. — *В записи звучит This time is so inconvenient.*
 - This time is much inconvenient. — *В записи звучит This time is so inconvenient.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-19:session-37:i03; family: context_gap_grammar -->
 This time is ___ inconvenient. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ This time is ___ inconvenient. → **so** · such · much
 - That is so a dishonest answer. — *В записи звучит That is such a dishonest answer.*
 - That is much a dishonest answer. — *В записи звучит That is such a dishonest answer.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-19:session-37:i06; family: context_gap_grammar -->
 That is ___ a dishonest answer. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -103,7 +103,7 @@ That is ___ a dishonest answer. → **such** · so · much
 - This habit is such unhealthy. — *В записи звучит This habit is so unhealthy.*
 - This habit is much unhealthy. — *В записи звучит This habit is so unhealthy.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-19:session-37:i09; family: context_gap_grammar -->
 This habit is ___ unhealthy. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ This habit is ___ unhealthy. → **so** · such · much
 - That result is such unlikely. — *В записи звучит That result is so unlikely.*
 - That result is much unlikely. — *В записи звучит That result is so unlikely.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-19:session-37:i12; family: context_gap_grammar -->
 That result is ___ unlikely. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*

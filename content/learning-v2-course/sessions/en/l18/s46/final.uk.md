@@ -63,7 +63,7 @@
 - This job advert is such clear. — *У записі звучить This job advert is so clear.*
 - This job advert is much clear. — *У записі звучить This job advert is so clear.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-46:i03; family: context_gap_grammar -->
 This job advert is ___ clear. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ This job advert is ___ clear. → **so** · such · much
 - This is so an interesting job vacancy. — *У записі звучить This is such an interesting job vacancy.*
 - This is much an interesting job vacancy. — *У записі звучить This is such an interesting job vacancy.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-46:i06; family: context_gap_grammar -->
 This is ___ an interesting job vacancy. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -103,7 +103,7 @@ This is ___ an interesting job vacancy. → **such** · so · much
 - The working hours are such long. — *У записі звучить The working hours are so long.*
 - The working hours are much long. — *У записі звучить The working hours are so long.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-46:i09; family: context_gap_grammar -->
 The working hours are ___ long. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ The working hours are ___ long. → **so** · such · much
 - My annual leave is such short. — *У записі звучить My annual leave is so short.*
 - My annual leave is much short. — *У записі звучить My annual leave is so short.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-46:i12; family: context_gap_grammar -->
 My annual leave is ___ short. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*

@@ -63,7 +63,7 @@
 - We practise every day to make progress. — *В записи звучит I practise every day to make progress.*
 - You practise every day to make progress. — *В записи звучит I practise every day to make progress.*
 
-**4 · Выберите слово, которое вводит цель.**
+**4 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-31:i03; family: context_gap_grammar -->
 I practise every day ___ make progress. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -83,7 +83,7 @@ I practise every day ___ make progress. → **to** · for · of
 - We turn off our phone to stay focused. — *В записи звучит I turn off my phone to stay focused.*
 - You turn off your phone to stay focused. — *В записи звучит I turn off my phone to stay focused.*
 
-**8 · Выберите слово, которое вводит цель.**
+**8 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-31:i06; family: context_gap_grammar -->
 I turn off my phone ___ stay focused. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -103,7 +103,7 @@ I turn off my phone ___ stay focused. → **to** · for · of
 - We repeat the words to learn a poem by heart. — *В записи звучит I repeat the words to learn a poem by heart.*
 - You repeat the words to learn a poem by heart. — *В записи звучит I repeat the words to learn a poem by heart.*
 
-**12 · Выберите слово, которое вводит цель.**
+**12 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-31:i09; family: context_gap_grammar -->
 I repeat the words ___ learn a poem by heart. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -123,7 +123,7 @@ I repeat the words ___ learn a poem by heart. → **to** · for · of
 - We read it again to check our work. — *В записи звучит I read it again to check my work.*
 - You read it again to check your work. — *В записи звучит I read it again to check my work.*
 
-**16 · Выберите слово, которое вводит цель.**
+**16 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-31:i12; family: context_gap_grammar -->
 I read it again ___ check my work. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*

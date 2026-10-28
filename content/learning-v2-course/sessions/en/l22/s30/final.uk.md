@@ -63,7 +63,7 @@ Stay dry — залишатися сухим, не намокати. Dry тут 
 - We use an umbrella to stay dry. — *У записі звучить I use an umbrella to stay dry.*
 - You use an umbrella to stay dry. — *У записі звучить I use an umbrella to stay dry.*
 
-**4 · Виберіть слово, яке вводить мету.**
+**4 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-30:i03; family: context_gap_grammar -->
 I use an umbrella ___ stay dry. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -83,7 +83,7 @@ I use an umbrella ___ stay dry. → **to** · for · of
 - We go swimming to keep fit. — *У записі звучить I go swimming to keep fit.*
 - You go swimming to keep fit. — *У записі звучить I go swimming to keep fit.*
 
-**8 · Виберіть слово, яке вводить мету.**
+**8 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-30:i06; family: context_gap_grammar -->
 I go swimming ___ keep fit. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -103,7 +103,7 @@ I go swimming ___ keep fit. → **to** · for · of
 - We cook at home to eat well. — *У записі звучить I cook at home to eat well.*
 - You cook at home to eat well. — *У записі звучить I cook at home to eat well.*
 
-**12 · Виберіть слово, яке вводить мету.**
+**12 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-30:i09; family: context_gap_grammar -->
 I cook at home ___ eat well. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -123,7 +123,7 @@ I cook at home ___ eat well. → **to** · for · of
 - We go to bed early to get enough rest. — *У записі звучить I go to bed early to get enough rest.*
 - You go to bed early to get enough rest. — *У записі звучить I go to bed early to get enough rest.*
 
-**16 · Виберіть слово, яке вводить мету.**
+**16 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-30:i12; family: context_gap_grammar -->
 I go to bed early ___ get enough rest. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*

@@ -63,7 +63,7 @@
 - You want another room type. — *У записі звучить I want another room type.*
 - People want another room type. — *У записі звучить I want another room type.*
 
-**4 · Ідеться про один інший варіант.**
+**4 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-35:i03; family: context_gap_grammar -->
 I want ___ room type. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -83,7 +83,7 @@ I want ___ room type. → **another** · other · others
 - You need another bed size. — *У записі звучить I need another bed size.*
 - People need another bed size. — *У записі звучить I need another bed size.*
 
-**8 · Ідеться про один інший варіант.**
+**8 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-35:i06; family: context_gap_grammar -->
 I need ___ bed size. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -103,7 +103,7 @@ I need ___ bed size. → **another** · other · others
 - You offer another room rate. — *У записі звучить They offer another room rate.*
 - People offer another room rate. — *У записі звучить They offer another room rate.*
 
-**12 · Ідеться про один інший варіант.**
+**12 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-35:i09; family: context_gap_grammar -->
 They offer ___ room rate. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -123,7 +123,7 @@ They offer ___ room rate. → **another** · other · others
 - You have another breakfast time. — *У записі звучить We have another breakfast time.*
 - People have another breakfast time. — *У записі звучить We have another breakfast time.*
 
-**16 · Ідеться про один інший варіант.**
+**16 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-35:i12; family: context_gap_grammar -->
 We have ___ breakfast time. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*

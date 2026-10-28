@@ -63,7 +63,7 @@
 - This benefit is such important. — *В записи звучит This benefit is so important.*
 - This benefit is much important. — *В записи звучит This benefit is so important.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-52:i03; family: context_gap_grammar -->
 This benefit is ___ important. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ This benefit is ___ important. → **so** · such · much
 - This is so a big advantage. — *В записи звучит This is such a big advantage.*
 - This is much a big advantage. — *В записи звучит This is such a big advantage.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-52:i06; family: context_gap_grammar -->
 This is ___ a big advantage. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -103,7 +103,7 @@ This is ___ a big advantage. → **such** · so · much
 - This disadvantage is such serious. — *В записи звучит This disadvantage is so serious.*
 - This disadvantage is much serious. — *В записи звучит This disadvantage is so serious.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-52:i09; family: context_gap_grammar -->
 This disadvantage is ___ serious. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ This disadvantage is ___ serious. → **so** · such · much
 - There is so a big difference. — *В записи звучит There is such a big difference.*
 - There is much a big difference. — *В записи звучит There is such a big difference.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-52:i12; family: context_gap_grammar -->
 There is ___ a big difference. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*

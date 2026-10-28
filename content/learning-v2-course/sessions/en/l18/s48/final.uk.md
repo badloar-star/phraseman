@@ -63,7 +63,7 @@
 - The train delay is such long. — *У записі звучить The train delay is so long.*
 - The train delay is much long. — *У записі звучить The train delay is so long.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-48:i03; family: context_gap_grammar -->
 The train delay is ___ long. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ The train delay is ___ long. → **so** · such · much
 - This is so a long flight delay. — *У записі звучить This is such a long flight delay.*
 - This is much a long flight delay. — *У записі звучить This is such a long flight delay.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-48:i06; family: context_gap_grammar -->
 This is ___ a long flight delay. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -103,7 +103,7 @@ This is ___ a long flight delay. → **such** · so · much
 - The traffic noise is such loud. — *У записі звучить The traffic noise is so loud.*
 - The traffic noise is much loud. — *У записі звучить The traffic noise is so loud.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-48:i09; family: context_gap_grammar -->
 The traffic noise is ___ loud. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ The traffic noise is ___ loud. → **so** · such · much
 - There is so loud background noise. — *У записі звучить There is such loud background noise.*
 - There is much loud background noise. — *У записі звучить There is such loud background noise.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-48:i12; family: context_gap_grammar -->
 There is ___ loud background noise. → **such** · so · much
 - so — *Тут незлічуване значення: such без a.*

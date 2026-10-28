@@ -63,7 +63,7 @@
 - We leave early to catch a train. — *У записі звучить I leave early to catch a train.*
 - You leave early to catch a train. — *У записі звучить I leave early to catch a train.*
 
-**4 · Виберіть слово, яке вводить мету.**
+**4 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-24:i03; family: context_gap_grammar -->
 I leave early ___ catch a train. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -83,7 +83,7 @@ I leave early ___ catch a train. → **to** · for · of
 - We use our phone to get a taxi. — *У записі звучить I use my phone to get a taxi.*
 - You use your phone to get a taxi. — *У записі звучить I use my phone to get a taxi.*
 
-**8 · Виберіть слово, яке вводить мету.**
+**8 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-24:i06; family: context_gap_grammar -->
 I use my phone ___ get a taxi. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -103,7 +103,7 @@ I use my phone ___ get a taxi. → **to** · for · of
 - We use this path to take a shortcut. — *У записі звучить I use this path to take a shortcut.*
 - You use this path to take a shortcut. — *У записі звучить I use this path to take a shortcut.*
 
-**12 · Виберіть слово, яке вводить мету.**
+**12 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-24:i09; family: context_gap_grammar -->
 I use this path ___ take a shortcut. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -123,7 +123,7 @@ I use this path ___ take a shortcut. → **to** · for · of
 - We use this crossing to cross the road. — *У записі звучить I use this crossing to cross the road.*
 - You use this crossing to cross the road. — *У записі звучить I use this crossing to cross the road.*
 
-**16 · Виберіть слово, яке вводить мету.**
+**16 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-24:i12; family: context_gap_grammar -->
 I use this crossing ___ cross the road. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*

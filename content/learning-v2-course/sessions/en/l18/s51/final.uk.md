@@ -63,7 +63,7 @@
 - This is so a good opportunity. — *У записі звучить This is such a good opportunity.*
 - This is much a good opportunity. — *У записі звучить This is such a good opportunity.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-51:i03; family: context_gap_grammar -->
 This is ___ a good opportunity. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -83,7 +83,7 @@ This is ___ a good opportunity. → **such** · so · much
 - This needs so careful attention. — *У записі звучить This needs such careful attention.*
 - This needs much careful attention. — *У записі звучить This needs such careful attention.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-51:i06; family: context_gap_grammar -->
 This needs ___ careful attention. → **such** · so · much
 - so — *Тут незлічуване значення: such без a.*
@@ -103,7 +103,7 @@ This needs ___ careful attention. → **such** · so · much
 - Your interest is such welcome. — *У записі звучить Your interest is so welcome.*
 - Your interest is much welcome. — *У записі звучить Your interest is so welcome.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-51:i09; family: context_gap_grammar -->
 Your interest is ___ welcome. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ Your interest is ___ welcome. → **so** · such · much
 - Your opinion is such useful. — *У записі звучить Your opinion is so useful.*
 - Your opinion is much useful. — *У записі звучить Your opinion is so useful.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-51:i12; family: context_gap_grammar -->
 Your opinion is ___ useful. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*

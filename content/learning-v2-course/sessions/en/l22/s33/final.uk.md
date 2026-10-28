@@ -63,7 +63,7 @@
 - We need another payment method. — *У записі звучить I need another payment method.*
 - You need another payment method. — *У записі звучить I need another payment method.*
 
-**4 · Попросіть один інший варіант.**
+**4 · Попросіть ще один варіант.**
 <!-- interaction_id: en:lesson-22:session-33:i03; family: context_gap_grammar -->
 I need ___ payment method. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -83,7 +83,7 @@ I need ___ payment method. → **another** · other · others
 - We need another meeting place. — *У записі звучить I need another meeting place.*
 - You need another meeting place. — *У записі звучить I need another meeting place.*
 
-**8 · Попросіть один інший варіант.**
+**8 · Попросіть ще один варіант.**
 <!-- interaction_id: en:lesson-22:session-33:i06; family: context_gap_grammar -->
 I need ___ meeting place. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -103,7 +103,7 @@ I need ___ meeting place. → **another** · other · others
 - We need another delivery date. — *У записі звучить I need another delivery date.*
 - You need another delivery date. — *У записі звучить I need another delivery date.*
 
-**12 · Попросіть один інший варіант.**
+**12 · Попросіть ще один варіант.**
 <!-- interaction_id: en:lesson-22:session-33:i09; family: context_gap_grammar -->
 I need ___ delivery date. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -123,7 +123,7 @@ I need ___ delivery date. → **another** · other · others
 - We need another collection time. — *У записі звучить I need another collection time.*
 - You need another collection time. — *У записі звучить I need another collection time.*
 
-**16 · Попросіть один інший варіант.**
+**16 · Попросіть ще один варіант.**
 <!-- interaction_id: en:lesson-22:session-33:i12; family: context_gap_grammar -->
 I need ___ collection time. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*

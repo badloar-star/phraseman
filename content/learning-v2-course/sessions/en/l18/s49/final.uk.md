@@ -63,7 +63,7 @@
 - You made so a great effort. — *У записі звучить You made such a great effort.*
 - You made much a great effort. — *У записі звучить You made such a great effort.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-49:i03; family: context_gap_grammar -->
 You made ___ a great effort. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -83,7 +83,7 @@ You made ___ a great effort. → **such** · so · much
 - This is so a great success. — *У записі звучить This is such a great success.*
 - This is much a great success. — *У записі звучить This is such a great success.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-49:i06; family: context_gap_grammar -->
 This is ___ a great success. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -103,7 +103,7 @@ This is ___ a great success. → **such** · so · much
 - This failure is such serious. — *У записі звучить This failure is so serious.*
 - This failure is much serious. — *У записі звучить This failure is so serious.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-49:i09; family: context_gap_grammar -->
 This failure is ___ serious. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ This failure is ___ serious. → **so** · such · much
 - This is so a big improvement. — *У записі звучить This is such a big improvement.*
 - This is much a big improvement. — *У записі звучить This is such a big improvement.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-49:i12; family: context_gap_grammar -->
 This is ___ a big improvement. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*

@@ -63,7 +63,7 @@
 - This short break is such welcome. — *У записі звучить This short break is so welcome.*
 - This short break is much welcome. — *У записі звучить This short break is so welcome.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-41:i03; family: context_gap_grammar -->
 This short break is ___ welcome. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ This short break is ___ welcome. → **so** · such · much
 - A quick shower is so a good idea. — *У записі звучить A quick shower is such a good idea.*
 - A quick shower is much a good idea. — *У записі звучить A quick shower is such a good idea.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-41:i06; family: context_gap_grammar -->
 A quick shower is ___ a good idea. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -103,7 +103,7 @@ A quick shower is ___ a good idea. → **such** · so · much
 - The early start is such difficult. — *У записі звучить The early start is so difficult.*
 - The early start is much difficult. — *У записі звучить The early start is so difficult.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-41:i09; family: context_gap_grammar -->
 The early start is ___ difficult. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ The early start is ___ difficult. → **so** · such · much
 - We had so a late night. — *У записі звучить We had such a late night.*
 - We had much a late night. — *У записі звучить We had such a late night.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-41:i12; family: context_gap_grammar -->
 We had ___ a late night. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*

@@ -63,7 +63,7 @@
 - The fresh air is such nice. — *У записі звучить The fresh air is so nice.*
 - The fresh air is much nice. — *У записі звучить The fresh air is so nice.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-37:i03; family: context_gap_grammar -->
 The fresh air is ___ nice. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ The fresh air is ___ nice. → **so** · such · much
 - This is so hard work. — *У записі звучить This is such hard work.*
 - This is much hard work. — *У записі звучить This is such hard work.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-37:i06; family: context_gap_grammar -->
 This is ___ hard work. → **such** · so · much
 - so — *Тут незлічуване значення: such без a.*
@@ -103,7 +103,7 @@ This is ___ hard work. → **such** · so · much
 - You are so good company. — *У записі звучить You are such good company.*
 - You are much good company. — *У записі звучить You are such good company.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-37:i09; family: context_gap_grammar -->
 You are ___ good company. → **such** · so · much
 - so — *Тут незлічуване значення: such без a.*
@@ -123,7 +123,7 @@ You are ___ good company. → **such** · so · much
 - The peace and quiet is such lovely. — *У записі звучить The peace and quiet is so lovely.*
 - The peace and quiet is much lovely. — *У записі звучить The peace and quiet is so lovely.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-37:i12; family: context_gap_grammar -->
 The peace and quiet is ___ lovely. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*

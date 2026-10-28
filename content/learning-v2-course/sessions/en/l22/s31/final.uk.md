@@ -63,7 +63,7 @@
 - We practise every day to make progress. — *У записі звучить I practise every day to make progress.*
 - You practise every day to make progress. — *У записі звучить I practise every day to make progress.*
 
-**4 · Виберіть слово, яке вводить мету.**
+**4 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-31:i03; family: context_gap_grammar -->
 I practise every day ___ make progress. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -83,7 +83,7 @@ I practise every day ___ make progress. → **to** · for · of
 - We turn off our phone to stay focused. — *У записі звучить I turn off my phone to stay focused.*
 - You turn off your phone to stay focused. — *У записі звучить I turn off my phone to stay focused.*
 
-**8 · Виберіть слово, яке вводить мету.**
+**8 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-31:i06; family: context_gap_grammar -->
 I turn off my phone ___ stay focused. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -103,7 +103,7 @@ I turn off my phone ___ stay focused. → **to** · for · of
 - We repeat the words to learn a poem by heart. — *У записі звучить I repeat the words to learn a poem by heart.*
 - You repeat the words to learn a poem by heart. — *У записі звучить I repeat the words to learn a poem by heart.*
 
-**12 · Виберіть слово, яке вводить мету.**
+**12 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-31:i09; family: context_gap_grammar -->
 I repeat the words ___ learn a poem by heart. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*
@@ -123,7 +123,7 @@ I repeat the words ___ learn a poem by heart. → **to** · for · of
 - We read it again to check our work. — *У записі звучить I read it again to check my work.*
 - You read it again to check your work. — *У записі звучить I read it again to check my work.*
 
-**16 · Виберіть слово, яке вводить мету.**
+**16 · Виберіть слово, після якого йде мета.**
 <!-- interaction_id: en:lesson-22:session-31:i12; family: context_gap_grammar -->
 I read it again ___ check my work. → **to** · for · of
 - for — *Мета виражається через to + початкову форму дієслова.*

@@ -63,7 +63,7 @@
 - You made so a good first impression. — *У записі звучить You made such a good first impression.*
 - You made much a good first impression. — *У записі звучить You made such a good first impression.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-45:i03; family: context_gap_grammar -->
 You made ___ a good first impression. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -83,7 +83,7 @@ You made ___ a good first impression. → **such** · so · much
 - A second chance is such helpful. — *У записі звучить A second chance is so helpful.*
 - A second chance is much helpful. — *У записі звучить A second chance is so helpful.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-45:i06; family: context_gap_grammar -->
 A second chance is ___ helpful. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -103,7 +103,7 @@ A second chance is ___ helpful. → **so** · such · much
 - This last chance is such important. — *У записі звучить This last chance is so important.*
 - This last chance is much important. — *У записі звучить This last chance is so important.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-45:i09; family: context_gap_grammar -->
 This last chance is ___ important. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ This last chance is ___ important. → **so** · such · much
 - You have so a good reason. — *У записі звучить You have such a good reason.*
 - You have much a good reason. — *У записі звучить You have such a good reason.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-45:i12; family: context_gap_grammar -->
 You have ___ a good reason. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*

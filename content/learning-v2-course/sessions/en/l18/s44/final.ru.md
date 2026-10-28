@@ -63,7 +63,7 @@
 - I am in so a good mood. — *В записи звучит I am in such a good mood.*
 - I am in much a good mood. — *В записи звучит I am in such a good mood.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-44:i03; family: context_gap_grammar -->
 I am in ___ a good mood. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -83,7 +83,7 @@ I am in ___ a good mood. → **such** · so · much
 - He is in so a bad mood. — *В записи звучит He is in such a bad mood.*
 - He is in much a bad mood. — *В записи звучит He is in such a bad mood.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-44:i06; family: context_gap_grammar -->
 He is in ___ a bad mood. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -103,7 +103,7 @@ He is in ___ a bad mood. → **such** · so · much
 - We have so high hopes. — *В записи звучит We have such high hopes.*
 - We have much high hopes. — *В записи звучит We have such high hopes.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-44:i09; family: context_gap_grammar -->
 We have ___ high hopes. → **such** · so · much
 - so — *Здесь множественное число: such без a.*
@@ -123,7 +123,7 @@ We have ___ high hopes. → **such** · so · much
 - I have so mixed feelings. — *В записи звучит I have such mixed feelings.*
 - I have much mixed feelings. — *В записи звучит I have such mixed feelings.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-44:i12; family: context_gap_grammar -->
 I have ___ mixed feelings. → **such** · so · much
 - so — *Здесь множественное число: such без a.*

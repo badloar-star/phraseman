@@ -63,7 +63,7 @@
 - Your ability is such useful. — *В записи звучит Your ability is so useful.*
 - Your ability is much useful. — *В записи звучит Your ability is so useful.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-53:i03; family: context_gap_grammar -->
 Your ability is ___ useful. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ Your ability is ___ useful. → **so** · such · much
 - You have so a good memory. — *В записи звучит You have such a good memory.*
 - You have much a good memory. — *В записи звучит You have such a good memory.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-53:i06; family: context_gap_grammar -->
 You have ___ a good memory. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -103,7 +103,7 @@ You have ___ a good memory. → **such** · so · much
 - Concentration is such important. — *В записи звучит Concentration is so important.*
 - Concentration is much important. — *В записи звучит Concentration is so important.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-53:i09; family: context_gap_grammar -->
 Concentration is ___ important. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ Concentration is ___ important. → **so** · such · much
 - You have so a great imagination. — *В записи звучит You have such a great imagination.*
 - You have much a great imagination. — *В записи звучит You have such a great imagination.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-53:i12; family: context_gap_grammar -->
 You have ___ a great imagination. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*

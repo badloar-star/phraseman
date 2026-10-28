@@ -63,7 +63,7 @@
 - You have so great energy. — *В записи звучит You have such great energy.*
 - You have much great energy. — *В записи звучит You have such great energy.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-54:i03; family: context_gap_grammar -->
 You have ___ great energy. → **such** · so · much
 - so — *Здесь неисчисляемое значение: such без a.*
@@ -83,7 +83,7 @@ You have ___ great energy. → **such** · so · much
 - Your strength is such useful. — *В записи звучит Your strength is so useful.*
 - Your strength is much useful. — *В записи звучит Your strength is so useful.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-54:i06; family: context_gap_grammar -->
 Your strength is ___ useful. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -103,7 +103,7 @@ Your strength is ___ useful. → **so** · such · much
 - Fitness is such important. — *В записи звучит Fitness is so important.*
 - Fitness is much important. — *В записи звучит Fitness is so important.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-54:i09; family: context_gap_grammar -->
 Fitness is ___ important. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ Fitness is ___ important. → **so** · such · much
 - Motivation is such important. — *В записи звучит Motivation is so important.*
 - Motivation is much important. — *В записи звучит Motivation is so important.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-54:i12; family: context_gap_grammar -->
 Motivation is ___ important. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*

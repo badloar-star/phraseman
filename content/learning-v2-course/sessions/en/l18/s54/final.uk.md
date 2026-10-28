@@ -63,7 +63,7 @@
 - You have so great energy. — *У записі звучить You have such great energy.*
 - You have much great energy. — *У записі звучить You have such great energy.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-54:i03; family: context_gap_grammar -->
 You have ___ great energy. → **such** · so · much
 - so — *Тут незлічуване значення: such без a.*
@@ -83,7 +83,7 @@ You have ___ great energy. → **such** · so · much
 - Your strength is such useful. — *У записі звучить Your strength is so useful.*
 - Your strength is much useful. — *У записі звучить Your strength is so useful.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-54:i06; family: context_gap_grammar -->
 Your strength is ___ useful. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -103,7 +103,7 @@ Your strength is ___ useful. → **so** · such · much
 - Fitness is such important. — *У записі звучить Fitness is so important.*
 - Fitness is much important. — *У записі звучить Fitness is so important.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-54:i09; family: context_gap_grammar -->
 Fitness is ___ important. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ Fitness is ___ important. → **so** · such · much
 - Motivation is such important. — *У записі звучить Motivation is so important.*
 - Motivation is much important. — *У записі звучить Motivation is so important.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-54:i12; family: context_gap_grammar -->
 Motivation is ___ important. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*

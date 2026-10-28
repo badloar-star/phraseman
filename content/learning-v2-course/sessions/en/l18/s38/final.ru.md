@@ -63,7 +63,7 @@
 - We received so a warm welcome. — *В записи звучит We received such a warm welcome.*
 - We received much a warm welcome. — *В записи звучит We received such a warm welcome.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-38:i03; family: context_gap_grammar -->
 We received ___ a warm welcome. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -83,7 +83,7 @@ We received ___ a warm welcome. → **such** · so · much
 - A helping hand is such useful. — *В записи звучит A helping hand is so useful.*
 - A helping hand is much useful. — *В записи звучит A helping hand is so useful.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-38:i06; family: context_gap_grammar -->
 A helping hand is ___ useful. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -103,7 +103,7 @@ A helping hand is ___ useful. → **so** · such · much
 - You have so a big smile. — *В записи звучит You have such a big smile.*
 - You have much a big smile. — *В записи звучит You have such a big smile.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-38:i09; family: context_gap_grammar -->
 You have ___ a big smile. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -123,7 +123,7 @@ You have ___ a big smile. → **such** · so · much
 - A friendly face is such welcome. — *В записи звучит A friendly face is so welcome.*
 - A friendly face is much welcome. — *В записи звучит A friendly face is so welcome.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-38:i12; family: context_gap_grammar -->
 A friendly face is ___ welcome. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*

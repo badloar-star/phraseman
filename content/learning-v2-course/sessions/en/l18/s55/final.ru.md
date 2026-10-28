@@ -63,7 +63,7 @@
 - This causes so great stress. — *В записи звучит This causes such great stress.*
 - This causes much great stress. — *В записи звучит This causes such great stress.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-55:i03; family: context_gap_grammar -->
 This causes ___ great stress. → **such** · so · much
 - so — *Здесь неисчисляемое значение: such без a.*
@@ -83,7 +83,7 @@ This causes ___ great stress. → **such** · so · much
 - The pressure is such high. — *В записи звучит The pressure is so high.*
 - The pressure is much high. — *В записи звучит The pressure is so high.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-55:i06; family: context_gap_grammar -->
 The pressure is ___ high. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -103,7 +103,7 @@ The pressure is ___ high. → **so** · such · much
 - The tension is such strong. — *В записи звучит The tension is so strong.*
 - The tension is much strong. — *В записи звучит The tension is so strong.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-55:i09; family: context_gap_grammar -->
 The tension is ___ strong. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ The tension is ___ strong. → **so** · such · much
 - Comfort is such important. — *В записи звучит Comfort is so important.*
 - Comfort is much important. — *В записи звучит Comfort is so important.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-55:i12; family: context_gap_grammar -->
 Comfort is ___ important. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*

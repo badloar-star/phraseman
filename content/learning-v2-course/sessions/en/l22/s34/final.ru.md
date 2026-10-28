@@ -63,7 +63,7 @@
 - You need another train service. — *В записи звучит We need another train service.*
 - People need another train service. — *В записи звучит We need another train service.*
 
-**4 · Речь об одном другом варианте.**
+**4 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-34:i03; family: context_gap_grammar -->
 We need ___ train service. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -83,7 +83,7 @@ We need ___ train service. → **another** · other · others
 - You use another departure gate. — *В записи звучит We use another departure gate.*
 - People use another departure gate. — *В записи звучит We use another departure gate.*
 
-**8 · Речь об одном другом варианте.**
+**8 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-34:i06; family: context_gap_grammar -->
 We use ___ departure gate. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -103,7 +103,7 @@ We use ___ departure gate. → **another** · other · others
 - You need another travel date. — *В записи звучит I need another travel date.*
 - People need another travel date. — *В записи звучит I need another travel date.*
 
-**12 · Речь об одном другом варианте.**
+**12 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-34:i09; family: context_gap_grammar -->
 I need ___ travel date. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*
@@ -123,7 +123,7 @@ I need ___ travel date. → **another** · other · others
 - You have another seat number. — *В записи звучит I have another seat number.*
 - People have another seat number. — *В записи звучит I have another seat number.*
 
-**16 · Речь об одном другом варианте.**
+**16 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-34:i12; family: context_gap_grammar -->
 I have ___ seat number. → **another** · other · others
 - other — *Здесь один новый вариант: another + существительное в единственном числе.*

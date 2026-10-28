@@ -63,7 +63,7 @@
 - The fresh air is such nice. — *В записи звучит The fresh air is so nice.*
 - The fresh air is much nice. — *В записи звучит The fresh air is so nice.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-37:i03; family: context_gap_grammar -->
 The fresh air is ___ nice. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ The fresh air is ___ nice. → **so** · such · much
 - This is so hard work. — *В записи звучит This is such hard work.*
 - This is much hard work. — *В записи звучит This is such hard work.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-37:i06; family: context_gap_grammar -->
 This is ___ hard work. → **such** · so · much
 - so — *Здесь неисчисляемое значение: such без a.*
@@ -103,7 +103,7 @@ This is ___ hard work. → **such** · so · much
 - You are so good company. — *В записи звучит You are such good company.*
 - You are much good company. — *В записи звучит You are such good company.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-37:i09; family: context_gap_grammar -->
 You are ___ good company. → **such** · so · much
 - so — *Здесь неисчисляемое значение: such без a.*
@@ -123,7 +123,7 @@ You are ___ good company. → **such** · so · much
 - The peace and quiet is such lovely. — *В записи звучит The peace and quiet is so lovely.*
 - The peace and quiet is much lovely. — *В записи звучит The peace and quiet is so lovely.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-37:i12; family: context_gap_grammar -->
 The peace and quiet is ___ lovely. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*

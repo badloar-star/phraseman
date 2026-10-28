@@ -63,7 +63,7 @@
 - Your ability is such useful. — *У записі звучить Your ability is so useful.*
 - Your ability is much useful. — *У записі звучить Your ability is so useful.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-53:i03; family: context_gap_grammar -->
 Your ability is ___ useful. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ Your ability is ___ useful. → **so** · such · much
 - You have so a good memory. — *У записі звучить You have such a good memory.*
 - You have much a good memory. — *У записі звучить You have such a good memory.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-53:i06; family: context_gap_grammar -->
 You have ___ a good memory. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
@@ -103,7 +103,7 @@ You have ___ a good memory. → **such** · so · much
 - Concentration is such important. — *У записі звучить Concentration is so important.*
 - Concentration is much important. — *У записі звучить Concentration is so important.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-53:i09; family: context_gap_grammar -->
 Concentration is ___ important. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ Concentration is ___ important. → **so** · such · much
 - You have so a great imagination. — *У записі звучить You have such a great imagination.*
 - You have much a great imagination. — *У записі звучить You have such a great imagination.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-53:i12; family: context_gap_grammar -->
 You have ___ a great imagination. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*

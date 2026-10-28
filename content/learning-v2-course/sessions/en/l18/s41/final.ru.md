@@ -63,7 +63,7 @@
 - This short break is such welcome. — *В записи звучит This short break is so welcome.*
 - This short break is much welcome. — *В записи звучит This short break is so welcome.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-41:i03; family: context_gap_grammar -->
 This short break is ___ welcome. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ This short break is ___ welcome. → **so** · such · much
 - A quick shower is so a good idea. — *В записи звучит A quick shower is such a good idea.*
 - A quick shower is much a good idea. — *В записи звучит A quick shower is such a good idea.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-41:i06; family: context_gap_grammar -->
 A quick shower is ___ a good idea. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
@@ -103,7 +103,7 @@ A quick shower is ___ a good idea. → **such** · so · much
 - The early start is such difficult. — *В записи звучит The early start is so difficult.*
 - The early start is much difficult. — *В записи звучит The early start is so difficult.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-41:i09; family: context_gap_grammar -->
 The early start is ___ difficult. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -123,7 +123,7 @@ The early start is ___ difficult. → **so** · such · much
 - We had so a late night. — *В записи звучит We had such a late night.*
 - We had much a late night. — *В записи звучит We had such a late night.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-41:i12; family: context_gap_grammar -->
 We had ___ a late night. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*

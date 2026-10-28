@@ -63,7 +63,7 @@
 - You use another recipe book. — *У записі звучить I use another recipe book.*
 - People use another recipe book. — *У записі звучить I use another recipe book.*
 
-**4 · Ідеться про один інший варіант.**
+**4 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-36:i03; family: context_gap_grammar -->
 I use ___ recipe book. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -83,7 +83,7 @@ I use ___ recipe book. → **another** · other · others
 - You use another main ingredient. — *У записі звучить We use another main ingredient.*
 - People use another main ingredient. — *У записі звучить We use another main ingredient.*
 
-**8 · Ідеться про один інший варіант.**
+**8 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-36:i06; family: context_gap_grammar -->
 We use ___ main ingredient. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -103,7 +103,7 @@ We use ___ main ingredient. → **another** · other · others
 - You need another meal plan. — *У записі звучить I need another meal plan.*
 - People need another meal plan. — *У записі звучить I need another meal plan.*
 
-**12 · Ідеться про один інший варіант.**
+**12 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-36:i09; family: context_gap_grammar -->
 I need ___ meal plan. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -123,7 +123,7 @@ I need ___ meal plan. → **another** · other · others
 - You agree on another shopping budget. — *У записі звучить We agree on another shopping budget.*
 - People agree on another shopping budget. — *У записі звучить We agree on another shopping budget.*
 
-**16 · Ідеться про один інший варіант.**
+**16 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-36:i12; family: context_gap_grammar -->
 We agree on ___ shopping budget. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*

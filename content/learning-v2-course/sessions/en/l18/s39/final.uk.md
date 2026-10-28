@@ -63,7 +63,7 @@
 - This is so a waste of time. — *У записі звучить This is such a waste of time.*
 - This is much a waste of time. — *У записі звучить This is such a waste of time.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-39:i03; family: context_gap_grammar -->
 This is ___ a waste of time. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -83,7 +83,7 @@ This is ___ a waste of time. → **such** · so · much
 - This change of plan is such important. — *У записі звучить This change of plan is so important.*
 - This change of plan is much important. — *У записі звучить This change of plan is so important.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-39:i06; family: context_gap_grammar -->
 This change of plan is ___ important. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -103,7 +103,7 @@ This change of plan is ___ important. → **so** · such · much
 - We had so a long wait. — *У записі звучить We had such a long wait.*
 - We had much a long wait. — *У записі звучить We had such a long wait.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-39:i09; family: context_gap_grammar -->
 We had ___ a long wait. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -123,7 +123,7 @@ We had ___ a long wait. → **such** · so · much
 - It is so a small favour. — *У записі звучить It is such a small favour.*
 - It is much a small favour. — *У записі звучить It is such a small favour.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-39:i12; family: context_gap_grammar -->
 It is ___ a small favour. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*

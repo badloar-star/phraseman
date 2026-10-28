@@ -63,7 +63,7 @@
 - This time is such inconvenient. — *У записі звучить This time is so inconvenient.*
 - This time is much inconvenient. — *У записі звучить This time is so inconvenient.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-19:session-37:i03; family: context_gap_grammar -->
 This time is ___ inconvenient. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -83,7 +83,7 @@ This time is ___ inconvenient. → **so** · such · much
 - That is so a dishonest answer. — *У записі звучить That is such a dishonest answer.*
 - That is much a dishonest answer. — *У записі звучить That is such a dishonest answer.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-19:session-37:i06; family: context_gap_grammar -->
 That is ___ a dishonest answer. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -103,7 +103,7 @@ That is ___ a dishonest answer. → **such** · so · much
 - This habit is such unhealthy. — *У записі звучить This habit is so unhealthy.*
 - This habit is much unhealthy. — *У записі звучить This habit is so unhealthy.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-19:session-37:i09; family: context_gap_grammar -->
 This habit is ___ unhealthy. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -123,7 +123,7 @@ This habit is ___ unhealthy. → **so** · such · much
 - That result is such unlikely. — *У записі звучить That result is so unlikely.*
 - That result is much unlikely. — *У записі звучить That result is so unlikely.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-19:session-37:i12; family: context_gap_grammar -->
 That result is ___ unlikely. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*

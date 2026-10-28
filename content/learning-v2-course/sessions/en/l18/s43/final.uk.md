@@ -63,7 +63,7 @@
 - We had so a busy day. — *У записі звучить We had such a busy day.*
 - We had much a busy day. — *У записі звучить We had such a busy day.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-43:i03; family: context_gap_grammar -->
 We had ___ a busy day. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -83,7 +83,7 @@ We had ___ a busy day. → **such** · so · much
 - This quiet evening is such nice. — *У записі звучить This quiet evening is so nice.*
 - This quiet evening is much nice. — *У записі звучить This quiet evening is so nice.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-43:i06; family: context_gap_grammar -->
 This quiet evening is ___ nice. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -103,7 +103,7 @@ This quiet evening is ___ nice. → **so** · such · much
 - We had so a lovely long weekend. — *У записі звучить We had such a lovely long weekend.*
 - We had much a lovely long weekend. — *У записі звучить We had such a lovely long weekend.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-43:i09; family: context_gap_grammar -->
 We had ___ a lovely long weekend. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -123,7 +123,7 @@ We had ___ a lovely long weekend. → **such** · so · much
 - This late lunch is such tasty. — *У записі звучить This late lunch is so tasty.*
 - This late lunch is much tasty. — *У записі звучить This late lunch is so tasty.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-43:i12; family: context_gap_grammar -->
 This late lunch is ___ tasty. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*

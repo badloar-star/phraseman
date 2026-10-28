@@ -63,7 +63,7 @@
 - We received so a warm welcome. — *У записі звучить We received such a warm welcome.*
 - We received much a warm welcome. — *У записі звучить We received such a warm welcome.*
 
-**4 · Підкресліть якість із so або such.**
+**4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-38:i03; family: context_gap_grammar -->
 We received ___ a warm welcome. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -83,7 +83,7 @@ We received ___ a warm welcome. → **such** · so · much
 - A helping hand is such useful. — *У записі звучить A helping hand is so useful.*
 - A helping hand is much useful. — *У записі звучить A helping hand is so useful.*
 
-**8 · Підкресліть якість із so або such.**
+**8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-38:i06; family: context_gap_grammar -->
 A helping hand is ___ useful. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*
@@ -103,7 +103,7 @@ A helping hand is ___ useful. → **so** · such · much
 - You have so a big smile. — *У записі звучить You have such a big smile.*
 - You have much a big smile. — *У записі звучить You have such a big smile.*
 
-**12 · Підкресліть якість із so або such.**
+**12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-38:i09; family: context_gap_grammar -->
 You have ___ a big smile. → **such** · so · much
 - so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
@@ -123,7 +123,7 @@ You have ___ a big smile. → **such** · so · much
 - A friendly face is such welcome. — *У записі звучить A friendly face is so welcome.*
 - A friendly face is much welcome. — *У записі звучить A friendly face is so welcome.*
 
-**16 · Підкресліть якість із so або such.**
+**16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-38:i12; family: context_gap_grammar -->
 A friendly face is ___ welcome. → **so** · such · much
 - such — *Після пропуску прикметник без іменника: so.*

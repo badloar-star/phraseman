@@ -63,7 +63,7 @@
 - The food poisoning was such bad. — *В записи звучит The food poisoning was so bad.*
 - The food poisoning was much bad. — *В записи звучит The food poisoning was so bad.*
 
-**4 · Подчеркните качество с so или such.**
+**4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-47:i03; family: context_gap_grammar -->
 The food poisoning was ___ bad. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -83,7 +83,7 @@ The food poisoning was ___ bad. → **so** · such · much
 - This hay fever is such annoying. — *В записи звучит This hay fever is so annoying.*
 - This hay fever is much annoying. — *В записи звучит This hay fever is so annoying.*
 
-**8 · Подчеркните качество с so или such.**
+**8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-47:i06; family: context_gap_grammar -->
 This hay fever is ___ annoying. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*
@@ -103,7 +103,7 @@ This hay fever is ___ annoying. → **so** · such · much
 - Travel sickness is so a problem for me. — *В записи звучит Travel sickness is such a problem for me.*
 - Travel sickness is much a problem for me. — *В записи звучит Travel sickness is such a problem for me.*
 
-**12 · Подчеркните качество с so или such.**
+**12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-47:i09; family: context_gap_grammar -->
 Travel sickness is ___ a problem for me. → **such** · so · much
 - so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
@@ -123,7 +123,7 @@ Travel sickness is ___ a problem for me. → **such** · so · much
 - The chest pain is such bad. — *В записи звучит The chest pain is so bad.*
 - The chest pain is much bad. — *В записи звучит The chest pain is so bad.*
 
-**16 · Подчеркните качество с so или such.**
+**16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-47:i12; family: context_gap_grammar -->
 The chest pain is ___ bad. → **so** · such · much
 - such — *После пропуска прилагательное без существительного: so.*

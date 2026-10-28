@@ -63,7 +63,7 @@
 - You need another train service. — *У записі звучить We need another train service.*
 - People need another train service. — *У записі звучить We need another train service.*
 
-**4 · Ідеться про один інший варіант.**
+**4 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-34:i03; family: context_gap_grammar -->
 We need ___ train service. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -83,7 +83,7 @@ We need ___ train service. → **another** · other · others
 - You use another departure gate. — *У записі звучить We use another departure gate.*
 - People use another departure gate. — *У записі звучить We use another departure gate.*
 
-**8 · Ідеться про один інший варіант.**
+**8 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-34:i06; family: context_gap_grammar -->
 We use ___ departure gate. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -103,7 +103,7 @@ We use ___ departure gate. → **another** · other · others
 - You need another travel date. — *У записі звучить I need another travel date.*
 - People need another travel date. — *У записі звучить I need another travel date.*
 
-**12 · Ідеться про один інший варіант.**
+**12 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-34:i09; family: context_gap_grammar -->
 I need ___ travel date. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*
@@ -123,7 +123,7 @@ I need ___ travel date. → **another** · other · others
 - You have another seat number. — *У записі звучить I have another seat number.*
 - People have another seat number. — *У записі звучить I have another seat number.*
 
-**16 · Ідеться про один інший варіант.**
+**16 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-34:i12; family: context_gap_grammar -->
 I have ___ seat number. → **another** · other · others
 - other — *Тут один новий варіант: another + іменник в однині.*

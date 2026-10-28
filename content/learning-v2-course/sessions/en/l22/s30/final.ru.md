@@ -63,7 +63,7 @@ Stay dry — оставаться сухим, не промокать. Dry зд�
 - We use an umbrella to stay dry. — *В записи звучит I use an umbrella to stay dry.*
 - You use an umbrella to stay dry. — *В записи звучит I use an umbrella to stay dry.*
 
-**4 · Выберите слово, которое вводит цель.**
+**4 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-30:i03; family: context_gap_grammar -->
 I use an umbrella ___ stay dry. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -83,7 +83,7 @@ I use an umbrella ___ stay dry. → **to** · for · of
 - We go swimming to keep fit. — *В записи звучит I go swimming to keep fit.*
 - You go swimming to keep fit. — *В записи звучит I go swimming to keep fit.*
 
-**8 · Выберите слово, которое вводит цель.**
+**8 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-30:i06; family: context_gap_grammar -->
 I go swimming ___ keep fit. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -103,7 +103,7 @@ I go swimming ___ keep fit. → **to** · for · of
 - We cook at home to eat well. — *В записи звучит I cook at home to eat well.*
 - You cook at home to eat well. — *В записи звучит I cook at home to eat well.*
 
-**12 · Выберите слово, которое вводит цель.**
+**12 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-30:i09; family: context_gap_grammar -->
 I cook at home ___ eat well. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*
@@ -123,7 +123,7 @@ I cook at home ___ eat well. → **to** · for · of
 - We go to bed early to get enough rest. — *В записи звучит I go to bed early to get enough rest.*
 - You go to bed early to get enough rest. — *В записи звучит I go to bed early to get enough rest.*
 
-**16 · Выберите слово, которое вводит цель.**
+**16 · Выберите слово, после которого идёт цель.**
 <!-- interaction_id: en:lesson-22:session-30:i12; family: context_gap_grammar -->
 I go to bed early ___ get enough rest. → **to** · for · of
 - for — *Цель выражается через to + начальную форму глагола.*

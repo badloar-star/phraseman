@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-25",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-25:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-25:intro1:r2": {
+          "ru": "В этой фразе нужно está.",
+          "uk": "У цій фразі потрібно está."
+        },
+        "es:lesson-06:session-25:intro1:r3": {
+          "ru": "Местоположение вещи выражаем через está.",
+          "uk": "Місце речі позначаємо через está."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-25:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-25:intro2:r2": {
+          "ru": "По условию книга там: allí.",
+          "uk": "За умовою книжка там: allí."
+        },
+        "es:lesson-06:session-25:intro2:r3": {
+          "ru": "Между предметом и местом нужно está.",
+          "uk": "Між предметом і місцем потрібно está."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-25:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-25:intro3:r2": {
+          "ru": "Mesa женского рода: la.",
+          "uk": "Mesa жіночого роду: la."
+        },
+        "es:lesson-06:session-25:intro3:r3": {
+          "ru": "Для места в этой фразе нужна está.",
+          "uk": "Для місця в цій фразі потрібна está."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d4d352464c07b1ed0ad8f3ebf0d828bdf3a7faac8a1a6610e85cbc039e119f65"
+}

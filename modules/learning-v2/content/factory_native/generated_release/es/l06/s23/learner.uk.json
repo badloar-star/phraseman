@@ -1,0 +1,698 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-23",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-23:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-23:i01:r1",
+          "text": "¿Hay una mesa en la habitación?"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i01:r2",
+          "text": "¿Hay una cama en la habitación?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-23:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-23:i01:audio",
+          "transcript": "¿Hay una mesa en la habitación?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-23:i01:r1",
+            "targetText": "¿Hay una mesa en la habitación?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-23:i01:r2",
+            "targetText": "¿Hay una cama en la habitación?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-23:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В вопросе звучит mesa — стол.",
+              "uk": "У запитанні звучить mesa — стіл."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у кімнаті є стіл?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-23:i02:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i02:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i02:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у кімнаті є стіл?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате есть стол?",
+          "uk": "Вставте слово — у кімнаті є стіл?"
+        },
+        "gappedTargetPhrase": "¿Hay ___ mesa en la habitación?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-23:i02:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-06:session-23:i02:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-23:i02:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — у кімнаті є стіл?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-23:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті є стіл?",
+            "feedbackByLocale": {
+              "ru": "Mesa женского рода: una.",
+              "uk": "Mesa жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-23:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті є стіл?",
+            "feedbackByLocale": {
+              "ru": "Mesa — одна вещь женского рода: una.",
+              "uk": "Mesa — одна річ жіночого роду: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у кімнаті є стіл?; почніть з ¿Hay, місце поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-23:i03:r1",
+          "text": "Плитки: habitación?"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i03:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i03:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i03:r4",
+          "text": "mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i03:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i03:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i03:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у кімнаті є стіл?; почніть з ¿Hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay una mesa en la habitación?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в комнате есть стол?; начните с ¿Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — у кімнаті є стіл?; почніть з ¿Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "una",
+          "mesa",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-23:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у кімнаті є стіл?; почніть з ¿Hay, місце поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода.",
+              "uk": "habitación жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — відвідувач запитує про стіл. Стіл у кімнаті є. Дайте відповідь «Так, є стіл»",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-23:i04:r1",
+          "text": "Sí"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i04:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i04:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — відвідувач запитує про стіл. Стіл у кімнаті є. Дайте відповідь «Так, є стіл»",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — посетитель спрашивает о столе. Стол в комнате есть. Ответьте «Да, есть стол»",
+          "uk": "Вставте слово — відвідувач запитує про стіл. Стіл у кімнаті є. Дайте відповідь «Так, є стіл»"
+        },
+        "gappedTargetPhrase": "___, hay una mesa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-23:i04:r1",
+            "text": "Sí"
+          },
+          {
+            "responseId": "es:lesson-06:session-23:i04:r2",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-06:session-23:i04:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставте слово — відвідувач запитує про стіл. Стіл у кімнаті є. Дайте відповідь «Так, є стіл»",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-23:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — відвідувач запитує про стіл. Стіл у кімнаті є. Дайте відповідь «Так, є стіл»",
+            "feedbackByLocale": {
+              "ru": "Подтверждаем наличие: Sí.",
+              "uk": "Підтверджуємо наявність: Sí."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-23:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — відвідувач запитує про стіл. Стіл у кімнаті є. Дайте відповідь «Так, є стіл»",
+            "feedbackByLocale": {
+              "ru": "Для ответа «да» нужно Sí.",
+              "uk": "Для відповіді «так» потрібно Sí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — так, є стіл; почніть з Sí",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-23:i05:r1",
+          "text": "Плитки: mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i05:r2",
+          "text": "Sí,"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i05:r3",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i05:r4",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i05:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — так, є стіл; почніть з Sí",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Sí, hay una mesa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — да, есть стол; начните с Sí",
+          "uk": "Зберіть фразу — так, є стіл; почніть з Sí"
+        },
+        "orderedTokens": [
+          "Sí,",
+          "hay",
+          "una",
+          "mesa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-23:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — так, є стіл; почніть з Sí",
+            "feedbackByLocale": {
+              "ru": "mesa женского рода.",
+              "uk": "mesa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ні, столів немає; почніть з No, потім заперечте наявність",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-23:i06:r1",
+          "text": "Плитки: mesas"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i06:r2",
+          "text": "No,"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i06:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i06:r4",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i06:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ні, столів немає; почніть з No, потім заперечте наявність",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, no hay mesas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — нет, столов нет; начните с No, затем отрицайте наличие",
+          "uk": "Зберіть фразу — ні, столів немає; почніть з No, потім заперечте наявність"
+        },
+        "orderedTokens": [
+          "No,",
+          "no",
+          "hay",
+          "mesas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-23:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ні, столів немає; почніть з No, потім заперечте наявність",
+            "feedbackByLocale": {
+              "ru": "mesas здесь используется без артикля.",
+              "uk": "mesas тут використовується без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-23:i07:r1",
+          "text": "Плитки: ¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i07:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i07:r3",
+          "text": "mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i07:r4",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i07:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i07:r6",
+          "text": "habitación?"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i07:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-23:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-23:i07:audio",
+          "transcript": "¿Hay una mesa en la habitación?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Hay una mesa en la habitación?",
+        "orderedTokens": [
+          "¿Hay",
+          "una",
+          "mesa",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-23:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la.",
+              "uk": "звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ні, столів немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-23:i08:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i08:r2",
+          "text": "sí"
+        },
+        {
+          "responseId": "es:lesson-06:session-23:i08:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ні, столів немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — нет, столов нет",
+          "uk": "Вставте слово — ні, столів немає"
+        },
+        "gappedTargetPhrase": "No, ___ hay mesas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-23:i08:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-06:session-23:i08:r2",
+            "text": "sí"
+          },
+          {
+            "responseId": "es:lesson-06:session-23:i08:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — ні, столів немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-23:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ні, столів немає",
+            "feedbackByLocale": {
+              "ru": "Нужно отрицание no hay.",
+              "uk": "Потрібне заперечення no hay."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-23:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ні, столів немає",
+            "feedbackByLocale": {
+              "ru": "Перед hay для отрицания ставим no.",
+              "uk": "Перед hay для заперечення ставимо no."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у кімнаті є стіл?; почніть з ¿Hay, використайте una mesa, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-23:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у кімнаті є стіл?; почніть з ¿Hay, використайте una mesa, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-23:i09:audio",
+          "transcript": "¿Hay una mesa en la habitación?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay una mesa en la habitación?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — так, є стіл; почніть з Sí, використайте una mesa, місце не додавайте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-23:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — так, є стіл; почніть з Sí, використайте una mesa, місце не додавайте",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-23:i10:audio",
+          "transcript": "Sí, hay una mesa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sí, hay una mesa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ні, столів немає; почніть з No, потім заперечте наявність, слово mesas використайте без артикля",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-23:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ні, столів немає; почніть з No, потім заперечте наявність, слово mesas використайте без артикля",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-23:i11:audio",
+          "transcript": "No, no hay mesas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, no hay mesas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — вам також потрібні місця для сидіння. Запитайте «У кімнаті є стільці?»; почніть з ¿Hay, слово «стільці» використайте без артикля, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-23:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — вам також потрібні місця для сидіння. Запитайте «У кімнаті є стільці?»; почніть з ¿Hay, слово «стільці» використайте без артикля, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-23:i12:audio",
+          "transcript": "¿Hay sillas en la habitación?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay sillas en la habitación?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b2ef07b73079b28e13d295c28d89b460908763cbe508a6cc404a6a4f213bbb24"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-23",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о наличии мебели в комнате и дать короткий ответ.",
+    "uk": "запитати про наявність меблів у кімнаті й дати коротку відповідь."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-23:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Уточнить обстановку",
+        "uk": "Уточнити обстановку"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ещё не видели комнату и спрашиваете хозяина `¿Hay una mesa en la habitación?` — «В комнате есть стол?» Соберите `¿Hay una mesa` + `en la habitación?`. Сначала спрашиваем о предмете, потом называем место. Вопрос сообщает хозяину, что вам важно: фотография кровати ещё не обещает стол для завтрака.",
+        "uk": "Ви ще не бачили кімнату й запитуєте господаря `¿Hay una mesa en la habitación?` — «У кімнаті є стіл?» Складіть `¿Hay una mesa` + `en la habitación?`. Спочатку запитуємо про предмет, потім називаємо місце. Запитання повідомляє господарю, що для вас важливо: фотографія ліжка ще не обіцяє стіл для сніданку."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-23:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «В комнате есть стол?». Начните с ¿Hay, используйте una mesa, место поставьте в конце.",
+          "uk": "Запитайте «У кімнаті є стіл?». Почніть з ¿Hay, використайте una mesa, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-23:intro1:r1",
+              "text": "¿Hay una mesa en la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro1:r2",
+              "text": "¿Hay un mesa en la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro1:r3",
+              "text": "¿Hay una mesa la habitación?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-23:intro1:r1",
+              "text": "¿Hay una mesa en la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro1:r2",
+              "text": "¿Hay un mesa en la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro1:r3",
+              "text": "¿Hay una mesa la habitación?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «В комнате есть стол?». Начните с ¿Hay, используйте una mesa, место поставьте в конце.",
+          "uk": "Запитайте «У кімнаті є стіл?». Почніть з ¿Hay, використайте una mesa, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-23:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ответить посетителю",
+        "uk": "Відповісти відвідувачу"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вы показываете свою гостевую комнату. Посетитель спрашивает о столе, и стол там есть. Ответьте `Sí, hay una mesa` — «Да, есть стол». Соберите `Sí` + `hay una mesa`. Место уже понятно из разговора, повторять его не обязательно. У утвердительного sí ставим ударение на письме.",
+        "uk": "Тепер ви показуєте свою гостьову кімнату. Відвідувач запитує про стіл, і стіл там є. Дайте відповідь `Sí, hay una mesa` — «Так, є стіл». Складіть `Sí` + `hay una mesa`. Місце вже зрозуміле з розмови, повторювати його не обов’язково. У ствердному sí ставимо наголос на письмі."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-23:intro2:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Да, есть стол». Начните с Sí, используйте una mesa, место не добавляйте.",
+          "uk": "Дайте відповідь «Так, є стіл». Почніть з Sí, використайте una mesa, місце не додавайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-23:intro2:r1",
+              "text": "Sí, hay una mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro2:r2",
+              "text": "Sí, hay un mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro2:r3",
+              "text": "No, no hay mesas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-23:intro2:r1",
+              "text": "Sí, hay una mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro2:r2",
+              "text": "Sí, hay un mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro2:r3",
+              "text": "No, no hay mesas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Да, есть стол». Начните с Sí, используйте una mesa, место не добавляйте.",
+          "uk": "Дайте відповідь «Так, є стіл». Почніть з Sí, використайте una mesa, місце не додавайте."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-23:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сообщить об отсутствии",
+        "uk": "Повідомити про відсутність"
+      },
+      "bodyByLocale": {
+        "ru": "В другой комнате столов нет. Гость спрашивает о них. Ответьте `No, no hay mesas` — «Нет, столов нет». Соберите ответ `No` + сообщение `no hay mesas`. Первое no отвечает собеседнику, второе отрицает наличие. У mesas здесь нет артикля: говорим, что столов вообще нет.",
+        "uk": "В іншій кімнаті столів немає. Гість запитує про них. Дайте відповідь `No, no hay mesas` — «Ні, столів немає». Складіть відповідь `No` + повідомлення `no hay mesas`. Перше no відповідає співрозмовнику, друге заперечує наявність. У mesas тут немає артикля: кажемо, що столів узагалі немає."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-23:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Нет, столов нет». Начните с No, затем сообщите об отсутствии; слово mesas используйте без артикля.",
+          "uk": "Дайте відповідь «Ні, столів немає». Почніть з No, потім повідомте про відсутність; слово mesas використайте без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-23:intro3:r1",
+              "text": "No, no hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro3:r2",
+              "text": "No, hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro3:r3",
+              "text": "Sí, hay mesas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-23:intro3:r1",
+              "text": "No, no hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro3:r2",
+              "text": "No, hay mesas."
+            },
+            {
+              "responseId": "es:lesson-06:session-23:intro3:r3",
+              "text": "Sí, hay mesas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Нет, столов нет». Начните с No, затем сообщите об отсутствии; слово mesas используйте без артикля.",
+          "uk": "Дайте відповідь «Ні, столів немає». Почніть з No, потім повідомте про відсутність; слово mesas використайте без артикля."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f4b6cc942c7e052a2996fbfdc7958c7b6bf8ac208a92a7954302b8437bffea77"
+}

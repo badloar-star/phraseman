@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-24:i01",
+    "correctText": "habitación",
+    "correctResponseId": "es:lesson-06:session-24:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i02",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-24:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i03",
+    "correctText": "Hay una mesa en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i04",
+    "correctText": "cómodo",
+    "correctResponseId": "es:lesson-06:session-24:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i05",
+    "correctText": "Hay un sofá cómodo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i06",
+    "correctText": "Hay una mesa pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i07",
+    "correctText": "camas",
+    "correctResponseId": "es:lesson-06:session-24:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i08",
+    "correctText": "Hay dos camas en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i09",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-06:session-24:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i10",
+    "correctText": "¿Hay un libro en la mesa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i11",
+    "correctText": "No, no hay mesas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i12",
+    "correctText": "Sí",
+    "correctResponseId": "es:lesson-06:session-24:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i13",
+    "correctText": "Hay un sofá en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i14",
+    "correctText": "Hay una mesa pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i15",
+    "correctText": "¿Hay dos camas en la habitación?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i16",
+    "correctText": "Hay dos libros en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i17",
+    "correctText": "No, no hay mesas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-24:i18",
+    "correctText": "¿Hay sillas en la habitación?",
+    "correctResponseId": null
+  }
+]

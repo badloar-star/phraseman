@@ -2114,4 +2114,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать размер предмета после hay.","uk":"описати розмір предмета після hay."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 22,
+    sourceFingerprint: "3f9a6aab08470e844c19b90d54ae2bbac55828982e99a8d772ba98c41055f468",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать количество кроватей и добавить место.","uk":"назвати кількість ліжок і додати місце."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 23,
+    sourceFingerprint: "a2f241cf2ae9a484108421e80b404c345c1dc3cce5adff449a610b21e1eb69de",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о наличии мебели в комнате и дать короткий ответ.","uk":"запитати про наявність меблів у кімнаті й дати коротку відповідь."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 24,
+    sourceFingerprint: "36a5458e13afda1794abe30f4a8d5cd655a9a8cd2e581079df1f04b837ad546d",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединить наличие, размер, количество и место в коротких репликах.","uk":"поєднати наявність, розмір, кількість і місце в коротких репліках."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 25,
+    sourceFingerprint: "ca3eace5293ddaadc912e2aecbbf0950745a8e03a1a78d29e6af348cb51960d6",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать место конкретной вещи с помощью está.","uk":"назвати місце конкретної речі за допомогою está."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

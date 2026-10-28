@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-23",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-23:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-23:intro1:r2": {
+          "ru": "Mesa женского рода: una.",
+          "uk": "Mesa жіночого роду: una."
+        },
+        "es:lesson-06:session-23:intro1:r3": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-23:intro2:r2": {
+          "ru": "С mesa нужна una.",
+          "uk": "Із mesa потрібна una."
+        },
+        "es:lesson-06:session-23:intro2:r3": {
+          "ru": "По условию стол есть: нужен положительный ответ.",
+          "uk": "За умовою стіл є: потрібна ствердна відповідь."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-23:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-23:intro3:r2": {
+          "ru": "После ответа No нужно отрицание no hay.",
+          "uk": "Після відповіді No потрібне заперечення no hay."
+        },
+        "es:lesson-06:session-23:intro3:r3": {
+          "ru": "По условию столов нет.",
+          "uk": "За умовою столів немає."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b2d34e05a017488a6c9a6b42908965499d647b4226752bb452a20bfe964d9ee4"
+}

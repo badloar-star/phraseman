@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-22",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-22:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-22:intro1:r2": {
+          "ru": "После dos нужно camas.",
+          "uk": "Після dos потрібно camas."
+        },
+        "es:lesson-06:session-22:intro1:r3": {
+          "ru": "Перед dos не нужна una.",
+          "uk": "Перед dos не потрібна una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-22:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-22:intro2:r2": {
+          "ru": "Кроватей две: camas.",
+          "uk": "Ліжок два: camas."
+        },
+        "es:lesson-06:session-22:intro2:r3": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-22:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-22:intro3:r2": {
+          "ru": "После dos нужно camas.",
+          "uk": "Після dos потрібно camas."
+        },
+        "es:lesson-06:session-22:intro3:r3": {
+          "ru": "Habitación женского рода: la.",
+          "uk": "Habitación жіночого роду: la."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f7ca6a6dfbdff4990e442a1f8f399be6847a8e535ddf6b4cc50493518d78f877"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-23:i01",
+    "correctText": "¿Hay una mesa en la habitación?",
+    "correctResponseId": "es:lesson-06:session-23:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-23:i02",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-06:session-23:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-23:i03",
+    "correctText": "¿Hay una mesa en la habitación?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-23:i04",
+    "correctText": "Sí",
+    "correctResponseId": "es:lesson-06:session-23:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-23:i05",
+    "correctText": "Sí, hay una mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-23:i06",
+    "correctText": "No, no hay mesas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-23:i07",
+    "correctText": "¿Hay una mesa en la habitación?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-23:i08",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-06:session-23:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-23:i09",
+    "correctText": "¿Hay una mesa en la habitación?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-23:i10",
+    "correctText": "Sí, hay una mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-23:i11",
+    "correctText": "No, no hay mesas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-23:i12",
+    "correctText": "¿Hay sillas en la habitación?",
+    "correctResponseId": null
+  }
+]

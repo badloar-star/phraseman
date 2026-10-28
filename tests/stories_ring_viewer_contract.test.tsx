@@ -23,7 +23,11 @@ jest.mock('react-native', () => ({
   InteractionManager: { runAfterInteractions: (cb: () => void) => { cb(); return { cancel: () => undefined }; } },
   useWindowDimensions: () => ({ width: 390, height: 844, scale: 1, fontScale: 1 }),
 }));
-jest.mock('react-native-svg', () => ({ __esModule: true, default: 'Svg', Circle: 'Circle', Defs: 'Defs', LinearGradient: 'LinearGradient', Stop: 'Stop' }));
+// зачем (шаблоны историй v1, 28.10): кадры шаблонов и фон просмотра рисуют эллипсы орбит, серп блика, пятна света — те же примитивы SVG
+jest.mock('react-native-svg', () => ({
+  __esModule: true, default: 'Svg', Circle: 'Circle', Defs: 'Defs', LinearGradient: 'LinearGradient', Stop: 'Stop',
+  Ellipse: 'Ellipse', G: 'G', ClipPath: 'ClipPath', Path: 'Path', RadialGradient: 'RadialGradient', Rect: 'Rect',
+}));
 jest.mock('react-native-gesture-handler', () => {
   const R = jest.requireActual('react');
   const chain: Record<string, unknown> = {};
@@ -37,13 +41,17 @@ jest.mock('react-native-gesture-handler', () => {
 jest.mock('react-native-reanimated', () => {
   const R = jest.requireActual('react');
   const View = (props: Record<string, unknown>) => R.createElement('View', props, props.children);
+  const Text = (props: Record<string, unknown>) => R.createElement('Text', props, props.children);
   return {
     __esModule: true,
-    default: { View },
+    // зачем (шаблоны историй v1): кольцо кадра — анимированный Circle, смена уровня — Animated.Text, счётчики — useAnimatedReaction
+    default: { View, Text, createAnimatedComponent: (c: unknown) => c },
     Easing: { bezier: () => () => 0, linear: () => 0, inOut: () => () => 0, quad: () => 0 },
     cancelAnimation: () => undefined,
     interpolate: (_v: number, _i: number[], out: number[]) => out[out.length - 1],
     runOnJS: (fn: unknown) => fn,
+    useAnimatedReaction: () => undefined,
+    useAnimatedProps: (fn: () => unknown) => fn(),
     useAnimatedStyle: (fn: () => unknown) => fn(),
     useSharedValue: (v: number) => ({ value: v }),
     useReducedMotion: () => true,
@@ -76,6 +84,17 @@ jest.mock('../app/coin_rank_table_v1', () => ({ isValidCoinRank: (r: unknown) =>
 jest.mock('../components/spire/useSpirePalette', () => ({
   useSpirePalette: () => ({ bg: '#0E1214', bgTop: '#16241F', card: '#1B2123', control: '#2A3234', text: '#FFFFFF', textSecondary: '#B8C0C4', accentText: '#7EF0C8' }),
 }));
+// зачем (шаблоны историй v1, 28.10): кадры и фон берут токены темы через свою палитру; тема и права на особые темы — без AsyncStorage и Firebase
+jest.mock('../components/stories/templates/story_template_palette', () => {
+  const pal = {
+    bgTop: '#16241F', bgMid: '#0E1214', bgBot: '#0A0E10', tx: '#FFFFFF', sec: '#B8C0C4', mu: '#8A9296', acc: '#7EF0C8', accG: '#3FD9A6', accB: '#9FF5D8',
+    accInk: '#06231A', accSoft: '#1D3A31', accGlow: '#3FD9A655', g1: '#1F4A3C66', g2: '#16302966', g3: '#0F2A2266', card: '#1B2123', ctl: '#2A3234',
+    cta: '#FFFFFF', ctaInk: '#0E1214', shTint: '#000000', isLight: false, mediaScrim: '#080A0ED1', mediaInk: '#FFFFFF',
+  };
+  return { useStoryTemplatePalette: () => pal, storyTemplatePalette: () => pal, mix: (c: string, a: number) => `${c}@${a}` };
+});
+jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({ liquidGlassThemeId: 'ink', setLiquidGlassThemeId: jest.fn() }) }));
+jest.mock('../app/premium_theme_entitlements', () => ({ isPremiumThemeUnlocked: () => true }));
 
 import type { StoryEvent } from '../modules/story_events/story_events_core';
 let mockStories: { enabled: boolean; unseenCount: number; playback: readonly StoryEvent[]; stories?: readonly StoryEvent[] };

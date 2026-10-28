@@ -22,12 +22,17 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import type { StoryEventList } from '../../modules/story_events/story_events_core';
-import { LinearGradient } from '../SafeLinearGradient';
 import { SheetSwipeRoot } from '../modal_fx/SheetSwipeClose';
 import SpireRankCoin from '../spire/SpireRankCoin';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import StorySlide from './StorySlides';
 import { storyText, storyWhenLabel } from './story_strings';
+import StoryTemplateSlide from './templates/StoryTemplateSlide';
+import { StoryFrameClockProvider, type StoryFrameClock } from './templates/story_frame_clock';
+import { storyTemplateFromEvent } from './templates/story_template_from_event';
+import { STORY_TEMPLATE_CTA } from './templates/story_template_registry';
+import { STORY_CTA_HEIGHT, STORY_SLIDE_BOTTOM_CTA, StoryBackdrop, StoryCta, StoryPauseBadge, storyCtaBottom } from './templates/story_viewer_chrome';
+import { useStoryCtaAction } from './templates/use_story_cta_action';
 
 const LOG = '[STORY-VIEWER]';
 /**
@@ -66,9 +71,13 @@ export type StoryViewerProps = Readonly<{
   onSeen: (id: string) => void;
   onClose: () => void;
   testID?: string;
+  /** Фотостудия (dev): кнопки действия только пишут лог. */
+  studio?: boolean;
+  /** С какого кадра открыть (фотостудия: снимок кадра k). */
+  startIndex?: number;
 }>;
 
-function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, origin, onSeen, onClose, testID = 'story-viewer' }: StoryViewerProps) {
+function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, origin, onSeen, onClose, testID = 'story-viewer', studio = false, startIndex = 0 }: StoryViewerProps) {
   const p = useSpirePalette();
   const reduceMotion = useReducedMotion();
   const insets = useStableSafeAreaInsets();
@@ -86,6 +95,10 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const pausedRef = useRef(false);
   // зачем (владелец 24.10: «при зажатии она паузится»; 8 · МОМЕНТЫ): пауза касается не только полосы — анимация слайда (фон объявления) тоже стоит, пока палец на экране
   const [pausedUi, setPausedUi] = useState(false);
+  // зачем (макет stories-templates-v1: значок паузы по центру — только пока палец держит экран, не при фоне приложения)
+  const [heldUi, setHeldUi] = useState(false);
+  // верх зоны кнопки действия (y от верха экрана); null — кнопки нет: тап и касание по кнопке не листают и не ставят паузу
+  const ctaZoneRef = useRef<number | null>(null);
   const screenReaderRef = useRef(false);
   const nowMs = useMemo(() => Date.now(), []);
 
@@ -121,11 +134,13 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const goRef = useRef<(k: number) => void>(() => undefined);
   const advance = useCallback(() => { goRef.current(indexRef.current + 1); }, []);
   const runBar = useCallback((from: number) => {
+    // зачем (макет stories-templates-v1, владелец 28.10: «Уменьшить движение — всё стоит сразу в конечном состоянии, автопереход выключен»): полоса полная, листание — тапом
+    if (reduceMotion) { progress.value = 1; DebugLogger.info(LOG, `уменьшение движения: автопереход выключен, кадр ${indexRef.current + 1} стоит`); return; }
     const current=events[indexRef.current];
     const duration=current?.type==='announcement'?Math.max(STORY_SLIDE_MS,Number(current.payload.durationMs)||STORY_SLIDE_MS):STORY_SLIDE_MS; // зачем (владелец 24.10): объявление тоже не короче 10 с
     const left = Math.max(0, 1 - from) * duration;
     progress.value = withTiming(1, { duration: left, easing: EASE_LINEAR }, (finished) => { if (finished) runOnJS(advance)(); });
-  }, [advance, progress, events]);
+  }, [advance, progress, events, reduceMotion]);
 
   const go = useCallback((target: number) => {
     if (closingRef.current) return;
@@ -174,11 +189,16 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
     const next = gestureHeldRef.current || touchHeldRef.current;
     if (next === heldRef.current) return;
     heldRef.current = next;
+    setHeldUi(next);
     DebugLogger.info(LOG, `удержание ${next ? 'есть' : 'снято'} (${why}) касание=${String(touchHeldRef.current)} жест=${String(gestureHeldRef.current)}`);
     syncPause();
   }, [syncPause]);
   const setHold = useCallback((value: boolean) => { gestureHeldRef.current = value; applyHold(value ? 'gesture' : 'gesture_end'); }, [applyHold]);
-  const onTouchStart = useCallback((e: GestureResponderEvent) => { touchHeldRef.current = e.nativeEvent.touches.length > 0; applyHold('touch'); }, [applyHold]);
+  const onTouchStart = useCallback((e: GestureResponderEvent) => {
+    // зачем (макет: pointerdown по кнопке действия не ставит паузу): нажатие кнопки — не удержание кадра
+    if (ctaZoneRef.current !== null && e.nativeEvent.pageY >= ctaZoneRef.current) { DebugLogger.info(LOG, `касание кнопки действия y=${Math.round(e.nativeEvent.pageY)} — без паузы`); return; }
+    touchHeldRef.current = e.nativeEvent.touches.length > 0; applyHold('touch');
+  }, [applyHold]);
   const onTouchEnd = useCallback((e: GestureResponderEvent) => { touchHeldRef.current = e.nativeEvent.touches.length > 0; applyHold('touch_end'); }, [applyHold]);
   const onTouchCancel = useCallback(() => { touchHeldRef.current = false; applyHold('touch_cancel'); }, [applyHold]);
   useEffect(() => { runtimeRef.current = runtimeActive; syncPause(); }, [runtimeActive, syncPause]);
@@ -194,7 +214,7 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
       screenReaderRef.current = on; setScreenReader(on);
       if (on) { syncPause(); DebugLogger.info(LOG, 'диктор включён: автопереход выключен'); }
     }).catch((e: unknown) => { DebugLogger.info(LOG, `isScreenReaderEnabled упал: ${String(e)} — автопереход оставлен`); });
-    go(0);
+    go(Math.max(0, Math.min(count - 1, Math.trunc(startIndex))));
     return () => { alive = false; cancelAnimation(progress); cancelAnimation(enter); cancelAnimation(closeP); };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: открытие один раз на монтирование
   }, []);
@@ -204,6 +224,7 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const headerH = insets.top + HEADER_BELOW_INSET;
   const onTapAt = useCallback((x: number, y: number) => {
     if (y < headerH) return;
+    if (ctaZoneRef.current !== null && y >= ctaZoneRef.current) { DebugLogger.info(LOG, `тап по кнопке действия y=${Math.round(y)} — не листаем`); return; }
     DebugLogger.info(LOG, `тап x=${Math.round(x)} зона=${x < winW * STORY_PREV_ZONE ? 'назад' : 'дальше'}`);
     go(x < winW * STORY_PREV_ZONE ? indexRef.current - 1 : indexRef.current + 1);
   }, [go, headerH, winW]);
@@ -246,12 +267,27 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
   const barFill = useAnimatedStyle(() => ({ width: `${Math.round(progress.value * 1000) / 10}%` }));
 
   const event = events[Math.min(index, count - 1)];
+  // зачем (владелец 28.10: шаблоны историй v1 «именно так»): у события есть шаблон — кадр макета stories-templates-v1 (часы кадра = полоса), иначе прежний StorySlides
+  const tpl = useMemo(() => (event ? storyTemplateFromEvent(event, studio) : null), [event, studio]);
+  const cta = tpl ? STORY_TEMPLATE_CTA[tpl.id] ?? null : null;
+  const ctaBottom = storyCtaBottom(insets.bottom);
+  ctaZoneRef.current = cta ? winH - ctaBottom - STORY_CTA_HEIGHT - 6 : null;
+  const clock = useMemo<StoryFrameClock>(() => ({ progress, durationMs: STORY_SLIDE_MS, final: reduceMotion || screenReader }), [progress, reduceMotion, screenReader]);
+  const onCtaAction = useStoryCtaAction(lang, studio);
+  const onCta = useCallback(() => { if (tpl && cta) onCtaAction(cta, tpl); }, [cta, onCtaAction, tpl]);
   return (
     <Modal visible transparent animationType="none" statusBarTranslucent onRequestClose={() => close('back')}>
       <SheetSwipeRoot>
+        <StoryFrameClockProvider value={clock}>
         <GestureDetector gesture={gesture}>
           <Animated.View testID={testID} accessibilityViewIsModal style={[s.root, sheetStyle]} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onTouchCancel={onTouchCancel}>
-            <LinearGradient colors={[p.bgTop, p.bg]} locations={[0, 0.7]} style={StyleSheet.absoluteFill} pointerEvents="none" />
+            <StoryBackdrop paused={pausedUi} />
+            {tpl && event ? (
+              // кадр шаблона — под полосами и шапкой (z-порядок макета: .sl 2 < .sbars/.shead 5); с кнопкой кадр кончается на 150 от низа
+              <View key={event.id} testID={`${testID}-slide`} style={[s.slideTpl, { bottom: cta ? STORY_SLIDE_BOTTOM_CTA : 60 }]} pointerEvents="none">
+                <StoryTemplateSlide tpl={tpl} lang={lang} myRank={coinRank} />
+              </View>
+            ) : null}
             <View style={[s.bars, { paddingTop: insets.top + 10 }]} testID={`${testID}-bars`}>
               {events.map((e, i) => (
                 <View key={e.id} style={s.track}>
@@ -271,14 +307,19 @@ function StoryViewer({ lang, liveAnnouncementIds, events: eventsProp, coinRank, 
                 <Ionicons name="close" size={22} color={p.text} />
               </Pressable>
             </View>
-            <Animated.View key={event?.id ?? 'none'} testID={`${testID}-slide`} style={[s.slide, slideStyle]} pointerEvents={event?.type==='announcement'?'box-none':'none'}>
-              {event ? <StorySlide event={event} lang={lang} coinRank={coinRank} paused={pausedUi} /> : null}
-            </Animated.View>
+            {tpl ? null : (
+              <Animated.View key={event?.id ?? 'none'} testID={`${testID}-slide`} style={[s.slide, slideStyle]} pointerEvents={event?.type==='announcement'?'box-none':'none'}>
+                {event ? <StorySlide event={event} lang={lang} coinRank={coinRank} paused={pausedUi} /> : null}
+              </Animated.View>
+            )}
+            {tpl && cta && event ? <StoryCta key={`cta-${event.id}`} cta={cta} lang={lang} bottom={ctaBottom} onPress={onCta} testID={`${testID}-cta`} /> : null}
+            <StoryPauseBadge visible={heldUi} />
             {screenReader ? (
               <Pressable testID={`${testID}-next`} accessibilityRole="button" accessibilityLabel={storyText(lang, 'next')} onPress={() => go(indexRef.current + 1)} style={s.srNext} />
             ) : null}
           </Animated.View>
         </GestureDetector>
+        </StoryFrameClockProvider>
       </SheetSwipeRoot>
     </Modal>
   );
@@ -290,13 +331,16 @@ const s = StyleSheet.create({
   bars: { flexDirection: 'row', gap: 4, paddingHorizontal: 12 },
   track: { flex: 1, height: 3, borderRadius: 2, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: 2 },
-  header: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingTop: 12 },
+  // шапка: макет `.shead` top 68 = полосы 54 + 3 + 11
+  header: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, paddingTop: 11 },
   headerCopy: { flex: 1, minWidth: 0 },
   name: { fontSize: 16, lineHeight: 21, fontWeight: '700' },
   when: { fontSize: 13, lineHeight: 17 },
   closeBtn: { width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' },
   // кадр: между шапкой и низом (образец `.sslide`: top 120, bottom 60, поля 28)
   slide: { position: 'absolute', left: 0, right: 0, top: 120, bottom: 60, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28 },
+  // кадр шаблона: поля 28 — внутри кадра (FrameRoot), слой частиц — на всю ширину (.sl > .conf / .snow / .rain макета)
+  slideTpl: { position: 'absolute', left: 0, right: 0, top: 120 },
   srNext: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 56 },
 });
 

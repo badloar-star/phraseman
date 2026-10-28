@@ -110,8 +110,8 @@ ___ → **cereal** · rice · bread
 
 **13 · Подруга хочет хлопьев на завтрак. Спросите её полной фразой: рядом с миской есть хлопья?**
 <!-- interaction_id: en:lesson-04:session-23:i09; family: phrase_builder -->
-Плитки: `cereal` `any` `near` `the` `bowl` `there` `Is` `some` → **Is there any cereal near the bowl?**
-*(плитка `some` лишняя: здесь нужно `any` — `Is there any cereal near the bowl?`)*
+Плитки: `cereal` `any` `near` `the` `bowl` `there` `Is` `are` → **Is there any cereal near the bowl?**
+*(плитка `are` лишняя: cereal не считают по штукам, поэтому `is` — `Is there any cereal near the bowl?`)*
 
 **14 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-23:i10; family: speed_match -->

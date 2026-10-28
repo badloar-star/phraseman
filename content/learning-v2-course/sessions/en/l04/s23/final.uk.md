@@ -110,8 +110,8 @@ ___ → **cereal** · rice · bread
 
 **13 · Подруга хоче пластівців на сніданок. Запитайте її повною фразою: поруч із мискою є пластівці?**
 <!-- interaction_id: en:lesson-04:session-23:i09; family: phrase_builder -->
-Плитки: `cereal` `any` `near` `the` `bowl` `there` `Is` `some` → **Is there any cereal near the bowl?**
-*(плитка `some` зайва: тут потрібно `any` — `Is there any cereal near the bowl?`)*
+Плитки: `cereal` `any` `near` `the` `bowl` `there` `Is` `are` → **Is there any cereal near the bowl?**
+*(плитка `are` зайва: cereal не рахують поштучно, тому `is` — `Is there any cereal near the bowl?`)*
 
 **14 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-23:i10; family: speed_match -->

@@ -140,8 +140,8 @@ ___ is next to the museum. → **It** · There · They
 
 **19 · Гость заходит в участок. Скажите ему полной фразой: рядом с дверью стоит сотрудник полиции**
 <!-- interaction_id: en:lesson-04:session-53:i15; family: phrase_builder -->
-Плитки: `officer` `an` `next` `to` `the` `door` `There` `is` `a` → **There is an officer next to the door.**
-*(плитка `a` лишняя: здесь нужно `an` — `There is an officer next to the door.`)*
+Плитки: `officer` `an` `next` `to` `the` `door` `There` `is` `are` → **There is an officer next to the door.**
+*(плитка `are` лишняя: сотрудник один, поэтому `is` — `There is an officer next to the door.`)*
 
 **20 · Соедините слова со значениями**
 <!-- interaction_id: en:lesson-04:session-53:i16; family: speed_match -->

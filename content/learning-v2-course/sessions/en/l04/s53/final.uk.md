@@ -140,8 +140,8 @@ ___ is next to the museum. → **It** · There · They
 
 **19 · Гість заходить до дільниці. Скажіть йому повною фразою: поруч із дверима стоїть співробітник поліції**
 <!-- interaction_id: en:lesson-04:session-53:i15; family: phrase_builder -->
-Плитки: `officer` `an` `next` `to` `the` `door` `There` `is` `a` → **There is an officer next to the door.**
-*(плитка `a` зайва: тут потрібно `an` — `There is an officer next to the door.`)*
+Плитки: `officer` `an` `next` `to` `the` `door` `There` `is` `are` → **There is an officer next to the door.**
+*(плитка `are` зайва: співробітник один, тому `is` — `There is an officer next to the door.`)*
 
 **20 · З’єднайте слова зі значеннями**
 <!-- interaction_id: en:lesson-04:session-53:i16; family: speed_match -->

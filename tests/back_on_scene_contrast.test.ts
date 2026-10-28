@@ -4,7 +4,7 @@ import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGl
 import { BACK_ON_SCENE_MIN_CIRCLE, BACK_ON_SCENE_MIN_GLYPH, backOnSceneTokens } from '../components/v2/back_on_scene';
 import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
 import { dialogsSceneColors, dialogsSceneTokensForTheme } from '../components/dialogs/scene/dialogs_scene_tokens';
-import { hexHue, seasonThemedArt } from '../components/learning-v2/season/season_art';
+import { hexChroma, hexHue, seasonThemedArt } from '../components/learning-v2/season/season_art';
 
 const APPEARANCES = ['dark', 'light'] as const;
 
@@ -22,9 +22,9 @@ describe('backOnSceneTokens', () => {
         ];
         for (let chapter = 1; chapter <= 7; chapter += 1) {
           for (let ordinal = 0; ordinal < 6; ordinal += 1) {
-            scenes.push([`season ${chapter}.${ordinal}`, seasonThemedArt(hexHue(g.accent), chapter, ordinal, appearance === 'light' ? 'light' : 'dark').from]);
+            scenes.push([`season ${chapter}.${ordinal}`, seasonThemedArt(hexHue(g.accent), chapter, ordinal, appearance === 'light' ? 'light' : 'dark', false, hexChroma(g.accent)).from]);
           }
-          scenes.push([`season ${chapter} exam`, seasonThemedArt(hexHue(g.accent), chapter, 0, appearance === 'light' ? 'light' : 'dark', true).from]);
+          scenes.push([`season ${chapter} exam`, seasonThemedArt(hexHue(g.accent), chapter, 0, appearance === 'light' ? 'light' : 'dark', true, hexChroma(g.accent)).from]);
         }
         for (const [name, top] of scenes) {
           const t = backOnSceneTokens({ sceneTop: top, ...inks });

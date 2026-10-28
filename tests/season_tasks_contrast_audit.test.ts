@@ -243,19 +243,8 @@ describe('Онбординг и приветствие: палитра из то
     expect(misses).toEqual([]);
   });
 
-  // экран выбора языка — самостоятельная фиксированная тёмная палитра до выбора темы (app/language_welcome.tsx, theme-exempt)
-  it('экран выбора языка: тексты и кнопка на фоне #07111F', () => {
-    const bg = '#07111F';
-    const card = over('#FFFFFF', 0.06, bg);
-    const selected = over('#7B8CFF', 0.16, bg);
-    expect(contrastRatio('#F7FAFF', bg)).toBeGreaterThanOrEqual(TEXT);
-    expect(contrastRatio('#C6D3FF', bg)).toBeGreaterThanOrEqual(TEXT);
-    expect(contrastRatio('#EAF0FF', card)).toBeGreaterThanOrEqual(TEXT);
-    expect(contrastRatio('#EAF0FF', selected)).toBeGreaterThanOrEqual(TEXT);
-    expect(contrastRatio('#8AB9FF', bg)).toBeGreaterThanOrEqual(TEXT);
-    for (const stop of ['#E3ECFF', '#7B8CFF', '#C95CFF']) expect(contrastRatio('#07111F', stop)).toBeGreaterThanOrEqual(TEXT);
-    for (const stop of ['#7B8CFF', '#C95CFF']) expect(contrastRatio(stop, bg)).toBeGreaterThanOrEqual(GRAPHIC);
-  });
+  // экран выбора языка с 28.10 берёт цвета сцены текущей темы (app/language_welcome_palette.ts) — его контраст по всем темам проверяет
+  // tests/scene_theme_single_source_guard.test.ts; прежний тест фиксированной палитры #07111F снят вместе с палитрой.
 });
 
 describe('Главная, вариант 2: плашки на подложке 50 %, плитки, значок места Пика (аудит 22.10)', () => {

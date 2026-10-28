@@ -21,10 +21,12 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import type { Lang } from '../../../constants/i18n';
 import { LinearGradient } from '../../SafeLinearGradient';
 import { useLv2Glass } from '../LearningV2Glass';
+import { logSceneTheme } from '../../home/v2/scene/scene_theme_log';
+import { useTheme } from '../../ThemeContext';
 import SeasonCarousel from './SeasonCarousel';
 import SeasonNavTiles from './SeasonNavTiles';
 import SeasonCardFace from './SeasonCardFace';
-import { hexHue, seasonThemedArt, type SeasonTheme } from './season_art';
+import { hexChroma, hexHue, seasonThemedArt, type SeasonTheme } from './season_art';
 import { seasonStarTones } from './season_star_tones';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
 import { seasonCardText } from './season_copy_card';
@@ -123,6 +125,7 @@ export type SeasonCourseViewProps = Readonly<{
 function SeasonCourseView(props: SeasonCourseViewProps) {
   const { lang, theme, deck, lessonOrdinal } = props;
   const g = useLv2Glass();
+  const { liquidGlassThemeId } = useTheme();
   const dark = theme === 'dark';
   const startIndex = props.focus ? props.focus.index : deck.currentIndex;
   const [selected, setSelected] = useState(startIndex);
@@ -140,7 +143,12 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
   const heroChapter = currentCard ? currentCard.chapterOrdinal : 1;
   // зачем (закон владельца 22.10): обложка и карты — оттенки текущей темы
   const themeHue = hexHue(g.accent);
-  const heroArt = seasonThemedArt(themeHue, heroChapter, 0, theme);
+  // зачем (баг владельца 28.10, серая тема — яркая сцена): насыщенность палитры сцены от насыщенности ТЕКУЩЕЙ темы, не эталонная
+  const themeChroma = hexChroma(g.accent);
+  const heroArt = seasonThemedArt(themeHue, heroChapter, 0, theme, false, themeChroma);
+  useEffect(() => {
+    logSceneTheme('lessons:season-cover', liquidGlassThemeId, theme, 'seasonThemedArt(themeHue, themeChroma)', { accent: g.accent, from: heroArt.from, to: heroArt.to, glow: heroArt.glow, tintChroma: Math.round(themeChroma * 1000) / 1000 });
+  }, [g.accent, liquidGlassThemeId, heroArt.from, heroArt.to, heroArt.glow, theme, themeChroma]);
   // зачем (владелец 22.10, 4 · ТЕМЫ 17a7af053): звёзды результата на карточках — оттенки текущей темы, цвета только из seasonStarTones
   const starTones = useMemo(() => seasonStarTones(themeHue), [themeHue]);
 
@@ -173,7 +181,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
     const card = deck.cards[index];
     if (!card) return null;
     const info = props.chapterInfo(card.chapterOrdinal);
-    const art = seasonThemedArt(themeHue, card.chapterOrdinal, card.sessionOrdinal, theme, card.kind === 'exam');
+    const art = seasonThemedArt(themeHue, card.chapterOrdinal, card.sessionOrdinal, theme, card.kind === 'exam', themeChroma);
     if (card.kind === 'exam') {
       return (
         <SeasonCardFace kind="exam" state={card.state} ordinal={card.chapterOrdinal} art={art} dark={dark} glyph={info.icon}
@@ -182,7 +190,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
     }
     const ep = props.episodeInfo(card);
     return <SeasonCardFace kind="episode" state={card.state} ordinal={card.sessionOrdinal} art={art} dark={dark} glyph={info.icon} phrase={ep.phrase} progress={ep.progress} stars={card.state === 'done' ? ep.stars ?? null : null} starTones={starTones} shakeSeq={props.lockShake && props.lockShake.index === index ? props.lockShake.seq : 0} />;
-  }, [dark, deck.cards, lang, starTones, themeHue, props, theme]);
+  }, [dark, deck.cards, lang, starTones, themeHue, themeChroma, props, theme]);
 
   const labelFor = useCallback((index: number) => {
     const card = deck.cards[index];

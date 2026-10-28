@@ -3,7 +3,7 @@
 import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { homeSceneTokensForTheme } from '../components/home/v2/scene/home_scene_tokens';
 import { dialogsSceneColors, dialogsSceneTokensForTheme, contrastRatio } from '../components/dialogs/scene/dialogs_scene_tokens';
-import { hexHue, seasonThemedArt } from '../components/learning-v2/season/season_art';
+import { hexChroma, hexHue, seasonThemedArt } from '../components/learning-v2/season/season_art';
 import { sceneStatusBarStyle, statusBarIconsOnScene } from '../components/v2/scene_status_bar_icons';
 
 describe('значки строки состояния над сценой', () => {
@@ -16,7 +16,7 @@ describe('значки строки состояния над сценой', () 
         const tops: Array<[string, string]> = [
           ['home', homeSceneTokensForTheme(id, appearance).sceneTop],
           ['dialogs', dialogsSceneColors(dialogsSceneTokensForTheme(id, appearance)).top],
-          ['season', seasonThemedArt(hexHue(g.accent), 1, 0, appearance).from],
+          ['season', seasonThemedArt(hexHue(g.accent), 1, 0, appearance, false, hexChroma(g.accent)).from],
         ];
         for (const [name, top] of tops) {
           const icons = statusBarIconsOnScene(top);

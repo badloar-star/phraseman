@@ -14,7 +14,7 @@
 // первый кадр — синхронный (все данные — локальные константы + параметр роута).
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -59,22 +59,10 @@ import { fill, onboardingCopy, type OnboardingCopyKey } from '../components/onbo
 import { languageNameOf } from '../components/onboarding/clean_onboarding_options';
 import { IS_STORE_RELEASE } from './config';
 import BackGlyph from '../components/v2/BackGlyph';
+import { useTheme } from '../components/ThemeContext';
+import { logSceneTheme } from '../components/home/v2/scene/scene_theme_log';
+import { languageWelcomePalette, type LanguageWelcomePalette } from './language_welcome_palette';
 
-const EXEMPT_COLOR_1 = '#E3ECFF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_2 = '#C6D3FF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_3 = '#07111F'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_4 = '#293044'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_5 = '#E3ECFF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_6 = '#7B8CFF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_7 = '#C95CFF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_8 = '#07111F'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_9 = '#DCE4FF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_10 = '#C6D3FF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_11 = '#C6D3FF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_12 = '#07111F'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_13 = '#E3ECFF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_14 = '#7B8CFF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-const EXEMPT_COLOR_15 = '#C95CFF'; // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
 
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 type WelcomeStep = 'welcome' | 'goal' | 'level' | 'done';
@@ -128,7 +116,22 @@ const LEVEL_OPTIONS: ChoiceOption[] = [
   { id: 'b2', labelKey: 'lwLevelB2', icon: 'bar-chart-outline' },
 ];
 
+/**
+ * Палитра экрана и стили от неё: цвета сцены ТЕКУЩЕЙ темы, а не свой набор.
+ * зачем (баг владельца 28.10: «тема серая, а сцена фиолетовая»): экран больше не держит фиксированную палитру; журнал — поиск [SCENE-THEME].
+ */
+function useLanguageWelcomeStyles(): Readonly<{ p: LanguageWelcomePalette; styles: ReturnType<typeof makeStyles> }> {
+  const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
+  const p = useMemo(() => languageWelcomePalette(liquidGlassThemeId, liquidGlassAppearance), [liquidGlassThemeId, liquidGlassAppearance]);
+  const styles = useMemo(() => makeStyles(p), [p]);
+  useEffect(() => {
+    logSceneTheme('language_welcome', liquidGlassThemeId, liquidGlassAppearance, 'languageWelcomePalette(homeSceneTokensForTheme)', { top: p.top, bottom: p.bottom, accent: p.accent, ctaFrom: p.cta[0], ctaTo: p.cta[2] });
+  }, [p, liquidGlassThemeId, liquidGlassAppearance]);
+  return { p, styles };
+}
+
 export default function LanguageWelcomeScreen() {
+  const { p, styles } = useLanguageWelcomeStyles();
   const router = useRouter();
   const { lang } = useLang();
   const params = useLocalSearchParams<{ target?: string; resolveStarted?: string; devStep?: string }>();
@@ -240,7 +243,7 @@ export default function LanguageWelcomeScreen() {
     router.replace('/(tabs)/home' as any);
   }, [router]);
 
-  if (!target || !entryResolved) return <View style={styles.safe} />;
+  if (!target || !entryResolved) return <View style={styles.safe}><LinearGradient pointerEvents="none" colors={[p.top, p.bottom]} style={StyleSheet.absoluteFill} /></View>;
 
   const flagAsset = FLAG_ASSETS[target];
 
@@ -278,10 +281,10 @@ export default function LanguageWelcomeScreen() {
             accessibilityState={{ selected: isSelected }}
             style={({ pressed }) => [styles.optionCard, isSelected && styles.optionCardSelected, pressed && styles.pressed]}
           >
-            <Ionicons name={item.icon} size={32} color={isSelected ? EXEMPT_COLOR_1 : EXEMPT_COLOR_2} />
+            <Ionicons name={item.icon} size={32} color={isSelected ? p.text : p.soft} />
             <Text style={styles.optionTitle} numberOfLines={2}>{lc[item.labelKey]}</Text>
             <View style={[styles.radio, isSelected && styles.radioSelected]}>
-              {isSelected ? <Ionicons name="checkmark" size={18} color={EXEMPT_COLOR_3} /> : null}
+              {isSelected ? <Ionicons name="checkmark" size={18} color={p.ink} /> : null}
             </View>
           </Pressable>
         );
@@ -300,18 +303,19 @@ export default function LanguageWelcomeScreen() {
       style={({ pressed }) => [styles.primaryButtonOuter, pressed && styles.pressed, (disabled || busy) && styles.disabled]}
     >
       <LinearGradient
-        colors={disabled ? [EXEMPT_COLOR_4, '#293044'] : [EXEMPT_COLOR_5, EXEMPT_COLOR_6, EXEMPT_COLOR_7]}
+        colors={disabled ? p.ctaDisabled : p.cta}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.primaryButton}
       >
-        {busy ? <ActivityIndicator size="small" color={EXEMPT_COLOR_8} /> : <Text style={styles.primaryButtonText}>{label}</Text>}
+        {busy ? <ActivityIndicator size="small" color={p.ink} /> : <Text style={styles.primaryButtonText}>{label}</Text>}
       </LinearGradient>
     </Pressable>
   );
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+      <LinearGradient pointerEvents="none" colors={[p.top, p.bottom]} style={StyleSheet.absoluteFill} />
       <StatusBar barStyle="light-content" />
       <View style={styles.header}>
         <Pressable
@@ -326,7 +330,7 @@ export default function LanguageWelcomeScreen() {
           accessibilityRole="button"
           style={({ pressed }) => [styles.backButton, pressed && styles.pressed]}
         >
-          <BackGlyph size={30} color={EXEMPT_COLOR_9} />
+          <BackGlyph size={30} color={p.text} />
         </Pressable>
         <View style={styles.dotsRow}>
           {[0, 1, 2].map((i) => (
@@ -343,7 +347,7 @@ export default function LanguageWelcomeScreen() {
               {flagAsset ? (
                 <Image source={flagAsset} style={styles.flagImage} resizeMode="contain" />
               ) : (
-                <Ionicons name="flag-outline" size={60} color={EXEMPT_COLOR_10} />
+                <Ionicons name="flag-outline" size={60} color={p.soft} />
               )}
             </View>
             <Text style={styles.title}>
@@ -410,6 +414,7 @@ function DoneCelebration({
   buttonLabel,
   onStart,
 }: DoneCelebrationProps) {
+  const { p, styles } = useLanguageWelcomeStyles();
   const badge = useSharedValue(0); // ореол + флаг: появление
   const check = useSharedValue(0); // галочка: pop с overshoot
   const copy = useSharedValue(0); // текст + кнопка: мягкое проявление
@@ -445,6 +450,7 @@ function DoneCelebration({
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+      <LinearGradient pointerEvents="none" colors={[p.top, p.bottom]} style={StyleSheet.absoluteFill} />
       <StatusBar barStyle="light-content" />
       <View style={styles.doneBody}>
         <View style={styles.badgeWrap}>
@@ -453,10 +459,10 @@ function DoneCelebration({
             {flagAsset ? (
               <Image source={flagAsset} style={styles.doneFlag} resizeMode="contain" />
             ) : (
-              <Ionicons name="flag-outline" size={54} color={EXEMPT_COLOR_11} />
+              <Ionicons name="flag-outline" size={54} color={p.soft} />
             )}
             <Reanimated.View style={[styles.doneCheck, checkStyle]}>
-              <Ionicons name="checkmark" size={20} color={EXEMPT_COLOR_12} />
+              <Ionicons name="checkmark" size={20} color={p.ink} />
             </Reanimated.View>
           </Reanimated.View>
         </View>
@@ -478,7 +484,7 @@ function DoneCelebration({
             style={({ pressed }) => [styles.primaryButtonOuter, pressed && styles.pressed]}
           >
             <LinearGradient
-              colors={[EXEMPT_COLOR_13, EXEMPT_COLOR_14, EXEMPT_COLOR_15]}
+              colors={p.cta}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={styles.primaryButton}
@@ -492,8 +498,8 @@ function DoneCelebration({
   );
 }
 
-const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: '#07111F' }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+const makeStyles = (p: LanguageWelcomePalette) => StyleSheet.create({
+  safe: { flex: 1, backgroundColor: p.bottom },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -503,52 +509,52 @@ const styles = StyleSheet.create({
   },
   backButton: { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
   dotsRow: { flexDirection: 'row', gap: 8 },
-  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: 'rgba(198,211,255,0.25)' }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-  dotActive: { backgroundColor: '#8AB9FF' }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+  dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: p.dot },
+  dotActive: { backgroundColor: p.accent },
   scrollContent: { paddingHorizontal: 22, paddingTop: 10, paddingBottom: 28, flexGrow: 1 },
   welcomeBlock: { alignItems: 'center', paddingTop: 26 },
   flagHalo: {
     width: 180,
     height: 112,
     borderRadius: 24,
-    backgroundColor: 'rgba(255,255,255,0.08)', // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+    backgroundColor: p.plate,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 24,
     overflow: 'hidden',
   },
   flagImage: { width: 160, height: 100 },
-  title: { color: '#F7FAFF', fontSize: 32, fontWeight: '800', textAlign: 'center', marginBottom: 14 }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-  subtitle: { color: '#C6D3FF', fontSize: 16, lineHeight: 24, textAlign: 'center' }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-  question: { color: '#F7FAFF', fontSize: 26, fontWeight: '800', marginBottom: 18, marginTop: 8 }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+  title: { color: p.text, fontSize: 32, fontWeight: '800', textAlign: 'center', marginBottom: 14 },
+  subtitle: { color: p.soft, fontSize: 16, lineHeight: 24, textAlign: 'center' },
+  question: { color: p.text, fontSize: 26, fontWeight: '800', marginBottom: 18, marginTop: 8 },
   optionList: { gap: 10 },
   optionCard: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    backgroundColor: 'rgba(255,255,255,0.06)', // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+    backgroundColor: p.card,
     borderRadius: 16,
     borderWidth: 0,
-    borderColor: 'rgba(198,211,255,0.18)', // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+    borderColor: p.line,
     paddingHorizontal: 14,
     paddingVertical: 12,
   },
-  optionCardSelected: { borderColor: '#7B8CFF', backgroundColor: 'rgba(123,140,255,0.16)' }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-  optionTitle: { color: '#EAF0FF', fontSize: 16, fontWeight: '600', flex: 1 }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+  optionCardSelected: { borderColor: p.accent, backgroundColor: p.accentSoft },
+  optionTitle: { color: p.text, fontSize: 16, fontWeight: '600', flex: 1 },
   radio: {
     width: 26,
     height: 26,
     borderRadius: 13,
     borderWidth: 0,
-    borderColor: 'rgba(198,211,255,0.4)', // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+    borderColor: p.line,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  radioSelected: { backgroundColor: '#8AB9FF', borderColor: '#8AB9FF' }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+  radioSelected: { backgroundColor: p.accent, borderColor: p.accent },
   footer: { paddingHorizontal: 22, paddingBottom: 14, paddingTop: 8 },
   primaryButtonOuter: { borderRadius: 18, overflow: 'hidden' },
   primaryButton: { paddingVertical: 16, alignItems: 'center', justifyContent: 'center', borderRadius: 18 },
-  primaryButtonText: { color: '#07111F', fontSize: 16, fontWeight: '700' }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+  primaryButtonText: { color: p.ink, fontSize: 16, fontWeight: '700' },
   pressed: { opacity: 0.85 },
   disabled: { opacity: 0.55 },
 
@@ -560,15 +566,15 @@ const styles = StyleSheet.create({
     width: 168,
     height: 168,
     borderRadius: 84,
-    backgroundColor: 'rgba(123,140,255,0.22)', // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+    backgroundColor: p.haloDone,
   },
   doneBadge: {
     width: 116,
     height: 116,
     borderRadius: 58,
-    backgroundColor: 'rgba(255,255,255,0.08)', // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+    backgroundColor: p.plate,
     borderWidth: 0,
-    borderColor: 'rgba(198,211,255,0.22)', // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+    borderColor: p.line,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'visible',
@@ -581,14 +587,14 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#8AB9FF', // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+    backgroundColor: p.accent,
     borderWidth: 0,
-    borderColor: '#07111F', // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+    borderColor: p.bottom,
     alignItems: 'center',
     justifyContent: 'center',
   },
   doneCopy: { alignItems: 'center', marginTop: 22 },
-  doneEyebrow: { color: '#8AB9FF', fontSize: 13, fontWeight: '700', letterSpacing: 0.3, marginBottom: 6 }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-  doneTitle: { color: '#F7FAFF', fontSize: 30, fontWeight: '800', textAlign: 'center', marginBottom: 14 }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
-  doneText: { color: '#C6D3FF', fontSize: 16, lineHeight: 24, textAlign: 'center', maxWidth: 320 }, // theme-exempt: экран выбора языка — самостоятельная тёмная палитра экрана до выбора темы (светлая строка состояния задана там же)
+  doneEyebrow: { color: p.accent, fontSize: 13, fontWeight: '700', letterSpacing: 0.3, marginBottom: 6 },
+  doneTitle: { color: p.text, fontSize: 30, fontWeight: '800', textAlign: 'center', marginBottom: 14 },
+  doneText: { color: p.soft, fontSize: 16, lineHeight: 24, textAlign: 'center', maxWidth: 320 },
 });

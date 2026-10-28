@@ -28,6 +28,7 @@ import { homeSceneAllReleasedDone, homeSceneDaysAwayByVisits, homeSceneDaysSince
 import { useAppVisitGap } from '../../../../modules/welcome_back/use_app_visit_gap';
 import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from './home_scene_state';
 import { homeSceneTokensForTheme, type HomeSceneStageTokens } from './home_scene_tokens';
+import { logSceneTheme } from './scene_theme_log';
 import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
 import { useHomeSceneSpecial, useHomeSceneWordsDue, type HomeSceneSpecialRoute, type HomeSceneSpecialView } from './use_home_scene_special';
@@ -258,7 +259,12 @@ export type HomeSceneViewProps = Readonly<{
  */
 export function useHomeSceneStageTokens(evening: boolean): HomeSceneStageTokens {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
-  return useMemo(() => homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening), [liquidGlassThemeId, liquidGlassAppearance, evening]);
+  const tokens = useMemo(() => homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening), [liquidGlassThemeId, liquidGlassAppearance, evening]);
+  // зачем (баг владельца 28.10, закон «сперва логи»): какими цветами и откуда нарисована сцена Главной — один поиск [SCENE-THEME]
+  useEffect(() => {
+    logSceneTheme(evening ? 'home:evening' : 'home', liquidGlassThemeId, liquidGlassAppearance, 'homeSceneTokensForTheme(max)', { top: tokens.sceneTop, bottom: tokens.sceneBottom, glow: tokens.sceneGlow });
+  }, [tokens, liquidGlassThemeId, liquidGlassAppearance, evening]);
+  return tokens;
 }
 
 /** «Сцена» по готовому решению: цвета, картинка, тексты, шапка и строка «Нет сети» поверх. */

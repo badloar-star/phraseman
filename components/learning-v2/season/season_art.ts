@@ -60,6 +60,38 @@ export function hexHue(hex: string): number {
   return ((Math.atan2(bb, a) * 180) / Math.PI + 360) % 360;
 }
 
+/** Насыщенность (chroma OKLCH) цвета '#RRGGBB': 0 — серый; не hex → 0. */
+export function hexChroma(hex: string): number {
+  if (!/^#[0-9a-f]{6}$/i.test(hex)) return 0;
+  const lin = (i: number): number => {
+    const v = parseInt(hex.slice(1 + i * 2, 3 + i * 2), 16) / 255;
+    return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+  };
+  const r = lin(0);
+  const g = lin(1);
+  const b = lin(2);
+  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
+  const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
+  const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+  return Math.hypot(1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s, 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s);
+}
+
+/** Насыщенность эталонных обложек (OKLCH chroma начала градиента): «Океан» 0,11, «Сумерки» 0,15. */
+export const SEASON_REF_CHROMA: Readonly<Record<'light' | 'dark', number>> = Object.freeze({ dark: 0.11, light: 0.15 });
+/** Нижняя граница доли: даже у серой темы цвет сцены остаётся читаемым оттенком темы, а не мёртвым серым. */
+export const SEASON_TINT_SCALE_MIN = 0.2;
+
+/**
+ * Доля насыщенности палитры сцены от насыщенности ТЕКУЩЕЙ темы (accent).
+ * зачем (баг владельца 28.10: «тема серая, а сцена в уроках будет фиолетовая, везде должна быть по цвету темы»): обложки брали оттенок темы,
+ * а насыщенность — эталонную (0,11 / 0,15), поэтому у серого «Затмения» (насыщенность 0,04) обложка урока была ярко-синей (#084980). Теперь серая тема
+ * даёт серую сцену, цветная — как раньше (доля 1). Нет насыщенности темы (undefined) — 1: прежнее поведение для вызовов без неё.
+ */
+export function seasonTintScale(themeChroma: number | undefined, theme: 'light' | 'dark'): number {
+  if (themeChroma === undefined || !Number.isFinite(themeChroma)) return 1;
+  return Math.min(1, Math.max(SEASON_TINT_SCALE_MIN, themeChroma / SEASON_REF_CHROMA[theme]));
+}
+
 export type SeasonTheme = 'light' | 'dark';
 
 export type SeasonArt = Readonly<{
@@ -78,18 +110,18 @@ const norm = (h: number): number => ((h % 360) + 360) % 360;
  *   ink:    glow oklch(.70 .13 h+28), градиент oklch(.53 .15 h+k) → oklch(.33 .13 h+18+k)
  *   marine: glow oklch(.56 .12 h+28), градиент oklch(.40 .11 h+k) → oklch(.20 .07 h+18+k)
  */
-export function seasonArt(hue: number, shift: number, theme: SeasonTheme, darker = 0, chromaMul = 1, spread = 1): SeasonArt {
+export function seasonArt(hue: number, shift: number, theme: SeasonTheme, darker = 0, chromaMul = 1, spread = 1, tint = 1): SeasonArt {
   if (theme === 'light') {
     return {
-      glow: oklchToHex(0.7, 0.13, norm(hue + 28 * spread)),
-      from: oklchToHex(0.53 - darker, 0.15 * chromaMul, norm(hue + shift)),
-      to: oklchToHex(0.33 - darker, 0.13 * chromaMul, norm(hue + 18 * spread + shift)),
+      glow: oklchToHex(0.7, 0.13 * tint, norm(hue + 28 * spread)),
+      from: oklchToHex(0.53 - darker, 0.15 * chromaMul * tint, norm(hue + shift)),
+      to: oklchToHex(0.33 - darker, 0.13 * chromaMul * tint, norm(hue + 18 * spread + shift)),
     };
   }
   return {
-    glow: oklchToHex(0.56, 0.12, norm(hue + 28 * spread)),
-    from: oklchToHex(0.4 - darker, 0.11 * chromaMul, norm(hue + shift)),
-    to: oklchToHex(0.2 - darker / 2, 0.07 * chromaMul, norm(hue + 18 * spread + shift)),
+    glow: oklchToHex(0.56, 0.12 * tint, norm(hue + 28 * spread)),
+    from: oklchToHex(0.4 - darker, 0.11 * chromaMul * tint, norm(hue + shift)),
+    to: oklchToHex(0.2 - darker / 2, 0.07 * chromaMul * tint, norm(hue + 18 * spread + shift)),
   };
 }
 
@@ -143,15 +175,16 @@ const themedCache = new Map<string, SeasonArt>();
  * Цвета карточки эпизода/обложки/экзамена: оттенок = оттенок темы (themeHue = hexHue(g.accent)), глава и номер эпизода задают светлоту и насыщенность.
  * Пример: `seasonThemedArt(hexHue(g.accent), card.chapterOrdinal, card.sessionOrdinal, g.isLight ? 'light' : 'dark')` → { from, to, glow } для LinearGradient.
  */
-export function seasonThemedArt(themeHue: number, chapterOrdinal: number, sessionOrdinal: number, theme: SeasonTheme, exam = false): SeasonArt {
+export function seasonThemedArt(themeHue: number, chapterOrdinal: number, sessionOrdinal: number, theme: SeasonTheme, exam = false, themeChroma?: number): SeasonArt {
+  const tint = seasonTintScale(themeChroma, theme);
   const chapter = Math.max(1, chapterOrdinal) - 1;
   const step = SEASON_EPISODE_STEPS[Math.abs(Math.round(sessionOrdinal)) % SEASON_EPISODE_STEPS.length]!;
-  const key = `${Math.round(themeHue)}:${chapter}:${exam ? 'x' : Math.abs(Math.round(sessionOrdinal)) % SEASON_EPISODE_STEPS.length}:${theme}`;
+  const key = `${Math.round(themeHue)}:${chapter}:${exam ? 'x' : Math.abs(Math.round(sessionOrdinal)) % SEASON_EPISODE_STEPS.length}:${theme}:${tint.toFixed(2)}`;
   const hit = themedCache.get(key);
   if (hit) return hit;
   const darker = exam ? 0.12 : 0.01 * (chapter % 3) + step.darker;
   const chroma = exam ? 0.8 : CHAPTER_CHROMA_MUL[chapter % CHAPTER_CHROMA_MUL.length]! * step.chroma;
-  const next = seasonArt(norm(themeHue), 0, theme, darker, chroma, 0); // spread 0: и конец градиента, и свет — тот же оттенок темы
+  const next = seasonArt(norm(themeHue), 0, theme, darker, chroma, 0, tint); // spread 0: и конец градиента, и свет — тот же оттенок темы
   themedCache.set(key, next);
   return next;
 }

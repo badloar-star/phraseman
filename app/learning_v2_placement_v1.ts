@@ -174,6 +174,8 @@ export async function applyLearningV2PlacementResultV1(result: PlacementTestResu
     }
     const view = await createLearningV2CourseLocalProgressStoreV1(AsyncStorage).placeStart(scope, { openIds: ids, startId, source: 'placement_test' });
     console.log(LOG, 'apply:opened', JSON.stringify({ lessons: result.openedLessonOrdinals, firstEpisodesOpened: ids.length, startId, current: view.currentSessionId })); // guard-ok: итог
+    // зачем (координатор 28.10): то же итогом под общим префиксом разбора «сколько открывает тест уровня»
+    console.log('[PLACEMENT-UNLOCK] applied', JSON.stringify({ openedLessons: ids.length, firstLesson: result.openedLessonOrdinals[0] ?? null, lastLesson: lastOpened, startLesson, startId })); // guard-ok: что реально открыто на телефоне
     return view;
   } catch (error) {
     console.warn(LOG, 'apply:failed', JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину

@@ -1,5 +1,6 @@
 // Модель вида теста «Не хочу с начала» (макет chapter-exam-season.html, раздел 6): подпись «урок n из N», строки итога.
-// ЗАМОК ВЛАДЕЛЬЦА 25.10 «убери 2 доп вопроса вообще»: один вопрос на урок — точек попыток и плашки «ещё 2» в модели нет.
+// ЗАМОК ВЛАДЕЛЬЦА 25.10 «убери 2 доп вопроса вообще»: точек попыток и плашки «ещё 2» в модели нет. 28.10 (владелец через
+// координатора): по 2 вопроса на урок, урок засчитан при обоих верных, потолок старта — урок 10 (вопросы по урокам 1–9).
 import {
   answerPlacementTestV1,
   startPlacementTestV1,
@@ -18,9 +19,9 @@ describe('Тест «Не хочу с начала»: модель вида', ()
 
   it('вопрос: «урок n из N» и доля прогресса идут по месту темы в тесте', () => {
     const lessons = Array.from({ length: 32 }, (_, i) => i + 1);
-    const view = placementQuestionView(run(lessons, [true]));
-    expect(view).toMatchObject({ lessonOrdinal: 2, position: 2, total: 32 });
-    expect(view?.progress).toBeCloseTo(2 / 32, 5);
+    const view = placementQuestionView(run(lessons, [true, true]));
+    expect(view).toMatchObject({ lessonOrdinal: 2, position: 2, total: 9 }); // потолок 28.10: вопросы только по урокам 1–9
+    expect(view?.progress).toBeCloseTo(2 / 9, 5);
   });
 
   it('первая ошибка заканчивает тест — следующего вопроса нет', () => {
@@ -28,12 +29,12 @@ describe('Тест «Не хочу с начала»: модель вида', ()
   });
 
   it('тест окончен — вида вопроса нет', () => {
-    expect(placementQuestionView(run([1, 2], [true, true]))).toBeNull();
+    expect(placementQuestionView(run([1, 2], [true, true, true, true]))).toBeNull();
   });
 
   // ЗАМОК ВЛАДЕЛЬЦА 25.10: «стоп на первой ошибке»; итог «Открыто до урока N» — макет: уроки 1–3 «открыт», урок 4 «начнём здесь»
   it('итог: открытые по порядку, затем «начнём здесь»', () => {
-    const result = placementResultView(run([1, 2, 3, 4, 5], [true, true, true, false]));
+    const result = placementResultView(run([1, 2, 3, 4, 5], [true, true, true, true, true, true, false]));
     expect(result.startLessonOrdinal).toBe(4);
     expect(result.openedLessonOrdinals).toEqual([1, 2, 3]);
     expect(result.openedRange).toBe('1–3');
@@ -43,14 +44,14 @@ describe('Тест «Не хочу с начала»: модель вида', ()
   });
 
   it('итог: один открытый урок — диапазон без тире; провал на первой теме — открытых нет', () => {
-    expect(placementResultView(run([1, 2, 3], [true, false])).openedRange).toBe('1');
+    expect(placementResultView(run([1, 2, 3], [true, true, false])).openedRange).toBe('1');
     const none = placementResultView(run([1, 2], [false]));
     expect(none.openedLessonOrdinals).toEqual([]);
     expect(none.rows).toEqual([{ lessonOrdinal: 1, kind: 'here' }]);
   });
 
   it('итог: тест остановлен на теме без вопроса — она «начнём здесь», пройденное открыто', () => {
-    const state = run([1, 2, 3], [true]);
+    const state = run([1, 2, 3], [true, true]);
     const result = placementResultView(state, 2);
     expect(result.startLessonOrdinal).toBe(2);
     expect(result.rows).toEqual([{ lessonOrdinal: 1, kind: 'opened' }, { lessonOrdinal: 2, kind: 'here' }]);

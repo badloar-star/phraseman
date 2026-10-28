@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-37:i01",
+    "correctText": "estos",
+    "correctResponseId": "es:lesson-04:session-37:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-37:i02",
+    "correctText": "Estos",
+    "correctResponseId": "es:lesson-04:session-37:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-37:i03",
+    "correctText": "Estos libros son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-37:i04",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-04:session-37:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-37:i05",
+    "correctText": "Estos libros son grandes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-37:i06",
+    "correctText": "Estos libros no son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-37:i07",
+    "correctText": "Estos libros son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-37:i08",
+    "correctText": "grandes",
+    "correctResponseId": "es:lesson-04:session-37:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-37:i09",
+    "correctText": "Estos libros son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-37:i10",
+    "correctText": "Estos libros son grandes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-37:i11",
+    "correctText": "Estos libros no son nuevos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-37:i12",
+    "correctText": "Estos libros no son grandes.",
+    "correctResponseId": null
+  }
+]

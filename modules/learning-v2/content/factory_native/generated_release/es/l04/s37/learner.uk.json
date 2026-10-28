@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-37",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-37:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-37:i01:r1",
+          "text": "estos"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i01:r2",
+          "text": "este"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-37:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-37:i01:audio",
+          "transcript": "estos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-37:i01:r1",
+            "targetText": "estos",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-37:i01:r2",
+            "targetText": "este",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-37:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит estos с окончанием -os.",
+              "uk": "Звучить estos із закінченням -os."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ці книжки поруч нові",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-37:i02:r1",
+          "text": "Estos"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i02:r2",
+          "text": "Este"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i02:r3",
+          "text": "Esta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ці книжки поруч нові",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эти книги рядом новые",
+          "uk": "Вставте слово — ці книжки поруч нові"
+        },
+        "gappedTargetPhrase": "___ libros son nuevos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-37:i02:r1",
+            "text": "Estos"
+          },
+          {
+            "responseId": "es:lesson-04:session-37:i02:r2",
+            "text": "Este"
+          },
+          {
+            "responseId": "es:lesson-04:session-37:i02:r3",
+            "text": "Esta"
+          }
+        ],
+        "testedDimension": "Вставте слово — ці книжки поруч нові",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-37:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці книжки поруч нові",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: estos.",
+              "uk": "Книжок кілька: estos."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-37:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці книжки поруч нові",
+            "feedbackByLocale": {
+              "ru": "Libros — мужской род, множественное число: estos.",
+              "uk": "Libros — чоловічий рід, множина: estos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ці книжки поруч нові; почніть з Estos libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-37:i03:r1",
+          "text": "Плитки: nuevos"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i03:r2",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i03:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i03:r4",
+          "text": "estos"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i03:r5",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ці книжки поруч нові; почніть з Estos libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Estos libros son nuevos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — эти книги рядом новые; начните с Estos libros",
+          "uk": "Зберіть фразу — ці книжки поруч нові; почніть з Estos libros"
+        },
+        "orderedTokens": [
+          "Estos",
+          "libros",
+          "son",
+          "nuevos"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-37:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ці книжки поруч нові; почніть з Estos libros",
+            "feedbackByLocale": {
+              "ru": "перед libros уже стоит estos.",
+              "uk": "перед libros уже стоїть estos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ці книжки поруч нові",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-37:i04:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i04:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i04:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ці книжки поруч нові",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эти книги рядом новые",
+          "uk": "Вставте слово — ці книжки поруч нові"
+        },
+        "gappedTargetPhrase": "Estos libros ___ nuevos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-37:i04:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-37:i04:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-37:i04:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — ці книжки поруч нові",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-37:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці книжки поруч нові",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: son.",
+              "uk": "Книжок кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-37:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці книжки поруч нові",
+            "feedbackByLocale": {
+              "ru": "Говорите о книгах, а не о себе.",
+              "uk": "Говорите про книжки, а не про себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ці книжки поруч великі; почніть з Estos libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-37:i05:r1",
+          "text": "Плитки: grandes"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i05:r2",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i05:r4",
+          "text": "estos"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i05:r5",
+          "text": "grande."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ці книжки поруч великі; почніть з Estos libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Estos libros son grandes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — эти книги рядом большие; начните с Estos libros",
+          "uk": "Зберіть фразу — ці книжки поруч великі; почніть з Estos libros"
+        },
+        "orderedTokens": [
+          "Estos",
+          "libros",
+          "son",
+          "grandes"
+        ],
+        "authoredDistractorTokens": [
+          "grande"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-37:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ці книжки поруч великі; почніть з Estos libros",
+            "feedbackByLocale": {
+              "ru": "книг несколько, нужно grandes.",
+              "uk": "книжок кілька, потрібне grandes."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ці книжки поруч не нові; почніть з Estos libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-37:i06:r1",
+          "text": "Плитки: nuevos"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i06:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i06:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i06:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i06:r5",
+          "text": "estos"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i06:r6",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ці книжки поруч не нові; почніть з Estos libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Estos libros no son nuevos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — эти книги рядом не новые; начните с Estos libros",
+          "uk": "Зберіть фразу — ці книжки поруч не нові; почніть з Estos libros"
+        },
+        "orderedTokens": [
+          "Estos",
+          "libros",
+          "no",
+          "son",
+          "nuevos"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-37:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ці книжки поруч не нові; почніть з Estos libros",
+            "feedbackByLocale": {
+              "ru": "книг несколько, нужно son.",
+              "uk": "книжок кілька, потрібне son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-37:i07:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i07:r2",
+          "text": "nuevos"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i07:r3",
+          "text": "estos"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i07:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i07:r5",
+          "text": "este."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-37:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-37:i07:audio",
+          "transcript": "Estos libros son nuevos."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Estos libros son nuevos.",
+        "orderedTokens": [
+          "Estos",
+          "libros",
+          "son",
+          "nuevos"
+        ],
+        "authoredDistractorTokens": [
+          "este"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-37:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит estos.",
+              "uk": "звучить estos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ці книжки поруч великі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-37:i08:r1",
+          "text": "grandes"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i08:r2",
+          "text": "grande"
+        },
+        {
+          "responseId": "es:lesson-04:session-37:i08:r3",
+          "text": "grandos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ці книжки поруч великі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эти книги рядом большие",
+          "uk": "Вставте слово — ці книжки поруч великі"
+        },
+        "gappedTargetPhrase": "Estos libros son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-37:i08:r1",
+            "text": "grandes"
+          },
+          {
+            "responseId": "es:lesson-04:session-37:i08:r2",
+            "text": "grande"
+          },
+          {
+            "responseId": "es:lesson-04:session-37:i08:r3",
+            "text": "grandos"
+          }
+        ],
+        "testedDimension": "Вставте слово — ці книжки поруч великі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-37:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці книжки поруч великі",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: grandes.",
+              "uk": "Книжок кілька: grandes."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-37:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ці книжки поруч великі",
+            "feedbackByLocale": {
+              "ru": "К grande добавляем -s: grandes.",
+              "uk": "До grande додаємо -s: grandes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ці книжки поруч нові; почніть з Estos libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-37:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ці книжки поруч нові; почніть з Estos libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-37:i09:audio",
+          "transcript": "Estos libros son nuevos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Estos libros son nuevos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ці книжки поруч великі; почніть з Estos libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-37:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ці книжки поруч великі; почніть з Estos libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-37:i10:audio",
+          "transcript": "Estos libros son grandes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Estos libros son grandes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ці книжки поруч не нові; почніть з Estos libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-37:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ці книжки поруч не нові; почніть з Estos libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-37:i11:audio",
+          "transcript": "Estos libros no son nuevos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Estos libros no son nuevos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ці книжки поруч не великі; почніть з Estos libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-37:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ці книжки поруч не великі; почніть з Estos libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-37:i12:audio",
+          "transcript": "Estos libros no son grandes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Estos libros no son grandes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8aed25a690916f207b075f0a6fdcc257f97449ea5ebe1f4bd2e792b0feb57a34"
+}

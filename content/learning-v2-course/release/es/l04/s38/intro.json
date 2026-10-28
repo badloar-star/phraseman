@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "ставить estas перед несколькими предметами женского рода.",
+    "uk": "ставити estas перед кількома предметами жіночого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Удобные стулья",
+        "uk": "Зручні стільці"
+      },
+      "bodyByLocale": {
+        "ru": "Сидите на одном из стульев рядом с другом и хвалите весь этот комплект. Скажите `Estas sillas son cómodas` — «Эти стулья удобные». Соберите `estas sillas` + `son` + `cómodas`. Испанское silla женского рода, поэтому для нескольких стульев нужны estas и cómodas. Ориентируйтесь на испанское слово, хотя русское «стул» мужского рода.",
+        "uk": "Сидите на одному зі стільців поруч із другом і хвалите весь цей комплект. Скажіть `Estas sillas son cómodas` — «Ці стільці зручні». Складіть `estas sillas` + `son` + `cómodas`. Іспанське silla жіночого роду, тому для кількох стільців потрібні estas і cómodas. Орієнтуйтеся на іспанське слово, хоча українське «стілець» чоловічого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о стульях рядом: «Эти стулья удобные». Начните с Estas sillas.",
+          "uk": "Скажіть про стільці поруч: «Ці стільці зручні». Почніть з Estas sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-38:intro1:r1",
+              "text": "Estas sillas son cómodas."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro1:r2",
+              "text": "Estos sillas son cómodas."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro1:r3",
+              "text": "Estas sillas son cómodos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-38:intro1:r1",
+              "text": "Estas sillas son cómodas."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro1:r2",
+              "text": "Estos sillas son cómodas."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro1:r3",
+              "text": "Estas sillas son cómodos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о стульях рядом: «Эти стулья удобные». Начните с Estas sillas.",
+          "uk": "Скажіть про стільці поруч: «Ці стільці зручні». Почніть з Estas sillas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Новые стулья",
+        "uk": "Нові стільці"
+      },
+      "bodyByLocale": {
+        "ru": "Друг замечает стулья, которые вы недавно купили. Скажите `Estas sillas son nuevas` — «Эти стулья новые». Соберите `estas sillas` + `son` + `nuevas`. Замените cómodas на nuevas. Это знакомое nuevo в женском роде и множественном числе: новые именно sillas.",
+        "uk": "Друг помічає стільці, які ви нещодавно купили. Скажіть `Estas sillas son nuevas` — «Ці стільці нові». Складіть `estas sillas` + `son` + `nuevas`. Замініть cómodas на nuevas. Це знайоме nuevo в жіночому роді й множині: нові саме sillas."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите о стульях рядом: «Эти стулья новые». Начните с Estas sillas.",
+          "uk": "Скажіть про стільці поруч: «Ці стільці нові». Почніть з Estas sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-38:intro2:r1",
+              "text": "Estas sillas son nuevas."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro2:r2",
+              "text": "Estas sillas son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro2:r3",
+              "text": "Estas sillas son nueva."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-38:intro2:r1",
+              "text": "Estas sillas son nuevas."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro2:r2",
+              "text": "Estas sillas son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro2:r3",
+              "text": "Estas sillas son nueva."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о стульях рядом: «Эти стулья новые». Начните с Estas sillas.",
+          "uk": "Скажіть про стільці поруч: «Ці стільці нові». Почніть з Estas sillas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Неудобные стулья",
+        "uk": "Незручні стільці"
+      },
+      "bodyByLocale": {
+        "ru": "Пробуете другой комплект рядом с вами и не можете удобно сесть. Скажите `Estas sillas no son cómodas` — «Эти стулья неудобные». Соберите `estas sillas` + `no son` + `cómodas`. Поставьте no перед son: так вы отрицаете удобство. Estas и cómodas сохраняются, потому что речь о тех же нескольких стульях.",
+        "uk": "Пробуєте інший комплект поруч із вами й не можете зручно сісти. Скажіть `Estas sillas no son cómodas` — «Ці стільці незручні». Складіть `estas sillas` + `no son` + `cómodas`. Поставте no перед son: так ви заперечуєте зручність. Estas і cómodas зберігаються, бо йдеться про ті самі кілька стільців."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что стулья рядом неудобные. Начните с Estas sillas и используйте no son cómodas.",
+          "uk": "Скажіть, що стільці поруч незручні. Почніть з Estas sillas і використайте no son cómodas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-38:intro3:r1",
+              "text": "Estas sillas no son cómodas."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro3:r2",
+              "text": "Estas sillas son no cómodas."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro3:r3",
+              "text": "Estas sillas no es cómodas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-38:intro3:r1",
+              "text": "Estas sillas no son cómodas."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro3:r2",
+              "text": "Estas sillas son no cómodas."
+            },
+            {
+              "responseId": "es:lesson-04:session-38:intro3:r3",
+              "text": "Estas sillas no es cómodas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что стулья рядом неудобные. Начните с Estas sillas и используйте no son cómodas.",
+          "uk": "Скажіть, що стільці поруч незручні. Почніть з Estas sillas і використайте no son cómodas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7e1d7d14403b1dd2b5907895dfac8d32e19c379065aa6b2bc4302446bb4a6425"
+}

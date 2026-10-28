@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-38",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-38:i01:r1",
+          "text": "estas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i01:r2",
+          "text": "estos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-38:i01:audio",
+          "transcript": "estas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-38:i01:r1",
+            "targetText": "estas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-38:i01:r2",
+            "targetText": "estos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-38:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит окончание -as: estas.",
+              "uk": "Звучить закінчення -as: estas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — эти стулья рядом удобные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-38:i02:r1",
+          "text": "Estas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i02:r2",
+          "text": "Estos"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i02:r3",
+          "text": "Esta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — эти стулья рядом удобные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эти стулья рядом удобные",
+          "uk": "Вставте слово — ці стільці поруч зручні"
+        },
+        "gappedTargetPhrase": "___ sillas son cómodas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-38:i02:r1",
+            "text": "Estas"
+          },
+          {
+            "responseId": "es:lesson-04:session-38:i02:r2",
+            "text": "Estos"
+          },
+          {
+            "responseId": "es:lesson-04:session-38:i02:r3",
+            "text": "Esta"
+          }
+        ],
+        "testedDimension": "Вставьте слово — эти стулья рядом удобные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — эти стулья рядом удобные",
+            "feedbackByLocale": {
+              "ru": "Sillas женского рода: estas.",
+              "uk": "Sillas жіночого роду: estas."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-38:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — эти стулья рядом удобные",
+            "feedbackByLocale": {
+              "ru": "Стульев несколько: estas.",
+              "uk": "Стільців кілька: estas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — эти стулья рядом удобные; начните с Estas sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-38:i03:r1",
+          "text": "Плитки: cómodas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i03:r2",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i03:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i03:r4",
+          "text": "estas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i03:r5",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — эти стулья рядом удобные; начните с Estas sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Estas sillas son cómodas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — эти стулья рядом удобные; начните с Estas sillas",
+          "uk": "Зберіть фразу — ці стільці поруч зручні; почніть з Estas sillas"
+        },
+        "orderedTokens": [
+          "Estas",
+          "sillas",
+          "son",
+          "cómodas"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-38:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — эти стулья рядом удобные; начните с Estas sillas",
+            "feedbackByLocale": {
+              "ru": "перед sillas уже стоит estas.",
+              "uk": "перед sillas уже стоїть estas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — эти стулья рядом новые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-38:i04:r1",
+          "text": "nuevas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i04:r2",
+          "text": "nuevos"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i04:r3",
+          "text": "nueva"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — эти стулья рядом новые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эти стулья рядом новые",
+          "uk": "Вставте слово — ці стільці поруч нові"
+        },
+        "gappedTargetPhrase": "Estas sillas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-38:i04:r1",
+            "text": "nuevas"
+          },
+          {
+            "responseId": "es:lesson-04:session-38:i04:r2",
+            "text": "nuevos"
+          },
+          {
+            "responseId": "es:lesson-04:session-38:i04:r3",
+            "text": "nueva"
+          }
+        ],
+        "testedDimension": "Вставьте слово — эти стулья рядом новые",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-38:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — эти стулья рядом новые",
+            "feedbackByLocale": {
+              "ru": "Sillas женского рода: nuevas.",
+              "uk": "Sillas жіночого роду: nuevas."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-38:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — эти стулья рядом новые",
+            "feedbackByLocale": {
+              "ru": "Стульев несколько: nuevas.",
+              "uk": "Стільців кілька: nuevas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — эти стулья рядом новые; начните с Estas sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-38:i05:r1",
+          "text": "Плитки: nuevas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i05:r2",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i05:r4",
+          "text": "estas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i05:r5",
+          "text": "nuevos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — эти стулья рядом новые; начните с Estas sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Estas sillas son nuevas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — эти стулья рядом новые; начните с Estas sillas",
+          "uk": "Зберіть фразу — ці стільці поруч нові; почніть з Estas sillas"
+        },
+        "orderedTokens": [
+          "Estas",
+          "sillas",
+          "son",
+          "nuevas"
+        ],
+        "authoredDistractorTokens": [
+          "nuevos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-38:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — эти стулья рядом новые; начните с Estas sillas",
+            "feedbackByLocale": {
+              "ru": "sillas женского рода.",
+              "uk": "sillas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — эти стулья рядом неудобные; начните с Estas sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-38:i06:r1",
+          "text": "Плитки: cómodas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i06:r2",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i06:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i06:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i06:r5",
+          "text": "estas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i06:r6",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — эти стулья рядом неудобные; начните с Estas sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Estas sillas no son cómodas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — эти стулья рядом неудобные; начните с Estas sillas",
+          "uk": "Зберіть фразу — ці стільці поруч незручні; почніть з Estas sillas"
+        },
+        "orderedTokens": [
+          "Estas",
+          "sillas",
+          "no",
+          "son",
+          "cómodas"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-38:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — эти стулья рядом неудобные; начните с Estas sillas",
+            "feedbackByLocale": {
+              "ru": "стульев несколько, нужно son.",
+              "uk": "стільців кілька, потрібне son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-38:i07:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i07:r2",
+          "text": "cómodas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i07:r3",
+          "text": "estas"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i07:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i07:r5",
+          "text": "estos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-38:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-38:i07:audio",
+          "transcript": "Estas sillas son cómodas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Estas sillas son cómodas.",
+        "orderedTokens": [
+          "Estas",
+          "sillas",
+          "son",
+          "cómodas"
+        ],
+        "authoredDistractorTokens": [
+          "estos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-38:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит estas.",
+              "uk": "звучить estas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — эти стулья рядом удобные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-38:i08:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-38:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — эти стулья рядом удобные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эти стулья рядом удобные",
+          "uk": "Вставте слово — ці стільці поруч зручні"
+        },
+        "gappedTargetPhrase": "Estas sillas ___ cómodas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-38:i08:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-38:i08:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-38:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — эти стулья рядом удобные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-38:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — эти стулья рядом удобные",
+            "feedbackByLocale": {
+              "ru": "Стульев несколько: son.",
+              "uk": "Стільців кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-38:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — эти стулья рядом удобные",
+            "feedbackByLocale": {
+              "ru": "Говорите о стульях, а не о себе.",
+              "uk": "Говорите про стільці, а не про себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — эти стулья рядом удобные; начните с Estas sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-38:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — эти стулья рядом удобные; начните с Estas sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-38:i09:audio",
+          "transcript": "Estas sillas son cómodas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Estas sillas son cómodas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — эти стулья рядом новые; начните с Estas sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-38:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — эти стулья рядом новые; начните с Estas sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-38:i10:audio",
+          "transcript": "Estas sillas son nuevas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Estas sillas son nuevas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — эти стулья рядом неудобные; начните с Estas sillas и используйте no son cómodas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — эти стулья рядом неудобные; начните с Estas sillas и используйте no son cómodas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-38:i11:audio",
+          "transcript": "Estas sillas no son cómodas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Estas sillas no son cómodas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — эти стулья рядом не новые; начните с Estas sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-38:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — эти стулья рядом не новые; начните с Estas sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-38:i12:audio",
+          "transcript": "Estas sillas no son nuevas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Estas sillas no son nuevas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "02116a52296cd62688970e3ab1601942770751278a1259a81aa61a8ba2c25f98"
+}

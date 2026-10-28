@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-37",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-37:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-37:intro1:r2": {
+          "ru": "Книг несколько: estos.",
+          "uk": "Книжок кілька: estos."
+        },
+        "es:lesson-04:session-37:intro1:r3": {
+          "ru": "Для нескольких книг нужно son.",
+          "uk": "Для кількох книжок потрібне son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-37:intro2:r2": {
+          "ru": "К grande нужно добавить -s.",
+          "uk": "До grande потрібно додати -s."
+        },
+        "es:lesson-04:session-37:intro2:r3": {
+          "ru": "Нужна форма grandes: grande + s.",
+          "uk": "Потрібна форма grandes: grande + s."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-37:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-37:intro3:r2": {
+          "ru": "Здесь no ставится перед son.",
+          "uk": "Тут no ставиться перед son."
+        },
+        "es:lesson-04:session-37:intro3:r3": {
+          "ru": "Книг несколько: son.",
+          "uk": "Книжок кілька: son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "289f335fb69c8682910787bdfe4212d3897dcb0c777e3f7e1cfbeb6b9e340978"
+}

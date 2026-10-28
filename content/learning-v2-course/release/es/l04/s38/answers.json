@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-38:i01",
+    "correctText": "estas",
+    "correctResponseId": "es:lesson-04:session-38:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-38:i02",
+    "correctText": "Estas",
+    "correctResponseId": "es:lesson-04:session-38:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-38:i03",
+    "correctText": "Estas sillas son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-38:i04",
+    "correctText": "nuevas",
+    "correctResponseId": "es:lesson-04:session-38:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-38:i05",
+    "correctText": "Estas sillas son nuevas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-38:i06",
+    "correctText": "Estas sillas no son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-38:i07",
+    "correctText": "Estas sillas son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-38:i08",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-04:session-38:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-38:i09",
+    "correctText": "Estas sillas son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-38:i10",
+    "correctText": "Estas sillas son nuevas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-38:i11",
+    "correctText": "Estas sillas no son cómodas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-38:i12",
+    "correctText": "Estas sillas no son nuevas.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-38",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-38:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-38:intro1:r2": {
+          "ru": "Перед женским sillas нужно estas.",
+          "uk": "Перед жіночим sillas потрібне estas."
+        },
+        "es:lesson-04:session-38:intro1:r3": {
+          "ru": "Признак относится к sillas: cómodas.",
+          "uk": "Ознака стосується sillas: cómodas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-38:intro2:r2": {
+          "ru": "Согласуйте признак с sillas: nuevas.",
+          "uk": "Узгодьте ознаку з sillas: nuevas."
+        },
+        "es:lesson-04:session-38:intro2:r3": {
+          "ru": "Стульев несколько: nuevas.",
+          "uk": "Стільців кілька: nuevas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-38:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-38:intro3:r2": {
+          "ru": "Здесь no нужно перед son.",
+          "uk": "Тут no потрібне перед son."
+        },
+        "es:lesson-04:session-38:intro3:r3": {
+          "ru": "Стульев несколько: son.",
+          "uk": "Стільців кілька: son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "6451fba329e261c930e96f645219f4d37f0b06b44555a6ecfe0e9c78a79b9eda"
+}

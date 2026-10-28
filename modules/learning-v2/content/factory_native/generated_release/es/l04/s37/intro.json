@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать estos перед несколькими предметами мужского рода.",
+    "uk": "вибирати estos перед кількома предметами чоловічого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Несколько новых книг",
+        "uk": "Кілька нових книжок"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете другу новые книги на столе. Скажите `Estos libros son nuevos` — «Эти книги новые». Соберите `estos libros` + `son` + `nuevos`. Для нескольких книг este меняется на estos, libro — на libros, es — на son, nuevo — на nuevos. Estos — форма знакомого este для нескольких предметов мужского рода.",
+        "uk": "Показуєте другові нові книжки на столі. Скажіть `Estos libros son nuevos` — «Ці книжки нові». Складіть `estos libros` + `son` + `nuevos`. Для кількох книжок este змінюється на estos, libro — на libros, es — на son, nuevo — на nuevos. Estos — форма знайомого este для кількох предметів чоловічого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите о книгах рядом: «Эти книги новые». Начните с Estos libros.",
+          "uk": "Скажіть про книжки поруч: «Ці книжки нові». Почніть з Estos libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-37:intro1:r1",
+              "text": "Estos libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro1:r2",
+              "text": "Este libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro1:r3",
+              "text": "Estos libros es nuevos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-37:intro1:r1",
+              "text": "Estos libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro1:r2",
+              "text": "Este libros son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro1:r3",
+              "text": "Estos libros es nuevos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о книгах рядом: «Эти книги новые». Начните с Estos libros.",
+          "uk": "Скажіть про книжки поруч: «Ці книжки нові». Почніть з Estos libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книги большие",
+        "uk": "Книжки великі"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает о размере книг перед вами. Скажите `Estos libros son grandes` — «Эти книги большие». Соберите `estos libros` + `son` + `grandes`. Знакомое grande заканчивается на гласную: для нескольких предметов добавьте -s. Получится grandes. Начало Estos libros son оставьте прежним.",
+        "uk": "Друг запитує про розмір книжок перед вами. Скажіть `Estos libros son grandes` — «Ці книжки великі». Складіть `estos libros` + `son` + `grandes`. Знайоме grande закінчується на голосну: для кількох предметів додайте -s. Вийде grandes. Початок Estos libros son залиште незмінним."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите размер книг рядом: «Эти книги большие». Начните с Estos libros.",
+          "uk": "Опишіть розмір книжок поруч: «Ці книжки великі». Почніть з Estos libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-37:intro2:r1",
+              "text": "Estos libros son grandes."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro2:r2",
+              "text": "Estos libros son grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro2:r3",
+              "text": "Estos libros son grandos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-37:intro2:r1",
+              "text": "Estos libros son grandes."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro2:r2",
+              "text": "Estos libros son grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro2:r3",
+              "text": "Estos libros son grandos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите размер книг рядом: «Эти книги большие». Начните с Estos libros.",
+          "uk": "Опишіть розмір книжок поруч: «Ці книжки великі». Почніть з Estos libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Книги не новые",
+        "uk": "Книжки не нові"
+      },
+      "bodyByLocale": {
+        "ru": "Друг принимает книги перед вами за новые, но вы уже давно их читаете. Скажите `Estos libros no son nuevos` — «Эти книги не новые». Соберите `estos libros` + `no son` + `nuevos`. Для отрицания поставьте no непосредственно перед son. Остальные формы сохраняются: речь по-прежнему о нескольких книгах.",
+        "uk": "Друг вважає книжки перед вами новими, але ви вже давно їх читаєте. Скажіть `Estos libros no son nuevos` — «Ці книжки не нові». Складіть `estos libros` + `no son` + `nuevos`. Для заперечення поставте no безпосередньо перед son. Решта форм зберігається: йдеться, як і раніше, про кілька книжок."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Возразите: «Эти книги не новые». Начните с Estos libros.",
+          "uk": "Заперечте: «Ці книжки не нові». Почніть з Estos libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-37:intro3:r1",
+              "text": "Estos libros no son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro3:r2",
+              "text": "Estos libros son no nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro3:r3",
+              "text": "Estos libros no es nuevos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-37:intro3:r1",
+              "text": "Estos libros no son nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro3:r2",
+              "text": "Estos libros son no nuevos."
+            },
+            {
+              "responseId": "es:lesson-04:session-37:intro3:r3",
+              "text": "Estos libros no es nuevos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Возразите: «Эти книги не новые». Начните с Estos libros.",
+          "uk": "Заперечте: «Ці книжки не нові». Почніть з Estos libros."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "bfa2b6163ead13f242dfa1516c6478262398d27173a99919fc74a55350dd4160"
+}

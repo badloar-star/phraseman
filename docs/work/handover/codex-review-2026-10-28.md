@@ -252,7 +252,7 @@
 - Решение — обновить ожидания там, где поведение задумано, и исправить данные там, где нет (счётчики, недостающие занятия).
 
 **Обновление 28.10 вечер (Learning V2, проверено Ревизором):** 12 наборов из п.14/п.19 перепинены на текущее поведение коммитами f57801250 и 3a6cc6572; каждое изменение привязано к осознанному коммиту (72f72a94e, 82cfea233, b9773b2ca) — ослаблений нет. Красными остаются намеренно:
-- `learning_v2_session_runtime_contract` и `learning_v2_system_tts_only` — **не чини сам**: конфликт решений. Владелец 22.10 сказал «только голос телефона», а твой b9773b2ca вернул записи для en/es (`systemTtsOnly: studyTarget !== "en" && studyTarget !== "es"`). Решает владелец через координатора; до решения ничего не меняй.
+- `learning_v2_session_runtime_contract` и `learning_v2_system_tts_only` — **решено владельцем 28.10 (журнал e743bb20a): «Записи для en/es»**. Твой код b9773b2ca верен, менять его не надо. Тесты перепривязывает Learning V2.
 - `learning_v2_mode_feedback_lane` — в нём и в `learning_v2_system_tts_only.test.ts` лежат незакоммиченные правки (25.10 21:37 и 28.10 09:32 — по времени похоже на твои; если не твои — скажи координатору). Закоммить их, тогда Learning V2 перепинит.
 - `live_new_word_before_phrase` (86 слов без карточки, l24/l25 после cf3e41b2b) и `all_ready_tasks_runtime_audit` (sound_contrast 1 → 229) — задачи курса, не твои.
 
@@ -278,6 +278,20 @@
 Не твоё (для сведения, чтобы не искать): FriendEventMarker.tsx:78, LearningV2SessionOutcomeSheet.tsx:291, lesson1.tsx, SpireGhostLayer.tsx (+3) — закоммичены другими сессиями; `components/stories/templates/` (story_template_palette.ts:56, `accG: t.accent`) — закоммичено Моментами в 01cf3cb27, исправляют они. `tests/i18n-design-zone` красный от старых файлов Пика (spire_scene_preview_fixtures 24, spire_oddity_prompt 3, spire_outcome_host_trace 2) — тоже не твоё.
 
 Хвосты цвета Тем закрыты: 1343 → 511 (`tests/color_literal_census_ratchet.test.mjs`, база 511).
+
+### 22. Диагностика вкладки «Уроки» — 5 однострочных вставок в твой `app/(tabs)/_layout.tsx` (от 2 · Дизайн, по просьбе координатора)
+
+Готовый патч с точными местами: `docs/work/lessons-diagnostics-layout-patch-2026-10-28.md`. Запись событий уже закоммичена (a29438f02, `app/lessons_tab_diagnostics.ts`), сервер их принимает. Коротко:
+1. Импорт `noteLessonsLeave, noteLessonsOpenStart` из `'../lessons_tab_diagnostics'`.
+2. В ветке `[LANG-SURFACE] tabs:hidden_tab_route → home` (и там, где применяется `planHiddenTabRedirect`): `if (rawFromRouter === 1) noteLessonsLeave('hidden_tab_redirect', { studyTarget: String(studyTarget) })`.
+3. В `handleTabChange` после `const idx = visibleTabIdx(...)`: `noteLessonsOpenStart('tab_bar')` при входе во вкладку 1 и `noteLessonsLeave('tab_bar_tap', { to: idx })` при уходе с неё. Лучше в `onPress` таббара, если он отделим от программных `goToTab`.
+4. В `useLayoutEffect` по `pathname`: `route_param`, когда маршрут увёл с «Уроков» без тапа по таббару.
+
+Без этих вставок не пишутся `hidden_tab_redirect` и `tab_bar_tap`, а `hidden_tab_redirect` — главный кандидат на «Уроки уходят на Главную». Поведение не меняется. После правки: `npm run test:one -- tests/lessons_tab_diagnostics.test.ts` и проверка типов.
+
+### 23. 86 слов без карточки слова (l24, l25 после cf3e41b2b) — для сведения
+
+Тест `live_new_word_before_phrase` красный: слово объявлено новым, а карточки нет. Чинит Learning V2. Если нужные файлы контента у тебя с незакоммиченными правками, Learning V2 пришлёт патч — примени его, сам не переписывай.
 
 ## Кнопка «Уроки» на Главной (жалоба владельца) — для сведения
 

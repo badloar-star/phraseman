@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-54",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-54:i01:r1",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i01:r2",
+          "text": "nuestra"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-54:i01:audio",
+          "transcript": "nuestro"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-54:i01:r1",
+            "targetText": "nuestro",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-54:i01:r2",
+            "targetText": "nuestra",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-54:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит конечное o: nuestro.",
+              "uk": "Звучить кінцеве o: nuestro."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це наша сімейна машина поруч",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-54:i02:r1",
+          "text": "Este"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i02:r2",
+          "text": "Esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i02:r3",
+          "text": "Estos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це наша сімейна машина поруч",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это наша семейная машина рядом",
+          "uk": "Вставте слово — це наша сімейна машина поруч"
+        },
+        "gappedTargetPhrase": "___ es nuestro carro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-54:i02:r1",
+            "text": "Este"
+          },
+          {
+            "responseId": "es:lesson-04:session-54:i02:r2",
+            "text": "Esta"
+          },
+          {
+            "responseId": "es:lesson-04:session-54:i02:r3",
+            "text": "Estos"
+          }
+        ],
+        "testedDimension": "Вставте слово — це наша сімейна машина поруч",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша сімейна машина поруч",
+            "feedbackByLocale": {
+              "ru": "Carro мужского рода: este.",
+              "uk": "Carro чоловічого роду: este."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша сімейна машина поруч",
+            "feedbackByLocale": {
+              "ru": "Машина одна: este.",
+              "uk": "Машина одна: este."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це наша машина поруч; почніть з Este й використайте carro",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-54:i03:r1",
+          "text": "Плитки: carro"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i03:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i03:r4",
+          "text": "este"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i03:r5",
+          "text": "nuestra."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це наша машина поруч; почніть з Este й використайте carro",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Este es nuestro carro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это наша машина рядом; начните с Este и используйте carro",
+          "uk": "Зберіть фразу — це наша машина поруч; почніть з Este й використайте carro"
+        },
+        "orderedTokens": [
+          "Este",
+          "es",
+          "nuestro",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "nuestra"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-54:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це наша машина поруч; почніть з Este й використайте carro",
+            "feedbackByLocale": {
+              "ru": "carro мужского рода.",
+              "uk": "carro чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це наш сімейний будинок поруч",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-54:i04:r1",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i04:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i04:r3",
+          "text": "nuestras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це наш сімейний будинок поруч",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это наш семейный дом рядом",
+          "uk": "Вставте слово — це наш сімейний будинок поруч"
+        },
+        "gappedTargetPhrase": "Esta es ___ casa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-54:i04:r1",
+            "text": "nuestra"
+          },
+          {
+            "responseId": "es:lesson-04:session-54:i04:r2",
+            "text": "nuestro"
+          },
+          {
+            "responseId": "es:lesson-04:session-54:i04:r3",
+            "text": "nuestras"
+          }
+        ],
+        "testedDimension": "Вставте слово — це наш сімейний будинок поруч",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-54:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наш сімейний будинок поруч",
+            "feedbackByLocale": {
+              "ru": "Casa женского рода: nuestra.",
+              "uk": "Casa жіночого роду: nuestra."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-54:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наш сімейний будинок поруч",
+            "feedbackByLocale": {
+              "ru": "Дом один: nuestra.",
+              "uk": "Будинок один: nuestra."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це наш будинок поруч; почніть з Esta й використайте casa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-54:i05:r1",
+          "text": "Плитки: casa"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i05:r2",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i05:r4",
+          "text": "esta"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i05:r5",
+          "text": "este."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це наш будинок поруч; почніть з Esta й використайте casa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Esta es nuestra casa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это наш дом рядом; начните с Esta и используйте casa",
+          "uk": "Зберіть фразу — це наш будинок поруч; почніть з Esta й використайте casa"
+        },
+        "orderedTokens": [
+          "Esta",
+          "es",
+          "nuestra",
+          "casa"
+        ],
+        "authoredDistractorTokens": [
+          "este"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-54:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це наш будинок поруч; почніть з Esta й використайте casa",
+            "feedbackByLocale": {
+              "ru": "casa женского рода.",
+              "uk": "casa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це наша спільна сумка поруч; почніть з Este й використайте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-54:i06:r1",
+          "text": "Плитки: bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i06:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i06:r4",
+          "text": "este"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i06:r5",
+          "text": "nuestros."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це наша спільна сумка поруч; почніть з Este й використайте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Este es nuestro bolso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это наша общая сумка рядом; начните с Este и используйте bolso",
+          "uk": "Зберіть фразу — це наша спільна сумка поруч; почніть з Este й використайте bolso"
+        },
+        "orderedTokens": [
+          "Este",
+          "es",
+          "nuestro",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "nuestros"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-54:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це наша спільна сумка поруч; почніть з Este й використайте bolso",
+            "feedbackByLocale": {
+              "ru": "сумка одна.",
+              "uk": "сумка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-54:i07:r1",
+          "text": "Плитки: nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i07:r2",
+          "text": "carro"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i07:r3",
+          "text": "este"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i07:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i07:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-54:i07:audio",
+          "transcript": "Este es nuestro carro."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Este es nuestro carro.",
+        "orderedTokens": [
+          "Este",
+          "es",
+          "nuestro",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-54:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит es.",
+              "uk": "звучить es."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це наша спільна сумка поруч, використайте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-54:i08:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i08:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-54:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це наша спільна сумка поруч, використайте bolso",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это наша общая сумка рядом, используйте bolso",
+          "uk": "Вставте слово — це наша спільна сумка поруч, використайте bolso"
+        },
+        "gappedTargetPhrase": "Este ___ nuestro bolso.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-54:i08:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-54:i08:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-54:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — це наша спільна сумка поруч, використайте bolso",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша спільна сумка поруч, використайте bolso",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: es.",
+              "uk": "Сумка одна: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це наша спільна сумка поруч, використайте bolso",
+            "feedbackByLocale": {
+              "ru": "Показываете вещь, а не представляете себя.",
+              "uk": "Показуєте річ, а не представляєте себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наша машина поруч; почніть з Este й використайте carro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-54:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наша машина поруч; почніть з Este й використайте carro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-54:i09:audio",
+          "transcript": "Este es nuestro carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Este es nuestro carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наш будинок поруч; почніть з Esta й використайте casa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-54:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наш будинок поруч; почніть з Esta й використайте casa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-54:i10:audio",
+          "transcript": "Esta es nuestra casa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Esta es nuestra casa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наша спільна сумка поруч; почніть з Este й використайте bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наша спільна сумка поруч; почніть з Este й використайте bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-54:i11:audio",
+          "transcript": "Este es nuestro bolso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Este es nuestro bolso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це наша спільна коробка поруч; почніть з Esta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-54:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це наша спільна коробка поруч; почніть з Esta",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-54:i12:audio",
+          "transcript": "Esta es nuestra caja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Esta es nuestra caja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "47637ab981bf43b6ca99c72dc1f15ad2e1397195050321357bab47287ecffc4a"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-52:i01",
+    "correctText": "suyo",
+    "correctResponseId": "es:lesson-04:session-52:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-52:i02",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-04:session-52:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-52:i03",
+    "correctText": "No es suyo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-52:i04",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-04:session-52:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-52:i05",
+    "correctText": "No son suyos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-52:i06",
+    "correctText": "El libro no es suyo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-52:i07",
+    "correctText": "No son suyos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-52:i08",
+    "correctText": "suyo",
+    "correctResponseId": "es:lesson-04:session-52:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-52:i09",
+    "correctText": "No es suyo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-52:i10",
+    "correctText": "No son suyos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-52:i11",
+    "correctText": "El libro no es suyo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-52:i12",
+    "correctText": "El bolso no es suyo.",
+    "correctResponseId": null
+  }
+]

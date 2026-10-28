@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать mi, tu или su перед названием вещи по владельцу.",
+    "uk": "вибирати mi, tu або su перед назвою речі залежно від власника."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Своя сумка",
+        "uk": "Своя сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг берёт сумку, которая принадлежит вам. Уточните `Es mi bolso` — «Это моя сумка». Соберите `es` + `mi bolso`. Mi перед названием вещи показывает, что владелец — говорящий, то есть вы. Между mi и bolso артикль не нужен.",
+        "uk": "Друг бере сумку, яка належить вам. Уточніть `Es mi bolso` — «Це моя сумка». Складіть `es` + `mi bolso`. Mi перед назвою речі показує, що власник — мовець, тобто ви. Між mi та bolso артикль не потрібен."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите другу о своей сумке: «Это моя сумка». Начните с Es и используйте bolso.",
+          "uk": "Скажіть другові про свою сумку: «Це моя сумка». Почніть з Es і використайте bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-53:intro1:r1",
+              "text": "Es mi bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro1:r2",
+              "text": "Es tu bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro1:r3",
+              "text": "Es el mi bolso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-53:intro1:r1",
+              "text": "Es mi bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro1:r2",
+              "text": "Es tu bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro1:r3",
+              "text": "Es el mi bolso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу о своей сумке: «Это моя сумка». Начните с Es и используйте bolso.",
+          "uk": "Скажіть другові про свою сумку: «Це моя сумка». Почніть з Es і використайте bolso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книга друга",
+        "uk": "Книжка друга"
+      },
+      "bodyByLocale": {
+        "ru": "Книга на сиденье принадлежит другу, с которым вы говорите на «ты». Скажите ему `Es tu libro` — «Это твоя книга». Соберите `es` + `tu libro`. Tu перед libro указывает на собеседника. Это tu без знака ударения: оно стоит перед названием вещи и означает «твой».",
+        "uk": "Книжка на сидінні належить другові, з яким ви говорите на «ти». Скажіть йому `Es tu libro` — «Це твоя книжка». Складіть `es` + `tu libro`. Tu перед libro вказує на співрозмовника. Це tu без знака наголосу: воно стоїть перед назвою речі й означає «твій»."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите другу о его книге: «Это твоя книга». Начните с Es.",
+          "uk": "Скажіть другові про його книжку: «Це твоя книжка». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-53:intro2:r1",
+              "text": "Es tu libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro2:r2",
+              "text": "Es mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro2:r3",
+              "text": "Es tus libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-53:intro2:r1",
+              "text": "Es tu libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro2:r2",
+              "text": "Es mi libro."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro2:r3",
+              "text": "Es tus libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите другу о его книге: «Это твоя книга». Начните с Es.",
+          "uk": "Скажіть другові про його книжку: «Це твоя книжка». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Коробка Педро",
+        "uk": "Коробка Педро"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом уже говорите о Педро. Коробка в машине принадлежит ему. Скажите другу `Es su caja` — «Это его коробка». Соберите `es` + `su caja`. Здесь su указывает на Педро, которого вы обсуждаете. Само su не называет владельца: его подсказывает разговор. Перед названием caja нужна короткая форма su, а не самостоятельное suya.",
+        "uk": "Ви з другом уже говорите про Педро. Коробка в машині належить йому. Скажіть другові `Es su caja` — «Це його коробка». Складіть `es` + `su caja`. Тут su вказує на Педро, якого ви обговорюєте. Саме su не називає власника: його підказує розмова. Перед назвою caja потрібна коротка форма su, а не самостійне suya."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите другу «Это его коробка». Начните с Es и используйте su.",
+          "uk": "Йдеться про Педро. Скажіть другові «Це його коробка». Почніть з Es і використайте su."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-53:intro3:r1",
+              "text": "Es su caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro3:r2",
+              "text": "Es tu caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro3:r3",
+              "text": "Es suya caja."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-53:intro3:r1",
+              "text": "Es su caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro3:r2",
+              "text": "Es tu caja."
+            },
+            {
+              "responseId": "es:lesson-04:session-53:intro3:r3",
+              "text": "Es suya caja."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите другу «Это его коробка». Начните с Es и используйте su.",
+          "uk": "Йдеться про Педро. Скажіть другові «Це його коробка». Почніть з Es і використайте su."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6c4efa9d07131c46f9eaafa32d50a5630a998efa8a807d986f6d1c6f674dd32d"
+}

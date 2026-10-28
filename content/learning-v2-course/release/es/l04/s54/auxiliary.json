@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-54",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-54:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-54:intro1:r2": {
+          "ru": "Carro мужского рода: este.",
+          "uk": "Carro чоловічого роду: este."
+        },
+        "es:lesson-04:session-54:intro1:r3": {
+          "ru": "Перед carro нужно nuestro.",
+          "uk": "Перед carro потрібне nuestro."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-54:intro2:r2": {
+          "ru": "Casa женского рода: esta.",
+          "uk": "Casa жіночого роду: esta."
+        },
+        "es:lesson-04:session-54:intro2:r3": {
+          "ru": "Перед casa нужно nuestra.",
+          "uk": "Перед casa потрібне nuestra."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-54:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-54:intro3:r2": {
+          "ru": "Сумка одна: nuestro.",
+          "uk": "Сумка одна: nuestro."
+        },
+        "es:lesson-04:session-54:intro3:r3": {
+          "ru": "Одна вещь: es.",
+          "uk": "Одна річ: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "60ef545b8262179b9007e58e06bccff8f123906a14a5959d789c59e58b722900"
+}

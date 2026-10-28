@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-54:i01",
+    "correctText": "nuestro",
+    "correctResponseId": "es:lesson-04:session-54:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-54:i02",
+    "correctText": "Este",
+    "correctResponseId": "es:lesson-04:session-54:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-54:i03",
+    "correctText": "Este es nuestro carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-54:i04",
+    "correctText": "nuestra",
+    "correctResponseId": "es:lesson-04:session-54:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-54:i05",
+    "correctText": "Esta es nuestra casa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-54:i06",
+    "correctText": "Este es nuestro bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-54:i07",
+    "correctText": "Este es nuestro carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-54:i08",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-04:session-54:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-54:i09",
+    "correctText": "Este es nuestro carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-54:i10",
+    "correctText": "Esta es nuestra casa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-54:i11",
+    "correctText": "Este es nuestro bolso.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-54:i12",
+    "correctText": "Esta es nuestra caja.",
+    "correctResponseId": null
+  }
+]

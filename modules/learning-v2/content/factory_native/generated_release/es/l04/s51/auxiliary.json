@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-51",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-51:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-51:intro1:r2": {
+          "ru": "Книг несколько: suyos.",
+          "uk": "Книжок кілька: suyos."
+        },
+        "es:lesson-04:session-51:intro1:r3": {
+          "ru": "Несколько книг: son.",
+          "uk": "Кілька книжок: son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-51:intro2:r2": {
+          "ru": "Llaves женского рода: suyas.",
+          "uk": "Llaves жіночого роду: suyas."
+        },
+        "es:lesson-04:session-51:intro2:r3": {
+          "ru": "Ключей несколько: suyas.",
+          "uk": "Ключів кілька: suyas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-51:intro3:r2": {
+          "ru": "Книг несколько: son.",
+          "uk": "Книжок кілька: son."
+        },
+        "es:lesson-04:session-51:intro3:r3": {
+          "ru": "Libros мужского рода: suyos.",
+          "uk": "Libros чоловічого роду: suyos."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "3e0fdd5dc5e47dc56baf93da3307e446d3568c82784955a3f3772aa0ab4233a0"
+}

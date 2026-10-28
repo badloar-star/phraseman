@@ -1533,4 +1533,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать suya для одной вещи женского рода.","uk":"вибирати suya для однієї речі жіночого роду."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 51,
+    sourceFingerprint: "ff14a2a56c6f30e8db0098d1eb9890358980892f881f867f088e455bd4857ddc",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать suyos или suyas по роду нескольких вещей.","uk":"вибирати suyos або suyas за родом кількох речей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 52,
+    sourceFingerprint: "69f553315f5c5d967f82938f6b4a37e57a8b078ce06feabb63e95e0a1fa683ed",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать принадлежность с no es suyo и no son suyos.","uk":"заперечувати належність із no es suyo та no son suyos."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 53,
+    sourceFingerprint: "2ab90c1bf682d0288537f2f2ffd18b752582317cbea0c8e9065aaae19c3f2887",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать mi, tu или su перед названием вещи по владельцу.","uk":"вибирати mi, tu або su перед назвою речі залежно від власника."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 54,
+    sourceFingerprint: "086c553f32cd6df3e2eab1cb60c4a74b141153704755166444d3dbfc8b20f033",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединять указание на вещь с nuestro или nuestra.","uk":"поєднувати вказування на річ із nuestro або nuestra."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

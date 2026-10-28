@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-53",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-53:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-53:intro1:r2": {
+          "ru": "Tu отдало бы сумку собеседнику; здесь она ваша.",
+          "uk": "Tu віддало б сумку співрозмовнику; тут вона ваша."
+        },
+        "es:lesson-04:session-53:intro1:r3": {
+          "ru": "Перед mi здесь артикля нет.",
+          "uk": "Перед mi тут немає артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-53:intro2:r2": {
+          "ru": "Mi означало бы, что книга ваша.",
+          "uk": "Mi означало б, що книжка ваша."
+        },
+        "es:lesson-04:session-53:intro2:r3": {
+          "ru": "Книга одна: tu.",
+          "uk": "Книжка одна: tu."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-53:intro3:r2": {
+          "ru": "Tu указывало бы на друга-собеседника, а не Педро.",
+          "uk": "Tu вказувало б на друга-співрозмовника, а не Педро."
+        },
+        "es:lesson-04:session-53:intro3:r3": {
+          "ru": "Перед названием вещи здесь нужна форма su.",
+          "uk": "Перед назвою речі тут потрібна форма su."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9985b664ed0e0f430ba4a36456bb52093c7902ff04a031dba3f370c8e87ad4e0"
+}

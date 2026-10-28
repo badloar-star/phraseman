@@ -1,0 +1,658 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-53",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-53:i01:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i01:r2",
+          "text": "su"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-53:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-53:i01:audio",
+          "transcript": "mi"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-53:i01:r1",
+            "targetText": "mi",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-53:i01:r2",
+            "targetText": "su",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-53:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит mi.",
+              "uk": "Звучить mi."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — сумка принадлежит вам, говорящему",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-53:i02:r1",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i02:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i02:r3",
+          "text": "su"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — сумка принадлежит вам, говорящему",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сумка принадлежит вам, говорящему",
+          "uk": "Вставте слово — сумка належить вам, мовцеві"
+        },
+        "gappedTargetPhrase": "Es ___ bolso.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-53:i02:r1",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-53:i02:r2",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-53:i02:r3",
+            "text": "su"
+          }
+        ],
+        "testedDimension": "Вставьте слово — сумка принадлежит вам, говорящему",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумка принадлежит вам, говорящему",
+            "feedbackByLocale": {
+              "ru": "Tu указывает на собеседника, а сумка ваша.",
+              "uk": "Tu вказує на співрозмовника, а сумка ваша."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — сумка принадлежит вам, говорящему",
+            "feedbackByLocale": {
+              "ru": "Здесь владелец — вы, говорящий: mi.",
+              "uk": "Тут власник — ви, мовець: mi."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это ваша собственная сумка; начните с Es и используйте mi bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-53:i03:r1",
+          "text": "Плитки: bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i03:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i03:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это ваша собственная сумка; начните с Es и используйте mi bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es mi bolso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это ваша собственная сумка; начните с Es и используйте mi bolso",
+          "uk": "Зберіть фразу — це ваша власна сумка; почніть з Es і використайте mi bolso"
+        },
+        "orderedTokens": [
+          "Es",
+          "mi",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-53:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это ваша собственная сумка; начните с Es и используйте mi bolso",
+            "feedbackByLocale": {
+              "ru": "перед mi здесь нет артикля.",
+              "uk": "перед mi тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — говорите другу на «ты» о его книге",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-53:i04:r1",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i04:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i04:r3",
+          "text": "su"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — говорите другу на «ты» о его книге",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — говорите другу на «ты» о его книге",
+          "uk": "Вставте слово — говорите другові на «ти» про його книжку"
+        },
+        "gappedTargetPhrase": "Es ___ libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-53:i04:r1",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-53:i04:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-53:i04:r3",
+            "text": "su"
+          }
+        ],
+        "testedDimension": "Вставьте слово — говорите другу на «ты» о его книге",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-53:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — говорите другу на «ты» о его книге",
+            "feedbackByLocale": {
+              "ru": "Книга не ваша, а собеседника: tu.",
+              "uk": "Книжка не ваша, а співрозмовника: tu."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-53:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — говорите другу на «ты» о его книге",
+            "feedbackByLocale": {
+              "ru": "Обращаетесь к другу на «ты»: tu.",
+              "uk": "Звертаєтеся до друга на «ти»: tu."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это твоя книга; начните с Es",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-53:i05:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i05:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i05:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это твоя книга; начните с Es",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es tu libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это твоя книга; начните с Es",
+          "uk": "Зберіть фразу — це твоя книжка; почніть з Es"
+        },
+        "orderedTokens": [
+          "Es",
+          "tu",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-53:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это твоя книга; начните с Es",
+            "feedbackByLocale": {
+              "ru": "перед tu здесь нет артикля.",
+              "uk": "перед tu тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь о Педро: это его коробка; начните с Es и используйте su",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-53:i06:r1",
+          "text": "Плитки: caja"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i06:r2",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i06:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i06:r4",
+          "text": "suya."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь о Педро: это его коробка; начните с Es и используйте su",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es su caja.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь о Педро: это его коробка; начните с Es и используйте su",
+          "uk": "Зберіть фразу — йдеться про Педро: це його коробка; почніть з Es і використайте su"
+        },
+        "orderedTokens": [
+          "Es",
+          "su",
+          "caja"
+        ],
+        "authoredDistractorTokens": [
+          "suya"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-53:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь о Педро: это его коробка; начните с Es и используйте su",
+            "feedbackByLocale": {
+              "ru": "перед названием caja нужна короткая форма su.",
+              "uk": "перед назвою caja потрібна коротка форма su."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-53:i07:r1",
+          "text": "Плитки: mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i07:r2",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i07:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i07:r4",
+          "text": "tu."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-53:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-53:i07:audio",
+          "transcript": "Es mi bolso."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es mi bolso.",
+        "orderedTokens": [
+          "Es",
+          "mi",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "tu"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-53:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит mi.",
+              "uk": "звучить mi."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вы с другом обсуждаете Педро, коробка принадлежит Педро",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-53:i08:r1",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i08:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-53:i08:r3",
+          "text": "tu"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вы с другом обсуждаете Педро, коробка принадлежит Педро",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вы с другом обсуждаете Педро, коробка принадлежит Педро",
+          "uk": "Вставте слово — ви з другом обговорюєте Педро, коробка належить Педро"
+        },
+        "gappedTargetPhrase": "Es ___ caja.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-53:i08:r1",
+            "text": "su"
+          },
+          {
+            "responseId": "es:lesson-04:session-53:i08:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-53:i08:r3",
+            "text": "tu"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вы с другом обсуждаете Педро, коробка принадлежит Педро",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы с другом обсуждаете Педро, коробка принадлежит Педро",
+            "feedbackByLocale": {
+              "ru": "Коробка Педро, а не говорящего: su.",
+              "uk": "Коробка Педро, а не мовця: su."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вы с другом обсуждаете Педро, коробка принадлежит Педро",
+            "feedbackByLocale": {
+              "ru": "Коробка Педро, а не собеседника: su.",
+              "uk": "Коробка Педро, а не співрозмовника: su."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это ваша собственная сумка; начните с Es и используйте mi bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-53:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это ваша собственная сумка; начните с Es и используйте mi bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-53:i09:audio",
+          "transcript": "Es mi bolso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es mi bolso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — говорите другу на «ты»: это твоя книга; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-53:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — говорите другу на «ты»: это твоя книга; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-53:i10:audio",
+          "transcript": "Es tu libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es tu libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро: это его коробка; начните с Es и используйте su",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро: это его коробка; начните с Es и используйте su",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-53:i11:audio",
+          "transcript": "Es su caja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es su caja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-53:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это ваша собственная коробка; начните с Es и используйте mi",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-53:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это ваша собственная коробка; начните с Es и используйте mi",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-53:i12:audio",
+          "transcript": "Es mi caja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es mi caja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f8093f590c59ae8822f51136e92dca15138b60ec388cecd2fc06351d031e54c8"
+}

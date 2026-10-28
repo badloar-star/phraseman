@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать suyos или suyas по роду нескольких вещей.",
+    "uk": "вибирати suyos або suyas за родом кількох речей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книги Педро",
+        "uk": "Книжки Педро"
+      },
+      "bodyByLocale": {
+        "ru": "Вы говорите о Педро. Друг спрашивает о книгах, которые тот оставил. Ответьте `Son suyos` — «Они его». Соберите `son` + `suyos`. Книг несколько, поэтому son. Испанское libros мужского рода во множественном числе: к знакомому suyo добавляем -s. Suyos относится к книгам, хотя владелец Педро один.",
+        "uk": "Ви говорите про Педро. Друг запитує про книжки, які той залишив. Дайте відповідь `Son suyos` — «Вони його». Складіть `son` + `suyos`. Книжок кілька, тому son. Іспанське libros чоловічого роду в множині: до знайомого suyo додаємо -s. Suyos стосується книжок, хоча власник Педро один."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро и его книгах libros. Ответьте «Они его». Начните с Son и используйте suyos.",
+          "uk": "Йдеться про Педро та його книжки libros. Дайте відповідь «Вони його». Почніть з Son і використайте suyos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-51:intro1:r1",
+              "text": "Son suyos."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro1:r2",
+              "text": "Son suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro1:r3",
+              "text": "Es suyos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-51:intro1:r1",
+              "text": "Son suyos."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro1:r2",
+              "text": "Son suyo."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro1:r3",
+              "text": "Es suyos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро и его книгах libros. Ответьте «Они его». Начните с Son и используйте suyos.",
+          "uk": "Йдеться про Педро та його книжки libros. Дайте відповідь «Вони його». Почніть з Son і використайте suyos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ключи Аны",
+        "uk": "Ключі Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вы говорите об Ане. Друг показывает на её ключи. Ответьте `Son suyas` — «Они её». Соберите `son` + `suyas`. Испанское llaves женского рода во множественном числе, поэтому suyas. Окончание -as относится к ключам, а не к хозяйке: для ключей Педро тоже было бы Son suyas.",
+        "uk": "Тепер ви говорите про Ану. Друг показує на її ключі. Дайте відповідь `Son suyas` — «Вони її». Складіть `son` + `suyas`. Іспанське llaves жіночого роду в множині, тому suyas. Закінчення -as стосується ключів, а не власниці: для ключів Педро теж було б Son suyas."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане и её ключах llaves. Ответьте «Они её». Начните с Son и используйте suyas.",
+          "uk": "Йдеться про Ану та її ключі llaves. Дайте відповідь «Вони її». Почніть з Son і використайте suyas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-51:intro2:r1",
+              "text": "Son suyas."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro2:r2",
+              "text": "Son suyos."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro2:r3",
+              "text": "Son suya."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-51:intro2:r1",
+              "text": "Son suyas."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro2:r2",
+              "text": "Son suyos."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro2:r3",
+              "text": "Son suya."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане и её ключах llaves. Ответьте «Они её». Начните с Son и используйте suyas.",
+          "uk": "Йдеться про Ану та її ключі llaves. Дайте відповідь «Вони її». Почніть з Son і використайте suyas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Не его книги",
+        "uk": "Не його книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Друг думает, что ещё одна стопка книг принадлежит Педро. Вы знаете, что это не его книги. Скажите `Los libros no son suyos` — «Книги не его». Соберите `los libros` + `no son` + `suyos`. Перед son поставьте no. Suyos сохраняется, потому что вы всё ещё говорите о нескольких книгах мужского рода.",
+        "uk": "Друг думає, що ще один стос книжок належить Педро. Ви знаєте, що це не його книжки. Скажіть `Los libros no son suyos` — «Книжки не його». Складіть `los libros` + `no son` + `suyos`. Перед son поставте no. Suyos зберігається, бо ви й далі говорите про кілька книжок чоловічого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите «Книги не его». Начните с Los libros и используйте suyos.",
+          "uk": "Йдеться про Педро. Скажіть «Книжки не його». Почніть з Los libros і використайте suyos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-51:intro3:r1",
+              "text": "Los libros no son suyos."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro3:r2",
+              "text": "Los libros no es suyos."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro3:r3",
+              "text": "Los libros no son suyas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-51:intro3:r1",
+              "text": "Los libros no son suyos."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro3:r2",
+              "text": "Los libros no es suyos."
+            },
+            {
+              "responseId": "es:lesson-04:session-51:intro3:r3",
+              "text": "Los libros no son suyas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите «Книги не его». Начните с Los libros и используйте suyos.",
+          "uk": "Йдеться про Педро. Скажіть «Книжки не його». Почніть з Los libros і використайте suyos."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "deef137e5419f8a5e3d1d924665ec69c62d674ab1b514177f0358d01d98f709d"
+}

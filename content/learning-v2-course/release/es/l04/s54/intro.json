@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "соединять указание на вещь с nuestro или nuestra.",
+    "uk": "поєднувати вказування на річ із nuestro або nuestra."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Наша машина",
+        "uk": "Наша машина"
+      },
+      "bodyByLocale": {
+        "ru": "Стоите рядом с семейной машиной и показываете её другу. Скажите `Este es nuestro carro` — «Это наша машина». Соберите `este` + `es` + `nuestro carro`. Испанское carro мужского рода: нужны este и nuestro, хотя русское «машина» женского рода. Nuestro включает вас и семью как владельцев одной машины.",
+        "uk": "Стоїте поруч із сімейною машиною й показуєте її другові. Скажіть `Este es nuestro carro` — «Це наша машина». Складіть `este` + `es` + `nuestro carro`. Іспанське carro чоловічого роду: потрібні este й nuestro, хоча українське «машина» жіночого роду. Nuestro охоплює вас і сім’ю як власників однієї машини."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Покажите семейную машину рядом: «Это наша машина». Начните с Este.",
+          "uk": "Покажіть сімейну машину поруч: «Це наша машина». Почніть з Este."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-54:intro1:r1",
+              "text": "Este es nuestro carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro1:r2",
+              "text": "Esta es nuestro carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro1:r3",
+              "text": "Este es nuestra carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-54:intro1:r1",
+              "text": "Este es nuestro carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro1:r2",
+              "text": "Esta es nuestro carro."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro1:r3",
+              "text": "Este es nuestra carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите семейную машину рядом: «Это наша машина». Начните с Este.",
+          "uk": "Покажіть сімейну машину поруч: «Це наша машина». Почніть з Este."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Наш дом",
+        "uk": "Наш будинок"
+      },
+      "bodyByLocale": {
+        "ru": "Подошли с другом к вашему семейному дому. Укажите на него: `Esta es nuestra casa` — «Это наш дом». Соберите `esta` + `es` + `nuestra casa`. Испанское casa женского рода: выбирайте esta и nuestra. Русское слово «дом» мужского рода не определяет испанские формы.",
+        "uk": "Підійшли з другом до вашого сімейного будинку. Укажіть на нього: `Esta es nuestra casa` — «Це наш будинок». Складіть `esta` + `es` + `nuestra casa`. Іспанське casa жіночого роду: вибирайте esta й nuestra. Українське слово «будинок» чоловічого роду не визначає іспанських форм."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Покажите семейный дом рядом: «Это наш дом». Начните с Esta и используйте casa.",
+          "uk": "Покажіть сімейний будинок поруч: «Це наш будинок». Почніть з Esta й використайте casa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-54:intro2:r1",
+              "text": "Esta es nuestra casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro2:r2",
+              "text": "Este es nuestra casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro2:r3",
+              "text": "Esta es nuestro casa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-54:intro2:r1",
+              "text": "Esta es nuestra casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro2:r2",
+              "text": "Este es nuestra casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro2:r3",
+              "text": "Esta es nuestro casa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите семейный дом рядом: «Это наш дом». Начните с Esta и используйте casa.",
+          "uk": "Покажіть сімейний будинок поруч: «Це наш будинок». Почніть з Esta й використайте casa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Общая сумка",
+        "uk": "Спільна сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Перед поездкой показываете другу сумку, которой пользуетесь вместе с братом. Назовите её словом bolso: `Este es nuestro bolso` — «Это наша сумка». Соберите `este` + `es` + `nuestro bolso`. Мужскому bolso соответствуют este и nuestro. Сумка одна, хотя пользуются ею двое: поэтому es и форма nuestro без -s.",
+        "uk": "Перед поїздкою показуєте другові сумку, якою користуєтеся разом із братом. Назвіть її словом bolso: `Este es nuestro bolso` — «Це наша сумка». Складіть `este` + `es` + `nuestro bolso`. Чоловічому bolso відповідають este й nuestro. Сумка одна, хоча користуються нею двоє: тому es і форма nuestro без -s."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Покажите общую сумку рядом: «Это наша сумка». Начните с Este и используйте bolso.",
+          "uk": "Покажіть спільну сумку поруч: «Це наша сумка». Почніть з Este й використайте bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-54:intro3:r1",
+              "text": "Este es nuestro bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro3:r2",
+              "text": "Este es nuestros bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro3:r3",
+              "text": "Este son nuestro bolso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-54:intro3:r1",
+              "text": "Este es nuestro bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro3:r2",
+              "text": "Este es nuestros bolso."
+            },
+            {
+              "responseId": "es:lesson-04:session-54:intro3:r3",
+              "text": "Este son nuestro bolso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Покажите общую сумку рядом: «Это наша сумка». Начните с Este и используйте bolso.",
+          "uk": "Покажіть спільну сумку поруч: «Це наша сумка». Почніть з Este й використайте bolso."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "55c028601207450f7d16f77159e84c19b7ceacc9422402b74840318f701eb062"
+}

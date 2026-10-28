@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-52",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-52:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-52:intro1:r2": {
+          "ru": "В этой схеме no стоит перед es.",
+          "uk": "У цій схемі no стоїть перед es."
+        },
+        "es:lesson-04:session-52:intro1:r3": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-52:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-52:intro2:r2": {
+          "ru": "Книг несколько: son.",
+          "uk": "Книжок кілька: son."
+        },
+        "es:lesson-04:session-52:intro2:r3": {
+          "ru": "Книг несколько: suyos.",
+          "uk": "Книжок кілька: suyos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-52:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-52:intro3:r2": {
+          "ru": "No поставьте перед es.",
+          "uk": "No поставте перед es."
+        },
+        "es:lesson-04:session-52:intro3:r3": {
+          "ru": "Книга одна: suyo.",
+          "uk": "Книжка одна: suyo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1d96ff860e22c9642c5a95db31a9b428746f2002830ca399880b560e8799221c"
+}

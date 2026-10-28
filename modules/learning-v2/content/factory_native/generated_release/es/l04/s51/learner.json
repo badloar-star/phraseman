@@ -1,0 +1,653 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-51",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-51:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-51:i01:r1",
+          "text": "suyas"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i01:r2",
+          "text": "suyos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-51:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-51:i01:audio",
+          "transcript": "suyas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-51:i01:r1",
+            "targetText": "suyas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-51:i01:r2",
+            "targetText": "suyos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-51:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит окончание -as: suyas.",
+              "uk": "Звучить закінчення -as: suyas."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь о Педро и его книгах libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-51:i02:r1",
+          "text": "suyos"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i02:r2",
+          "text": "suyo"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i02:r3",
+          "text": "suyas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь о Педро и его книгах libros",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь о Педро и его книгах libros",
+          "uk": "Вставте слово — йдеться про Педро та його книжки libros"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-51:i02:r1",
+            "text": "suyos"
+          },
+          {
+            "responseId": "es:lesson-04:session-51:i02:r2",
+            "text": "suyo"
+          },
+          {
+            "responseId": "es:lesson-04:session-51:i02:r3",
+            "text": "suyas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь о Педро и его книгах libros",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-51:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь о Педро и его книгах libros",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: suyos.",
+              "uk": "Книжок кілька: suyos."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-51:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь о Педро и его книгах libros",
+            "feedbackByLocale": {
+              "ru": "Libros мужского рода: suyos.",
+              "uk": "Libros чоловічого роду: suyos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь о Педро и его книгах libros: они его; начните с Son и используйте suyos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-51:i03:r1",
+          "text": "Плитки: suyos"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i03:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i03:r3",
+          "text": "suyo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь о Педро и его книгах libros: они его; начните с Son и используйте suyos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son suyos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь о Педро и его книгах libros: они его; начните с Son и используйте suyos",
+          "uk": "Зберіть фразу — йдеться про Педро та його книжки libros: вони його; почніть з Son і використайте suyos"
+        },
+        "orderedTokens": [
+          "Son",
+          "suyos"
+        ],
+        "authoredDistractorTokens": [
+          "suyo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-51:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь о Педро и его книгах libros: они его; начните с Son и используйте suyos",
+            "feedbackByLocale": {
+              "ru": "книг несколько.",
+              "uk": "книжок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь об Ане и её ключах llaves",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-51:i04:r1",
+          "text": "suyas"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i04:r2",
+          "text": "suyos"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i04:r3",
+          "text": "suya"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь об Ане и её ключах llaves",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь об Ане и её ключах llaves",
+          "uk": "Вставте слово — йдеться про Ану та її ключі llaves"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-51:i04:r1",
+            "text": "suyas"
+          },
+          {
+            "responseId": "es:lesson-04:session-51:i04:r2",
+            "text": "suyos"
+          },
+          {
+            "responseId": "es:lesson-04:session-51:i04:r3",
+            "text": "suya"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь об Ане и её ключах llaves",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-51:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане и её ключах llaves",
+            "feedbackByLocale": {
+              "ru": "Llaves женского рода: suyas.",
+              "uk": "Llaves жіночого роду: suyas."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-51:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь об Ане и её ключах llaves",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: suyas.",
+              "uk": "Ключів кілька: suyas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь об Ане и её ключах llaves: они её; начните с Son и используйте suyas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-51:i05:r1",
+          "text": "Плитки: suyas"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i05:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i05:r3",
+          "text": "suya."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь об Ане и её ключах llaves: они её; начните с Son и используйте suyas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son suyas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь об Ане и её ключах llaves: они её; начните с Son и используйте suyas",
+          "uk": "Зберіть фразу — йдеться про Ану та її ключі llaves: вони її; почніть з Son і використайте suyas"
+        },
+        "orderedTokens": [
+          "Son",
+          "suyas"
+        ],
+        "authoredDistractorTokens": [
+          "suya"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-51:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь об Ане и её ключах llaves: они её; начните с Son и используйте suyas",
+            "feedbackByLocale": {
+              "ru": "ключей несколько.",
+              "uk": "ключів кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь о Педро: книги не его; начните с Los libros и используйте suyos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-51:i06:r1",
+          "text": "Плитки: suyos"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i06:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i06:r4",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i06:r5",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i06:r6",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь о Педро: книги не его; начните с Los libros и используйте suyos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Los libros no son suyos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь о Педро: книги не его; начните с Los libros и используйте suyos",
+          "uk": "Зберіть фразу — йдеться про Педро: книжки не його; почніть з Los libros і використайте suyos"
+        },
+        "orderedTokens": [
+          "Los",
+          "libros",
+          "no",
+          "son",
+          "suyos"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-51:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь о Педро: книги не его; начните с Los libros и используйте suyos",
+            "feedbackByLocale": {
+              "ru": "книг несколько.",
+              "uk": "книжок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-51:i07:r1",
+          "text": "Плитки: suyas"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i07:r3",
+          "text": "suyos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-51:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-51:i07:audio",
+          "transcript": "Son suyas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son suyas.",
+        "orderedTokens": [
+          "Son",
+          "suyas"
+        ],
+        "authoredDistractorTokens": [
+          "suyos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-51:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит suyas.",
+              "uk": "звучить suyas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь о Педро: книги не его",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-51:i08:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i08:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-51:i08:r3",
+          "text": "muy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь о Педро: книги не его",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь о Педро: книги не его",
+          "uk": "Вставте слово — йдеться про Педро: книжки не його"
+        },
+        "gappedTargetPhrase": "Los libros ___ son suyos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-51:i08:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-04:session-51:i08:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-51:i08:r3",
+            "text": "muy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь о Педро: книги не его",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-51:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь о Педро: книги не его",
+            "feedbackByLocale": {
+              "ru": "Для отрицания нужно no.",
+              "uk": "Для заперечення потрібне no."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-51:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь о Педро: книги не его",
+            "feedbackByLocale": {
+              "ru": "Отрицайте принадлежность: no перед son.",
+              "uk": "Заперечте належність: no перед son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро и его книгах libros: они его; начните с Son и используйте suyos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-51:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро и его книгах libros: они его; начните с Son и используйте suyos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-51:i09:audio",
+          "transcript": "Son suyos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son suyos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь об Ане и её ключах llaves: они её; начните с Son и используйте suyas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-51:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь об Ане и её ключах llaves: они её; начните с Son и используйте suyas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-51:i10:audio",
+          "transcript": "Son suyas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son suyas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро: книги не его; начните с Los libros и используйте suyos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-51:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро: книги не его; начните с Los libros и используйте suyos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-51:i11:audio",
+          "transcript": "Los libros no son suyos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los libros no son suyos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-51:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро и его ключах llaves: они его; начните с Son и используйте suyas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-51:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро и его ключах llaves: они его; начните с Son и используйте suyas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-51:i12:audio",
+          "transcript": "Son suyas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son suyas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "01580a4367c1b6542c8d6d2fa1d160fb5b9ed9d02bf3eb631007120fed398f78"
+}

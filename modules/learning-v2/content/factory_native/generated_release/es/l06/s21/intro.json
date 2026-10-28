@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "описать размер предмета после hay.",
+    "uk": "описати розмір предмета після hay."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Стол для двоих",
+        "uk": "Стіл для двох"
+      },
+      "bodyByLocale": {
+        "ru": "Вы осматриваете комнату и видите небольшой стол. Скажите `Hay una mesa pequeña` — «Есть небольшой стол». Соберите `Hay` + `una mesa` + `pequeña`. Описание ставим после mesa. У mesa женский род, поэтому pequeña с a: размер маленький, а согласовать слова всё равно нужно.",
+        "uk": "Ви оглядаєте кімнату й бачите невеликий стіл. Скажіть `Hay una mesa pequeña` — «Є невеликий стіл». Складіть `Hay` + `una mesa` + `pequeña`. Опис ставимо після mesa. У mesa жіночий рід, тому pequeña з a: розмір маленький, а узгодити слова все одно потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть небольшой стол». Начните с Hay, описание поставьте после mesa.",
+          "uk": "Повідомте «Є невеликий стіл». Почніть з Hay, опис поставте після mesa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-21:intro1:r1",
+              "text": "Hay una mesa pequeña."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro1:r2",
+              "text": "Hay una mesa pequeño."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro1:r3",
+              "text": "Hay un mesa pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-21:intro1:r1",
+              "text": "Hay una mesa pequeña."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro1:r2",
+              "text": "Hay una mesa pequeño."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro1:r3",
+              "text": "Hay un mesa pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть небольшой стол». Начните с Hay, описание поставьте после mesa.",
+          "uk": "Повідомте «Є невеликий стіл». Почніть з Hay, опис поставте після mesa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Стол побольше",
+        "uk": "Більший стіл"
+      },
+      "bodyByLocale": {
+        "ru": "В следующей комнате вы замечаете большой стол. Скажите `Hay una mesa grande` — «Есть большой стол». Соберите `Hay una mesa` + `grande`. Знакомое grande не меняет e на a рядом с mesa. Сравните по памяти: маленькая — pequeña, большая — grande.",
+        "uk": "У наступній кімнаті ви помічаєте великий стіл. Скажіть `Hay una mesa grande` — «Є великий стіл». Складіть `Hay una mesa` + `grande`. Знайоме grande не змінює e на a поруч із mesa. Порівняйте з пам’яті: маленька — pequeña, велика — grande."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть большой стол». Начните с Hay, описание поставьте после mesa.",
+          "uk": "Повідомте «Є великий стіл». Почніть з Hay, опис поставте після mesa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-21:intro2:r1",
+              "text": "Hay una mesa grande."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro2:r2",
+              "text": "Hay una mesa granda."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro2:r3",
+              "text": "Hay un mesa grande."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-21:intro2:r1",
+              "text": "Hay una mesa grande."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro2:r2",
+              "text": "Hay una mesa granda."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro2:r3",
+              "text": "Hay un mesa grande."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть большой стол». Начните с Hay, описание поставьте после mesa.",
+          "uk": "Повідомте «Є великий стіл». Почніть з Hay, опис поставте після mesa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Добавить комнату",
+        "uk": "Додати кімнату"
+      },
+      "bodyByLocale": {
+        "ru": "Вы рассказываете спутнику о первой комнате. Скажите `Hay una mesa pequeña en la habitación` — «В комнате есть небольшой стол». Соберите `Hay una mesa pequeña` + `en la habitación`. Сначала назовите предмет и его размер, затем добавьте место. Pequeña остаётся рядом с mesa: маленький именно стол.",
+        "uk": "Ви розповідаєте супутнику про першу кімнату. Скажіть `Hay una mesa pequeña en la habitación` — «У кімнаті є невеликий стіл». Складіть `Hay una mesa pequeña` + `en la habitación`. Спочатку назвіть предмет і його розмір, потім додайте місце. Pequeña залишається поруч із mesa: маленький саме стіл."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В комнате есть небольшой стол». Начните с Hay, размер поставьте после mesa, место — в конце.",
+          "uk": "Повідомте «У кімнаті є невеликий стіл». Почніть з Hay, розмір поставте після mesa, місце — у кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-21:intro3:r1",
+              "text": "Hay una mesa pequeña en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro3:r2",
+              "text": "Hay una mesa pequeño en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro3:r3",
+              "text": "Hay una mesa pequeña la habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-21:intro3:r1",
+              "text": "Hay una mesa pequeña en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro3:r2",
+              "text": "Hay una mesa pequeño en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-21:intro3:r3",
+              "text": "Hay una mesa pequeña la habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В комнате есть небольшой стол». Начните с Hay, размер поставьте после mesa, место — в конце.",
+          "uk": "Повідомте «У кімнаті є невеликий стіл». Почніть з Hay, розмір поставте після mesa, місце — у кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "e0aeeb1f5689738cbd68a7bc1788e211edf1f3322088ba1de6910c515de86bb1"
+}

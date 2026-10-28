@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-21:i01",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-06:session-21:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-21:i02",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-06:session-21:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-21:i03",
+    "correctText": "Hay una mesa pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-21:i04",
+    "correctText": "grande",
+    "correctResponseId": "es:lesson-06:session-21:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-21:i05",
+    "correctText": "Hay una mesa grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-21:i06",
+    "correctText": "Hay una mesa pequeña en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-21:i07",
+    "correctText": "Hay una mesa grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-21:i08",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-21:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-21:i09",
+    "correctText": "Hay una mesa pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-21:i10",
+    "correctText": "Hay una mesa grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-21:i11",
+    "correctText": "Hay una mesa pequeña en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-21:i12",
+    "correctText": "¿Hay una mesa grande?",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-21",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-21:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-21:intro1:r2": {
+          "ru": "С mesa нужна pequeña.",
+          "uk": "Із mesa потрібна pequeña."
+        },
+        "es:lesson-06:session-21:intro1:r3": {
+          "ru": "Mesa женского рода: una.",
+          "uk": "Mesa жіночого роду: una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-21:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-21:intro2:r2": {
+          "ru": "Нужна форма grande, не granda.",
+          "uk": "Потрібна форма grande, не granda."
+        },
+        "es:lesson-06:session-21:intro2:r3": {
+          "ru": "С mesa нужна una.",
+          "uk": "Із mesa потрібна una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-21:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-21:intro3:r2": {
+          "ru": "Описание mesa: pequeña.",
+          "uk": "Опис mesa: pequeña."
+        },
+        "es:lesson-06:session-21:intro3:r3": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "db919c471a27f5608a992d07df330af952804d15e203c16ab777044e3ab96a22"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-17",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-17:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-17:intro1:r2": {
+          "ru": "Libro мужского рода: rojo.",
+          "uk": "Libro чоловічого роду: rojo."
+        },
+        "es:lesson-03:session-17:intro1:r3": {
+          "ru": "После un libro сразу поставьте цвет.",
+          "uk": "Після un libro відразу поставте колір."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-17:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-17:intro2:r2": {
+          "ru": "Род выбираем по cuaderno: un, negro.",
+          "uk": "Рід обираємо за cuaderno: un, negro."
+        },
+        "es:lesson-03:session-17:intro2:r3": {
+          "ru": "Тетрадь одна: negro.",
+          "uk": "Зошит один: negro."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-17:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-17:intro3:r2": {
+          "ru": "Формы azulo нет: azul.",
+          "uk": "Форми azulo немає: azul."
+        },
+        "es:lesson-03:session-17:intro3:r3": {
+          "ru": "Карандаш один: azul.",
+          "uk": "Олівець один: azul."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "fe3ed26e6bfcbdb41e71500b2825d548733e94d9a70a1f920a463390d566a3da"
+}

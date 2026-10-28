@@ -1,0 +1,689 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-20",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это белые чашки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-20:i01:r1",
+          "text": "blancas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i01:r2",
+          "text": "blancos"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i01:r3",
+          "text": "blanca"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это белые чашки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это белые чашки",
+          "uk": "Вставте слово — це білі чашки"
+        },
+        "gappedTargetPhrase": "Son unas tazas ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-20:i01:r1",
+            "text": "blancas"
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i01:r2",
+            "text": "blancos"
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i01:r3",
+            "text": "blanca"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это белые чашки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-20:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это белые чашки",
+            "feedbackByLocale": {
+              "ru": "Tazas женского рода: blancas.",
+              "uk": "Tazas жіночого роду: blancas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это белые чашки",
+            "feedbackByLocale": {
+              "ru": "Чашек несколько: blancas.",
+              "uk": "Чашок кілька: blancas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это белые чашки; используйте unas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-20:i02:r1",
+          "text": "Плитки: blancas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i02:r2",
+          "text": "tazas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i02:r3",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i02:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i02:r5",
+          "text": "unos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это белые чашки; используйте unas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unas tazas blancas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это белые чашки; используйте unas",
+          "uk": "Зберіть фразу — це білі чашки; використайте unas"
+        },
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "tazas",
+          "blancas"
+        ],
+        "authoredDistractorTokens": [
+          "unos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-20:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это белые чашки; используйте unas",
+            "feedbackByLocale": {
+              "ru": "tazas женского рода.",
+              "uk": "tazas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это зелёные бутылки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-20:i03:r1",
+          "text": "verdes"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i03:r2",
+          "text": "verde"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i03:r3",
+          "text": "verdas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это зелёные бутылки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это зелёные бутылки",
+          "uk": "Вставте слово — це зелені пляшки"
+        },
+        "gappedTargetPhrase": "Son unas botellas ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-20:i03:r1",
+            "text": "verdes"
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i03:r2",
+            "text": "verde"
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i03:r3",
+            "text": "verdas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это зелёные бутылки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это зелёные бутылки",
+            "feedbackByLocale": {
+              "ru": "Бутылок несколько: verdes.",
+              "uk": "Пляшок кілька: verdes."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это зелёные бутылки",
+            "feedbackByLocale": {
+              "ru": "Не меняйте -e на -a: verdes.",
+              "uk": "Не змінюйте -e на -a: verdes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это зелёные бутылки; используйте unas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-20:i04:r1",
+          "text": "Плитки: verdes"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i04:r2",
+          "text": "botellas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i04:r3",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i04:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i04:r5",
+          "text": "verde."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это зелёные бутылки; используйте unas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unas botellas verdes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это зелёные бутылки; используйте unas",
+          "uk": "Зберіть фразу — це зелені пляшки; використайте unas"
+        },
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "botellas",
+          "verdes"
+        ],
+        "authoredDistractorTokens": [
+          "verde"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-20:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это зелёные бутылки; используйте unas",
+            "feedbackByLocale": {
+              "ru": "бутылок несколько.",
+              "uk": "пляшок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это маленькие ложки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-20:i05:r1",
+          "text": "pequeñas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i05:r2",
+          "text": "pequeños"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i05:r3",
+          "text": "pequeña"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это маленькие ложки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это маленькие ложки",
+          "uk": "Вставте слово — це маленькі ложки"
+        },
+        "gappedTargetPhrase": "Son unas cucharas ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-20:i05:r1",
+            "text": "pequeñas"
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i05:r2",
+            "text": "pequeños"
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i05:r3",
+            "text": "pequeña"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это маленькие ложки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это маленькие ложки",
+            "feedbackByLocale": {
+              "ru": "Cucharas женского рода: pequeñas.",
+              "uk": "Cucharas жіночого роду: pequeñas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это маленькие ложки",
+            "feedbackByLocale": {
+              "ru": "Ложек несколько: pequeñas.",
+              "uk": "Ложок кілька: pequeñas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это маленькие ложки; используйте unas, размер поставьте после cucharas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-20:i06:r1",
+          "text": "Плитки: pequeñas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i06:r2",
+          "text": "cucharas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i06:r3",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i06:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i06:r5",
+          "text": "pequeños."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это маленькие ложки; используйте unas, размер поставьте после cucharas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unas cucharas pequeñas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это маленькие ложки; используйте unas, размер поставьте после cucharas",
+          "uk": "Зберіть фразу — це маленькі ложки; використайте unas, розмір поставте після cucharas"
+        },
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "cucharas",
+          "pequeñas"
+        ],
+        "authoredDistractorTokens": [
+          "pequeños"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-20:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это маленькие ложки; используйте unas, размер поставьте после cucharas",
+            "feedbackByLocale": {
+              "ru": "cucharas женского рода.",
+              "uk": "cucharas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-20:i07:r1",
+          "text": "Плитки: verdes"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i07:r2",
+          "text": "tazas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i07:r3",
+          "text": "unas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i07:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i07:r5",
+          "text": "blancas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-20:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-20:i07:audio",
+          "transcript": "Son unas tazas verdes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son unas tazas verdes.",
+        "orderedTokens": [
+          "Son",
+          "unas",
+          "tazas",
+          "verdes"
+        ],
+        "authoredDistractorTokens": [
+          "blancas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-20:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит verdes.",
+              "uk": "звучить verdes."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это маленькие бутылки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-20:i08:r1",
+          "text": "pequeñas"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i08:r2",
+          "text": "pequeños"
+        },
+        {
+          "responseId": "es:lesson-03:session-20:i08:r3",
+          "text": "pequeña"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это маленькие бутылки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это маленькие бутылки",
+          "uk": "Вставте слово — це маленькі пляшки"
+        },
+        "gappedTargetPhrase": "Son unas botellas ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-20:i08:r1",
+            "text": "pequeñas"
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i08:r2",
+            "text": "pequeños"
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i08:r3",
+            "text": "pequeña"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это маленькие бутылки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-20:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это маленькие бутылки",
+            "feedbackByLocale": {
+              "ru": "Botellas женского рода: pequeñas.",
+              "uk": "Botellas жіночого роду: pequeñas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-20:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это маленькие бутылки",
+            "feedbackByLocale": {
+              "ru": "Бутылок несколько: pequeñas.",
+              "uk": "Пляшок кілька: pequeñas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это белые чашки; начните с Son unas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это белые чашки; начните с Son unas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-20:i09:audio",
+          "transcript": "Son unas tazas blancas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unas tazas blancas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это зелёные бутылки; начните с Son unas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-20:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это зелёные бутылки; начните с Son unas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-20:i10:audio",
+          "transcript": "Son unas botellas verdes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unas botellas verdes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это маленькие ложки; начните с Son unas, размер поставьте после cucharas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это маленькие ложки; начните с Son unas, размер поставьте после cucharas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-20:i11:audio",
+          "transcript": "Son unas cucharas pequeñas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unas cucharas pequeñas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это зелёные чашки; начните с Son unas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это зелёные чашки; начните с Son unas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-20:i12:audio",
+          "transcript": "Son unas tazas verdes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unas tazas verdes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "959a4fd900ab1712b00832722a5ee69e5c1e63837f15d0ddae21e4d2542f5f5c"
+}

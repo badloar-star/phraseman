@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-19:i01",
+    "correctText": "negros",
+    "correctResponseId": "es:lesson-03:session-19:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-19:i02",
+    "correctText": "Son unos guantes negros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-19:i03",
+    "correctText": "blancos",
+    "correctResponseId": "es:lesson-03:session-19:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-19:i04",
+    "correctText": "Son unos calcetines blancos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-19:i05",
+    "correctText": "pequeños",
+    "correctResponseId": "es:lesson-03:session-19:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-19:i06",
+    "correctText": "Son unos zapatos pequeños.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-19:i07",
+    "correctText": "Son unos calcetines negros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-19:i08",
+    "correctText": "blancos",
+    "correctResponseId": "es:lesson-03:session-19:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-19:i09",
+    "correctText": "Son unos guantes negros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-19:i10",
+    "correctText": "Son unos calcetines blancos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-19:i11",
+    "correctText": "Son unos zapatos pequeños.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-19:i12",
+    "correctText": "Son unos calcetines negros.",
+    "correctResponseId": null
+  }
+]

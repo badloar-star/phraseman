@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-17:i01",
+    "correctText": "rojo",
+    "correctResponseId": "es:lesson-03:session-17:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-17:i02",
+    "correctText": "Es un libro rojo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-17:i03",
+    "correctText": "negro",
+    "correctResponseId": "es:lesson-03:session-17:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-17:i04",
+    "correctText": "Es un cuaderno negro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-17:i05",
+    "correctText": "azul",
+    "correctResponseId": "es:lesson-03:session-17:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-17:i06",
+    "correctText": "Es un lápiz azul.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-17:i07",
+    "correctText": "Es un libro negro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-17:i08",
+    "correctText": "rojo",
+    "correctResponseId": "es:lesson-03:session-17:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-17:i09",
+    "correctText": "Es un libro rojo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-17:i10",
+    "correctText": "Es un cuaderno negro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-17:i11",
+    "correctText": "Es un lápiz azul.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-17:i12",
+    "correctText": "Es un cuaderno rojo.",
+    "correctResponseId": null
+  }
+]

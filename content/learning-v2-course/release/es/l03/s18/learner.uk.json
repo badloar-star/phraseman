@@ -1,0 +1,689 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-18",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-18:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це маленька коробка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-18:i01:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i01:r2",
+          "text": "pequeño"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i01:r3",
+          "text": "pequeñas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це маленька коробка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это маленькая коробка",
+          "uk": "Вставте слово — це маленька коробка"
+        },
+        "gappedTargetPhrase": "Es una caja ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-18:i01:r1",
+            "text": "pequeña"
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i01:r2",
+            "text": "pequeño"
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i01:r3",
+            "text": "pequeñas"
+          }
+        ],
+        "testedDimension": "Вставте слово — це маленька коробка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-18:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це маленька коробка",
+            "feedbackByLocale": {
+              "ru": "Caja женского рода: pequeña.",
+              "uk": "Caja жіночого роду: pequeña."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це маленька коробка",
+            "feedbackByLocale": {
+              "ru": "Коробка одна: pequeña.",
+              "uk": "Коробка одна: pequeña."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це маленька коробка; поставте розмір після caja",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-18:i02:r1",
+          "text": "Плитки: pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i02:r2",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i02:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i02:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i02:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це маленька коробка; поставте розмір після caja",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una caja pequeña.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это маленькая коробка; поставьте размер после caja",
+          "uk": "Зберіть фразу — це маленька коробка; поставте розмір після caja"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "caja",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-18:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це маленька коробка; поставте розмір після caja",
+            "feedbackByLocale": {
+              "ru": "caja женского рода.",
+              "uk": "caja жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це білий пакет, bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-18:i03:r1",
+          "text": "blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i03:r2",
+          "text": "blanco"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i03:r3",
+          "text": "blancas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це білий пакет, bolsa",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это белый пакет, bolsa",
+          "uk": "Вставте слово — це білий пакет, bolsa"
+        },
+        "gappedTargetPhrase": "Es una bolsa ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-18:i03:r1",
+            "text": "blanca"
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i03:r2",
+            "text": "blanco"
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i03:r3",
+            "text": "blancas"
+          }
+        ],
+        "testedDimension": "Вставте слово — це білий пакет, bolsa",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-18:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це білий пакет, bolsa",
+            "feedbackByLocale": {
+              "ru": "Bolsa женского рода: blanca.",
+              "uk": "Bolsa жіночого роду: blanca."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це білий пакет, bolsa",
+            "feedbackByLocale": {
+              "ru": "Пакет один: blanca.",
+              "uk": "Пакет один: blanca."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це білий пакет; використайте bolsa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-18:i04:r1",
+          "text": "Плитки: blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i04:r2",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i04:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i04:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i04:r5",
+          "text": "blanco."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це білий пакет; використайте bolsa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una bolsa blanca.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это белый пакет; используйте bolsa",
+          "uk": "Зберіть фразу — це білий пакет; використайте bolsa"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "bolsa",
+          "blanca"
+        ],
+        "authoredDistractorTokens": [
+          "blanco"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-18:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це білий пакет; використайте bolsa",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода.",
+              "uk": "bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це гарна листівка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-18:i05:r1",
+          "text": "bonita"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i05:r2",
+          "text": "bonito"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i05:r3",
+          "text": "bonitas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це гарна листівка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это красивая открытка",
+          "uk": "Вставте слово — це гарна листівка"
+        },
+        "gappedTargetPhrase": "Es una tarjeta ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-18:i05:r1",
+            "text": "bonita"
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i05:r2",
+            "text": "bonito"
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i05:r3",
+            "text": "bonitas"
+          }
+        ],
+        "testedDimension": "Вставте слово — це гарна листівка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-18:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це гарна листівка",
+            "feedbackByLocale": {
+              "ru": "Tarjeta женского рода: bonita.",
+              "uk": "Tarjeta жіночого роду: bonita."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це гарна листівка",
+            "feedbackByLocale": {
+              "ru": "Открытка одна: bonita.",
+              "uk": "Листівка одна: bonita."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це гарна листівка; поставте ознаку після tarjeta",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-18:i06:r1",
+          "text": "Плитки: bonita"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i06:r2",
+          "text": "tarjeta"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i06:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i06:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i06:r5",
+          "text": "bonitas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це гарна листівка; поставте ознаку після tarjeta",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una tarjeta bonita.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это красивая открытка; поставьте признак после tarjeta",
+          "uk": "Зберіть фразу — це гарна листівка; поставте ознаку після tarjeta"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "tarjeta",
+          "bonita"
+        ],
+        "authoredDistractorTokens": [
+          "bonitas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-18:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це гарна листівка; поставте ознаку після tarjeta",
+            "feedbackByLocale": {
+              "ru": "открытка одна.",
+              "uk": "листівка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-18:i07:r1",
+          "text": "Плитки: blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i07:r2",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i07:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i07:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i07:r5",
+          "text": "bolsa."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-18:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-18:i07:audio",
+          "transcript": "Es una caja blanca."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es una caja blanca.",
+        "orderedTokens": [
+          "Es",
+          "una",
+          "caja",
+          "blanca"
+        ],
+        "authoredDistractorTokens": [
+          "bolsa"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-18:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит caja.",
+              "uk": "звучить caja."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це маленька листівка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-18:i08:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i08:r2",
+          "text": "pequeño"
+        },
+        {
+          "responseId": "es:lesson-03:session-18:i08:r3",
+          "text": "pequeñas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це маленька листівка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это маленькая открытка",
+          "uk": "Вставте слово — це маленька листівка"
+        },
+        "gappedTargetPhrase": "Es una tarjeta ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-18:i08:r1",
+            "text": "pequeña"
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i08:r2",
+            "text": "pequeño"
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i08:r3",
+            "text": "pequeñas"
+          }
+        ],
+        "testedDimension": "Вставте слово — це маленька листівка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-18:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це маленька листівка",
+            "feedbackByLocale": {
+              "ru": "Tarjeta женского рода: pequeña.",
+              "uk": "Tarjeta жіночого роду: pequeña."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-18:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це маленька листівка",
+            "feedbackByLocale": {
+              "ru": "Открытка одна: pequeña.",
+              "uk": "Листівка одна: pequeña."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це маленька коробка; почніть з Es una, поставте розмір після caja",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-18:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це маленька коробка; почніть з Es una, поставте розмір після caja",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-18:i09:audio",
+          "transcript": "Es una caja pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una caja pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це білий пакет; почніть з Es una і використайте bolsa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-18:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це білий пакет; почніть з Es una і використайте bolsa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-18:i10:audio",
+          "transcript": "Es una bolsa blanca."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una bolsa blanca.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це гарна листівка; почніть з Es una і поставте ознаку після tarjeta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-18:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це гарна листівка; почніть з Es una і поставте ознаку після tarjeta",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-18:i11:audio",
+          "transcript": "Es una tarjeta bonita."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una tarjeta bonita.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це маленька листівка; почніть з Es una, поставте розмір після tarjeta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-18:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це маленька листівка; почніть з Es una, поставте розмір після tarjeta",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-18:i12:audio",
+          "transcript": "Es una tarjeta pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una tarjeta pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "04b408003e804d42fabd60d609fcc77b222f7562b88517c023a97be45c781efa"
+}

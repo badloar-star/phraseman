@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-20:i01",
+    "correctText": "blancas",
+    "correctResponseId": "es:lesson-03:session-20:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-20:i02",
+    "correctText": "Son unas tazas blancas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-20:i03",
+    "correctText": "verdes",
+    "correctResponseId": "es:lesson-03:session-20:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-20:i04",
+    "correctText": "Son unas botellas verdes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-20:i05",
+    "correctText": "pequeñas",
+    "correctResponseId": "es:lesson-03:session-20:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-20:i06",
+    "correctText": "Son unas cucharas pequeñas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-20:i07",
+    "correctText": "Son unas tazas verdes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-20:i08",
+    "correctText": "pequeñas",
+    "correctResponseId": "es:lesson-03:session-20:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-20:i09",
+    "correctText": "Son unas tazas blancas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-20:i10",
+    "correctText": "Son unas botellas verdes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-20:i11",
+    "correctText": "Son unas cucharas pequeñas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-20:i12",
+    "correctText": "Son unas tazas verdes.",
+    "correctResponseId": null
+  }
+]

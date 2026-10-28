@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "собрать название вещи женского рода с её признаком.",
+    "uk": "складати назву речі жіночого роду з її ознакою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Коробка для подарка",
+        "uk": "Коробка для подарунка"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец показывает небольшую коробку. Вы называете её другу: `Es una caja pequeña` — «Это маленькая коробка». Соберите `es` + `una caja` + `pequeña`. Как в un libro rojo, признак идёт после предмета. Но caja женского рода: здесь нужны una и pequeña.",
+        "uk": "Продавець показує невелику коробку. Ви називаєте її другові: `Es una caja pequeña` — «Це маленька коробка». Зберіть `es` + `una caja` + `pequeña`. Як у un libro rojo, ознака йде після предмета. Але caja жіночого роду: тут потрібні una і pequeña."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите маленькую коробку.",
+          "uk": "Назвіть маленьку коробку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-18:intro1:r1",
+              "text": "Es una caja pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro1:r2",
+              "text": "Es un caja pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro1:r3",
+              "text": "Es una caja pequeñas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-18:intro1:r1",
+              "text": "Es una caja pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro1:r2",
+              "text": "Es un caja pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro1:r3",
+              "text": "Es una caja pequeñas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите маленькую коробку.",
+          "uk": "Назвіть маленьку коробку."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Пакет к коробке",
+        "uk": "Пакет до коробки"
+      },
+      "bodyByLocale": {
+        "ru": "Для коробки предлагают белый пакет. Назовите его словом bolsa: `Es una bolsa blanca` — «Это белый пакет». Соберите `es` + `una bolsa` + `blanca`. Род русского слова «пакет» здесь не влияет: испанское bolsa женского рода, поэтому una и blanca.",
+        "uk": "Для коробки пропонують білий пакет. Назвіть його словом bolsa: `Es una bolsa blanca` — «Це білий пакет». Зберіть `es` + `una bolsa` + `blanca`. Рід українського слова «пакет» тут не впливає: іспанське bolsa жіночого роду, тому una і blanca."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите белый пакет словом bolsa.",
+          "uk": "Назвіть білий пакет словом bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-18:intro2:r1",
+              "text": "Es una bolsa blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro2:r2",
+              "text": "Es una bolsa blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro2:r3",
+              "text": "Es una bolsa blancas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-18:intro2:r1",
+              "text": "Es una bolsa blanca."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro2:r2",
+              "text": "Es una bolsa blanco."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro2:r3",
+              "text": "Es una bolsa blancas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите белый пакет словом bolsa.",
+          "uk": "Назвіть білий пакет словом bolsa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Открытка к подарку",
+        "uk": "Листівка до подарунка"
+      },
+      "bodyByLocale": {
+        "ru": "Выбрали ещё и красивую открытку. Скажите `Es una tarjeta bonita` — «Это красивая открытка». Соберите `es` + `una tarjeta` + `bonita`. Tarjeta женского рода, поэтому знакомое bonito получает -a. В этой фразе описывайте открытку после слова tarjeta.",
+        "uk": "Обрали ще й гарну листівку. Скажіть `Es una tarjeta bonita` — «Це гарна листівка». Зберіть `es` + `una tarjeta` + `bonita`. Tarjeta жіночого роду, тому знайоме bonito отримує -a. У цій фразі описуйте листівку після слова tarjeta."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите красивую открытку.",
+          "uk": "Назвіть гарну листівку."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-18:intro3:r1",
+              "text": "Es una tarjeta bonita."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro3:r2",
+              "text": "Es una tarjeta bonito."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro3:r3",
+              "text": "Es una tarjeta bonitas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-18:intro3:r1",
+              "text": "Es una tarjeta bonita."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro3:r2",
+              "text": "Es una tarjeta bonito."
+            },
+            {
+              "responseId": "es:lesson-03:session-18:intro3:r3",
+              "text": "Es una tarjeta bonitas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите красивую открытку.",
+          "uk": "Назвіть гарну листівку."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "05a43674ac57c0b2c2ddc8a2126a72d39dd0f687486f599363b818760a3efcf7"
+}

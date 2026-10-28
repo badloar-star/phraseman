@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-20",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-20:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-20:intro1:r2": {
+          "ru": "Tazas женского рода: unas, blancas.",
+          "uk": "Tazas жіночого роду: unas, blancas."
+        },
+        "es:lesson-03:session-20:intro1:r3": {
+          "ru": "Чашек несколько: blancas.",
+          "uk": "Чашок кілька: blancas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-20:intro2:r2": {
+          "ru": "Женский род не меняет -e: verdes.",
+          "uk": "Жіночий рід не змінює -e: verdes."
+        },
+        "es:lesson-03:session-20:intro2:r3": {
+          "ru": "Бутылок несколько: verdes.",
+          "uk": "Пляшок кілька: verdes."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-20:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-20:intro3:r2": {
+          "ru": "Cucharas женского рода: pequeñas.",
+          "uk": "Cucharas жіночого роду: pequeñas."
+        },
+        "es:lesson-03:session-20:intro3:r3": {
+          "ru": "Ложек несколько: pequeñas.",
+          "uk": "Ложок кілька: pequeñas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c0251817790586ddac1e8cce41bf3da6e39bad25998aee796c5ada3c716848d7"
+}

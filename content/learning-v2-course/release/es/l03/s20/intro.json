@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "назвать несколько вещей женского рода вместе с цветом или размером.",
+    "uk": "називати кілька речей жіночого роду разом із кольором або розміром."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Белые чашки",
+        "uk": "Білі чашки"
+      },
+      "bodyByLocale": {
+        "ru": "Разворачиваете покупку: `Son unas tazas blancas` — «Это белые чашки». Соберите `son` + `unas tazas` + `blancas`. Tazas женского рода и во множественном числе: выбирайте unas, а не unos. Цвет blanco получает окончание -as и стоит после tazas.",
+        "uk": "Розгортаєте покупку: `Son unas tazas blancas` — «Це білі чашки». Зберіть `son` + `unas tazas` + `blancas`. Tazas жіночого роду й у множині: обирайте unas, а не unos. Колір blanco отримує закінчення -as і стоїть після tazas."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите белые чашки, используя unas.",
+          "uk": "Назвіть білі чашки, використовуючи unas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-20:intro1:r1",
+              "text": "Son unas tazas blancas."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro1:r2",
+              "text": "Son unos tazas blancos."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro1:r3",
+              "text": "Son unas tazas blanca."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-20:intro1:r1",
+              "text": "Son unas tazas blancas."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro1:r2",
+              "text": "Son unos tazas blancos."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro1:r3",
+              "text": "Son unas tazas blanca."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите белые чашки, используя unas.",
+          "uk": "Назвіть білі чашки, використовуючи unas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Зелёные бутылки",
+        "uk": "Зелені пляшки"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете стеклянные бутылки для воды: `Son unas botellas verdes` — «Это зелёные бутылки». Соберите `son` + `unas botellas` + `verdes`. У verde нет отдельного женского окончания. Для нескольких бутылок добавьте только -s: verdes, не verdas.",
+        "uk": "Показуєте скляні пляшки для води: `Son unas botellas verdes` — «Це зелені пляшки». Зберіть `son` + `unas botellas` + `verdes`. У verde немає окремого жіночого закінчення. Для кількох пляшок додайте лише -s: verdes, не verdas."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите зелёные бутылки, используя unas.",
+          "uk": "Назвіть зелені пляшки, використовуючи unas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-20:intro2:r1",
+              "text": "Son unas botellas verdes."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro2:r2",
+              "text": "Son unas botellas verdas."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro2:r3",
+              "text": "Son unas botellas verde."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-20:intro2:r1",
+              "text": "Son unas botellas verdes."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro2:r2",
+              "text": "Son unas botellas verdas."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro2:r3",
+              "text": "Son unas botellas verde."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите зелёные бутылки, используя unas.",
+          "uk": "Назвіть зелені пляшки, використовуючи unas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Маленькие ложки",
+        "uk": "Маленькі ложки"
+      },
+      "bodyByLocale": {
+        "ru": "К чашкам купили маленькие ложки. Скажите `Son unas cucharas pequeñas` — «Это маленькие ложки». Соберите `son` + `unas cucharas` + `pequeñas`. Cucharas женского рода и во множественном числе, поэтому размер выражаем формой pequeñas. В этой фразе поставьте размер после cucharas.",
+        "uk": "До чашок купили маленькі ложки. Скажіть `Son unas cucharas pequeñas` — «Це маленькі ложки». Зберіть `son` + `unas cucharas` + `pequeñas`. Cucharas жіночого роду й у множині, тому розмір виражаємо формою pequeñas. У цій фразі поставте розмір після cucharas."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите маленькие ложки, используя unas.",
+          "uk": "Назвіть маленькі ложки, використовуючи unas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-20:intro3:r1",
+              "text": "Son unas cucharas pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro3:r2",
+              "text": "Son unas cucharas pequeños."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro3:r3",
+              "text": "Son unas cucharas pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-20:intro3:r1",
+              "text": "Son unas cucharas pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro3:r2",
+              "text": "Son unas cucharas pequeños."
+            },
+            {
+              "responseId": "es:lesson-03:session-20:intro3:r3",
+              "text": "Son unas cucharas pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите маленькие ложки, используя unas.",
+          "uk": "Назвіть маленькі ложки, використовуючи unas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b7fc95cd63691080aa6d3f30aa51600f875440c0b4d4545a6272d3e50e2e56b9"
+}

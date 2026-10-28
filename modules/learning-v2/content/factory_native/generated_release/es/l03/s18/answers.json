@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-18:i01",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-03:session-18:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-18:i02",
+    "correctText": "Es una caja pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-18:i03",
+    "correctText": "blanca",
+    "correctResponseId": "es:lesson-03:session-18:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-18:i04",
+    "correctText": "Es una bolsa blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-18:i05",
+    "correctText": "bonita",
+    "correctResponseId": "es:lesson-03:session-18:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-18:i06",
+    "correctText": "Es una tarjeta bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-18:i07",
+    "correctText": "Es una caja blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-18:i08",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-03:session-18:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-18:i09",
+    "correctText": "Es una caja pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-18:i10",
+    "correctText": "Es una bolsa blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-18:i11",
+    "correctText": "Es una tarjeta bonita.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-18:i12",
+    "correctText": "Es una tarjeta pequeña.",
+    "correctResponseId": null
+  }
+]

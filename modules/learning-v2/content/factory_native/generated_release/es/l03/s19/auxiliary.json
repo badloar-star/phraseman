@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-19",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-19:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-19:intro1:r2": {
+          "ru": "Для нескольких вещей здесь нужно son.",
+          "uk": "Для кількох речей тут потрібне son."
+        },
+        "es:lesson-03:session-19:intro1:r3": {
+          "ru": "Guantes во множественном числе: negros.",
+          "uk": "Guantes у множині: negros."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-19:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-19:intro2:r2": {
+          "ru": "Calcetines мужского рода: blancos.",
+          "uk": "Calcetines чоловічого роду: blancos."
+        },
+        "es:lesson-03:session-19:intro2:r3": {
+          "ru": "Носков несколько: blancos.",
+          "uk": "Шкарпеток кілька: blancos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-19:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-19:intro3:r2": {
+          "ru": "С zapatos нужны unos и pequeños.",
+          "uk": "З zapatos потрібні unos і pequeños."
+        },
+        "es:lesson-03:session-19:intro3:r3": {
+          "ru": "Туфель несколько: pequeños.",
+          "uk": "Туфель кілька: pequeños."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c775879b794e488383301b656133c2a5f7976b98232509e513a6db32055b3672"
+}

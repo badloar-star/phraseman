@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "назвать предмет и его цвет одной фразой с un.",
+    "uk": "називати предмет і його колір однією фразою з un."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Что в пакете",
+        "uk": "Що в пакеті"
+      },
+      "bodyByLocale": {
+        "ru": "Вы достаёте красную книгу. Друг не видел покупку, поэтому сначала называете её: `Es un libro rojo` — «Это красная книга». Соберите `es` + `un libro` + `rojo`. В этом обычном описании цвет стоит после названия вещи: libro rojo. Между libro и rojo второе es не нужно.",
+        "uk": "Ви дістаєте червону книгу. Друг не бачив покупку, тому спочатку називаєте її: `Es un libro rojo` — «Це червона книга». Зберіть `es` + `un libro` + `rojo`. У цьому звичайному описі колір стоїть після назви речі: libro rojo. Між libro і rojo друге es не потрібне."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите покупку: это красная книга.",
+          "uk": "Назвіть покупку: це червона книга."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-17:intro1:r1",
+              "text": "Es un libro rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro1:r2",
+              "text": "Es un libro roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro1:r3",
+              "text": "Es un libro es rojo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-17:intro1:r1",
+              "text": "Es un libro rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro1:r2",
+              "text": "Es un libro roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro1:r3",
+              "text": "Es un libro es rojo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите покупку: это красная книга.",
+          "uk": "Назвіть покупку: це червона книга."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ещё одна покупка",
+        "uk": "Ще одна покупка"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете чёрную тетрадь: `Es un cuaderno negro` — «Это чёрная тетрадь». Соберите `es` + `un cuaderno` + `negro`. По-русски тетрадь женского рода, но испанское cuaderno мужского: un и negro согласуются с испанским словом.",
+        "uk": "Показуєте чорний зошит: `Es un cuaderno negro` — «Це чорний зошит». Зберіть `es` + `un cuaderno` + `negro`. Іспанське cuaderno чоловічого роду: un і negro узгоджуються з ним. Колір знову ставимо після назви речі."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите чёрную тетрадь.",
+          "uk": "Назвіть чорний зошит."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-17:intro2:r1",
+              "text": "Es un cuaderno negro."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro2:r2",
+              "text": "Es una cuaderno negra."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro2:r3",
+              "text": "Es un cuaderno negros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-17:intro2:r1",
+              "text": "Es un cuaderno negro."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro2:r2",
+              "text": "Es una cuaderno negra."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro2:r3",
+              "text": "Es un cuaderno negros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите чёрную тетрадь.",
+          "uk": "Назвіть чорний зошит."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Карандаш к тетради",
+        "uk": "Олівець до зошита"
+      },
+      "bodyByLocale": {
+        "ru": "В пакете лежит и синий карандаш. Покажите его: `Es un lápiz azul` — «Это синий карандаш». Соберите `es` + `un lápiz` + `azul`. Порядок тот же, но у знакомого azul нет отдельной формы мужского рода. Не добавляйте к нему -o.",
+        "uk": "У пакеті лежить і синій олівець. Покажіть його: `Es un lápiz azul` — «Це синій олівець». Зберіть `es` + `un lápiz` + `azul`. Порядок той самий, але у знайомого azul немає окремої форми чоловічого роду. Не додавайте до нього -o."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите синий карандаш.",
+          "uk": "Назвіть синій олівець."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-17:intro3:r1",
+              "text": "Es un lápiz azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro3:r2",
+              "text": "Es un lápiz azulo."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro3:r3",
+              "text": "Es un lápiz azules."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-17:intro3:r1",
+              "text": "Es un lápiz azul."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro3:r2",
+              "text": "Es un lápiz azulo."
+            },
+            {
+              "responseId": "es:lesson-03:session-17:intro3:r3",
+              "text": "Es un lápiz azules."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите синий карандаш.",
+          "uk": "Назвіть синій олівець."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "46f5da5f798a6d2f351b750d2fd23a166a672bfad3342c046db558f1191b2b81"
+}

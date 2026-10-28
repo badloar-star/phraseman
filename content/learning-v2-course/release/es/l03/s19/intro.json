@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "назвать несколько предметов мужского рода вместе с их признаком.",
+    "uk": "називати кілька предметів чоловічого роду разом з їхньою ознакою."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чёрные перчатки",
+        "uk": "Чорні рукавички"
+      },
+      "bodyByLocale": {
+        "ru": "Достаёте купленные перчатки. Скажите `Son unos guantes negros` — «Это чёрные перчатки». Соберите `son` + `unos guantes` + `negros`. Предметов несколько: вместо es un нужны son unos. Цвет тоже во множественном числе и стоит после guantes.",
+        "uk": "Дістаєте куплені рукавички. Скажіть `Son unos guantes negros` — «Це чорні рукавички». Зберіть `son` + `unos guantes` + `negros`. Предметів кілька: замість es un потрібні son unos. Колір теж у множині й стоїть після guantes."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите чёрные перчатки, используя unos.",
+          "uk": "Назвіть чорні рукавички, використовуючи unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-19:intro1:r1",
+              "text": "Son unos guantes negros."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro1:r2",
+              "text": "Es unos guantes negros."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro1:r3",
+              "text": "Son unos guantes negro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-19:intro1:r1",
+              "text": "Son unos guantes negros."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro1:r2",
+              "text": "Es unos guantes negros."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro1:r3",
+              "text": "Son unos guantes negro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите чёрные перчатки, используя unos.",
+          "uk": "Назвіть чорні рукавички, використовуючи unos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Белые носки",
+        "uk": "Білі шкарпетки"
+      },
+      "bodyByLocale": {
+        "ru": "Следом показываете белые носки: `Son unos calcetines blancos` — «Это белые носки». Соберите `son` + `unos calcetines` + `blancos`. Calcetines мужского рода и во множественном числе, поэтому у цвета окончание -os. Не выбирайте форму по слову «пара»: в испанской фразе мы называем носки.",
+        "uk": "Далі показуєте білі шкарпетки: `Son unos calcetines blancos` — «Це білі шкарпетки». Зберіть `son` + `unos calcetines` + `blancos`. Calcetines чоловічого роду й у множині, тому колір має закінчення -os. Не обирайте форму за словом «пара»: в іспанській фразі ми називаємо шкарпетки."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите белые носки, используя unos.",
+          "uk": "Назвіть білі шкарпетки, використовуючи unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-19:intro2:r1",
+              "text": "Son unos calcetines blancos."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro2:r2",
+              "text": "Son unos calcetines blancas."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro2:r3",
+              "text": "Son unos calcetines blanco."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-19:intro2:r1",
+              "text": "Son unos calcetines blancos."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro2:r2",
+              "text": "Son unos calcetines blancas."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro2:r3",
+              "text": "Son unos calcetines blanco."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите белые носки, используя unos.",
+          "uk": "Назвіть білі шкарпетки, використовуючи unos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Маленькие туфли",
+        "uk": "Маленькі туфлі"
+      },
+      "bodyByLocale": {
+        "ru": "В сумке есть детские туфли. Описываете их размер: `Son unos zapatos pequeños` — «Это маленькие туфли». Соберите `son` + `unos zapatos` + `pequeños`. По-русски туфли женского рода, но испанское zapatos мужского: unos и pequeños. Размер, как и цвет, здесь стоит после названия вещи.",
+        "uk": "У сумці є дитячі туфлі. Описуєте їхній розмір: `Son unos zapatos pequeños` — «Це маленькі туфлі». Зберіть `son` + `unos zapatos` + `pequeños`. Українською туфля жіночого роду, але іспанське zapatos чоловічого: unos і pequeños. Розмір, як і колір, тут стоїть після назви речі."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите маленькие туфли, используя unos.",
+          "uk": "Назвіть маленькі туфлі, використовуючи unos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-19:intro3:r1",
+              "text": "Son unos zapatos pequeños."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro3:r2",
+              "text": "Son unas zapatos pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro3:r3",
+              "text": "Son unos zapatos pequeño."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-19:intro3:r1",
+              "text": "Son unos zapatos pequeños."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro3:r2",
+              "text": "Son unas zapatos pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-19:intro3:r3",
+              "text": "Son unos zapatos pequeño."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите маленькие туфли, используя unos.",
+          "uk": "Назвіть маленькі туфлі, використовуючи unos."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2c6d8934766603e30ea532fc183a9d1bf998a0367d645b1de8d9dbf522ff8255"
+}

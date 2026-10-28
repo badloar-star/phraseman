@@ -903,4 +903,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно согласовать знакомые цвета с родом и числом вещей.","uk":"самостійно узгоджувати знайомі кольори з родом і числом речей."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 17,
+    sourceFingerprint: "be33cf962eba99d23c3f66a8a63c3a78b92ec523d3d25d4e4699eac78ec1714e",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать предмет и его цвет одной фразой с un.","uk":"називати предмет і його колір однією фразою з un."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 18,
+    sourceFingerprint: "831a5bb605255380d3ec1f6df1069147ba4b3e228fed266ef37ad98b63649d5a",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"собрать название вещи женского рода с её признаком.","uk":"складати назву речі жіночого роду з її ознакою."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 19,
+    sourceFingerprint: "d41c1c86cb728859750f9566f039552c17863d6423f461660a9be30028019c2f",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать несколько предметов мужского рода вместе с их признаком.","uk":"називати кілька предметів чоловічого роду разом з їхньою ознакою."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 20,
+    sourceFingerprint: "0a5d35d7510151ca09a6f6788850ecab7aa6702d025111463cf4bc16451ad199",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать несколько вещей женского рода вместе с цветом или размером.","uk":"називати кілька речей жіночого роду разом із кольором або розміром."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

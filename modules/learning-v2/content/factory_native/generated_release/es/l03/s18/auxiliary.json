@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-18",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-18:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-18:intro1:r2": {
+          "ru": "С caja нужны una и pequeña.",
+          "uk": "З caja потрібні una і pequeña."
+        },
+        "es:lesson-03:session-18:intro1:r3": {
+          "ru": "Коробка одна: pequeña.",
+          "uk": "Коробка одна: pequeña."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-18:intro2:r2": {
+          "ru": "С bolsa нужна blanca.",
+          "uk": "З bolsa потрібна blanca."
+        },
+        "es:lesson-03:session-18:intro2:r3": {
+          "ru": "Пакет один: blanca.",
+          "uk": "Пакет один: blanca."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-18:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-18:intro3:r2": {
+          "ru": "Tarjeta женского рода: bonita.",
+          "uk": "Tarjeta жіночого роду: bonita."
+        },
+        "es:lesson-03:session-18:intro3:r3": {
+          "ru": "Открытка одна: bonita.",
+          "uk": "Листівка одна: bonita."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4f9d3248ea92f4b548e8a285bccd1a5405b463c038360cbd06b635f6c6add2de"
+}

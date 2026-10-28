@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы готовите завтрак, договариваетесь о покупках и собираете еду на прогулку.
 
-**Что вы освоите:** just, already, yet; zero conditional; first conditional; past perfect + by the time
+**Что вы освоите:** сказать «только что / уже / ещё нет», что бывает и что будет, если…
 **Новые слова:** oatmeal, raisin, marmalade, tortilla
 
 ## Интро 1

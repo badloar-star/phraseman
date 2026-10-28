@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы собираете семейную сумку для ночёвки и помогаете друг другу найти нужные вещи.
 
-**Что вы освоите:** zero conditional; first conditional; just, already, yet; past perfect + by the time
+**Что вы освоите:** сказать, что бывает и что будет, если…, и что уже случилось к моменту
 **Новые слова:** bathrobe, nightie, undershirt, diaper
 
 ## Интро 1

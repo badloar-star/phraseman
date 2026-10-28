@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете обычные явления дома и свою реакцию на холод.
 
-**Что вы освоите:** zero conditional: if/when + present simple, present simple
+**Что вы освоите:** сказать, что всегда бывает, если или когда…
 **Новые слова:** evaporate, condense, splatter, stiffen
 
 ## Интро 1

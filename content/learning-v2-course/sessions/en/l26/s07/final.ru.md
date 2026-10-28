@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы описываете коробки, банки, пластик и шторы.
 
-**Что вы освоите:** zero conditional: if/when + present simple, present simple
+**Что вы освоите:** сказать, что всегда бывает, если или когда…
 **Новые слова:** rigid, brittle, transparent, opaque
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви словами описуєте свої повторювані відчуття.
 
-**Що ви опануєте:** zero conditional: when + present simple, present simple
+**Що ви опануєте:** сказати, що завжди буває, коли…
 **Нові слова:** numb, nauseous, tingle, throb
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви описуєте коробки, банки, пластик і штори.
 
-**Що ви опануєте:** zero conditional: if/when + present simple, present simple
+**Що ви опануєте:** сказати, що завжди буває, якщо чи коли…
 **Нові слова:** rigid, brittle, transparent, opaque
 
 ## Інтро 1

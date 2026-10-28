@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви готуєте сніданок, домовляєтеся про покупки й збираєте їжу на прогулянку.
 
-**Що ви опануєте:** just, already, yet; zero conditional; first conditional; past perfect + by the time
+**Що ви опануєте:** сказати «щойно / вже / ще ні», що буває і що буде, якщо…
 **Нові слова:** oatmeal, raisin, marmalade, tortilla
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете скорость, частоту и характер обычных действий.
 
-**Что вы освоите:** zero conditional: when + present simple, present simple
+**Что вы освоите:** сказать, что всегда бывает, когда…
 **Новые слова:** automatically, rapidly, constantly, instinctively
 
 ## Интро 1

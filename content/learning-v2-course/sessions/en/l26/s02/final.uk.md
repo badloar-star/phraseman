@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте, коли чуєте знайомі звуки.
 
-**Що ви опануєте:** zero conditional: when + present simple, present simple
+**Що ви опануєте:** сказати, що завжди буває, коли…
 **Нові слова:** squeak, rustle, squeal, roar
 
 ## Інтро 1

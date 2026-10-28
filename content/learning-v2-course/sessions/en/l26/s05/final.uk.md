@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте швидкість, частоту й характер звичайних дій.
 
-**Що ви опануєте:** zero conditional: when + present simple, present simple
+**Що ви опануєте:** сказати, що завжди буває, коли…
 **Нові слова:** automatically, rapidly, constantly, instinctively
 
 ## Інтро 1

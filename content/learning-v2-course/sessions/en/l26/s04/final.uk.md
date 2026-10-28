@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви описуєте рухи й свої звичайні відчуття.
 
-**Що ви опануєте:** zero conditional: when + present simple, present simple
+**Що ви опануєте:** сказати, що завжди буває, коли…
 **Нові слова:** rhythm, posture, pulse, heartbeat
 
 ## Інтро 1

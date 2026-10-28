@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы описываете движения и свои обычные ощущения.
 
-**Что вы освоите:** zero conditional: when + present simple, present simple
+**Что вы освоите:** сказать, что всегда бывает, когда…
 **Новые слова:** rhythm, posture, pulse, heartbeat
 
 ## Интро 1

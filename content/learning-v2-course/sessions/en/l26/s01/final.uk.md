@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте звичайні явища вдома й свою реакцію на холод.
 
-**Що ви опануєте:** zero conditional: if/when + present simple, present simple
+**Що ви опануєте:** сказати, що завжди буває, якщо чи коли…
 **Нові слова:** evaporate, condense, splatter, stiffen
 
 ## Інтро 1

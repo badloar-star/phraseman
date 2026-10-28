@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви збираєте сімейну сумку для ночівлі й допомагаєте одне одному знайти потрібні речі.
 
-**Що ви опануєте:** zero conditional; first conditional; just, already, yet; past perfect + by the time
+**Що ви опануєте:** сказати, що буває і що буде, якщо…, і що вже сталося до моменту
 **Нові слова:** bathrobe, nightie, undershirt, diaper
 
 ## Інтро 1

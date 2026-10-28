@@ -85,7 +85,7 @@ I ___ cutting a passion fruit. → **was** · were · is
 
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-18:i06; family: context_gap_grammar -->
-We ___ cutting a dragon fruit. → **were** · was · are
+We ___ cutting a dragon fruit at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
@@ -105,7 +105,7 @@ We ___ cutting a dragon fruit. → **were** · was · are
 
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-18:i09; family: context_gap_grammar -->
-She ___ peeling a lychee. → **was** · were · is
+She ___ peeling a lychee at that moment. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
@@ -125,7 +125,7 @@ She ___ peeling a lychee. → **was** · were · is
 
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-18:i12; family: context_gap_grammar -->
-They ___ washing a papaya. → **were** · was · are
+They ___ washing a papaya at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 

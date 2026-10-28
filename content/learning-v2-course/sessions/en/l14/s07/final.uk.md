@@ -85,7 +85,7 @@ I ___ cooking fried rice. → **was** · were · is
 
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-07:i06; family: context_gap_grammar -->
-They ___ cooking noodle soup. → **were** · was · are
+They ___ cooking noodle soup at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
@@ -105,7 +105,7 @@ They ___ cooking noodle soup. → **were** · was · are
 
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-07:i09; family: context_gap_grammar -->
-She ___ eating a fishcake. → **was** · were · is
+She ___ eating a fishcake at that moment. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
@@ -125,7 +125,7 @@ She ___ eating a fishcake. → **was** · were · is
 
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-07:i12; family: context_gap_grammar -->
-We ___ eating a spring roll. → **were** · was · are
+We ___ eating a spring roll at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 

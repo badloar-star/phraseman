@@ -85,7 +85,7 @@ I ___ filling a spray bottle. → **was** · were · is
 
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-04:i06; family: context_gap_grammar -->
-She ___ using a scrubbing brush. → **was** · were · is
+She ___ using a scrubbing brush at that moment. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
@@ -105,7 +105,7 @@ She ___ using a scrubbing brush. → **was** · were · is
 
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-04:i09; family: context_gap_grammar -->
-We ___ using soapy water. → **were** · was · are
+We ___ using soapy water at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
@@ -125,7 +125,7 @@ We ___ using soapy water. → **were** · was · are
 
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-04:i12; family: context_gap_grammar -->
-They ___ watching the soap bubbles. → **were** · was · are
+They ___ watching the soap bubbles at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 

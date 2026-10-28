@@ -85,7 +85,7 @@ I ___ cleaning the bedside lamp. → **was** · were · is
 
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-08:i06; family: context_gap_grammar -->
-She ___ looking for the night light. → **was** · were · is
+She ___ looking for the night light at that moment. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
@@ -105,7 +105,7 @@ She ___ looking for the night light. → **was** · were · is
 
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-08:i09; family: context_gap_grammar -->
-We ___ looking for the electric blanket. → **were** · was · are
+We ___ looking for the electric blanket at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
@@ -125,7 +125,7 @@ We ___ looking for the electric blanket. → **were** · was · are
 
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-08:i12; family: context_gap_grammar -->
-They ___ looking for the hot-water bottle. → **were** · was · are
+They ___ looking for the hot-water bottle at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 

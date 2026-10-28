@@ -85,7 +85,7 @@ I ___ using a measuring jug. → **was** · were · is
 
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-02:i06; family: context_gap_grammar -->
-He ___ using a rolling pin. → **was** · were · is
+He ___ using a rolling pin at that moment. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
@@ -105,7 +105,7 @@ He ___ using a rolling pin. → **was** · were · is
 
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-02:i09; family: context_gap_grammar -->
-She ___ washing a cake tin. → **was** · were · is
+She ___ washing a cake tin at that moment. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
@@ -125,7 +125,7 @@ She ___ washing a cake tin. → **was** · were · is
 
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-02:i12; family: context_gap_grammar -->
-We ___ using a wooden spoon. → **were** · was · are
+We ___ using a wooden spoon at that moment. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 

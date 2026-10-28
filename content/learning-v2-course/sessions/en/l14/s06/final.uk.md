@@ -65,7 +65,7 @@
 
 **4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-06:i03; family: context_gap_grammar -->
-We ___ playing on the tennis court. → **were** · was · are
+We ___ playing on the tennis court at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
@@ -105,7 +105,7 @@ I ___ talking to a teammate. → **was** · were · is
 
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-06:i09; family: context_gap_grammar -->
-She ___ talking to a spectator. → **was** · were · is
+She ___ talking to a spectator at that moment. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
@@ -125,7 +125,7 @@ She ___ talking to a spectator. → **was** · were · is
 
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-06:i12; family: context_gap_grammar -->
-They ___ waiting in the sports hall. → **were** · was · are
+They ___ waiting in the sports hall at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 

@@ -85,7 +85,7 @@ I ___ adding brown sugar. → **was** · were · is
 
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-24:i06; family: context_gap_grammar -->
-They ___ measuring caster sugar. → **were** · was · are
+They ___ measuring caster sugar at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
@@ -105,7 +105,7 @@ They ___ measuring caster sugar. → **were** · was · are
 
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-24:i09; family: context_gap_grammar -->
-She ___ using icing sugar. → **was** · were · is
+She ___ using icing sugar at that moment. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
@@ -125,7 +125,7 @@ She ___ using icing sugar. → **was** · were · is
 
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-24:i12; family: context_gap_grammar -->
-We ___ using breadcrumbs. → **were** · was · are
+We ___ using breadcrumbs at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 

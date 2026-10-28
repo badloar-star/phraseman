@@ -85,7 +85,7 @@ I ___ filling the bird feeder. → **was** · were · is
 
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-03:i06; family: context_gap_grammar -->
-They ___ cleaning the garden path. → **were** · was · are
+They ___ cleaning the garden path at that moment. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
@@ -105,7 +105,7 @@ They ___ cleaning the garden path. → **were** · was · are
 
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-03:i09; family: context_gap_grammar -->
-She ___ watering the flower bed. → **was** · were · is
+She ___ watering the flower bed at that moment. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
@@ -125,7 +125,7 @@ She ___ watering the flower bed. → **was** · were · is
 
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-03:i12; family: context_gap_grammar -->
-We ___ watering the apple tree. → **were** · was · are
+We ___ watering the apple tree at that moment. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 

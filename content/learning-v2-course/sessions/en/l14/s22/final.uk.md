@@ -85,7 +85,7 @@ I ___ adding soy sauce. → **was** · were · is
 
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-22:i06; family: context_gap_grammar -->
-She ___ using sesame oil. → **was** · were · is
+She ___ using sesame oil at that moment. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
@@ -105,7 +105,7 @@ She ___ using sesame oil. → **was** · were · is
 
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-22:i09; family: context_gap_grammar -->
-They ___ using sunflower oil. → **were** · was · are
+They ___ using sunflower oil at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
@@ -125,7 +125,7 @@ They ___ using sunflower oil. → **were** · was · are
 
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-22:i12; family: context_gap_grammar -->
-We ___ adding tomato paste. → **were** · was · are
+We ___ adding tomato paste at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 

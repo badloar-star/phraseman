@@ -85,7 +85,7 @@ I ___ adding baking powder. → **was** · were · is
 
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-23:i06; family: context_gap_grammar -->
-He ___ looking for the baking soda. → **was** · were · is
+He ___ looking for the baking soda at that moment. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
@@ -105,7 +105,7 @@ He ___ looking for the baking soda. → **was** · were · is
 
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-23:i09; family: context_gap_grammar -->
-She ___ measuring plain flour. → **was** · were · is
+She ___ measuring plain flour at that moment. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
@@ -125,7 +125,7 @@ She ___ measuring plain flour. → **was** · were · is
 
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-23:i12; family: context_gap_grammar -->
-We ___ using self-raising flour. → **were** · was · are
+We ___ using self-raising flour at that moment. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 

@@ -85,7 +85,7 @@ I ___ using a cotton pad. → **was** · were · is
 
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-21:i06; family: context_gap_grammar -->
-She ___ washing a face cloth. → **was** · were · is
+She ___ washing a face cloth at that moment. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
@@ -105,7 +105,7 @@ She ___ washing a face cloth. → **was** · were · is
 
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-21:i09; family: context_gap_grammar -->
-He ___ using dental floss. → **was** · were · is
+He ___ using dental floss at that moment. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
@@ -125,7 +125,7 @@ He ___ using dental floss. → **was** · were · is
 
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-21:i12; family: context_gap_grammar -->
-We ___ looking for the mouthwash. → **were** · was · are
+We ___ looking for the mouthwash at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 

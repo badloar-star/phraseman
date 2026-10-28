@@ -85,7 +85,7 @@ I ___ reading a comic book. → **was** · were · is
 
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-01:i06; family: context_gap_grammar -->
-They ___ doing a jigsaw puzzle. → **were** · was · are
+They ___ doing a jigsaw puzzle at that moment. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
@@ -105,7 +105,7 @@ They ___ doing a jigsaw puzzle. → **were** · was · are
 
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-01:i09; family: context_gap_grammar -->
-She ___ using a colouring book. → **was** · were · is
+She ___ using a colouring book at that moment. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
@@ -125,7 +125,7 @@ She ___ using a colouring book. → **was** · were · is
 
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-01:i12; family: context_gap_grammar -->
-We ___ reading a picture book. → **were** · was · are
+We ___ reading a picture book at that moment. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 

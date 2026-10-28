@@ -85,7 +85,7 @@ I ___ changing a flat tyre. → **was** · were · is
 
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-17:i06; family: context_gap_grammar -->
-They ___ looking for the spare tyre. → **were** · was · are
+They ___ looking for the spare tyre at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
@@ -105,7 +105,7 @@ They ___ looking for the spare tyre. → **were** · was · are
 
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-17:i09; family: context_gap_grammar -->
-He ___ checking the windscreen wiper. → **was** · were · is
+He ___ checking the windscreen wiper at that moment. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
@@ -125,7 +125,7 @@ He ___ checking the windscreen wiper. → **was** · were · is
 
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-17:i12; family: context_gap_grammar -->
-We ___ cleaning the rear-view mirror. → **were** · was · are
+We ___ cleaning the rear-view mirror at that moment. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 

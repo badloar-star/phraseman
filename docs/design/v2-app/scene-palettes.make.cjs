@@ -54,7 +54,7 @@ ${engineCss}
 <div class="page">
   <h1 class="page-h1">Тёмные темы 2.0 — освещение и стили сцен</h1>
   <p class="page-lead">Только настоящие экраны текущей сборки (кадры Сверки). Выбери тёмную тему — ниже те же экраны: слева как сейчас, правее с новым освещением сцены и в разных стилях рисования; дальше вечерняя Главная и карточки. Меняется только фон сцены — герой, надписи, стекло и карточки на кадре как сняты. Зажми перекрашенный телефон — на его месте покажется «сейчас».</p>
-  <div class="thm sp-bar" id="dtBar"><span class="sp-lbl">Тема</span><span id="dtThemes" style="display:inline-flex;flex-wrap:wrap;gap:8px"></span><span class="sp-lbl" id="dtCount" style="margin-left:auto;opacity:.7"></span></div>
+  <div class="thm sp-bar" id="dtBar"><span id="dtAp" style="display:inline-flex;gap:8px;margin-right:16px"></span><span class="sp-lbl">Тема</span><span id="dtThemes" style="display:inline-flex;flex-wrap:wrap;gap:8px"></span><span class="sp-lbl" id="dtCount" style="margin-left:auto;opacity:.7"></span></div>
   <div id="spControls">
   <div class="thm sp-bar"><span class="sp-lbl">Оформление</span><span id="apList"></span><span class="sp-lbl" style="margin-left:14px">Сцена</span><span id="modeList"></span><span class="chp sp-replay" data-replay>Повторить</span></div>
   <div class="thm sp-bar" style="margin-top:0"><span class="sp-lbl">Цвет сцены</span><span id="stratList"></span></div>

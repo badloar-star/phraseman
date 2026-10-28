@@ -190,3 +190,4 @@
 .page { max-width: 2600px; }
 #dt .sp-real-row .phones { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
 #dt .sp-real-row .col { flex: none; scroll-snap-align: start; }
+#dt .chp.off, #dtBar .chp.off { opacity: .42; } /* тема без кадра в этом оформлении — кликабельна, покажет плитку «кадр снимается» */

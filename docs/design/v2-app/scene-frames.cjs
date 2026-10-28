@@ -41,15 +41,17 @@ const oklchOf = (c) => { const [r, g, b] = c.map(toLin); const l = Math.cbrt(0.4
 const okLin = (L, C, Hh) => { const a = C * Math.cos(Hh * Math.PI / 180); const b = C * Math.sin(Hh * Math.PI / 180); const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3; const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3; const s = (L - 0.0894841775 * a - 1.2914855480 * b) ** 3; return [4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s, -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s, -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s]; };
 const fromOklch = (L, C, Hh) => okLin(L, C, Hh).map((v) => Math.max(0, Math.min(255, toSrgb(Math.max(0, Math.min(1, v))))));
 const PREMIUM = [
-  { id: 'grad_full_olive', dark: ['#10170d', '#424c28', '#333d20', '#586035'], accent: '#dbe591', ink: '#34410d', edge: '#bac573', sceneTop: '#778624', sceneBottom: '#151e10' },
-  { id: 'grad_full_ref_signal_lime', dark: ['#040709', '#1c2613', '#0d120c', '#212c15'], accent: '#c2ff46', ink: '#445919', edge: '#c2ff46', sceneTop: '#101406', sceneBottom: '#020406' },
-  { id: 'grad_full_ref_storm_violet', dark: ['#040709', '#1e1929', '#0e0c15', '#241e2f'], accent: '#d697ff', ink: '#4b3559', edge: '#d697ff', sceneTop: '#110c14', sceneBottom: '#020406' },
-  { id: 'grad_full_titanium', dark: ['#121416', '#3c4248', '#292f34', '#4b5055'], accent: '#ff8c80', ink: '#a92d26', edge: '#c9d1d8', sceneTop: '#34383d', sceneBottom: '#0a0c0f' },
-  { id: 'grad_full_horizon', dark: ['#091723', '#2b4659', '#203344', '#395b6c'], accent: '#ffd09a', ink: '#805022', edge: '#8dafc4', sceneTop: '#12385a', sceneBottom: '#060e1a' },
-  { id: 'grad_full_ref_gravity_blue', dark: ['#040709', '#142229', '#0a1015', '#19282f'], accent: '#86dfff', ink: '#2f4e59', edge: '#86dfff', sceneTop: '#0b1214', sceneBottom: '#020406' },
+  { id: 'grad_full_olive', dark: ['#10170d', '#424c28', '#333d20', '#586035'], light: ['#e6ead5', '#f5f5de', '#e7edc9', '#c9d3a5'], accent: '#dbe591', ink: '#34410d', edge: '#bac573', sceneTop: '#778624', sceneBottom: '#151e10' },
+  { id: 'grad_full_ref_signal_lime', dark: ['#040709', '#1c2613', '#0d120c', '#212c15'], light: ['#f9ffed', '#fdfff9', '#f8ffe9', '#f4ffde'], accent: '#c2ff46', ink: '#445919', edge: '#c2ff46', sceneTop: '#101406', sceneBottom: '#020406' },
+  { id: 'grad_full_ref_storm_violet', dark: ['#040709', '#1e1929', '#0e0c15', '#241e2f'], light: ['#fbf5ff', '#fefcff', '#faf3ff', '#f8ecff'], accent: '#d697ff', ink: '#4b3559', edge: '#d697ff', sceneTop: '#110c14', sceneBottom: '#020406' },
+  { id: 'grad_full_titanium', dark: ['#121416', '#3c4248', '#292f34', '#4b5055'], light: ['#e0e3e5', '#f6f7f8', '#dce1e4', '#bfc7ce'], accent: '#ff8c80', ink: '#a92d26', edge: '#c9d1d8', sceneTop: '#34383d', sceneBottom: '#0a0c0f' },
+  { id: 'grad_full_horizon', dark: ['#091723', '#2b4659', '#203344', '#395b6c'], light: ['#dde8ef', '#f2f8ff', '#d8e7f2', '#b4cbd8'], accent: '#ffd09a', ink: '#805022', edge: '#8dafc4', sceneTop: '#12385a', sceneBottom: '#060e1a' },
+  { id: 'grad_full_ref_gravity_blue', dark: ['#040709', '#142229', '#0a1015', '#19282f'], light: ['#f3fcff', '#fbfeff', '#f0fbff', '#e9f9ff'], accent: '#86dfff', ink: '#2f4e59', edge: '#86dfff', sceneTop: '#0b1214', sceneBottom: '#020406' },
 ];
 const PREMIUM_BY_ID = Object.fromEntries(PREMIUM.map((p) => [p.id, p]));
-PREMIUM.forEach((p) => { const [bg, from, to] = p.dark; THEMES[p.id] = { name: p.id, premium: true, dark: { bg, bgTop: bg, bgBottom: bg, opaqueCard: to, opaqueSheet: from, opaqueControl: from, text: '#fff9f6', secondary: '#dacfd0', accent: p.accent, accentText: p.accent, cta: '#ffffff', ctaInk: p.ink, accentGradient: [p.accent, p.accent], accentGlow: p.edge + '8C', bgGlow: [p.edge + '40'], isLight: false } }; });
+// токены премиум-темы как premiumTokens приложения: тёмное — accent, светлое — ink; оба оформления (Сверка снимает и светлые)
+const premiumTok = (p, ap) => { const dark = ap === 'dark'; const [bg, from, to] = dark ? p.dark : p.light; const accent = dark ? p.accent : p.ink; return { bg, bgTop: bg, bgBottom: bg, opaqueCard: to, opaqueSheet: from, opaqueControl: from, text: dark ? '#fff9f6' : '#181a20', secondary: dark ? '#dacfd0' : '#55505b', accent, accentText: accent, cta: '#ffffff', ctaInk: p.ink, accentGradient: [accent, accent], accentGlow: p.edge + '8C', bgGlow: [p.edge + '40'], isLight: !dark }; };
+PREMIUM.forEach((p) => { THEMES[p.id] = { name: p.id, premium: true, dark: premiumTok(p, 'dark'), light: premiumTok(p, 'light') }; });
 const lumc = (c) => { const s = c.map((v) => { const x = v / 255; return x <= 0.03928 ? x / 12.92 : Math.pow((x + 0.055) / 1.055, 2.4); }); return 0.2126 * s[0] + 0.7152 * s[1] + 0.0722 * s[2]; };
 const whiteOn = (c) => 1.05 / (lumc(c) + 0.05);
 const EVENING_GLOW = { color: [214, 92, 70], a: 0.62 }; // home_scene_tokens.ts EVENING_GLOW rgba(214,92,70,.62)
@@ -96,8 +98,10 @@ async function describe(fp, p) {
   if (mean[0] > 150 && mean[1] < 90 && mean[2] < 90) return { ok: false, why: 'красный экран ошибки сборщика' };
   const buf = await sharp(fp).raw().toBuffer(); const ch = buf.length / (W * H);
   // граница сцены: первый резкий скачок цвета в левой колонке ниже 800 px (скруглённый низ сцены над карточкой); не нашли — 1082 (раскладка сборки 28.10)
-  let sceneH = 0; let prev = px(buf, ch, 16, 800);
-  for (let y = 801; y < 1500; y += 1) { const c = px(buf, ch, 16, y); if (dist(c, prev) > 24) { sceneH = y; break; } prev = c; }
+  // вечером слева снизу угли (радиальный свет) — границу ищем по правой колонке, днём по левой
+  const colX = p.state === 'evening' ? 1064 : 16;
+  let sceneH = 0; let prev = px(buf, ch, colX, 800);
+  for (let y = 801; y < 1500; y += 1) { const c = px(buf, ch, colX, y); if (dist(c, prev) > 24) { sceneH = y; break; } prev = c; }
   sceneH = sceneH || 1082;
   // вечер (серия под угрозой): тёплый свет справа сверху и угли слева снизу вместо света слева — правый верх теплее левого
   const warm = (c) => c[0] - c[2];
@@ -177,11 +181,12 @@ async function fitReport(file) {
     const rec = Object.assign({ file, mtime, v: 3 }, p, { ok: d.ok, why: d.why || null, status: d.status, tab: d.tab, sceneH: d.sceneH });
     if (d.ok && (p.screen === 'home' || p.screen === 'dialogs')) {
       rec.state = p.state || (p.screen === 'home' && d.evening ? 'evening' : 'day');
-      if (!THEMES[p.theme]) { rec.recolor = false; rec.why = `тема «${p.theme}» не из снимка тем эталона и премиум-списка`; }
+      if (!THEMES[p.theme] || !THEMES[p.theme][p.ap]) { rec.recolor = false; rec.why = `тема «${p.theme}» (${p.ap}) не из снимка тем эталона и премиум-списка`; }
       else if (p.screen === 'home' && d.preview) { rec.ok = false; rec.why = 'dev-превью сцены (под сценой нет карточки «Сегодня») — не настоящий экран, переснять вкладку'; }
       else if (p.screen === 'home' && !p.state && d.evening) { rec.state = 'evening'; rec.why = 'вечернее состояние снято без пометки в имени — разбираю как вечер'; }
       if (rec.ok && rec.recolor !== false) {
-        const r = await alignHero(d, p.screen, oldSpec(p.screen, p.theme, p.ap, rec.state, d.sceneH, null), d.sceneH, HERO[p.screen], p.ap, rec.state);
+        let r = await alignHero(d, p.screen, oldSpec(p.screen, p.theme, p.ap, rec.state, d.sceneH, null), d.sceneH, HERO[p.screen], p.ap, rec.state);
+        if (!r.hero && rec.state === 'evening') { const r2 = await alignHero(d, p.screen, oldSpec(p.screen, p.theme, p.ap, rec.state, d.sceneH, null), d.sceneH, HERO[p.screen], p.ap, 'day'); if (r2.hero) { r = r2; console.log(LOG, 'вечер: герой — книга (continue), не календарь'); } }
         rec.hero = r.hero; if (!r.hero) rec.heroWhy = r.why;
       }
     }

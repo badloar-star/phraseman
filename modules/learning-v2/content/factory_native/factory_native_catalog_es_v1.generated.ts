@@ -1134,4 +1134,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"усилить описание с помощью muy.","uk":"посилити опис за допомогою muy."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 50,
+    sourceFingerprint: "b4e5d8f17cd63c1c0376acf39acdca06e83debfc4744505d430473ffcc767a42",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать слабую степень признака с poco.","uk":"описати слабкий ступінь ознаки з poco."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 51,
+    sourceFingerprint: "b7bebc57d305389c9cf3505bb43eefd8ad235585dbb18d09b49e28c8607eb431",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"оценить размер с bastante.","uk":"оцінити розмір із bastante."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

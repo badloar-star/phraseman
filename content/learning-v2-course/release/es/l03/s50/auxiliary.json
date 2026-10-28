@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-50",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-50:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-50:intro1:r2": {
+          "ru": "Перед прилагательным poco не меняет род.",
+          "uk": "Перед прикметником poco не змінює роду."
+        },
+        "es:lesson-03:session-50:intro1:r3": {
+          "ru": "Silla требует женского cómoda.",
+          "uk": "Silla потребує жіночого cómoda."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-50:intro2:r2": {
+          "ru": "Для подразумеваемого silla нужна cómoda.",
+          "uk": "Для пропущеного silla потрібне cómoda."
+        },
+        "es:lesson-03:session-50:intro2:r3": {
+          "ru": "Poco перед признаком остаётся неизменным.",
+          "uk": "Poco перед ознакою залишається незмінним."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-50:intro3:r2": {
+          "ru": "Перед прилагательным нужно неизменное poco.",
+          "uk": "Перед прикметником потрібне незмінне poco."
+        },
+        "es:lesson-03:session-50:intro3:r3": {
+          "ru": "Несколько sillas: cómodas.",
+          "uk": "Кілька sillas: cómodas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "464e5a40cc79d8df02e97b65004552efd1e14c1e51bf1db84be110a6c0062509"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-51",
+  "learningOutcomeByLocale": {
+    "ru": "оценить размер с bastante.",
+    "uk": "оцінити розмір із bastante."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-51:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Оценка размера",
+        "uk": "Оцінка розміру"
+      },
+      "bodyByLocale": {
+        "ru": "Комната оказалась довольно большой. Скажите `La habitación es bastante grande` — «Комната довольно большая». Bastante здесь означает «довольно». Соберите `la habitación` + `es` + `bastante grande`. Новое слово ставится прямо перед прилагательным. Вы отмечаете заметный размер, не называя его огромным.",
+        "uk": "Кімната виявилася досить великою. Скажіть `La habitación es bastante grande` — «Кімната досить велика». Bastante тут означає «досить». Зберіть `la habitación` + `es` + `bastante grande`. Нове слово ставиться безпосередньо перед прикметником. Ви відзначаєте помітний розмір, не називаючи його величезним."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-51:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что комната довольно большая, используя bastante.",
+          "uk": "Скажіть, що кімната досить велика, використовуючи bastante."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-51:intro1:r1",
+              "text": "La habitación es bastante grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro1:r2",
+              "text": "La habitación es bastanta grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro1:r3",
+              "text": "La habitación es bastante grandes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-51:intro1:r1",
+              "text": "La habitación es bastante grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro1:r2",
+              "text": "La habitación es bastanta grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro1:r3",
+              "text": "La habitación es bastante grandes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что комната довольно большая, используя bastante.",
+          "uk": "Скажіть, що кімната досить велика, використовуючи bastante."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-51:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Короткий ответ",
+        "uk": "Коротка відповідь"
+      },
+      "bodyByLocale": {
+        "ru": "Спутник спрашивает о размере той же комнаты. Ответьте `Es bastante grande` — «Она довольно большая». Соберите `es` + `bastante grande`. Когда понятно, о какой комнате речь, la habitación можно не повторять. Bastante остаётся перед grande.",
+        "uk": "Супутник запитує про розмір тієї самої кімнати. Дайте відповідь `Es bastante grande` — «Вона досить велика». Зберіть `es` + `bastante grande`. Коли зрозуміло, про яку кімнату йдеться, la habitación можна не повторювати. Bastante залишається перед grande."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-51:intro2:q",
+        "promptByLocale": {
+          "ru": "Дайте короткую оценку размера: довольно большая. Начните с Es и используйте bastante.",
+          "uk": "Дайте коротку оцінку розміру: досить велика. Почніть з Es і використайте bastante."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-51:intro2:r1",
+              "text": "Es bastante grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro2:r2",
+              "text": "Son bastante grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro2:r3",
+              "text": "Es bastante grandes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-51:intro2:r1",
+              "text": "Es bastante grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro2:r2",
+              "text": "Son bastante grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro2:r3",
+              "text": "Es bastante grandes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Дайте короткую оценку размера: довольно большая. Начните с Es и используйте bastante.",
+          "uk": "Дайте коротку оцінку розміру: досить велика. Почніть з Es і використайте bastante."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-51:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Другой вариант",
+        "uk": "Інший варіант"
+      },
+      "bodyByLocale": {
+        "ru": "Смотрите другую комнату: она довольно маленькая. Скажите `Es bastante pequeña` — «Она довольно маленькая». Замените grande на `pequeña`: `es` + `bastante` + `pequeña`. Маленькой является habitación, поэтому pequeña на -a. Bastante при этой замене не меняется.",
+        "uk": "Дивитеся іншу кімнату: вона досить маленька. Скажіть `Es bastante pequeña` — «Вона досить маленька». Замініть grande на `pequeña`: `es` + `bastante` + `pequeña`. Маленькою є habitación, тому pequeña на -a. Bastante за цієї заміни не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-51:intro3:q",
+        "promptByLocale": {
+          "ru": "Оцените другую комнату: довольно маленькая. Начните с Es и используйте bastante.",
+          "uk": "Оцініть іншу кімнату: досить маленька. Почніть з Es і використайте bastante."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-51:intro3:r1",
+              "text": "Es bastante pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro3:r2",
+              "text": "Es bastante pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro3:r3",
+              "text": "Es bastanta pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-51:intro3:r1",
+              "text": "Es bastante pequeña."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro3:r2",
+              "text": "Es bastante pequeño."
+            },
+            {
+              "responseId": "es:lesson-03:session-51:intro3:r3",
+              "text": "Es bastanta pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Оцените другую комнату: довольно маленькая. Начните с Es и используйте bastante.",
+          "uk": "Оцініть іншу кімнату: досить маленька. Почніть з Es і використайте bastante."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f9b26def343e8e51d08132a296ea6bcca3b79e640fe661c60580fe4f904a677c"
+}

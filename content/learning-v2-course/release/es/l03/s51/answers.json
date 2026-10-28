@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-51:i01",
+    "correctText": "bastante",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-51:i02",
+    "correctText": "bastante",
+    "correctResponseId": "es:lesson-03:session-51:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-51:i03",
+    "correctText": "La habitación es bastante grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-51:i04",
+    "correctText": "bastante",
+    "correctResponseId": "es:lesson-03:session-51:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-51:i05",
+    "correctText": "Es bastante grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-51:i06",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-03:session-51:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-51:i07",
+    "correctText": "Es bastante pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-51:i08",
+    "correctText": "La habitación es bastante pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-51:i09",
+    "correctText": "La habitación es bastante grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-51:i10",
+    "correctText": "Es bastante grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-51:i11",
+    "correctText": "Es bastante pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-51:i12",
+    "correctText": "La habitación es bastante pequeña.",
+    "correctResponseId": null
+  }
+]

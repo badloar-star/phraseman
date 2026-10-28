@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-51",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-51:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-51:intro1:r2": {
+          "ru": "Перед прилагательным форма bastante не меняется.",
+          "uk": "Перед прикметником форма bastante не змінюється."
+        },
+        "es:lesson-03:session-51:intro1:r3": {
+          "ru": "Комната одна: grande.",
+          "uk": "Кімната одна: grande."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-51:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-51:intro2:r2": {
+          "ru": "Комната одна: es.",
+          "uk": "Кімната одна: es."
+        },
+        "es:lesson-03:session-51:intro2:r3": {
+          "ru": "Для одной комнаты нужна форма grande.",
+          "uk": "Для однієї кімнати потрібна форма grande."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-51:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-51:intro3:r2": {
+          "ru": "Нужна женская форма pequeña.",
+          "uk": "Потрібна жіноча форма pequeña."
+        },
+        "es:lesson-03:session-51:intro3:r3": {
+          "ru": "Перед прилагательным нужно bastante.",
+          "uk": "Перед прикметником потрібне bastante."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c8077960cdb9ed13ccd95b05a12b70f0dfcd95997557c9b07bb6b0feceb254ad"
+}

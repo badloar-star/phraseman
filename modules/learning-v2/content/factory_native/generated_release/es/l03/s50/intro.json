@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-50",
+  "learningOutcomeByLocale": {
+    "ru": "описать слабую степень признака с poco.",
+    "uk": "описати слабкий ступінь ознаки з poco."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-50:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Удобства маловато",
+        "uk": "Зручності замало"
+      },
+      "bodyByLocale": {
+        "ru": "Стул выглядит хорошо, но сидеть долго неудобно. Скажите `La silla es poco cómoda` — «Стул не очень удобный». Соберите `la silla` + `es` + `poco cómoda`. Poco перед прилагательным означает слабую степень: удобства мало. Испанское silla женского рода, поэтому cómoda.",
+        "uk": "Стілець має гарний вигляд, але сидіти довго незручно. Скажіть `La silla es poco cómoda` — «Стілець не дуже зручний». Зберіть `la silla` + `es` + `poco cómoda`. Poco перед прикметником означає слабкий ступінь: зручності мало. Іспанське silla жіночого роду, тому cómoda."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-50:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что стул не очень удобный, используя poco.",
+          "uk": "Скажіть, що стілець не дуже зручний, використовуючи poco."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-50:intro1:r1",
+              "text": "La silla es poco cómoda."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro1:r2",
+              "text": "La silla es poca cómoda."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro1:r3",
+              "text": "La silla es poco cómodo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-50:intro1:r1",
+              "text": "La silla es poco cómoda."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro1:r2",
+              "text": "La silla es poca cómoda."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro1:r3",
+              "text": "La silla es poco cómodo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что стул не очень удобный, используя poco.",
+          "uk": "Скажіть, що стілець не дуже зручний, використовуючи poco."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-50:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Короткая оценка",
+        "uk": "Коротка оцінка"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете на тот же стул и отвечаете коротко: `Es poco cómoda` — «Он не очень удобный». Соберите `es` + `poco cómoda`. Название стула можно опустить, потому что понятно, о чём речь. Но женская форма cómoda остаётся: подразумевается испанское silla.",
+        "uk": "Показуєте на той самий стілець і відповідаєте коротко: `Es poco cómoda` — «Він не дуже зручний». Зберіть `es` + `poco cómoda`. Назву стільця можна опустити, бо зрозуміло, про що йдеться. Але жіноча форма cómoda залишається: мається на увазі іспанське silla."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-50:intro2:q",
+        "promptByLocale": {
+          "ru": "Дайте короткую оценку стула через poco. Начните с Es.",
+          "uk": "Дайте коротку оцінку стільця через poco. Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-50:intro2:r1",
+              "text": "Es poco cómoda."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro2:r2",
+              "text": "Es poco cómodo."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro2:r3",
+              "text": "Es poca cómoda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-50:intro2:r1",
+              "text": "Es poco cómoda."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro2:r2",
+              "text": "Es poco cómodo."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro2:r3",
+              "text": "Es poca cómoda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Дайте короткую оценку стула через poco. Начните с Es.",
+          "uk": "Дайте коротку оцінку стільця через poco. Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-50:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько стульев",
+        "uk": "Кілька стільців"
+      },
+      "bodyByLocale": {
+        "ru": "Все стулья этой модели не очень удобные. Скажите `Las sillas son poco cómodas` — «Стулья не очень удобные». Соберите `las sillas` + `son` + `poco cómodas`. К cómoda добавьте -s, но poco не меняйте. Здесь poco описывает степень удобства, а не количество стульев.",
+        "uk": "Усі стільці цієї моделі не дуже зручні. Скажіть `Las sillas son poco cómodas` — «Стільці не дуже зручні». Зберіть `las sillas` + `son` + `poco cómodas`. До cómoda додайте -s, але poco не змінюйте. Тут poco описує ступінь зручності, а не кількість стільців."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-50:intro3:q",
+        "promptByLocale": {
+          "ru": "Опишите несколько не очень удобных стульев через poco.",
+          "uk": "Опишіть кілька не дуже зручних стільців через poco."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-50:intro3:r1",
+              "text": "Las sillas son poco cómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro3:r2",
+              "text": "Las sillas son pocas cómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro3:r3",
+              "text": "Las sillas son poco cómoda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-50:intro3:r1",
+              "text": "Las sillas son poco cómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro3:r2",
+              "text": "Las sillas son pocas cómodas."
+            },
+            {
+              "responseId": "es:lesson-03:session-50:intro3:r3",
+              "text": "Las sillas son poco cómoda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите несколько не очень удобных стульев через poco.",
+          "uk": "Опишіть кілька не дуже зручних стільців через poco."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d032282e73ec612cc27c868e3fbdd3860dce232befe59528a4fca9c877a86691"
+}

@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-50",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-50:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-50:i01:r1",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i01:r2",
+          "text": "poca"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-50:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-50:i01:audio",
+          "transcript": "poco"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-50:i01:r1",
+            "targetText": "poco",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-50:i01:r2",
+            "targetText": "poca",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-50:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи окончание -o: poco.",
+              "uk": "У записі закінчення -o: poco."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — стул не очень удобный, используйте poco",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-50:i02:r1",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i02:r2",
+          "text": "poca"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i02:r3",
+          "text": "pocas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — стул не очень удобный, используйте poco",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стул не очень удобный, используйте poco",
+          "uk": "Вставте слово — стілець не дуже зручний, використайте poco"
+        },
+        "gappedTargetPhrase": "La silla es ___ cómoda.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-50:i02:r1",
+            "text": "poco"
+          },
+          {
+            "responseId": "es:lesson-03:session-50:i02:r2",
+            "text": "poca"
+          },
+          {
+            "responseId": "es:lesson-03:session-50:i02:r3",
+            "text": "pocas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — стул не очень удобный, используйте poco",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-50:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стул не очень удобный, используйте poco",
+            "feedbackByLocale": {
+              "ru": "Перед прилагательным poco не согласуется по роду.",
+              "uk": "Перед прикметником poco не узгоджується за родом."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-50:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стул не очень удобный, используйте poco",
+            "feedbackByLocale": {
+              "ru": "Здесь нужна неизменная форма poco.",
+              "uk": "Тут потрібна незмінна форма poco."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — стул не очень удобный, используйте poco",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-50:i03:r1",
+          "text": "Плитки: cómoda"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i03:r2",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i03:r4",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i03:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i03:r6",
+          "text": "cómodo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — стул не очень удобный, используйте poco",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La silla es poco cómoda.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — стул не очень удобный, используйте poco",
+          "uk": "Зберіть фразу — стілець не дуже зручний, використайте poco"
+        },
+        "orderedTokens": [
+          "La",
+          "silla",
+          "es",
+          "poco",
+          "cómoda"
+        ],
+        "authoredDistractorTokens": [
+          "cómodo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-50:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — стул не очень удобный, используйте poco",
+            "feedbackByLocale": {
+              "ru": "silla женского рода.",
+              "uk": "silla жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — стул не очень удобный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-50:i04:r1",
+          "text": "cómoda"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i04:r2",
+          "text": "cómodo"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i04:r3",
+          "text": "cómodas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — стул не очень удобный",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стул не очень удобный",
+          "uk": "Вставте слово — стілець не дуже зручний"
+        },
+        "gappedTargetPhrase": "La silla es poco ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-50:i04:r1",
+            "text": "cómoda"
+          },
+          {
+            "responseId": "es:lesson-03:session-50:i04:r2",
+            "text": "cómodo"
+          },
+          {
+            "responseId": "es:lesson-03:session-50:i04:r3",
+            "text": "cómodas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — стул не очень удобный",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-50:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стул не очень удобный",
+            "feedbackByLocale": {
+              "ru": "Silla женского рода.",
+              "uk": "Silla жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-50:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стул не очень удобный",
+            "feedbackByLocale": {
+              "ru": "Стул один: cómoda.",
+              "uk": "Стілець один: cómoda."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — он не очень удобный, речь о silla; используйте poco",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-50:i05:r1",
+          "text": "Плитки: cómoda"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i05:r2",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i05:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i05:r4",
+          "text": "poca."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — он не очень удобный, речь о silla; используйте poco",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es poco cómoda.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — он не очень удобный, речь о silla; используйте poco",
+          "uk": "Зберіть фразу — він не дуже зручний, йдеться про silla; використайте poco"
+        },
+        "orderedTokens": [
+          "Es",
+          "poco",
+          "cómoda"
+        ],
+        "authoredDistractorTokens": [
+          "poca"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-50:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — он не очень удобный, речь о silla; используйте poco",
+            "feedbackByLocale": {
+              "ru": "перед признаком нужно poco.",
+              "uk": "перед ознакою потрібне poco."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — стулья не очень удобные, используйте poco",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-50:i06:r1",
+          "text": "Плитки: cómodas"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i06:r2",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i06:r4",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i06:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i06:r6",
+          "text": "pocas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — стулья не очень удобные, используйте poco",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las sillas son poco cómodas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — стулья не очень удобные, используйте poco",
+          "uk": "Зберіть фразу — стільці не дуже зручні, використайте poco"
+        },
+        "orderedTokens": [
+          "Las",
+          "sillas",
+          "son",
+          "poco",
+          "cómodas"
+        ],
+        "authoredDistractorTokens": [
+          "pocas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-50:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — стулья не очень удобные, используйте poco",
+            "feedbackByLocale": {
+              "ru": "степень признака выражает неизменное poco.",
+              "uk": "ступінь ознаки виражає незмінне poco."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-50:i07:r1",
+          "text": "Плитки: cómodas"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i07:r2",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i07:r4",
+          "text": "cómoda."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-50:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-50:i07:audio",
+          "transcript": "Son poco cómodas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son poco cómodas.",
+        "orderedTokens": [
+          "Son",
+          "poco",
+          "cómodas"
+        ],
+        "authoredDistractorTokens": [
+          "cómoda"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-50:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит cómodas.",
+              "uk": "звучить cómodas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — стулья не очень удобные",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-50:i08:r1",
+          "text": "cómodas"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i08:r2",
+          "text": "cómoda"
+        },
+        {
+          "responseId": "es:lesson-03:session-50:i08:r3",
+          "text": "cómodos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — стулья не очень удобные",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стулья не очень удобные",
+          "uk": "Вставте слово — стільці не дуже зручні"
+        },
+        "gappedTargetPhrase": "Las sillas son poco ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-50:i08:r1",
+            "text": "cómodas"
+          },
+          {
+            "responseId": "es:lesson-03:session-50:i08:r2",
+            "text": "cómoda"
+          },
+          {
+            "responseId": "es:lesson-03:session-50:i08:r3",
+            "text": "cómodos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — стулья не очень удобные",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-50:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стулья не очень удобные",
+            "feedbackByLocale": {
+              "ru": "Несколько стульев: cómodas.",
+              "uk": "Кілька стільців: cómodas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-50:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стулья не очень удобные",
+            "feedbackByLocale": {
+              "ru": "Sillas женского рода.",
+              "uk": "Sillas жіночого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — стул не очень удобный; назовите предмет и используйте poco",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-50:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — стул не очень удобный; назовите предмет и используйте poco",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-50:i09:audio",
+          "transcript": "La silla es poco cómoda."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La silla es poco cómoda.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — он не очень удобный, речь о silla; начните с Es и используйте poco",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-50:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — он не очень удобный, речь о silla; начните с Es и используйте poco",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-50:i10:audio",
+          "transcript": "Es poco cómoda."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es poco cómoda.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — стулья не очень удобные; назовите предметы и используйте poco",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-50:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — стулья не очень удобные; назовите предметы и используйте poco",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-50:i11:audio",
+          "transcript": "Las sillas son poco cómodas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las sillas son poco cómodas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-50:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — они не очень удобные, речь о sillas; начните с Son и используйте poco",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-50:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — они не очень удобные, речь о sillas; начните с Son и используйте poco",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-50:i12:audio",
+          "transcript": "Son poco cómodas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son poco cómodas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c29d56a007aed747b3b700b4ab29145b69e07e72ce3f698949d32225341631c2"
+}

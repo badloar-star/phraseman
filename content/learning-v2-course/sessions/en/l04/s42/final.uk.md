@@ -17,7 +17,7 @@
 **Працівник станції стоїть поруч. Запитайте його, чи є поруч зупинковий павільйон.**
 
 - ✅ **Is there a bus shelter near here?**
-- ❌ Are there a bus shelter near here? — *З a bus shelter в однині потрібне Is there.*
+- ❌ Are there a bus shelter near here? — *З a bus shelter у формі для одного потрібне Is there.*
 - ❌ Is there bus shelter near here? — *Павільйон один, тому перед bus shelter потрібно a.*
 
 ---
@@ -26,13 +26,13 @@
 
 ### Черга біля каси
 
-Біля каси довга черга, а потяг скоро відійде. Ви хочете купити квиток в автоматі й уточнюєте у працівника, чи є автомати на платформі. Ticket machine — «автомат для квитків». Are there any ticket machines on the platform? — «На платформі є автомати для квитків?» Спочатку ставимо Are there, потім any ticket machines і місце — on the platform. З ticket machines у множині потрібне are.
+Біля каси довга черга, а потяг скоро відійде. Ви хочете купити квиток в автоматі й уточнюєте у працівника, чи є автомати на платформі. Ticket machine — «автомат для квитків». Are there any ticket machines on the platform? — «На платформі є автомати для квитків?» Спочатку ставимо Are there, потім any ticket machines і місце — on the platform. З ticket machines у формі для кількох потрібне are.
 
 **Запитайте працівника, чи є на платформі автомати для квитків.**
 
 - ✅ **Are there any ticket machines on the platform?**
 - ❌ Is there any ticket machines on the platform? — *Автоматів кілька, тому запитання починають з Are there, а не з Is there.*
-- ❌ Are there any ticket machine on the platform? — *Після Are there any тут потрібна форма множини ticket machines.*
+- ❌ Are there any ticket machine on the platform? — *Після Are there any тут потрібна форма для кількох ticket machines.*
 
 ---
 

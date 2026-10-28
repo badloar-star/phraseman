@@ -12,13 +12,13 @@
 
 ### Мішок під дощем
 
-Ви несете мішок паперу й пластику та шукаєте контейнери для переробки. Recycling bin — «контейнер для вторсировини». Are there any recycling bins near the school? — «Поруч зі школою є контейнери для вторсировини?» Починаємо запитання з Are there, потім ставимо any recycling bins і місце — near the school. Recycling bins стоїть у множині, тому потрібне are; any підходить для запитання, чи є контейнери взагалі.
+Ви несете мішок паперу й пластику та шукаєте контейнери для переробки. Recycling bin — «контейнер для вторсировини». Are there any recycling bins near the school? — «Поруч зі школою є контейнери для вторсировини?» Починаємо запитання з Are there, потім ставимо any recycling bins і місце — near the school. Recycling bins стоїть у формі для кількох, тому потрібне are; any підходить для запитання, чи є контейнери взагалі.
 
 **Перехожий стоїть під парасолькою. Запитайте його, чи є поруч зі школою контейнери для вторсировини.**
 
 - ✅ **Are there any recycling bins near the school?**
 - ❌ Is there any recycling bins near the school? — *Контейнерів кілька, тому запитання починають з Are there, а не з Is there.*
-- ❌ Are there any recycling bin near the school? — *Після Are there any тут потрібна форма множини recycling bins.*
+- ❌ Are there any recycling bin near the school? — *Після Are there any тут потрібна форма для кількох recycling bins.*
 
 ---
 
@@ -40,7 +40,7 @@
 
 ### Дощ не вщухає
 
-Подруга шукає, що вдягнути під дощ. Ви бачите кілька плащів у передпокої. Raincoat — «плащ від дощу». There are some raincoats in the hall — «У передпокої є плащі». Спочатку ставимо There are, потім some raincoats і місце — in the hall. Some повідомляє про наявність без точної кількості; raincoats стоїть у множині.
+Подруга шукає, що вдягнути під дощ. Ви бачите кілька плащів у передпокої. Raincoat — «плащ від дощу». There are some raincoats in the hall — «У передпокої є плащі». Спочатку ставимо There are, потім some raincoats і місце — in the hall. Some повідомляє про наявність без точної кількості; raincoats стоїть у формі для кількох.
 
 **Подруга шукає, що вдягнути під дощ. Скажіть їй, що в передпокої є плащі.**
 

@@ -17,7 +17,7 @@
 **Сотрудник станции стоит рядом. Спросите его, есть ли рядом остановочный павильон.**
 
 - ✅ **Is there a bus shelter near here?**
-- ❌ Are there a bus shelter near here? — *С a bus shelter в единственном числе нужно Is there.*
+- ❌ Are there a bus shelter near here? — *С a bus shelter в форме для одного нужно Is there.*
 - ❌ Is there bus shelter near here? — *Павильон один, поэтому перед bus shelter нужно a.*
 
 ---
@@ -26,13 +26,13 @@
 
 ### Очередь у кассы
 
-У кассы длинная очередь, а поезд скоро уйдёт. Вы хотите купить билет в автомате и уточняете у сотрудника, есть ли автоматы на платформе. Ticket machine — «автомат для билетов». Are there any ticket machines on the platform? — «На платформе есть автоматы для билетов?» Сначала ставим Are there, затем any ticket machines и место — on the platform. С ticket machines во множественном числе нужно are.
+У кассы длинная очередь, а поезд скоро уйдёт. Вы хотите купить билет в автомате и уточняете у сотрудника, есть ли автоматы на платформе. Ticket machine — «автомат для билетов». Are there any ticket machines on the platform? — «На платформе есть автоматы для билетов?» Сначала ставим Are there, затем any ticket machines и место — on the platform. С ticket machines в форме для нескольких нужно are.
 
 **Спросите сотрудника, есть ли на платформе автоматы для билетов.**
 
 - ✅ **Are there any ticket machines on the platform?**
 - ❌ Is there any ticket machines on the platform? — *Автоматов несколько, поэтому вопрос начинают с Are there, а не с Is there.*
-- ❌ Are there any ticket machine on the platform? — *После Are there any здесь нужна форма множественного числа ticket machines.*
+- ❌ Are there any ticket machine on the platform? — *После Are there any здесь нужна форма для нескольких ticket machines.*
 
 ---
 

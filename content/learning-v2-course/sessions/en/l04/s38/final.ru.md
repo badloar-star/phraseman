@@ -18,7 +18,7 @@
 
 - ✅ **There isn’t a bicycle rack next to the shed.**
 - ❌ There isn’t a bicycle rack in the shed. — *in значит «внутри», а стойку ищут рядом с сараем: next to.*
-- ❌ There aren’t a bicycle rack next to the shed. — *С a bicycle rack в единственном числе нужно isn’t.*
+- ❌ There aren’t a bicycle rack next to the shed. — *С a bicycle rack в форме для одного нужно isn’t.*
 
 ---
 

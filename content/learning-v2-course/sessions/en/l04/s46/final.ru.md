@@ -31,7 +31,7 @@
 **Друг стоит у двери. Спросите его, есть ли в кладовой мешок.**
 
 - ✅ **Is there a sack in the pantry?**
-- ❌ Are there a sack in the pantry? — *С a sack в единственном числе нужно Is there.*
+- ❌ Are there a sack in the pantry? — *С a sack в форме для одного нужно Is there.*
 - ❌ Is there sack in the pantry? — *Мешок один, поэтому перед sack нужно a.*
 
 ---
@@ -40,13 +40,13 @@
 
 ### Пустая полка
 
-Утром вы хотите завтрак, а на полке в кладовой пусто. Раньше там стояли небольшие картонные упаковки с хлопьями, а теперь нет ни одной. packet — «пачка, пакетик». There aren’t any packets on the shelf — «На полке нет пачек». Сначала ставим There aren’t any, затем packets во множественном числе и место — on the shelf. Aren’t означает are not; сообщаем, что пачек нет совсем.
+Утром вы хотите завтрак, а на полке в кладовой пусто. Раньше там стояли небольшие картонные упаковки с хлопьями, а теперь нет ни одной. packet — «пачка, пакетик». There aren’t any packets on the shelf — «На полке нет пачек». Сначала ставим There aren’t any, затем packets в форме для нескольких и место — on the shelf. Aren’t означает are not; сообщаем, что пачек нет совсем.
 
 **Друг спрашивает, что на полке. Скажите ему, что пачек на полке нет.**
 
 - ✅ **There aren’t any packets on the shelf.**
-- ❌ There isn’t any packets on the shelf. — *Packets стоит во множественном числе, поэтому нужно aren’t.*
-- ❌ There aren’t any packet on the shelf. — *После aren’t any здесь нужна форма множественного числа packets.*
+- ❌ There isn’t any packets on the shelf. — *Packets стоит в форме для нескольких, поэтому нужно aren’t.*
+- ❌ There aren’t any packet on the shelf. — *После aren’t any здесь нужна форма для нескольких packets.*
 
 ---
 

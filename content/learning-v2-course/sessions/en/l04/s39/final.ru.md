@@ -17,7 +17,7 @@
 **Хозяин спрашивает, где бойлер. Скажите ему, что в квартире бойлера нет вообще.**
 
 - ✅ **There isn’t a boiler.**
-- ❌ There aren’t a boiler. — *С a boiler в единственном числе нужно isn’t.*
+- ❌ There aren’t a boiler. — *С a boiler в форме для одного нужно isn’t.*
 - ❌ There is a boiler. — *is значит «есть», а бойлера нет: нужно isn’t.*
 
 ---

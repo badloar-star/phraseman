@@ -17,7 +17,7 @@
 **Господар питає, де бойлер. Скажіть йому, що в квартирі бойлера немає взагалі.**
 
 - ✅ **There isn’t a boiler.**
-- ❌ There aren’t a boiler. — *З a boiler в однині потрібне isn’t.*
+- ❌ There aren’t a boiler. — *З a boiler у формі для одного потрібне isn’t.*
 - ❌ There is a boiler. — *is означає «є», а бойлера немає: потрібно isn’t.*
 
 ---

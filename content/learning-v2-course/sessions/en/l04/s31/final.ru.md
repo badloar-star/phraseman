@@ -17,7 +17,7 @@
 **Гость спрашивает, где оставить машину. Скажите ему, что рядом с отелем есть автостоянка.**
 
 - ✅ **There is a car park near the hotel.**
-- ❌ There are a car park near the hotel. — *С a car park в единственном числе нужно There is.*
+- ❌ There are a car park near the hotel. — *С a car park в форме для одного нужно There is.*
 - ❌ There is car park near the hotel. — *Стоянка одна и названа впервые, поэтому нужно a: a car park.*
 
 ---
@@ -45,7 +45,7 @@
 **Гость ищет, где заправить машину. Скажите ему, что рядом с банком есть заправка.**
 
 - ✅ **There is a petrol station next to the bank.**
-- ❌ There is petrol station next to the bank. — *Перед petrol station в единственном числе здесь нужно a.*
+- ❌ There is petrol station next to the bank. — *Перед petrol station в форме для одного здесь нужно a.*
 - ❌ There are a petrol station next to the bank. — *Заправка одна, поэтому нужно is: There is a petrol station.*
 
 ---

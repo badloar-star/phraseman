@@ -32,7 +32,7 @@
 
 - ✅ **Is there a footpath between the park and the school?**
 - ❌ Are there a footpath between the park and the school? — *Тропа одна, поэтому вопрос начинаем с Is there, а не с Are there.*
-- ❌ Is there footpath between the park and the school? — *Перед footpath в единственном числе здесь нужно a.*
+- ❌ Is there footpath between the park and the school? — *Перед footpath в форме для одного здесь нужно a.*
 
 ---
 
@@ -40,13 +40,13 @@
 
 ### После дождя
 
-Дождь только что кончился, и подруга боится промочить ноги. Вы смотрите на землю: ямок с водой, которые остаются на дороге после дождя, нигде не видно. puddle — «лужа». There aren’t any puddles on the footpath — «На тропе нет луж». Начинаем с There aren’t any, затем называем то, чего нет, во множественном числе — puddles — и место: on the footpath. Aren’t означает are not, а any в этом отрицании подчёркивает, что луж нет совсем.
+Дождь только что кончился, и подруга боится промочить ноги. Вы смотрите на землю: ямок с водой, которые остаются на дороге после дождя, нигде не видно. puddle — «лужа». There aren’t any puddles on the footpath — «На тропе нет луж». Начинаем с There aren’t any, затем называем то, чего нет, в форме для нескольких — puddles — и место: on the footpath. Aren’t означает are not, а any в этом отрицании подчёркивает, что луж нет совсем.
 
 **Подруга боится промочить ноги. Скажите ей, что на тропе луж нет.**
 
 - ✅ **There aren’t any puddles on the footpath.**
-- ❌ There isn’t any puddles on the footpath. — *Puddles стоит во множественном числе, поэтому нужно aren’t.*
-- ❌ There aren’t any puddle on the footpath. — *После aren’t any здесь нужна форма множественного числа puddles.*
+- ❌ There isn’t any puddles on the footpath. — *Puddles стоит в форме для нескольких, поэтому нужно aren’t.*
+- ❌ There aren’t any puddle on the footpath. — *После aren’t any здесь нужна форма для нескольких puddles.*
 
 ---
 

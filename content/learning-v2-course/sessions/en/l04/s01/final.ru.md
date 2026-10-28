@@ -46,7 +46,7 @@
 
 - ✅ **There is a bakery here.**
 - ❌ There is bakery here. — *Перед названием одного места нужно a: There is a bakery here.*
-- ❌ There are a bakery here. — *С a bakery в единственном числе нужно is.*
+- ❌ There are a bakery here. — *С a bakery в форме для одного нужно is.*
 
 ---
 

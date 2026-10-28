@@ -46,7 +46,7 @@
 
 - ✅ **There is a bakery here.**
 - ❌ There is bakery here. — *Перед назвою одного місця потрібно a: There is a bakery here.*
-- ❌ There are a bakery here. — *З a bakery в однині потрібне is.*
+- ❌ There are a bakery here. — *З a bakery у формі для одного потрібне is.*
 
 ---
 

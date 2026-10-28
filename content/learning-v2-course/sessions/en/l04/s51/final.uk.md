@@ -26,7 +26,7 @@
 
 ### Що лежить на столі
 
-Ви зайшли до центру, і подруга питає, як дізнатися, які тут заняття. Біля входу стоїть стіл, а на ньому лежать паперові аркуші з розкладом гуртків, і їх кілька. leaflet — «листівка». There are some leaflets on the table — «На столі є кілька листівок». Спочатку ставимо There are, потім some leaflets і місце — on the table. Some показує, що листівки є, без точної кількості; з leaflets у множині потрібне are.
+Ви зайшли до центру, і подруга питає, як дізнатися, які тут заняття. Біля входу стоїть стіл, а на ньому лежать паперові аркуші з розкладом гуртків, і їх кілька. leaflet — «листівка». There are some leaflets on the table — «На столі є кілька листівок». Спочатку ставимо There are, потім some leaflets і місце — on the table. Some показує, що листівки є, без точної кількості; з leaflets у формі для кількох потрібне are.
 
 **Подруга питає, як дізнатися про заняття. Скажіть їй, що на столі є кілька листівок.**
 
@@ -45,8 +45,8 @@
 **Діти просять у щось пограти. Запитайте адміністратора, чи є в залі настільні ігри.**
 
 - ✅ **Are there any board games in the hall?**
-- ❌ Are there any board game in the hall? — *Після Are there any тут потрібна форма множини board games.*
-- ❌ Is there any board games in the hall? — *Board games стоїть у множині, тому запитання починаємо з Are there.*
+- ❌ Are there any board game in the hall? — *Після Are there any тут потрібна форма для кількох board games.*
+- ❌ Is there any board games in the hall? — *Board games стоїть у формі для кількох, тому запитання починаємо з Are there.*
 
 ---
 

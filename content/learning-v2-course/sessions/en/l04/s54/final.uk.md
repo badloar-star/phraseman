@@ -26,13 +26,13 @@
 
 ### Порожня нічна дорога
 
-Подруга заснула на задньому сидінні, а водій пошепки питає вас, чи багато на дорозі великих машин, які возять вантажі. Ви дивитеся у вікно: вони зазвичай повільні, а сьогодні жодної не видно. lorry — «вантажівка». There aren’t any lorries on the road — «На дорозі немає вантажівок». Спочатку ставимо There aren’t any, потім називаємо вантажівки у множині — lorries — і місце: on the road. Aren’t означає are not; уся фраза повідомляє, що вантажівок немає.
+Подруга заснула на задньому сидінні, а водій пошепки питає вас, чи багато на дорозі великих машин, які возять вантажі. Ви дивитеся у вікно: вони зазвичай повільні, а сьогодні жодної не видно. lorry — «вантажівка». There aren’t any lorries on the road — «На дорозі немає вантажівок». Спочатку ставимо There aren’t any, потім називаємо вантажівки у формі для кількох — lorries — і місце: on the road. Aren’t означає are not; уся фраза повідомляє, що вантажівок немає.
 
 **Водій питає про великі машини. Скажіть йому, що на дорозі вантажівок немає.**
 
 - ✅ **There aren’t any lorries on the road.**
-- ❌ There isn’t any lorries on the road. — *Lorries стоїть у множині, тому потрібно aren’t.*
-- ❌ There aren’t any lorry on the road. — *Після aren’t any тут потрібна форма множини lorries.*
+- ❌ There isn’t any lorries on the road. — *Lorries стоїть у формі для кількох, тому потрібно aren’t.*
+- ❌ There aren’t any lorry on the road. — *Після aren’t any тут потрібна форма для кількох lorries.*
 
 ---
 
@@ -40,13 +40,13 @@
 
 ### Миготливі вогні
 
-Попереду раптом засвітилися жовті миготливі вогні, а дорогу перегородили помаранчевими загорожами. Подруга прокинулася, злякалася й просить дізнатися у водія, що сталося. roadworks — «дорожні роботи». Are there roadworks near the junction? — «Біля перехрестя тривають дорожні роботи?» Починаємо запитання з Are there, потім називаємо roadworks і місце — near the junction. Roadworks стоїть у множині, тому потрібне are.
+Попереду раптом засвітилися жовті миготливі вогні, а дорогу перегородили помаранчевими загорожами. Подруга прокинулася, злякалася й просить дізнатися у водія, що сталося. roadworks — «дорожні роботи». Are there roadworks near the junction? — «Біля перехрестя тривають дорожні роботи?» Починаємо запитання з Are there, потім називаємо roadworks і місце — near the junction. Roadworks стоїть у формі для кількох, тому потрібне are.
 
 **Подруга прокинулася й питає про вогні. Запитайте водія, чи є дорожні роботи біля перехрестя.**
 
 - ✅ **Are there roadworks near the junction?**
-- ❌ Is there roadworks near the junction? — *Дорожні роботи — слово у множині, тому запитання починаємо з Are there.*
-- ❌ Are there a roadworks near the junction? — *Перед roadworks у множині a не ставимо.*
+- ❌ Is there roadworks near the junction? — *Дорожні роботи — слово у формі для кількох, тому запитання починаємо з Are there.*
+- ❌ Are there a roadworks near the junction? — *Перед roadworks у формі для кількох a не ставимо.*
 
 ---
 
@@ -127,7 +127,7 @@ lorry — вантажівка · roadworks — дорожні роботи · p
 <!-- interaction_id: en:lesson-04:session-54:i12; family: context_gap_grammar -->
 Are there ___ roadworks on the motorway? → **any** · some · a
 - some — *У запитанні кажемо any, а не some: Are there any.*
-- a — *Дорожні роботи — слово у множині, тому потрібно any, а не a.*
+- a — *Дорожні роботи — слово у формі для кількох, тому потрібно any, а не a.*
 
 **17 · Послухайте водія й складіть фразу**
 <!-- interaction_id: en:lesson-04:session-54:i13; family: listen_build_dictation -->

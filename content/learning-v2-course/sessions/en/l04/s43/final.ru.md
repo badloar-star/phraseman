@@ -12,13 +12,13 @@
 
 ### Мешок под дождём
 
-Вы несёте мешок бумаги и пластика и ищете контейнеры для переработки. Recycling bin — «контейнер для вторсырья». Are there any recycling bins near the school? — «Рядом со школой есть контейнеры для вторсырья?» Начинаем вопрос с Are there, затем ставим any recycling bins и место — near the school. Recycling bins стоит во множественном числе, поэтому нужно are; any подходит для вопроса, есть ли контейнеры вообще.
+Вы несёте мешок бумаги и пластика и ищете контейнеры для переработки. Recycling bin — «контейнер для вторсырья». Are there any recycling bins near the school? — «Рядом со школой есть контейнеры для вторсырья?» Начинаем вопрос с Are there, затем ставим any recycling bins и место — near the school. Recycling bins стоит в форме для нескольких, поэтому нужно are; any подходит для вопроса, есть ли контейнеры вообще.
 
 **Прохожий стоит под зонтом. Спросите его, есть ли рядом со школой контейнеры для вторсырья.**
 
 - ✅ **Are there any recycling bins near the school?**
 - ❌ Is there any recycling bins near the school? — *Контейнеров несколько, поэтому вопрос начинают с Are there, а не с Is there.*
-- ❌ Are there any recycling bin near the school? — *После Are there any здесь нужна форма множественного числа recycling bins.*
+- ❌ Are there any recycling bin near the school? — *После Are there any здесь нужна форма для нескольких recycling bins.*
 
 ---
 
@@ -40,7 +40,7 @@
 
 ### Дождь не стихает
 
-Подруга ищет, что надеть под дождь. Вы видите несколько плащей в прихожей. Raincoat — «плащ от дождя». There are some raincoats in the hall — «В прихожей есть плащи». Сначала ставим There are, затем some raincoats и место — in the hall. Some сообщает о наличии без точного числа; raincoats стоит во множественном числе.
+Подруга ищет, что надеть под дождь. Вы видите несколько плащей в прихожей. Raincoat — «плащ от дождя». There are some raincoats in the hall — «В прихожей есть плащи». Сначала ставим There are, затем some raincoats и место — in the hall. Some сообщает о наличии без точного числа; raincoats стоит в форме для нескольких.
 
 **Подруга ищет, что надеть под дождь. Скажите ей, что в прихожей есть плащи.**
 

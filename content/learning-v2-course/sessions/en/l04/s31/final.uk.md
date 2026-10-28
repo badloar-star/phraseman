@@ -17,7 +17,7 @@
 **Гість питає, де залишити машину. Скажіть йому, що поруч із готелем є автостоянка.**
 
 - ✅ **There is a car park near the hotel.**
-- ❌ There are a car park near the hotel. — *З a car park в однині потрібне There is.*
+- ❌ There are a car park near the hotel. — *З a car park у формі для одного потрібне There is.*
 - ❌ There is car park near the hotel. — *Стоянка одна й названа вперше, тому потрібно a: a car park.*
 
 ---
@@ -45,7 +45,7 @@
 **Гість шукає, де заправити машину. Скажіть йому, що поруч із банком є заправка.**
 
 - ✅ **There is a petrol station next to the bank.**
-- ❌ There is petrol station next to the bank. — *Перед petrol station в однині тут потрібне a.*
+- ❌ There is petrol station next to the bank. — *Перед petrol station у формі для одного тут потрібне a.*
 - ❌ There are a petrol station next to the bank. — *Заправка одна, тому потрібно is: There is a petrol station.*
 
 ---

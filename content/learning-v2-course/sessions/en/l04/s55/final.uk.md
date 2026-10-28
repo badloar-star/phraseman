@@ -32,7 +32,7 @@
 
 - ✅ **Is there a footpath between the park and the school?**
 - ❌ Are there a footpath between the park and the school? — *Стежка одна, тому запитання починаємо з Is there, а не з Are there.*
-- ❌ Is there footpath between the park and the school? — *Перед footpath в однині тут потрібне a.*
+- ❌ Is there footpath between the park and the school? — *Перед footpath у формі для одного тут потрібне a.*
 
 ---
 
@@ -40,13 +40,13 @@
 
 ### Після дощу
 
-Дощ щойно скінчився, і подруга боїться промочити ноги. Ви дивитеся на землю: ямок із водою, які залишаються на дорозі після дощу, ніде не видно. puddle — «калюжа». There aren’t any puddles on the footpath — «На стежці немає калюж». Починаємо з There aren’t any, потім називаємо те, чого немає, у множині — puddles — і місце: on the footpath. Aren’t означає are not, а any в цьому запереченні підкреслює, що калюж немає зовсім.
+Дощ щойно скінчився, і подруга боїться промочити ноги. Ви дивитеся на землю: ямок із водою, які залишаються на дорозі після дощу, ніде не видно. puddle — «калюжа». There aren’t any puddles on the footpath — «На стежці немає калюж». Починаємо з There aren’t any, потім називаємо те, чого немає, у формі для кількох — puddles — і місце: on the footpath. Aren’t означає are not, а any в цьому запереченні підкреслює, що калюж немає зовсім.
 
 **Подруга боїться промочити ноги. Скажіть їй, що на стежці калюж немає.**
 
 - ✅ **There aren’t any puddles on the footpath.**
-- ❌ There isn’t any puddles on the footpath. — *Puddles стоїть у множині, тому потрібно aren’t.*
-- ❌ There aren’t any puddle on the footpath. — *Після aren’t any тут потрібна форма множини puddles.*
+- ❌ There isn’t any puddles on the footpath. — *Puddles стоїть у формі для кількох, тому потрібно aren’t.*
+- ❌ There aren’t any puddle on the footpath. — *Після aren’t any тут потрібна форма для кількох puddles.*
 
 ---
 

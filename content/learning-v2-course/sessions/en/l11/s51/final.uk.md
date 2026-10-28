@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про зайнятість і про вчорашню зміну.
 
-**Що ви опануєте:** was/were; present simple; yesterday / now
+**Що ви опануєте:** розрізняти «зазвичай» і «вчора»: was і were
 **Нові слова:** part-time, full-time, day shift, night shift
 
 ## Інтро 1

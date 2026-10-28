@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о занятости и о вчерашней смене.
 
-**Что вы освоите:** was/were; present simple; yesterday / now
+**Что вы освоите:** различать «обычно» и «вчера»: was и were
 **Новые слова:** part-time, full-time, day shift, night shift
 
 ## Интро 1

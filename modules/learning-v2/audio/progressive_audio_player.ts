@@ -7,6 +7,10 @@ import {
 } from "../../audio/audio_runtime_arbiter";
 import { getLearningV2ProgressiveAudioRuntime } from "./progressive_audio_runtime";
 
+// зачем (жалоба 28.10 «Урок 1 · Эпизод 1 — не слышно»): сперва логи — каждый выход без звука называет причину; поведение прежнее
+const LOG = "[LV2-AUDIO]";
+const where = (request: LearningV2RecordedAudioRequest) => ({ study: request.studyTarget, lesson: request.lessonOrdinal, session: request.sessionOrdinal, text: request.text.slice(0, 40) });
+
 type PlayCallbacks = Readonly<{
   onStart?: () => void;
   onDone?: () => void;
@@ -69,21 +73,25 @@ export async function playLearningV2RecordedAudio(
   try {
     resolved =
       await getLearningV2ProgressiveAudioRuntime().resolveCached(request);
-  } catch {
+  } catch (error) {
+    console.warn(LOG, "player:resolve_failed", JSON.stringify({ ...where(request), reason: error instanceof Error ? error.message : String(error), superseded: ownGeneration !== generation })); // guard-ok: catch пишет причину
     if (ownGeneration !== generation) return true;
     if (ownGeneration === generation) onStopped = null;
     return false;
   }
-  if (ownGeneration !== generation) return true;
+  if (ownGeneration !== generation) { console.log(LOG, "player:superseded_after_resolve", JSON.stringify(where(request))); return true; } // guard-ok: ранний выход с причиной
   if (!resolved || !resolved.uri.startsWith("file://")) {
+    console.warn(LOG, "player:not_cached", JSON.stringify({ ...where(request), resolved: resolved ? resolved.uri.slice(0, 12) : null })); // guard-ok: записи нет на телефоне — вызывающий скажет системным голосом
     if (ownGeneration === generation) onStopped = null;
     return false;
   }
+  console.log(LOG, "player:resolved", JSON.stringify({ ...where(request), clip: resolved.clipSha256.slice(0, 12) })); // guard-ok: откуда звук
   let ownClaim: SpokenAudioClaim | null = null;
   ownClaim = claimSpokenAudio(() => {
     if (claim === ownClaim) stopLearningV2RecordedAudio();
   }, "learning-v2:recorded-audio");
   if (!ownClaim) {
+    console.warn(LOG, "player:claim_refused", JSON.stringify(where(request))); // guard-ok: голос выключен или идёт запись — вызывающий ловит по таймеру старта
     disposeLearningV2RecordedAudio(true);
     return true;
   }
@@ -97,12 +105,14 @@ export async function playLearningV2RecordedAudio(
         readyTimer = setTimeout(() => resolve(false), 4_000);
       }),
     ]);
-  } catch {
+  } catch (error) {
+    console.warn(LOG, "player:ready_check_failed", JSON.stringify({ ...where(request), reason: error instanceof Error ? error.message : String(error) })); // guard-ok: catch пишет причину
     ready = false;
   } finally {
     if (readyTimer) clearTimeout(readyTimer);
   }
   if (!ready || ownGeneration !== generation || !ownClaim.isCurrent()) {
+    console.warn(LOG, "player:not_ready", JSON.stringify({ ...where(request), ready, superseded: ownGeneration !== generation, claimCurrent: ownClaim.isCurrent() })); // guard-ok: «не готово за 4 с» — вызывающий ловит по таймеру старта
     ownClaim.release();
     if (claim === ownClaim) claim = null;
     if (ownGeneration === generation) disposeLearningV2RecordedAudio(true);

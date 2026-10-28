@@ -12,6 +12,7 @@ import {
   type SpokenAudioClaim,
 } from '../modules/audio/audio_runtime_arbiter';
 import { phraseAudioClipStartTimeoutMs } from '../modules/audio/phrase_audio_timing';
+import { getManagedAudioModeSnapshot } from '../app/audio_session_coordinator';
 import { peekEnVoiceId, peekVoiceIdForLocale } from '../app/flashcards/voice_prefs';
 import {
   cardTtsLanguageFromSpeechLocale,
@@ -109,6 +110,8 @@ const STOP_SETTLE_MS = Platform.OS === 'android' ? 80 : 20;
 // Значение покрывает обе стадии плюс смену audio session и выводится из общего
 // timing-контракта, поэтому три таймера больше не могут разъехаться.
 const CLIP_START_TIMEOUT_MS = phraseAudioClipStartTimeoutMs(Platform.OS);
+// зачем (жалоба 28.10 «не слышно»): запись занятия V2 из кэша на телефоне стартует быстро; не зазвучала за 4,5 с — говорит системный голос
+const LV2_RECORDED_START_TIMEOUT_MS = 4_500;
 type SpeechOptions = NonNullable<Parameters<typeof Speech.speak>[1]>;
 
 function safeSpeechStop() {
@@ -317,23 +320,44 @@ export function useAudio() {
     runDefaultVoicePath();
 
     async function playLearningV2RecordedOrFallback(): Promise<void> {
+      const recorded = opts!.learningV2Recorded!;
+      const trace = (stage: string, extra?: Record<string, unknown>) => console.log('[LV2-AUDIO]', stage, JSON.stringify({ gen: generation, study: recorded.studyTarget, lesson: recorded.lessonOrdinal, session: recorded.sessionOrdinal, text: spokenText.slice(0, 40), ...extra })); // guard-ok: жалоба «не слышно» (28.10) — каждая развилка звука занятия
       let fellBack = false;
-      const fallback = () => {
-        if (fellBack || isStale()) return;
+      let started = false;
+      let startTimer: ReturnType<typeof setTimeout> | null = null;
+      const clearStartTimer = () => { if (startTimer) clearTimeout(startTimer); startTimer = null; };
+      // зачем (жалоба 28.10 «Урок 1 · Эпизод 1 — не слышно»): запись может молча не зазвучать (голос не выдан, «не готово» за 4 с) без onError —
+      // тогда человек оставался в тишине. Любой исход без звука → гасим запись и говорим системным голосом.
+      const fallback = (reason: string) => {
+        clearStartTimer();
+        if (fellBack || isStale()) { trace('fallback:skip', { reason, fellBack, stale: isStale() }); return; }
         fellBack = true;
+        trace('fallback:system_tts', { reason });
+        stopLearningV2RecordedAudioIfLoaded();
         speakWithSystemTts();
       };
+      trace('recorded:enter');
       try {
         const { playLearningV2RecordedAudio } = await loadLearningV2RecordedAudioPlayer();
-        if (isStale()) return;
+        if (isStale()) { trace('recorded:stale_after_load'); return; }
+        startTimer = setTimeout(() => { startTimer = null; if (!started) fallback('start_timeout'); }, LV2_RECORDED_START_TIMEOUT_MS);
         const played = await playLearningV2RecordedAudio(
-          { ...opts!.learningV2Recorded!, text: spokenText, rate: safeRate },
-          { onStart: opts?.onStart, onDone: opts?.onDone, onStopped: opts?.onStopped, onError: fallback },
+          { ...recorded, text: spokenText, rate: safeRate },
+          {
+            onStart: () => {
+              if (fellBack) { trace('recorded:late_start_stopped'); stopLearningV2RecordedAudioIfLoaded(); return; }
+              started = true; clearStartTimer(); trace('recorded:start'); opts?.onStart?.();
+            },
+            onDone: () => { clearStartTimer(); trace('recorded:done'); opts?.onDone?.(); },
+            onStopped: () => { clearStartTimer(); trace('recorded:stopped'); opts?.onStopped?.(); },
+            onError: (error: Error) => fallback(`player_error:${error.message}`),
+          },
         );
-        if (!played) fallback();
+        trace('recorded:returned', { played, started });
+        if (!played) fallback('not_cached');
       } catch (error) {
         console.warn('[LV2-AUDIO] cached_playback_failed', error);
-        fallback();
+        fallback(`catch:${error instanceof Error ? error.message : String(error)}`);
       }
     }
 
@@ -476,24 +500,26 @@ export function useAudio() {
     }
 
     function speakWithSystemTts(localeOverride?: string) {
+      // зачем (жалоба 28.10 «не слышно»): каждый тихий выход системного голоса называет значения, которые его решили
+      const ttsState = () => ({ stale: speechGenerationRef.current !== generation, voiceAllowed: voicePlaybackPolicy.canStart(voicePolicyToken), recordingActive: getManagedAudioModeSnapshot().recordingActive, text: spokenText.slice(0, 40) });
       if (
         speechGenerationRef.current !== generation
         || !voicePlaybackPolicy.canStart(voicePolicyToken)
-      ) return;
+      ) { console.warn('[LV2-AUDIO] tts:skip_before_queue', JSON.stringify(ttsState())); return; } // guard-ok: ранний выход с причиной
       if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
       pendingTimerRef.current = setTimeout(() => {
         pendingTimerRef.current = null;
         if (
           speechGenerationRef.current !== generation
           || !voicePlaybackPolicy.canStart(voicePolicyToken)
-        ) return;
+        ) { console.warn('[LV2-AUDIO] tts:skip_in_queue', JSON.stringify(ttsState())); return; } // guard-ok: ранний выход с причиной
         speechClaimRef.current?.release();
         const speechClaim = claimSpokenAudio(stopSystemSpeechNow, 'use-audio:system-tts');
         if (!speechClaim) {
           // зачем (2026-09-14): претензия на голос не выдаётся, пока аудиотракт
           // в режиме записи — озвучка молча пропадала (эхо эталона после
           // оценки). Пишем причину; сам отказ не ломает вызывающего.
-          console.warn('[SPEAK-MIC] tts:skip', JSON.stringify({ reason: 'claim_refused_recording_active', text: spokenText })); // guard-ok: трасса владельца, только на отказе
+          console.warn('[SPEAK-MIC] tts:skip', JSON.stringify({ reason: 'claim_refused_recording_active', ...ttsState() })); // guard-ok: трасса владельца, только на отказе
           return;
         }
         speechClaimRef.current = speechClaim;
@@ -507,7 +533,7 @@ export function useAudio() {
             || speechGenerationRef.current !== generation
             || !voicePlaybackPolicy.canStart(voicePolicyToken)
           ) {
-            if (!audioReady) console.warn('[SPEAK-MIC] tts:skip', JSON.stringify({ reason: 'audio_not_ready', text: spokenText })); // guard-ok: трасса владельца, только на отказе
+            if (!audioReady) console.warn('[SPEAK-MIC] tts:skip', JSON.stringify({ reason: 'audio_not_ready', ...ttsState() })); // guard-ok: трасса владельца, только на отказе
             releaseSpeechClaim();
             return;
           }

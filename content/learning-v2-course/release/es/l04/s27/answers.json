@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-27:i01",
+    "correctText": "nuestros",
+    "correctResponseId": "es:lesson-04:session-27:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-27:i02",
+    "correctText": "nuestro",
+    "correctResponseId": "es:lesson-04:session-27:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-27:i03",
+    "correctText": "Es nuestro amigo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-27:i04",
+    "correctText": "nuestros",
+    "correctResponseId": "es:lesson-04:session-27:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-27:i05",
+    "correctText": "Son nuestros amigos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-27:i06",
+    "correctText": "Nuestros amigos son amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-27:i07",
+    "correctText": "Son nuestros amigos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-27:i08",
+    "correctText": "amables",
+    "correctResponseId": "es:lesson-04:session-27:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-27:i09",
+    "correctText": "Es nuestro amigo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-27:i10",
+    "correctText": "Son nuestros amigos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-27:i11",
+    "correctText": "Nuestros amigos son amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-27:i12",
+    "correctText": "Nuestros amigos son muy amables.",
+    "correctResponseId": null
+  }
+]

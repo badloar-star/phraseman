@@ -1365,4 +1365,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать nuestra перед женским существительным в единственном числе.","uk":"вибирати nuestra перед іменником жіночого роду в однині."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 27,
+    sourceFingerprint: "2510414b24ed81c642b4154f3a7d4e079b1a97081d9a06d76447fed5d726d464",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать nuestros перед мужским существительным во множественном числе.","uk":"використовувати nuestros перед іменником чоловічого роду в множині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 28,
+    sourceFingerprint: "dfe5aa4e354e17c205c4ac7eb2377e903fed6a0f2150a396d50047118a751457",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать nuestras перед женским существительным во множественном числе.","uk":"вибирати nuestras перед іменником жіночого роду в множині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

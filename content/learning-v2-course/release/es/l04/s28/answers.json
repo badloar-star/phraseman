@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-28:i01",
+    "correctText": "nuestras",
+    "correctResponseId": "es:lesson-04:session-28:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-28:i02",
+    "correctText": "nuestra",
+    "correctResponseId": "es:lesson-04:session-28:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-28:i03",
+    "correctText": "Es nuestra amiga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-28:i04",
+    "correctText": "nuestras",
+    "correctResponseId": "es:lesson-04:session-28:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-28:i05",
+    "correctText": "Son nuestras amigas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-28:i06",
+    "correctText": "Nuestras amigas son amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-28:i07",
+    "correctText": "Son nuestras amigas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-28:i08",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-04:session-28:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-28:i09",
+    "correctText": "Es nuestra amiga.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-28:i10",
+    "correctText": "Son nuestras amigas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-28:i11",
+    "correctText": "Nuestras amigas son amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-28:i12",
+    "correctText": "Nuestras amigas son muy amables.",
+    "correctResponseId": null
+  }
+]

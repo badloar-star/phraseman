@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать nuestras перед женским существительным во множественном числе.",
+    "uk": "вибирати nuestras перед іменником жіночого роду в множині."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Одна общая подруга",
+        "uk": "Одна спільна подруга"
+      },
+      "bodyByLocale": {
+        "ru": "К вам подошла общая подруга. Скажите гостю `Es nuestra amiga` — «Это наша подруга». Соберите `es` + `nuestra amiga`. Женское amiga требует nuestra, как знакомое casa. Форму выбираем по слову amiga; то, что вы говорите от себя и брата, не меняет её род.",
+        "uk": "До вас підійшла спільна подруга. Скажіть гостю `Es nuestra amiga` — «Це наша подруга». Зберіть `es` + `nuestra amiga`. Жіноче amiga потребує nuestra, як знайоме casa. Форму вибираємо за словом amiga; те, що ви говорите від себе й брата, не змінює її роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Представьте общую подругу: «Это наша подруга». Начните с Es.",
+          "uk": "Представте спільну подругу: «Це наша подруга». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-28:intro1:r1",
+              "text": "Es nuestra amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro1:r2",
+              "text": "Es nuestro amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro1:r3",
+              "text": "Son nuestra amiga."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-28:intro1:r1",
+              "text": "Es nuestra amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro1:r2",
+              "text": "Es nuestro amiga."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro1:r3",
+              "text": "Son nuestra amiga."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте общую подругу: «Это наша подруга». Начните с Es.",
+          "uk": "Представте спільну подругу: «Це наша подруга». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько подруг",
+        "uk": "Кілька подруг"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь подошли несколько ваших общих подруг. Скажите `Son nuestras amigas` — «Это наши подруги». Соберите `son` + `nuestras amigas`. Добавьте -s к nuestra и amiga; es замените на son. Nuestras показывает женский род и множественное число слова amigas.",
+        "uk": "Тепер підійшли кілька ваших спільних подруг. Скажіть `Son nuestras amigas` — «Це наші подруги». Зберіть `son` + `nuestras amigas`. Додайте -s до nuestra й amiga; es замініть на son. Nuestras показує жіночий рід і множину слова amigas."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Представьте общих подруг: «Это наши подруги». Начните с Son.",
+          "uk": "Представте спільних подруг: «Це наші подруги». Почніть з Son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-28:intro2:r1",
+              "text": "Son nuestras amigas."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro2:r2",
+              "text": "Son nuestros amigas."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro2:r3",
+              "text": "Son nuestra amigas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-28:intro2:r1",
+              "text": "Son nuestras amigas."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro2:r2",
+              "text": "Son nuestros amigas."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro2:r3",
+              "text": "Son nuestra amigas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте общих подруг: «Это наши подруги». Начните с Son.",
+          "uk": "Представте спільних подруг: «Це наші подруги». Почніть з Son."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Приветливые подруги",
+        "uk": "Привітні подруги"
+      },
+      "bodyByLocale": {
+        "ru": "Гость ещё не знает ваших подруг. Скажите `Nuestras amigas son amables` — «Наши подруги приветливые». Соберите `nuestras amigas` + `son` + `amables`. Amables — знакомая форма для нескольких людей; она одинаковая с amigos и amigas. Nuestras согласуется с женским amigas.",
+        "uk": "Гість ще не знає ваших подруг. Скажіть `Nuestras amigas son amables` — «Наші подруги привітні». Зберіть `nuestras amigas` + `son` + `amables`. Amables — знайома форма для кількох людей; вона однакова з amigos й amigas. Nuestras узгоджується з жіночим amigas."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите: «Наши подруги приветливые». Начните с Nuestras amigas.",
+          "uk": "Скажіть: «Наші подруги привітні». Почніть з Nuestras amigas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-28:intro3:r1",
+              "text": "Nuestras amigas son amables."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro3:r2",
+              "text": "Nuestras amigas son amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro3:r3",
+              "text": "Nuestras amigas es amables."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-28:intro3:r1",
+              "text": "Nuestras amigas son amables."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro3:r2",
+              "text": "Nuestras amigas son amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-28:intro3:r3",
+              "text": "Nuestras amigas es amables."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите: «Наши подруги приветливые». Начните с Nuestras amigas.",
+          "uk": "Скажіть: «Наші подруги привітні». Почніть з Nuestras amigas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "112c061d7075a1ca073be5077e5dc19bfc343c84e05eb1c0dd94ec3be10bd71f"
+}

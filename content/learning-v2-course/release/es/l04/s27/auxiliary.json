@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-27",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-27:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-27:intro1:r2": {
+          "ru": "Amigo мужского рода: nuestro.",
+          "uk": "Amigo чоловічого роду: nuestro."
+        },
+        "es:lesson-04:session-27:intro1:r3": {
+          "ru": "Представляете одного человека: es.",
+          "uk": "Представляєте одну людину: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-27:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-27:intro2:r2": {
+          "ru": "Перед amigos нужно nuestros.",
+          "uk": "Перед amigos потрібне nuestros."
+        },
+        "es:lesson-04:session-27:intro2:r3": {
+          "ru": "Друзей несколько: son.",
+          "uk": "Друзів кілька: son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-27:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-27:intro3:r2": {
+          "ru": "Друзей несколько: amables.",
+          "uk": "Друзів кілька: amables."
+        },
+        "es:lesson-04:session-27:intro3:r3": {
+          "ru": "Множественное amigos требует son.",
+          "uk": "Множина amigos потребує son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "28f33a9118a5da3136a81eb02e7774f233ecf2da8a1d069af8accb74e27f3d32"
+}

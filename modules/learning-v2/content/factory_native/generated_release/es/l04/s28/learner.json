@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-28",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-28:i01:r1",
+          "text": "nuestras"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i01:r2",
+          "text": "nuestros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-28:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-28:i01:audio",
+          "transcript": "nuestras"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-28:i01:r1",
+            "targetText": "nuestras",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-28:i01:r2",
+            "targetText": "nuestros",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-28:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Перед конечным s звучит a: nuestras.",
+              "uk": "Перед кінцевим s звучить a: nuestras."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это наша подруга, одна",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-28:i02:r1",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i02:r2",
+          "text": "nuestro"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i02:r3",
+          "text": "nuestras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это наша подруга, одна",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это наша подруга, одна",
+          "uk": "Вставте слово — це наша подруга, одна"
+        },
+        "gappedTargetPhrase": "Es ___ amiga.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-28:i02:r1",
+            "text": "nuestra"
+          },
+          {
+            "responseId": "es:lesson-04:session-28:i02:r2",
+            "text": "nuestro"
+          },
+          {
+            "responseId": "es:lesson-04:session-28:i02:r3",
+            "text": "nuestras"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это наша подруга, одна",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это наша подруга, одна",
+            "feedbackByLocale": {
+              "ru": "Amiga женского рода: nuestra.",
+              "uk": "Amiga жіночого роду: nuestra."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это наша подруга, одна",
+            "feedbackByLocale": {
+              "ru": "Подруга одна: nuestra.",
+              "uk": "Подруга одна: nuestra."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это наша подруга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-28:i03:r1",
+          "text": "Плитки: amiga"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i03:r2",
+          "text": "nuestra"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i03:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это наша подруга",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es nuestra amiga.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это наша подруга",
+          "uk": "Зберіть фразу — це наша подруга"
+        },
+        "orderedTokens": [
+          "Es",
+          "nuestra",
+          "amiga"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-28:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это наша подруга",
+            "feedbackByLocale": {
+              "ru": "перед nuestra здесь нет артикля.",
+              "uk": "перед nuestra тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — это наши подруги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-28:i04:r1",
+          "text": "nuestras"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i04:r2",
+          "text": "nuestros"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i04:r3",
+          "text": "nuestra"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — это наши подруги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это наши подруги",
+          "uk": "Вставте слово — це наші подруги"
+        },
+        "gappedTargetPhrase": "Son ___ amigas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-28:i04:r1",
+            "text": "nuestras"
+          },
+          {
+            "responseId": "es:lesson-04:session-28:i04:r2",
+            "text": "nuestros"
+          },
+          {
+            "responseId": "es:lesson-04:session-28:i04:r3",
+            "text": "nuestra"
+          }
+        ],
+        "testedDimension": "Вставьте слово — это наши подруги",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-28:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это наши подруги",
+            "feedbackByLocale": {
+              "ru": "Amigas женского рода: nuestras.",
+              "uk": "Amigas жіночого роду: nuestras."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-28:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — это наши подруги",
+            "feedbackByLocale": {
+              "ru": "Подруг несколько: nuestras.",
+              "uk": "Подруг кілька: nuestras."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — это наши подруги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-28:i05:r1",
+          "text": "Плитки: amigas"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i05:r2",
+          "text": "nuestras"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i05:r4",
+          "text": "nuestra."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — это наши подруги",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son nuestras amigas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это наши подруги",
+          "uk": "Зберіть фразу — це наші подруги"
+        },
+        "orderedTokens": [
+          "Son",
+          "nuestras",
+          "amigas"
+        ],
+        "authoredDistractorTokens": [
+          "nuestra"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-28:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — это наши подруги",
+            "feedbackByLocale": {
+              "ru": "подруг несколько.",
+              "uk": "подруг кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — наши подруги приветливые; начните с Nuestras amigas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-28:i06:r1",
+          "text": "Плитки: amables"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i06:r3",
+          "text": "amigas"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i06:r4",
+          "text": "nuestras"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i06:r5",
+          "text": "amable."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — наши подруги приветливые; начните с Nuestras amigas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Nuestras amigas son amables.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — наши подруги приветливые; начните с Nuestras amigas",
+          "uk": "Зберіть фразу — наші подруги привітні; почніть з Nuestras amigas"
+        },
+        "orderedTokens": [
+          "Nuestras",
+          "amigas",
+          "son",
+          "amables"
+        ],
+        "authoredDistractorTokens": [
+          "amable"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-28:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — наши подруги приветливые; начните с Nuestras amigas",
+            "feedbackByLocale": {
+              "ru": "подруг несколько.",
+              "uk": "подруг кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-28:i07:r1",
+          "text": "Плитки: nuestras"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i07:r2",
+          "text": "amigas"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i07:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i07:r4",
+          "text": "nuestros."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-28:i07:audio",
+          "transcript": "Son nuestras amigas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son nuestras amigas.",
+        "orderedTokens": [
+          "Son",
+          "nuestras",
+          "amigas"
+        ],
+        "authoredDistractorTokens": [
+          "nuestros"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-28:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит nuestras.",
+              "uk": "звучить nuestras."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — наши подруги приветливые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-28:i08:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i08:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-28:i08:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — наши подруги приветливые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — наши подруги приветливые",
+          "uk": "Вставте слово — наші подруги привітні"
+        },
+        "gappedTargetPhrase": "Nuestras amigas ___ amables.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-28:i08:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-28:i08:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-28:i08:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — наши подруги приветливые",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — наши подруги приветливые",
+            "feedbackByLocale": {
+              "ru": "Подруг несколько: son.",
+              "uk": "Подруг кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — наши подруги приветливые",
+            "feedbackByLocale": {
+              "ru": "Описываете подруг, а не себя: son.",
+              "uk": "Описуєте подруг, а не себе: son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это наша подруга; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-28:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это наша подруга; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-28:i09:audio",
+          "transcript": "Es nuestra amiga."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es nuestra amiga.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — это наши подруги; начните с Son",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-28:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — это наши подруги; начните с Son",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-28:i10:audio",
+          "transcript": "Son nuestras amigas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son nuestras amigas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — наши подруги приветливые; начните с Nuestras amigas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — наши подруги приветливые; начните с Nuestras amigas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-28:i11:audio",
+          "transcript": "Nuestras amigas son amables."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nuestras amigas son amables.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — наши подруги очень приветливые; начните с Nuestras amigas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-28:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — наши подруги очень приветливые; начните с Nuestras amigas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-28:i12:audio",
+          "transcript": "Nuestras amigas son muy amables."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Nuestras amigas son muy amables.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "716135498cf1c0998a9c56cdb75d270745d596bb7268eb2612ba3d002019910f"
+}

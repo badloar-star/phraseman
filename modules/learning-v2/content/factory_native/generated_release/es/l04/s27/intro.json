@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "использовать nuestros перед мужским существительным во множественном числе.",
+    "uk": "використовувати nuestros перед іменником чоловічого роду в множині."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Один общий друг",
+        "uk": "Один спільний друг"
+      },
+      "bodyByLocale": {
+        "ru": "К вам подошёл друг, которого знаете и вы, и сестра. Представьте его гостю: `Es nuestro amigo` — «Это наш друг». Соберите `es` + `nuestro amigo`. Мужское amigo в единственном числе требует nuestro, как знакомое carro. Вы говорите от себя и сестры, но представляете одного человека: поэтому es.",
+        "uk": "До вас підійшов друг, якого знаєте і ви, і сестра. Представте його гостю: `Es nuestro amigo` — «Це наш друг». Зберіть `es` + `nuestro amigo`. Чоловіче amigo в однині потребує nuestro, як знайоме carro. Ви говорите від себе й сестри, але представляєте одну людину: тому es."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Представьте общего друга: «Это наш друг». Начните с Es.",
+          "uk": "Представте спільного друга: «Це наш друг». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-27:intro1:r1",
+              "text": "Es nuestro amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro1:r2",
+              "text": "Es nuestra amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro1:r3",
+              "text": "Son nuestro amigo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-27:intro1:r1",
+              "text": "Es nuestro amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro1:r2",
+              "text": "Es nuestra amigo."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro1:r3",
+              "text": "Son nuestro amigo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте общего друга: «Это наш друг». Начните с Es.",
+          "uk": "Представте спільного друга: «Це наш друг». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько общих друзей",
+        "uk": "Кілька спільних друзів"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь рядом несколько ваших общих друзей-мужчин. Скажите гостю `Son nuestros amigos` — «Это наши друзья». Соберите `son` + `nuestros amigos`. К nuestro и amigo добавьте -s, а es замените на son: представляете нескольких людей. Форма nuestros согласуется с amigos.",
+        "uk": "Тепер поруч кілька ваших спільних друзів-чоловіків. Скажіть гостю `Son nuestros amigos` — «Це наші друзі». Зберіть `son` + `nuestros amigos`. До nuestro й amigo додайте -s, а es замініть на son: представляєте кількох людей. Форма nuestros узгоджується з amigos."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Представьте общих друзей-мужчин: «Это наши друзья». Начните с Son.",
+          "uk": "Представте спільних друзів-чоловіків: «Це наші друзі». Почніть з Son."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-27:intro2:r1",
+              "text": "Son nuestros amigos."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro2:r2",
+              "text": "Son nuestro amigos."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro2:r3",
+              "text": "Es nuestros amigos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-27:intro2:r1",
+              "text": "Son nuestros amigos."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro2:r2",
+              "text": "Son nuestro amigos."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro2:r3",
+              "text": "Es nuestros amigos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте общих друзей-мужчин: «Это наши друзья». Начните с Son.",
+          "uk": "Представте спільних друзів-чоловіків: «Це наші друзі». Почніть з Son."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Приветливые друзья",
+        "uk": "Привітні друзі"
+      },
+      "bodyByLocale": {
+        "ru": "Гость ещё не знаком с вашими друзьями. Скажите `Nuestros amigos son amables` — «Наши друзья приветливые». Соберите `nuestros amigos` + `son` + `amables`. Описываете нескольких людей: к знакомому amable добавьте -s. Nuestros и amables согласуются по числу с amigos.",
+        "uk": "Гість ще не знайомий із вашими друзями. Скажіть `Nuestros amigos son amables` — «Наші друзі привітні». Зберіть `nuestros amigos` + `son` + `amables`. Описуєте кількох людей: до знайомого amable додайте -s. Nuestros і amables узгоджуються за числом з amigos."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите: «Наши друзья приветливые». Начните с Nuestros amigos.",
+          "uk": "Скажіть: «Наші друзі привітні». Почніть з Nuestros amigos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-27:intro3:r1",
+              "text": "Nuestros amigos son amables."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro3:r2",
+              "text": "Nuestros amigos son amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro3:r3",
+              "text": "Nuestros amigos es amables."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-27:intro3:r1",
+              "text": "Nuestros amigos son amables."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro3:r2",
+              "text": "Nuestros amigos son amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-27:intro3:r3",
+              "text": "Nuestros amigos es amables."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите: «Наши друзья приветливые». Начните с Nuestros amigos.",
+          "uk": "Скажіть: «Наші друзі привітні». Почніть з Nuestros amigos."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8079e147eb7460aa4e38bf562b4ed0fd0819904926c996fdb9b70d50e3df3cdc"
+}

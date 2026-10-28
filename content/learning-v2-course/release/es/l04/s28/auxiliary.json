@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-28",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-28:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-28:intro1:r2": {
+          "ru": "Перед amiga нужно nuestra.",
+          "uk": "Перед amiga потрібне nuestra."
+        },
+        "es:lesson-04:session-28:intro1:r3": {
+          "ru": "Подруга одна: es.",
+          "uk": "Подруга одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-28:intro2:r2": {
+          "ru": "Amigas женского рода: nuestras.",
+          "uk": "Amigas жіночого роду: nuestras."
+        },
+        "es:lesson-04:session-28:intro2:r3": {
+          "ru": "Подруг несколько: nuestras.",
+          "uk": "Подруг кілька: nuestras."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-28:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-28:intro3:r2": {
+          "ru": "Подруг несколько: amables.",
+          "uk": "Подруг кілька: amables."
+        },
+        "es:lesson-04:session-28:intro3:r3": {
+          "ru": "Множественное amigas требует son.",
+          "uk": "Множина amigas потребує son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "53977c87b0e4414f9dd82b18c2e77ef943e2248517f5f7007625e74b0a1bf20c"
+}

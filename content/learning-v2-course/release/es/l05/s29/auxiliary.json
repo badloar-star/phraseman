@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-29",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-29:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-29:intro1:r2": {
+          "ru": "Адресатов несколько: tienen.",
+          "uk": "Адресатів кілька: tienen."
+        },
+        "es:lesson-05:session-29:intro1:r3": {
+          "ru": "Tenemos — «мы»; к группе обращаемся ustedes tienen.",
+          "uk": "Tenemos — «ми»; до групи звертаємося ustedes tienen."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-29:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-29:intro2:r2": {
+          "ru": "С ustedes нужно tienen.",
+          "uk": "З ustedes потрібно tienen."
+        },
+        "es:lesson-05:session-29:intro2:r3": {
+          "ru": "Carro мужского рода: un.",
+          "uk": "Carro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-29:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-29:intro3:r2": {
+          "ru": "К группе обращаемся с tienen, не tenemos.",
+          "uk": "До групи звертаємося з tienen, не tenemos."
+        },
+        "es:lesson-05:session-29:intro3:r3": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "df046087d9f457ebc63e5997d5cc8bbe9d808d2fb14edbd3e0494e1931f2958a"
+}

@@ -1771,4 +1771,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать ellas tienen для группы женщин.","uk":"використовувати ellas tienen для групи жінок."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 29,
+    sourceFingerprint: "1e7cb71134ad828cc6721ae55868d5b890957c525755af888714d33778997999",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"задать вопрос группе с ustedes tienen.","uk":"поставити запитання групі з ustedes tienen."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 30,
+    sourceFingerprint: "35dcadb3d318a5fd18ab100862b872831085676bf2d614bb407128b6ae4bffd8",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить no между ellos или ellas и tienen.","uk":"поставити no між ellos або ellas і tienen."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

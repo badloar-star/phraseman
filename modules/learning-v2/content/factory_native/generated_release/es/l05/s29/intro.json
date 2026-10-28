@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "задать вопрос группе с ustedes tienen.",
+    "uk": "поставити запитання групі з ustedes tienen."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Разговор с друзьями",
+        "uk": "Розмова з друзями"
+      },
+      "bodyByLocale": {
+        "ru": "Хотите поговорить сразу с двумя друзьями. Спросите `¿Ustedes tienen tiempo?` — «У вас есть время?» Соберите `¿Ustedes` + `tienen` + `tiempo?`. В основном варианте курса, испанском Латинской Америки, ustedes — обращение к нескольким людям, в том числе друзьям. С ним нужна форма tienen. Это вопрос «вам», а не рассказ «о них».",
+        "uk": "Хочете поговорити відразу з двома друзями. Запитайте `¿Ustedes tienen tiempo?` — «Ви маєте час?» Зберіть `¿Ustedes` + `tienen` + `tiempo?`. В основному варіанті курсу, іспанській Латинської Америки, ustedes — звернення до кількох людей, зокрема друзів. З ним потрібна форма tienen. Це запитання «вам», а не розповідь «про них»."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите группу друзей о времени. Начните с ¿Ustedes tienen.",
+          "uk": "Запитайте групу друзів про час. Почніть з ¿Ustedes tienen."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-29:intro1:r1",
+              "text": "¿Ustedes tienen tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro1:r2",
+              "text": "¿Ustedes tiene tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro1:r3",
+              "text": "¿Ustedes tenemos tiempo?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-29:intro1:r1",
+              "text": "¿Ustedes tienen tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro1:r2",
+              "text": "¿Ustedes tiene tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro1:r3",
+              "text": "¿Ustedes tenemos tiempo?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите группу друзей о времени. Начните с ¿Ustedes tienen.",
+          "uk": "Запитайте групу друзів про час. Почніть з ¿Ustedes tienen."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Машина для вашей компании",
+        "uk": "Машина для вашої компанії"
+      },
+      "bodyByLocale": {
+        "ru": "Спрашиваете пару друзей, есть ли у них машина для поездки: `¿Ustedes tienen un carro?` — «У вас есть машина?» Соберите `¿Ustedes` + `tienen` + `un carro?`. Обращение направлено сразу к обоим, поэтому ustedes tienen. Машина одна: un carro. Число адресатов не требует нескольких машин.",
+        "uk": "Питаєте пару друзів, чи мають вони машину для поїздки: `¿Ustedes tienen un carro?` — «Ви маєте машину?» Зберіть `¿Ustedes` + `tienen` + `un carro?`. Звернення спрямоване відразу до обох, тому ustedes tienen. Машина одна: un carro. Кількість адресатів не вимагає кількох машин."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите двух друзей о машине. Начните с ¿Ustedes tienen, используйте carro.",
+          "uk": "Запитайте двох друзів про машину. Почніть з ¿Ustedes tienen, використайте carro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-29:intro2:r1",
+              "text": "¿Ustedes tienen un carro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro2:r2",
+              "text": "¿Ustedes tiene un carro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro2:r3",
+              "text": "¿Ustedes tienen una carro?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-29:intro2:r1",
+              "text": "¿Ustedes tienen un carro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro2:r2",
+              "text": "¿Ustedes tiene un carro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro2:r3",
+              "text": "¿Ustedes tienen una carro?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите двух друзей о машине. Начните с ¿Ustedes tienen, используйте carro.",
+          "uk": "Запитайте двох друзів про машину. Почніть з ¿Ustedes tienen, використайте carro."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ у вашей компании",
+        "uk": "Ключ у вашої компанії"
+      },
+      "bodyByLocale": {
+        "ru": "У двери обращаетесь сразу ко всем друзьям: `¿Ustedes tienen una llave?` — «У вас есть ключ?» Соберите `¿Ustedes` + `tienen` + `una llave?`. Сохраняем ustedes tienen и называем нужную вещь. Перед llave ставим una. У группы может быть один общий ключ.",
+        "uk": "Біля дверей звертаєтеся відразу до всіх друзів: `¿Ustedes tienen una llave?` — «Ви маєте ключ?» Зберіть `¿Ustedes` + `tienen` + `una llave?`. Зберігаємо ustedes tienen і називаємо потрібну річ. Перед llave ставимо una. Група може мати один спільний ключ."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите группу о ключе. Начните с ¿Ustedes tienen.",
+          "uk": "Запитайте групу про ключ. Почніть з ¿Ustedes tienen."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-29:intro3:r1",
+              "text": "¿Ustedes tienen una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro3:r2",
+              "text": "¿Ustedes tenemos una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro3:r3",
+              "text": "¿Ustedes tienen un llave?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-29:intro3:r1",
+              "text": "¿Ustedes tienen una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro3:r2",
+              "text": "¿Ustedes tenemos una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-29:intro3:r3",
+              "text": "¿Ustedes tienen un llave?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите группу о ключе. Начните с ¿Ustedes tienen.",
+          "uk": "Запитайте групу про ключ. Почніть з ¿Ustedes tienen."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "d75fedc16c7bb0e5e906d908905e0895596da8e313bfc181eed931a78b72bf30"
+}

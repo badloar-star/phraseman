@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "поставить no между ellos или ellas и tienen.",
+    "uk": "поставити no між ellos або ellas і tienen."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Друзей нужно подвезти",
+        "uk": "Друзів треба підвезти"
+      },
+      "bodyByLocale": {
+        "ru": "Два друга просят подвезти их. Объясните водителю `Ellos no tienen carro` — «У них нет машины». Соберите `Ellos` + `no` + `tienen` + `carro`. Сначала называем людей, затем ставим no прямо перед tienen. Людей несколько, поэтому tienen с n. В этой фразе об отсутствии машины используем carro без артикля.",
+        "uk": "Двоє друзів просять підвезти їх. Поясніть водієві `Ellos no tienen carro` — «Вони не мають машини». Зберіть `Ellos` + `no` + `tienen` + `carro`. Спочатку називаємо людей, потім ставимо no прямо перед tienen. Людей кілька, тому tienen із n. У цій фразі про відсутність машини використовуємо carro без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У них нет машины». Начните с Ellos no tienen, используйте carro без артикля.",
+          "uk": "Скажіть «Вони не мають машини». Почніть з Ellos no tienen, використайте carro без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-30:intro1:r1",
+              "text": "Ellos no tienen carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro1:r2",
+              "text": "Ellos tienen no carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro1:r3",
+              "text": "Ellos no tiene carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-30:intro1:r1",
+              "text": "Ellos no tienen carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro1:r2",
+              "text": "Ellos tienen no carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro1:r3",
+              "text": "Ellos no tiene carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У них нет машины». Начните с Ellos no tienen, используйте carro без артикля.",
+          "uk": "Скажіть «Вони не мають машини». Почніть з Ellos no tienen, використайте carro без артикля."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Друзья спешат",
+        "uk": "Друзі поспішають"
+      },
+      "bodyByLocale": {
+        "ru": "Друзья не могут задержаться для разговора. Сообщите `Ellos no tienen tiempo` — «У них нет времени». Соберите `Ellos` + `no tienen` + `tiempo`. Сохраняем отрицание перед tienen, затем называем то, чего нет. Tiempo в этой фразе без артикля.",
+        "uk": "Друзі не можуть затриматися для розмови. Повідомте `Ellos no tienen tiempo` — «Вони не мають часу». Зберіть `Ellos` + `no tienen` + `tiempo`. Зберігаємо заперечення перед tienen, потім називаємо те, чого немає. Tiempo в цій фразі без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У них нет времени». Начните с Ellos no tienen.",
+          "uk": "Скажіть «Вони не мають часу». Почніть з Ellos no tienen."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-30:intro2:r1",
+              "text": "Ellos no tienen tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro2:r2",
+              "text": "Ellos tienen no tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro2:r3",
+              "text": "Ellos no tenemos tiempo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-30:intro2:r1",
+              "text": "Ellos no tienen tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro2:r2",
+              "text": "Ellos tienen no tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro2:r3",
+              "text": "Ellos no tenemos tiempo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У них нет времени». Начните с Ellos no tienen.",
+          "uk": "Скажіть «Вони не мають часу». Почніть з Ellos no tienen."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Подруги забыли ключ",
+        "uk": "Подруги забули ключ"
+      },
+      "bodyByLocale": {
+        "ru": "Две подруги ждут у двери. Поясните соседу `Ellas no tienen llave` — «У них нет ключа». Соберите `Ellas` + `no` + `tienen` + `llave`. О женщинах используем ellas, но отрицание no tienen остаётся таким же. Для этой фразы об отсутствии ключа используем llave без артикля.",
+        "uk": "Дві подруги чекають біля дверей. Поясніть сусідові `Ellas no tienen llave` — «Вони не мають ключа». Зберіть `Ellas` + `no` + `tienen` + `llave`. Про жінок використовуємо ellas, але заперечення no tienen залишається таким самим. Для цієї фрази про відсутність ключа використовуємо llave без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите о подругах «У них нет ключа». Начните с Ellas no tienen, используйте llave без артикля.",
+          "uk": "Скажіть про подруг «Вони не мають ключа». Почніть з Ellas no tienen, використайте llave без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-30:intro3:r1",
+              "text": "Ellas no tienen llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro3:r2",
+              "text": "Ellas tienen no llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro3:r3",
+              "text": "Ellas no tiene llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-30:intro3:r1",
+              "text": "Ellas no tienen llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro3:r2",
+              "text": "Ellas tienen no llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-30:intro3:r3",
+              "text": "Ellas no tiene llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите о подругах «У них нет ключа». Начните с Ellas no tienen, используйте llave без артикля.",
+          "uk": "Скажіть про подруг «Вони не мають ключа». Почніть з Ellas no tienen, використайте llave без артикля."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6fd8824c47168aa9f78d77cf4d9711a3f2222a4442743eba4e8899ff2b569a26"
+}

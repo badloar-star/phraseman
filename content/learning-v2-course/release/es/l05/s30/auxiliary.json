@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-30",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-30:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-30:intro1:r2": {
+          "ru": "No ставим перед tienen.",
+          "uk": "No ставимо перед tienen."
+        },
+        "es:lesson-05:session-30:intro1:r3": {
+          "ru": "С ellos нужно tienen.",
+          "uk": "З ellos потрібно tienen."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-30:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-30:intro2:r2": {
+          "ru": "No должно стоять перед tienen.",
+          "uk": "No має стояти перед tienen."
+        },
+        "es:lesson-05:session-30:intro2:r3": {
+          "ru": "Tenemos — «мы»; о них нужно tienen.",
+          "uk": "Tenemos — «ми»; про них потрібно tienen."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-30:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-30:intro3:r2": {
+          "ru": "No ставим перед tienen.",
+          "uk": "No ставимо перед tienen."
+        },
+        "es:lesson-05:session-30:intro3:r3": {
+          "ru": "С ellas нужно tienen.",
+          "uk": "З ellas потрібно tienen."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b9ecf53cc706ccbbd36b080e1705fd1ca018e48909c80b6bc6c4d2617f47556b"
+}

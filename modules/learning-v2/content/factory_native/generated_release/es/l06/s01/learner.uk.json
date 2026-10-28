@@ -1,0 +1,701 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-01",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-01:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — haber",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-01:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — haber",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-01:i01:audio",
+          "transcript": "haber"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-01:i01:r1",
+            "targetText": "haber",
+            "meaningByLocale": {
+              "ru": "глагол, чья форма hay сообщает о наличии: «есть, имеется». В этом занятии используем именно hay. 🔊 *haber*",
+              "uk": "дієслово, чия форма hay повідомляє про наявність: «є, наявне». У цьому занятті використовуємо саме hay. 🔊 *haber*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "haber",
+          "definitionByLocale": {
+            "ru": "глагол, чья форма hay сообщает о наличии: «есть, имеется». В этом занятии используем именно hay. 🔊 *haber*",
+            "uk": "дієслово, чия форма hay повідомляє про наявність: «є, наявне». У цьому занятті використовуємо саме hay. 🔊 *haber*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-01:i02:r1",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i02:r2",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-01:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-01:i02:audio",
+          "transcript": "hay"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-01:i02:r1",
+            "targetText": "hay",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-01:i02:r2",
+            "targetText": "tengo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-01:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит hay — есть, имеется.",
+              "uk": "Звучить hay — є, наявне."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-01:i03:r1",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i03:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i03:r3",
+          "text": "Tienes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є книга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть книга",
+          "uk": "Вставте слово — є книга"
+        },
+        "gappedTargetPhrase": "___ un libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-01:i03:r1",
+            "text": "Hay"
+          },
+          {
+            "responseId": "es:lesson-06:session-01:i03:r2",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-06:session-01:i03:r3",
+            "text": "Tienes"
+          }
+        ],
+        "testedDimension": "Вставте слово — є книга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-01:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є книга",
+            "feedbackByLocale": {
+              "ru": "Это «у меня есть»; наличие без владельца — hay.",
+              "uk": "Це «у мене є»; наявність без власника — hay."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-01:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є книга",
+            "feedbackByLocale": {
+              "ru": "Это «у тебя есть»; здесь нужно hay.",
+              "uk": "Це «у тебе є»; тут потрібно hay."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є книга; почніть з Hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-01:i04:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i04:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i04:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i04:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є книга; почніть з Hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay un libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть книга; начните с Hay",
+          "uk": "Зберіть фразу — є книга; почніть з Hay"
+        },
+        "orderedTokens": [
+          "Hay",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-01:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є книга; почніть з Hay",
+            "feedbackByLocale": {
+              "ru": "libro мужского рода, нужен un.",
+              "uk": "libro чоловічого роду, потрібен un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є сумка; використайте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-01:i05:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i05:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i05:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є сумка; використайте bolso",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть сумка; используйте bolso",
+          "uk": "Вставте слово — є сумка; використайте bolso"
+        },
+        "gappedTargetPhrase": "Hay ___ bolso.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-01:i05:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-01:i05:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-06:session-01:i05:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставте слово — є сумка; використайте bolso",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-01:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є сумка; використайте bolso",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода: un.",
+              "uk": "Bolso чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-01:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є сумка; використайте bolso",
+            "feedbackByLocale": {
+              "ru": "Один bolso мужского рода: un.",
+              "uk": "Один bolso чоловічого роду: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є сумка; використайте bolso, почніть з Hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-01:i06:r1",
+          "text": "Плитки: bolso"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i06:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i06:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i06:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є сумка; використайте bolso, почніть з Hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay un bolso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть сумка; используйте bolso, начните с Hay",
+          "uk": "Зберіть фразу — є сумка; використайте bolso, почніть з Hay"
+        },
+        "orderedTokens": [
+          "Hay",
+          "un",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-01:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є сумка; використайте bolso, почніть з Hay",
+            "feedbackByLocale": {
+              "ru": "с bolso нужно un.",
+              "uk": "з bolso потрібно un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є машина; використайте carro, почніть з Hay",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-01:i07:r1",
+          "text": "Плитки: carro"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i07:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i07:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i07:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є машина; використайте carro, почніть з Hay",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay un carro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть машина; используйте carro, начните с Hay",
+          "uk": "Зберіть фразу — є машина; використайте carro, почніть з Hay"
+        },
+        "orderedTokens": [
+          "Hay",
+          "un",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-01:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є машина; використайте carro, почніть з Hay",
+            "feedbackByLocale": {
+              "ru": "carro мужского рода.",
+              "uk": "carro чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-01:i08:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i08:r3",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i08:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-01:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-01:i08:audio",
+          "transcript": "Hay un libro."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay un libro.",
+        "orderedTokens": [
+          "Hay",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-01:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит un.",
+              "uk": "звучить un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є машина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-01:i09:r1",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i09:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-06:session-01:i09:r3",
+          "text": "Tenemos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є машина",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть машина",
+          "uk": "Вставте слово — є машина"
+        },
+        "gappedTargetPhrase": "___ un carro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-01:i09:r1",
+            "text": "Hay"
+          },
+          {
+            "responseId": "es:lesson-06:session-01:i09:r2",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-06:session-01:i09:r3",
+            "text": "Tenemos"
+          }
+        ],
+        "testedDimension": "Вставте слово — є машина",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-01:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є машина",
+            "feedbackByLocale": {
+              "ru": "Нужно сообщить о наличии, не о владении: hay.",
+              "uk": "Потрібно повідомити про наявність, не про володіння: hay."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-01:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є машина",
+            "feedbackByLocale": {
+              "ru": "Это «у нас есть»; здесь используем hay.",
+              "uk": "Це «у нас є»; тут використовуємо hay."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є книга; почніть з Hay, використайте un libro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-01:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є книга; почніть з Hay, використайте un libro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-01:i10:audio",
+          "transcript": "Hay un libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay un libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є сумка; почніть з Hay, використайте un bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-01:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є сумка; почніть з Hay, використайте un bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-01:i11:audio",
+          "transcript": "Hay un bolso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay un bolso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є машина; почніть з Hay, використайте un carro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-01:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є машина; почніть з Hay, використайте un carro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-01:i12:audio",
+          "transcript": "Hay un carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay un carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у мене є книга; тепер повідомте про володіння, почніть з Tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-01:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у мене є книга; тепер повідомте про володіння, почніть з Tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-01:i13:audio",
+          "transcript": "Tengo un libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo un libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "68d08a25183546fdd5ae1bfccb23a304d384c50a1afe67d1ab9ddbb17ec0563c"
+}

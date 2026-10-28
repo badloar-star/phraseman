@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-01",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-01:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-01:intro1:r2": {
+          "ru": "Это «У меня есть книга»; здесь сообщаем о наличии через hay.",
+          "uk": "Це «У мене є книга»; тут повідомляємо про наявність через hay."
+        },
+        "es:lesson-06:session-01:intro1:r3": {
+          "ru": "Libro мужского рода: un libro.",
+          "uk": "Libro чоловічого роду: un libro."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-01:intro2:r2": {
+          "ru": "Bolso мужского рода: un bolso.",
+          "uk": "Bolso чоловічого роду: un bolso."
+        },
+        "es:lesson-06:session-01:intro2:r3": {
+          "ru": "Для наличия без указания владельца используем hay.",
+          "uk": "Для наявності без зазначення власника використовуємо hay."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-01:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-01:intro3:r2": {
+          "ru": "Это сообщение о владении; для наличия нужно hay.",
+          "uk": "Це повідомлення про володіння; для наявності потрібно hay."
+        },
+        "es:lesson-06:session-01:intro3:r3": {
+          "ru": "Carro мужского рода: un carro.",
+          "uk": "Carro чоловічого роду: un carro."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0c39d86b2ad06ca71aee7e4b573503bc84263d904d7d26297258d7f1e9ec9fa3"
+}

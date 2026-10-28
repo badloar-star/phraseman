@@ -1967,4 +1967,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать знакомые описания и tener в коротких бытовых репликах.","uk":"використовувати знайомі описи й tener у коротких побутових репліках."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 1,
+    sourceFingerprint: "12b2518747941627d9f15487df094a43d4945d4207026897a7541ec90055c6b6",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сообщить о наличии одного предмета с помощью hay.","uk":"повідомити про наявність одного предмета за допомогою hay."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 2,
+    sourceFingerprint: "ca639c393ef98ce982737418df62f4e3dc309707006a19e1f9ceb36fe8b9cd74",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"после hay использовать una со знакомыми словами женского рода.","uk":"після hay використовувати una зі знайомими словами жіночого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

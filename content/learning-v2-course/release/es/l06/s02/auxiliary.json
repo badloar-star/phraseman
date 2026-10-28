@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-02",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-02:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-02:intro1:r2": {
+          "ru": "Mesa женского рода: una mesa.",
+          "uk": "Mesa жіночого роду: una mesa."
+        },
+        "es:lesson-06:session-02:intro1:r3": {
+          "ru": "Для наличия в комнате используем hay; tengo означает «у меня есть».",
+          "uk": "Для наявності в кімнаті використовуємо hay; tengo означає «у мене є»."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-02:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-02:intro2:r2": {
+          "ru": "Silla женского рода: una.",
+          "uk": "Silla жіночого роду: una."
+        },
+        "es:lesson-06:session-02:intro2:r3": {
+          "ru": "Один стул: una silla.",
+          "uk": "Один стілець: una silla."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-02:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-02:intro3:r2": {
+          "ru": "Cama женского рода: una.",
+          "uk": "Cama жіночого роду: una."
+        },
+        "es:lesson-06:session-02:intro3:r3": {
+          "ru": "Здесь сообщаем о наличии через hay.",
+          "uk": "Тут повідомляємо про наявність через hay."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "38d516e336a3ea70b83254599aa49171ac6f3255629c3322c7a304a243c45bfd"
+}

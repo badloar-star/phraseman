@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "сообщить о наличии одного предмета с помощью hay.",
+    "uk": "повідомити про наявність одного предмета за допомогою hay."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти чтение на время ожидания",
+        "uk": "Знайти читання на час очікування"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ждёте приёма и замечаете книгу. Сообщите другу `Hay un libro` — «Есть книга». Соберите `Hay` + `un` + `libro`. Hay — форма глагола haber со значением «есть, имеется». Она сообщает, что предмет в наличии. Не нужно добавлять yo: книга нашлась, а вы не превратились в её владельца.",
+        "uk": "Ви чекаєте прийому й помічаєте книгу. Повідомте другові `Hay un libro` — «Є книга». Складіть `Hay` + `un` + `libro`. Hay — форма дієслова haber зі значенням «є, наявне». Вона повідомляє, що предмет у наявності. Не потрібно додавати yo: книга знайшлася, а ви не перетворилися на її власника."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть книга». Начните с Hay, используйте un libro.",
+          "uk": "Повідомте «Є книга». Почніть з Hay, використайте un libro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-01:intro1:r1",
+              "text": "Hay un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro1:r2",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro1:r3",
+              "text": "Hay una libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-01:intro1:r1",
+              "text": "Hay un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro1:r2",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro1:r3",
+              "text": "Hay una libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть книга». Начните с Hay, используйте un libro.",
+          "uk": "Повідомте «Є книга». Почніть з Hay, використайте un libro."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Заметить сумку для вещей",
+        "uk": "Помітити сумку для речей"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом со сложенными вещами вы замечаете сумку. Скажите `Hay un bolso` — «Есть сумка». Соберите `Hay` + `un bolso`. В этой фразе используется знакомое bolso, слово мужского рода, поэтому берём un. Hay остаётся тем же: меняется только название найденного предмета.",
+        "uk": "Поруч зі складеними речами ви помічаєте сумку. Скажіть `Hay un bolso` — «Є сумка». Складіть `Hay` + `un bolso`. У цій фразі використовується знайоме bolso, слово чоловічого роду, тому беремо un. Hay залишається тим самим: змінюється лише назва знайденого предмета."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть сумка» со словом bolso. Начните с Hay un.",
+          "uk": "Повідомте «Є сумка» зі словом bolso. Почніть з Hay un."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-01:intro2:r1",
+              "text": "Hay un bolso."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro2:r2",
+              "text": "Hay una bolso."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro2:r3",
+              "text": "Tengo un bolso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-01:intro2:r1",
+              "text": "Hay un bolso."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro2:r2",
+              "text": "Hay una bolso."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro2:r3",
+              "text": "Tengo un bolso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть сумка» со словом bolso. Начните с Hay un.",
+          "uk": "Повідомте «Є сумка» зі словом bolso. Почніть з Hay un."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Увидеть машину для поездки",
+        "uk": "Побачити машину для поїздки"
+      },
+      "bodyByLocale": {
+        "ru": "Организатор ищет транспорт, а вы заметили свободную машину. Сообщите `Hay un carro` — «Есть машина». Соберите `Hay` + `un carro`. Как и с книгой, hay сообщает о наличии. Не заменяйте его на tiene: tiene говорит, что кто-то что-то имеет, а здесь сообщаем только о наличии машины.",
+        "uk": "Організатор шукає транспорт, а ви помітили вільну машину. Повідомте `Hay un carro` — «Є машина». Складіть `Hay` + `un carro`. Як і з книгою, hay повідомляє про наявність. Не замінюйте його на tiene: tiene говорить, що хтось щось має, а тут повідомляємо лише про наявність машини."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть машина» со словом carro. Начните с Hay un.",
+          "uk": "Повідомте «Є машина» зі словом carro. Почніть з Hay un."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-01:intro3:r1",
+              "text": "Hay un carro."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro3:r2",
+              "text": "Tiene un carro."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro3:r3",
+              "text": "Hay una carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-01:intro3:r1",
+              "text": "Hay un carro."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro3:r2",
+              "text": "Tiene un carro."
+            },
+            {
+              "responseId": "es:lesson-06:session-01:intro3:r3",
+              "text": "Hay una carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть машина» со словом carro. Начните с Hay un.",
+          "uk": "Повідомте «Є машина» зі словом carro. Почніть з Hay un."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "130703d33570eceb27f3c70d0e4b19552d446f5a10f6b1658a855846ef7b88cf"
+}

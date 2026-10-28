@@ -986,7 +986,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'Is', correct: 'Is', distractors: ['am', 'are', 'it', 'if', 'in'], category: 'to-be' },
-      { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'this', 'that'], category: 'pronoun' },
+      { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'these', 'them'], category: 'pronoun' },
       { text: 'expensive', correct: 'expensive', distractors: ['expand', 'expense', 'expect', 'explain', 'express'], category: 'adjective' }
     ],
   },
@@ -1195,7 +1195,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'Is', correct: 'Is', distractors: ['am', 'are', 'it', 'if', 'in'], category: 'to-be' },
-      { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'this', 'that'], category: 'pronoun' },
+      { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'these', 'them'], category: 'pronoun' },
       { text: 'open', correct: 'open', distractors: ['oven', 'obey', 'over', 'even', 'often'], category: 'adjective' }
     ],
   },
@@ -1232,7 +1232,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'Is', correct: 'Is', distractors: ['am', 'are', 'it', 'if', 'in'], category: 'to-be' },
-      { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'this', 'that'], category: 'pronoun' },
+      { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'these', 'them'], category: 'pronoun' },
       { text: 'free', correct: 'free', distractors: ['tree', 'three', 'fee', 'flee', 'fro'], category: 'adjective' }
     ],
   },
@@ -1460,7 +1460,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'Is', correct: 'Is', distractors: ['am', 'are', 'it', 'if', 'in'], category: 'to-be' },
-      { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'this', 'that'], category: 'pronoun' },
+      { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'these', 'that'], category: 'pronoun' },
       { text: 'far', correct: 'far', distractors: ['car', 'bar', 'jar', 'tar', 'war'], category: 'adjective' }
     ],
   },
@@ -1552,7 +1552,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'Is', correct: 'Is', distractors: ['am', 'are', 'it', 'if', 'in'], category: 'to-be' },
-      { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'this', 'that'], category: 'pronoun' },
+      { text: 'it', correct: 'it', distractors: ['its', 'eat', 'at', 'these', 'them'], category: 'pronoun' },
       { text: 'true', correct: 'true', distractors: ['truth', 'tree', 'blue', 'clue', 'glue'], category: 'adjective' }
     ],
   },
@@ -6097,7 +6097,7 @@ export const LESSON_7_PHRASES: LessonPhrase[] = [
       { text: 'does', correct: 'does', distractors: ['do', 'dose', 'dish', 'dies', 'done'] },
       { text: 'not', correct: 'not', distractors: ['no', 'note', 'net', 'nut', 'knot'] },
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'giving', 'gave', 'hate'] },
-      { text: 'a', correct: 'a', distractors: ['an', 'the', 'at', 'and', 'as'] },
+      { text: 'a', correct: 'a', distractors: ['an', 'these', 'at', 'and', 'as'] },
       { text: 'bag', correct: 'bag', distractors: ['big', 'back', 'bad', 'bed', 'bug'] }
     ],
   },
@@ -6317,7 +6317,7 @@ export const LESSON_7_PHRASES: LessonPhrase[] = [
       { text: 'do', correct: 'do', distractors: ['does', 'did', 'done', 'dot', 'dog'] },
       { text: 'not', correct: 'not', distractors: ['no', 'note', 'net', 'nut', 'knot'] },
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'giving', 'gave', 'hate'] },
-      { text: 'a', correct: 'a', distractors: ['an', 'the', 'at', 'and', 'as'] },
+      { text: 'a', correct: 'a', distractors: ['an', 'these', 'at', 'and', 'as'] },
       { text: 'problem', correct: 'problem', distractors: ['project', 'process', 'product', 'progress', 'problems'] }
     ],
   },
@@ -6575,7 +6575,7 @@ export const LESSON_7_PHRASES: LessonPhrase[] = [
       { text: 'do', correct: 'do', distractors: ['does', 'did', 'done', 'dot', 'dog'] },
       { text: 'not', correct: 'not', distractors: ['no', 'note', 'net', 'nut', 'knot'] },
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'giving', 'gave', 'hate'] },
-      { text: 'a', correct: 'a', distractors: ['an', 'the', 'at', 'and', 'as'] },
+      { text: 'a', correct: 'a', distractors: ['an', 'these', 'at', 'and', 'as'] },
       { text: 'ticket', correct: 'ticket', distractors: ['thick', 'ticker', 'tickets', 'topics', 'jacket'] }
     ],
   },
@@ -6598,7 +6598,7 @@ export const LESSON_7_PHRASES: LessonPhrase[] = [
       { text: 'does', correct: 'does', distractors: ['do', 'dose', 'dish', 'dies', 'done'] },
       { text: 'not', correct: 'not', distractors: ['no', 'note', 'net', 'nut', 'knot'] },
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'giving', 'gave', 'hate'] },
-      { text: 'a', correct: 'a', distractors: ['an', 'the', 'at', 'and', 'as'] },
+      { text: 'a', correct: 'a', distractors: ['an', 'these', 'at', 'and', 'as'] },
       { text: 'key', correct: 'key', distractors: ['keys', 'tea', 'try', 'sky', 'keyed'] }
     ],
   },
@@ -6621,7 +6621,7 @@ export const LESSON_7_PHRASES: LessonPhrase[] = [
       { text: 'does', correct: 'does', distractors: ['do', 'dose', 'dish', 'dies', 'done'] },
       { text: 'not', correct: 'not', distractors: ['no', 'note', 'net', 'nut', 'knot'] },
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'giving', 'gave', 'hate'] },
-      { text: 'an', correct: 'an', distractors: ['a', 'the', 'and', 'any', 'at'] },
+      { text: 'an', correct: 'an', distractors: ['a', 'these', 'and', 'any', 'at'] },
       { text: 'umbrella', correct: 'umbrella', distractors: ['uncle', 'umbrellas', 'upstairs', 'antenna', 'envelope'] }
     ],
   },
@@ -7478,7 +7478,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'They', 'We', 'his', 'the'] },
       { text: 'takes', correct: 'takes', distractors: ['take', 'took', 'makes', 'fakes', 'lakes'] },
-      { text: 'a', correct: 'a', distractors: ['an', 'the', 'his', 'one', 'any'] },
+      { text: 'a', correct: 'a', distractors: ['an', 'these', 'his', 'them', 'any'] },
       { text: 'shower', correct: 'shower', distractors: ['power', 'tower', 'flower', 'slower', 'lower'] },
       { text: 'at', correct: 'at', distractors: ['in', 'on', 'to', 'by', 'of'], category: 'preposition' },
       { text: 'eight', correct: 'eight', distractors: ['nine', 'six', 'five', 'ate', 'height'] },
@@ -7803,7 +7803,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'How', correct: 'How', distractors: ['What', 'When', 'Where', 'Why', 'Who'] },
       { text: 'much', correct: 'much', distractors: ['many', 'more', 'most', 'such', 'munch'] },
       { text: 'does', correct: 'does', distractors: ['do', 'did', 'is', 'has', 'was'] },
-      { text: 'it', correct: 'it', distractors: ['this', 'that', 'its', 'the', 'is'] },
+      { text: 'it', correct: 'it', distractors: ['these', 'them', 'its', 'the', 'is'] },
       { text: 'cost', correct: 'cost', distractors: ['costs', 'costed', 'lost', 'most', 'post'] },
       { text: 'in', correct: 'in', distractors: ['on', 'at', 'to', 'by', 'of'], category: 'preposition' },
       { text: 'winter', correct: 'winter', distractors: ['summer', 'spring', 'autumn', 'winner', 'winder'] },

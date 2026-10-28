@@ -66,19 +66,6 @@ jest.mock("../components/ThemeContext", () => ({
     },
   }),
 }));
-jest.mock("../components/ui/v2_theme", () => ({ useTournamentPalette: () => ({}) }));
-jest.mock("../components/ui/v2_ui", () => {
-  const ReactInMock = jest.requireActual<typeof React>("react");
-  return {
-    V2Chip: ({ children, right, ...props }: { children?: React.ReactNode; right?: React.ReactNode }) =>
-      ReactInMock.createElement(
-        "View",
-        null,
-        ReactInMock.createElement("Text", props, children),
-        right,
-      ),
-  };
-});
 jest.mock("../hooks/use-haptics", () => ({
   hapticError: jest.fn(),
   hapticLightImpact: jest.fn(),

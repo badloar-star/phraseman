@@ -26,12 +26,12 @@
 
 ### Чиє кермо?
 
-Сусід викотив із сараю у двір два велосипеди. Поруч на зеленій траві лежить ще одне чорне кермо, і ви питаєте подругу, чиє воно. handlebars — «кермо»: в англійській це слово завжди у множині, тому потрібно are these: Whose handlebars are these?
+Сусід викотив із сараю у двір два велосипеди. Поруч на зеленій траві лежить ще одне чорне кермо, і ви питаєте подругу, чиє воно. handlebars — «кермо»: в англійській це слово завжди у формі для кількох, тому потрібно are these: Whose handlebars are these?
 
 **На траві лежить кермо. Спитайте подругу: «Чиє це кермо?»**
 
 - ✅ **Whose handlebars are these?**
-- ❌ Whose handlebars is this? — *handlebars завжди у множині, тому потрібно are these.*
+- ❌ Whose handlebars is this? — *handlebars завжди у формі для кількох, тому потрібно are these.*
 - ❌ Who handlebars are these? — *Who означає «хто». Коли питаємо «чий», потрібно Whose.*
 
 ---
@@ -63,12 +63,12 @@
 
 **3 · Картка слова — handlebars**
 <!-- interaction_id: en:lesson-05:session-44:word:handlebars; family: word_card -->
-> **handlebars** — кермо. My uncle's handlebars are black. — «Кермо мого дядька чорне». Про частину велосипеда, за яку тримаються руками. Слово завжди у множині.
+> **handlebars** — кермо. My uncle's handlebars are black. — «Кермо мого дядька чорне». Про частину велосипеда, за яку тримаються руками. Слово завжди у формі для кількох.
 
 **4 · Послухайте подругу**
 <!-- interaction_id: en:lesson-05:session-44:i02; family: listen_choose -->
 🔊 *Whose handlebars are these?* → **Whose handlebars are these?** · Whose handlebars is this? · Whose pump is this?
-- Whose handlebars is this? — *У записі `are these` — кермо, слово у множині, а в цьому варіанті `is this` — як про одну річ.*
+- Whose handlebars is this? — *У записі `are these` — кермо, слово у формі для кількох, а в цьому варіанті `is this` — як про одну річ.*
 - Whose pump is this? — *У записі річ — `handlebars`, а в цьому варіанті — `pump`.*
 
 **5 · Картка слова — pedal**
@@ -106,7 +106,7 @@ pump — насос · handlebars — кермо · pedal — педаль · sa
 **12 · Ви показуєте сусідці кермо й питаєте, чиє воно. Виберіть слово**
 <!-- interaction_id: en:lesson-05:session-44:i08; family: context_gap_grammar -->
 Whose handlebars ___ these? → **are** · is · am
-- is — *`handlebars` — слово у множині, тому потрібно `are these`.*
+- is — *`handlebars` — слово у формі для кількох, тому потрібно `are these`.*
 - am — *`am` використовується лише з `I`; тут потрібно `are`.*
 
 **13 · Послухайте сусідку**

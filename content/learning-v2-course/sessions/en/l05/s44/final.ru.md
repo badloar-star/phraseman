@@ -26,12 +26,12 @@
 
 ### Чей руль?
 
-Сосед выкатил из сарая во двор два велосипеда. Рядом на траве лежит ещё один чёрный руль, и вы спрашиваете подругу, чей он. handlebars — «руль»: в английском это слово всегда во множественном числе, поэтому нужно are these: Whose handlebars are these?
+Сосед выкатил из сарая во двор два велосипеда. Рядом на траве лежит ещё один чёрный руль, и вы спрашиваете подругу, чей он. handlebars — «руль»: в английском это слово всегда в форме для нескольких, поэтому нужно are these: Whose handlebars are these?
 
 **На траве лежит руль. Спросите подругу: «Чей это руль?»**
 
 - ✅ **Whose handlebars are these?**
-- ❌ Whose handlebars is this? — *handlebars всегда во множественном числе, поэтому нужно are these.*
+- ❌ Whose handlebars is this? — *handlebars всегда в форме для нескольких, поэтому нужно are these.*
 - ❌ Who handlebars are these? — *Who значит «кто». Когда спрашиваем «чей», нужно Whose.*
 
 ---
@@ -63,12 +63,12 @@
 
 **3 · Карточка слова — handlebars**
 <!-- interaction_id: en:lesson-05:session-44:word:handlebars; family: word_card -->
-> **handlebars** — руль. My uncle's handlebars are black. — «Руль моего дяди чёрный». О части велосипеда, за которую держатся руками. Слово всегда во множественном числе.
+> **handlebars** — руль. My uncle's handlebars are black. — «Руль моего дяди чёрный». О части велосипеда, за которую держатся руками. Слово всегда в форме для нескольких.
 
 **4 · Послушайте подругу**
 <!-- interaction_id: en:lesson-05:session-44:i02; family: listen_choose -->
 🔊 *Whose handlebars are these?* → **Whose handlebars are these?** · Whose handlebars is this? · Whose pump is this?
-- Whose handlebars is this? — *В записи `are these` — руль, слово во множественном числе, а в этом варианте `is this` — как про одну вещь.*
+- Whose handlebars is this? — *В записи `are these` — руль, слово в форме для нескольких, а в этом варианте `is this` — как про одну вещь.*
 - Whose pump is this? — *В записи вещь — `handlebars`, а в этом варианте — `pump`.*
 
 **5 · Карточка слова — pedal**
@@ -106,7 +106,7 @@ pump — насос · handlebars — руль · pedal — педаль · sadd
 **12 · Вы показываете соседке руль и спрашиваете, чей он. Выберите слово**
 <!-- interaction_id: en:lesson-05:session-44:i08; family: context_gap_grammar -->
 Whose handlebars ___ these? → **are** · is · am
-- is — *`handlebars` — слово во множественном числе, поэтому нужно `are these`.*
+- is — *`handlebars` — слово в форме для нескольких, поэтому нужно `are these`.*
 - am — *`am` используется только с `I`; здесь нужно `are`.*
 
 **13 · Послушайте соседку**

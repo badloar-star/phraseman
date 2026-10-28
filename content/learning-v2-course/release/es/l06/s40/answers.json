@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-40:i01",
+    "correctText": "algo",
+    "correctResponseId": "es:lesson-06:session-40:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i02",
+    "correctText": "algo",
+    "correctResponseId": "es:lesson-06:session-40:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i03",
+    "correctText": "Hay algo en la bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i04",
+    "correctText": "alguien",
+    "correctResponseId": "es:lesson-06:session-40:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i05",
+    "correctText": "¿Hay alguien aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i06",
+    "correctText": "No hay nada en la bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i07",
+    "correctText": "nadie",
+    "correctResponseId": "es:lesson-06:session-40:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i08",
+    "correctText": "No hay nadie en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i09",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-06:session-40:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i10",
+    "correctText": "No, no hay nadie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i11",
+    "correctText": "Sí, hay algo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i12",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-40:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i13",
+    "correctText": "Hay algo en la bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i14",
+    "correctText": "¿Hay alguien en la habitación?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i15",
+    "correctText": "No hay nada en la bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i16",
+    "correctText": "No hay nadie aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i17",
+    "correctText": "Sí, hay alguien.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-40:i18",
+    "correctText": "No, no hay nada.",
+    "correctResponseId": null
+  }
+]

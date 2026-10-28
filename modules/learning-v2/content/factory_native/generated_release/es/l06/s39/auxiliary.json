@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-39",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-39:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-39:intro1:r2": {
+          "ru": "Nadie относится к людям; здесь проверяем вещи.",
+          "uk": "Nadie стосується людей; тут перевіряємо речі."
+        },
+        "es:lesson-06:session-39:intro1:r3": {
+          "ru": "В этой фразе перед hay нужно no.",
+          "uk": "У цій фразі перед hay потрібне no."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-39:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-39:intro2:r2": {
+          "ru": "Вещи есть, нет людей: nadie.",
+          "uk": "Речі є, немає людей: nadie."
+        },
+        "es:lesson-06:session-39:intro2:r3": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-39:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-39:intro3:r2": {
+          "ru": "Ищем человека, поэтому nadie.",
+          "uk": "Шукаємо людину, тому nadie."
+        },
+        "es:lesson-06:session-39:intro3:r3": {
+          "ru": "В этой фразе нужно no перед hay.",
+          "uk": "У цій фразі потрібно no перед hay."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "befc800b815ba02bdd5aae3e63575d781b6b63f1d2aa947b53d848840ae3c325"
+}

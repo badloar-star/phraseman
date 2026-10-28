@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-41:i01",
+    "correctText": "agua",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i02",
+    "correctText": "agua",
+    "correctResponseId": "es:lesson-06:session-41:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i03",
+    "correctText": "agua",
+    "correctResponseId": "es:lesson-06:session-41:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i04",
+    "correctText": "Hay agua.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i05",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-06:session-41:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i06",
+    "correctText": "Hay agua aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i07",
+    "correctText": "¿Hay agua?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i08",
+    "correctText": "Hay agua aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i09",
+    "correctText": "agua",
+    "correctResponseId": "es:lesson-06:session-41:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i10",
+    "correctText": "Hay agua.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i11",
+    "correctText": "Hay agua aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i12",
+    "correctText": "¿Hay agua?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-41:i13",
+    "correctText": "Hay agua allí.",
+    "correctResponseId": null
+  }
+]

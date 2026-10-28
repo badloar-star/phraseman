@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "говорить о наличии воды без un или una.",
+    "uk": "говорити про наявність води без un чи una."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вода для питья",
+        "uk": "Вода для пиття"
+      },
+      "bodyByLocale": {
+        "ru": "После прогулки вы увидели воду для посетителей. Сообщите спутнику `Hay agua` — «Есть вода». Соберите `Hay` + `agua`. Agua означает «вода». Здесь мы не считаем отдельные бутылки или стаканы, а сообщаем о воде вообще, поэтому un или una не добавляем. Hay подходит не только для отдельных предметов.",
+        "uk": "Після прогулянки ви побачили воду для відвідувачів. Повідомте супутнику `Hay agua` — «Є вода». Складіть `Hay` + `agua`. Agua означає «вода». Тут ми не рахуємо окремі пляшки чи склянки, а повідомляємо про воду загалом, тому un чи una не додаємо. Hay підходить не лише для окремих предметів."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть вода». Начните с Hay, слово agua используйте без артикля.",
+          "uk": "Повідомте «Є вода». Почніть з Hay, слово agua використайте без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-41:intro1:r1",
+              "text": "Hay agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro1:r2",
+              "text": "Hay un agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro1:r3",
+              "text": "Hay una agua."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-41:intro1:r1",
+              "text": "Hay agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro1:r2",
+              "text": "Hay un agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro1:r3",
+              "text": "Hay una agua."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть вода». Начните с Hay, слово agua используйте без артикля.",
+          "uk": "Повідомте «Є вода». Почніть з Hay, слово agua використайте без артикля."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вода рядом",
+        "uk": "Вода поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Вы нашли место с водой рядом и зовёте спутника. Скажите `Hay agua aquí` — «Здесь есть вода». Соберите `Hay agua` + `aquí`. Воду по-прежнему не считаем поштучно. Добавляем только место: теперь человеку не придётся искать, где именно можно попить.",
+        "uk": "Ви знайшли місце з водою поруч і кличете супутника. Скажіть `Hay agua aquí` — «Тут є вода». Складіть `Hay agua` + `aquí`. Воду й далі не рахуємо поштучно. Додаємо лише місце: тепер людині не доведеться шукати, де саме можна попити."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть вода». Начните с Hay, слово agua используйте без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Тут є вода». Почніть з Hay, слово agua використайте без артикля, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-41:intro2:r1",
+              "text": "Hay agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro2:r2",
+              "text": "Hay agua allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro2:r3",
+              "text": "Hay un agua aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-41:intro2:r1",
+              "text": "Hay agua aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro2:r2",
+              "text": "Hay agua allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro2:r3",
+              "text": "Hay un agua aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть вода». Начните с Hay, слово agua используйте без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Тут є вода». Почніть з Hay, слово agua використайте без артикля, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить заранее",
+        "uk": "Запитати заздалегідь"
+      },
+      "bodyByLocale": {
+        "ru": "В другом месте вы ещё не знаете, можно ли попить. Спросите сотрудника `¿Hay agua?` — «Есть вода?» Соберите `¿Hay` + `agua?`. Вопрос не добавляет артикль: речь всё так же о наличии воды. Если вас поймут, дальше можно будет выяснить размер стакана, но сначала — вода вообще есть?",
+        "uk": "В іншому місці ви ще не знаєте, чи можна попити. Запитайте працівника `¿Hay agua?` — «Є вода?» Складіть `¿Hay` + `agua?`. Запитання не додає артикль: ідеться так само про наявність води. Якщо вас зрозуміють, далі можна буде з’ясувати розмір склянки, але спочатку — вода взагалі є?"
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть вода?». Начните с ¿Hay, слово agua используйте без артикля.",
+          "uk": "Запитайте «Є вода?». Почніть з ¿Hay, слово agua використайте без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-41:intro3:r1",
+              "text": "¿Hay agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro3:r2",
+              "text": "¿Hay una agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro3:r3",
+              "text": "¿No hay agua?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-41:intro3:r1",
+              "text": "¿Hay agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro3:r2",
+              "text": "¿Hay una agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-41:intro3:r3",
+              "text": "¿No hay agua?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть вода?». Начните с ¿Hay, слово agua используйте без артикля.",
+          "uk": "Запитайте «Є вода?». Почніть з ¿Hay, слово agua використайте без артикля."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ea6c1abfb6d181d43806a8f71b00b57265f07782feda8ef6024e0d21021d199d"
+}

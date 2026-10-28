@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-38",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-38:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-38:intro1:r2": {
+          "ru": "Nada — ничего; мы говорим о людях: nadie.",
+          "uk": "Nada — нічого; ми говоримо про людей: nadie."
+        },
+        "es:lesson-06:session-38:intro1:r3": {
+          "ru": "В этой сборке перед hay нужно no.",
+          "uk": "У цій побудові перед hay потрібне no."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-38:intro2:r2": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        },
+        "es:lesson-06:session-38:intro2:r3": {
+          "ru": "Вещи там есть; об отсутствии людей говорим nadie.",
+          "uk": "Речі там є; про відсутність людей говоримо nadie."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-38:intro3:r2": {
+          "ru": "После ответа нужен полный оборот no hay nadie.",
+          "uk": "Після відповіді потрібен повний вираз no hay nadie."
+        },
+        "es:lesson-06:session-38:intro3:r3": {
+          "ru": "Этот ответ сообщает о наличии человека, а людей нет.",
+          "uk": "Ця відповідь повідомляє про наявність людини, а людей немає."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7e20b673d6a5d6ffcd3cf8cd76e1a0b46f36a362b5b7fa095de74358fdae8257"
+}

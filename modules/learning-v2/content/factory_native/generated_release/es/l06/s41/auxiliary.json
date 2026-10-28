@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-41",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-41:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-41:intro1:r2": {
+          "ru": "В этой фразе говорим о воде вообще: agua без артикля.",
+          "uk": "У цій фразі говоримо про воду загалом: agua без артикля."
+        },
+        "es:lesson-06:session-41:intro1:r3": {
+          "ru": "Не считаем порции: просто Hay agua.",
+          "uk": "Не рахуємо порції: просто Hay agua."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-41:intro2:r2": {
+          "ru": "Вода рядом: aquí.",
+          "uk": "Вода поруч: aquí."
+        },
+        "es:lesson-06:session-41:intro2:r3": {
+          "ru": "В этом сообщении agua без артикля.",
+          "uk": "У цьому повідомленні agua без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-41:intro3:r2": {
+          "ru": "В этом вопросе о воде вообще артикль не нужен.",
+          "uk": "У цьому запитанні про воду загалом артикль не потрібен."
+        },
+        "es:lesson-06:session-41:intro3:r3": {
+          "ru": "Это «Воды нет?»; нужен обычный вопрос о наличии.",
+          "uk": "Це «Води немає?»; потрібне звичайне запитання про наявність."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0d45167d79975930e3804c487cd0afc2e2f6d2aec466a47db06f92daa8ac969c"
+}

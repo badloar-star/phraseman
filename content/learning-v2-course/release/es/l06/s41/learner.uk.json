@@ -1,0 +1,691 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-41",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — agua",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — agua",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-41:i01:audio",
+          "transcript": "agua"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-41:i01:r1",
+            "targetText": "agua",
+            "meaningByLocale": {
+              "ru": "вода; hay agua — есть вода. 🔊 *agua*",
+              "uk": "вода; hay agua — є вода. 🔊 *agua*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "agua",
+          "definitionByLocale": {
+            "ru": "вода; hay agua — есть вода. 🔊 *agua*",
+            "uk": "вода; hay agua — є вода. 🔊 *agua*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-41:i02:r1",
+          "text": "agua"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i02:r2",
+          "text": "algo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-41:i02:audio",
+          "transcript": "agua"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-41:i02:r1",
+            "targetText": "agua",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-41:i02:r2",
+            "targetText": "algo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит agua — вода.",
+              "uk": "Звучить agua — вода."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є вода",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-41:i03:r1",
+          "text": "agua"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i03:r2",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i03:r3",
+          "text": "alguien"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є вода",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть вода",
+          "uk": "Вставте слово — є вода"
+        },
+        "gappedTargetPhrase": "Hay ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-41:i03:r1",
+            "text": "agua"
+          },
+          {
+            "responseId": "es:lesson-06:session-41:i03:r2",
+            "text": "algo"
+          },
+          {
+            "responseId": "es:lesson-06:session-41:i03:r3",
+            "text": "alguien"
+          }
+        ],
+        "testedDimension": "Вставте слово — є вода",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-41:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є вода",
+            "feedbackByLocale": {
+              "ru": "Algo — что-то; нужна вода — agua.",
+              "uk": "Algo — щось; потрібна вода — agua."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-41:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є вода",
+            "feedbackByLocale": {
+              "ru": "Alguien — кто-то; нужна вода — agua.",
+              "uk": "Alguien — хтось; потрібна вода — agua."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є вода; почніть з Hay, артикль не додавайте",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-41:i04:r1",
+          "text": "Плитки: agua"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i04:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i04:r3",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є вода; почніть з Hay, артикль не додавайте",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay agua.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть вода; начните с Hay, артикль не добавляйте",
+          "uk": "Зберіть фразу — є вода; почніть з Hay, артикль не додавайте"
+        },
+        "orderedTokens": [
+          "Hay",
+          "agua"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-41:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є вода; почніть з Hay, артикль не додавайте",
+            "feedbackByLocale": {
+              "ru": "в этом сообщении agua без артикля.",
+              "uk": "у цьому повідомленні agua без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут є вода",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-41:i05:r1",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i05:r2",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i05:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут є вода",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть вода",
+          "uk": "Вставте слово — тут є вода"
+        },
+        "gappedTargetPhrase": "Hay agua ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-41:i05:r1",
+            "text": "aquí"
+          },
+          {
+            "responseId": "es:lesson-06:session-41:i05:r2",
+            "text": "allí"
+          },
+          {
+            "responseId": "es:lesson-06:session-41:i05:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут є вода",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-41:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є вода",
+            "feedbackByLocale": {
+              "ru": "Нужно «здесь» — aquí.",
+              "uk": "Потрібно «тут» — aquí."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-41:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є вода",
+            "feedbackByLocale": {
+              "ru": "Место «здесь» — aquí.",
+              "uk": "Місце «тут» — aquí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут є вода; почніть з Hay, місце поставте в кінці, артикль не додавайте",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-41:i06:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i06:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i06:r3",
+          "text": "agua"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i06:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут є вода; почніть з Hay, місце поставте в кінці, артикль не додавайте",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay agua aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть вода; начните с Hay, место поставьте в конце, артикль не добавляйте",
+          "uk": "Зберіть фразу — тут є вода; почніть з Hay, місце поставте в кінці, артикль не додавайте"
+        },
+        "orderedTokens": [
+          "Hay",
+          "agua",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-41:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут є вода; почніть з Hay, місце поставте в кінці, артикль не додавайте",
+            "feedbackByLocale": {
+              "ru": "воду здесь не считаем по порциям.",
+              "uk": "воду тут не рахуємо за порціями."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є вода?; почніть з ¿Hay, артикль не додавайте",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-41:i07:r1",
+          "text": "Плитки: agua?"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i07:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i07:r3",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є вода?; почніть з ¿Hay, артикль не додавайте",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay agua?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть вода?; начните с ¿Hay, артикль не добавляйте",
+          "uk": "Зберіть фразу — є вода?; почніть з ¿Hay, артикль не додавайте"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "agua"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-41:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є вода?; почніть з ¿Hay, артикль не додавайте",
+            "feedbackByLocale": {
+              "ru": "в этом вопросе agua без артикля.",
+              "uk": "у цьому запитанні agua без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-41:i08:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i08:r2",
+          "text": "agua"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i08:r3",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i08:r4",
+          "text": "allí."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-41:i08:audio",
+          "transcript": "Hay agua aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay agua aquí.",
+        "orderedTokens": [
+          "Hay",
+          "agua",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "allí"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-41:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит aquí.",
+              "uk": "звучить aquí."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є вода?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-41:i09:r1",
+          "text": "agua"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i09:r2",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-41:i09:r3",
+          "text": "alguien"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є вода?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть вода?",
+          "uk": "Вставте слово — є вода?"
+        },
+        "gappedTargetPhrase": "¿Hay ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-41:i09:r1",
+            "text": "agua"
+          },
+          {
+            "responseId": "es:lesson-06:session-41:i09:r2",
+            "text": "algo"
+          },
+          {
+            "responseId": "es:lesson-06:session-41:i09:r3",
+            "text": "alguien"
+          }
+        ],
+        "testedDimension": "Вставте слово — є вода?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-41:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є вода?",
+            "feedbackByLocale": {
+              "ru": "Спрашиваем именно о воде: agua.",
+              "uk": "Запитуємо саме про воду: agua."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-41:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є вода?",
+            "feedbackByLocale": {
+              "ru": "Спрашиваем о воде, не о человеке: agua.",
+              "uk": "Запитуємо про воду, не про людину: agua."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є вода; почніть з Hay, артикль не додавайте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-41:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є вода; почніть з Hay, артикль не додавайте",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-41:i10:audio",
+          "transcript": "Hay agua."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay agua.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є вода; почніть з Hay, артикль не додавайте, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є вода; почніть з Hay, артикль не додавайте, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-41:i11:audio",
+          "transcript": "Hay agua aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay agua aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є вода?; почніть з ¿Hay, артикль не додавайте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є вода?; почніть з ¿Hay, артикль не додавайте",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-41:i12:audio",
+          "transcript": "¿Hay agua?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay agua?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-41:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви показуєте на воду вдалині: «Там є вода»; почніть з Hay, артикль не додавайте, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-41:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви показуєте на воду вдалині: «Там є вода»; почніть з Hay, артикль не додавайте, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-41:i13:audio",
+          "transcript": "Hay agua allí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay agua allí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5154389018add7c21554de8c388dd29420ad1a7a0b031e2017f7257be20e0b50"
+}

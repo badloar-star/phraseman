@@ -1,0 +1,741 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-38",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-38:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nadie",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-38:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nadie",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-38:i01:audio",
+          "transcript": "nadie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-38:i01:r1",
+            "targetText": "nadie",
+            "meaningByLocale": {
+              "ru": "никто, никого; no hay nadie — никого нет. 🔊 *nadie*",
+              "uk": "ніхто, нікого; no hay nadie — нікого немає. 🔊 *nadie*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nadie",
+          "definitionByLocale": {
+            "ru": "никто, никого; no hay nadie — никого нет. 🔊 *nadie*",
+            "uk": "ніхто, нікого; no hay nadie — нікого немає. 🔊 *nadie*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-38:i02:r1",
+          "text": "nadie"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i02:r2",
+          "text": "nada"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-38:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-38:i02:audio",
+          "transcript": "nadie"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-38:i02:r1",
+            "targetText": "nadie",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-38:i02:r2",
+            "targetText": "nada",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-38:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит nadie — о людях.",
+              "uk": "Звучить nadie — про людей."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут нікого немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-38:i03:r1",
+          "text": "nadie"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i03:r2",
+          "text": "nada"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i03:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут нікого немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь никого нет",
+          "uk": "Вставте слово — тут нікого немає"
+        },
+        "gappedTargetPhrase": "No hay ___ aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-38:i03:r1",
+            "text": "nadie"
+          },
+          {
+            "responseId": "es:lesson-06:session-38:i03:r2",
+            "text": "nada"
+          },
+          {
+            "responseId": "es:lesson-06:session-38:i03:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут нікого немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-38:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут нікого немає",
+            "feedbackByLocale": {
+              "ru": "Об отсутствии людей говорим nadie.",
+              "uk": "Про відсутність людей говоримо nadie."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-38:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут нікого немає",
+            "feedbackByLocale": {
+              "ru": "Нужно «никого» — nadie.",
+              "uk": "Потрібно «нікого» — nadie."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут нікого немає; почніть з No hay, місце поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-38:i04:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i04:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i04:r3",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i04:r4",
+          "text": "nadie"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i04:r5",
+          "text": "nada."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут нікого немає; почніть з No hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No hay nadie aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь никого нет; начните с No hay, место поставьте в конце",
+          "uk": "Зберіть фразу — тут нікого немає; почніть з No hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "No",
+          "hay",
+          "nadie",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "nada"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-38:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут нікого немає; почніть з No hay, місце поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "речь о людях.",
+              "uk": "ідеться про людей."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у кімнаті нікого немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-38:i05:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i05:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i05:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у кімнаті нікого немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате никого нет",
+          "uk": "Вставте слово — у кімнаті нікого немає"
+        },
+        "gappedTargetPhrase": "No hay nadie ___ la habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-38:i05:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-38:i05:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-38:i05:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — у кімнаті нікого немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-38:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті нікого немає",
+            "feedbackByLocale": {
+              "ru": "Для места нужно en.",
+              "uk": "Для місця потрібно en."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-38:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у кімнаті нікого немає",
+            "feedbackByLocale": {
+              "ru": "Перед местом нужно en.",
+              "uk": "Перед місцем потрібно en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у кімнаті нікого немає; почніть з No hay, місце поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-38:i06:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i06:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i06:r3",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i06:r4",
+          "text": "nadie"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i06:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i06:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i06:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у кімнаті нікого немає; почніть з No hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No hay nadie en la habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в комнате никого нет; начните с No hay, место поставьте в конце",
+          "uk": "Зберіть фразу — у кімнаті нікого немає; почніть з No hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "No",
+          "hay",
+          "nadie",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-38:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у кімнаті нікого немає; почніть з No hay, місце поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода.",
+              "uk": "habitación жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ні, нікого немає; почніть з No, потім повідомте про відсутність",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-38:i07:r1",
+          "text": "Плитки: nadie"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i07:r2",
+          "text": "No,"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i07:r4",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i07:r5",
+          "text": "nada."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ні, нікого немає; почніть з No, потім повідомте про відсутність",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, no hay nadie.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — нет, никого нет; начните с No, затем сообщите об отсутствии",
+          "uk": "Зберіть фразу — ні, нікого немає; почніть з No, потім повідомте про відсутність"
+        },
+        "orderedTokens": [
+          "No,",
+          "no",
+          "hay",
+          "nadie"
+        ],
+        "authoredDistractorTokens": [
+          "nada"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-38:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ні, нікого немає; почніть з No, потім повідомте про відсутність",
+            "feedbackByLocale": {
+              "ru": "речь о людях.",
+              "uk": "ідеться про людей."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-38:i08:r1",
+          "text": "Плитки: No"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i08:r2",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i08:r3",
+          "text": "nadie"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i08:r4",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i08:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i08:r6",
+          "text": "habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i08:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-38:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-38:i08:audio",
+          "transcript": "No hay nadie en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No hay nadie en la habitación.",
+        "orderedTokens": [
+          "No",
+          "hay",
+          "nadie",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-38:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la.",
+              "uk": "звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут нікого немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-38:i09:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i09:r2",
+          "text": "Sí"
+        },
+        {
+          "responseId": "es:lesson-06:session-38:i09:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут нікого немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь никого нет",
+          "uk": "Вставте слово — тут нікого немає"
+        },
+        "gappedTargetPhrase": "___ hay nadie aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-38:i09:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-06:session-38:i09:r2",
+            "text": "Sí"
+          },
+          {
+            "responseId": "es:lesson-06:session-38:i09:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут нікого немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-38:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут нікого немає",
+            "feedbackByLocale": {
+              "ru": "В этой отрицательной фразе нужно No.",
+              "uk": "У цій заперечній фразі потрібно No."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-38:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут нікого немає",
+            "feedbackByLocale": {
+              "ru": "Перед hay для отрицания нужно No.",
+              "uk": "Перед hay для заперечення потрібно No."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут нікого немає; почніть з No hay, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-38:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут нікого немає; почніть з No hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-38:i10:audio",
+          "transcript": "No hay nadie aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No hay nadie aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у кімнаті нікого немає; почніть з No hay, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-38:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у кімнаті нікого немає; почніть з No hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-38:i11:audio",
+          "transcript": "No hay nadie en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No hay nadie en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ні, нікого немає; почніть з No, потім повідомте про відсутність людей, місце не додавайте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-38:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ні, нікого немає; почніть з No, потім повідомте про відсутність людей, місце не додавайте",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-38:i12:audio",
+          "transcript": "No, no hay nadie."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, no hay nadie.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-38:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — в іншій ситуації перевірили порожню сумку: «У сумці нічого немає»; почніть з No hay, використайте la bolsa, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-38:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — в іншій ситуації перевірили порожню сумку: «У сумці нічого немає»; почніть з No hay, використайте la bolsa, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-38:i13:audio",
+          "transcript": "No hay nada en la bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No hay nada en la bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "85e007a642e7b645cc0fc994f543045e62b0678a21acad9ec6a6f64b7a231df0"
+}

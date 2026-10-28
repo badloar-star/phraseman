@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-40",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-40:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-40:intro1:r2": {
+          "ru": "Alguien относится к человеку, а вы нащупали предмет.",
+          "uk": "Alguien стосується людини, а ви намацали предмет."
+        },
+        "es:lesson-06:session-40:intro1:r3": {
+          "ru": "Algo здесь без артикля.",
+          "uk": "Algo тут без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-40:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-40:intro2:r2": {
+          "ru": "Нужен человек: alguien.",
+          "uk": "Потрібна людина: alguien."
+        },
+        "es:lesson-06:session-40:intro2:r3": {
+          "ru": "Перед alguien артикль не нужен.",
+          "uk": "Перед alguien артикль не потрібен."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-40:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-40:intro3:r2": {
+          "ru": "Вещи есть, нет людей: nadie.",
+          "uk": "Речі є, немає людей: nadie."
+        },
+        "es:lesson-06:session-40:intro3:r3": {
+          "ru": "В этой фразе нужно no перед hay.",
+          "uk": "У цій фразі потрібно no перед hay."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "93615933446e7004bba46d8f218b1218d3ecc3355e72a9f2d42e4aa006763421"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "сообщить об отсутствии людей через no hay nadie.",
+    "uk": "повідомити про відсутність людей через no hay nadie."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "У стойки пусто",
+        "uk": "Біля стійки порожньо"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проверили место у стойки и не нашли людей. Сообщите спутнику `No hay nadie aquí` — «Здесь никого нет». Соберите `No hay nadie` + `aquí`. Nadie означает «никого» в этой фразе и относится к людям. Перед hay сохраняем no, как в no hay nada. Только теперь отсутствуют люди, а не вещи: стойка может стоять на месте.",
+        "uk": "Ви перевірили місце біля стійки й не знайшли людей. Повідомте супутнику `No hay nadie aquí` — «Тут нікого немає». Складіть `No hay nadie` + `aquí`. Nadie означає «нікого» в цій фразі й стосується людей. Перед hay зберігаємо no, як у no hay nada. Тільки тепер відсутні люди, а не речі: стійка може стояти на місці."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь никого нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут нікого немає». Почніть з No hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-38:intro1:r1",
+              "text": "No hay nadie aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro1:r2",
+              "text": "No hay nada aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro1:r3",
+              "text": "Hay nadie aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-38:intro1:r1",
+              "text": "No hay nadie aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro1:r2",
+              "text": "No hay nada aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro1:r3",
+              "text": "Hay nadie aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь никого нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут нікого немає». Почніть з No hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проверить комнату",
+        "uk": "Перевірити кімнату"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заглянули в соседнюю комнату: мебель есть, но людей нет. Скажите `No hay nadie en la habitación` — «В комнате никого нет». Соберите `No hay nadie` + `en la habitación`. Меняем только место. Nadie не означает, что исчезли стол и стулья; оно говорит об отсутствии людей.",
+        "uk": "Ви зазирнули до сусідньої кімнати: меблі є, але людей немає. Скажіть `No hay nadie en la habitación` — «У кімнаті нікого немає». Складіть `No hay nadie` + `en la habitación`. Змінюємо лише місце. Nadie не означає, що зникли стіл і стільці; воно говорить про відсутність людей."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В комнате никого нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «У кімнаті нікого немає». Почніть з No hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-38:intro2:r1",
+              "text": "No hay nadie en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro2:r2",
+              "text": "No hay nadie la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro2:r3",
+              "text": "No hay nada en la habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-38:intro2:r1",
+              "text": "No hay nadie en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro2:r2",
+              "text": "No hay nadie la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro2:r3",
+              "text": "No hay nada en la habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В комнате никого нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «У кімнаті нікого немає». Почніть з No hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответить после осмотра",
+        "uk": "Відповісти після огляду"
+      },
+      "bodyByLocale": {
+        "ru": "Спутник спрашивает, есть ли кто-нибудь в комнате. Вы уже проверили её. Ответьте `No, no hay nadie` — «Нет, никого нет». Соберите ответ `No` + сообщение `no hay nadie`. Первое no отвечает собеседнику, второе входит в отрицание. Место не повторяем, потому что оно понятно из разговора.",
+        "uk": "Супутник запитує, чи є хтось у кімнаті. Ви вже перевірили її. Дайте відповідь `No, no hay nadie` — «Ні, нікого немає». Складіть відповідь `No` + повідомлення `no hay nadie`. Перше no відповідає співрозмовнику, друге входить у заперечення. Місце не повторюємо, бо воно зрозуміле з розмови."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Нет, никого нет». Начните с No, затем сообщите об отсутствии людей; место не добавляйте.",
+          "uk": "Дайте відповідь «Ні, нікого немає». Почніть з No, потім повідомте про відсутність людей; місце не додавайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-38:intro3:r1",
+              "text": "No, no hay nadie."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro3:r2",
+              "text": "No, hay nadie."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro3:r3",
+              "text": "Sí, hay alguien."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-38:intro3:r1",
+              "text": "No, no hay nadie."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro3:r2",
+              "text": "No, hay nadie."
+            },
+            {
+              "responseId": "es:lesson-06:session-38:intro3:r3",
+              "text": "Sí, hay alguien."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Нет, никого нет». Начните с No, затем сообщите об отсутствии людей; место не добавляйте.",
+          "uk": "Дайте відповідь «Ні, нікого немає». Почніть з No, потім повідомте про відсутність людей; місце не додавайте."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "aa684d00b32463e28d3de65f64b8650eec9a07a5a0503278ae4b80b28c32fb16"
+}

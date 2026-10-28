@@ -2226,4 +2226,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"задавать вопрос с alguien и подтверждать наличие человека.","uk":"ставити запитання з alguien і підтверджувати наявність людини."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 38,
+    sourceFingerprint: "cbfd55eb41d94c05879478c10b7ec81bf4f5a8e5bf2daa70c5468c2208dc2e84",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сообщить об отсутствии людей через no hay nadie.","uk":"повідомити про відсутність людей через no hay nadie."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 39,
+    sourceFingerprint: "36845b8bfdcf10d8dcecccfc33b8855e692bdd83715b9f1450d324c0742ab35b",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать nada для вещей и nadie для людей.","uk":"обирати nada для речей і nadie для людей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 40,
+    sourceFingerprint: "c57e1cad063edcc70ae237e3958594361d7b7bddfd7e5c44496facef1993c1db",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различать algo, nada, alguien и nadie в сообщениях и вопросах.","uk":"розрізняти algo, nada, alguien і nadie в повідомленнях та запитаннях."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 41,
+    sourceFingerprint: "8e9c7bfac8251960a630c2321100678f7fedc82cd36aa3aca5829055f5b5a208",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"говорить о наличии воды без un или una.","uk":"говорити про наявність води без un чи una."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

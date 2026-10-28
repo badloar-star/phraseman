@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "различать algo, nada, alguien и nadie в сообщениях и вопросах.",
+    "uk": "розрізняти algo, nada, alguien і nadie в повідомленнях та запитаннях."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Неизвестный предмет",
+        "uk": "Невідомий предмет"
+      },
+      "bodyByLocale": {
+        "ru": "В сумке вы нащупали предмет, но ещё не достали его. Сообщите `Hay algo en la bolsa` — «В сумке что-то есть». Соберите `Hay` + `algo` + `en la bolsa`. Algo подходит для вещи, которую пока не называем. Если речь о человеке, нужно другое слово — alguien; в этой ситуации проверяем содержимое сумки.",
+        "uk": "У сумці ви намацали предмет, але ще не дістали його. Повідомте `Hay algo en la bolsa` — «У сумці щось є». Складіть `Hay` + `algo` + `en la bolsa`. Algo підходить для речі, якої поки не називаємо. Якщо йдеться про людину, потрібне інше слово — alguien; у цій ситуації перевіряємо вміст сумки."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В сумке что-то есть». Начните с Hay, используйте la bolsa, место поставьте в конце.",
+          "uk": "Повідомте «У сумці щось є». Почніть з Hay, використайте la bolsa, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-40:intro1:r1",
+              "text": "Hay algo en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro1:r2",
+              "text": "Hay alguien en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro1:r3",
+              "text": "Hay un algo en la bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-40:intro1:r1",
+              "text": "Hay algo en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro1:r2",
+              "text": "Hay alguien en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro1:r3",
+              "text": "Hay un algo en la bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В сумке что-то есть». Начните с Hay, используйте la bolsa, место поставьте в конце.",
+          "uk": "Повідомте «У сумці щось є». Почніть з Hay, використайте la bolsa, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Позвать человека",
+        "uk": "Покликати людину"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли к стойке, но не видите сотрудника. Спросите вслух `¿Hay alguien aquí?` — «Здесь кто-нибудь есть?» Соберите `¿Hay alguien` + `aquí?`. Вы зовёте человека, поэтому alguien. Вопрос с algo был бы о чём-то, а стойка и так перед вами — помощи от неё ждать не стоит.",
+        "uk": "Ви прийшли до стійки, але не бачите працівника. Запитайте вголос `¿Hay alguien aquí?` — «Тут хтось є?» Складіть `¿Hay alguien` + `aquí?`. Ви кличете людину, тому alguien. Запитання з algo було б про щось, а стійка й так перед вами — допомоги від неї чекати не варто."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь кто-нибудь есть?». Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Тут хтось є?». Почніть з ¿Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-40:intro2:r1",
+              "text": "¿Hay alguien aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro2:r2",
+              "text": "¿Hay algo aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro2:r3",
+              "text": "¿Hay un alguien aquí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-40:intro2:r1",
+              "text": "¿Hay alguien aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro2:r2",
+              "text": "¿Hay algo aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro2:r3",
+              "text": "¿Hay un alguien aquí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь кто-нибудь есть?». Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Тут хтось є?». Почніть з ¿Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить соседнюю комнату",
+        "uk": "Перевірити сусідню кімнату"
+      },
+      "bodyByLocale": {
+        "ru": "В соседней комнате вы увидели мебель, но людей не нашли. Сообщите `No hay nadie en la habitación` — «В комнате никого нет». Соберите `No hay` + `nadie` + `en la habitación`. Nadie — об отсутствии людей, nada — об отсутствии вещей. No перед hay сохраняем.",
+        "uk": "У сусідній кімнаті ви побачили меблі, але людей не знайшли. Повідомте `No hay nadie en la habitación` — «У кімнаті нікого немає». Складіть `No hay` + `nadie` + `en la habitación`. Nadie — про відсутність людей, nada — про відсутність речей. No перед hay зберігаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В комнате никого нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «У кімнаті нікого немає». Почніть з No hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-40:intro3:r1",
+              "text": "No hay nadie en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro3:r2",
+              "text": "No hay nada en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro3:r3",
+              "text": "Hay nadie en la habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-40:intro3:r1",
+              "text": "No hay nadie en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro3:r2",
+              "text": "No hay nada en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-40:intro3:r3",
+              "text": "Hay nadie en la habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В комнате никого нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «У кімнаті нікого немає». Почніть з No hay, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "c6ba973f35574da8c10f4a5695db79c94e3f380c950856e0fe931dd955c45aae"
+}

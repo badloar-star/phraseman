@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-38:i01",
+    "correctText": "nadie",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i02",
+    "correctText": "nadie",
+    "correctResponseId": "es:lesson-06:session-38:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i03",
+    "correctText": "nadie",
+    "correctResponseId": "es:lesson-06:session-38:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i04",
+    "correctText": "No hay nadie aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i05",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-38:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i06",
+    "correctText": "No hay nadie en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i07",
+    "correctText": "No, no hay nadie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i08",
+    "correctText": "No hay nadie en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i09",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-06:session-38:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i10",
+    "correctText": "No hay nadie aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i11",
+    "correctText": "No hay nadie en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i12",
+    "correctText": "No, no hay nadie.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-38:i13",
+    "correctText": "No hay nada en la bolsa.",
+    "correctResponseId": null
+  }
+]

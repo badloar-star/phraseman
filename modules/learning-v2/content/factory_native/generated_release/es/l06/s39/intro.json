@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать nada для вещей и nadie для людей.",
+    "uk": "обирати nada для речей і nadie для людей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вынули все вещи",
+        "uk": "Вийняли всі речі"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вынули всё из сумки и заглянули внутрь. Скажите `No hay nada en la bolsa` — «В сумке ничего нет». Соберите `No hay` + `nada` + `en la bolsa`. Проверяем содержимое, поэтому nada. Отсутствие человека в обычной сумке нас бы не удивило; здесь речь именно о вещах.",
+        "uk": "Ви вийняли все із сумки й зазирнули всередину. Скажіть `No hay nada en la bolsa` — «У сумці нічого немає». Складіть `No hay` + `nada` + `en la bolsa`. Перевіряємо вміст, тому nada. Відсутність людини у звичайній сумці нас би не здивувала; тут ідеться саме про речі."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В сумке ничего нет». Начните с No hay, используйте la bolsa, место поставьте в конце.",
+          "uk": "Повідомте «У сумці нічого немає». Почніть з No hay, використайте la bolsa, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-39:intro1:r1",
+              "text": "No hay nada en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro1:r2",
+              "text": "No hay nadie en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro1:r3",
+              "text": "Hay nada en la bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-39:intro1:r1",
+              "text": "No hay nada en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro1:r2",
+              "text": "No hay nadie en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro1:r3",
+              "text": "Hay nada en la bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В сумке ничего нет». Начните с No hay, используйте la bolsa, место поставьте в конце.",
+          "uk": "Повідомте «У сумці нічого немає». Почніть з No hay, використайте la bolsa, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ищем хозяина",
+        "uk": "Шукаємо господаря"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ищете хозяина в комнате. Стол и кровать на месте, но людей нет. Сообщите спутнику `No hay nadie en la habitación` — «В комнате никого нет». Соберите `No hay` + `nadie` + `en la habitación`. Выбираем nadie, потому что ищем человека. Nada означало бы отсутствие вещей, а мебель вы видите.",
+        "uk": "Ви шукаєте господаря в кімнаті. Стіл і ліжко на місці, але людей немає. Повідомте супутнику `No hay nadie en la habitación` — «У кімнаті нікого немає». Складіть `No hay` + `nadie` + `en la habitación`. Обираємо nadie, бо шукаємо людину. Nada означало б відсутність речей, а меблі ви бачите."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В комнате никого нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «У кімнаті нікого немає». Почніть з No hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-39:intro2:r1",
+              "text": "No hay nadie en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro2:r2",
+              "text": "No hay nada en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro2:r3",
+              "text": "No hay nadie la habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-39:intro2:r1",
+              "text": "No hay nadie en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro2:r2",
+              "text": "No hay nada en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro2:r3",
+              "text": "No hay nadie la habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В комнате никого нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «У кімнаті нікого немає». Почніть з No hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "У стойки тоже пусто",
+        "uk": "Біля стійки теж порожньо"
+      },
+      "bodyByLocale": {
+        "ru": "Вы подошли к стойке, чтобы передать ключ, но людей рядом нет. Сообщите спутнику `No hay nadie aquí` — «Здесь никого нет». Соберите `No hay nadie` + `aquí`. Называть стойку не обязательно: здесь — место рядом с вами. Nadie сохраняем, потому что по-прежнему ищем человека.",
+        "uk": "Ви підійшли до стійки, щоб передати ключ, але людей поруч немає. Повідомте супутнику `No hay nadie aquí` — «Тут нікого немає». Складіть `No hay nadie` + `aquí`. Називати стійку не обов’язково: тут — місце поруч із вами. Nadie зберігаємо, бо й далі шукаємо людину."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь никого нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут нікого немає». Почніть з No hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-39:intro3:r1",
+              "text": "No hay nadie aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro3:r2",
+              "text": "No hay nada aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro3:r3",
+              "text": "Hay nadie aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-39:intro3:r1",
+              "text": "No hay nadie aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro3:r2",
+              "text": "No hay nada aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-39:intro3:r3",
+              "text": "Hay nadie aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь никого нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут нікого немає». Почніть з No hay, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "44c70e9eccb1f9c1b179d328e3b73e850cfe9b3309c482c8567a0870d89199b2"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-04",
+  "learningOutcomeByLocale": {
+    "ru": "согласовать pequeña с несколькими предметами женского рода.",
+    "uk": "узгодити pequeña з кількома предметами жіночого роду."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-04:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Небольшие чашки",
+        "uk": "Невеликі чашки"
+      },
+      "bodyByLocale": {
+        "ru": "Для гостей приготовили несколько маленьких чашек. Скажите `Las tazas son pequeñas` — «Чашки маленькие». Соберите `las tazas` + `son` + `pequeñas`. Tazas женского рода во множественном числе: к pequeña добавьте -s. Окончание -as одновременно показывает женский род и несколько предметов.",
+        "uk": "Для гостей приготували кілька маленьких чашок. Скажіть `Las tazas son pequeñas` — «Чашки маленькі». Складіть `las tazas` + `son` + `pequeñas`. Tazas жіночого роду в множині: до pequeña додайте -s. Закінчення -as одночасно показує жіночий рід і кілька предметів."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-04:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что чашки маленькие.",
+          "uk": "Скажіть, що чашки маленькі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-04:intro1:r1",
+              "text": "Las tazas son pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro1:r2",
+              "text": "Las tazas son pequeños."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro1:r3",
+              "text": "Las tazas son pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-04:intro1:r1",
+              "text": "Las tazas son pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro1:r2",
+              "text": "Las tazas son pequeños."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro1:r3",
+              "text": "Las tazas son pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что чашки маленькие.",
+          "uk": "Скажіть, що чашки маленькі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-04:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Бутылки на столе",
+        "uk": "Пляшки на столі"
+      },
+      "bodyByLocale": {
+        "ru": "Рядом стоят несколько маленьких бутылок с напитками. Скажите `Las botellas son pequeñas` — «Бутылки маленькие». Соберите `las botellas` + `son` + `pequeñas`. Botellas, как и tazas, женского рода во множественном числе: форма pequeñas остаётся той же.",
+        "uk": "Поруч стоять кілька маленьких пляшок із напоями. Скажіть `Las botellas son pequeñas` — «Пляшки маленькі». Складіть `las botellas` + `son` + `pequeñas`. Botellas, як і tazas, жіночого роду в множині: форма pequeñas залишається такою самою."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-04:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите, что бутылки маленькие.",
+          "uk": "Скажіть, що пляшки маленькі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-04:intro2:r1",
+              "text": "Las botellas son pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro2:r2",
+              "text": "Las botellas es pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro2:r3",
+              "text": "Las botellas son pequeños."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-04:intro2:r1",
+              "text": "Las botellas son pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro2:r2",
+              "text": "Las botellas es pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro2:r3",
+              "text": "Las botellas son pequeños."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что бутылки маленькие.",
+          "uk": "Скажіть, що пляшки маленькі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-04:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Другой набор чашек",
+        "uk": "Інший набір чашок"
+      },
+      "bodyByLocale": {
+        "ru": "Друг принёс другой набор: эти чашки вовсе не маленькие. Скажите `Las tazas no son pequeñas` — «Чашки не маленькие». Соберите `las tazas` + `no son` + `pequeñas`. No поставьте перед son. Отрицание не меняет род и число признака: всё ещё pequeñas.",
+        "uk": "Друг приніс інший набір: ці чашки зовсім не маленькі. Скажіть `Las tazas no son pequeñas` — «Чашки не маленькі». Складіть `las tazas` + `no son` + `pequeñas`. No поставте перед son. Заперечення не змінює рід і число ознаки: усе ще pequeñas."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-04:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что чашки не маленькие.",
+          "uk": "Скажіть, що чашки не маленькі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-04:intro3:r1",
+              "text": "Las tazas no son pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro3:r2",
+              "text": "Las tazas son pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro3:r3",
+              "text": "Las tazas no es pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-04:intro3:r1",
+              "text": "Las tazas no son pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro3:r2",
+              "text": "Las tazas son pequeñas."
+            },
+            {
+              "responseId": "es:lesson-03:session-04:intro3:r3",
+              "text": "Las tazas no es pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что чашки не маленькие.",
+          "uk": "Скажіть, що чашки не маленькі."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "f6d09cb80e5e4d6ace7e72ba4d126841e647a10d60714587f5abc66a325844a7"
+}

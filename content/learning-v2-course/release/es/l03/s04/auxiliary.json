@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-04",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-04:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-04:intro1:r2": {
+          "ru": "Tazas женского рода: pequeñas.",
+          "uk": "Tazas жіночого роду: pequeñas."
+        },
+        "es:lesson-03:session-04:intro1:r3": {
+          "ru": "Чашек несколько: pequeñas.",
+          "uk": "Чашок кілька: pequeñas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-04:intro2:r2": {
+          "ru": "Бутылок несколько: son.",
+          "uk": "Пляшок кілька: son."
+        },
+        "es:lesson-03:session-04:intro2:r3": {
+          "ru": "Для botellas нужна форма pequeñas.",
+          "uk": "Для botellas потрібна форма pequeñas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-04:intro3:r2": {
+          "ru": "Нужно отрицание: no son.",
+          "uk": "Потрібне заперечення: no son."
+        },
+        "es:lesson-03:session-04:intro3:r3": {
+          "ru": "Чашек несколько: no son pequeñas.",
+          "uk": "Чашок кілька: no son pequeñas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e2d6da5e52b3593599d551f4ded4c8561fd153b26eeb8929c29aac3ca48a1fd9"
+}

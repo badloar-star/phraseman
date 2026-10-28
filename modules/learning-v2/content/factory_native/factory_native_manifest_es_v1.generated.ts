@@ -1621,4 +1621,18 @@ export const FACTORY_NATIVE_MANIFEST_ES_V1: readonly LearningV2FactoryNativeMani
     loadAnswers: () => require("./generated_release/es/l03/s03/answers.json") as unknown,
     loadAuxiliary: () => require("./generated_release/es/l03/s03/auxiliary.json") as unknown,
   }),
+  Object.freeze<LearningV2FactoryNativeManifestRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 4,
+    sourceFingerprint: "0ce12b5312f56d10906a90d9816dc68009ff7f0345fe4fa4c11a29ea0f75fb84",
+    introCorrectChoiceIndexes: Object.freeze([0,0,0]),
+    introPromptByAuthoredLocale: Object.freeze({"ru":["Скажите, что чашки маленькие.","Скажите, что бутылки маленькие.","Скажите, что чашки не маленькие."],"uk":["Скажіть, що чашки маленькі.","Скажіть, що пляшки маленькі.","Скажіть, що чашки не маленькі."]}),
+    introWrongFeedbackByAuthoredLocale: Object.freeze({"ru":[["Tazas женского рода: pequeñas.","Чашек несколько: pequeñas."],["Бутылок несколько: son.","Для botellas нужна форма pequeñas."],["Нужно отрицание: no son.","Чашек несколько: no son pequeñas."]],"uk":[["Tazas жіночого роду: pequeñas.","Чашок кілька: pequeñas."],["Пляшок кілька: son.","Для botellas потрібна форма pequeñas."],["Потрібне заперечення: no son.","Чашок кілька: no son pequeñas."]]}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"согласовать pequeña с несколькими предметами женского рода.","uk":"узгодити pequeña з кількома предметами жіночого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+    practiceTitlesByAuthoredLocale: Object.freeze({"ru":[{"ordinal":1,"title":"Вставьте слово — чашки маленькие"},{"ordinal":2,"title":"Соберите фразу — чашки маленькие"},{"ordinal":3,"title":"Вставьте слово — бутылки маленькие"},{"ordinal":4,"title":"Соберите фразу — бутылки маленькие"},{"ordinal":5,"title":"Вставьте слово — несколько чашек не маленькие"},{"ordinal":6,"title":"Соберите фразу — чашки не маленькие"},{"ordinal":7,"title":"Послушайте и соберите фразу"},{"ordinal":8,"title":"Вставьте слово — одна чашка маленькая"},{"ordinal":9,"title":"Скажите вслух — чашки маленькие; назовите предметы"},{"ordinal":10,"title":"Вставьте слово — бутылки не маленькие"},{"ordinal":11,"title":"Скажите вслух — бутылки маленькие; назовите предметы"},{"ordinal":12,"title":"Скажите вслух — чашки не маленькие; назовите предметы"}],"uk":[{"ordinal":1,"title":"Вставте слово — чашки маленькі"},{"ordinal":2,"title":"Зберіть фразу — чашки маленькі"},{"ordinal":3,"title":"Вставте слово — пляшки маленькі"},{"ordinal":4,"title":"Зберіть фразу — пляшки маленькі"},{"ordinal":5,"title":"Вставте слово — кілька чашок не маленькі"},{"ordinal":6,"title":"Зберіть фразу — чашки не маленькі"},{"ordinal":7,"title":"Послухайте й зберіть фразу"},{"ordinal":8,"title":"Вставте слово — одна чашка маленька"},{"ordinal":9,"title":"Скажіть уголос — чашки маленькі; назвіть предмети"},{"ordinal":10,"title":"Вставте слово — пляшки не маленькі"},{"ordinal":11,"title":"Скажіть уголос — пляшки маленькі; назвіть предмети"},{"ordinal":12,"title":"Скажіть уголос — чашки не маленькі; назвіть предмети"}]}),
+    loadIntro: () => require("./generated_release/es/l03/s04/intro.json") as unknown,
+    loadLearner: (locale: "ru" | "uk") => locale === "uk" ? require("./generated_release/es/l03/s04/learner.uk.json") as unknown : require("./generated_release/es/l03/s04/learner.json") as unknown,
+    loadAnswers: () => require("./generated_release/es/l03/s04/answers.json") as unknown,
+    loadAuxiliary: () => require("./generated_release/es/l03/s04/auxiliary.json") as unknown,
+  }),
 ]);

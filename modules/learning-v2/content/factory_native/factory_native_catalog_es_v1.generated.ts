@@ -812,4 +812,11 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"согласовать размер с несколькими предметами.","uk":"узгодити розмір із кількома предметами."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 4,
+    sourceFingerprint: "0ce12b5312f56d10906a90d9816dc68009ff7f0345fe4fa4c11a29ea0f75fb84",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"согласовать pequeña с несколькими предметами женского рода.","uk":"узгодити pequeña з кількома предметами жіночого роду."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

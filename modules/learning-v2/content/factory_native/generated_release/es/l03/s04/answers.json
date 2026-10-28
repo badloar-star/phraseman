@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-04:i01",
+    "correctText": "pequeñas",
+    "correctResponseId": "es:lesson-03:session-04:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-04:i02",
+    "correctText": "Las tazas son pequeñas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-04:i03",
+    "correctText": "pequeñas",
+    "correctResponseId": "es:lesson-03:session-04:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-04:i04",
+    "correctText": "Las botellas son pequeñas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-04:i05",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-03:session-04:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-04:i06",
+    "correctText": "Las tazas no son pequeñas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-04:i07",
+    "correctText": "Las botellas son pequeñas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-04:i08",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-03:session-04:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-04:i09",
+    "correctText": "Las tazas son pequeñas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-04:i10",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-03:session-04:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-04:i11",
+    "correctText": "Las botellas son pequeñas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-04:i12",
+    "correctText": "Las tazas no son pequeñas.",
+    "correctResponseId": null
+  }
+]

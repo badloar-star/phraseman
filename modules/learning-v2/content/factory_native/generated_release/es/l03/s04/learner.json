@@ -1,0 +1,730 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-04",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-04:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — чашки маленькие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-04:i01:r1",
+          "text": "pequeñas"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i01:r2",
+          "text": "pequeños"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i01:r3",
+          "text": "pequeña"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — чашки маленькие",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — чашки маленькие",
+          "uk": "Вставте слово — чашки маленькі"
+        },
+        "gappedTargetPhrase": "Las tazas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-04:i01:r1",
+            "text": "pequeñas"
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i01:r2",
+            "text": "pequeños"
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i01:r3",
+            "text": "pequeña"
+          }
+        ],
+        "testedDimension": "Вставьте слово — чашки маленькие",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-04:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чашки маленькие",
+            "feedbackByLocale": {
+              "ru": "Tazas женского рода: pequeñas.",
+              "uk": "Tazas жіночого роду: pequeñas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — чашки маленькие",
+            "feedbackByLocale": {
+              "ru": "Чашек несколько: pequeñas.",
+              "uk": "Чашок кілька: pequeñas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — чашки маленькие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-04:i02:r1",
+          "text": "Плитки: pequeñas"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i02:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i02:r3",
+          "text": "tazas"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i02:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i02:r5",
+          "text": "pequeños."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — чашки маленькие",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las tazas son pequeñas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чашки маленькие",
+          "uk": "Зберіть фразу — чашки маленькі"
+        },
+        "orderedTokens": [
+          "Las",
+          "tazas",
+          "son",
+          "pequeñas"
+        ],
+        "authoredDistractorTokens": [
+          "pequeños"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-04:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — чашки маленькие",
+            "feedbackByLocale": {
+              "ru": "tazas женского рода.",
+              "uk": "tazas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — бутылки маленькие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-04:i03:r1",
+          "text": "pequeñas"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i03:r2",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i03:r3",
+          "text": "pequeños"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — бутылки маленькие",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — бутылки маленькие",
+          "uk": "Вставте слово — пляшки маленькі"
+        },
+        "gappedTargetPhrase": "Las botellas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-04:i03:r1",
+            "text": "pequeñas"
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i03:r2",
+            "text": "pequeña"
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i03:r3",
+            "text": "pequeños"
+          }
+        ],
+        "testedDimension": "Вставьте слово — бутылки маленькие",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-04:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — бутылки маленькие",
+            "feedbackByLocale": {
+              "ru": "Бутылок несколько: pequeñas.",
+              "uk": "Пляшок кілька: pequeñas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — бутылки маленькие",
+            "feedbackByLocale": {
+              "ru": "Botellas женского рода: pequeñas.",
+              "uk": "Botellas жіночого роду: pequeñas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — бутылки маленькие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-04:i04:r1",
+          "text": "Плитки: pequeñas"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i04:r3",
+          "text": "botellas"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i04:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i04:r5",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — бутылки маленькие",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las botellas son pequeñas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — бутылки маленькие",
+          "uk": "Зберіть фразу — пляшки маленькі"
+        },
+        "orderedTokens": [
+          "Las",
+          "botellas",
+          "son",
+          "pequeñas"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-04:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — бутылки маленькие",
+            "feedbackByLocale": {
+              "ru": "botellas женского рода.",
+              "uk": "botellas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько чашек не маленькие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-04:i05:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i05:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько чашек не маленькие",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько чашек не маленькие",
+          "uk": "Вставте слово — кілька чашок не маленькі"
+        },
+        "gappedTargetPhrase": "Las tazas no ___ pequeñas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-04:i05:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i05:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i05:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько чашек не маленькие",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-04:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько чашек не маленькие",
+            "feedbackByLocale": {
+              "ru": "Чашек несколько: son.",
+              "uk": "Чашок кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько чашек не маленькие",
+            "feedbackByLocale": {
+              "ru": "Речь о чашках: son.",
+              "uk": "Мова про чашки: son."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — чашки не маленькие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-04:i06:r1",
+          "text": "Плитки: pequeñas"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i06:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i06:r4",
+          "text": "tazas"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i06:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i06:r6",
+          "text": "pequeña."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — чашки не маленькие",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las tazas no son pequeñas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чашки не маленькие",
+          "uk": "Зберіть фразу — чашки не маленькі"
+        },
+        "orderedTokens": [
+          "Las",
+          "tazas",
+          "no",
+          "son",
+          "pequeñas"
+        ],
+        "authoredDistractorTokens": [
+          "pequeña"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-04:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — чашки не маленькие",
+            "feedbackByLocale": {
+              "ru": "чашек несколько.",
+              "uk": "чашок кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-04:i07:r1",
+          "text": "Плитки: pequeñas"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i07:r3",
+          "text": "botellas"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i07:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i07:r5",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-04:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-04:i07:audio",
+          "transcript": "Las botellas son pequeñas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las botellas son pequeñas.",
+        "orderedTokens": [
+          "Las",
+          "botellas",
+          "son",
+          "pequeñas"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-04:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит las.",
+              "uk": "звучить las."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — одна чашка маленькая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-04:i08:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i08:r2",
+          "text": "pequeñas"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i08:r3",
+          "text": "pequeños"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — одна чашка маленькая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна чашка маленькая",
+          "uk": "Вставте слово — одна чашка маленька"
+        },
+        "gappedTargetPhrase": "La taza es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-04:i08:r1",
+            "text": "pequeña"
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i08:r2",
+            "text": "pequeñas"
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i08:r3",
+            "text": "pequeños"
+          }
+        ],
+        "testedDimension": "Вставьте слово — одна чашка маленькая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-04:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна чашка маленькая",
+            "feedbackByLocale": {
+              "ru": "Чашка одна: pequeña.",
+              "uk": "Чашка одна: pequeña."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна чашка маленькая",
+            "feedbackByLocale": {
+              "ru": "Нужна форма женского рода единственного числа: pequeña.",
+              "uk": "Потрібна форма жіночого роду однини: pequeña."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — чашки маленькие; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-04:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — чашки маленькие; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-04:i09:audio",
+          "transcript": "Las tazas son pequeñas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las tazas son pequeñas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — бутылки не маленькие",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-04:i10:r1",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i10:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-04:i10:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — бутылки не маленькие",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — бутылки не маленькие",
+          "uk": "Вставте слово — пляшки не маленькі"
+        },
+        "gappedTargetPhrase": "Las botellas ___ son pequeñas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-04:i10:r1",
+            "text": "no"
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i10:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i10:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — бутылки не маленькие",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-04:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — бутылки не маленькие",
+            "feedbackByLocale": {
+              "ru": "Для отрицания перед son нужно no.",
+              "uk": "Для заперечення перед son потрібно no."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-04:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — бутылки не маленькие",
+            "feedbackByLocale": {
+              "ru": "Una — артикль, а здесь нужно отрицание.",
+              "uk": "Una — артикль, а тут потрібне заперечення."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — бутылки маленькие; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-04:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — бутылки маленькие; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-04:i11:audio",
+          "transcript": "Las botellas son pequeñas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las botellas son pequeñas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-04:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — чашки не маленькие; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-04:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — чашки не маленькие; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-04:i12:audio",
+          "transcript": "Las tazas no son pequeñas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las tazas no son pequeñas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "42b840d2c4ea7744ac1b0afa72b035b7998d429cc3786da35c03ca709187cb2a"
+}

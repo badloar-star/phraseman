@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-46",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-46:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-46:intro1:r2": {
+          "ru": "Ключей несколько: son.",
+          "uk": "Ключів кілька: son."
+        },
+        "es:lesson-04:session-46:intro1:r3": {
+          "ru": "Llaves женского рода: las.",
+          "uk": "Llaves жіночого роду: las."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-46:intro2:r2": {
+          "ru": "Libros мужского рода: los.",
+          "uk": "Libros чоловічого роду: los."
+        },
+        "es:lesson-04:session-46:intro2:r3": {
+          "ru": "Книг несколько: son.",
+          "uk": "Книжок кілька: son."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-46:intro3:r2": {
+          "ru": "Bolsas женского рода: las.",
+          "uk": "Bolsas жіночого роду: las."
+        },
+        "es:lesson-04:session-46:intro3:r3": {
+          "ru": "Сумок несколько: las.",
+          "uk": "Сумок кілька: las."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4ef097d37307ef8cc41b0a4d81ebd607845db025094d0677e5e2588d4c181cfe"
+}

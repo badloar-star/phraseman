@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-45",
+  "learningOutcomeByLocale": {
+    "ru": "назвать владельца вещи с помощью de и имени.",
+    "uk": "назвати власника речі за допомогою de та імені."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-45:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Чья сумка",
+        "uk": "Чия сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, чья сумка осталась на стуле. Вы знаете, что она принадлежит Ане. Ответьте `Es de Ana` — «Это Анина». Соберите `es` + `de` + `Ana`. De перед именем показывает, кому принадлежит вещь. Саму сумку можно не называть повторно: вы оба уже о ней говорите. Здесь es относится к одной сумке.",
+        "uk": "Друг запитує, чия сумка залишилася на стільці. Ви знаєте, що вона належить Ані. Дайте відповідь `Es de Ana` — «Це Анина». Складіть `es` + `de` + `Ana`. De перед іменем показує, кому належить річ. Саму сумку можна не називати повторно: ви обоє вже про неї говорите. Тут es стосується однієї сумки."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-45:intro1:q",
+        "promptByLocale": {
+          "ru": "Ответьте о сумке: «Это Анина». Начните с Es и назовите Ana.",
+          "uk": "Дайте відповідь про сумку: «Це Анина». Почніть з Es і назвіть Ana."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-45:intro1:r1",
+              "text": "Es de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro1:r2",
+              "text": "Es Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro1:r3",
+              "text": "Son de Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-45:intro1:r1",
+              "text": "Es de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro1:r2",
+              "text": "Es Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro1:r3",
+              "text": "Son de Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте о сумке: «Это Анина». Начните с Es и назовите Ana.",
+          "uk": "Дайте відповідь про сумку: «Це Анина». Почніть з Es і назвіть Ana."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-45:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать и вещь, и хозяйку",
+        "uk": "Назвати й річ, і власницю"
+      },
+      "bodyByLocale": {
+        "ru": "На столе несколько вещей; вы хотите уточнить именно коробку Ани. Скажите `La caja es de Ana` — «Коробка принадлежит Ане». Соберите `la caja` + `es` + `de Ana`. В начале назовите вещь с артиклем: la caja. После es поставьте de и имя хозяйки. Теперь понятно, о какой вещи вы говорите.",
+        "uk": "На столі кілька речей; ви хочете уточнити саме коробку Ани. Скажіть `La caja es de Ana` — «Коробка належить Ані». Складіть `la caja` + `es` + `de Ana`. На початку назвіть річ з артиклем: la caja. Після es поставте de та ім’я власниці. Тепер зрозуміло, про яку річ ви говорите."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-45:intro2:q",
+        "promptByLocale": {
+          "ru": "Уточните, что коробка принадлежит Ане. Начните с La caja и назовите Ana.",
+          "uk": "Уточніть, що коробка належить Ані. Почніть з La caja й назвіть Ana."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-45:intro2:r1",
+              "text": "La caja es de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro2:r2",
+              "text": "La caja es Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro2:r3",
+              "text": "El caja es de Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-45:intro2:r1",
+              "text": "La caja es de Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro2:r2",
+              "text": "La caja es Ana."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro2:r3",
+              "text": "El caja es de Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Уточните, что коробка принадлежит Ане. Начните с La caja и назовите Ana.",
+          "uk": "Уточніть, що коробка належить Ані. Почніть з La caja й назвіть Ana."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-45:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Другой хозяин",
+        "uk": "Інший власник"
+      },
+      "bodyByLocale": {
+        "ru": "Книга на столе принадлежит Педро. Скажите `El libro es de Pedro` — «Книга принадлежит Педро». Соберите `el libro` + `es` + `de Pedro`. После de поставьте имя нужного владельца. De одинаково используется перед Ana и Pedro; оно не меняется по полу владельца.",
+        "uk": "Книжка на столі належить Педро. Скажіть `El libro es de Pedro` — «Книжка належить Педро». Складіть `el libro` + `es` + `de Pedro`. Після de поставте ім’я потрібного власника. De однаково використовується перед Ana й Pedro; воно не змінюється залежно від статі власника."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-45:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что книга принадлежит Педро. Начните с El libro и назовите Pedro.",
+          "uk": "Скажіть, що книжка належить Педро. Почніть з El libro й назвіть Pedro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-45:intro3:r1",
+              "text": "El libro es de Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro3:r2",
+              "text": "El libro es Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro3:r3",
+              "text": "El libro son de Pedro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-45:intro3:r1",
+              "text": "El libro es de Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro3:r2",
+              "text": "El libro es Pedro."
+            },
+            {
+              "responseId": "es:lesson-04:session-45:intro3:r3",
+              "text": "El libro son de Pedro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что книга принадлежит Педро. Начните с El libro и назовите Pedro.",
+          "uk": "Скажіть, що книжка належить Педро. Почніть з El libro й назвіть Pedro."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a1376932670569b50cedc447b5d1ae298ee05a8391f2290c5c36e98970b9ad24"
+}

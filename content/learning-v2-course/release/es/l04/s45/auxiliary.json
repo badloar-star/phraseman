@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-45",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-45:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-45:intro1:r2": {
+          "ru": "Без de вы называете человека; для принадлежности нужно de.",
+          "uk": "Без de ви називаєте людину; для належності потрібне de."
+        },
+        "es:lesson-04:session-45:intro1:r3": {
+          "ru": "Речь об одной сумке: es.",
+          "uk": "Йдеться про одну сумку: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-45:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-45:intro2:r2": {
+          "ru": "Для принадлежности перед именем нужно de.",
+          "uk": "Для належності перед іменем потрібне de."
+        },
+        "es:lesson-04:session-45:intro2:r3": {
+          "ru": "Caja женского рода: la.",
+          "uk": "Caja жіночого роду: la."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-45:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-45:intro3:r2": {
+          "ru": "Перед именем владельца нужно de.",
+          "uk": "Перед іменем власника потрібне de."
+        },
+        "es:lesson-04:session-45:intro3:r3": {
+          "ru": "Книга одна: es.",
+          "uk": "Книжка одна: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "1c089d8e8b1136394f53fb0f98b2ff639c5e04f42a9735fc3ba34d4441c766bb"
+}

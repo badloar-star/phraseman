@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-43",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-43:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-43:intro1:r2": {
+          "ru": "В этой схеме no стоит перед es.",
+          "uk": "У цій схемі no стоїть перед es."
+        },
+        "es:lesson-04:session-43:intro1:r3": {
+          "ru": "Говорите об одном предмете: es.",
+          "uk": "Говорите про один предмет: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-43:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-43:intro2:r2": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        },
+        "es:lesson-04:session-43:intro2:r3": {
+          "ru": "Сейчас отрицаете слово «книга»: un libro.",
+          "uk": "Зараз заперечуєте слово «книжка»: un libro."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-43:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-43:intro3:r2": {
+          "ru": "Перед caja нужно una.",
+          "uk": "Перед caja потрібне una."
+        },
+        "es:lesson-04:session-43:intro3:r3": {
+          "ru": "Нужно отрицание: no перед es.",
+          "uk": "Потрібне заперечення: no перед es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "43429edcf8fa2f56530369c4d7bb543ba894cbfdf824047e5676f2403f5a2f8b"
+}

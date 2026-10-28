@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-46:i01",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-04:session-46:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-46:i02",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-04:session-46:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-46:i03",
+    "correctText": "¿De quién son las llaves?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-46:i04",
+    "correctText": "los",
+    "correctResponseId": "es:lesson-04:session-46:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-46:i05",
+    "correctText": "¿De quién son los libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-46:i06",
+    "correctText": "¿De quién son las bolsas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-46:i07",
+    "correctText": "¿De quién son las llaves?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-46:i08",
+    "correctText": "las",
+    "correctResponseId": "es:lesson-04:session-46:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-46:i09",
+    "correctText": "¿De quién son las llaves?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-46:i10",
+    "correctText": "¿De quién son los libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-46:i11",
+    "correctText": "¿De quién son las bolsas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-46:i12",
+    "correctText": "¿De quién son las cajas?",
+    "correctResponseId": null
+  }
+]

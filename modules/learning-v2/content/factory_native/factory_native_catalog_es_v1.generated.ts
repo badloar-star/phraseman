@@ -1477,4 +1477,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"собрать вопрос ¿Qué es eso? и отдельно назвать предмет в ответе.","uk":"скласти запитання ¿Qué es eso? й окремо назвати предмет у відповіді."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 43,
+    sourceFingerprint: "44707b1954dadcc6072b14b88b621d5425b00a0947a6b560de85ccec09402868",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отрицать название предмета с помощью eso no es.","uk":"заперечувати назву предмета за допомогою eso no es."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 44,
+    sourceFingerprint: "1838915a788af3078d41ed3d038158bc6ec712df1a58abf5ebac4c5cc658e425",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о владельце одного предмета с помощью de quién.","uk":"запитати про власника одного предмета за допомогою de quién."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 45,
+    sourceFingerprint: "640b9cbe06a2f71e31040b8a9fff10731a0c2728c999980c37ca156dcb195552",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать владельца вещи с помощью de и имени.","uk":"назвати власника речі за допомогою de та імені."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 46,
+    sourceFingerprint: "c318795add1bf89a375cc4cdf2d17128efd0289aed215243c8f27e5a13573a33",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать son в вопросе о нескольких предметах.","uk":"використовувати son у запитанні про кілька предметів."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

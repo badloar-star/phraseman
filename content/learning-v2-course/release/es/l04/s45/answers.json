@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-45:i01",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-04:session-45:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-45:i02",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-04:session-45:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-45:i03",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-45:i04",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-04:session-45:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-45:i05",
+    "correctText": "La caja es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-45:i06",
+    "correctText": "El libro es de Pedro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-45:i07",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-45:i08",
+    "correctText": "de",
+    "correctResponseId": "es:lesson-04:session-45:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-45:i09",
+    "correctText": "Es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-45:i10",
+    "correctText": "La caja es de Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-45:i11",
+    "correctText": "El libro es de Pedro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-45:i12",
+    "correctText": "Es de Pedro.",
+    "correctResponseId": null
+  }
+]

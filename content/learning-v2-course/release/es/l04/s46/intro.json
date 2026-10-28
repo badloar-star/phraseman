@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-46",
+  "learningOutcomeByLocale": {
+    "ru": "использовать son в вопросе о нескольких предметах.",
+    "uk": "використовувати son у запитанні про кілька предметів."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-46:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Связка ключей",
+        "uk": "В’язка ключів"
+      },
+      "bodyByLocale": {
+        "ru": "На столе остались ключи. Спросите у друзей `¿De quién son las llaves?` — «Чьи это ключи?» Соберите `de quién` + `son` + `las llaves`. Ключей несколько, поэтому вместо es нужно son. Llaves женского рода во множественном числе: перед ним las. Вопрос de quién сохраняется, даже если у всех ключей один хозяин.",
+        "uk": "На столі залишилися ключі. Запитайте друзів `¿De quién son las llaves?` — «Чиї це ключі?» Складіть `de quién` + `son` + `las llaves`. Ключів кілька, тому замість es потрібне son. Llaves жіночого роду в множині: перед ним las. Запитання de quién зберігається, навіть якщо всі ключі мають одного власника."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-46:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, чьи оставленные ключи. Начните с De quién.",
+          "uk": "Запитайте, чиї залишені ключі. Почніть з De quién."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-46:intro1:r1",
+              "text": "¿De quién son las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro1:r2",
+              "text": "¿De quién es las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro1:r3",
+              "text": "¿De quién son los llaves?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-46:intro1:r1",
+              "text": "¿De quién son las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro1:r2",
+              "text": "¿De quién es las llaves?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro1:r3",
+              "text": "¿De quién son los llaves?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чьи оставленные ключи. Начните с De quién.",
+          "uk": "Запитайте, чиї залишені ключі. Почніть з De quién."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-46:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Несколько книг",
+        "uk": "Кілька книжок"
+      },
+      "bodyByLocale": {
+        "ru": "После встречи на столе остались книги. Спросите `¿De quién son los libros?` — «Чьи это книги?» Соберите `de quién` + `son` + `los libros`. Замените las llaves на los libros. Испанское libros мужского рода, поэтому нужны los. Son остаётся, потому что книг несколько.",
+        "uk": "Після зустрічі на столі залишилися книжки. Запитайте `¿De quién son los libros?` — «Чиї це книжки?» Складіть `de quién` + `son` + `los libros`. Замініть las llaves на los libros. Іспанське libros чоловічого роду, тому потрібне los. Son залишається, бо книжок кілька."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-46:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, чьи оставленные книги. Начните с De quién.",
+          "uk": "Запитайте, чиї залишені книжки. Почніть з De quién."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-46:intro2:r1",
+              "text": "¿De quién son los libros?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro2:r2",
+              "text": "¿De quién son las libros?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro2:r3",
+              "text": "¿De quién es los libros?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-46:intro2:r1",
+              "text": "¿De quién son los libros?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro2:r2",
+              "text": "¿De quién son las libros?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro2:r3",
+              "text": "¿De quién es los libros?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чьи оставленные книги. Начните с De quién.",
+          "uk": "Запитайте, чиї залишені книжки. Почніть з De quién."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-46:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Две сумки",
+        "uk": "Дві сумки"
+      },
+      "bodyByLocale": {
+        "ru": "У двери стоят две оставленные сумки. Назовите их знакомым женским словом bolsas и спросите `¿De quién son las bolsas?` — «Чьи это сумки?» Соберите `de quién` + `son` + `las bolsas`. Перед bolsas поставьте las. Кто владелец, пока неизвестно; выбор las зависит от слова bolsas, а не от пола хозяина.",
+        "uk": "Біля дверей стоять дві залишені сумки. Назвіть їх знайомим жіночим словом bolsas і запитайте `¿De quién son las bolsas?` — «Чиї це сумки?» Складіть `de quién` + `son` + `las bolsas`. Перед bolsas поставте las. Хто власник, поки невідомо; вибір las залежить від слова bolsas, а не від статі власника."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-46:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, чьи оставленные сумки. Начните с De quién и используйте bolsas.",
+          "uk": "Запитайте, чиї залишені сумки. Почніть з De quién і використайте bolsas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-46:intro3:r1",
+              "text": "¿De quién son las bolsas?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro3:r2",
+              "text": "¿De quién son los bolsas?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro3:r3",
+              "text": "¿De quién son la bolsas?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-46:intro3:r1",
+              "text": "¿De quién son las bolsas?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro3:r2",
+              "text": "¿De quién son los bolsas?"
+            },
+            {
+              "responseId": "es:lesson-04:session-46:intro3:r3",
+              "text": "¿De quién son la bolsas?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чьи оставленные сумки. Начните с De quién и используйте bolsas.",
+          "uk": "Запитайте, чиї залишені сумки. Почніть з De quién і використайте bolsas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "523175ea3251fa4ff2e89c2cf587c510f9881e7e65478bde46e8e755178f1f2d"
+}

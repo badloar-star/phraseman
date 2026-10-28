@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-44",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о владельце одного предмета с помощью de quién.",
+    "uk": "запитати про власника одного предмета за допомогою de quién."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-44:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Оставленная сумка",
+        "uk": "Залишена сумка"
+      },
+      "bodyByLocale": {
+        "ru": "После встречи замечаете сумку на стуле. Спросите у друзей `¿De quién es el bolso?` — «Чья это сумка?» Соберите `de quién` + `es` + `el bolso`. De quién означает «чей / чья»: вместе эти слова спрашивают о владельце. Сначала поставьте de quién, затем es, затем название найденной вещи с артиклем. Здесь сумка — bolso.",
+        "uk": "Після зустрічі помічаєте сумку на стільці. Запитайте друзів `¿De quién es el bolso?` — «Чия це сумка?» Складіть `de quién` + `es` + `el bolso`. De quién означає «чий / чия»: разом ці слова запитують про власника. Спочатку поставте de quién, потім es, потім назву знайденої речі з артиклем. Тут сумка — bolso."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-44:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, чья оставленная сумка. Начните с De quién и используйте bolso.",
+          "uk": "Запитайте, чия залишена сумка. Почніть з De quién і використайте bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-44:intro1:r1",
+              "text": "¿De quién es el bolso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro1:r2",
+              "text": "¿Quién es el bolso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro1:r3",
+              "text": "¿De quién son el bolso?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-44:intro1:r1",
+              "text": "¿De quién es el bolso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro1:r2",
+              "text": "¿Quién es el bolso?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro1:r3",
+              "text": "¿De quién son el bolso?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чья оставленная сумка. Начните с De quién и используйте bolso.",
+          "uk": "Запитайте, чия залишена сумка. Почніть з De quién і використайте bolso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-44:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Оставленная книга",
+        "uk": "Залишена книжка"
+      },
+      "bodyByLocale": {
+        "ru": "На столе осталась книга. Спросите `¿De quién es el libro?` — «Чья это книга?» Соберите `de quién` + `es` + `el libro`. Сохраните начало De quién es и замените el bolso на el libro. Испанское libro мужского рода: перед ним el, хотя русское «книга» женского рода.",
+        "uk": "На столі залишилася книжка. Запитайте `¿De quién es el libro?` — «Чия це книжка?» Складіть `de quién` + `es` + `el libro`. Збережіть початок De quién es і замініть el bolso на el libro. Іспанське libro чоловічого роду: перед ним el, хоча українське «книжка» жіночого роду."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-44:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите, чья оставленная книга. Начните с De quién.",
+          "uk": "Запитайте, чия залишена книжка. Почніть з De quién."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-44:intro2:r1",
+              "text": "¿De quién es el libro?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro2:r2",
+              "text": "¿De quién es la libro?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro2:r3",
+              "text": "¿De quién es el bolso?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-44:intro2:r1",
+              "text": "¿De quién es el libro?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro2:r2",
+              "text": "¿De quién es la libro?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro2:r3",
+              "text": "¿De quién es el bolso?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чья оставленная книга. Начните с De quién.",
+          "uk": "Запитайте, чия залишена книжка. Почніть з De quién."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-44:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Оставленная коробка",
+        "uk": "Залишена коробка"
+      },
+      "bodyByLocale": {
+        "ru": "Возле двери стоит коробка, и вы хотите найти её хозяина. Спросите `¿De quién es la caja?` — «Чья это коробка?» Соберите `de quién` + `es` + `la caja`. Перед женским caja поставьте la. Начало De quién es не меняется: вопросительные слова de quién не согласуются с родом вещи.",
+        "uk": "Біля дверей стоїть коробка, і ви хочете знайти її власника. Запитайте `¿De quién es la caja?` — «Чия це коробка?» Складіть `de quién` + `es` + `la caja`. Перед жіночим caja поставте la. Початок De quién es не змінюється: питальні слова de quién не узгоджуються з родом речі."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-44:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите, чья оставленная коробка. Начните с De quién.",
+          "uk": "Запитайте, чия залишена коробка. Почніть з De quién."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-44:intro3:r1",
+              "text": "¿De quién es la caja?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro3:r2",
+              "text": "¿De quién es el caja?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro3:r3",
+              "text": "¿De quién son la caja?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-44:intro3:r1",
+              "text": "¿De quién es la caja?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro3:r2",
+              "text": "¿De quién es el caja?"
+            },
+            {
+              "responseId": "es:lesson-04:session-44:intro3:r3",
+              "text": "¿De quién son la caja?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, чья оставленная коробка. Начните с De quién.",
+          "uk": "Запитайте, чия залишена коробка. Почніть з De quién."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7da9b013a03c970b590c28075712a38b883a638f550dda3ffe62558084d4ea6d"
+}

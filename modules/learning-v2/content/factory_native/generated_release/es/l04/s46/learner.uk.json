@@ -1,0 +1,698 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-46",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-46:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-46:i01:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i01:r2",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-46:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-46:i01:audio",
+          "transcript": "son"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-46:i01:r1",
+            "targetText": "son",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-46:i01:r2",
+            "targetText": "es",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-46:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит son.",
+              "uk": "Звучить son."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — чиї залишені ключі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-46:i02:r1",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i02:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i02:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — чиї залишені ключі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — чьи оставленные ключи",
+          "uk": "Вставте слово — чиї залишені ключі"
+        },
+        "gappedTargetPhrase": "¿De quién ___ las llaves?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-46:i02:r1",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-46:i02:r2",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-46:i02:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — чиї залишені ключі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-46:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — чиї залишені ключі",
+            "feedbackByLocale": {
+              "ru": "Ключей несколько: son.",
+              "uk": "Ключів кілька: son."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-46:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — чиї залишені ключі",
+            "feedbackByLocale": {
+              "ru": "Спрашиваете о ключах, а не говорите о себе.",
+              "uk": "Запитуєте про ключі, а не говорите про себе."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — чиї залишені ключі; почніть з De quién",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-46:i03:r1",
+          "text": "Плитки: llaves?"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i03:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i03:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i03:r4",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i03:r5",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i03:r6",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — чиї залишені ключі; почніть з De quién",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién son las llaves?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чьи оставленные ключи; начните с De quién",
+          "uk": "Зберіть фразу — чиї залишені ключі; почніть з De quién"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "son",
+          "las",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-46:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — чиї залишені ключі; почніть з De quién",
+            "feedbackByLocale": {
+              "ru": "ключей несколько.",
+              "uk": "ключів кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — чиї залишені книжки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-46:i04:r1",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i04:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i04:r3",
+          "text": "el"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — чиї залишені книжки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — чьи оставленные книги",
+          "uk": "Вставте слово — чиї залишені книжки"
+        },
+        "gappedTargetPhrase": "¿De quién son ___ libros?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-46:i04:r1",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-04:session-46:i04:r2",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-04:session-46:i04:r3",
+            "text": "el"
+          }
+        ],
+        "testedDimension": "Вставте слово — чиї залишені книжки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-46:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — чиї залишені книжки",
+            "feedbackByLocale": {
+              "ru": "Libros мужского рода: los.",
+              "uk": "Libros чоловічого роду: los."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-46:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — чиї залишені книжки",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: los.",
+              "uk": "Книжок кілька: los."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — чиї залишені книжки; почніть з De quién",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-46:i05:r1",
+          "text": "Плитки: libros?"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i05:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i05:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i05:r4",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i05:r5",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i05:r6",
+          "text": "las."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — чиї залишені книжки; почніть з De quién",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién son los libros?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чьи оставленные книги; начните с De quién",
+          "uk": "Зберіть фразу — чиї залишені книжки; почніть з De quién"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "son",
+          "los",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "las"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-46:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — чиї залишені книжки; почніть з De quién",
+            "feedbackByLocale": {
+              "ru": "libros мужского рода.",
+              "uk": "libros чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — чиї залишені сумки; почніть з De quién і використайте bolsas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-46:i06:r1",
+          "text": "Плитки: bolsas?"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i06:r2",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i06:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i06:r4",
+          "text": "quién"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i06:r5",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i06:r6",
+          "text": "los."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — чиї залишені сумки; почніть з De quién і використайте bolsas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿De quién son las bolsas?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — чьи оставленные сумки; начните с De quién и используйте bolsas",
+          "uk": "Зберіть фразу — чиї залишені сумки; почніть з De quién і використайте bolsas"
+        },
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "son",
+          "las",
+          "bolsas"
+        ],
+        "authoredDistractorTokens": [
+          "los"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-46:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — чиї залишені сумки; почніть з De quién і використайте bolsas",
+            "feedbackByLocale": {
+              "ru": "bolsas женского рода.",
+              "uk": "bolsas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-46:i07:r1",
+          "text": "Плитки: quién"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i07:r2",
+          "text": "llaves?"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i07:r3",
+          "text": "¿de"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i07:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i07:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i07:r6",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-46:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-46:i07:audio",
+          "transcript": "¿De quién son las llaves?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿De quién son las llaves?",
+        "orderedTokens": [
+          "¿De",
+          "quién",
+          "son",
+          "las",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-46:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит son.",
+              "uk": "звучить son."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — чиї залишені сумки; використайте bolsas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-46:i08:r1",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i08:r2",
+          "text": "los"
+        },
+        {
+          "responseId": "es:lesson-04:session-46:i08:r3",
+          "text": "la"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — чиї залишені сумки; використайте bolsas",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — чьи оставленные сумки; используйте bolsas",
+          "uk": "Вставте слово — чиї залишені сумки; використайте bolsas"
+        },
+        "gappedTargetPhrase": "¿De quién son ___ bolsas?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-46:i08:r1",
+            "text": "las"
+          },
+          {
+            "responseId": "es:lesson-04:session-46:i08:r2",
+            "text": "los"
+          },
+          {
+            "responseId": "es:lesson-04:session-46:i08:r3",
+            "text": "la"
+          }
+        ],
+        "testedDimension": "Вставте слово — чиї залишені сумки; використайте bolsas",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-46:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — чиї залишені сумки; використайте bolsas",
+            "feedbackByLocale": {
+              "ru": "Bolsas женского рода: las.",
+              "uk": "Bolsas жіночого роду: las."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-46:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — чиї залишені сумки; використайте bolsas",
+            "feedbackByLocale": {
+              "ru": "Сумок несколько: las.",
+              "uk": "Сумок кілька: las."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — чиї залишені ключі; почніть з De quién",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-46:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — чиї залишені ключі; почніть з De quién",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-46:i09:audio",
+          "transcript": "¿De quién son las llaves?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién son las llaves?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — чиї залишені книжки; почніть з De quién",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-46:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — чиї залишені книжки; почніть з De quién",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-46:i10:audio",
+          "transcript": "¿De quién son los libros?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién son los libros?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — чиї залишені сумки; почніть з De quién і використайте bolsas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-46:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — чиї залишені сумки; почніть з De quién і використайте bolsas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-46:i11:audio",
+          "transcript": "¿De quién son las bolsas?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién son las bolsas?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-46:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — чиї залишені коробки; почніть з De quién",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-46:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — чиї залишені коробки; почніть з De quién",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-46:i12:audio",
+          "transcript": "¿De quién son las cajas?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿De quién son las cajas?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8dc6641423e742ce815b1b90985d30c5ad5da9ba4fa9e0ed4c0929fd728af1ec"
+}

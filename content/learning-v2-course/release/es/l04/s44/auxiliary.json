@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-44",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-44:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-44:intro1:r2": {
+          "ru": "Для вопроса о владельце перед quién нужно de.",
+          "uk": "Для запитання про власника перед quién потрібне de."
+        },
+        "es:lesson-04:session-44:intro1:r3": {
+          "ru": "Сумка одна: es.",
+          "uk": "Сумка одна: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-44:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-44:intro2:r2": {
+          "ru": "Перед мужским libro нужен el.",
+          "uk": "Перед чоловічим libro потрібен el."
+        },
+        "es:lesson-04:session-44:intro2:r3": {
+          "ru": "Сейчас спрашиваете о книге: el libro.",
+          "uk": "Зараз запитуєте про книжку: el libro."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-44:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-44:intro3:r2": {
+          "ru": "Перед caja нужен la.",
+          "uk": "Перед caja потрібен la."
+        },
+        "es:lesson-04:session-44:intro3:r3": {
+          "ru": "Коробка одна: es.",
+          "uk": "Коробка одна: es."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7b0c51c4e8838dc2169de34f2c4d9cdf8d1d77c43e26313634b3075f98483135"
+}

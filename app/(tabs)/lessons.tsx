@@ -4376,6 +4376,26 @@ export default function LessonsTab({
       firstKinds: legacyFilteredListData.slice(0, 4).map((item) => item.kind),
     })); // guard-ok: временная трассировка learn-2
   }, [legacyFilteredListData, legacyLessonQuery]);
+  // зачем (координатор 28.10, жалобы #3 uk «натискаю на класичні уроки і уроків немає», #1 ru «не полностью открывается старый
+  // курс», сперва логи): одна строка на показ классического списка — сколько уроков должно быть, сколько строк собрано и показано,
+  // какой шаг отрезал (страница v2 / поиск) и сколько уроков открыто. console.log, а не warn: в релизе iOS warn не виден.
+  useEffect(() => {
+    if (page === "v2") return;
+    const lessonRows = legacyFilteredListData.filter((item) => item.kind === "lesson").length;
+    console.log('[CLASSIC-LESSONS] shown', JSON.stringify({
+      page, presentation, initialPage, lang, studyTarget, tabVisible: lessonsTabVisible,
+      expectedLessons: lessons.length,
+      builtRows: listData.length,
+      shownRows: legacyFilteredListData.length,
+      shownLessons: lessonRows,
+      cutBy: lessons.length === 0 ? "no_titles" : listData.length === 0 ? "list_not_built" : legacyFilteredListData.length === 0 ? "search" : null,
+      queryLength: legacyLessonQuery.trim().length,
+      unlocked: unlockedLessons.filter(Boolean).length,
+      done: progCounts.filter((count) => (count ?? 0) >= 50).length,
+      started: progCounts.filter((count) => (count ?? 0) > 0).length,
+      isPremium, noLimits: effectiveNoLimits,
+    })); // guard-ok: временная трассировка жалоб #1/#3
+  }, [effectiveNoLimits, initialPage, isPremium, lang, legacyFilteredListData, legacyLessonQuery, lessons.length, lessonsTabVisible, listData.length, page, presentation, progCounts, studyTarget, unlockedLessons]);
   // Премиум-урок: открываем пейвол СРАЗУ, без промежуточного окна «урок входит в премиум».
   // (Раньше тап показывал ThemedChoiceModal с кнопкой «Получить Premium» — лишний шаг.)
   const openLessonPaywall = useCallback(

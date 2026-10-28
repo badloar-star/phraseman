@@ -22,12 +22,21 @@ export function useRequestedFeatureIntro(id: string, active: boolean, onOpen: ()
   }, [active, id]);
 
   const request = useCallback(async () => {
-    if (!owner.current.active || checking.current || pending.current) return;
+    // зачем (координатор 28.10, жалоба #3 «натискаю на класичні уроки і уроків немає»): все три выхода ниже были немыми —
+    // нажатие на кнопку с вводным окном («Классический курс») могло ничего не сделать, и по логу этого не видно.
+    if (!owner.current.active || checking.current || pending.current) {
+      console.log('[FEATURE-INTRO] request:ignored', JSON.stringify({ id, active: owner.current.active, checking: checking.current, pending: pending.current })); // guard-ok: ранний выход
+      return;
+    }
     checking.current = true;
     const token = epoch.current;
     const show = await shouldShowFeatureIntro(id);
-    if (token !== epoch.current || !owner.current.active) return;
+    if (token !== epoch.current || !owner.current.active) {
+      console.log('[FEATURE-INTRO] request:dropped', JSON.stringify({ id, epochChanged: token !== epoch.current, active: owner.current.active, show })); // guard-ok: ранний выход
+      return;
+    }
     checking.current = false;
+    console.log('[FEATURE-INTRO] request:result', JSON.stringify({ id, show, next: show ? "intro" : "open" })); // guard-ok: итог нажатия
     if (show) {
       pending.current = true;
       setVisible(true);

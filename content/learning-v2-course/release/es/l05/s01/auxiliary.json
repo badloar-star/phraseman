@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-01",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-01:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-01:intro1:r2": {
+          "ru": "Это означает «Это книга», но не говорит, что она у вас есть.",
+          "uk": "Це означає «Це книжка», але не каже, що вона у вас є."
+        },
+        "es:lesson-05:session-01:intro1:r3": {
+          "ru": "Libro мужского рода: un libro.",
+          "uk": "Libro чоловічого роду: un libro."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-01:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-01:intro2:r2": {
+          "ru": "У bolso мужской род: un.",
+          "uk": "У bolso чоловічий рід: un."
+        },
+        "es:lesson-05:session-01:intro2:r3": {
+          "ru": "Soy представляло бы вас как сумку; о наличии вещи говорим tengo.",
+          "uk": "Soy представляло б вас як сумку; про наявність речі говоримо tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-01:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-01:intro3:r2": {
+          "ru": "Es лишнее: наличие выражено словом tengo.",
+          "uk": "Es зайве: наявність виражена словом tengo."
+        },
+        "es:lesson-05:session-01:intro3:r3": {
+          "ru": "Carro мужского рода: un.",
+          "uk": "Carro чоловічого роду: un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "56023fb1bc22ec95e6e85c5a6bcf64b7806e342b89901a40e7d722960eac61dd"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-01",
+  "learningOutcomeByLocale": {
+    "ru": "сказать «у меня есть» с tengo и назвать один предмет.",
+    "uk": "сказати «у мене є» з tengo й назвати один предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-01:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книга для дороги",
+        "uk": "Книжка для дороги"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, есть ли у вас что почитать. Скажите `Tengo un libro` — «У меня есть книга». Соберите `tengo` + `un libro`. Tener означает «иметь», а tengo — его форма для «я»: «у меня есть». Un перед libro обозначает одну пока не уточнённую книгу. Отдельное yo здесь не нужно: tengo уже показывает, кто говорит о своей вещи.",
+        "uk": "Друг запитує, чи є у вас що почитати. Скажіть `Tengo un libro` — «У мене є книжка». Складіть `tengo` + `un libro`. Tener означає «мати», а tengo — його форма для «я»: «у мене є». Un перед libro позначає одну поки не уточнену книжку. Окреме yo тут не потрібне: tengo вже показує, хто говорить про свою річ."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-01:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть книга». Начните с Tengo.",
+          "uk": "Скажіть «У мене є книжка». Почніть з Tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-01:intro1:r1",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro1:r2",
+              "text": "Es un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro1:r3",
+              "text": "Tengo una libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-01:intro1:r1",
+              "text": "Tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro1:r2",
+              "text": "Es un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro1:r3",
+              "text": "Tengo una libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть книга». Начните с Tengo.",
+          "uk": "Скажіть «У мене є книжка». Почніть з Tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-01:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка для вещей",
+        "uk": "Сумка для речей"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет, во что положить вещи. У вас есть сумка. Скажите `Tengo un bolso` — «У меня есть сумка». Соберите `tengo` + `un bolso`. Меняем только название предмета: un остаётся, потому что bolso — мужского рода в испанском. Слово «сумка» в русском женского рода, но испанский артикль выбираем по bolso.",
+        "uk": "Друг шукає, у що покласти речі. У вас є сумка. Скажіть `Tengo un bolso` — «У мене є сумка». Складіть `tengo` + `un bolso`. Міняємо лише назву предмета: un залишається, тому що bolso — чоловічого роду в іспанській. Слово «сумка» в українській жіночого роду, але іспанський артикль вибираємо за bolso."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-01:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть сумка». Начните с Tengo и используйте bolso.",
+          "uk": "Скажіть «У мене є сумка». Почніть з Tengo й використайте bolso."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-01:intro2:r1",
+              "text": "Tengo un bolso."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro2:r2",
+              "text": "Tengo una bolso."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro2:r3",
+              "text": "Soy un bolso."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-01:intro2:r1",
+              "text": "Tengo un bolso."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro2:r2",
+              "text": "Tengo una bolso."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro2:r3",
+              "text": "Soy un bolso."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть сумка». Начните с Tengo и используйте bolso.",
+          "uk": "Скажіть «У мене є сумка». Почніть з Tengo й використайте bolso."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-01:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Машина для поездки",
+        "uk": "Машина для поїздки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обсуждаете, на чём поехать. Скажите `Tengo un carro` — «У меня есть машина». Соберите `tengo` + `un carro`. Эта фраза сообщает о машине, которая у вас есть. Не добавляйте es перед tengo: всю часть «у меня есть» уже выражает tengo. Carro мужского рода, поэтому un.",
+        "uk": "Ви обговорюєте, на чому поїхати. Скажіть `Tengo un carro` — «У мене є машина». Складіть `tengo` + `un carro`. Ця фраза повідомляє про машину, яка у вас є. Не додавайте es перед tengo: усю частину «у мене є» вже виражає tengo. Carro чоловічого роду, тому un."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-01:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня есть машина». Начните с Tengo и используйте carro.",
+          "uk": "Скажіть «У мене є машина». Почніть з Tengo й використайте carro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-01:intro3:r1",
+              "text": "Tengo un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro3:r2",
+              "text": "Es tengo un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro3:r3",
+              "text": "Tengo una carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-01:intro3:r1",
+              "text": "Tengo un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro3:r2",
+              "text": "Es tengo un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-01:intro3:r3",
+              "text": "Tengo una carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня есть машина». Начните с Tengo и используйте carro.",
+          "uk": "Скажіть «У мене є машина». Почніть з Tengo й використайте carro."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7b5d2d1c5b7ebdb1cf6b3688f73147e71da5661672c9bfc8fca8a7e7f35c22e4"
+}

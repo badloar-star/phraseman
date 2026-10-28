@@ -9,6 +9,7 @@ import type {
   DialogueV2StudyTarget,
 } from '../../shared/dialogue_v2_language_pack_contract';
 import { assertDialogueStudyLanguage } from './dialogue_ai_language_contract';
+import { detectLearnerQuestion, isQuestionObjectiveLabel } from './dialogue_v2_goal_progress';
 import {
   authorizeDialogueV2ServerPacket,
   type DialogueV2ServerRelease,
@@ -34,7 +35,7 @@ type CompletionHistoryTurn = Readonly<{
   content: string;
 }>;
 
-type CompletionFeedback = Readonly<{
+export type CompletionFeedback = Readonly<{
   overallAssessment: string;
   nextStep: string;
   speakerPersonaId: string;
@@ -231,6 +232,50 @@ function cloneFeedback(value: unknown): CompletionFeedback {
   });
 }
 
+/**
+ * Итог: «вопросная» цель (Ask… / Hacer una pregunta / Poser une question / Eine Frage stellen), которую модель отметила
+ * not_met, засчитывается, если среди реплик ученика есть вопрос; доказательство — id этой реплики.
+ * зачем (координатор 28.10: «Задать один вопрос» не проходит ни у кого): модель не считала вопросом реплику без «?»
+ * и вопрос в середине реплики. Журнал [DIALOG-GOAL] completion — по каждой «вопросной» цели: что сказала модель, что
+ * стало и каким правилом найден вопрос (без текста ученика).
+ */
+export function creditQuestionObjectives(
+  feedback: CompletionFeedback,
+  packet: DialogueV2LanguagePack,
+  ledger: Readonly<{ ids: readonly string[]; messages: Readonly<Record<string, string>> }>,
+  scenarioId: string,
+): CompletionFeedback {
+  const labels = new Map(packet.scenario.objectives.map((objective) => [objective.id, objective.label] as const));
+  const questionMessage = ledger.ids
+    .map((id) => ({ id, detection: detectLearnerQuestion(ledger.messages[id] ?? '', packet.studyTarget) }))
+    .find((entry) => entry.detection.question) ?? null;
+  let changed = false;
+  const results = feedback.objectiveResults.map((result) => {
+    const label = labels.get(result.objectiveId) ?? '';
+    if (!isQuestionObjectiveLabel(label, packet.studyTarget)) return result;
+    const credit = result.status === 'not_met' && questionMessage !== null;
+    console.log('[DIALOG-GOAL] completion', JSON.stringify({
+      scenarioId,
+      studyTarget: packet.studyTarget,
+      objectiveId: result.objectiveId,
+      label: label.slice(0, 60),
+      modelStatus: result.status,
+      finalStatus: credit ? 'met' : result.status,
+      learnerMessages: ledger.ids.length,
+      questionRule: questionMessage?.detection.rule ?? 'none',
+      decision: result.status === 'met' ? 'model_met' : credit ? 'credited_by_server' : 'no_question_in_transcript',
+    }));
+    if (!credit || !questionMessage) return result;
+    changed = true;
+    return Object.freeze({ objectiveId: result.objectiveId, status: 'met' as const, evidenceMessageIds: Object.freeze([questionMessage.id]) });
+  });
+  if (!changed) return feedback;
+  const evidence = feedback.evidenceMessageIds.includes(questionMessage!.id)
+    ? feedback.evidenceMessageIds
+    : Object.freeze([...feedback.evidenceMessageIds, questionMessage!.id]);
+  return Object.freeze({ ...feedback, objectiveResults: Object.freeze(results), evidenceMessageIds: evidence });
+}
+
 const EVIDENCE_NOTES: Readonly<Record<string, string>> = Object.freeze({
   ru: 'Сообщение из этого диалога.',
   uk: 'Повідомлення з цього діалогу.',
@@ -299,7 +344,7 @@ export async function executeDialogueV2CompletionReview(
   if (!validateDialogueV2CompletionFeedback(parsed, context).ok) {
     throw new DialogueV2CompletionServerError('feedback_invalid');
   }
-  const feedback = cloneFeedback(parsed);
+  const feedback = creditQuestionObjectives(cloneFeedback(parsed), packet, ledger, request.scenarioId);
   if (feedback.languageNote) {
     assertDialogueStudyLanguage({
       text: feedback.languageNote.corrected,

@@ -667,17 +667,50 @@ export async function executeDialogueV2TextTurn(
       // номер хода в сессии — видно, с какого хода модель перестаёт присылать разбор
       sessionTurnCount: groupState.turnCount,
     });
+    console.log('[DIALOG-GOAL]', JSON.stringify({ // guard-ok: ранний выход называет причину
+      scenarioId: input.scenarioId,
+      sessionTurnCount: groupState.turnCount,
+      decision: 'skipped_no_coaching_block',
+      learner: { length: input.userMessage.length, hasQuestionMark: /[?？¿]/u.test(input.userMessage) },
+    }));
   } else {
     const parsedCoaching = parseDialogueV2TurnCoaching(envelope.rawCoaching, {
       replyCount: replies.length,
       userMessage: input.userMessage,
       studyTarget: packet.studyTarget,
       objectiveIds: packet.scenario.objectives.map((objective) => objective.id),
+      // зачем (координатор 28.10): подписи целей — сервер сам засчитывает «вопросную» цель по реплике ученика.
+      objectives: packet.scenario.objectives.map((objective) => ({ id: objective.id, label: objective.label })),
       // зачем (dialogs-038): страховка конца диалога по числу ходов — сервер знает номер хода в сессии.
       sessionTurnCount: groupState.turnCount,
       assertStudyLanguage: dependencies.assertStudyLanguage,
     });
     coaching = parsedCoaching.coaching;
+    // зачем (координатор 28.10, «сперва логи»: «Задать один вопрос» не засчитывался): что решило цель на этом ходе —
+    // что назвала модель, что стало после серверной проверки и почему. Текст ученика не пишем: только длина, есть ли «?»
+    // и какое правило распознало вопрос.
+    const goal = parsedCoaching.goal;
+    const objectives = packet.scenario.objectives;
+    const activeIndex = coaching.activeObjectiveId === null ? -1 : objectives.findIndex((o) => o.id === coaching.activeObjectiveId);
+    console.log('[DIALOG-GOAL]', JSON.stringify({
+      scenarioId: input.scenarioId,
+      studyTarget: packet.studyTarget,
+      sessionTurnCount: groupState.turnCount,
+      objectives: objectives.length,
+      modelActiveObjectiveId: goal?.modelActiveObjectiveId ?? coaching.activeObjectiveId,
+      activeObjectiveId: coaching.activeObjectiveId,
+      activeIndex,
+      activeLabel: activeIndex >= 0 ? objectives[activeIndex].label.slice(0, 60) : null,
+      activeIsQuestionObjective: goal?.activeIsQuestionObjective ?? null,
+      learner: {
+        length: input.userMessage.length,
+        hasQuestionMark: /[?？¿]/u.test(input.userMessage),
+        questionRule: goal?.detection.rule ?? null,
+      },
+      decision: goal?.reason ?? 'no_objectives_context',
+      advanced: goal?.advanced ?? false,
+      dialogueEnded: coaching.dialogueEnded,
+    }));
     if (parsedCoaching.droppedFields.length > 0) {
       // Только имена полей: текст ученика и модели в логи не пишем.
       console.warn('[DIALOGUE-V2] turn:coaching → dropped invalid fields', {

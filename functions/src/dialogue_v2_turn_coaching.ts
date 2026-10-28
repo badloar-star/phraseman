@@ -1,4 +1,9 @@
 import type { DialogueV2StudyTarget } from '../../shared/dialogue_v2_language_pack_contract';
+import {
+  advanceQuestionObjective,
+  type DialogueV2GoalAdvance,
+  type DialogueV2GoalObjective,
+} from './dialogue_v2_goal_progress';
 
 // зачем (владелец 2026-09-30, D112): ход Диалогов V2 должен приносить ВМЕСТЕ с репликой
 // перевод, «Почему так», «Лучше так», подсказку, настроение собеседника и признак
@@ -166,6 +171,9 @@ export function dialogueV2CoachingPromptLines(interfaceLang: DialogueV2CoachingI
     `- "hint": one short ${language} suggestion of the learner's next step toward the current objective. Describe the step; never write the ready-made sentence.`,
     '- "mood": the selected persona\'s current mood caused by the learner\'s behaviour: one of "happy", "smile", "neutral", "sad", "angry".',
     '- "activeObjectiveId": id of the objective the learner should work on next, or null when all objectives are complete.',
+    // зачем (координатор 28.10: «Задать один вопрос» не засчитывался ни у кого): модель не считала вопросом реплику без «?»
+    // и вопрос в середине реплики; сервер страхует это сам (dialogue_v2_goal_progress.ts), а строка помогает модели.
+    'Any learner message that asks something completes an objective that asks the learner to ask a question — with or without a question mark, at the start or in the middle of the message. Then point activeObjectiveId to the next objective.',
     '- "dialogueEnded": true only when the persona has closed the scene with this reply, otherwise false.',
   ]);
 }
@@ -204,6 +212,8 @@ export type DialogueV2CoachingParseContext = Readonly<{
   userMessage: string;
   studyTarget: DialogueV2StudyTarget;
   objectiveIds: readonly string[];
+  /** Цели с подписями (на языке обучения): есть — сервер сам засчитывает «вопросную» цель по реплике ученика. */
+  objectives?: readonly DialogueV2GoalObjective[];
   /** Номер хода в сессии (для страховки конца диалога); нет — страховка по числу ходов не применяется. */
   sessionTurnCount?: number;
   assertStudyLanguage(text: string, studyTarget: DialogueV2StudyTarget): void;
@@ -236,6 +246,8 @@ export type DialogueV2CoachingParseResult = Readonly<{
   coaching: DialogueV2TurnCoaching;
   /** Какие поля отброшены (только имена полей — без текста ученика и модели). */
   droppedFields: readonly string[];
+  /** Решение по цели этого хода (для журнала [DIALOG-GOAL]); нет — подписей целей не передали. */
+  goal?: Readonly<DialogueV2GoalAdvance & { modelActiveObjectiveId: string | null }>;
 }>;
 
 /**
@@ -297,6 +309,18 @@ export function parseDialogueV2TurnCoaching(
     }
   }
 
+  // зачем (координатор 28.10): модель держит активной «вопросную» цель, а ученик спросил — сервер сдвигает указатель сам.
+  const modelActiveObjectiveId = activeObjectiveId;
+  const goal = context.objectives && context.objectives.length > 0
+    ? advanceQuestionObjective({
+      activeObjectiveId,
+      objectives: context.objectives,
+      userMessage: context.userMessage,
+      studyTarget: context.studyTarget,
+    })
+    : null;
+  if (goal) activeObjectiveId = goal.activeObjectiveId;
+
   if (typeof raw.dialogueEnded !== 'boolean') dropped.push('dialogueEnded');
   const endDecision = acceptDialogueEnded({
     modelEnded: raw.dialogueEnded === true,
@@ -319,5 +343,6 @@ export function parseDialogueV2TurnCoaching(
       dialogueEnded,
     }),
     droppedFields: Object.freeze(dropped),
+    ...(goal ? { goal: Object.freeze({ ...goal, modelActiveObjectiveId }) } : {}),
   });
 }

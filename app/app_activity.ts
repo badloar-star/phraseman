@@ -5,6 +5,7 @@ import { getCanonicalUserId } from './user_id_policy';
 import { submitClientReport } from './client_reports';
 import { isAnalyticsConsentGranted } from './analytics_consent';
 import { recordSupportDiagnostic } from './support_diagnostics';
+import { installColdStartDiagnostics } from './cold_start_diagnostics';
 // зачем (координатор 12.10): планировщик пакетного сброса журнала — регистрируется при импорте (без ввода-вывода)
 import './support_diagnostics_flush';
 import { DebugLogger, reportSwallowed, swallowError } from './debug-logger';
@@ -97,6 +98,8 @@ async function queueLocal(record: Record<string, unknown>) {
 
 export async function trackActivity(action: string, meta: AppActivityMeta = {}) {
   try {
+    // зачем (координатор 28.10, жалоба #3): метка холодного старта в журнале обращений; один раз за процесс, первый же trackActivity (экран при старте) запускает её.
+    installColdStartDiagnostics();
     const now = Date.now();
     const key = `${action}|${meta.screen || ''}|${meta.result || ''}|${JSON.stringify(meta.tags || {})}`;
     if (key === lastEventKey && now - lastEventAt < 750) return;

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "выбрать вопрос о наличии или вопрос о месте нужной вещи.",
+    "uk": "обрати запитання про наявність або запитання про місце потрібної речі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подойдёт любая книга",
+        "uk": "Підійде будь-яка книжка"
+      },
+      "bodyByLocale": {
+        "ru": "В комнате ожидания вам хочется почитать. Вы не ищете определённую книгу, поэтому спросите сотрудника `¿Hay un libro aquí?` — «Здесь есть книга?» Соберите `¿Hay un libro` + `aquí?`. Hay спрашивает о наличии. Un libro — какая-нибудь одна книга, которую можно взять для чтения.",
+        "uk": "У кімнаті очікування вам хочеться почитати. Ви не шукаєте певну книжку, тому запитайте працівника `¿Hay un libro aquí?` — «Тут є книжка?» Складіть `¿Hay un libro` + `aquí?`. Hay запитує про наявність. Un libro — якась одна книжка, яку можна взяти для читання."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь есть книга?». Начните с ¿Hay, используйте un libro, место поставьте в конце.",
+          "uk": "Запитайте «Тут є книжка?». Почніть з ¿Hay, використайте un libro, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-31:intro1:r1",
+              "text": "¿Hay un libro aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro1:r2",
+              "text": "¿Dónde está el libro?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro1:r3",
+              "text": "¿Hay una libro aquí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-31:intro1:r1",
+              "text": "¿Hay un libro aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro1:r2",
+              "text": "¿Dónde está el libro?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro1:r3",
+              "text": "¿Hay una libro aquí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь есть книга?». Начните с ¿Hay, используйте un libro, место поставьте в конце.",
+          "uk": "Запитайте «Тут є книжка?». Почніть з ¿Hay, використайте un libro, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нужна именно своя книга",
+        "uk": "Потрібна саме своя книжка"
+      },
+      "bodyByLocale": {
+        "ru": "Перед выходом вы ищете книгу, которую обещали вернуть другу. Спросите домашнего `¿Dónde está el libro?` — «Где книга?» Соберите `¿Dónde` + `está` + `el libro?`. Наличие книги уже известно, нужно узнать, где она лежит. Вопрос ¿Hay...? не решит задачу: ответ «Да, книга есть» ещё не поможет её взять.",
+        "uk": "Перед виходом ви шукаєте книжку, яку обіцяли повернути другу. Запитайте когось із домашніх `¿Dónde está el libro?` — «Де книжка?» Складіть `¿Dónde` + `está` + `el libro?`. Наявність книжки вже відома, потрібно дізнатися, де вона лежить. Запитання ¿Hay...? не вирішить завдання: відповідь «Так, книжка є» ще не допоможе її взяти."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Где книга?». Начните с ¿Dónde, после него поставьте está.",
+          "uk": "Запитайте «Де книжка?». Почніть з ¿Dónde, після нього поставте está."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-31:intro2:r1",
+              "text": "¿Dónde está el libro?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro2:r2",
+              "text": "¿Hay un libro aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro2:r3",
+              "text": "¿Dónde es el libro?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-31:intro2:r1",
+              "text": "¿Dónde está el libro?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro2:r2",
+              "text": "¿Hay un libro aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro2:r3",
+              "text": "¿Dónde es el libro?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Где книга?». Начните с ¿Dónde, после него поставьте está.",
+          "uk": "Запитайте «Де книжка?». Почніть з ¿Dónde, після нього поставте está."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Нужен любой стул",
+        "uk": "Потрібен будь-який стілець"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вошли в комнату и хотите найти место для гостя. Подойдёт любой стул. Спросите помощника `¿Hay una silla aquí?` — «Здесь есть стул?» Соберите `¿Hay una silla` + `aquí?`. Это снова вопрос о наличии, поэтому hay. Перед silla используйте una.",
+        "uk": "Ви ввійшли до кімнати й хочете знайти місце для гостя. Підійде будь-який стілець. Запитайте помічника `¿Hay una silla aquí?` — «Тут є стілець?» Складіть `¿Hay una silla` + `aquí?`. Це знову запитання про наявність, тому hay. Перед silla використайте una."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь есть стул?». Начните с ¿Hay, используйте una silla, место поставьте в конце.",
+          "uk": "Запитайте «Тут є стілець?». Почніть з ¿Hay, використайте una silla, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-31:intro3:r1",
+              "text": "¿Hay una silla aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro3:r2",
+              "text": "¿Hay un silla aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro3:r3",
+              "text": "¿Dónde está la silla?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-31:intro3:r1",
+              "text": "¿Hay una silla aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro3:r2",
+              "text": "¿Hay un silla aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-31:intro3:r3",
+              "text": "¿Dónde está la silla?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь есть стул?». Начните с ¿Hay, используйте una silla, место поставьте в конце.",
+          "uk": "Запитайте «Тут є стілець?». Почніть з ¿Hay, використайте una silla, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cec058df8477255095b127928b55ac0002a7612e85c2d5ae0d3df65d1bd743f6"
+}

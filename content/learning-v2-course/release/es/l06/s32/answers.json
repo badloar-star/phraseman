@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-32:i01",
+    "correctText": "Hay un libro aquí.",
+    "correctResponseId": "es:lesson-06:session-32:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i02",
+    "correctText": "está",
+    "correctResponseId": "es:lesson-06:session-32:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i03",
+    "correctText": "El libro está aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i04",
+    "correctText": "están",
+    "correctResponseId": "es:lesson-06:session-32:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i05",
+    "correctText": "Los libros están en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i06",
+    "correctText": "La silla está allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i07",
+    "correctText": "están",
+    "correctResponseId": "es:lesson-06:session-32:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i08",
+    "correctText": "Hay una silla aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i09",
+    "correctText": "Dónde",
+    "correctResponseId": "es:lesson-06:session-32:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i10",
+    "correctText": "¿Dónde está el libro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i11",
+    "correctText": "¿Hay una silla aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i12",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-32:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i13",
+    "correctText": "Hay libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i14",
+    "correctText": "El libro está en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i15",
+    "correctText": "Las sillas están allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i16",
+    "correctText": "¿Dónde está el libro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i17",
+    "correctText": "¿Hay una silla aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-32:i18",
+    "correctText": "¿Dónde está la silla?",
+    "correctResponseId": null
+  }
+]

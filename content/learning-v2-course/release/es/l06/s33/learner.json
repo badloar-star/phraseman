@@ -1,0 +1,721 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-33",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — algo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — algo",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-33:i01:audio",
+          "transcript": "algo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-33:i01:r1",
+            "targetText": "algo",
+            "meaningByLocale": {
+              "ru": "что-то; например, неизвестный предмет в сумке. 🔊 *algo*",
+              "uk": "щось; наприклад, невідомий предмет у сумці. 🔊 *algo*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "algo",
+          "definitionByLocale": {
+            "ru": "что-то; например, неизвестный предмет в сумке. 🔊 *algo*",
+            "uk": "щось; наприклад, невідомий предмет у сумці. 🔊 *algo*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-33:i02:r1",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i02:r2",
+          "text": "bolsa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-33:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-33:i02:audio",
+          "transcript": "algo"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-33:i02:r1",
+            "targetText": "algo",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-33:i02:r2",
+            "targetText": "bolsa",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит algo — что-то.",
+              "uk": "Звучить algo — щось."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в сумке что-то есть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-33:i03:r1",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i03:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i03:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в сумке что-то есть",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в сумке что-то есть",
+          "uk": "Вставте слово — у сумці щось є"
+        },
+        "gappedTargetPhrase": "Hay ___ en la bolsa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-33:i03:r1",
+            "text": "algo"
+          },
+          {
+            "responseId": "es:lesson-06:session-33:i03:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-33:i03:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в сумке что-то есть",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-33:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в сумке что-то есть",
+            "feedbackByLocale": {
+              "ru": "Нужно «что-то» — algo, без названия предмета.",
+              "uk": "Потрібно «щось» — algo, без назви предмета."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-33:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в сумке что-то есть",
+            "feedbackByLocale": {
+              "ru": "Нужно «что-то» — algo, без названия предмета.",
+              "uk": "Потрібно «щось» — algo, без назви предмета."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — в сумке что-то есть; начните с Hay, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-33:i04:r1",
+          "text": "Плитки: bolsa"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i04:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i04:r3",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i04:r4",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i04:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i04:r6",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — в сумке что-то есть; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay algo en la bolsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в сумке что-то есть; начните с Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — у сумці щось є; почніть з Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "algo",
+          "en",
+          "la",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-33:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — в сумке что-то есть; начните с Hay, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "algo без артикля, а bolsa женского рода.",
+              "uk": "algo без артикля, а bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в сумке что-то есть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-33:i05:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i05:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i05:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в сумке что-то есть",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в сумке что-то есть",
+          "uk": "Вставте слово — у сумці щось є"
+        },
+        "gappedTargetPhrase": "Hay algo ___ la bolsa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-33:i05:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-33:i05:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-33:i05:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в сумке что-то есть",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-33:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в сумке что-то есть",
+            "feedbackByLocale": {
+              "ru": "Для места «в сумке» нужно en.",
+              "uk": "Для місця «у сумці» потрібно en."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-33:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в сумке что-то есть",
+            "feedbackByLocale": {
+              "ru": "Перед местом нужно en.",
+              "uk": "Перед місцем потрібно en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь что-то есть; начните с Hay, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-33:i06:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i06:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i06:r3",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i06:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь что-то есть; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay algo aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь что-то есть; начните с Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — тут щось є; почніть з Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "algo",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-33:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь что-то есть; начните с Hay, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "перед algo артикль не нужен.",
+              "uk": "перед algo артикль не потрібен."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — там что-то есть; начните с Hay, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-33:i07:r1",
+          "text": "Плитки: allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i07:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i07:r3",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i07:r4",
+          "text": "aquí."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — там что-то есть; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay algo allí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — там что-то есть; начните с Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — там щось є; почніть з Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "algo",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "aquí"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-33:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — там что-то есть; начните с Hay, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "нужно «там».",
+              "uk": "потрібно «там»."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-33:i08:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i08:r2",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i08:r3",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i08:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i08:r5",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i08:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-33:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-33:i08:audio",
+          "transcript": "Hay algo en la bolsa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay algo en la bolsa.",
+        "orderedTokens": [
+          "Hay",
+          "algo",
+          "en",
+          "la",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-33:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la.",
+              "uk": "звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — там что-то есть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-33:i09:r1",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i09:r2",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-33:i09:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — там что-то есть",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — там что-то есть",
+          "uk": "Вставте слово — там щось є"
+        },
+        "gappedTargetPhrase": "Hay algo ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-33:i09:r1",
+            "text": "allí"
+          },
+          {
+            "responseId": "es:lesson-06:session-33:i09:r2",
+            "text": "aquí"
+          },
+          {
+            "responseId": "es:lesson-06:session-33:i09:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — там что-то есть",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-33:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — там что-то есть",
+            "feedbackByLocale": {
+              "ru": "Нужно «там» — allí.",
+              "uk": "Потрібно «там» — allí."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-33:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — там что-то есть",
+            "feedbackByLocale": {
+              "ru": "Место «там» — allí.",
+              "uk": "Місце «там» — allí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — в сумке что-то есть; начните с Hay, используйте la bolsa, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — в сумке что-то есть; начните с Hay, используйте la bolsa, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-33:i10:audio",
+          "transcript": "Hay algo en la bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay algo en la bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь что-то есть; начните с Hay, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь что-то есть; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-33:i11:audio",
+          "transcript": "Hay algo aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay algo aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — там что-то есть; начните с Hay, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-33:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — там что-то есть; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-33:i12:audio",
+          "transcript": "Hay algo allí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay algo allí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-33:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — вы заметили неизвестный предмет в комнате: «В комнате что-то есть»; начните с Hay, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-33:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — вы заметили неизвестный предмет в комнате: «В комнате что-то есть»; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-33:i13:audio",
+          "transcript": "Hay algo en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay algo en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "f2328135601a7b1f6f0ee66297016f6ce28830077eb81718947e57e269638d5e"
+}

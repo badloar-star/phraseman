@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-32",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-32:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-32:intro1:r2": {
+          "ru": "Silla женского рода: una.",
+          "uk": "Silla жіночого роду: una."
+        },
+        "es:lesson-06:session-32:intro1:r3": {
+          "ru": "Это место конкретного стула, а мы впервые сообщаем о наличии.",
+          "uk": "Це місце конкретного стільця, а ми вперше повідомляємо про наявність."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-32:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-32:intro2:r2": {
+          "ru": "Книг несколько: están.",
+          "uk": "Книжок кілька: están."
+        },
+        "es:lesson-06:session-32:intro2:r3": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-32:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-32:intro3:r2": {
+          "ru": "Книга одна: está.",
+          "uk": "Книжка одна: está."
+        },
+        "es:lesson-06:session-32:intro3:r3": {
+          "ru": "Это вопрос о наличии, а нужно место конкретной книги.",
+          "uk": "Це запитання про наявність, а потрібне місце конкретної книжки."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4a8af5604024dbfab4c230501d8c64272ecfa0cfa581cd7da6c862533e1ca606"
+}

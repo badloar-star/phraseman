@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-30",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-30:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-30:intro1:r2": {
+          "ru": "Место книги спрашиваем через está.",
+          "uk": "Про місце книжки запитуємо через está."
+        },
+        "es:lesson-06:session-30:intro1:r3": {
+          "ru": "После dónde нужно está.",
+          "uk": "Після dónde потрібно está."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-30:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-30:intro2:r2": {
+          "ru": "Silla женского рода: la.",
+          "uk": "Silla жіночого роду: la."
+        },
+        "es:lesson-06:session-30:intro2:r3": {
+          "ru": "Один стул: está.",
+          "uk": "Один стілець: está."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-30:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-30:intro3:r2": {
+          "ru": "Это снова вопрос, а нужен ответ о месте.",
+          "uk": "Це знову запитання, а потрібна відповідь про місце."
+        },
+        "es:lesson-06:session-30:intro3:r3": {
+          "ru": "В ответе нужна está.",
+          "uk": "У відповіді потрібна está."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "674b08433736b21a514ddd0aac88c049da3ea60f871e307d655b0f66f9f7b3c2"
+}

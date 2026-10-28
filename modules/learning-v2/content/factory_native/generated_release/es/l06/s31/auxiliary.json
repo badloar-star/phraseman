@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-31",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-31:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-31:intro1:r2": {
+          "ru": "Так ищут конкретную книгу, а здесь спрашиваем о наличии любой.",
+          "uk": "Так шукають конкретну книжку, а тут запитуємо про наявність будь-якої."
+        },
+        "es:lesson-06:session-31:intro1:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-31:intro2:r2": {
+          "ru": "Это вопрос о наличии, а нужно место известной книги.",
+          "uk": "Це запитання про наявність, а потрібне місце відомої книжки."
+        },
+        "es:lesson-06:session-31:intro2:r3": {
+          "ru": "О месте вещи спрашиваем через está.",
+          "uk": "Про місце речі запитуємо через está."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-31:intro3:r2": {
+          "ru": "Silla женского рода: una.",
+          "uk": "Silla жіночого роду: una."
+        },
+        "es:lesson-06:session-31:intro3:r3": {
+          "ru": "Так спрашивают о месте конкретного стула, а здесь нужен любой.",
+          "uk": "Так запитують про місце конкретного стільця, а тут потрібен будь-який."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e52c993980814970e62fa6b32ec95946066220aba98b601ee0a62d530575de49"
+}

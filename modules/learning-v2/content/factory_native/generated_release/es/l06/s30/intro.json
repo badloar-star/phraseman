@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-30",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о месте конкретной вещи со словом dónde.",
+    "uk": "запитати про місце конкретної речі зі словом dónde."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-30:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спросить, а не угадывать",
+        "uk": "Запитати, а не вгадувати"
+      },
+      "bodyByLocale": {
+        "ru": "Вы не видите нужную книгу и обращаетесь к другу: `¿Dónde está el libro?` — «Где книга?» Соберите `¿Dónde` + `está` + `el libro?`. Dónde означает «где» и начинает вопрос. После него ставим está, потом называем вещь. На dónde сохраняем знак ударения. Вместо перебора всех столов задаём один вопрос о месте.",
+        "uk": "Ви не бачите потрібної книжки й звертаєтеся до друга: `¿Dónde está el libro?` — «Де книжка?» Складіть `¿Dónde` + `está` + `el libro?`. Dónde означає «де» й починає запитання. Після нього ставимо está, потім називаємо річ. На dónde зберігаємо знак наголосу. Замість перебирання всіх столів ставимо одне запитання про місце."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-30:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Где книга?». Начните с ¿Dónde, затем поставьте está и название вещи.",
+          "uk": "Запитайте «Де книжка?». Почніть з ¿Dónde, потім поставте está й назву речі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-30:intro1:r1",
+              "text": "¿Dónde está el libro?"
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro1:r2",
+              "text": "¿Dónde es el libro?"
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro1:r3",
+              "text": "¿Dónde el libro?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-30:intro1:r1",
+              "text": "¿Dónde está el libro?"
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro1:r2",
+              "text": "¿Dónde es el libro?"
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro1:r3",
+              "text": "¿Dónde el libro?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Где книга?». Начните с ¿Dónde, затем поставьте está и название вещи.",
+          "uk": "Запитайте «Де книжка?». Почніть з ¿Dónde, потім поставте está й назву речі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-30:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Найти нужный стул",
+        "uk": "Знайти потрібний стілець"
+      },
+      "bodyByLocale": {
+        "ru": "Вы готовите комнату к приходу гостя и ищете отложенный для него стул. Спросите помощника `¿Dónde está la silla?` — «Где стул?» Соберите `¿Dónde está` + `la silla?`. Меняем название вещи. Silla женского рода, поэтому la. Está сохраняем: стул один.",
+        "uk": "Ви готуєте кімнату до приходу гостя й шукаєте відкладений для нього стілець. Запитайте помічника `¿Dónde está la silla?` — «Де стілець?» Складіть `¿Dónde está` + `la silla?`. Змінюємо назву речі. Silla жіночого роду, тому la. Está зберігаємо: стілець один."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-30:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Где стул?». Начните с ¿Dónde, затем поставьте está и название вещи.",
+          "uk": "Запитайте «Де стілець?». Почніть з ¿Dónde, потім поставте está й назву речі."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-30:intro2:r1",
+              "text": "¿Dónde está la silla?"
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro2:r2",
+              "text": "¿Dónde está el silla?"
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro2:r3",
+              "text": "¿Dónde están la silla?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-30:intro2:r1",
+              "text": "¿Dónde está la silla?"
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro2:r2",
+              "text": "¿Dónde está el silla?"
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro2:r3",
+              "text": "¿Dónde están la silla?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Где стул?». Начните с ¿Dónde, затем поставьте está и название вещи.",
+          "uk": "Запитайте «Де стілець?». Почніть з ¿Dónde, потім поставте está й назву речі."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-30:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответить тому, кто ищет",
+        "uk": "Відповісти тому, хто шукає"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь друг ищет книгу и спрашивает её место у вас. Вы видите её рядом. Ответьте `El libro está aquí` — «Книга здесь». Соберите `El libro` + `está` + `aquí`. В ответе сначала называем вещь, затем её место. Dónde не повторяем: мы уже отвечаем «где», а не задаём встречный вопрос.",
+        "uk": "Тепер друг шукає книжку й запитує про її місце у вас. Ви бачите її поруч. Дайте відповідь `El libro está aquí` — «Книжка тут». Складіть `El libro` + `está` + `aquí`. У відповіді спочатку називаємо річ, потім її місце. Dónde не повторюємо: ми вже відповідаємо «де», а не ставимо зустрічне запитання."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-30:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Книга здесь». Начните с El libro, место поставьте в конце.",
+          "uk": "Дайте відповідь «Книжка тут». Почніть з El libro, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-30:intro3:r1",
+              "text": "El libro está aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro3:r2",
+              "text": "¿Dónde está el libro?"
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro3:r3",
+              "text": "El libro aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-30:intro3:r1",
+              "text": "El libro está aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro3:r2",
+              "text": "¿Dónde está el libro?"
+            },
+            {
+              "responseId": "es:lesson-06:session-30:intro3:r3",
+              "text": "El libro aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Книга здесь». Начните с El libro, место поставьте в конце.",
+          "uk": "Дайте відповідь «Книжка тут». Почніть з El libro, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "441363627f52c74e74c5c5c76ca35b2ff45a362703ad7eb92f475d0fbf6be502"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-31:i01",
+    "correctText": "¿Dónde está el libro?",
+    "correctResponseId": "es:lesson-06:session-31:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-31:i02",
+    "correctText": "Hay",
+    "correctResponseId": "es:lesson-06:session-31:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-31:i03",
+    "correctText": "¿Hay un libro aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-31:i04",
+    "correctText": "Dónde",
+    "correctResponseId": "es:lesson-06:session-31:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-31:i05",
+    "correctText": "¿Dónde está el libro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-31:i06",
+    "correctText": "¿Hay una silla aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-31:i07",
+    "correctText": "¿Dónde está el libro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-31:i08",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-06:session-31:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-31:i09",
+    "correctText": "¿Hay un libro aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-31:i10",
+    "correctText": "¿Dónde está el libro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-31:i11",
+    "correctText": "¿Hay una silla aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-31:i12",
+    "correctText": "¿Dónde está la silla?",
+    "correctResponseId": null
+  }
+]

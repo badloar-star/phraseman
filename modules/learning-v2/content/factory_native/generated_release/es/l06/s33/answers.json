@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-33:i01",
+    "correctText": "algo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i02",
+    "correctText": "algo",
+    "correctResponseId": "es:lesson-06:session-33:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i03",
+    "correctText": "algo",
+    "correctResponseId": "es:lesson-06:session-33:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i04",
+    "correctText": "Hay algo en la bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i05",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-33:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i06",
+    "correctText": "Hay algo aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i07",
+    "correctText": "Hay algo allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i08",
+    "correctText": "Hay algo en la bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i09",
+    "correctText": "allí",
+    "correctResponseId": "es:lesson-06:session-33:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i10",
+    "correctText": "Hay algo en la bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i11",
+    "correctText": "Hay algo aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i12",
+    "correctText": "Hay algo allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-33:i13",
+    "correctText": "Hay algo en la habitación.",
+    "correctResponseId": null
+  }
+]

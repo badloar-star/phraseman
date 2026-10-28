@@ -2170,4 +2170,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать hay для наличия и están для места нескольких известных вещей.","uk":"обирати hay для наявності й están для місця кількох відомих речей."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 30,
+    sourceFingerprint: "4ee337e7fac7bef3e0dfcedaf1a38400bc826569a95441b9f88dbc6cf3610c5a",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о месте конкретной вещи со словом dónde.","uk":"запитати про місце конкретної речі зі словом dónde."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 31,
+    sourceFingerprint: "4760bc050cbe8c5f423b389de04fb8d1917afba6947cc005cfb859478f0dde33",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать вопрос о наличии или вопрос о месте нужной вещи.","uk":"обрати запитання про наявність або запитання про місце потрібної речі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 32,
+    sourceFingerprint: "ba7928d2274dd8feac198ff1c3f8e4179fe7a55f6e892b06fa82d1d6a8ad2014",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различать наличие и местоположение, задавать вопрос «где» и отвечать на него.","uk":"розрізняти наявність і місце, ставити запитання «де» й відповідати на нього."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 33,
+    sourceFingerprint: "d6c5b262310f7b939274062f4228bb19d57b2a0c1d90d6836c107576263bf81b",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сообщить о чём-то, не называя предмет.","uk":"повідомити про щось, не називаючи предмет."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

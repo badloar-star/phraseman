@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-33",
+  "learningOutcomeByLocale": {
+    "ru": "сообщить о чём-то, не называя предмет.",
+    "uk": "повідомити про щось, не називаючи предмет."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-33:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Не видно, что внутри",
+        "uk": "Не видно, що всередині"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заглянули в сумку и заметили на дне какой-то предмет, но пока не различаете его. Скажите `Hay algo en la bolsa` — «В сумке что-то есть». Соберите `Hay` + `algo` + `en la bolsa`. Algo означает «что-то» и занимает место названия предмета. Перед algo не добавляем un или una: нам пока даже неизвестно, какой предмет выбирать.",
+        "uk": "Ви зазирнули в сумку й помітили на дні якийсь предмет, але поки не розрізняєте його. Скажіть `Hay algo en la bolsa` — «У сумці щось є». Складіть `Hay` + `algo` + `en la bolsa`. Algo означає «щось» і займає місце назви предмета. Перед algo не додаємо un чи una: нам поки навіть невідомо, який предмет обирати."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-33:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В сумке что-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «У сумці щось є». Почніть з Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-33:intro1:r1",
+              "text": "Hay algo en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro1:r2",
+              "text": "Hay un algo en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro1:r3",
+              "text": "Hay algo la bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-33:intro1:r1",
+              "text": "Hay algo en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro1:r2",
+              "text": "Hay un algo en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro1:r3",
+              "text": "Hay algo la bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В сумке что-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «У сумці щось є». Почніть з Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-33:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Что-то рядом",
+        "uk": "Щось поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Собирая вещи, вы заметили что-то под тканью рядом с собой. Сообщите другу `Hay algo aquí` — «Здесь что-то есть». Соберите `Hay algo` + `aquí`. Вместо названия сумки используем короткое слово места. Algo не требует объяснять, что именно вы нашли: сначала заметили, потом разберётесь.",
+        "uk": "Збираючи речі, ви помітили щось під тканиною поруч із собою. Повідомте другу `Hay algo aquí` — «Тут щось є». Складіть `Hay algo` + `aquí`. Замість назви сумки використовуємо коротке слово місця. Algo не вимагає пояснювати, що саме ви знайшли: спочатку помітили, потім розберетеся."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-33:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь что-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут щось є». Почніть з Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-33:intro2:r1",
+              "text": "Hay algo aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro2:r2",
+              "text": "Hay una algo aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro2:r3",
+              "text": "Hay algo allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-33:intro2:r1",
+              "text": "Hay algo aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro2:r2",
+              "text": "Hay una algo aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro2:r3",
+              "text": "Hay algo allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь что-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут щось є». Почніть з Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-33:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Указать вдаль",
+        "uk": "Указати вдалину"
+      },
+      "bodyByLocale": {
+        "ru": "Вы замечаете какой-то предмет в дальнем углу и показываете другу. Скажите `Hay algo allí` — «Там что-то есть». Соберите `Hay algo` + `allí`. Меняем здесь на там, а hay algo сохраняем. Фраза по-прежнему сообщает о наличии неизвестного предмета.",
+        "uk": "Ви помічаєте якийсь предмет у дальньому кутку й показуєте другу. Скажіть `Hay algo allí` — «Там щось є». Складіть `Hay algo` + `allí`. Змінюємо тут на там, а hay algo зберігаємо. Фраза й далі повідомляє про наявність невідомого предмета."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-33:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Там что-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Там щось є». Почніть з Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-33:intro3:r1",
+              "text": "Hay algo allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro3:r2",
+              "text": "Hay algo aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro3:r3",
+              "text": "Hay un algo allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-33:intro3:r1",
+              "text": "Hay algo allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro3:r2",
+              "text": "Hay algo aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-33:intro3:r3",
+              "text": "Hay un algo allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Там что-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Там щось є». Почніть з Hay, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6bd67ad4c0f34e974e8ce9d9d0a43e56554c35fa4fe00c4a7941223a0f68c778"
+}

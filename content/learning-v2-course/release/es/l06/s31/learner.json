@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-31",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-31:i01:r1",
+          "text": "¿Dónde está el libro?"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i01:r2",
+          "text": "¿Hay un libro aquí?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-31:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-31:i01:audio",
+          "transcript": "¿Dónde está el libro?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-31:i01:r1",
+            "targetText": "¿Dónde está el libro?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-31:i01:r2",
+            "targetText": "¿Hay un libro aquí?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-31:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "Звучит вопрос о месте конкретной книги.",
+              "uk": "Звучить запитання про місце конкретної книжки."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — здесь есть книга?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-31:i02:r1",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i02:r2",
+          "text": "Dónde"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i02:r3",
+          "text": "El"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — здесь есть книга?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть книга?",
+          "uk": "Вставте слово — тут є книжка?"
+        },
+        "gappedTargetPhrase": "¿___ un libro aquí?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-31:i02:r1",
+            "text": "Hay"
+          },
+          {
+            "responseId": "es:lesson-06:session-31:i02:r2",
+            "text": "Dónde"
+          },
+          {
+            "responseId": "es:lesson-06:session-31:i02:r3",
+            "text": "El"
+          }
+        ],
+        "testedDimension": "Вставьте слово — здесь есть книга?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть книга?",
+            "feedbackByLocale": {
+              "ru": "Здесь спрашиваем о наличии: Hay.",
+              "uk": "Тут запитуємо про наявність: Hay."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть книга?",
+            "feedbackByLocale": {
+              "ru": "Вопрос о наличии начинаем с ¿Hay.",
+              "uk": "Запитання про наявність починаємо з ¿Hay."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь есть книга?; начните с ¿Hay, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-31:i03:r1",
+          "text": "Плитки: aquí?"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i03:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i03:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i03:r4",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i03:r5",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь есть книга?; начните с ¿Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay un libro aquí?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть книга?; начните с ¿Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — тут є книжка?; почніть з ¿Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "un",
+          "libro",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-31:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь есть книга?; начните с ¿Hay, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "ищем любую книгу — un libro.",
+              "uk": "шукаємо будь-яку книжку — un libro."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — где книга?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-31:i04:r1",
+          "text": "Dónde"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i04:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i04:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — где книга?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — где книга?",
+          "uk": "Вставте слово — де книжка?"
+        },
+        "gappedTargetPhrase": "¿___ está el libro?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-31:i04:r1",
+            "text": "Dónde"
+          },
+          {
+            "responseId": "es:lesson-06:session-31:i04:r2",
+            "text": "Hay"
+          },
+          {
+            "responseId": "es:lesson-06:session-31:i04:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — где книга?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-31:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — где книга?",
+            "feedbackByLocale": {
+              "ru": "Нужно спросить «где» — dónde.",
+              "uk": "Потрібно запитати «де» — dónde."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-31:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — где книга?",
+            "feedbackByLocale": {
+              "ru": "Вопрос о месте начинаем с ¿Dónde.",
+              "uk": "Запитання про місце починаємо з ¿Dónde."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — где книга?; начните с ¿Dónde, после него поставьте está",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-31:i05:r1",
+          "text": "Плитки: libro?"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i05:r2",
+          "text": "¿Dónde"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i05:r3",
+          "text": "está"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i05:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i05:r5",
+          "text": "hay."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — где книга?; начните с ¿Dónde, после него поставьте está",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Dónde está el libro?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — где книга?; начните с ¿Dónde, после него поставьте está",
+          "uk": "Зберіть фразу — де книжка?; почніть з ¿Dónde, після нього поставте está"
+        },
+        "orderedTokens": [
+          "¿Dónde",
+          "está",
+          "el",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "hay"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-31:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — где книга?; начните с ¿Dónde, после него поставьте está",
+            "feedbackByLocale": {
+              "ru": "ищем место конкретной книги.",
+              "uk": "шукаємо місце конкретної книжки."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь есть стул?; начните с ¿Hay, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-31:i06:r1",
+          "text": "Плитки: aquí?"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i06:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i06:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i06:r4",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i06:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь есть стул?; начните с ¿Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay una silla aquí?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть стул?; начните с ¿Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — тут є стілець?; почніть з ¿Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "una",
+          "silla",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-31:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь есть стул?; начните с ¿Hay, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "silla женского рода.",
+              "uk": "silla жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-31:i07:r1",
+          "text": "Плитки: ¿Dónde"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i07:r2",
+          "text": "está"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i07:r3",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i07:r4",
+          "text": "libro?"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i07:r5",
+          "text": "hay."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-31:i07:audio",
+          "transcript": "¿Dónde está el libro?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Dónde está el libro?",
+        "orderedTokens": [
+          "¿Dónde",
+          "está",
+          "el",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "hay"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-31:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит está.",
+              "uk": "звучить está."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — здесь есть стул?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-31:i08:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i08:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-31:i08:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — здесь есть стул?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть стул?",
+          "uk": "Вставте слово — тут є стілець?"
+        },
+        "gappedTargetPhrase": "¿Hay ___ silla aquí?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-31:i08:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-06:session-31:i08:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-31:i08:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — здесь есть стул?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть стул?",
+            "feedbackByLocale": {
+              "ru": "Silla женского рода: una.",
+              "uk": "Silla жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть стул?",
+            "feedbackByLocale": {
+              "ru": "Silla — единственное число, женский род: una.",
+              "uk": "Silla — однина, жіночий рід: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — нужна любая книга для чтения: «Здесь есть книга?»; начните с ¿Hay, используйте un libro, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — нужна любая книга для чтения: «Здесь есть книга?»; начните с ¿Hay, используйте un libro, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-31:i09:audio",
+          "transcript": "¿Hay un libro aquí?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay un libro aquí?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — ищете обещанную другу книгу: «Где книга?»; начните с ¿Dónde, после него поставьте está, используйте el libro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-31:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — ищете обещанную другу книгу: «Где книга?»; начните с ¿Dónde, после него поставьте está, используйте el libro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-31:i10:audio",
+          "transcript": "¿Dónde está el libro?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Dónde está el libro?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — нужен любой стул: «Здесь есть стул?»; начните с ¿Hay, используйте una silla, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — нужен любой стул: «Здесь есть стул?»; начните с ¿Hay, используйте una silla, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-31:i11:audio",
+          "transcript": "¿Hay una silla aquí?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay una silla aquí?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-31:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — теперь ищете определённый стул: «Где стул?»; начните с ¿Dónde, после него поставьте está, используйте la silla",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-31:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — теперь ищете определённый стул: «Где стул?»; начните с ¿Dónde, после него поставьте está, используйте la silla",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-31:i12:audio",
+          "transcript": "¿Dónde está la silla?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Dónde está la silla?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a0f9de0934a47c2d8047c925fca18f15e43476cf7ddd8e6a817ca10b8b1f5b3f"
+}

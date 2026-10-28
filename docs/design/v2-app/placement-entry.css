@@ -1,0 +1,35 @@
+/* placement-entry.css — кнопка «Проверить уровень» и плашка «Откроется после…» поверх реальных кадров (см. placement-entry.app.js).
+   Стиль снят с кадра: стекло 16 % белого на обложке, карточка-плашка в тоне карточек экрана, кегли 16/21 и 13/17 (D145).
+   Движение: тряска замка 320 мс как в приложении (±4 px), плашка выезжает 260 мс ease-out и уходит сама через 4 с. */
+:root { --pe-out: cubic-bezier(.23, 1, .32, 1); }
+.pe-pair { display: flex; gap: 28px; flex-wrap: wrap; }
+.pe-note { color: #8E8E96; font-size: 14px; line-height: 20px; margin: -6px 0 14px; max-width: 900px; }
+/* кнопка на обложке — ровно styles.glass обложки Сезона (SeasonCourseView.tsx:404): высота 50, r25, поля 22, зазор 10, стекло 16 % белого;
+   текст glassText 16/21 600 белый; значок school-outline 18 (как у «Не хочу с начала», testID season-not-from-start) */
+.pe-glass { position: absolute; left: 20px; right: 20px; height: 50px; border-radius: 25px; padding: 0 22px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: rgba(255, 255, 255, .16); color: #fff; font-size: 16px; line-height: 21px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.pe-glass .io { font-size: 18px; }
+.pe-glass:active { transform: scale(.97); }
+/* строка прогресса не-новичка (как в коде: полоска 72×4 + resumeLine 13/17) — правкой кадра на месте кнопки новичка */
+.pe-prog { position: absolute; left: 20px; display: flex; align-items: center; gap: 10px; color: rgba(255, 255, 255, .88); font-size: 13px; line-height: 17px; font-variant-numeric: tabular-nums; }
+.pe-prog .bar { width: 72px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.pe-prog .bar i { display: block; height: 100%; background: #fff; }
+/* заплатка цветом сцены на месте кнопки новичка — цвет берётся с самого кадра (пиксель рядом), чтобы не было шва */
+.pe-patch { position: absolute; left: 0; right: 0; }
+/* ломоть закрытой карты — его трясём (замок 22.10: та же тряска ±4 px, 320 мс) */
+.rf-slice.pe-card { cursor: pointer; }
+.rf-slice.pe-card.shake { animation: pe-shake .32s var(--pe-out); }
+@keyframes pe-shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-4px); } 45% { transform: translateX(4px); } 70% { transform: translateX(-3px); } 85% { transform: translateX(2px); } }
+/* плашка «Откроется после…» — по образцу тост-плашки списка уроков (lessons.tsx:5904): внизу над таб-баром, 24/24, плита opaqueControl,
+   r18, тень плашки без кромки, поля 20/12, текст 16/21 700 по центру; кнопка под текстом — стеклянная/тональная, как «вторичная» кнопка курса */
+.pe-plate { position: absolute; left: 24px; right: 24px; bottom: 112px; z-index: 40; border-radius: 18px; padding: 12px 20px; text-align: center; background: var(--pe-ctl, #262C32); color: var(--pe-tx, #F7FAFE);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .28), 0 2px 6px rgba(0, 0, 0, .18); opacity: 0; transform: translateY(10px); transition: opacity .24s var(--pe-out), transform .26s var(--pe-out); pointer-events: none; }
+.pe-plate.on { opacity: 1; transform: none; pointer-events: auto; }
+.pe-plate .tx { font-size: 16px; line-height: 21px; font-weight: 700; }
+.pe-plate .btn { margin: 10px auto 0; height: 44px; padding: 0 20px; border-radius: 22px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; line-height: 21px; font-weight: 600;
+  background: color-mix(in srgb, var(--pe-tx, #fff) 12%, transparent); color: var(--pe-tx, #F7FAFE); cursor: pointer; white-space: nowrap; }
+.pe-plate .btn .io { font-size: 18px; }
+.pe-plate .btn:active { transform: scale(.97); }
+.pe-tap { position: absolute; left: 0; right: 0; cursor: pointer; }
+.pe-var { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 14px; }
+.pe-var .chp { font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { .rf-slice.pe-card.shake, .pe-plate { animation: none !important; transition: none !important; } }

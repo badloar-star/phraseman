@@ -1,0 +1,13 @@
+/* real-frame.css — телефон из реального кадра: ломти кадра, вставки, закреплённые статус-бар и таббар (см. real-frame.js) */
+.ph.rf { height: 955px; background: #0B0D10; }
+.ph.rf .rf-status { position: absolute; left: 0; right: 0; top: 0; z-index: 30; height: 40px; background-repeat: no-repeat; }
+.ph.rf .rf-tab { position: absolute; left: 0; right: 0; bottom: 0; z-index: 30; background-repeat: no-repeat; }
+.ph.rf .rf-scr { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; }
+.ph.rf .rf-scr::-webkit-scrollbar { display: none; }
+.ph.rf .rf-body { position: relative; padding-top: 40px; padding-bottom: 92px; }
+.ph.rf .rf-slice { width: 430px; background-repeat: no-repeat; }
+.ph.rf .rf-ins { position: relative; }
+.ph.rf-missing { display: flex; align-items: center; justify-content: center; background: #15171B; color: #8E8E96; font-size: 15px; line-height: 20px; text-align: center; }
+.ph.rf-missing .rf-none small { display: block; margin-top: 6px; font-size: 12px; color: #6B6E76; font-family: ui-monospace, Menlo, Consolas, monospace; }
+/* наложенный блок — в координатах телефона (px от верха кадра × 0,398) */
+.ph.rf .rf-over { position: absolute; left: 0; right: 0; }

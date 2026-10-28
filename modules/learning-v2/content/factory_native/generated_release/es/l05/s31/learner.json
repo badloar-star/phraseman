@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-31",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-31:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-31:i01:r1",
+          "text": "tenéis"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i01:r2",
+          "text": "tienes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-31:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-31:i01:audio",
+          "transcript": "tenéis"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-31:i01:r1",
+            "targetText": "tenéis",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-31:i01:r2",
+            "targetText": "tienes",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-31:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит tenéis с ударением на последнем слоге.",
+              "uk": "Звучить tenéis із наголосом на останньому складі."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вопрос компании в Испании",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-31:i02:r1",
+          "text": "tenéis"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i02:r2",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i02:r3",
+          "text": "tienes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вопрос компании в Испании",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вопрос компании в Испании",
+          "uk": "Вставте слово — запитання компанії в Іспанії"
+        },
+        "gappedTargetPhrase": "¿Vosotros ___ tiempo?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-31:i02:r1",
+            "text": "tenéis"
+          },
+          {
+            "responseId": "es:lesson-05:session-31:i02:r2",
+            "text": "tienen"
+          },
+          {
+            "responseId": "es:lesson-05:session-31:i02:r3",
+            "text": "tienes"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вопрос компании в Испании",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-31:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос компании в Испании",
+            "feedbackByLocale": {
+              "ru": "В этой паре с vosotros нужно tenéis.",
+              "uk": "У цій парі з vosotros потрібно tenéis."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-31:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос компании в Испании",
+            "feedbackByLocale": {
+              "ru": "Tienes — для tú; с vosotros нужно tenéis.",
+              "uk": "Tienes — для tú; з vosotros потрібно tenéis."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вопрос о времени в Испании; начните с ¿Vosotros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-31:i03:r1",
+          "text": "Плитки: tiempo?"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i03:r2",
+          "text": "¿Vosotros"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i03:r3",
+          "text": "tenéis"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i03:r4",
+          "text": "tienen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вопрос о времени в Испании; начните с ¿Vosotros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Vosotros tenéis tiempo?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вопрос о времени в Испании; начните с ¿Vosotros",
+          "uk": "Зберіть фразу — запитання про час в Іспанії; почніть з ¿Vosotros"
+        },
+        "orderedTokens": [
+          "¿Vosotros",
+          "tenéis",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "tienen"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-31:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вопрос о времени в Испании; начните с ¿Vosotros",
+            "feedbackByLocale": {
+              "ru": "здесь vosotros tenéis.",
+              "uk": "тут vosotros tenéis."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вопрос о книге в Испании",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-31:i04:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i04:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i04:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вопрос о книге в Испании",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вопрос о книге в Испании",
+          "uk": "Вставте слово — запитання про книжку в Іспанії"
+        },
+        "gappedTargetPhrase": "¿Vosotros tenéis ___ libro?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-31:i04:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-05:session-31:i04:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-31:i04:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вопрос о книге в Испании",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-31:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос о книге в Испании",
+            "feedbackByLocale": {
+              "ru": "Libro мужского рода: un.",
+              "uk": "Libro чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-31:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос о книге в Испании",
+            "feedbackByLocale": {
+              "ru": "Книга одна: un libro.",
+              "uk": "Книжка одна: un libro."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вопрос о книге в Испании; начните с ¿Vosotros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-31:i05:r1",
+          "text": "Плитки: un"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i05:r2",
+          "text": "libro?"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i05:r3",
+          "text": "¿Vosotros"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i05:r4",
+          "text": "tenéis"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i05:r5",
+          "text": "tienes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вопрос о книге в Испании; начните с ¿Vosotros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Vosotros tenéis un libro?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вопрос о книге в Испании; начните с ¿Vosotros",
+          "uk": "Зберіть фразу — запитання про книжку в Іспанії; почніть з ¿Vosotros"
+        },
+        "orderedTokens": [
+          "¿Vosotros",
+          "tenéis",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "tienes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-31:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вопрос о книге в Испании; начните с ¿Vosotros",
+            "feedbackByLocale": {
+              "ru": "с vosotros нужно tenéis.",
+              "uk": "з vosotros потрібно tenéis."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — вопрос группе о времени в Мексике; начните с ¿Ustedes",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-31:i06:r1",
+          "text": "Плитки: tiempo?"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i06:r2",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i06:r3",
+          "text": "¿Ustedes"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i06:r4",
+          "text": "tenéis."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — вопрос группе о времени в Мексике; начните с ¿Ustedes",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Ustedes tienen tiempo?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — вопрос группе о времени в Мексике; начните с ¿Ustedes",
+          "uk": "Зберіть фразу — запитання групі про час у Мексиці; почніть з ¿Ustedes"
+        },
+        "orderedTokens": [
+          "¿Ustedes",
+          "tienen",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "tenéis"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-31:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — вопрос группе о времени в Мексике; начните с ¿Ustedes",
+            "feedbackByLocale": {
+              "ru": "здесь используем ustedes tienen.",
+              "uk": "тут використовуємо ustedes tienen."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-31:i07:r1",
+          "text": "Плитки: tenéis"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i07:r2",
+          "text": "¿Vosotros"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i07:r3",
+          "text": "tiempo?"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i07:r4",
+          "text": "tienes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-31:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-31:i07:audio",
+          "transcript": "¿Vosotros tenéis tiempo?"
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "¿Vosotros tenéis tiempo?",
+        "orderedTokens": [
+          "¿Vosotros",
+          "tenéis",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "tienes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-31:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит tenéis.",
+              "uk": "звучить tenéis."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — вопрос группе в Мексике",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-31:i08:r1",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i08:r2",
+          "text": "tenéis"
+        },
+        {
+          "responseId": "es:lesson-05:session-31:i08:r3",
+          "text": "tienes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — вопрос группе в Мексике",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — вопрос группе в Мексике",
+          "uk": "Вставте слово — запитання групі в Мексиці"
+        },
+        "gappedTargetPhrase": "¿Ustedes ___ tiempo?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-31:i08:r1",
+            "text": "tienen"
+          },
+          {
+            "responseId": "es:lesson-05:session-31:i08:r2",
+            "text": "tenéis"
+          },
+          {
+            "responseId": "es:lesson-05:session-31:i08:r3",
+            "text": "tienes"
+          }
+        ],
+        "testedDimension": "Вставьте слово — вопрос группе в Мексике",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-31:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос группе в Мексике",
+            "feedbackByLocale": {
+              "ru": "В основном варианте курса — ustedes tienen.",
+              "uk": "В основному варіанті курсу — ustedes tienen."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-31:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — вопрос группе в Мексике",
+            "feedbackByLocale": {
+              "ru": "С ustedes нужно tienen.",
+              "uk": "З ustedes потрібно tienen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — повторите вопрос о времени из Испании; начните с ¿Vosotros tenéis",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-31:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — повторите вопрос о времени из Испании; начните с ¿Vosotros tenéis",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-31:i09:audio",
+          "transcript": "¿Vosotros tenéis tiempo?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Vosotros tenéis tiempo?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — повторите вопрос о книге из Испании; начните с ¿Vosotros tenéis",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-31:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — повторите вопрос о книге из Испании; начните с ¿Vosotros tenéis",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-31:i10:audio",
+          "transcript": "¿Vosotros tenéis un libro?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Vosotros tenéis un libro?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите группу о времени в Мексике; начните с ¿Ustedes tienen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-31:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите группу о времени в Мексике; начните с ¿Ustedes tienen",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-31:i11:audio",
+          "transcript": "¿Ustedes tienen tiempo?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Ustedes tienen tiempo?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите группу о книге в Мексике; начните с ¿Ustedes tienen",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-31:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите группу о книге в Мексике; начните с ¿Ustedes tienen",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-31:i12:audio",
+          "transcript": "¿Ustedes tienen un libro?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Ustedes tienen un libro?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "a440d3b498894df7ea8ee9033f39204c986accb73b6e5ca174b2802c10a3983c"
+}

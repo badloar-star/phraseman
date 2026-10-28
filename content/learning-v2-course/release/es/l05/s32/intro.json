@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-32",
+  "learningOutcomeByLocale": {
+    "ru": "закрепить tenemos для «мы» и tienen с ellos, ellas, ustedes.",
+    "uk": "закріпити tenemos для «ми» й tienen з ellos, ellas, ustedes."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-32:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Машина у вашей пары",
+        "uk": "Машина у вашої пари"
+      },
+      "bodyByLocale": {
+        "ru": "Сообщите друзьям от себя и близкого человека `Tenemos un carro` — «У нас есть машина». Соберите `Tenemos` + `un carro`. Форма tenemos сама показывает «мы», поэтому начинаем прямо с неё. Машина одна, а людей несколько: число вещей не меняет эту форму.",
+        "uk": "Повідомте друзям від себе й близької людини `Tenemos un carro` — «Ми маємо машину». Зберіть `Tenemos` + `un carro`. Форма tenemos сама показує «ми», тому починаємо прямо з неї. Машина одна, а людей кілька: кількість речей не змінює цієї форми."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-32:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У нас есть машина». Начните с Tenemos, используйте carro.",
+          "uk": "Скажіть «Ми маємо машину». Почніть з Tenemos, використайте carro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-32:intro1:r1",
+              "text": "Tenemos un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro1:r2",
+              "text": "Tengo un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro1:r3",
+              "text": "Tenemos una carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-32:intro1:r1",
+              "text": "Tenemos un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro1:r2",
+              "text": "Tengo un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro1:r3",
+              "text": "Tenemos una carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У нас есть машина». Начните с Tenemos, используйте carro.",
+          "uk": "Скажіть «Ми маємо машину». Почніть з Tenemos, використайте carro."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-32:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Друзья не задержатся",
+        "uk": "Друзі не затримаються"
+      },
+      "bodyByLocale": {
+        "ru": "Объясните, почему друзья уходят: `Ellos no tienen tiempo` — «У них нет времени». Соберите `Ellos` + `no` + `tienen` + `tiempo`. О нескольких других людях используем tienen, а отрицание no ставим перед ним. Tiempo здесь без артикля.",
+        "uk": "Поясніть, чому друзі йдуть: `Ellos no tienen tiempo` — «Вони не мають часу». Зберіть `Ellos` + `no` + `tienen` + `tiempo`. Про кількох інших людей використовуємо tienen, а заперечення no ставимо перед ним. Tiempo тут без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-32:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У них нет времени». Начните с Ellos no tienen.",
+          "uk": "Скажіть «Вони не мають часу». Почніть з Ellos no tienen."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-32:intro2:r1",
+              "text": "Ellos no tienen tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro2:r2",
+              "text": "Ellos tienen no tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro2:r3",
+              "text": "Ellos no tenemos tiempo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-32:intro2:r1",
+              "text": "Ellos no tienen tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro2:r2",
+              "text": "Ellos tienen no tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro2:r3",
+              "text": "Ellos no tenemos tiempo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У них нет времени». Начните с Ellos no tienen.",
+          "uk": "Скажіть «Вони не мають часу». Почніть з Ellos no tienen."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-32:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вопрос группе у двери",
+        "uk": "Запитання групі біля дверей"
+      },
+      "bodyByLocale": {
+        "ru": "В Мексике обращаетесь сразу к друзьям: `¿Ustedes tienen una llave?` — «У вас есть ключ?» Соберите `¿Ustedes` + `tienen` + `una llave?`. В основном варианте курса вопрос группе начинается с ustedes tienen. Перед llave нужен артикль una.",
+        "uk": "У Мексиці звертаєтеся відразу до друзів: `¿Ustedes tienen una llave?` — «Ви маєте ключ?» Зберіть `¿Ustedes` + `tienen` + `una llave?`. В основному варіанті курсу запитання групі починається з ustedes tienen. Перед llave потрібен артикль una."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-32:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите группу о ключе. Начните с ¿Ustedes tienen.",
+          "uk": "Запитайте групу про ключ. Почніть з ¿Ustedes tienen."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-32:intro3:r1",
+              "text": "¿Ustedes tienen una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro3:r2",
+              "text": "¿Ustedes tiene una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro3:r3",
+              "text": "¿Ustedes tienen un llave?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-32:intro3:r1",
+              "text": "¿Ustedes tienen una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro3:r2",
+              "text": "¿Ustedes tiene una llave?"
+            },
+            {
+              "responseId": "es:lesson-05:session-32:intro3:r3",
+              "text": "¿Ustedes tienen un llave?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите группу о ключе. Начните с ¿Ustedes tienen.",
+          "uk": "Запитайте групу про ключ. Почніть з ¿Ustedes tienen."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4bc1525c81964ad5727df6f0a92e58f2136c76c12fd8b9a271af65dfba3156f3"
+}

@@ -1785,4 +1785,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить no между ellos или ellas и tienen.","uk":"поставити no між ellos або ellas і tienen."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 31,
+    sourceFingerprint: "b54c48c4fec18efbb9a29a0dfa908fa4f6ee3a7053286860a56ef216e17240f2",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"узнать форму tenéis с vosotros и не смешать её с основным ustedes tienen.","uk":"упізнати форму tenéis із vosotros і не змішати її з основним ustedes tienen."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 32,
+    sourceFingerprint: "2300909ffd8ffb0465254e4605e787476e809fad47d1f5bab384bc81bcbc3644",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить tenemos для «мы» и tienen с ellos, ellas, ustedes.","uk":"закріпити tenemos для «ми» й tienen з ellos, ellas, ustedes."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

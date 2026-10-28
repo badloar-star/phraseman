@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-32:i01",
+    "correctText": "tenemos",
+    "correctResponseId": "es:lesson-05:session-32:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i02",
+    "correctText": "Tenemos",
+    "correctResponseId": "es:lesson-05:session-32:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i03",
+    "correctText": "Tenemos un carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i04",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-05:session-32:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i05",
+    "correctText": "Ellos no tienen tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i06",
+    "correctText": "¿Ustedes tienen una llave?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i07",
+    "correctText": "Tenemos un carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i08",
+    "correctText": "tienen",
+    "correctResponseId": "es:lesson-05:session-32:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i09",
+    "correctText": "Tenemos un carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i10",
+    "correctText": "Ellos no tienen tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i11",
+    "correctText": "¿Ustedes tienen una llave?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i12",
+    "correctText": "Ellas tienen un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i13",
+    "correctText": "tenemos",
+    "correctResponseId": "es:lesson-05:session-32:i13:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i14",
+    "correctText": "Ellas tienen una bolsa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i15",
+    "correctText": "tenéis",
+    "correctResponseId": "es:lesson-05:session-32:i15:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i16",
+    "correctText": "No tenemos tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i17",
+    "correctText": "No tenemos tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-32:i18",
+    "correctText": "¿Ustedes tienen tiempo?",
+    "correctResponseId": null
+  }
+]

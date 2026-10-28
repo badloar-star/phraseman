@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-31",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-31:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-31:intro1:r2": {
+          "ru": "С vosotros в этой форме обращения нужно tenéis.",
+          "uk": "З vosotros у цій формі звернення потрібно tenéis."
+        },
+        "es:lesson-05:session-31:intro1:r3": {
+          "ru": "Tienes — для tú; с vosotros нужно tenéis.",
+          "uk": "Tienes — для tú; з vosotros потрібно tenéis."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-31:intro2:r2": {
+          "ru": "С vosotros нужна форма tenéis.",
+          "uk": "З vosotros потрібна форма tenéis."
+        },
+        "es:lesson-05:session-31:intro2:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-31:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-31:intro3:r2": {
+          "ru": "В основном варианте курса с ustedes используем tienen.",
+          "uk": "В основному варіанті курсу з ustedes використовуємо tienen."
+        },
+        "es:lesson-05:session-31:intro3:r3": {
+          "ru": "С ustedes нужна форма tienen.",
+          "uk": "З ustedes потрібна форма tienen."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "8195f2ef6f52692d3efbc4aed27d6e70fdd224748e4eaaf37846fcde33e1ba82"
+}

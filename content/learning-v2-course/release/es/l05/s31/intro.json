@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-31",
+  "learningOutcomeByLocale": {
+    "ru": "узнать форму tenéis с vosotros и не смешать её с основным ustedes tienen.",
+    "uk": "упізнати форму tenéis із vosotros і не змішати її з основним ustedes tienen."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-31:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вопрос компании в Испании",
+        "uk": "Запитання компанії в Іспанії"
+      },
+      "bodyByLocale": {
+        "ru": "В Испании знакомый обращается к вам и вашим друзьям неформально: `¿Vosotros tenéis tiempo?` — «У вас есть время?» Соберите `¿Vosotros` + `tenéis` + `tiempo?`. С vosotros используется форма tenéis. Ударение падает на последний слог: te-NÉIS; знак над é сохраняем на письме. Это региональная форма знакомого tener, а не новое отдельное слово.",
+        "uk": "В Іспанії знайомий звертається до вас і ваших друзів неформально: `¿Vosotros tenéis tiempo?` — «Ви маєте час?» Зберіть `¿Vosotros` + `tenéis` + `tiempo?`. З vosotros використовується форма tenéis. Наголос падає на останній склад: te-NÉIS; знак над é зберігаємо на письмі. Це регіональна форма знайомого tener, а не нове окреме слово."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-31:intro1:q",
+        "promptByLocale": {
+          "ru": "Восстановите услышанный в Испании вопрос. Начните с ¿Vosotros tenéis.",
+          "uk": "Відновіть почуте в Іспанії запитання. Почніть з ¿Vosotros tenéis."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-31:intro1:r1",
+              "text": "¿Vosotros tenéis tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro1:r2",
+              "text": "¿Vosotros tienen tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro1:r3",
+              "text": "¿Vosotros tienes tiempo?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-31:intro1:r1",
+              "text": "¿Vosotros tenéis tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro1:r2",
+              "text": "¿Vosotros tienen tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro1:r3",
+              "text": "¿Vosotros tienes tiempo?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Восстановите услышанный в Испании вопрос. Начните с ¿Vosotros tenéis.",
+          "uk": "Відновіть почуте в Іспанії запитання. Почніть з ¿Vosotros tenéis."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-31:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книга у компании в Испании",
+        "uk": "Книжка в компанії в Іспанії"
+      },
+      "bodyByLocale": {
+        "ru": "В Испании знакомый спрашивает вашу компанию, есть ли у вас книга: `¿Vosotros tenéis un libro?` — «У вас есть книга?» Соберите `¿Vosotros` + `tenéis` + `un libro?`. Сохраняем пару vosotros tenéis и добавляем предмет. Книга одна, поэтому un libro. Форма tenéis зависит от обращения к людям, а не от количества книг.",
+        "uk": "В Іспанії знайомий питає вашу компанію, чи маєте ви книжку: `¿Vosotros tenéis un libro?` — «Ви маєте книжку?» Зберіть `¿Vosotros` + `tenéis` + `un libro?`. Зберігаємо пару vosotros tenéis і додаємо предмет. Книжка одна, тому un libro. Форма tenéis залежить від звернення до людей, а не від кількості книжок."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-31:intro2:q",
+        "promptByLocale": {
+          "ru": "Восстановите вопрос из Испании о книге. Начните с ¿Vosotros tenéis.",
+          "uk": "Відновіть запитання з Іспанії про книжку. Почніть з ¿Vosotros tenéis."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-31:intro2:r1",
+              "text": "¿Vosotros tenéis un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro2:r2",
+              "text": "¿Vosotros tiene un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro2:r3",
+              "text": "¿Vosotros tenéis una libro?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-31:intro2:r1",
+              "text": "¿Vosotros tenéis un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro2:r2",
+              "text": "¿Vosotros tiene un libro?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro2:r3",
+              "text": "¿Vosotros tenéis una libro?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Восстановите вопрос из Испании о книге. Начните с ¿Vosotros tenéis.",
+          "uk": "Відновіть запитання з Іспанії про книжку. Почніть з ¿Vosotros tenéis."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-31:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Снова основной вариант курса",
+        "uk": "Знову основний варіант курсу"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вы в Мексике и сами спрашиваете группу друзей о времени: `¿Ustedes tienen tiempo?` — «У вас есть время?» Соберите `¿Ustedes` + `tienen` + `tiempo?`. Возвращаемся к основному латиноамериканскому варианту курса: ustedes tienen. Не переносим tenéis после ustedes. Испанскую пару vosotros tenéis из предыдущей ситуации узнаём отдельно.",
+        "uk": "Тепер ви в Мексиці й самі питаєте групу друзів про час: `¿Ustedes tienen tiempo?` — «Ви маєте час?» Зберіть `¿Ustedes` + `tienen` + `tiempo?`. Повертаємося до основного латиноамериканського варіанта курсу: ustedes tienen. Не переносимо tenéis після ustedes. Іспанську пару vosotros tenéis із попередньої ситуації впізнаємо окремо."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-31:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите группу в основном варианте курса. Начните с ¿Ustedes tienen.",
+          "uk": "Запитайте групу в основному варіанті курсу. Почніть з ¿Ustedes tienen."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-31:intro3:r1",
+              "text": "¿Ustedes tienen tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro3:r2",
+              "text": "¿Ustedes tenéis tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro3:r3",
+              "text": "¿Ustedes tienes tiempo?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-31:intro3:r1",
+              "text": "¿Ustedes tienen tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro3:r2",
+              "text": "¿Ustedes tenéis tiempo?"
+            },
+            {
+              "responseId": "es:lesson-05:session-31:intro3:r3",
+              "text": "¿Ustedes tienes tiempo?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите группу в основном варианте курса. Начните с ¿Ustedes tienen.",
+          "uk": "Запитайте групу в основному варіанті курсу. Почніть з ¿Ustedes tienen."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "fd5ad4cddd27fd75fc73e2bfbdca9d2d010844e216aa3eefd7e16eaf6f75f95f"
+}

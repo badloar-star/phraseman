@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-32",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-32:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-32:intro1:r2": {
+          "ru": "Для «у нас», не «у меня», нужно tenemos.",
+          "uk": "Для «ми маємо», не «я маю», потрібно tenemos."
+        },
+        "es:lesson-05:session-32:intro1:r3": {
+          "ru": "Carro мужского рода: un.",
+          "uk": "Carro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-32:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-32:intro2:r2": {
+          "ru": "No ставим перед tienen.",
+          "uk": "No ставимо перед tienen."
+        },
+        "es:lesson-05:session-32:intro2:r3": {
+          "ru": "О них говорим tienen; tenemos — о нас.",
+          "uk": "Про них кажемо tienen; tenemos — про нас."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-32:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-32:intro3:r2": {
+          "ru": "С ustedes нужно tienen.",
+          "uk": "З ustedes потрібно tienen."
+        },
+        "es:lesson-05:session-32:intro3:r3": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "45fbc9a3c04ff667b4331f42ba63db754d1b2a744998f4e0a8e1d3ff5cbd251d"
+}

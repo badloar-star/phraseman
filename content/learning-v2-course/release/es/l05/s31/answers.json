@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-31:i01",
+    "correctText": "tenéis",
+    "correctResponseId": "es:lesson-05:session-31:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-31:i02",
+    "correctText": "tenéis",
+    "correctResponseId": "es:lesson-05:session-31:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-31:i03",
+    "correctText": "¿Vosotros tenéis tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-31:i04",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-05:session-31:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-31:i05",
+    "correctText": "¿Vosotros tenéis un libro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-31:i06",
+    "correctText": "¿Ustedes tienen tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-31:i07",
+    "correctText": "¿Vosotros tenéis tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-31:i08",
+    "correctText": "tienen",
+    "correctResponseId": "es:lesson-05:session-31:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-31:i09",
+    "correctText": "¿Vosotros tenéis tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-31:i10",
+    "correctText": "¿Vosotros tenéis un libro?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-31:i11",
+    "correctText": "¿Ustedes tienen tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-31:i12",
+    "correctText": "¿Ustedes tienen un libro?",
+    "correctResponseId": null
+  }
+]

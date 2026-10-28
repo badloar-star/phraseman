@@ -1,0 +1,167 @@
+/* ───────── Друзья: связь по всем разделам — только то, чего нет в движке peak-scene-v2 (координатор 28.10, задача 3) ─────────
+   Движок (темы, сцена, стекло, таббар 2.0, пьедестал, окно башни) вшит в friends-connection.html дословно из эталона. Здесь: строка
+   «друг сделал» на сцене, блок приглашения с наградой, команда (цель недели, участники, рейтинг), «Друзья смотрят», «Избранное»,
+   шторки и движение (входы ease-out ≤ 560 мс, лесенка 60 мс, появление метки друга пружиной как FriendEventMarker, заполнение цели
+   800 мс cubic-bezier(.2,.8,.2,1) как KIT_MOTION.progress, счётчики 650 мс). prefers-reduced-motion гасит всё. Без обводок (стиль «Тень»). */
+:root { --fr-out: cubic-bezier(.23, 1, .32, 1); --fr-num: cubic-bezier(.3, 1.4, .5, 1); --fr-prog: cubic-bezier(.2, .8, .2, 1); }
+.page { max-width: 2380px; }
+.fr-lbl { font-size: 13px; color: #8E8E96; font-weight: 700; margin-right: 6px; }
+.chp.fr-replay { margin-left: auto; }
+.fr-cost { display: flex; align-items: flex-start; gap: 10px; margin: -8px 0 18px; padding: 10px 14px; border-radius: 16px; background: #17181C; color: #C9CAD0; font-size: 14px; line-height: 20px; max-width: 1100px; }
+.fr-cost b { color: #ECECEE; white-space: nowrap; }
+.fr-cost .io { color: #7FE0B0; font-size: 18px; flex: none; margin-top: 1px; }
+
+/* ── сцены как в приложении: 46 % экрана (430 из 932); Пик — 760 (башня целиком) ── */
+.fr-sc .a-stage { height: 430px; }
+.fr-sc .a-body { right: 150px; bottom: 44px; }
+.fr-sc .a-title { font-size: 30px; line-height: 36px; letter-spacing: -.6px; }
+.fr-sc .a-title.long { font-size: 26px; line-height: 32px; letter-spacing: -.5px; }
+.fr-sc .a-kick, .fr-sc .a-prog { font-size: 13px; line-height: 17px; }
+.fr-sc .a-cta .qbtn { height: 50px; font-size: 16px; }
+.fr-sc .a-cta { width: 190px; }
+.fr-sc.tall .a-stage { height: 470px; }
+.fr-sc.wide .a-body { right: 20px; }
+.fr-sc.wide .a-cta { width: auto; }
+.fr-art { position: absolute; z-index: 1; right: -14px; top: 96px; width: 160px; height: 160px; padding: 10px; box-sizing: border-box; display: block; object-fit: contain; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .45)); opacity: .96; pointer-events: none; }
+.hm-pill.two { height: 42px; border-radius: 21px; padding: 0 12px 0 10px; }
+.hm-pill.two .vv { display: flex; flex-direction: column; line-height: 1.1; }
+.hm-pill.two .vv b { font-size: 15px; font-weight: 700; }
+.hm-pill.two .vv small { font-size: 11px; font-weight: 700; opacity: .78; }
+.hm-top .hm-pill { flex: none; }
+.hm-pill i.dv { width: 1px; height: 18px; background: currentColor; opacity: .22; margin: 0 4px; }
+.tbar .ti span { display: none; }
+.tbar .ti .io { font-size: 25px; }
+.pk2-copy .a-kick { font-size: 14px; }
+
+/* ── «друг сделал» на сцене: стеклянная строка под шапкой, слева от героя; метка появляется пружиной (как FriendEventMarker) ── */
+.fr-ev { position: absolute; z-index: 2; left: 20px; top: 104px; max-width: 262px; display: flex; align-items: center; gap: 9px; padding: 6px 12px 6px 6px; border-radius: 21px;
+  background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); color: #fff; font-size: 14px; line-height: 18px; font-weight: 700; cursor: pointer; }
+.fr-ev img { width: 30px; height: 30px; border-radius: 50%; display: block; flex: none; }
+.fr-ev .tx { min-width: 0; }
+.fr-ev .tx small { display: block; font-size: 12px; line-height: 15px; font-weight: 600; color: rgba(255, 255, 255, .8); }
+.fr-ev .io { font-size: 16px; color: rgba(255, 255, 255, .85); flex: none; }
+.fr-ev.pk { top: 112px; max-width: 226px; }
+.fr-enter .fr-ev { animation: fr-mark .56s cubic-bezier(.2, 1.2, .4, 1) both; animation-delay: calc(var(--d, 0ms) + 520ms); }
+@keyframes fr-mark { from { opacity: 0; transform: translateY(-8px) scale(.92); } to { opacity: 1; transform: none; } }
+.fr-ev.done { background: rgba(255, 255, 255, .26); }
+
+/* ── панели: строки друзей, кнопка «Позвать», карточки недели ── */
+.fr-row { display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 6px 0; }
+.fr-row + .fr-row { box-shadow: inset 0 1px 0 color-mix(in srgb, var(--tx) 8%, transparent); }
+.fr-row img.cn { width: 40px; height: 40px; border-radius: 50%; display: block; flex: none; }
+.fr-row .tx { flex: 1; min-width: 0; }
+.fr-row .t { font-size: 16px; line-height: 21px; font-weight: 700; }
+.fr-row .s { font-size: 13px; line-height: 17px; color: var(--sec); display: flex; align-items: center; gap: 5px; }
+.fr-row .s .io { font-size: 13px; }
+.fr-row .n { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--sec); white-space: nowrap; }
+.fr-call { height: 34px; padding: 0 14px; border-radius: 17px; background: var(--solid); color: var(--on-solid); font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: background .26s var(--fr-out), color .26s var(--fr-out); white-space: nowrap; }
+.fr-call .io { font-size: 14px; }
+.fr-call.sent { background: color-mix(in srgb, var(--tx) 8%, transparent); color: var(--sec); }
+.fr-sw { display: inline-flex; align-items: center; gap: 5px; transition: filter .16s, opacity .16s; }
+.fr-blur { filter: blur(3px); opacity: .35; }
+.fr-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+
+/* ── приглашение с наградой: блок в сцене — код крупно, награда одной строкой, одна кнопка ── */
+.fr-code { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px 0 12px; border-radius: 20px; background: rgba(255, 255, 255, .16); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); font-size: 17px; font-weight: 800; letter-spacing: 1.5px; font-variant-numeric: tabular-nums; }
+.fr-code .io { font-size: 16px; letter-spacing: 0; }
+.fr-reward { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 15px; line-height: 20px; font-weight: 700; }
+.fr-reward img { width: 24px; height: 24px; border-radius: 50%; }
+.fr-ava3 { display: flex; }
+.fr-ava3 img { width: 28px; height: 28px; border-radius: 50%; box-shadow: 0 0 0 2px var(--card); }
+.fr-ava3 img + img { margin-left: -8px; }
+
+/* ── команда: цель недели (полоска заполняется 800 мс), участники, рейтинг ── */
+.fr-goal { margin-top: 10px; }
+.fr-goal .bar { height: 8px; border-radius: 4px; background: rgba(255, 255, 255, .24); overflow: hidden; }
+.fr-goal .bar i { display: block; height: 100%; width: 0; border-radius: 4px; background: #fff; transition: width .8s var(--fr-prog); }
+.fr-enter .fr-goal .bar i, .fr-goal.on .bar i { width: var(--w); }
+.fr-goal .v { display: flex; justify-content: space-between; margin-top: 6px; font-size: 13px; line-height: 17px; color: rgba(255, 255, 255, .88); font-variant-numeric: tabular-nums; }
+.fr-goal .v b { color: #fff; font-size: 15px; }
+.fr-emb { display: flex; gap: 10px; margin: 12px 0 4px; }
+.fr-emb span { width: 56px; height: 56px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 26px; background: color-mix(in srgb, var(--tx) 6%, transparent); color: var(--tx); cursor: pointer; transition: background .22s, transform .22s var(--fr-out); }
+.fr-emb span.on { background: var(--solid); color: var(--on-solid); transform: scale(1.06); }
+.fr-field { height: 52px; border-radius: 16px; padding: 0 16px; display: flex; align-items: center; background: color-mix(in srgb, var(--tx) 6%, transparent); font-size: 17px; font-weight: 700; margin-top: 12px; }
+.fr-field .cur { width: 2px; height: 22px; background: var(--acc); margin-left: 2px; animation: fr-cur 1s steps(2) infinite; }
+@keyframes fr-cur { 50% { opacity: 0; } }
+.fr-team { display: flex; align-items: center; gap: 12px; }
+.fr-team .em { width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; background: rgba(255, 255, 255, .18); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .22); }
+.fr-rank { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 18px; margin-top: 8px; background: color-mix(in srgb, var(--acc) 13%, transparent); }
+.fr-rank .n { width: 26px; font-size: 16px; font-weight: 700; text-align: center; font-variant-numeric: tabular-nums; }
+.fr-rank .em { width: 36px; height: 36px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: color-mix(in srgb, var(--tx) 8%, transparent); }
+.fr-rank .tx { flex: 1; min-width: 0; font-size: 16px; font-weight: 700; }
+.fr-rank .tx small { display: block; font-size: 13px; font-weight: 600; color: var(--sec); }
+.fr-rank .c { font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pk-pod .p .em { width: 40px; height: 40px; border-radius: 13px; margin: 0 auto; display: flex; align-items: center; justify-content: center; font-size: 20px; background: color-mix(in srgb, var(--tx) 8%, transparent); }
+
+/* ── видео: «Друзья смотрят» и «Избранное» ── */
+.fr-watch { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 6px 0; }
+.fr-watch + .fr-watch { box-shadow: inset 0 1px 0 color-mix(in srgb, var(--tx) 8%, transparent); }
+.fr-watch img.cn { width: 40px; height: 40px; border-radius: 50%; display: block; flex: none; }
+.fr-watch .th { width: 64px; height: 40px; border-radius: 10px; flex: none; background: linear-gradient(135deg, color-mix(in srgb, var(--acc) 55%, var(--card)), color-mix(in srgb, var(--acc) 20%, var(--card))); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 16px; }
+.fr-watch .tx { flex: 1; min-width: 0; }
+.fr-watch .t { font-size: 15px; line-height: 20px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fr-watch .s { font-size: 13px; line-height: 17px; color: var(--sec); display: flex; align-items: center; gap: 5px; }
+.fr-watch .s .io { font-size: 12px; }
+.fr-watch .live { width: 8px; height: 8px; border-radius: 4px; background: var(--good); box-shadow: 0 0 0 3px color-mix(in srgb, var(--good) 25%, transparent); flex: none; }
+.fr-vid { display: flex; gap: 12px; align-items: center; min-height: 72px; padding: 8px 0; }
+.fr-vid + .fr-vid { box-shadow: inset 0 1px 0 color-mix(in srgb, var(--tx) 8%, transparent); }
+.fr-vid .th { width: 96px; height: 56px; border-radius: 12px; flex: none; position: relative; background: linear-gradient(135deg, color-mix(in srgb, var(--acc) 55%, var(--card)), color-mix(in srgb, var(--acc) 15%, var(--card))); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; }
+.fr-vid .th b { position: absolute; right: 5px; bottom: 5px; font-size: 11px; font-weight: 700; padding: 1px 5px; border-radius: 6px; background: rgba(0, 0, 0, .6); }
+.fr-vid .tx { flex: 1; min-width: 0; }
+.fr-vid .t { font-size: 15px; line-height: 20px; font-weight: 700; }
+.fr-vid .s { font-size: 13px; line-height: 17px; color: var(--sec); margin-top: 2px; display: flex; align-items: center; gap: 6px; }
+.fr-vid .s .io { font-size: 12px; }
+.fr-save { width: 36px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--sec); background: color-mix(in srgb, var(--tx) 6%, transparent); cursor: pointer; flex: none; transition: color .2s, background .2s; }
+.fr-save.on { color: var(--acc); background: color-mix(in srgb, var(--acc) 14%, transparent); }
+.fr-save.pop { animation: fr-pop .3s var(--fr-out); }
+@keyframes fr-pop { 0% { transform: scale(1); } 45% { transform: scale(1.2); } 100% { transform: scale(1); } }
+.fr-fav { display: flex; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 18px; background: color-mix(in srgb, var(--acc) 13%, transparent); cursor: pointer; margin-top: 10px; }
+.fr-fav .ic { width: 40px; height: 40px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 20px; background: var(--acc); color: var(--on-solid); }
+.th-ink .fr-fav .ic { color: #fff; }
+.fr-fav .tx { flex: 1; font-size: 16px; font-weight: 700; }
+.fr-fav .tx small { display: block; font-size: 13px; font-weight: 600; color: var(--sec); }
+.fr-fav .io.ch { color: var(--sec); font-size: 18px; }
+.fr-num { display: inline-block; }
+.fr-num.up { animation: numup .65s var(--fr-num); }
+
+/* ── шторки (как в Наборах): затемнение 260 мс, выезд 440 мс; тост-строка сверху как ActionToast 'top_line' ── */
+.fr-ov .qdim { opacity: 0; transition: opacity .26s; }
+.fr-ov.on .qdim { opacity: 1; }
+.fr-ov.off .qdim { opacity: 0; transition-duration: .2s; }
+.fr-ov .qsheet { transform: translateY(110%); transition: transform .44s cubic-bezier(.2, 1, .3, 1); }
+.fr-ov.on .qsheet { transform: none; }
+.fr-ov.off .qsheet { transform: translateY(110%); transition-duration: .3s; }
+.fr-toast { position: absolute; left: 14px; right: 14px; top: 54px; z-index: 36; display: flex; align-items: center; gap: 12px; padding: 8px 16px 8px 8px; border-radius: 19px; background: var(--ctl); color: var(--tx); font-size: 16px; line-height: 20px; font-weight: 700; box-shadow: var(--sh2); pointer-events: none; animation: fr-toast-in .32s cubic-bezier(.33, 1, .68, 1) both; }
+.fr-toast .tile { width: 41px; height: 41px; border-radius: 10px; flex: none; display: flex; align-items: center; justify-content: center; background: var(--card); color: var(--acc); font-size: 20px; }
+.fr-toast.off { animation: fr-toast-out .26s cubic-bezier(.33, 1, .68, 1) both; }
+@keyframes fr-toast-in { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: none; } }
+@keyframes fr-toast-out { to { opacity: 0; transform: translateY(-18px); } }
+/* стопка экранов: «Создать» → экран команды, «Избранное» → список (въезд справа, как в приложении) */
+.fr-stack { position: absolute; inset: 0; }
+.fr-screen { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+.fr-screen .scr > .in { padding: 0; }
+.fr-hidden { display: none; }
+.fr-in { animation: fr-push-in .36s var(--fr-out) both; }
+.fr-out { animation: fr-push-out .36s var(--fr-out) both; pointer-events: none; }
+.fr-back-in { animation: fr-push-out .34s var(--fr-out) reverse both; }
+.fr-back-out { animation: fr-push-in .3s var(--fr-out) reverse both; pointer-events: none; }
+@keyframes fr-push-in { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes fr-push-out { from { transform: none; opacity: 1; } to { transform: translateX(-26%); opacity: .55; } }
+
+/* ── появление ── */
+.fr-enter .col { animation: fr-up .5s var(--fr-out) both; animation-delay: var(--d, 0ms); }
+.fr-enter .fr-art { animation: fr-hero .56s var(--fr-out) both; animation-delay: calc(var(--d, 0ms) + 160ms); }
+.fr-enter .a-panel { animation: fr-rise .56s var(--fr-out) both; animation-delay: calc(var(--d, 0ms) + 220ms); }
+.fr-enter .a-panel + .a-panel { animation-delay: calc(var(--d, 0ms) + 300ms); }
+.fr-enter .a-body, .fr-enter .pk2-copy { animation: fr-up .5s var(--fr-out) both; animation-delay: calc(var(--d, 0ms) + 120ms); }
+.fr-enter .pk2-blk { animation: fr-rise .56s var(--fr-out) both; animation-delay: calc(var(--d, 0ms) + var(--b, 0ms)); }
+.fr-enter .pk2-coin { animation: fr-drop .5s var(--fr-out) both; animation-delay: calc(var(--d, 0ms) + var(--b, 0ms) + 90ms); }
+.fr-enter .pk2-tw { animation: fr-rise .7s var(--fr-out) both; animation-delay: calc(var(--d, 0ms) + 100ms); }
+.fr-enter .pk-pod .p { animation: fr-up .46s var(--fr-out) both; animation-delay: calc(var(--d, 0ms) + var(--b, 0ms) + 320ms); }
+@keyframes fr-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes fr-hero { from { opacity: 0; transform: translate(26px, 10px) scale(.88); } to { opacity: 1; transform: none; } }
+@keyframes fr-rise { from { opacity: 0; transform: translateY(46px); } to { opacity: 1; transform: none; } }
+@keyframes fr-drop { from { opacity: 0; transform: translateY(-18px) scale(.9); } to { opacity: 1; transform: none; } }
+#root.fr-fade { animation: fr-fade .28s var(--fr-out) both; }
+@keyframes fr-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .fr-enter *, #root.fr-fade, .fr-field .cur { animation: none !important; transition: none !important; } }

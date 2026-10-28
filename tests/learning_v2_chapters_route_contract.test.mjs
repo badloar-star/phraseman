@@ -9,7 +9,9 @@ assert.notEqual(legacyBranchStart, -1, "legacy lessons branch must exist");
 
 const v2Branch = lessons.slice(v2BranchStart, legacyBranchStart);
 assert.match(lessons, /import LearningV2ChaptersCourse from/);
-assert.match(v2Branch, /<LearningV2ChaptersCourse/);
+// зачем (перепин 28.10): с 22.10 (cf21076f9, Ф4) ветка V2 рисует LessonsCourseSurface — Сезон или карта глав по флагу SEASON_SCENE_V2_ENABLED
+assert.match(lessons, /const LessonsCourseSurface: typeof LearningV2ChaptersCourse = SEASON_SCENE_V2_ENABLED \? \(SeasonCourseConnected as unknown as typeof LearningV2ChaptersCourse\) : LearningV2ChaptersCourse;/);
+assert.match(v2Branch, /<LessonsCourseSurface/);
 assert.doesNotMatch(
   v2Branch,
   /<LearningV2PulseCourse/,

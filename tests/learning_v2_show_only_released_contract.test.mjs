@@ -25,7 +25,10 @@ test('экран уроков: вход и множество занятий —
   assert.match(lessons, /const LEARNING_V2_COURSE_CAN_BE_OPENED_MANUALLY = !LEARNING_V2_HIDDEN && \(LEARNING_V2_HAS_RELEASED_SESSIONS_V1 \|\| ENABLE_DEV_TOOLS\);/);
   assert.match(lessons, /authored\.filter\(\(session\) => isLearningV2SessionReleasedV1\(session\.lessonOrdinal, session\.sessionOrdinal\)\)/);
   // вход в занятие, прогрев и карта пользуются одним множеством
-  assert.ok((lessons.match(/learningV2FactoryNativeSessionIds\.has\(/g) ?? []).length >= 4);
+  // зачем (перепин 28.10): четвёртое место — прогрев записей mp3 — снято 22.10 (72f72a94e, «только голос телефона»); осталось три
+  assert.ok((lessons.match(/learningV2FactoryNativeSessionIds\.has\(/g) ?? []).length >= 3);
+  assert.match(lessons, /const isLearningV2SessionMaterialAvailable = useCallback\(/);
+  assert.match(lessons, /!learningV2FactoryNativeSessionIds\.has\(selectedCourseSessionId\)/);
 });
 
 test('карта: недоступные занятия, пустые главы и уроки не рисуются', () => {

@@ -293,6 +293,7 @@ import { LearningV2HudPlate } from "../components/learning-v2/LearningV2TaskChro
 import { lv2TaskPlateStyle, lv2TaskTrackColor } from "../components/learning-v2/learning_v2_task_layout_tokens";
 import { LearningV2SessionUnavailable, learningV2SessionUnavailableDefaultHint } from "../components/learning-v2/LearningV2SessionUnavailable";
 import { scheduleNextLearningV2SessionPrewarmV1 } from "./learning_v2_session_launch_v1";
+import { withLearningV2LocaleGuardV1 } from './learning_v2_locale_guard';
 
 const first = (value: string | string[] | undefined) =>
   Array.isArray(value) ? (value[0] ?? "") : (value ?? "");
@@ -468,7 +469,7 @@ function logSpeechRing(phase: string, payload: Readonly<Record<string, unknown>>
   if (__DEV__) console.log("[AUDIO-RING]", JSON.stringify({ phase, ...payload })); // guard-ok: ход кольца звука фразы (только разработка)
 }
 
-export default function LearningV2DirectSessionPlayerV1() {
+function LearningV2DirectSessionPlayerV1() {
   const router = useRouter();
   const params = useLocalSearchParams<{
     id?: string | string[];
@@ -4729,3 +4730,6 @@ const styles = StyleSheet.create({
   resumeOfferCard: { borderRadius: 24, padding: 20, gap: 12 },
   resumeOfferTitle: { fontSize: 20, lineHeight: 26, fontWeight: "700", marginBottom: 4 },
 });
+
+// зачем (координатор 28.10): маршрут V2 открывается только на языке, где у курса есть пояснения (ru/uk) — иначе [V2-HIDDEN] и на Главную
+export default withLearningV2LocaleGuardV1('route_learning_v2_direct_session_player', LearningV2DirectSessionPlayerV1);

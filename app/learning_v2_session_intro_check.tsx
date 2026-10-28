@@ -23,6 +23,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { SCREEN_BACK_SIZE, ScreenBackSlot, ScreenCloseButton } from '../components/v2/ScreenBackButton';
 import { isShortScreen } from '../constants/layout-scale';
 import type { BoxShadowValue } from 'react-native';
+import { withLearningV2LocaleGuardV1 } from './learning_v2_locale_guard';
 
 type IntroCheckResult = 'idle' | 'wrong' | 'correct';
 
@@ -75,7 +76,7 @@ const introCopy = (lang: Lang) => ({
  * first three canonical task IDs, so the final completion envelope remains an
  * exact 12-task record and still contains no answer text.
  */
-export default function LearningV2SessionIntroCheck({
+function LearningV2SessionIntroCheck({
   bindings,
   displayedStars,
   onAward,
@@ -375,3 +376,6 @@ const styles = StyleSheet.create({
   ctaText: { color: '#07110A', fontSize: 16, fontWeight: '900' },
   pressed: { opacity: 0.78, transform: [{ scale: 0.985 }] },
 });
+
+// зачем (координатор 28.10): маршрут V2 открывается только на языке, где у курса есть пояснения (ru/uk) — иначе [V2-HIDDEN] и на Главную
+export default withLearningV2LocaleGuardV1('route_learning_v2_session_intro_check', LearningV2SessionIntroCheck);

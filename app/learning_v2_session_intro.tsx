@@ -69,6 +69,7 @@ import type {
 } from "../modules/learning-v2/contracts/mode_native_payload_v1";
 import { semanticInk } from '../constants/liquidGlassSemanticInk';
 import { introMarkerWarningInk } from './learning_v2_intro_marker_ink';
+import { withLearningV2LocaleGuardV1 } from './learning_v2_locale_guard';
 
 const lineText = (line: IntroLine): string =>
   line.parts?.map((part) => part.text).join("") ?? line.text ?? "";
@@ -337,7 +338,7 @@ function IntroWhy({ text, color, glass }: Readonly<{ text: string; color: string
   return <Text testID="learning-v2-intro-why" style={[sx.why, { color }]}><IntroRoleText text={text} glass={glass} /></Text>;
 }
 
-export default function LearningV2SessionIntro({
+function LearningV2SessionIntro({
   introScreens,
   lessonId,
   sessionOrdinal: _sessionOrdinal,
@@ -1048,3 +1049,6 @@ const styles = StyleSheet.create({
   },
   ctaWrap: { width: "100%", maxWidth: 680, alignSelf: "center" },
 });
+
+// зачем (координатор 28.10): маршрут V2 открывается только на языке, где у курса есть пояснения (ru/uk) — иначе [V2-HIDDEN] и на Главную
+export default withLearningV2LocaleGuardV1('route_learning_v2_session_intro', LearningV2SessionIntro);

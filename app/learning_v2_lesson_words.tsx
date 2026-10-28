@@ -26,6 +26,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { learningV2ClosedWordsLineV1, learningV2LessonNewWordTotalV1 } from './learning_v2_lesson_words_closed_v1';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { learningV2CourseWordsOrdered, learningV2LessonWordToListWord, learningV2LessonWordsOrdered } from '../components/learning-v2/words/words_list_model';
+import { withLearningV2LocaleGuardV1 } from './learning_v2_locale_guard';
 
 // зачем: прежние имена остаются доступными отсюда (их читают тесты и другие экраны); сама модель — в components/learning-v2/words/words_list_model.ts
 export { learningV2CourseWordsOrdered, learningV2LessonWordToListWord, learningV2LessonWordsOrdered };
@@ -36,7 +37,7 @@ const COURSE_LESSON_ORDINALS: readonly number[] = Object.freeze(Array.from({ len
 type WordsScope = 'lesson' | 'course';
 
 
-export default function LearningV2LessonWordsScreen() {
+function LearningV2LessonWordsScreen() {
   const insets = useStableSafeAreaInsets();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -132,3 +133,6 @@ const styles = StyleSheet.create({
   // макет `.wd-sw`: таблетка под шапкой (V2PillSwitch), поля 16
   switchWrap: { paddingHorizontal: 16, paddingTop: 12 },
 });
+
+// зачем (координатор 28.10): маршрут V2 открывается только на языке, где у курса есть пояснения (ru/uk) — иначе [V2-HIDDEN] и на Главную
+export default withLearningV2LocaleGuardV1('route_learning_v2_lesson_words', LearningV2LessonWordsScreen);

@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-55",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-55:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-55:i01:r1",
+          "text": "alguien"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i01:r2",
+          "text": "algo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-55:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-55:i01:audio",
+          "transcript": "alguien"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-55:i01:r1",
+            "targetText": "alguien",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-55:i01:r2",
+            "targetText": "algo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-55:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит alguien — кто-то.",
+              "uk": "Звучить alguien — хтось."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут є кімната?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-55:i02:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i02:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i02:r3",
+          "text": "unos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут є кімната?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть комната?",
+          "uk": "Вставте слово — тут є кімната?"
+        },
+        "gappedTargetPhrase": "¿Hay ___ habitación aquí?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-55:i02:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-06:session-55:i02:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-55:i02:r3",
+            "text": "unos"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут є кімната?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-55:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є кімната?",
+            "feedbackByLocale": {
+              "ru": "Habitación женского рода: una.",
+              "uk": "Habitación жіночого роду: una."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-55:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є кімната?",
+            "feedbackByLocale": {
+              "ru": "Habitación единственного числа, женского рода: una.",
+              "uk": "Habitación в однині, жіночого роду: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут є кімната?; почніть з ¿Hay, використайте una habitación, місце поставте наприкінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-55:i03:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i03:r2",
+          "text": "aquí?"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i03:r3",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i03:r4",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i03:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут є кімната?; почніть з ¿Hay, використайте una habitación, місце поставте наприкінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay una habitación aquí?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть комната?; начните с ¿Hay, используйте una habitación, место поставьте в конце",
+          "uk": "Зберіть фразу — тут є кімната?; почніть з ¿Hay, використайте una habitación, місце поставте наприкінці"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "una",
+          "habitación",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-55:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут є кімната?; почніть з ¿Hay, використайте una habitación, місце поставте наприкінці",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода.",
+              "uk": "habitación жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут хто-небудь є?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-55:i04:r1",
+          "text": "alguien"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i04:r2",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i04:r3",
+          "text": "agua"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут хто-небудь є?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь кто-нибудь есть?",
+          "uk": "Вставте слово — тут хто-небудь є?"
+        },
+        "gappedTargetPhrase": "¿Hay ___ aquí?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-55:i04:r1",
+            "text": "alguien"
+          },
+          {
+            "responseId": "es:lesson-06:session-55:i04:r2",
+            "text": "algo"
+          },
+          {
+            "responseId": "es:lesson-06:session-55:i04:r3",
+            "text": "agua"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут хто-небудь є?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-55:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут хто-небудь є?",
+            "feedbackByLocale": {
+              "ru": "Нужен человек: alguien.",
+              "uk": "Потрібна людина: alguien."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-55:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут хто-небудь є?",
+            "feedbackByLocale": {
+              "ru": "Agua — вода, а зовём человека.",
+              "uk": "Agua — вода, а кличемо людину."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут хто-небудь є?; почніть з ¿Hay, місце поставте наприкінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-55:i05:r1",
+          "text": "Плитки: aquí?"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i05:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i05:r3",
+          "text": "alguien"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i05:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут хто-небудь є?; почніть з ¿Hay, місце поставте наприкінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay alguien aquí?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь кто-нибудь есть?; начните с ¿Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — тут хто-небудь є?; почніть з ¿Hay, місце поставте наприкінці"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "alguien",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-55:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут хто-небудь є?; почніть з ¿Hay, місце поставте наприкінці",
+            "feedbackByLocale": {
+              "ru": "alguien без артикля.",
+              "uk": "alguien без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є вода?; почніть з ¿Hay, використайте agua без артикля",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-55:i06:r1",
+          "text": "Плитки: agua?"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i06:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i06:r3",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є вода?; почніть з ¿Hay, використайте agua без артикля",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay agua?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть вода?; начните с ¿Hay, используйте agua без артикля",
+          "uk": "Зберіть фразу — є вода?; почніть з ¿Hay, використайте agua без артикля"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "agua"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-55:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є вода?; почніть з ¿Hay, використайте agua без артикля",
+            "feedbackByLocale": {
+              "ru": "спрашиваем об общем запасе воды без артикля.",
+              "uk": "запитуємо про загальний запас води без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-55:i07:r1",
+          "text": "Плитки: No"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i07:r2",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i07:r3",
+          "text": "nadie"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i07:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i07:r5",
+          "text": "nada."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-55:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-55:i07:audio",
+          "transcript": "No hay nadie aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No hay nadie aquí.",
+        "orderedTokens": [
+          "No",
+          "hay",
+          "nadie",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "nada"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-55:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит nadie — никого.",
+              "uk": "звучить nadie — нікого."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — води немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-55:i08:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i08:r2",
+          "text": "Sí"
+        },
+        {
+          "responseId": "es:lesson-06:session-55:i08:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — води немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — воды нет",
+          "uk": "Вставте слово — води немає"
+        },
+        "gappedTargetPhrase": "___ hay agua.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-55:i08:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-06:session-55:i08:r2",
+            "text": "Sí"
+          },
+          {
+            "responseId": "es:lesson-06:session-55:i08:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставте слово — води немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-55:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — води немає",
+            "feedbackByLocale": {
+              "ru": "Отсутствие выражаем с no.",
+              "uk": "Відсутність виражаємо з no."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-55:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — води немає",
+            "feedbackByLocale": {
+              "ru": "Нужно no перед hay.",
+              "uk": "Потрібно no перед hay."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є кімната?; почніть з ¿Hay, використайте una habitación, місце поставте наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-55:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є кімната?; почніть з ¿Hay, використайте una habitación, місце поставте наприкінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-55:i09:audio",
+          "transcript": "¿Hay una habitación aquí?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay una habitación aquí?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут хто-небудь є?; почніть з ¿Hay, місце поставте наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-55:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут хто-небудь є?; почніть з ¿Hay, місце поставте наприкінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-55:i10:audio",
+          "transcript": "¿Hay alguien aquí?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay alguien aquí?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є вода?; почніть з ¿Hay, використайте agua без артикля",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-55:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є вода?; почніть з ¿Hay, використайте agua без артикля",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-55:i11:audio",
+          "transcript": "¿Hay agua?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay agua?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут нікого немає; почніть з No hay, місце поставте наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-55:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут нікого немає; почніть з No hay, місце поставте наприкінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-55:i12:audio",
+          "transcript": "No hay nadie aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No hay nadie aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "47edf85906303ce4a384d7e934b078cf4e38bd38c1547caca0b8a17cf3428e2e"
+}

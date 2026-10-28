@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-54",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-54:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-54:intro1:r2": {
+          "ru": "Silla женского рода: muchas.",
+          "uk": "Silla жіночого роду: muchas."
+        },
+        "es:lesson-06:session-54:intro1:r3": {
+          "ru": "Sillas во множественном числе: muchas.",
+          "uk": "Sillas у множині: muchas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-54:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-54:intro2:r2": {
+          "ru": "С sillas нужна muchas.",
+          "uk": "З sillas потрібна muchas."
+        },
+        "es:lesson-06:session-54:intro2:r3": {
+          "ru": "Другая комната — там: allí.",
+          "uk": "Інша кімната — там: allí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-54:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-54:intro3:r2": {
+          "ru": "Silla женского рода: pocas.",
+          "uk": "Silla жіночого роду: pocas."
+        },
+        "es:lesson-06:session-54:intro3:r3": {
+          "ru": "Теперь уточняем малое количество: pocas.",
+          "uk": "Тепер уточнюємо малу кількість: pocas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "257b2ca4094e90dae5e09bd1fce928c79a7a69d6f31241821b029da7dfd3486f"
+}

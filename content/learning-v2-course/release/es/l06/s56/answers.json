@@ -1,0 +1,102 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-56:i01",
+    "correctText": "Soy",
+    "correctResponseId": "es:lesson-06:session-56:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i02",
+    "correctText": "Soy Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i03",
+    "correctText": "Tengo",
+    "correctResponseId": "es:lesson-06:session-56:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i04",
+    "correctText": "No tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i05",
+    "correctText": "cómoda",
+    "correctResponseId": "es:lesson-06:session-56:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i06",
+    "correctText": "La silla es cómoda.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i07",
+    "correctText": "Hay",
+    "correctResponseId": "es:lesson-06:session-56:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i08",
+    "correctText": "¿Dónde está el baño?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i09",
+    "correctText": "El baño está allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i10",
+    "correctText": "alguien",
+    "correctResponseId": "es:lesson-06:session-56:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i11",
+    "correctText": "No hay nadie aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i12",
+    "correctText": "mucha",
+    "correctResponseId": "es:lesson-06:session-56:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i13",
+    "correctText": "Hay pocas sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i14",
+    "correctText": "Hay muchos libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i15",
+    "correctText": "Soy Ana.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i16",
+    "correctText": "Tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i17",
+    "correctText": "La silla es cómoda.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i18",
+    "correctText": "¿Dónde está el baño?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i19",
+    "correctText": "¿Hay mucha agua?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-56:i20",
+    "correctText": "No hay nadie aquí.",
+    "correctResponseId": null
+  }
+]

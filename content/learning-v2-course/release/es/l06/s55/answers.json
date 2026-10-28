@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-55:i01",
+    "correctText": "alguien",
+    "correctResponseId": "es:lesson-06:session-55:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-55:i02",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-06:session-55:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-55:i03",
+    "correctText": "¿Hay una habitación aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-55:i04",
+    "correctText": "alguien",
+    "correctResponseId": "es:lesson-06:session-55:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-55:i05",
+    "correctText": "¿Hay alguien aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-55:i06",
+    "correctText": "¿Hay agua?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-55:i07",
+    "correctText": "No hay nadie aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-55:i08",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-06:session-55:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-55:i09",
+    "correctText": "¿Hay una habitación aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-55:i10",
+    "correctText": "¿Hay alguien aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-55:i11",
+    "correctText": "¿Hay agua?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-55:i12",
+    "correctText": "No hay nadie aquí.",
+    "correctResponseId": null
+  }
+]

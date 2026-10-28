@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-56",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-56:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-56:intro1:r2": {
+          "ru": "Es относится к другому человеку; о себе говорим soy.",
+          "uk": "Es стосується іншої людини; про себе говоримо soy."
+        },
+        "es:lesson-06:session-56:intro1:r3": {
+          "ru": "В этой нейтральной фразе имя используем без артикля.",
+          "uk": "У цій нейтральній фразі ім'я використовуємо без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-56:intro2:r2": {
+          "ru": "Silla женского рода: cómoda.",
+          "uk": "Silla жіночого роду: cómoda."
+        },
+        "es:lesson-06:session-56:intro2:r3": {
+          "ru": "С silla нужен артикль la.",
+          "uk": "З silla потрібен артикль la."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-56:intro3:r2": {
+          "ru": "Agua женского рода: mucha.",
+          "uk": "Agua жіночого роду: mucha."
+        },
+        "es:lesson-06:session-56:intro3:r3": {
+          "ru": "Agua здесь не во множественном числе: mucha.",
+          "uk": "Agua тут не в множині: mucha."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "16ec5251c37a0084b6a6e86e2fa1e4c8bc520ba713b8ed73587bb0cd2a22695c"
+}

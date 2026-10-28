@@ -1,0 +1,1145 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-56",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-56:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — я Ана",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i01:r1",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i01:r2",
+          "text": "Es"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i01:r3",
+          "text": "Son"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — я Ана",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — я Ана",
+          "uk": "Вставте слово — я Ана"
+        },
+        "gappedTargetPhrase": "___ Ana.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-56:i01:r1",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i01:r2",
+            "text": "Es"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i01:r3",
+            "text": "Son"
+          }
+        ],
+        "testedDimension": "Вставьте слово — я Ана",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — я Ана",
+            "feedbackByLocale": {
+              "ru": "О себе говорим soy.",
+              "uk": "Про себе говоримо soy."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — я Ана",
+            "feedbackByLocale": {
+              "ru": "Нужна форма для «я»: soy.",
+              "uk": "Потрібна форма для «я»: soy."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — я Ана; начните с Soy, без yo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i02:r1",
+          "text": "Плитки: Ana"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i02:r2",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i02:r3",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — я Ана; начните с Soy, без yo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Soy Ana.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — я Ана; начните с Soy, без yo",
+          "uk": "Зберіть фразу — я Ана; почніть з Soy, без yo"
+        },
+        "orderedTokens": [
+          "Soy",
+          "Ana"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — я Ана; начните с Soy, без yo",
+            "feedbackByLocale": {
+              "ru": "имя в этой фразе без артикля.",
+              "uk": "ім'я в цій фразі без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у меня есть время",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i03:r1",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i03:r2",
+          "text": "Tiene"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i03:r3",
+          "text": "Tienen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у меня есть время",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у меня есть время",
+          "uk": "Вставте слово — у мене є час"
+        },
+        "gappedTargetPhrase": "___ tiempo.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-56:i03:r1",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i03:r2",
+            "text": "Tiene"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i03:r3",
+            "text": "Tienen"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у меня есть время",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня есть время",
+            "feedbackByLocale": {
+              "ru": "О себе говорим tengo.",
+              "uk": "Про себе говоримо tengo."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня есть время",
+            "feedbackByLocale": {
+              "ru": "Нужна форма для «я»: tengo.",
+              "uk": "Потрібна форма для «я»: tengo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у меня нет времени; начните с No tengo, без yo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i04:r1",
+          "text": "Плитки: tiempo"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i04:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i04:r3",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i04:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у меня нет времени; начните с No tengo, без yo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No tengo tiempo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у меня нет времени; начните с No tengo, без yo",
+          "uk": "Зберіть фразу — у мене немає часу; почніть з No tengo, без yo"
+        },
+        "orderedTokens": [
+          "No",
+          "tengo",
+          "tiempo"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у меня нет времени; начните с No tengo, без yo",
+            "feedbackByLocale": {
+              "ru": "здесь tiempo без артикля.",
+              "uk": "тут tiempo без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — стул удобный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i05:r1",
+          "text": "cómoda"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i05:r2",
+          "text": "cómodo"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i05:r3",
+          "text": "cómodas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — стул удобный",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стул удобный",
+          "uk": "Вставте слово — стілець зручний"
+        },
+        "gappedTargetPhrase": "La silla es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-56:i05:r1",
+            "text": "cómoda"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i05:r2",
+            "text": "cómodo"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i05:r3",
+            "text": "cómodas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — стул удобный",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стул удобный",
+            "feedbackByLocale": {
+              "ru": "Silla женского рода: cómoda.",
+              "uk": "Silla жіночого роду: cómoda."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стул удобный",
+            "feedbackByLocale": {
+              "ru": "Silla здесь одна: cómoda.",
+              "uk": "Silla тут одна: cómoda."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — стул удобный; начните с La silla, затем поставьте es и качество",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i06:r1",
+          "text": "Плитки: es"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i06:r2",
+          "text": "cómoda"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i06:r3",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i06:r4",
+          "text": "La"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i06:r5",
+          "text": "cómodo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — стул удобный; начните с La silla, затем поставьте es и качество",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La silla es cómoda.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — стул удобный; начните с La silla, затем поставьте es и качество",
+          "uk": "Зберіть фразу — стілець зручний; почніть з La silla, потім поставте es та якість"
+        },
+        "orderedTokens": [
+          "La",
+          "silla",
+          "es",
+          "cómoda"
+        ],
+        "authoredDistractorTokens": [
+          "cómodo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — стул удобный; начните с La silla, затем поставьте es и качество",
+            "feedbackByLocale": {
+              "ru": "с silla нужна cómoda.",
+              "uk": "з silla потрібна cómoda."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — есть туалет?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i07:r1",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i07:r2",
+          "text": "Está"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i07:r3",
+          "text": "Es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — есть туалет?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть туалет?",
+          "uk": "Вставте слово — є туалет?"
+        },
+        "gappedTargetPhrase": "¿___ un baño?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-56:i07:r1",
+            "text": "Hay"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i07:r2",
+            "text": "Está"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i07:r3",
+            "text": "Es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — есть туалет?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть туалет?",
+            "feedbackByLocale": {
+              "ru": "Спрашиваем о наличии: hay.",
+              "uk": "Запитуємо про наявність: hay."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть туалет?",
+            "feedbackByLocale": {
+              "ru": "Для наличия нужно hay.",
+              "uk": "Для наявності потрібно hay."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — где туалет?; начните с ¿Dónde, используйте está и el baño",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i08:r1",
+          "text": "Плитки: baño?"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i08:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i08:r3",
+          "text": "¿Dónde"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i08:r4",
+          "text": "está"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i08:r5",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — где туалет?; начните с ¿Dónde, используйте está и el baño",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Dónde está el baño?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — где туалет?; начните с ¿Dónde, используйте está и el baño",
+          "uk": "Зберіть фразу — де туалет?; почніть з ¿Dónde, використайте está та el baño"
+        },
+        "orderedTokens": [
+          "¿Dónde",
+          "está",
+          "el",
+          "baño"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — где туалет?; начните с ¿Dónde, используйте está и el baño",
+            "feedbackByLocale": {
+              "ru": "baño мужского рода.",
+              "uk": "baño чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i09:r1",
+          "text": "Плитки: El"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i09:r2",
+          "text": "baño"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i09:r3",
+          "text": "está"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i09:r4",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i09:r5",
+          "text": "aquí."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-56:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-56:i09:audio",
+          "transcript": "El baño está allí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El baño está allí.",
+        "orderedTokens": [
+          "El",
+          "baño",
+          "está",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "aquí"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит allí.",
+              "uk": "звучить allí."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — здесь кто-нибудь есть?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i10:r1",
+          "text": "alguien"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i10:r2",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i10:r3",
+          "text": "agua"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — здесь кто-нибудь есть?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь кто-нибудь есть?",
+          "uk": "Вставте слово — тут хто-небудь є?"
+        },
+        "gappedTargetPhrase": "¿Hay ___ aquí?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-56:i10:r1",
+            "text": "alguien"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i10:r2",
+            "text": "algo"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i10:r3",
+            "text": "agua"
+          }
+        ],
+        "testedDimension": "Вставьте слово — здесь кто-нибудь есть?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь кто-нибудь есть?",
+            "feedbackByLocale": {
+              "ru": "Ищем человека: alguien.",
+              "uk": "Шукаємо людину: alguien."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь кто-нибудь есть?",
+            "feedbackByLocale": {
+              "ru": "Agua — вода; нужен человек.",
+              "uk": "Agua — вода; потрібна людина."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь никого нет; начните с No hay, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i11:r1",
+          "text": "Плитки: nadie"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i11:r2",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i11:r3",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i11:r4",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i11:r5",
+          "text": "nada."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь никого нет; начните с No hay, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No hay nadie aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь никого нет; начните с No hay, место поставьте в конце",
+          "uk": "Зберіть фразу — тут нікого немає; почніть з No hay, місце поставте наприкінці"
+        },
+        "orderedTokens": [
+          "No",
+          "hay",
+          "nadie",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "nada"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь никого нет; начните с No hay, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "о людях говорим nadie.",
+              "uk": "про людей говоримо nadie."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — много воды?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i12:r1",
+          "text": "mucha"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i12:r2",
+          "text": "mucho"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i12:r3",
+          "text": "muchas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — много воды?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — много воды?",
+          "uk": "Вставте слово — багато води?"
+        },
+        "gappedTargetPhrase": "¿Hay ___ agua?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-56:i12:r1",
+            "text": "mucha"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i12:r2",
+            "text": "mucho"
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i12:r3",
+            "text": "muchas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — много воды?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — много воды?",
+            "feedbackByLocale": {
+              "ru": "Agua женского рода: mucha.",
+              "uk": "Agua жіночого роду: mucha."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-56:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — много воды?",
+            "feedbackByLocale": {
+              "ru": "Agua здесь в единственном числе: mucha.",
+              "uk": "Agua тут в однині: mucha."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i13",
+      "ordinal": 16,
+      "purpose": "retrieval_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i13:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i13:r2",
+          "text": "pocas"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i13:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i13:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i13:r5",
+          "text": "pocos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay pocas sillas aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+          "uk": "Зберіть фразу — тут мало стільців; почніть з Hay, кількість поставте перед sillas, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "pocas",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "pocos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i13:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+            "feedbackByLocale": {
+              "ru": "с sillas нужна pocas.",
+              "uk": "з sillas потрібна pocas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i14",
+      "ordinal": 17,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-56:i14:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i14:r2",
+          "text": "muchos"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i14:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i14:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-56:i14:r5",
+          "text": "muchas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-56:i14:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-56:i14:audio",
+          "transcript": "Hay muchos libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay muchos libros aquí.",
+        "orderedTokens": [
+          "Hay",
+          "muchos",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "muchas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-56:i14:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит muchos.",
+              "uk": "звучить muchos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — я Ана; начните с Soy, без yo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-56:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — я Ана; начните с Soy, без yo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-56:i15:audio",
+          "transcript": "Soy Ana."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Soy Ana.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у меня есть время; начните с Tengo, без yo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-56:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у меня есть время; начните с Tengo, без yo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-56:i16:audio",
+          "transcript": "Tengo tiempo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo tiempo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — стул удобный; начните с La silla, затем поставьте es и качество",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-56:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — стул удобный; начните с La silla, затем поставьте es и качество",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-56:i17:audio",
+          "transcript": "La silla es cómoda."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La silla es cómoda.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — где туалет?; начните с ¿Dónde, используйте está и el baño",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-56:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — где туалет?; начните с ¿Dónde, используйте está и el baño",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-56:i18:audio",
+          "transcript": "¿Dónde está el baño?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Dónde está el baño?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i19",
+      "ordinal": 22,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — много воды?; начните с ¿Hay, количество поставьте перед agua",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-56:i19:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — много воды?; начните с ¿Hay, количество поставьте перед agua",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-56:i19:audio",
+          "transcript": "¿Hay mucha agua?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay mucha agua?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-56:i20",
+      "ordinal": 23,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь никого нет; начните с No hay, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-56:i20:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь никого нет; начните с No hay, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-56:i20:audio",
+          "transcript": "No hay nadie aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No hay nadie aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 20,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "dc8c4f90f1eef29963e3bb175980c45fd96284b0ba616f69c452d2345f3032fa"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-54:i01",
+    "correctText": "muchas",
+    "correctResponseId": "es:lesson-06:session-54:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-54:i02",
+    "correctText": "muchas",
+    "correctResponseId": "es:lesson-06:session-54:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-54:i03",
+    "correctText": "¿Hay muchas sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-54:i04",
+    "correctText": "allí",
+    "correctResponseId": "es:lesson-06:session-54:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-54:i05",
+    "correctText": "¿Hay muchas sillas allí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-54:i06",
+    "correctText": "¿Hay pocas sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-54:i07",
+    "correctText": "¿Hay muchas sillas allí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-54:i08",
+    "correctText": "pocas",
+    "correctResponseId": "es:lesson-06:session-54:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-54:i09",
+    "correctText": "¿Hay muchas sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-54:i10",
+    "correctText": "¿Hay muchas sillas allí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-54:i11",
+    "correctText": "¿Hay pocas sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-54:i12",
+    "correctText": "¿Hay muchas sillas aquí?",
+    "correctResponseId": null
+  }
+]

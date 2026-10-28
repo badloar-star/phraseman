@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "соединять знакомые способы представиться, описать предмет и спросить о наличии.",
+    "uk": "поєднувати знайомі способи представитися, описати предмет і запитати про наявність."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Представиться",
+        "uk": "Представитися"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли на встречу и называете своё имя: `Soy Ana` — «Я Ана». Соберите `Soy` + `Ana`. Soy уже означает «я являюсь», поэтому отдельное yo здесь не нужно. Имя остаётся без артикля. В этом задании вы говорите от имени Аны.",
+        "uk": "Ви прийшли на зустріч і називаєте своє ім'я: `Soy Ana` — «Я Ана». Складіть `Soy` + `Ana`. Soy уже означає «я є», тому окреме yo тут не потрібне. Ім'я залишається без артикля. У цьому завданні ви говорите від імені Ани."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Представьтесь «Я Ана». Начните с Soy, без yo.",
+          "uk": "Представтеся «Я Ана». Почніть з Soy, без yo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-56:intro1:r1",
+              "text": "Soy Ana."
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro1:r2",
+              "text": "Es Ana."
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro1:r3",
+              "text": "Soy la Ana."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-56:intro1:r1",
+              "text": "Soy Ana."
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro1:r2",
+              "text": "Es Ana."
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro1:r3",
+              "text": "Soy la Ana."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьтесь «Я Ана». Начните с Soy, без yo.",
+          "uk": "Представтеся «Я Ана». Почніть з Soy, без yo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Рассказать о стуле",
+        "uk": "Розповісти про стілець"
+      },
+      "bodyByLocale": {
+        "ru": "Вы попробовали стул и говорите о его удобстве: `La silla es cómoda` — «Стул удобный». Соберите `La silla` + `es` + `cómoda`. Испанское silla женского рода, поэтому la и cómoda. Описываем качество предмета с es. Удобный стул — хорошее начало даже для долгой встречи.",
+        "uk": "Ви спробували стілець і говорите про його зручність: `La silla es cómoda` — «Стілець зручний». Складіть `La silla` + `es` + `cómoda`. Іспанське silla жіночого роду, тому la та cómoda. Описуємо якість предмета з es. Зручний стілець — гарний початок навіть для довгої зустрічі."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Стул удобный». Начните с La silla, затем поставьте es и качество.",
+          "uk": "Повідомте «Стілець зручний». Почніть з La silla, потім поставте es та якість."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-56:intro2:r1",
+              "text": "La silla es cómoda."
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro2:r2",
+              "text": "La silla es cómodo."
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro2:r3",
+              "text": "El silla es cómoda."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-56:intro2:r1",
+              "text": "La silla es cómoda."
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro2:r2",
+              "text": "La silla es cómodo."
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro2:r3",
+              "text": "El silla es cómoda."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Стул удобный». Начните с La silla, затем поставьте es и качество.",
+          "uk": "Повідомте «Стілець зручний». Почніть з La silla, потім поставте es та якість."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить запас",
+        "uk": "Перевірити запас"
+      },
+      "bodyByLocale": {
+        "ru": "Перед встречей вы хотите узнать, много ли воды приготовили. Спросите `¿Hay mucha agua?` — «Много воды?» Соберите `¿Hay` + `mucha` + `agua?`. Наличие выражаем с hay; количество ставим перед agua. Agua женского рода, поэтому mucha, без s: говорим об общем запасе.",
+        "uk": "Перед зустріччю ви хочете дізнатися, чи багато води підготували. Запитайте `¿Hay mucha agua?` — «Багато води?» Складіть `¿Hay` + `mucha` + `agua?`. Наявність виражаємо з hay; кількість ставимо перед agua. Agua жіночого роду, тому mucha, без s: говоримо про загальний запас."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Много воды?». Начните с ¿Hay, количество поставьте перед agua.",
+          "uk": "Запитайте «Багато води?». Почніть з ¿Hay, кількість поставте перед agua."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-56:intro3:r1",
+              "text": "¿Hay mucha agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro3:r2",
+              "text": "¿Hay mucho agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro3:r3",
+              "text": "¿Hay muchas agua?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-56:intro3:r1",
+              "text": "¿Hay mucha agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro3:r2",
+              "text": "¿Hay mucho agua?"
+            },
+            {
+              "responseId": "es:lesson-06:session-56:intro3:r3",
+              "text": "¿Hay muchas agua?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Много воды?». Начните с ¿Hay, количество поставьте перед agua.",
+          "uk": "Запитайте «Багато води?». Почніть з ¿Hay, кількість поставте перед agua."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ca0dfa407861d6b3a528920a4b1e638527ab6d71267848721dafacc66f06f716"
+}

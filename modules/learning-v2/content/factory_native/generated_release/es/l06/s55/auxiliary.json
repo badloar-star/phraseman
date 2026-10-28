@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-55",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-55:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-55:intro1:r2": {
+          "ru": "Habitación женского рода: una.",
+          "uk": "Habitación жіночого роду: una."
+        },
+        "es:lesson-06:session-55:intro1:r3": {
+          "ru": "Спрашиваем про это место: aquí.",
+          "uk": "Запитуємо про це місце: aquí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-55:intro2:r2": {
+          "ru": "Algo относится к чему-то, а нужен человек: alguien.",
+          "uk": "Algo стосується чогось, а потрібна людина: alguien."
+        },
+        "es:lesson-06:session-55:intro2:r3": {
+          "ru": "Перед alguien здесь артикль не нужен.",
+          "uk": "Перед alguien тут артикль не потрібен."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-55:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-55:intro3:r2": {
+          "ru": "Это вопрос о большом количестве, а сейчас узнаём только о наличии.",
+          "uk": "Це запитання про велику кількість, а зараз дізнаємося лише про наявність."
+        },
+        "es:lesson-06:session-55:intro3:r3": {
+          "ru": "Это вопрос о малом количестве, а сейчас узнаём только о наличии.",
+          "uk": "Це запитання про малу кількість, а зараз дізнаємося лише про наявність."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7865368ea43e70846aa8904ce0309ce5d106aae1cc5c9706332049f9279de945"
+}

@@ -1,7 +1,11 @@
 # Ядро · план сборки магазина 2.0.4 (без сборки и отправки) — координатор 28.10
 
 Governance-ID: TG-D0CD172C6455
-Status: In progress
+Governance-ID: TG-BC34943FC57A
+Governance-ID: TG-9AF36480C558
+Governance-ID: TG-625963B8934F
+Governance-ID: TG-D4D582425336
+Status: Done — план 5ba0dd567 + разделы 7 (бандл 146 101 МБ → HEAD 122 МБ) и 8 (красные тесты: поломок нет)
 Owner: 1 · ЯДРО
 
 ## Outcome

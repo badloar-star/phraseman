@@ -1,0 +1,144 @@
+/* ───────── Сцены по темам · перекраска — только то, чего нет в движке peak-scene-v2 (координатор 28.10, слово владельца) ─────────
+   Движок (темы, сцена, стекло, таббар 2.0, пьедестал V2, окно башни) вшит в scene-palettes.html дословно из эталона. Здесь: слой новой
+   палитры поверх сцены (кроссфейд «сейчас» ↔ «новый»), размеры сцен как в приложении (46 % экрана; Пик — башня целиком; Наборы — 580),
+   герой Главной в трёх вариантах объёма, сетка «тема × экран», подписи схем для координатора и движение (входы ease-out ≤ 560 мс,
+   лесенка 60 мс, дыхание света 9 с, парение героя 5 с; prefers-reduced-motion гасит всё). Обводок у контейнеров нет (стиль «Тень»). */
+:root { --sp-out: cubic-bezier(.23, 1, .32, 1); --sp-num: cubic-bezier(.3, 1.4, .5, 1); }
+.page { max-width: 2380px; } /* пять телефонов в ряд на широком экране; на узком — переносятся как у kit */
+.sp-lbl { font-size: 13px; color: #8E8E96; font-weight: 700; margin-right: 6px; }
+.chp.sp-replay { margin-left: auto; }
+.sp-strip { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 4px 0 16px; padding: 10px 14px; border-radius: 16px; background: #17181C; color: #C9CAD0; font-size: 14px; line-height: 20px; }
+.sp-strip .sw { width: 28px; height: 28px; border-radius: 9px; flex: none; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08); }
+.sp-strip b { color: #ECECEE; }
+.sp-strip .k { color: #8E8E96; }
+.sp-strip .ok { color: #7FE0B0; }
+.sp-strip .bad { color: #FF9A84; }
+.sp-note { margin: -6px 0 14px; color: #8E8E96; font-size: 14px; line-height: 20px; }
+
+/* ── слой новой палитры: кроссфейд со сценой «сейчас»; дыхание света только в режиме «новый» ── */
+.ph .sp-layer { position: absolute; inset: 0; z-index: 0; opacity: 0; background: var(--sp-new); transition: opacity .5s var(--sp-out); pointer-events: none; }
+.ph.sp-new .sp-layer { opacity: 1; }
+.ph .sp-layer::after { content: ""; position: absolute; inset: -12%; background: radial-gradient(38% 34% at 22% 10%, var(--sp-light-soft), transparent 70%); opacity: 0; transition: opacity .5s; }
+.ph.sp-new .sp-layer::after { opacity: 1; animation: sp-breathe 9s ease-in-out infinite; }
+@keyframes sp-breathe { 0%, 100% { transform: translate(0, 0) scale(1); } 50% { transform: translate(16px, 10px) scale(1.06); } }
+/* «сейчас» у обложки Сезона и у Диалогов — свои градиенты приложения; у Главной/Пика/Наборов — токены сцены движка */
+.ph.hs-tok .a-stage.sp-season-now { background: var(--sp-season-now) !important; }
+.ph.hs-tok .a-stage.sp-dlg-now { background: var(--sp-dlg-now) !important; }
+/* Диалоги «сейчас» в светлом: текст и стекло — тоном темы (dialogsSceneColors), кнопка — cta темы; в «новом» — белые чернила, как у всех сцен */
+.ph.lt.sp-now .sp-dlg-ink .a-kick, .ph.lt.sp-now .sp-dlg-ink .a-prog { color: color-mix(in srgb, var(--tx) 82%, transparent); }
+.ph.lt.sp-now .sp-dlg-ink .a-title { color: var(--tx); }
+.ph.lt.sp-now .sp-dlg-ink .a-prog .bar { background: color-mix(in srgb, var(--tx) 18%, transparent); }
+.ph.lt.sp-now .sp-dlg-ink .a-prog .bar i { background: var(--tx); }
+.ph.lt.sp-now .sp-dlg-ink .hm-pill.glass { background: color-mix(in srgb, var(--tx) 12%, transparent); color: var(--tx); box-shadow: none; }
+.ph.lt.sp-now .sp-dlg-ink .qbtn.sp-dlg-cta { background: var(--solid); color: var(--on-solid); }
+.sp-dlg-ink .a-kick, .sp-dlg-ink .a-title, .sp-dlg-ink .a-prog, .sp-dlg-ink .hm-pill.glass, .sp-dlg-ink .qbtn.sp-dlg-cta, .sp-dlg-ink .a-prog .bar, .sp-dlg-ink .a-prog .bar i { transition: color .4s, background .4s; }
+.ph.lt.sp-now .a-stage.sp-dlg-now .a-glow { opacity: .5; }
+
+/* ── размеры сцен как в приложении: 46 % экрана (392 из 844 → 430 из 932); Пик — 760 (башня целиком); Наборы — 580 ── */
+.sp-home .a-stage, .sp-season .a-stage, .sp-dlg .a-stage { height: 430px; }
+.sp-home .a-body, .sp-season .a-body, .sp-dlg .a-body { right: 150px; bottom: 44px; }
+.sp-home .a-title, .sp-season .a-title, .sp-dlg .a-title { font-size: 30px; line-height: 36px; letter-spacing: -.6px; }
+.sp-home .a-title.long, .sp-season .a-title.long, .sp-dlg .a-title.long { font-size: 26px; line-height: 32px; letter-spacing: -.5px; }
+.sp-home .a-kick, .sp-season .a-kick, .sp-dlg .a-kick, .sp-home .a-prog, .sp-season .a-prog, .sp-dlg .a-prog { font-size: 13px; line-height: 17px; }
+.sp-home .a-cta .qbtn, .sp-season .a-cta .qbtn, .sp-dlg .a-cta .qbtn { height: 50px; font-size: 16px; }
+.sp-home .a-cta, .sp-season .a-cta, .sp-dlg .a-cta { width: 190px; }
+.sp-home .hm-chips .qchip, .sp-season .hm-chips .qchip { height: 34px; font-size: 16px; }
+.sp-cs .a-stage { height: 580px; }
+.sp-cs .cs-copy { width: 210px; }
+.sp-cs .cs-copy .a-title { font-size: 36px; line-height: 40px; letter-spacing: -.7px; }
+.sp-cs .cs-copy .pk-rew { margin-top: 14px; }
+.sp-cs .pk2-me .s .io { color: #fff; }
+.sp-cs .cs-nm { max-width: 100%; padding: 0 8px; overflow: hidden; text-overflow: ellipsis; }
+/* шапка Главной: серия двумя строками, монеты | энергия (строки 531–537 эталона home-scene-states — в диапазоны Пика не входят) */
+.hm-pill.two { height: 42px; border-radius: 21px; padding: 0 12px 0 10px; }
+.hm-pill.two .vv { display: flex; flex-direction: column; line-height: 1.1; }
+.hm-pill.two .vv b { font-size: 15px; font-weight: 700; }
+.hm-pill.two .vv small { font-size: 11px; font-weight: 700; opacity: .78; }
+.hm-top .hm-pill { flex: none; }
+.hm-pill i.dv { width: 1px; height: 18px; background: currentColor; opacity: .22; margin: 0 4px; }
+/* таббар 2.0 — только значками (правило владельца) */
+.tbar .ti span { display: none; }
+.tbar .ti .io { font-size: 25px; }
+
+/* ── герой сцены: «сейчас» — 160 в углу, как в приложении (HERO 160, right −14, top 96, поле 10) ── */
+.sp-art { position: absolute; z-index: 1; right: -14px; top: 96px; width: 160px; height: 160px; padding: 10px; box-sizing: border-box; display: block; object-fit: contain; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .45)); opacity: .96; pointer-events: none; }
+.sp-fan { position: absolute; z-index: 1; display: block; filter: drop-shadow(0 28px 34px rgba(0, 0, 0, .45)); pointer-events: none; transition: opacity .5s var(--sp-out); }
+.ph.sp-new .sp-fan.now, .ph.sp-now .sp-fan.new { opacity: 0; }
+/* три варианта объёма (раздел 2): крупнее, с светом сверху, тенью на полу и глубиной; тап — отскок */
+.sp-hero { position: absolute; z-index: 1; cursor: pointer; }
+.sp-hero .in { position: relative; width: 100%; height: 100%; }
+.sp-hero img { position: relative; z-index: 2; width: 100%; height: 100%; display: block; object-fit: contain; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .45)); opacity: .96; }
+.sp-hero i { position: absolute; display: block; pointer-events: none; }
+.sp-hero .glow { inset: -8%; border-radius: 50%; background: radial-gradient(circle, var(--sp-light-soft), transparent 68%); opacity: 0; }
+.sp-hero .floor { left: 14%; right: 14%; bottom: -5%; height: 16%; border-radius: 50%; background: radial-gradient(ellipse, rgba(0, 0, 0, .55), transparent 70%); filter: blur(6px); opacity: 0; }
+/* блик по верхнему краю силуэта — тонкой светлой тенью (маска по картинке не грузится с file://, а блик нужен и там) */
+.sp-hero.a img { filter: drop-shadow(0 36px 46px rgba(0, 0, 0, .52)) drop-shadow(-1px -2px 0 rgba(255, 255, 255, .16)); }
+.sp-hero.a .glow { opacity: .9; }
+.sp-hero.b .glow { opacity: 1; inset: -14%; }
+.sp-hero.b .floor { opacity: 1; }
+.sp-hero.b .in { transform: perspective(640px) rotateY(-9deg) rotateX(3deg); animation: sp-float 5s ease-in-out infinite; }
+.sp-hero.b img { filter: drop-shadow(0 40px 48px rgba(0, 0, 0, .55)) drop-shadow(-1px -2px 0 rgba(255, 255, 255, .26)); }
+.sp-hero.c::before { content: ""; position: absolute; inset: 0; z-index: 1; background: var(--sp-hero-src) center / contain no-repeat; filter: blur(22px) saturate(1.35); opacity: .6; transform: scale(1.14) translateY(5%); }
+.sp-hero.c .glow { opacity: 1; inset: -22%; }
+.sp-hero.c img { filter: drop-shadow(0 44px 56px rgba(0, 0, 0, .58)) drop-shadow(-1px -2px 0 rgba(255, 255, 255, .22)); }
+@keyframes sp-float { 0%, 100% { transform: perspective(640px) rotateY(-9deg) rotateX(3deg) translateY(0); } 50% { transform: perspective(640px) rotateY(-9deg) rotateX(3deg) translateY(-7px); } }
+.sp-hero.pop { animation: sp-pop .36s var(--sp-out); }
+@keyframes sp-pop { 0% { transform: scale(1); } 35% { transform: scale(.95); } 70% { transform: scale(1.03); } 100% { transform: scale(1); } }
+
+/* ── панели под сценой: карточки глав/диалогов и плитки наборов (из scenes-compact / community-scene-v3, в токенах темы) ── */
+.sp-cards { display: flex; gap: 10px; overflow: hidden; margin: 8px 0 10px; }
+.sp-card { flex: 0 0 172px; border-radius: 18px; padding: 12px; font-size: 15px; line-height: 20px; font-weight: 700; background: color-mix(in srgb, var(--tx) 6%, transparent); }
+.sp-card small { display: block; font-size: 13px; font-weight: 600; color: var(--sec); margin-bottom: 4px; }
+.sp-card .st { display: flex; gap: 4px; align-items: center; margin-top: 8px; font-size: 13px; font-weight: 700; color: var(--sec); }
+.sp-card .st .io { font-size: 13px; }
+.sp-card.cur { background: color-mix(in srgb, var(--acc) 14%, transparent); }
+.sp-wchips { display: flex; gap: 8px; margin: 6px 0 10px; overflow: hidden; }
+.sp-wchips span { flex: none; height: 32px; border-radius: 16px; padding: 0 12px; display: inline-flex; align-items: center; font-size: 14px; font-weight: 600; background: color-mix(in srgb, var(--tx) 6%, transparent); color: var(--tx); }
+.sp-wchips span.on { background: var(--solid); color: var(--on-solid); }
+.sp-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0 10px; }
+.sp-tile { position: relative; min-height: 158px; border-radius: 22px; overflow: hidden; color: #fff; padding: 12px; display: flex; flex-direction: column; box-shadow: var(--sh); background: var(--sp-tile); }
+.sp-tile .tr { display: flex; align-items: center; gap: 6px; }
+.sp-tile .tr .qchip { height: 28px; padding: 0 9px; font-size: 13px; gap: 4px; }
+.sp-tile .tr .qchip .io { font-size: 13px; }
+.sp-tile .rk { margin-left: auto; width: 26px; height: 26px; border-radius: 13px; background: #fff; color: #121318; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.sp-tile .tt { font-size: 17px; line-height: 21px; font-weight: 700; margin-top: auto; padding-top: 24px; letter-spacing: -.2px; text-wrap: balance; }
+.sp-tile .tb { display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 13px; font-weight: 700; color: rgba(255, 255, 255, .92); }
+.sp-tile .tb b { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; font-variant-numeric: tabular-nums; }
+.sp-tile .tb .io { font-size: 13px; }
+
+/* ── сетка «тема × экран»: 23 строки, слева имя и схема, справа мини-сцены (сейчас: Главная, Уроки; новый: пять экранов) ── */
+.sp-grid { display: grid; grid-template-columns: 200px repeat(7, minmax(0, 1fr)); gap: 10px 10px; align-items: center; margin-top: 10px; }
+.sp-grid .h { font-size: 13px; font-weight: 700; color: #8E8E96; text-align: center; padding: 4px 0; }
+.sp-grid .h.now { color: #C9CAD0; }
+.sp-grid .h.sep { position: relative; }
+.sp-grid .h.sep::before { content: ""; position: absolute; left: -5px; top: 0; bottom: 0; width: 1px; background: #2B2C31; }
+.sp-row { display: contents; }
+.sp-name { cursor: pointer; padding: 8px 12px; border-radius: 14px; transition: background .2s; }
+.sp-name:hover { background: #17181C; }
+.sp-name.on { background: #22232A; }
+.sp-name b { display: block; font-size: 15px; line-height: 20px; color: #ECECEE; }
+.sp-name small { display: block; font-size: 12px; line-height: 16px; color: #8E8E96; margin-top: 2px; }
+.sp-mini { position: relative; height: 104px; border-radius: 18px; overflow: hidden; color: #fff; box-shadow: 0 10px 24px rgba(0, 0, 0, .35); cursor: pointer; background: var(--sp-mini); transition: transform .24s var(--sp-out); }
+.sp-mini:hover { transform: translateY(-2px); }
+.sp-mini img { position: absolute; right: -4px; top: 6px; width: 64px; height: 64px; object-fit: contain; filter: drop-shadow(0 10px 14px rgba(0, 0, 0, .45)); }
+.sp-mini .t { position: absolute; left: 11px; bottom: 26px; font-size: 13px; font-weight: 700; line-height: 16px; letter-spacing: -.2px; }
+.sp-mini .seam { position: absolute; left: 8px; right: 8px; bottom: 0; height: 18px; border-radius: 12px 12px 0 0; background: var(--sp-card); }
+.sp-mini.sep { box-shadow: 0 10px 24px rgba(0, 0, 0, .35), -6px 0 0 -5px #2B2C31; }
+.sp-grid .sp-name.on + .sp-mini, .sp-mini.sel { outline: 2px solid rgba(255, 255, 255, .35); outline-offset: 2px; }
+
+/* ── появление: телефоны лесенкой, герой из-за края, панель поднимается, пьедестал растёт; «Повторить» проигрывает заново ── */
+.sp-enter .col { animation: sp-up .5s var(--sp-out) both; animation-delay: var(--d, 0ms); }
+.sp-enter .sp-strip, .sp-enter .sp-grid .sp-row > * { animation: sp-up .46s var(--sp-out) both; animation-delay: var(--d, 0ms); }
+.sp-enter .sp-art, .sp-enter .sp-fan, .sp-enter .sp-hero { animation: sp-hero-in .56s var(--sp-out) both; animation-delay: calc(var(--d, 0ms) + 160ms); }
+.sp-enter .a-panel { animation: sp-rise .56s var(--sp-out) both; animation-delay: calc(var(--d, 0ms) + 220ms); }
+.sp-enter .a-body, .sp-enter .pk2-copy { animation: sp-up .5s var(--sp-out) both; animation-delay: calc(var(--d, 0ms) + 120ms); }
+.sp-enter .pk2-blk { animation: sp-rise .56s var(--sp-out) both; animation-delay: calc(var(--d, 0ms) + var(--b, 0ms)); }
+.sp-enter .pk2-coin { animation: sp-drop .5s var(--sp-out) both; animation-delay: calc(var(--d, 0ms) + var(--b, 0ms) + 90ms); }
+.sp-enter .pk2-tw { animation: sp-rise .7s var(--sp-out) both; animation-delay: calc(var(--d, 0ms) + 100ms); }
+@keyframes sp-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes sp-hero-in { from { opacity: 0; transform: translate(26px, 10px) scale(.88); } to { opacity: 1; transform: none; } }
+@keyframes sp-rise { from { opacity: 0; transform: translateY(46px); } to { opacity: 1; transform: none; } }
+@keyframes sp-drop { from { opacity: 0; transform: translateY(-18px) scale(.9); } to { opacity: 1; transform: none; } }
+#root.sp-fade { animation: sp-fade .28s var(--sp-out) both; }
+@keyframes sp-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .sp-enter *, .sp-mini, #root.sp-fade, .ph .sp-layer::after { animation: none !important; transition: none !important; } }

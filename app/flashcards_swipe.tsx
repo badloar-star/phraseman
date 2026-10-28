@@ -107,6 +107,8 @@ import {
   flashcardPendingGrantPreset,
   persistSpentEnergyOrRefund,
 } from './flashcards/training_entry_policy';
+import { cardManifestId, manifestSeed, MANIFEST_ID_COLLISION_ERROR } from './flashcards/training_manifest_ids';
+import { cardsPrepErrorOutcome, noteCardsPrep, type CardsPrepOutcome } from './flashcards/cards_prep_diagnostics';
 import { logSessionSizeSetup } from './flashcards/practice_setup_params';
 import {
   FC_DEFAULT_SESSION_SIZE,
@@ -2473,6 +2475,17 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
     let pendingRecord: FlashcardTrainingPendingGrantRecord | null = null;
     /** Локальный старт на случай отказа гранта — см. fail-open в catch ниже. */
     let swipeLocalStart: (() => void) | null = null;
+    // зачем (координатор 28.10, жалоба «Личный список · 187» → «Не удалось подготовить тренировку»): console.log прод-сборка
+    // вырезает — итог старта пишем событием журнала обращений [CARDS-PREP] (режим, источник, размер, итог, длительность).
+    const prepStartedAt = Date.now();
+    let prepSize = 0;
+    const notePrep = (outcome: CardsPrepOutcome) => noteCardsPrep({
+      mode: isTrueFalseSession ? 'truefalse' : 'swipe',
+      sourceKinds: selectedSources.map((source) => source.kind),
+      size: prepSize,
+      outcome,
+      durationMs: Date.now() - prepStartedAt,
+    });
     try {
       // зачем (координатор 12.10, R1 «нет пути», Карточки): dev `train_gate=fail_swipe_prepare|fail_swipe_quota` — те же сообщения об отказе старта без реального слоя выдачи; в стор-сборке геттер выключен.
       const devGate = getDevTrainGate();
@@ -2493,6 +2506,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       }
       if (cards.length === 0) {
         fsLog('exit:no_cards_with_translation', { sources: selectedSources.length });
+        notePrep('no_cards');
         setLoadError(
           triLang(lang, {
             ru: 'В выбранных наборах нет карточек с переводом.',
@@ -2527,6 +2541,20 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         setAttemptSessionId(makeFeedbackAttemptId());
         setPhase('play');
       };
+      prepSize = sessionCards.length;
+      // зачем (жалоба 28.10): id сохранённой карточки несёт кусок фразы («i'm_fine,_thanks!») и не проходит ID_RE
+      // компактного manifest → invalid_input → «Верно/Неверно» без обхода показывал отказ. Как Блиц/«Вспомни»/«Устно»
+      // (training_manifest_ids.ts), кладём устойчивый ОТПЕЧАТОК ключа; валидатор не ослабляем.
+      const cardsByManifestId = new Map<string, TrainingCard>();
+      for (const card of sessionCards) {
+        const manifestId = cardManifestId(card.trainingKey);
+        const existing = cardsByManifestId.get(manifestId);
+        if (existing && existing.trainingKey !== card.trainingKey) {
+          console.warn('[FC-PENDING-GRANT] manifest:id_collision', JSON.stringify({ mode: 'swipe', manifestId })); // guard-ok: редкая ветка отказа, обязана быть в релизе
+          throw new Error(MANIFEST_ID_COLLISION_ERROR);
+        }
+        if (!existing) cardsByManifestId.set(manifestId, card);
+      }
       const pendingAccount = await resolveFlashcardTrainingPendingGrantAccount(accountToken);
       fsLog('account:resolved', { resolved: pendingAccount != null, hasAccountToken: accountToken != null });
       if (!pendingAccount) throw new Error('pending_grant_account_unavailable');
@@ -2547,13 +2575,13 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           schemaVersion: 'flashcard-training-manifest.v1',
           mode: 'swipe',
           payload: {
-            orderedCardIds: sessionCards.map((card) => card.trainingKey),
-            seed: attemptSessionId,
+            orderedCardIds: sessionCards.map((card) => cardManifestId(card.trainingKey)),
+            seed: manifestSeed(attemptSessionId),
             promptRecipe: promptQueue.map((prompt) => ({
-              cardId: prompt.card.trainingKey,
+              cardId: cardManifestId(prompt.card.trainingKey),
               direction: prompt.isMatch ? 'front_to_back' : 'back_to_front',
             })),
-            initialCardId: promptQueue[0]!.card.trainingKey,
+            initialCardId: cardManifestId(promptQueue[0]!.card.trainingKey),
           },
         },
         attemptId: attemptSessionId,
@@ -2584,19 +2612,21 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         throw new Error('pending_grant_manifest_invalid');
       }
       const cardsByKey = new Map(sessionCards.map((card) => [card.trainingKey, card]));
+      // зачем: новые записи несут отпечатки; запись, подготовленная до перехода (сырые чистые ключи), ещё живёт по TTL — ищем и так.
+      const cardForManifestId = (cardId: string): TrainingCard | undefined => cardsByManifestId.get(cardId) ?? cardsByKey.get(cardId);
       const restoredSessionCards = restoredPayload.orderedCardIds
-        .map((cardId) => cardsByKey.get(cardId))
+        .map((cardId) => cardForManifestId(cardId))
         .filter((card): card is TrainingCard => card !== undefined);
       if (restoredSessionCards.length !== restoredPayload.orderedCardIds.length) {
         throw new Error('pending_grant_manifest_cards_unavailable');
       }
       const fallbackPrompts = new Map(promptQueue.map((prompt) => [prompt.card.trainingKey, prompt]));
       const restoredPromptQueue = (restoredPayload.promptRecipe ?? []).map((recipe, index) => {
-        const card = cardsByKey.get(recipe.cardId);
+        const card = cardForManifestId(recipe.cardId);
         if (!card) return null;
         const isMatch = recipe.direction === 'front_to_back';
         const trueTranslation = answerFor(card);
-        const fallback = fallbackPrompts.get(recipe.cardId);
+        const fallback = fallbackPrompts.get(card.trainingKey);
         let shownTranslation = isMatch ? trueTranslation : fallback?.shownTranslation ?? '';
         if (!isMatch && normalizeAnswer(shownTranslation) === normalizeAnswer(trueTranslation)) {
           const decoy = restoredSessionCards
@@ -2666,6 +2696,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         }
         if (energyResult === 'insufficient') {
           fsLog('exit:energy_insufficient', {});
+          notePrep('energy_insufficient');
           await discardFlashcardTrainingPendingGrant(pendingAccount, pendingRecord.fingerprint);
           setNoEnergyOpen(true);
           return;
@@ -2706,6 +2737,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
           activeSwipeSpentOperationRef.current = null;
           activeSwipePendingGrantRef.current = null;
         fsLog('exit:quota_refused', { status: quotaResult.status, shown: quotaResult.status === 'exhausted' ? 'monthly_limit' : 'quota_unverified' });
+        notePrep('quota_refused');
         if (quotaResult.status === 'exhausted') {
           openMonthlyTrainingLimit();
         } else {
@@ -2757,6 +2789,7 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
       setAttemptSessionId(makeFeedbackAttemptId());
       setPhase('play');
       fsLog('result:play', { cards: restoredSessionCards.length, path: 'grant' });
+      notePrep('ok');
     } catch (error: unknown) {
       const pending = activeSwipePendingGrantRef.current;
       // зачем (владелец, 2026-09-13): немой catch прятал причину отказа входа.
@@ -2798,9 +2831,11 @@ export function FlashcardsSwipeScreen({ trainingMode = 'swipe' }: FlashcardsSwip
         console.warn('[FC-TRAIN-ENTRY] swipe entry:fail-open — грант недоступен, раунд стартует локально без чека и без списания энергии', JSON.stringify({ reason: message }));
         swipeLocalStart();
         fsLog('result:play', { path: 'fail-open-local' });
+        notePrep('fail_open');
         return;
       }
       fsLog('result:error_shown', { text: 'prepare_failed', reason: message, mounted: swipeMountedRef.current });
+      notePrep(cardsPrepErrorOutcome(message));
       if (swipeMountedRef.current) setLoadError(swipePrepareFailedText(lang));
     } finally {
       startChargeInFlightRef.current = false;

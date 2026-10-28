@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-46:i01",
+    "correctText": "pocos",
+    "correctResponseId": "es:lesson-06:session-46:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-46:i02",
+    "correctText": "pocos",
+    "correctResponseId": "es:lesson-06:session-46:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-46:i03",
+    "correctText": "Hay pocos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-46:i04",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-06:session-46:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-46:i05",
+    "correctText": "Hay pocos libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-46:i06",
+    "correctText": "¿Hay pocos libros allí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-46:i07",
+    "correctText": "Hay pocos libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-46:i08",
+    "correctText": "pocos",
+    "correctResponseId": "es:lesson-06:session-46:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-46:i09",
+    "correctText": "Hay pocos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-46:i10",
+    "correctText": "Hay pocos libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-46:i11",
+    "correctText": "¿Hay pocos libros allí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-46:i12",
+    "correctText": "¿Hay pocos libros?",
+    "correctResponseId": null
+  }
+]

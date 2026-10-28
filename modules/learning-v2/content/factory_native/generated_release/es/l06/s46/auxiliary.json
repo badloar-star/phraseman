@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-46",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-46:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-46:intro1:r2": {
+          "ru": "Libro мужского рода: pocos libros.",
+          "uk": "Libro чоловічого роду: pocos libros."
+        },
+        "es:lesson-06:session-46:intro1:r3": {
+          "ru": "Libros во множественном числе: pocos.",
+          "uk": "Libros у множині: pocos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-46:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-46:intro2:r2": {
+          "ru": "С libros нужна форма pocos.",
+          "uk": "З libros потрібна форма pocos."
+        },
+        "es:lesson-06:session-46:intro2:r3": {
+          "ru": "Здесь — aquí; allí означает там.",
+          "uk": "Тут — aquí; allí означає там."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-46:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-46:intro3:r2": {
+          "ru": "Перед libros нужно pocos.",
+          "uk": "Перед libros потрібно pocos."
+        },
+        "es:lesson-06:session-46:intro3:r3": {
+          "ru": "Muchos — много, а спрашиваем, мало ли книг.",
+          "uk": "Muchos — багато, а запитуємо, чи мало книжок."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "de6498fec687ac803e7caf6a9101a1cbd6bef5862ac57628b2965272fd123bb0"
+}

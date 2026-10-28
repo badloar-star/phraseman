@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-49",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-49:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-49:intro1:r2": {
+          "ru": "Tienda женского рода: una.",
+          "uk": "Tienda жіночого роду: una."
+        },
+        "es:lesson-06:session-49:intro1:r3": {
+          "ru": "Здесь — aquí; allí означает там.",
+          "uk": "Тут — aquí; allí означає там."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-49:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-49:intro2:r2": {
+          "ru": "Перед tienda нужна una.",
+          "uk": "Перед tienda потрібна una."
+        },
+        "es:lesson-06:session-49:intro2:r3": {
+          "ru": "Спрашиваем про это место: aquí.",
+          "uk": "Запитуємо про це місце: aquí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-49:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-49:intro3:r2": {
+          "ru": "Без no получится, что магазин есть.",
+          "uk": "Без no вийде, що магазин є."
+        },
+        "es:lesson-06:session-49:intro3:r3": {
+          "ru": "Говорим об этом месте: aquí.",
+          "uk": "Говоримо про це місце: aquí."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ef952a08bc7406a0f2d0a60af795869712a8a07aa70f86fb4f434b782fa93e54"
+}

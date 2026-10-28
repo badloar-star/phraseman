@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-47",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-47:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-47:intro1:r2": {
+          "ru": "Silla женского рода: pocas.",
+          "uk": "Silla жіночого роду: pocas."
+        },
+        "es:lesson-06:session-47:intro1:r3": {
+          "ru": "Sillas во множественном числе: pocas.",
+          "uk": "Sillas у множині: pocas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-47:intro2:r2": {
+          "ru": "Нужна форма pocas для sillas.",
+          "uk": "Потрібна форма pocas для sillas."
+        },
+        "es:lesson-06:session-47:intro2:r3": {
+          "ru": "Здесь — aquí, не allí.",
+          "uk": "Тут — aquí, не allí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-47:intro3:r2": {
+          "ru": "С sillas нужна pocas.",
+          "uk": "З sillas потрібна pocas."
+        },
+        "es:lesson-06:session-47:intro3:r3": {
+          "ru": "Muchas означает много, а нужно мало.",
+          "uk": "Muchas означає багато, а потрібно мало."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "87a7bdfeabd53b23cf4129af55c988740e721b63756e38f30f8f6312ef4dbe00"
+}

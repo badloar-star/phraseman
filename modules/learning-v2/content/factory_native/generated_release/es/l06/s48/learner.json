@@ -1,0 +1,1007 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-48",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-48:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i01:r1",
+          "text": "mucha"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i01:r2",
+          "text": "poca"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-48:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-48:i01:audio",
+          "transcript": "mucha"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-48:i01:r1",
+            "targetText": "mucha",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i01:r2",
+            "targetText": "poca",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит mucha — много.",
+              "uk": "Звучить mucha — багато."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — много воды",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i02:r1",
+          "text": "mucha"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i02:r2",
+          "text": "mucho"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i02:r3",
+          "text": "muchas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — много воды",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — много воды",
+          "uk": "Вставте слово — багато води"
+        },
+        "gappedTargetPhrase": "Hay ___ agua.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-48:i02:r1",
+            "text": "mucha"
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i02:r2",
+            "text": "mucho"
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i02:r3",
+            "text": "muchas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — много воды",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — много воды",
+            "feedbackByLocale": {
+              "ru": "Agua женского рода: mucha.",
+              "uk": "Agua жіночого роду: mucha."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — много воды",
+            "feedbackByLocale": {
+              "ru": "Agua здесь не во множественном числе.",
+              "uk": "Agua тут не в множині."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — много воды; начните с Hay, количество поставьте перед agua",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i03:r1",
+          "text": "Плитки: agua"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i03:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i03:r3",
+          "text": "mucha"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i03:r4",
+          "text": "mucho."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — много воды; начните с Hay, количество поставьте перед agua",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay mucha agua.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — много воды; начните с Hay, количество поставьте перед agua",
+          "uk": "Зберіть фразу — багато води; почніть з Hay, кількість поставте перед agua"
+        },
+        "orderedTokens": [
+          "Hay",
+          "mucha",
+          "agua"
+        ],
+        "authoredDistractorTokens": [
+          "mucho"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — много воды; начните с Hay, количество поставьте перед agua",
+            "feedbackByLocale": {
+              "ru": "с agua нужна mucha.",
+              "uk": "з agua потрібна mucha."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мало воды",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i04:r1",
+          "text": "poca"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i04:r2",
+          "text": "poco"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i04:r3",
+          "text": "pocas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мало воды",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мало воды",
+          "uk": "Вставте слово — мало води"
+        },
+        "gappedTargetPhrase": "Hay ___ agua.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-48:i04:r1",
+            "text": "poca"
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i04:r2",
+            "text": "poco"
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i04:r3",
+            "text": "pocas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мало воды",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мало воды",
+            "feedbackByLocale": {
+              "ru": "Agua женского рода: poca.",
+              "uk": "Agua жіночого роду: poca."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мало воды",
+            "feedbackByLocale": {
+              "ru": "Нужна форма единственного числа poca.",
+              "uk": "Потрібна форма однини poca."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь мало воды; начните с Hay, количество поставьте перед agua, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i05:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i05:r2",
+          "text": "poca"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i05:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i05:r4",
+          "text": "agua"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i05:r5",
+          "text": "poco."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь мало воды; начните с Hay, количество поставьте перед agua, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay poca agua aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь мало воды; начните с Hay, количество поставьте перед agua, место — в конце",
+          "uk": "Зберіть фразу — тут мало води; почніть з Hay, кількість поставте перед agua, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "poca",
+          "agua",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "poco"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь мало воды; начните с Hay, количество поставьте перед agua, место — в конце",
+            "feedbackByLocale": {
+              "ru": "с agua нужна poca.",
+              "uk": "з agua потрібна poca."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — много книг",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i06:r1",
+          "text": "muchos"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i06:r2",
+          "text": "muchas"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i06:r3",
+          "text": "mucho"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — много книг",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — много книг",
+          "uk": "Вставте слово — багато книжок"
+        },
+        "gappedTargetPhrase": "Hay ___ libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-48:i06:r1",
+            "text": "muchos"
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i06:r2",
+            "text": "muchas"
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i06:r3",
+            "text": "mucho"
+          }
+        ],
+        "testedDimension": "Вставьте слово — много книг",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — много книг",
+            "feedbackByLocale": {
+              "ru": "Libro мужского рода: muchos.",
+              "uk": "Libro чоловічого роду: muchos."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — много книг",
+            "feedbackByLocale": {
+              "ru": "Libros во множественном числе: muchos.",
+              "uk": "Libros у множині: muchos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — мало книг; начните с Hay, количество поставьте перед libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i07:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i07:r2",
+          "text": "pocos"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i07:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i07:r4",
+          "text": "pocas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — мало книг; начните с Hay, количество поставьте перед libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay pocos libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мало книг; начните с Hay, количество поставьте перед libros",
+          "uk": "Зберіть фразу — мало книжок; почніть з Hay, кількість поставте перед libros"
+        },
+        "orderedTokens": [
+          "Hay",
+          "pocos",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "pocas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — мало книг; начните с Hay, количество поставьте перед libros",
+            "feedbackByLocale": {
+              "ru": "с libros нужна pocos.",
+              "uk": "з libros потрібна pocos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i08:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i08:r2",
+          "text": "muchos"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i08:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i08:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i08:r5",
+          "text": "allí."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-48:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-48:i08:audio",
+          "transcript": "Hay muchos libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay muchos libros aquí.",
+        "orderedTokens": [
+          "Hay",
+          "muchos",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "allí"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит aquí.",
+              "uk": "звучить aquí."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — много стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i09:r1",
+          "text": "muchas"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i09:r2",
+          "text": "muchos"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i09:r3",
+          "text": "mucha"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — много стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — много стульев",
+          "uk": "Вставте слово — багато стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-48:i09:r1",
+            "text": "muchas"
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i09:r2",
+            "text": "muchos"
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i09:r3",
+            "text": "mucha"
+          }
+        ],
+        "testedDimension": "Вставьте слово — много стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — много стульев",
+            "feedbackByLocale": {
+              "ru": "Silla женского рода: muchas.",
+              "uk": "Silla жіночого роду: muchas."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — много стульев",
+            "feedbackByLocale": {
+              "ru": "Sillas во множественном числе: muchas.",
+              "uk": "Sillas у множині: muchas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мало стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i10:r1",
+          "text": "pocas"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i10:r2",
+          "text": "pocos"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i10:r3",
+          "text": "poca"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мало стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мало стульев",
+          "uk": "Вставте слово — мало стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-48:i10:r1",
+            "text": "pocas"
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i10:r2",
+            "text": "pocos"
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i10:r3",
+            "text": "poca"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мало стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мало стульев",
+            "feedbackByLocale": {
+              "ru": "Silla женского рода: pocas.",
+              "uk": "Silla жіночого роду: pocas."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-48:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мало стульев",
+            "feedbackByLocale": {
+              "ru": "Sillas во множественном числе: pocas.",
+              "uk": "Sillas у множині: pocas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — там много стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i11:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i11:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i11:r3",
+          "text": "allí?"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i11:r4",
+          "text": "muchas"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i11:r5",
+          "text": "muchos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — там много стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay muchas sillas allí?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — там много стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+          "uk": "Зберіть фразу — там багато стільців?; почніть з ¿Hay, кількість поставте перед sillas, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "muchas",
+          "sillas",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "muchos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — там много стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+            "feedbackByLocale": {
+              "ru": "с sillas нужна muchas.",
+              "uk": "з sillas потрібна muchas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-48:i12:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i12:r2",
+          "text": "pocas"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i12:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i12:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-48:i12:r5",
+          "text": "pocos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-48:i12:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-48:i12:audio",
+          "transcript": "Hay pocas sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay pocas sillas aquí.",
+        "orderedTokens": [
+          "Hay",
+          "pocas",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "pocos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-48:i12:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит pocas.",
+              "uk": "звучить pocas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — много воды; начните с Hay, количество поставьте перед agua",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-48:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — много воды; начните с Hay, количество поставьте перед agua",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-48:i13:audio",
+          "transcript": "Hay mucha agua."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay mucha agua.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь мало воды; начните с Hay, количество поставьте перед agua, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-48:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь мало воды; начните с Hay, количество поставьте перед agua, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-48:i14:audio",
+          "transcript": "Hay poca agua aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay poca agua aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мало книг; начните с Hay, количество поставьте перед libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-48:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мало книг; начните с Hay, количество поставьте перед libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-48:i15:audio",
+          "transcript": "Hay pocos libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay pocos libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-48:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь много книг; начните с Hay, количество поставьте перед libros, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-48:i16:audio",
+          "transcript": "Hay muchos libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay muchos libros aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — там много стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-48:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — там много стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-48:i17:audio",
+          "transcript": "¿Hay muchas sillas allí?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay muchas sillas allí?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-48:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-48:i18:audio",
+          "transcript": "Hay pocas sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay pocas sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "321a1ad71805e9d84e1e28c4703ca2365106d110d3d6c002d8a8d2fc25172926"
+}

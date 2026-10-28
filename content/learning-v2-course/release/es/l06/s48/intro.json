@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-48",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать форму mucho или poco по испанскому существительному.",
+    "uk": "обирати форму mucho або poco за іспанським іменником."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-48:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Воды хватит",
+        "uk": "Води вистачить"
+      },
+      "bodyByLocale": {
+        "ru": "Вы проверили запас воды: её много. Сообщите `Hay mucha agua` — «Много воды». Соберите `Hay` + `mucha` + `agua`. Agua женского рода, здесь говорим об общем количестве воды, поэтому mucha. Не добавляем s: мы не считаем отдельные бутылки.",
+        "uk": "Ви перевірили запас води: її багато. Повідомте `Hay mucha agua` — «Багато води». Складіть `Hay` + `mucha` + `agua`. Agua жіночого роду, тут говоримо про загальну кількість води, тому mucha. Не додаємо s: ми не рахуємо окремі пляшки."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-48:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Много воды». Начните с Hay, количество поставьте перед agua.",
+          "uk": "Повідомте «Багато води». Почніть з Hay, кількість поставте перед agua."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-48:intro1:r1",
+              "text": "Hay mucha agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro1:r2",
+              "text": "Hay mucho agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro1:r3",
+              "text": "Hay muchas agua."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-48:intro1:r1",
+              "text": "Hay mucha agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro1:r2",
+              "text": "Hay mucho agua."
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro1:r3",
+              "text": "Hay muchas agua."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Много воды». Начните с Hay, количество поставьте перед agua.",
+          "uk": "Повідомте «Багато води». Почніть з Hay, кількість поставте перед agua."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-48:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книг немного",
+        "uk": "Книжок небагато"
+      },
+      "bodyByLocale": {
+        "ru": "В комнате есть книги для гостей, но выбор небольшой. Скажите `Hay pocos libros` — «Мало книг». Соберите `Hay` + `pocos` + `libros`. Libro мужского рода, libros во множественном числе: выбираем pocos. Книги есть, просто их мало; no hay libros сообщило бы, что их нет.",
+        "uk": "У кімнаті є книжки для гостей, але вибір невеликий. Скажіть `Hay pocos libros` — «Мало книжок». Складіть `Hay` + `pocos` + `libros`. Libro чоловічого роду, libros у множині: обираємо pocos. Книжки є, просто їх мало; no hay libros повідомило б, що їх немає."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-48:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Мало книг». Начните с Hay, количество поставьте перед libros.",
+          "uk": "Повідомте «Мало книжок». Почніть з Hay, кількість поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-48:intro2:r1",
+              "text": "Hay pocos libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro2:r2",
+              "text": "Hay pocas libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro2:r3",
+              "text": "No hay libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-48:intro2:r1",
+              "text": "Hay pocos libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro2:r2",
+              "text": "Hay pocas libros."
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro2:r3",
+              "text": "No hay libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Мало книг». Начните с Hay, количество поставьте перед libros.",
+          "uk": "Повідомте «Мало книжок». Почніть з Hay, кількість поставте перед libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-48:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить про места",
+        "uk": "Запитати про місця"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ещё не осмотрели соседнюю комнату. Спросите `¿Hay muchas sillas allí?` — «Там много стульев?» Соберите `¿Hay` + `muchas sillas` + `allí?`. Silla женского рода, предметов несколько: используем muchas. Место ставим в конце. Пусть места найдутся всем, даже гостю, который всегда приходит последним.",
+        "uk": "Ви ще не оглянули сусідню кімнату. Запитайте `¿Hay muchas sillas allí?` — «Там багато стільців?» Складіть `¿Hay` + `muchas sillas` + `allí?`. Silla жіночого роду, предметів кілька: використовуємо muchas. Місце ставимо наприкінці. Нехай місця знайдуться всім, навіть гостю, який завжди приходить останнім."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-48:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Там много стульев?». Начните с ¿Hay, количество поставьте перед sillas, место — в конце.",
+          "uk": "Запитайте «Там багато стільців?». Почніть з ¿Hay, кількість поставте перед sillas, місце — наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-48:intro3:r1",
+              "text": "¿Hay muchas sillas allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro3:r2",
+              "text": "¿Hay muchos sillas allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro3:r3",
+              "text": "¿Hay muchas sillas aquí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-48:intro3:r1",
+              "text": "¿Hay muchas sillas allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro3:r2",
+              "text": "¿Hay muchos sillas allí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-48:intro3:r3",
+              "text": "¿Hay muchas sillas aquí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Там много стульев?». Начните с ¿Hay, количество поставьте перед sillas, место — в конце.",
+          "uk": "Запитайте «Там багато стільців?». Почніть з ¿Hay, кількість поставте перед sillas, місце — наприкінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3799d7e6d4efd5730332f0552e3a1267799909a8215894302fa1ae43d7b1da09"
+}

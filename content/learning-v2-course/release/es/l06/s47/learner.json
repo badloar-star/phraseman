@@ -1,0 +1,673 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-47",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-47:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-47:i01:r1",
+          "text": "pocas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i01:r2",
+          "text": "pocos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-47:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-47:i01:audio",
+          "transcript": "pocas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-47:i01:r1",
+            "targetText": "pocas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-47:i01:r2",
+            "targetText": "pocos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-47:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит pocas с a.",
+              "uk": "Звучить pocas з a."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мало стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-47:i02:r1",
+          "text": "pocas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i02:r2",
+          "text": "pocos"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i02:r3",
+          "text": "poca"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мало стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мало стульев",
+          "uk": "Вставте слово — мало стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-47:i02:r1",
+            "text": "pocas"
+          },
+          {
+            "responseId": "es:lesson-06:session-47:i02:r2",
+            "text": "pocos"
+          },
+          {
+            "responseId": "es:lesson-06:session-47:i02:r3",
+            "text": "poca"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мало стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-47:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мало стульев",
+            "feedbackByLocale": {
+              "ru": "Silla женского рода: pocas.",
+              "uk": "Silla жіночого роду: pocas."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-47:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мало стульев",
+            "feedbackByLocale": {
+              "ru": "Sillas во множественном числе: pocas.",
+              "uk": "Sillas у множині: pocas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — мало стульев; начните с Hay, количество поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-47:i03:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i03:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i03:r3",
+          "text": "pocas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i03:r4",
+          "text": "pocos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — мало стульев; начните с Hay, количество поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay pocas sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мало стульев; начните с Hay, количество поставьте перед sillas",
+          "uk": "Зберіть фразу — мало стільців; почніть з Hay, кількість поставте перед sillas"
+        },
+        "orderedTokens": [
+          "Hay",
+          "pocas",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "pocos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-47:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — мало стульев; начните с Hay, количество поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "с sillas нужна pocas.",
+              "uk": "з sillas потрібна pocas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — здесь мало стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-47:i04:r1",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i04:r2",
+          "text": "allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i04:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — здесь мало стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь мало стульев",
+          "uk": "Вставте слово — тут мало стільців"
+        },
+        "gappedTargetPhrase": "Hay pocas sillas ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-47:i04:r1",
+            "text": "aquí"
+          },
+          {
+            "responseId": "es:lesson-06:session-47:i04:r2",
+            "text": "allí"
+          },
+          {
+            "responseId": "es:lesson-06:session-47:i04:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — здесь мало стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-47:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь мало стульев",
+            "feedbackByLocale": {
+              "ru": "Нужно здесь: aquí.",
+              "uk": "Потрібно тут: aquí."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-47:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь мало стульев",
+            "feedbackByLocale": {
+              "ru": "Место «здесь» — aquí.",
+              "uk": "Місце «тут» — aquí."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-47:i05:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i05:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i05:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i05:r4",
+          "text": "pocas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i05:r5",
+          "text": "poca."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay pocas sillas aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+          "uk": "Зберіть фразу — тут мало стільців; почніть з Hay, кількість поставте перед sillas, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "pocas",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "poca"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-47:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+            "feedbackByLocale": {
+              "ru": "перед sillas нужна pocas.",
+              "uk": "перед sillas потрібна pocas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — там мало стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-47:i06:r1",
+          "text": "Плитки: allí?"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i06:r2",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i06:r3",
+          "text": "pocas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i06:r4",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i06:r5",
+          "text": "pocos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — там мало стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay pocas sillas allí?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — там мало стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+          "uk": "Зберіть фразу — там мало стільців?; почніть з ¿Hay, кількість поставте перед sillas, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "pocas",
+          "sillas",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "pocos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-47:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — там мало стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+            "feedbackByLocale": {
+              "ru": "с sillas нужна pocas.",
+              "uk": "з sillas потрібна pocas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-47:i07:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i07:r2",
+          "text": "pocas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i07:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i07:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i07:r5",
+          "text": "allí."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-47:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-47:i07:audio",
+          "transcript": "Hay pocas sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay pocas sillas aquí.",
+        "orderedTokens": [
+          "Hay",
+          "pocas",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "allí"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-47:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит aquí.",
+              "uk": "звучить aquí."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — мало стульев?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-47:i08:r1",
+          "text": "pocas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i08:r2",
+          "text": "muchas"
+        },
+        {
+          "responseId": "es:lesson-06:session-47:i08:r3",
+          "text": "pocos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — мало стульев?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мало стульев?",
+          "uk": "Вставте слово — мало стільців?"
+        },
+        "gappedTargetPhrase": "¿Hay ___ sillas?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-47:i08:r1",
+            "text": "pocas"
+          },
+          {
+            "responseId": "es:lesson-06:session-47:i08:r2",
+            "text": "muchas"
+          },
+          {
+            "responseId": "es:lesson-06:session-47:i08:r3",
+            "text": "pocos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — мало стульев?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-47:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мало стульев?",
+            "feedbackByLocale": {
+              "ru": "Нужно мало: pocas.",
+              "uk": "Потрібно мало: pocas."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-47:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — мало стульев?",
+            "feedbackByLocale": {
+              "ru": "Silla женского рода: pocas.",
+              "uk": "Silla жіночого роду: pocas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мало стульев; начните с Hay, количество поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-47:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мало стульев; начните с Hay, количество поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-47:i09:audio",
+          "transcript": "Hay pocas sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay pocas sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-47:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-47:i10:audio",
+          "transcript": "Hay pocas sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay pocas sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — там мало стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-47:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — там мало стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-47:i11:audio",
+          "transcript": "¿Hay pocas sillas allí?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay pocas sillas allí?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-47:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — мало стульев?; начните с ¿Hay, количество поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-47:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — мало стульев?; начните с ¿Hay, количество поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-47:i12:audio",
+          "transcript": "¿Hay pocas sillas?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay pocas sillas?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b21d8ce14f4cfd2128c0f29b37b3b2e7ef38b97a530333508a5107580e53c5f8"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-48",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-48:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-48:intro1:r2": {
+          "ru": "Agua женского рода: mucha.",
+          "uk": "Agua жіночого роду: mucha."
+        },
+        "es:lesson-06:session-48:intro1:r3": {
+          "ru": "Здесь agua не во множественном числе: mucha.",
+          "uk": "Тут agua не в множині: mucha."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-48:intro2:r2": {
+          "ru": "С libros нужна форма pocos.",
+          "uk": "З libros потрібна форма pocos."
+        },
+        "es:lesson-06:session-48:intro2:r3": {
+          "ru": "Книги есть, поэтому нужно сообщить о малом количестве.",
+          "uk": "Книжки є, тому потрібно повідомити про малу кількість."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-48:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-48:intro3:r2": {
+          "ru": "Silla женского рода: muchas.",
+          "uk": "Silla жіночого роду: muchas."
+        },
+        "es:lesson-06:session-48:intro3:r3": {
+          "ru": "Спрашиваем про другое место: allí.",
+          "uk": "Запитуємо про інше місце: allí."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "00d7a9eadc657242eeeb05869fe21262bbea42f7fcef94f794a837baefc3c27b"
+}

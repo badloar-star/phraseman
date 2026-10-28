@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-49:i01",
+    "correctText": "tienda",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i02",
+    "correctText": "tienda",
+    "correctResponseId": "es:lesson-06:session-49:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i03",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-06:session-49:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i04",
+    "correctText": "Hay una tienda aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i05",
+    "correctText": "allí",
+    "correctResponseId": "es:lesson-06:session-49:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i06",
+    "correctText": "¿Hay una tienda aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i07",
+    "correctText": "No hay tienda aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i08",
+    "correctText": "Hay una tienda allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i09",
+    "correctText": "No",
+    "correctResponseId": "es:lesson-06:session-49:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i10",
+    "correctText": "Hay una tienda aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i11",
+    "correctText": "¿Hay una tienda aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i12",
+    "correctText": "No hay tienda aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-49:i13",
+    "correctText": "Hay una tienda allí.",
+    "correctResponseId": null
+  }
+]

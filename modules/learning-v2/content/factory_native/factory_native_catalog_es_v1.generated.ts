@@ -2282,4 +2282,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать «мало воды» с помощью poca.","uk":"сказати «мало води» за допомогою poca."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 46,
+    sourceFingerprint: "44695ca504c041f4a490eb2c81b0c992a5e8aa0431b9ee66611361a8c4544a8f",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"согласовать pocos с libros.","uk":"узгодити pocos з libros."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 47,
+    sourceFingerprint: "224f8cb4aa562e1192cea7da300c18f7753c30c94d0509cf497cb92b728ad9b8",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбрать pocas перед sillas.","uk":"обрати pocas перед sillas."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 48,
+    sourceFingerprint: "8d656d074ab9dbae2f338bc1c34985be237dc944dba66a7b8bd567953957a27f",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать форму mucho или poco по испанскому существительному.","uk":"обирати форму mucho або poco за іспанським іменником."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 49,
+    sourceFingerprint: "545161d8ef134edc5e031ba24867dae8c151470505aeaa4bb1da178417a57685",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сообщить о магазине и спросить, есть ли он здесь.","uk":"повідомити про магазин і запитати, чи є він тут."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-47:i01",
+    "correctText": "pocas",
+    "correctResponseId": "es:lesson-06:session-47:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-47:i02",
+    "correctText": "pocas",
+    "correctResponseId": "es:lesson-06:session-47:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-47:i03",
+    "correctText": "Hay pocas sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-47:i04",
+    "correctText": "aquí",
+    "correctResponseId": "es:lesson-06:session-47:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-47:i05",
+    "correctText": "Hay pocas sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-47:i06",
+    "correctText": "¿Hay pocas sillas allí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-47:i07",
+    "correctText": "Hay pocas sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-47:i08",
+    "correctText": "pocas",
+    "correctResponseId": "es:lesson-06:session-47:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-47:i09",
+    "correctText": "Hay pocas sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-47:i10",
+    "correctText": "Hay pocas sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-47:i11",
+    "correctText": "¿Hay pocas sillas allí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-47:i12",
+    "correctText": "¿Hay pocas sillas?",
+    "correctResponseId": null
+  }
+]

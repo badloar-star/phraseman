@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-48:i01",
+    "correctText": "mucha",
+    "correctResponseId": "es:lesson-06:session-48:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i02",
+    "correctText": "mucha",
+    "correctResponseId": "es:lesson-06:session-48:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i03",
+    "correctText": "Hay mucha agua.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i04",
+    "correctText": "poca",
+    "correctResponseId": "es:lesson-06:session-48:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i05",
+    "correctText": "Hay poca agua aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i06",
+    "correctText": "muchos",
+    "correctResponseId": "es:lesson-06:session-48:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i07",
+    "correctText": "Hay pocos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i08",
+    "correctText": "Hay muchos libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i09",
+    "correctText": "muchas",
+    "correctResponseId": "es:lesson-06:session-48:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i10",
+    "correctText": "pocas",
+    "correctResponseId": "es:lesson-06:session-48:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i11",
+    "correctText": "¿Hay muchas sillas allí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i12",
+    "correctText": "Hay pocas sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i13",
+    "correctText": "Hay mucha agua.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i14",
+    "correctText": "Hay poca agua aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i15",
+    "correctText": "Hay pocos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i16",
+    "correctText": "Hay muchos libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i17",
+    "correctText": "¿Hay muchas sillas allí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-48:i18",
+    "correctText": "Hay pocas sillas aquí.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-49",
+  "learningOutcomeByLocale": {
+    "ru": "сообщить о магазине и спросить, есть ли он здесь.",
+    "uk": "повідомити про магазин і запитати, чи є він тут."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-49:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Заметили магазин",
+        "uk": "Помітили магазин"
+      },
+      "bodyByLocale": {
+        "ru": "Вы увидели магазин возле места, где остановились. Скажите `Hay una tienda aquí` — «Здесь есть магазин». Tienda — магазин, слово женского рода. Соберите `Hay` + `una tienda` + `aquí`. Мы впервые сообщаем об одном магазине, поэтому una. Место — в конце.",
+        "uk": "Ви побачили магазин біля місця, де зупинилися. Скажіть `Hay una tienda aquí` — «Тут є магазин». Tienda — магазин, слово жіночого роду. Складіть `Hay` + `una tienda` + `aquí`. Ми вперше повідомляємо про один магазин, тому una. Місце — наприкінці."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-49:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть магазин». Начните с Hay, используйте una tienda, место поставьте в конце.",
+          "uk": "Повідомте «Тут є магазин». Почніть з Hay, використайте una tienda, місце поставте наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-49:intro1:r1",
+              "text": "Hay una tienda aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro1:r2",
+              "text": "Hay un tienda aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro1:r3",
+              "text": "Hay una tienda allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-49:intro1:r1",
+              "text": "Hay una tienda aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro1:r2",
+              "text": "Hay un tienda aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro1:r3",
+              "text": "Hay una tienda allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть магазин». Начните с Hay, используйте una tienda, место поставьте в конце.",
+          "uk": "Повідомте «Тут є магазин». Почніть з Hay, використайте una tienda, місце поставте наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-49:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить местного жителя",
+        "uk": "Запитати місцевого жителя"
+      },
+      "bodyByLocale": {
+        "ru": "Вы ещё не знаете район и спрашиваете прохожего, есть ли здесь магазин. Скажите `¿Hay una tienda aquí?` — «Здесь есть магазин?» Соберите `¿Hay` + `una tienda` + `aquí?`. Для вопроса порядок слов сохраняется; голосом обозначьте вопрос. Сначала найдём магазин, а список покупок уже есть.",
+        "uk": "Ви ще не знаєте район і запитуєте перехожого, чи є тут магазин. Скажіть `¿Hay una tienda aquí?` — «Тут є магазин?» Складіть `¿Hay` + `una tienda` + `aquí?`. Для запитання порядок слів зберігається; голосом позначте запитання. Спочатку знайдемо магазин, а список покупок уже є."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-49:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь есть магазин?». Начните с ¿Hay, используйте una tienda, место поставьте в конце.",
+          "uk": "Запитайте «Тут є магазин?». Почніть з ¿Hay, використайте una tienda, місце поставте наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-49:intro2:r1",
+              "text": "¿Hay una tienda aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro2:r2",
+              "text": "¿Hay un tienda aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro2:r3",
+              "text": "¿Hay una tienda allí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-49:intro2:r1",
+              "text": "¿Hay una tienda aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro2:r2",
+              "text": "¿Hay un tienda aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro2:r3",
+              "text": "¿Hay una tienda allí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь есть магазин?». Начните с ¿Hay, используйте una tienda, место поставьте в конце.",
+          "uk": "Запитайте «Тут є магазин?». Почніть з ¿Hay, використайте una tienda, місце поставте наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-49:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "В этом месте магазина нет",
+        "uk": "У цьому місці магазину немає"
+      },
+      "bodyByLocale": {
+        "ru": "В другом месте друг ищет магазин, а вы уже осмотрели всё вокруг. Сообщите `No hay tienda aquí` — «Здесь нет магазина». Соберите `No hay` + `tienda` + `aquí`. В этом сообщении об отсутствии магазина используем tienda без артикля. No ставим перед hay.",
+        "uk": "В іншому місці друг шукає магазин, а ви вже оглянули все навколо. Повідомте `No hay tienda aquí` — «Тут немає магазину». Складіть `No hay` + `tienda` + `aquí`. У цьому повідомленні про відсутність магазину використовуємо tienda без артикля. No ставимо перед hay."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-49:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь нет магазина». Начните с No hay, используйте tienda без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає магазину». Почніть з No hay, використайте tienda без артикля, місце поставте наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-49:intro3:r1",
+              "text": "No hay tienda aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro3:r2",
+              "text": "Hay tienda aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro3:r3",
+              "text": "No hay tienda allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-49:intro3:r1",
+              "text": "No hay tienda aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro3:r2",
+              "text": "Hay tienda aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-49:intro3:r3",
+              "text": "No hay tienda allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь нет магазина». Начните с No hay, используйте tienda без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Тут немає магазину». Почніть з No hay, використайте tienda без артикля, місце поставте наприкінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a4899c0241d87b19f33c996d1ae7e5d2a77e13330c2991163dd9c9b39517d82a"
+}

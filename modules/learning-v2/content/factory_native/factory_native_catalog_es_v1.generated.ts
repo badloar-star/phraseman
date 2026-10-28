@@ -1743,4 +1743,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить tiene о другом человеке и в обращении usted, отличая его от tienes с tú.","uk":"закріпити tiene про іншу людину й у зверненні usted, відрізняючи його від tienes із tú."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 25,
+    sourceFingerprint: "72310d6b967546092d0a689c9ecb0f2addd38e257c7d6ecb85c7e36f3410df6a",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать tenemos, когда говорите «у нас есть».","uk":"використовувати tenemos, коли кажете «ми маємо»."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 26,
+    sourceFingerprint: "904ec19f4edd32b84d28467a28b7b8a34252d749c2917e2ec9dfba2a16d4e0de",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить no перед tenemos.","uk":"поставити no перед tenemos."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

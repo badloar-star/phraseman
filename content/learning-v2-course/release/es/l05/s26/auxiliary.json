@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-26",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-26:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-26:intro1:r2": {
+          "ru": "No должно стоять перед tenemos.",
+          "uk": "No має стояти перед tenemos."
+        },
+        "es:lesson-05:session-26:intro1:r3": {
+          "ru": "Это «у меня»; от вас обоих нужно tenemos.",
+          "uk": "Це «я не маю»; від вас обох потрібно tenemos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-26:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-26:intro2:r2": {
+          "ru": "No ставим перед глаголом.",
+          "uk": "No ставимо перед дієсловом."
+        },
+        "es:lesson-05:session-26:intro2:r3": {
+          "ru": "Для «у нас» нужно tenemos.",
+          "uk": "Для «ми не маємо» потрібно tenemos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-26:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-26:intro3:r2": {
+          "ru": "Для отрицания ставим no перед tenemos.",
+          "uk": "Для заперечення ставимо no перед tenemos."
+        },
+        "es:lesson-05:session-26:intro3:r3": {
+          "ru": "От вас обоих нужно tenemos.",
+          "uk": "Від вас обох потрібно tenemos."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dcf0ed44bcd7228c1d188116ee45bdba3c02648691351754e81c4b2b5d4d5001"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-25",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-25:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-25:intro1:r2": {
+          "ru": "Tengo означает «у меня»; нужно «у нас»: tenemos.",
+          "uk": "Tengo означає «я маю»; потрібно «ми маємо»: tenemos."
+        },
+        "es:lesson-05:session-25:intro1:r3": {
+          "ru": "Для «у нас» нужна форма tenemos.",
+          "uk": "Для «ми маємо» потрібна форма tenemos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-25:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-25:intro2:r2": {
+          "ru": "Caja женского рода: una.",
+          "uk": "Caja жіночого роду: una."
+        },
+        "es:lesson-05:session-25:intro2:r3": {
+          "ru": "Говорите от двоих: tenemos.",
+          "uk": "Кажете від двох людей: tenemos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-25:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-25:intro3:r2": {
+          "ru": "Для «у нас» нужно tenemos.",
+          "uk": "Для «ми маємо» потрібно tenemos."
+        },
+        "es:lesson-05:session-25:intro3:r3": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "39b8898f312279c5bc0bb5c210880e30a8f42c5f45d7c0c4be049e4574a7a15a"
+}

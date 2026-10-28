@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-26",
+  "learningOutcomeByLocale": {
+    "ru": "поставить no перед tenemos.",
+    "uk": "поставити no перед tenemos."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-26:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Пора выходить",
+        "uk": "Час виходити"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает задержаться, но вам обоим уже пора уходить. Скажите `No tenemos tiempo` — «У нас нет времени». Соберите `No` + `tenemos` + `tiempo`. Tenemos показывает «мы», а no прямо перед ним отрицает наличие. Tiempo в этой фразе без артикля. Одно no относится ко всей форме tenemos.",
+        "uk": "Друг пропонує затриматися, але вам обом уже час іти. Скажіть `No tenemos tiempo` — «Ми не маємо часу». Зберіть `No` + `tenemos` + `tiempo`. Tenemos показує «ми», а no прямо перед ним заперечує наявність. Tiempo в цій фразі без артикля. Одне no стосується всієї форми tenemos."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-26:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У нас нет времени». Начните с No tenemos.",
+          "uk": "Скажіть «Ми не маємо часу». Почніть з No tenemos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-26:intro1:r1",
+              "text": "No tenemos tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro1:r2",
+              "text": "Tenemos no tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro1:r3",
+              "text": "No tengo tiempo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-26:intro1:r1",
+              "text": "No tenemos tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro1:r2",
+              "text": "Tenemos no tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro1:r3",
+              "text": "No tengo tiempo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У нас нет времени». Начните с No tenemos.",
+          "uk": "Скажіть «Ми не маємо часу». Почніть з No tenemos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-26:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Поездка без своей машины",
+        "uk": "Поїздка без своєї машини"
+      },
+      "bodyByLocale": {
+        "ru": "Объясняете знакомому, почему вам обоим нужна помощь с поездкой: `No tenemos carro` — «У нас нет машины». Соберите `No` + `tenemos` + `carro`. Сохраняем no tenemos и добавляем отсутствующую вещь. В этой фразе об отсутствии машины используем carro без артикля.",
+        "uk": "Пояснюєте знайомому, чому вам обом потрібна допомога з поїздкою: `No tenemos carro` — «Ми не маємо машини». Зберіть `No` + `tenemos` + `carro`. Зберігаємо no tenemos і додаємо відсутню річ. У цій фразі про відсутність машини використовуємо carro без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-26:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У нас нет машины». Начните с No tenemos, используйте carro без артикля.",
+          "uk": "Скажіть «Ми не маємо машини». Почніть з No tenemos, використайте carro без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-26:intro2:r1",
+              "text": "No tenemos carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro2:r2",
+              "text": "Tenemos no carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro2:r3",
+              "text": "No tiene carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-26:intro2:r1",
+              "text": "No tenemos carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro2:r2",
+              "text": "Tenemos no carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro2:r3",
+              "text": "No tiene carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У нас нет машины». Начните с No tenemos, используйте carro без артикля.",
+          "uk": "Скажіть «Ми не маємо машини». Почніть з No tenemos, використайте carro без артикля."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-26:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ забыли дома",
+        "uk": "Ключ забули вдома"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вдвоём стоите у двери, а ключ остался дома. Сообщите соседу `No tenemos llave` — «У нас нет ключа». Соберите `No` + `tenemos` + `llave`. Отрицание по-прежнему перед tenemos. Здесь говорим об отсутствии ключа и используем llave без артикля.",
+        "uk": "Ви вдвох стоїте біля дверей, а ключ залишився вдома. Повідомте сусідові `No tenemos llave` — «Ми не маємо ключа». Зберіть `No` + `tenemos` + `llave`. Заперечення так само перед tenemos. Тут кажемо про відсутність ключа й використовуємо llave без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-26:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «У нас нет ключа». Начните с No tenemos, используйте llave без артикля.",
+          "uk": "Скажіть «Ми не маємо ключа». Почніть з No tenemos, використайте llave без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-26:intro3:r1",
+              "text": "No tenemos llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro3:r2",
+              "text": "Tenemos no llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro3:r3",
+              "text": "No tengo llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-26:intro3:r1",
+              "text": "No tenemos llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro3:r2",
+              "text": "Tenemos no llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-26:intro3:r3",
+              "text": "No tengo llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У нас нет ключа». Начните с No tenemos, используйте llave без артикля.",
+          "uk": "Скажіть «Ми не маємо ключа». Почніть з No tenemos, використайте llave без артикля."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "2e6b3fd8a18d1858b39aa72e761547f4c06ca522ee6098ac96a893895b8eaf33"
+}

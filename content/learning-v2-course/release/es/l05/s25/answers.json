@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-25:i01",
+    "correctText": "tenemos",
+    "correctResponseId": "es:lesson-05:session-25:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-25:i02",
+    "correctText": "Tenemos",
+    "correctResponseId": "es:lesson-05:session-25:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-25:i03",
+    "correctText": "Tenemos un carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-25:i04",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-05:session-25:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-25:i05",
+    "correctText": "Tenemos una caja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-25:i06",
+    "correctText": "Tenemos una llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-25:i07",
+    "correctText": "Tenemos un carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-25:i08",
+    "correctText": "Tenemos",
+    "correctResponseId": "es:lesson-05:session-25:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-25:i09",
+    "correctText": "Tenemos un carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-25:i10",
+    "correctText": "Tenemos una caja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-25:i11",
+    "correctText": "Tenemos una llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-25:i12",
+    "correctText": "Tenemos un libro.",
+    "correctResponseId": null
+  }
+]

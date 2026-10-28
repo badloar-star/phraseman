@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-25",
+  "learningOutcomeByLocale": {
+    "ru": "использовать tenemos, когда говорите «у нас есть».",
+    "uk": "використовувати tenemos, коли кажете «ми маємо»."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-25:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Машина для поездки",
+        "uk": "Машина для поїздки"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с близким человеком едете вместе. Объясните другу `Tenemos un carro` — «У нас есть машина». Соберите `Tenemos` + `un carro`. Tenemos — форма tener для «мы»: наличие относится к вам и ещё кому-то. Она уже показывает «мы», поэтому отдельное местоимение здесь не нужно. Это форма знакомого глагола, не новое слово.",
+        "uk": "Ви з близькою людиною їдете разом. Поясніть другові `Tenemos un carro` — «Ми маємо машину». Зберіть `Tenemos` + `un carro`. Tenemos — форма tener для «ми»: наявність стосується вас і ще когось. Вона вже показує «ми», тому окремий займенник тут не потрібен. Це форма знайомого дієслова, не нове слово."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-25:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У нас есть машина». Начните с Tenemos, используйте carro.",
+          "uk": "Скажіть «Ми маємо машину». Почніть з Tenemos, використайте carro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-25:intro1:r1",
+              "text": "Tenemos un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro1:r2",
+              "text": "Tengo un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro1:r3",
+              "text": "Tiene un carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-25:intro1:r1",
+              "text": "Tenemos un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro1:r2",
+              "text": "Tengo un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro1:r3",
+              "text": "Tiene un carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У нас есть машина». Начните с Tenemos, используйте carro.",
+          "uk": "Скажіть «Ми маємо машину». Почніть з Tenemos, використайте carro."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-25:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Коробка для вещей",
+        "uk": "Коробка для речей"
+      },
+      "bodyByLocale": {
+        "ru": "Собираете вещи вдвоём и сообщаете помощнику `Tenemos una caja` — «У нас есть коробка». Соберите `Tenemos` + `una caja`. Первое слово показывает «у нас», затем называем вещь. Перед caja ставим una по женскому роду. Количество вещей не меняет того, о ком говорим: владельцев несколько, а коробка одна.",
+        "uk": "Збираєте речі вдвох і повідомляєте помічникові `Tenemos una caja` — «Ми маємо коробку». Зберіть `Tenemos` + `una caja`. Перше слово показує «ми маємо», далі називаємо річ. Перед caja ставимо una за жіночим родом. Кількість речей не змінює того, про кого кажемо: власників кілька, а коробка одна."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-25:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У нас есть коробка». Начните с Tenemos.",
+          "uk": "Скажіть «Ми маємо коробку». Почніть з Tenemos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-25:intro2:r1",
+              "text": "Tenemos una caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro2:r2",
+              "text": "Tenemos un caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro2:r3",
+              "text": "Tengo una caja."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-25:intro2:r1",
+              "text": "Tenemos una caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro2:r2",
+              "text": "Tenemos un caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro2:r3",
+              "text": "Tengo una caja."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У нас есть коробка». Начните с Tenemos.",
+          "uk": "Скажіть «Ми маємо коробку». Почніть з Tenemos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-25:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ у вашей пары",
+        "uk": "Ключ у вашої пари"
+      },
+      "bodyByLocale": {
+        "ru": "Перед выходом друг уточняет, есть ли у вашей пары ключ. Сообщите `Tenemos una llave` — «У нас есть ключ». Соберите `Tenemos` + `una llave`. Tenemos сохраняется: вы говорите от себя и ещё одного человека. Ключ один, поэтому una llave; форма tenemos не требует нескольких ключей.",
+        "uk": "Перед виходом друг уточнює, чи має ваша пара ключ. Повідомте `Tenemos una llave` — «Ми маємо ключ». Зберіть `Tenemos` + `una llave`. Tenemos зберігається: ви кажете від себе й ще однієї людини. Ключ один, тому una llave; форма tenemos не вимагає кількох ключів."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-25:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «У нас есть ключ». Начните с Tenemos.",
+          "uk": "Скажіть «Ми маємо ключ». Почніть з Tenemos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-25:intro3:r1",
+              "text": "Tenemos una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro3:r2",
+              "text": "Tiene una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro3:r3",
+              "text": "Tenemos un llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-25:intro3:r1",
+              "text": "Tenemos una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro3:r2",
+              "text": "Tiene una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-25:intro3:r3",
+              "text": "Tenemos un llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У нас есть ключ». Начните с Tenemos.",
+          "uk": "Скажіть «Ми маємо ключ». Почніть з Tenemos."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "17b2c4982cb07c362b5ef08f60e6142fbd86cf26940ea053af19730c27ef7f6a"
+}

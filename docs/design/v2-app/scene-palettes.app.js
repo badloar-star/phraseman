@@ -70,20 +70,20 @@ const sceneTok = (id, ap) => {
   if (pr) { // premiumSceneTop: верх темнеет на 4 % к чёрному, пока белый < 5; низ — sceneBottom; свет — edge 25
     let top = hx(pr.sceneTop); for (let i = 0; i < 40 && whiteOn(top) < 5; i += 1) top = mixc([0, 0, 0], top, 0.04);
     const bot = hx(pr.sceneBottom);
-    return { t, top, bot, glow: `${pr.edge}25`, seam: ratioc(bot, hx(t.opaqueCard)) };
+    return { t, top, bot, glow: `${pr.edge}25`, glowC: hx(pr.edge), glowA: 0x25 / 255, scrim: false, seam: ratioc(bot, hx(t.opaqueCard)) };
   }
   if (ap === 'dark') {
     const top = mixc(hx(g[0]), hx(t.bgTop), 0.3); const bot = mixc(hx(g[g.length - 1]), hx(t.bg), 0.3);
     const gl = (t.bgGlow && t.bgGlow[0]) || t.accentGlow;
-    return { t, top, bot, glow: rgba(hx(gl), ha(gl)), seam: ratioc(bot, hx(t.opaqueCard)) };
+    return { t, top, bot, glow: rgba(hx(gl), ha(gl)), glowC: hx(gl), glowA: ha(gl), scrim: false, seam: ratioc(bot, hx(t.opaqueCard)) };
   }
   if (id === 'ink') {
     const top = fromOklch(0.47, 0.14, 282); const bot = fromOklch(0.28, 0.10, 276);
-    return { t, top, bot, glow: 'oklch(.66 .13 300 / .9)', seam: ratioc(bot, hx('#FCFCFF')) };
+    return { t, top, bot, glow: 'oklch(.66 .13 300 / .9)', glowC: fromOklch(0.66, 0.13, 300), glowA: 0.9, scrim: true, seam: ratioc(bot, hx('#FCFCFF')) };
   }
   const [, C, H] = oklchOf(hx(t.accent));
   const top = fromOklch(0.47, Math.min(C, 0.16), H); const bot = fromOklch(0.28, Math.min(C, 0.11), (H + 354) % 360);
-  return { t, top, bot, glow: rgba(fromOklch(0.66, Math.min(C, 0.14), (H + 18) % 360), 0.9), seam: ratioc(bot, hx(t.opaqueCard)) };
+  return { t, top, bot, glow: rgba(fromOklch(0.66, Math.min(C, 0.14), (H + 18) % 360), 0.9), glowC: fromOklch(0.66, Math.min(C, 0.14), (H + 18) % 360), glowA: 0.9, scrim: true, seam: ratioc(bot, hx(t.opaqueCard)) };
 };
 const nowHomeBg = (k) => `radial-gradient(70% 50% at 18% 0%, ${k.glow}, transparent 70%), linear-gradient(165deg, ${rgba(k.top)} 0%, ${rgba(k.bot)} 100%)`;
 /* Диалоги — dialogsSceneColors: тёмное — bgTop/bg + 30 % градиента акцента, света bgGlow[0]/[1]; светлое — bgTop → bg, затемнение низа тоном bgBottom 62 %, свет bgGlow[2] снизу */
@@ -131,8 +131,10 @@ const premiumTokens = (p, ap) => {
 PREMIUM.forEach((p) => { THEMES[p.id] = { name: p.name, premium: true, dark: premiumTokens(p, 'dark'), light: premiumTokens(p, 'light') }; });
 const STRATS = { A: 'А · тон темы, ярче и глубже', B: 'Б · аналоговая, соседние оттенки', C: 'В · акцент-свет', D: 'Г · тон темы, два света по сплиту' };
 let STRAT = 'A';
+let ALL = false; // ?all=1 — показать и нарисованные разделы (сетка, герои, премиум); по умолчанию только реальные кадры (владелец 28.10)
 const clampN = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
-const scenePal = (id, ap) => {
+const scenePal = (id, ap, strat = STRAT) => {
+  const STRAT = strat; // зачем: раздел реальных кадров показывает четыре стратегии рядом — палитра по явной стратегии, не по переключателю
   const t = THEMES[id][ap]; const [, C, H] = oklchOf(hx(t.accent)); const dark = ap === 'dark'; const neutral = C < 0.05;
   let S = H; let Lh = H; let Lh2 = norm(H + 18); let Ct; let Cb; let a1 = 0.85; let a2 = 0.55; let Lt = 0.50; let why = '';
   if (STRAT === 'A') { Ct = clampN(C * 1.6, 0.07, 0.17); Cb = Ct * 0.7; why = 'тот же оттенок, насыщеннее и глубже; свет — светлый тон темы'; }
@@ -148,7 +150,7 @@ const scenePal = (id, ap) => {
   const lightC = okRgb(0.80, STRAT === 'A' ? Math.max(0.06, Ct * 0.9) : 0.15, Lh); const light2C = okRgb(0.62, STRAT === 'A' ? Math.max(0.06, Ct * 0.9) : 0.14, Lh2);
   const light = rgba(lightC, a1); const light2 = rgba(light2C, a2);
   const bg = `radial-gradient(70% 50% at 18% 0%, ${light}, transparent 70%), radial-gradient(80% 42% at 86% 102%, ${light2}, transparent 70%), linear-gradient(165deg, ${hex(top)} 0%, ${hex(bot)} 100%)`;
-  return { id, ap, kind: STRAT, why, H: Math.round(H), S: Math.round(S), Lh: Math.round(Lh), Lh2: Math.round(Lh2), top, bot, lightC, light2C, light, light2, bg, lightSoft: rgba(lightC, 0.42), whiteTop: whiteOn(top), whiteBot: whiteOn(bot), seam: ratioc(bot, card) };
+  return { id, ap, kind: STRAT, why, a1, a2, H: Math.round(H), S: Math.round(S), Lh: Math.round(Lh), Lh2: Math.round(Lh2), top, bot, lightC, light2C, light, light2, bg, lightSoft: rgba(lightC, 0.42), whiteTop: whiteOn(top), whiteBot: whiteOn(bot), seam: ratioc(bot, card) };
 };
 const schemeLine = (p) => `${STRATS[p.kind]} · тема ${p.H}° → сцена ${p.S}°, свет ${p.Lh}°${p.kind === 'D' ? ' и ' + p.Lh2 + '°' : ''}`;
 
@@ -165,12 +167,13 @@ const T = (h, extra = '') => h.replace('class="ph"', `class="ph th-${TH}${extra 
 const modeCls = () => (MODE === 'now' ? 'sp-now' : MODE === 'draw' ? 'sp-new sp-drawn' : 'sp-new');
 /* real — ключ экрана для реального кадра Сверки (assets/real/scene_{ключ}_{тема}_{оформление}.png): есть файл — он и есть «сейчас».
    Список имеющихся кадров — window.__REAL (сборщик пишет его из папки assets/real при пересборке), чтобы страница не запрашивала несуществующие файлы */
-const REAL = new Set(window.__REAL || []);
+const REAL = window.__REAL || {}; // опись реальных кадров (scene-frames.cjs → сборщик): файл → { screen, theme, ap, ok, sceneH, hero, status, tab }
+const REAL_HAS = (name) => Object.prototype.hasOwnProperty.call(REAL, name) && REAL[name].ok !== false;
 /* область сцены на реальном кадре (доля высоты) и дыра маски вокруг героя — чтобы перекраска не тонировала картинку героя
    (владелец 28.10: «сейчас» — реальный кадр, новая палитра — перекраска сцены НА кадре). Пик — башня целиком, герой не вырезается */
 const REAL_RECT = { home: { h: 46.4, hole: 'radial-gradient(circle at 78% 20%, transparent 11%, #000 15%)' }, season: { h: 46.4, hole: 'radial-gradient(circle at 78% 20%, transparent 11%, #000 15%)' }, dialogs: { h: 46.4, hole: 'radial-gradient(circle at 78% 20%, transparent 11%, #000 15%)' }, peak: { h: 81, hole: 'none' } };
 const realImg = (real, id, ap) => {
-  if (!real || !REAL.has(`scene_${real}_${id}_${ap}.png`)) return '';
+  if (!real || !REAL_HAS(`scene_${real}_${id}_${ap}.png`)) return '';
   const r = REAL_RECT[real] || REAL_RECT.home; const p = scenePal(id, ap);
   return `<img class="sp-real" src="assets/real/scene_${real}_${id}_${ap}.png" alt="" onload="var l=this.closest('.col');l=l&&l.querySelector('.lbl');if(l)l.dataset.real='1'"><div class="sp-real-tint" style="height:${r.h}%;background:${p.bg};-webkit-mask:${r.hole};mask:${r.hole}"></div>`;
 };
@@ -292,6 +295,34 @@ const section3 = () => `<section class="block" id="sp-hero"><h2>Герои на 
 /* ═════ раздел 4 · премиум-темы: по одному кадру Главной (видны в выборе тем с условием открытия) ═════ */
 const section4 = () => `<section class="block" id="sp-premium"><h2>Премиум-темы — Главная, ${AP === 'dark' ? 'тёмное' : 'светлое'}</h2><p class="sp-note">Шесть тем с условием открытия (Plus, ранг, серия 365, Пик, 200 часов видео, курс). «Сейчас» — цвета их спецификации без движения шейдера; «Новый» — та же формула от их акцента, схема под телефоном.</p><div class="phones">${PREMIUM.map((p, i) => `<div class="col" style="--d:${i * 60}ms">${col(`${p.name}<br><span style="font-weight:500;color:#8E8E96">${schemeLine(scenePal(p.id, AP))}</span>`, homePhone(p.id, AP)).slice(17)}`).join('')}</div></section>`;
 
+/* ═════ раздел 0 · Главная на РЕАЛЬНЫХ кадрах Сверки × четыре стратегии (координатор 28.10 вечер; владелец: «только настоящие экраны») ═════
+   «Сейчас» — кадр без изменений (каркас real-frame.js); А/Б/В/Г — тот же кадр, у которого по пикселям перекрашен только фон сцены
+   (scene-real.js → scene-recolor.js). Модель текущего фона — формула приложения: sceneTok (верх/низ), свет sceneLight 18 %/0 % rx 70 % ry 50 %,
+   затемнение низа 300 dp до .40 в светлом; герой — по альфе его картинки hero512 на месте из описи scene-frames.json. Новая палитра — те же
+   числа, что и в нарисованных разделах (scenePal), свет 1 там же, свет 2 — снизу справа, затемнение как у текущей сцены. */
+const DPX = 2.625; // Pixel 8: 1080 px = 411,4 dp
+let JOBS = {};
+const HOME_FRAMES = () => Object.values(REAL).filter((m) => m && m.screen === 'home' && m.ok !== false && m.recolor !== false && THEMES[m.theme]).sort((a, b) => (a.theme + a.ap).localeCompare(b.theme + b.ap));
+// кадры Главной, которые опись не пустила в перекраску (битые, вечернее состояние, незнакомая тема) — перечисляем с причиной, чтобы было видно, чего ждём
+const SKIPPED_FRAMES = () => Object.values(REAL).filter((m) => m && m.screen === 'home' && (m.ok === false || m.recolor === false || !THEMES[m.theme])).map((m) => `${m.file} — ${m.why || (THEMES[m.theme] ? 'не годен' : 'тема не из списка 23')}`);
+const oldSpecOf = (id, ap) => { const k = sceneTok(id, ap); return { top: k.top, bot: k.bot, lights: [{ cx: 0.18, cy: 0, rx: 0.7, ry: 0.5, color: k.glowC, a: k.glowA, fade: 1 }], scrim: k.scrim ? { a: 0.40, h: 300 * DPX } : null }; };
+const newSpecOf = (p, old) => ({ top: p.top, bot: p.bot, lights: [{ cx: 0.18, cy: 0, rx: 0.7, ry: 0.5, color: p.lightC, a: p.a1, fade: 0.7 }, { cx: 0.86, cy: 1.02, rx: 0.8, ry: 0.42, color: p.light2C, a: p.a2, fade: 0.7 }], scrim: old.scrim });
+const realRow = (m) => {
+  const t = THEMES[m.theme]; const old = oldSpecOf(m.theme, m.ap);
+  const strats = Object.keys(STRATS).map((s) => { const p = scenePal(m.theme, m.ap, s); return { key: s, name: STRATS[s], line: schemeLine(p), spec: newSpecOf(p, old) }; });
+  const job = { file: m.file, src: `assets/real/${m.file}`, sceneH: m.sceneH || 1082, status: m.status || 100, tab: m.tab || 2140, hero: m.hero || null, ap: m.ap, radius: 32 * DPX, old, strats: strats.map((s) => ({ key: s.key, spec: s.spec })) };
+  JOBS[m.file] = job;
+  const now = RF.phone({ src: job.src, exists: true, cls: 'sp-rf', status: job.status, tab: job.tab });
+  const will = (s) => RF.phone({ src: job.src, exists: true, cls: 'sp-rf sp-rf-will', status: job.status, tab: job.tab, fixed: '<span class="sp-rf-badge">считаю…</span>' }).replace('data-ph="sp-rf sp-rf-will"', `data-ph="sp-rf-will" data-strat="${s.key}"`);
+  return `<div class="sp-real-row" data-frame="${m.file}"><h3>${t.name} · ${m.ap === 'dark' ? 'тёмное' : 'светлое'}<small>${m.file}${m.hero ? '' : ' · герой не найден: под ним классификатор'}</small></h3><div class="phones">${col('Сейчас · кадр приложения', now)}${strats.map((s) => col(`${s.name}<br><small>${s.line}</small>`, will(s))).join('')}</div></div>`;
+};
+const section0 = () => {
+  const fr = HOME_FRAMES(); JOBS = {}; const sk = SKIPPED_FRAMES();
+  const skipped = sk.length ? `<p class="sp-note sp-warn">Не показаны: ${sk.join('; ')}.</p>` : '';
+  if (!fr.length) return `<section class="block" id="sp-real"><h2>Главная на реальных кадрах</h2><p class="sp-note">Дневных кадров Главной от Сверки в assets/real пока нет (scene_home_{тема}_{light|dark}.png). Пересборка: node scene-frames.cjs и node scene-palettes.make.cjs.</p>${skipped}</section>`;
+  return `<section class="block" id="sp-real"><h2>Главная на реальных кадрах — четыре стратегии цвета</h2><p class="sp-note">Слева — кадр текущей сборки без изменений. Правее — тот же кадр, где перекрашен только фон сцены: герой, надписи, стекло плашек, карточка и таббар — как сняты. Зажми любой перекрашенный телефон — на его месте покажется «сейчас». Темы — те, что уже сняла Сверка; остальные появятся по мере прихода кадров.</p>${skipped}${fr.map(realRow).join('')}</section>`;
+};
+
 /* ═════ страница ═════ */
 const controls = () => {
   document.getElementById('apList').innerHTML = [['light', 'Светлое'], ['dark', 'Тёмное']].map(([k, n]) => `<span class="chp${AP === k ? ' on' : ''}" data-ap="${k}">${n}</span>`).join('');
@@ -303,10 +334,12 @@ const render = (enter = true) => {
   TH = AP === 'light' ? 'ink' : 'marine';
   const root = document.getElementById('root');
   root.className = enter ? 'sp-enter sp-fade' : 'sp-fade'; // смена темы — мягкий кроссфейд 280 мс, без повторного появления
-  root.innerHTML = section1() + section3() + section2() + section4();
+  root.innerHTML = section0() + (ALL ? section1() + section3() + section2() + section4() : '');
   controls();
+  const cb = document.getElementById('spControls'); if (cb) cb.style.display = ALL ? '' : 'none';
   if (R && R.applyScroll) R.applyScroll(root);
-  console.log(LOG, 'render', JSON.stringify({ theme: THEME_ID, ap: AP, mode: MODE, strat: STRAT, pal: schemeLine(scenePal(THEME_ID, AP)) })); // guard-ok: одна строка на перерисовку
+  if (window.SceneReal) window.SceneReal.buildAll(root, JOBS);
+  console.log(LOG, 'render', JSON.stringify({ theme: THEME_ID, ap: AP, mode: MODE, strat: STRAT, all: ALL, real: HOME_FRAMES().length, pal: schemeLine(scenePal(THEME_ID, AP)) })); // guard-ok: одна строка на перерисовку
 };
 const setMode = (m) => { MODE = m; document.querySelectorAll('.ph[data-ph]').forEach((ph) => { ph.classList.toggle('sp-now', m === 'now'); ph.classList.toggle('sp-new', m !== 'now'); ph.classList.toggle('sp-drawn', m === 'draw'); }); document.querySelectorAll('.chp[data-mode]').forEach((c) => c.classList.toggle('on', c.dataset.mode === m)); };
 document.body.addEventListener('click', (e) => {
@@ -326,8 +359,9 @@ document.body.addEventListener('click', (e) => {
   if (THEMES[q.get('th')]) THEME_ID = q.get('th');
   if (['now', 'new', 'draw'].includes(q.get('mode'))) MODE = q.get('mode');
   if (STRATS[q.get('s')]) STRAT = q.get('s');
+  ALL = q.get('all') === '1';
 }
 render(true);
 K.init();
-window.__sp = { THEME_IDS, scenePal, sceneTok, nowDialogs, nowSeason, schemeLine, setMode, setStrat: (k) => { STRAT = k; render(false); }, render: () => render(true) };
+window.__sp = { THEME_IDS, scenePal, sceneTok, nowDialogs, nowSeason, schemeLine, setMode, REAL, jobs: () => JOBS, real: window.SceneReal, setStrat: (k) => { STRAT = k; render(false); }, render: () => render(true) };
 })();

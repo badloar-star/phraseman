@@ -1,0 +1,107 @@
+{
+ "scene_dialogs_graphite_dark.png": {
+  "file": "scene_dialogs_graphite_dark.png",
+  "mtime": 1793218017680.645,
+  "screen": "dialogs",
+  "theme": "graphite",
+  "ap": "dark",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 970,
+  "sceneHFound": true
+ },
+ "scene_home_graphite_dark.png": {
+  "file": "scene_home_graphite_dark.png",
+  "mtime": 1793218111539.1357,
+  "screen": "home",
+  "theme": "graphite",
+  "ap": "dark",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1081,
+  "sceneHFound": true,
+  "state": "day",
+  "hero": {
+   "x": 869,
+   "y": 296,
+   "size": 219,
+   "score": 0.7463,
+   "art": "home_scene_continue",
+   "opacity": 0.96
+  }
+ },
+ "scene_home_graphite_light.png": {
+  "file": "scene_home_graphite_light.png",
+  "mtime": 1793217445564.6738,
+  "screen": "home",
+  "theme": "graphite",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1081,
+  "sceneHFound": true,
+  "state": "day",
+  "hero": {
+   "x": 868,
+   "y": 295,
+   "size": 221,
+   "score": 1,
+   "art": "home_scene_continue",
+   "opacity": 0.96
+  }
+ },
+ "scene_home_marine_light.png": {
+  "file": "scene_home_marine_light.png",
+  "mtime": 1793218039751.6907,
+  "screen": "home",
+  "theme": "marine",
+  "ap": "light",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1081,
+  "sceneHFound": true,
+  "state": "day",
+  "hero": {
+   "x": 882,
+   "y": 296,
+   "size": 208,
+   "score": 1,
+   "art": "home_scene_continue",
+   "opacity": 0.96
+  }
+ },
+ "scene_peak_graphite_dark.png": {
+  "file": "scene_peak_graphite_dark.png",
+  "mtime": 1793217971253.4702,
+  "screen": "peak",
+  "theme": "graphite",
+  "ap": "dark",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1331,
+  "sceneHFound": true
+ },
+ "scene_season_graphite_dark.png": {
+  "file": "scene_season_graphite_dark.png",
+  "mtime": 1793218123682.0295,
+  "screen": "season",
+  "theme": "graphite",
+  "ap": "dark",
+  "ok": true,
+  "why": null,
+  "status": 100,
+  "tab": 2140,
+  "sceneH": 1472,
+  "sceneHFound": true
+ }
+}

@@ -63,7 +63,7 @@
 - I was using a hula hoop while you were taking a photo. — *В записи звучит You were using a hula hoop while you were taking a photo.*
 - They were using a hula hoop while you were taking a photo. — *В записи звучит You were using a hula hoop while you were taking a photo.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-48:i03; family: context_gap_grammar -->
 I ___ using a hula hoop while you were taking a photo. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ using a hula hoop while you were taking a photo. → **was** · were · is
 - They were cleaning their roller skates when I arrived. — *В записи звучит You were cleaning their roller skates when I arrived.*
 - She was cleaning their roller skates when I arrived. — *В записи звучит You were cleaning their roller skates when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-48:i06; family: context_gap_grammar -->
 They ___ cleaning their roller skates when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ cleaning their roller skates when I arrived. → **were** · was · are
 - She was playing with a yo-yo while I was reading. — *В записи звучит You were playing with a yo-yo while I was reading.*
 - They were playing with a yo-yo while I was reading. — *В записи звучит You were playing with a yo-yo while I was reading.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-48:i09; family: context_gap_grammar -->
 She ___ playing with a yo-yo while I was reading. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ playing with a yo-yo while I was reading. → **was** · were · is
 - We were playing table tennis when you called. — *В записи звучит You were playing table tennis when you called.*
 - She was playing table tennis when you called. — *В записи звучит You were playing table tennis when you called.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-48:i12; family: context_gap_grammar -->
 We ___ playing table tennis when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

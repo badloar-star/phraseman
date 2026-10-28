@@ -63,7 +63,7 @@
 - I was shrugging when you looked at me. — *У записі звучить You were shrugging when you looked at me.*
 - They were shrugging when you looked at me. — *У записі звучить You were shrugging when you looked at me.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-36:i03; family: context_gap_grammar -->
 I ___ shrugging when you looked at me. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ shrugging when you looked at me. → **was** · were · is
 - She was sniffing the flowers while I was talking. — *У записі звучить You were sniffing the flowers while I was talking.*
 - They were sniffing the flowers while I was talking. — *У записі звучить You were sniffing the flowers while I was talking.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-36:i06; family: context_gap_grammar -->
 She ___ sniffing the flowers while I was talking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -103,7 +103,7 @@ She ___ sniffing the flowers while I was talking. → **was** · were · is
 - He was winking at me when you arrived. — *У записі звучить You were winking at me when you arrived.*
 - They were winking at me when you arrived. — *У записі звучить You were winking at me when you arrived.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-36:i09; family: context_gap_grammar -->
 He ___ winking at me when you arrived. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ He ___ winking at me when you arrived. → **was** · were · is
 - We were giggling while he was telling the story. — *У записі звучить You were giggling while he was telling the story.*
 - She was giggling while he was telling the story. — *У записі звучить You were giggling while he was telling the story.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-36:i12; family: context_gap_grammar -->
 We ___ giggling while he was telling the story. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

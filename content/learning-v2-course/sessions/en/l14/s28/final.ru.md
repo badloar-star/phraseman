@@ -63,7 +63,7 @@
 - I was looking at a starfish when you called. — *В записи звучит You were looking at a starfish when you called.*
 - They were looking at a starfish when you called. — *В записи звучит You were looking at a starfish when you called.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-28:i03; family: context_gap_grammar -->
 I ___ looking at a starfish when you called. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ looking at a starfish when you called. → **was** · were · is
 - They were looking at seaweed when I arrived. — *В записи звучит You were looking at seaweed when I arrived.*
 - She was looking at seaweed when I arrived. — *В записи звучит You were looking at seaweed when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-28:i06; family: context_gap_grammar -->
 They ___ looking at seaweed when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ looking at seaweed when I arrived. → **were** · was · are
 - She was drawing a piece of driftwood when I arrived. — *В записи звучит You were drawing a piece of driftwood when I arrived.*
 - They were drawing a piece of driftwood when I arrived. — *В записи звучит You were drawing a piece of driftwood when I arrived.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-28:i09; family: context_gap_grammar -->
 She ___ drawing a piece of driftwood when I arrived. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ drawing a piece of driftwood when I arrived. → **was** · were · is
 - We were looking into a rock pool when you called. — *В записи звучит You were looking into a rock pool when you called.*
 - She was looking into a rock pool when you called. — *В записи звучит You were looking into a rock pool when you called.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-28:i12; family: context_gap_grammar -->
 We ___ looking into a rock pool when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

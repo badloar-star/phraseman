@@ -63,7 +63,7 @@
 - I was cooking salmon while you were reading. — *У записі звучить You were cooking salmon while you were reading.*
 - They were cooking salmon while you were reading. — *У записі звучить You were cooking salmon while you were reading.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-50:i03; family: context_gap_grammar -->
 I ___ cooking salmon while you were reading. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ cooking salmon while you were reading. → **was** · were · is
 - They were cooking cod when I arrived. — *У записі звучить You were cooking cod when I arrived.*
 - She was cooking cod when I arrived. — *У записі звучить You were cooking cod when I arrived.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-50:i06; family: context_gap_grammar -->
 They ___ cooking cod when I arrived. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ cooking cod when I arrived. → **were** · was · are
 - She was cooking haddock while I was talking. — *У записі звучить You were cooking haddock while I was talking.*
 - They were cooking haddock while I was talking. — *У записі звучить You were cooking haddock while I was talking.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-50:i09; family: context_gap_grammar -->
 She ___ cooking haddock while I was talking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ cooking haddock while I was talking. → **was** · were · is
 - We were cooking sardines when you called. — *У записі звучить You were cooking sardines when you called.*
 - She was cooking sardines when you called. — *У записі звучить You were cooking sardines when you called.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-50:i12; family: context_gap_grammar -->
 We ___ cooking sardines when you called. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

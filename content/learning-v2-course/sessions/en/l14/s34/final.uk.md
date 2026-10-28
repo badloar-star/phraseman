@@ -63,7 +63,7 @@
 - I was leaning back while you were talking. — *У записі звучить You were leaning back while you were talking.*
 - They were leaning back while you were talking. — *У записі звучить You were leaning back while you were talking.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-34:i03; family: context_gap_grammar -->
 I ___ leaning back while you were talking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ leaning back while you were talking. → **was** · were · is
 - They were leaning forward when I opened the box. — *У записі звучить You were leaning forward when I opened the box.*
 - She was leaning forward when I opened the box. — *У записі звучить You were leaning forward when I opened the box.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-34:i06; family: context_gap_grammar -->
 They ___ leaning forward when I opened the box. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ leaning forward when I opened the box. → **were** · was · are
 - She was stretching out on the sofa when I arrived. — *У записі звучить You were stretching out on the sofa when I arrived.*
 - They were stretching out on the sofa when I arrived. — *У записі звучить You were stretching out on the sofa when I arrived.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-34:i09; family: context_gap_grammar -->
 She ___ stretching out on the sofa when I arrived. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ stretching out on the sofa when I arrived. → **was** · were · is
 - We were standing still while she was taking a photo. — *У записі звучить You were standing still while she was taking a photo.*
 - She was standing still while she was taking a photo. — *У записі звучить You were standing still while she was taking a photo.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-34:i12; family: context_gap_grammar -->
 We ___ standing still while she was taking a photo. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

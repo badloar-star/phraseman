@@ -63,7 +63,7 @@
 - I was cooking prawns while you were reading. — *В записи звучит You were cooking prawns while you were reading.*
 - They were cooking prawns while you were reading. — *В записи звучит You were cooking prawns while you were reading.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-52:i03; family: context_gap_grammar -->
 I ___ cooking prawns while you were reading. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ cooking prawns while you were reading. → **was** · were · is
 - They were washing mussels when I arrived. — *В записи звучит You were washing mussels when I arrived.*
 - She was washing mussels when I arrived. — *В записи звучит You were washing mussels when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-52:i06; family: context_gap_grammar -->
 They ___ washing mussels when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ washing mussels when I arrived. → **were** · was · are
 - She was cutting squid while I was talking. — *В записи звучит You were cutting squid while I was talking.*
 - They were cutting squid while I was talking. — *В записи звучит You were cutting squid while I was talking.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-52:i09; family: context_gap_grammar -->
 She ___ cutting squid while I was talking. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ cutting squid while I was talking. → **was** · were · is
 - We were cooking a crab when you called. — *В записи звучит You were cooking a crab when you called.*
 - She was cooking a crab when you called. — *В записи звучит You were cooking a crab when you called.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-52:i12; family: context_gap_grammar -->
 We ___ cooking a crab when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

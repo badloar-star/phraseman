@@ -63,7 +63,7 @@
 - I was ironing a table runner when you called. — *В записи звучит You were ironing a table runner when you called.*
 - They were ironing a table runner when you called. — *В записи звучит You were ironing a table runner when you called.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-30:i03; family: context_gap_grammar -->
 I ___ ironing a table runner when you called. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ ironing a table runner when you called. → **was** · were · is
 - They were cleaning a napkin ring when I arrived. — *В записи звучит You were cleaning a napkin ring when I arrived.*
 - She was cleaning a napkin ring when I arrived. — *В записи звучит You were cleaning a napkin ring when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-30:i06; family: context_gap_grammar -->
 They ___ cleaning a napkin ring when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ cleaning a napkin ring when I arrived. → **were** · was · are
 - She was cleaning a candlestick when you called. — *В записи звучит You were cleaning a candlestick when you called.*
 - They were cleaning a candlestick when you called. — *В записи звучит You were cleaning a candlestick when you called.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-30:i09; family: context_gap_grammar -->
 She ___ cleaning a candlestick when you called. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ cleaning a candlestick when you called. → **was** · were · is
 - We were looking for the tea cosy when you arrived. — *В записи звучит You were looking for the tea cosy when you arrived.*
 - She was looking for the tea cosy when you arrived. — *В записи звучит You were looking for the tea cosy when you arrived.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-30:i12; family: context_gap_grammar -->
 We ___ looking for the tea cosy when you arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

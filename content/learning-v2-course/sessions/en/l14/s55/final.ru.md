@@ -63,7 +63,7 @@
 - I was making a taco while you were cooking. — *В записи звучит You were making a taco while you were cooking.*
 - They were making a taco while you were cooking. — *В записи звучит You were making a taco while you were cooking.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-55:i03; family: context_gap_grammar -->
 I ___ making a taco while you were cooking. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ making a taco while you were cooking. → **was** · were · is
 - They were making a burrito when I arrived. — *В записи звучит You were making a burrito when I arrived.*
 - She was making a burrito when I arrived. — *В записи звучит You were making a burrito when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-55:i06; family: context_gap_grammar -->
 They ___ making a burrito when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ making a burrito when I arrived. → **were** · was · are
 - She was making falafel while I was talking. — *В записи звучит You were making falafel while I was talking.*
 - They were making falafel while I was talking. — *В записи звучит You were making falafel while I was talking.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-55:i09; family: context_gap_grammar -->
 She ___ making falafel while I was talking. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ making falafel while I was talking. → **was** · were · is
 - We were making hummus when you called. — *В записи звучит You were making hummus when you called.*
 - She was making hummus when you called. — *В записи звучит You were making hummus when you called.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-55:i12; family: context_gap_grammar -->
 We ___ making hummus when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

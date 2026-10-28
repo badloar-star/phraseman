@@ -63,7 +63,7 @@
 - I was making a stew while you were reading. — *У записі звучить You were making a stew while you were reading.*
 - They were making a stew while you were reading. — *У записі звучить You were making a stew while you were reading.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-54:i03; family: context_gap_grammar -->
 I ___ making a stew while you were reading. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ making a stew while you were reading. → **was** · were · is
 - They were making a casserole when I arrived. — *У записі звучить You were making a casserole when I arrived.*
 - She was making a casserole when I arrived. — *У записі звучить You were making a casserole when I arrived.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-54:i06; family: context_gap_grammar -->
 They ___ making a casserole when I arrived. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ making a casserole when I arrived. → **were** · was · are
 - She was heating broth while I was talking. — *У записі звучить You were heating broth while I was talking.*
 - They were heating broth while I was talking. — *У записі звучить You were heating broth while I was talking.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-54:i09; family: context_gap_grammar -->
 She ___ heating broth while I was talking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ heating broth while I was talking. → **was** · were · is
 - We were making dumplings when you called. — *У записі звучить You were making dumplings when you called.*
 - She was making dumplings when you called. — *У записі звучить You were making dumplings when you called.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-54:i12; family: context_gap_grammar -->
 We ___ making dumplings when you called. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

@@ -63,7 +63,7 @@
 - I was shrugging when you looked at me. — *В записи звучит You were shrugging when you looked at me.*
 - They were shrugging when you looked at me. — *В записи звучит You were shrugging when you looked at me.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-36:i03; family: context_gap_grammar -->
 I ___ shrugging when you looked at me. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ shrugging when you looked at me. → **was** · were · is
 - She was sniffing the flowers while I was talking. — *В записи звучит You were sniffing the flowers while I was talking.*
 - They were sniffing the flowers while I was talking. — *В записи звучит You were sniffing the flowers while I was talking.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-36:i06; family: context_gap_grammar -->
 She ___ sniffing the flowers while I was talking. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -103,7 +103,7 @@ She ___ sniffing the flowers while I was talking. → **was** · were · is
 - He was winking at me when you arrived. — *В записи звучит You were winking at me when you arrived.*
 - They were winking at me when you arrived. — *В записи звучит You were winking at me when you arrived.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-36:i09; family: context_gap_grammar -->
 He ___ winking at me when you arrived. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ He ___ winking at me when you arrived. → **was** · were · is
 - We were giggling while he was telling the story. — *В записи звучит You were giggling while he was telling the story.*
 - She was giggling while he was telling the story. — *В записи звучит You were giggling while he was telling the story.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-36:i12; family: context_gap_grammar -->
 We ___ giggling while he was telling the story. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

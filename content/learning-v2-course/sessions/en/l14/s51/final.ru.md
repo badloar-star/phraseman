@@ -63,7 +63,7 @@
 - I was cutting linen while you were reading. — *В записи звучит You were cutting linen while you were reading.*
 - They were cutting linen while you were reading. — *В записи звучит You were cutting linen while you were reading.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-51:i03; family: context_gap_grammar -->
 I ___ cutting linen while you were reading. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ cutting linen while you were reading. → **was** · were · is
 - They were looking at velvet when I arrived. — *В записи звучит You were looking at velvet when I arrived.*
 - She was looking at velvet when I arrived. — *В записи звучит You were looking at velvet when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-51:i06; family: context_gap_grammar -->
 They ___ looking at velvet when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ looking at velvet when I arrived. → **were** · was · are
 - She was folding nylon while I was talking. — *В записи звучит You were folding nylon while I was talking.*
 - They were folding nylon while I was talking. — *В записи звучит You were folding nylon while I was talking.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-51:i09; family: context_gap_grammar -->
 She ___ folding nylon while I was talking. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ folding nylon while I was talking. → **was** · were · is
 - We were cutting polyester when you called. — *В записи звучит You were cutting polyester when you called.*
 - She was cutting polyester when you called. — *В записи звучит You were cutting polyester when you called.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-51:i12; family: context_gap_grammar -->
 We ___ cutting polyester when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

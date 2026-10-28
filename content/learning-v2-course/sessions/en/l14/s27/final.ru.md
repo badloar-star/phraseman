@@ -63,7 +63,7 @@
 - I was watching a waterfall when it started to rain. — *В записи звучит You were watching a waterfall when it started to rain.*
 - They were watching a waterfall when it started to rain. — *В записи звучит You were watching a waterfall when it started to rain.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-27:i03; family: context_gap_grammar -->
 I ___ watching a waterfall when it started to rain. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ watching a waterfall when it started to rain. → **was** · were · is
 - They were looking at a cliff when you called. — *В записи звучит You were looking at a cliff when you called.*
 - She was looking at a cliff when you called. — *В записи звучит You were looking at a cliff when you called.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-27:i06; family: context_gap_grammar -->
 They ___ looking at a cliff when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ looking at a cliff when you called. → **were** · was · are
 - She was looking at a cave when you called. — *В записи звучит You were looking at a cave when you called.*
 - They were looking at a cave when you called. — *В записи звучит You were looking at a cave when you called.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-27:i09; family: context_gap_grammar -->
 She ___ looking at a cave when you called. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ looking at a cave when you called. → **was** · were · is
 - We were walking towards the lighthouse when it started to rain. — *В записи звучит You were walking towards the lighthouse when it started to rain.*
 - She was walking towards the lighthouse when it started to rain. — *В записи звучит You were walking towards the lighthouse when it started to rain.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-27:i12; family: context_gap_grammar -->
 We ___ walking towards the lighthouse when it started to rain. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

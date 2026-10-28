@@ -63,7 +63,7 @@
 - I was washing basil when you called. — *В записи звучит You were washing basil when you called.*
 - They were washing basil when you called. — *В записи звучит You were washing basil when you called.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-31:i03; family: context_gap_grammar -->
 I ___ washing basil when you called. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ washing basil when you called. → **was** · were · is
 - They were picking mint when I arrived. — *В записи звучит You were picking mint when I arrived.*
 - She was picking mint when I arrived. — *В записи звучит You were picking mint when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-31:i06; family: context_gap_grammar -->
 They ___ picking mint when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ picking mint when I arrived. → **were** · was · are
 - She was adding rosemary when you called. — *В записи звучит You were adding rosemary when you called.*
 - They were adding rosemary when you called. — *В записи звучит You were adding rosemary when you called.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-31:i09; family: context_gap_grammar -->
 She ___ adding rosemary when you called. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ adding rosemary when you called. → **was** · were · is
 - We were looking for the thyme when you arrived. — *В записи звучит You were looking for the thyme when you arrived.*
 - She was looking for the thyme when you arrived. — *В записи звучит You were looking for the thyme when you arrived.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-31:i12; family: context_gap_grammar -->
 We ___ looking for the thyme when you arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

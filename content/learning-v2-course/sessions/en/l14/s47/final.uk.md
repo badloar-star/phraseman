@@ -63,7 +63,7 @@
 - I was using a garlic press while you were cooking. — *У записі звучить You were using a garlic press while you were cooking.*
 - They were using a garlic press while you were cooking. — *У записі звучить You were using a garlic press while you were cooking.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-47:i03; family: context_gap_grammar -->
 I ___ using a garlic press while you were cooking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ using a garlic press while you were cooking. → **was** · were · is
 - They were washing a slotted spoon when I arrived. — *У записі звучить You were washing a slotted spoon when I arrived.*
 - She was washing a slotted spoon when I arrived. — *У записі звучить You were washing a slotted spoon when I arrived.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-47:i06; family: context_gap_grammar -->
 They ___ washing a slotted spoon when I arrived. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ washing a slotted spoon when I arrived. → **were** · was · are
 - She was using a colander while I was cooking. — *У записі звучить You were using a colander while I was cooking.*
 - They were using a colander while I was cooking. — *У записі звучить You were using a colander while I was cooking.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-47:i09; family: context_gap_grammar -->
 She ___ using a colander while I was cooking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ using a colander while I was cooking. → **was** · were · is
 - We were looking for the potato masher when you called. — *У записі звучить You were looking for the potato masher when you called.*
 - She was looking for the potato masher when you called. — *У записі звучить You were looking for the potato masher when you called.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-47:i12; family: context_gap_grammar -->
 We ___ looking for the potato masher when you called. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

@@ -63,7 +63,7 @@
 - I was looking at a starfish when you called. — *У записі звучить You were looking at a starfish when you called.*
 - They were looking at a starfish when you called. — *У записі звучить You were looking at a starfish when you called.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-28:i03; family: context_gap_grammar -->
 I ___ looking at a starfish when you called. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ looking at a starfish when you called. → **was** · were · is
 - They were looking at seaweed when I arrived. — *У записі звучить You were looking at seaweed when I arrived.*
 - She was looking at seaweed when I arrived. — *У записі звучить You were looking at seaweed when I arrived.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-28:i06; family: context_gap_grammar -->
 They ___ looking at seaweed when I arrived. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ looking at seaweed when I arrived. → **were** · was · are
 - She was drawing a piece of driftwood when I arrived. — *У записі звучить You were drawing a piece of driftwood when I arrived.*
 - They were drawing a piece of driftwood when I arrived. — *У записі звучить You were drawing a piece of driftwood when I arrived.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-28:i09; family: context_gap_grammar -->
 She ___ drawing a piece of driftwood when I arrived. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ drawing a piece of driftwood when I arrived. → **was** · were · is
 - We were looking into a rock pool when you called. — *У записі звучить You were looking into a rock pool when you called.*
 - She was looking into a rock pool when you called. — *У записі звучить You were looking into a rock pool when you called.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-28:i12; family: context_gap_grammar -->
 We ___ looking into a rock pool when you called. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

@@ -63,7 +63,7 @@
 - I was making a taco while you were cooking. — *У записі звучить You were making a taco while you were cooking.*
 - They were making a taco while you were cooking. — *У записі звучить You were making a taco while you were cooking.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-55:i03; family: context_gap_grammar -->
 I ___ making a taco while you were cooking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ making a taco while you were cooking. → **was** · were · is
 - They were making a burrito when I arrived. — *У записі звучить You were making a burrito when I arrived.*
 - She was making a burrito when I arrived. — *У записі звучить You were making a burrito when I arrived.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-55:i06; family: context_gap_grammar -->
 They ___ making a burrito when I arrived. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ making a burrito when I arrived. → **were** · was · are
 - She was making falafel while I was talking. — *У записі звучить You were making falafel while I was talking.*
 - They were making falafel while I was talking. — *У записі звучить You were making falafel while I was talking.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-55:i09; family: context_gap_grammar -->
 She ___ making falafel while I was talking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ making falafel while I was talking. → **was** · were · is
 - We were making hummus when you called. — *У записі звучить You were making hummus when you called.*
 - She was making hummus when you called. — *У записі звучить You were making hummus when you called.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-55:i12; family: context_gap_grammar -->
 We ___ making hummus when you called. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

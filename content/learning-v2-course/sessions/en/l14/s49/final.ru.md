@@ -63,7 +63,7 @@
 - I was using gold paint while you were drawing. — *В записи звучит You were using gold paint while you were drawing.*
 - They were using gold paint while you were drawing. — *В записи звучит You were using gold paint while you were drawing.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-49:i03; family: context_gap_grammar -->
 I ___ using gold paint while you were drawing. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ using gold paint while you were drawing. → **was** · were · is
 - They were using silver paint when I arrived. — *В записи звучит You were using silver paint when I arrived.*
 - She was using silver paint when I arrived. — *В записи звучит You were using silver paint when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-49:i06; family: context_gap_grammar -->
 They ___ using silver paint when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ using silver paint when I arrived. → **were** · was · are
 - She was using bronze paint while I was reading. — *В записи звучит You were using bronze paint while I was reading.*
 - They were using bronze paint while I was reading. — *В записи звучит You were using bronze paint while I was reading.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-49:i09; family: context_gap_grammar -->
 She ___ using bronze paint while I was reading. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ using bronze paint while I was reading. → **was** · were · is
 - We were using turquoise paint when you called. — *В записи звучит You were using turquoise paint when you called.*
 - She was using turquoise paint when you called. — *В записи звучит You were using turquoise paint when you called.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-49:i12; family: context_gap_grammar -->
 We ___ using turquoise paint when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

@@ -63,7 +63,7 @@
 - I was leaning back while you were talking. — *В записи звучит You were leaning back while you were talking.*
 - They were leaning back while you were talking. — *В записи звучит You were leaning back while you were talking.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-34:i03; family: context_gap_grammar -->
 I ___ leaning back while you were talking. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ leaning back while you were talking. → **was** · were · is
 - They were leaning forward when I opened the box. — *В записи звучит You were leaning forward when I opened the box.*
 - She was leaning forward when I opened the box. — *В записи звучит You were leaning forward when I opened the box.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-34:i06; family: context_gap_grammar -->
 They ___ leaning forward when I opened the box. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ leaning forward when I opened the box. → **were** · was · are
 - She was stretching out on the sofa when I arrived. — *В записи звучит You were stretching out on the sofa when I arrived.*
 - They were stretching out on the sofa when I arrived. — *В записи звучит You were stretching out on the sofa when I arrived.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-34:i09; family: context_gap_grammar -->
 She ___ stretching out on the sofa when I arrived. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ stretching out on the sofa when I arrived. → **was** · were · is
 - We were standing still while she was taking a photo. — *В записи звучит You were standing still while she was taking a photo.*
 - She was standing still while she was taking a photo. — *В записи звучит You were standing still while she was taking a photo.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-34:i12; family: context_gap_grammar -->
 We ___ standing still while she was taking a photo. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

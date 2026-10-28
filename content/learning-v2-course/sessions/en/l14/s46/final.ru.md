@@ -63,7 +63,7 @@
 - I was looking for a safety pin while you were reading. — *В записи звучит You were looking for a safety pin while you were reading.*
 - They were looking for a safety pin while you were reading. — *В записи звучит You were looking for a safety pin while you were reading.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-46:i03; family: context_gap_grammar -->
 I ___ looking for a safety pin while you were reading. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ looking for a safety pin while you were reading. → **was** · were · is
 - They were using a sewing machine when I arrived. — *В записи звучит You were using a sewing machine when I arrived.*
 - She was using a sewing machine when I arrived. — *В записи звучит You were using a sewing machine when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-46:i06; family: context_gap_grammar -->
 They ___ using a sewing machine when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ using a sewing machine when I arrived. → **were** · was · are
 - She was making a pincushion while I was talking. — *В записи звучит You were making a pincushion while I was talking.*
 - They were making a pincushion while I was talking. — *В записи звучит You were making a pincushion while I was talking.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-46:i09; family: context_gap_grammar -->
 She ___ making a pincushion while I was talking. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ making a pincushion while I was talking. → **was** · were · is
 - We were looking for the knitting needles when you called. — *В записи звучит You were looking for the knitting needles when you called.*
 - She was looking for the knitting needles when you called. — *В записи звучит You were looking for the knitting needles when you called.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-46:i12; family: context_gap_grammar -->
 We ___ looking for the knitting needles when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

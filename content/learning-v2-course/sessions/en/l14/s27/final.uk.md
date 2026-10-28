@@ -63,7 +63,7 @@
 - I was watching a waterfall when it started to rain. — *У записі звучить You were watching a waterfall when it started to rain.*
 - They were watching a waterfall when it started to rain. — *У записі звучить You were watching a waterfall when it started to rain.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-27:i03; family: context_gap_grammar -->
 I ___ watching a waterfall when it started to rain. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ watching a waterfall when it started to rain. → **was** · were · is
 - They were looking at a cliff when you called. — *У записі звучить You were looking at a cliff when you called.*
 - She was looking at a cliff when you called. — *У записі звучить You were looking at a cliff when you called.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-27:i06; family: context_gap_grammar -->
 They ___ looking at a cliff when you called. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ looking at a cliff when you called. → **were** · was · are
 - She was looking at a cave when you called. — *У записі звучить You were looking at a cave when you called.*
 - They were looking at a cave when you called. — *У записі звучить You were looking at a cave when you called.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-27:i09; family: context_gap_grammar -->
 She ___ looking at a cave when you called. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ looking at a cave when you called. → **was** · were · is
 - We were walking towards the lighthouse when it started to rain. — *У записі звучить You were walking towards the lighthouse when it started to rain.*
 - She was walking towards the lighthouse when it started to rain. — *У записі звучить You were walking towards the lighthouse when it started to rain.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-27:i12; family: context_gap_grammar -->
 We ___ walking towards the lighthouse when it started to rain. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

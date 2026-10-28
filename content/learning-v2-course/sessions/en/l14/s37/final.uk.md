@@ -63,7 +63,7 @@
 - I was watching a sheep while you were taking a photo. — *У записі звучить You were watching a sheep while you were taking a photo.*
 - They were watching a sheep while you were taking a photo. — *У записі звучить You were watching a sheep while you were taking a photo.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-37:i03; family: context_gap_grammar -->
 I ___ watching a sheep while you were taking a photo. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ watching a sheep while you were taking a photo. → **was** · were · is
 - They were looking at a goat when I arrived. — *У записі звучить You were looking at a goat when I arrived.*
 - She was looking at a goat when I arrived. — *У записі звучить You were looking at a goat when I arrived.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-37:i06; family: context_gap_grammar -->
 They ___ looking at a goat when I arrived. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ looking at a goat when I arrived. → **were** · was · are
 - She was drawing a donkey while I was talking. — *У записі звучить You were drawing a donkey while I was talking.*
 - They were drawing a donkey while I was talking. — *У записі звучить You were drawing a donkey while I was talking.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-37:i09; family: context_gap_grammar -->
 She ___ drawing a donkey while I was talking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ drawing a donkey while I was talking. → **was** · were · is
 - We were watching a hen when you called. — *У записі звучить You were watching a hen when you called.*
 - She was watching a hen when you called. — *У записі звучить You were watching a hen when you called.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-37:i12; family: context_gap_grammar -->
 We ___ watching a hen when you called. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

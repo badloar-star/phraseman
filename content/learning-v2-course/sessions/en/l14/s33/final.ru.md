@@ -63,7 +63,7 @@
 - I was turning around when you called my name. — *В записи звучит You were turning around when you called my name.*
 - They were turning around when you called my name. — *В записи звучит You were turning around when you called my name.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-33:i03; family: context_gap_grammar -->
 I ___ turning around when you called my name. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ turning around when you called my name. → **was** · were · is
 - They were looking up while I was taking a photo. — *В записи звучит You were looking up while I was taking a photo.*
 - She was looking up while I was taking a photo. — *В записи звучит You were looking up while I was taking a photo.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-33:i06; family: context_gap_grammar -->
 They ___ looking up while I was taking a photo. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ looking up while I was taking a photo. → **were** · was · are
 - We were looking down when you called us. — *В записи звучит You were looking down when you called us.*
 - She was looking down when you called us. — *В записи звучит You were looking down when you called us.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-33:i09; family: context_gap_grammar -->
 We ___ looking down when you called us. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -123,7 +123,7 @@ We ___ looking down when you called us. → **were** · was · are
 - She was bending down while I was holding her bag. — *В записи звучит You were bending down while I was holding her bag.*
 - They were bending down while I was holding her bag. — *В записи звучит You were bending down while I was holding her bag.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-33:i12; family: context_gap_grammar -->
 She ___ bending down while I was holding her bag. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*

@@ -63,7 +63,7 @@
 - I was cutting linen while you were reading. — *У записі звучить You were cutting linen while you were reading.*
 - They were cutting linen while you were reading. — *У записі звучить You were cutting linen while you were reading.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-51:i03; family: context_gap_grammar -->
 I ___ cutting linen while you were reading. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ cutting linen while you were reading. → **was** · were · is
 - They were looking at velvet when I arrived. — *У записі звучить You were looking at velvet when I arrived.*
 - She was looking at velvet when I arrived. — *У записі звучить You were looking at velvet when I arrived.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-51:i06; family: context_gap_grammar -->
 They ___ looking at velvet when I arrived. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ looking at velvet when I arrived. → **were** · was · are
 - She was folding nylon while I was talking. — *У записі звучить You were folding nylon while I was talking.*
 - They were folding nylon while I was talking. — *У записі звучить You were folding nylon while I was talking.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-51:i09; family: context_gap_grammar -->
 She ___ folding nylon while I was talking. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ folding nylon while I was talking. → **was** · were · is
 - We were cutting polyester when you called. — *У записі звучить You were cutting polyester when you called.*
 - She was cutting polyester when you called. — *У записі звучить You were cutting polyester when you called.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-51:i12; family: context_gap_grammar -->
 We ___ cutting polyester when you called. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

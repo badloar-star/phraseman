@@ -63,7 +63,7 @@
 - I was washing basil when you called. — *У записі звучить You were washing basil when you called.*
 - They were washing basil when you called. — *У записі звучить You were washing basil when you called.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-31:i03; family: context_gap_grammar -->
 I ___ washing basil when you called. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ washing basil when you called. → **was** · were · is
 - They were picking mint when I arrived. — *У записі звучить You were picking mint when I arrived.*
 - She was picking mint when I arrived. — *У записі звучить You were picking mint when I arrived.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-31:i06; family: context_gap_grammar -->
 They ___ picking mint when I arrived. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ picking mint when I arrived. → **were** · was · are
 - She was adding rosemary when you called. — *У записі звучить You were adding rosemary when you called.*
 - They were adding rosemary when you called. — *У записі звучить You were adding rosemary when you called.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-31:i09; family: context_gap_grammar -->
 She ___ adding rosemary when you called. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ adding rosemary when you called. → **was** · were · is
 - We were looking for the thyme when you arrived. — *У записі звучить You were looking for the thyme when you arrived.*
 - She was looking for the thyme when you arrived. — *У записі звучить You were looking for the thyme when you arrived.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-31:i12; family: context_gap_grammar -->
 We ___ looking for the thyme when you arrived. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

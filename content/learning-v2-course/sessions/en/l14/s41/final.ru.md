@@ -63,7 +63,7 @@
 - I was watching a butterfly while you were taking a photo. — *В записи звучит You were watching a butterfly while you were taking a photo.*
 - They were watching a butterfly while you were taking a photo. — *В записи звучит You were watching a butterfly while you were taking a photo.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-41:i03; family: context_gap_grammar -->
 I ___ watching a butterfly while you were taking a photo. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ watching a butterfly while you were taking a photo. → **was** · were ·
 - They were looking at a ladybird when I arrived. — *В записи звучит You were looking at a ladybird when I arrived.*
 - She was looking at a ladybird when I arrived. — *В записи звучит You were looking at a ladybird when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-41:i06; family: context_gap_grammar -->
 They ___ looking at a ladybird when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ looking at a ladybird when I arrived. → **were** · was · are
 - She was drawing a bee while I was talking. — *В записи звучит You were drawing a bee while I was talking.*
 - They were drawing a bee while I was talking. — *В записи звучит You were drawing a bee while I was talking.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-41:i09; family: context_gap_grammar -->
 She ___ drawing a bee while I was talking. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ drawing a bee while I was talking. → **was** · were · is
 - We were watching a wasp when you called. — *В записи звучит You were watching a wasp when you called.*
 - She was watching a wasp when you called. — *В записи звучит You were watching a wasp when you called.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-41:i12; family: context_gap_grammar -->
 We ___ watching a wasp when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

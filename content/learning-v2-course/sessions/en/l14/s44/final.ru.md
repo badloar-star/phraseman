@@ -63,7 +63,7 @@
 - I was cleaning the chessboard while you were reading. — *В записи звучит You were cleaning the chessboard while you were reading.*
 - They were cleaning the chessboard while you were reading. — *В записи звучит You were cleaning the chessboard while you were reading.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-44:i03; family: context_gap_grammar -->
 I ___ cleaning the chessboard while you were reading. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ cleaning the chessboard while you were reading. → **was** · were · is
 - They were rolling the dice when I arrived. — *В записи звучит You were rolling the dice when I arrived.*
 - She was rolling the dice when I arrived. — *В записи звучит You were rolling the dice when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-44:i06; family: context_gap_grammar -->
 They ___ rolling the dice when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ rolling the dice when I arrived. → **were** · was · are
 - She was playing draughts while I was reading. — *В записи звучит You were playing draughts while I was reading.*
 - They were playing draughts while I was reading. — *В записи звучит You were playing draughts while I was reading.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-44:i09; family: context_gap_grammar -->
 She ___ playing draughts while I was reading. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ playing draughts while I was reading. → **was** · were · is
 - We were doing a word search when you called. — *В записи звучит You were doing a word search when you called.*
 - She was doing a word search when you called. — *В записи звучит You were doing a word search when you called.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-44:i12; family: context_gap_grammar -->
 We ___ doing a word search when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

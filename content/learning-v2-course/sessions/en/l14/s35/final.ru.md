@@ -63,7 +63,7 @@
 - I was reaching for my bag when the bus stopped. — *В записи звучит You were reaching for my bag when the bus stopped.*
 - They were reaching for my bag when the bus stopped. — *В записи звучит You were reaching for my bag when the bus stopped.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-35:i03; family: context_gap_grammar -->
 I ___ reaching for my bag when the bus stopped. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ reaching for my bag when the bus stopped. → **was** · were · is
 - They were stepping back when the doors opened. — *В записи звучит You were stepping back when the doors opened.*
 - She was stepping back when the doors opened. — *В записи звучит You were stepping back when the doors opened.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-35:i06; family: context_gap_grammar -->
 They ___ stepping back when the doors opened. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ stepping back when the doors opened. → **were** · was · are
 - She was moving aside while I was carrying the bag. — *В записи звучит You were moving aside while I was carrying the bag.*
 - They were moving aside while I was carrying the bag. — *В записи звучит You were moving aside while I was carrying the bag.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-35:i09; family: context_gap_grammar -->
 She ___ moving aside while I was carrying the bag. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ moving aside while I was carrying the bag. → **was** · were · is
 - We were holding on to the rail while the bus was moving. — *В записи звучит You were holding on to the rail while the bus was moving.*
 - She was holding on to the rail while the bus was moving. — *В записи звучит You were holding on to the rail while the bus was moving.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-35:i12; family: context_gap_grammar -->
 We ___ holding on to the rail while the bus was moving. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

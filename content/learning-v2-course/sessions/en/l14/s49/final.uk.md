@@ -63,7 +63,7 @@
 - I was using gold paint while you were drawing. — *У записі звучить You were using gold paint while you were drawing.*
 - They were using gold paint while you were drawing. — *У записі звучить You were using gold paint while you were drawing.*
 
-**4 · У той момент минулого. Виберіть was або were**
+**4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-49:i03; family: context_gap_grammar -->
 I ___ using gold paint while you were drawing. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -83,7 +83,7 @@ I ___ using gold paint while you were drawing. → **was** · were · is
 - They were using silver paint when I arrived. — *У записі звучить You were using silver paint when I arrived.*
 - She was using silver paint when I arrived. — *У записі звучить You were using silver paint when I arrived.*
 
-**8 · У той момент минулого. Виберіть was або were**
+**8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-49:i06; family: context_gap_grammar -->
 They ___ using silver paint when I arrived. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*
@@ -103,7 +103,7 @@ They ___ using silver paint when I arrived. → **were** · was · are
 - She was using bronze paint while I was reading. — *У записі звучить You were using bronze paint while I was reading.*
 - They were using bronze paint while I was reading. — *У записі звучить You were using bronze paint while I was reading.*
 
-**12 · У той момент минулого. Виберіть was або were**
+**12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-49:i09; family: context_gap_grammar -->
 She ___ using bronze paint while I was reading. → **was** · were · is
 - were — *З цим підметом у минулому потрібна was.*
@@ -123,7 +123,7 @@ She ___ using bronze paint while I was reading. → **was** · were · is
 - We were using turquoise paint when you called. — *У записі звучить You were using turquoise paint when you called.*
 - She was using turquoise paint when you called. — *У записі звучить You were using turquoise paint when you called.*
 
-**16 · У той момент минулого. Виберіть was або were**
+**16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-49:i12; family: context_gap_grammar -->
 We ___ using turquoise paint when you called. → **were** · was · are
 - was — *З цим підметом у минулому потрібна were.*

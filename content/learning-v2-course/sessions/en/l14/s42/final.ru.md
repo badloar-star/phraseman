@@ -63,7 +63,7 @@
 - I was drawing a mole while you were reading. — *В записи звучит You were drawing a mole while you were reading.*
 - They were drawing a mole while you were reading. — *В записи звучит You were drawing a mole while you were reading.*
 
-**4 · В тот момент прошлого. Выберите was или were**
+**4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-42:i03; family: context_gap_grammar -->
 I ___ drawing a mole while you were reading. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -83,7 +83,7 @@ I ___ drawing a mole while you were reading. → **was** · were · is
 - They were drawing a deer when I arrived. — *В записи звучит You were drawing a deer when I arrived.*
 - She was drawing a deer when I arrived. — *В записи звучит You were drawing a deer when I arrived.*
 
-**8 · В тот момент прошлого. Выберите was или were**
+**8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-42:i06; family: context_gap_grammar -->
 They ___ drawing a deer when I arrived. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*
@@ -103,7 +103,7 @@ They ___ drawing a deer when I arrived. → **were** · was · are
 - She was drawing a hare while I was talking. — *В записи звучит You were drawing a hare while I was talking.*
 - They were drawing a hare while I was talking. — *В записи звучит You were drawing a hare while I was talking.*
 
-**12 · В тот момент прошлого. Выберите was или were**
+**12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-42:i09; family: context_gap_grammar -->
 She ___ drawing a hare while I was talking. → **was** · were · is
 - were — *С этим подлежащим в прошлом нужна was.*
@@ -123,7 +123,7 @@ She ___ drawing a hare while I was talking. → **was** · were · is
 - We were drawing a bat when you called. — *В записи звучит You were drawing a bat when you called.*
 - She was drawing a bat when you called. — *В записи звучит You were drawing a bat when you called.*
 
-**16 · В тот момент прошлого. Выберите was или were**
+**16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-42:i12; family: context_gap_grammar -->
 We ___ drawing a bat when you called. → **were** · was · are
 - was — *С этим подлежащим в прошлом нужна were.*

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-41:i01",
+    "correctText": "salado",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-41:i02",
+    "correctText": "salado",
+    "correctResponseId": "es:lesson-03:session-41:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-41:i03",
+    "correctText": "La galleta es salada.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-41:i04",
+    "correctText": "salada",
+    "correctResponseId": "es:lesson-03:session-41:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-41:i05",
+    "correctText": "Las galletas son saladas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-41:i06",
+    "correctText": "saladas",
+    "correctResponseId": "es:lesson-03:session-41:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-41:i07",
+    "correctText": "El queso es salado.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-41:i08",
+    "correctText": "Las galletas no son saladas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-41:i09",
+    "correctText": "La galleta es salada.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-41:i10",
+    "correctText": "Las galletas son saladas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-41:i11",
+    "correctText": "El queso es salado.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-41:i12",
+    "correctText": "Las galletas no son saladas.",
+    "correctResponseId": null
+  }
+]

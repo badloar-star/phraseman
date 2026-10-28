@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-39",
+  "learningOutcomeByLocale": {
+    "ru": "спросить о свойствах нескольких людей через ¿Cómo son?",
+    "uk": "запитувати про властивості кількох людей через ¿Cómo son?"
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-39:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Спросить о нескольких людях",
+        "uk": "Запитати про кількох людей"
+      },
+      "bodyByLocale": {
+        "ru": "Друг уже назвал новых соседей. Спросите `¿Cómo son?` — «Какие они?» Соберите `cómo` + `son` и вопросительные знаки. Знакомое ¿Cómo es? относится к одному человеку или предмету. Здесь людей несколько, поэтому es заменяется на son. Cómo не меняется.",
+        "uk": "Друг уже назвав нових сусідів. Запитайте `¿Cómo son?` — «Які вони?» Зберіть `cómo` + `son` і питальні знаки. Знайоме ¿Cómo es? стосується однієї людини чи предмета. Тут людей кілька, тому es замінюється на son. Cómo не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-39:intro1:q",
+        "promptByLocale": {
+          "ru": "Попросите описать нескольких уже названных людей. Без имён и местоимения.",
+          "uk": "Попросіть описати кількох уже названих людей. Без імен і займенника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-39:intro1:r1",
+              "text": "¿Cómo son?"
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro1:r2",
+              "text": "¿Cómo es?"
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro1:r3",
+              "text": "¿Cómo soy?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-39:intro1:r1",
+              "text": "¿Cómo son?"
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro1:r2",
+              "text": "¿Cómo es?"
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro1:r3",
+              "text": "¿Cómo soy?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите описать нескольких уже названных людей. Без имён и местоимения.",
+          "uk": "Попросіть описати кількох уже названих людей. Без імен і займенника."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-39:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Спросить об одной женщине",
+        "uk": "Запитати про одну жінку"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь хотите узнать отдельно об Ане. Спросите `¿Cómo es Ana?` — «Какая Ана?» Соберите `cómo` + `es` + `Ana`. Назвав одного человека, вернитесь к es. Имя ставим после es; перед именем в этом вопросе артикль не нужен.",
+        "uk": "Тепер хочете дізнатися окремо про Ану. Запитайте `¿Cómo es Ana?` — «Яка Ана?» Зберіть `cómo` + `es` + `Ana`. Назвавши одну людину, поверніться до es. Ім'я ставимо після es; перед ім'ям у цьому питанні артикль не потрібний."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-39:intro2:q",
+        "promptByLocale": {
+          "ru": "Попросите описать Ану, назвав её по имени.",
+          "uk": "Попросіть описати Ану, назвавши її на ім'я."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-39:intro2:r1",
+              "text": "¿Cómo es Ana?"
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro2:r2",
+              "text": "¿Cómo son Ana?"
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro2:r3",
+              "text": "¿Quién es Ana?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-39:intro2:r1",
+              "text": "¿Cómo es Ana?"
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro2:r2",
+              "text": "¿Cómo son Ana?"
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro2:r3",
+              "text": "¿Quién es Ana?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите описать Ану, назвав её по имени.",
+          "uk": "Попросіть описати Ану, назвавши її на ім'я."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-39:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ о группе",
+        "uk": "Відповідь про групу"
+      },
+      "bodyByLocale": {
+        "ru": "Друг рассказал о соседях, и теперь вы сами описываете их другому знакомому: `Son amables` — «Они приветливые». Соберите `son` + `amables`. На вопрос о нескольких людях даём описание во множественном числе. Названия людей понятны из разговора, поэтому здесь достаточно двух слов.",
+        "uk": "Друг розповів про сусідів, і тепер ви самі описуєте їх іншому знайомому: `Son amables` — «Вони привітні». Зберіть `son` + `amables`. На питання про кількох людей даємо опис у множині. Назви людей зрозумілі з розмови, тому тут достатньо двох слів."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-39:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что эти люди приветливые. Без имён и местоимения.",
+          "uk": "Скажіть, що ці люди привітні. Без імен і займенника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-39:intro3:r1",
+              "text": "Son amables."
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro3:r2",
+              "text": "Son amable."
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro3:r3",
+              "text": "Es amables."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-39:intro3:r1",
+              "text": "Son amables."
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro3:r2",
+              "text": "Son amable."
+            },
+            {
+              "responseId": "es:lesson-03:session-39:intro3:r3",
+              "text": "Es amables."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что эти люди приветливые. Без имён и местоимения.",
+          "uk": "Скажіть, що ці люди привітні. Без імен і займенника."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "069bf629dea4cc1c75bad9be42c4f90a010ee0b82ece57ee2d53909fe617ae35"
+}

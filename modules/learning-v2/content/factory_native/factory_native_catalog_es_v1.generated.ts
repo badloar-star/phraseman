@@ -1057,4 +1057,25 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать женские формы habladora и habladoras.","uk":"використовувати жіночі форми habladora і habladoras."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 39,
+    sourceFingerprint: "42de6babefa9257f55ec93ab56f9cf408b81f39b2170f083f3a46fecf7a8daac",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить о свойствах нескольких людей через ¿Cómo son?","uk":"запитувати про властивості кількох людей через ¿Cómo son?"}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 40,
+    sourceFingerprint: "6240ccc4f7acf78becd849b7a7caddf4750cedcb34146d14f9af0c34bd2d0d3d",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"самостоятельно описать внешность и характер одного или нескольких людей.","uk":"самостійно описувати зовнішність і характер однієї чи кількох людей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 41,
+    sourceFingerprint: "a1cb8e650a016381c421070a7f44c96c7a4d6ba22a87255908969b2b81976c48",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"описать солёный вкус как свойство вида еды.","uk":"описувати солоний смак як властивість виду їжі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

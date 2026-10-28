@@ -1,0 +1,657 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-41",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-41:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — salado",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-41:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — salado",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-41:i01:audio",
+          "transcript": "salado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-41:i01:r1",
+            "targetText": "salado",
+            "meaningByLocale": {
+              "ru": "солёный; salada — женская форма. 🔊 *salado*",
+              "uk": "солоний; salada — жіноча форма. 🔊 *salado*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "salado",
+          "definitionByLocale": {
+            "ru": "солёный; salada — женская форма. 🔊 *salado*",
+            "uk": "солоний; salada — жіноча форма. 🔊 *salado*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-41:i02:r1",
+          "text": "salado"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i02:r2",
+          "text": "salada"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-41:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-41:i02:audio",
+          "transcript": "salado"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-41:i02:r1",
+            "targetText": "salado",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-41:i02:r2",
+            "targetText": "salada",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-41:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "В записи окончание -o: salado.",
+              "uk": "У записі закінчення -o: salado."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — одна штука печенья солёная по рецепту",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-41:i03:r1",
+          "text": "Плитки: salada"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i03:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i03:r3",
+          "text": "galleta"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i03:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i03:r5",
+          "text": "salado."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — одна штука печенья солёная по рецепту",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La galleta es salada.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — одна штука печенья солёная по рецепту",
+          "uk": "Зберіть фразу — одна штука печива солона за рецептом"
+        },
+        "orderedTokens": [
+          "La",
+          "galleta",
+          "es",
+          "salada"
+        ],
+        "authoredDistractorTokens": [
+          "salado"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-41:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — одна штука печенья солёная по рецепту",
+            "feedbackByLocale": {
+              "ru": "galleta женского рода.",
+              "uk": "galleta жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — одна штука печенья солёная по рецепту",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-41:i04:r1",
+          "text": "salada"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i04:r2",
+          "text": "salado"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i04:r3",
+          "text": "saladas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — одна штука печенья солёная по рецепту",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — одна штука печенья солёная по рецепту",
+          "uk": "Вставте слово — одна штука печива солона за рецептом"
+        },
+        "gappedTargetPhrase": "La galleta es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-41:i04:r1",
+            "text": "salada"
+          },
+          {
+            "responseId": "es:lesson-03:session-41:i04:r2",
+            "text": "salado"
+          },
+          {
+            "responseId": "es:lesson-03:session-41:i04:r3",
+            "text": "saladas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — одна штука печенья солёная по рецепту",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-41:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна штука печенья солёная по рецепту",
+            "feedbackByLocale": {
+              "ru": "Galleta женского рода: salada.",
+              "uk": "Galleta жіночого роду: salada."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-41:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — одна штука печенья солёная по рецепту",
+            "feedbackByLocale": {
+              "ru": "Одна штука: salada.",
+              "uk": "Одна штука: salada."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — печенья солёные по рецепту",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-41:i05:r1",
+          "text": "Плитки: saladas"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i05:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i05:r3",
+          "text": "galletas"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i05:r4",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i05:r5",
+          "text": "salados."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — печенья солёные по рецепту",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las galletas son saladas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — печенья солёные по рецепту",
+          "uk": "Зберіть фразу — ці штуки печива солоні за рецептом"
+        },
+        "orderedTokens": [
+          "Las",
+          "galletas",
+          "son",
+          "saladas"
+        ],
+        "authoredDistractorTokens": [
+          "salados"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-41:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — печенья солёные по рецепту",
+            "feedbackByLocale": {
+              "ru": "galletas женского рода.",
+              "uk": "galletas жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — несколько печений солёные по рецепту",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-41:i06:r1",
+          "text": "saladas"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i06:r2",
+          "text": "salados"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i06:r3",
+          "text": "salada"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — несколько печений солёные по рецепту",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — несколько печений солёные по рецепту",
+          "uk": "Вставте слово — кілька штук печива солоні за рецептом"
+        },
+        "gappedTargetPhrase": "Las galletas son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-41:i06:r1",
+            "text": "saladas"
+          },
+          {
+            "responseId": "es:lesson-03:session-41:i06:r2",
+            "text": "salados"
+          },
+          {
+            "responseId": "es:lesson-03:session-41:i06:r3",
+            "text": "salada"
+          }
+        ],
+        "testedDimension": "Вставьте слово — несколько печений солёные по рецепту",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-41:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько печений солёные по рецепту",
+            "feedbackByLocale": {
+              "ru": "Galletas женского рода: saladas.",
+              "uk": "Galletas жіночого роду: saladas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-41:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — несколько печений солёные по рецепту",
+            "feedbackByLocale": {
+              "ru": "Печений несколько: saladas.",
+              "uk": "Штук кілька: saladas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — сыр этого сорта солёный",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-41:i07:r1",
+          "text": "Плитки: salado"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i07:r3",
+          "text": "queso"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i07:r4",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i07:r5",
+          "text": "salada."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — сыр этого сорта солёный",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El queso es salado.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — сыр этого сорта солёный",
+          "uk": "Зберіть фразу — сир цього сорту солоний"
+        },
+        "orderedTokens": [
+          "El",
+          "queso",
+          "es",
+          "salado"
+        ],
+        "authoredDistractorTokens": [
+          "salada"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-41:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — сыр этого сорта солёный",
+            "feedbackByLocale": {
+              "ru": "queso мужского рода.",
+              "uk": "queso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-41:i08:r1",
+          "text": "Плитки: saladas"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i08:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i08:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i08:r4",
+          "text": "galletas"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i08:r5",
+          "text": "las"
+        },
+        {
+          "responseId": "es:lesson-03:session-41:i08:r6",
+          "text": "salada."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-41:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-41:i08:audio",
+          "transcript": "Las galletas no son saladas."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Las galletas no son saladas.",
+        "orderedTokens": [
+          "Las",
+          "galletas",
+          "no",
+          "son",
+          "saladas"
+        ],
+        "authoredDistractorTokens": [
+          "salada"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-41:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит saladas.",
+              "uk": "звучить saladas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — одна штука печенья солёная по рецепту; назовите предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-41:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — одна штука печенья солёная по рецепту; назовите предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-41:i09:audio",
+          "transcript": "La galleta es salada."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La galleta es salada.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — печенья солёные по рецепту; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-41:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — печенья солёные по рецепту; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-41:i10:audio",
+          "transcript": "Las galletas son saladas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las galletas son saladas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — сыр этого сорта солёный; назовите его",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-41:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — сыр этого сорта солёный; назовите его",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-41:i11:audio",
+          "transcript": "El queso es salado."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El queso es salado.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — эти печенья не солёные по рецепту; назовите предметы",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-41:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — эти печенья не солёные по рецепту; назовите предметы",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-41:i12:audio",
+          "transcript": "Las galletas no son saladas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las galletas no son saladas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "3afce6f6e06c3c95cea708a01404bf1e57a5c149a3415f3dcb8a2cc1ab4768a3"
+}

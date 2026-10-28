@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-40:i01",
+    "correctText": "alta",
+    "correctResponseId": "es:lesson-03:session-40:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i02",
+    "correctText": "Ana es alta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i03",
+    "correctText": "bajo",
+    "correctResponseId": "es:lesson-03:session-40:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i04",
+    "correctText": "Son jóvenes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i05",
+    "correctText": "rubio",
+    "correctResponseId": "es:lesson-03:session-40:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i06",
+    "correctText": "morena",
+    "correctResponseId": "es:lesson-03:session-40:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i07",
+    "correctText": "Son habladoras.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i08",
+    "correctText": "tranquilas",
+    "correctResponseId": "es:lesson-03:session-40:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i09",
+    "correctText": "Son muy pacientes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i10",
+    "correctText": "alegres",
+    "correctResponseId": "es:lesson-03:session-40:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i11",
+    "correctText": "¿Cómo son?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i12",
+    "correctText": "amables",
+    "correctResponseId": "es:lesson-03:session-40:i12:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i13",
+    "correctText": "Ana es alta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i14",
+    "correctText": "Luis es rubio.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i15",
+    "correctText": "Son habladoras.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i16",
+    "correctText": "¿Cómo son?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i17",
+    "correctText": "Son muy pacientes.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-40:i18",
+    "correctText": "Son jóvenes.",
+    "correctResponseId": null
+  }
+]

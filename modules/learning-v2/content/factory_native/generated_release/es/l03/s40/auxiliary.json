@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-40",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-40:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-40:intro1:r2": {
+          "ru": "О женщине: alta.",
+          "uk": "Про жінку: alta."
+        },
+        "es:lesson-03:session-40:intro1:r3": {
+          "ru": "Один человек: es.",
+          "uk": "Одна людина: es."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-40:intro2:r2": {
+          "ru": "Речь только о женщинах: habladoras.",
+          "uk": "Йдеться лише про жінок: habladoras."
+        },
+        "es:lesson-03:session-40:intro2:r3": {
+          "ru": "Людей несколько: habladoras.",
+          "uk": "Людей кілька: habladoras."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-40:intro3:r2": {
+          "ru": "Так спрашивают об одном.",
+          "uk": "Так запитують про одного."
+        },
+        "es:lesson-03:session-40:intro3:r3": {
+          "ru": "Так спрашивают о себе.",
+          "uk": "Так запитують про себе."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "778e554a16339c7d2b8fc78496b7c7058dda6d3e63108584d2c63dbccb5d32f5"
+}

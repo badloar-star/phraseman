@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-39:i01",
+    "correctText": "son",
+    "correctResponseId": "es:lesson-03:session-39:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-39:i02",
+    "correctText": "¿Cómo son?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-39:i03",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-03:session-39:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-39:i04",
+    "correctText": "¿Cómo es Ana?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-39:i05",
+    "correctText": "amables",
+    "correctResponseId": "es:lesson-03:session-39:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-39:i06",
+    "correctText": "Son amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-39:i07",
+    "correctText": "¿Cómo son?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-39:i08",
+    "correctText": "pacientes",
+    "correctResponseId": "es:lesson-03:session-39:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-39:i09",
+    "correctText": "¿Cómo son?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-39:i10",
+    "correctText": "¿Cómo es Ana?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-39:i11",
+    "correctText": "Son amables.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-39:i12",
+    "correctText": "Son pacientes.",
+    "correctResponseId": null
+  }
+]

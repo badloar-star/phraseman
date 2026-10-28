@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-41",
+  "learningOutcomeByLocale": {
+    "ru": "описать солёный вкус как свойство вида еды.",
+    "uk": "описувати солоний смак як властивість виду їжі."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-41:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Какое это печенье",
+        "uk": "Яке це печиво"
+      },
+      "bodyByLocale": {
+        "ru": "Продавец показывает солёный вид печенья. Опишите одно: `La galleta es salada` — «Печенье солёное». Salado значит «солёный». Соберите `la galleta` + `es` + `salada`. Galleta женского рода, поэтому salada. Здесь речь о рецепте этого вида печенья, не об ошибке при приготовлении.",
+        "uk": "Продавець показує солоний вид печива. Опишіть одну штуку: `La galleta es salada` — «Печиво солоне». Salado означає «солоний». Зберіть `la galleta` + `es` + `salada`. Galleta жіночого роду, тому salada. Тут ідеться про рецепт цього виду печива, не про помилку під час приготування."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-41:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что одна штука печенья солёная по рецепту.",
+          "uk": "Скажіть, що одна штука печива солона за рецептом."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-41:intro1:r1",
+              "text": "La galleta es salada."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro1:r2",
+              "text": "La galleta es salado."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro1:r3",
+              "text": "La galleta es saladas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-41:intro1:r1",
+              "text": "La galleta es salada."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro1:r2",
+              "text": "La galleta es salado."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro1:r3",
+              "text": "La galleta es saladas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что одна штука печенья солёная по рецепту.",
+          "uk": "Скажіть, що одна штука печива солона за рецептом."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-41:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Вся пачка",
+        "uk": "Уся пачка"
+      },
+      "bodyByLocale": {
+        "ru": "Берёте пачку таких печений. Скажите `Las galletas son saladas` — «Печенья солёные». Соберите `las galletas` + `son` + `saladas`. Печений несколько: женское salada получает -s. Так вы объясняете гостю, что выбрали солёный вид, а не сладкий.",
+        "uk": "Берете пачку такого печива. Скажіть `Las galletas son saladas` — «Ці штуки печива солоні». Зберіть `las galletas` + `son` + `saladas`. Штук кілька: жіноче salada отримує -s. Так ви пояснюєте гостеві, що обрали солоний вид, а не солодкий."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-41:intro2:q",
+        "promptByLocale": {
+          "ru": "Опишите несколько солёных печений.",
+          "uk": "Опишіть кілька солоних штук печива."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-41:intro2:r1",
+              "text": "Las galletas son saladas."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro2:r2",
+              "text": "Las galletas son salados."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro2:r3",
+              "text": "Las galletas son salada."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-41:intro2:r1",
+              "text": "Las galletas son saladas."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro2:r2",
+              "text": "Las galletas son salados."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro2:r3",
+              "text": "Las galletas son salada."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Опишите несколько солёных печений.",
+          "uk": "Опишіть кілька солоних штук печива."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-41:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сыр к печенью",
+        "uk": "Сир до печива"
+      },
+      "bodyByLocale": {
+        "ru": "К печенью выбираете солёный сорт сыра. Скажите `El queso es salado` — «Сыр солёный». Соберите `el queso` + `es` + `salado`. Queso мужского рода, поэтому salado на -o. Описываете обычный вкус выбранного сорта.",
+        "uk": "До печива обираєте солоний сорт сиру. Скажіть `El queso es salado` — «Сир солоний». Зберіть `el queso` + `es` + `salado`. Queso чоловічого роду, тому salado на -o. Описуєте звичайний смак обраного сорту."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-41:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите, что сыр этого сорта солёный.",
+          "uk": "Скажіть, що сир цього сорту солоний."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-41:intro3:r1",
+              "text": "El queso es salado."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro3:r2",
+              "text": "El queso es salada."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro3:r3",
+              "text": "El queso es salados."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-41:intro3:r1",
+              "text": "El queso es salado."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro3:r2",
+              "text": "El queso es salada."
+            },
+            {
+              "responseId": "es:lesson-03:session-41:intro3:r3",
+              "text": "El queso es salados."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что сыр этого сорта солёный.",
+          "uk": "Скажіть, що сир цього сорту солоний."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7884cec18ef8f6f358f51174f37b0717eadaa3cb456a359687c0ff32d297c2ad"
+}

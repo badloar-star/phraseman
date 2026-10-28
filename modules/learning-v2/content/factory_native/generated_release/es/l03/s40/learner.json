@@ -1,0 +1,988 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-40",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-40:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Ана высокая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i01:r1",
+          "text": "alta"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i01:r2",
+          "text": "alto"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i01:r3",
+          "text": "altas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Ана высокая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана высокая",
+          "uk": "Вставте слово — Ана висока"
+        },
+        "gappedTargetPhrase": "Ana es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-40:i01:r1",
+            "text": "alta"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i01:r2",
+            "text": "alto"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i01:r3",
+            "text": "altas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Ана высокая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана высокая",
+            "feedbackByLocale": {
+              "ru": "О женщине: alta.",
+              "uk": "Про жінку: alta."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана высокая",
+            "feedbackByLocale": {
+              "ru": "Один человек: alta.",
+              "uk": "Одна людина: alta."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — Ана высокая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i02:r1",
+          "text": "Плитки: alta"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i02:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i02:r3",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i02:r4",
+          "text": "alto."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — Ана высокая",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana es alta.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ана высокая",
+          "uk": "Зберіть фразу — Ана висока"
+        },
+        "orderedTokens": [
+          "Ana",
+          "es",
+          "alta"
+        ],
+        "authoredDistractorTokens": [
+          "alto"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — Ана высокая",
+            "feedbackByLocale": {
+              "ru": "описываем женщину.",
+              "uk": "описуємо жінку."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Луис невысокого роста",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i03:r1",
+          "text": "bajo"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i03:r2",
+          "text": "baja"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i03:r3",
+          "text": "bajos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Луис невысокого роста",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Луис невысокого роста",
+          "uk": "Вставте слово — Луїс невисокого зросту"
+        },
+        "gappedTargetPhrase": "Luis es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-40:i03:r1",
+            "text": "bajo"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i03:r2",
+            "text": "baja"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i03:r3",
+            "text": "bajos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Луис невысокого роста",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Луис невысокого роста",
+            "feedbackByLocale": {
+              "ru": "О мужчине: bajo.",
+              "uk": "Про чоловіка: bajo."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Луис невысокого роста",
+            "feedbackByLocale": {
+              "ru": "Один человек: bajo.",
+              "uk": "Одна людина: bajo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — они молодые; без имён и местоимения",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i04:r1",
+          "text": "Плитки: jóvenes"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i04:r3",
+          "text": "joven."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — они молодые; без имён и местоимения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son jóvenes.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — они молодые; без имён и местоимения",
+          "uk": "Зберіть фразу — вони молоді; без імен і займенника"
+        },
+        "orderedTokens": [
+          "Son",
+          "jóvenes"
+        ],
+        "authoredDistractorTokens": [
+          "joven"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — они молодые; без имён и местоимения",
+            "feedbackByLocale": {
+              "ru": "людей несколько.",
+              "uk": "людей кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Луис светловолосый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i05:r1",
+          "text": "rubio"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i05:r2",
+          "text": "rubia"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i05:r3",
+          "text": "rubios"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Луис светловолосый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Луис светловолосый",
+          "uk": "Вставте слово — Луїс світловолосий"
+        },
+        "gappedTargetPhrase": "Luis es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-40:i05:r1",
+            "text": "rubio"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i05:r2",
+            "text": "rubia"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i05:r3",
+            "text": "rubios"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Луис светловолосый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Луис светловолосый",
+            "feedbackByLocale": {
+              "ru": "О мужчине: rubio.",
+              "uk": "Про чоловіка: rubio."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Луис светловолосый",
+            "feedbackByLocale": {
+              "ru": "Один человек: rubio.",
+              "uk": "Одна людина: rubio."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i06",
+      "ordinal": 9,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — Ана темноволосая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i06:r1",
+          "text": "morena"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i06:r2",
+          "text": "moreno"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i06:r3",
+          "text": "morenas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — Ана темноволосая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ана темноволосая",
+          "uk": "Вставте слово — Ана темноволоса"
+        },
+        "gappedTargetPhrase": "Ana es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-40:i06:r1",
+            "text": "morena"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i06:r2",
+            "text": "moreno"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i06:r3",
+            "text": "morenas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — Ана темноволосая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана темноволосая",
+            "feedbackByLocale": {
+              "ru": "О женщине: morena.",
+              "uk": "Про жінку: morena."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — Ана темноволосая",
+            "feedbackByLocale": {
+              "ru": "Один человек: morena.",
+              "uk": "Одна людина: morena."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — обе женщины разговорчивые; без имён и местоимения",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i07:r1",
+          "text": "Плитки: habladoras"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i07:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i07:r3",
+          "text": "habladores."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — обе женщины разговорчивые; без имён и местоимения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son habladoras.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — обе женщины разговорчивые; без имён и местоимения",
+          "uk": "Зберіть фразу — обидві жінки говіркі; без імен і займенника"
+        },
+        "orderedTokens": [
+          "Son",
+          "habladoras"
+        ],
+        "authoredDistractorTokens": [
+          "habladores"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — обе женщины разговорчивые; без имён и местоимения",
+            "feedbackByLocale": {
+              "ru": "речь о женщинах.",
+              "uk": "йдеться про жінок."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — обе женщины спокойные по характеру",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i08:r1",
+          "text": "tranquilas"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i08:r2",
+          "text": "tranquilos"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i08:r3",
+          "text": "tranquila"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — обе женщины спокойные по характеру",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — обе женщины спокойные по характеру",
+          "uk": "Вставте слово — обидві жінки спокійні за характером"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-40:i08:r1",
+            "text": "tranquilas"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i08:r2",
+            "text": "tranquilos"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i08:r3",
+            "text": "tranquila"
+          }
+        ],
+        "testedDimension": "Вставьте слово — обе женщины спокойные по характеру",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — обе женщины спокойные по характеру",
+            "feedbackByLocale": {
+              "ru": "Обе женщины: tranquilas.",
+              "uk": "Обидві жінки: tranquilas."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — обе женщины спокойные по характеру",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: tranquilas.",
+              "uk": "Людей кілька: tranquilas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i09:r1",
+          "text": "Плитки: pacientes"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i09:r2",
+          "text": "muy"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i09:r3",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i09:r4",
+          "text": "paciente."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-40:i09:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-40:i09:audio",
+          "transcript": "Son muy pacientes."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Son muy pacientes.",
+        "orderedTokens": [
+          "Son",
+          "muy",
+          "pacientes"
+        ],
+        "authoredDistractorTokens": [
+          "paciente"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит pacientes.",
+              "uk": "звучить pacientes."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — эти люди весёлые по характеру",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i10:r1",
+          "text": "alegres"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i10:r2",
+          "text": "alegre"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i10:r3",
+          "text": "alegras"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — эти люди весёлые по характеру",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эти люди весёлые по характеру",
+          "uk": "Вставте слово — ці люди веселі за характером"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-40:i10:r1",
+            "text": "alegres"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i10:r2",
+            "text": "alegre"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i10:r3",
+            "text": "alegras"
+          }
+        ],
+        "testedDimension": "Вставьте слово — эти люди весёлые по характеру",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — эти люди весёлые по характеру",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: alegres.",
+              "uk": "Людей кілька: alegres."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — эти люди весёлые по характеру",
+            "feedbackByLocale": {
+              "ru": "Alegre не меняется по роду.",
+              "uk": "Alegre не змінюється за родом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — какие они? Без имён и местоимения",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i11:r1",
+          "text": "Плитки: son?"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i11:r2",
+          "text": "¿cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i11:r3",
+          "text": "es?."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — какие они? Без имён и местоимения",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Cómo son?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — какие они? Без имён и местоимения",
+          "uk": "Зберіть фразу — які вони? Без імен і займенника"
+        },
+        "orderedTokens": [
+          "¿Cómo",
+          "son"
+        ],
+        "authoredDistractorTokens": [
+          "es?"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i11:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — какие они? Без имён и местоимения",
+            "feedbackByLocale": {
+              "ru": "людей несколько.",
+              "uk": "людей кілька."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i12",
+      "ordinal": 15,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — эти люди приветливые",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-40:i12:r1",
+          "text": "amables"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i12:r2",
+          "text": "amable"
+        },
+        {
+          "responseId": "es:lesson-03:session-40:i12:r3",
+          "text": "amablas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — эти люди приветливые",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — эти люди приветливые",
+          "uk": "Вставте слово — ці люди привітні"
+        },
+        "gappedTargetPhrase": "Son ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-40:i12:r1",
+            "text": "amables"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i12:r2",
+            "text": "amable"
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i12:r3",
+            "text": "amablas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — эти люди приветливые",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-40:i12:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — эти люди приветливые",
+            "feedbackByLocale": {
+              "ru": "Людей несколько: amables.",
+              "uk": "Людей кілька: amables."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-40:i12:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — эти люди приветливые",
+            "feedbackByLocale": {
+              "ru": "Amable не меняется по роду.",
+              "uk": "Amable не змінюється за родом."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Ана высокая; назовите её по имени",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-40:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Ана высокая; назовите её по имени",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-40:i13:audio",
+          "transcript": "Ana es alta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana es alta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — Луис светловолосый; назовите его по имени",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-40:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — Луис светловолосый; назовите его по имени",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-40:i14:audio",
+          "transcript": "Luis es rubio."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Luis es rubio.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — обе женщины разговорчивые; без имён и местоимения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-40:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — обе женщины разговорчивые; без имён и местоимения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-40:i15:audio",
+          "transcript": "Son habladoras."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son habladoras.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — какие они? Попросите описание людей без имён и местоимения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-40:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — какие они? Попросите описание людей без имён и местоимения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-40:i16:audio",
+          "transcript": "¿Cómo son?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Cómo son?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i17",
+      "ordinal": 20,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — эти люди очень терпеливые; без имён и местоимения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-40:i17:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — эти люди очень терпеливые; без имён и местоимения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-40:i17:audio",
+          "transcript": "Son muy pacientes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son muy pacientes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-40:i18",
+      "ordinal": 21,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — они молодые; без имён и местоимения",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-40:i18:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — они молодые; без имён и местоимения",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-40:i18:audio",
+          "transcript": "Son jóvenes."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son jóvenes.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 18,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b44be44174c0b128c58d79bd505ebd8a9462438f7360c3f998eafd2040b270a7"
+}

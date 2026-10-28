@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-40",
+  "learningOutcomeByLocale": {
+    "ru": "самостоятельно описать внешность и характер одного или нескольких людей.",
+    "uk": "самостійно описувати зовнішність і характер однієї чи кількох людей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-40:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Узнать Ану",
+        "uk": "Упізнати Ану"
+      },
+      "bodyByLocale": {
+        "ru": "Покажите Ану на снимке и назовите одну заметную черту: `Ana es alta` — «Ана высокая». Соберите `Ana` + `es` + `alta`. О женщине выбираем alta. Имя не требует артикля в этой фразе, а es связывает человека с описанием.",
+        "uk": "Покажіть Ану на знімку й назвіть одну помітну рису: `Ana es alta` — «Ана висока». Зберіть `Ana` + `es` + `alta`. Про жінку обираємо alta. Ім'я не вимагає артикля в цій фразі, а es пов'язує людину з описом."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-40:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите, что Ана высокая.",
+          "uk": "Скажіть, що Ана висока."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-40:intro1:r1",
+              "text": "Ana es alta."
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro1:r2",
+              "text": "Ana es alto."
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro1:r3",
+              "text": "Ana son alta."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-40:intro1:r1",
+              "text": "Ana es alta."
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro1:r2",
+              "text": "Ana es alto."
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro1:r3",
+              "text": "Ana son alta."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите, что Ана высокая.",
+          "uk": "Скажіть, що Ана висока."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-40:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Описать двух подруг",
+        "uk": "Описати двох подруг"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже назвали Ану и её подругу. Расскажите, что они любят поговорить: `Son habladoras` — «Они разговорчивые». Соберите `son` + `habladoras`. О нескольких женщинах у hablador женское множественное habladoras. Не переносите сюда форму habladores.",
+        "uk": "Ви вже назвали Ану та її подругу. Розкажіть, що вони люблять поговорити: `Son habladoras` — «Вони говіркі». Зберіть `son` + `habladoras`. Про кількох жінок у hablador жіноче множинне habladoras. Не переносіть сюди форму habladores."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-40:intro2:q",
+        "promptByLocale": {
+          "ru": "Обе женщины разговорчивые. Ответьте без имён и местоимения.",
+          "uk": "Обидві жінки говіркі. Відповідайте без імен і займенника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-40:intro2:r1",
+              "text": "Son habladoras."
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro2:r2",
+              "text": "Son habladores."
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro2:r3",
+              "text": "Son habladora."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-40:intro2:r1",
+              "text": "Son habladoras."
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro2:r2",
+              "text": "Son habladores."
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro2:r3",
+              "text": "Son habladora."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Обе женщины разговорчивые. Ответьте без имён и местоимения.",
+          "uk": "Обидві жінки говіркі. Відповідайте без імен і займенника."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-40:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Спросить о других людях",
+        "uk": "Запитати про інших людей"
+      },
+      "bodyByLocale": {
+        "ru": "Друг назвал ещё нескольких гостей, которых вы не знаете. Попросите описание: `¿Cómo son?` — «Какие они?» Соберите `cómo` + `son` и вопросительные знаки. Людей несколько, поэтому son. В этой реплике задаём только вопрос, без ответа за собеседника.",
+        "uk": "Друг назвав іще кількох гостей, яких ви не знаєте. Попросіть опис: `¿Cómo son?` — «Які вони?» Зберіть `cómo` + `son` і питальні знаки. Людей кілька, тому son. У цій репліці ставимо лише питання, без відповіді за співрозмовника."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-40:intro3:q",
+        "promptByLocale": {
+          "ru": "Попросите описать нескольких людей. Без имён и местоимения.",
+          "uk": "Попросіть описати кількох людей. Без імен і займенника."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-40:intro3:r1",
+              "text": "¿Cómo son?"
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro3:r2",
+              "text": "¿Cómo es?"
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro3:r3",
+              "text": "¿Cómo soy?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-40:intro3:r1",
+              "text": "¿Cómo son?"
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro3:r2",
+              "text": "¿Cómo es?"
+            },
+            {
+              "responseId": "es:lesson-03:session-40:intro3:r3",
+              "text": "¿Cómo soy?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Попросите описать нескольких людей. Без имён и местоимения.",
+          "uk": "Попросіть описати кількох людей. Без імен і займенника."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "4f3921a480eeb16ea60f0b6219c098dae47c4c38748598bec1499ca1a4816a33"
+}

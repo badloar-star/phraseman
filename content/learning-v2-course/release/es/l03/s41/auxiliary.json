@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-41",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-41:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-41:intro1:r2": {
+          "ru": "Нужна форма salada.",
+          "uk": "Потрібна форма salada."
+        },
+        "es:lesson-03:session-41:intro1:r3": {
+          "ru": "Одна штука: salada.",
+          "uk": "Одна штука: salada."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-41:intro2:r2": {
+          "ru": "Galletas женского рода: saladas.",
+          "uk": "Galletas жіночого роду: saladas."
+        },
+        "es:lesson-03:session-41:intro2:r3": {
+          "ru": "Печений несколько: saladas.",
+          "uk": "Штук кілька: saladas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-41:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-41:intro3:r2": {
+          "ru": "Нужна форма salado.",
+          "uk": "Потрібна форма salado."
+        },
+        "es:lesson-03:session-41:intro3:r3": {
+          "ru": "Здесь queso в единственном числе: salado.",
+          "uk": "Тут queso в однині: salado."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "43f4a29352891877e937fd6cc4c278267e7d24b4c79ea68a8849b5fedec02918"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-39",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-39:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-39:intro1:r2": {
+          "ru": "Так спрашивают об одном, а здесь людей несколько.",
+          "uk": "Так запитують про одного, а тут людей кілька."
+        },
+        "es:lesson-03:session-39:intro1:r3": {
+          "ru": "Так спрашивают о себе, а здесь о других людях.",
+          "uk": "Так запитують про себе, а тут про інших людей."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-39:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-39:intro2:r2": {
+          "ru": "Ана одна: es.",
+          "uk": "Ана одна: es."
+        },
+        "es:lesson-03:session-39:intro2:r3": {
+          "ru": "Так спрашивают, кто она, а здесь нужно описание.",
+          "uk": "Так запитують, хто вона, а тут потрібен опис."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-39:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-39:intro3:r2": {
+          "ru": "Людей несколько: amables.",
+          "uk": "Людей кілька: amables."
+        },
+        "es:lesson-03:session-39:intro3:r3": {
+          "ru": "Для группы нужно son.",
+          "uk": "Для групи потрібне son."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "31f36fa46d9062721de5c7fa0b3cbb52ca456f2677c6598580714706601a80c8"
+}

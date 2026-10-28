@@ -1799,4 +1799,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить tenemos для «мы» и tienen с ellos, ellas, ustedes.","uk":"закріпити tenemos для «ми» й tienen з ellos, ellas, ustedes."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 33,
+    sourceFingerprint: "24bb4c211e28cbc81b498b4b3bcc36ee4276a0dd8112fa64a36ba888045570b8",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"после tener поставить dos и существительное во множественном числе.","uk":"після tener поставити dos та іменник у множині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 34,
+    sourceFingerprint: "2a0308496526b1e41b641b3871bcc668c9624c1948318404d062b5f540a4c8c3",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать знакомое tres после tener с существительным во множественном числе.","uk":"використовувати знайоме tres після tener з іменником у множині."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 35,
+    sourceFingerprint: "41be99499c03dcb4441da541d20101809fb0b680d081f8e501ed1a8a3fdeefa0",
+    newWordCount: 2,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выразить возраст через tener + число + años.","uk":"виразити вік через tener + число + años."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 36,
+    sourceFingerprint: "c26d2ba46a344e22fe8d1dcd70ebe03ea57a21e747da262ba1eaf4aad21dea01",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"построить вопрос с cuántos años перед формой tener.","uk":"побудувати запитання з cuántos años перед формою tener."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

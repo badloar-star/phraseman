@@ -1,0 +1,658 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-33",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-33:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-33:i01:r1",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i01:r2",
+          "text": "tres"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-33:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-33:i01:audio",
+          "transcript": "dos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-33:i01:r1",
+            "targetText": "dos",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-33:i01:r2",
+            "targetText": "tres",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-33:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит dos — два.",
+              "uk": "Звучить dos — два."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у нас двое детей; используйте hijos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-33:i02:r1",
+          "text": "hijos"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i02:r2",
+          "text": "hijo"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i02:r3",
+          "text": "libro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у нас двое детей; используйте hijos",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у нас двое детей; используйте hijos",
+          "uk": "Вставте слово — ми маємо двох дітей; використайте hijos"
+        },
+        "gappedTargetPhrase": "Tenemos dos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-33:i02:r1",
+            "text": "hijos"
+          },
+          {
+            "responseId": "es:lesson-05:session-33:i02:r2",
+            "text": "hijo"
+          },
+          {
+            "responseId": "es:lesson-05:session-33:i02:r3",
+            "text": "libro"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у нас двое детей; используйте hijos",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-33:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у нас двое детей; используйте hijos",
+            "feedbackByLocale": {
+              "ru": "После dos нужна форма hijos.",
+              "uk": "Після dos потрібна форма hijos."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-33:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у нас двое детей; используйте hijos",
+            "feedbackByLocale": {
+              "ru": "Речь о детях, не о книге.",
+              "uk": "Йдеться про дітей, не про книжку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у нас двое детей; начните с Tenemos, используйте hijos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-33:i03:r1",
+          "text": "Плитки: hijos"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i03:r2",
+          "text": "Tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i03:r3",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i03:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у нас двое детей; начните с Tenemos, используйте hijos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tenemos dos hijos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у нас двое детей; начните с Tenemos, используйте hijos",
+          "uk": "Зберіть фразу — ми маємо двох дітей; почніть з Tenemos, використайте hijos"
+        },
+        "orderedTokens": [
+          "Tenemos",
+          "dos",
+          "hijos"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-33:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у нас двое детей; начните с Tenemos, используйте hijos",
+            "feedbackByLocale": {
+              "ru": "количество уже указано словом dos.",
+              "uk": "кількість уже вказана словом dos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у меня две книги",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-33:i04:r1",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i04:r2",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i04:r3",
+          "text": "llave"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у меня две книги",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у меня две книги",
+          "uk": "Вставте слово — я маю дві книжки"
+        },
+        "gappedTargetPhrase": "Tengo dos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-33:i04:r1",
+            "text": "libros"
+          },
+          {
+            "responseId": "es:lesson-05:session-33:i04:r2",
+            "text": "libro"
+          },
+          {
+            "responseId": "es:lesson-05:session-33:i04:r3",
+            "text": "llave"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у меня две книги",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-33:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня две книги",
+            "feedbackByLocale": {
+              "ru": "После dos нужно libros.",
+              "uk": "Після dos потрібно libros."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-33:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у меня две книги",
+            "feedbackByLocale": {
+              "ru": "Речь о книгах, не о ключе.",
+              "uk": "Йдеться про книжки, не про ключ."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у меня две книги; начните с Tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-33:i05:r1",
+          "text": "Плитки: dos"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i05:r2",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i05:r3",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i05:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у меня две книги; начните с Tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo dos libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у меня две книги; начните с Tengo",
+          "uk": "Зберіть фразу — я маю дві книжки; почніть з Tengo"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "dos",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-33:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у меня две книги; начните с Tengo",
+            "feedbackByLocale": {
+              "ru": "перед dos здесь не ставим артикль.",
+              "uk": "перед dos тут не ставимо артикль."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у нас два ключа; начните с Tenemos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-33:i06:r1",
+          "text": "Плитки: llaves"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i06:r2",
+          "text": "Tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i06:r3",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i06:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у нас два ключа; начните с Tenemos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tenemos dos llaves.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у нас два ключа; начните с Tenemos",
+          "uk": "Зберіть фразу — ми маємо два ключі; почніть з Tenemos"
+        },
+        "orderedTokens": [
+          "Tenemos",
+          "dos",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-33:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у нас два ключа; начните с Tenemos",
+            "feedbackByLocale": {
+              "ru": "количество задаёт dos.",
+              "uk": "кількість задає dos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-33:i07:r1",
+          "text": "Плитки: dos"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i07:r2",
+          "text": "hijos"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i07:r3",
+          "text": "Tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i07:r4",
+          "text": "hijo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-33:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-33:i07:audio",
+          "transcript": "Tenemos dos hijos."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tenemos dos hijos.",
+        "orderedTokens": [
+          "Tenemos",
+          "dos",
+          "hijos"
+        ],
+        "authoredDistractorTokens": [
+          "hijo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-33:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит hijos.",
+              "uk": "звучить hijos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у нас два ключа",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-33:i08:r1",
+          "text": "llaves"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i08:r2",
+          "text": "llave"
+        },
+        {
+          "responseId": "es:lesson-05:session-33:i08:r3",
+          "text": "libro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у нас два ключа",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у нас два ключа",
+          "uk": "Вставте слово — ми маємо два ключі"
+        },
+        "gappedTargetPhrase": "Tenemos dos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-33:i08:r1",
+            "text": "llaves"
+          },
+          {
+            "responseId": "es:lesson-05:session-33:i08:r2",
+            "text": "llave"
+          },
+          {
+            "responseId": "es:lesson-05:session-33:i08:r3",
+            "text": "libro"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у нас два ключа",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-33:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у нас два ключа",
+            "feedbackByLocale": {
+              "ru": "После dos нужно llaves.",
+              "uk": "Після dos потрібно llaves."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-33:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у нас два ключа",
+            "feedbackByLocale": {
+              "ru": "Речь о ключах, не о книге.",
+              "uk": "Йдеться про ключі, не про книжку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у нас двое детей; начните с Tenemos dos, используйте hijos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-33:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у нас двое детей; начните с Tenemos dos, используйте hijos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-33:i09:audio",
+          "transcript": "Tenemos dos hijos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos dos hijos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у меня две книги; начните с Tengo dos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-33:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у меня две книги; начните с Tengo dos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-33:i10:audio",
+          "transcript": "Tengo dos libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo dos libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у нас два ключа; начните с Tenemos dos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-33:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у нас два ключа; начните с Tenemos dos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-33:i11:audio",
+          "transcript": "Tenemos dos llaves."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos dos llaves.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у меня два ключа; начните с Tengo dos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-33:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у меня два ключа; начните с Tengo dos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-33:i12:audio",
+          "transcript": "Tengo dos llaves."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo dos llaves.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8fcb8913818dcdf666cb8d4c6180e8a6b5fcb438b63f987f958f5c40cfd8196e"
+}

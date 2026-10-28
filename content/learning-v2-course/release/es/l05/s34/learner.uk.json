@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-34",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-34:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-34:i01:r1",
+          "text": "tres"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i01:r2",
+          "text": "dos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-34:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-34:i01:audio",
+          "transcript": "tres"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-34:i01:r1",
+            "targetText": "tres",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-34:i01:r2",
+            "targetText": "dos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-34:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит tres — три.",
+              "uk": "Звучить tres — три."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — я маю три книжки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-34:i02:r1",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i02:r2",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i02:r3",
+          "text": "llave"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — я маю три книжки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у меня три книги",
+          "uk": "Вставте слово — я маю три книжки"
+        },
+        "gappedTargetPhrase": "Tengo tres ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-34:i02:r1",
+            "text": "libros"
+          },
+          {
+            "responseId": "es:lesson-05:session-34:i02:r2",
+            "text": "libro"
+          },
+          {
+            "responseId": "es:lesson-05:session-34:i02:r3",
+            "text": "llave"
+          }
+        ],
+        "testedDimension": "Вставте слово — я маю три книжки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-34:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — я маю три книжки",
+            "feedbackByLocale": {
+              "ru": "После tres нужно libros.",
+              "uk": "Після tres потрібно libros."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-34:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — я маю три книжки",
+            "feedbackByLocale": {
+              "ru": "Речь о книгах, не о ключе.",
+              "uk": "Йдеться про книжки, не про ключ."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — я маю три книжки; почніть з Tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-34:i03:r1",
+          "text": "Плитки: tres"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i03:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i03:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i03:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — я маю три книжки; почніть з Tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo tres libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у меня три книги; начните с Tengo",
+          "uk": "Зберіть фразу — я маю три книжки; почніть з Tengo"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "tres",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-34:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — я маю три книжки; почніть з Tengo",
+            "feedbackByLocale": {
+              "ru": "количество задаёт tres.",
+              "uk": "кількість задає tres."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — ми маємо три коробки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-34:i04:r1",
+          "text": "cajas"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i04:r2",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i04:r3",
+          "text": "libro"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — ми маємо три коробки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у нас три коробки",
+          "uk": "Вставте слово — ми маємо три коробки"
+        },
+        "gappedTargetPhrase": "Tenemos tres ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-34:i04:r1",
+            "text": "cajas"
+          },
+          {
+            "responseId": "es:lesson-05:session-34:i04:r2",
+            "text": "caja"
+          },
+          {
+            "responseId": "es:lesson-05:session-34:i04:r3",
+            "text": "libro"
+          }
+        ],
+        "testedDimension": "Вставте слово — ми маємо три коробки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-34:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — ми маємо три коробки",
+            "feedbackByLocale": {
+              "ru": "Нужно множественное число cajas.",
+              "uk": "Потрібна множина cajas."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-34:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — ми маємо три коробки",
+            "feedbackByLocale": {
+              "ru": "Речь о коробках, не о книге.",
+              "uk": "Йдеться про коробки, не про книжку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ми маємо три коробки; почніть з Tenemos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-34:i05:r1",
+          "text": "Плитки: cajas"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i05:r2",
+          "text": "Tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i05:r3",
+          "text": "tres"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i05:r4",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ми маємо три коробки; почніть з Tenemos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tenemos tres cajas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у нас три коробки; начните с Tenemos",
+          "uk": "Зберіть фразу — ми маємо три коробки; почніть з Tenemos"
+        },
+        "orderedTokens": [
+          "Tenemos",
+          "tres",
+          "cajas"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-34:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ми маємо три коробки; почніть з Tenemos",
+            "feedbackByLocale": {
+              "ru": "перед tres здесь не нужен артикль.",
+              "uk": "перед tres тут не потрібен артикль."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — Ана має три ключі; почніть з Ana",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-34:i06:r1",
+          "text": "Плитки: tres"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i06:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i06:r3",
+          "text": "llaves"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i06:r4",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i06:r5",
+          "text": "tienen."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — Ана має три ключі; почніть з Ana",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene tres llaves.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у Аны три ключа; начните с Ana",
+          "uk": "Зберіть фразу — Ана має три ключі; почніть з Ana"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "tres",
+          "llaves"
+        ],
+        "authoredDistractorTokens": [
+          "tienen"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-34:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — Ана має три ключі; почніть з Ana",
+            "feedbackByLocale": {
+              "ru": "говорим об одной Ане.",
+              "uk": "кажемо про одну Ану."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-34:i07:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i07:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i07:r3",
+          "text": "tres"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i07:r4",
+          "text": "libro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-34:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-34:i07:audio",
+          "transcript": "Tengo tres libros."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tengo tres libros.",
+        "orderedTokens": [
+          "Tengo",
+          "tres",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "libro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-34:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит libros.",
+              "uk": "звучить libros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ана має три ключі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-34:i08:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i08:r2",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-34:i08:r3",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ана має три ключі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у Аны три ключа",
+          "uk": "Вставте слово — Ана має три ключі"
+        },
+        "gappedTargetPhrase": "Ana ___ tres llaves.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-34:i08:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-34:i08:r2",
+            "text": "tienen"
+          },
+          {
+            "responseId": "es:lesson-05:session-34:i08:r3",
+            "text": "tengo"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ана має три ключі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-34:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана має три ключі",
+            "feedbackByLocale": {
+              "ru": "Один человек: tiene.",
+              "uk": "Одна людина: tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-34:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ана має три ключі",
+            "feedbackByLocale": {
+              "ru": "Tengo — о себе; об Ане нужно tiene.",
+              "uk": "Tengo — про себе; про Ану потрібно tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — я маю три книжки; почніть з Tengo tres",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-34:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — я маю три книжки; почніть з Tengo tres",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-34:i09:audio",
+          "transcript": "Tengo tres libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo tres libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ми маємо три коробки; почніть з Tenemos tres",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-34:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ми маємо три коробки; почніть з Tenemos tres",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-34:i10:audio",
+          "transcript": "Tenemos tres cajas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos tres cajas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ана має три ключі; почніть з Ana tiene tres",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-34:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ана має три ключі; почніть з Ana tiene tres",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-34:i11:audio",
+          "transcript": "Ana tiene tres llaves."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene tres llaves.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — я маю три ключі; почніть з Tengo tres",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-34:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — я маю три ключі; почніть з Tengo tres",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-34:i12:audio",
+          "transcript": "Tengo tres llaves."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo tres llaves.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "c4819fe7704a1caaa2ce6e5a9aef3c8f7209887a78a69ca55744a7d33fc1f064"
+}

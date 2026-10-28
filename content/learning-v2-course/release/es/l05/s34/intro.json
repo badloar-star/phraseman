@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-34",
+  "learningOutcomeByLocale": {
+    "ru": "использовать знакомое tres после tener с существительным во множественном числе.",
+    "uk": "використовувати знайоме tres після tener з іменником у множині."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-34:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Три книги в дорогу",
+        "uk": "Три книжки в дорогу"
+      },
+      "bodyByLocale": {
+        "ru": "Выбрали три книги и говорите `Tengo tres libros` — «У меня три книги». Соберите `Tengo` + `tres` + `libros`. Знакомое tres означает «три». Как после dos, ставим существительное во множественном числе: libros. Перед числом un не добавляем. Tengo остаётся, потому что говорите о себе.",
+        "uk": "Вибрали три книжки й кажете `Tengo tres libros` — «Я маю три книжки». Зберіть `Tengo` + `tres` + `libros`. Знайоме tres означає «три». Як після dos, ставимо іменник у множині: libros. Перед числом un не додаємо. Tengo залишається, бо кажете про себе."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-34:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня три книги». Начните с Tengo tres.",
+          "uk": "Скажіть «Я маю три книжки». Почніть з Tengo tres."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-34:intro1:r1",
+              "text": "Tengo tres libros."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro1:r2",
+              "text": "Tengo tres libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro1:r3",
+              "text": "Tengo un tres libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-34:intro1:r1",
+              "text": "Tengo tres libros."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro1:r2",
+              "text": "Tengo tres libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro1:r3",
+              "text": "Tengo un tres libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня три книги». Начните с Tengo tres.",
+          "uk": "Скажіть «Я маю три книжки». Почніть з Tengo tres."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-34:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Коробки вашей пары",
+        "uk": "Коробки вашої пари"
+      },
+      "bodyByLocale": {
+        "ru": "Вы вдвоём упаковали три коробки. Скажите `Tenemos tres cajas` — «У нас три коробки». Соберите `Tenemos` + `tres` + `cajas`. Для «у нас» выбираем tenemos. После tres слово caja получает s. Число tres не меняется по роду: та же форма перед cajas и libros.",
+        "uk": "Ви вдвох спакували три коробки. Скажіть `Tenemos tres cajas` — «Ми маємо три коробки». Зберіть `Tenemos` + `tres` + `cajas`. Для «ми маємо» обираємо tenemos. Після tres слово caja отримує s. Число tres не змінюється за родом: та сама форма перед cajas і libros."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-34:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У нас три коробки». Начните с Tenemos tres.",
+          "uk": "Скажіть «Ми маємо три коробки». Почніть з Tenemos tres."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-34:intro2:r1",
+              "text": "Tenemos tres cajas."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro2:r2",
+              "text": "Tenemos tres caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro2:r3",
+              "text": "Tenemos una tres cajas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-34:intro2:r1",
+              "text": "Tenemos tres cajas."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro2:r2",
+              "text": "Tenemos tres caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro2:r3",
+              "text": "Tenemos una tres cajas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У нас три коробки». Начните с Tenemos tres.",
+          "uk": "Скажіть «Ми маємо три коробки». Почніть з Tenemos tres."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-34:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключи Аны",
+        "uk": "Ключі Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Ана пересчитала ключи, и вы сообщаете другу `Ana tiene tres llaves` — «У Аны три ключа». Соберите `Ana` + `tiene` + `tres llaves`. Об одной Ане нужна форма tiene. Ключей три, поэтому llaves, но количество ключей не превращает tiene в tienen.",
+        "uk": "Ана перерахувала ключі, й ви повідомляєте другові `Ana tiene tres llaves` — «Ана має три ключі». Зберіть `Ana` + `tiene` + `tres llaves`. Про одну Ану потрібна форма tiene. Ключів три, тому llaves, але кількість ключів не перетворює tiene на tienen."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-34:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «У Аны три ключа». Начните с Ana tiene tres.",
+          "uk": "Скажіть «Ана має три ключі». Почніть з Ana tiene tres."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-34:intro3:r1",
+              "text": "Ana tiene tres llaves."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro3:r2",
+              "text": "Ana tienen tres llaves."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro3:r3",
+              "text": "Ana tiene tres llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-34:intro3:r1",
+              "text": "Ana tiene tres llaves."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro3:r2",
+              "text": "Ana tienen tres llaves."
+            },
+            {
+              "responseId": "es:lesson-05:session-34:intro3:r3",
+              "text": "Ana tiene tres llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У Аны три ключа». Начните с Ana tiene tres.",
+          "uk": "Скажіть «Ана має три ключі». Почніть з Ana tiene tres."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a31d41ffe346974847a33db8d2edbac03bcc6dbea67955a0f602c97164b36961"
+}

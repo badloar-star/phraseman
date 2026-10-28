@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-33:i01",
+    "correctText": "dos",
+    "correctResponseId": "es:lesson-05:session-33:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-33:i02",
+    "correctText": "hijos",
+    "correctResponseId": "es:lesson-05:session-33:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-33:i03",
+    "correctText": "Tenemos dos hijos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-33:i04",
+    "correctText": "libros",
+    "correctResponseId": "es:lesson-05:session-33:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-33:i05",
+    "correctText": "Tengo dos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-33:i06",
+    "correctText": "Tenemos dos llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-33:i07",
+    "correctText": "Tenemos dos hijos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-33:i08",
+    "correctText": "llaves",
+    "correctResponseId": "es:lesson-05:session-33:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-33:i09",
+    "correctText": "Tenemos dos hijos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-33:i10",
+    "correctText": "Tengo dos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-33:i11",
+    "correctText": "Tenemos dos llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-33:i12",
+    "correctText": "Tengo dos llaves.",
+    "correctResponseId": null
+  }
+]

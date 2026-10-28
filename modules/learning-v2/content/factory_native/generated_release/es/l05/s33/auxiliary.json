@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-33",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-33:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-33:intro1:r2": {
+          "ru": "После dos нужно множественное число hijos.",
+          "uk": "Після dos потрібна множина hijos."
+        },
+        "es:lesson-05:session-33:intro1:r3": {
+          "ru": "Dos уже задаёт количество; un здесь не нужно.",
+          "uk": "Dos уже задає кількість; un тут не потрібно."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-33:intro2:r2": {
+          "ru": "Книг две: libros.",
+          "uk": "Книжок дві: libros."
+        },
+        "es:lesson-05:session-33:intro2:r3": {
+          "ru": "В условии «у меня», поэтому tengo.",
+          "uk": "В умові «я маю», тому tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-33:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-33:intro3:r2": {
+          "ru": "Ключей два: llaves.",
+          "uk": "Ключів два: llaves."
+        },
+        "es:lesson-05:session-33:intro3:r3": {
+          "ru": "Перед dos здесь не нужно una.",
+          "uk": "Перед dos тут не потрібно una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "aa8ee97e59c4b66b92391e1fa6e020a5eb68a380ed39a109b94266c4b17db695"
+}

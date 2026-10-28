@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "построить вопрос с cuántos años перед формой tener.",
+    "uk": "побудувати запитання з cuántos años перед формою tener."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Вопрос новому другу",
+        "uk": "Запитання новому другові"
+      },
+      "bodyByLocale": {
+        "ru": "С новым другом вы уже на «ты». Спросите `¿Cuántos años tienes?` — «Сколько тебе лет?» Соберите `¿Cuántos años` + `tienes?`. Cuántos означает «сколько» перед años. Выбираем окончание -os, потому что años — мужской род, множественное число. Сначала спрашиваем количество лет, потом ставим tienes для обращения на «ты». Ударение в cuántos отмечаем знаком над á.",
+        "uk": "З новим другом ви вже на «ти». Запитайте `¿Cuántos años tienes?` — «Скільки тобі років?» Зберіть `¿Cuántos años` + `tienes?`. Cuántos означає «скільки» перед años. Обираємо закінчення -os, бо años — чоловічий рід, множина. Спочатку питаємо кількість років, потім ставимо tienes для звернення на «ти». Наголос у cuántos позначаємо знаком над á."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Сколько тебе лет?» Начните с ¿Cuántos años, не добавляйте tú.",
+          "uk": "Запитайте «Скільки тобі років?» Почніть з ¿Cuántos años, не додавайте tú."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-36:intro1:r1",
+              "text": "¿Cuántos años tienes?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro1:r2",
+              "text": "¿Cuánto años tienes?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro1:r3",
+              "text": "¿Cuántos años eres?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-36:intro1:r1",
+              "text": "¿Cuántos años tienes?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro1:r2",
+              "text": "¿Cuánto años tienes?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro1:r3",
+              "text": "¿Cuántos años eres?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Сколько тебе лет?» Начните с ¿Cuántos años, не добавляйте tú.",
+          "uk": "Запитайте «Скільки тобі років?» Почніть з ¿Cuántos años, не додавайте tú."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить, кому задаёте вопрос",
+        "uk": "Уточнити, кому ставите запитання"
+      },
+      "bodyByLocale": {
+        "ru": "В разговоре с несколькими друзьями обращаетесь к одному из них, явно выделяя «ты»: `¿Cuántos años tienes tú?` — «Сколько тебе лет?» Соберите `¿Cuántos años` + `tienes` + `tú?`. В этой версии tú ставим в конце. Оно лишь уточняет адресата: форма tienes уже указывает на обращение к одному человеку на «ты».",
+        "uk": "У розмові з кількома друзями звертаєтеся до одного з них, явно виділяючи «ти»: `¿Cuántos años tienes tú?` — «Скільки тобі років?» Зберіть `¿Cuántos años` + `tienes` + `tú?`. У цій версії tú ставимо в кінці. Воно лише уточнює адресата: форма tienes уже вказує на звернення до однієї людини на «ти»."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите о возрасте, поставив tú в конце. Начните с ¿Cuántos años tienes.",
+          "uk": "Запитайте про вік, поставивши tú в кінці. Почніть з ¿Cuántos años tienes."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-36:intro2:r1",
+              "text": "¿Cuántos años tienes tú?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro2:r2",
+              "text": "¿Cuántos años tiene tú?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro2:r3",
+              "text": "¿Cuánto años tienes tú?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-36:intro2:r1",
+              "text": "¿Cuántos años tienes tú?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro2:r2",
+              "text": "¿Cuántos años tiene tú?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro2:r3",
+              "text": "¿Cuánto años tienes tú?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите о возрасте, поставив tú в конце. Начните с ¿Cuántos años tienes.",
+          "uk": "Запитайте про вік, поставивши tú в кінці. Почніть з ¿Cuántos años tienes."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Вежливый вопрос одному человеку",
+        "uk": "Ввічливе запитання одній людині"
+      },
+      "bodyByLocale": {
+        "ru": "В беседе, где уместно уточнить возраст, обращаетесь к одному человеку на «вы»: `¿Cuántos años tiene usted?` — «Сколько вам лет?» Соберите `¿Cuántos años` + `tiene` + `usted?`. Начало вопроса остаётся, но с usted нужна форма tiene без s. В этой версии явно называем usted в конце.",
+        "uk": "У розмові, де доречно уточнити вік, звертаєтеся до однієї людини на «ви»: `¿Cuántos años tiene usted?` — «Скільки вам років?» Зберіть `¿Cuántos años` + `tiene` + `usted?`. Початок запитання залишається, але з usted потрібна форма tiene без s. У цій версії явно називаємо usted у кінці."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Сколько вам лет?» у одного человека. Начните с ¿Cuántos años tiene, поставьте usted в конце.",
+          "uk": "Запитайте «Скільки вам років?» в однієї людини. Почніть з ¿Cuántos años tiene, поставте usted у кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-36:intro3:r1",
+              "text": "¿Cuántos años tiene usted?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro3:r2",
+              "text": "¿Cuántos años tienes usted?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro3:r3",
+              "text": "¿Cuántos años es usted?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-36:intro3:r1",
+              "text": "¿Cuántos años tiene usted?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro3:r2",
+              "text": "¿Cuántos años tienes usted?"
+            },
+            {
+              "responseId": "es:lesson-05:session-36:intro3:r3",
+              "text": "¿Cuántos años es usted?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Сколько вам лет?» у одного человека. Начните с ¿Cuántos años tiene, поставьте usted в конце.",
+          "uk": "Запитайте «Скільки вам років?» в однієї людини. Почніть з ¿Cuántos años tiene, поставте usted у кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "184cd5c19c8d4c32a2f476327850e934661f4d8f537c1afaa189318a2fb1d06d"
+}

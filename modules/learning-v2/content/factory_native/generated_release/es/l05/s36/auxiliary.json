@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-36",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-36:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-36:intro1:r2": {
+          "ru": "Перед años нужна форма cuántos.",
+          "uk": "Перед años потрібна форма cuántos."
+        },
+        "es:lesson-05:session-36:intro1:r3": {
+          "ru": "Для возраста используем tener: tienes.",
+          "uk": "Для віку використовуємо tener: tienes."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-36:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-36:intro2:r2": {
+          "ru": "С tú нужна форма tienes.",
+          "uk": "З tú потрібна форма tienes."
+        },
+        "es:lesson-05:session-36:intro2:r3": {
+          "ru": "Перед años используем cuántos.",
+          "uk": "Перед años використовуємо cuántos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-36:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-36:intro3:r2": {
+          "ru": "С usted нужна форма tiene.",
+          "uk": "З usted потрібна форма tiene."
+        },
+        "es:lesson-05:session-36:intro3:r3": {
+          "ru": "Возраст выражаем через tener: tiene.",
+          "uk": "Вік виражаємо через tener: tiene."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "0835aeef3c2f829e3e314841858e247b3aa7f3c46b781d2e39e936fb68f4e490"
+}

@@ -1,0 +1,72 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-35:i01",
+    "correctText": "año",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i02",
+    "correctText": "veinte",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i03",
+    "correctText": "veinte",
+    "correctResponseId": "es:lesson-05:session-35:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i04",
+    "correctText": "Tengo",
+    "correctResponseId": "es:lesson-05:session-35:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i05",
+    "correctText": "Tengo veinte años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i06",
+    "correctText": "años",
+    "correctResponseId": "es:lesson-05:session-35:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i07",
+    "correctText": "Yo tengo veinte años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i08",
+    "correctText": "Ana tiene veinte años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i09",
+    "correctText": "Tengo veinte años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i10",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-35:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i11",
+    "correctText": "Tengo veinte años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i12",
+    "correctText": "Yo tengo veinte años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i13",
+    "correctText": "Ana tiene veinte años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-35:i14",
+    "correctText": "Pedro tiene veinte años.",
+    "correctResponseId": null
+  }
+]

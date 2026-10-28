@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-34",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-34:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-34:intro1:r2": {
+          "ru": "После tres нужно libros.",
+          "uk": "Після tres потрібно libros."
+        },
+        "es:lesson-05:session-34:intro1:r3": {
+          "ru": "Количество задаёт tres, un не нужен.",
+          "uk": "Кількість задає tres, un не потрібен."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-34:intro2:r2": {
+          "ru": "Коробок три: cajas.",
+          "uk": "Коробок три: cajas."
+        },
+        "es:lesson-05:session-34:intro2:r3": {
+          "ru": "Перед tres здесь не нужно una.",
+          "uk": "Перед tres тут не потрібно una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-34:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-34:intro3:r2": {
+          "ru": "Владелец один: Ana tiene.",
+          "uk": "Власниця одна: Ana tiene."
+        },
+        "es:lesson-05:session-34:intro3:r3": {
+          "ru": "Ключей три: llaves.",
+          "uk": "Ключів три: llaves."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c3913e2f9b5b62ba2cfab3a385aada71a3c56f1bc27ae6f60166af98d884ccfd"
+}

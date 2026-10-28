@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "выразить возраст через tener + число + años.",
+    "uk": "виразити вік через tener + число + años."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Назвать свой возраст",
+        "uk": "Назвати свій вік"
+      },
+      "bodyByLocale": {
+        "ru": "При знакомстве вы хотите сказать, что вам двадцать лет: `Tengo veinte años`. Соберите `Tengo` + `veinte` + `años`. Veinte означает «двадцать», año — «год», а años — «годы». Испанский возраст выражаем через tener: буквально «имею двадцать лет». Поэтому здесь tengo, а не soy. После veinte используем множественное число años, без артикля.",
+        "uk": "При знайомстві ви хочете сказати, що вам двадцять років: `Tengo veinte años`. Зберіть `Tengo` + `veinte` + `años`. Veinte означає «двадцять», año — «рік», а años — «роки». Іспанською вік виражаємо через tener: буквально «маю двадцять років». Тому тут tengo, а не soy. Після veinte використовуємо множину años, без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мне двадцать лет». Начните с Tengo veinte.",
+          "uk": "Скажіть «Мені двадцять років». Почніть з Tengo veinte."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-35:intro1:r1",
+              "text": "Tengo veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro1:r2",
+              "text": "Soy veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro1:r3",
+              "text": "Tengo veinte año."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-35:intro1:r1",
+              "text": "Tengo veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro1:r2",
+              "text": "Soy veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro1:r3",
+              "text": "Tengo veinte año."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мне двадцать лет». Начните с Tengo veinte.",
+          "uk": "Скажіть «Мені двадцять років». Почніть з Tengo veinte."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Выделить свой возраст",
+        "uk": "Виділити свій вік"
+      },
+      "bodyByLocale": {
+        "ru": "В разговоре каждый называет свой возраст. Выделите себя: `Yo tengo veinte años` — «Мне двадцать лет». Соберите `Yo` + `tengo` + `veinte años`. Yo явно называет говорящего, а форма tengo остаётся той же. Дополнительный артикль перед veinte не нужен.",
+        "uk": "У розмові кожен називає свій вік. Виділіть себе: `Yo tengo veinte años` — «Мені двадцять років». Зберіть `Yo` + `tengo` + `veinte años`. Yo явно називає мовця, а форма tengo залишається тією самою. Додатковий артикль перед veinte не потрібен."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мне двадцать лет», явно назвав себя. Начните с Yo tengo.",
+          "uk": "Скажіть «Мені двадцять років», явно назвавши себе. Почніть з Yo tengo."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-35:intro2:r1",
+              "text": "Yo tengo veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro2:r2",
+              "text": "Yo tiene veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro2:r3",
+              "text": "Yo tengo un veinte años."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-35:intro2:r1",
+              "text": "Yo tengo veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro2:r2",
+              "text": "Yo tiene veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro2:r3",
+              "text": "Yo tengo un veinte años."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мне двадцать лет», явно назвав себя. Начните с Yo tengo.",
+          "uk": "Скажіть «Мені двадцять років», явно назвавши себе. Почніть з Yo tengo."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Возраст Аны",
+        "uk": "Вік Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Представляете Ану знакомому и сообщаете `Ana tiene veinte años` — «Ане двадцать лет». Соберите `Ana` + `tiene` + `veinte años`. Теперь говорим об Ане, поэтому меняем tengo на tiene. Число и слово años остаются: конструкция возраста та же.",
+        "uk": "Представляєте Ану знайомому й повідомляєте `Ana tiene veinte años` — «Ані двадцять років». Зберіть `Ana` + `tiene` + `veinte años`. Тепер кажемо про Ану, тому змінюємо tengo на tiene. Число та слово años залишаються: конструкція віку та сама."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ане двадцать лет». Начните с Ana tiene.",
+          "uk": "Скажіть «Ані двадцять років». Почніть з Ana tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-35:intro3:r1",
+              "text": "Ana tiene veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro3:r2",
+              "text": "Ana es veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro3:r3",
+              "text": "Ana tienen veinte años."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-35:intro3:r1",
+              "text": "Ana tiene veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro3:r2",
+              "text": "Ana es veinte años."
+            },
+            {
+              "responseId": "es:lesson-05:session-35:intro3:r3",
+              "text": "Ana tienen veinte años."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ане двадцать лет». Начните с Ana tiene.",
+          "uk": "Скажіть «Ані двадцять років». Почніть з Ana tiene."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "720d6c5ce2b99a297f138fe471a747d7d6a5bb4217619e9e6e5920c8cbdf21b3"
+}

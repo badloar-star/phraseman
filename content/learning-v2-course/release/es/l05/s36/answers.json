@@ -1,0 +1,67 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-36:i01",
+    "correctText": "cuánto",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i02",
+    "correctText": "cuántos",
+    "correctResponseId": "es:lesson-05:session-36:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i03",
+    "correctText": "Cuántos",
+    "correctResponseId": "es:lesson-05:session-36:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i04",
+    "correctText": "¿Cuántos años tienes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i05",
+    "correctText": "tienes",
+    "correctResponseId": "es:lesson-05:session-36:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i06",
+    "correctText": "¿Cuántos años tienes tú?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i07",
+    "correctText": "¿Cuántos años tiene usted?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i08",
+    "correctText": "¿Cuántos años tienes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i09",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-36:i09:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i10",
+    "correctText": "¿Cuántos años tienes?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i11",
+    "correctText": "¿Cuántos años tienes tú?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i12",
+    "correctText": "¿Cuántos años tiene usted?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-36:i13",
+    "correctText": "¿Cuántos años tienes?",
+    "correctResponseId": null
+  }
+]

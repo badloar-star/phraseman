@@ -1,0 +1,754 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-35",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — año",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-35:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — año",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-35:i01:audio",
+          "transcript": "año"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-35:i01:r1",
+            "targetText": "año",
+            "meaningByLocale": {
+              "ru": "год; множественное число años. Буква ñ обозначает отдельный звук, сохраняйте её на письме. 🔊 *año*",
+              "uk": "рік; множина años. Літера ñ позначає окремий звук, зберігайте її на письмі. 🔊 *año*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "año",
+          "definitionByLocale": {
+            "ru": "год; множественное число años. Буква ñ обозначает отдельный звук, сохраняйте её на письме. 🔊 *año*",
+            "uk": "рік; множина años. Літера ñ позначає окремий звук, зберігайте її на письмі. 🔊 *año*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — veinte",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — veinte",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-35:i02:audio",
+          "transcript": "veinte"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-35:i02:r1",
+            "targetText": "veinte",
+            "meaningByLocale": {
+              "ru": "двадцать. 🔊 *veinte*",
+              "uk": "двадцять. 🔊 *veinte*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "veinte",
+          "definitionByLocale": {
+            "ru": "двадцать. 🔊 *veinte*",
+            "uk": "двадцять. 🔊 *veinte*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-35:i03:r1",
+          "text": "veinte"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i03:r2",
+          "text": "tres"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-35:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-35:i03:audio",
+          "transcript": "veinte"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-35:i03:r1",
+            "targetText": "veinte",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-35:i03:r2",
+            "targetText": "tres",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит veinte — двадцать.",
+              "uk": "Звучить veinte — двадцять."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — мені двадцять років",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-35:i04:r1",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i04:r2",
+          "text": "Soy"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i04:r3",
+          "text": "Es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — мені двадцять років",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мне двадцать лет",
+          "uk": "Вставте слово — мені двадцять років"
+        },
+        "gappedTargetPhrase": "___ veinte años.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-35:i04:r1",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-35:i04:r2",
+            "text": "Soy"
+          },
+          {
+            "responseId": "es:lesson-05:session-35:i04:r3",
+            "text": "Es"
+          }
+        ],
+        "testedDimension": "Вставте слово — мені двадцять років",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-35:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — мені двадцять років",
+            "feedbackByLocale": {
+              "ru": "Для возраста используем tengo.",
+              "uk": "Для віку використовуємо tengo."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-35:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — мені двадцять років",
+            "feedbackByLocale": {
+              "ru": "О своём возрасте говорим tengo.",
+              "uk": "Про свій вік кажемо tengo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — мені двадцять років; почніть з Tengo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-35:i05:r1",
+          "text": "Плитки: años"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i05:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i05:r3",
+          "text": "veinte"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i05:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — мені двадцять років; почніть з Tengo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo veinte años.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мне двадцать лет; начните с Tengo",
+          "uk": "Зберіть фразу — мені двадцять років; почніть з Tengo"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "veinte",
+          "años"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-35:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — мені двадцять років; почніть з Tengo",
+            "feedbackByLocale": {
+              "ru": "перед числом в этой фразе нет артикля.",
+              "uk": "перед числом у цій фразі немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — мені двадцять років",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-35:i06:r1",
+          "text": "años"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i06:r2",
+          "text": "año"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i06:r3",
+          "text": "libros"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — мені двадцять років",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — мне двадцать лет",
+          "uk": "Вставте слово — мені двадцять років"
+        },
+        "gappedTargetPhrase": "Tengo veinte ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-35:i06:r1",
+            "text": "años"
+          },
+          {
+            "responseId": "es:lesson-05:session-35:i06:r2",
+            "text": "año"
+          },
+          {
+            "responseId": "es:lesson-05:session-35:i06:r3",
+            "text": "libros"
+          }
+        ],
+        "testedDimension": "Вставте слово — мені двадцять років",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-35:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — мені двадцять років",
+            "feedbackByLocale": {
+              "ru": "После veinte нужно множественное число años.",
+              "uk": "Після veinte потрібна множина años."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-35:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — мені двадцять років",
+            "feedbackByLocale": {
+              "ru": "Называем возраст, не количество книг.",
+              "uk": "Називаємо вік, не кількість книжок."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — мені двадцять років; почніть з Yo",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-35:i07:r1",
+          "text": "Плитки: veinte"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i07:r2",
+          "text": "Yo"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i07:r3",
+          "text": "años"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i07:r4",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i07:r5",
+          "text": "tiene."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — мені двадцять років; почніть з Yo",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Yo tengo veinte años.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — мне двадцать лет; начните с Yo",
+          "uk": "Зберіть фразу — мені двадцять років; почніть з Yo"
+        },
+        "orderedTokens": [
+          "Yo",
+          "tengo",
+          "veinte",
+          "años"
+        ],
+        "authoredDistractorTokens": [
+          "tiene"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-35:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — мені двадцять років; почніть з Yo",
+            "feedbackByLocale": {
+              "ru": "с yo нужно tengo.",
+              "uk": "з yo потрібно tengo."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — Ані двадцять років; почніть з Ana",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-35:i08:r1",
+          "text": "Плитки: años"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i08:r2",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i08:r3",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i08:r4",
+          "text": "veinte"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i08:r5",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — Ані двадцять років; почніть з Ana",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene veinte años.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — Ане двадцать лет; начните с Ana",
+          "uk": "Зберіть фразу — Ані двадцять років; почніть з Ana"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "veinte",
+          "años"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-35:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — Ані двадцять років; почніть з Ana",
+            "feedbackByLocale": {
+              "ru": "возраст выражаем через tiene.",
+              "uk": "вік виражаємо через tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-35:i09:r1",
+          "text": "Плитки: veinte"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i09:r2",
+          "text": "años"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i09:r3",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i09:r4",
+          "text": "año."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-35:i09:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-35:i09:audio",
+          "transcript": "Tengo veinte años."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tengo veinte años.",
+        "orderedTokens": [
+          "Tengo",
+          "veinte",
+          "años"
+        ],
+        "authoredDistractorTokens": [
+          "año"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-35:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит años.",
+              "uk": "звучить años."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i10",
+      "ordinal": 13,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — Ані двадцять років",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-35:i10:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i10:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-35:i10:r3",
+          "text": "tienen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — Ані двадцять років",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — Ане двадцать лет",
+          "uk": "Вставте слово — Ані двадцять років"
+        },
+        "gappedTargetPhrase": "Ana ___ veinte años.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-35:i10:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-35:i10:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-35:i10:r3",
+            "text": "tienen"
+          }
+        ],
+        "testedDimension": "Вставте слово — Ані двадцять років",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-35:i10:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ані двадцять років",
+            "feedbackByLocale": {
+              "ru": "Об Ане нужна форма tiene.",
+              "uk": "Про Ану потрібна форма tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-35:i10:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — Ані двадцять років",
+            "feedbackByLocale": {
+              "ru": "Ана одна: tiene.",
+              "uk": "Ана одна: tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — мені двадцять років; почніть з Tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — мені двадцять років; почніть з Tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-35:i11:audio",
+          "transcript": "Tengo veinte años."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo veinte años.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — мені двадцять років; почніть з Yo tengo",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-35:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — мені двадцять років; почніть з Yo tengo",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-35:i12:audio",
+          "transcript": "Yo tengo veinte años."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Yo tengo veinte años.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Ані двадцять років; почніть з Ana tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-35:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Ані двадцять років; почніть з Ana tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-35:i13:audio",
+          "transcript": "Ana tiene veinte años."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene veinte años.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — Педро двадцять років; почніть з Pedro tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-35:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — Педро двадцять років; почніть з Pedro tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-35:i14:audio",
+          "transcript": "Pedro tiene veinte años."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Pedro tiene veinte años.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 14,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "36f9098f7410b213681d8a40f922ff0c2e8dc30a340059916e02a68388b3b858"
+}

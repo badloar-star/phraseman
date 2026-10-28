@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-34:i01",
+    "correctText": "tres",
+    "correctResponseId": "es:lesson-05:session-34:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-34:i02",
+    "correctText": "libros",
+    "correctResponseId": "es:lesson-05:session-34:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-34:i03",
+    "correctText": "Tengo tres libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-34:i04",
+    "correctText": "cajas",
+    "correctResponseId": "es:lesson-05:session-34:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-34:i05",
+    "correctText": "Tenemos tres cajas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-34:i06",
+    "correctText": "Ana tiene tres llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-34:i07",
+    "correctText": "Tengo tres libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-34:i08",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-34:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-34:i09",
+    "correctText": "Tengo tres libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-34:i10",
+    "correctText": "Tenemos tres cajas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-34:i11",
+    "correctText": "Ana tiene tres llaves.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-34:i12",
+    "correctText": "Tengo tres llaves.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-35",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-35:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-35:intro1:r2": {
+          "ru": "Возраст в этой конструкции выражаем через tener: tengo.",
+          "uk": "Вік у цій конструкції виражаємо через tener: tengo."
+        },
+        "es:lesson-05:session-35:intro1:r3": {
+          "ru": "После veinte нужна форма años.",
+          "uk": "Після veinte потрібна форма años."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-35:intro2:r2": {
+          "ru": "С yo нужна форма tengo.",
+          "uk": "З yo потрібна форма tengo."
+        },
+        "es:lesson-05:session-35:intro2:r3": {
+          "ru": "В этой фразе перед числом нет un.",
+          "uk": "У цій фразі перед числом немає un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-35:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-35:intro3:r2": {
+          "ru": "Возраст выражаем через tiene, не es.",
+          "uk": "Вік виражаємо через tiene, не es."
+        },
+        "es:lesson-05:session-35:intro3:r3": {
+          "ru": "Ана одна: tiene; число лет не меняет форму глагола.",
+          "uk": "Ана одна: tiene; число років не змінює форми дієслова."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "2cbc7809643da8712eb37bf1f6d3266bb16f6d9882609b90d4abe2f30136b047"
+}

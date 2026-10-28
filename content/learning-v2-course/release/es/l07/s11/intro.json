@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-11",
+  "learningOutcomeByLocale": {
+    "ru": "различать quince и dieciséis и называть количество предметов.",
+    "uk": "розрізняти quince та dieciséis і називати кількість предметів."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-11:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Знакомое пятнадцать",
+        "uk": "Знайоме п'ятнадцять"
+      },
+      "bodyByLocale": {
+        "ru": "Для первой группы готовы пятнадцать книг. Сообщите `Hay quince libros` — «Есть пятнадцать книг». Соберите `Hay` + `quince` + `libros`. Знакомое quince означает пятнадцать. Существительное после числа ставим во множественном числе.",
+        "uk": "Для першої групи готові п'ятнадцять книжок. Повідомте `Hay quince libros` — «Є п'ятнадцять книжок». Складіть `Hay` + `quince` + `libros`. Знайоме quince означає п'ятнадцять. Іменник після числа ставимо в множині."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-11:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть пятнадцать книг». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є п'ятнадцять книжок». Почніть з Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-11:intro1:r1",
+              "text": "Hay quince libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro1:r2",
+              "text": "Hay quince libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro1:r3",
+              "text": "Hay catorce libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-11:intro1:r1",
+              "text": "Hay quince libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro1:r2",
+              "text": "Hay quince libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro1:r3",
+              "text": "Hay catorce libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть пятнадцать книг». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є п'ятнадцять книжок». Почніть з Hay, число поставте перед libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-11:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Следующее число",
+        "uk": "Наступне число"
+      },
+      "bodyByLocale": {
+        "ru": "Для второй группы вы насчитали шестнадцать книг. Скажите `Hay dieciséis libros aquí` — «Здесь есть шестнадцать книг». Соберите `Hay` + `dieciséis libros` + `aquí`. Dieciséis — шестнадцать: пишется одним словом, с ударением на последнем слоге и знаком é. Не разбиваем число на отдельные слова. Книг стало на одну больше, а место в предложении у числа то же.",
+        "uk": "Для другої групи ви нарахували шістнадцять книжок. Скажіть `Hay dieciséis libros aquí` — «Тут є шістнадцять книжок». Складіть `Hay` + `dieciséis libros` + `aquí`. Dieciséis — шістнадцять: пишеться одним словом, з наголосом на останньому складі та знаком é. Не розбиваємо число на окремі слова. Книжок стало на одну більше, а місце в реченні у числа те саме."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-11:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть шестнадцать книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є шістнадцять книжок». Почніть з Hay, число поставте перед libros, місце — наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-11:intro2:r1",
+              "text": "Hay dieciséis libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro2:r2",
+              "text": "Hay dieciséis libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro2:r3",
+              "text": "Hay quince libros aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-11:intro2:r1",
+              "text": "Hay dieciséis libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro2:r2",
+              "text": "Hay dieciséis libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro2:r3",
+              "text": "Hay quince libros aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть шестнадцать книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є шістнадцять книжок». Почніть з Hay, число поставте перед libros, місце — наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-11:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Проверить количество",
+        "uk": "Перевірити кількість"
+      },
+      "bodyByLocale": {
+        "ru": "Перед раздачей вы хотите уточнить, приготовлены ли шестнадцать книг. Спросите `¿Hay dieciséis libros?` — «Есть шестнадцать книг?» Соберите `¿Hay` + `dieciséis` + `libros?`. Вопрос сохраняет число перед существительным; форма dieciséis не меняется.",
+        "uk": "Перед роздаванням ви хочете уточнити, чи підготовлено шістнадцять книжок. Запитайте `¿Hay dieciséis libros?` — «Є шістнадцять книжок?» Складіть `¿Hay` + `dieciséis` + `libros?`. Запитання зберігає число перед іменником; форма dieciséis не змінюється."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-11:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть шестнадцать книг?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є шістнадцять книжок?». Почніть з ¿Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-11:intro3:r1",
+              "text": "¿Hay dieciséis libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro3:r2",
+              "text": "¿Hay dieciséis libro?"
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro3:r3",
+              "text": "¿Hay quince libros?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-11:intro3:r1",
+              "text": "¿Hay dieciséis libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro3:r2",
+              "text": "¿Hay dieciséis libro?"
+            },
+            {
+              "responseId": "es:lesson-07:session-11:intro3:r3",
+              "text": "¿Hay quince libros?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть шестнадцать книг?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є шістнадцять книжок?». Почніть з ¿Hay, число поставте перед libros."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9fe7dc98f23b2a7ee363477e05f30875b709dbccdbca1bb6d5a08ffb3f13a581"
+}

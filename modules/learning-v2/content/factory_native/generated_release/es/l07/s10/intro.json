@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-10",
+  "learningOutcomeByLocale": {
+    "ru": "называть тринадцать и четырнадцать предметов.",
+    "uk": "називати тринадцять і чотирнадцять предметів."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-10:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Тринадцать мест",
+        "uk": "Тринадцять місць"
+      },
+      "bodyByLocale": {
+        "ru": "В первой комнате вы насчитали тринадцать стульев. Сообщите `Hay trece sillas` — «Есть тринадцать стульев». Соберите `Hay` + `trece` + `sillas`. Trece — тринадцать, одно слово. После него используем sillas во множественном числе.",
+        "uk": "У першій кімнаті ви нарахували тринадцять стільців. Повідомте `Hay trece sillas` — «Є тринадцять стільців». Складіть `Hay` + `trece` + `sillas`. Trece — тринадцять, одне слово. Після нього використовуємо sillas у множині."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-10:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть тринадцать стульев». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є тринадцять стільців». Почніть з Hay, число поставте перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-10:intro1:r1",
+              "text": "Hay trece sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro1:r2",
+              "text": "Hay trece silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro1:r3",
+              "text": "Hay doce sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-10:intro1:r1",
+              "text": "Hay trece sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro1:r2",
+              "text": "Hay trece silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro1:r3",
+              "text": "Hay doce sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть тринадцать стульев». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є тринадцять стільців». Почніть з Hay, число поставте перед sillas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-10:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Четырнадцать здесь",
+        "uk": "Чотирнадцять тут"
+      },
+      "bodyByLocale": {
+        "ru": "Вы перешли во вторую комнату: здесь четырнадцать стульев. Скажите `Hay catorce sillas aquí` — «Здесь есть четырнадцать стульев». Соберите `Hay` + `catorce sillas` + `aquí`. Catorce — четырнадцать, одно слово. Место ставим в конце. Стульев на один больше, а комната от этого сама просторнее не стала.",
+        "uk": "Ви перейшли до другої кімнати: тут чотирнадцять стільців. Скажіть `Hay catorce sillas aquí` — «Тут є чотирнадцять стільців». Складіть `Hay` + `catorce sillas` + `aquí`. Catorce — чотирнадцять, одне слово. Місце ставимо наприкінці. Стільців на один більше, а кімната від цього сама просторішою не стала."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-10:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть четырнадцать стульев». Начните с Hay, число поставьте перед sillas, место — в конце.",
+          "uk": "Повідомте «Тут є чотирнадцять стільців». Почніть з Hay, число поставте перед sillas, місце — наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-10:intro2:r1",
+              "text": "Hay catorce sillas aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro2:r2",
+              "text": "Hay catorce silla aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro2:r3",
+              "text": "Hay trece sillas aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-10:intro2:r1",
+              "text": "Hay catorce sillas aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro2:r2",
+              "text": "Hay catorce silla aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro2:r3",
+              "text": "Hay trece sillas aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть четырнадцать стульев». Начните с Hay, число поставьте перед sillas, место — в конце.",
+          "uk": "Повідомте «Тут є чотирнадцять стільців». Почніть з Hay, число поставте перед sillas, місце — наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-10:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить перед приходом гостей",
+        "uk": "Уточнити перед приходом гостей"
+      },
+      "bodyByLocale": {
+        "ru": "Друг готовит помещение для четырнадцати гостей. Спросите `¿Hay catorce sillas?` — «Есть четырнадцать стульев?» Соберите `¿Hay` + `catorce` + `sillas?`. Вопрос сохраняет число перед существительным. Уточняем наличие нужного количества.",
+        "uk": "Друг готує приміщення для чотирнадцяти гостей. Запитайте `¿Hay catorce sillas?` — «Є чотирнадцять стільців?» Складіть `¿Hay` + `catorce` + `sillas?`. Запитання зберігає число перед іменником. Уточнюємо наявність потрібної кількості."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-10:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть четырнадцать стульев?». Начните с ¿Hay, число поставьте перед sillas.",
+          "uk": "Запитайте «Є чотирнадцять стільців?». Почніть з ¿Hay, число поставте перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-10:intro3:r1",
+              "text": "¿Hay catorce sillas?"
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro3:r2",
+              "text": "¿Hay catorce silla?"
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro3:r3",
+              "text": "¿Hay trece sillas?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-10:intro3:r1",
+              "text": "¿Hay catorce sillas?"
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro3:r2",
+              "text": "¿Hay catorce silla?"
+            },
+            {
+              "responseId": "es:lesson-07:session-10:intro3:r3",
+              "text": "¿Hay trece sillas?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть четырнадцать стульев?». Начните с ¿Hay, число поставьте перед sillas.",
+          "uk": "Запитайте «Є чотирнадцять стільців?». Почніть з ¿Hay, число поставте перед sillas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "0303f78b44c6fdb755e270ac13a11205e88496927fa338d568f22cc2d7dc9506"
+}

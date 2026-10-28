@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-12",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-12:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-12:intro1:r2": {
+          "ru": "Стульев семнадцать: sillas.",
+          "uk": "Стільців сімнадцять: sillas."
+        },
+        "es:lesson-07:session-12:intro1:r3": {
+          "ru": "Dieciséis — шестнадцать, а нужно diecisiete.",
+          "uk": "Dieciséis — шістнадцять, а потрібно diecisiete."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-12:intro2:r2": {
+          "ru": "После dieciocho нужно sillas.",
+          "uk": "Після dieciocho потрібно sillas."
+        },
+        "es:lesson-07:session-12:intro2:r3": {
+          "ru": "В этой комнате восемнадцать: dieciocho.",
+          "uk": "У цій кімнаті вісімнадцять: dieciocho."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-12:intro3:r2": {
+          "ru": "Стульев несколько: sillas.",
+          "uk": "Стільців кілька: sillas."
+        },
+        "es:lesson-07:session-12:intro3:r3": {
+          "ru": "Уточняем восемнадцать: dieciocho.",
+          "uk": "Уточнюємо вісімнадцять: dieciocho."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "641f7f24e748d4f135cd8b81966f32346f0b726040c36cc813e43f022397cc65"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-11",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-11:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-11:intro1:r2": {
+          "ru": "Книг пятнадцать: libros.",
+          "uk": "Книжок п'ятнадцять: libros."
+        },
+        "es:lesson-07:session-11:intro1:r3": {
+          "ru": "Catorce — четырнадцать, а нужно quince.",
+          "uk": "Catorce — чотирнадцять, а потрібно quince."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-11:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-11:intro2:r2": {
+          "ru": "После dieciséis нужно libros.",
+          "uk": "Після dieciséis потрібно libros."
+        },
+        "es:lesson-07:session-11:intro2:r3": {
+          "ru": "Во второй группе шестнадцать: dieciséis.",
+          "uk": "У другій групі шістнадцять: dieciséis."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-11:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-11:intro3:r2": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книжок кілька: libros."
+        },
+        "es:lesson-07:session-11:intro3:r3": {
+          "ru": "Уточняем шестнадцать: dieciséis.",
+          "uk": "Уточнюємо шістнадцять: dieciséis."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "e60773571fad4fb8afa5b5574e8eaf9b77efde844da3f0a166bd604759e5b05b"
+}

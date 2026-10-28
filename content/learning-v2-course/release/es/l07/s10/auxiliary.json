@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-10",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-10:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-10:intro1:r2": {
+          "ru": "Стульев тринадцать: sillas.",
+          "uk": "Стільців тринадцять: sillas."
+        },
+        "es:lesson-07:session-10:intro1:r3": {
+          "ru": "Doce — двенадцать, а нужно trece.",
+          "uk": "Doce — дванадцять, а потрібно trece."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-10:intro2:r2": {
+          "ru": "После catorce нужно sillas.",
+          "uk": "Після catorce потрібно sillas."
+        },
+        "es:lesson-07:session-10:intro2:r3": {
+          "ru": "Во второй комнате четырнадцать: catorce.",
+          "uk": "У другій кімнаті чотирнадцять: catorce."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-10:intro3:r2": {
+          "ru": "Стульев несколько: sillas.",
+          "uk": "Стільців кілька: sillas."
+        },
+        "es:lesson-07:session-10:intro3:r3": {
+          "ru": "Нужно четырнадцать: catorce.",
+          "uk": "Потрібно чотирнадцять: catorce."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "cf94f819a49982d9fc538655f85c337765de514ea489eb7e50bfb59bd495f98e"
+}

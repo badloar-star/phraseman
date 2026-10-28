@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-09",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-09:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-09:intro1:r2": {
+          "ru": "Книг одиннадцать: libros.",
+          "uk": "Книжок одинадцять: libros."
+        },
+        "es:lesson-07:session-09:intro1:r3": {
+          "ru": "Diez — десять, а нужно once — одиннадцать.",
+          "uk": "Diez — десять, а потрібно once — одинадцять."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-09:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-09:intro2:r2": {
+          "ru": "После doce нужно libros.",
+          "uk": "Після doce потрібно libros."
+        },
+        "es:lesson-07:session-09:intro2:r3": {
+          "ru": "В этой группе двенадцать: doce.",
+          "uk": "У цій групі дванадцять: doce."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-09:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-09:intro3:r2": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книжок кілька: libros."
+        },
+        "es:lesson-07:session-09:intro3:r3": {
+          "ru": "Уточняем двенадцать: doce.",
+          "uk": "Уточнюємо дванадцять: doce."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "722a5bc069bb316608e96f670ea1c7bf2a4b599681dbe348ffafaac3c89ddc90"
+}

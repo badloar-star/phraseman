@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-10:i01",
+    "correctText": "trece",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i02",
+    "correctText": "catorce",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i03",
+    "correctText": "trece",
+    "correctResponseId": "es:lesson-07:session-10:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i04",
+    "correctText": "catorce",
+    "correctResponseId": "es:lesson-07:session-10:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i05",
+    "correctText": "trece",
+    "correctResponseId": "es:lesson-07:session-10:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i06",
+    "correctText": "Hay trece sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i07",
+    "correctText": "catorce",
+    "correctResponseId": "es:lesson-07:session-10:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i08",
+    "correctText": "Hay catorce sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i09",
+    "correctText": "¿Hay catorce sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i10",
+    "correctText": "Hay trece sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i11",
+    "correctText": "Trece.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i12",
+    "correctText": "Catorce.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i13",
+    "correctText": "Hay trece sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i14",
+    "correctText": "Hay catorce sillas aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i15",
+    "correctText": "¿Hay catorce sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-10:i16",
+    "correctText": "Hay trece sillas aquí.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,809 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-07:session-10",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-07:session-10:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — trece",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-10:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — trece",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-10:i01:audio",
+          "transcript": "trece"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-10:i01:r1",
+            "targetText": "trece",
+            "meaningByLocale": {
+              "ru": "тринадцать, 13. 🔊 *trece*",
+              "uk": "тринадцять, 13. 🔊 *trece*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "trece",
+          "definitionByLocale": {
+            "ru": "тринадцать, 13. 🔊 *trece*",
+            "uk": "тринадцять, 13. 🔊 *trece*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — catorce",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-10:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — catorce",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-10:i02:audio",
+          "transcript": "catorce"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-10:i02:r1",
+            "targetText": "catorce",
+            "meaningByLocale": {
+              "ru": "четырнадцать, 14. 🔊 *catorce*",
+              "uk": "чотирнадцять, 14. 🔊 *catorce*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "catorce",
+          "definitionByLocale": {
+            "ru": "четырнадцать, 14. 🔊 *catorce*",
+            "uk": "чотирнадцять, 14. 🔊 *catorce*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-10:i03:r1",
+          "text": "trece"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i03:r2",
+          "text": "catorce"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-10:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-10:i03:audio",
+          "transcript": "trece"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-10:i03:r1",
+            "targetText": "trece",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-10:i03:r2",
+            "targetText": "catorce",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-10:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит trece — тринадцать.",
+              "uk": "Звучить trece — тринадцять."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-10:i04:r1",
+          "text": "catorce"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i04:r2",
+          "text": "trece"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-10:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-10:i04:audio",
+          "transcript": "catorce"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-10:i04:r1",
+            "targetText": "catorce",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-10:i04:r2",
+            "targetText": "trece",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-10:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит catorce — четырнадцать.",
+              "uk": "Звучить catorce — чотирнадцять."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — есть тринадцать стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-10:i05:r1",
+          "text": "trece"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i05:r2",
+          "text": "catorce"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i05:r3",
+          "text": "doce"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — есть тринадцать стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть тринадцать стульев",
+          "uk": "Вставте слово — є тринадцять стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-10:i05:r1",
+            "text": "trece"
+          },
+          {
+            "responseId": "es:lesson-07:session-10:i05:r2",
+            "text": "catorce"
+          },
+          {
+            "responseId": "es:lesson-07:session-10:i05:r3",
+            "text": "doce"
+          }
+        ],
+        "testedDimension": "Вставьте слово — есть тринадцать стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-10:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть тринадцать стульев",
+            "feedbackByLocale": {
+              "ru": "Нужно тринадцать: trece.",
+              "uk": "Потрібно тринадцять: trece."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-10:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть тринадцать стульев",
+            "feedbackByLocale": {
+              "ru": "Doce — двенадцать, а нужно trece.",
+              "uk": "Doce — дванадцять, а потрібно trece."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть тринадцать стульев; начните с Hay, число поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-10:i06:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i06:r2",
+          "text": "trece"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i06:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i06:r4",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть тринадцать стульев; начните с Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay trece sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть тринадцать стульев; начните с Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є тринадцять стільців; почніть з Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "Hay",
+          "trece",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-10:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть тринадцать стульев; начните с Hay, число поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "стульев тринадцать, нужно sillas.",
+              "uk": "стільців тринадцять, потрібно sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — здесь есть четырнадцать стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-10:i07:r1",
+          "text": "catorce"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i07:r2",
+          "text": "trece"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i07:r3",
+          "text": "doce"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — здесь есть четырнадцать стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть четырнадцать стульев",
+          "uk": "Вставте слово — тут є чотирнадцять стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-10:i07:r1",
+            "text": "catorce"
+          },
+          {
+            "responseId": "es:lesson-07:session-10:i07:r2",
+            "text": "trece"
+          },
+          {
+            "responseId": "es:lesson-07:session-10:i07:r3",
+            "text": "doce"
+          }
+        ],
+        "testedDimension": "Вставьте слово — здесь есть четырнадцать стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-10:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть четырнадцать стульев",
+            "feedbackByLocale": {
+              "ru": "Нужно четырнадцать: catorce.",
+              "uk": "Потрібно чотирнадцять: catorce."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-10:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть четырнадцать стульев",
+            "feedbackByLocale": {
+              "ru": "Doce — двенадцать, а нужно catorce.",
+              "uk": "Doce — дванадцять, а потрібно catorce."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь есть четырнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-10:i08:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i08:r2",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i08:r3",
+          "text": "catorce"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i08:r4",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i08:r5",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь есть четырнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay catorce sillas aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть четырнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+          "uk": "Зберіть фразу — тут є чотирнадцять стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "catorce",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-10:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь есть четырнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+            "feedbackByLocale": {
+              "ru": "после catorce нужно sillas.",
+              "uk": "після catorce потрібно sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть четырнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-10:i09:r1",
+          "text": "Плитки: sillas?"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i09:r2",
+          "text": "catorce"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i09:r3",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i09:r4",
+          "text": "trece."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть четырнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay catorce sillas?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть четырнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є чотирнадцять стільців?; почніть з ¿Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "catorce",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "trece"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-10:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть четырнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "нужно четырнадцать, catorce.",
+              "uk": "потрібно чотирнадцять, catorce."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-10:i10:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i10:r2",
+          "text": "trece"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i10:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i10:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-10:i10:r5",
+          "text": "catorce."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-10:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-10:i10:audio",
+          "transcript": "Hay trece sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay trece sillas aquí.",
+        "orderedTokens": [
+          "Hay",
+          "trece",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "catorce"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-10:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит trece.",
+              "uk": "звучить trece."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — число тринадцать одним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-10:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — число тринадцать одним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-10:i11:audio",
+          "transcript": "Trece."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Trece.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — число четырнадцать одним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-10:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — число четырнадцать одним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-10:i12:audio",
+          "transcript": "Catorce."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Catorce.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть тринадцать стульев; начните с Hay, число поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-10:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть тринадцать стульев; начните с Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-10:i13:audio",
+          "transcript": "Hay trece sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay trece sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь есть четырнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-10:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь есть четырнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-10:i14:audio",
+          "transcript": "Hay catorce sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay catorce sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть четырнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-10:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть четырнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-10:i15:audio",
+          "transcript": "¿Hay catorce sillas?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay catorce sillas?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-10:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь есть тринадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-10:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь есть тринадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-10:i16:audio",
+          "transcript": "Hay trece sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay trece sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "6b1b85ffa304d1f023d07a1f59f13a313ac9082d5bf3db8b70c6e0d8fbd38a03"
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-09:i01",
+    "correctText": "once",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i02",
+    "correctText": "doce",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i03",
+    "correctText": "once",
+    "correctResponseId": "es:lesson-07:session-09:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i04",
+    "correctText": "doce",
+    "correctResponseId": "es:lesson-07:session-09:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i05",
+    "correctText": "once",
+    "correctResponseId": "es:lesson-07:session-09:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i06",
+    "correctText": "Hay once libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i07",
+    "correctText": "doce",
+    "correctResponseId": "es:lesson-07:session-09:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i08",
+    "correctText": "Hay doce libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i09",
+    "correctText": "¿Hay doce libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i10",
+    "correctText": "Hay once libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i11",
+    "correctText": "Once.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i12",
+    "correctText": "Doce.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i13",
+    "correctText": "Hay once libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i14",
+    "correctText": "Hay doce libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i15",
+    "correctText": "¿Hay doce libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-09:i16",
+    "correctText": "Hay once libros aquí.",
+    "correctResponseId": null
+  }
+]

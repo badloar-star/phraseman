@@ -1,0 +1,809 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-07:session-12",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-07:session-12:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — diecisiete",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-12:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — diecisiete",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-12:i01:audio",
+          "transcript": "diecisiete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-12:i01:r1",
+            "targetText": "diecisiete",
+            "meaningByLocale": {
+              "ru": "семнадцать, 17; одно слово. 🔊 *diecisiete*",
+              "uk": "сімнадцять, 17; одне слово. 🔊 *diecisiete*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "diecisiete",
+          "definitionByLocale": {
+            "ru": "семнадцать, 17; одно слово. 🔊 *diecisiete*",
+            "uk": "сімнадцять, 17; одне слово. 🔊 *diecisiete*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — dieciocho",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-12:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — dieciocho",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-12:i02:audio",
+          "transcript": "dieciocho"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-12:i02:r1",
+            "targetText": "dieciocho",
+            "meaningByLocale": {
+              "ru": "восемнадцать, 18; одно слово. 🔊 *dieciocho*",
+              "uk": "вісімнадцять, 18; одне слово. 🔊 *dieciocho*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "dieciocho",
+          "definitionByLocale": {
+            "ru": "восемнадцать, 18; одно слово. 🔊 *dieciocho*",
+            "uk": "вісімнадцять, 18; одне слово. 🔊 *dieciocho*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-12:i03:r1",
+          "text": "diecisiete"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i03:r2",
+          "text": "dieciocho"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-12:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-12:i03:audio",
+          "transcript": "diecisiete"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-12:i03:r1",
+            "targetText": "diecisiete",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-12:i03:r2",
+            "targetText": "dieciocho",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-12:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит diecisiete — семнадцать.",
+              "uk": "Звучить diecisiete — сімнадцять."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-12:i04:r1",
+          "text": "dieciocho"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i04:r2",
+          "text": "diecisiete"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-12:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-12:i04:audio",
+          "transcript": "dieciocho"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-12:i04:r1",
+            "targetText": "dieciocho",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-12:i04:r2",
+            "targetText": "diecisiete",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-12:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит dieciocho — восемнадцать.",
+              "uk": "Звучить dieciocho — вісімнадцять."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — есть семнадцать стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-12:i05:r1",
+          "text": "diecisiete"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i05:r2",
+          "text": "dieciocho"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i05:r3",
+          "text": "dieciséis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — есть семнадцать стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть семнадцать стульев",
+          "uk": "Вставте слово — є сімнадцять стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-12:i05:r1",
+            "text": "diecisiete"
+          },
+          {
+            "responseId": "es:lesson-07:session-12:i05:r2",
+            "text": "dieciocho"
+          },
+          {
+            "responseId": "es:lesson-07:session-12:i05:r3",
+            "text": "dieciséis"
+          }
+        ],
+        "testedDimension": "Вставьте слово — есть семнадцать стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-12:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть семнадцать стульев",
+            "feedbackByLocale": {
+              "ru": "Нужно семнадцать: diecisiete.",
+              "uk": "Потрібно сімнадцять: diecisiete."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-12:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть семнадцать стульев",
+            "feedbackByLocale": {
+              "ru": "Dieciséis — шестнадцать, а нужно diecisiete.",
+              "uk": "Dieciséis — шістнадцять, а потрібно diecisiete."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть семнадцать стульев; начните с Hay, число поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-12:i06:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i06:r2",
+          "text": "diecisiete"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i06:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i06:r4",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть семнадцать стульев; начните с Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay diecisiete sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть семнадцать стульев; начните с Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є сімнадцять стільців; почніть з Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "Hay",
+          "diecisiete",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-12:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть семнадцать стульев; начните с Hay, число поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "стульев семнадцать, нужно sillas.",
+              "uk": "стільців сімнадцять, потрібно sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — здесь есть восемнадцать стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-12:i07:r1",
+          "text": "dieciocho"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i07:r2",
+          "text": "diecisiete"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i07:r3",
+          "text": "dieciséis"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — здесь есть восемнадцать стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть восемнадцать стульев",
+          "uk": "Вставте слово — тут є вісімнадцять стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-12:i07:r1",
+            "text": "dieciocho"
+          },
+          {
+            "responseId": "es:lesson-07:session-12:i07:r2",
+            "text": "diecisiete"
+          },
+          {
+            "responseId": "es:lesson-07:session-12:i07:r3",
+            "text": "dieciséis"
+          }
+        ],
+        "testedDimension": "Вставьте слово — здесь есть восемнадцать стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-12:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть восемнадцать стульев",
+            "feedbackByLocale": {
+              "ru": "Нужно восемнадцать: dieciocho.",
+              "uk": "Потрібно вісімнадцять: dieciocho."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-12:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть восемнадцать стульев",
+            "feedbackByLocale": {
+              "ru": "Dieciséis — шестнадцать, а нужно dieciocho.",
+              "uk": "Dieciséis — шістнадцять, а потрібно dieciocho."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь есть восемнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-12:i08:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i08:r2",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i08:r3",
+          "text": "dieciocho"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i08:r4",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i08:r5",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь есть восемнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay dieciocho sillas aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть восемнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+          "uk": "Зберіть фразу — тут є вісімнадцять стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "dieciocho",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-12:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь есть восемнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+            "feedbackByLocale": {
+              "ru": "после dieciocho нужно sillas.",
+              "uk": "після dieciocho потрібно sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть восемнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-12:i09:r1",
+          "text": "Плитки: sillas?"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i09:r2",
+          "text": "dieciocho"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i09:r3",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i09:r4",
+          "text": "diecisiete."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть восемнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay dieciocho sillas?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть восемнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є вісімнадцять стільців?; почніть з ¿Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "dieciocho",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "diecisiete"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-12:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть восемнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "нужно восемнадцать, dieciocho.",
+              "uk": "потрібно вісімнадцять, dieciocho."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-12:i10:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i10:r2",
+          "text": "diecisiete"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i10:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i10:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-12:i10:r5",
+          "text": "dieciocho."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-12:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-12:i10:audio",
+          "transcript": "Hay diecisiete sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay diecisiete sillas aquí.",
+        "orderedTokens": [
+          "Hay",
+          "diecisiete",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "dieciocho"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-12:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит diecisiete.",
+              "uk": "звучить diecisiete."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — число семнадцать одним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-12:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — число семнадцать одним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-12:i11:audio",
+          "transcript": "Diecisiete."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Diecisiete.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — число восемнадцать одним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-12:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — число восемнадцать одним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-12:i12:audio",
+          "transcript": "Dieciocho."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Dieciocho.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть семнадцать стульев; начните с Hay, число поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-12:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть семнадцать стульев; начните с Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-12:i13:audio",
+          "transcript": "Hay diecisiete sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay diecisiete sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь есть восемнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-12:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь есть восемнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-12:i14:audio",
+          "transcript": "Hay dieciocho sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay dieciocho sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть восемнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-12:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть восемнадцать стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-12:i15:audio",
+          "transcript": "¿Hay dieciocho sillas?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay dieciocho sillas?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-12:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь есть семнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-12:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь есть семнадцать стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-12:i16:audio",
+          "transcript": "Hay diecisiete sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay diecisiete sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "90bc2d63158595a7b6ddcc0084bc4abc310da9d0baeb08145e202e549a0cf71f"
+}

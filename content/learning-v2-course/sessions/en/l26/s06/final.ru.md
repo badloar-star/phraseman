@@ -63,7 +63,7 @@ Throb — пульсировать, болеть ритмичными толчк
 - My fingers feel numb when my gloves are too tight. — *В записи звучит My toes feel numb when my shoes are too tight.*
 - My toes feel cold when my shoes are wet. — *В записи звучит My toes feel numb when my shoes are too tight.*
 
-**4 · Говорящий описывает свои руки. Hands — множественное число.**
+**4 · Говорящий описывает свои руки. Hands — их несколько.**
 <!-- interaction_id: en:lesson-26:session-06:i03; family: context_gap_grammar -->
 My hands ___ cold when I wait outside. → **feel** · feels · feeling
 - feels — *После hands нужна форма feel без -s.*
@@ -139,7 +139,7 @@ I feel ___ when I travel on a boat. → **nauseous** · hungry · thirsty
 - My back feels stiff when I sit in this chair. — *В записи звучит My neck feels stiff when I sit in this chair.*
 - My neck feels stiff when I sleep in this bed. — *В записи звучит My neck feels stiff when I sit in this chair.*
 
-**20 · Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.**
+**20 · Говорящий обычно не читает в дороге, если его тошнит. Дополните фразу с «не».**
 <!-- interaction_id: en:lesson-26:session-06:i16; family: context_gap_grammar -->
 I ___ read if I feel nauseous. → **do not** · does not · am not
 - does not — *После I отрицание с read строится через do not.*

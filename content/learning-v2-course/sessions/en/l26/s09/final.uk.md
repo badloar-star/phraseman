@@ -109,7 +109,7 @@ stuff — речі · mess — безлад · kids — діти · guy — хл
 <!-- interaction_id: en:lesson-26:session-09:i09; family: phrase_builder -->
 Плитки: `ticket` `your` `lose` `you` `if` `you` `help` `will` `I` → **I will help you if you lose your ticket.**
 
-**14 · Домовилися чекати лише десять хвилин. Якщо автобус не приїде, підемо пішки. Доповніть заперечення.**
+**14 · Домовилися чекати лише десять хвилин. Якщо автобус не приїде, підемо пішки. Доповніть фразу з «не».**
 <!-- interaction_id: en:lesson-26:session-09:i10; family: context_gap_grammar -->
 We will walk if the bus ___ come. → **does not** · will not · do not
 - will not — *У цій умові після if потрібен Present Simple: does not come.*

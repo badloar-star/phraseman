@@ -139,7 +139,7 @@ I check my posture when I ___ in front of a mirror. → **sit** · sits · sitti
 <!-- interaction_id: en:lesson-26:session-04:i15; family: phrase_builder -->
 Плитки: `heavy` `is` `bag` `my` `if` `slowly` `more` `walk` `I` → **I walk more slowly if my bag is heavy.**
 
-**20 · Говорящий не продолжает танцевать после окончания музыки. Дополните отрицание.**
+**20 · Говорящий не продолжает танцевать после окончания музыки. Дополните фразу с «не».**
 <!-- interaction_id: en:lesson-26:session-04:i16; family: context_gap_grammar -->
 I ___ keep dancing when the music stops. → **do not** · does not · am not
 - does not — *Для отрицания с I здесь нужно do not.*

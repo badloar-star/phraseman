@@ -107,7 +107,7 @@ I take an umbrella when it ___. → **rains** · rain · raining
 <!-- interaction_id: en:lesson-26:session-01:word:stiffen; family: word_card -->
 > **stiffen** — Дерев’яніють. Stiffen — ставати жорсткішими, втрачати гнучкість.
 
-**13 · Мовець описує свою реакцію на холод. Fingers — множина.**
+**13 · Мовець описує свою реакцію на холод. Fingers — їх кілька.**
 <!-- interaction_id: en:lesson-26:session-01:i09; family: context_gap_grammar -->
 My fingers ___ when I work outside in winter. → **stiffen** · stiffens · stiffening
 - stiffens — *Після fingers потрібна форма stiffen без -s.*

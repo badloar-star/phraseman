@@ -109,7 +109,7 @@ I check my phone if I ___ hear it. → **cannot** · does not · not
 <!-- interaction_id: en:lesson-26:session-03:word:flutter; family: word_card -->
 > **flutter** — Колышутся. Flutter — легко и быстро двигаться, например о ткани на ветру.
 
-**14 · Шторы легко двигаются от сквозняка. Дополните действие во множественном числе.**
+**14 · Шторы легко двигаются от сквозняка. Дополните действие: их несколько.**
 <!-- interaction_id: en:lesson-26:session-03:i10; family: context_gap_grammar -->
 The curtains ___ when air comes through the door. → **flutter** · flutters · fluttering
 - flutters — *Curtains — множественное число: flutter без -s.*

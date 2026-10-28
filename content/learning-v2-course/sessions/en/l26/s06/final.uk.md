@@ -63,7 +63,7 @@ Throb — пульсувати, боліти ритмічними поштовх
 - My fingers feel numb when my gloves are too tight. — *У записі звучить My toes feel numb when my shoes are too tight.*
 - My toes feel cold when my shoes are wet. — *У записі звучить My toes feel numb when my shoes are too tight.*
 
-**4 · Мовець описує свої руки. Hands — множина.**
+**4 · Мовець описує свої руки. Hands — їх кілька.**
 <!-- interaction_id: en:lesson-26:session-06:i03; family: context_gap_grammar -->
 My hands ___ cold when I wait outside. → **feel** · feels · feeling
 - feels — *Після hands потрібна форма feel без -s.*
@@ -139,7 +139,7 @@ I feel ___ when I travel on a boat. → **nauseous** · hungry · thirsty
 - My back feels stiff when I sit in this chair. — *У записі звучить My neck feels stiff when I sit in this chair.*
 - My neck feels stiff when I sleep in this bed. — *У записі звучить My neck feels stiff when I sit in this chair.*
 
-**20 · Мовець зазвичай не читає в дорозі, якщо його нудить. Доповніть заперечення.**
+**20 · Мовець зазвичай не читає в дорозі, якщо його нудить. Доповніть фразу з «не».**
 <!-- interaction_id: en:lesson-26:session-06:i16; family: context_gap_grammar -->
 I ___ read if I feel nauseous. → **do not** · does not · am not
 - does not — *Після I заперечення з read утворюється через do not.*

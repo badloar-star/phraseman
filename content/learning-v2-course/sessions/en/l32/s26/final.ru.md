@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне вымытую чашку, которую собираетесь взять с собой. The cup I washed is clean. — Чашка, которую я помыл, чистая. Соберите The cup + I washed + is clean. Часть I washed уточняет cup. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
+Вы показываете Анне вымытую чашку, которую собираетесь взять с собой. The cup I washed is clean. — Чашка, которую вы помыли, чистая. Соберите The cup + I washed + is clean. Часть I washed уточняет cup. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The bottle can't ___ empty. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-26:i06; family: word_card -->
 > **cup** — Чашка. Повторение знакомого слова.
 
-**7 · Чашка, которую я помыл, чистая. Скажите без that.**
+**7 · Чашка, которую вы помыли, чистая. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-26:i07; family: scripted_repeat_compare -->
 🎙 **The cup I washed is clean.**
 
-**8 · Чашка, которую я помыл, чистая. Предмет уже назван — не повторяйте его.**
+**8 · Чашка, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-26:i08; family: context_gap_grammar -->
 The cup I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже назван: it не нужно.*

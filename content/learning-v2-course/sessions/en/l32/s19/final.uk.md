@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні маленьку іграшку, яку купили для кішки. The toy I bought is small. — Іграшка, яку я купив, маленька. Складіть The toy + I bought + is small. Частина I bought уточнює toy. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
+Ви показуєте Анні маленьку іграшку, яку купили для кішки. The toy I bought is small. — Іграшка, яку ви купили, маленька. Складіть The toy + I bought + is small. Частина I bought уточнює toy. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The cat could ___ outside. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-19:i06; family: word_card -->
 > **toy** — Іграшка. Повторення знайомого слова.
 
-**7 · Іграшка, яку я купив, маленька. Скажіть без that.**
+**7 · Іграшка, яку ви купили, маленька. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-19:i07; family: scripted_repeat_compare -->
 🎙 **The toy I bought is small.**
 
-**8 · Іграшка, яку я купив, маленька. Предмет уже названо — не повторюйте його.**
+**8 · Іграшка, яку ви купили, маленька. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-19:i08; family: context_gap_grammar -->
 The toy I ___ is small. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*

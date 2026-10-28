@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви порівнюєте куплений горщик із рослиною й показуєте його Анні. The pot I bought is small. — Горщик, який я купив, маленький. Складіть The pot + I bought + is small. Частина I bought уточнює pot. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
+Ви порівнюєте куплений горщик із рослиною й показуєте його Анні. The pot I bought is small. — Горщик, який ви купили, маленький. Складіть The pot + I bought + is small. Частина I bought уточнює pot. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The plant could ___ dry. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-20:i06; family: word_card -->
 > **pot** — Горщик. Повторення знайомого слова.
 
-**7 · Горщик, який я купив, маленький. Скажіть без that.**
+**7 · Горщик, який ви купили, маленький. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-20:i07; family: scripted_repeat_compare -->
 🎙 **The pot I bought is small.**
 
-**8 · Горщик, який я купив, маленький. Предмет уже названо — не повторюйте його.**
+**8 · Горщик, який ви купили, маленький. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-20:i08; family: context_gap_grammar -->
 The pot I ___ is small. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*

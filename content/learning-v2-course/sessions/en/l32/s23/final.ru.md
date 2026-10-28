@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне небольшую книгу, которую взяли почитать у Бена. The book I borrowed is short. — Книга, которую я взял почитать, короткая. Соберите The book + I borrowed + is short. Часть I borrowed уточняет book. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
+Вы показываете Анне небольшую книгу, которую взяли почитать у Бена. The book I borrowed is short. — Книга, которую вы взяли почитать, короткая. Соберите The book + I borrowed + is short. Часть I borrowed уточняет book. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The lamp could ___ broken. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-23:i06; family: word_card -->
 > **book** — Книга. Повторение знакомого слова.
 
-**7 · Книга, которую я взял почитать, короткая. Скажите без that.**
+**7 · Книга, которую вы взяли почитать, короткая. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-23:i07; family: scripted_repeat_compare -->
 🎙 **The book I borrowed is short.**
 
-**8 · Книга, которую я взял почитать, короткая. Предмет уже назван — не повторяйте его.**
+**8 · Книга, которую вы взяли почитать, короткая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-23:i08; family: context_gap_grammar -->
 The book I ___ is short. → **borrowed** · borrowed it · borrowing
 - borrowed it — *Предмет уже назван: it не нужно.*

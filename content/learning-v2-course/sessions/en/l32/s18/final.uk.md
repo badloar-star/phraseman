@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви написали Анні коротку записку про те, що чекатимете у дворі. The note I wrote is short. — Записка, яку я написав, коротка. Складіть The note + I wrote + is short. Частина I wrote уточнює note. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
+Ви написали Анні коротку записку про те, що чекатимете у дворі. The note I wrote is short. — Записка, яку ви написали, коротка. Складіть The note + I wrote + is short. Частина I wrote уточнює note. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The door could ___ locked. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-18:i06; family: word_card -->
 > **note** — Записка. Повторення знайомого слова.
 
-**7 · Записка, яку я написав, коротка. Скажіть без that.**
+**7 · Записка, яку ви написали, коротка. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-18:i07; family: scripted_repeat_compare -->
 🎙 **The note I wrote is short.**
 
-**8 · Записка, яку я написав, коротка. Предмет уже названо — не повторюйте його.**
+**8 · Записка, яку ви написали, коротка. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-18:i08; family: context_gap_grammar -->
 The note I ___ is short. → **wrote** · wrote it · writing
 - wrote it — *Предмет уже названо: it не потрібне.*

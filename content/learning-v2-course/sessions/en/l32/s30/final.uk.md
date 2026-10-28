@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви дістаєте з багажу куплене перед поїздкою тепле пальто. The coat I bought is warm. — Пальто, яке я купив, тепле. Складіть The coat + I bought + is warm. Частина I bought уточнює coat. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
+Ви дістаєте з багажу куплене перед поїздкою тепле пальто. The coat I bought is warm. — Пальто, яке ви купили, тепле. Складіть The coat + I bought + is warm. Частина I bought уточнює coat. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The suitcase can't ___ mine. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-30:i06; family: word_card -->
 > **coat** — Пальто. Повторення знайомого слова.
 
-**7 · Пальто, яке я купив, тепле. Скажіть без that.**
+**7 · Пальто, яке ви купили, тепле. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-30:i07; family: scripted_repeat_compare -->
 🎙 **The coat I bought is warm.**
 
-**8 · Пальто, яке я купив, тепле. Предмет уже названо — не повторюйте його.**
+**8 · Пальто, яке ви купили, тепле. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-30:i08; family: context_gap_grammar -->
 The coat I ___ is warm. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*

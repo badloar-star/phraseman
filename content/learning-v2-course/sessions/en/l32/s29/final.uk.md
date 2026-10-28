@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви показуєте Анні новий наручний годинник, який купили перед поїздкою. The watch I bought is new. — Годинник, який я купив, новий. Складіть The watch + I bought + is new. Частина I bought уточнює watch. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
+Ви показуєте Анні новий наручний годинник, який купили перед поїздкою. The watch I bought is new. — Годинник, який ви купили, новий. Складіть The watch + I bought + is new. Частина I bought уточнює watch. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The clock can't ___ right. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-29:i06; family: word_card -->
 > **watch** — Наручний годинник. Повторення знайомого слова.
 
-**7 · Годинник, який я купив, новий. Скажіть без that.**
+**7 · Годинник, який ви купили, новий. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-29:i07; family: scripted_repeat_compare -->
 🎙 **The watch I bought is new.**
 
-**8 · Годинник, який я купив, новий. Предмет уже названо — не повторюйте його.**
+**8 · Годинник, який ви купили, новий. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-29:i08; family: context_gap_grammar -->
 The watch I ___ is new. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*

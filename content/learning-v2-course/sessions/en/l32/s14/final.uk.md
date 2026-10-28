@@ -38,7 +38,7 @@
 
 ### Уточнюємо предмет
 
-Ви вже купили молоко й показуєте холодну пляшку з холодильника. The milk I bought is cold. — Молоко, яке я купив, холодне. Складіть The milk + I bought + is cold. Частина I bought уточнює milk. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
+Ви вже купили молоко й показуєте холодну пляшку з холодильника. The milk I bought is cold. — Молоко, яке ви купили, холодне. Складіть The milk + I bought + is cold. Частина I bought уточнює milk. That можна опустити: I вже називає того, хто виконав дію з цим предметом.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -78,11 +78,11 @@ The bread might ___ fresh. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-14:i06; family: word_card -->
 > **milk** — Молоко. Повторення знайомого слова.
 
-**7 · Молоко, яке я купив, холодне. Скажіть без that.**
+**7 · Молоко, яке ви купили, холодне. Скажіть без that.**
 <!-- interaction_id: en:lesson-32:session-14:i07; family: scripted_repeat_compare -->
 🎙 **The milk I bought is cold.**
 
-**8 · Молоко, яке я купив, холодне. Предмет уже названо — не повторюйте його.**
+**8 · Молоко, яке ви купили, холодне. Предмет уже названо — не повторюйте його.**
 <!-- interaction_id: en:lesson-32:session-14:i08; family: context_gap_grammar -->
 The milk I ___ is cold. → **bought** · bought it · buying
 - bought it — *Предмет уже названо: it не потрібне.*

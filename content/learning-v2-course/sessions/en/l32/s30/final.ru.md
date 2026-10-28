@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы достаёте из багажа купленное перед поездкой тёплое пальто. The coat I bought is warm. — Пальто, которое я купил, тёплое. Соберите The coat + I bought + is warm. Часть I bought уточняет coat. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
+Вы достаёте из багажа купленное перед поездкой тёплое пальто. The coat I bought is warm. — Пальто, которое вы купили, тёплое. Соберите The coat + I bought + is warm. Часть I bought уточняет coat. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The suitcase can't ___ mine. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-30:i06; family: word_card -->
 > **coat** — Пальто. Повторение знакомого слова.
 
-**7 · Пальто, которое я купил, тёплое. Скажите без that.**
+**7 · Пальто, которое вы купили, тёплое. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-30:i07; family: scripted_repeat_compare -->
 🎙 **The coat I bought is warm.**
 
-**8 · Пальто, которое я купил, тёплое. Предмет уже назван — не повторяйте его.**
+**8 · Пальто, которое вы купили, тёплое. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-30:i08; family: context_gap_grammar -->
 The coat I ___ is warm. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*

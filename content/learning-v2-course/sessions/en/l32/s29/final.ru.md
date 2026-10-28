@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне новые наручные часы, которые купили перед поездкой. The watch I bought is new. — Часы, которые я купил, новые. Соберите The watch + I bought + is new. Часть I bought уточняет watch. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
+Вы показываете Анне новые наручные часы, которые купили перед поездкой. The watch I bought is new. — Часы, которые вы купили, новые. Соберите The watch + I bought + is new. Часть I bought уточняет watch. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The clock can't ___ right. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-29:i06; family: word_card -->
 > **watch** — Наручные часы. Повторение знакомого слова.
 
-**7 · Часы, которые я купил, новые. Скажите без that.**
+**7 · Часы, которые вы купили, новые. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-29:i07; family: scripted_repeat_compare -->
 🎙 **The watch I bought is new.**
 
-**8 · Часы, которые я купил, новые. Предмет уже назван — не повторяйте его.**
+**8 · Часы, которые вы купили, новые. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-29:i08; family: context_gap_grammar -->
 The watch I ___ is new. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*

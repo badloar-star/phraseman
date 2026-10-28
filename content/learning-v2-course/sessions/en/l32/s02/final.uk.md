@@ -22,9 +22,9 @@
 
 ## Інтро 2
 
-### Саме те пальто, яке я носив
+### Саме те пальто, яке ви носили
 
-Удома два пальта. Уточніть, яке ви залишили в машині: The coat I wore is in the car — пальто, яке я носив, у машині. Складіть The coat + I wore + is in the car. Частина I wore уточнює coat. Тут можна опустити that, бо всередині цієї частини вже є діяч I: пальто носили ви.
+Удома два пальта. Уточніть, яке ви залишили в машині: The coat I wore is in the car — пальто, яке ви носили, у машині. Складіть The coat + I wore + is in the car. Частина I wore уточнює coat. Тут можна опустити that, бо всередині цієї частини вже є діяч I: пальто носили ви.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -112,7 +112,7 @@ My coat must ___ in the car. → **be** · is · being
 - The bag I checked was empty. — *У записі звучить The pocket I checked was empty.*
 - The box I checked was empty. — *У записі звучить The pocket I checked was empty.*
 
-**14 · Ви перевірили кишеню й описуєте саме її: «Кишеня, яку я перевірив, була порожня».**
+**14 · Ви перевірили кишеню й описуєте саме її: «Кишеня, яку ви перевірили, була порожня».**
 <!-- interaction_id: en:lesson-32:session-02:i14; family: scripted_repeat_compare -->
 🎙 **The pocket I checked was empty.**
 

@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы выбираете для супа миску, которую только что помыли. The bowl I washed is clean. — Миска, которую я помыл, чистая. Соберите The bowl + I washed + is clean. Часть I washed уточняет bowl. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
+Вы выбираете для супа миску, которую только что помыли. The bowl I washed is clean. — Миска, которую вы помыли, чистая. Соберите The bowl + I washed + is clean. Часть I washed уточняет bowl. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The bread can't ___ fresh. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-28:i06; family: word_card -->
 > **bowl** — Миска. Повторение знакомого слова.
 
-**7 · Миска, которую я помыл, чистая. Скажите без that.**
+**7 · Миска, которую вы помыли, чистая. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-28:i07; family: scripted_repeat_compare -->
 🎙 **The bowl I washed is clean.**
 
-**8 · Миска, которую я помыл, чистая. Предмет уже назван — не повторяйте его.**
+**8 · Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-28:i08; family: context_gap_grammar -->
 The bowl I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже назван: it не нужно.*

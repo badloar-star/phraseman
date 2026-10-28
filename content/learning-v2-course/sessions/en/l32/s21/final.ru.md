@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне купленный клей, который хорошо держит дерево. The glue I bought is strong. — Клей, который я купил, прочный. Соберите The glue + I bought + is strong. Часть I bought уточняет glue. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
+Вы показываете Анне купленный клей, который хорошо держит дерево. The glue I bought is strong. — Клей, который вы купили, прочный. Соберите The glue + I bought + is strong. Часть I bought уточняет glue. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The chair could ___ broken. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-21:i06; family: word_card -->
 > **glue** — Клей. Повторение знакомого слова.
 
-**7 · Клей, который я купил, прочный. Скажите без that.**
+**7 · Клей, который вы купили, прочный. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-21:i07; family: scripted_repeat_compare -->
 🎙 **The glue I bought is strong.**
 
-**8 · Клей, который я купил, прочный. Предмет уже назван — не повторяйте его.**
+**8 · Клей, который вы купили, прочный. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-21:i08; family: context_gap_grammar -->
 The glue I ___ is strong. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*

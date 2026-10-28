@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете проводнику купленный билет на эту поездку. The ticket I bought is valid. — Билет, который я купил, действителен. Соберите The ticket + I bought + is valid. Часть I bought уточняет ticket. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
+Вы показываете проводнику купленный билет на эту поездку. The ticket I bought is valid. — Билет, который вы купили, действителен. Соберите The ticket + I bought + is valid. Часть I bought уточняет ticket. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The train could ___ late. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-24:i06; family: word_card -->
 > **ticket** — Билет. Повторение знакомого слова.
 
-**7 · Билет, который я купил, действителен. Скажите без that.**
+**7 · Билет, который вы купили, действителен. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-24:i07; family: scripted_repeat_compare -->
 🎙 **The ticket I bought is valid.**
 
-**8 · Билет, который я купил, действителен. Предмет уже назван — не повторяйте его.**
+**8 · Билет, который вы купили, действителен. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-24:i08; family: context_gap_grammar -->
 The ticket I ___ is valid. → **bought** · bought it · buying
 - bought it — *Предмет уже назван: it не нужно.*

@@ -38,7 +38,7 @@
 
 ### Уточняем предмет
 
-Вы показываете Анне вымытое блюдо для пирога. The dish I washed is clean. — Блюдо, которое я помыл, чистое. Соберите The dish + I washed + is clean. Часть I washed уточняет dish. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
+Вы показываете Анне вымытое блюдо для пирога. The dish I washed is clean. — Блюдо, которое вы помыли, чистое. Соберите The dish + I washed + is clean. Часть I washed уточняет dish. That можно опустить: I уже называет того, кто выполнил действие с этим предметом.
 
 **Выберите фразу для этой ситуации.**
 
@@ -78,11 +78,11 @@ The oven could ___ cold. → **be** · is · to be
 <!-- interaction_id: en:lesson-32:session-22:i06; family: word_card -->
 > **dish** — Блюдо, посуда. Повторение знакомого слова.
 
-**7 · Блюдо, которое я помыл, чистое. Скажите без that.**
+**7 · Блюдо, которое вы помыли, чистое. Скажите без that.**
 <!-- interaction_id: en:lesson-32:session-22:i07; family: scripted_repeat_compare -->
 🎙 **The dish I washed is clean.**
 
-**8 · Блюдо, которое я помыл, чистое. Предмет уже назван — не повторяйте его.**
+**8 · Блюдо, которое вы помыли, чистое. Предмет уже назван — не повторяйте его.**
 <!-- interaction_id: en:lesson-32:session-22:i08; family: context_gap_grammar -->
 The dish I ___ is clean. → **washed** · washed it · washing
 - washed it — *Предмет уже назван: it не нужно.*

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-18:i01",
+    "correctText": "casa",
+    "correctResponseId": "es:lesson-04:session-18:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-18:i02",
+    "correctText": "su",
+    "correctResponseId": "es:lesson-04:session-18:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-18:i03",
+    "correctText": "Es su casa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-18:i04",
+    "correctText": "es",
+    "correctResponseId": "es:lesson-04:session-18:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-18:i05",
+    "correctText": "Su casa es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-18:i06",
+    "correctText": "Su casa es blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-18:i07",
+    "correctText": "Es su casa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-18:i08",
+    "correctText": "blanca",
+    "correctResponseId": "es:lesson-04:session-18:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-18:i09",
+    "correctText": "Es su casa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-18:i10",
+    "correctText": "Su casa es grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-18:i11",
+    "correctText": "Su casa es blanca.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-18:i12",
+    "correctText": "Su casa es muy grande.",
+    "correctResponseId": null
+  }
+]

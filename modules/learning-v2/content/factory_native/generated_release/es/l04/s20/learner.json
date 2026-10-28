@@ -1,0 +1,642 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-20",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — hija",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — hija",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-20:i01:audio",
+          "transcript": "hija"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-20:i01:r1",
+            "targetText": "hija",
+            "meaningByLocale": {
+              "ru": "дочь; женский род. Буква h не произносится. 🔊 *hija*",
+              "uk": "дочка; жіночий рід. Буква h не вимовляється. 🔊 *hija*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "hija",
+          "definitionByLocale": {
+            "ru": "дочь; женский род. Буква h не произносится. 🔊 *hija*",
+            "uk": "дочка; жіночий рід. Буква h не вимовляється. 🔊 *hija*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-20:i02:r1",
+          "text": "hija"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i02:r2",
+          "text": "hijo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-20:i02:audio",
+          "transcript": "hija"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-20:i02:r1",
+            "targetText": "hija",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-20:i02:r2",
+            "targetText": "hijo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-20:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит конечное a: hija — дочь.",
+              "uk": "Звучить кінцеве a: hija — дочка."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — речь о Педро: это его дочь",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-20:i03:r1",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i03:r2",
+          "text": "mi"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i03:r3",
+          "text": "tu"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — речь о Педро: это его дочь",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь о Педро: это его дочь",
+          "uk": "Вставте слово — йдеться про Педро: це його дочка"
+        },
+        "gappedTargetPhrase": "Es ___ hija.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-20:i03:r1",
+            "text": "su"
+          },
+          {
+            "responseId": "es:lesson-04:session-20:i03:r2",
+            "text": "mi"
+          },
+          {
+            "responseId": "es:lesson-04:session-20:i03:r3",
+            "text": "tu"
+          }
+        ],
+        "testedDimension": "Вставьте слово — речь о Педро: это его дочь",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь о Педро: это его дочь",
+            "feedbackByLocale": {
+              "ru": "Это дочь Педро, не ваша: su.",
+              "uk": "Це дочка Педро, не ваша: su."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-20:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — речь о Педро: это его дочь",
+            "feedbackByLocale": {
+              "ru": "Говорите подруге о дочери Педро: su.",
+              "uk": "Говорите подрузі про дочку Педро: su."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь о Педро: это его дочь",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-20:i04:r1",
+          "text": "Плитки: hija"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i04:r2",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i04:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i04:r4",
+          "text": "la."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь о Педро: это его дочь",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es su hija.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь о Педро: это его дочь",
+          "uk": "Зберіть фразу — йдеться про Педро: це його дочка"
+        },
+        "orderedTokens": [
+          "Es",
+          "su",
+          "hija"
+        ],
+        "authoredDistractorTokens": [
+          "la"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-20:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь о Педро: это его дочь",
+            "feedbackByLocale": {
+              "ru": "перед su здесь нет артикля.",
+              "uk": "перед su тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь о Педро: его дочь высокая; начните с Su hija",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-20:i05:r1",
+          "text": "Плитки: alta"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i05:r3",
+          "text": "hija"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i05:r4",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i05:r5",
+          "text": "alto."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь о Педро: его дочь высокая; начните с Su hija",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Su hija es alta.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь о Педро: его дочь высокая; начните с Su hija",
+          "uk": "Зберіть фразу — йдеться про Педро: його дочка висока; почніть з Su hija"
+        },
+        "orderedTokens": [
+          "Su",
+          "hija",
+          "es",
+          "alta"
+        ],
+        "authoredDistractorTokens": [
+          "alto"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-20:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь о Педро: его дочь высокая; начните с Su hija",
+            "feedbackByLocale": {
+              "ru": "описываете дочь.",
+              "uk": "описуєте дочку."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — дочь Педро высокая",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-20:i06:r1",
+          "text": "alta"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i06:r2",
+          "text": "alto"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i06:r3",
+          "text": "altas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — дочь Педро высокая",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — дочь Педро высокая",
+          "uk": "Вставте слово — дочка Педро висока"
+        },
+        "gappedTargetPhrase": "Su hija es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-20:i06:r1",
+            "text": "alta"
+          },
+          {
+            "responseId": "es:lesson-04:session-20:i06:r2",
+            "text": "alto"
+          },
+          {
+            "responseId": "es:lesson-04:session-20:i06:r3",
+            "text": "altas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — дочь Педро высокая",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-20:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дочь Педро высокая",
+            "feedbackByLocale": {
+              "ru": "Hija женского рода: alta.",
+              "uk": "Hija жіночого роду: alta."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-20:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дочь Педро высокая",
+            "feedbackByLocale": {
+              "ru": "Дочь одна: alta.",
+              "uk": "Дочка одна: alta."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — речь о Педро: его дочь приветливая; начните с Su hija",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-20:i07:r1",
+          "text": "Плитки: amable"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i07:r3",
+          "text": "hija"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i07:r4",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i07:r5",
+          "text": "amables."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — речь о Педро: его дочь приветливая; начните с Su hija",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Su hija es amable.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь о Педро: его дочь приветливая; начните с Su hija",
+          "uk": "Зберіть фразу — йдеться про Педро: його дочка привітна; почніть з Su hija"
+        },
+        "orderedTokens": [
+          "Su",
+          "hija",
+          "es",
+          "amable"
+        ],
+        "authoredDistractorTokens": [
+          "amables"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-20:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — речь о Педро: его дочь приветливая; начните с Su hija",
+            "feedbackByLocale": {
+              "ru": "дочь одна.",
+              "uk": "дочка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-20:i08:r1",
+          "text": "Плитки: su"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i08:r2",
+          "text": "hija"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-20:i08:r4",
+          "text": "hijo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-20:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-20:i08:audio",
+          "transcript": "Es su hija."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es su hija.",
+        "orderedTokens": [
+          "Es",
+          "su",
+          "hija"
+        ],
+        "authoredDistractorTokens": [
+          "hijo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-20:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит hija.",
+              "uk": "звучить hija."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро: это его дочь; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-20:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро: это его дочь; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-20:i09:audio",
+          "transcript": "Es su hija."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es su hija.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро: его дочь высокая; начните с Su hija",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-20:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро: его дочь высокая; начните с Su hija",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-20:i10:audio",
+          "transcript": "Su hija es alta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Su hija es alta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро: его дочь приветливая; начните с Su hija",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро: его дочь приветливая; начните с Su hija",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-20:i11:audio",
+          "transcript": "Su hija es amable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Su hija es amable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — речь о Педро: его дочь очень приветливая; начните с Su hija",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — речь о Педро: его дочь очень приветливая; начните с Su hija",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-20:i12:audio",
+          "transcript": "Su hija es muy amable."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Su hija es muy amable.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ef2d2721f4f507cd1d3ff79a89c28ff735a7e3a2a41c17db8ffc539e9ec804c1"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-20:i01",
+    "correctText": "hija",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-20:i02",
+    "correctText": "hija",
+    "correctResponseId": "es:lesson-04:session-20:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-20:i03",
+    "correctText": "su",
+    "correctResponseId": "es:lesson-04:session-20:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-20:i04",
+    "correctText": "Es su hija.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-20:i05",
+    "correctText": "Su hija es alta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-20:i06",
+    "correctText": "alta",
+    "correctResponseId": "es:lesson-04:session-20:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-20:i07",
+    "correctText": "Su hija es amable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-20:i08",
+    "correctText": "Es su hija.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-20:i09",
+    "correctText": "Es su hija.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-20:i10",
+    "correctText": "Su hija es alta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-20:i11",
+    "correctText": "Su hija es amable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-20:i12",
+    "correctText": "Su hija es muy amable.",
+    "correctResponseId": null
+  }
+]

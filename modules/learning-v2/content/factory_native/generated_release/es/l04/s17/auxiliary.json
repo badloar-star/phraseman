@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-17",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-17:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-17:intro1:r2": {
+          "ru": "Tu означало бы сумку подруги, с которой говорите.",
+          "uk": "Tu означало б сумку подруги, з якою говорите."
+        },
+        "es:lesson-04:session-17:intro1:r3": {
+          "ru": "Mi означало бы вашу собственную сумку.",
+          "uk": "Mi означало б вашу власну сумку."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-17:intro2:r2": {
+          "ru": "Цвет согласуется с bolso: negro.",
+          "uk": "Колір узгоджується з bolso: negro."
+        },
+        "es:lesson-04:session-17:intro2:r3": {
+          "ru": "Перед su здесь не нужен el.",
+          "uk": "Перед su тут не потрібен el."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-17:intro3:r2": {
+          "ru": "Один предмет: es.",
+          "uk": "Один предмет: es."
+        },
+        "es:lesson-04:session-17:intro3:r3": {
+          "ru": "Один предмет: grande.",
+          "uk": "Один предмет: grande."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "16c233e4bfffd38e9eceb61e8802e6baedcf24b76f880a3c3e1a009c836c491e"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-04:session-19:i01",
+    "correctText": "hijo",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-19:i02",
+    "correctText": "hijo",
+    "correctResponseId": "es:lesson-04:session-19:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-19:i03",
+    "correctText": "su",
+    "correctResponseId": "es:lesson-04:session-19:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-19:i04",
+    "correctText": "Es su hijo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-19:i05",
+    "correctText": "Su hijo es alto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-19:i06",
+    "correctText": "amable",
+    "correctResponseId": "es:lesson-04:session-19:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-04:session-19:i07",
+    "correctText": "Su hijo es amable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-19:i08",
+    "correctText": "Es su hijo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-19:i09",
+    "correctText": "Es su hijo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-19:i10",
+    "correctText": "Su hijo es alto.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-19:i11",
+    "correctText": "Su hijo es amable.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-04:session-19:i12",
+    "correctText": "Su hijo es muy amable.",
+    "correctResponseId": null
+  }
+]

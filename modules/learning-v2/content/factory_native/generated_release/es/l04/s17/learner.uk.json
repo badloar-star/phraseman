@@ -1,0 +1,642 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-04:session-17",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-04:session-17:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — su",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — su",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-17:i01:audio",
+          "transcript": "su"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-17:i01:r1",
+            "targetText": "su",
+            "meaningByLocale": {
+              "ru": "его; также её, их или вежливое Ваш — по ситуации. Здесь говорим о сумке Педро. 🔊 *su*",
+              "uk": "його; також її, їхній або ввічливе Ваш — залежно від ситуації. Тут говоримо про сумку Педро. 🔊 *su*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "su",
+          "definitionByLocale": {
+            "ru": "его; также её, их или вежливое Ваш — по ситуации. Здесь говорим о сумке Педро. 🔊 *su*",
+            "uk": "його; також її, їхній або ввічливе Ваш — залежно від ситуації. Тут говоримо про сумку Педро. 🔊 *su*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-17:i02:r1",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i02:r2",
+          "text": "tu"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-17:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-17:i02:audio",
+          "transcript": "su"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-04:session-17:i02:r1",
+            "targetText": "su",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-04:session-17:i02:r2",
+            "targetText": "tu",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "В записи su, с начальным звуком s.",
+              "uk": "У записі su, з початковим звуком s."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — йдеться про Педро: це його сумка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-17:i03:r1",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i03:r2",
+          "text": "tu"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i03:r3",
+          "text": "mi"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — йдеться про Педро: це його сумка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — речь о Педро: это его сумка",
+          "uk": "Вставте слово — йдеться про Педро: це його сумка"
+        },
+        "gappedTargetPhrase": "Es ___ bolso.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-17:i03:r1",
+            "text": "su"
+          },
+          {
+            "responseId": "es:lesson-04:session-17:i03:r2",
+            "text": "tu"
+          },
+          {
+            "responseId": "es:lesson-04:session-17:i03:r3",
+            "text": "mi"
+          }
+        ],
+        "testedDimension": "Вставте слово — йдеться про Педро: це його сумка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-17:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — йдеться про Педро: це його сумка",
+            "feedbackByLocale": {
+              "ru": "Обращаетесь к подруге, но сумка Педро: su.",
+              "uk": "Звертаєтеся до подруги, але сумка Педро: su."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-17:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — йдеться про Педро: це його сумка",
+            "feedbackByLocale": {
+              "ru": "Сумка не ваша; говорите о Педро: su.",
+              "uk": "Сумка не ваша; говорите про Педро: su."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — йдеться про Педро: це його сумка; використайте bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-17:i04:r1",
+          "text": "Плитки: bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i04:r2",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i04:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i04:r4",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — йдеться про Педро: це його сумка; використайте bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es su bolso.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь о Педро: это его сумка; используйте bolso",
+          "uk": "Зберіть фразу — йдеться про Педро: це його сумка; використайте bolso"
+        },
+        "orderedTokens": [
+          "Es",
+          "su",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-17:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — йдеться про Педро: це його сумка; використайте bolso",
+            "feedbackByLocale": {
+              "ru": "перед su здесь нет артикля.",
+              "uk": "перед su тут немає артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — йдеться про Педро: його сумка чорна; почніть з Su bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-17:i05:r1",
+          "text": "Плитки: negro"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i05:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i05:r3",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i05:r4",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i05:r5",
+          "text": "negra."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — йдеться про Педро: його сумка чорна; почніть з Su bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Su bolso es negro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь о Педро: его сумка чёрная; начните с Su bolso",
+          "uk": "Зберіть фразу — йдеться про Педро: його сумка чорна; почніть з Su bolso"
+        },
+        "orderedTokens": [
+          "Su",
+          "bolso",
+          "es",
+          "negro"
+        ],
+        "authoredDistractorTokens": [
+          "negra"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-17:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — йдеться про Педро: його сумка чорна; почніть з Su bolso",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — сумка Педро велика",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-17:i06:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i06:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i06:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — сумка Педро велика",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — сумка Педро большая",
+          "uk": "Вставте слово — сумка Педро велика"
+        },
+        "gappedTargetPhrase": "Su bolso ___ grande.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-04:session-17:i06:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-04:session-17:i06:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-04:session-17:i06:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставте слово — сумка Педро велика",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-04:session-17:i06:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — сумка Педро велика",
+            "feedbackByLocale": {
+              "ru": "Сумка одна: es.",
+              "uk": "Сумка одна: es."
+            }
+          },
+          {
+            "responseId": "es:lesson-04:session-17:i06:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — сумка Педро велика",
+            "feedbackByLocale": {
+              "ru": "Описываете сумку, а не себя: es.",
+              "uk": "Описуєте сумку, а не себе: es."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — йдеться про Педро: його сумка велика; почніть з Su bolso",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-17:i07:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i07:r3",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i07:r4",
+          "text": "su"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i07:r5",
+          "text": "grandes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — йдеться про Педро: його сумка велика; почніть з Su bolso",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Su bolso es grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — речь о Педро: его сумка большая; начните с Su bolso",
+          "uk": "Зберіть фразу — йдеться про Педро: його сумка велика; почніть з Su bolso"
+        },
+        "orderedTokens": [
+          "Su",
+          "bolso",
+          "es",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "grandes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-17:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — йдеться про Педро: його сумка велика; почніть з Su bolso",
+            "feedbackByLocale": {
+              "ru": "сумка одна.",
+              "uk": "сумка одна."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-04:session-17:i08:r1",
+          "text": "Плитки: su"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i08:r2",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i08:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-04:session-17:i08:r4",
+          "text": "tu."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-17:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-17:i08:audio",
+          "transcript": "Es su bolso."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Es su bolso.",
+        "orderedTokens": [
+          "Es",
+          "su",
+          "bolso"
+        ],
+        "authoredDistractorTokens": [
+          "tu"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-04:session-17:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит su.",
+              "uk": "звучить su."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — йдеться про Педро: це його сумка; почніть з Es, використайте bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-17:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — йдеться про Педро: це його сумка; почніть з Es, використайте bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-17:i09:audio",
+          "transcript": "Es su bolso."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es su bolso.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — йдеться про Педро: його сумка чорна; почніть з Su bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-17:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — йдеться про Педро: його сумка чорна; почніть з Su bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-17:i10:audio",
+          "transcript": "Su bolso es negro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Su bolso es negro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — йдеться про Педро: його сумка велика; почніть з Su bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — йдеться про Педро: його сумка велика; почніть з Su bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-17:i11:audio",
+          "transcript": "Su bolso es grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Su bolso es grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-04:session-17:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — йдеться про Педро: його сумка дуже велика; почніть з Su bolso",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-04:session-17:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — йдеться про Педро: його сумка дуже велика; почніть з Su bolso",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-04:session-17:i12:audio",
+          "transcript": "Su bolso es muy grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Su bolso es muy grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8f08eb873ebd2f4b0537c0ba178a62bd4dd5f768ee3b12ce64a195c4a8e18c13"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "понимать su как «её», когда речь идёт об Ане.",
+    "uk": "розуміти su як «її», коли йдеться про Ану."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дом Аны",
+        "uk": "Будинок Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Рассказываете другу об Ане и показываете фотографию её дома. Скажите `Es su casa` — «Это её дом». Соберите `es` + `su casa`. В прошлом занятии su указывало на Педро; здесь речь об Ане, поэтому переводим «её». Само su не меняется из-за пола владельца.",
+        "uk": "Розповідаєте другу про Ану й показуєте фотографію її будинку. Скажіть `Es su casa` — «Це її будинок». Зберіть `es` + `su casa`. У минулому занятті su вказувало на Педро; тут ідеться про Ану, тому перекладаємо «її». Саме su не змінюється через стать власника."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане. Скажите другу: «Это её дом». Начните с Es.",
+          "uk": "Йдеться про Ану. Скажіть другу: «Це її будинок». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-18:intro1:r1",
+              "text": "Es su casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro1:r2",
+              "text": "Es tu casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro1:r3",
+              "text": "Es mi casa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-18:intro1:r1",
+              "text": "Es su casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro1:r2",
+              "text": "Es tu casa."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro1:r3",
+              "text": "Es mi casa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане. Скажите другу: «Это её дом». Начните с Es.",
+          "uk": "Йдеться про Ану. Скажіть другу: «Це її будинок». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Большой дом",
+        "uk": "Великий будинок"
+      },
+      "bodyByLocale": {
+        "ru": "На фотографии видно, какой у Аны большой дом. Скажите `Su casa es grande` — «Её дом большой». Соберите `su casa` + `es` + `grande`. Su casa называет дом Аны, а es grande описывает размер. Перед su не добавляйте la.",
+        "uk": "На фотографії видно, який в Ани великий будинок. Скажіть `Su casa es grande` — «Її будинок великий». Зберіть `su casa` + `es` + `grande`. Su casa називає будинок Ани, а es grande описує розмір. Перед su не додавайте la."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане. Скажите: «Её дом большой». Начните с Su casa.",
+          "uk": "Йдеться про Ану. Скажіть: «Її будинок великий». Почніть з Su casa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-18:intro2:r1",
+              "text": "Su casa es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro2:r2",
+              "text": "Su casa son grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro2:r3",
+              "text": "La su casa es grande."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-18:intro2:r1",
+              "text": "Su casa es grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro2:r2",
+              "text": "Su casa son grande."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro2:r3",
+              "text": "La su casa es grande."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане. Скажите: «Её дом большой». Начните с Su casa.",
+          "uk": "Йдеться про Ану. Скажіть: «Її будинок великий». Почніть з Su casa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Белый дом",
+        "uk": "Білий будинок"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, какого цвета дом Аны. Скажите `Su casa es blanca` — «Её дом белый». Соберите `su casa` + `es` + `blanca`. Испанское casa женского рода, поэтому цвет — blanca. Окончание цвета выбираем по слову casa, а не потому, что владелица — женщина.",
+        "uk": "Друг запитує, якого кольору будинок Ани. Скажіть `Su casa es blanca` — «Її будинок білий». Зберіть `su casa` + `es` + `blanca`. Іспанське casa жіночого роду, тому колір — blanca. Закінчення кольору вибираємо за словом casa, а не тому, що власниця — жінка."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане. Скажите: «Её дом белый». Начните с Su casa.",
+          "uk": "Йдеться про Ану. Скажіть: «Її будинок білий». Почніть з Su casa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-18:intro3:r1",
+              "text": "Su casa es blanca."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro3:r2",
+              "text": "Su casa es blanco."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro3:r3",
+              "text": "Su casa es blancas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-18:intro3:r1",
+              "text": "Su casa es blanca."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro3:r2",
+              "text": "Su casa es blanco."
+            },
+            {
+              "responseId": "es:lesson-04:session-18:intro3:r3",
+              "text": "Su casa es blancas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане. Скажите: «Её дом белый». Начните с Su casa.",
+          "uk": "Йдеться про Ану. Скажіть: «Її будинок білий». Почніть з Su casa."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "36de984187f6b6dba977f33ef5641cd5f3b5527703e43fe1496d7d53754468e7"
+}

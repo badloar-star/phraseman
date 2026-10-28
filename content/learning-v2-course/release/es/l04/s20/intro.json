@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-04:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "назвать дочь Педро и согласовать описание со словом hija.",
+    "uk": "назвати дочку Педро й узгодити опис зі словом hija."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-04:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Дочь Педро",
+        "uk": "Дочка Педро"
+      },
+      "bodyByLocale": {
+        "ru": "На фотографии рядом с Педро его дочь. Скажите подруге `Es su hija` — «Это его дочь». Hija значит «дочь»; h, как в hijo, не произносится. Соберите `es` + `su hija`. Su здесь указывает на Педро. Для женского hija форма su остаётся той же: отдельной женской формы у su нет.",
+        "uk": "На фотографії поруч із Педро його дочка. Скажіть подрузі `Es su hija` — «Це його дочка». Hija означає «дочка»; h, як у hijo, не вимовляється. Зберіть `es` + `su hija`. Su тут указує на Педро. Для жіночого hija форма su залишається тією самою: окремої жіночої форми в su немає."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите подруге: «Это его дочь». Начните с Es.",
+          "uk": "Йдеться про Педро. Скажіть подрузі: «Це його дочка». Почніть з Es."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-20:intro1:r1",
+              "text": "Es su hija."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro1:r2",
+              "text": "Es tu hija."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro1:r3",
+              "text": "Es mi hija."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-20:intro1:r1",
+              "text": "Es su hija."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro1:r2",
+              "text": "Es tu hija."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro1:r3",
+              "text": "Es mi hija."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите подруге: «Это его дочь». Начните с Es.",
+          "uk": "Йдеться про Педро. Скажіть подрузі: «Це його дочка». Почніть з Es."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-04:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Высокая дочь",
+        "uk": "Висока дочка"
+      },
+      "bodyByLocale": {
+        "ru": "Подруга замечает, что дочь Педро высокая. Скажите `Su hija es alta` — «Его дочь высокая». Соберите `su hija` + `es` + `alta`. Описание относится к дочери: женское hija требует alta. То, что её отец мужчина, не меняет согласование.",
+        "uk": "Подруга помічає, що дочка Педро висока. Скажіть `Su hija es alta` — «Його дочка висока». Зберіть `su hija` + `es` + `alta`. Опис стосується дочки: жіноче hija потребує alta. Те, що її батько чоловік, не змінює узгодження."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите: «Его дочь высокая». Начните с Su hija.",
+          "uk": "Йдеться про Педро. Скажіть: «Його дочка висока». Почніть з Su hija."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-20:intro2:r1",
+              "text": "Su hija es alta."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro2:r2",
+              "text": "Su hija es alto."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro2:r3",
+              "text": "Su hija es altas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-20:intro2:r1",
+              "text": "Su hija es alta."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro2:r2",
+              "text": "Su hija es alto."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro2:r3",
+              "text": "Su hija es altas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите: «Его дочь высокая». Начните с Su hija.",
+          "uk": "Йдеться про Педро. Скажіть: «Його дочка висока». Почніть з Su hija."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-04:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Приветливая дочь",
+        "uk": "Привітна дочка"
+      },
+      "bodyByLocale": {
+        "ru": "Вы знакомы с дочерью Педро. Скажите подруге `Su hija es amable` — «Его дочь приветливая». Соберите `su hija` + `es` + `amable`. Знакомое amable подходит и к hijo, и к hija без изменения окончания. Здесь описываем одного человека, поэтому не добавляем -s.",
+        "uk": "Ви знайомі з дочкою Педро. Скажіть подрузі `Su hija es amable` — «Його дочка привітна». Зберіть `su hija` + `es` + `amable`. Знайоме amable підходить і до hijo, і до hija без зміни закінчення. Тут описуємо одну людину, тому не додаємо -s."
+      },
+      "question": {
+        "interactionId": "es:lesson-04:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите: «Его дочь приветливая». Начните с Su hija.",
+          "uk": "Йдеться про Педро. Скажіть: «Його дочка привітна». Почніть з Su hija."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-04:session-20:intro3:r1",
+              "text": "Su hija es amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro3:r2",
+              "text": "Su hija son amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro3:r3",
+              "text": "Su hija es amables."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-04:session-20:intro3:r1",
+              "text": "Su hija es amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro3:r2",
+              "text": "Su hija son amable."
+            },
+            {
+              "responseId": "es:lesson-04:session-20:intro3:r3",
+              "text": "Su hija es amables."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите: «Его дочь приветливая». Начните с Su hija.",
+          "uk": "Йдеться про Педро. Скажіть: «Його дочка привітна». Почніть з Su hija."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "212f146b1bdccbf53898cf111fdacba42328074e492e533421f75a38b5a6d08a"
+}

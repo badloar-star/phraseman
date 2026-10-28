@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-20",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-20:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-20:intro1:r2": {
+          "ru": "Tu означало бы дочь собеседницы, а речь о Педро.",
+          "uk": "Tu означало б дочку співрозмовниці, а йдеться про Педро."
+        },
+        "es:lesson-04:session-20:intro1:r3": {
+          "ru": "Mi означало бы вашу дочь.",
+          "uk": "Mi означало б вашу дочку."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-20:intro2:r2": {
+          "ru": "Описываете дочь, поэтому alta.",
+          "uk": "Описуєте дочку, тому alta."
+        },
+        "es:lesson-04:session-20:intro2:r3": {
+          "ru": "Дочь одна: alta.",
+          "uk": "Дочка одна: alta."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-20:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-20:intro3:r2": {
+          "ru": "Дочь одна: es.",
+          "uk": "Дочка одна: es."
+        },
+        "es:lesson-04:session-20:intro3:r3": {
+          "ru": "Один человек: amable.",
+          "uk": "Одна людина: amable."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b4f655f998fe4ace734b4c5ae55cdc212e5ad127c25dd7e6a317b75b7c8a7ffd"
+}

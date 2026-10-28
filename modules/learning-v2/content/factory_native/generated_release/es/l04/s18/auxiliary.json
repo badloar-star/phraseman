@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-18",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-18:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-18:intro1:r2": {
+          "ru": "Tu означало бы дом друга, с которым говорите.",
+          "uk": "Tu означало б будинок друга, з яким говорите."
+        },
+        "es:lesson-04:session-18:intro1:r3": {
+          "ru": "Mi означало бы ваш дом.",
+          "uk": "Mi означало б ваш будинок."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-18:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-18:intro2:r2": {
+          "ru": "Один дом: es.",
+          "uk": "Один будинок: es."
+        },
+        "es:lesson-04:session-18:intro2:r3": {
+          "ru": "Перед su здесь не нужен артикль.",
+          "uk": "Перед su тут не потрібен артикль."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-18:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-18:intro3:r2": {
+          "ru": "Цвет согласуется с женским casa.",
+          "uk": "Колір узгоджується з жіночим casa."
+        },
+        "es:lesson-04:session-18:intro3:r3": {
+          "ru": "Дом один: blanca.",
+          "uk": "Будинок один: blanca."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "88e35149667c2870b37d4cd1cb99e572358617bfd359d777324a1cbeec60308c"
+}

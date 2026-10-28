@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-04:session-19",
+  "entries": [
+    {
+      "interactionId": "es:lesson-04:session-19:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-19:intro1:r2": {
+          "ru": "Tu означало бы сына собеседника, а речь об Ане.",
+          "uk": "Tu означало б сина співрозмовника, а йдеться про Ану."
+        },
+        "es:lesson-04:session-19:intro1:r3": {
+          "ru": "Mi означало бы вашего сына.",
+          "uk": "Mi означало б вашого сина."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-19:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-19:intro2:r2": {
+          "ru": "Описываете сына, поэтому alto.",
+          "uk": "Описуєте сина, тому alto."
+        },
+        "es:lesson-04:session-19:intro2:r3": {
+          "ru": "Сын один: alto.",
+          "uk": "Син один: alto."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-04:session-19:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-04:session-19:intro3:r2": {
+          "ru": "Сын один: es.",
+          "uk": "Син один: es."
+        },
+        "es:lesson-04:session-19:intro3:r3": {
+          "ru": "Один человек: amable.",
+          "uk": "Одна людина: amable."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "d52e5d4a65a8e649acdc4ee2da5cac69e3ddd6da5e83afacc360cce1acd4dd67"
+}

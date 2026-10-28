@@ -1295,4 +1295,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать tu или tus, уточнять принадлежность и исправлять ошибку.","uk":"вибирати tu або tus, уточнювати належність і виправляти помилку."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 17,
+    sourceFingerprint: "5e8c26c327d356653d07ac1dfba698be4615c199db0cc55f8f15bf1c7f6e7911",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать su перед названием вещи другого человека.","uk":"використовувати su перед назвою речі іншої людини."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 18,
+    sourceFingerprint: "8496f3668481eef85918543a32a2e4fb6203a7341056521d26da9aa35d789f1f",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"понимать su как «её», когда речь идёт об Ане.","uk":"розуміти su як «її», коли йдеться про Ану."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 19,
+    sourceFingerprint: "995f0a9a544bf7a93dc5ff8815d60e3fa4452ca663d81e534fe9daefc248be7e",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать сына Аны с помощью su и описать его.","uk":"назвати сина Ани за допомогою su й описати його."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 4, sessionOrdinal: 20,
+    sourceFingerprint: "c90afd6434cde1e9e9d7cf425adaf057138601cb6d84070843513202f0f0f7a2",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать дочь Педро и согласовать описание со словом hija.","uk":"назвати дочку Педро й узгодити опис зі словом hija."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 4","uk":"Іспанська · Урок 4"}),
+  }),
 ]);

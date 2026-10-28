@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "соединить tenemos с количеством членов семьи.",
+    "uk": "поєднати tenemos з кількістю членів сім’ї."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Рассказать о детях",
+        "uk": "Розповісти про дітей"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с партнёром знакомитесь с соседями. У вас сын и дочь. Скажите `Tenemos dos hijos` — «У нас двое детей». Соберите `Tenemos` + `dos` + `hijos`. Tenemos означает «у нас есть». После dos нужно множественное hijos; это слово может обозначать детей обоих полов вместе. Артикль перед dos здесь не добавляем.",
+        "uk": "Ви з партнером знайомитеся із сусідами. У вас син і дочка. Скажіть `Tenemos dos hijos` — «У нас двоє дітей». Складіть `Tenemos` + `dos` + `hijos`. Tenemos означає «у нас є». Після dos потрібна множина hijos; це слово може позначати дітей обох статей разом. Артикль перед dos тут не додаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У нас двое детей». Начните с Tenemos, используйте dos hijos.",
+          "uk": "Скажіть «У нас двоє дітей». Почніть з Tenemos, використайте dos hijos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-53:intro1:r1",
+              "text": "Tenemos dos hijos."
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro1:r2",
+              "text": "Tenemos dos hijo."
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro1:r3",
+              "text": "Tengo dos hijos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-53:intro1:r1",
+              "text": "Tenemos dos hijos."
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro1:r2",
+              "text": "Tenemos dos hijo."
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro1:r3",
+              "text": "Tengo dos hijos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У нас двое детей». Начните с Tenemos, используйте dos hijos.",
+          "uk": "Скажіть «У нас двоє дітей». Почніть з Tenemos, використайте dos hijos."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить, что обе — девочки",
+        "uk": "Уточнити, що обидві — дівчатка"
+      },
+      "bodyByLocale": {
+        "ru": "В другой семье две дочери. Один из родителей говорит: `Tenemos dos hijas` — «У нас две дочери». Соберите `Tenemos` + `dos` + `hijas`. Если хотите точно назвать дочерей, выберите hijas. Глагол tenemos и число dos не меняются.",
+        "uk": "В іншій сім’ї дві дочки. Хтось із батьків каже: `Tenemos dos hijas` — «У нас дві дочки». Складіть `Tenemos` + `dos` + `hijas`. Якщо хочете точно назвати дочок, виберіть hijas. Дієслово tenemos та число dos не змінюються."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У нас две дочери». Начните с Tenemos, используйте dos hijas.",
+          "uk": "Скажіть «У нас дві дочки». Почніть з Tenemos, використайте dos hijas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-53:intro2:r1",
+              "text": "Tenemos dos hijas."
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro2:r2",
+              "text": "Tenemos dos hija."
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro2:r3",
+              "text": "Tenemos dos hijos."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-53:intro2:r1",
+              "text": "Tenemos dos hijas."
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro2:r2",
+              "text": "Tenemos dos hija."
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro2:r3",
+              "text": "Tenemos dos hijos."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У нас две дочери». Начните с Tenemos, используйте dos hijas.",
+          "uk": "Скажіть «У нас дві дочки». Почніть з Tenemos, використайте dos hijas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить число детей у соседей",
+        "uk": "Уточнити кількість дітей у сусідів"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обращаетесь к паре соседей и уточняете: `¿Ustedes tienen dos hijos?` — «У вас двое детей?» Соберите `¿Ustedes` + `tienen` + `dos hijos?`. Здесь ustedes означает двух собеседников, поэтому с ним нужна форма tienen. Вопрос касается количества детей.",
+        "uk": "Ви звертаєтеся до пари сусідів та уточнюєте: `¿Ustedes tienen dos hijos?` — «У вас двоє дітей?» Складіть `¿Ustedes` + `tienen` + `dos hijos?`. Тут ustedes означає двох співрозмовників, тому з ним потрібна форма tienen. Запитання стосується кількості дітей."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите пару соседей «У вас двое детей?». Начните с ¿Ustedes tienen, используйте dos hijos.",
+          "uk": "Запитайте пару сусідів «У вас двоє дітей?». Почніть з ¿Ustedes tienen, використайте dos hijos."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-53:intro3:r1",
+              "text": "¿Ustedes tienen dos hijos?"
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro3:r2",
+              "text": "¿Ustedes tenemos dos hijos?"
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro3:r3",
+              "text": "¿Ustedes tiene dos hijos?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-53:intro3:r1",
+              "text": "¿Ustedes tienen dos hijos?"
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro3:r2",
+              "text": "¿Ustedes tenemos dos hijos?"
+            },
+            {
+              "responseId": "es:lesson-05:session-53:intro3:r3",
+              "text": "¿Ustedes tiene dos hijos?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите пару соседей «У вас двое детей?». Начните с ¿Ustedes tienen, используйте dos hijos.",
+          "uk": "Запитайте пару сусідів «У вас двоє дітей?». Почніть з ¿Ustedes tienen, використайте dos hijos."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "76b7033a31f79cc8a4880e76a9cf315c75b561188294ed2c0b482c75e4370512"
+}

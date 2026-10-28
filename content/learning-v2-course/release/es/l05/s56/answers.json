@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-56:i01",
+    "correctText": "amigo",
+    "correctResponseId": "es:lesson-05:session-56:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i02",
+    "correctText": "Este",
+    "correctResponseId": "es:lesson-05:session-56:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i03",
+    "correctText": "Este es mi amigo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i04",
+    "correctText": "nuevos",
+    "correctResponseId": "es:lesson-05:session-56:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i05",
+    "correctText": "Tengo una bolsa pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i06",
+    "correctText": "No tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i07",
+    "correctText": "Tenemos",
+    "correctResponseId": "es:lesson-05:session-56:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i08",
+    "correctText": "¿Cuántos años tiene Ana?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i09",
+    "correctText": "Ana tiene treinta años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i10",
+    "correctText": "frío",
+    "correctResponseId": "es:lesson-05:session-56:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i11",
+    "correctText": "¿Tienes hambre?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i12",
+    "correctText": "Sí, tengo hambre.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i13",
+    "correctText": "No tengo sed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i14",
+    "correctText": "prisa",
+    "correctResponseId": "es:lesson-05:session-56:i14:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i15",
+    "correctText": "Usted tiene razón.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i16",
+    "correctText": "¿Tienes tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i17",
+    "correctText": "¿De quién son las llaves?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-56:i18",
+    "correctText": "Tenemos dos hijas.",
+    "correctResponseId": null
+  }
+]

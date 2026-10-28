@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-56",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-56:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-56:intro1:r2": {
+          "ru": "О мужчине используем este.",
+          "uk": "Про чоловіка використовуємо este."
+        },
+        "es:lesson-05:session-56:intro1:r3": {
+          "ru": "Перед mi артикль не нужен.",
+          "uk": "Перед mi артикль не потрібен."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-56:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-56:intro2:r2": {
+          "ru": "С bolsa нужно pequeña.",
+          "uk": "З bolsa потрібно pequeña."
+        },
+        "es:lesson-05:session-56:intro2:r3": {
+          "ru": "О себе нужно tengo.",
+          "uk": "Про себе потрібно tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-56:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-56:intro3:r2": {
+          "ru": "О друге спрашиваем tienes.",
+          "uk": "Про друга запитуємо tienes."
+        },
+        "es:lesson-05:session-56:intro3:r3": {
+          "ru": "В этом сочетании перед hambre нет артикля.",
+          "uk": "У цьому сполученні перед hambre немає артикля."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7c105961e6154681690f6509ee17def383cdccfa27ff40caafbddbb11b74fe7a"
+}

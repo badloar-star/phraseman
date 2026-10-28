@@ -1,0 +1,663 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-53",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-53:i01:r1",
+          "text": "hijas"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i01:r2",
+          "text": "hijos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-53:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-53:i01:audio",
+          "transcript": "hijas"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-53:i01:r1",
+            "targetText": "hijas",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-53:i01:r2",
+            "targetText": "hijos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-53:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит hijas — дочери, с гласной a.",
+              "uk": "Звучить hijas — дочки, з голосною a."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у нас двое детей",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-53:i02:r1",
+          "text": "Tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i02:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i02:r3",
+          "text": "Tienen"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у нас двое детей",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у нас двое детей",
+          "uk": "Вставте слово — у нас двоє дітей"
+        },
+        "gappedTargetPhrase": "___ dos hijos.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-53:i02:r1",
+            "text": "Tenemos"
+          },
+          {
+            "responseId": "es:lesson-05:session-53:i02:r2",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-53:i02:r3",
+            "text": "Tienen"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у нас двое детей",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у нас двое детей",
+            "feedbackByLocale": {
+              "ru": "О нас вместе говорим tenemos.",
+              "uk": "Про нас разом говоримо tenemos."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у нас двое детей",
+            "feedbackByLocale": {
+              "ru": "«У нас» — tenemos.",
+              "uk": "«У нас» — tenemos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у нас двое детей; начните с Tenemos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-53:i03:r1",
+          "text": "Плитки: hijos"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i03:r2",
+          "text": "Tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i03:r3",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i03:r4",
+          "text": "hijo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у нас двое детей; начните с Tenemos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tenemos dos hijos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у нас двое детей; начните с Tenemos",
+          "uk": "Зберіть фразу — у нас двоє дітей; почніть з Tenemos"
+        },
+        "orderedTokens": [
+          "Tenemos",
+          "dos",
+          "hijos"
+        ],
+        "authoredDistractorTokens": [
+          "hijo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-53:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у нас двое детей; начните с Tenemos",
+            "feedbackByLocale": {
+              "ru": "после dos нужно hijos.",
+              "uk": "після dos потрібно hijos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у нас две дочери",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-53:i04:r1",
+          "text": "hijas"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i04:r2",
+          "text": "hija"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i04:r3",
+          "text": "hijos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у нас две дочери",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у нас две дочери",
+          "uk": "Вставте слово — у нас дві дочки"
+        },
+        "gappedTargetPhrase": "Tenemos dos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-53:i04:r1",
+            "text": "hijas"
+          },
+          {
+            "responseId": "es:lesson-05:session-53:i04:r2",
+            "text": "hija"
+          },
+          {
+            "responseId": "es:lesson-05:session-53:i04:r3",
+            "text": "hijos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у нас две дочери",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-53:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у нас две дочери",
+            "feedbackByLocale": {
+              "ru": "После dos нужна форма hijas.",
+              "uk": "Після dos потрібна форма hijas."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-53:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у нас две дочери",
+            "feedbackByLocale": {
+              "ru": "Чтобы точно назвать дочерей, нужно hijas.",
+              "uk": "Щоб точно назвати дочок, потрібно hijas."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у нас две дочери; начните с Tenemos",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-53:i05:r1",
+          "text": "Плитки: dos"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i05:r2",
+          "text": "hijas"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i05:r3",
+          "text": "Tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i05:r4",
+          "text": "hija."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у нас две дочери; начните с Tenemos",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tenemos dos hijas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у нас две дочери; начните с Tenemos",
+          "uk": "Зберіть фразу — у нас дві дочки; почніть з Tenemos"
+        },
+        "orderedTokens": [
+          "Tenemos",
+          "dos",
+          "hijas"
+        ],
+        "authoredDistractorTokens": [
+          "hija"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-53:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у нас две дочери; начните с Tenemos",
+            "feedbackByLocale": {
+              "ru": "дочерей две, поэтому hijas.",
+              "uk": "дочок дві, тому hijas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у вас двое детей?; обращайтесь к паре, начните с ¿Ustedes tienen",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-53:i06:r1",
+          "text": "Плитки: dos"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i06:r2",
+          "text": "hijos?"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i06:r3",
+          "text": "¿Ustedes"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i06:r4",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i06:r5",
+          "text": "tiene."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у вас двое детей?; обращайтесь к паре, начните с ¿Ustedes tienen",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Ustedes tienen dos hijos?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у вас двое детей?; обращайтесь к паре, начните с ¿Ustedes tienen",
+          "uk": "Зберіть фразу — у вас двоє дітей?; звертайтеся до пари, почніть з ¿Ustedes tienen"
+        },
+        "orderedTokens": [
+          "¿Ustedes",
+          "tienen",
+          "dos",
+          "hijos"
+        ],
+        "authoredDistractorTokens": [
+          "tiene"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-53:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у вас двое детей?; обращайтесь к паре, начните с ¿Ustedes tienen",
+            "feedbackByLocale": {
+              "ru": "с ustedes нужно tienen.",
+              "uk": "з ustedes потрібно tienen."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-53:i07:r1",
+          "text": "Плитки: Tenemos"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i07:r2",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i07:r3",
+          "text": "hijos"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i07:r4",
+          "text": "hijo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-53:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-53:i07:audio",
+          "transcript": "Tenemos dos hijos."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tenemos dos hijos.",
+        "orderedTokens": [
+          "Tenemos",
+          "dos",
+          "hijos"
+        ],
+        "authoredDistractorTokens": [
+          "hijo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-53:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит hijos.",
+              "uk": "звучить hijos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у вас двое детей?; вопрос паре",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-53:i08:r1",
+          "text": "tienen"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i08:r2",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-53:i08:r3",
+          "text": "tenemos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у вас двое детей?; вопрос паре",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у вас двое детей?; вопрос паре",
+          "uk": "Вставте слово — у вас двоє дітей?; запитання парі"
+        },
+        "gappedTargetPhrase": "¿Ustedes ___ dos hijos?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-53:i08:r1",
+            "text": "tienen"
+          },
+          {
+            "responseId": "es:lesson-05:session-53:i08:r2",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-53:i08:r3",
+            "text": "tenemos"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у вас двое детей?; вопрос паре",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у вас двое детей?; вопрос паре",
+            "feedbackByLocale": {
+              "ru": "С ustedes нужно tienen.",
+              "uk": "З ustedes потрібно tienen."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у вас двое детей?; вопрос паре",
+            "feedbackByLocale": {
+              "ru": "Tenemos — о нас; с ustedes используем tienen.",
+              "uk": "Tenemos — про нас; з ustedes використовуємо tienen."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у нас двое детей; начните с Tenemos, используйте dos hijos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-53:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у нас двое детей; начните с Tenemos, используйте dos hijos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-53:i09:audio",
+          "transcript": "Tenemos dos hijos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos dos hijos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у нас две дочери; начните с Tenemos, используйте dos hijas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-53:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у нас две дочери; начните с Tenemos, используйте dos hijas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-53:i10:audio",
+          "transcript": "Tenemos dos hijas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos dos hijas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите пару, двое ли у них детей; начните с ¿Ustedes tienen, используйте dos hijos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите пару, двое ли у них детей; начните с ¿Ustedes tienen, используйте dos hijos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-53:i11:audio",
+          "transcript": "¿Ustedes tienen dos hijos?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Ustedes tienen dos hijos?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — в другой семье трое детей; от лица родителей начните с Tenemos, используйте tres hijos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-53:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — в другой семье трое детей; от лица родителей начните с Tenemos, используйте tres hijos",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-53:i12:audio",
+          "transcript": "Tenemos tres hijos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tenemos tres hijos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "b69c25cc25cc9b22001d3868b057ec7488b73d5ec54139a4e6a81a82f9328c06"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-53",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-53:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-53:intro1:r2": {
+          "ru": "После dos нужно множественное hijos.",
+          "uk": "Після dos потрібна множина hijos."
+        },
+        "es:lesson-05:session-53:intro1:r3": {
+          "ru": "О вас с партнёром вместе говорим tenemos.",
+          "uk": "Про вас із партнером разом говоримо tenemos."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-53:intro2:r2": {
+          "ru": "После dos нужно множественное hijas.",
+          "uk": "Після dos потрібна множина hijas."
+        },
+        "es:lesson-05:session-53:intro2:r3": {
+          "ru": "Это не уточняет, что обе — дочери; для задания нужно hijas.",
+          "uk": "Це не уточнює, що обидві — дочки; для завдання потрібно hijas."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-53:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-53:intro3:r2": {
+          "ru": "При обращении ustedes нужно tienen.",
+          "uk": "При звертанні ustedes потрібно tienen."
+        },
+        "es:lesson-05:session-53:intro3:r3": {
+          "ru": "С ustedes нужна форма tienen.",
+          "uk": "З ustedes потрібна форма tienen."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "14544b0c49fa305ae05e86cd46e6c2bf7090a2ca0074c7cd0c770b66714eee91"
+}

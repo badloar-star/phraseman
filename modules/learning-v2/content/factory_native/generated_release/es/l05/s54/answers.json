@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-54:i01",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-05:session-54:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-54:i02",
+    "correctText": "pequeña",
+    "correctResponseId": "es:lesson-05:session-54:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-54:i03",
+    "correctText": "Tengo una bolsa pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-54:i04",
+    "correctText": "Tienes",
+    "correctResponseId": "es:lesson-05:session-54:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-54:i05",
+    "correctText": "¿Tienes una bolsa pequeña?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-54:i06",
+    "correctText": "Ana tiene una bolsa grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-54:i07",
+    "correctText": "Tengo una bolsa pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-54:i08",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-54:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-54:i09",
+    "correctText": "Tengo una bolsa pequeña.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-54:i10",
+    "correctText": "¿Tienes una bolsa pequeña?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-54:i11",
+    "correctText": "Ana tiene una bolsa grande.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-54:i12",
+    "correctText": "Tengo una bolsa grande.",
+    "correctResponseId": null
+  }
+]

@@ -1939,4 +1939,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить возраст другого человека и назвать его в ответе.","uk":"запитати вік іншої людини й назвати його у відповіді."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 53,
+    sourceFingerprint: "94a3e9b34da8b323b8a2db8c091c4bd19f3b7bccc8ee9eb6b9fbaff850090695",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"соединить tenemos с количеством членов семьи.","uk":"поєднати tenemos з кількістю членів сім’ї."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 54,
+    sourceFingerprint: "e2f415dc8977c85e3609dc94155d54fa498c23f996b0d045d18d81401a4ce4e7",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"после tener назвать предмет и добавить его размер.","uk":"після tener назвати предмет і додати його розмір."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 55,
+    sourceFingerprint: "9b8420633a332b3ed16f0bde49398f4551e5a0ff5c2d8e9d0baa1e610cad36b0",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"задавать короткий вопрос с tienes и отвечать о себе с tengo.","uk":"ставити коротке запитання з tienes і відповідати про себе з tengo."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 56,
+    sourceFingerprint: "6d057722fb6029e906d8ca90c784ef004654cc6190518881acbdcf4e10041f1c",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать знакомые описания и tener в коротких бытовых репликах.","uk":"використовувати знайомі описи й tener у коротких побутових репліках."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

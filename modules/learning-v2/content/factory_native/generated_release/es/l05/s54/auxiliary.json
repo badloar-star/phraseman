@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-54",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-54:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-54:intro1:r2": {
+          "ru": "С bolsa нужно pequeña.",
+          "uk": "З bolsa потрібно pequeña."
+        },
+        "es:lesson-05:session-54:intro1:r3": {
+          "ru": "Bolsa женского рода: una bolsa.",
+          "uk": "Bolsa жіночого роду: una bolsa."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-54:intro2:r2": {
+          "ru": "О собеседнике спрашиваем tienes.",
+          "uk": "Про співрозмовника запитуємо tienes."
+        },
+        "es:lesson-05:session-54:intro2:r3": {
+          "ru": "С bolsa нужно pequeña.",
+          "uk": "З bolsa потрібно pequeña."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-54:intro3:r2": {
+          "ru": "Об Ане нужна форма tiene.",
+          "uk": "Про Ану потрібна форма tiene."
+        },
+        "es:lesson-05:session-54:intro3:r3": {
+          "ru": "С bolsa нужно una.",
+          "uk": "З bolsa потрібно una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "f8e897c57b6f539238ee90299463deeee6331876f9b8841469d8569a168129a0"
+}

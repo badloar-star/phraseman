@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-56",
+  "learningOutcomeByLocale": {
+    "ru": "использовать знакомые описания и tener в коротких бытовых репликах.",
+    "uk": "використовувати знайомі описи й tener у коротких побутових репліках."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-56:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Представить спутника",
+        "uk": "Представити супутника"
+      },
+      "bodyByLocale": {
+        "ru": "Вы привели друга к остальным участникам поездки. Скажите `Este es mi amigo` — «Это мой друг». Соберите `Este` + `es` + `mi amigo`. Este указывает на мужчину рядом. Mi стоит перед amigo без артикля и показывает, что это ваш друг.",
+        "uk": "Ви привели друга до решти учасників поїздки. Скажіть `Este es mi amigo` — «Це мій друг». Складіть `Este` + `es` + `mi amigo`. Este вказує на чоловіка поруч. Mi стоїть перед amigo без артикля й показує, що це ваш друг."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-56:intro1:q",
+        "promptByLocale": {
+          "ru": "Представьте друга: «Это мой друг». Начните с Este es mi.",
+          "uk": "Представте друга: «Це мій друг». Почніть з Este es mi."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-56:intro1:r1",
+              "text": "Este es mi amigo."
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro1:r2",
+              "text": "Esta es mi amigo."
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro1:r3",
+              "text": "Este es el mi amigo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-56:intro1:r1",
+              "text": "Este es mi amigo."
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro1:r2",
+              "text": "Esta es mi amigo."
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro1:r3",
+              "text": "Este es el mi amigo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Представьте друга: «Это мой друг». Начните с Este es mi.",
+          "uk": "Представте друга: «Це мій друг». Почніть з Este es mi."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-56:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать свою вещь",
+        "uk": "Назвати свою річ"
+      },
+      "bodyByLocale": {
+        "ru": "Перед загрузкой машины вы сообщаете, что у вас маленькая сумка: `Tengo una bolsa pequeña`. Соберите `Tengo` + `una bolsa` + `pequeña`. Tengo обозначает наличие вещи у вас. Bolsa женского рода, поэтому una и pequeña согласуются с ней. Размер ставим после названия предмета.",
+        "uk": "Перед завантаженням машини ви повідомляєте, що у вас маленька сумка: `Tengo una bolsa pequeña`. Складіть `Tengo` + `una bolsa` + `pequeña`. Tengo позначає наявність речі у вас. Bolsa жіночого роду, тому una та pequeña узгоджуються з нею. Розмір ставимо після назви предмета."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-56:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У меня маленькая сумка». Начните с Tengo una bolsa, размер поставьте в конце.",
+          "uk": "Скажіть «У мене маленька сумка». Почніть з Tengo una bolsa, розмір поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-56:intro2:r1",
+              "text": "Tengo una bolsa pequeña."
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro2:r2",
+              "text": "Tengo una bolsa pequeño."
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro2:r3",
+              "text": "Tiene una bolsa pequeña."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-56:intro2:r1",
+              "text": "Tengo una bolsa pequeña."
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro2:r2",
+              "text": "Tengo una bolsa pequeño."
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro2:r3",
+              "text": "Tiene una bolsa pequeña."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У меня маленькая сумка». Начните с Tengo una bolsa, размер поставьте в конце.",
+          "uk": "Скажіть «У мене маленька сумка». Почніть з Tengo una bolsa, розмір поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-56:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить, нужен ли перерыв на еду",
+        "uk": "Уточнити, чи потрібна перерва на їжу"
+      },
+      "bodyByLocale": {
+        "ru": "После дороги спросите друга `¿Tienes hambre?` — «Ты хочешь есть?» Соберите `¿Tienes` + `hambre?`. Tienes относится к собеседнику на «ты». Сочетание tener hambre передаёт голод, без артикля перед hambre. На письме оформляем вопрос знаками с двух сторон.",
+        "uk": "Після дороги запитайте друга `¿Tienes hambre?` — «Ти хочеш їсти?» Складіть `¿Tienes` + `hambre?`. Tienes стосується співрозмовника на «ти». Сполучення tener hambre передає голод, без артикля перед hambre. На письмі оформлюємо запитання знаками з двох боків."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-56:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите друга «Ты хочешь есть?». Начните с ¿Tienes, используйте hambre.",
+          "uk": "Запитайте друга «Ти хочеш їсти?». Почніть з ¿Tienes, використайте hambre."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-56:intro3:r1",
+              "text": "¿Tienes hambre?"
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro3:r2",
+              "text": "¿Tengo hambre?"
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro3:r3",
+              "text": "¿Tienes una hambre?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-56:intro3:r1",
+              "text": "¿Tienes hambre?"
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro3:r2",
+              "text": "¿Tengo hambre?"
+            },
+            {
+              "responseId": "es:lesson-05:session-56:intro3:r3",
+              "text": "¿Tienes una hambre?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите друга «Ты хочешь есть?». Начните с ¿Tienes, используйте hambre.",
+          "uk": "Запитайте друга «Ти хочеш їсти?». Почніть з ¿Tienes, використайте hambre."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "11d10fb3f9fd10c237aaa20ea72cb9d6bf55e8a380ae1f0f8d0440a81b52860b"
+}

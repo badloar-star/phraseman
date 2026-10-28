@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-55:i01",
+    "correctText": "tiempo",
+    "correctResponseId": "es:lesson-05:session-55:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-55:i02",
+    "correctText": "tiempo",
+    "correctResponseId": "es:lesson-05:session-55:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-55:i03",
+    "correctText": "¿Tienes tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-55:i04",
+    "correctText": "tengo",
+    "correctResponseId": "es:lesson-05:session-55:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-55:i05",
+    "correctText": "¿Tienes sed?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-55:i06",
+    "correctText": "Sí, tengo sed.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-55:i07",
+    "correctText": "No tengo prisa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-55:i08",
+    "correctText": "prisa",
+    "correctResponseId": "es:lesson-05:session-55:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-55:i09",
+    "correctText": "¿Tienes tiempo?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-55:i10",
+    "correctText": "Sí, tengo tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-55:i11",
+    "correctText": "¿Tienes sed?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-55:i12",
+    "correctText": "No tengo prisa.",
+    "correctResponseId": null
+  }
+]

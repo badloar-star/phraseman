@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-55",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-55:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-55:intro1:r2": {
+          "ru": "Вопрос о собеседнике: tienes.",
+          "uk": "Запитання про співрозмовника: tienes."
+        },
+        "es:lesson-05:session-55:intro1:r3": {
+          "ru": "Здесь спрашиваем о наличии времени вообще: без un.",
+          "uk": "Тут запитуємо про наявність часу загалом: без un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-55:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-55:intro2:r2": {
+          "ru": "Это вопрос о сонливости; для жажды нужно sed.",
+          "uk": "Це запитання про сонливість; для спраги потрібно sed."
+        },
+        "es:lesson-05:session-55:intro2:r3": {
+          "ru": "О собеседнике спрашиваем tienes.",
+          "uk": "Про співрозмовника запитуємо tienes."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-55:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-55:intro3:r2": {
+          "ru": "О себе отвечаем tengo.",
+          "uk": "Про себе відповідаємо tengo."
+        },
+        "es:lesson-05:session-55:intro3:r3": {
+          "ru": "No ставим перед tengo.",
+          "uk": "No ставимо перед tengo."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ab0bdcda97a4d8673192603d5dc3563abbddaf47a7a4bbe1dbd5a8b4153e8b81"
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-53:i01",
+    "correctText": "hijas",
+    "correctResponseId": "es:lesson-05:session-53:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-53:i02",
+    "correctText": "Tenemos",
+    "correctResponseId": "es:lesson-05:session-53:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-53:i03",
+    "correctText": "Tenemos dos hijos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-53:i04",
+    "correctText": "hijas",
+    "correctResponseId": "es:lesson-05:session-53:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-53:i05",
+    "correctText": "Tenemos dos hijas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-53:i06",
+    "correctText": "¿Ustedes tienen dos hijos?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-53:i07",
+    "correctText": "Tenemos dos hijos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-53:i08",
+    "correctText": "tienen",
+    "correctResponseId": "es:lesson-05:session-53:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-53:i09",
+    "correctText": "Tenemos dos hijos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-53:i10",
+    "correctText": "Tenemos dos hijas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-53:i11",
+    "correctText": "¿Ustedes tienen dos hijos?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-53:i12",
+    "correctText": "Tenemos tres hijos.",
+    "correctResponseId": null
+  }
+]

@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-54",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-54:i01:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i01:r2",
+          "text": "grande"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-54:i01:audio",
+          "transcript": "pequeña"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-54:i01:r1",
+            "targetText": "pequeña",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-54:i01:r2",
+            "targetText": "grande",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-54:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит pequeña — маленькая.",
+              "uk": "Звучить pequeña — маленька."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у мене маленька сумка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-54:i02:r1",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i02:r2",
+          "text": "pequeño"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i02:r3",
+          "text": "pequeños"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у мене маленька сумка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у меня маленькая сумка",
+          "uk": "Вставте слово — у мене маленька сумка"
+        },
+        "gappedTargetPhrase": "Tengo una bolsa ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-54:i02:r1",
+            "text": "pequeña"
+          },
+          {
+            "responseId": "es:lesson-05:session-54:i02:r2",
+            "text": "pequeño"
+          },
+          {
+            "responseId": "es:lesson-05:session-54:i02:r3",
+            "text": "pequeños"
+          }
+        ],
+        "testedDimension": "Вставте слово — у мене маленька сумка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у мене маленька сумка",
+            "feedbackByLocale": {
+              "ru": "Bolsa женского рода: pequeña.",
+              "uk": "Bolsa жіночого роду: pequeña."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у мене маленька сумка",
+            "feedbackByLocale": {
+              "ru": "Одна bolsa: pequeña.",
+              "uk": "Одна bolsa: pequeña."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у мене маленька сумка; почніть з Tengo una bolsa, розмір поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-54:i03:r1",
+          "text": "Плитки: pequeña"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i03:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i03:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i03:r4",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i03:r5",
+          "text": "pequeño."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у мене маленька сумка; почніть з Tengo una bolsa, розмір поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Tengo una bolsa pequeña.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у меня маленькая сумка; начните с Tengo una bolsa, размер поставьте в конце",
+          "uk": "Зберіть фразу — у мене маленька сумка; почніть з Tengo una bolsa, розмір поставте в кінці"
+        },
+        "orderedTokens": [
+          "Tengo",
+          "una",
+          "bolsa",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "pequeño"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-54:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у мене маленька сумка; почніть з Tengo una bolsa, розмір поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "с bolsa нужно pequeña.",
+              "uk": "з bolsa потрібно pequeña."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у тебе маленька сумка?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-54:i04:r1",
+          "text": "Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i04:r2",
+          "text": "Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i04:r3",
+          "text": "Tenemos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у тебе маленька сумка?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у тебя маленькая сумка?",
+          "uk": "Вставте слово — у тебе маленька сумка?"
+        },
+        "gappedTargetPhrase": "¿___ una bolsa pequeña?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-54:i04:r1",
+            "text": "Tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-54:i04:r2",
+            "text": "Tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-54:i04:r3",
+            "text": "Tenemos"
+          }
+        ],
+        "testedDimension": "Вставте слово — у тебе маленька сумка?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-54:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у тебе маленька сумка?",
+            "feedbackByLocale": {
+              "ru": "Обращаемся к другу: tienes.",
+              "uk": "Звертаємося до друга: tienes."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-54:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у тебе маленька сумка?",
+            "feedbackByLocale": {
+              "ru": "«У тебя» — tienes.",
+              "uk": "«У тебе» — tienes."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у тебе маленька сумка?; почніть з ¿Tienes una bolsa, розмір поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-54:i05:r1",
+          "text": "Плитки: pequeña?"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i05:r2",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i05:r3",
+          "text": "¿Tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i05:r4",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i05:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у тебе маленька сумка?; почніть з ¿Tienes una bolsa, розмір поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Tienes una bolsa pequeña?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у тебя маленькая сумка?; начните с ¿Tienes una bolsa, размер поставьте в конце",
+          "uk": "Зберіть фразу — у тебе маленька сумка?; почніть з ¿Tienes una bolsa, розмір поставте в кінці"
+        },
+        "orderedTokens": [
+          "¿Tienes",
+          "una",
+          "bolsa",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-54:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у тебе маленька сумка?; почніть з ¿Tienes una bolsa, розмір поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода, нужна una.",
+              "uk": "bolsa жіночого роду, потрібна una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — в Ани велика сумка; почніть з Ana tiene una bolsa, розмір поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-54:i06:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i06:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i06:r3",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i06:r4",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i06:r5",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i06:r6",
+          "text": "tengo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — в Ани велика сумка; почніть з Ana tiene una bolsa, розмір поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene una bolsa grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у Аны большая сумка; начните с Ana tiene una bolsa, размер поставьте в конце",
+          "uk": "Зберіть фразу — в Ани велика сумка; почніть з Ana tiene una bolsa, розмір поставте в кінці"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "una",
+          "bolsa",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "tengo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-54:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — в Ани велика сумка; почніть з Ana tiene una bolsa, розмір поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "об Ане используем tiene.",
+              "uk": "про Ану використовуємо tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-54:i07:r1",
+          "text": "Плитки: Tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i07:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i07:r3",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i07:r4",
+          "text": "pequeña"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i07:r5",
+          "text": "pequeño."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-54:i07:audio",
+          "transcript": "Tengo una bolsa pequeña."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Tengo una bolsa pequeña.",
+        "orderedTokens": [
+          "Tengo",
+          "una",
+          "bolsa",
+          "pequeña"
+        ],
+        "authoredDistractorTokens": [
+          "pequeño"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-54:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит pequeña.",
+              "uk": "звучить pequeña."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — в Ани велика сумка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-54:i08:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i08:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-54:i08:r3",
+          "text": "tienes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — в Ани велика сумка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у Аны большая сумка",
+          "uk": "Вставте слово — в Ани велика сумка"
+        },
+        "gappedTargetPhrase": "Ana ___ una bolsa grande.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-54:i08:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-54:i08:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-54:i08:r3",
+            "text": "tienes"
+          }
+        ],
+        "testedDimension": "Вставте слово — в Ани велика сумка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — в Ани велика сумка",
+            "feedbackByLocale": {
+              "ru": "Об Ане нужна форма tiene.",
+              "uk": "Про Ану потрібна форма tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — в Ани велика сумка",
+            "feedbackByLocale": {
+              "ru": "Tienes — обращение на «ты»; об Ане говорим tiene.",
+              "uk": "Tienes — звертання на «ти»; про Ану говоримо tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у мене маленька сумка; почніть з Tengo una bolsa, розмір поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-54:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у мене маленька сумка; почніть з Tengo una bolsa, розмір поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-54:i09:audio",
+          "transcript": "Tengo una bolsa pequeña."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo una bolsa pequeña.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у тебе маленька сумка?; почніть з ¿Tienes una bolsa, розмір поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-54:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у тебе маленька сумка?; почніть з ¿Tienes una bolsa, розмір поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-54:i10:audio",
+          "transcript": "¿Tienes una bolsa pequeña?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Tienes una bolsa pequeña?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — в Ани велика сумка; почніть з Ana tiene una bolsa, розмір поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — в Ани велика сумка; почніть з Ana tiene una bolsa, розмір поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-54:i11:audio",
+          "transcript": "Ana tiene una bolsa grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene una bolsa grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-54:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — в іншій поїздці у вас велика сумка; почніть з Tengo una bolsa, розмір поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-54:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — в іншій поїздці у вас велика сумка; почніть з Tengo una bolsa, розмір поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-54:i12:audio",
+          "transcript": "Tengo una bolsa grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Tengo una bolsa grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "14ee12771cce3ede3c21ae7dd42ccbc5626a2e1774b24856a8b037cb3ef7006e"
+}

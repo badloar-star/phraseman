@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-28:i01",
+    "correctText": "están",
+    "correctResponseId": "es:lesson-06:session-28:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-28:i02",
+    "correctText": "están",
+    "correctResponseId": "es:lesson-06:session-28:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-28:i03",
+    "correctText": "Los libros están aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-28:i04",
+    "correctText": "Las",
+    "correctResponseId": "es:lesson-06:session-28:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-28:i05",
+    "correctText": "Las sillas están allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-28:i06",
+    "correctText": "Los libros están en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-28:i07",
+    "correctText": "Los libros están aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-28:i08",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-28:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-28:i09",
+    "correctText": "Los libros están aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-28:i10",
+    "correctText": "Las sillas están allí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-28:i11",
+    "correctText": "Los libros están en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-28:i12",
+    "correctText": "Las sillas están aquí.",
+    "correctResponseId": null
+  }
+]

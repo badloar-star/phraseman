@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-27:i01",
+    "correctText": "mesa",
+    "correctResponseId": "es:lesson-06:session-27:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-27:i02",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-27:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-27:i03",
+    "correctText": "El libro está en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-27:i04",
+    "correctText": "la",
+    "correctResponseId": "es:lesson-06:session-27:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-27:i05",
+    "correctText": "El libro está en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-27:i06",
+    "correctText": "La silla está en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-27:i07",
+    "correctText": "El libro está en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-27:i08",
+    "correctText": "está",
+    "correctResponseId": "es:lesson-06:session-27:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-27:i09",
+    "correctText": "El libro está en la mesa.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-27:i10",
+    "correctText": "El libro está en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-27:i11",
+    "correctText": "La silla está en la habitación.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-27:i12",
+    "correctText": "La mesa está en la habitación.",
+    "correctResponseId": null
+  }
+]

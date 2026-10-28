@@ -1,0 +1,688 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-28",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-28:i01:r1",
+          "text": "están"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i01:r2",
+          "text": "está"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-28:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-28:i01:audio",
+          "transcript": "están"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-28:i01:r1",
+            "targetText": "están",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-28:i01:r2",
+            "targetText": "está",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-28:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит están, с n в конце.",
+              "uk": "Звучить están, із n у кінці."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — книжки тут",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-28:i02:r1",
+          "text": "están"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i02:r2",
+          "text": "está"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i02:r3",
+          "text": "hay"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — книжки тут",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книги здесь",
+          "uk": "Вставте слово — книжки тут"
+        },
+        "gappedTargetPhrase": "Los libros ___ aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-28:i02:r1",
+            "text": "están"
+          },
+          {
+            "responseId": "es:lesson-06:session-28:i02:r2",
+            "text": "está"
+          },
+          {
+            "responseId": "es:lesson-06:session-28:i02:r3",
+            "text": "hay"
+          }
+        ],
+        "testedDimension": "Вставте слово — книжки тут",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-28:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — книжки тут",
+            "feedbackByLocale": {
+              "ru": "Книг несколько: están.",
+              "uk": "Книжок кілька: están."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-28:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — книжки тут",
+            "feedbackByLocale": {
+              "ru": "Указываем место конкретных книг: están.",
+              "uk": "Указуємо місце конкретних книжок: están."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — книжки тут; почніть з Los libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-28:i03:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i03:r2",
+          "text": "Los"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i03:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i03:r4",
+          "text": "están"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i03:r5",
+          "text": "está."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — книжки тут; почніть з Los libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Los libros están aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — книги здесь; начните с Los libros",
+          "uk": "Зберіть фразу — книжки тут; почніть з Los libros"
+        },
+        "orderedTokens": [
+          "Los",
+          "libros",
+          "están",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "está"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-28:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — книжки тут; почніть з Los libros",
+            "feedbackByLocale": {
+              "ru": "с libros нужно están.",
+              "uk": "із libros потрібно están."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — стільці там",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-28:i04:r1",
+          "text": "Las"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i04:r2",
+          "text": "Los"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i04:r3",
+          "text": "La"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — стільці там",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стулья там",
+          "uk": "Вставте слово — стільці там"
+        },
+        "gappedTargetPhrase": "___ sillas están allí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-28:i04:r1",
+            "text": "Las"
+          },
+          {
+            "responseId": "es:lesson-06:session-28:i04:r2",
+            "text": "Los"
+          },
+          {
+            "responseId": "es:lesson-06:session-28:i04:r3",
+            "text": "La"
+          }
+        ],
+        "testedDimension": "Вставте слово — стільці там",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-28:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — стільці там",
+            "feedbackByLocale": {
+              "ru": "Sillas женского рода: Las.",
+              "uk": "Sillas жіночого роду: Las."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-28:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — стільці там",
+            "feedbackByLocale": {
+              "ru": "Стульев несколько: Las.",
+              "uk": "Стільців кілька: Las."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-28:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — стільці там; почніть з Las sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-28:i05:r1",
+          "text": "Плитки: allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i05:r2",
+          "text": "Las"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i05:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i05:r4",
+          "text": "están"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i05:r5",
+          "text": "está."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — стільці там; почніть з Las sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Las sillas están allí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — стулья там; начните с Las sillas",
+          "uk": "Зберіть фразу — стільці там; почніть з Las sillas"
+        },
+        "orderedTokens": [
+          "Las",
+          "sillas",
+          "están",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "está"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-28:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — стільці там; почніть з Las sillas",
+            "feedbackByLocale": {
+              "ru": "с sillas нужно están.",
+              "uk": "із sillas потрібно están."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-28:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — книжки на столі; почніть з Los libros, місце поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-28:i06:r1",
+          "text": "Плитки: mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i06:r2",
+          "text": "Los"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i06:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i06:r4",
+          "text": "están"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i06:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i06:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i06:r7",
+          "text": "está."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — книжки на столі; почніть з Los libros, місце поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Los libros están en la mesa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — книги на столе; начните с Los libros, место поставьте в конце",
+          "uk": "Зберіть фразу — книжки на столі; почніть з Los libros, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "Los",
+          "libros",
+          "están",
+          "en",
+          "la",
+          "mesa"
+        ],
+        "authoredDistractorTokens": [
+          "está"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-28:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — книжки на столі; почніть з Los libros, місце поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "с libros нужно están.",
+              "uk": "із libros потрібно están."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-28:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-28:i07:r1",
+          "text": "Плитки: Los"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i07:r2",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i07:r3",
+          "text": "están"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i07:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i07:r5",
+          "text": "allí."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-28:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-28:i07:audio",
+          "transcript": "Los libros están aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Los libros están aquí.",
+        "orderedTokens": [
+          "Los",
+          "libros",
+          "están",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "allí"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-28:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит aquí.",
+              "uk": "звучить aquí."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — книжки на столі",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-28:i08:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i08:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-28:i08:r3",
+          "text": "un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — книжки на столі",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книги на столе",
+          "uk": "Вставте слово — книжки на столі"
+        },
+        "gappedTargetPhrase": "Los libros están ___ la mesa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-28:i08:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-28:i08:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-28:i08:r3",
+            "text": "un"
+          }
+        ],
+        "testedDimension": "Вставте слово — книжки на столі",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-28:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — книжки на столі",
+            "feedbackByLocale": {
+              "ru": "Для места нужно en la mesa.",
+              "uk": "Для місця потрібно en la mesa."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-28:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — книжки на столі",
+            "feedbackByLocale": {
+              "ru": "Перед местом нужно en.",
+              "uk": "Перед місцем потрібно en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-28:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — книжки тут; почніть з Los libros, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-28:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — книжки тут; почніть з Los libros, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-28:i09:audio",
+          "transcript": "Los libros están aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los libros están aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-28:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — стільці там; почніть з Las sillas, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-28:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — стільці там; почніть з Las sillas, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-28:i10:audio",
+          "transcript": "Las sillas están allí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las sillas están allí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-28:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — книжки на столі; почніть з Los libros, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — книжки на столі; почніть з Los libros, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-28:i11:audio",
+          "transcript": "Los libros están en la mesa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Los libros están en la mesa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-28:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — в іншій розмові ви показуєте на потрібні стільці поруч: «Стільці тут»; почніть з Las sillas, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-28:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — в іншій розмові ви показуєте на потрібні стільці поруч: «Стільці тут»; почніть з Las sillas, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-28:i12:audio",
+          "transcript": "Las sillas están aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Las sillas están aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7c0079ea12d838f95b023e90df814178612c157fead428f7d5a023e8f887df65"
+}

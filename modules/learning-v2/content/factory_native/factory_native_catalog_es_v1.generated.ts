@@ -2142,4 +2142,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать место конкретной вещи с помощью está.","uk":"назвати місце конкретної речі за допомогою está."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 26,
+    sourceFingerprint: "e5e8184b304da52a0cb6a94a304b64171406620cdfa46a8611435f642fb4e36f",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"различать сообщение о наличии и место конкретной вещи.","uk":"розрізняти повідомлення про наявність і місце конкретної речі."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 27,
+    sourceFingerprint: "5da150340875ea84ad2eeb126ec56934d47e6b50c8dffab87c5cd135562b9ebe",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"после está назвать место через en.","uk":"після está назвати місце через en."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 28,
+    sourceFingerprint: "faa79aecf9751069c18660ecf161a39738a68b7a5da2042c35cd1f3361f19af8",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать están, когда называете место нескольких вещей.","uk":"використовувати están, коли називаєте місце кількох речей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 29,
+    sourceFingerprint: "f2ef4ed84ed94deefc2e220981790be9aec2bcb54c1a5b6eadc234d7c5a6b32e",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"выбирать hay для наличия и están для места нескольких известных вещей.","uk":"обирати hay для наявності й están для місця кількох відомих речей."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

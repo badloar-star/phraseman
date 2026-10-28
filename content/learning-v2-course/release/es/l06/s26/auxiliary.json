@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-26",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-26:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-26:intro1:r2": {
+          "ru": "Здесь вводим новую для разговора книгу: un libro.",
+          "uk": "Тут вводимо нову для розмови книжку: un libro."
+        },
+        "es:lesson-06:session-26:intro1:r3": {
+          "ru": "Это место уже определённой книги; по условию впервые сообщаем о наличии.",
+          "uk": "Це місце вже визначеної книжки; за умовою вперше повідомляємо про наявність."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-26:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-26:intro2:r2": {
+          "ru": "Это наличие какой-то книги; здесь называем место той самой.",
+          "uk": "Це наявність якоїсь книжки; тут називаємо місце тієї самої."
+        },
+        "es:lesson-06:session-26:intro2:r3": {
+          "ru": "Для местоположения в этой фразе нужно está.",
+          "uk": "Для місця в цій фразі потрібно está."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-26:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-26:intro3:r2": {
+          "ru": "Местоположение вещи: está.",
+          "uk": "Місце речі: está."
+        },
+        "es:lesson-06:session-26:intro3:r3": {
+          "ru": "Silla женского рода: la.",
+          "uk": "Silla жіночого роду: la."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "ed120f19000e2842c9135e705f4d6094d2968cbcc7847731db957deba68b30e1"
+}

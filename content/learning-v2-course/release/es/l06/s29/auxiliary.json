@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-29",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-29:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-29:intro1:r2": {
+          "ru": "В этом сообщении о наличии используем libros без артикля.",
+          "uk": "У цьому повідомленні про наявність використовуємо libros без артикля."
+        },
+        "es:lesson-06:session-29:intro1:r3": {
+          "ru": "Это место конкретных книг; по условию впервые сообщаем об их наличии.",
+          "uk": "Це місце конкретних книжок; за умовою вперше повідомляємо про їхню наявність."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-29:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-29:intro2:r2": {
+          "ru": "Книг несколько: están.",
+          "uk": "Книжок кілька: están."
+        },
+        "es:lesson-06:session-29:intro2:r3": {
+          "ru": "Это наличие книг вообще, а здесь называем место конкретного набора.",
+          "uk": "Це наявність книжок узагалі, а тут називаємо місце конкретного набору."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-29:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-29:intro3:r2": {
+          "ru": "Стульев несколько: están.",
+          "uk": "Стільців кілька: están."
+        },
+        "es:lesson-06:session-29:intro3:r3": {
+          "ru": "Это наличие каких-то стульев, а нам нужно место приготовленных.",
+          "uk": "Це наявність якихось стільців, а нам потрібне місце підготовлених."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "61fe7c5fd6350b7f38d369fefb40781abfa9d14ed8be0ac553192e04bb2f97e0"
+}

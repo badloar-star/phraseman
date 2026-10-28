@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-27",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-27:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-27:intro1:r2": {
+          "ru": "Перед названием места нужно en.",
+          "uk": "Перед назвою місця потрібно en."
+        },
+        "es:lesson-06:session-27:intro1:r3": {
+          "ru": "После El libro нужно está.",
+          "uk": "Після El libro потрібно está."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-27:intro2:r2": {
+          "ru": "Habitación женского рода: la.",
+          "uk": "Habitación жіночого роду: la."
+        },
+        "es:lesson-06:session-27:intro2:r3": {
+          "ru": "Для места нужно en la habitación.",
+          "uk": "Для місця потрібно en la habitación."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-27:intro3:r2": {
+          "ru": "Silla женского рода: la.",
+          "uk": "Silla жіночого роду: la."
+        },
+        "es:lesson-06:session-27:intro3:r3": {
+          "ru": "Местоположение стула выражаем через está.",
+          "uk": "Місце стільця позначаємо через está."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "dbefe41dccc5e43f09f91c5bd0a8707767cb0610f63bbc382b687cf8bfa091c2"
+}

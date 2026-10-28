@@ -1,0 +1,714 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-27",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-27:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-27:i01:r1",
+          "text": "mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i01:r2",
+          "text": "habitación"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-27:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-27:i01:audio",
+          "transcript": "mesa"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-27:i01:r1",
+            "targetText": "mesa",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-27:i01:r2",
+            "targetText": "habitación",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-27:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит mesa — стол.",
+              "uk": "Звучить mesa — стіл."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — книга на столе",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-27:i02:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i02:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i02:r3",
+          "text": "un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — книга на столе",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книга на столе",
+          "uk": "Вставте слово — книжка на столі"
+        },
+        "gappedTargetPhrase": "El libro está ___ la mesa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-27:i02:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-27:i02:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-27:i02:r3",
+            "text": "un"
+          }
+        ],
+        "testedDimension": "Вставьте слово — книга на столе",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-27:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — книга на столе",
+            "feedbackByLocale": {
+              "ru": "Место «на столе»: en la mesa.",
+              "uk": "Місце «на столі»: en la mesa."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-27:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — книга на столе",
+            "feedbackByLocale": {
+              "ru": "Перед местом нужно en.",
+              "uk": "Перед місцем потрібно en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — книга на столе; начните с El libro, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-27:i03:r1",
+          "text": "Плитки: mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i03:r2",
+          "text": "El"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i03:r3",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i03:r4",
+          "text": "está"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i03:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i03:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i03:r7",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — книга на столе; начните с El libro, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El libro está en la mesa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — книга на столе; начните с El libro, место поставьте в конце",
+          "uk": "Зберіть фразу — книжка на столі; почніть з El libro, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "El",
+          "libro",
+          "está",
+          "en",
+          "la",
+          "mesa"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-27:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — книга на столе; начните с El libro, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "для места вещи нужно está.",
+              "uk": "для місця речі потрібно está."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — книга в комнате",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-27:i04:r1",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i04:r2",
+          "text": "el"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i04:r3",
+          "text": "los"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — книга в комнате",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — книга в комнате",
+          "uk": "Вставте слово — книжка в кімнаті"
+        },
+        "gappedTargetPhrase": "El libro está en ___ habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-27:i04:r1",
+            "text": "la"
+          },
+          {
+            "responseId": "es:lesson-06:session-27:i04:r2",
+            "text": "el"
+          },
+          {
+            "responseId": "es:lesson-06:session-27:i04:r3",
+            "text": "los"
+          }
+        ],
+        "testedDimension": "Вставьте слово — книга в комнате",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-27:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — книга в комнате",
+            "feedbackByLocale": {
+              "ru": "Habitación женского рода: la.",
+              "uk": "Habitación жіночого роду: la."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-27:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — книга в комнате",
+            "feedbackByLocale": {
+              "ru": "Habitación — единственное число, женский род: la.",
+              "uk": "Habitación — однина, жіночий рід: la."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — книга в комнате; начните с El libro, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-27:i05:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i05:r2",
+          "text": "El"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i05:r3",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i05:r4",
+          "text": "está"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i05:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i05:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i05:r7",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — книга в комнате; начните с El libro, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "El libro está en la habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — книга в комнате; начните с El libro, место поставьте в конце",
+          "uk": "Зберіть фразу — книжка в кімнаті; почніть з El libro, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "El",
+          "libro",
+          "está",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-27:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — книга в комнате; начните с El libro, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода, а книга уже названа с El.",
+              "uk": "habitación жіночого роду, а книжку вже названо з El."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — стул в комнате; начните с La silla, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-27:i06:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i06:r2",
+          "text": "La"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i06:r3",
+          "text": "silla"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i06:r4",
+          "text": "está"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i06:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i06:r6",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — стул в комнате; начните с La silla, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "La silla está en la habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — стул в комнате; начните с La silla, место поставьте в конце",
+          "uk": "Зберіть фразу — стілець у кімнаті; почніть з La silla, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "La",
+          "silla",
+          "está",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-27:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — стул в комнате; начните с La silla, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "для места стула нужно está.",
+              "uk": "для місця стільця потрібно está."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-27:i07:r1",
+          "text": "Плитки: El"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i07:r2",
+          "text": "libro"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i07:r3",
+          "text": "está"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i07:r4",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i07:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i07:r6",
+          "text": "mesa"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i07:r7",
+          "text": "es."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-27:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-27:i07:audio",
+          "transcript": "El libro está en la mesa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "El libro está en la mesa.",
+        "orderedTokens": [
+          "El",
+          "libro",
+          "está",
+          "en",
+          "la",
+          "mesa"
+        ],
+        "authoredDistractorTokens": [
+          "es"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-27:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит está.",
+              "uk": "звучить está."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — стул в комнате",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-27:i08:r1",
+          "text": "está"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i08:r2",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-27:i08:r3",
+          "text": "es"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — стул в комнате",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — стул в комнате",
+          "uk": "Вставте слово — стілець у кімнаті"
+        },
+        "gappedTargetPhrase": "La silla ___ en la habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-27:i08:r1",
+            "text": "está"
+          },
+          {
+            "responseId": "es:lesson-06:session-27:i08:r2",
+            "text": "hay"
+          },
+          {
+            "responseId": "es:lesson-06:session-27:i08:r3",
+            "text": "es"
+          }
+        ],
+        "testedDimension": "Вставьте слово — стул в комнате",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стул в комнате",
+            "feedbackByLocale": {
+              "ru": "Указываем место конкретного стула: está.",
+              "uk": "Указуємо місце конкретного стільця: está."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-27:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — стул в комнате",
+            "feedbackByLocale": {
+              "ru": "Для места стула нужно está.",
+              "uk": "Для місця стільця потрібно está."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — книга на столе; начните с El libro, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — книга на столе; начните с El libro, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-27:i09:audio",
+          "transcript": "El libro está en la mesa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El libro está en la mesa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — книга в комнате; начните с El libro, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-27:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — книга в комнате; начните с El libro, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-27:i10:audio",
+          "transcript": "El libro está en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "El libro está en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — стул в комнате; начните с La silla, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — стул в комнате; начните с La silla, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-27:i11:audio",
+          "transcript": "La silla está en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La silla está en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-27:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — теперь ищут конкретный стол. Сообщите «Стол в комнате»; начните с La mesa, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-27:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — теперь ищут конкретный стол. Сообщите «Стол в комнате»; начните с La mesa, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-27:i12:audio",
+          "transcript": "La mesa está en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La mesa está en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "7501c99719f45aa2a5afd06fc0692c37cfee72cd7c644598f105fe51808de78a"
+}

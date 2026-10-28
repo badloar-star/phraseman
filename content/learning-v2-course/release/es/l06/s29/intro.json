@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-29",
+  "learningOutcomeByLocale": {
+    "ru": "выбирать hay для наличия и están для места нескольких известных вещей.",
+    "uk": "обирати hay для наявності й están для місця кількох відомих речей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-29:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Замечаем книги для чтения",
+        "uk": "Помічаємо книжки для читання"
+      },
+      "bodyByLocale": {
+        "ru": "Вы впервые зашли в комнату отдыха и увидели книги для посетителей. Сообщите спутнику `Hay libros aquí` — «Здесь есть книги». Соберите `Hay` + `libros` + `aquí`. Мы сообщаем о наличии книг, не выделяя знакомый набор. Поэтому libros здесь без артикля, а hay остаётся тем же и с несколькими книгами.",
+        "uk": "Ви вперше зайшли до кімнати відпочинку й побачили книжки для відвідувачів. Повідомте супутнику `Hay libros aquí` — «Тут є книжки». Складіть `Hay` + `libros` + `aquí`. Ми повідомляємо про наявність книжок, не виділяючи знайомий набір. Тому libros тут без артикля, а hay залишається тим самим і з кількома книжками."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-29:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть книги». Начните с Hay, слово libros используйте без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Тут є книжки». Почніть з Hay, слово libros використайте без артикля, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-29:intro1:r1",
+              "text": "Hay libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro1:r2",
+              "text": "Hay los libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro1:r3",
+              "text": "Los libros están aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-29:intro1:r1",
+              "text": "Hay libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro1:r2",
+              "text": "Hay los libros aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro1:r3",
+              "text": "Los libros están aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть книги». Начните с Hay, слово libros используйте без артикля, место поставьте в конце.",
+          "uk": "Повідомте «Тут є книжки». Почніть з Hay, слово libros використайте без артикля, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-29:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Нашли оставленные книги",
+        "uk": "Знайшли залишені книжки"
+      },
+      "bodyByLocale": {
+        "ru": "В другой ситуации друг ищет книги, которые оставил вам вчера. Вы нашли именно их рядом. Сообщите `Los libros están aquí` — «Книги здесь». Соберите `Los libros` + `están` + `aquí`. Los показывает, что речь о знакомых книгах. Их несколько, поэтому están. Другу нужны именно его книги, случайная стопка не решит вопрос.",
+        "uk": "В іншій ситуації друг шукає книжки, які залишив вам учора. Ви знайшли саме їх поруч. Повідомте `Los libros están aquí` — «Книжки тут». Складіть `Los libros` + `están` + `aquí`. Los показує, що йдеться про знайомі книжки. Їх кілька, тому están. Другу потрібні саме його книжки, випадковий стос не вирішить питання."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-29:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Книги здесь». Начните с Los libros, место поставьте в конце.",
+          "uk": "Повідомте «Книжки тут». Почніть з Los libros, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-29:intro2:r1",
+              "text": "Los libros están aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro2:r2",
+              "text": "Los libros está aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro2:r3",
+              "text": "Hay libros aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-29:intro2:r1",
+              "text": "Los libros están aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro2:r2",
+              "text": "Los libros está aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro2:r3",
+              "text": "Hay libros aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Книги здесь». Начните с Los libros, место поставьте в конце.",
+          "uk": "Повідомте «Книжки тут». Почніть з Los libros, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-29:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Найти приготовленные стулья",
+        "uk": "Знайти підготовлені стільці"
+      },
+      "bodyByLocale": {
+        "ru": "Помощник ищет стулья, которые вы отложили для гостей. Они в дальнем углу. Скажите `Las sillas están allí` — «Стулья там». Соберите `Las sillas` + `están` + `allí`. Называем конкретные стулья с las, затем указываем их место. Не начинаем с hay, потому что сообщаем, где эти стулья.",
+        "uk": "Помічник шукає стільці, які ви відклали для гостей. Вони в дальньому кутку. Скажіть `Las sillas están allí` — «Стільці там». Складіть `Las sillas` + `están` + `allí`. Називаємо конкретні стільці з las, потім указуємо їхнє місце. Не починаємо з hay, бо повідомляємо, де ці стільці."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-29:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Стулья там». Начните с Las sillas, место поставьте в конце.",
+          "uk": "Повідомте «Стільці там». Почніть з Las sillas, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-29:intro3:r1",
+              "text": "Las sillas están allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro3:r2",
+              "text": "Las sillas está allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro3:r3",
+              "text": "Hay sillas allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-29:intro3:r1",
+              "text": "Las sillas están allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro3:r2",
+              "text": "Las sillas está allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-29:intro3:r3",
+              "text": "Hay sillas allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Стулья там». Начните с Las sillas, место поставьте в конце.",
+          "uk": "Повідомте «Стільці там». Почніть з Las sillas, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "45253ed4dfbc4c1e982b8c9229b7661d84c10bdfd208c628aa3c7193656c196f"
+}

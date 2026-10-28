@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "использовать están, когда называете место нескольких вещей.",
+    "uk": "використовувати están, коли називаєте місце кількох речей."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Найти все книги",
+        "uk": "Знайти всі книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет книги, которые оставил у вас. Вы видите их рядом. Скажите `Los libros están aquí` — «Книги здесь». Соберите `Los libros` + `están` + `aquí`. Книг несколько: el libro меняется на los libros, а está — на están. У формы появляется n. Это новая форма знакомого estar, не новое слово.",
+        "uk": "Друг шукає книжки, які залишив у вас. Ви бачите їх поруч. Скажіть `Los libros están aquí` — «Книжки тут». Складіть `Los libros` + `están` + `aquí`. Книжок кілька: el libro змінюється на los libros, а está — на están. У форми з’являється n. Це нова форма знайомого estar, не нове слово."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Книги здесь». Начните с Los libros, место поставьте в конце.",
+          "uk": "Повідомте «Книжки тут». Почніть з Los libros, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-28:intro1:r1",
+              "text": "Los libros están aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro1:r2",
+              "text": "Los libros está aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro1:r3",
+              "text": "El libros están aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-28:intro1:r1",
+              "text": "Los libros están aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro1:r2",
+              "text": "Los libros está aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro1:r3",
+              "text": "El libros están aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Книги здесь». Начните с Los libros, место поставьте в конце.",
+          "uk": "Повідомте «Книжки тут». Почніть з Los libros, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Указать на стулья",
+        "uk": "Указати на стільці"
+      },
+      "bodyByLocale": {
+        "ru": "Помощник ищет стулья, приготовленные для гостей. Вы показываете в дальний угол: `Las sillas están allí` — «Стулья там». Соберите `Las sillas` + `están` + `allí`. Для нескольких silla нужны las sillas. Форма están не зависит от рода: она подходит и книгам, и стульям. Главное, что вещей несколько.",
+        "uk": "Помічник шукає стільці, підготовлені для гостей. Ви показуєте в дальній кут: `Las sillas están allí` — «Стільці там». Складіть `Las sillas` + `están` + `allí`. Для кількох silla потрібні las sillas. Форма están не залежить від роду: вона підходить і книжкам, і стільцям. Головне, що речей кілька."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Стулья там». Начните с Las sillas, место поставьте в конце.",
+          "uk": "Повідомте «Стільці там». Почніть з Las sillas, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-28:intro2:r1",
+              "text": "Las sillas están allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro2:r2",
+              "text": "Las sillas está allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro2:r3",
+              "text": "Los sillas están allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-28:intro2:r1",
+              "text": "Las sillas están allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro2:r2",
+              "text": "Las sillas está allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro2:r3",
+              "text": "Los sillas están allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Стулья там». Начните с Las sillas, место поставьте в конце.",
+          "uk": "Повідомте «Стільці там». Почніть з Las sillas, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Назвать место стопки",
+        "uk": "Назвати місце стосу"
+      },
+      "bodyByLocale": {
+        "ru": "Друг по телефону уточняет, где лежат оставленные книги. Скажите `Los libros están en la mesa` — «Книги на столе». Соберите `Los libros están` + `en la mesa`. Книг несколько, поэтому están. Стол один, поэтому la mesa не меняется: стопка книг не превращает один стол в несколько.",
+        "uk": "Друг телефоном уточнює, де лежать залишені книжки. Скажіть `Los libros están en la mesa` — «Книжки на столі». Складіть `Los libros están` + `en la mesa`. Книжок кілька, тому están. Стіл один, тому la mesa не змінюється: стос книжок не перетворює один стіл на кілька."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Книги на столе». Начните с Los libros, место поставьте в конце.",
+          "uk": "Повідомте «Книжки на столі». Почніть з Los libros, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-28:intro3:r1",
+              "text": "Los libros están en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro3:r2",
+              "text": "Los libros está en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro3:r3",
+              "text": "Los libros están la mesa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-28:intro3:r1",
+              "text": "Los libros están en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro3:r2",
+              "text": "Los libros está en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-28:intro3:r3",
+              "text": "Los libros están la mesa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Книги на столе». Начните с Los libros, место поставьте в конце.",
+          "uk": "Повідомте «Книжки на столі». Почніть з Los libros, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "a73d2ecf6935420dfc39c8d8efa3e29804f1390a1adaa409a8c610ce3611f5f6"
+}

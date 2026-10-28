@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "после está назвать место через en.",
+    "uk": "після está назвати місце через en."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Подсказать без жестов",
+        "uk": "Підказати без жестів"
+      },
+      "bodyByLocale": {
+        "ru": "Друг по телефону ищет книгу, которую вы оставили ему. Скажите `El libro está en la mesa` — «Книга на столе». Соберите `El libro` + `está` + `en la mesa`. Está сообщает, что мы указываем место, а en la mesa называет это место. По телефону «здесь» с указательным пальцем не поможет — лучше назвать стол.",
+        "uk": "Друг телефоном шукає книжку, яку ви залишили йому. Скажіть `El libro está en la mesa` — «Книжка на столі». Складіть `El libro` + `está` + `en la mesa`. Está повідомляє, що ми вказуємо місце, а en la mesa називає це місце. Телефоном «тут» із вказівним пальцем не допоможе — краще назвати стіл."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Книга на столе». Начните с El libro, место поставьте после está.",
+          "uk": "Повідомте «Книжка на столі». Почніть з El libro, місце поставте після está."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-27:intro1:r1",
+              "text": "El libro está en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro1:r2",
+              "text": "El libro está la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro1:r3",
+              "text": "El libro en la mesa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-27:intro1:r1",
+              "text": "El libro está en la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro1:r2",
+              "text": "El libro está la mesa."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro1:r3",
+              "text": "El libro en la mesa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Книга на столе». Начните с El libro, место поставьте после está.",
+          "uk": "Повідомте «Книжка на столі». Почніть з El libro, місце поставте після está."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Назвать комнату",
+        "uk": "Назвати кімнату"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь другой друг ищет книгу, которую оставил у вас. Вы помните, что она в комнате, но точное место не уточняете. Скажите `El libro está en la habitación` — «Книга в комнате». Соберите `El libro está` + `en la habitación`. En здесь переводится «в». Заменяем место целиком, а начало фразы сохраняем.",
+        "uk": "Тепер інший друг шукає книжку, яку залишив у вас. Ви пам’ятаєте, що вона в кімнаті, але точне місце не уточнюєте. Скажіть `El libro está en la habitación` — «Книжка в кімнаті». Складіть `El libro está` + `en la habitación`. En тут перекладається «в». Замінюємо місце цілком, а початок фрази зберігаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Книга в комнате». Начните с El libro, место поставьте после está.",
+          "uk": "Повідомте «Книжка в кімнаті». Почніть з El libro, місце поставте після está."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-27:intro2:r1",
+              "text": "El libro está en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro2:r2",
+              "text": "El libro está en el habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro2:r3",
+              "text": "El libro está la habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-27:intro2:r1",
+              "text": "El libro está en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro2:r2",
+              "text": "El libro está en el habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro2:r3",
+              "text": "El libro está la habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Книга в комнате». Начните с El libro, место поставьте после está.",
+          "uk": "Повідомте «Книжка в кімнаті». Почніть з El libro, місце поставте після está."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Найти стул для гостя",
+        "uk": "Знайти стілець для гостя"
+      },
+      "bodyByLocale": {
+        "ru": "Помощник ищет стул, который вы приготовили для гостя. Скажите `La silla está en la habitación` — «Стул в комнате». Соберите `La silla` + `está` + `en la habitación`. Меняем предмет на la silla. Форма está остаётся той же, ведь речь об одной вещи.",
+        "uk": "Помічник шукає стілець, який ви підготували для гостя. Скажіть `La silla está en la habitación` — «Стілець у кімнаті». Складіть `La silla` + `está` + `en la habitación`. Змінюємо предмет на la silla. Форма está залишається тією самою, адже йдеться про одну річ."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Стул в комнате». Начните с La silla, место поставьте после está.",
+          "uk": "Повідомте «Стілець у кімнаті». Почніть з La silla, місце поставте після está."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-27:intro3:r1",
+              "text": "La silla está en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro3:r2",
+              "text": "El silla está en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro3:r3",
+              "text": "La silla es en la habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-27:intro3:r1",
+              "text": "La silla está en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro3:r2",
+              "text": "El silla está en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-27:intro3:r3",
+              "text": "La silla es en la habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Стул в комнате». Начните с La silla, место поставьте после está.",
+          "uk": "Повідомте «Стілець у кімнаті». Почніть з La silla, місце поставте після está."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "8bb78e87955bfc131f0ccff65c617ec5ea9a2285cfdde170fd4d893bdc21e7ba"
+}

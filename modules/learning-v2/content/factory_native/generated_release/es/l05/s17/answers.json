@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-17:i01",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-17:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-17:i02",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-17:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-17:i03",
+    "correctText": "Él tiene un hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-17:i04",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-05:session-17:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-17:i05",
+    "correctText": "Él tiene un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-17:i06",
+    "correctText": "Él tiene un carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-17:i07",
+    "correctText": "Él tiene un hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-17:i08",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-17:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-17:i09",
+    "correctText": "Él tiene un hermano.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-17:i10",
+    "correctText": "Él tiene un libro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-17:i11",
+    "correctText": "Él tiene un carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-17:i12",
+    "correctText": "Él tiene un hijo.",
+    "correctResponseId": null
+  }
+]

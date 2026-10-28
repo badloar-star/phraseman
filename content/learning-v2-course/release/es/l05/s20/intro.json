@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-20",
+  "learningOutcomeByLocale": {
+    "ru": "поставить no перед tiene в рассказе о другом человеке.",
+    "uk": "поставити no перед tiene в розповіді про іншу людину."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-20:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Педро поедет с вами",
+        "uk": "Педро поїде з вами"
+      },
+      "bodyByLocale": {
+        "ru": "Друг предлагает Педро приехать на своей машине, но машины у него нет. Скажите `Pedro no tiene carro` — «У Педро нет машины». Соберите `Pedro` + `no` + `tiene` + `carro`. Сначала называем человека, затем ставим no прямо перед tiene. В этой фразе об отсутствии машины используем carro без артикля.",
+        "uk": "Друг пропонує Педро приїхати на своїй машині, але машини в нього немає. Скажіть `Pedro no tiene carro` — «У Педро немає машини». Складіть `Pedro` + `no` + `tiene` + `carro`. Спочатку називаємо людину, потім ставимо no прямо перед tiene. У цій фразі про відсутність машини використовуємо carro без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-20:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У Педро нет машины». Начните с Pedro no tiene, используйте carro без артикля.",
+          "uk": "Скажіть «У Педро немає машини». Почніть з Pedro no tiene, використайте carro без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-20:intro1:r1",
+              "text": "Pedro no tiene carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro1:r2",
+              "text": "Pedro tiene no carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro1:r3",
+              "text": "Pedro no tengo carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-20:intro1:r1",
+              "text": "Pedro no tiene carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro1:r2",
+              "text": "Pedro tiene no carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro1:r3",
+              "text": "Pedro no tengo carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У Педро нет машины». Начните с Pedro no tiene, используйте carro без артикля.",
+          "uk": "Скажіть «У Педро немає машини». Почніть з Pedro no tiene, використайте carro без артикля."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-20:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ана занята",
+        "uk": "Ана зайнята"
+      },
+      "bodyByLocale": {
+        "ru": "Ана сообщила, что не может задержаться для разговора. Объясните другу `Ana no tiene tiempo` — «У Аны нет времени». Соберите `Ana` + `no tiene` + `tiempo`. Как и с именем Педро, перед tiene ставим no. Пол человека не меняет эту форму. Tiempo в этой фразе без артикля.",
+        "uk": "Ана повідомила, що не може затриматися для розмови. Поясніть другу `Ana no tiene tiempo` — «В Ани немає часу». Складіть `Ana` + `no tiene` + `tiempo`. Як і з ім’ям Педро, перед tiene ставимо no. Стать людини не змінює цю форму. Tiempo в цій фразі без артикля."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-20:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У Аны нет времени». Начните с Ana no tiene.",
+          "uk": "Скажіть «В Ани немає часу». Почніть з Ana no tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-20:intro2:r1",
+              "text": "Ana no tiene tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro2:r2",
+              "text": "Ana no tienes tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro2:r3",
+              "text": "Ana tiene no tiempo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-20:intro2:r1",
+              "text": "Ana no tiene tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro2:r2",
+              "text": "Ana no tienes tiempo."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro2:r3",
+              "text": "Ana tiene no tiempo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У Аны нет времени». Начните с Ana no tiene.",
+          "uk": "Скажіть «В Ани немає часу». Почніть з Ana no tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-20:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключа у него нет",
+        "uk": "Ключа в нього немає"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже обсуждаете Педро, который оставил ключ дома. Скажите `Él no tiene llave` — «У него нет ключа». Соберите `él` + `no tiene` + `llave`. Вместо имени используем él, потому что понятно, о ком речь. No остаётся прямо перед tiene. В этой фразе об отсутствии ключа артикль не нужен.",
+        "uk": "Ви вже обговорюєте Педро, який залишив ключ удома. Скажіть `Él no tiene llave` — «У нього немає ключа». Складіть `él` + `no tiene` + `llave`. Замість імені використовуємо él, тому що зрозуміло, про кого йдеться. No залишається прямо перед tiene. У цій фразі про відсутність ключа артикль не потрібний."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-20:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите «У него нет ключа». Начните с Él no tiene, используйте llave без артикля.",
+          "uk": "Ідеться про Педро. Скажіть «У нього немає ключа». Почніть з Él no tiene, використайте llave без артикля."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-20:intro3:r1",
+              "text": "Él no tiene llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro3:r2",
+              "text": "Él no tengo llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro3:r3",
+              "text": "Él tiene no llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-20:intro3:r1",
+              "text": "Él no tiene llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro3:r2",
+              "text": "Él no tengo llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-20:intro3:r3",
+              "text": "Él tiene no llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите «У него нет ключа». Начните с Él no tiene, используйте llave без артикля.",
+          "uk": "Ідеться про Педро. Скажіть «У нього немає ключа». Почніть з Él no tiene, використайте llave без артикля."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "69574f3f1bb5fc292544b8b29b90ef306d7c3d8760caa256b8cb04206eefe450"
+}

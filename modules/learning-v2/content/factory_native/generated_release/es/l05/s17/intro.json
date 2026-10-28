@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "использовать él tiene, когда говорите о другом мужчине.",
+    "uk": "використовувати él tiene, коли говорите про іншого чоловіка."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Семья Педро",
+        "uk": "Родина Педро"
+      },
+      "bodyByLocale": {
+        "ru": "Вы с другом обсуждаете Педро. Скажите `Él tiene un hermano` — «У него есть брат». Соберите `él` + `tiene` + `un hermano`. Él означает «он», здесь это Педро. Для «он» выбираем tiene: без конечного s, которое было в tienes для «ты».",
+        "uk": "Ви з другом обговорюєте Педро. Скажіть `Él tiene un hermano` — «У нього є брат». Складіть `él` + `tiene` + `un hermano`. Él означає «він», тут це Педро. Для «він» вибираємо tiene: без кінцевого s, яке було в tienes для «ти»."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите «У него есть брат». Начните с Él tiene.",
+          "uk": "Ідеться про Педро. Скажіть «У нього є брат». Почніть з Él tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-17:intro1:r1",
+              "text": "Él tiene un hermano."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro1:r2",
+              "text": "Él tienes un hermano."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro1:r3",
+              "text": "Él tengo un hermano."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-17:intro1:r1",
+              "text": "Él tiene un hermano."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro1:r2",
+              "text": "Él tienes un hermano."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro1:r3",
+              "text": "Él tengo un hermano."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите «У него есть брат». Начните с Él tiene.",
+          "uk": "Ідеться про Педро. Скажіть «У нього є брат». Почніть з Él tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книга Педро",
+        "uk": "Книжка Педро"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, есть ли у Педро что почитать в дороге. Сообщите `Él tiene un libro` — «У него есть книга». Соберите `él` + `tiene` + `un libro`. Меняем только то, что есть у Педро: вместо брата называем книгу. Форма tiene остаётся, потому что по-прежнему говорим о нём.",
+        "uk": "Друг запитує, чи є у Педро що почитати в дорозі. Повідомте `Él tiene un libro` — «У нього є книжка». Складіть `él` + `tiene` + `un libro`. Міняємо лише те, що є у Педро: замість брата називаємо книжку. Форма tiene залишається, тому що й далі говоримо про нього."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите «У него есть книга». Начните с Él tiene.",
+          "uk": "Ідеться про Педро. Скажіть «У нього є книжка». Почніть з Él tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-17:intro2:r1",
+              "text": "Él tiene un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro2:r2",
+              "text": "Él tiene una libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro2:r3",
+              "text": "Él tengo un libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-17:intro2:r1",
+              "text": "Él tiene un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro2:r2",
+              "text": "Él tiene una libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro2:r3",
+              "text": "Él tengo un libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите «У него есть книга». Начните с Él tiene.",
+          "uk": "Ідеться про Педро. Скажіть «У нього є книжка». Почніть з Él tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Машина Педро",
+        "uk": "Машина Педро"
+      },
+      "bodyByLocale": {
+        "ru": "Вы обсуждаете, кто может приехать на машине. Педро уже упомянут. Скажите `Él tiene un carro` — «У него есть машина». Соберите `él` + `tiene` + `un carro`. В начале стоит él со знаком ударения — «он». Не путайте его с артиклем el: здесь слово называет человека, о котором говорите.",
+        "uk": "Ви обговорюєте, хто може приїхати на машині. Педро вже згаданий. Скажіть `Él tiene un carro` — «У нього є машина». Складіть `él` + `tiene` + `un carro`. На початку стоїть él зі знаком наголосу — «він». Не плутайте його з артиклем el: тут слово називає людину, про яку говорите."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь о Педро. Скажите «У него есть машина». Начните с Él tiene и используйте carro.",
+          "uk": "Ідеться про Педро. Скажіть «У нього є машина». Почніть з Él tiene й використайте carro."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-17:intro3:r1",
+              "text": "Él tiene un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro3:r2",
+              "text": "Él tienes un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro3:r3",
+              "text": "Él tiene una carro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-17:intro3:r1",
+              "text": "Él tiene un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro3:r2",
+              "text": "Él tienes un carro."
+            },
+            {
+              "responseId": "es:lesson-05:session-17:intro3:r3",
+              "text": "Él tiene una carro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь о Педро. Скажите «У него есть машина». Начните с Él tiene и используйте carro.",
+          "uk": "Ідеться про Педро. Скажіть «У нього є машина». Почніть з Él tiene й використайте carro."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "794d8bea4bca0c77d5fdcee0c4f99faa3a4c1be28fb93d30ca401dc7bf1cd261"
+}

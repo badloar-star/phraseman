@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-19",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-19:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-19:intro1:r2": {
+          "ru": "Tengo — для «я»; об Ане нужно tiene.",
+          "uk": "Tengo — для «я»; про Ану потрібно tiene."
+        },
+        "es:lesson-05:session-19:intro1:r3": {
+          "ru": "Здесь рассказываете об Ане, не обращаетесь к ней: tiene.",
+          "uk": "Тут розповідаєте про Ану, не звертаєтеся до неї: tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-19:intro2:r2": {
+          "ru": "О другом человеке говорим tiene.",
+          "uk": "Про іншу людину говоримо tiene."
+        },
+        "es:lesson-05:session-19:intro2:r3": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-19:intro3:r2": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        },
+        "es:lesson-05:session-19:intro3:r3": {
+          "ru": "С именем другого человека здесь нужна форма tiene.",
+          "uk": "З ім’ям іншої людини тут потрібна форма tiene."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "081ccd6879119874b85fe85c6680d2c95804142de8b1ba6f526853a6aa4be48d"
+}

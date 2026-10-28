@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-20",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-20:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-20:intro1:r2": {
+          "ru": "No должно стоять перед tiene.",
+          "uk": "No має стояти перед tiene."
+        },
+        "es:lesson-05:session-20:intro1:r3": {
+          "ru": "О Педро говорим tiene, не tengo.",
+          "uk": "Про Педро говоримо tiene, не tengo."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-20:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-20:intro2:r2": {
+          "ru": "Рассказываете об Ане: tiene, без s.",
+          "uk": "Розповідаєте про Ану: tiene, без s."
+        },
+        "es:lesson-05:session-20:intro2:r3": {
+          "ru": "No ставим перед tiene.",
+          "uk": "No ставимо перед tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-20:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-20:intro3:r2": {
+          "ru": "С él нужна форма tiene.",
+          "uk": "Із él потрібна форма tiene."
+        },
+        "es:lesson-05:session-20:intro3:r3": {
+          "ru": "No должно стоять перед tiene.",
+          "uk": "No має стояти перед tiene."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "36f3d97ddc3f999188d633e35da3a8c346d0d25ee3803a47537ad2e161d1f218"
+}

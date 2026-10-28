@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-18",
+  "learningOutcomeByLocale": {
+    "ru": "использовать ella tiene в рассказе о женщине.",
+    "uk": "використовувати ella tiene в розповіді про жінку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-18:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Книга Аны",
+        "uk": "Книжка Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Вы уже говорите об Ане. Сообщите `Ella tiene un libro` — «У неё есть книга». Соберите `ella` + `tiene` + `un libro`. Ella означает «она». Для ella используем ту же форму tiene, что и для él: пол человека не меняет форму этого глагола.",
+        "uk": "Ви вже говорите про Ану. Повідомте `Ella tiene un libro` — «У неї є книжка». Складіть `ella` + `tiene` + `un libro`. Ella означає «вона». Для ella використовуємо ту саму форму tiene, що й для él: стать людини не змінює форму цього дієслова."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-18:intro1:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане. Скажите «У неё есть книга». Начните с Ella tiene.",
+          "uk": "Ідеться про Ану. Скажіть «У неї є книжка». Почніть з Ella tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-18:intro1:r1",
+              "text": "Ella tiene un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro1:r2",
+              "text": "Ella tienes un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro1:r3",
+              "text": "Ella tengo un libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-18:intro1:r1",
+              "text": "Ella tiene un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro1:r2",
+              "text": "Ella tienes un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro1:r3",
+              "text": "Ella tengo un libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане. Скажите «У неё есть книга». Начните с Ella tiene.",
+          "uk": "Ідеться про Ану. Скажіть «У неї є книжка». Почніть з Ella tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-18:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка Аны",
+        "uk": "Сумка Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Друг ищет сумку для покупок. Вы вспоминаете, что у Аны есть сумка, и говорите `Ella tiene una bolsa` — «У неё есть сумка». Соберите `ella` + `tiene` + `una bolsa`. Una выбираем по слову bolsa, а не потому, что владелец — женщина. С libro у той же Аны было un libro.",
+        "uk": "Друг шукає сумку для покупок. Ви згадуєте, що в Ани є сумка, і говорите `Ella tiene una bolsa` — «У неї є сумка». Складіть `ella` + `tiene` + `una bolsa`. Una вибираємо за словом bolsa, а не тому, що власниця — жінка. Із libro у тієї самої Ани було un libro."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-18:intro2:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане. Скажите «У неё есть сумка». Начните с Ella tiene и используйте bolsa.",
+          "uk": "Ідеться про Ану. Скажіть «У неї є сумка». Почніть з Ella tiene й використайте bolsa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-18:intro2:r1",
+              "text": "Ella tiene una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro2:r2",
+              "text": "Ella tiene un bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro2:r3",
+              "text": "Ella tengo una bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-18:intro2:r1",
+              "text": "Ella tiene una bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro2:r2",
+              "text": "Ella tiene un bolsa."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro2:r3",
+              "text": "Ella tengo una bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане. Скажите «У неё есть сумка». Начните с Ella tiene и используйте bolsa.",
+          "uk": "Ідеться про Ану. Скажіть «У неї є сумка». Почніть з Ella tiene й використайте bolsa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-18:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ Аны",
+        "uk": "Ключ Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Перед выходом друг спрашивает про ключ Аны. Скажите `Ella tiene una llave` — «У неё есть ключ». Соберите `ella` + `tiene` + `una llave`. Llave — женского рода в испанском, поэтому una. Порядок остаётся прежним: о ком говорим, затем tiene, затем название вещи с артиклем.",
+        "uk": "Перед виходом друг запитує про ключ Ани. Скажіть `Ella tiene una llave` — «У неї є ключ». Складіть `ella` + `tiene` + `una llave`. Llave — жіночого роду в іспанській, тому una. Порядок залишається тим самим: про кого говоримо, потім tiene, потім назва речі з артиклем."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-18:intro3:q",
+        "promptByLocale": {
+          "ru": "Речь об Ане. Скажите «У неё есть ключ». Начните с Ella tiene.",
+          "uk": "Ідеться про Ану. Скажіть «У неї є ключ». Почніть з Ella tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-18:intro3:r1",
+              "text": "Ella tiene una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro3:r2",
+              "text": "Ella tiene un llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro3:r3",
+              "text": "Ella tienes una llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-18:intro3:r1",
+              "text": "Ella tiene una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro3:r2",
+              "text": "Ella tiene un llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-18:intro3:r3",
+              "text": "Ella tienes una llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Речь об Ане. Скажите «У неё есть ключ». Начните с Ella tiene.",
+          "uk": "Ідеться про Ану. Скажіть «У неї є ключ». Почніть з Ella tiene."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cf1b85155f52c9e5db3c64678724c45dc66b6fb7790e86389246c573f8124034"
+}

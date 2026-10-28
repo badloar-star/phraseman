@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-20:i01",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-20:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-20:i02",
+    "correctText": "no",
+    "correctResponseId": "es:lesson-05:session-20:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-20:i03",
+    "correctText": "Pedro no tiene carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-20:i04",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-20:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-20:i05",
+    "correctText": "Ana no tiene tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-20:i06",
+    "correctText": "Él no tiene llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-20:i07",
+    "correctText": "Pedro no tiene carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-20:i08",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-20:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-20:i09",
+    "correctText": "Pedro no tiene carro.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-20:i10",
+    "correctText": "Ana no tiene tiempo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-20:i11",
+    "correctText": "Él no tiene llave.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-20:i12",
+    "correctText": "Ella no tiene tiempo.",
+    "correctResponseId": null
+  }
+]

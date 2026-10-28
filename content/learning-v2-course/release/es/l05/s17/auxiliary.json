@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-17",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-17:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-17:intro1:r2": {
+          "ru": "Tienes относится к «ты»; с él нужно tiene.",
+          "uk": "Tienes стосується «ти»; із él потрібно tiene."
+        },
+        "es:lesson-05:session-17:intro1:r3": {
+          "ru": "Tengo относится к «я»; с él нужно tiene.",
+          "uk": "Tengo стосується «я»; із él потрібно tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-17:intro2:r2": {
+          "ru": "Libro мужского рода: un.",
+          "uk": "Libro чоловічого роду: un."
+        },
+        "es:lesson-05:session-17:intro2:r3": {
+          "ru": "С él нужна форма tiene.",
+          "uk": "Із él потрібна форма tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-17:intro3:r2": {
+          "ru": "Для «он» нужно tiene, без s.",
+          "uk": "Для «він» потрібно tiene, без s."
+        },
+        "es:lesson-05:session-17:intro3:r3": {
+          "ru": "Carro мужского рода: un.",
+          "uk": "Carro чоловічого роду: un."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "44a23cb358cb7169d71632f26de25025a93ffece25a23b3c37fc8620527704b5"
+}

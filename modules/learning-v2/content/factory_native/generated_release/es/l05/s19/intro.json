@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-19",
+  "learningOutcomeByLocale": {
+    "ru": "поставить имя человека перед tiene вместо él или ella.",
+    "uk": "поставити ім’я людини перед tiene замість él або ella."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-19:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Коробка Аны",
+        "uk": "Коробка Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Друзья ищут коробку для вещей. Скажите `Ana tiene una caja` — «У Аны есть коробка». Соберите `Ana` + `tiene` + `una caja`. Вместо ella называем Ану по имени. Форма tiene остаётся: говорим об одном другом человеке. Перед именем в этой фразе ничего добавлять не нужно.",
+        "uk": "Друзі шукають коробку для речей. Скажіть `Ana tiene una caja` — «В Ани є коробка». Складіть `Ana` + `tiene` + `una caja`. Замість ella називаємо Ану на ім’я. Форма tiene залишається: говоримо про одну іншу людину. Перед ім’ям у цій фразі нічого додавати не потрібно."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-19:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «У Аны есть коробка». Начните с Ana tiene.",
+          "uk": "Скажіть «В Ани є коробка». Почніть з Ana tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-19:intro1:r1",
+              "text": "Ana tiene una caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro1:r2",
+              "text": "Ana tengo una caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro1:r3",
+              "text": "Ana tienes una caja."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-19:intro1:r1",
+              "text": "Ana tiene una caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro1:r2",
+              "text": "Ana tengo una caja."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro1:r3",
+              "text": "Ana tienes una caja."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У Аны есть коробка». Начните с Ana tiene.",
+          "uk": "Скажіть «В Ани є коробка». Почніть з Ana tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-19:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Книга Педро",
+        "uk": "Книжка Педро"
+      },
+      "bodyByLocale": {
+        "ru": "Друг спрашивает, у кого есть книга для дороги. Сообщите `Pedro tiene un libro` — «У Педро есть книга». Соберите `Pedro` + `tiene` + `un libro`. Имя Pedro занимает место él. Tiene подходит и к имени мужчины, и к имени женщины: форма относится к одному человеку, о котором рассказываем.",
+        "uk": "Друг запитує, у кого є книжка для дороги. Повідомте `Pedro tiene un libro` — «У Педро є книжка». Складіть `Pedro` + `tiene` + `un libro`. Ім’я Pedro займає місце él. Tiene підходить і до імені чоловіка, і до імені жінки: форма стосується однієї людини, про яку розповідаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-19:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «У Педро есть книга». Начните с Pedro tiene.",
+          "uk": "Скажіть «У Педро є книжка». Почніть з Pedro tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-19:intro2:r1",
+              "text": "Pedro tiene un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro2:r2",
+              "text": "Pedro tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro2:r3",
+              "text": "Pedro tiene una libro."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-19:intro2:r1",
+              "text": "Pedro tiene un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro2:r2",
+              "text": "Pedro tengo un libro."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro2:r3",
+              "text": "Pedro tiene una libro."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У Педро есть книга». Начните с Pedro tiene.",
+          "uk": "Скажіть «У Педро є книжка». Почніть з Pedro tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-19:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ключ Аны",
+        "uk": "Ключ Ани"
+      },
+      "bodyByLocale": {
+        "ru": "У двери друзья выясняют, у кого есть ключ. Скажите `Ana tiene una llave` — «У Аны есть ключ». Соберите `Ana` + `tiene` + `una llave`. Назвав имя, не добавляем следом ella: для этой простой фразы достаточно Ana. Перед llave ставим una по женскому роду испанского слова.",
+        "uk": "Біля дверей друзі з’ясовують, у кого є ключ. Скажіть `Ana tiene una llave` — «В Ани є ключ». Складіть `Ana` + `tiene` + `una llave`. Назвавши ім’я, не додаємо слідом ella: для цієї простої фрази достатньо Ana. Перед llave ставимо una за жіночим родом іспанського слова."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-19:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «У Аны есть ключ». Начните с Ana tiene.",
+          "uk": "Скажіть «В Ани є ключ». Почніть з Ana tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-19:intro3:r1",
+              "text": "Ana tiene una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro3:r2",
+              "text": "Ana tiene un llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro3:r3",
+              "text": "Ana tengo una llave."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-19:intro3:r1",
+              "text": "Ana tiene una llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro3:r2",
+              "text": "Ana tiene un llave."
+            },
+            {
+              "responseId": "es:lesson-05:session-19:intro3:r3",
+              "text": "Ana tengo una llave."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «У Аны есть ключ». Начните с Ana tiene.",
+          "uk": "Скажіть «В Ани є ключ». Почніть з Ana tiene."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "52bbb2bf5848824af4d3d7a7dc2f98ba6ef972553b7d26bb022331ef73c3ebd1"
+}

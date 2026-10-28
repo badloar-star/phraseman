@@ -1687,4 +1687,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"закрепить вопросы с tienes и отдельные ответы с tengo.","uk":"закріпити запитання з tienes й окремі відповіді з tengo."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 17,
+    sourceFingerprint: "8afbca802a547b29369231e5fda3b9f73d6b5c586637c78ee976c8cec7997447",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать él tiene, когда говорите о другом мужчине.","uk":"використовувати él tiene, коли говорите про іншого чоловіка."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 18,
+    sourceFingerprint: "fa468e4ff06b141db1dc29f242ab94bec4a0986a37eeb2e1925ef029ba9022b0",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать ella tiene в рассказе о женщине.","uk":"використовувати ella tiene в розповіді про жінку."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 19,
+    sourceFingerprint: "eeffd84d96d8496e7e7ef64a3b9f9006d4b6a40426698b9d48e53c8c3eb61827",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить имя человека перед tiene вместо él или ella.","uk":"поставити ім’я людини перед tiene замість él або ella."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 20,
+    sourceFingerprint: "03badecaa505515aefc57f54daf7271594a34d76267a6dcdc395cf2d0264275e",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"поставить no перед tiene в рассказе о другом человеке.","uk":"поставити no перед tiene в розповіді про іншу людину."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

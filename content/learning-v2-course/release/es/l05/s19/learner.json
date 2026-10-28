@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-19",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-19:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-19:i01:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i01:r2",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-19:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-19:i01:audio",
+          "transcript": "tiene"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-19:i01:r1",
+            "targetText": "tiene",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-19:i01:r2",
+            "targetText": "tengo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-19:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит tiene с конечным e.",
+              "uk": "Звучить tiene з кінцевим e."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у Аны есть коробка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-19:i02:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i02:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i02:r3",
+          "text": "tienes"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у Аны есть коробка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у Аны есть коробка",
+          "uk": "Вставте слово — в Ани є коробка"
+        },
+        "gappedTargetPhrase": "Ana ___ una caja.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-19:i02:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-19:i02:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-19:i02:r3",
+            "text": "tienes"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у Аны есть коробка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-19:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у Аны есть коробка",
+            "feedbackByLocale": {
+              "ru": "Рассказываете об Ане: tiene.",
+              "uk": "Розповідаєте про Ану: tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-19:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у Аны есть коробка",
+            "feedbackByLocale": {
+              "ru": "К Ане не обращаетесь, а говорите о ней: tiene.",
+              "uk": "До Ани не звертаєтеся, а говорите про неї: tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у Аны есть коробка; начните с Ana",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-19:i03:r1",
+          "text": "Плитки: caja"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i03:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i03:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i03:r4",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i03:r5",
+          "text": "tengo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у Аны есть коробка; начните с Ana",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene una caja.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у Аны есть коробка; начните с Ana",
+          "uk": "Зберіть фразу — в Ани є коробка; почніть з Ana"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "una",
+          "caja"
+        ],
+        "authoredDistractorTokens": [
+          "tengo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-19:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у Аны есть коробка; начните с Ana",
+            "feedbackByLocale": {
+              "ru": "об Ане говорим tiene.",
+              "uk": "про Ану говоримо tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у Педро есть книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-19:i04:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i04:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i04:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у Педро есть книга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у Педро есть книга",
+          "uk": "Вставте слово — у Педро є книжка"
+        },
+        "gappedTargetPhrase": "Pedro tiene ___ libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-19:i04:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-05:session-19:i04:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-19:i04:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у Педро есть книга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-19:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у Педро есть книга",
+            "feedbackByLocale": {
+              "ru": "Libro мужского рода: un.",
+              "uk": "Libro чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-19:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у Педро есть книга",
+            "feedbackByLocale": {
+              "ru": "Книга одна: un libro.",
+              "uk": "Книжка одна: un libro."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у Педро есть книга; начните с Pedro",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-19:i05:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i05:r2",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i05:r3",
+          "text": "Pedro"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i05:r4",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i05:r5",
+          "text": "tienes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у Педро есть книга; начните с Pedro",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Pedro tiene un libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у Педро есть книга; начните с Pedro",
+          "uk": "Зберіть фразу — у Педро є книжка; почніть з Pedro"
+        },
+        "orderedTokens": [
+          "Pedro",
+          "tiene",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "tienes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-19:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у Педро есть книга; начните с Pedro",
+            "feedbackByLocale": {
+              "ru": "о Педро нужна форма tiene.",
+              "uk": "про Педро потрібна форма tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у Аны есть ключ; начните с Ana",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-19:i06:r1",
+          "text": "Плитки: una"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i06:r2",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i06:r3",
+          "text": "llave"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i06:r4",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i06:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у Аны есть ключ; начните с Ana",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Ana tiene una llave.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у Аны есть ключ; начните с Ana",
+          "uk": "Зберіть фразу — в Ани є ключ; почніть з Ana"
+        },
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "una",
+          "llave"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-19:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у Аны есть ключ; начните с Ana",
+            "feedbackByLocale": {
+              "ru": "llave женского рода.",
+              "uk": "llave жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-19:i07:r1",
+          "text": "Плитки: tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i07:r2",
+          "text": "caja"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i07:r3",
+          "text": "Ana"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i07:r4",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i07:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-19:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-19:i07:audio",
+          "transcript": "Ana tiene una caja."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Ana tiene una caja.",
+        "orderedTokens": [
+          "Ana",
+          "tiene",
+          "una",
+          "caja"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-19:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит una.",
+              "uk": "звучить una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у Аны есть ключ",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-19:i08:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i08:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-19:i08:r3",
+          "text": "tener"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у Аны есть ключ",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у Аны есть ключ",
+          "uk": "Вставте слово — в Ани є ключ"
+        },
+        "gappedTargetPhrase": "Ana ___ una llave.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-19:i08:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-19:i08:r2",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-19:i08:r3",
+            "text": "tener"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у Аны есть ключ",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-19:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у Аны есть ключ",
+            "feedbackByLocale": {
+              "ru": "Рассказываете об Ане: tiene.",
+              "uk": "Розповідаєте про Ану: tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-19:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у Аны есть ключ",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма tiene.",
+              "uk": "Потрібна особова форма tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у Аны есть коробка; начните с Ana tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-19:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у Аны есть коробка; начните с Ana tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-19:i09:audio",
+          "transcript": "Ana tiene una caja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene una caja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у Педро есть книга; начните с Pedro tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-19:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у Педро есть книга; начните с Pedro tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-19:i10:audio",
+          "transcript": "Pedro tiene un libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Pedro tiene un libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у Аны есть ключ; начните с Ana tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-19:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у Аны есть ключ; начните с Ana tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-19:i11:audio",
+          "transcript": "Ana tiene una llave."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ana tiene una llave.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-19:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у Педро есть коробка; начните с Pedro tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-19:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у Педро есть коробка; начните с Pedro tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-19:i12:audio",
+          "transcript": "Pedro tiene una caja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Pedro tiene una caja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "d35bd726054c5811ab24e2f7198af549be23a442a1615ac6e09284a2d8755ce9"
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-18",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-18:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-18:intro1:r2": {
+          "ru": "Tienes — для «ты»; с ella нужно tiene.",
+          "uk": "Tienes — для «ти»; із ella потрібно tiene."
+        },
+        "es:lesson-05:session-18:intro1:r3": {
+          "ru": "Tengo — для «я»; здесь ella tiene.",
+          "uk": "Tengo — для «я»; тут ella tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-18:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-18:intro2:r2": {
+          "ru": "Bolsa женского рода: una.",
+          "uk": "Bolsa жіночого роду: una."
+        },
+        "es:lesson-05:session-18:intro2:r3": {
+          "ru": "С ella нужна форма tiene.",
+          "uk": "Із ella потрібна форма tiene."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-18:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-18:intro3:r2": {
+          "ru": "Llave женского рода: una.",
+          "uk": "Llave жіночого роду: una."
+        },
+        "es:lesson-05:session-18:intro3:r3": {
+          "ru": "С ella нужно tiene, без s.",
+          "uk": "Із ella потрібно tiene, без s."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "02ccfa12b4e79778ac308607519f153193bd786d2bf405b3ab96917b1058f22a"
+}

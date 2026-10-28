@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-05:session-17",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-05:session-17:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-17:i01:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i01:r2",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-17:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-17:i01:audio",
+          "transcript": "tiene"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-05:session-17:i01:r1",
+            "targetText": "tiene",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-05:session-17:i01:r2",
+            "targetText": "tengo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-17:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит tiene, с конечным e.",
+              "uk": "Звучить tiene, з кінцевим e."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у него есть брат",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-17:i02:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i02:r2",
+          "text": "tienes"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i02:r3",
+          "text": "tengo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у него есть брат",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у него есть брат",
+          "uk": "Вставте слово — у нього є брат"
+        },
+        "gappedTargetPhrase": "Él ___ un hermano.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-17:i02:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-17:i02:r2",
+            "text": "tienes"
+          },
+          {
+            "responseId": "es:lesson-05:session-17:i02:r3",
+            "text": "tengo"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у него есть брат",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-17:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у него есть брат",
+            "feedbackByLocale": {
+              "ru": "Для él нужно tiene, без s.",
+              "uk": "Для él потрібно tiene, без s."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-17:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у него есть брат",
+            "feedbackByLocale": {
+              "ru": "Tengo относится к «я»; здесь él tiene.",
+              "uk": "Tengo стосується «я»; тут él tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у него есть брат; начните с Él",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-17:i03:r1",
+          "text": "Плитки: un"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i03:r2",
+          "text": "él"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i03:r3",
+          "text": "hermano"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i03:r4",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i03:r5",
+          "text": "tienes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у него есть брат; начните с Él",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Él tiene un hermano.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у него есть брат; начните с Él",
+          "uk": "Зберіть фразу — у нього є брат; почніть з Él"
+        },
+        "orderedTokens": [
+          "Él",
+          "tiene",
+          "un",
+          "hermano"
+        ],
+        "authoredDistractorTokens": [
+          "tienes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-17:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у него есть брат; начните с Él",
+            "feedbackByLocale": {
+              "ru": "для él нужна форма tiene.",
+              "uk": "для él потрібна форма tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у него есть книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-17:i04:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i04:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i04:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у него есть книга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у него есть книга",
+          "uk": "Вставте слово — у нього є книжка"
+        },
+        "gappedTargetPhrase": "Él tiene ___ libro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-17:i04:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-05:session-17:i04:r2",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-05:session-17:i04:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у него есть книга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-17:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у него есть книга",
+            "feedbackByLocale": {
+              "ru": "Libro мужского рода: un.",
+              "uk": "Libro чоловічого роду: un."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-17:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у него есть книга",
+            "feedbackByLocale": {
+              "ru": "Книга одна: un libro.",
+              "uk": "Книжка одна: un libro."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у него есть книга; начните с Él",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-17:i05:r1",
+          "text": "Плитки: libro"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i05:r2",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i05:r3",
+          "text": "él"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i05:r4",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i05:r5",
+          "text": "tengo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у него есть книга; начните с Él",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Él tiene un libro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у него есть книга; начните с Él",
+          "uk": "Зберіть фразу — у нього є книжка; почніть з Él"
+        },
+        "orderedTokens": [
+          "Él",
+          "tiene",
+          "un",
+          "libro"
+        ],
+        "authoredDistractorTokens": [
+          "tengo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-17:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у него есть книга; начните с Él",
+            "feedbackByLocale": {
+              "ru": "с él нужно tiene.",
+              "uk": "із él потрібно tiene."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — у него есть машина; начните с Él и используйте carro",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-17:i06:r1",
+          "text": "Плитки: él"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i06:r2",
+          "text": "carro"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i06:r3",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i06:r4",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i06:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — у него есть машина; начните с Él и используйте carro",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Él tiene un carro.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — у него есть машина; начните с Él и используйте carro",
+          "uk": "Зберіть фразу — у нього є машина; почніть з Él і використайте carro"
+        },
+        "orderedTokens": [
+          "Él",
+          "tiene",
+          "un",
+          "carro"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-17:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — у него есть машина; начните с Él и используйте carro",
+            "feedbackByLocale": {
+              "ru": "carro мужского рода.",
+              "uk": "carro чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-17:i07:r1",
+          "text": "Плитки: tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i07:r3",
+          "text": "hermano"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i07:r4",
+          "text": "él"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i07:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-17:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-17:i07:audio",
+          "transcript": "Él tiene un hermano."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Él tiene un hermano.",
+        "orderedTokens": [
+          "Él",
+          "tiene",
+          "un",
+          "hermano"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-05:session-17:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит un.",
+              "uk": "звучить un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — у него есть машина",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-05:session-17:i08:r1",
+          "text": "tiene"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i08:r2",
+          "text": "tengo"
+        },
+        {
+          "responseId": "es:lesson-05:session-17:i08:r3",
+          "text": "tener"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — у него есть машина",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — у него есть машина",
+          "uk": "Вставте слово — у нього є машина"
+        },
+        "gappedTargetPhrase": "Él ___ un carro.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-05:session-17:i08:r1",
+            "text": "tiene"
+          },
+          {
+            "responseId": "es:lesson-05:session-17:i08:r2",
+            "text": "tengo"
+          },
+          {
+            "responseId": "es:lesson-05:session-17:i08:r3",
+            "text": "tener"
+          }
+        ],
+        "testedDimension": "Вставьте слово — у него есть машина",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-05:session-17:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у него есть машина",
+            "feedbackByLocale": {
+              "ru": "Говорите о нём: tiene.",
+              "uk": "Говорите про нього: tiene."
+            }
+          },
+          {
+            "responseId": "es:lesson-05:session-17:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — у него есть машина",
+            "feedbackByLocale": {
+              "ru": "Нужна личная форма для él: tiene.",
+              "uk": "Потрібна особова форма для él: tiene."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у него есть брат; начните с Él tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-17:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у него есть брат; начните с Él tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-17:i09:audio",
+          "transcript": "Él tiene un hermano."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Él tiene un hermano.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у него есть книга; начните с Él tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-17:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у него есть книга; начните с Él tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-17:i10:audio",
+          "transcript": "Él tiene un libro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Él tiene un libro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у него есть машина; начните с Él tiene и используйте carro",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-17:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у него есть машина; начните с Él tiene и используйте carro",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-17:i11:audio",
+          "transcript": "Él tiene un carro."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Él tiene un carro.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-05:session-17:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — у него есть сын; начните с Él tiene",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-05:session-17:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — у него есть сын; начните с Él tiene",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-05:session-17:i12:audio",
+          "transcript": "Él tiene un hijo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Él tiene un hijo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "239ba082ef0dd42724981d3c6e85f99efa326805af9b2fd7c9dc7e8982dc818a"
+}

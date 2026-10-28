@@ -103,7 +103,7 @@ const nowSeason = (id, ap) => {
   const glow = light ? okRgb(0.70, 0.13 * tint, H) : okRgb(0.56, 0.12 * tint, H);
   const from = light ? okRgb(0.53 - darker, 0.15 * chromaMul * tint, H) : okRgb(0.40 - darker, 0.11 * chromaMul * tint, H);
   const to = light ? okRgb(0.33 - darker, 0.13 * chromaMul * tint, H) : okRgb(0.20 - darker / 2, 0.07 * chromaMul * tint, H);
-  return { top: from, bot: to, bg: `linear-gradient(to bottom, transparent 55%, rgba(0,0,0,.34) 100%), radial-gradient(120% 90% at 88% 0%, ${rgba(glow)} 0%, transparent 58%), linear-gradient(160deg, ${rgba(from)} 0%, ${rgba(to)} 100%)` };
+  return { top: from, bot: to, glow, bg: `linear-gradient(to bottom, transparent 55%, rgba(0,0,0,.34) 100%), radial-gradient(120% 90% at 88% 0%, ${rgba(glow)} 0%, transparent 58%), linear-gradient(160deg, ${rgba(from)} 0%, ${rgba(to)} 100%)` };
 };
 
 /* ═════ «НОВЫЙ»: четыре стратегии цвета сцены — владелец переключает сам (владелец 28.10: «цвета не те»; координатор: А/Б/В/Г) ═════

@@ -40,6 +40,9 @@ const toSrgb = (v) => 255 * (v <= 0.0031308 ? 12.92 * v : 1.055 * Math.pow(v, 1 
 const oklchOf = (c) => { const [r, g, b] = c.map(toLin); const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b); const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b); const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b); const A = 1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s; const B = 0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s; return [0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s, Math.hypot(A, B), (Math.atan2(B, A) * 180 / Math.PI + 360) % 360]; };
 const okLin = (L, C, Hh) => { const a = C * Math.cos(Hh * Math.PI / 180); const b = C * Math.sin(Hh * Math.PI / 180); const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3; const m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3; const s = (L - 0.0894841775 * a - 1.2914855480 * b) ** 3; return [4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s, -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s, -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s]; };
 const fromOklch = (L, C, Hh) => okLin(L, C, Hh).map((v) => Math.max(0, Math.min(255, toSrgb(Math.max(0, Math.min(1, v))))));
+// как oklchToHex приложения (season_art.ts): вне gamut — уменьшаем насыщенность при тех же оттенке и светлоте
+const inGamut = (c) => c.every((v) => v >= -0.0005 && v <= 1.0005);
+const okRgb = (L, C, Hh) => { let c = C; let lin = okLin(L, c, Hh); for (let i = 0; i < 60 && !inGamut(lin); i += 1) { c = Math.max(0, c - 0.004); lin = okLin(L, c, Hh); } return lin.map((v) => Math.max(0, Math.min(255, toSrgb(Math.max(0, Math.min(1, v)))))); };
 const PREMIUM = [
   { id: 'grad_full_olive', dark: ['#10170d', '#424c28', '#333d20', '#586035'], light: ['#e6ead5', '#f5f5de', '#e7edc9', '#c9d3a5'], accent: '#dbe591', ink: '#34410d', edge: '#bac573', sceneTop: '#778624', sceneBottom: '#151e10' },
   { id: 'grad_full_ref_signal_lime', dark: ['#040709', '#1c2613', '#0d120c', '#212c15'], light: ['#f9ffed', '#fdfff9', '#f8ffe9', '#f4ffde'], accent: '#c2ff46', ink: '#445919', edge: '#c2ff46', sceneTop: '#101406', sceneBottom: '#020406' },
@@ -57,7 +60,7 @@ const whiteOn = (c) => 1.05 / (lumc(c) + 0.05);
 const EVENING_GLOW = { color: [214, 92, 70], a: 0.62 }; // home_scene_tokens.ts EVENING_GLOW rgba(214,92,70,.62)
 const EMBER = { color: fromOklch(0.66, 0.19, 28), a: 0.55 }; // EMBER = oklch(.66 .19 28) / .55
 /** Модель фона сцены «сейчас» для экрана: { top, bot, start, end, lights, scrim, halo } (SR.painter); null — тема не из снимка */
-function oldSpec(screen, theme, ap, state, sceneH, hero) {
+function oldSpec(screen, theme, ap, state, sceneH, hero, extra) {
   const th = THEMES[theme]; if (!th || !th[ap]) return null; const t = th[ap]; const g = t.accentGradient || [t.accent, t.accent]; const dark = ap === 'dark';
   if (screen === 'home') {
     let top; let bot; let light; let scrim = null;
@@ -71,6 +74,20 @@ function oldSpec(screen, theme, ap, state, sceneH, hero) {
       return { top, bot, start: [0.22, 0], end: [0.78, 1], lights: [{ cx: 0.82, cy: 0, rx: 0.7, ry: 0.5, color: EVENING_GLOW.color, a: EVENING_GLOW.a, fade: 1 }, { cx: 90 * DP / W, cy: (sceneH - 70 * DP) / sceneH, rx: 130 * DP / W, ry: 130 * DP / sceneH, color: EMBER.color, a: EMBER.a, fade: 1 }], scrim };
     }
     return { top, bot, start: [0.22, 0], end: [0.78, 1], lights: [{ cx: 0.18, cy: 0, rx: 0.7, ry: 0.5, color: light.color, a: light.a, fade: 1 }], scrim };
+  }
+  if (screen === 'peak') { // SpireSceneBackdrop: те же цвета сцены, что у Главной, свет 18 %/0 % rx 70 %, ry = .5·(шапка + 392 dp)/вся высота фона
+    let top; let bot; let light; const pr = PREMIUM_BY_ID[theme];
+    if (pr) { top = hx(pr.sceneTop); for (let i = 0; i < 40 && whiteOn(top) < 5; i += 1) top = mixc([0, 0, 0], top, 0.04); bot = hx(pr.sceneBottom); light = { color: hx(pr.edge), a: 0x25 / 255 }; }
+    else if (dark) { top = mixc(hx(g[0]), hx(t.bgTop), 0.3); bot = mixc(hx(g[g.length - 1]), hx(t.bg), 0.3); const gl = (t.bgGlow && t.bgGlow[0]) || t.accentGlow; light = { color: hx(gl), a: ha(gl) }; }
+    else if (theme === 'ink') { top = fromOklch(0.47, 0.14, 282); bot = fromOklch(0.28, 0.10, 276); light = { color: fromOklch(0.66, 0.13, 300), a: 0.9 }; }
+    else { const [, C, Hh] = oklchOf(hx(t.accent)); top = fromOklch(0.47, Math.min(C, 0.16), Hh); bot = fromOklch(0.28, Math.min(C, 0.11), (Hh + 354) % 360); light = { color: fromOklch(0.66, Math.min(C, 0.14), (Hh + 18) % 360), a: 0.9 }; }
+    const ry = Math.min(1, 0.5 * (80 + 392) / (sceneH / DP)); const shadeA = extra && extra.shadeA ? extra.shadeA : 0;
+    return { top, bot, start: [0.22, 0], end: [0.78, 1], lights: [{ cx: 0.18, cy: 0, rx: 0.7, ry, color: light.color, a: light.a, fade: 1 }], scrim: dark ? null : { a: 0.40, h: 300 * DP }, shade: shadeA > 0 ? { a: shadeA, y0: 80 * DP, tail: 140 * DP } : null };
+  }
+  if (screen === 'season') { // обложка Сезона: seasonThemedArt(оттенок акцента, глава 1) — градиент .33/0 → .67/1, свет линейный от правого верха, затемнение низа 320 dp
+    const [, C, Hh] = oklchOf(hx(t.accent)); const light = !dark; const tint = Math.min(1, Math.max(0.2, C / (light ? 0.15 : 0.11))); const darker = 0.01; const chromaMul = 0.88;
+    const glow = light ? okRgb(0.70, 0.13 * tint, Hh) : okRgb(0.56, 0.12 * tint, Hh); const from = light ? okRgb(0.53 - darker, 0.15 * chromaMul * tint, Hh) : okRgb(0.40 - darker, 0.11 * chromaMul * tint, Hh); const to = light ? okRgb(0.33 - darker, 0.13 * chromaMul * tint, Hh) : okRgb(0.20 - darker / 2, 0.07 * chromaMul * tint, Hh);
+    return { top: from, bot: to, start: [0.33, 0], end: [0.67, 1], lights: [], linearLights: [{ x0: 1, y0: 0, x1: 0.35, y1: 0.6, color: glow, a: 1 }], scrim: { a: 0.36, h: 320 * DP } };
   }
   if (screen === 'dialogs') { // DialogsSceneBackdrop + ореол героя accentGlow (профиль 1 → .2 → 0) в x 57 %, круг 168 dp
     const top = dark ? mixc(hx(g[0]), hx(t.bgTop), 0.3) : hx(t.bgTop); const bot = dark ? mixc(hx(g[g.length - 1]), hx(t.bg), 0.3) : hx(t.bg);
@@ -134,9 +151,12 @@ async function describe(fp, p) {
   // граница сцены: первый резкий скачок цвета в левой колонке ниже 800 px (скруглённый низ сцены над карточкой); не нашли — 1082 (раскладка сборки 28.10)
   // вечером слева снизу угли (радиальный свет) — границу ищем по правой колонке, днём по левой
   const colX = p.state === 'evening' ? 1064 : 16;
-  let sceneH = 0; let prev = px(buf, ch, colX, 800);
-  for (let y = 801; y < 1500; y += 1) { const c = px(buf, ch, colX, y); if (dist(c, prev) > 24) { sceneH = y; break; } prev = c; }
-  sceneH = sceneH || 1082;
+  // Пик: фон тянется до плашки «Играть» — скачок ищем ниже 1600; Сезон: обложка minHeight 392 dp (heroTall), низ почти в цвет фона страницы — берём раскладку
+  const yFrom = p.screen === 'peak' ? 1600 : 800;
+  let sceneH = 0; let prev = px(buf, ch, colX, yFrom);
+  for (let y = yFrom + 1; y < 2200; y += 1) { const c = px(buf, ch, colX, y); if (dist(c, prev) > 24) { sceneH = y; break; } prev = c; }
+  if (p.screen === 'season') sceneH = Math.round(392 * DP);
+  sceneH = sceneH || (p.screen === 'peak' ? 1950 : 1082);
   // вечер (серия под угрозой): тёплый свет справа сверху и угли слева снизу вместо света слева — правый верх теплее левого
   const warm = (c) => c[0] - c[2];
   const wr = warm(avg(buf, ch, 980, 4, 1076, 60)); const wl = warm(avg(buf, ch, 4, 4, 100, 60)); const evening = wr > 40 && wr - wl > 35; // вечерний свет красный: правый верх тёплый сам по себе и теплее левого
@@ -144,7 +164,14 @@ async function describe(fp, p) {
   let preview = false; const t = THEMES[p.theme] && THEMES[p.theme][p.ap];
   if (p.screen === 'home' && t) { const under = px(buf, ch, 540, sceneH + 60); preview = dist(under, hx(t.opaqueCard)) > 14 && dist(under, hx(t.opaqueSheet || t.opaqueCard)) > 14; }
   const cardsInfo = p.screen === 'home' ? detectCards(buf, ch, sceneH, 2140) : null;
-  return { ok: true, status: 100, tab: 2140, sceneH, evening, preview, buf, ch, cardsInfo };
+  // Пик: сила затемнения шапки (spireTopShadeAlpha считается в приложении по контрасту) — снимаем с кадра: отношение яркости левой колонки шапки к модели без затемнения
+  let shadeA = 0;
+  if (p.screen === 'peak' && THEMES[p.theme] && THEMES[p.theme][p.ap]) {
+    const spec0 = oldSpec('peak', p.theme, p.ap, 'day', sceneH, null, null); if (spec0) { const paint = SR.painter(spec0, W, sceneH); let rf = 0; let rm = 0; let n = 0;
+      for (let y = 8; y <= 180; y += 8) { const c = px(buf, ch, 16, y); const m = paint(16, y); rf += c[0] + c[1] + c[2]; rm += m[0] + m[1] + m[2]; n += 1; }
+      shadeA = Math.max(0, Math.min(0.6, 1 - rf / Math.max(1, rm))); }
+  }
+  return { ok: true, status: 100, tab: 2140, sceneH, evening, preview, buf, ch, cardsInfo, shadeA: +shadeA.toFixed(3) };
 }
 
 /* герой: в полосе справа ниже шапки пиксели, отличные от модели фона, — это герой; его рамка против рамки непрозрачных пикселей картинки
@@ -187,8 +214,9 @@ async function fitReport(file) {
   const p = parse(file); const d = await describe(path.join(DIR, file), p); if (!d.ok) { console.log(LOG, 'не годен:', d.why); return; }
   const state = p.state || (d.evening ? 'evening' : 'day');
   const rec = { screen: p.screen, state };
-  let hero = null; if (HERO[p.screen]) { const r = await alignHero(d, p.screen, oldSpec(p.screen, p.theme, p.ap, state, d.sceneH, null), d.sceneH, HERO[p.screen], p.ap, state); hero = r.hero; if (!hero) console.log(LOG, 'герой:', r.why); }
-  const spec = oldSpec(p.screen, p.theme, p.ap, state, d.sceneH, hero); if (!spec) { console.log(LOG, 'нет модели для', p.screen, p.theme); return; }
+  let hero = null; if (HERO[p.screen] && !p.state && (p.screen === 'home' || p.screen === 'dialogs')) { const r = await alignHero(d, p.screen, oldSpec(p.screen, p.theme, p.ap, state, d.sceneH, null), d.sceneH, HERO[p.screen], p.ap, state); hero = r.hero; if (!hero) console.log(LOG, 'герой:', r.why); }
+  const spec = oldSpec(p.screen, p.theme, p.ap, state, d.sceneH, hero, { shadeA: d.shadeA }); if (!spec) { console.log(LOG, 'нет модели для', p.screen, p.theme); return; }
+  if (p.screen === 'peak') console.log(LOG, 'затемнение шапки Пика', d.shadeA);
   const paint = SR.painter(spec, W, d.sceneH);
   const pts = []; for (let y = 8; y < d.sceneH - 90; y += 12) pts.push([16, y]); for (let x = 120; x < 420; x += 20) pts.push([x, 6]);
   const res = [0, 0, 0]; let mx = 0; const bad = [];
@@ -211,10 +239,11 @@ async function fitReport(file) {
   const out = {};
   for (const file of files) {
     const p = parse(file); const fp = path.join(DIR, file); const mtime = fs.statSync(fp).mtimeMs;
-    if (!FORCE && prev[file] && prev[file].mtime === mtime && prev[file].v === 5) { out[file] = prev[file]; continue; }
+    if (!FORCE && prev[file] && prev[file].mtime === mtime && prev[file].v === 6) { out[file] = prev[file]; continue; }
     const d = await describe(fp, p);
-    const rec = Object.assign({ file, mtime, v: 5 }, p, { ok: d.ok, why: d.why || null, status: d.status, tab: d.tab, sceneH: d.sceneH });
+    const rec = Object.assign({ file, mtime, v: 6 }, p, { ok: d.ok, why: d.why || null, status: d.status, tab: d.tab, sceneH: d.sceneH });
     if (d.cardsInfo) { rec.cards = d.cardsInfo.cards; rec.cardFill = d.cardsInfo.cards.length ? d.cardsInfo.cards[0].fill : null; }
+    if (p.screen === 'peak') rec.shadeA = d.shadeA;
     if (d.ok && (p.screen === 'home' || p.screen === 'dialogs')) {
       rec.state = p.state || (p.screen === 'home' && d.evening ? 'evening' : 'day');
       if (!THEMES[p.theme] || !THEMES[p.theme][p.ap]) { rec.recolor = false; rec.why = `тема «${p.theme}» (${p.ap}) не из снимка тем эталона и премиум-списка`; }

@@ -50,11 +50,12 @@ window.SceneReal = (() => {
       const st = job.cards ? window.SceneCards.restyle({ data, W, y0: ry0, cards: job.cards.rects, fill: job.cards.fill, bgRow, accent: job.cards.accent, dark: job.ap === 'dark', v: s.spec.v }) : SR.recolor({ data, W, H: job.sceneH, sceneH: job.sceneH, oldSpec: job.old, newSpec: s.spec, radius: job.radius, hero });
       // страж: если кадр не совпал с моделью сцены (много «цветных» пикселей вне героя — другое состояние или тема), говорим об этом на телефоне
       const total = job.cards ? 1 : st.bg + st.white + st.dark + st.keep + st.hero; const keepShare = job.cards ? 0 : (total ? st.keep / total : 0);
-      if (keepShare > 0.12) { row.classList.add('sp-real-unfit'); console.log(LOG, 'кадр не совпал с моделью:', job.file, 'не распознано', (keepShare * 100).toFixed(1) + '%'); }
+      const keepMax = job.keepMax || 0.12;
+      if (keepShare > keepMax) { row.classList.add('sp-real-unfit'); console.log(LOG, 'кадр не совпал с моделью:', job.file, 'не распознано', (keepShare * 100).toFixed(1) + '%'); }
       g.putImageData(new ImageData(data, W, ry1 - ry0), 0, ry0);
       const url = await new Promise((res, rej) => c.toBlob((b) => (b ? res(URL.createObjectURL(b)) : rej(new Error('toBlob пуст'))), 'image/png'));
       ph.dataset.now = job.src; ph.dataset.will = url; setPhoneSrc(ph, url);
-      const b = ph.querySelector('.sp-rf-badge'); if (b) { if (keepShare > 0.12) b.textContent = 'кадр не совпал с моделью сцены'; else b.remove(); } ph.classList.add('sp-rf-ready');
+      const b = ph.querySelector('.sp-rf-badge'); if (b) { if (keepShare > keepMax) b.textContent = 'кадр не совпал с моделью сцены'; else b.remove(); } ph.classList.add('sp-rf-ready');
       console.log(LOG, 'стратегия', s.key, job.file, 'классы', JSON.stringify(st)); // guard-ok: одна строка на стратегию
       await new Promise((r) => setTimeout(r, 0)); // отдать кадр странице между стратегиями
     }

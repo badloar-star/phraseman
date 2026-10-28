@@ -45,8 +45,10 @@
     const halo = hero ? { cx: 0.57 * W + 84 * DPX, cy: hero.y + 84 * DPX, r: 84 * DPX, a: C.ha(t.accentGlow), color: C.hx(t.accentGlow), stops: [[0, 1], [0.62, 0.2], [1, 0]] } : null;
     return { top: nd.top, bot: nd.bot, start: [0.42, 0], end: [0.58, 1], lights, scrim: ap === 'light' ? { a: 0.34, h: sceneH * 0.6 } : null, halo };
   };
+  const peakOld = (id, ap, sceneH, shadeA) => { const k = SP.sceneTok(id, ap); const ry = Math.min(1, 0.5 * (80 + 392) / (sceneH / DPX)); return { top: k.top, bot: k.bot, start: [0.22, 0], end: [0.78, 1], lights: [{ cx: 0.18, cy: 0, rx: 0.7, ry, color: k.glowC, a: k.glowA, fade: 1 }], scrim: k.scrim ? { a: 0.40, h: 300 * DPX } : null, shade: shadeA > 0 ? { a: shadeA, y0: 80 * DPX, tail: 140 * DPX } : null }; };
+  const seasonOld = (id, ap) => { const n = SP.nowSeason(id, ap); return { top: n.top, bot: n.bot, start: [0.33, 0], end: [0.67, 1], lights: [], linearLights: [{ x0: 1, y0: 0, x1: 0.35, y1: 0.6, color: n.glow, a: 1 }], scrim: { a: 0.36, h: 320 * DPX } }; };
   const withSceneH = (spec, sceneH) => Object.assign({}, spec, { lights: spec.lights.map((l) => (l.ember ? Object.assign({}, l, { cy: (sceneH - 70 * DPX) / sceneH, ry: 130 * DPX / sceneH }) : l)) });
-  const oldSpecFor = (m) => withSceneH(m.screen === 'dialogs' ? dialogsOld(m.theme, m.hero, m.ap, m.sceneH) : homeOld(m.theme, m.state || 'day', m.ap), m.sceneH);
+  const oldSpecFor = (m) => withSceneH(m.screen === 'dialogs' ? dialogsOld(m.theme, m.hero, m.ap, m.sceneH) : m.screen === 'peak' ? peakOld(m.theme, m.ap, m.sceneH, m.shadeA || 0) : m.screen === 'season' ? seasonOld(m.theme, m.ap) : homeOld(m.theme, m.state || 'day', m.ap), m.sceneH);
   /* страж контраста для формульных фонов: белый ≥ 4,6 на зоне текста — затемнение ПОД текстом (низ сцены), а не всему небу;
      под самими значками статус-бара (часы слева, значки справа) ≥ 2,8 — как у нынешней сцены приложения (свет слева даёт ~2,5), иначе
      яркий верх, которого просил владелец, гасился бы стражем; убавляем верхний свет, затем чуть темним верх */
@@ -74,17 +76,18 @@
     const ck = `${id}|${m.ap}|${m.screen}|${m.sceneH}|${key}`; if (!STYLE_CACHE.has(ck)) STYLE_CACHE.set(ck, SS.render(key, W, m.sceneH, paletteOf(id, m.ap)));
     return { image: STYLE_CACHE.get(ck).image };
   };
-  const LIGHT_KEYS = { home: ['dialogs', 'sky', 'split', 'dawn'], dialogs: ['sky', 'split', 'dawn'] };
+  const LIGHT_KEYS = { home: ['dialogs', 'sky', 'split', 'dawn'], dialogs: ['sky', 'split', 'dawn'], peak: ['dialogs', 'sky', 'split', 'dawn'], season: ['dialogs', 'sky', 'split', 'dawn'] };
+  const SCREENS = ['home', 'dialogs', 'peak', 'season'];
   const ART_KEYS = ['sumi', 'marker', 'aurora', 'facet', 'paper'];
   const SCREEN_NAME = { home: 'Главная', dialogs: 'Диалоги', peak: 'Пик', season: 'Сезон' };
 
   /* ── ряд телефонов: «сейчас» + варианты; задание для SceneReal ── */
   const row = (key, m, variants, title) => {
-    const job = { file: m.file, src: `assets/real/${m.file}`, sceneH: m.sceneH || 1082, status: m.status || 100, tab: m.tab || 2140, hero: m.hero || null, ap: m.ap, radius: 32 * DPX, old: oldSpecFor(m), strats: variants.map((v) => ({ key: v.key, spec: v.spec })) };
+    const job = { file: m.file, src: `assets/real/${m.file}`, sceneH: m.sceneH || 1082, status: m.status || 100, tab: m.tab || 2140, hero: m.hero || null, ap: m.ap, radius: 32 * DPX, old: oldSpecFor(m), keepMax: m.screen === 'peak' ? 0.5 : 0.12, strats: variants.map((v) => ({ key: v.key, spec: v.spec })) }; // башня Пика — цветная деталь на четверть сцены, порог стража выше
     JOBS[key] = job;
     const now = RF.phone({ src: job.src, exists: true, cls: 'sp-rf', status: job.status, tab: job.tab });
     const will = (v) => RF.phone({ src: job.src, exists: true, cls: 'sp-rf sp-rf-will', status: job.status, tab: job.tab, fixed: '<span class="sp-rf-badge">считаю…</span>' }).replace('data-ph="sp-rf sp-rf-will"', `data-ph="sp-rf-will" data-strat="${v.key}"`);
-    return `<div class="sp-real-row" data-frame="${key}"><h3>${title}<small>${m.file}${m.hero ? '' : ' · герой не найден: под ним классификатор'}</small></h3><div class="phones">${col('Сейчас · кадр приложения', now)}${variants.map((v) => col(`${v.name}<br><small>${v.why}</small>`, will(v))).join('')}</div></div>`;
+    return `<div class="sp-real-row" data-frame="${key}"><h3>${title}<small>${m.file}${!m.hero && (m.screen === 'home' || m.screen === 'dialogs') ? ' · герой не найден: под ним классификатор' : ''}</small></h3><div class="phones">${col('Сейчас · кадр приложения', now)}${variants.map((v) => col(`${v.name}<br><small>${v.why}</small>`, will(v))).join('')}</div></div>`;
   };
   const missing = (title, file) => `<div class="sp-real-row"><h3>${title}<small>${file}</small></h3><div class="phones">${col('кадр снимается', RF.phone({ src: file, exists: false, cls: 'sp-rf' }).replace('кадр не снят', 'кадр снимается'))}</div></div>`;
   const stylesOf = (m, keys) => keys.map((k) => ({ key: k, name: SS.STYLES[k].name, why: SS.STYLES[k].why, spec: styleSpec(THEME, m, k) }));
@@ -102,11 +105,11 @@
     return `<section class="block" id="dt-colors"><h2>Цвета сцены — все темы × тёмное/светлое × стратегия</h2><p class="sp-note">А — тон темы ярче и глубже; Б — аналоговая (сосед по кругу); Б+ — та же аналоговая основа, но верх сцены заметно светлее и насыщеннее с явным источником света: три уровня (мягко · ярко · сияние), низ уходит в тёмный шов с карточкой; В — акцент-свет; Г — два света по сплиту. Белый на тексте ≥ 4,5 держится затемнением под самим текстом, не всем небом. Зажми телефон — «сейчас».</p>${body}</section>`;
   };
   const sectionLight = () => {
-    const rows = ['home', 'dialogs'].map((s) => { const m = frameOf(s); return m ? row(`${m.file}#light`, m, stylesOf(m, LIGHT_KEYS[s]), `${SCREEN_NAME[s]} · освещение`) : missing(`${SCREEN_NAME[s]} · освещение`, `scene_${s}_${THEME}_${AP}.png`); }).join('');
+    const rows = SCREENS.map((s) => { const m = frameOf(s); return m ? row(`${m.file}#light`, m, stylesOf(m, LIGHT_KEYS[s]), `${SCREEN_NAME[s]} · освещение`) : missing(`${SCREEN_NAME[s]} · освещение`, `scene_${s}_${THEME}_${AP}.png`); }).join('');
     return `<section class="block" id="dt-light"><h2>Освещение сцены — те же цвета темы, другой свет</h2><p class="sp-note">Источники света, отсветы и глубина неба считаются из цветов выбранной темы. Слева — кадр приложения как есть; правее — тот же кадр, где по пикселям перекрашен только фон сцены: герой, надписи, стекло, карточка и таббар — как сняты.</p>${rows}</section>`;
   };
   const sectionArt = () => {
-    const rows = ['home', 'dialogs'].map((s) => { const m = frameOf(s); return m ? row(`${m.file}#art`, m, stylesOf(m, ART_KEYS), `${SCREEN_NAME[s]} · стили`) : ''; }).join('');
+    const rows = SCREENS.map((s) => { const m = frameOf(s); return m ? row(`${m.file}#art`, m, stylesOf(m, ART_KEYS), `${SCREEN_NAME[s]} · стили`) : ''; }).join('');
     return `<section class="block" id="dt-art"><h2>Стили сцен — другие манеры рисования в цветах темы</h2><p class="sp-note">Суми-э (тушь на тёмной бумаге), маркер (пастельные штрихи), аврора, витраж (грани), бумажный коллаж. Каждый стиль берёт оттенок и свет темы, поэтому переносится на все темы; белый на зоне текста ≥ 4,5:1 — страж затемняет низ, если нужно.</p>${rows || '<p class="sp-note sp-warn">Кадры этой темы в этом оформлении ещё снимаются.</p>'}</section>`;
   };
   const sectionEvening = () => {

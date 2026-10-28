@@ -20,7 +20,8 @@
     const top = spec.top; const bot = spec.bot; const s = spec.start || [0.22, 0]; const e = spec.end || [0.78, 1];
     const sx = s[0] * W; const sy = s[1] * H; const vx = (e[0] - s[0]) * W; const vy = (e[1] - s[1]) * H; const vv = vx * vx + vy * vy;
     const lights = (spec.lights || []).map((l) => ({ cx: l.cx * W, cy: l.cy * H, rx: l.rx * W, ry: l.ry * H, c: l.color, a: l.a, fade: l.fade || 1 }));
-    const scrim = spec.scrim && spec.scrim.a > 0 ? spec.scrim : null; const halo = spec.halo || null;
+    const lins = (spec.linearLights || []).map((l) => ({ x0: l.x0 * W, y0: l.y0 * H, vx: (l.x1 - l.x0) * W, vy: (l.y1 - l.y0) * H, c: l.color, a: l.a }));
+    const scrim = spec.scrim && spec.scrim.a > 0 ? spec.scrim : null; const halo = spec.halo || null; const shade = spec.shade && spec.shade.a > 0 ? spec.shade : null; // Пик: затемнение шапки сверху (y0) с хвостом tail
     const hc = halo ? (halo.color || [255, 255, 255]) : null; const hs = halo ? (halo.stops || [[0, 1], [1, 0]]) : null;
     return function paint(x, y) {
       let t = ((x - sx) * vx + (y - sy) * vy) / vv; t = t < 0 ? 0 : t > 1 ? 1 : t;
@@ -29,7 +30,9 @@
         const l = lights[i]; const dx = (x - l.cx) / l.rx; const dy = (y - l.cy) / l.ry; const d = Math.sqrt(dx * dx + dy * dy) / l.fade;
         if (d < 1) { const a = l.a * (1 - d); r += (l.c[0] - r) * a; g += (l.c[1] - g) * a; b += (l.c[2] - b) * a; }
       }
+      for (let i = 0; i < lins.length; i += 1) { const l = lins[i]; const t = ((x - l.x0) * l.vx + (y - l.y0) * l.vy) / (l.vx * l.vx + l.vy * l.vy); if (t < 1) { const a = l.a * (1 - Math.max(0, t)); r += (l.c[0] - r) * a; g += (l.c[1] - g) * a; b += (l.c[2] - b) * a; } }
       if (halo) { const d = Math.hypot(x - halo.cx, y - halo.cy) / halo.r; if (d < 1) { const a = halo.a * profileAt(hs, d); r += (hc[0] - r) * a; g += (hc[1] - g) * a; b += (hc[2] - b) * a; } }
+      if (shade && y < shade.y0 + shade.tail) { const k = 1 - shade.a * (y < shade.y0 ? 1 : 1 - (y - shade.y0) / shade.tail); r *= k; g *= k; b *= k; }
       if (scrim && y > H - scrim.h) { const k = 1 - scrim.a * (y - (H - scrim.h)) / scrim.h; r *= k; g *= k; b *= k; }
       return [r, g, b];
     };

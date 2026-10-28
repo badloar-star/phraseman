@@ -51,7 +51,7 @@ Learning V2 чистый почти везде: в уроках 1–14 и 17–3
 
 | Класс | Заданий | Пример (id) | Проблема | Решение |
 |---|---|---|---|---|
-| **Дистрактор = фраза из `alternatives`** | 78 пар | `lesson30_phrase_14` «the phone **that** I bought» / which; `lesson21_phrase_25` anyone / anybody | При вводе текстом вариант засчитан (он в `alternatives`), а та же плитка — «ошибка» | Заменить дистрактор в ячейке. Это **точно баг** |
+| ~~Дистрактор = фраза из `alternatives`~~ | 78 пар | `lesson30_phrase_14` «the phone **that** I bought» / which | **Не ошибка (поправка 28.10):** плиточный режим проверяет собранную фразу через `isCorrectAnswer` + `alternatives` (`app/lesson1.tsx`), такая плитка засчитывается. Урок 30 принимает оба артикля намеренно (da70e2b31, обращение №28) | Оставить. Ошибочная замена откатана в 5581f90af |
 | Артикль a / the | 231 пара | `lesson11_phrase_26` «You rented **a** car» / the car; `lesson19_phrase_38` «on **the** table» / a table | В русской фразе нет артикля, выбор — угадайка | Убрать a / the из дистракторов ячейки, если русская фраза не говорит «тот / этот / какой-то». Поставить неверную форму (an перед согласной, these) |
 | this / that / it | 119 пар | `lesson15_phrase_13` «This is my phone» / That; `lesson2_phrase_4` «Is it expensive?» / Is this | «Это» = this / that / it | Заменить на неверное (These / Those для единственного числа). `lesson30_phrase_42` «Это **тот** телефон» → верный «this», хотя «тот» = that: **поменять верный** на that |
 | who / which / that | 33 | `lesson30_phrase_1` «a man **who** works here» / that | В придаточном верны оба | Заменить дистрактор (what, whose). Урок 30 — 31 из 33 |

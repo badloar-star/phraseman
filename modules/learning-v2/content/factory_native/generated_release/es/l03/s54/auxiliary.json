@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-54",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-54:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-54:intro1:r2": {
+          "ru": "Дом один: es.",
+          "uk": "Будинок один: es."
+        },
+        "es:lesson-03:session-54:intro1:r3": {
+          "ru": "Casa женского рода: la casa.",
+          "uk": "Casa жіночого роду: la casa."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-54:intro2:r2": {
+          "ru": "Вопрос об одном доме: es.",
+          "uk": "Запитання про один будинок: es."
+        },
+        "es:lesson-03:session-54:intro2:r3": {
+          "ru": "Soy означало бы вопрос о себе.",
+          "uk": "Soy означало б запитання про себе."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-54:intro3:r2": {
+          "ru": "Один дом: es.",
+          "uk": "Один будинок: es."
+        },
+        "es:lesson-03:session-54:intro3:r3": {
+          "ru": "Один предмет: grande.",
+          "uk": "Один предмет: grande."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "b79496f4b064abe53a5e6283f01b6b8cf69055b97b7e7ed4a060ec1a3ae3dab0"
+}

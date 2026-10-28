@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-54",
+  "learningOutcomeByLocale": {
+    "ru": "отдельно задать вопрос об описании и ответить на него.",
+    "uk": "окремо поставити запитання про опис і відповісти на нього."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-54:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Попросить описание",
+        "uk": "Попросити опис"
+      },
+      "bodyByLocale": {
+        "ru": "Друг нашёл дом для поездки. Спросите `¿Cómo es la casa?` — «Какой дом?» Соберите `cómo` + `es` + `la casa`. Знакомое cómo просит описать дом. Вопрос открывается знаком ¿ и заканчивается знаком ?. Ударение в cómo сохраняется на письме.",
+        "uk": "Друг знайшов будинок для поїздки. Запитайте `¿Cómo es la casa?` — «Який будинок?» Зберіть `cómo` + `es` + `la casa`. Знайоме cómo просить описати будинок. Запитання відкривається знаком ¿ і закінчується знаком ?. Наголос у cómo зберігається на письмі."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-54:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите, какой дом, назвав его словом casa.",
+          "uk": "Запитайте, який будинок, назвавши його словом casa."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-54:intro1:r1",
+              "text": "¿Cómo es la casa?"
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro1:r2",
+              "text": "¿Cómo son la casa?"
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro1:r3",
+              "text": "¿Cómo es el casa?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-54:intro1:r1",
+              "text": "¿Cómo es la casa?"
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro1:r2",
+              "text": "¿Cómo son la casa?"
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro1:r3",
+              "text": "¿Cómo es el casa?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите, какой дом, назвав его словом casa.",
+          "uk": "Запитайте, який будинок, назвавши його словом casa."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-54:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Короткий вопрос",
+        "uk": "Коротке запитання"
+      },
+      "bodyByLocale": {
+        "ru": "Дом уже обсуждают, поэтому можно спросить короче: `¿Cómo es?` — «Какой он?» Соберите только `cómo` + `es` и произнесите с вопросительной интонацией. Название дома не повторяем. Сейчас ваша задача — задать вопрос, ответ за друга не добавляйте.",
+        "uk": "Будинок уже обговорюють, тому можна запитати коротше: `¿Cómo es?` — «Який він?» Зберіть тільки `cómo` + `es` і вимовте з питальною інтонацією. Назву будинку не повторюємо. Зараз ваше завдання — поставити запитання, відповіді за друга не додавайте."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-54:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите коротко, какой дом, не называя его.",
+          "uk": "Запитайте коротко, який будинок, не називаючи його."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-54:intro2:r1",
+              "text": "¿Cómo es?"
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro2:r2",
+              "text": "¿Cómo son?"
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro2:r3",
+              "text": "¿Cómo soy?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-54:intro2:r1",
+              "text": "¿Cómo es?"
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro2:r2",
+              "text": "¿Cómo son?"
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro2:r3",
+              "text": "¿Cómo soy?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите коротко, какой дом, не называя его.",
+          "uk": "Запитайте коротко, який будинок, не називаючи його."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-54:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответ о размере",
+        "uk": "Відповідь про розмір"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь вы видели дом и отвечаете другу. Скажите `Es grande` — «Он большой». Соберите `es` + `grande`. В ответе уже нет cómo и вопросительных знаков. Название дома не обязательно повторять: собеседник знает, о чём речь. Grande подходит и к женскому casa.",
+        "uk": "Тепер ви бачили будинок і відповідаєте другу. Скажіть `Es grande` — «Він великий». Зберіть `es` + `grande`. У відповіді вже немає cómo й знаків питання. Назву будинку не обов'язково повторювати: співрозмовник знає, про що йдеться. Grande підходить і до жіночого casa."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-54:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте только о размере: дом большой. Начните с Es, не повторяйте название.",
+          "uk": "Дайте відповідь тільки про розмір: будинок великий. Почніть з Es, не повторюйте назви."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-54:intro3:r1",
+              "text": "Es grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro3:r2",
+              "text": "Son grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro3:r3",
+              "text": "Es grandes."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-54:intro3:r1",
+              "text": "Es grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro3:r2",
+              "text": "Son grande."
+            },
+            {
+              "responseId": "es:lesson-03:session-54:intro3:r3",
+              "text": "Es grandes."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте только о размере: дом большой. Начните с Es, не повторяйте название.",
+          "uk": "Дайте відповідь тільки про розмір: будинок великий. Почніть з Es, не повторюйте назви."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "cf048b7dfa47ddd9abca993c4d4fcdc4b73c4e59c0fc2dea86133a68be73c3b1"
+}

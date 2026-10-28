@@ -1155,4 +1155,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сохранить bastante при смене рода и числа.","uk":"зберегти bastante при зміні роду й числа."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 53,
+    sourceFingerprint: "2c71d0c206a87929555269557943a1f0d3d1ad7c2f43d200eceda445235203a6",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"назвать предмет вместе с его цветом.","uk":"назвати предмет разом із його кольором."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 3, sessionOrdinal: 54,
+    sourceFingerprint: "33a40d01bbce5e7d6562f40b66b08500f3b289f213531e25af6a64a18a2dacc1",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"отдельно задать вопрос об описании и ответить на него.","uk":"окремо поставити запитання про опис і відповісти на нього."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 3","uk":"Іспанська · Урок 3"}),
+  }),
 ]);

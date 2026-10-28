@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-03:session-53",
+  "entries": [
+    {
+      "interactionId": "es:lesson-03:session-53:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-53:intro1:r2": {
+          "ru": "Bolso требует rojo.",
+          "uk": "Bolso потребує rojo."
+        },
+        "es:lesson-03:session-53:intro1:r3": {
+          "ru": "С bolso нужен un.",
+          "uk": "З bolso потрібне un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-53:intro2:r2": {
+          "ru": "Bolsa требует roja.",
+          "uk": "Bolsa потребує roja."
+        },
+        "es:lesson-03:session-53:intro2:r3": {
+          "ru": "С bolsa нужен una.",
+          "uk": "З bolsa потрібне una."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-03:session-53:intro3:r2": {
+          "ru": "Нужна форма rojos.",
+          "uk": "Потрібна форма rojos."
+        },
+        "es:lesson-03:session-53:intro3:r3": {
+          "ru": "Bolsos мужского рода: rojos.",
+          "uk": "Bolsos чоловічого роду: rojos."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "079c588825b8c049c60facad545ca1e858fbea2794daebd074ede9470781f46b"
+}

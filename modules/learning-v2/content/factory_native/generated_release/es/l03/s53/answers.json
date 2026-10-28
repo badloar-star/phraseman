@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-03:session-53:i01",
+    "correctText": "Es un bolso rojo.",
+    "correctResponseId": "es:lesson-03:session-53:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-53:i02",
+    "correctText": "rojo",
+    "correctResponseId": "es:lesson-03:session-53:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-53:i03",
+    "correctText": "Es un bolso rojo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-53:i04",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-03:session-53:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-53:i05",
+    "correctText": "Es una bolsa roja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-53:i06",
+    "correctText": "Son unos bolsos rojos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-53:i07",
+    "correctText": "No es un bolso rojo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-53:i08",
+    "correctText": "rojos",
+    "correctResponseId": "es:lesson-03:session-53:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-03:session-53:i09",
+    "correctText": "Es un bolso rojo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-53:i10",
+    "correctText": "Es una bolsa roja.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-53:i11",
+    "correctText": "Son unos bolsos rojos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-03:session-53:i12",
+    "correctText": "No es un bolso rojo.",
+    "correctResponseId": null
+  }
+]

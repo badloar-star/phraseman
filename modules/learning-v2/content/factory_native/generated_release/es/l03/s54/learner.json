@@ -1,0 +1,658 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-54",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-54:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-54:i01:r1",
+          "text": "¿Cómo es la casa?"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i01:r2",
+          "text": "¿Cómo es?"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-54:i01:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-54:i01:audio",
+          "transcript": "¿Cómo es la casa?"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-54:i01:r1",
+            "targetText": "¿Cómo es la casa?",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-54:i01:r2",
+            "targetText": "¿Cómo es?",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-54:i01:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите фразу",
+            "feedbackByLocale": {
+              "ru": "В записи также звучит la casa.",
+              "uk": "У записі також звучить la casa."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — какой дом?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-54:i02:r1",
+          "text": "Cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i02:r2",
+          "text": "Qué"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i02:r3",
+          "text": "Quién"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — какой дом?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — какой дом?",
+          "uk": "Вставте слово — який будинок?"
+        },
+        "gappedTargetPhrase": "¿___ es la casa?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-54:i02:r1",
+            "text": "Cómo"
+          },
+          {
+            "responseId": "es:lesson-03:session-54:i02:r2",
+            "text": "Qué"
+          },
+          {
+            "responseId": "es:lesson-03:session-54:i02:r3",
+            "text": "Quién"
+          }
+        ],
+        "testedDimension": "Вставьте слово — какой дом?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-54:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — какой дом?",
+            "feedbackByLocale": {
+              "ru": "Здесь просим описание через cómo.",
+              "uk": "Тут просимо опис через cómo."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-54:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — какой дом?",
+            "feedbackByLocale": {
+              "ru": "Quién спрашивает «кто», а не о свойствах дома.",
+              "uk": "Quién запитує «хто», а не про властивості будинку."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — спросите, какой дом; назовите дом словом casa",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-54:i03:r1",
+          "text": "Плитки: casa?"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i03:r2",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i03:r3",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i03:r4",
+          "text": "¿Cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i03:r5",
+          "text": "son."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — спросите, какой дом; назовите дом словом casa",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Cómo es la casa?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — спросите, какой дом; назовите дом словом casa",
+          "uk": "Зберіть фразу — запитайте, який будинок; назвіть будинок словом casa"
+        },
+        "orderedTokens": [
+          "¿Cómo",
+          "es",
+          "la",
+          "casa"
+        ],
+        "authoredDistractorTokens": [
+          "son"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-54:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — спросите, какой дом; назовите дом словом casa",
+            "feedbackByLocale": {
+              "ru": "дом один.",
+              "uk": "будинок один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — короткий вопрос об одном доме",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-54:i04:r1",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i04:r2",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i04:r3",
+          "text": "soy"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — короткий вопрос об одном доме",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — короткий вопрос об одном доме",
+          "uk": "Вставте слово — коротке запитання про один будинок"
+        },
+        "gappedTargetPhrase": "¿Cómo ___?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-54:i04:r1",
+            "text": "es"
+          },
+          {
+            "responseId": "es:lesson-03:session-54:i04:r2",
+            "text": "son"
+          },
+          {
+            "responseId": "es:lesson-03:session-54:i04:r3",
+            "text": "soy"
+          }
+        ],
+        "testedDimension": "Вставьте слово — короткий вопрос об одном доме",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-54:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — короткий вопрос об одном доме",
+            "feedbackByLocale": {
+              "ru": "Son относится к нескольким предметам.",
+              "uk": "Son стосується кількох предметів."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-54:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — короткий вопрос об одном доме",
+            "feedbackByLocale": {
+              "ru": "Soy относится к «я».",
+              "uk": "Soy стосується «я»."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — коротко спросите, какой дом, без названия предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-54:i05:r1",
+          "text": "Плитки: es?"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i05:r2",
+          "text": "¿Cómo"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i05:r3",
+          "text": "son?."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — коротко спросите, какой дом, без названия предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Cómo es?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — коротко спросите, какой дом, без названия предмета",
+          "uk": "Зберіть фразу — коротко запитайте, який будинок, без назви предмета"
+        },
+        "orderedTokens": [
+          "¿Cómo",
+          "es"
+        ],
+        "authoredDistractorTokens": [
+          "son?"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-54:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — коротко спросите, какой дом, без названия предмета",
+            "feedbackByLocale": {
+              "ru": "дом один.",
+              "uk": "будинок один."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — ответьте: он большой, речь о доме",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-54:i06:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i06:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i06:r3",
+          "text": "grandes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — ответьте: он большой, речь о доме",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es grande.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — ответьте: он большой, речь о доме",
+          "uk": "Зберіть фразу — дайте відповідь: він великий, йдеться про будинок"
+        },
+        "orderedTokens": [
+          "Es",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "grandes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-54:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — ответьте: он большой, речь о доме",
+            "feedbackByLocale": {
+              "ru": "один дом.",
+              "uk": "один будинок."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-54:i07:r1",
+          "text": "Плитки: grande"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i07:r2",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i07:r3",
+          "text": "casa"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i07:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i07:r5",
+          "text": "grandes."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-54:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-54:i07:audio",
+          "transcript": "La casa es grande."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "La casa es grande.",
+        "orderedTokens": [
+          "La",
+          "casa",
+          "es",
+          "grande"
+        ],
+        "authoredDistractorTokens": [
+          "grandes"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-54:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит grande.",
+              "uk": "звучить grande."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — дом белый",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-54:i08:r1",
+          "text": "blanca"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i08:r2",
+          "text": "blanco"
+        },
+        {
+          "responseId": "es:lesson-03:session-54:i08:r3",
+          "text": "blancas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — дом белый",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — дом белый",
+          "uk": "Вставте слово — будинок білий"
+        },
+        "gappedTargetPhrase": "La casa es ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-54:i08:r1",
+            "text": "blanca"
+          },
+          {
+            "responseId": "es:lesson-03:session-54:i08:r2",
+            "text": "blanco"
+          },
+          {
+            "responseId": "es:lesson-03:session-54:i08:r3",
+            "text": "blancas"
+          }
+        ],
+        "testedDimension": "Вставьте слово — дом белый",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-54:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дом белый",
+            "feedbackByLocale": {
+              "ru": "Casa женского рода: blanca.",
+              "uk": "Casa жіночого роду: blanca."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-54:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — дом белый",
+            "feedbackByLocale": {
+              "ru": "Дом один: blanca.",
+              "uk": "Будинок один: blanca."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — спросите, какой дом; назовите дом словом casa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-54:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — спросите, какой дом; назовите дом словом casa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-54:i09:audio",
+          "transcript": "¿Cómo es la casa?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Cómo es la casa?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — коротко спросите, какой дом; не называйте предмет",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-54:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — коротко спросите, какой дом; не называйте предмет",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-54:i10:audio",
+          "transcript": "¿Cómo es?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Cómo es?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — ответьте: он большой, речь о доме; начните с Es",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-54:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — ответьте: он большой, речь о доме; начните с Es",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-54:i11:audio",
+          "transcript": "Es grande."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es grande.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-54:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — дом белый; назовите предмет словом casa",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-54:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — дом белый; назовите предмет словом casa",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-54:i12:audio",
+          "transcript": "La casa es blanca."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "La casa es blanca.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "62c2cd7fad97089919751ca78caa105257b13879b3d62c44e75518bf70b83388"
+}

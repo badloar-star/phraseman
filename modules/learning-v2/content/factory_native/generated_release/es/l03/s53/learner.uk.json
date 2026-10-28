@@ -1,0 +1,683 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-03:session-53",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-03:session-53:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-53:i01:r1",
+          "text": "Es un bolso rojo."
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i01:r2",
+          "text": "Es una bolsa roja."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-53:i01:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть фразу",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-53:i01:audio",
+          "transcript": "Es un bolso rojo."
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-03:session-53:i01:r1",
+            "targetText": "Es un bolso rojo.",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-03:session-53:i01:r2",
+            "targetText": "Es una bolsa roja.",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-53:i01:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть фразу",
+            "feedbackByLocale": {
+              "ru": "В записи мужское bolso.",
+              "uk": "У записі чоловіче bolso."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це червона сумка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-53:i02:r1",
+          "text": "rojo"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i02:r2",
+          "text": "roja"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i02:r3",
+          "text": "rojos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це червона сумка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это красная сумка",
+          "uk": "Вставте слово — це червона сумка"
+        },
+        "gappedTargetPhrase": "Es un bolso ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-53:i02:r1",
+            "text": "rojo"
+          },
+          {
+            "responseId": "es:lesson-03:session-53:i02:r2",
+            "text": "roja"
+          },
+          {
+            "responseId": "es:lesson-03:session-53:i02:r3",
+            "text": "rojos"
+          }
+        ],
+        "testedDimension": "Вставте слово — це червона сумка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-53:i02:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це червона сумка",
+            "feedbackByLocale": {
+              "ru": "Bolso мужского рода.",
+              "uk": "Bolso чоловічого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-53:i02:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це червона сумка",
+            "feedbackByLocale": {
+              "ru": "Один bolso: rojo.",
+              "uk": "Один bolso: rojo."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це червона сумка; використайте bolso, колір після предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-53:i03:r1",
+          "text": "Плитки: rojo"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i03:r2",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i03:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i03:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i03:r5",
+          "text": "roja."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це червона сумка; використайте bolso, колір після предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es un bolso rojo.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это красная сумка; используйте bolso, цвет после предмета",
+          "uk": "Зберіть фразу — це червона сумка; використайте bolso, колір після предмета"
+        },
+        "orderedTokens": [
+          "Es",
+          "un",
+          "bolso",
+          "rojo"
+        ],
+        "authoredDistractorTokens": [
+          "roja"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-53:i03:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це червона сумка; використайте bolso, колір після предмета",
+            "feedbackByLocale": {
+              "ru": "bolso мужского рода.",
+              "uk": "bolso чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це червона сумка",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-53:i04:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i04:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i04:r3",
+          "text": "unas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це червона сумка",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это красная сумка",
+          "uk": "Вставте слово — це червона сумка"
+        },
+        "gappedTargetPhrase": "Es ___ bolsa roja.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-53:i04:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-03:session-53:i04:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-03:session-53:i04:r3",
+            "text": "unas"
+          }
+        ],
+        "testedDimension": "Вставте слово — це червона сумка",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-53:i04:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це червона сумка",
+            "feedbackByLocale": {
+              "ru": "Bolsa женского рода.",
+              "uk": "Bolsa жіночого роду."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-53:i04:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це червона сумка",
+            "feedbackByLocale": {
+              "ru": "Одна bolsa: una.",
+              "uk": "Одна bolsa: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це червона сумка; використайте bolsa, колір після предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-53:i05:r1",
+          "text": "Плитки: roja"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i05:r2",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i05:r3",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i05:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i05:r5",
+          "text": "rojo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це червона сумка; використайте bolsa, колір після предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Es una bolsa roja.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это красная сумка; используйте bolsa, цвет после предмета",
+          "uk": "Зберіть фразу — це червона сумка; використайте bolsa, колір після предмета"
+        },
+        "orderedTokens": [
+          "Es",
+          "una",
+          "bolsa",
+          "roja"
+        ],
+        "authoredDistractorTokens": [
+          "rojo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-53:i05:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це червона сумка; використайте bolsa, колір після предмета",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода.",
+              "uk": "bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — це червоні сумки; почніть з Son unos, використайте bolsos, колір після предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-53:i06:r1",
+          "text": "Плитки: rojos"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i06:r2",
+          "text": "bolsos"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i06:r3",
+          "text": "unos"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i06:r4",
+          "text": "son"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i06:r5",
+          "text": "rojas."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — це червоні сумки; почніть з Son unos, використайте bolsos, колір після предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Son unos bolsos rojos.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — это красные сумки; начните с Son unos, используйте bolsos, цвет после предмета",
+          "uk": "Зберіть фразу — це червоні сумки; почніть з Son unos, використайте bolsos, колір після предмета"
+        },
+        "orderedTokens": [
+          "Son",
+          "unos",
+          "bolsos",
+          "rojos"
+        ],
+        "authoredDistractorTokens": [
+          "rojas"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-53:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — це червоні сумки; почніть з Son unos, використайте bolsos, колір після предмета",
+            "feedbackByLocale": {
+              "ru": "bolsos мужского рода.",
+              "uk": "bolsos чоловічого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-53:i07:r1",
+          "text": "Плитки: rojo"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i07:r2",
+          "text": "bolso"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i07:r3",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i07:r4",
+          "text": "es"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i07:r5",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i07:r6",
+          "text": "roja."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-53:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-53:i07:audio",
+          "transcript": "No es un bolso rojo."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No es un bolso rojo.",
+        "orderedTokens": [
+          "No",
+          "es",
+          "un",
+          "bolso",
+          "rojo"
+        ],
+        "authoredDistractorTokens": [
+          "roja"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-03:session-53:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит rojo.",
+              "uk": "звучить rojo."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — це червоні сумки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-03:session-53:i08:r1",
+          "text": "rojos"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i08:r2",
+          "text": "rojo"
+        },
+        {
+          "responseId": "es:lesson-03:session-53:i08:r3",
+          "text": "rojas"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — це червоні сумки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — это красные сумки",
+          "uk": "Вставте слово — це червоні сумки"
+        },
+        "gappedTargetPhrase": "Son unos bolsos ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-03:session-53:i08:r1",
+            "text": "rojos"
+          },
+          {
+            "responseId": "es:lesson-03:session-53:i08:r2",
+            "text": "rojo"
+          },
+          {
+            "responseId": "es:lesson-03:session-53:i08:r3",
+            "text": "rojas"
+          }
+        ],
+        "testedDimension": "Вставте слово — це червоні сумки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-03:session-53:i08:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — це червоні сумки",
+            "feedbackByLocale": {
+              "ru": "Несколько bolsos: rojos.",
+              "uk": "Кілька bolsos: rojos."
+            }
+          },
+          {
+            "responseId": "es:lesson-03:session-53:i08:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — це червоні сумки",
+            "feedbackByLocale": {
+              "ru": "Bolsos мужского рода.",
+              "uk": "Bolsos чоловічого роду."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це червона сумка; почніть з Es un, використайте bolso, колір після предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-53:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це червона сумка; почніть з Es un, використайте bolso, колір після предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-53:i09:audio",
+          "transcript": "Es un bolso rojo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es un bolso rojo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це червона сумка; почніть з Es una, використайте bolsa, колір після предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-53:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це червона сумка; почніть з Es una, використайте bolsa, колір після предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-53:i10:audio",
+          "transcript": "Es una bolsa roja."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Es una bolsa roja.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це червоні сумки; почніть з Son unos, використайте bolsos, колір після предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-53:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це червоні сумки; почніть з Son unos, використайте bolsos, колір після предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-53:i11:audio",
+          "transcript": "Son unos bolsos rojos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Son unos bolsos rojos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-03:session-53:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — це не червона сумка; почніть з No es un, використайте bolso, колір після предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-03:session-53:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — це не червона сумка; почніть з No es un, використайте bolso, колір після предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-03:session-53:i12:audio",
+          "transcript": "No es un bolso rojo."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No es un bolso rojo.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8c4b52e0417709c0d50d53c07759179d9e692928b3cd8be705b2cd76913fed6e"
+}

@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-03:session-53",
+  "learningOutcomeByLocale": {
+    "ru": "назвать предмет вместе с его цветом.",
+    "uk": "назвати предмет разом із його кольором."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-03:session-53:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Красная сумка",
+        "uk": "Червона сумка"
+      },
+      "bodyByLocale": {
+        "ru": "Вам нужно сообщить, что за предмет найден. Скажите `Es un bolso rojo` — «Это красная сумка». Соберите `es` + `un bolso` + `rojo`. В этой фразе сначала называем предмет, затем цвет. Bolso мужского рода, поэтому un и rojo.",
+        "uk": "Вам потрібно повідомити, що за предмет знайдено. Скажіть `Es un bolso rojo` — «Це червона сумка». Зберіть `es` + `un bolso` + `rojo`. У цій фразі спочатку називаємо предмет, потім колір. Bolso чоловічого роду, тому un і rojo."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-53:intro1:q",
+        "promptByLocale": {
+          "ru": "Назовите красную сумку словом bolso. Начните с Es un, цвет поставьте после предмета.",
+          "uk": "Назвіть червону сумку словом bolso. Почніть з Es un, колір поставте після предмета."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-53:intro1:r1",
+              "text": "Es un bolso rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro1:r2",
+              "text": "Es un bolso roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro1:r3",
+              "text": "Es una bolso rojo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-53:intro1:r1",
+              "text": "Es un bolso rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro1:r2",
+              "text": "Es un bolso roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro1:r3",
+              "text": "Es una bolso rojo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите красную сумку словом bolso. Начните с Es un, цвет поставьте после предмета.",
+          "uk": "Назвіть червону сумку словом bolso. Почніть з Es un, колір поставте після предмета."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-03:session-53:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сумка другого вида",
+        "uk": "Сумка іншого виду"
+      },
+      "bodyByLocale": {
+        "ru": "Вторую найденную сумку называете словом bolsa. Скажите `Es una bolsa roja` — «Это красная сумка». Соберите `es` + `una bolsa` + `roja`. С женским bolsa меняются и артикль, и цвет: una, roja. Порядок остаётся прежним: название предмета, затем признак.",
+        "uk": "Другу знайдену сумку називаєте словом bolsa. Скажіть `Es una bolsa roja` — «Це червона сумка». Зберіть `es` + `una bolsa` + `roja`. З жіночим bolsa змінюються і артикль, і колір: una, roja. Порядок залишається тим самим: назва предмета, потім ознака."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-53:intro2:q",
+        "promptByLocale": {
+          "ru": "Назовите красную сумку словом bolsa. Начните с Es una, цвет поставьте после предмета.",
+          "uk": "Назвіть червону сумку словом bolsa. Почніть з Es una, колір поставте після предмета."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-53:intro2:r1",
+              "text": "Es una bolsa roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro2:r2",
+              "text": "Es una bolsa rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro2:r3",
+              "text": "Es un bolsa roja."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-53:intro2:r1",
+              "text": "Es una bolsa roja."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro2:r2",
+              "text": "Es una bolsa rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro2:r3",
+              "text": "Es un bolsa roja."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите красную сумку словом bolsa. Начните с Es una, цвет поставьте после предмета.",
+          "uk": "Назвіть червону сумку словом bolsa. Почніть з Es una, колір поставте після предмета."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-03:session-53:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Несколько одинаковых сумок",
+        "uk": "Кілька однакових сумок"
+      },
+      "bodyByLocale": {
+        "ru": "Нашли несколько красных сумок, которые называете bolsos. Скажите `Son unos bolsos rojos` — «Это красные сумки». Соберите `son` + `unos bolsos` + `rojos`. Несколько предметов требуют son; un bolso rojo становится unos bolsos rojos. Цвет по-прежнему стоит после предмета.",
+        "uk": "Знайшли кілька червоних сумок, які називаєте bolsos. Скажіть `Son unos bolsos rojos` — «Це червоні сумки». Зберіть `son` + `unos bolsos` + `rojos`. Кілька предметів потребують son; un bolso rojo стає unos bolsos rojos. Колір, як і раніше, стоїть після предмета."
+      },
+      "question": {
+        "interactionId": "es:lesson-03:session-53:intro3:q",
+        "promptByLocale": {
+          "ru": "Назовите красные сумки словом bolsos. Начните с Son unos, цвет поставьте после предмета.",
+          "uk": "Назвіть червоні сумки словом bolsos. Почніть з Son unos, колір поставте після предмета."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-03:session-53:intro3:r1",
+              "text": "Son unos bolsos rojos."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro3:r2",
+              "text": "Son unos bolsos rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro3:r3",
+              "text": "Son unos bolsos rojas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-03:session-53:intro3:r1",
+              "text": "Son unos bolsos rojos."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro3:r2",
+              "text": "Son unos bolsos rojo."
+            },
+            {
+              "responseId": "es:lesson-03:session-53:intro3:r3",
+              "text": "Son unos bolsos rojas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Назовите красные сумки словом bolsos. Начните с Son unos, цвет поставьте после предмета.",
+          "uk": "Назвіть червоні сумки словом bolsos. Почніть з Son unos, колір поставте після предмета."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "1aa7bf45315c8aa0e1dcf9ddbe04b38a083c1cc879c2774459c1e02a7cfed824"
+}

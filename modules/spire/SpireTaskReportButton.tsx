@@ -32,6 +32,7 @@ export function SpireTaskReportButton({
       dataId={claim.taskId}
       dataText={taskText ?? claim.taskId}
       variant="icon-flag"
+      flagTone="bad" // зачем (28.10): флажок Шпиля по его макету (.sg-rep: var(--bad)) — цвет ошибки темы; общий флажок — вторичный цвет
       // зачем (аудит 11.10): подпись для скринридера на языке интерфейса и под именем раздела «Шпиль», а не «Spire» по-русски
       accessibilityLabel={triLang(lang, {
         ru: 'Сообщить об ошибке в задании Пика', uk: 'Повідомити про помилку в завданні Піка', en: 'Report a mistake in this Peak task',

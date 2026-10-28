@@ -73,7 +73,7 @@ function StepPreview({ state, exitOpen, overrides }: Readonly<{ state: SpirePrev
       // Тот же ReportErrorButton (icon-flag), но с пустым транспортом: вид как в бою, жалоба никуда не уходит.
       reportSlot={preview.answering && preview.task ? (
         <View style={s.reportRow}>
-          <ReportErrorButton screen="spire" dataId="dev-preview" dataText="dev-preview" variant="icon-flag" testID="spire-task-report-0" submitOverride={devPreviewReportTransport} />
+          <ReportErrorButton screen="spire" dataId="dev-preview" dataText="dev-preview" variant="icon-flag" testID="spire-task-report-0" submitOverride={devPreviewReportTransport} flagTone="bad" />
         </View>
       ) : null}
       // зачем (R1 spire-009): шторка выхода из ступени — тот же компонент, что в бою; кнопки ничего не делают, сети нет.

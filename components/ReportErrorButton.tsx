@@ -43,8 +43,10 @@ interface Props {
   /** What the user actually entered/assembled before sending the report. */
   userAnswer?: string;
   style?: object;
-  /** Только красный флаг без подписи. */
+  /** Только флажок без подписи. */
   variant?: 'default' | 'icon-flag';
+  /** Цвет флажка: secondary — вторичный цвет темы (по умолчанию, макет cards.html); bad — цвет ошибки темы (флажок Шпиля по макету). */
+  flagTone?: 'secondary' | 'bad';
   accessibilityLabel?: string;
   testID?: string;
   textColor?: string;
@@ -154,6 +156,7 @@ function ReportErrorButton({
   openRef,
   hideTrigger,
   onOpenChange,
+  flagTone = 'secondary',
 }: Props) {
   // зачем: форма «сообщить об ошибке» (~30 экранов) — Liquid Glass по макету overlays-campaigns OS-ERROR-REPORT-*.
   const { theme: t, f, liquidGlassThemeId } = useTheme();
@@ -311,7 +314,7 @@ function ReportErrorButton({
       >
         {isFlag ? (
           // зачем (R1 spire-gap-001/002/004/005, Сверка 12.10): флажок «пожаловаться» в макете — контурный (kit.js: древко + волна без заливки), у нас был залитый Ionicons "flag"; контурный даёт тот же вид, что в образцах Шпиля, сессий и теории
-          <Ionicons name="flag-outline" size={17} color={t.wrong} />
+          <Ionicons name="flag-outline" size={17} color={flagTone === 'bad' ? t.wrong : glass.secondary} />
         ) : (
           <Text
             style={[styles.triggerText, { color: textColor ?? glass.secondary, fontSize: f.sub }]}

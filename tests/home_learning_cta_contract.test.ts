@@ -68,6 +68,12 @@ describe('home learning CTA contract', () => {
     expect(handlerBody).not.toContain("go('/learning-v2/course')");
     // скрытая вкладка (fr/de/it): не молчим — тост и журнал, а не немой goToTab на Главную
     expect(source).toMatch(/!learnTabVisible[\s\S]{0,900}action_toast/);
+    // повторные тапы не плодят тосты: хост ActionToast отбрасывает такой же тост (на экране / в очереди / охлаждение), а тап даёт отклик
+    const toastHost = fs.readFileSync(path.join(process.cwd(), 'components', 'ActionToast.tsx'), 'utf8');
+    expect(toastHost).toContain('showingKeyRef.current === k');
+    expect(toastHost).toContain('queueRef.current.some((p) => toastKey(p) === k)');
+    expect(toastHost).toContain('SAME_TOAST_COOLDOWN_MS');
+    expect(source).toMatch(/action_toast[\s\S]{0,1200}void hapticTap\(\);[\s\S]{0,40}return;/);
     // пульс подсказки не держит InteractionManager (иначе отложенные переходы ждут ~7,5 с)
     expect(source.match(/isInteraction: false/g)?.length ?? 0).toBeGreaterThanOrEqual(2);
     expect(source).not.toContain("go(isLearningV2Hidden() ? '/lessons_list'");

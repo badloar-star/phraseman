@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-35",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-35:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-35:intro1:r2": {
+          "ru": "В этой сборке перед hay нужно no.",
+          "uk": "У цій побудові перед hay потрібне no."
+        },
+        "es:lesson-06:session-35:intro1:r3": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-35:intro2:r2": {
+          "ru": "В этой фразе нужно no перед hay.",
+          "uk": "У цій фразі потрібно no перед hay."
+        },
+        "es:lesson-06:session-35:intro2:r3": {
+          "ru": "По условию проверяем место рядом: aquí.",
+          "uk": "За умовою перевіряємо місце поруч: aquí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-35:intro3:r2": {
+          "ru": "После первого ответа нужен полный оборот no hay nada.",
+          "uk": "Після першої відповіді потрібен повний вираз no hay nada."
+        },
+        "es:lesson-06:session-35:intro3:r3": {
+          "ru": "Это сообщает, что что-то есть, но сумка пуста.",
+          "uk": "Це повідомляє, що щось є, але сумка порожня."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "7b418a674532cae465153458f3da2f42d996793ef6c946d37125724d57441e9f"
+}

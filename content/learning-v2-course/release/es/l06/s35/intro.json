@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-35",
+  "learningOutcomeByLocale": {
+    "ru": "сказать «ничего нет» через no hay nada.",
+    "uk": "сказати «нічого немає» через no hay nada."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-35:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сумка пустая",
+        "uk": "Сумка порожня"
+      },
+      "bodyByLocale": {
+        "ru": "Вы открыли сумку и проверили всё внутри. Скажите `No hay nada en la bolsa` — «В сумке ничего нет». Соберите `No hay nada` + `en la bolsa`. Nada означает «ничего». В этой фразе перед hay нужно no, после hay — nada. Они работают вместе, как «ничего» и «нет» в русском. Два отрицательных слова не положат в пустую сумку ни одной вещи.",
+        "uk": "Ви відкрили сумку й перевірили все всередині. Скажіть `No hay nada en la bolsa` — «У сумці нічого немає». Складіть `No hay nada` + `en la bolsa`. Nada означає «нічого». У цій фразі перед hay потрібне no, після hay — nada. Вони працюють разом, як «нічого» й «немає» в українській. Два заперечні слова не покладуть у порожню сумку жодної речі."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-35:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В сумке ничего нет». Начните с No hay, используйте la bolsa, место поставьте в конце.",
+          "uk": "Повідомте «У сумці нічого немає». Почніть з No hay, використайте la bolsa, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-35:intro1:r1",
+              "text": "No hay nada en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro1:r2",
+              "text": "Hay nada en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro1:r3",
+              "text": "No hay nada la bolsa."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-35:intro1:r1",
+              "text": "No hay nada en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro1:r2",
+              "text": "Hay nada en la bolsa."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro1:r3",
+              "text": "No hay nada la bolsa."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В сумке ничего нет». Начните с No hay, используйте la bolsa, место поставьте в конце.",
+          "uk": "Повідомте «У сумці нічого немає». Почніть з No hay, використайте la bolsa, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-35:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Проверить место рядом",
+        "uk": "Перевірити місце поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заглянули под ткань рядом с собой и не нашли там предметов. Сообщите `No hay nada aquí` — «Здесь ничего нет». Соберите `No hay nada` + `aquí`. Заменяем название места коротким aquí. No hay nada сохраняем целиком: ничего не нашлось.",
+        "uk": "Ви зазирнули під тканину поруч із собою й не знайшли там предметів. Повідомте `No hay nada aquí` — «Тут нічого немає». Складіть `No hay nada` + `aquí`. Замінюємо назву місця коротким aquí. No hay nada зберігаємо цілком: нічого не знайшлося."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-35:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь ничего нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут нічого немає». Почніть з No hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-35:intro2:r1",
+              "text": "No hay nada aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro2:r2",
+              "text": "Hay nada aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro2:r3",
+              "text": "No hay nada allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-35:intro2:r1",
+              "text": "No hay nada aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro2:r2",
+              "text": "Hay nada aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro2:r3",
+              "text": "No hay nada allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь ничего нет». Начните с No hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут нічого немає». Почніть з No hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-35:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответить после проверки",
+        "uk": "Відповісти після перевірки"
+      },
+      "bodyByLocale": {
+        "ru": "Помощник спрашивает, есть ли что-нибудь в сумке. Вы уже убедились, что она пустая. Ответьте `No, no hay nada` — «Нет, ничего нет». Соберите ответ `No` + сообщение `no hay nada`. Первое no — отдельный ответ собеседнику, остальная часть поясняет отсутствие. Место можно не повторять: о сумке уже говорили.",
+        "uk": "Помічник запитує, чи є щось у сумці. Ви вже переконалися, що вона порожня. Дайте відповідь `No, no hay nada` — «Ні, нічого немає». Складіть відповідь `No` + повідомлення `no hay nada`. Перше no — окрема відповідь співрозмовнику, решта пояснює відсутність. Місце можна не повторювати: про сумку вже говорили."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-35:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Нет, ничего нет». Начните с No, затем сообщите об отсутствии; место не добавляйте.",
+          "uk": "Дайте відповідь «Ні, нічого немає». Почніть з No, потім повідомте про відсутність; місце не додавайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-35:intro3:r1",
+              "text": "No, no hay nada."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro3:r2",
+              "text": "No, hay nada."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro3:r3",
+              "text": "Sí, hay algo."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-35:intro3:r1",
+              "text": "No, no hay nada."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro3:r2",
+              "text": "No, hay nada."
+            },
+            {
+              "responseId": "es:lesson-06:session-35:intro3:r3",
+              "text": "Sí, hay algo."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Нет, ничего нет». Начните с No, затем сообщите об отсутствии; место не добавляйте.",
+          "uk": "Дайте відповідь «Ні, нічого немає». Почніть з No, потім повідомте про відсутність; місце не додавайте."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "b676dc0b2e9cf98da35d7006f97c270cbe718e2f657583ea32234b71a8cc9e28"
+}

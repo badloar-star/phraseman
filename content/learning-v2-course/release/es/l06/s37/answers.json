@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-37:i01",
+    "correctText": "¿Hay alguien aquí?",
+    "correctResponseId": "es:lesson-06:session-37:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-37:i02",
+    "correctText": "alguien",
+    "correctResponseId": "es:lesson-06:session-37:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-37:i03",
+    "correctText": "¿Hay alguien aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-37:i04",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-37:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-37:i05",
+    "correctText": "¿Hay alguien en la habitación?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-37:i06",
+    "correctText": "Sí, hay alguien.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-37:i07",
+    "correctText": "¿Hay alguien en la habitación?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-37:i08",
+    "correctText": "alguien",
+    "correctResponseId": "es:lesson-06:session-37:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-37:i09",
+    "correctText": "¿Hay alguien aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-37:i10",
+    "correctText": "¿Hay alguien en la habitación?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-37:i11",
+    "correctText": "Sí, hay alguien.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-37:i12",
+    "correctText": "¿Hay algo aquí?",
+    "correctResponseId": null
+  }
+]

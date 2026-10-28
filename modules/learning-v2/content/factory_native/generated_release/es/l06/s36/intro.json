@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-36",
+  "learningOutcomeByLocale": {
+    "ru": "сообщить о человеке, не называя его, со словом alguien.",
+    "uk": "повідомити про людину, не називаючи її, зі словом alguien."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-36:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Комната занята",
+        "uk": "Кімната зайнята"
+      },
+      "bodyByLocale": {
+        "ru": "Вы заглянули в комнату и заметили человека, которого не знаете. Скажите спутнику `Hay alguien en la habitación` — «В комнате кто-то есть». Соберите `Hay` + `alguien` + `en la habitación`. Alguien означает «кто-то» и относится к человеку. Перед ним не ставим un или una. Имя узнавать не нужно: мы лишь сообщаем, что комната не пустая.",
+        "uk": "Ви зазирнули до кімнати й помітили людину, якої не знаєте. Скажіть супутнику `Hay alguien en la habitación` — «У кімнаті хтось є». Складіть `Hay` + `alguien` + `en la habitación`. Alguien означає «хтось» і стосується людини. Перед ним не ставимо un чи una. Ім’я дізнаватися не потрібно: ми лише повідомляємо, що кімната не порожня."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-36:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «В комнате кто-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «У кімнаті хтось є». Почніть з Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-36:intro1:r1",
+              "text": "Hay alguien en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro1:r2",
+              "text": "Hay algo en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro1:r3",
+              "text": "Hay un alguien en la habitación."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-36:intro1:r1",
+              "text": "Hay alguien en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro1:r2",
+              "text": "Hay algo en la habitación."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro1:r3",
+              "text": "Hay un alguien en la habitación."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «В комнате кто-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «У кімнаті хтось є». Почніть з Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-36:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Человек рядом",
+        "uk": "Людина поруч"
+      },
+      "bodyByLocale": {
+        "ru": "Вы пришли к стойке и увидели рядом человека, который, возможно, поможет. Сообщите спутнику `Hay alguien aquí` — «Здесь кто-то есть». Соберите `Hay alguien` + `aquí`. Короткое aquí заменяет название места. Alguien сообщает о человеке, но не говорит, кто он и как его зовут.",
+        "uk": "Ви підійшли до стійки й побачили поруч людину, яка, можливо, допоможе. Повідомте супутнику `Hay alguien aquí` — «Тут хтось є». Складіть `Hay alguien` + `aquí`. Коротке aquí замінює назву місця. Alguien повідомляє про людину, але не каже, хто вона і як її звати."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-36:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь кто-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут хтось є». Почніть з Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-36:intro2:r1",
+              "text": "Hay alguien aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro2:r2",
+              "text": "Hay algo aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro2:r3",
+              "text": "Hay alguien allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-36:intro2:r1",
+              "text": "Hay alguien aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro2:r2",
+              "text": "Hay algo aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro2:r3",
+              "text": "Hay alguien allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь кто-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Тут хтось є». Почніть з Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-36:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Человек вдалеке",
+        "uk": "Людина вдалині"
+      },
+      "bodyByLocale": {
+        "ru": "В другом конце коридора вы заметили человека и показываете спутнику. Скажите `Hay alguien allí` — «Там кто-то есть». Соберите `Hay alguien` + `allí`. Меняем только место. Для человека сохраняем alguien: даже издалека он не превращается в algo — «что-то».",
+        "uk": "В іншому кінці коридору ви помітили людину й показуєте супутнику. Скажіть `Hay alguien allí` — «Там хтось є». Складіть `Hay alguien` + `allí`. Змінюємо лише місце. Для людини зберігаємо alguien: навіть здалеку вона не перетворюється на algo — «щось»."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-36:intro3:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Там кто-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Там хтось є». Почніть з Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-36:intro3:r1",
+              "text": "Hay alguien allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro3:r2",
+              "text": "Hay alguien aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro3:r3",
+              "text": "Hay una alguien allí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-36:intro3:r1",
+              "text": "Hay alguien allí."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro3:r2",
+              "text": "Hay alguien aquí."
+            },
+            {
+              "responseId": "es:lesson-06:session-36:intro3:r3",
+              "text": "Hay una alguien allí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Там кто-то есть». Начните с Hay, место поставьте в конце.",
+          "uk": "Повідомте «Там хтось є». Почніть з Hay, місце поставте в кінці."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "74df011b52d077d233b8c07f5a13372996bf669b35e9d1359f50883ee8e89592"
+}

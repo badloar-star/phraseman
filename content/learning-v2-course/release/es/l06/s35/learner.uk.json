@@ -1,0 +1,741 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-35",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-35:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — nada",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-35:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — nada",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-35:i01:audio",
+          "transcript": "nada"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-35:i01:r1",
+            "targetText": "nada",
+            "meaningByLocale": {
+              "ru": "ничего; no hay nada — ничего нет. 🔊 *nada*",
+              "uk": "нічого; no hay nada — нічого немає. 🔊 *nada*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "nada",
+          "definitionByLocale": {
+            "ru": "ничего; no hay nada — ничего нет. 🔊 *nada*",
+            "uk": "нічого; no hay nada — нічого немає. 🔊 *nada*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте та виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-35:i02:r1",
+          "text": "nada"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i02:r2",
+          "text": "algo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-35:i02:audio"
+      ],
+      "accessibilityLabel": "Послухайте та виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-35:i02:audio",
+          "transcript": "nada"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-35:i02:r1",
+            "targetText": "nada",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-35:i02:r2",
+            "targetText": "algo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-35:i02:r2",
+            "correct": false,
+            "testedDimension": "Послухайте та виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит nada — ничего.",
+              "uk": "Звучить nada — нічого."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у сумці нічого немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-35:i03:r1",
+          "text": "nada"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i03:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i03:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у сумці нічого немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в сумке ничего нет",
+          "uk": "Вставте слово — у сумці нічого немає"
+        },
+        "gappedTargetPhrase": "No hay ___ en la bolsa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-35:i03:r1",
+            "text": "nada"
+          },
+          {
+            "responseId": "es:lesson-06:session-35:i03:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-06:session-35:i03:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — у сумці нічого немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-35:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у сумці нічого немає",
+            "feedbackByLocale": {
+              "ru": "Нужно «ничего» — nada.",
+              "uk": "Потрібно «нічого» — nada."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-35:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у сумці нічого немає",
+            "feedbackByLocale": {
+              "ru": "Нужно «ничего» — nada.",
+              "uk": "Потрібно «нічого» — nada."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — у сумці нічого немає; почніть з No hay, місце поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-35:i04:r1",
+          "text": "Плитки: bolsa"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i04:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i04:r3",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i04:r4",
+          "text": "nada"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i04:r5",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i04:r6",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i04:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — у сумці нічого немає; почніть з No hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No hay nada en la bolsa.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в сумке ничего нет; начните с No hay, место поставьте в конце",
+          "uk": "Зберіть фразу — у сумці нічого немає; почніть з No hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "No",
+          "hay",
+          "nada",
+          "en",
+          "la",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-35:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — у сумці нічого немає; почніть з No hay, місце поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "bolsa женского рода.",
+              "uk": "bolsa жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут нічого немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-35:i05:r1",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i05:r2",
+          "text": "Sí"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i05:r3",
+          "text": "Una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут нічого немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь ничего нет",
+          "uk": "Вставте слово — тут нічого немає"
+        },
+        "gappedTargetPhrase": "___ hay nada aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-35:i05:r1",
+            "text": "No"
+          },
+          {
+            "responseId": "es:lesson-06:session-35:i05:r2",
+            "text": "Sí"
+          },
+          {
+            "responseId": "es:lesson-06:session-35:i05:r3",
+            "text": "Una"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут нічого немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-35:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут нічого немає",
+            "feedbackByLocale": {
+              "ru": "В этой отрицательной фразе нужно No.",
+              "uk": "У цій заперечній фразі потрібно No."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-35:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут нічого немає",
+            "feedbackByLocale": {
+              "ru": "Перед hay для отрицания нужно No.",
+              "uk": "Перед hay для заперечення потрібно No."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут нічого немає; почніть з No hay, місце поставте в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-35:i06:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i06:r2",
+          "text": "No"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i06:r3",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i06:r4",
+          "text": "nada"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i06:r5",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут нічого немає; почніть з No hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No hay nada aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь ничего нет; начните с No hay, место поставьте в конце",
+          "uk": "Зберіть фразу — тут нічого немає; почніть з No hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "No",
+          "hay",
+          "nada",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-35:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут нічого немає; почніть з No hay, місце поставте в кінці",
+            "feedbackByLocale": {
+              "ru": "перед nada артикль не нужен.",
+              "uk": "перед nada артикль не потрібен."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — ні, нічого немає; почніть з No, потім повідомте про відсутність",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-35:i07:r1",
+          "text": "Плитки: nada"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i07:r2",
+          "text": "No,"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i07:r3",
+          "text": "no"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i07:r4",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i07:r5",
+          "text": "una."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — ні, нічого немає; почніть з No, потім повідомте про відсутність",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "No, no hay nada.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — нет, ничего нет; начните с No, затем сообщите об отсутствии",
+          "uk": "Зберіть фразу — ні, нічого немає; почніть з No, потім повідомте про відсутність"
+        },
+        "orderedTokens": [
+          "No,",
+          "no",
+          "hay",
+          "nada"
+        ],
+        "authoredDistractorTokens": [
+          "una"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-35:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — ні, нічого немає; почніть з No, потім повідомте про відсутність",
+            "feedbackByLocale": {
+              "ru": "nada используется без артикля.",
+              "uk": "nada використовується без артикля."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте та зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-35:i08:r1",
+          "text": "Плитки: No"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i08:r2",
+          "text": "hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i08:r3",
+          "text": "nada"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i08:r4",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i08:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i08:r6",
+          "text": "bolsa"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i08:r7",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-35:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте та зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-35:i08:audio",
+          "transcript": "No hay nada en la bolsa."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "No hay nada en la bolsa.",
+        "orderedTokens": [
+          "No",
+          "hay",
+          "nada",
+          "en",
+          "la",
+          "bolsa"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-35:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте та зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la.",
+              "uk": "звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — у сумці нічого немає",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-35:i09:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i09:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-35:i09:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — у сумці нічого немає",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в сумке ничего нет",
+          "uk": "Вставте слово — у сумці нічого немає"
+        },
+        "gappedTargetPhrase": "No hay nada ___ la bolsa.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-35:i09:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-35:i09:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-35:i09:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставте слово — у сумці нічого немає",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-35:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — у сумці нічого немає",
+            "feedbackByLocale": {
+              "ru": "Для места «в сумке» нужно en.",
+              "uk": "Для місця «у сумці» потрібно en."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-35:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — у сумці нічого немає",
+            "feedbackByLocale": {
+              "ru": "Перед местом нужно en.",
+              "uk": "Перед місцем потрібно en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — у сумці нічого немає; почніть з No hay, використайте la bolsa, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-35:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — у сумці нічого немає; почніть з No hay, використайте la bolsa, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-35:i10:audio",
+          "transcript": "No hay nada en la bolsa."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No hay nada en la bolsa.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут нічого немає; почніть з No hay, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-35:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут нічого немає; почніть з No hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-35:i11:audio",
+          "transcript": "No hay nada aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No hay nada aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ні, нічого немає; почніть з No, потім повідомте про відсутність, місце не додавайте",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-35:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ні, нічого немає; почніть з No, потім повідомте про відсутність, місце не додавайте",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-35:i12:audio",
+          "transcript": "No, no hay nada."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No, no hay nada.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-35:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — ви перевірили дальній куток: «Там нічого немає»; почніть з No hay, місце поставте в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-35:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — ви перевірили дальній куток: «Там нічого немає»; почніть з No hay, місце поставте в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-35:i13:audio",
+          "transcript": "No hay nada allí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "No hay nada allí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "0c0e785ce061fab6fa709b4c36135f3304c2741ad19b646a0737b6f8bf0623f1"
+}

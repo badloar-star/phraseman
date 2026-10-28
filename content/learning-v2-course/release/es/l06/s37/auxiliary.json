@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-37",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-37:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-37:intro1:r2": {
+          "ru": "Вы зовёте человека: alguien, не algo.",
+          "uk": "Ви кличете людину: alguien, не algo."
+        },
+        "es:lesson-06:session-37:intro1:r3": {
+          "ru": "Перед alguien не нужен артикль.",
+          "uk": "Перед alguien не потрібен артикль."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-37:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-37:intro2:r2": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        },
+        "es:lesson-06:session-37:intro2:r3": {
+          "ru": "Вы уточняете наличие человека: alguien.",
+          "uk": "Ви уточнюєте наявність людини: alguien."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-37:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-37:intro3:r2": {
+          "ru": "Подтверждаем наличие человека: alguien.",
+          "uk": "Підтверджуємо наявність людини: alguien."
+        },
+        "es:lesson-06:session-37:intro3:r3": {
+          "ru": "Alguien здесь без артикля.",
+          "uk": "Alguien тут без артикля."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "72d03697dbe5da15bfea290700668cf97f8b917355b41ab8f64b3d52e3f449ee"
+}

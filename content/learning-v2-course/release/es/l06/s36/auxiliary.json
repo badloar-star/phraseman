@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-36",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-36:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-36:intro1:r2": {
+          "ru": "Algo — что-то, а мы заметили человека: alguien.",
+          "uk": "Algo — щось, а ми помітили людину: alguien."
+        },
+        "es:lesson-06:session-36:intro1:r3": {
+          "ru": "Alguien здесь без артикля.",
+          "uk": "Alguien тут без артикля."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-36:intro2:r2": {
+          "ru": "Речь о человеке: alguien.",
+          "uk": "Ідеться про людину: alguien."
+        },
+        "es:lesson-06:session-36:intro2:r3": {
+          "ru": "Человек рядом: aquí.",
+          "uk": "Людина поруч: aquí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-36:intro3:r2": {
+          "ru": "Человек далеко: allí.",
+          "uk": "Людина далеко: allí."
+        },
+        "es:lesson-06:session-36:intro3:r3": {
+          "ru": "Alguien здесь без артикля.",
+          "uk": "Alguien тут без артикля."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "960a1fa29e02bb5089d8f3eadea66684ddf5be838067b106e99902d4449b7ce1"
+}

@@ -2198,4 +2198,32 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сообщить о чём-то, не называя предмет.","uk":"повідомити про щось, не називаючи предмет."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 34,
+    sourceFingerprint: "5ec9b41105ed70ceb2906e95297e09ceb7b55a0f5e334cc955e4f946b403c55f",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спрашивать о наличии чего-нибудь со словом algo.","uk":"запитувати про наявність чогось зі словом algo."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 35,
+    sourceFingerprint: "2e40be5e4960fb96233c4ec3e8dfff5a2addce37fb5048b774febc579e754946",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать «ничего нет» через no hay nada.","uk":"сказати «нічого немає» через no hay nada."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 36,
+    sourceFingerprint: "4979c0d155f3b9c678ef197e8e19d365114f97db2ed206c0b998943d68e8ed3e",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сообщить о человеке, не называя его, со словом alguien.","uk":"повідомити про людину, не називаючи її, зі словом alguien."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 6, sessionOrdinal: 37,
+    sourceFingerprint: "aa4fd8fc34b17ec34c70a2e5efd7926ea2e02bae8341223842c0f8a1c9b31ee0",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"задавать вопрос с alguien и подтверждать наличие человека.","uk":"ставити запитання з alguien і підтверджувати наявність людини."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 6","uk":"Іспанська · Урок 6"}),
+  }),
 ]);

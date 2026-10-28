@@ -1,0 +1,721 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-06:session-36",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-06:session-36:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — alguien",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-36:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — alguien",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-36:i01:audio",
+          "transcript": "alguien"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-36:i01:r1",
+            "targetText": "alguien",
+            "meaningByLocale": {
+              "ru": "кто-то; говорим о человеке, не называя его. 🔊 *alguien*",
+              "uk": "хтось; говоримо про людину, не називаючи її. 🔊 *alguien*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "alguien",
+          "definitionByLocale": {
+            "ru": "кто-то; говорим о человеке, не называя его. 🔊 *alguien*",
+            "uk": "хтось; говоримо про людину, не називаючи її. 🔊 *alguien*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-36:i02:r1",
+          "text": "alguien"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i02:r2",
+          "text": "algo"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-36:i02:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-36:i02:audio",
+          "transcript": "alguien"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-06:session-36:i02:r1",
+            "targetText": "alguien",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-06:session-36:i02:r2",
+            "targetText": "algo",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-36:i02:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит alguien — кто-то.",
+              "uk": "Звучить alguien — хтось."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в комнате кто-то есть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-36:i03:r1",
+          "text": "alguien"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i03:r2",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i03:r3",
+          "text": "nada"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в комнате кто-то есть",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате кто-то есть",
+          "uk": "Вставте слово — у кімнаті хтось є"
+        },
+        "gappedTargetPhrase": "Hay ___ en la habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-36:i03:r1",
+            "text": "alguien"
+          },
+          {
+            "responseId": "es:lesson-06:session-36:i03:r2",
+            "text": "algo"
+          },
+          {
+            "responseId": "es:lesson-06:session-36:i03:r3",
+            "text": "nada"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в комнате кто-то есть",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-36:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате кто-то есть",
+            "feedbackByLocale": {
+              "ru": "Нужен человек: alguien, не «что-то».",
+              "uk": "Потрібна людина: alguien, не «щось»."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-36:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате кто-то есть",
+            "feedbackByLocale": {
+              "ru": "Nada — ничего; здесь есть человек.",
+              "uk": "Nada — нічого; тут є людина."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — в комнате кто-то есть; начните с Hay, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-36:i04:r1",
+          "text": "Плитки: habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i04:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i04:r3",
+          "text": "alguien"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i04:r4",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i04:r5",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i04:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — в комнате кто-то есть; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay alguien en la habitación.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — в комнате кто-то есть; начните с Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — у кімнаті хтось є; почніть з Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "alguien",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-36:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — в комнате кто-то есть; начните с Hay, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "habitación женского рода.",
+              "uk": "habitación жіночого роду."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — в комнате кто-то есть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-36:i05:r1",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i05:r2",
+          "text": "de"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i05:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — в комнате кто-то есть",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — в комнате кто-то есть",
+          "uk": "Вставте слово — у кімнаті хтось є"
+        },
+        "gappedTargetPhrase": "Hay alguien ___ la habitación.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-36:i05:r1",
+            "text": "en"
+          },
+          {
+            "responseId": "es:lesson-06:session-36:i05:r2",
+            "text": "de"
+          },
+          {
+            "responseId": "es:lesson-06:session-36:i05:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — в комнате кто-то есть",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-36:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате кто-то есть",
+            "feedbackByLocale": {
+              "ru": "Для места «в комнате» нужно en.",
+              "uk": "Для місця «у кімнаті» потрібно en."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-36:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — в комнате кто-то есть",
+            "feedbackByLocale": {
+              "ru": "Перед местом нужно en.",
+              "uk": "Перед місцем потрібно en."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь кто-то есть; начните с Hay, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-36:i06:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i06:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i06:r3",
+          "text": "alguien"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i06:r4",
+          "text": "algo."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь кто-то есть; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay alguien aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь кто-то есть; начните с Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — тут хтось є; почніть з Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "alguien",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "algo"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-36:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь кто-то есть; начните с Hay, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "речь о человеке.",
+              "uk": "ідеться про людину."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — там кто-то есть; начните с Hay, место поставьте в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-36:i07:r1",
+          "text": "Плитки: allí"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i07:r2",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i07:r3",
+          "text": "alguien"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i07:r4",
+          "text": "aquí."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — там кто-то есть; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay alguien allí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — там кто-то есть; начните с Hay, место поставьте в конце",
+          "uk": "Зберіть фразу — там хтось є; почніть з Hay, місце поставте в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "alguien",
+          "allí"
+        ],
+        "authoredDistractorTokens": [
+          "aquí"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-36:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — там кто-то есть; начните с Hay, место поставьте в конце",
+            "feedbackByLocale": {
+              "ru": "нужно «там».",
+              "uk": "потрібно «там»."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-36:i08:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i08:r2",
+          "text": "alguien"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i08:r3",
+          "text": "en"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i08:r4",
+          "text": "la"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i08:r5",
+          "text": "habitación"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i08:r6",
+          "text": "el."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-36:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-36:i08:audio",
+          "transcript": "Hay alguien en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay alguien en la habitación.",
+        "orderedTokens": [
+          "Hay",
+          "alguien",
+          "en",
+          "la",
+          "habitación"
+        ],
+        "authoredDistractorTokens": [
+          "el"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-06:session-36:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит la.",
+              "uk": "звучить la."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i09",
+      "ordinal": 12,
+      "purpose": "retrieval_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — здесь кто-то есть",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-06:session-36:i09:r1",
+          "text": "alguien"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i09:r2",
+          "text": "algo"
+        },
+        {
+          "responseId": "es:lesson-06:session-36:i09:r3",
+          "text": "nada"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — здесь кто-то есть",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь кто-то есть",
+          "uk": "Вставте слово — тут хтось є"
+        },
+        "gappedTargetPhrase": "Hay ___ aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-06:session-36:i09:r1",
+            "text": "alguien"
+          },
+          {
+            "responseId": "es:lesson-06:session-36:i09:r2",
+            "text": "algo"
+          },
+          {
+            "responseId": "es:lesson-06:session-36:i09:r3",
+            "text": "nada"
+          }
+        ],
+        "testedDimension": "Вставьте слово — здесь кто-то есть",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-06:session-36:i09:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь кто-то есть",
+            "feedbackByLocale": {
+              "ru": "Для человека нужно alguien.",
+              "uk": "Для людини потрібно alguien."
+            }
+          },
+          {
+            "responseId": "es:lesson-06:session-36:i09:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь кто-то есть",
+            "feedbackByLocale": {
+              "ru": "Nada — ничего; здесь сообщаем о человеке.",
+              "uk": "Nada — нічого; тут повідомляємо про людину."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — в комнате кто-то есть; начните с Hay, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-36:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — в комнате кто-то есть; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-36:i10:audio",
+          "transcript": "Hay alguien en la habitación."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay alguien en la habitación.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь кто-то есть; начните с Hay, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-36:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь кто-то есть; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-36:i11:audio",
+          "transcript": "Hay alguien aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay alguien aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — там кто-то есть; начните с Hay, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-36:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — там кто-то есть; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-36:i12:audio",
+          "transcript": "Hay alguien allí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay alguien allí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-06:session-36:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — в другой ситуации вы замечаете неизвестный предмет: «Здесь что-то есть»; начните с Hay, место поставьте в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-06:session-36:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — в другой ситуации вы замечаете неизвестный предмет: «Здесь что-то есть»; начните с Hay, место поставьте в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-06:session-36:i13:audio",
+          "transcript": "Hay algo aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay algo aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 13,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "8072108b6dd718fb987edf58ba4e76d60d3fbd3789636e1a2b8c8382703834bc"
+}

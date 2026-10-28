@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-06:session-34:i01",
+    "correctText": "¿Hay algo aquí?",
+    "correctResponseId": "es:lesson-06:session-34:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-34:i02",
+    "correctText": "algo",
+    "correctResponseId": "es:lesson-06:session-34:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-34:i03",
+    "correctText": "¿Hay algo aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-34:i04",
+    "correctText": "en",
+    "correctResponseId": "es:lesson-06:session-34:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-34:i05",
+    "correctText": "¿Hay algo en la bolsa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-34:i06",
+    "correctText": "Sí, hay algo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-34:i07",
+    "correctText": "¿Hay algo en la bolsa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-34:i08",
+    "correctText": "Sí",
+    "correctResponseId": "es:lesson-06:session-34:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-06:session-34:i09",
+    "correctText": "¿Hay algo aquí?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-34:i10",
+    "correctText": "¿Hay algo en la bolsa?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-34:i11",
+    "correctText": "Sí, hay algo.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-06:session-34:i12",
+    "correctText": "¿Hay algo allí?",
+    "correctResponseId": null
+  }
+]

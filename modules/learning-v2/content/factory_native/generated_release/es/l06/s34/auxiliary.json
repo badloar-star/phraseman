@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-06:session-34",
+  "entries": [
+    {
+      "interactionId": "es:lesson-06:session-34:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-34:intro1:r2": {
+          "ru": "Algo здесь без артикля.",
+          "uk": "Algo тут без артикля."
+        },
+        "es:lesson-06:session-34:intro1:r3": {
+          "ru": "Спрашиваем о месте рядом: aquí.",
+          "uk": "Запитуємо про місце поруч: aquí."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-34:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-34:intro2:r2": {
+          "ru": "Перед местом нужно en.",
+          "uk": "Перед місцем потрібно en."
+        },
+        "es:lesson-06:session-34:intro2:r3": {
+          "ru": "Bolsa женского рода: la.",
+          "uk": "Bolsa жіночого роду: la."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-06:session-34:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-06:session-34:intro3:r2": {
+          "ru": "Algo здесь без артикля.",
+          "uk": "Algo тут без артикля."
+        },
+        "es:lesson-06:session-34:intro3:r3": {
+          "ru": "Это вопрос, а нужен ответ.",
+          "uk": "Це запитання, а потрібна відповідь."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "197d405054f6d68d166ab788f7146c671f3e65ebbb8b17df49a7135e34a0ff53"
+}

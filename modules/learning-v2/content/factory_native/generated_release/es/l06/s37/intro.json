@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-06:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "задавать вопрос с alguien и подтверждать наличие человека.",
+    "uk": "ставити запитання з alguien і підтверджувати наявність людини."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-06:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Позвать из дверей",
+        "uk": "Покликати з дверей"
+      },
+      "bodyByLocale": {
+        "ru": "Вы подошли к стойке, но никого не видите. Спросите вслух `¿Hay alguien aquí?` — «Здесь кто-нибудь есть?» Соберите `¿Hay alguien` + `aquí?`. Alguien в вопросе переводится «кто-нибудь». Слова сохраняют порядок сообщения, а вопрос передаём интонацией и знаками ¿ ... ?.",
+        "uk": "Ви підійшли до стійки, але нікого не бачите. Запитайте вголос `¿Hay alguien aquí?` — «Тут хтось є?» Складіть `¿Hay alguien` + `aquí?`. Alguien у запитанні перекладається «хтось» або «хто-небудь». Слова зберігають порядок повідомлення, а запитання передаємо інтонацією та знаками ¿ ... ?."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Спросите «Здесь кто-нибудь есть?». Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Тут хтось є?». Почніть з ¿Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-37:intro1:r1",
+              "text": "¿Hay alguien aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro1:r2",
+              "text": "¿Hay algo aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro1:r3",
+              "text": "¿Hay un alguien aquí?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-37:intro1:r1",
+              "text": "¿Hay alguien aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro1:r2",
+              "text": "¿Hay algo aquí?"
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro1:r3",
+              "text": "¿Hay un alguien aquí?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Здесь кто-нибудь есть?». Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «Тут хтось є?». Почніть з ¿Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-06:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Уточнить, свободна ли комната",
+        "uk": "Уточнити, чи вільна кімната"
+      },
+      "bodyByLocale": {
+        "ru": "Вы хотите воспользоваться комнатой и сначала спрашиваете помощника `¿Hay alguien en la habitación?` — «В комнате кто-нибудь есть?» Соберите `¿Hay alguien` + `en la habitación?`. Теперь вместо aquí называем комнату. Вопрос о человеке: стол или диван ответить вам не смогут.",
+        "uk": "Ви хочете скористатися кімнатою й спочатку запитуєте помічника `¿Hay alguien en la habitación?` — «У кімнаті хтось є?» Складіть `¿Hay alguien` + `en la habitación?`. Тепер замість aquí називаємо кімнату. Запитання про людину: стіл чи диван відповісти вам не зможуть."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Спросите «В комнате кто-нибудь есть?». Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «У кімнаті хтось є?». Почніть з ¿Hay, місце поставте в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-37:intro2:r1",
+              "text": "¿Hay alguien en la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro2:r2",
+              "text": "¿Hay alguien la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro2:r3",
+              "text": "¿Hay algo en la habitación?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-37:intro2:r1",
+              "text": "¿Hay alguien en la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro2:r2",
+              "text": "¿Hay alguien la habitación?"
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro2:r3",
+              "text": "¿Hay algo en la habitación?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «В комнате кто-нибудь есть?». Начните с ¿Hay, место поставьте в конце.",
+          "uk": "Запитайте «У кімнаті хтось є?». Почніть з ¿Hay, місце поставте в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-06:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Ответить помощнику",
+        "uk": "Відповісти помічнику"
+      },
+      "bodyByLocale": {
+        "ru": "Теперь помощник спрашивает вас, есть ли человек в комнате. Вы только что его видели. Ответьте `Sí, hay alguien` — «Да, кто-то есть». Соберите `Sí` + `hay alguien`. Имя не требуется. Место тоже можно не повторять: вы оба говорите об одной комнате.",
+        "uk": "Тепер помічник запитує вас, чи є людина в кімнаті. Ви щойно її бачили. Дайте відповідь `Sí, hay alguien` — «Так, хтось є». Складіть `Sí` + `hay alguien`. Ім’я не потрібне. Місце теж можна не повторювати: ви обоє говорите про одну кімнату."
+      },
+      "question": {
+        "interactionId": "es:lesson-06:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Ответьте «Да, кто-то есть». Начните с Sí, место не добавляйте.",
+          "uk": "Дайте відповідь «Так, хтось є». Почніть з Sí, місце не додавайте."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-06:session-37:intro3:r1",
+              "text": "Sí, hay alguien."
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro3:r2",
+              "text": "Sí, hay algo."
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro3:r3",
+              "text": "Sí, hay un alguien."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-06:session-37:intro3:r1",
+              "text": "Sí, hay alguien."
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro3:r2",
+              "text": "Sí, hay algo."
+            },
+            {
+              "responseId": "es:lesson-06:session-37:intro3:r3",
+              "text": "Sí, hay un alguien."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Ответьте «Да, кто-то есть». Начните с Sí, место не добавляйте.",
+          "uk": "Дайте відповідь «Так, хтось є». Почніть з Sí, місце не додавайте."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6225b87b19f1029ebfb55383f6c40f3c5e80f7790c17004d2ca09f0b2e701c07"
+}

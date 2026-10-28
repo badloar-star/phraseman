@@ -334,11 +334,11 @@ const render = (enter = true) => {
   TH = AP === 'light' ? 'ink' : 'marine';
   const root = document.getElementById('root');
   root.className = enter ? 'sp-enter sp-fade' : 'sp-fade'; // смена темы — мягкий кроссфейд 280 мс, без повторного появления
-  root.innerHTML = section0() + (ALL ? section1() + section3() + section2() + section4() : '');
+  root.innerHTML = ALL ? section0() + section1() + section3() + section2() + section4() : ''; // страница владельца — dark-themes.app.js (#dt); старые разделы — только ?all=1
   controls();
   const cb = document.getElementById('spControls'); if (cb) cb.style.display = ALL ? '' : 'none';
   if (R && R.applyScroll) R.applyScroll(root);
-  if (window.SceneReal) window.SceneReal.buildAll(root, JOBS);
+  if (ALL && window.SceneReal) window.SceneReal.buildAll(root, JOBS);
   console.log(LOG, 'render', JSON.stringify({ theme: THEME_ID, ap: AP, mode: MODE, strat: STRAT, all: ALL, real: HOME_FRAMES().length, pal: schemeLine(scenePal(THEME_ID, AP)) })); // guard-ok: одна строка на перерисовку
 };
 const setMode = (m) => { MODE = m; document.querySelectorAll('.ph[data-ph]').forEach((ph) => { ph.classList.toggle('sp-now', m === 'now'); ph.classList.toggle('sp-new', m !== 'now'); ph.classList.toggle('sp-drawn', m === 'draw'); }); document.querySelectorAll('.chp[data-mode]').forEach((c) => c.classList.toggle('on', c.dataset.mode === m)); };
@@ -363,5 +363,5 @@ document.body.addEventListener('click', (e) => {
 }
 render(true);
 K.init();
-window.__sp = { THEME_IDS, scenePal, sceneTok, nowDialogs, nowSeason, schemeLine, setMode, REAL, jobs: () => JOBS, real: window.SceneReal, setStrat: (k) => { STRAT = k; render(false); }, render: () => render(true) };
+window.__sp = { THEME_IDS, THEMES, PREMIUM, color: { hx, ha, mixc, hex, rgba, oklchOf, okRgb, fromOklch, whiteOn, ratioc }, scenePal, sceneTok, nowDialogs, nowSeason, schemeLine, setMode, REAL, jobs: () => JOBS, real: window.SceneReal, setStrat: (k) => { STRAT = k; render(false); }, render: () => render(true) };
 })();

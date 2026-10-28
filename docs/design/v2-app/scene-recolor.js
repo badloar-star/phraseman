@@ -1,21 +1,27 @@
 /* scene-recolor.js — перекраска фона «Сцены» на РЕАЛЬНОМ кадре приложения: заменяется только градиент сцены, всё остальное
    (герой, текст, стекло плашек, тени, затемнение низа) остаётся как снято. Работает и в браузере (ImageData), и в node (raw RGBA).
-   зачем (владелец 28.10: макеты только на настоящих экранах; «сейчас» — кадр без изменений, новая палитра — перекраска сцены НА кадре):
-   модель текущего фона = ровно то, что рисует HomeSceneStage: expo-linear-gradient start(.22,0)→end(.78,1) из sceneTop→sceneBottom,
-   свет sceneLight (эллипс в 18 %/0 %, rx 70 %, ry 50 %, альфа линейно до нуля), ореол героя (белый .22, круг 168 dp в x 57 %),
-   затемнение низа 300 dp до .40 (только светлые темы). Для каждого пикселя сцены: разница кадра и модели говорит, что это —
-   чистый фон (→ новый градиент), белая надпись/стекло (→ та же доля белого над новым градиентом), тень (→ то же затемнение нового),
-   цветная деталь (→ без изменений), герой (→ по альфе его же картинки: фон под ним меняется, сам он нет). */
+   зачем (владелец 28.10: макеты только на настоящих экранах; «сейчас» — кадр без изменений, новая палитра/стиль — перекраска сцены НА кадре):
+   модель текущего фона = ровно то, что рисует приложение (Главная: HomeSceneStage — expo-linear-gradient start(.22,0)→end(.78,1),
+   свет sceneLight 18 %/0 % rx 70 % ry 50 %, затемнение низа 300 dp до .40 в светлом; Диалоги: DialogsSceneBackdrop — градиент .42/0→.58/1,
+   два света 84 %/14 % и 8 %/0 %, ореол героя accentGlow с профилем 1 → .2 (62 %) → 0). Для каждого пикселя сцены разница кадра и модели
+   говорит, что это — чистый фон (→ новый фон), белая надпись/стекло (→ та же доля белого над новым фоном), тень (→ то же затемнение
+   нового), цветная деталь (→ без изменений), герой (→ по альфе его же картинки: фон под ним меняется, сам он нет).
+   Новый фон — либо формула (top/bot/lights/scrim/halo), либо готовая картинка стиля (spec.image = ImageData/raw того же размера). */
 (function (root, factory) { const m = factory(); if (typeof module !== 'undefined' && module.exports) module.exports = m; else root.SceneRecolor = m; })(typeof self !== 'undefined' ? self : this, function () {
   const clamp = (v) => (v < 0 ? 0 : v > 255 ? 255 : v);
   const lum = (r, g, b) => 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  /** Профиль ореола по остановкам [[offset, alpha], …] — кусочно-линейно. */
+  const profileAt = (stops, d) => { for (let i = 1; i < stops.length; i += 1) { if (d <= stops[i][0]) { const [o0, a0] = stops[i - 1]; const [o1, a1] = stops[i]; return a0 + (a1 - a0) * ((d - o0) / (o1 - o0 || 1)); } } return 0; };
   /** spec: { top, bot (rgb), start, end (доли W/H; по умолчанию .22,0 → .78,1), lights: [{ cx, cy, rx, ry (доли), color, a, fade (доля радиуса, где альфа = 0; 1 = край) }],
-   *  scrim: { a, h } (альфа черноты у низа, высота в px), halo: { cx, cy, r (px), a } | null }. Возвращает paint(x, y) → [r, g, b] (не округлено). */
+   *  scrim: { a, h } (альфа черноты у низа, высота в px), halo: { cx, cy, r (px), a, color (rgb, по умолчанию белый), stops } | null,
+   *  image: { data, width } — готовая картинка фона (RGBA, та же ширина) — тогда формула не нужна }. Возвращает paint(x, y) → [r, g, b] (не округлено). */
   function painter(spec, W, H) {
+    if (spec.image) { const d = spec.image.data; const iw = spec.image.width || W; return function paintImg(x, y) { const i = (y * iw + x) * 4; return [d[i], d[i + 1], d[i + 2]]; }; }
     const top = spec.top; const bot = spec.bot; const s = spec.start || [0.22, 0]; const e = spec.end || [0.78, 1];
     const sx = s[0] * W; const sy = s[1] * H; const vx = (e[0] - s[0]) * W; const vy = (e[1] - s[1]) * H; const vv = vx * vx + vy * vy;
     const lights = (spec.lights || []).map((l) => ({ cx: l.cx * W, cy: l.cy * H, rx: l.rx * W, ry: l.ry * H, c: l.color, a: l.a, fade: l.fade || 1 }));
     const scrim = spec.scrim && spec.scrim.a > 0 ? spec.scrim : null; const halo = spec.halo || null;
+    const hc = halo ? (halo.color || [255, 255, 255]) : null; const hs = halo ? (halo.stops || [[0, 1], [1, 0]]) : null;
     return function paint(x, y) {
       let t = ((x - sx) * vx + (y - sy) * vy) / vv; t = t < 0 ? 0 : t > 1 ? 1 : t;
       let r = top[0] + (bot[0] - top[0]) * t; let g = top[1] + (bot[1] - top[1]) * t; let b = top[2] + (bot[2] - top[2]) * t;
@@ -23,7 +29,7 @@
         const l = lights[i]; const dx = (x - l.cx) / l.rx; const dy = (y - l.cy) / l.ry; const d = Math.sqrt(dx * dx + dy * dy) / l.fade;
         if (d < 1) { const a = l.a * (1 - d); r += (l.c[0] - r) * a; g += (l.c[1] - g) * a; b += (l.c[2] - b) * a; }
       }
-      if (halo) { const d = Math.hypot(x - halo.cx, y - halo.cy) / halo.r; if (d < 1) { const a = halo.a * (1 - d); r += (255 - r) * a; g += (255 - g) * a; b += (255 - b) * a; } }
+      if (halo) { const d = Math.hypot(x - halo.cx, y - halo.cy) / halo.r; if (d < 1) { const a = halo.a * profileAt(hs, d); r += (hc[0] - r) * a; g += (hc[1] - g) * a; b += (hc[2] - b) * a; } }
       if (scrim && y > H - scrim.h) { const k = 1 - scrim.a * (y - (H - scrim.h)) / scrim.h; r *= k; g *= k; b *= k; }
       return [r, g, b];
     };
@@ -53,13 +59,21 @@
             if (mx - mn <= 0.10) { const a = Math.min(1, Math.max(0, sum / as.length)); data[i] = clamp(nc[0] * (1 - a) + 255 * a); data[i + 1] = clamp(nc[1] * (1 - a) + 255 * a); data[i + 2] = clamp(nc[2] * (1 - a) + 255 * a); st.white += 1; continue; }
           }
         }
+        const lp = lum(pr, pg, pb); const lo = lum(oc[0], oc[1], oc[2]);
         if (dr <= 3 && dg <= 3 && db <= 3) { // затемнение (тень карточки, тёмная подпись): та же доля яркости от нового фона
-          const k = (lum(pr, pg, pb) + 1) / (lum(oc[0], oc[1], oc[2]) + 1); data[i] = clamp(nc[0] * k); data[i + 1] = clamp(nc[1] * k); data[i + 2] = clamp(nc[2] * k); st.dark += 1; continue;
+          const k = (lp + 1) / (lo + 1); data[i] = clamp(nc[0] * k); data[i + 1] = clamp(nc[1] * k); data[i + 2] = clamp(nc[2] * k); st.dark += 1; continue;
+        }
+        // цветность кадра и модели в одном направлении (тот же оттенок, другая сила света — расхождение модели света, напр. насыщенные
+        // света «Океана») → это фон, а не деталь: пересвет новым фоном с той же долей яркости; иной оттенок (значок, монета) — как снято
+        const vp0 = pr - lp; const vp1 = pg - lp; const vp2 = pb - lp; const vo0 = oc[0] - lo; const vo1 = oc[1] - lo; const vo2 = oc[2] - lo;
+        const np = Math.sqrt(vp0 * vp0 + vp1 * vp1 + vp2 * vp2); const no = Math.sqrt(vo0 * vo0 + vo1 * vo1 + vo2 * vo2);
+        if (np > 2 && no > 2 && (vp0 * vo0 + vp1 * vo1 + vp2 * vo2) / (np * no) > 0.85) {
+          const k = (lp + 1) / (lo + 1); data[i] = clamp(nc[0] * k); data[i + 1] = clamp(nc[1] * k); data[i + 2] = clamp(nc[2] * k); st.relit = (st.relit || 0) + 1; continue;
         }
         st.keep += 1; // цветная деталь (значок, монета) — как снято
       }
     }
     return st;
   }
-  return { painter, recolor };
+  return { painter, recolor, profileAt };
 });

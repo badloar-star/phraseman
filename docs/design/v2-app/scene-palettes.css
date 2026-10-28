@@ -175,6 +175,8 @@
 /* ── раздел 0 · реальные кадры (телефон .ph.rf — real-frame.css; здесь подписи, значок состояния, запасной слой цвета, зажатие) ── */
 .sp-real-row { margin-bottom: 40px; }
 .sp-note.sp-warn { color: #D9A05B; }
+#dtBar { margin-top: 14px; }
+#dtBar .chp { margin: 0; }
 .sp-real-row h3 { font-size: 17px; font-weight: 700; margin: 0 0 14px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .sp-real-row h3 small { font-size: 12px; font-weight: 500; color: #8E8E96; }
 .col > .lbl small { display: block; font-size: 12px; font-weight: 500; color: #8E8E96; margin-top: 3px; }
@@ -184,3 +186,7 @@
 .ph.sp-rf-ready::after { content: 'сейчас'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(.96); padding: 6px 12px; border-radius: 12px; background: rgba(0, 0, 0, .6); color: #fff; font-size: 13px; font-weight: 600; opacity: 0; transition: opacity .16s var(--sp-out), transform .16s var(--sp-out); pointer-events: none; z-index: 60; }
 .ph.sp-rf-hold::after { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 @media (prefers-reduced-motion: reduce) { .sp-enter *, .sp-mini, #root.sp-fade, .ph .sp-layer::after { animation: none !important; transition: none !important; } }
+/* ряд «сейчас + варианты» в «Тёмных темах 2.0» не переносится: прокрутка по горизонтали, телефоны прилипают к началу (владелец смотрит и на телефоне) */
+.page { max-width: 2600px; }
+#dt .sp-real-row .phones { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 14px; scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+#dt .sp-real-row .col { flex: none; scroll-snap-align: start; }

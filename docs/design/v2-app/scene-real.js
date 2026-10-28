@@ -13,12 +13,12 @@ window.SceneReal = (() => {
   const canvasOf = (im, w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d', { willReadFrequently: true }); g.drawImage(im, 0, 0, w, h); return { c, g }; };
   const rgba = (c, a) => `rgba(${c.map((v) => Math.round(v)).join(',')},${a})`;
   /* запасной путь: слой цвета в CSS из тех же чисел палитры (как в скрытых разделах страницы) */
-  const cssBg = (s) => s.lights.map((l) => `radial-gradient(${(l.rx * 100 * (l.fade || 1)).toFixed(1)}% ${(l.ry * 100 * (l.fade || 1)).toFixed(1)}% at ${l.cx * 100}% ${l.cy * 100}%, ${rgba(l.color, l.a)}, transparent 100%)`).concat(`linear-gradient(165deg, ${rgba(s.top, 1)} 0%, ${rgba(s.bot, 1)} 100%)`).join(', ');
+  const cssBg = (s) => (s.image || !s.lights ? 'transparent' : s.lights.map((l) => `radial-gradient(${(l.rx * 100 * (l.fade || 1)).toFixed(1)}% ${(l.ry * 100 * (l.fade || 1)).toFixed(1)}% at ${l.cx * 100}% ${l.cy * 100}%, ${rgba(l.color, l.a)}, transparent 100%)`).concat(`linear-gradient(165deg, ${rgba(s.top, 1)} 0%, ${rgba(s.bot, 1)} 100%)`).join(', '));
   const setPhoneSrc = (ph, url) => ph.querySelectorAll('.rf-status, .rf-slice, .rf-tab').forEach((el) => { el.style.backgroundImage = `url("${url}")`; });
   const willPhones = (row) => [...row.querySelectorAll('.ph[data-ph="sp-rf-will"]')];
   const heroAlpha = async (job) => {
     const h = job.hero; if (!h) return null;
-    const src = `assets/v2art/hero512/${job.ap}/${h.art || 'home_scene_continue'}.webp`;
+    const src = h.dir === 'v2art' ? `assets/v2art/${job.ap}/${h.art}.webp` : `assets/v2art/hero512/${job.ap}/${h.art || 'home_scene_continue'}.webp`;
     let im; try { im = await loadAny(src); } catch (e) { console.log(LOG, 'герой не загрузился, под ним — классификатор:', e.message); return null; }
     try {
       const { g } = canvasOf(im, h.size, h.size); const d = g.getImageData(0, 0, h.size, h.size).data; const a = new Float32Array(h.size * h.size); const op = h.opacity == null ? 0.96 : h.opacity;

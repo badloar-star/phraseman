@@ -23,7 +23,7 @@ const engineCss = RANGES.map(([a, b, head]) => {
 const themesLine = L.find((l) => l.startsWith('<script>window.__THEMES = '));
 const icodeLine = L.find((l) => l.startsWith('<script>window.__ICODE = '));
 if (!themesLine || !icodeLine) throw new Error('[SP-MAKE] в эталоне нет строк __THEMES / __ICODE');
-for (const f of ['scene-palettes.css', 'scene-palettes.app.js', 'spire-tower-render.js', 'kit.css', 'kit.js', 'real-frame.css', 'real-frame.js', 'scene-recolor.js', 'scene-real.js']) {
+for (const f of ['scene-palettes.css', 'scene-palettes.app.js', 'spire-tower-render.js', 'kit.css', 'kit.js', 'real-frame.css', 'real-frame.js', 'scene-recolor.js', 'scene-real.js', 'scene-styles.js', 'dark-themes.app.js']) {
   if (!fs.existsSync(path.join(__dirname, f))) throw new Error(`[SP-MAKE] рядом нет ${f}`);
 }
 // реальные кадры Сверки — опись assets/real/scene-frames.json (node scene-frames.cjs: годность, граница сцены, место героя); нет описи — пусто
@@ -37,7 +37,7 @@ const html = `<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Сцены по темам: перекраска</title>
+<title>Тёмные темы 2.0: освещение и стили сцен</title>
 <link rel="stylesheet" href="kit.css">
 <link rel="stylesheet" href="real-frame.css">
 <style>
@@ -52,13 +52,15 @@ ${engineCss}
 </head>
 <body>
 <div class="page">
-  <h1 class="page-h1">Сцены по темам: перекраска</h1>
-  <p class="page-lead">Только настоящие экраны текущей сборки: слева кадр приложения как есть, правее — тот же кадр с перекрашенным фоном сцены по четырём стратегиям цвета (А — тон темы ярче и глубже, Б — соседние оттенки, В — акцент-свет, Г — два света по сплиту). Герой, надписи и карточки на кадре не тронуты. Нарисованные разделы (23 темы × 5 экранов, герои крупнее, премиум) — по ссылке с ?all=1.</p>
+  <h1 class="page-h1">Тёмные темы 2.0 — освещение и стили сцен</h1>
+  <p class="page-lead">Только настоящие экраны текущей сборки (кадры Сверки). Выбери тёмную тему — ниже те же экраны: слева как сейчас, правее с новым освещением сцены и в разных стилях рисования; дальше вечерняя Главная и карточки. Меняется только фон сцены — герой, надписи, стекло и карточки на кадре как сняты. Зажми перекрашенный телефон — на его месте покажется «сейчас».</p>
+  <div class="thm sp-bar" id="dtBar"><span class="sp-lbl">Тема</span><span id="dtThemes" style="display:inline-flex;flex-wrap:wrap;gap:8px"></span><span class="sp-lbl" id="dtCount" style="margin-left:auto;opacity:.7"></span></div>
   <div id="spControls">
   <div class="thm sp-bar"><span class="sp-lbl">Оформление</span><span id="apList"></span><span class="sp-lbl" style="margin-left:14px">Сцена</span><span id="modeList"></span><span class="chp sp-replay" data-replay>Повторить</span></div>
   <div class="thm sp-bar" style="margin-top:0"><span class="sp-lbl">Цвет сцены</span><span id="stratList"></span></div>
   <div class="thm" id="thmList" style="flex-wrap:wrap;row-gap:8px"></div>
   </div>
+  <div id="dt"></div>
   <div id="root"></div>
 </div>
 <script src="kit.js"></script>
@@ -66,10 +68,12 @@ ${engineCss}
 <script src="real-frame.js"></script>
 <script src="scene-recolor.js"></script>
 <script src="scene-real.js"></script>
+<script src="scene-styles.js"></script>
 ${themesLine}
 ${icodeLine}
 ${realLine}
 <script src="scene-palettes.app.js"></script>
+<script src="dark-themes.app.js"></script>
 </body>
 </html>
 `;

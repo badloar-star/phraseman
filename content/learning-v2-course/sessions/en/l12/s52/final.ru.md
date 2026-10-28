@@ -65,7 +65,7 @@
 
 **4 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-52:i03; family: context_gap_grammar -->
-I ___ a sticky note. → **used** · use · uses
+I ___ a sticky note yesterday. → **used** · use · uses
 - use — *Для прошлого нужна форма used.*
 - uses — *Это не форма прошлого. Нужна used.*
 
@@ -85,7 +85,7 @@ I ___ a sticky note. → **used** · use · uses
 
 **8 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-52:i06; family: context_gap_grammar -->
-I ___ a paper clip. → **found** · find · finds
+I ___ a paper clip yesterday. → **found** · find · finds
 - find — *Для прошлого нужна форма found.*
 - finds — *Это не форма прошлого. Нужна found.*
 
@@ -105,7 +105,7 @@ I ___ a paper clip. → **found** · find · finds
 
 **12 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-52:i09; family: context_gap_grammar -->
-I ___ a rubber band. → **used** · use · uses
+I ___ a rubber band yesterday. → **used** · use · uses
 - use — *Для прошлого нужна форма used.*
 - uses — *Это не форма прошлого. Нужна used.*
 
@@ -125,7 +125,7 @@ I ___ a rubber band. → **used** · use · uses
 
 **16 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-52:i12; family: context_gap_grammar -->
-I ___ a drawing pin. → **found** · find · finds
+I ___ a drawing pin yesterday. → **found** · find · finds
 - find — *Для прошлого нужна форма found.*
 - finds — *Это не форма прошлого. Нужна found.*
 

@@ -65,7 +65,7 @@
 
 **4 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-51:i03; family: context_gap_grammar -->
-I ___ an ice cube. → **added** · add · adds
+I ___ an ice cube yesterday. → **added** · add · adds
 - add — *Для прошлого нужна форма added.*
 - adds — *Это не форма прошлого. Нужна added.*
 
@@ -85,7 +85,7 @@ I ___ an ice cube. → **added** · add · adds
 
 **8 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-51:i06; family: context_gap_grammar -->
-I ___ the ice tray. → **filled** · fill · fills
+I ___ the ice tray yesterday. → **filled** · fill · fills
 - fill — *Для прошлого нужна форма filled.*
 - fills — *Это не форма прошлого. Нужна filled.*
 
@@ -105,7 +105,7 @@ I ___ the ice tray. → **filled** · fill · fills
 
 **12 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-51:i09; family: context_gap_grammar -->
-I ___ a freezer bag. → **used** · use · uses
+I ___ a freezer bag yesterday. → **used** · use · uses
 - use — *Для прошлого нужна форма used.*
 - uses — *Это не форма прошлого. Нужна used.*
 
@@ -125,7 +125,7 @@ I ___ a freezer bag. → **used** · use · uses
 
 **16 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-51:i12; family: context_gap_grammar -->
-I ___ the food container. → **washed** · wash · washes
+I ___ the food container yesterday. → **washed** · wash · washes
 - wash — *Для прошлого нужна форма washed.*
 - washes — *Это не форма прошлого. Нужна washed.*
 

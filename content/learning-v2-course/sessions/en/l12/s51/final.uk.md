@@ -65,7 +65,7 @@
 
 **4 · Йдеться про минуле. Виберіть форму**
 <!-- interaction_id: en:lesson-12:session-51:i03; family: context_gap_grammar -->
-I ___ an ice cube. → **added** · add · adds
+I ___ an ice cube yesterday. → **added** · add · adds
 - add — *Для минулого потрібна форма added.*
 - adds — *Це не форма минулого. Потрібна added.*
 
@@ -85,7 +85,7 @@ I ___ an ice cube. → **added** · add · adds
 
 **8 · Йдеться про минуле. Виберіть форму**
 <!-- interaction_id: en:lesson-12:session-51:i06; family: context_gap_grammar -->
-I ___ the ice tray. → **filled** · fill · fills
+I ___ the ice tray yesterday. → **filled** · fill · fills
 - fill — *Для минулого потрібна форма filled.*
 - fills — *Це не форма минулого. Потрібна filled.*
 
@@ -105,7 +105,7 @@ I ___ the ice tray. → **filled** · fill · fills
 
 **12 · Йдеться про минуле. Виберіть форму**
 <!-- interaction_id: en:lesson-12:session-51:i09; family: context_gap_grammar -->
-I ___ a freezer bag. → **used** · use · uses
+I ___ a freezer bag yesterday. → **used** · use · uses
 - use — *Для минулого потрібна форма used.*
 - uses — *Це не форма минулого. Потрібна used.*
 
@@ -125,7 +125,7 @@ I ___ a freezer bag. → **used** · use · uses
 
 **16 · Йдеться про минуле. Виберіть форму**
 <!-- interaction_id: en:lesson-12:session-51:i12; family: context_gap_grammar -->
-I ___ the food container. → **washed** · wash · washes
+I ___ the food container yesterday. → **washed** · wash · washes
 - wash — *Для минулого потрібна форма washed.*
 - washes — *Це не форма минулого. Потрібна washed.*
 

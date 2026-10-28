@@ -65,7 +65,7 @@
 
 **4 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-50:i03; family: context_gap_grammar -->
-I ___ an unused towel. → **found** · find · finds
+I ___ an unused towel yesterday. → **found** · find · finds
 - find — *Для прошлого нужна форма found.*
 - finds — *Это не форма прошлого. Нужна found.*
 
@@ -85,7 +85,7 @@ I ___ an unused towel. → **found** · find · finds
 
 **8 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-50:i06; family: context_gap_grammar -->
-I ___ the creased shirt. → **ironed** · iron · irons
+I ___ the creased shirt yesterday. → **ironed** · iron · irons
 - iron — *Для прошлого нужна форма ironed.*
 - irons — *Это не форма прошлого. Нужна ironed.*
 
@@ -105,7 +105,7 @@ I ___ the creased shirt. → **ironed** · iron · irons
 
 **12 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-50:i09; family: context_gap_grammar -->
-I ___ the unwashed clothes. → **washed** · wash · washes
+I ___ the unwashed clothes yesterday. → **washed** · wash · washes
 - wash — *Для прошлого нужна форма washed.*
 - washes — *Это не форма прошлого. Нужна washed.*
 
@@ -125,7 +125,7 @@ I ___ the unwashed clothes. → **washed** · wash · washes
 
 **16 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-50:i12; family: context_gap_grammar -->
-I ___ an unironed shirt. → **found** · find · finds
+I ___ an unironed shirt yesterday. → **found** · find · finds
 - find — *Для прошлого нужна форма found.*
 - finds — *Это не форма прошлого. Нужна found.*
 

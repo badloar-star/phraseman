@@ -65,7 +65,7 @@
 
 **4 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-53:i03; family: context_gap_grammar -->
-I ___ my sleeping bag. → **packed** · pack · packs
+I ___ my sleeping bag yesterday. → **packed** · pack · packs
 - pack — *Для прошлого нужна форма packed.*
 - packs — *Это не форма прошлого. Нужна packed.*
 
@@ -85,7 +85,7 @@ I ___ my sleeping bag. → **packed** · pack · packs
 
 **8 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-53:i06; family: context_gap_grammar -->
-I ___ the airbed. → **checked** · check · checks
+I ___ the airbed yesterday. → **checked** · check · checks
 - check — *Для прошлого нужна форма checked.*
 - checks — *Это не форма прошлого. Нужна checked.*
 
@@ -105,7 +105,7 @@ I ___ the airbed. → **checked** · check · checks
 
 **12 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-53:i09; family: context_gap_grammar -->
-I ___ a tent peg. → **found** · find · finds
+I ___ a tent peg yesterday. → **found** · find · finds
 - find — *Для прошлого нужна форма found.*
 - finds — *Это не форма прошлого. Нужна found.*
 
@@ -125,7 +125,7 @@ I ___ a tent peg. → **found** · find · finds
 
 **16 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-53:i12; family: context_gap_grammar -->
-I ___ the camping stove. → **cleaned** · clean · cleans
+I ___ the camping stove yesterday. → **cleaned** · clean · cleans
 - clean — *Для прошлого нужна форма cleaned.*
 - cleans — *Это не форма прошлого. Нужна cleaned.*
 

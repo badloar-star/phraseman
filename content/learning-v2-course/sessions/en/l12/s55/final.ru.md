@@ -65,7 +65,7 @@
 
 **4 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-55:i03; family: context_gap_grammar -->
-I ___ the town centre. → **visited** · visit · visits
+I ___ the town centre yesterday. → **visited** · visit · visits
 - visit — *Для прошлого нужна форма visited.*
 - visits — *Это не форма прошлого. Нужна visited.*
 
@@ -85,7 +85,7 @@ I ___ the town centre. → **visited** · visit · visits
 
 **8 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-55:i06; family: context_gap_grammar -->
-I ___ the high street. → **visited** · visit · visits
+I ___ the high street yesterday. → **visited** · visit · visits
 - visit — *Для прошлого нужна форма visited.*
 - visits — *Это не форма прошлого. Нужна visited.*
 
@@ -105,7 +105,7 @@ I ___ the high street. → **visited** · visit · visits
 
 **12 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-55:i09; family: context_gap_grammar -->
-I ___ the town square. → **visited** · visit · visits
+I ___ the town square yesterday. → **visited** · visit · visits
 - visit — *Для прошлого нужна форма visited.*
 - visits — *Это не форма прошлого. Нужна visited.*
 
@@ -125,7 +125,7 @@ I ___ the town square. → **visited** · visit · visits
 
 **16 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-55:i12; family: context_gap_grammar -->
-I ___ the street market. → **visited** · visit · visits
+I ___ the street market yesterday. → **visited** · visit · visits
 - visit — *Для прошлого нужна форма visited.*
 - visits — *Это не форма прошлого. Нужна visited.*
 

@@ -65,7 +65,7 @@
 
 **4 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-54:i03; family: context_gap_grammar -->
-I ___ the sofa cushion. → **moved** · move · moves
+I ___ the sofa cushion yesterday. → **moved** · move · moves
 - move — *Для прошлого нужна форма moved.*
 - moves — *Это не форма прошлого. Нужна moved.*
 
@@ -85,7 +85,7 @@ I ___ the sofa cushion. → **moved** · move · moves
 
 **8 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-54:i06; family: context_gap_grammar -->
-I ___ the cushion cover. → **washed** · wash · washes
+I ___ the cushion cover yesterday. → **washed** · wash · washes
 - wash — *Для прошлого нужна форма washed.*
 - washes — *Это не форма прошлого. Нужна washed.*
 
@@ -105,7 +105,7 @@ I ___ the cushion cover. → **washed** · wash · washes
 
 **12 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-54:i09; family: context_gap_grammar -->
-I ___ the footstool. → **moved** · move · moves
+I ___ the footstool yesterday. → **moved** · move · moves
 - move — *Для прошлого нужна форма moved.*
 - moves — *Это не форма прошлого. Нужна moved.*
 
@@ -125,7 +125,7 @@ I ___ the footstool. → **moved** · move · moves
 
 **16 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-54:i12; family: context_gap_grammar -->
-I ___ the rocking chair. → **moved** · move · moves
+I ___ the rocking chair yesterday. → **moved** · move · moves
 - move — *Для прошлого нужна форма moved.*
 - moves — *Это не форма прошлого. Нужна moved.*
 

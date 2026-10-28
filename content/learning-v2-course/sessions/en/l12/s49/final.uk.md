@@ -65,7 +65,7 @@
 
 **4 · Йдеться про минуле. Виберіть форму**
 <!-- interaction_id: en:lesson-12:session-49:i03; family: context_gap_grammar -->
-I ___ a reusable bag. → **used** · use · uses
+I ___ a reusable bag yesterday. → **used** · use · uses
 - use — *Для минулого потрібна форма used.*
 - uses — *Це не форма минулого. Потрібна used.*
 
@@ -85,7 +85,7 @@ I ___ a reusable bag. → **used** · use · uses
 
 **8 · Йдеться про минуле. Виберіть форму**
 <!-- interaction_id: en:lesson-12:session-49:i06; family: context_gap_grammar -->
-I ___ the unwanted clothes. → **packed** · pack · packs
+I ___ the unwanted clothes yesterday. → **packed** · pack · packs
 - pack — *Для минулого потрібна форма packed.*
 - packs — *Це не форма минулого. Потрібна packed.*
 
@@ -105,7 +105,7 @@ I ___ the unwanted clothes. → **packed** · pack · packs
 
 **12 · Йдеться про минуле. Виберіть форму**
 <!-- interaction_id: en:lesson-12:session-49:i09; family: context_gap_grammar -->
-I ___ a brand-new coat. → **chose** · choose · chooses
+I ___ a brand-new coat yesterday. → **chose** · choose · chooses
 - choose — *Для минулого потрібна форма chose.*
 - chooses — *Це не форма минулого. Потрібна chose.*
 
@@ -125,7 +125,7 @@ I ___ a brand-new coat. → **chose** · choose · chooses
 
 **16 · Йдеться про минуле. Виберіть форму**
 <!-- interaction_id: en:lesson-12:session-49:i12; family: context_gap_grammar -->
-I ___ the worn-out shoes. → **checked** · check · checks
+I ___ the worn-out shoes yesterday. → **checked** · check · checks
 - check — *Для минулого потрібна форма checked.*
 - checks — *Це не форма минулого. Потрібна checked.*
 

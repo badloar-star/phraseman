@@ -65,7 +65,7 @@
 
 **4 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-56:i03; family: context_gap_grammar -->
-I ___ a hair tie. → **found** · find · finds
+I ___ a hair tie yesterday. → **found** · find · finds
 - find — *Для прошлого нужна форма found.*
 - finds — *Это не форма прошлого. Нужна found.*
 
@@ -85,7 +85,7 @@ I ___ a hair tie. → **found** · find · finds
 
 **8 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-56:i06; family: context_gap_grammar -->
-I ___ a hair clip. → **used** · use · uses
+I ___ a hair clip yesterday. → **used** · use · uses
 - use — *Для прошлого нужна форма used.*
 - uses — *Это не форма прошлого. Нужна used.*
 
@@ -105,7 +105,7 @@ I ___ a hair clip. → **used** · use · uses
 
 **12 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-56:i09; family: context_gap_grammar -->
-I ___ a hairpin. → **used** · use · uses
+I ___ a hairpin yesterday. → **used** · use · uses
 - use — *Для прошлого нужна форма used.*
 - uses — *Это не форма прошлого. Нужна used.*
 
@@ -125,7 +125,7 @@ I ___ a hairpin. → **used** · use · uses
 
 **16 · Речь о прошлом. Выберите форму**
 <!-- interaction_id: en:lesson-12:session-56:i12; family: context_gap_grammar -->
-I ___ my shower cap. → **packed** · pack · packs
+I ___ my shower cap yesterday. → **packed** · pack · packs
 - pack — *Для прошлого нужна форма packed.*
 - packs — *Это не форма прошлого. Нужна packed.*
 

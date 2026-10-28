@@ -257,6 +257,7 @@ import {
   LearningV2ModeRouterV1,
 } from "../modules/learning-v2/modes/mode_router_v1";
 import { learningV2RuneAccessibilityLabelV1 } from "../modules/learning-v2/modes/mode_copy_v1";
+import { noteV2ModeFallback } from "./lessons_access_diagnostics";
 import type {
   LearningV2ModePhaseV1,
   LearningV2ReferenceAudioStateV1,
@@ -1701,6 +1702,13 @@ function LearningV2DirectSessionPlayerV1() {
     },
     [allowsDeviceSpeech, practice, speakPreviewText],
   );
+
+  // зачем (координатор 28.10, [V2-MODE-FALLBACK]): семья без своего режима (sound_contrast — 229 заданий курса) показывается
+  // универсальной карточкой ниже; в журнал обращений — какая семья пришла и какой ввод показан.
+  useEffect(() => {
+    if (!practice || practice.family === "scripted_repeat_compare" || isLearningV2ModeRoutedV1(practice.family)) return;
+    noteV2ModeFallback(practice.family, practice.interactionId, practice.inputMode);
+  }, [practice]);
 
   const resetInteraction = useCallback(() => {
     cancelPreviewSpeech();

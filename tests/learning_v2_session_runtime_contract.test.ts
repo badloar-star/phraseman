@@ -252,9 +252,17 @@ test("the direct 32x56 player restarts an interrupted run and keeps answer verdi
   expect(runtime).toContain(
     "resolveLearningV2CourseSessionSelectableDeviceSpeechTextV1(",
   );
-  expect(runtime).toContain("systemTtsOnly: true");
-  // зачем (слово владельца 22.10, 72f72a94e): занятия говорят ТОЛЬКО голосом телефона — записи mp3 не играются и не готовятся.
-  // Прежняя проверка «сначала запись» (21.10) сторожила отменённое решение; теперь сторожим обратное.
+  // ЗАМОК ВЛАДЕЛЬЦА 28.10 (~20:45, кнопка «Записи для en/es»; заменяет слово 22.10 «только голос телефона», 72f72a94e):
+  // английский и испанский звучат записями (голосовые пакеты R2, b9773b2ca), голос телефона — запасной путь с причиной в журнале;
+  // остальные языки — только голос телефона.
+  expect(runtime).toContain('systemTtsOnly: studyTarget !== "en" && studyTarget !== "es",');
+  expect(runtime).toContain('learningV2Recorded: (studyTarget === "en" || studyTarget === "es") && lessonOrdinal !== null && sessionOrdinal !== null');
+  const audio = source("hooks/use-audio.ts");
+  expect(audio).toContain("async function playLearningV2RecordedOrFallback(): Promise<void> {");
+  expect(audio).toContain("fallback('start_timeout')");
+  expect(audio).toContain("fallback('not_cached')");
+  expect(audio).toContain("fallback(`player_error:${error.message}`)");
+  // старые mp3 занятия (до голосовых пакетов) по-прежнему не играются и не готовятся
   expect(runtime).not.toContain("resolveLearningV2CourseSessionSelectableAudioV1(");
   expect(runtime).not.toContain("resolveLearningV2CourseSessionFullPhraseAudioV1(");
   expect(runtime).toContain("speakPreviewText(");

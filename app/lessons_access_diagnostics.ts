@@ -71,6 +71,18 @@ export function noteClassicTap(lessonId: number, access: string, isPremium: bool
   void recordSupportDiagnostic({ event: 'feature_action', action: classicTapAction(lessonId, access, isPremium), screen: '/lessons', result: 'info', subject: 'app', atMs: nowMs });
 }
 
+let lastModeFallbackInteraction = '';
+
+// зачем (координатор 28.10: в выпущенном курсе 229 заданий sound_contrast, а файл режима удалён): семья без своего компонента
+// идёт в универсальную карточку плеера (так и в 147) — пишем это в журнал обращений, одно событие на задание.
+export function noteV2ModeFallback(family: string, interactionId: string, inputMode: string, nowMs: number = Date.now()): void {
+  if (interactionId === lastModeFallbackInteraction) return; // зачем: ре-рендеры того же задания событий не плодят
+  lastModeFallbackInteraction = interactionId;
+  const action = `v2mode:fallback:${tag(family)}:${tag(inputMode)}`;
+  console.warn('[V2-MODE-FALLBACK]', action); // guard-ok: какой режим пришёл и что показано; warn — переживает прод-сборку
+  void recordSupportDiagnostic({ event: 'feature_action', action, screen: '/learning_v2_session', result: 'info', subject: 'app', atMs: nowMs });
+}
+
 /** Меню поверило свежему решению списка «открыт» вопреки своей перепроверке (расхождение двух замков). */
 export function noteLessonMenuTrustedList(lessonId: number, by: 'premium_course' | 'earned_progress', nowMs: number = Date.now()): void {
   console.warn('[LESSON-LOCK] menu:trust_list', by, lessonId); // guard-ok: расхождение замков; warn — переживает прод-сборку

@@ -57,7 +57,8 @@ describe('окно выхода из урока снято (владелец 22.
     const at = src.indexOf('const requestEpisodeExit = useCallback((source: string) => {');
     expect(at).toBeGreaterThan(-1);
     const body = src.slice(at, src.indexOf('}, [exitLearningV2Session,', at));
-    expect(body).toContain('saveLearningV2EpisodeResumeV1(resumeOwner, snapshot)');
+    // перепин 28.10 (82cfea233, испанский): сохранение эпизода получает язык изучения; по-прежнему до выхода
+    expect(body).toContain('saveLearningV2EpisodeResumeV1(resumeOwner, snapshot, progressTargetLanguage)');
     expect(body).toContain('"[LESSON-EXIT] v2_episode"');
     expect(body).toContain('saved,');
     expect(body).toContain('place:');

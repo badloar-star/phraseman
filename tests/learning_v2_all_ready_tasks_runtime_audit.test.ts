@@ -91,7 +91,10 @@ assert.equal(
   legacySoundContrastCount,
   // зачем (18.10, класс А): было 39. Переписывание курса по правилу владельца 16.10 заменило старые задания sound_contrast
   // (переносы fd447f448…c99ea0e2c); осталось одно. Число по-прежнему пинится, чтобы изменение было осознанным.
-  1,
+  // Пересмотр 28.10 (координатор): cf3e41b2b выпустил английский курс целиком — 229 заданий sound_contrast. Своего режима у семьи
+  // нет ни в 147, ни на HEAD (mode_router_v1: «Удалённый режим»), плеер показывает их универсальной карточкой выбора с озвучкой
+  // вариантов (direct_session_player single_choice + playSelectableAudio), журнал v2mode:fallback. Падения и пустого экрана нет.
+  229,
   "the admitted release's historical sound_contrast inventory changed; authoring eligibility requires explicit review",
 );
 

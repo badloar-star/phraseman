@@ -63,9 +63,9 @@
 - She shops for bread. — *У записі останнє слово — `bargains`, вигідні покупки, а в цьому варіанті — `bread`, хліб.*
 - He shops for bargains. — *У записі перше слово — `She`, вона, а в цьому варіанті — `He`, він.*
 
-**3 · Скажіть про брата: «Щодня мій брат купує хліб». Виберіть слово**
+**3 · Скажіть про брата: «Щодня мій брат ходить по хліб». Виберіть слово**
 <!-- interaction_id: en:lesson-06:session-37:i03; family: context_gap_grammar -->
-My brother ___ bread every day. → **shops** · shop · is shops
+My brother ___ for bread every day. → **shops** · shop · is shops
 - shop — *Брат — це `he`, тому потрібно `shops`, з `s`.*
 - is shops — *Кажемо `shops`, без `is`.*
 

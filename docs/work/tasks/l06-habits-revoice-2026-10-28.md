@@ -138,7 +138,7 @@
 | en:lesson-06:session-35:i03 | l06/s35/task/3 | My brother sleeps on the sofa. | My brother sleeps on the sofa every night. |
 | en:lesson-06:session-35:i08 | l06/s35/task/10 | I sleep on the sofa. | I sleep on the sofa every night. |
 | en:lesson-06:session-37:i01 | l06/s37/task/0 | We shop here. | We shop here every day. |
-| en:lesson-06:session-37:i03 | l06/s37/task/2 | My brother shops bread. | My brother shops bread every day. |
+| en:lesson-06:session-37:i03 | l06/s37/task/2 | My brother shops bread. | My brother shops for bread every day. (было неверно: shops bread) |
 | en:lesson-06:session-37:i08 | l06/s37/task/10 | I shop with a basket. | I shop with a basket every day. |
 | en:lesson-06:session-38:i01 | l06/s38/task/1 | We rest here. | We rest here every day. |
 | en:lesson-06:session-38:i03 | l06/s38/task/4 | My brother rests on the bench. | My brother rests on the bench every day. |

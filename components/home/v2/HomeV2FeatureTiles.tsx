@@ -72,6 +72,8 @@ const HomeV2FeatureTilesView = memo(function HomeV2FeatureTilesView({ tiles, pre
       console.warn('[HOME-RENDER] tiles press:ignored', JSON.stringify({ key, reason: 'tile_missing_in_latest' })); // guard-ok: ранний выход логирует причину
       return;
     }
+    // зачем (владелец 28.10, «кнопка Уроки не работает»; сперва логи): дошёл ли тап до обработчика плитки «Уроки»
+    if (key === 'lessons') console.log('[HOME-LESSONS-BTN] tile_press', JSON.stringify({ key })); // guard-ok: одна строка на тап по плитке
     current.onPress();
   }, [pressRef]);
   if (__DEV__) {

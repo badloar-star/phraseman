@@ -151,7 +151,8 @@ import { lastOpenedLessonKey, lessonProgressKey } from '../target_storage_keys';
 import { homeContinuePlaceBadge, homeContinueStartTitle, homeContinueV2Title, logHomeContinueChoice, pickHomeContinue, resolveHomeContinuePlaces, useHomeContinueMarks } from '../home_continue_mark';
 import { HOME_CONTINUE_V2_ENABLED, launchHomeContinueV2, useHomeContinueV2Launching, useHomeContinueV2Prewarm, useHomeContinueV2Progress } from '../learning_v2_home_continue_route';
 import { ENABLE_DEV_TOOLS } from '../config';
-import { isLearningV2Hidden, isLearningV2OpenForUiLangV1 } from '../learning_v2_visibility_switch';
+import { LEARNING_V2_HIDDEN, isLearningV2Hidden, isLearningV2OpenForUiLangV1 } from '../learning_v2_visibility_switch';
+import { peekResolvedUiLang } from '../ui_lang_resolved';
 import { markHomeFirstPaint } from '../home_paint_marker';
 import { peekStreakDayState, subscribeStreakDayState } from '../streak_day_signal';
 
@@ -2398,6 +2399,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // в комментарии прямо предписывает звать вибрацию из onPressIn, а не
     // внутри onPress вместе с действием — здесь делалось именно запрещённое.
     const go = (path: string) => {
+        // зачем (владелец 28.10, «кнопка Уроки не работает»; сперва логи): значения гардов и маршрут тапа по «Уроки» — одной строкой [HOME-LESSONS-BTN] (ветка hidden → goToTab(1) логируется плиткой)
+        if (path === '/learning-v2/course') {
+            console.log('[HOME-LESSONS-BTN] go', JSON.stringify({ // guard-ok: одна строка на тап по плитке
+                path, v2Hidden: isLearningV2Hidden(), v2SwitchHidden: LEARNING_V2_HIDDEN, uiLang: peekResolvedUiLang() ?? null, studyTarget: String(studyTarget),
+                learnTabVisible: isLearnTabVisibleForTarget(studyTarget), activeIdx,
+            }));
+        }
         const tabIdx = TAB_IDX[path];
         if (tabIdx !== undefined) {
             goToTab(tabIdx);

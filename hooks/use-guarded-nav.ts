@@ -26,7 +26,11 @@ export function useGuardedNav(guardMs: number = DEFAULT_GUARD_MS) {
 
   const canNavigate = useCallback((): boolean => {
     const now = Date.now();
-    if (now - lastNavAt.current < guardMs) return false;
+    if (now - lastNavAt.current < guardMs) {
+      // зачем (владелец 28.10, «кнопка Уроки на Главной не работает»; сперва логи): тихий отказ guard выглядит как мёртвая кнопка — пишем, что тап проглочен и сколько прошло от прошлого перехода
+      console.warn('[NAV-GUARD] переход пропущен как дубль', JSON.stringify({ sinceLastMs: Math.round(now - lastNavAt.current), guardMs })); // guard-ok: ранний выход называет причину
+      return false;
+    }
     lastNavAt.current = now;
     return true;
   }, [guardMs]);

@@ -18,8 +18,11 @@ export default function LearningV2CourseScreen() {
   forwarded.set("courseEntry", "v2");
   const query = forwarded.toString();
   React.useEffect(() => {
-    if (!rootNavigationReady) return;
+    // зачем (владелец 28.10, «кнопка Уроки не работает»; сперва логи): маршрут курса — звено между плиткой Главной и вкладкой; каждый выход называет причину в [HOME-LESSONS-BTN]
+    console.log('[HOME-LESSONS-BTN] course_route', JSON.stringify({ rootNavigationReady, query })); // guard-ok: одна строка на вход в маршрут
+    if (!rootNavigationReady) return; // зачем: причина выхода видна в строке course_route выше (rootNavigationReady=false)
     const scheduled = scheduleAfterRootNavigationReady(() => {
+      console.log('[HOME-LESSONS-BTN] course_route decide', JSON.stringify({ hidden: isLearningV2Hidden(), target: isLearningV2Hidden() ? LEARNING_V2_HIDDEN_REDIRECT : '/(tabs)/lessons' })); // guard-ok: ветка и её значение
       if (isLearningV2Hidden()) {
         logLearningV2Hidden("route_learning_v2_course", LEARNING_V2_HIDDEN_REDIRECT);
         router.replace(LEARNING_V2_HIDDEN_REDIRECT);

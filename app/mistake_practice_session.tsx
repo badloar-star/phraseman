@@ -43,7 +43,7 @@ import { SpeakingPanel, buildSpeakingPanelTheme, type SpeakingPanelStatus } from
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useTheme } from '../components/ThemeContext';
 import { useLv2Glass } from '../components/learning-v2/LearningV2Glass';
-import ReportErrorButton, { REPORT_ERROR_ENABLED } from '../components/ReportErrorButton';
+import ContentReportFlag from '../components/ContentReportFlag';
 import { matchesMistakePracticeAnswer } from './mistake_practice_answer_match';
 import { mistakePracticeTokenOrder } from './mistake_practice_token_order';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
@@ -1760,10 +1760,10 @@ function MistakePracticeSessionScreen() {
       <PanelSheet visible={menuOpen} onClose={closeMenu} testID="mistake-practice-sheet">
         <SheetRow g={g} testID="mistake-practice-menu-hide" icon="eye-off-outline" title={pcopy.hideItem} onPress={() => { setMenuOpen(false); setHideConfirmVisible(true); }} />
         {/* решение 6 (05.10): пункт жалобы — только тестерам и разработке, как и сама форма. */}
-        {REPORT_ERROR_ENABLED ? <SheetRow g={g} testID="mistake-practice-menu-report" icon="flag-outline" title={pcopy.reportItem} onPress={() => { setMenuOpen(false); reportOpenRef.current?.(); }} /> : null}
+        <SheetRow g={g} testID="mistake-practice-menu-report" icon="flag-outline" title={pcopy.reportItem} onPress={() => { setMenuOpen(false); reportOpenRef.current?.(); }} />
       </PanelSheet>
       {/* зачем: ту же форму жалобы, что была кнопкой-флажком в шапке, теперь открывает пункт меню «⋯»; сама кнопка не рисуется. */}
-      <ReportErrorButton
+      <ContentReportFlag
         hideTrigger
         openRef={reportOpenRef}
         screen="mistake_practice"

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-37",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-37:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-37:intro1:r2": {
+          "ru": "Говорим об одной Ане: tiene.",
+          "uk": "Кажемо про одну Ану: tiene."
+        },
+        "es:lesson-05:session-37:intro1:r3": {
+          "ru": "После treinta нужно años.",
+          "uk": "Після treinta потрібно años."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-37:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-37:intro2:r2": {
+          "ru": "Возраст выражаем через tengo.",
+          "uk": "Вік виражаємо через tengo."
+        },
+        "es:lesson-05:session-37:intro2:r3": {
+          "ru": "Перед числом здесь нет un.",
+          "uk": "Перед числом тут немає un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-37:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-37:intro3:r2": {
+          "ru": "Tengo — о себе; о Педро нужно tiene.",
+          "uk": "Tengo — про себе; про Педро потрібно tiene."
+        },
+        "es:lesson-05:session-37:intro3:r3": {
+          "ru": "Возраст передаём через tiene.",
+          "uk": "Вік передаємо через tiene."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "176661f23d4e5807c90e83c3204b4b6c108dae54e0e6783da97a988f35e41988"
+}

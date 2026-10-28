@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-38",
+  "learningOutcomeByLocale": {
+    "ru": "использовать tiene с небольшими числами и años.",
+    "uk": "використовувати tiene з невеликими числами та años."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-38:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возраст мальчика",
+        "uk": "Вік хлопчика"
+      },
+      "bodyByLocale": {
+        "ru": "Показываете знакомому на мальчика и говорите `Él tiene cuatro años` — «Ему четыре года». Соберите `Él` + `tiene` + `cuatro años`. Cuatro — знакомое «четыре». Возраст ребёнка выражается так же, как возраст взрослого: tiene + число + años. Здесь años во множественном числе.",
+        "uk": "Показуєте знайомому на хлопчика й кажете `Él tiene cuatro años` — «Йому чотири роки». Зберіть `Él` + `tiene` + `cuatro años`. Cuatro — знайоме «чотири». Вік дитини виражається так само, як вік дорослого: tiene + число + años. Тут años у множині."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-38:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ему четыре года». Начните с Él tiene.",
+          "uk": "Скажіть «Йому чотири роки». Почніть з Él tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-38:intro1:r1",
+              "text": "Él tiene cuatro años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro1:r2",
+              "text": "Él es cuatro años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro1:r3",
+              "text": "Él tiene cuatro año."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-38:intro1:r1",
+              "text": "Él tiene cuatro años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro1:r2",
+              "text": "Él es cuatro años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro1:r3",
+              "text": "Él tiene cuatro año."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ему четыре года». Начните с Él tiene.",
+          "uk": "Скажіть «Йому чотири роки». Почніть з Él tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-38:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Возраст девочки",
+        "uk": "Вік дівчинки"
+      },
+      "bodyByLocale": {
+        "ru": "Представляете знакомому девочку: `Ella tiene cinco años` — «Ей пять лет». Соберите `Ella` + `tiene` + `cinco años`. Cinco — знакомое «пять». С ella используем ту же форму tiene, что с él. Ни число cinco, ни слово años не меняются из-за пола ребёнка.",
+        "uk": "Представляєте знайомому дівчинку: `Ella tiene cinco años` — «Їй п’ять років». Зберіть `Ella` + `tiene` + `cinco años`. Cinco — знайоме «п’ять». З ella використовуємо ту саму форму tiene, що з él. Ні число cinco, ні слово años не змінюються через стать дитини."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-38:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ей пять лет». Начните с Ella tiene.",
+          "uk": "Скажіть «Їй п’ять років». Почніть з Ella tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-38:intro2:r1",
+              "text": "Ella tiene cinco años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro2:r2",
+              "text": "Ella tienen cinco años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro2:r3",
+              "text": "Ella tiene cinco año."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-38:intro2:r1",
+              "text": "Ella tiene cinco años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro2:r2",
+              "text": "Ella tienen cinco años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro2:r3",
+              "text": "Ella tiene cinco año."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ей пять лет». Начните с Ella tiene.",
+          "uk": "Скажіть «Їй п’ять років». Почніть з Ella tiene."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-38:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Маленькая Ана",
+        "uk": "Маленька Ана"
+      },
+      "bodyByLocale": {
+        "ru": "На другой семейной встрече рассказываете о четырёхлетней Ане: `Ana tiene cuatro años` — «Ане четыре года». Соберите `Ana` + `tiene` + `cuatro años`. Вместо ella называем ребёнка по имени. Форма tiene сохраняется: речь об одном человеке.",
+        "uk": "На іншій сімейній зустрічі розповідаєте про чотирирічну Ану: `Ana tiene cuatro años` — «Ані чотири роки». Зберіть `Ana` + `tiene` + `cuatro años`. Замість ella називаємо дитину на ім’я. Форма tiene зберігається: йдеться про одну людину."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-38:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ане четыре года». Начните с Ana tiene.",
+          "uk": "Скажіть «Ані чотири роки». Почніть з Ana tiene."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-38:intro3:r1",
+              "text": "Ana tiene cuatro años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro3:r2",
+              "text": "Ana tengo cuatro años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro3:r3",
+              "text": "Ana es cuatro años."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-38:intro3:r1",
+              "text": "Ana tiene cuatro años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro3:r2",
+              "text": "Ana tengo cuatro años."
+            },
+            {
+              "responseId": "es:lesson-05:session-38:intro3:r3",
+              "text": "Ana es cuatro años."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ане четыре года». Начните с Ana tiene.",
+          "uk": "Скажіть «Ані чотири роки». Почніть з Ana tiene."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "ba0011715a8dbca655baa69798b5d35e14683936fd9941e866225e0b6fa7c7fd"
+}

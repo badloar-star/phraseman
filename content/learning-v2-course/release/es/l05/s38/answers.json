@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-05:session-38:i01",
+    "correctText": "cuatro",
+    "correctResponseId": "es:lesson-05:session-38:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-38:i02",
+    "correctText": "cuatro",
+    "correctResponseId": "es:lesson-05:session-38:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-38:i03",
+    "correctText": "Él tiene cuatro años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-38:i04",
+    "correctText": "tiene",
+    "correctResponseId": "es:lesson-05:session-38:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-38:i05",
+    "correctText": "Ella tiene cinco años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-38:i06",
+    "correctText": "Ana tiene cuatro años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-38:i07",
+    "correctText": "Él tiene cuatro años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-38:i08",
+    "correctText": "años",
+    "correctResponseId": "es:lesson-05:session-38:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-05:session-38:i09",
+    "correctText": "Él tiene cuatro años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-38:i10",
+    "correctText": "Ella tiene cinco años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-38:i11",
+    "correctText": "Ana tiene cuatro años.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-05:session-38:i12",
+    "correctText": "Él tiene cinco años.",
+    "correctResponseId": null
+  }
+]

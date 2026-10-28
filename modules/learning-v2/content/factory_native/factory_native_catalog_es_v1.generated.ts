@@ -1827,4 +1827,18 @@ export const FACTORY_NATIVE_CATALOG_ROWS_ES_V1: readonly LearningV2FactoryNative
     learningOutcomeByAuthoredLocale: Object.freeze({"ru":"построить вопрос с cuántos años перед формой tener.","uk":"побудувати запитання з cuántos años перед формою tener."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
   }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 37,
+    sourceFingerprint: "ce0bba78478963ddc3c8a654282dbcd7059a400e029b47ca877ab398a9cf80a5",
+    newWordCount: 1,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"подставить treinta в знакомую конструкцию возраста.","uk":"підставити treinta у знайому конструкцію віку."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
+  Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
+    lessonOrdinal: 5, sessionOrdinal: 38,
+    sourceFingerprint: "0f7bd9b487d0ef7820c3279d13edf177018febf85ef79c3fa57cdb11d562b4c4",
+    newWordCount: 0,
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"использовать tiene с небольшими числами и años.","uk":"використовувати tiene з невеликими числами та años."}),
+    lessonTitleByAuthoredLocale: Object.freeze({"ru":"Испанский · Урок 5","uk":"Іспанська · Урок 5"}),
+  }),
 ]);

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-05:session-38",
+  "entries": [
+    {
+      "interactionId": "es:lesson-05:session-38:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-38:intro1:r2": {
+          "ru": "Возраст выражаем через tiene.",
+          "uk": "Вік виражаємо через tiene."
+        },
+        "es:lesson-05:session-38:intro1:r3": {
+          "ru": "После cuatro нужно años.",
+          "uk": "Після cuatro потрібно años."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-38:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-38:intro2:r2": {
+          "ru": "Девочка одна: tiene.",
+          "uk": "Дівчинка одна: tiene."
+        },
+        "es:lesson-05:session-38:intro2:r3": {
+          "ru": "После cinco нужно años.",
+          "uk": "Після cinco потрібно años."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-05:session-38:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-05:session-38:intro3:r2": {
+          "ru": "О другом человеке нужно tiene.",
+          "uk": "Про іншу людину потрібно tiene."
+        },
+        "es:lesson-05:session-38:intro3:r3": {
+          "ru": "Возраст выражаем через tiene.",
+          "uk": "Вік виражаємо через tiene."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "92028755914ae8a31a615b920bb279d7648c321310c400719def8df98f9191c0"
+}

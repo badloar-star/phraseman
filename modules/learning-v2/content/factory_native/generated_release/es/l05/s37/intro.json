@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-05:session-37",
+  "learningOutcomeByLocale": {
+    "ru": "подставить treinta в знакомую конструкцию возраста.",
+    "uk": "підставити treinta у знайому конструкцію віку."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-05:session-37:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Возраст Аны",
+        "uk": "Вік Ани"
+      },
+      "bodyByLocale": {
+        "ru": "Представляете Ану и сообщаете `Ana tiene treinta años` — «Ане тридцать лет». Соберите `Ana` + `tiene` + `treinta años`. Treinta означает «тридцать». Меняем число в знакомой конструкции, а tiene и años сохраняем. Число лет не меняет форму глагола: Ана одна, поэтому tiene.",
+        "uk": "Представляєте Ану й повідомляєте `Ana tiene treinta años` — «Ані тридцять років». Зберіть `Ana` + `tiene` + `treinta años`. Treinta означає «тридцять». Змінюємо число у знайомій конструкції, а tiene та años зберігаємо. Число років не змінює форми дієслова: Ана одна, тому tiene."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-37:intro1:q",
+        "promptByLocale": {
+          "ru": "Скажите «Ане тридцать лет». Начните с Ana tiene treinta.",
+          "uk": "Скажіть «Ані тридцять років». Почніть з Ana tiene treinta."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-37:intro1:r1",
+              "text": "Ana tiene treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro1:r2",
+              "text": "Ana tienen treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro1:r3",
+              "text": "Ana tiene treinta año."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-37:intro1:r1",
+              "text": "Ana tiene treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro1:r2",
+              "text": "Ana tienen treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro1:r3",
+              "text": "Ana tiene treinta año."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Ане тридцать лет». Начните с Ana tiene treinta.",
+          "uk": "Скажіть «Ані тридцять років». Почніть з Ana tiene treinta."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-05:session-37:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Ваш возраст",
+        "uk": "Ваш вік"
+      },
+      "bodyByLocale": {
+        "ru": "В ответ на вопрос о возрасте скажите `Tengo treinta años` — «Мне тридцать лет». Соберите `Tengo` + `treinta` + `años`. Теперь говорите о себе, поэтому выбираем tengo. Перед treinta не нужен артикль. Схема возраста остаётся tener + число + años.",
+        "uk": "У відповідь на запитання про вік скажіть `Tengo treinta años` — «Мені тридцять років». Зберіть `Tengo` + `treinta` + `años`. Тепер кажете про себе, тому обираємо tengo. Перед treinta не потрібен артикль. Схема віку залишається tener + число + años."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-37:intro2:q",
+        "promptByLocale": {
+          "ru": "Скажите «Мне тридцать лет». Начните с Tengo treinta.",
+          "uk": "Скажіть «Мені тридцять років». Почніть з Tengo treinta."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-37:intro2:r1",
+              "text": "Tengo treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro2:r2",
+              "text": "Soy treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro2:r3",
+              "text": "Tengo un treinta años."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-37:intro2:r1",
+              "text": "Tengo treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro2:r2",
+              "text": "Soy treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro2:r3",
+              "text": "Tengo un treinta años."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Мне тридцать лет». Начните с Tengo treinta.",
+          "uk": "Скажіть «Мені тридцять років». Почніть з Tengo treinta."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-05:session-37:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Возраст Педро",
+        "uk": "Вік Педро"
+      },
+      "bodyByLocale": {
+        "ru": "Сообщите знакомому `Pedro tiene treinta años` — «Педро тридцать лет». Соберите `Pedro` + `tiene` + `treinta años`. Имя меняется, но форма tiene такая же, как с Ana: возраст одного другого человека. Пол человека не меняет ни tiene, ни число treinta.",
+        "uk": "Повідомте знайомому `Pedro tiene treinta años` — «Педро тридцять років». Зберіть `Pedro` + `tiene` + `treinta años`. Ім’я змінюється, але форма tiene така сама, як з Ana: вік однієї іншої людини. Стать людини не змінює ні tiene, ні числа treinta."
+      },
+      "question": {
+        "interactionId": "es:lesson-05:session-37:intro3:q",
+        "promptByLocale": {
+          "ru": "Скажите «Педро тридцать лет». Начните с Pedro tiene treinta.",
+          "uk": "Скажіть «Педро тридцять років». Почніть з Pedro tiene treinta."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-05:session-37:intro3:r1",
+              "text": "Pedro tiene treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro3:r2",
+              "text": "Pedro tengo treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro3:r3",
+              "text": "Pedro es treinta años."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-05:session-37:intro3:r1",
+              "text": "Pedro tiene treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro3:r2",
+              "text": "Pedro tengo treinta años."
+            },
+            {
+              "responseId": "es:lesson-05:session-37:intro3:r3",
+              "text": "Pedro es treinta años."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Скажите «Педро тридцать лет». Начните с Pedro tiene treinta.",
+          "uk": "Скажіть «Педро тридцять років». Почніть з Pedro tiene treinta."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "dfe24214016f3fe537dda5aa792076b7f3297ab15aa6d648f62f41be17d9c019"
+}

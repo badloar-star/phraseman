@@ -140,6 +140,7 @@ import {
 import { prefetchLessonMenuCache } from "../lesson_menu";
 import { navOnce } from "../nav_once"; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по карточке урока
 import ReportErrorButton from "../../components/ReportErrorButton";
+import { consumeLessonsV2PageRequest, peekLessonsV2PageRequestAgeMs } from "../lessons_open_v2_request";
 import { LessonsGateDialog } from "../../components/lessons/LessonsGateDialog";
 import { LUM } from "../../constants/motionHybrid";
 import { pickLessonsExamStatus } from "../lessons_exam_status";
@@ -2620,6 +2621,18 @@ export default function LessonsTab({
   // R08: navFocused — фокус экрана вкладок в корневом стеке (freezeOnBlur замораживает нативный кадр расфокусированного экрана)
   const navFocused = useIsFocused();
   const { courseEntry } = useGlobalSearchParams<{ courseEntry?: string }>();
+  // зачем (владелец 28.10, «кнопка Уроки не работает»; замер Сверки ~8 с пустого экрана): плитка Главной больше не пушит пустой маршрут курса — она переключает вкладку сразу и оставляет этот
+  // запрос; при фокусе вкладка выбирает карту V2 тем же действием, что и ссылка courseEntry=v2 ниже. Замер «тап → карта» пишется в [HOME-LESSONS-BTN].
+  useEffect(() => {
+    if (!(isRetainedTab && lessonsTabVisible && navFocused && learningV2CanOpen)) return;
+    const sinceTapMs = peekLessonsV2PageRequestAgeMs();
+    if (sinceTapMs === null) return;
+    if (!consumeLessonsV2PageRequest()) return;
+    const startedAt = Date.now();
+    setPageRaw("v2");
+    console.log("[HOME-LESSONS-BTN] lessons_tab: карта V2 выбрана по запросу плитки", JSON.stringify({ sinceTapMs })); // guard-ok: одна строка на тап по плитке
+    requestAnimationFrame(() => console.log("[HOME-LESSONS-BTN] lessons_tab: первый кадр после выбора карты", JSON.stringify({ sinceTapMs: sinceTapMs + (Date.now() - startedAt) }))); // guard-ok: замер «тап → кадр»
+  }, [isRetainedTab, lessonsTabVisible, navFocused, learningV2CanOpen]);
   useEffect(() => {
     // Legacy course links must select V2 even when the retained tab last showed the classic list.
     if (isRetainedTab && lessonsTabVisible && navFocused && courseEntry === "v2" && learningV2CanOpen) {

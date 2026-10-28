@@ -125,7 +125,7 @@ import type { PlayerInfo } from '../../components/PlayerProfileModal';
 import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfSteps, perfScreenMount, perfNavStart } from '../perf-monitor';
-import { emitAppEvent, onAppEvent } from '../events';
+import { actionToastTri, emitAppEvent, onAppEvent } from '../events';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
 import { getHomeLastLessonImage } from '../home_last_lesson_assets';
 import { getMistakePracticeHomeCounts } from '../mistake_practice_insights';
@@ -153,6 +153,7 @@ import { HOME_CONTINUE_V2_ENABLED, launchHomeContinueV2, useHomeContinueV2Launch
 import { ENABLE_DEV_TOOLS } from '../config';
 import { LEARNING_V2_HIDDEN, isLearningV2Hidden, isLearningV2OpenForUiLangV1 } from '../learning_v2_visibility_switch';
 import { peekResolvedUiLang } from '../ui_lang_resolved';
+import { requestLessonsV2Page } from '../lessons_open_v2_request';
 import { markHomeFirstPaint } from '../home_paint_marker';
 import { peekStreakDayState, subscribeStreakDayState } from '../streak_day_signal';
 
@@ -1763,8 +1764,9 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             return;
         }
         const loop = Animated.loop(Animated.sequence([
-            Animated.timing(homeFeatureTipHintPulse, { toValue: 1, duration: 1250, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-            Animated.timing(homeFeatureTipHintPulse, { toValue: 0, duration: 1250, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+            // зачем (владелец 28.10): isInteraction:false — пульс подсказки не держит InteractionManager, иначе runAfterInteractions (переходы, ссылки курса) ждали его ~7,5 с
+            Animated.timing(homeFeatureTipHintPulse, { toValue: 1, duration: 1250, easing: Easing.inOut(Easing.sin), useNativeDriver: true, isInteraction: false }),
+            Animated.timing(homeFeatureTipHintPulse, { toValue: 0, duration: 1250, easing: Easing.inOut(Easing.sin), useNativeDriver: true, isInteraction: false }),
         ]), { iterations: 3 }); /* зачем (владелец 01.10): анимации на Главной короткие — 3 раза и покой */
         loop.start();
         return () => {
@@ -2399,13 +2401,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // в комментарии прямо предписывает звать вибрацию из onPressIn, а не
     // внутри onPress вместе с действием — здесь делалось именно запрещённое.
     const go = (path: string) => {
-        // зачем (владелец 28.10, «кнопка Уроки не работает»; сперва логи): значения гардов и маршрут тапа по «Уроки» — одной строкой [HOME-LESSONS-BTN] (ветка hidden → goToTab(1) логируется плиткой)
-        if (path === '/learning-v2/course') {
-            console.log('[HOME-LESSONS-BTN] go', JSON.stringify({ // guard-ok: одна строка на тап по плитке
-                path, v2Hidden: isLearningV2Hidden(), v2SwitchHidden: LEARNING_V2_HIDDEN, uiLang: peekResolvedUiLang() ?? null, studyTarget: String(studyTarget),
-                learnTabVisible: isLearnTabVisibleForTarget(studyTarget), activeIdx,
-            }));
-        }
         const tabIdx = TAB_IDX[path];
         if (tabIdx !== undefined) {
             goToTab(tabIdx);
@@ -2496,7 +2491,31 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             });
             nav.push('/mistakes_hub' as never);
         };
-        // Плитка «Уроки» — push-презентация, вкладка «Обучение» — retained-tab; обе открывают карту V2 (новые уроки).
+        // зачем (владелец 28.10, «кнопка Уроки не работает»; замер Сверки: холодный старт + тап = ~8 с пустого экрана, двойная навигация push /learning-v2/course → dismissTo): плитка сразу
+        // переключает вкладку «Уроки» (тот же handleTabChange, что у таббара) и, если V2 открыт, оставляет тихий запрос «выбери карту V2» (app/lessons_open_v2_request.ts) — его применяет сама вкладка
+        // при фокусе. Маршрут /learning-v2/course остаётся только для внешних ссылок. Вкладка скрыта для языка обучения — тап не молчит: журнал и тост.
+        const openLessonsFromHome = () => {
+            const startedAt = Date.now();
+            const v2Hidden = isLearningV2Hidden();
+            const learnTabVisible = isLearnTabVisibleForTarget(studyTarget);
+            console.log('[HOME-LESSONS-BTN] press', JSON.stringify({ // guard-ok: одна строка на тап по плитке
+                v2Hidden, v2SwitchHidden: LEARNING_V2_HIDDEN, uiLang: peekResolvedUiLang() ?? null, studyTarget: String(studyTarget), learnTabVisible, activeIdx,
+                branch: !learnTabVisible ? 'tab_hidden_toast' : v2Hidden ? 'goToTab(1) classic' : 'goToTab(1) + request v2 map',
+            }));
+            if (!learnTabVisible) {
+                emitAppEvent('action_toast', actionToastTri('info', {
+                    ru: 'Раздел «Уроки» для этого языка пока недоступен', uk: 'Розділ «Уроки» для цієї мови поки недоступний', en: 'Lessons aren’t available for this language yet', es: 'Las lecciones aún no están disponibles para este idioma',
+                    'pt-BR': 'As lições ainda não estão disponíveis para este idioma', vi: 'Bài học chưa có cho ngôn ngữ này', id: 'Pelajaran belum tersedia untuk bahasa ini', tr: 'Dersler bu dil için henüz kullanılamıyor', pl: 'Lekcje nie są jeszcze dostępne dla tego języka',
+                }));
+                void hapticTap();
+                return;
+            }
+            if (!v2Hidden) requestLessonsV2Page('home_tile');
+            goToTab(1);
+            void hapticTap();
+            console.log('[HOME-LESSONS-BTN] switched', JSON.stringify({ ms: Date.now() - startedAt })); // guard-ok: сколько заняло переключение вкладки (JS-часть)
+        };
+        // Плитка «Уроки» — переключает вкладку «Обучение» (retained-tab), которая открывает карту V2 (новые уроки).
         // зачем (владелец 17.10: «Обучение открывает новые уроки»): раньше плитка вела в старый список /lessons_list. Он остался только при рубильнике «V2 скрыт»
         // (маршрут курса в этом случае уводит на Главную) и как выход из старых уроков; без выпущенных занятий маршрут курса сам открывает старый список.
         // Продолжение последнего урока остаётся на отдельной плашке ниже.
@@ -2510,7 +2529,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                     ru: 'Уроки', uk: 'Уроки', en: 'Lessons', es: 'Lecciones', 'pt-BR': 'Lições',
                     vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje',
                 }),
-                onPress: () => { if (isLearningV2Hidden()) { goToTab(1); void hapticTap(); } else go('/learning-v2/course'); }, // зачем (координатор 26.10): при скрытом V2 — сама вкладка «Уроки» (индекс 1), а не её копия /lessons_list поверх стека
+                onPress: openLessonsFromHome, // зачем (владелец 28.10): один переход на вкладку «Уроки» без промежуточного пустого маршрута; прежнее (координатор 26.10): при скрытом V2 — сама вкладка «Уроки» (индекс 1), а не её копия /lessons_list: при скрытом V2 — сама вкладка «Уроки» (индекс 1), а не её копия /lessons_list поверх стека
             },
             {
                 key: 'dialogs',

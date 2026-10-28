@@ -58,7 +58,18 @@ describe('home learning CTA contract', () => {
   it('opens the full lessons list from the quick-start tile', () => {
     // зачем (владелец 17.10): плитка «Уроки» открывает карту V2; прежний список — только при рубильнике «V2 скрыт»
     // перепин 26.10 (координатор, запрет петель): при скрытом V2 — сама вкладка «Уроки» (индекс 1), не копия /lessons_list поверх стека
-    expect(source).toContain("onPress: () => { if (isLearningV2Hidden()) { goToTab(1); void hapticTap(); } else go('/learning-v2/course'); }");
+    // перепин 28.10 (владелец «кнопка Уроки не работает»; Сверка: двойная навигация + 8 с пустого экрана): плитка сразу переключает вкладку,
+    // а «выбери карту V2» передаёт тихим запросом, который вкладка «Уроки» забирает при фокусе; прежний push /learning-v2/course с плитки убран
+    expect(source).toContain('onPress: openLessonsFromHome');
+    expect(source).toContain("if (!v2Hidden) requestLessonsV2Page('home_tile');");
+    expect(source).toMatch(/requestLessonsV2Page\('home_tile'\);\s*goToTab\(1\);/);
+    const handlerBody = source.slice(source.indexOf('const openLessonsFromHome = () => {'), source.indexOf('const quickItems = ['));
+    expect(handlerBody.length).toBeGreaterThan(200);
+    expect(handlerBody).not.toContain("go('/learning-v2/course')");
+    // скрытая вкладка (fr/de/it): не молчим — тост и журнал, а не немой goToTab на Главную
+    expect(source).toMatch(/!learnTabVisible[\s\S]{0,900}action_toast/);
+    // пульс подсказки не держит InteractionManager (иначе отложенные переходы ждут ~7,5 с)
+    expect(source.match(/isInteraction: false/g)?.length ?? 0).toBeGreaterThanOrEqual(2);
     expect(source).not.toContain("go(isLearningV2Hidden() ? '/lessons_list'");
   });
 

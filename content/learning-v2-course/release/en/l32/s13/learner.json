@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Билет, который я купил, действителен. Скажите без that.",
+      "prompt": "Билет, который вы купили, действителен. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-13:i07:audio"
       ],
-      "accessibilityLabel": "Билет, который я купил, действителен. Скажите без that.",
+      "accessibilityLabel": "Билет, который вы купили, действителен. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
+      "prompt": "Билет, который вы купили, действителен. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-13:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Билет, который вы купили, действителен. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
-          "uk": "Квиток, який я купив, дійсний. Уточніть предмет без зайвого займенника."
+          "ru": "Билет, который вы купили, действителен. Предмет уже назван — не повторяйте его.",
+          "uk": "Квиток, який ви купили, дійсний. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The ticket I ___ is valid.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Билет, который вы купили, действителен. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-13:i08:r2",
             "correct": false,
-            "testedDimension": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Билет, который вы купили, действителен. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-13:i08:r3",
             "correct": false,
-            "testedDimension": "Билет, который я купил, действителен. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Билет, который вы купили, действителен. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Когда автобус приехал, вы заметили, что водитель несколько раз зевнул и потёр глаза. Скажите вывод ещё раз, заменив The driver местоимением He.",
+      "prompt": "Когда автобус приехал, вы заметили, что водитель несколько раз зевнул и потёр глаза. Скажите вывод ещё раз, заменив The driver словом He.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-13:i10:audio"
       ],
-      "accessibilityLabel": "Когда автобус приехал, вы заметили, что водитель несколько раз зевнул и потёр глаза. Скажите вывод ещё раз, заменив The driver местоимением He.",
+      "accessibilityLabel": "Когда автобус приехал, вы заметили, что водитель несколько раз зевнул и потёр глаза. Скажите вывод ещё раз, заменив The driver словом He.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e2ebba393085fbeb3425036aff39c1c9feab01358c0545266ee048aa156c063d"
+  "learnerFingerprint": "58a47c600eea33fdf770c71f5acada73a2e8f4cc398e1c475f50becf338c3cbe"
 }

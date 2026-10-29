@@ -756,7 +756,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
+      "prompt": "Записка нужна Анне для поиска ключа. Выберите, чем связать части фразы перед Anna could find the key.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-42:i16:r1",
@@ -773,12 +773,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
+      "accessibilityLabel": "Записка нужна Анне для поиска ключа. Выберите, чем связать части фразы перед Anna could find the key.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
-          "uk": "Записка потрібна Анні для пошуку ключа. Виберіть сполуку перед Anna could find the key."
+          "ru": "Записка нужна Анне для поиска ключа. Выберите, чем связать части фразы перед Anna could find the key.",
+          "uk": "Записка потрібна Анні для пошуку ключа. Виберіть, чим поєднати частини фрази перед Anna could find the key."
         },
         "gappedTargetPhrase": "I wrote a note ___ Anna could find the key.",
         "gapOptions": [
@@ -795,12 +795,12 @@
             "text": "for"
           }
         ],
-        "testedDimension": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
+        "testedDimension": "Записка нужна Анне для поиска ключа. Выберите, чем связать части фразы перед Anna could find the key.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-42:i16:r2",
             "correct": false,
-            "testedDimension": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
+            "testedDimension": "Записка нужна Анне для поиска ключа. Выберите, чем связать части фразы перед Anna could find the key.",
             "feedbackByLocale": {
               "ru": "Перед целой частью с Anna нужно so that.",
               "uk": "Перед цілою частиною з Anna потрібне so that."
@@ -809,7 +809,7 @@
           {
             "responseId": "en:lesson-31:session-42:i16:r3",
             "correct": false,
-            "testedDimension": "Записка нужна Анне для поиска ключа. Выберите связку перед Anna could find the key.",
+            "testedDimension": "Записка нужна Анне для поиска ключа. Выберите, чем связать части фразы перед Anna could find the key.",
             "feedbackByLocale": {
               "ru": "Цель с отдельным участником вводим через so that.",
               "uk": "Мету з окремим учасником вводимо через so that."
@@ -1056,5 +1056,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "20b4c5f9932ae13a218998ee642f5619394304ea67957c2779624eaedd84bfce"
+  "learnerFingerprint": "8d0de023bd8241ecd062c681bb19d6d1d671fd410f84ae23eb39dd6e63b1e94e"
 }

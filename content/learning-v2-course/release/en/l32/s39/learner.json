@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Нож, который я купил, острый. Скажите без that.",
+      "prompt": "Нож, который вы купили, острый. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-39:i07:audio"
       ],
-      "accessibilityLabel": "Нож, который я купил, острый. Скажите без that.",
+      "accessibilityLabel": "Нож, который вы купили, острый. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
+      "prompt": "Нож, который вы купили, острый. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-39:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Нож, который вы купили, острый. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
-          "uk": "Ніж, який я купив, гострий. Уточніть предмет без зайвого займенника."
+          "ru": "Нож, который вы купили, острый. Предмет уже назван — не повторяйте его.",
+          "uk": "Ніж, який ви купили, гострий. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The knife I ___ is sharp.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Нож, который вы купили, острый. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-39:i08:r2",
             "correct": false,
-            "testedDimension": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Нож, который вы купили, острый. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-39:i08:r3",
             "correct": false,
-            "testedDimension": "Нож, который я купил, острый. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Нож, который вы купили, острый. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. Скажите вывод, заменив The bag местоимением It.",
+      "prompt": "Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. Скажите вывод, заменив The bag словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-39:i10:audio"
       ],
-      "accessibilityLabel": "Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. Скажите вывод, заменив The bag местоимением It.",
+      "accessibilityLabel": "Анна говорит, что пакет пуст, но через прозрачную стенку вы видите хлеб. Скажите вывод, заменив The bag словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d90210f73f058f4e5a4b80eca570a39e2897ab20c2641491ef903fb8bbd531ae"
+  "learnerFingerprint": "114ae1a7482f955cdbbd1c8d5650c2b8114da1d3ddb2f7e612a51443e29897f5"
 }

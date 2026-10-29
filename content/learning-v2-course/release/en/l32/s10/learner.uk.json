@@ -351,7 +351,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого займенника.",
+      "prompt": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-10:i08:r1",
@@ -368,12 +368,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого займенника.",
+      "accessibilityLabel": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна говорит о купленной ею сумке. Выберите форму без лишнего местоимения.",
-          "uk": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого займенника."
+          "ru": "Анна говорит о купленной ею сумке. Выберите форму без лишнего it.",
+          "uk": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого it."
         },
         "gappedTargetPhrase": "The bag I ___ is blue.",
         "gapOptions": [
@@ -390,21 +390,21 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого займенника.",
+        "testedDimension": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-10:i08:r2",
             "correct": false,
-            "testedDimension": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого займенника.",
+            "testedDimension": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого it.",
             "feedbackByLocale": {
-              "ru": "Не повторяем bag местоимением it.",
-              "uk": "Не повторюємо bag займенником it."
+              "ru": "Не повторяем bag словом it.",
+              "uk": "Не повторюємо bag словом it."
             }
           },
           {
             "responseId": "en:lesson-32:session-10:i08:r3",
             "correct": false,
-            "testedDimension": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого займенника.",
+            "testedDimension": "Анна говорить про куплену нею сумку. Виберіть форму без зайвого it.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -1039,5 +1039,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a352563b16e803f6e5d211d03e167a15db1e3c917ddd257ab66769220aaf7990"
+  "learnerFingerprint": "00808cd1a2e8e077471e94ffd3ee710bffd8d260597632f52d3c1d42268a5ee3"
 }

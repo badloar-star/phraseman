@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Корзина, которую я купил, большая. Скажите без that.",
+      "prompt": "Корзина, которую вы купили, большая. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-44:i07:audio"
       ],
-      "accessibilityLabel": "Корзина, которую я купил, большая. Скажите без that.",
+      "accessibilityLabel": "Корзина, которую вы купили, большая. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Корзина, которую я купил, большая. Уточните предмет без лишнего местоимения.",
+      "prompt": "Корзина, которую вы купили, большая. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-44:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Корзина, которую я купил, большая. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Корзина, которую вы купили, большая. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Корзина, которую я купил, большая. Уточните предмет без лишнего местоимения.",
-          "uk": "Кошик, який я купив, великий. Уточніть предмет без зайвого займенника."
+          "ru": "Корзина, которую вы купили, большая. Предмет уже назван — не повторяйте его.",
+          "uk": "Кошик, який ви купили, великий. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The basket I ___ is large.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Корзина, которую я купил, большая. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Корзина, которую вы купили, большая. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-44:i08:r2",
             "correct": false,
-            "testedDimension": "Корзина, которую я купил, большая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Корзина, которую вы купили, большая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-44:i08:r3",
             "correct": false,
-            "testedDimension": "Корзина, которую я купил, большая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Корзина, которую вы купили, большая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На носке свежая грязь: он только что упал в лужу. Скажите вывод, заменив The sock местоимением It.",
+      "prompt": "На носке свежая грязь: он только что упал в лужу. Скажите вывод, заменив The sock словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-44:i10:audio"
       ],
-      "accessibilityLabel": "На носке свежая грязь: он только что упал в лужу. Скажите вывод, заменив The sock местоимением It.",
+      "accessibilityLabel": "На носке свежая грязь: он только что упал в лужу. Скажите вывод, заменив The sock словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8e8a1551ce8b0c442c1b436a153c7bfc973346ca3a3dbc38f5a926fc87152792"
+  "learnerFingerprint": "b01d2c4ed949e2c8573c4ff327307752678ec7b9a55530055de71a937a7da078"
 }

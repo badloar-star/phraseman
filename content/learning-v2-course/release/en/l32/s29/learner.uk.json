@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Годинник, який я купив, новий. Скажіть без that.",
+      "prompt": "Годинник, який ви купили, новий. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-29:i07:audio"
       ],
-      "accessibilityLabel": "Годинник, який я купив, новий. Скажіть без that.",
+      "accessibilityLabel": "Годинник, який ви купили, новий. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Годинник, який я купив, новий. Уточніть предмет без зайвого займенника.",
+      "prompt": "Годинник, який ви купили, новий. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-29:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Годинник, який я купив, новий. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Годинник, який ви купили, новий. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Часы, которые я купил, новые. Уточните предмет без лишнего местоимения.",
-          "uk": "Годинник, який я купив, новий. Уточніть предмет без зайвого займенника."
+          "ru": "Часы, которые вы купили, новые. Предмет уже назван — не повторяйте его.",
+          "uk": "Годинник, який ви купили, новий. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The watch I ___ is new.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Годинник, який я купив, новий. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Годинник, який ви купили, новий. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-29:i08:r2",
             "correct": false,
-            "testedDimension": "Годинник, який я купив, новий. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Годинник, який ви купили, новий. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-29:i08:r3",
             "correct": false,
-            "testedDimension": "Годинник, який я купив, новий. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Годинник, який ви купили, новий. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "За правильним часом поїзд мав прибути десять хвилин тому, але на його платформі досі порожньо. Скажіть висновок іще раз, замінивши The train займенником It.",
+      "prompt": "За правильним часом поїзд мав прибути десять хвилин тому, але на його платформі досі порожньо. Скажіть висновок іще раз, замінивши The train словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-29:i10:audio"
       ],
-      "accessibilityLabel": "За правильним часом поїзд мав прибути десять хвилин тому, але на його платформі досі порожньо. Скажіть висновок іще раз, замінивши The train займенником It.",
+      "accessibilityLabel": "За правильним часом поїзд мав прибути десять хвилин тому, але на його платформі досі порожньо. Скажіть висновок іще раз, замінивши The train словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1002,13 +1002,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Хвилинна стрілка на вокзальному годиннику не рухалася вже двадцять хвилин. Ви відкидаєте його показання. Повторіть висновок, замінивши The clock займенником It.",
+      "prompt": "Хвилинна стрілка на вокзальному годиннику не рухалася вже двадцять хвилин. Ви відкидаєте його показання. Повторіть висновок, замінивши The clock словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-29:i21:audio"
       ],
-      "accessibilityLabel": "Хвилинна стрілка на вокзальному годиннику не рухалася вже двадцять хвилин. Ви відкидаєте його показання. Повторіть висновок, замінивши The clock займенником It.",
+      "accessibilityLabel": "Хвилинна стрілка на вокзальному годиннику не рухалася вже двадцять хвилин. Ви відкидаєте його показання. Повторіть висновок, замінивши The clock словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7c01b3afb5d73ab51c9ed150332d88d85cdae6ae2b13c17c588e208f503708be"
+  "learnerFingerprint": "e08b8ae6741d0e4352f9c63d6d13bdae9b68241d3c06475ab2bcb34ab1f7305e"
 }

@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите связку.",
+      "prompt": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите форму be.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-06:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите связку.",
+      "accessibilityLabel": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите форму be.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите связку.",
-          "uk": "Поїзд ще не приїхав, хоча час прибуття минув. Ви робите висновок про затримку. Виберіть зв’язку."
+          "ru": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите форму be.",
+          "uk": "Поїзд ще не приїхав, хоча час прибуття минув. Ви робите висновок про затримку. Виберіть форму be."
         },
         "gappedTargetPhrase": "The train must ___ late.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "being"
           }
         ],
-        "testedDimension": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите связку.",
+        "testedDimension": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите форму be.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-06:i03:r2",
             "correct": false,
-            "testedDimension": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите связку.",
+            "testedDimension": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите форму be.",
             "feedbackByLocale": {
               "ru": "После must здесь нужна форма be.",
               "uk": "Після must тут потрібна форма be."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-32:session-06:i03:r3",
             "correct": false,
-            "testedDimension": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите связку.",
+            "testedDimension": "Поезд ещё не пришёл, хотя время прибытия прошло. Вы делаете вывод о задержке. Выберите форму be.",
             "feedbackByLocale": {
               "ru": "Используем начальную форму be.",
               "uk": "Використовуємо початкову форму be."
@@ -353,7 +353,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточните купленный билет, не повторяя ticket местоимением.",
+      "prompt": "Уточните купленный билет, не повторяя ticket словом it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-06:i08:r1",
@@ -370,12 +370,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните купленный билет, не повторяя ticket местоимением.",
+      "accessibilityLabel": "Уточните купленный билет, не повторяя ticket словом it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните купленный билет, не повторяя ticket местоимением.",
-          "uk": "Уточніть куплений квиток, не повторюючи ticket займенником."
+          "ru": "Уточните купленный билет, не повторяя ticket словом it.",
+          "uk": "Уточніть куплений квиток, не повторюючи ticket словом it."
         },
         "gappedTargetPhrase": "The ticket I ___ is in my bag.",
         "gapOptions": [
@@ -392,12 +392,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Уточните купленный билет, не повторяя ticket местоимением.",
+        "testedDimension": "Уточните купленный билет, не повторяя ticket словом it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-06:i08:r2",
             "correct": false,
-            "testedDimension": "Уточните купленный билет, не повторяя ticket местоимением.",
+            "testedDimension": "Уточните купленный билет, не повторяя ticket словом it.",
             "feedbackByLocale": {
               "ru": "Ticket уже названо: it после bought не нужно.",
               "uk": "Ticket уже названо: it після bought не потрібне."
@@ -406,7 +406,7 @@
           {
             "responseId": "en:lesson-32:session-06:i08:r3",
             "correct": false,
-            "testedDimension": "Уточните купленный билет, не повторяя ticket местоимением.",
+            "testedDimension": "Уточните купленный билет, не повторяя ticket словом it.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7d8895dba57b0474ccdf8f29dc5bd3ff7eec0cda5da7a13f4ef7042ab4c85b99"
+  "learnerFingerprint": "b70a3b854daf3d71c61fd471aa296ed40771a9aea963fe26717e4cacbe73e5f2"
 }

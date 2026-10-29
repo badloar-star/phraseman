@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Горшок, который я купил, маленький. Скажите без that.",
+      "prompt": "Горшок, который вы купили, маленький. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-20:i07:audio"
       ],
-      "accessibilityLabel": "Горшок, который я купил, маленький. Скажите без that.",
+      "accessibilityLabel": "Горшок, который вы купили, маленький. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Горшок, который я купил, маленький. Уточните предмет без лишнего местоимения.",
+      "prompt": "Горшок, который вы купили, маленький. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-20:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Горшок, который я купил, маленький. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Горшок, который вы купили, маленький. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Горшок, который я купил, маленький. Уточните предмет без лишнего местоимения.",
-          "uk": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника."
+          "ru": "Горшок, который вы купили, маленький. Предмет уже назван — не повторяйте его.",
+          "uk": "Горщик, який ви купили, маленький. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The pot I ___ is small.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Горшок, который я купил, маленький. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Горшок, который вы купили, маленький. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-20:i08:r2",
             "correct": false,
-            "testedDimension": "Горшок, который я купил, маленький. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Горшок, который вы купили, маленький. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-20:i08:r3",
             "correct": false,
-            "testedDimension": "Горшок, который я купил, маленький. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Горшок, который вы купили, маленький. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна говорит, что растение неделю стояло на солнце без полива. Вы делаете вывод о почве, ещё не касаясь её. Скажите вывод ещё раз, заменив The soil местоимением It.",
+      "prompt": "Анна говорит, что растение неделю стояло на солнце без полива. Вы делаете вывод о почве, ещё не касаясь её. Скажите вывод ещё раз, заменив The soil словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-20:i10:audio"
       ],
-      "accessibilityLabel": "Анна говорит, что растение неделю стояло на солнце без полива. Вы делаете вывод о почве, ещё не касаясь её. Скажите вывод ещё раз, заменив The soil местоимением It.",
+      "accessibilityLabel": "Анна говорит, что растение неделю стояло на солнце без полива. Вы делаете вывод о почве, ещё не касаясь её. Скажите вывод ещё раз, заменив The soil словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "404bec066064b51c42d0dd0082574a04cc65f08aaf2d5e95cfb4534b5cc03312"
+  "learnerFingerprint": "ad5b09faf0ed86498dd27c43479693f7a82c8c7d55be83aafd0c96f67fbac19d"
 }

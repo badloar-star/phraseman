@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Квиток, який я купив, дешевий. Скажіть без that.",
+      "prompt": "Квиток, який ви купили, дешевий. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-41:i07:audio"
       ],
-      "accessibilityLabel": "Квиток, який я купив, дешевий. Скажіть без that.",
+      "accessibilityLabel": "Квиток, який ви купили, дешевий. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Квиток, який я купив, дешевий. Уточніть предмет без зайвого займенника.",
+      "prompt": "Квиток, який ви купили, дешевий. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-41:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Квиток, який я купив, дешевий. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Квиток, який ви купили, дешевий. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Билет, который я купил, дешёвый. Уточните предмет без лишнего местоимения.",
-          "uk": "Квиток, який я купив, дешевий. Уточніть предмет без зайвого займенника."
+          "ru": "Билет, который вы купили, дешёвый. Предмет уже назван — не повторяйте его.",
+          "uk": "Квиток, який ви купили, дешевий. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The ticket I ___ is cheap.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Квиток, який я купив, дешевий. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Квиток, який ви купили, дешевий. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-41:i08:r2",
             "correct": false,
-            "testedDimension": "Квиток, який я купив, дешевий. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Квиток, який ви купили, дешевий. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-41:i08:r3",
             "correct": false,
-            "testedDimension": "Квиток, який я купив, дешевий. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Квиток, який ви купили, дешевий. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна думає, що місце біля вікна вільне, але ви бачите пасажира, який там сидить. Скажіть висновок, замінивши The seat займенником It.",
+      "prompt": "Анна думає, що місце біля вікна вільне, але ви бачите пасажира, який там сидить. Скажіть висновок, замінивши The seat словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-41:i10:audio"
       ],
-      "accessibilityLabel": "Анна думає, що місце біля вікна вільне, але ви бачите пасажира, який там сидить. Скажіть висновок, замінивши The seat займенником It.",
+      "accessibilityLabel": "Анна думає, що місце біля вікна вільне, але ви бачите пасажира, який там сидить. Скажіть висновок, замінивши The seat словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "dd238bfe5aa24460e80ccb6728eec9c6717d134e204271fdf7ce2c694befef6e"
+  "learnerFingerprint": "cc8cf70251fd0b996aeb4c83ba5266f7e1517f7b1a39a23ac0463a30dd0a66f5"
 }

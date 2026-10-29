@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Записка, которую я написал, короткая. Скажите без that.",
+      "prompt": "Записка, которую вы написали, короткая. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-32:i07:audio"
       ],
-      "accessibilityLabel": "Записка, которую я написал, короткая. Скажите без that.",
+      "accessibilityLabel": "Записка, которую вы написали, короткая. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+      "prompt": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-32:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
-          "uk": "Записка, яку я написав, коротка. Уточніть предмет без зайвого займенника."
+          "ru": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
+          "uk": "Записка, яку ви написали, коротка. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The note I ___ is short.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "writing"
           }
         ],
-        "testedDimension": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-32:i08:r2",
             "correct": false,
-            "testedDimension": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-32:i08:r3",
             "correct": false,
-            "testedDimension": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма wrote.",
               "uk": "Потрібна минула форма wrote."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. Скажите вывод ещё раз, заменив The door местоимением It.",
+      "prompt": "Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. Скажите вывод ещё раз, заменив The door словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-32:i10:audio"
       ],
-      "accessibilityLabel": "Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. Скажите вывод ещё раз, заменив The door местоимением It.",
+      "accessibilityLabel": "Ручка поворачивается, но дверь не поддаётся, и внутри слышен щелчок замка. Скажите вывод ещё раз, заменив The door словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1002,13 +1002,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Повторите вывод, заменив The key местоимением It.",
+      "prompt": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Повторите вывод, заменив The key словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-32:i21:audio"
       ],
-      "accessibilityLabel": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Повторите вывод, заменив The key местоимением It.",
+      "accessibilityLabel": "На ключе указан номер 12, а ваша комната — номер 18. Вы уверены, что вам выдали другой ключ. Повторите вывод, заменив The key словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "45c5800d7e1794ea4f07e65bee16011d321d7d1cf8e9cc928d6f57296930d0d0"
+  "learnerFingerprint": "c1aa67ec505633234288b61fe973270034af620c63eeec818c73c99d5d0cc9fb"
 }

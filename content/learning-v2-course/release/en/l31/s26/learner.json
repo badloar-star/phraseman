@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы поели, потому что были голодны. Выберите связку.",
+      "prompt": "Вы поели, потому что были голодны. Выберите, чем связать части фразы.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-26:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы поели, потому что были голодны. Выберите связку.",
+      "accessibilityLabel": "Вы поели, потому что были голодны. Выберите, чем связать части фразы.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы поели, потому что были голодны. Выберите связку.",
-          "uk": "Ви поїли, бо були голодні. Виберіть сполучник."
+          "ru": "Вы поели, потому что были голодны. Выберите, чем связать части фразы.",
+          "uk": "Ви поїли, бо були голодні. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "I ate ___ I was hungry.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Вы поели, потому что были голодны. Выберите связку.",
+        "testedDimension": "Вы поели, потому что были голодны. Выберите, чем связать части фразы.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-26:i03:r2",
             "correct": false,
-            "testedDimension": "Вы поели, потому что были голодны. Выберите связку.",
+            "testedDimension": "Вы поели, потому что были голодны. Выберите, чем связать части фразы.",
             "feedbackByLocale": {
               "ru": "Перед целой частью I was hungry нужно because без of.",
               "uk": "Перед цілою частиною I was hungry потрібне because без of."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-31:session-26:i03:r3",
             "correct": false,
-            "testedDimension": "Вы поели, потому что были голодны. Выберите связку.",
+            "testedDimension": "Вы поели, потому что были голодны. Выберите, чем связать части фразы.",
             "feedbackByLocale": {
               "ru": "Of не связывает эти части.",
               "uk": "Of не пов’язує ці частини."
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "738018c2167fcadb972ac63348c871cc74e095b5a677f382b248a055bbdb7267"
+  "learnerFingerprint": "46b2bed0e9c315716c42effcfcff5836f3920676dc1c530adfb91ac430ac074d"
 }

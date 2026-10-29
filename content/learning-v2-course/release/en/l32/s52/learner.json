@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Растение, которое я купил, маленькое. Скажите без that.",
+      "prompt": "Растение, которое вы купили, маленькое. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-52:i07:audio"
       ],
-      "accessibilityLabel": "Растение, которое я купил, маленькое. Скажите без that.",
+      "accessibilityLabel": "Растение, которое вы купили, маленькое. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
+      "prompt": "Растение, которое вы купили, маленькое. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-52:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Растение, которое вы купили, маленькое. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
-          "uk": "Рослина, яку я купив, маленька. Уточніть предмет без зайвого займенника."
+          "ru": "Растение, которое вы купили, маленькое. Предмет уже назван — не повторяйте его.",
+          "uk": "Рослина, яку ви купили, маленька. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The plant I ___ is small.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Растение, которое вы купили, маленькое. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-52:i08:r2",
             "correct": false,
-            "testedDimension": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Растение, которое вы купили, маленькое. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-52:i08:r3",
             "correct": false,
-            "testedDimension": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Растение, которое вы купили, маленькое. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В открытом ведре видна дождевая вода. Анна считала, что оно пустое. Скажите вывод, заменив The bucket местоимением It.",
+      "prompt": "В открытом ведре видна дождевая вода. Анна считала, что оно пустое. Скажите вывод, заменив The bucket словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-52:i10:audio"
       ],
-      "accessibilityLabel": "В открытом ведре видна дождевая вода. Анна считала, что оно пустое. Скажите вывод, заменив The bucket местоимением It.",
+      "accessibilityLabel": "В открытом ведре видна дождевая вода. Анна считала, что оно пустое. Скажите вывод, заменив The bucket словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8fe44c13167fc200f0f7744f8566dfb3dddf0a7cc48a0832118f98f174eaff30"
+  "learnerFingerprint": "bc7bbe5321460bad19c2dfe1eec0c0cd4ff07842a80068571a7c08f22fbddea4"
 }

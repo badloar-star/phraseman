@@ -23,8 +23,8 @@
           "uk": "Gloves потребує aren’t у цьому уточненні."
         },
         "en:lesson-31:session-18:intro2:r3": {
-          "ru": "Множественное gloves заменяем на they.",
-          "uk": "Множину gloves замінюємо на they."
+          "ru": "Gloves (их несколько) заменяем на they.",
+          "uk": "Gloves (їх кілька) замінюємо на they."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f41a7212d3989af11ba70f4df2481ac0195faa54561404a8ea5c65739d2d2c3f"
+  "auxiliaryFingerprint": "28aa28fd1fc10e333659a975b7a06aa4c00fb8f04eff473ce9aaa9000fc60aec"
 }

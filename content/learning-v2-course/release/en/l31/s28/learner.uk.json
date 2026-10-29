@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви повернули взуття, бо воно було замале. Виберіть сполучник.",
+      "prompt": "Ви повернули взуття, бо воно було замале. Виберіть, чим поєднати частини фрази.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-28:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви повернули взуття, бо воно було замале. Виберіть сполучник.",
+      "accessibilityLabel": "Ви повернули взуття, бо воно було замале. Виберіть, чим поєднати частини фрази.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы вернули обувь, потому что она была мала. Выберите связку.",
-          "uk": "Ви повернули взуття, бо воно було замале. Виберіть сполучник."
+          "ru": "Вы вернули обувь, потому что она была мала. Выберите, чем связать части фразы.",
+          "uk": "Ви повернули взуття, бо воно було замале. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "I took the shoes back ___ they were too small.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Ви повернули взуття, бо воно було замале. Виберіть сполучник.",
+        "testedDimension": "Ви повернули взуття, бо воно було замале. Виберіть, чим поєднати частини фрази.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-28:i03:r2",
             "correct": false,
-            "testedDimension": "Ви повернули взуття, бо воно було замале. Виберіть сполучник.",
+            "testedDimension": "Ви повернули взуття, бо воно було замале. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Перед целой частью they were too small нужен because.",
               "uk": "Перед цілою частиною they were too small потрібне because."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-31:session-28:i03:r3",
             "correct": false,
-            "testedDimension": "Ви повернули взуття, бо воно було замале. Виберіть сполучник.",
+            "testedDimension": "Ви повернули взуття, бо воно було замале. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Of не связывает эти части.",
               "uk": "Of не пов’язує ці частини."
@@ -363,8 +363,8 @@
             "correct": false,
             "testedDimension": "Учора Анна сказала: «Взуття замале». Перекажіть зі зсувом are у минуле.",
             "feedbackByLocale": {
-              "ru": "Множественное shoes требует were.",
-              "uk": "Множина shoes потребує were."
+              "ru": "Shoes (их несколько) требуют were.",
+              "uk": "Shoes (їх кілька) потребують were."
             }
           }
         ]
@@ -988,8 +988,8 @@
             "correct": false,
             "testedDimension": "Взуття незручне. Додайте стверджувальне уточнення про нього.",
             "feedbackByLocale": {
-              "ru": "Множественное shoes требует are.",
-              "uk": "Множина shoes потребує are."
+              "ru": "Shoes (их несколько) требуют are.",
+              "uk": "Shoes (їх кілька) потребують are."
             }
           },
           {
@@ -1045,5 +1045,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8bb953cc32d4a18a5dbc649bc50d32494e073c0513f89b36a3743a8b727315fb"
+  "learnerFingerprint": "2d1a3739b9ace7454d5088937b63cc35cf726be44e8a60ad7e294344735d0de1"
 }

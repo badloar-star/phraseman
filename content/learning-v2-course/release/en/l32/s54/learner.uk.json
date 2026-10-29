@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подарунок, який я приніс, маленький. Уточніть предмет без зайвого займенника.",
+      "prompt": "Подарунок, який я приніс, маленький. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-54:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подарунок, який я приніс, маленький. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Подарунок, який я приніс, маленький. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подарок, который я принёс, маленький. Уточните предмет без лишнего местоимения.",
-          "uk": "Подарунок, який я приніс, маленький. Уточніть предмет без зайвого займенника."
+          "ru": "Подарок, который я принёс, маленький. Предмет уже назван — не повторяйте его.",
+          "uk": "Подарунок, який я приніс, маленький. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The gift I ___ is small.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "bringing"
           }
         ],
-        "testedDimension": "Подарунок, який я приніс, маленький. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Подарунок, який я приніс, маленький. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-54:i08:r2",
             "correct": false,
-            "testedDimension": "Подарунок, який я приніс, маленький. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Подарунок, який я приніс, маленький. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-54:i08:r3",
             "correct": false,
-            "testedDimension": "Подарунок, який я приніс, маленький. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Подарунок, який я приніс, маленький. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма brought.",
               "uk": "Потрібна минула форма brought."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Бен припускає, що двері відчинені, але ви бачите щільно зачинені двері перед собою. Скажіть висновок, замінивши The door займенником It.",
+      "prompt": "Бен припускає, що двері відчинені, але ви бачите щільно зачинені двері перед собою. Скажіть висновок, замінивши The door словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-54:i10:audio"
       ],
-      "accessibilityLabel": "Бен припускає, що двері відчинені, але ви бачите щільно зачинені двері перед собою. Скажіть висновок, замінивши The door займенником It.",
+      "accessibilityLabel": "Бен припускає, що двері відчинені, але ви бачите щільно зачинені двері перед собою. Скажіть висновок, замінивши The door словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "127fa0aa0c948650b49f907708724417883ba00133e9306daa5131ca131992ee"
+  "learnerFingerprint": "a8ee40b88ef2210ce5dd86cf21a2ed4d30b77980e002cc6dab2dbcc0d8acbb5b"
 }

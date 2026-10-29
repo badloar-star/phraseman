@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте связку после must.",
+      "prompt": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте форму be после must.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-01:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте связку после must.",
+      "accessibilityLabel": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте форму be после must.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте связку после must.",
-          "uk": "Бен увесь день ішов пішки. Ви робите висновок, що він втомився. Вставте зв’язку після must."
+          "ru": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте форму be после must.",
+          "uk": "Бен увесь день ішов пішки. Ви робите висновок, що він втомився. Вставте форму be після must."
         },
         "gappedTargetPhrase": "He must ___ tired.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте связку после must.",
+        "testedDimension": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте форму be после must.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-01:i03:r2",
             "correct": false,
-            "testedDimension": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте связку после must.",
+            "testedDimension": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте форму be после must.",
             "feedbackByLocale": {
               "ru": "После must нужна начальная форма be.",
               "uk": "Після must потрібна початкова форма be."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-32:session-01:i03:r3",
             "correct": false,
-            "testedDimension": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте связку после must.",
+            "testedDimension": "Бен весь день шёл пешком. Вы делаете вывод, что он устал. Вставьте форму be после must.",
             "feedbackByLocale": {
               "ru": "Must сочетается с be, не are.",
               "uk": "Must поєднується з be, не are."
@@ -486,7 +486,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы уже употребили must для вывода. Выберите связку перед at home.",
+      "prompt": "Вы уже употребили must для вывода. Выберите форму be перед at home.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-01:i11:r1",
@@ -503,12 +503,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы уже употребили must для вывода. Выберите связку перед at home.",
+      "accessibilityLabel": "Вы уже употребили must для вывода. Выберите форму be перед at home.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы уже употребили must для вывода. Выберите связку перед at home.",
-          "uk": "Ви вже вжили must для висновку. Виберіть зв’язку перед at home."
+          "ru": "Вы уже употребили must для вывода. Выберите форму be перед at home.",
+          "uk": "Ви вже вжили must для висновку. Виберіть форму be перед at home."
         },
         "gappedTargetPhrase": "They must ___ at home.",
         "gapOptions": [
@@ -525,12 +525,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вы уже употребили must для вывода. Выберите связку перед at home.",
+        "testedDimension": "Вы уже употребили must для вывода. Выберите форму be перед at home.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-01:i11:r2",
             "correct": false,
-            "testedDimension": "Вы уже употребили must для вывода. Выберите связку перед at home.",
+            "testedDimension": "Вы уже употребили must для вывода. Выберите форму be перед at home.",
             "feedbackByLocale": {
               "ru": "После must используем be, даже с they.",
               "uk": "Після must використовуємо be, навіть із they."
@@ -539,7 +539,7 @@
           {
             "responseId": "en:lesson-32:session-01:i11:r3",
             "correct": false,
-            "testedDimension": "Вы уже употребили must для вывода. Выберите связку перед at home.",
+            "testedDimension": "Вы уже употребили must для вывода. Выберите форму be перед at home.",
             "feedbackByLocale": {
               "ru": "Нужна начальная форма be.",
               "uk": "Потрібна початкова форма be."
@@ -1034,5 +1034,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5714c54048257d8ae52c457c72c8a5977822d1dde4631115b324912bb7177cb3"
+  "learnerFingerprint": "a740d66a011d7794f1df9a06ace96baa7fa57bda076062d1610cfe16a36903bb"
 }

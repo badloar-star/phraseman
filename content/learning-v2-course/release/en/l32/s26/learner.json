@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Чашка, которую я помыл, чистая. Скажите без that.",
+      "prompt": "Чашка, которую вы помыли, чистая. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-26:i07:audio"
       ],
-      "accessibilityLabel": "Чашка, которую я помыл, чистая. Скажите без that.",
+      "accessibilityLabel": "Чашка, которую вы помыли, чистая. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Чашка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+      "prompt": "Чашка, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-26:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Чашка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Чашка, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Чашка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
-          "uk": "Чашка, яку я помив, чиста. Уточніть предмет без зайвого займенника."
+          "ru": "Чашка, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
+          "uk": "Чашка, яку ви помили, чиста. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The cup I ___ is clean.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "washing"
           }
         ],
-        "testedDimension": "Чашка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Чашка, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-26:i08:r2",
             "correct": false,
-            "testedDimension": "Чашка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Чашка, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-26:i08:r3",
             "correct": false,
-            "testedDimension": "Чашка, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Чашка, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма washed.",
               "uk": "Потрібна минула форма washed."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна сложила в сумку несколько полных бутылок и поднимает её двумя руками. Скажите вывод ещё раз, заменив The bag местоимением It.",
+      "prompt": "Анна сложила в сумку несколько полных бутылок и поднимает её двумя руками. Скажите вывод ещё раз, заменив The bag словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-26:i10:audio"
       ],
-      "accessibilityLabel": "Анна сложила в сумку несколько полных бутылок и поднимает её двумя руками. Скажите вывод ещё раз, заменив The bag местоимением It.",
+      "accessibilityLabel": "Анна сложила в сумку несколько полных бутылок и поднимает её двумя руками. Скажите вывод ещё раз, заменив The bag словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1002,13 +1002,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы слышите, как внутри закрытой бутылки плещется вода. Анна предположила, что она пустая. Повторите вывод, заменив The bottle местоимением It.",
+      "prompt": "Вы слышите, как внутри закрытой бутылки плещется вода. Анна предположила, что она пустая. Повторите вывод, заменив The bottle словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-26:i21:audio"
       ],
-      "accessibilityLabel": "Вы слышите, как внутри закрытой бутылки плещется вода. Анна предположила, что она пустая. Повторите вывод, заменив The bottle местоимением It.",
+      "accessibilityLabel": "Вы слышите, как внутри закрытой бутылки плещется вода. Анна предположила, что она пустая. Повторите вывод, заменив The bottle словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5fbe18a8d30934d528d27822cd17ba5065622acd8158e04ced07a39d5299a49f"
+  "learnerFingerprint": "b1aaaa6295ff22981bf62026dddb66c4cc0339749426588d1d254b0398b0f0e1"
 }

@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Рослина, яку я купив, маленька. Скажіть без that.",
+      "prompt": "Рослина, яку ви купили, маленька. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-52:i07:audio"
       ],
-      "accessibilityLabel": "Рослина, яку я купив, маленька. Скажіть без that.",
+      "accessibilityLabel": "Рослина, яку ви купили, маленька. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Рослина, яку я купив, маленька. Уточніть предмет без зайвого займенника.",
+      "prompt": "Рослина, яку ви купили, маленька. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-52:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Рослина, яку я купив, маленька. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Рослина, яку ви купили, маленька. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Растение, которое я купил, маленькое. Уточните предмет без лишнего местоимения.",
-          "uk": "Рослина, яку я купив, маленька. Уточніть предмет без зайвого займенника."
+          "ru": "Растение, которое вы купили, маленькое. Предмет уже назван — не повторяйте его.",
+          "uk": "Рослина, яку ви купили, маленька. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The plant I ___ is small.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Рослина, яку я купив, маленька. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Рослина, яку ви купили, маленька. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-52:i08:r2",
             "correct": false,
-            "testedDimension": "Рослина, яку я купив, маленька. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Рослина, яку ви купили, маленька. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-52:i08:r3",
             "correct": false,
-            "testedDimension": "Рослина, яку я купив, маленька. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Рослина, яку ви купили, маленька. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "У відкритому відрі видно дощову воду. Анна вважала, що воно порожнє. Скажіть висновок, замінивши The bucket займенником It.",
+      "prompt": "У відкритому відрі видно дощову воду. Анна вважала, що воно порожнє. Скажіть висновок, замінивши The bucket словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-52:i10:audio"
       ],
-      "accessibilityLabel": "У відкритому відрі видно дощову воду. Анна вважала, що воно порожнє. Скажіть висновок, замінивши The bucket займенником It.",
+      "accessibilityLabel": "У відкритому відрі видно дощову воду. Анна вважала, що воно порожнє. Скажіть висновок, замінивши The bucket словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4099bfe1bb2c2a4def5fcb9c08aabafc92fa9c64a6d531d0a636faba83fb0251"
+  "learnerFingerprint": "6ce0970737887a14f4fb3ddd7aa0fbeebef52221cc37d835e6f0149da9db99af"
 }

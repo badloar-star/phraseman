@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Миска, которую я помыл, чистая. Скажите без that.",
+      "prompt": "Миска, которую вы помыли, чистая. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-12:i07:audio"
       ],
-      "accessibilityLabel": "Миска, которую я помыл, чистая. Скажите без that.",
+      "accessibilityLabel": "Миска, которую вы помыли, чистая. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+      "prompt": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-12:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
-          "uk": "Миска, яку я помив, чиста. Уточніть предмет без зайвого займенника."
+          "ru": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
+          "uk": "Миска, яку ви помили, чиста. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The bowl I ___ is clean.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "washing"
           }
         ],
-        "testedDimension": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-12:i08:r2",
             "correct": false,
-            "testedDimension": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-12:i08:r3",
             "correct": false,
-            "testedDimension": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма washed.",
               "uk": "Потрібна минула форма washed."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Рис варился положенное время, и таймер только что прозвенел. Вы ещё не открывали крышку. Скажите вывод ещё раз, заменив The rice местоимением It.",
+      "prompt": "Рис варился положенное время, и таймер только что прозвенел. Вы ещё не открывали крышку. Скажите вывод ещё раз, заменив The rice словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-12:i10:audio"
       ],
-      "accessibilityLabel": "Рис варился положенное время, и таймер только что прозвенел. Вы ещё не открывали крышку. Скажите вывод ещё раз, заменив The rice местоимением It.",
+      "accessibilityLabel": "Рис варился положенное время, и таймер только что прозвенел. Вы ещё не открывали крышку. Скажите вывод ещё раз, заменив The rice словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d426bf1fe64fc0e056b8260de2b93f6db489fd0415407f1f940b73a323ffe7f2"
+  "learnerFingerprint": "83b4a6f5ded257b34120e56c3d36c3613dca2bbaae773b1864df70739f7da901"
 }

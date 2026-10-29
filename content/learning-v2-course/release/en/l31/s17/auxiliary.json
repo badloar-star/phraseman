@@ -23,8 +23,8 @@
           "uk": "Після where порядок the keys are."
         },
         "en:lesson-31:session-17:intro2:r3": {
-          "ru": "Множественное keys требует are.",
-          "uk": "Множина keys потребує are."
+          "ru": "Keys (их несколько) требуют are.",
+          "uk": "Keys (їх кілька) потребують are."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "56aeaba904942ce2ac90c7ba9746f4992e0c7291ced19e10b6a165492562a216"
+  "auxiliaryFingerprint": "fda8254231475bf660b6e5332487d2fe6736f77e05b197c365d205eec14b4b33"
 }

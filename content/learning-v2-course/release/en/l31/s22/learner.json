@@ -985,8 +985,8 @@
             "correct": false,
             "testedDimension": "Чашки не грязные. Добавьте утвердительное уточнение о них.",
             "feedbackByLocale": {
-              "ru": "Множественное cups требует are.",
-              "uk": "Множина cups потребує are."
+              "ru": "Cups (их несколько) требуют are.",
+              "uk": "Cups (їх кілька) потребують are."
             }
           },
           {
@@ -1042,5 +1042,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "587a57a430aa917dddbc5d624d8bee5ac56627277ca8040fc360a627a5bcf405"
+  "learnerFingerprint": "2133b91cd292befc99c8c3bcc04209bf103437b8d7ef3519ba57d52532eca07d"
 }

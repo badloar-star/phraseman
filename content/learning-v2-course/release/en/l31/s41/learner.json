@@ -310,7 +310,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
+      "prompt": "Вы записали адрес, чтобы помнить его. Выберите, чем связать части фразы перед I could remember it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-41:i07:r1",
@@ -327,12 +327,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
+      "accessibilityLabel": "Вы записали адрес, чтобы помнить его. Выберите, чем связать части фразы перед I could remember it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
-          "uk": "Ви записали адресу, щоб пам’ятати її. Виберіть сполуку перед I could remember it."
+          "ru": "Вы записали адрес, чтобы помнить его. Выберите, чем связать части фразы перед I could remember it.",
+          "uk": "Ви записали адресу, щоб пам’ятати її. Виберіть, чим поєднати частини фрази перед I could remember it."
         },
         "gappedTargetPhrase": "I wrote the address ___ I could remember it.",
         "gapOptions": [
@@ -349,12 +349,12 @@
             "text": "for"
           }
         ],
-        "testedDimension": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
+        "testedDimension": "Вы записали адрес, чтобы помнить его. Выберите, чем связать части фразы перед I could remember it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-41:i07:r2",
             "correct": false,
-            "testedDimension": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
+            "testedDimension": "Вы записали адрес, чтобы помнить его. Выберите, чем связать части фразы перед I could remember it.",
             "feedbackByLocale": {
               "ru": "Перед отдельным I could remember it нужно so that.",
               "uk": "Перед окремим I could remember it потрібне so that."
@@ -363,7 +363,7 @@
           {
             "responseId": "en:lesson-31:session-41:i07:r3",
             "correct": false,
-            "testedDimension": "Вы записали адрес, чтобы помнить его. Выберите связку перед I could remember it.",
+            "testedDimension": "Вы записали адрес, чтобы помнить его. Выберите, чем связать части фразы перед I could remember it.",
             "feedbackByLocale": {
               "ru": "Перед целой частью цели нужно so that.",
               "uk": "Перед цілою частиною мети потрібне so that."
@@ -1050,5 +1050,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9abb29f8bbadd1562b82be8fa4f8b7cc1cfe03c279be2eb71bd06633d549e5e1"
+  "learnerFingerprint": "f2727efeebd659c9badae0566e361507467baf8daee30cf1b8c16d89ed022d11"
 }

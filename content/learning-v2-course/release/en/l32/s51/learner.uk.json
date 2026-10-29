@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Пиріг, який я вибрав, солодкий. Скажіть без that.",
+      "prompt": "Пиріг, який ви вибрали, солодкий. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-51:i07:audio"
       ],
-      "accessibilityLabel": "Пиріг, який я вибрав, солодкий. Скажіть без that.",
+      "accessibilityLabel": "Пиріг, який ви вибрали, солодкий. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника.",
+      "prompt": "Пиріг, який ви вибрали, солодкий. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-51:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Пиріг, який ви вибрали, солодкий. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Пирог, который я выбрал, сладкий. Уточните предмет без лишнего местоимения.",
-          "uk": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника."
+          "ru": "Пирог, который вы выбрали, сладкий. Предмет уже назван — не повторяйте его.",
+          "uk": "Пиріг, який ви вибрали, солодкий. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The cake I ___ is sweet.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "choosing"
           }
         ],
-        "testedDimension": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Пиріг, який ви вибрали, солодкий. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-51:i08:r2",
             "correct": false,
-            "testedDimension": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Пиріг, який ви вибрали, солодкий. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-51:i08:r3",
             "correct": false,
-            "testedDimension": "Пиріг, який я вибрав, солодкий. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Пиріг, який ви вибрали, солодкий. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма chose.",
               "uk": "Потрібна минула форма chose."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. Скажіть висновок, замінивши The table займенником It.",
+      "prompt": "Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. Скажіть висновок, замінивши The table словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-51:i10:audio"
       ],
-      "accessibilityLabel": "Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. Скажіть висновок, замінивши The table займенником It.",
+      "accessibilityLabel": "Анна вважає, що на столі нічого немає, але ви бачите на ньому чашки й тарілки. Скажіть висновок, замінивши The table словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ab31f3ff461b7774955c7abd8acb955846f17705ffde504aeb40644794011ed4"
+  "learnerFingerprint": "fe51fed4ea6d3797a96544249f7890b41875694cebea38229ed4337829e4df12"
 }

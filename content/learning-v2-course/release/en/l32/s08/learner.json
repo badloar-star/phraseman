@@ -351,7 +351,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточните помытую вами миску, не повторяя её местоимением.",
+      "prompt": "Уточните помытую вами миску, не повторяя её словом it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-08:i08:r1",
@@ -368,12 +368,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните помытую вами миску, не повторяя её местоимением.",
+      "accessibilityLabel": "Уточните помытую вами миску, не повторяя её словом it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните помытую вами миску, не повторяя её местоимением.",
-          "uk": "Уточніть помиту вами миску, не повторюючи її займенником."
+          "ru": "Уточните помытую вами миску, не повторяя её словом it.",
+          "uk": "Уточніть помиту вами миску, не повторюючи її словом it."
         },
         "gappedTargetPhrase": "The bowl I ___ is clean.",
         "gapOptions": [
@@ -390,12 +390,12 @@
             "text": "washing"
           }
         ],
-        "testedDimension": "Уточните помытую вами миску, не повторяя её местоимением.",
+        "testedDimension": "Уточните помытую вами миску, не повторяя её словом it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-08:i08:r2",
             "correct": false,
-            "testedDimension": "Уточните помытую вами миску, не повторяя её местоимением.",
+            "testedDimension": "Уточните помытую вами миску, не повторяя её словом it.",
             "feedbackByLocale": {
               "ru": "Bowl уже названо, it не нужно.",
               "uk": "Bowl уже названо, it не потрібне."
@@ -404,7 +404,7 @@
           {
             "responseId": "en:lesson-32:session-08:i08:r3",
             "correct": false,
-            "testedDimension": "Уточните помытую вами миску, не повторяя её местоимением.",
+            "testedDimension": "Уточните помытую вами миску, не повторяя её словом it.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма washed.",
               "uk": "Потрібна минула форма washed."
@@ -980,8 +980,8 @@
             "correct": false,
             "testedDimension": "Уточните полотенце, которым воспользовались.",
             "feedbackByLocale": {
-              "ru": "Не повторяем towel местоимением it.",
-              "uk": "Не повторюємо towel займенником it."
+              "ru": "Не повторяем towel словом it.",
+              "uk": "Не повторюємо towel словом it."
             }
           },
           {
@@ -1037,5 +1037,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4878b5e21599816af79a446dbcf979be0f46a3a33c2575f90c2ad0ee736ae934"
+  "learnerFingerprint": "7308f72e63c75ea630bcab1c40c7e4d8696d06ebd2ea26db638bbfe74273f3f6"
 }

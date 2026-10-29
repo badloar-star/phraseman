@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
+      "prompt": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите форму be после must.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-05:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
+      "accessibilityLabel": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите форму be после must.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
-          "uk": "Анна й Бен пропустили обід. Ви робите висновок про голод. Виберіть зв’язку після must."
+          "ru": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите форму be после must.",
+          "uk": "Анна й Бен пропустили обід. Ви робите висновок про голод. Виберіть форму be після must."
         },
         "gappedTargetPhrase": "They must ___ hungry.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
+        "testedDimension": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите форму be после must.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-05:i03:r2",
             "correct": false,
-            "testedDimension": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
+            "testedDimension": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите форму be после must.",
             "feedbackByLocale": {
               "ru": "После must здесь нужна форма be.",
               "uk": "Після must тут потрібна форма be."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-32:session-05:i03:r3",
             "correct": false,
-            "testedDimension": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите связку после must.",
+            "testedDimension": "Анна и Бен пропустили обед. Вы делаете вывод о голоде. Выберите форму be после must.",
             "feedbackByLocale": {
               "ru": "Используем be, не is.",
               "uk": "Використовуємо be, не is."
@@ -352,7 +352,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
+      "prompt": "Уточните бутерброд, который приготовили, не повторяя sandwich словом it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-05:i08:r1",
@@ -369,12 +369,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
+      "accessibilityLabel": "Уточните бутерброд, который приготовили, не повторяя sandwich словом it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
-          "uk": "Уточніть бутерброд, який приготували, не повторюючи sandwich займенником."
+          "ru": "Уточните бутерброд, который приготовили, не повторяя sandwich словом it.",
+          "uk": "Уточніть бутерброд, який приготували, не повторюючи sandwich словом it."
         },
         "gappedTargetPhrase": "The sandwich I ___ is for Ben.",
         "gapOptions": [
@@ -391,12 +391,12 @@
             "text": "making"
           }
         ],
-        "testedDimension": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
+        "testedDimension": "Уточните бутерброд, который приготовили, не повторяя sandwich словом it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-05:i08:r2",
             "correct": false,
-            "testedDimension": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
+            "testedDimension": "Уточните бутерброд, который приготовили, не повторяя sandwich словом it.",
             "feedbackByLocale": {
               "ru": "Sandwich уже названо: it после made не нужно.",
               "uk": "Sandwich уже названо: it після made не потрібне."
@@ -405,7 +405,7 @@
           {
             "responseId": "en:lesson-32:session-05:i08:r3",
             "correct": false,
-            "testedDimension": "Уточните бутерброд, который приготовили, не повторяя sandwich местоимением.",
+            "testedDimension": "Уточните бутерброд, который приготовили, не повторяя sandwich словом it.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма made.",
               "uk": "Потрібна минула форма made."
@@ -1038,5 +1038,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0be05b504a7b28cd86e470c924873a4045a1c58b95bd73a73f3299cf98a0c855"
+  "learnerFingerprint": "00cdf593a9a1b473b3454c1361326f467d4a79d21e833e6a739e9ce0913b4a90"
 }

@@ -10,8 +10,8 @@
           "uk": "З are в основній частині тут потрібно aren’t."
         },
         "en:lesson-31:session-14:intro1:r3": {
-          "ru": "Множественное shoes заменяем на they.",
-          "uk": "Множину shoes замінюємо на they."
+          "ru": "Shoes (их несколько) заменяем на they.",
+          "uk": "Shoes (їх кілька) замінюємо на they."
         }
       }
     },
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-31:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-31:session-14:intro3:r2": {
-          "ru": "Множественное tickets требует were.",
-          "uk": "Множина tickets потребує were."
+          "ru": "Tickets (их несколько) требуют were.",
+          "uk": "Tickets (їх кілька) потребують were."
         },
         "en:lesson-31:session-14:intro3:r3": {
           "ru": "После were нужна форма checked.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "bcf6fe5cfb37cae0a846ff1be5c6b3e0a167168758b11b5b7db8be37a9a28118"
+  "auxiliaryFingerprint": "0b86e7964b3737cb2cc84d93bf5906c2d94a0aee1dedc4e44e6f7505b26b418a"
 }

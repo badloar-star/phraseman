@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Книжка, яку я прочитав, коротка. Скажіть без that.",
+      "prompt": "Книжка, яку ви прочитали, коротка. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-55:i07:audio"
       ],
-      "accessibilityLabel": "Книжка, яку я прочитав, коротка. Скажіть без that.",
+      "accessibilityLabel": "Книжка, яку ви прочитали, коротка. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Книжка, яку я прочитав, коротка. Уточніть предмет без зайвого займенника.",
+      "prompt": "Книжка, яку ви прочитали, коротка. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-55:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Книжка, яку я прочитав, коротка. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Книжка, яку ви прочитали, коротка. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Книга, которую я прочитал, короткая. Уточните предмет без лишнего местоимения.",
-          "uk": "Книжка, яку я прочитав, коротка. Уточніть предмет без зайвого займенника."
+          "ru": "Книга, которую вы прочитали, короткая. Предмет уже назван — не повторяйте его.",
+          "uk": "Книжка, яку ви прочитали, коротка. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The book I ___ is short.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "reading"
           }
         ],
-        "testedDimension": "Книжка, яку я прочитав, коротка. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Книжка, яку ви прочитали, коротка. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-55:i08:r2",
             "correct": false,
-            "testedDimension": "Книжка, яку я прочитав, коротка. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Книжка, яку ви прочитали, коротка. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-55:i08:r3",
             "correct": false,
-            "testedDimension": "Книжка, яку я прочитав, коротка. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Книжка, яку ви прочитали, коротка. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма read.",
               "uk": "Потрібна минула форма read."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Із сорочки крапає вода. Анна вважала, що вона висохла після дощу. Скажіть висновок, замінивши The shirt займенником It.",
+      "prompt": "Із сорочки крапає вода. Анна вважала, що вона висохла після дощу. Скажіть висновок, замінивши The shirt словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-55:i10:audio"
       ],
-      "accessibilityLabel": "Із сорочки крапає вода. Анна вважала, що вона висохла після дощу. Скажіть висновок, замінивши The shirt займенником It.",
+      "accessibilityLabel": "Із сорочки крапає вода. Анна вважала, що вона висохла після дощу. Скажіть висновок, замінивши The shirt словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "915aeb2953047c74b2c2478cae35269475e606168d4fe90a4aa53fe16c25ecf1"
+  "learnerFingerprint": "519a15a280cfac843e3189aff90262712bf55a475d8510cf18b89fa271b5e67e"
 }

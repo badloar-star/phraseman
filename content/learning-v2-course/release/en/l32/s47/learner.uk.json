@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Шапка, яку я купив, тепла. Скажіть без that.",
+      "prompt": "Шапка, яку ви купили, тепла. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-47:i07:audio"
       ],
-      "accessibilityLabel": "Шапка, яку я купив, тепла. Скажіть без that.",
+      "accessibilityLabel": "Шапка, яку ви купили, тепла. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Шапка, яку я купив, тепла. Уточніть предмет без зайвого займенника.",
+      "prompt": "Шапка, яку ви купили, тепла. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-47:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Шапка, яку я купив, тепла. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Шапка, яку ви купили, тепла. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Шапка, которую я купил, тёплая. Уточните предмет без лишнего местоимения.",
-          "uk": "Шапка, яку я купив, тепла. Уточніть предмет без зайвого займенника."
+          "ru": "Шапка, которую вы купили, тёплая. Предмет уже назван — не повторяйте его.",
+          "uk": "Шапка, яку ви купили, тепла. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The hat I ___ is warm.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Шапка, яку я купив, тепла. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Шапка, яку ви купили, тепла. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-47:i08:r2",
             "correct": false,
-            "testedDimension": "Шапка, яку я купив, тепла. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Шапка, яку ви купили, тепла. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-47:i08:r3",
             "correct": false,
-            "testedDimension": "Шапка, яку я купив, тепла. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Шапка, яку ви купили, тепла. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "З парасолі на підлогу стікає вода. Анна думала, що вона вже висохла. Скажіть висновок, замінивши The umbrella займенником It.",
+      "prompt": "З парасолі на підлогу стікає вода. Анна думала, що вона вже висохла. Скажіть висновок, замінивши The umbrella словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-47:i10:audio"
       ],
-      "accessibilityLabel": "З парасолі на підлогу стікає вода. Анна думала, що вона вже висохла. Скажіть висновок, замінивши The umbrella займенником It.",
+      "accessibilityLabel": "З парасолі на підлогу стікає вода. Анна думала, що вона вже висохла. Скажіть висновок, замінивши The umbrella словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bd643eecd5ade74beb7fc00dc04819dcb7b9434f2fe969eecb73e88d19748b42"
+  "learnerFingerprint": "d894cd3a3c2188ff8eb6a154e982e91fe11da9d5e41899d088a9325dff091cbb"
 }

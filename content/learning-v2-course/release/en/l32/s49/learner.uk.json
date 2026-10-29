@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ганчірка, яку я виправ, чиста. Скажіть без that.",
+      "prompt": "Ганчірка, яку ви випрали, чиста. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-49:i07:audio"
       ],
-      "accessibilityLabel": "Ганчірка, яку я виправ, чиста. Скажіть без that.",
+      "accessibilityLabel": "Ганчірка, яку ви випрали, чиста. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ганчірка, яку я виправ, чиста. Уточніть предмет без зайвого займенника.",
+      "prompt": "Ганчірка, яку ви випрали, чиста. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-49:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ганчірка, яку я виправ, чиста. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Ганчірка, яку ви випрали, чиста. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Тряпка, которую я постирал, чистая. Уточните предмет без лишнего местоимения.",
-          "uk": "Ганчірка, яку я виправ, чиста. Уточніть предмет без зайвого займенника."
+          "ru": "Тряпка, которую вы постирали, чистая. Предмет уже назван — не повторяйте его.",
+          "uk": "Ганчірка, яку ви випрали, чиста. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The cloth I ___ is clean.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "washing"
           }
         ],
-        "testedDimension": "Ганчірка, яку я виправ, чиста. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Ганчірка, яку ви випрали, чиста. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-49:i08:r2",
             "correct": false,
-            "testedDimension": "Ганчірка, яку я виправ, чиста. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Ганчірка, яку ви випрали, чиста. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-49:i08:r3",
             "correct": false,
-            "testedDimension": "Ганчірка, яку я виправ, чиста. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Ганчірка, яку ви випрали, чиста. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма washed.",
               "uk": "Потрібна минула форма washed."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна каже, що чашка повна, але в ній залишилося лише трохи чаю на дні. Скажіть висновок, замінивши The cup займенником It.",
+      "prompt": "Анна каже, що чашка повна, але в ній залишилося лише трохи чаю на дні. Скажіть висновок, замінивши The cup словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-49:i10:audio"
       ],
-      "accessibilityLabel": "Анна каже, що чашка повна, але в ній залишилося лише трохи чаю на дні. Скажіть висновок, замінивши The cup займенником It.",
+      "accessibilityLabel": "Анна каже, що чашка повна, але в ній залишилося лише трохи чаю на дні. Скажіть висновок, замінивши The cup словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "606533ab05c93ab97eb1dc14d7f128b96ac3eb176e8d0e398b30e87bfb4062a5"
+  "learnerFingerprint": "d5996cda3a8f9edd922a8bc9f36f7173c6439886c52fecc28ca18d69ac50be48"
 }

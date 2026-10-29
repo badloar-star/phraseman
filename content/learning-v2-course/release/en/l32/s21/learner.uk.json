@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Клей, який я купив, міцний. Скажіть без that.",
+      "prompt": "Клей, який ви купили, міцний. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-21:i07:audio"
       ],
-      "accessibilityLabel": "Клей, який я купив, міцний. Скажіть без that.",
+      "accessibilityLabel": "Клей, який ви купили, міцний. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника.",
+      "prompt": "Клей, який ви купили, міцний. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-21:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Клей, який ви купили, міцний. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Клей, который я купил, прочный. Уточните предмет без лишнего местоимения.",
-          "uk": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника."
+          "ru": "Клей, который вы купили, прочный. Предмет уже назван — не повторяйте его.",
+          "uk": "Клей, який ви купили, міцний. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The glue I ___ is strong.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Клей, який ви купили, міцний. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-21:i08:r2",
             "correct": false,
-            "testedDimension": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Клей, який ви купили, міцний. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-21:i08:r3",
             "correct": false,
-            "testedDimension": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Клей, який ви купили, міцний. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Коли ви легко натискаєте на стілець, одна ніжка сильно згинається, а зі з’єднання чути тріск. Скажіть висновок іще раз, замінивши The leg займенником It.",
+      "prompt": "Коли ви легко натискаєте на стілець, одна ніжка сильно згинається, а зі з’єднання чути тріск. Скажіть висновок іще раз, замінивши The leg словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-21:i10:audio"
       ],
-      "accessibilityLabel": "Коли ви легко натискаєте на стілець, одна ніжка сильно згинається, а зі з’єднання чути тріск. Скажіть висновок іще раз, замінивши The leg займенником It.",
+      "accessibilityLabel": "Коли ви легко натискаєте на стілець, одна ніжка сильно згинається, а зі з’єднання чути тріск. Скажіть висновок іще раз, замінивши The leg словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2b3e92931047c78db7b9717da0da7dbc969b0c3dadf1a6bc0ab1a2d670bfa9e2"
+  "learnerFingerprint": "a121d9ec4f797a7a03866966b1d0ae7894c9bbb9104d36db0fbe1a434a0b0730"
 }

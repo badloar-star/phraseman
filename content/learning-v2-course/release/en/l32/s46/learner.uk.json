@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Іграшка, яку я знайшов, маленька. Скажіть без that.",
+      "prompt": "Іграшка, яку ви знайшли, маленька. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-46:i07:audio"
       ],
-      "accessibilityLabel": "Іграшка, яку я знайшов, маленька. Скажіть без that.",
+      "accessibilityLabel": "Іграшка, яку ви знайшли, маленька. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника.",
+      "prompt": "Іграшка, яку ви знайшли, маленька. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-46:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Іграшка, яку ви знайшли, маленька. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Игрушка, которую я нашёл, маленькая. Уточните предмет без лишнего местоимения.",
-          "uk": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника."
+          "ru": "Игрушка, которую вы нашли, маленькая. Предмет уже назван — не повторяйте его.",
+          "uk": "Іграшка, яку ви знайшли, маленька. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The toy I ___ is small.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "finding"
           }
         ],
-        "testedDimension": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Іграшка, яку ви знайшли, маленька. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-46:i08:r2",
             "correct": false,
-            "testedDimension": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Іграшка, яку ви знайшли, маленька. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-46:i08:r3",
             "correct": false,
-            "testedDimension": "Іграшка, яку я знайшов, маленька. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Іграшка, яку ви знайшли, маленька. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма found.",
               "uk": "Потрібна минула форма found."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. Скажіть висновок, замінивши The door займенником It.",
+      "prompt": "Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. Скажіть висновок, замінивши The door словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-46:i10:audio"
       ],
-      "accessibilityLabel": "Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. Скажіть висновок, замінивши The door займенником It.",
+      "accessibilityLabel": "Анна припускає, що двері відчинені, але ви бачите, що вони щільно зачинені. Скажіть висновок, замінивши The door словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0a739841ac6e028a1f882a3203874d078258d7a6f527ecb2553148048cc389e4"
+  "learnerFingerprint": "301f95ed653ffd6cee245d027defd7ee5eb172dd4543c53f050f239d9b9dccf3"
 }

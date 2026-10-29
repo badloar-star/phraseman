@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы с друзьями перестали играть из-за дождя. Выберите связку.",
+      "prompt": "Вы с друзьями перестали играть из-за дождя. Выберите, чем связать части фразы.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-31:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с друзьями перестали играть из-за дождя. Выберите связку.",
+      "accessibilityLabel": "Вы с друзьями перестали играть из-за дождя. Выберите, чем связать части фразы.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы с друзьями перестали играть из-за дождя. Выберите связку.",
-          "uk": "Ви з друзями перестали грати через дощ. Виберіть сполуку."
+          "ru": "Вы с друзьями перестали играть из-за дождя. Выберите, чем связать части фразы.",
+          "uk": "Ви з друзями перестали грати через дощ. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "We stopped playing ___ the rain.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Вы с друзьями перестали играть из-за дождя. Выберите связку.",
+        "testedDimension": "Вы с друзьями перестали играть из-за дождя. Выберите, чем связать части фразы.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-31:i03:r2",
             "correct": false,
-            "testedDimension": "Вы с друзьями перестали играть из-за дождя. Выберите связку.",
+            "testedDimension": "Вы с друзьями перестали играть из-за дождя. Выберите, чем связать части фразы.",
             "feedbackByLocale": {
               "ru": "Перед названием причины the rain нужно because of.",
               "uk": "Перед назвою причини the rain потрібне because of."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-31:session-31:i03:r3",
             "correct": false,
-            "testedDimension": "Вы с друзьями перестали играть из-за дождя. Выберите связку.",
+            "testedDimension": "Вы с друзьями перестали играть из-за дождя. Выберите, чем связать части фразы.",
             "feedbackByLocale": {
               "ru": "Нужна полная связка because of.",
               "uk": "Потрібна повна сполука because of."
@@ -1042,5 +1042,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0079d36daaa139bbdd2df5f957a346b77890cd14340ee1efbc6dbc8b38c381a5"
+  "learnerFingerprint": "aca720e97313ed640605a38e7b3cdbaef4e29950a105355a06e109cfa4422aed"
 }

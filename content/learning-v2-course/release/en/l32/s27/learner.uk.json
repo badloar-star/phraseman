@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Рушник, яким я скористався, мокрий. Скажіть без that.",
+      "prompt": "Рушник, яким ви скористалися, мокрий. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-27:i07:audio"
       ],
-      "accessibilityLabel": "Рушник, яким я скористався, мокрий. Скажіть без that.",
+      "accessibilityLabel": "Рушник, яким ви скористалися, мокрий. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Рушник, яким я скористався, мокрий. Уточніть предмет без зайвого займенника.",
+      "prompt": "Рушник, яким ви скористалися, мокрий. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-27:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Рушник, яким я скористався, мокрий. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Рушник, яким ви скористалися, мокрий. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
-          "uk": "Рушник, яким я скористався, мокрий. Уточніть предмет без зайвого займенника."
+          "ru": "Полотенце, которым вы воспользовались, мокрое. Предмет уже назван — не повторяйте его.",
+          "uk": "Рушник, яким ви скористалися, мокрий. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The towel I ___ is wet.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "using"
           }
         ],
-        "testedDimension": "Рушник, яким я скористався, мокрий. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Рушник, яким ви скористалися, мокрий. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-27:i08:r2",
             "correct": false,
-            "testedDimension": "Рушник, яким я скористався, мокрий. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Рушник, яким ви скористалися, мокрий. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-27:i08:r3",
             "correct": false,
-            "testedDimension": "Рушник, яким я скористався, мокрий. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Рушник, яким ви скористалися, мокрий. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма used.",
               "uk": "Потрібна минула форма used."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна довго йшла під сильним дощем без парасолі. Ви робите висновок про її пальто. Скажіть висновок іще раз, замінивши The coat займенником It.",
+      "prompt": "Анна довго йшла під сильним дощем без парасолі. Ви робите висновок про її пальто. Скажіть висновок іще раз, замінивши The coat словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-27:i10:audio"
       ],
-      "accessibilityLabel": "Анна довго йшла під сильним дощем без парасолі. Ви робите висновок про її пальто. Скажіть висновок іще раз, замінивши The coat займенником It.",
+      "accessibilityLabel": "Анна довго йшла під сильним дощем без парасолі. Ви робите висновок про її пальто. Скажіть висновок іще раз, замінивши The coat словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1002,13 +1002,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Крізь скло ви бачите всередині людей. Анна думає, що в кімнаті нікого немає. Повторіть висновок, замінивши The room займенником It.",
+      "prompt": "Крізь скло ви бачите всередині людей. Анна думає, що в кімнаті нікого немає. Повторіть висновок, замінивши The room словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-27:i21:audio"
       ],
-      "accessibilityLabel": "Крізь скло ви бачите всередині людей. Анна думає, що в кімнаті нікого немає. Повторіть висновок, замінивши The room займенником It.",
+      "accessibilityLabel": "Крізь скло ви бачите всередині людей. Анна думає, що в кімнаті нікого немає. Повторіть висновок, замінивши The room словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "59f5754effb16ddb93970cc1550763df036f9cbac49d5fec43fa3a077a864c74"
+  "learnerFingerprint": "8ca6db5d96e87106dfd4ec8e20633c323925c1cf4e92976e8bcd07ebeaf0f8c5"
 }

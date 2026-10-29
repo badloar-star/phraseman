@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточните пальто, которое постирали, без лишнего местоимения.",
+      "prompt": "Уточните пальто, которое постирали, без лишнего it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-11:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните пальто, которое постирали, без лишнего местоимения.",
+      "accessibilityLabel": "Уточните пальто, которое постирали, без лишнего it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните пальто, которое постирали, без лишнего местоимения.",
-          "uk": "Уточніть пальто, яке випрали, без зайвого займенника."
+          "ru": "Уточните пальто, которое постирали, без лишнего it.",
+          "uk": "Уточніть пальто, яке випрали, без зайвого it."
         },
         "gappedTargetPhrase": "The coat I ___ is clean.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "washing"
           }
         ],
-        "testedDimension": "Уточните пальто, которое постирали, без лишнего местоимения.",
+        "testedDimension": "Уточните пальто, которое постирали, без лишнего it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-11:i08:r2",
             "correct": false,
-            "testedDimension": "Уточните пальто, которое постирали, без лишнего местоимения.",
+            "testedDimension": "Уточните пальто, которое постирали, без лишнего it.",
             "feedbackByLocale": {
               "ru": "Coat уже названо: it не нужно.",
               "uk": "Coat уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-11:i08:r3",
             "correct": false,
-            "testedDimension": "Уточните пальто, которое постирали, без лишнего местоимения.",
+            "testedDimension": "Уточните пальто, которое постирали, без лишнего it.",
             "feedbackByLocale": {
               "ru": "Нужна форма washed.",
               "uk": "Потрібна форма washed."
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "12e2d8f658323237ca18c05ff8be347c415484f8bdb84f24af05fa4f2377d66a"
+  "learnerFingerprint": "d877e217c4e5761a267a24af8cc98c24c976c710678181807fd981f6994f4b98"
 }

@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Блюдо, которое я помыл, чистое. Скажите без that.",
+      "prompt": "Блюдо, которое вы помыли, чистое. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-22:i07:audio"
       ],
-      "accessibilityLabel": "Блюдо, которое я помыл, чистое. Скажите без that.",
+      "accessibilityLabel": "Блюдо, которое вы помыли, чистое. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Блюдо, которое я помыл, чистое. Уточните предмет без лишнего местоимения.",
+      "prompt": "Блюдо, которое вы помыли, чистое. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-22:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Блюдо, которое я помыл, чистое. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Блюдо, которое вы помыли, чистое. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Блюдо, которое я помыл, чистое. Уточните предмет без лишнего местоимения.",
-          "uk": "Блюдо, яке я помив, чисте. Уточніть предмет без зайвого займенника."
+          "ru": "Блюдо, которое вы помыли, чистое. Предмет уже назван — не повторяйте его.",
+          "uk": "Блюдо, яке ви помили, чисте. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The dish I ___ is clean.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "washing"
           }
         ],
-        "testedDimension": "Блюдо, которое я помыл, чистое. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Блюдо, которое вы помыли, чистое. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-22:i08:r2",
             "correct": false,
-            "testedDimension": "Блюдо, которое я помыл, чистое. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Блюдо, которое вы помыли, чистое. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-22:i08:r3",
             "correct": false,
-            "testedDimension": "Блюдо, которое я помыл, чистое. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Блюдо, которое вы помыли, чистое. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма washed.",
               "uk": "Потрібна минула форма washed."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Пирог пёкся нужное время. Таймер прозвенел, а через стекло видна золотистая корочка. Скажите вывод ещё раз, заменив The cake местоимением It.",
+      "prompt": "Пирог пёкся нужное время. Таймер прозвенел, а через стекло видна золотистая корочка. Скажите вывод ещё раз, заменив The cake словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-22:i10:audio"
       ],
-      "accessibilityLabel": "Пирог пёкся нужное время. Таймер прозвенел, а через стекло видна золотистая корочка. Скажите вывод ещё раз, заменив The cake местоимением It.",
+      "accessibilityLabel": "Пирог пёкся нужное время. Таймер прозвенел, а через стекло видна золотистая корочка. Скажите вывод ещё раз, заменив The cake словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "72b543b6b0fb014e4c28b4aec9c8aa376f7006edecbce6241ecaefbd9e8a78f1"
+  "learnerFingerprint": "25fbafe71d4594e845cbbf8e69fd3dbace2350248489d13e60764eac123b651a"
 }

@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Книга, которую я прочитал, короткая. Скажите без that.",
+      "prompt": "Книга, которую вы прочитали, короткая. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-55:i07:audio"
       ],
-      "accessibilityLabel": "Книга, которую я прочитал, короткая. Скажите без that.",
+      "accessibilityLabel": "Книга, которую вы прочитали, короткая. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Книга, которую я прочитал, короткая. Уточните предмет без лишнего местоимения.",
+      "prompt": "Книга, которую вы прочитали, короткая. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-55:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Книга, которую я прочитал, короткая. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Книга, которую вы прочитали, короткая. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Книга, которую я прочитал, короткая. Уточните предмет без лишнего местоимения.",
-          "uk": "Книжка, яку я прочитав, коротка. Уточніть предмет без зайвого займенника."
+          "ru": "Книга, которую вы прочитали, короткая. Предмет уже назван — не повторяйте его.",
+          "uk": "Книжка, яку ви прочитали, коротка. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The book I ___ is short.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "reading"
           }
         ],
-        "testedDimension": "Книга, которую я прочитал, короткая. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Книга, которую вы прочитали, короткая. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-55:i08:r2",
             "correct": false,
-            "testedDimension": "Книга, которую я прочитал, короткая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Книга, которую вы прочитали, короткая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-55:i08:r3",
             "correct": false,
-            "testedDimension": "Книга, которую я прочитал, короткая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Книга, которую вы прочитали, короткая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма read.",
               "uk": "Потрібна минула форма read."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Из рубашки капает вода. Анна считала, что она высохла после дождя. Скажите вывод, заменив The shirt местоимением It.",
+      "prompt": "Из рубашки капает вода. Анна считала, что она высохла после дождя. Скажите вывод, заменив The shirt словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-55:i10:audio"
       ],
-      "accessibilityLabel": "Из рубашки капает вода. Анна считала, что она высохла после дождя. Скажите вывод, заменив The shirt местоимением It.",
+      "accessibilityLabel": "Из рубашки капает вода. Анна считала, что она высохла после дождя. Скажите вывод, заменив The shirt словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5fcd22fd69a4fc30bda2b4636096411f8e403d4c55001a7bb8665b7f2c16f3fb"
+  "learnerFingerprint": "630b0e46d702ff2074f44290bd82b75e93b929a3c113e751b16283701901f63a"
 }

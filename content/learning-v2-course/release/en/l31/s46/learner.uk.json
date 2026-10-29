@@ -493,7 +493,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me.",
+      "prompt": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть, чим поєднати частини фрази перед Ben could understand me.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-46:i11:r1",
@@ -510,12 +510,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me.",
+      "accessibilityLabel": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть, чим поєднати частини фрази перед Ben could understand me.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы говорили медленно, чтобы Бен понял вас. Выберите связку перед Ben could understand me.",
-          "uk": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me."
+          "ru": "Вы говорили медленно, чтобы Бен понял вас. Выберите, чем связать части фразы перед Ben could understand me.",
+          "uk": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть, чим поєднати частини фрази перед Ben could understand me."
         },
         "gappedTargetPhrase": "I spoke slowly ___ Ben could understand me.",
         "gapOptions": [
@@ -532,12 +532,12 @@
             "text": "for"
           }
         ],
-        "testedDimension": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me.",
+        "testedDimension": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть, чим поєднати частини фрази перед Ben could understand me.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-46:i11:r2",
             "correct": false,
-            "testedDimension": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me.",
+            "testedDimension": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть, чим поєднати частини фрази перед Ben could understand me.",
             "feedbackByLocale": {
               "ru": "Перед Ben could understand me нужно so that.",
               "uk": "Перед Ben could understand me потрібне so that."
@@ -546,7 +546,7 @@
           {
             "responseId": "en:lesson-31:session-46:i11:r3",
             "correct": false,
-            "testedDimension": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть сполуку перед Ben could understand me.",
+            "testedDimension": "Ви говорили повільно, щоб Бен зрозумів вас. Виберіть, чим поєднати частини фрази перед Ben could understand me.",
             "feedbackByLocale": {
               "ru": "Цель с целой частью вводим через so that.",
               "uk": "Мету з цілою частиною вводимо через so that."
@@ -1046,5 +1046,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6177db177a7f969ef901a79af433ee9d03d07e7428b74a85bb234632f39d4b19"
+  "learnerFingerprint": "a1c9092c2e5091c48a1aa406ed0375f929897621fbfb80f8dc221a59dc4c9a39"
 }

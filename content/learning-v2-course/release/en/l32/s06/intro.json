@@ -65,8 +65,8 @@
       "pageId": "en:lesson-32:session-06:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Билет, который я купил",
-        "uk": "Квиток, який я купив"
+        "ru": "Билет, который вы купили",
+        "uk": "Квиток, який ви купили"
       },
       "bodyByLocale": {
         "ru": "Бен ищет билеты. Уточните свой: The ticket I bought is in my bag — билет, который я купил, в моей сумке. Соберите The ticket + I bought + is in my bag. Часть I bought уточняет ticket. That можно опустить: действующее лицо I уже есть внутри уточнения.",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4401b538190cb75d30ff78f0a84732d78cb216473953e6e24797a4300d4b394b"
+  "introFingerprint": "c887678c62323e6129bcaf1c17e4b38b7f65dd2751fad2d7fe3ac7c7b589a4fb"
 }

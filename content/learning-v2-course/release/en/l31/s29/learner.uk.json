@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Потяг запізнився через сніг. Виберіть сполуку перед the snow.",
+      "prompt": "Потяг запізнився через сніг. Виберіть, чим поєднати частини фрази перед the snow.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-29:i04:r1",
@@ -188,12 +188,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Потяг запізнився через сніг. Виберіть сполуку перед the snow.",
+      "accessibilityLabel": "Потяг запізнився через сніг. Виберіть, чим поєднати частини фрази перед the snow.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Поезд опоздал из-за снега. Выберите связку перед the snow.",
-          "uk": "Потяг запізнився через сніг. Виберіть сполуку перед the snow."
+          "ru": "Поезд опоздал из-за снега. Выберите, чем связать части фразы перед the snow.",
+          "uk": "Потяг запізнився через сніг. Виберіть, чим поєднати частини фрази перед the snow."
         },
         "gappedTargetPhrase": "The train was late ___ the snow.",
         "gapOptions": [
@@ -210,12 +210,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Потяг запізнився через сніг. Виберіть сполуку перед the snow.",
+        "testedDimension": "Потяг запізнився через сніг. Виберіть, чим поєднати частини фрази перед the snow.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-29:i04:r2",
             "correct": false,
-            "testedDimension": "Потяг запізнився через сніг. Виберіть сполуку перед the snow.",
+            "testedDimension": "Потяг запізнився через сніг. Виберіть, чим поєднати частини фрази перед the snow.",
             "feedbackByLocale": {
               "ru": "Перед названием причины нужно because of.",
               "uk": "Перед назвою причини потрібне because of."
@@ -224,7 +224,7 @@
           {
             "responseId": "en:lesson-31:session-29:i04:r3",
             "correct": false,
-            "testedDimension": "Потяг запізнився через сніг. Виберіть сполуку перед the snow.",
+            "testedDimension": "Потяг запізнився через сніг. Виберіть, чим поєднати частини фрази перед the snow.",
             "feedbackByLocale": {
               "ru": "Нужна полная связка because of.",
               "uk": "Потрібна повна сполука because of."
@@ -1043,5 +1043,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6845955a6785bf10f66a512da49ce658b33f828ec50d214556f918adae6158ff"
+  "learnerFingerprint": "d72e95690ca2cee54a4df491abfb400d3b2851f16d2c40f75d075232599ec521"
 }

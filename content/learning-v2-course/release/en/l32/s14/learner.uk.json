@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Молоко, яке я купив, холодне. Скажіть без that.",
+      "prompt": "Молоко, яке ви купили, холодне. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-14:i07:audio"
       ],
-      "accessibilityLabel": "Молоко, яке я купив, холодне. Скажіть без that.",
+      "accessibilityLabel": "Молоко, яке ви купили, холодне. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Молоко, яке я купив, холодне. Уточніть предмет без зайвого займенника.",
+      "prompt": "Молоко, яке ви купили, холодне. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-14:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Молоко, яке я купив, холодне. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Молоко, яке ви купили, холодне. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Молоко, которое я купил, холодное. Уточните предмет без лишнего местоимения.",
-          "uk": "Молоко, яке я купив, холодне. Уточніть предмет без зайвого займенника."
+          "ru": "Молоко, которое вы купили, холодное. Предмет уже назван — не повторяйте его.",
+          "uk": "Молоко, яке ви купили, холодне. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The milk I ___ is cold.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Молоко, яке я купив, холодне. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Молоко, яке ви купили, холодне. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-14:i08:r2",
             "correct": false,
-            "testedDimension": "Молоко, яке я купив, холодне. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Молоко, яке ви купили, холодне. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-14:i08:r3",
             "correct": false,
-            "testedDimension": "Молоко, яке я купив, холодне. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Молоко, яке ви купили, холодне. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Через полиці ви не бачите касу, але чуєте багато голосів, а нові покупці продовжують заходити. Скажіть висновок іще раз, замінивши The shop займенником It.",
+      "prompt": "Через полиці ви не бачите касу, але чуєте багато голосів, а нові покупці продовжують заходити. Скажіть висновок іще раз, замінивши The shop словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-14:i10:audio"
       ],
-      "accessibilityLabel": "Через полиці ви не бачите касу, але чуєте багато голосів, а нові покупці продовжують заходити. Скажіть висновок іще раз, замінивши The shop займенником It.",
+      "accessibilityLabel": "Через полиці ви не бачите касу, але чуєте багато голосів, а нові покупці продовжують заходити. Скажіть висновок іще раз, замінивши The shop словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4245d2914a14e3cb22b6fa5b1cbd32379fb123e5c202d875f7d0b67aa5ea4b6b"
+  "learnerFingerprint": "a7ef3eaba5ced0e7614475e84ef92f697b1d49786c2f423957cdbd97a81f3d87"
 }

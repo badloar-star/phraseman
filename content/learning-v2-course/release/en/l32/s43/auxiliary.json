@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-32:session-43:intro3:q",
       "responseFeedbackById": {
         "en:lesson-32:session-43:intro3:r2": {
-          "ru": "Не повторяем названный предмет местоимением it.",
-          "uk": "Не повторюємо названий предмет займенником it."
+          "ru": "Не повторяем названный предмет словом it.",
+          "uk": "Не повторюємо названий предмет словом it."
         },
         "en:lesson-32:session-43:intro3:r3": {
           "ru": "Нужна прошедшая форма found.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "9e0992d5abb058293b4817de644256790bd40b4b49e1af65f1d30e17f4aa70ad"
+  "auxiliaryFingerprint": "605505b765df326deca7a472b7263b7b953b8edf78bfff5413b3c031d2adc542"
 }

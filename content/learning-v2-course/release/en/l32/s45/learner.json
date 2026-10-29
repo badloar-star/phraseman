@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Яблоко, которое я выбрал, зелёное. Скажите без that.",
+      "prompt": "Яблоко, которое вы выбрали, зелёное. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-45:i07:audio"
       ],
-      "accessibilityLabel": "Яблоко, которое я выбрал, зелёное. Скажите без that.",
+      "accessibilityLabel": "Яблоко, которое вы выбрали, зелёное. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
+      "prompt": "Яблоко, которое вы выбрали, зелёное. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-45:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Яблоко, которое вы выбрали, зелёное. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
-          "uk": "Яблуко, яке я вибрав, зелене. Уточніть предмет без зайвого займенника."
+          "ru": "Яблоко, которое вы выбрали, зелёное. Предмет уже назван — не повторяйте его.",
+          "uk": "Яблуко, яке ви вибрали, зелене. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The apple I ___ is green.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "choosing"
           }
         ],
-        "testedDimension": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Яблоко, которое вы выбрали, зелёное. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-45:i08:r2",
             "correct": false,
-            "testedDimension": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Яблоко, которое вы выбрали, зелёное. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-45:i08:r3",
             "correct": false,
-            "testedDimension": "Яблоко, которое я выбрал, зелёное. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Яблоко, которое вы выбрали, зелёное. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма chose.",
               "uk": "Потрібна минула форма chose."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна считает, что коробка пуста, но через открытый верх видны яйца. Скажите вывод, заменив The box местоимением It.",
+      "prompt": "Анна считает, что коробка пуста, но через открытый верх видны яйца. Скажите вывод, заменив The box словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-45:i10:audio"
       ],
-      "accessibilityLabel": "Анна считает, что коробка пуста, но через открытый верх видны яйца. Скажите вывод, заменив The box местоимением It.",
+      "accessibilityLabel": "Анна считает, что коробка пуста, но через открытый верх видны яйца. Скажите вывод, заменив The box словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9ce18a3265a0f32d071acaeadf920e501b90588b6c56f8cf1e7abb6554d2023d"
+  "learnerFingerprint": "9ee9b60079148be393ca4b14d235305ce9df06a8b6b5a2c3932de7b97b95792b"
 }

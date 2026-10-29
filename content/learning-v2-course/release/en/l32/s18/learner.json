@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Записка, которую я написал, короткая. Скажите без that.",
+      "prompt": "Записка, которую вы написали, короткая. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-18:i07:audio"
       ],
-      "accessibilityLabel": "Записка, которую я написал, короткая. Скажите без that.",
+      "accessibilityLabel": "Записка, которую вы написали, короткая. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+      "prompt": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-18:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
-          "uk": "Записка, яку я написав, коротка. Уточніть предмет без зайвого займенника."
+          "ru": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
+          "uk": "Записка, яку ви написали, коротка. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The note I ___ is short.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "writing"
           }
         ],
-        "testedDimension": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-18:i08:r2",
             "correct": false,
-            "testedDimension": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-18:i08:r3",
             "correct": false,
-            "testedDimension": "Записка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Записка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма wrote.",
               "uk": "Потрібна минула форма wrote."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Из приоткрытого окна комнаты идёт тёплый воздух, хотя на улице прохладно. Скажите вывод ещё раз, заменив The room местоимением It.",
+      "prompt": "Из приоткрытого окна комнаты идёт тёплый воздух, хотя на улице прохладно. Скажите вывод ещё раз, заменив The room словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-18:i10:audio"
       ],
-      "accessibilityLabel": "Из приоткрытого окна комнаты идёт тёплый воздух, хотя на улице прохладно. Скажите вывод ещё раз, заменив The room местоимением It.",
+      "accessibilityLabel": "Из приоткрытого окна комнаты идёт тёплый воздух, хотя на улице прохладно. Скажите вывод ещё раз, заменив The room словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ddc10611c2e238fbee8f668bb31a709f3274ee821bb74b0641c4d7d910993d5a"
+  "learnerFingerprint": "7cea5987d84e4e8342523f195f6bb866608ea92f8dc49b4f932e4885d926ab9b"
 }

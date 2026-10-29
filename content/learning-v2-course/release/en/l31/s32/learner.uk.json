@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Малюк плаче, бо голодний. Виберіть сполучник.",
+      "prompt": "Малюк плаче, бо голодний. Виберіть, чим поєднати частини фрази.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-32:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Малюк плаче, бо голодний. Виберіть сполучник.",
+      "accessibilityLabel": "Малюк плаче, бо голодний. Виберіть, чим поєднати частини фрази.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Малыш плачет, потому что голоден. Выберите связку.",
-          "uk": "Малюк плаче, бо голодний. Виберіть сполучник."
+          "ru": "Малыш плачет, потому что голоден. Выберите, чем связать части фразы.",
+          "uk": "Малюк плаче, бо голодний. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "The baby is crying ___ he is hungry.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Малюк плаче, бо голодний. Виберіть сполучник.",
+        "testedDimension": "Малюк плаче, бо голодний. Виберіть, чим поєднати частини фрази.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-32:i03:r2",
             "correct": false,
-            "testedDimension": "Малюк плаче, бо голодний. Виберіть сполучник.",
+            "testedDimension": "Малюк плаче, бо голодний. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Перед целой частью he is hungry нужен because.",
               "uk": "Перед цілою частиною he is hungry потрібне because."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-31:session-32:i03:r3",
             "correct": false,
-            "testedDimension": "Малюк плаче, бо голодний. Виберіть сполучник.",
+            "testedDimension": "Малюк плаче, бо голодний. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Of не связывает эти части.",
               "uk": "Of не пов’язує ці частини."
@@ -1043,5 +1043,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1750812511272c3af68103c250432f37d8d914e2482650cd402a21c32c6bdd35"
+  "learnerFingerprint": "8637e10f53cf0afe47cc757cfb9aaea14ae5ab43aebd455dd22f519c5f67319b"
 }

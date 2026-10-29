@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Бутерброд, который я сделал, большой. Скажите без that.",
+      "prompt": "Бутерброд, который вы сделали, большой. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-53:i07:audio"
       ],
-      "accessibilityLabel": "Бутерброд, который я сделал, большой. Скажите без that.",
+      "accessibilityLabel": "Бутерброд, который вы сделали, большой. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
+      "prompt": "Бутерброд, который вы сделали, большой. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-53:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Бутерброд, который вы сделали, большой. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
-          "uk": "Бутерброд, який я зробив, великий. Уточніть предмет без зайвого займенника."
+          "ru": "Бутерброд, который вы сделали, большой. Предмет уже назван — не повторяйте его.",
+          "uk": "Бутерброд, який ви зробили, великий. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The sandwich I ___ is large.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "making"
           }
         ],
-        "testedDimension": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Бутерброд, который вы сделали, большой. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-53:i08:r2",
             "correct": false,
-            "testedDimension": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Бутерброд, который вы сделали, большой. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-53:i08:r3",
             "correct": false,
-            "testedDimension": "Бутерброд, который я сделал, большой. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Бутерброд, который вы сделали, большой. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма made.",
               "uk": "Потрібна минула форма made."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "В прозрачной бутылке видна вода. Анна ошибочно считает её пустой. Скажите вывод, заменив The bottle местоимением It.",
+      "prompt": "В прозрачной бутылке видна вода. Анна ошибочно считает её пустой. Скажите вывод, заменив The bottle словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-53:i10:audio"
       ],
-      "accessibilityLabel": "В прозрачной бутылке видна вода. Анна ошибочно считает её пустой. Скажите вывод, заменив The bottle местоимением It.",
+      "accessibilityLabel": "В прозрачной бутылке видна вода. Анна ошибочно считает её пустой. Скажите вывод, заменив The bottle словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fa54ba826da99198ce1f1c3f6a7b40f7389044d39706fd95a5b6e3f72777e746"
+  "learnerFingerprint": "30940d9b4fc073d9b9fd1486ae9a6d448801af1359d6303bed7c68a9fa7ff527"
 }

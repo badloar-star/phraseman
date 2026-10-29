@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Миска, яку я помив, чиста. Скажіть без that.",
+      "prompt": "Миска, яку ви помили, чиста. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-36:i07:audio"
       ],
-      "accessibilityLabel": "Миска, яку я помив, чиста. Скажіть без that.",
+      "accessibilityLabel": "Миска, яку ви помили, чиста. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Миска, яку я помив, чиста. Уточніть предмет без зайвого займенника.",
+      "prompt": "Миска, яку ви помили, чиста. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-36:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Миска, яку я помив, чиста. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Миска, яку ви помили, чиста. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
-          "uk": "Миска, яку я помив, чиста. Уточніть предмет без зайвого займенника."
+          "ru": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
+          "uk": "Миска, яку ви помили, чиста. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The bowl I ___ is clean.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "washing"
           }
         ],
-        "testedDimension": "Миска, яку я помив, чиста. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Миска, яку ви помили, чиста. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-36:i08:r2",
             "correct": false,
-            "testedDimension": "Миска, яку я помив, чиста. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Миска, яку ви помили, чиста. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-36:i08:r3",
             "correct": false,
-            "testedDimension": "Миска, яку я помив, чиста. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Миска, яку ви помили, чиста. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма washed.",
               "uk": "Потрібна минула форма washed."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Пиріг щойно вийняли з гарячої духовки, і від нього йде пара. Скажіть висновок, замінивши The cake займенником It.",
+      "prompt": "Пиріг щойно вийняли з гарячої духовки, і від нього йде пара. Скажіть висновок, замінивши The cake словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-36:i10:audio"
       ],
-      "accessibilityLabel": "Пиріг щойно вийняли з гарячої духовки, і від нього йде пара. Скажіть висновок, замінивши The cake займенником It.",
+      "accessibilityLabel": "Пиріг щойно вийняли з гарячої духовки, і від нього йде пара. Скажіть висновок, замінивши The cake словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5fd0fe7eb9c77697464efff759ff74021c5dcbc6e1800f2b8e783ef6557ccd4c"
+  "learnerFingerprint": "5f49555f1d4c3b04a94bba6dd7564e6fe432b414c1fafd3676b5d2da83d22875"
 }

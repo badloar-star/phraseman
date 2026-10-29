@@ -23,8 +23,8 @@
           "uk": "Після where порядок the bowls are."
         },
         "en:lesson-31:session-11:intro2:r3": {
-          "ru": "Множественное bowls требует are.",
-          "uk": "Множина bowls потребує are."
+          "ru": "Bowls (их несколько) требуют are.",
+          "uk": "Bowls (їх кілька) потребують are."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "215c4a2ad2825c4293b1569857699c5baab973eb26ed1b8a6cabc83e2cf2da41"
+  "auxiliaryFingerprint": "9dadc302b00fa2c448636058ec40324913f8ca0f6154620cd40bc83af40c0b65"
 }

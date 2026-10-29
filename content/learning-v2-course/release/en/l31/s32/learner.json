@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Малыш плачет, потому что голоден. Выберите связку.",
+      "prompt": "Малыш плачет, потому что голоден. Выберите, чем связать части фразы.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-32:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Малыш плачет, потому что голоден. Выберите связку.",
+      "accessibilityLabel": "Малыш плачет, потому что голоден. Выберите, чем связать части фразы.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Малыш плачет, потому что голоден. Выберите связку.",
-          "uk": "Малюк плаче, бо голодний. Виберіть сполучник."
+          "ru": "Малыш плачет, потому что голоден. Выберите, чем связать части фразы.",
+          "uk": "Малюк плаче, бо голодний. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "The baby is crying ___ he is hungry.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Малыш плачет, потому что голоден. Выберите связку.",
+        "testedDimension": "Малыш плачет, потому что голоден. Выберите, чем связать части фразы.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-32:i03:r2",
             "correct": false,
-            "testedDimension": "Малыш плачет, потому что голоден. Выберите связку.",
+            "testedDimension": "Малыш плачет, потому что голоден. Выберите, чем связать части фразы.",
             "feedbackByLocale": {
               "ru": "Перед целой частью he is hungry нужен because.",
               "uk": "Перед цілою частиною he is hungry потрібне because."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-31:session-32:i03:r3",
             "correct": false,
-            "testedDimension": "Малыш плачет, потому что голоден. Выберите связку.",
+            "testedDimension": "Малыш плачет, потому что голоден. Выберите, чем связать части фразы.",
             "feedbackByLocale": {
               "ru": "Of не связывает эти части.",
               "uk": "Of не пов’язує ці частини."
@@ -1043,5 +1043,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5d9ba05ec696cf018378df15b0edc7ee2d1a2a992fec942ae63e2ddee4284a7e"
+  "learnerFingerprint": "c03accee59f1162d0121febd443af397fcd4d09ba85d971e0f93334490293774"
 }

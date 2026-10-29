@@ -65,8 +65,8 @@
       "pageId": "en:lesson-32:session-07:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "План, который я нашёл",
-        "uk": "План, який я знайшов"
+        "ru": "План, который вы нашли",
+        "uk": "План, який ви знайшли"
       },
       "bodyByLocale": {
         "ru": "Вы нашли план здания возле входа и показываете его Бену: The map I found is useful — план, который я нашёл, полезный. Соберите The map + I found + is useful. Часть I found уточняет map. That можно опустить: внутри уточнения уже есть I, тот, кто нашёл план.",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0beb3f290c75d150b0ac1406c36a3e069548499e8be20d67edede5b13cb4fcb4"
+  "introFingerprint": "6de529ad4aa24075cbd29156b5869b6ccafec98aea95e0d7c08fd612b8b9b9d0"
 }

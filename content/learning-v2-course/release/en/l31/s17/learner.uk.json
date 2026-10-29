@@ -363,8 +363,8 @@
             "correct": false,
             "testedDimension": "Ви знаєте, де ключі. Завершіть частину після where.",
             "feedbackByLocale": {
-              "ru": "Множественное keys требует are.",
-              "uk": "Множина keys потребує are."
+              "ru": "Keys (их несколько) требуют are.",
+              "uk": "Keys (їх кілька) потребують are."
             }
           }
         ]
@@ -1039,5 +1039,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5e414eae65c3f7c0c77be28191811ed3f875cb2502df89c7cc59fd83977c2b66"
+  "learnerFingerprint": "0a8cb7337048f24c931f94d6d10ec87bb9ec1f208dc5825ab6d977ffa6ba51d3"
 }

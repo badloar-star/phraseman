@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы различаете прогнозы, намерения и согласованные будущие дела.
 
-**Что вы освоите:** предположить, как пройдёт поездка: the journey will be uneventful
+**Что вы освоите:** предположить, как пройдёт поездка: I think the journey will be uneventful.
 **Новые слова:** memorable, uneventful, unplanned, last-minute
 
 ## Интро 1

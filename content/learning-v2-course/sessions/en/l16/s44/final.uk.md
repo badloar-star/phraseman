@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розрізняєте прогнози, наміри й узгоджені майбутні справи.
 
-**Що ви опануєте:** припустити властивість речі для дому: the lamp will be rechargeable
+**Що ви опануєте:** припустити властивість речі для дому: I think the lamp will be rechargeable.
 **Нові слова:** rechargeable, refillable, reversible, childproof
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розрізняєте прогнози, наміри й узгоджені майбутні справи.
 
-**Що ви опануєте:** припустити, якого типу будинок: the house will be semi-detached
+**Що ви опануєте:** припустити, якого типу буде будинок: I think the house will be semi-detached.
 **Нові слова:** semi-detached, double-glazed, central heating, utility room
 
 ## Інтро 1

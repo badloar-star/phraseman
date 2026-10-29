@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы различаете прогнозы, намерения и согласованные будущие дела.
 
-**Что вы освоите:** предположить, каким будет конец или погода: the weather will be unpredictable
+**Что вы освоите:** предположить, каким будет конец фильма: I think the ending will be predictable.
 **Новые слова:** predictable, unpredictable, temporary, permanent
 
 ## Интро 1

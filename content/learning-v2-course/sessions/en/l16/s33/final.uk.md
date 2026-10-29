@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розрізняєте прогнози, наміри й узгоджені майбутні справи.
 
-**Що ви опануєте:** припустити, якою буде майбутня справа: the task will be manageable
+**Що ви опануєте:** припустити, яким буде майбутня справа: I think the task will be manageable.
 **Нові слова:** manageable, unavoidable, unnecessary, worthwhile
 
 ## Інтро 1

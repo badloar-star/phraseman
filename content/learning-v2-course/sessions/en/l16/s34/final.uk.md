@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розрізняєте прогнози, наміри й узгоджені майбутні справи.
 
-**Що ви опануєте:** припустити, яким буде фільм чи робота: the film will be disappointing
+**Що ви опануєте:** припустити, яким буде фільм чи робота: I think the film will be disappointing.
 **Нові слова:** disappointing, satisfying, exhausting, refreshing
 
 ## Інтро 1

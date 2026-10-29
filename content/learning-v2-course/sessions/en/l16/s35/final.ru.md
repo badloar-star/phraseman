@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы различаете прогнозы, намерения и согласованные будущие дела.
 
-**Что вы освоите:** оценить, каким будет курс или опыт: the course will be demanding
+**Что вы освоите:** оценить, каким будет курс: I think the course will be demanding.
 **Новые слова:** demanding, rewarding, time-consuming, straightforward
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розрізняєте прогнози, наміри й узгоджені майбутні справи.
 
-**Що ви опануєте:** припустити, куди виходять вікна будинку: the garden will be south-facing
+**Що ви опануєте:** припустити, куди виходять вікна: I think the bedroom will be north-facing.
 **Нові слова:** south-facing, north-facing, built-in, waterfront
 
 ## Інтро 1

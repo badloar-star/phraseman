@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы различаете прогнозы, намерения и согласованные будущие дела.
 
-**Что вы освоите:** предположить, куда выходят окна дома: the garden will be south-facing
+**Что вы освоите:** предположить, куда выходят окна: I think the bedroom will be north-facing.
 **Новые слова:** south-facing, north-facing, built-in, waterfront
 
 ## Интро 1

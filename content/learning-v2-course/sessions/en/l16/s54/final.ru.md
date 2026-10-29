@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы различаете прогнозы, намерения и согласованные будущие дела.
 
-**Что вы освоите:** предположить, какой тип у дома: the house will be semi-detached
+**Что вы освоите:** предположить, какой тип у дома: I think the house will be semi-detached.
 **Новые слова:** semi-detached, double-glazed, central heating, utility room
 
 ## Интро 1

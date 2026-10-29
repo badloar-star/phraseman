@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розрізняєте прогнози, наміри й узгоджені майбутні справи.
 
-**Що ви опануєте:** припустити, як мине поїздка: the journey will be uneventful
+**Що ви опануєте:** припустити, як мине поїздка: I think the journey will be uneventful.
 **Нові слова:** memorable, uneventful, unplanned, last-minute
 
 ## Інтро 1

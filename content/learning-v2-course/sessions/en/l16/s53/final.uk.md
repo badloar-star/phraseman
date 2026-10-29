@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розрізняєте прогнози, наміри й узгоджені майбутні справи.
 
-**Що ви опануєте:** припустити, чи є в житлі меблі: the flat will be furnished
+**Що ви опануєте:** припустити, чи є в житлі меблі: I think the flat will be furnished.
 **Нові слова:** furnished, unfurnished, detached, terraced
 
 ## Інтро 1

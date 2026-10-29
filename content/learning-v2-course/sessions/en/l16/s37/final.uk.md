@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розрізняєте прогнози, наміри й узгоджені майбутні справи.
 
-**Що ви опануєте:** припустити, яким буде кінець чи погода: the weather will be unpredictable
+**Що ви опануєте:** припустити, яким буде кінець фільму: I think the ending will be predictable.
 **Нові слова:** predictable, unpredictable, temporary, permanent
 
 ## Інтро 1

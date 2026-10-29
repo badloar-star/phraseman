@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы различаете прогнозы, намерения и согласованные будущие дела.
 
-**Что вы освоите:** предположить свойство вещи для дома: the lamp will be rechargeable
+**Что вы освоите:** предположить свойство вещи для дома: I think the lamp will be rechargeable.
 **Новые слова:** rechargeable, refillable, reversible, childproof
 
 ## Интро 1

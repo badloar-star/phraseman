@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы называете близких и рассказываете о семейном вечере.
 
-**Что вы освоите:** сказать, что было до или после: My fiancé arrived before the guests.
+**Что вы освоите:** сказать, что вы сделали до чьего-то прихода: I cooked dinner before my fiancée arrived.
 **Новые слова:** fiancé, fiancée, stepson, stepdaughter
 
 ## Интро 1

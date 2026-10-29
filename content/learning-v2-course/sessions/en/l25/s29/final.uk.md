@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про поведінку й почуття після події.
 
-**Що ви опануєте:** сказати, що було до чи після: We talked after the others left.
+**Що ви опануєте:** сказати, що сталося до чогось: I was impolite before I heard your explanation.
 **Нові слова:** sincere, impolite, humble, coward
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете о поведении и чувствах после события.
 
-**Что вы освоите:** сказать, что было до или после: We talked after the others left.
+**Что вы освоите:** сказать, что произошло до чего-то: I was impolite before I heard your explanation.
 **Новые слова:** sincere, impolite, humble, coward
 
 ## Интро 1

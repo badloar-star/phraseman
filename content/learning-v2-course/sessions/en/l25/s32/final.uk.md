@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви називаєте близьких і розповідаєте про сімейний вечір.
 
-**Що ви опануєте:** сказати, що було до чи після: My fiancé arrived before the guests.
+**Що ви опануєте:** сказати, що ви зробили до чийогось приходу: I cooked dinner before my fiancée arrived.
 **Нові слова:** fiancé, fiancée, stepson, stepdaughter
 
 ## Інтро 1

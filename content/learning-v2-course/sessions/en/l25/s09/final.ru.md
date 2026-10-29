@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы вспоминаете повторявшиеся занятия на отдыхе и в школе.
 
-**Что вы освоите:** рассказать, как вы обычно поступали раньше: Last summer I saw a fox.
+**Что вы освоите:** рассказать, что вы обычно делали: At school we would learn about the environment.
 **Новые слова:** wildlife, scenery, atmosphere, environment
 
 ## Интро 1

@@ -988,7 +988,7 @@ export default function CommunityPackCreateScreen() {
           return;
         }
         if (publishResult !== 'submitted') {
-          setContestReviewError(triLang(lang, { ru: 'Карточки сохранены на устройстве. Не удалось завершить публикацию — попробуй ещё раз.', uk: 'Картки збережено на пристрої. Не вдалося завершити публікацію — спробуй ще раз.', es: 'Las tarjetas están guardadas en este dispositivo. No se pudo completar la publicación. Inténtalo de nuevo.', en: 'Cards are saved on this device. Publication did not finish. Please try again.' }));
+          setContestReviewError(triLang(lang, { ru: 'Карточки сохранены на устройстве. Не удалось завершить публикацию — попробуй ещё раз.', uk: 'Картки збережено на пристрої. Не вдалося завершити публікацію — спробуй ще раз.', es: 'Las tarjetas están guardadas en este dispositivo. No se pudo completar la publicación. Inténtalo de nuevo.', en: 'Cards are saved on this device. Publication did not finish. Please try again.' , 'pt-BR': 'Os cartões estão salvos neste dispositivo. A publicação não foi concluída — tente de novo.', vi: 'Thẻ đã được lưu trên thiết bị. Chưa đăng xong — hãy thử lại.', id: 'Kartu tersimpan di perangkat ini. Penerbitan belum selesai — coba lagi.', tr: 'Kartlar bu cihazda kaydedildi. Yayınlama tamamlanmadı — tekrar dene.', pl: 'Karty są zapisane na tym urządzeniu. Publikacja się nie zakończyła — spróbuj ponownie.' }));
           // зачем (Макеты cards-072, разбор 13.10): набор сохранён, не дошла только публикация — это сообщение (тон info), а не ошибка
           emitAppEvent('action_toast', actionToastTri('info', {
             ru: 'Набор сохранён на устройстве. Публикация не завершена — нажми «Сохранить» ещё раз при подключении.',
@@ -1027,7 +1027,7 @@ export default function CommunityPackCreateScreen() {
         );
       } catch (e: unknown) {
         DebugLogger.error('community_pack_create:save', e instanceof Error ? e : new Error(String(e)), 'warning');
-        setContestReviewError(triLang(lang, { ru: 'Не удалось сохранить набор. Проверь подключение и попробуй ещё раз.', uk: 'Не вдалося зберегти набір. Перевір підключення та спробуй ще раз.', es: 'No se pudo guardar el conjunto. Comprueba la conexión e inténtalo de nuevo.', en: 'Could not save the pack. Check your connection and try again.' }));
+        setContestReviewError(triLang(lang, { ru: 'Не удалось сохранить набор. Проверь подключение и попробуй ещё раз.', uk: 'Не вдалося зберегти набір. Перевір підключення та спробуй ще раз.', es: 'No se pudo guardar el conjunto. Comprueba la conexión e inténtalo de nuevo.', en: 'Could not save the pack. Check your connection and try again.' , 'pt-BR': 'Não foi possível salvar o pacote. Verifique a conexão e tente de novo.', vi: 'Không lưu được bộ thẻ. Hãy kiểm tra kết nối và thử lại.', id: 'Paket gagal disimpan. Periksa koneksi dan coba lagi.', tr: 'Paket kaydedilemedi. Bağlantını kontrol edip tekrar dene.', pl: 'Nie udało się zapisać zestawu. Sprawdź połączenie i spróbuj ponownie.' }));
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as Error).message) : String(e);
         if (msg.includes('free_author_pack_limit_reached')) {
           // зачем: сырой код ошибки в тосте — потеря работы без объяснения; ведём в покупку (черновик сохранён)
@@ -1197,7 +1197,7 @@ export default function CommunityPackCreateScreen() {
   };
   const fieldInput = { color: kg.text, fontSize: 16, lineHeight: 24, paddingHorizontal: 0, paddingVertical: 0 } as const;
 
-  if (contestReview) return <SafeAreaView style={{ flex: 1 }} edges={['left', 'right']}><CommunityPackCheckScene lang={lang} cards={rows.map(row => ({ id: row.id, front: row.en, back: cardBackText(row), issue: !row.en.trim() ? triLang(lang, { ru: 'Добавь слово или фразу', uk: 'Додай слово або фразу', es: 'Añade una palabra o frase', en: 'Add a word or phrase' }) : undefined }))} busy={busy} error={contestReviewError} bottomInset={insets.bottom + 16} onSelectRoute={route => { if (!busy) leaveDraftTo(() => dismissToTabRoute(router, route)); }} onBack={() => setContestReview(false)} onEdit={index => { setContestReview(false); editRow(index); }} onPublish={onSubmit} /></SafeAreaView>;
+  if (contestReview) return <SafeAreaView style={{ flex: 1 }} edges={['left', 'right']}><CommunityPackCheckScene lang={lang} cards={rows.map(row => ({ id: row.id, front: row.en, back: cardBackText(row), issue: !row.en.trim() ? triLang(lang, { ru: 'Добавь слово или фразу', uk: 'Додай слово або фразу', es: 'Añade una palabra o frase', en: 'Add a word or phrase' , 'pt-BR': 'Adicione uma palavra ou frase', vi: 'Thêm từ hoặc cụm từ', id: 'Tambahkan kata atau frasa', tr: 'Kelime veya ifade ekle', pl: 'Dodaj słowo lub zwrot' }) : undefined }))} busy={busy} error={contestReviewError} bottomInset={insets.bottom + 16} onSelectRoute={route => { if (!busy) leaveDraftTo(() => dismissToTabRoute(router, route)); }} onBack={() => setContestReview(false)} onEdit={index => { setContestReview(false); editRow(index); }} onPublish={onSubmit} /></SafeAreaView>;
 
   return (
     <CardsGlassScreen g={g}>

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы помогаете на дне открытых дверей в театре. Проверяете освещение, переносите реквизит, встречаете гостей и рассказываете о героях спектакля.
 
-**Что вы освоите:** самостоятельно выбрать знакомые am, is, are и слова главы в новой ситуации
+**Что вы освоите:** предупредить, что вещь хрупкая: It is fragile.
 **Новые слова:** dim, bright, heavy, fragile
 **Возвращаются:** welcome, prepared, lucky, wrong, safe, married, early, alone, nearby, careful, poor, single, outside, inside, upstairs, different, famous, rich
 

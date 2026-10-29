@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви допомагаєте на дні відкритих дверей у театрі. Перевіряєте освітлення, переносите реквізит, зустрічаєте гостей і розповідаєте про героїв вистави.
 
-**Що ви опануєте:** самостійно вибрати знайомі am, is, are та слова розділу в новій ситуації
+**Що ви опануєте:** попередити, що річ крихка: It is fragile.
 **Нові слова:** dim, bright, heavy, fragile
 **Повертаються:** welcome, prepared, lucky, wrong, safe, married, early, alone, nearby, careful, poor, single, outside, inside, upstairs, different, famous, rich
 

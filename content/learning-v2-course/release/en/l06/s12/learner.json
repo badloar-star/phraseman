@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Мы рисуем красками здесь»",
+      "prompt": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Каждый день мы рисуем красками здесь»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Мы рисуем красками здесь»",
+      "accessibilityLabel": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Каждый день мы рисуем красками здесь»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We paint here.",
+        "targetPhrase": "We paint here every day.",
         "localizedMeaning": {
-          "ru": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Мы рисуем красками здесь»",
-          "uk": "Викладачка питає, де ви малюєте фарбами. Скажіть: «Ми малюємо фарбами тут»"
+          "ru": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Каждый день мы рисуем красками здесь»",
+          "uk": "Викладачка питає, де ви малюєте фарбами. Скажіть: «Щодня ми малюємо фарбами тут»"
         },
         "orderedTokens": [
           "We",
           "paint",
-          "here"
+          "here",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-12:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Мы рисуем красками здесь»",
+            "testedDimension": "Преподавательница спрашивает, где вы рисуете красками. Скажите: «Каждый день мы рисуем красками здесь»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `paint` — `We paint here.`",
-              "uk": "тут потрібно `paint` — `We paint here.`"
+              "ru": "здесь нужно `paint` — `We paint here every day.`",
+              "uk": "тут потрібно `paint` — `We paint here every day.`"
             }
           }
         ],
@@ -215,7 +217,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+      "prompt": "Скажите о группе: «Каждый день они рисуют красками в мастерской». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-12:i03:r1",
@@ -232,14 +234,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+      "accessibilityLabel": "Скажите о группе: «Каждый день они рисуют красками в мастерской». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
-          "uk": "Скажіть про групу: «Вони малюють фарбами в майстерні». Виберіть слово"
+          "ru": "Скажите о группе: «Каждый день они рисуют красками в мастерской». Выберите слово",
+          "uk": "Скажіть про групу: «Щодня вони малюють фарбами в майстерні». Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ in the studio.",
+        "gappedTargetPhrase": "They ___ in the studio every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-12:i03:r1",
@@ -254,12 +256,12 @@
             "text": "are paint"
           }
         ],
-        "testedDimension": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+        "testedDimension": "Скажите о группе: «Каждый день они рисуют красками в мастерской». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-12:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+            "testedDimension": "Скажите о группе: «Каждый день они рисуют красками в мастерской». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `they` — `paint`, без `s`.",
               "uk": "Після `they` — `paint`, без `s`."
@@ -268,7 +270,7 @@
           {
             "responseId": "en:lesson-06:session-12:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о группе: «Они рисуют красками в мастерской». Выберите слово",
+            "testedDimension": "Скажите о группе: «Каждый день они рисуют красками в мастерской». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `They paint`, без `are`.",
               "uk": "Кажемо `They paint`, без `are`."
@@ -915,7 +917,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+      "prompt": "Скажите о себе: «Каждый день я рисую красками дома». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-12:i14:r1",
@@ -932,14 +934,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+      "accessibilityLabel": "Скажите о себе: «Каждый день я рисую красками дома». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я рисую красками дома». Выберите слово",
-          "uk": "Скажіть про себе: «Я малюю фарбами вдома». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я рисую красками дома». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я малюю фарбами вдома». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ at home.",
+        "gappedTargetPhrase": "I ___ at home every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-12:i14:r1",
@@ -954,12 +956,12 @@
             "text": "am paint"
           }
         ],
-        "testedDimension": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+        "testedDimension": "Скажите о себе: «Каждый день я рисую красками дома». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-12:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я рисую красками дома». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` — `paint`, без `s`.",
               "uk": "Після `I` — `paint`, без `s`."
@@ -968,7 +970,7 @@
           {
             "responseId": "en:lesson-06:session-12:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я рисую красками дома». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я рисую красками дома». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `I paint`, без `am`.",
               "uk": "Кажемо `I paint`, без `am`."
@@ -1175,5 +1177,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "622abbfe398c3222be77d49bfc650b0a858be87ac5af05becfefe7f455bc516a"
+  "learnerFingerprint": "2db2ef8e23537c57c6f7ea18a00d9757937d7b5d2ef53c71f024db38725a5acb"
 }

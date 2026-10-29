@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Они изучают английский»",
+      "prompt": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Каждый день они изучают английский»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Они изучают английский»",
+      "accessibilityLabel": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Каждый день они изучают английский»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "They learn English.",
+        "targetPhrase": "They learn English every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Они изучают английский»",
-          "uk": "Подруга питає про ваших сусідів по курсах. Скажіть: «Вони вивчають англійську»"
+          "ru": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Каждый день они изучают английский»",
+          "uk": "Подруга питає про ваших сусідів по курсах. Скажіть: «Щодня вони вивчають англійську»"
         },
         "orderedTokens": [
           "They",
           "learn",
-          "English"
+          "English",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-11:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Они изучают английский»",
+            "testedDimension": "Подруга спрашивает о ваших соседях по курсам. Скажите: «Каждый день они изучают английский»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `learn` — `They learn English.`",
-              "uk": "тут потрібно `learn` — `They learn English.`"
+              "ru": "здесь нужно `learn` — `They learn English every day.`",
+              "uk": "тут потрібно `learn` — `They learn English every day.`"
             }
           }
         ],
@@ -215,7 +217,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
+      "prompt": "Скажите о себе: «Каждый день я изучаю английский в школе». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-11:i03:r1",
@@ -232,14 +234,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
+      "accessibilityLabel": "Скажите о себе: «Каждый день я изучаю английский в школе». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
-          "uk": "Скажіть про себе: «Я вивчаю англійську в школі». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я изучаю английский в школе». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я вивчаю англійську в школі». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ English at school.",
+        "gappedTargetPhrase": "I ___ English at school every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-11:i03:r1",
@@ -254,12 +256,12 @@
             "text": "am learn"
           }
         ],
-        "testedDimension": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
+        "testedDimension": "Скажите о себе: «Каждый день я изучаю английский в школе». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-11:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я изучаю английский в школе». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` — `learn`, без `s`.",
               "uk": "Після `I` — `learn`, без `s`."
@@ -268,7 +270,7 @@
           {
             "responseId": "en:lesson-06:session-11:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я изучаю английский в школе». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я изучаю английский в школе». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `I learn`, без `am`.",
               "uk": "Кажемо `I learn`, без `am`."
@@ -1174,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c0e61df99d9bf2b6f3ebaa4b3965296365707325586f506e0f45ac81635ead7e"
+  "learnerFingerprint": "b1c300beb5c5b9d2e528f125837d4dc5f1e3f6e6a629696079337b212cb4eca4"
 }

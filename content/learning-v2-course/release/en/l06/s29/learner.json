@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Мы звоним нашему брату»",
+      "prompt": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Каждый день мы звоним нашему брату»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Мы звоним нашему брату»",
+      "accessibilityLabel": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Каждый день мы звоним нашему брату»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We call our brother.",
+        "targetPhrase": "We call our brother every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Мы звоним нашему брату»",
-          "uk": "Подруга питає, кому ви із сестрою телефонуєте. Скажіть: «Ми телефонуємо нашому братові»"
+          "ru": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Каждый день мы звоним нашему брату»",
+          "uk": "Подруга питає, кому ви із сестрою телефонуєте. Скажіть: «Щодня ми телефонуємо нашому братові»"
         },
         "orderedTokens": [
           "We",
           "call",
           "our",
-          "brother"
+          "brother",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "calls"
@@ -77,10 +79,10 @@
           {
             "responseId": "en:lesson-06:session-29:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Мы звоним нашему брату»",
+            "testedDimension": "Подруга спрашивает, кому вы с сестрой звоните. Скажите: «Каждый день мы звоним нашему брату»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `call` — `We call our brother.`",
-              "uk": "тут потрібно `call` — `We call our brother.`"
+              "ru": "здесь нужно `call` — `We call our brother every day.`",
+              "uk": "тут потрібно `call` — `We call our brother every day.`"
             }
           }
         ],
@@ -173,7 +175,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+      "prompt": "Скажите о сестре: «Каждый день моя сестра звонит своей бабушке». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-29:i03:r1",
@@ -190,14 +192,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+      "accessibilityLabel": "Скажите о сестре: «Каждый день моя сестра звонит своей бабушке». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
-          "uk": "Скажіть про сестру: «Моя сестра телефонує своїй бабусі». Виберіть слово"
+          "ru": "Скажите о сестре: «Каждый день моя сестра звонит своей бабушке». Выберите слово",
+          "uk": "Скажіть про сестру: «Щодня моя сестра телефонує своїй бабусі». Виберіть слово"
         },
-        "gappedTargetPhrase": "My sister ___ her grandmother.",
+        "gappedTargetPhrase": "My sister ___ her grandmother every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-29:i03:r1",
@@ -212,12 +214,12 @@
             "text": "calls to"
           }
         ],
-        "testedDimension": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+        "testedDimension": "Скажите о сестре: «Каждый день моя сестра звонит своей бабушке». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-29:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+            "testedDimension": "Скажите о сестре: «Каждый день моя сестра звонит своей бабушке». Выберите слово",
             "feedbackByLocale": {
               "ru": "Сестра — это `she`, поэтому нужно `calls`, с `s`.",
               "uk": "Сестра — це `she`, тому потрібно `calls`, з `s`."
@@ -226,7 +228,7 @@
           {
             "responseId": "en:lesson-06:session-29:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о сестре: «Моя сестра звонит своей бабушке». Выберите слово",
+            "testedDimension": "Скажите о сестре: «Каждый день моя сестра звонит своей бабушке». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `calls` сразу называем человека, без `to`.",
               "uk": "Після `calls` одразу називаємо людину, без `to`."
@@ -527,7 +529,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе: «Я звоню брату». Выберите слово",
+      "prompt": "Скажите о себе: «Каждый день я звоню брату». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-29:i08:r1",
@@ -544,14 +546,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе: «Я звоню брату». Выберите слово",
+      "accessibilityLabel": "Скажите о себе: «Каждый день я звоню брату». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я звоню брату». Выберите слово",
-          "uk": "Скажіть про себе: «Я телефоную братові». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я звоню брату». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я телефоную братові». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ my brother.",
+        "gappedTargetPhrase": "I ___ my brother every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-29:i08:r1",
@@ -566,12 +568,12 @@
             "text": "call to"
           }
         ],
-        "testedDimension": "Скажите о себе: «Я звоню брату». Выберите слово",
+        "testedDimension": "Скажите о себе: «Каждый день я звоню брату». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-29:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я звоню брату». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я звоню брату». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `call`, без `s`.",
               "uk": "Після `I` потрібно `call`, без `s`."
@@ -580,7 +582,7 @@
           {
             "responseId": "en:lesson-06:session-29:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я звоню брату». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я звоню брату». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `call` сразу называем человека, без `to`.",
               "uk": "Після `call` одразу називаємо людину, без `to`."
@@ -1174,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4b32df522dbbc45dbf1740c05cef6aa3336119931507386d156280d948304559"
+  "learnerFingerprint": "a6369dfbf572d9fbacbbbf43b9bef9153abf06a3f5b645db67af04eb62ef5de1"
 }

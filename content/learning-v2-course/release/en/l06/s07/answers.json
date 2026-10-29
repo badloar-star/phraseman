@@ -6,7 +6,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-07:i01",
-    "correctText": "I chop onions.",
+    "correctText": "I chop onions every day.",
     "correctResponseId": null
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-07:i12",
-    "correctText": "They chop onions and they stir the soup.",
+    "correctText": "They chop onions and they stir the soup every day.",
     "correctResponseId": null
   },
   {

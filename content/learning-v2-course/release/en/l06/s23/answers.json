@@ -6,7 +6,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-23:i01",
-    "correctText": "He teaches English.",
+    "correctText": "He teaches English every day.",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-23:i06",
-    "correctText": "He learns English.",
+    "correctText": "He learns English every day.",
     "correctResponseId": null
   },
   {

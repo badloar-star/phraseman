@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Новая помощница спрашивает, что ей делать утром. Скажите: «Ты подметаешь пол»",
+      "prompt": "Новая помощница спрашивает, что ей делать утром. Скажите: «Каждый день ты подметаешь пол»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Новая помощница спрашивает, что ей делать утром. Скажите: «Ты подметаешь пол»",
+      "accessibilityLabel": "Новая помощница спрашивает, что ей делать утром. Скажите: «Каждый день ты подметаешь пол»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "You sweep the floor.",
+        "targetPhrase": "You sweep the floor every day.",
         "localizedMeaning": {
-          "ru": "Новая помощница спрашивает, что ей делать утром. Скажите: «Ты подметаешь пол»",
-          "uk": "Нова помічниця питає, що їй робити вранці. Скажіть: «Ти підмітаєш підлогу»"
+          "ru": "Новая помощница спрашивает, что ей делать утром. Скажите: «Каждый день ты подметаешь пол»",
+          "uk": "Нова помічниця питає, що їй робити вранці. Скажіть: «Щодня ти підмітаєш підлогу»"
         },
         "orderedTokens": [
           "You",
           "sweep",
           "the",
-          "floor"
+          "floor",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -77,10 +79,10 @@
           {
             "responseId": "en:lesson-06:session-02:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Новая помощница спрашивает, что ей делать утром. Скажите: «Ты подметаешь пол»",
+            "testedDimension": "Новая помощница спрашивает, что ей делать утром. Скажите: «Каждый день ты подметаешь пол»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `sweep` — `You sweep the floor.`",
-              "uk": "тут потрібно `sweep` — `You sweep the floor.`"
+              "ru": "здесь нужно `sweep` — `You sweep the floor every day.`",
+              "uk": "тут потрібно `sweep` — `You sweep the floor every day.`"
             }
           }
         ],
@@ -259,7 +261,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+      "prompt": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что каждый день она их моет. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-02:i03:r1",
@@ -276,14 +278,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+      "accessibilityLabel": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что каждый день она их моет. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
-          "uk": "Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що вона їх миє. Виберіть слово"
+          "ru": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что каждый день она их моет. Выберите слово",
+          "uk": "Відвідувачі пішли, на столі лишилися блюдця. Скажіть помічниці, що щодня вона їх миє. Виберіть слово"
         },
-        "gappedTargetPhrase": "You wash the ___.",
+        "gappedTargetPhrase": "You wash the ___ every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-02:i03:r1",
@@ -298,12 +300,12 @@
             "text": "cups"
           }
         ],
-        "testedDimension": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+        "testedDimension": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что каждый день она их моет. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-02:i03:r2",
             "correct": false,
-            "testedDimension": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+            "testedDimension": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что каждый день она их моет. Выберите слово",
             "feedbackByLocale": {
               "ru": "Блюдец много, поэтому нужно `saucers`.",
               "uk": "Блюдець багато, тому потрібно `saucers`."
@@ -312,7 +314,7 @@
           {
             "responseId": "en:lesson-06:session-02:i03:r3",
             "correct": false,
-            "testedDimension": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что она их моет. Выберите слово",
+            "testedDimension": "Посетители ушли, на столе остались блюдца. Скажите помощнице, что каждый день она их моет. Выберите слово",
             "feedbackByLocale": {
               "ru": "`cups` — чашки, а мыть нужно блюдца: `saucers`.",
               "uk": "`cups` — чашки, а мити потрібно блюдця: `saucers`."
@@ -570,7 +572,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+      "prompt": "В обед помощница ждёт указаний. Скажите ей, что каждый день она носит подносы. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-02:i08:r1",
@@ -587,14 +589,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+      "accessibilityLabel": "В обед помощница ждёт указаний. Скажите ей, что каждый день она носит подносы. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
-          "uk": "В обід помічниця чекає вказівок. Скажіть їй, що вона носить таці. Виберіть слово"
+          "ru": "В обед помощница ждёт указаний. Скажите ей, что каждый день она носит подносы. Выберите слово",
+          "uk": "В обід помічниця чекає вказівок. Скажіть їй, що щодня вона носить таці. Виберіть слово"
         },
-        "gappedTargetPhrase": "You ___ the trays.",
+        "gappedTargetPhrase": "You ___ the trays every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-02:i08:r1",
@@ -609,12 +611,12 @@
             "text": "is carry"
           }
         ],
-        "testedDimension": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+        "testedDimension": "В обед помощница ждёт указаний. Скажите ей, что каждый день она носит подносы. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-02:i08:r2",
             "correct": false,
-            "testedDimension": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+            "testedDimension": "В обед помощница ждёт указаний. Скажите ей, что каждый день она носит подносы. Выберите слово",
             "feedbackByLocale": {
               "ru": "После `You` сразу ставим `carry`, без `are`.",
               "uk": "Після `You` одразу ставимо `carry`, без `are`."
@@ -623,7 +625,7 @@
           {
             "responseId": "en:lesson-06:session-02:i08:r3",
             "correct": false,
-            "testedDimension": "В обед помощница ждёт указаний. Скажите ей, что она носит подносы. Выберите слово",
+            "testedDimension": "В обед помощница ждёт указаний. Скажите ей, что каждый день она носит подносы. Выберите слово",
             "feedbackByLocale": {
               "ru": "С `You` слово `is` не используется; нужно `You carry`.",
               "uk": "З `You` слово `is` не вживається; потрібно `You carry`."
@@ -836,17 +838,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы объясняете помощнице, где она подметает. Скажите: «Ты подметаешь пол в кафе»",
+      "prompt": "Вы объясняете помощнице, где она подметает. Скажите: «Каждый день ты подметаешь пол в кафе»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы объясняете помощнице, где она подметает. Скажите: «Ты подметаешь пол в кафе»",
+      "accessibilityLabel": "Вы объясняете помощнице, где она подметает. Скажите: «Каждый день ты подметаешь пол в кафе»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "You sweep the floor in the cafe.",
+        "targetPhrase": "You sweep the floor in the cafe every day.",
         "localizedMeaning": {
-          "ru": "Вы объясняете помощнице, где она подметает. Скажите: «Ты подметаешь пол в кафе»",
-          "uk": "Ви пояснюєте помічниці, де вона підмітає. Скажіть: «Ти підмітаєш підлогу в кафе»"
+          "ru": "Вы объясняете помощнице, где она подметает. Скажите: «Каждый день ты подметаешь пол в кафе»",
+          "uk": "Ви пояснюєте помічниці, де вона підмітає. Скажіть: «Щодня ти підмітаєш підлогу в кафе»"
         },
         "orderedTokens": [
           "You",
@@ -855,7 +857,9 @@
           "floor",
           "in",
           "the",
-          "cafe"
+          "cafe",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -864,10 +868,10 @@
           {
             "responseId": "en:lesson-06:session-02:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Вы объясняете помощнице, где она подметает. Скажите: «Ты подметаешь пол в кафе»",
+            "testedDimension": "Вы объясняете помощнице, где она подметает. Скажите: «Каждый день ты подметаешь пол в кафе»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `sweep` — `You sweep the floor in the cafe.`",
-              "uk": "тут потрібно `sweep` — `You sweep the floor in the cafe.`"
+              "ru": "здесь нужно `sweep` — `You sweep the floor in the cafe every day.`",
+              "uk": "тут потрібно `sweep` — `You sweep the floor in the cafe every day.`"
             }
           }
         ],
@@ -917,7 +921,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+      "prompt": "Утром зал нужно убрать. Скажите помощнице, что каждое утро она подметает пол. Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-02:i14:r1",
@@ -934,14 +938,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+      "accessibilityLabel": "Утром зал нужно убрать. Скажите помощнице, что каждое утро она подметает пол. Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
-          "uk": "Вранці зал треба прибрати. Скажіть помічниці, що вона підмітає підлогу. Виберіть слово"
+          "ru": "Утром зал нужно убрать. Скажите помощнице, что каждое утро она подметает пол. Выберите слово",
+          "uk": "Вранці зал треба прибрати. Скажіть помічниці, що щоранку вона підмітає підлогу. Виберіть слово"
         },
-        "gappedTargetPhrase": "You ___ the floor.",
+        "gappedTargetPhrase": "You ___ the floor every morning.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-02:i14:r1",
@@ -956,12 +960,12 @@
             "text": "is sweep"
           }
         ],
-        "testedDimension": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+        "testedDimension": "Утром зал нужно убрать. Скажите помощнице, что каждое утро она подметает пол. Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-02:i14:r2",
             "correct": false,
-            "testedDimension": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+            "testedDimension": "Утром зал нужно убрать. Скажите помощнице, что каждое утро она подметает пол. Выберите слово",
             "feedbackByLocale": {
               "ru": "После `You` сразу ставим `sweep`, без `are`.",
               "uk": "Після `You` одразу ставимо `sweep`, без `are`."
@@ -970,7 +974,7 @@
           {
             "responseId": "en:lesson-06:session-02:i14:r3",
             "correct": false,
-            "testedDimension": "Утром зал нужно убрать. Скажите помощнице, что она подметает пол. Выберите слово",
+            "testedDimension": "Утром зал нужно убрать. Скажите помощнице, что каждое утро она подметает пол. Выберите слово",
             "feedbackByLocale": {
               "ru": "С `You` слово `is` не используется; нужно `You sweep`.",
               "uk": "З `You` слово `is` не вживається; потрібно `You sweep`."
@@ -1177,5 +1181,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "02bee147243f95d8c7f2b4cd00cfd1c87c21cdf2b4b80dadea6974e8bd03ebcd"
+  "learnerFingerprint": "5aebca9c918bc80c943c3c024d34484956c95d158031d1550d7b47fdf63f6a7c"
 }

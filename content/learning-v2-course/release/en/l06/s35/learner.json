@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга спрашивает о вас с сестрой. Скажите: «Мы спим здесь»",
+      "prompt": "Подруга спрашивает о вас с сестрой. Скажите: «Каждую ночь мы спим здесь»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга спрашивает о вас с сестрой. Скажите: «Мы спим здесь»",
+      "accessibilityLabel": "Подруга спрашивает о вас с сестрой. Скажите: «Каждую ночь мы спим здесь»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We sleep here.",
+        "targetPhrase": "We sleep here every night.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает о вас с сестрой. Скажите: «Мы спим здесь»",
-          "uk": "Подруга питає про вас із сестрою. Скажіть: «Ми спимо тут»"
+          "ru": "Подруга спрашивает о вас с сестрой. Скажите: «Каждую ночь мы спим здесь»",
+          "uk": "Подруга питає про вас із сестрою. Скажіть: «Щоночі ми спимо тут»"
         },
         "orderedTokens": [
           "We",
           "sleep",
-          "here"
+          "here",
+          "every",
+          "night"
         ],
         "authoredDistractorTokens": [
           "sleeps"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-35:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга спрашивает о вас с сестрой. Скажите: «Мы спим здесь»",
+            "testedDimension": "Подруга спрашивает о вас с сестрой. Скажите: «Каждую ночь мы спим здесь»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `sleep` — `We sleep here.`",
-              "uk": "тут потрібно `sleep` — `We sleep here.`"
+              "ru": "здесь нужно `sleep` — `We sleep here every night.`",
+              "uk": "тут потрібно `sleep` — `We sleep here every night.`"
             }
           }
         ],
@@ -172,7 +174,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о брате: «Мой брат спит на диване». Выберите слово",
+      "prompt": "Скажите о брате: «Каждую ночь мой брат спит на диване». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-35:i03:r1",
@@ -189,14 +191,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о брате: «Мой брат спит на диване». Выберите слово",
+      "accessibilityLabel": "Скажите о брате: «Каждую ночь мой брат спит на диване». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о брате: «Мой брат спит на диване». Выберите слово",
-          "uk": "Скажіть про брата: «Мій брат спить на дивані». Виберіть слово"
+          "ru": "Скажите о брате: «Каждую ночь мой брат спит на диване». Выберите слово",
+          "uk": "Скажіть про брата: «Щоночі мій брат спить на дивані». Виберіть слово"
         },
-        "gappedTargetPhrase": "My brother ___ on the sofa.",
+        "gappedTargetPhrase": "My brother ___ on the sofa every night.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-35:i03:r1",
@@ -211,12 +213,12 @@
             "text": "is sleeps"
           }
         ],
-        "testedDimension": "Скажите о брате: «Мой брат спит на диване». Выберите слово",
+        "testedDimension": "Скажите о брате: «Каждую ночь мой брат спит на диване». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-35:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Мой брат спит на диване». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждую ночь мой брат спит на диване». Выберите слово",
             "feedbackByLocale": {
               "ru": "Брат — это `he`, поэтому нужно `sleeps`, с `s`.",
               "uk": "Брат — це `he`, тому потрібно `sleeps`, з `s`."
@@ -225,7 +227,7 @@
           {
             "responseId": "en:lesson-06:session-35:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Мой брат спит на диване». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждую ночь мой брат спит на диване». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `sleeps`, без `is`.",
               "uk": "Кажемо `sleeps`, без `is`."
@@ -528,7 +530,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе: «Я сплю на диване». Выберите слово",
+      "prompt": "Скажите о себе: «Каждую ночь я сплю на диване». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-35:i08:r1",
@@ -545,14 +547,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе: «Я сплю на диване». Выберите слово",
+      "accessibilityLabel": "Скажите о себе: «Каждую ночь я сплю на диване». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я сплю на диване». Выберите слово",
-          "uk": "Скажіть про себе: «Я сплю на дивані». Виберіть слово"
+          "ru": "Скажите о себе: «Каждую ночь я сплю на диване». Выберите слово",
+          "uk": "Скажіть про себе: «Щоночі я сплю на дивані». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ on the sofa.",
+        "gappedTargetPhrase": "I ___ on the sofa every night.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-35:i08:r1",
@@ -567,12 +569,12 @@
             "text": "am sleep"
           }
         ],
-        "testedDimension": "Скажите о себе: «Я сплю на диване». Выберите слово",
+        "testedDimension": "Скажите о себе: «Каждую ночь я сплю на диване». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-35:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я сплю на диване». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждую ночь я сплю на диване». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `sleep`, без `s`.",
               "uk": "Після `I` потрібно `sleep`, без `s`."
@@ -581,7 +583,7 @@
           {
             "responseId": "en:lesson-06:session-35:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я сплю на диване». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждую ночь я сплю на диване». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `I sleep`, без `am`.",
               "uk": "Кажемо `I sleep`, без `am`."
@@ -1176,5 +1178,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0b2da1fe788ba3c4f373e669c8cbebf7967e819b3821210a05ea9026b69daaee"
+  "learnerFingerprint": "cfb458e2ef91389152ea86b7363db5996da7efddf257cfefeb65ed59a2e7bb5d"
 }

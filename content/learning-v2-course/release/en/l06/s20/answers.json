@@ -6,7 +6,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-20:i01",
-    "correctText": "She cooks soup.",
+    "correctText": "She cooks soup every day.",
     "correctResponseId": null
   },
   {
@@ -46,7 +46,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-20:i06",
-    "correctText": "He paints at home.",
+    "correctText": "He paints at home every day.",
     "correctResponseId": null
   },
   {

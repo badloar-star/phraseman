@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга спрашивает о вас с братом. Скажите: «Мы тренируемся дома»",
+      "prompt": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы тренируемся дома»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга спрашивает о вас с братом. Скажите: «Мы тренируемся дома»",
+      "accessibilityLabel": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы тренируемся дома»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We exercise at home.",
+        "targetPhrase": "We exercise at home every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает о вас с братом. Скажите: «Мы тренируемся дома»",
-          "uk": "Подруга питає про вас із братом. Скажіть: «Ми тренуємося вдома»"
+          "ru": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы тренируемся дома»",
+          "uk": "Подруга питає про вас із братом. Скажіть: «Щодня ми тренуємося вдома»"
         },
         "orderedTokens": [
           "We",
           "exercise",
           "at",
-          "home"
+          "home",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "exercises"
@@ -77,10 +79,10 @@
           {
             "responseId": "en:lesson-06:session-27:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга спрашивает о вас с братом. Скажите: «Мы тренируемся дома»",
+            "testedDimension": "Подруга спрашивает о вас с братом. Скажите: «Каждый день мы тренируемся дома»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `exercise` — `We exercise at home.`",
-              "uk": "тут потрібно `exercise` — `We exercise at home.`"
+              "ru": "здесь нужно `exercise` — `We exercise at home every day.`",
+              "uk": "тут потрібно `exercise` — `We exercise at home every day.`"
             }
           }
         ],
@@ -173,7 +175,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
+      "prompt": "Скажите о брате: «Каждый день он тренируется на коврике». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-27:i03:r1",
@@ -190,14 +192,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
+      "accessibilityLabel": "Скажите о брате: «Каждый день он тренируется на коврике». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
-          "uk": "Скажіть про брата: «Він тренується на килимку». Виберіть слово"
+          "ru": "Скажите о брате: «Каждый день он тренируется на коврике». Выберите слово",
+          "uk": "Скажіть про брата: «Щодня він тренується на килимку». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ on the mat.",
+        "gappedTargetPhrase": "He ___ on the mat every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-27:i03:r1",
@@ -212,12 +214,12 @@
             "text": "is exercises"
           }
         ],
-        "testedDimension": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
+        "testedDimension": "Скажите о брате: «Каждый день он тренируется на коврике». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-27:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждый день он тренируется на коврике». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `he` нужно `exercises`, с `s`.",
               "uk": "Після `he` потрібно `exercises`, з `s`."
@@ -226,7 +228,7 @@
           {
             "responseId": "en:lesson-06:session-27:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Он тренируется на коврике». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждый день он тренируется на коврике». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `He exercises`, без `is`.",
               "uk": "Кажемо `He exercises`, без `is`."
@@ -915,7 +917,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
+      "prompt": "Скажите о себе: «Каждый день я тренируюсь дома». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-27:i14:r1",
@@ -932,14 +934,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
+      "accessibilityLabel": "Скажите о себе: «Каждый день я тренируюсь дома». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
-          "uk": "Скажіть про себе: «Я тренуюся вдома». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я тренируюсь дома». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я тренуюся вдома». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ at home.",
+        "gappedTargetPhrase": "I ___ at home every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-27:i14:r1",
@@ -954,12 +956,12 @@
             "text": "am exercise"
           }
         ],
-        "testedDimension": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
+        "testedDimension": "Скажите о себе: «Каждый день я тренируюсь дома». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-27:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я тренируюсь дома». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `exercise`, без `s`.",
               "uk": "Після `I` потрібно `exercise`, без `s`."
@@ -968,7 +970,7 @@
           {
             "responseId": "en:lesson-06:session-27:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я тренируюсь дома». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я тренируюсь дома». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `I exercise`, без `am`.",
               "uk": "Кажемо `I exercise`, без `am`."
@@ -1175,5 +1177,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "179dcecb067e5b3eda4ef81c3fb36edbfdc7e05d91811f870a5f00cb02add9dd"
+  "learnerFingerprint": "2b308ee95b1f61806037a4434e11630360970e3b7bc30c8f5ec9c8eeee38db0b"
 }

@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Новый сосед спрашивает о вашей работе. Скажите: «Я доставляю газеты»",
+      "prompt": "Новый сосед спрашивает о вашей работе. Скажите: «Каждый день я доставляю газеты»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Новый сосед спрашивает о вашей работе. Скажите: «Я доставляю газеты»",
+      "accessibilityLabel": "Новый сосед спрашивает о вашей работе. Скажите: «Каждый день я доставляю газеты»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I deliver newspapers.",
+        "targetPhrase": "I deliver newspapers every day.",
         "localizedMeaning": {
-          "ru": "Новый сосед спрашивает о вашей работе. Скажите: «Я доставляю газеты»",
-          "uk": "Новий сусід питає про вашу роботу. Скажіть: «Я доставляю газети»"
+          "ru": "Новый сосед спрашивает о вашей работе. Скажите: «Каждый день я доставляю газеты»",
+          "uk": "Новий сусід питає про вашу роботу. Скажіть: «Щодня я доставляю газети»"
         },
         "orderedTokens": [
           "I",
           "deliver",
-          "newspapers"
+          "newspapers",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "delivers"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-50:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Новый сосед спрашивает о вашей работе. Скажите: «Я доставляю газеты»",
+            "testedDimension": "Новый сосед спрашивает о вашей работе. Скажите: «Каждый день я доставляю газеты»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `deliver` — `I deliver newspapers.`",
-              "uk": "тут потрібно `deliver` — `I deliver newspapers.`"
+              "ru": "здесь нужно `deliver` — `I deliver newspapers every day.`",
+              "uk": "тут потрібно `deliver` — `I deliver newspapers every day.`"
             }
           }
         ],
@@ -172,7 +174,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о брате: «Он доставляет газеты». Выберите слово",
+      "prompt": "Скажите о брате: «Каждый день он доставляет газеты». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-50:i03:r1",
@@ -189,14 +191,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о брате: «Он доставляет газеты». Выберите слово",
+      "accessibilityLabel": "Скажите о брате: «Каждый день он доставляет газеты». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о брате: «Он доставляет газеты». Выберите слово",
-          "uk": "Скажіть про брата: «Він доставляє газети». Виберіть слово"
+          "ru": "Скажите о брате: «Каждый день он доставляет газеты». Выберите слово",
+          "uk": "Скажіть про брата: «Щодня він доставляє газети». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ newspapers.",
+        "gappedTargetPhrase": "He ___ newspapers every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-50:i03:r1",
@@ -211,12 +213,12 @@
             "text": "is delivers"
           }
         ],
-        "testedDimension": "Скажите о брате: «Он доставляет газеты». Выберите слово",
+        "testedDimension": "Скажите о брате: «Каждый день он доставляет газеты». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-50:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Он доставляет газеты». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждый день он доставляет газеты». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `he` нужно `delivers`, с `s`.",
               "uk": "Після `he` потрібно `delivers`, з `s`."
@@ -225,7 +227,7 @@
           {
             "responseId": "en:lesson-06:session-50:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Он доставляет газеты». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждый день он доставляет газеты». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `He delivers`, без `is`.",
               "uk": "Кажемо `He delivers`, без `is`."
@@ -448,23 +450,25 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Друг спрашивает, как вы с братом едите в кафе. Скажите: «Мы делим стол»",
+      "prompt": "Друг спрашивает, как вы с братом едите в кафе. Скажите: «Каждый день мы делим стол»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг спрашивает, как вы с братом едите в кафе. Скажите: «Мы делим стол»",
+      "accessibilityLabel": "Друг спрашивает, как вы с братом едите в кафе. Скажите: «Каждый день мы делим стол»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We share a table.",
+        "targetPhrase": "We share a table every day.",
         "localizedMeaning": {
-          "ru": "Друг спрашивает, как вы с братом едите в кафе. Скажите: «Мы делим стол»",
-          "uk": "Друг питає, як ви з братом їсте в кафе. Скажіть: «Ми ділимо стіл»"
+          "ru": "Друг спрашивает, как вы с братом едите в кафе. Скажите: «Каждый день мы делим стол»",
+          "uk": "Друг питає, як ви з братом їсте в кафе. Скажіть: «Щодня ми ділимо стіл»"
         },
         "orderedTokens": [
           "We",
           "share",
           "a",
-          "table"
+          "table",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "shares"
@@ -473,10 +477,10 @@
           {
             "responseId": "en:lesson-06:session-50:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Друг спрашивает, как вы с братом едите в кафе. Скажите: «Мы делим стол»",
+            "testedDimension": "Друг спрашивает, как вы с братом едите в кафе. Скажите: «Каждый день мы делим стол»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `share` — `We share a table.`",
-              "uk": "тут потрібно `share` — `We share a table.`"
+              "ru": "здесь нужно `share` — `We share a table every day.`",
+              "uk": "тут потрібно `share` — `We share a table every day.`"
             }
           }
         ],
@@ -569,7 +573,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе: «Я доставляю газеты». Выберите слово",
+      "prompt": "Скажите о себе: «Каждый день я доставляю газеты». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-50:i08:r1",
@@ -586,14 +590,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе: «Я доставляю газеты». Выберите слово",
+      "accessibilityLabel": "Скажите о себе: «Каждый день я доставляю газеты». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я доставляю газеты». Выберите слово",
-          "uk": "Скажіть про себе: «Я доставляю газети». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я доставляю газеты». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я доставляю газети». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ newspapers.",
+        "gappedTargetPhrase": "I ___ newspapers every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-50:i08:r1",
@@ -608,12 +612,12 @@
             "text": "am deliver"
           }
         ],
-        "testedDimension": "Скажите о себе: «Я доставляю газеты». Выберите слово",
+        "testedDimension": "Скажите о себе: «Каждый день я доставляю газеты». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-50:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я доставляю газеты». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я доставляю газеты». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `deliver`, без `s`.",
               "uk": "Після `I` потрібно `deliver`, без `s`."
@@ -622,7 +626,7 @@
           {
             "responseId": "en:lesson-06:session-50:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я доставляю газеты». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я доставляю газеты». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `I deliver`, без `am`.",
               "uk": "Кажемо `I deliver`, без `am`."
@@ -912,7 +916,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о соседке: «Она доставляет газеты». Выберите слово",
+      "prompt": "Скажите о соседке: «Каждый день она доставляет газеты». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-50:i14:r1",
@@ -929,14 +933,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о соседке: «Она доставляет газеты». Выберите слово",
+      "accessibilityLabel": "Скажите о соседке: «Каждый день она доставляет газеты». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о соседке: «Она доставляет газеты». Выберите слово",
-          "uk": "Скажіть про сусідку: «Вона доставляє газети». Виберіть слово"
+          "ru": "Скажите о соседке: «Каждый день она доставляет газеты». Выберите слово",
+          "uk": "Скажіть про сусідку: «Щодня вона доставляє газети». Виберіть слово"
         },
-        "gappedTargetPhrase": "My neighbour ___ newspapers.",
+        "gappedTargetPhrase": "My neighbour ___ newspapers every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-50:i14:r1",
@@ -951,12 +955,12 @@
             "text": "is delivers"
           }
         ],
-        "testedDimension": "Скажите о соседке: «Она доставляет газеты». Выберите слово",
+        "testedDimension": "Скажите о соседке: «Каждый день она доставляет газеты». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-50:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите о соседке: «Она доставляет газеты». Выберите слово",
+            "testedDimension": "Скажите о соседке: «Каждый день она доставляет газеты». Выберите слово",
             "feedbackByLocale": {
               "ru": "Соседка — она: `My neighbour delivers`.",
               "uk": "Сусідка — вона: `My neighbour delivers`."
@@ -965,7 +969,7 @@
           {
             "responseId": "en:lesson-06:session-50:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите о соседке: «Она доставляет газеты». Выберите слово",
+            "testedDimension": "Скажите о соседке: «Каждый день она доставляет газеты». Выберите слово",
             "feedbackByLocale": {
               "ru": "Нужно `My neighbour delivers`, без `is`.",
               "uk": "Потрібно `My neighbour delivers`, без `is`."
@@ -1172,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "29a8f325925fdfd414a230e5533024ddffe8748bf296aa2aee0affb6e3cf8235"
+  "learnerFingerprint": "a5c6448a5a0858004b04da7616e153d17afdc4c0c0698f658ca3d2b7b5392691"
 }

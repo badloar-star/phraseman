@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-06:session-03",
   "learningOutcomeByLocale": {
-    "ru": "сказать, что вы делаете вместе: We mow, We trim, We pick — без are",
-    "uk": "сказати, що ви робите разом: We mow, We trim, We pick — без are"
+    "ru": "сказать, что вы делаете вместе: We mow the lawn.",
+    "uk": "сказати, що ви робите разом: We mow the lawn."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Груші на гілці"
       },
       "bodyByLocale": {
-        "ru": "Вы с подругой каждое лето собираете урожай груш в общем саду. Знакомая спрашивает, какие плоды вы обычно собираете. Pick — «собирать» плоды. We pick pears — «Мы собираем груши». Сначала we — о вас с подругой, затем pick без are, затем pears — груши во множественном числе.",
-        "uk": "Ви з подругою щоліта збираєте врожай груш у спільному саду. Знайома питає, які плоди ви зазвичай збираєте. Pick — «збирати» плоди. We pick pears — «Ми збираємо груші». Спочатку we — про вас із подругою, потім pick без are, потім pears — груші у множині."
+        "ru": "Вы с подругой каждое лето собираете урожай груш в общем саду. Знакомая спрашивает, какие плоды вы обычно собираете. Pick — «собирать» плоды. We pick pears — «Мы собираем груши». Сначала we — о вас с подругой, затем pick без are, затем pears — груши в форме для нескольких.",
+        "uk": "Ви з подругою щоліта збираєте врожай груш у спільному саду. Знайома питає, які плоди ви зазвичай збираєте. Pick — «збирати» плоди. We pick pears — «Ми збираємо груші». Спочатку we — про вас із подругою, потім pick без are, потім pears — груші у формі для кількох."
       },
       "question": {
         "interactionId": "en:lesson-06:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cb52b6670766a879c1b9bfb4d02ffcb6a3dd58f425e4732ba1f55c2c859b7a4f"
+  "introFingerprint": "5078fec869cf093f84605ce92a295745174f19bd123ad0a1cafd41c270daaf6b"
 }

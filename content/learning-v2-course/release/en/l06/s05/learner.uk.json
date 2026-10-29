@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Продавець питає, що ви берете. Скажіть: «Я купую яблука»",
+      "prompt": "Продавець питає, що ви берете. Скажіть: «Щоосені я купую яблука»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Продавець питає, що ви берете. Скажіть: «Я купую яблука»",
+      "accessibilityLabel": "Продавець питає, що ви берете. Скажіть: «Щоосені я купую яблука»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "I buy apples.",
+        "targetPhrase": "I buy apples every autumn.",
         "localizedMeaning": {
-          "ru": "Продавец спрашивает, что вы берёте. Скажите: «Я покупаю яблоки»",
-          "uk": "Продавець питає, що ви берете. Скажіть: «Я купую яблука»"
+          "ru": "Продавец спрашивает, что вы берёте. Скажите: «Каждую осень я покупаю яблоки»",
+          "uk": "Продавець питає, що ви берете. Скажіть: «Щоосені я купую яблука»"
         },
         "orderedTokens": [
           "I",
           "buy",
-          "apples"
+          "apples",
+          "every",
+          "autumn"
         ],
         "authoredDistractorTokens": [
           "am"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-05:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Продавець питає, що ви берете. Скажіть: «Я купую яблука»",
+            "testedDimension": "Продавець питає, що ви берете. Скажіть: «Щоосені я купую яблука»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `buy` — `I buy apples.`",
-              "uk": "тут потрібно `buy` — `I buy apples.`"
+              "ru": "здесь нужно `buy` — `I buy apples every autumn.`",
+              "uk": "тут потрібно `buy` — `I buy apples every autumn.`"
             }
           }
         ],
@@ -258,7 +260,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви з братом кладете фрукти в сумки. Виберіть слово",
+      "prompt": "Щодня ви з братом кладете фрукти в сумки. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-05:i03:r1",
@@ -275,14 +277,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви з братом кладете фрукти в сумки. Виберіть слово",
+      "accessibilityLabel": "Щодня ви з братом кладете фрукти в сумки. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы с братом кладёте фрукты в сумки. Выберите слово",
-          "uk": "Ви з братом кладете фрукти в сумки. Виберіть слово"
+          "ru": "Каждый день вы с братом кладёте фрукты в сумки. Выберите слово",
+          "uk": "Щодня ви з братом кладете фрукти в сумки. Виберіть слово"
         },
-        "gappedTargetPhrase": "We ___ the bags.",
+        "gappedTargetPhrase": "We ___ the bags every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-05:i03:r1",
@@ -297,12 +299,12 @@
             "text": "am pack"
           }
         ],
-        "testedDimension": "Ви з братом кладете фрукти в сумки. Виберіть слово",
+        "testedDimension": "Щодня ви з братом кладете фрукти в сумки. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-05:i03:r2",
             "correct": false,
-            "testedDimension": "Ви з братом кладете фрукти в сумки. Виберіть слово",
+            "testedDimension": "Щодня ви з братом кладете фрукти в сумки. Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `We` сразу ставим `pack`, без `are`.",
               "uk": "Після `We` одразу ставимо `pack`, без `are`."
@@ -311,7 +313,7 @@
           {
             "responseId": "en:lesson-06:session-05:i03:r3",
             "correct": false,
-            "testedDimension": "Ви з братом кладете фрукти в сумки. Виберіть слово",
+            "testedDimension": "Щодня ви з братом кладете фрукти в сумки. Виберіть слово",
             "feedbackByLocale": {
               "ru": "`am` ставится только после `I`; здесь нужно `We pack`.",
               "uk": "`am` ставиться тільки після `I`; тут потрібно `We pack`."
@@ -419,8 +421,8 @@
             "responseId": "en:lesson-06:session-05:word:scales:r1",
             "targetText": "scales",
             "meaningByLocale": {
-              "ru": "весы. The scales are on the table. — «Весы на столе». Прибор, на котором узнают вес. Слово scales всегда во множественном числе: are.",
-              "uk": "ваги. The scales are on the table. — «Ваги на столі». Прилад, на якому дізнаються вагу. Слово scales завжди у множині: are."
+              "ru": "весы. The scales are on the table. — «Весы на столе». Прибор, на котором узнают вес. Слово scales всегда в форме для нескольких: are.",
+              "uk": "ваги. The scales are on the table. — «Ваги на столі». Прилад, на якому дізнаються вагу. Слово scales завжди у формі для кількох: are."
             }
           }
         ],
@@ -430,8 +432,8 @@
         "wordCard": {
           "word": "scales",
           "definitionByLocale": {
-            "ru": "весы. The scales are on the table. — «Весы на столе». Прибор, на котором узнают вес. Слово scales всегда во множественном числе: are.",
-            "uk": "ваги. The scales are on the table. — «Ваги на столі». Прилад, на якому дізнаються вагу. Слово scales завжди у множині: are."
+            "ru": "весы. The scales are on the table. — «Весы на столе». Прибор, на котором узнают вес. Слово scales всегда в форме для нескольких: are.",
+            "uk": "ваги. The scales are on the table. — «Ваги на столі». Прилад, на якому дізнаються вагу. Слово scales завжди у формі для кількох: are."
           }
         }
       },
@@ -571,7 +573,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Двоє продавців кладуть сливи на ваги. Виберіть слово",
+      "prompt": "Щоосені двоє продавців кладуть сливи на ваги. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-05:i08:r1",
@@ -588,14 +590,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Двоє продавців кладуть сливи на ваги. Виберіть слово",
+      "accessibilityLabel": "Щоосені двоє продавців кладуть сливи на ваги. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Двое продавцов кладут сливы на весы. Выберите слово",
-          "uk": "Двоє продавців кладуть сливи на ваги. Виберіть слово"
+          "ru": "Каждую осень двое продавцов кладут сливы на весы. Выберите слово",
+          "uk": "Щоосені двоє продавців кладуть сливи на ваги. Виберіть слово"
         },
-        "gappedTargetPhrase": "They ___ the plums.",
+        "gappedTargetPhrase": "They ___ the plums every autumn.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-05:i08:r1",
@@ -610,12 +612,12 @@
             "text": "is weigh"
           }
         ],
-        "testedDimension": "Двоє продавців кладуть сливи на ваги. Виберіть слово",
+        "testedDimension": "Щоосені двоє продавців кладуть сливи на ваги. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-05:i08:r2",
             "correct": false,
-            "testedDimension": "Двоє продавців кладуть сливи на ваги. Виберіть слово",
+            "testedDimension": "Щоосені двоє продавців кладуть сливи на ваги. Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `They` сразу ставим `weigh`, без `are`.",
               "uk": "Після `They` одразу ставимо `weigh`, без `are`."
@@ -624,7 +626,7 @@
           {
             "responseId": "en:lesson-06:session-05:i08:r3",
             "correct": false,
-            "testedDimension": "Двоє продавців кладуть сливи на ваги. Виберіть слово",
+            "testedDimension": "Щоосені двоє продавців кладуть сливи на ваги. Виберіть слово",
             "feedbackByLocale": {
               "ru": "Слово `is` ставится после `he`, `she`, `it`; здесь нужно `They weigh`.",
               "uk": "Слово `is` ставиться після `he`, `she`, `it`; тут потрібно `They weigh`."
@@ -837,17 +839,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Ми укладаємо яблука в коробку»",
+      "prompt": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Щоосені ми укладаємо яблука в коробку»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Ми укладаємо яблука в коробку»",
+      "accessibilityLabel": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Щоосені ми укладаємо яблука в коробку»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We pack the apples in a box.",
+        "targetPhrase": "We pack the apples in a box every autumn.",
         "localizedMeaning": {
-          "ru": "Вы с братом укладываете фрукты. Скажите продавцу: «Мы укладываем яблоки в коробку»",
-          "uk": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Ми укладаємо яблука в коробку»"
+          "ru": "Вы с братом укладываете фрукты. Скажите продавцу: «Каждую осень мы укладываем яблоки в коробку»",
+          "uk": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Щоосені ми укладаємо яблука в коробку»"
         },
         "orderedTokens": [
           "We",
@@ -856,7 +858,9 @@
           "apples",
           "in",
           "a",
-          "box"
+          "box",
+          "every",
+          "autumn"
         ],
         "authoredDistractorTokens": [
           "are"
@@ -865,10 +869,10 @@
           {
             "responseId": "en:lesson-06:session-05:i12:tile:d1",
             "correct": false,
-            "testedDimension": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Ми укладаємо яблука в коробку»",
+            "testedDimension": "Ви з братом укладаєте фрукти. Скажіть продавцеві: «Щоосені ми укладаємо яблука в коробку»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `pack` — `We pack the apples in a box.`",
-              "uk": "тут потрібно `pack` — `We pack the apples in a box.`"
+              "ru": "здесь нужно `pack` — `We pack the apples in a box every autumn.`",
+              "uk": "тут потрібно `pack` — `We pack the apples in a box every autumn.`"
             }
           }
         ],
@@ -918,7 +922,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово",
+      "prompt": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що щоосені ви їх купуєте. Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-05:i14:r1",
@@ -935,14 +939,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово",
+      "accessibilityLabel": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що щоосені ви їх купуєте. Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы стоите у прилавка с яблоками. Скажите продавцу, что вы их покупаете. Выберите слово",
-          "uk": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово"
+          "ru": "Вы стоите у прилавка с яблоками. Скажите продавцу, что каждую осень вы их покупаете. Выберите слово",
+          "uk": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що щоосені ви їх купуєте. Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ apples.",
+        "gappedTargetPhrase": "I ___ apples every autumn.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-05:i14:r1",
@@ -957,12 +961,12 @@
             "text": "are buy"
           }
         ],
-        "testedDimension": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово",
+        "testedDimension": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що щоосені ви їх купуєте. Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-05:i14:r2",
             "correct": false,
-            "testedDimension": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово",
+            "testedDimension": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що щоосені ви їх купуєте. Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `I` сразу ставим `buy`, без `am`.",
               "uk": "Після `I` одразу ставимо `buy`, без `am`."
@@ -971,7 +975,7 @@
           {
             "responseId": "en:lesson-06:session-05:i14:r3",
             "correct": false,
-            "testedDimension": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що ви їх купуєте. Виберіть слово",
+            "testedDimension": "Ви стоїте біля прилавка з яблуками. Скажіть продавцеві, що щоосені ви їх купуєте. Виберіть слово",
             "feedbackByLocale": {
               "ru": "Слово `are` ставится после `we`, `you`, `they`; здесь нужно `I buy`.",
               "uk": "Слово `are` ставиться після `we`, `you`, `they`; тут потрібно `I buy`."
@@ -1178,5 +1182,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "97a5e5dafbc8ac140d7528434ef79a6802fbc5ad4312984af5a1d528ed5763e7"
+  "learnerFingerprint": "34c4dea051201c7f7067bbac0cc672d5cd931598dfb9d5c5b9bfee32e77b87de"
 }

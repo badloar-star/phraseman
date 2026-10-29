@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-05:session-44:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-44:intro2:r2": {
-          "ru": "handlebars всегда во множественном числе, поэтому нужно are these.",
-          "uk": "handlebars завжди у множині, тому потрібно are these."
+          "ru": "handlebars всегда в форме для нескольких, поэтому нужно are these.",
+          "uk": "handlebars завжди у формі для кількох, тому потрібно are these."
         },
         "en:lesson-05:session-44:intro2:r3": {
           "ru": "Who значит «кто». Когда спрашиваем «чей», нужно Whose.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "ad1d1cb65e73039216f4a5724344b301c0c9a0921b1a42544b306ec6bfae1e77"
+  "auxiliaryFingerprint": "b5debae60b316c699ca98b2bb68ccf5f1ba70e0fb1bab41b4d06b31160492ab0"
 }

@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга спрашивает о вас с сестрой. Скажите: «Мы приезжаем в пять»",
+      "prompt": "Подруга спрашивает о вас с сестрой. Скажите: «Каждый день мы приезжаем в пять»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга спрашивает о вас с сестрой. Скажите: «Мы приезжаем в пять»",
+      "accessibilityLabel": "Подруга спрашивает о вас с сестрой. Скажите: «Каждый день мы приезжаем в пять»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We arrive at five.",
+        "targetPhrase": "We arrive at five every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает о вас с сестрой. Скажите: «Мы приезжаем в пять»",
-          "uk": "Подруга питає про вас із сестрою. Скажіть: «Ми приїжджаємо о п’ятій»"
+          "ru": "Подруга спрашивает о вас с сестрой. Скажите: «Каждый день мы приезжаем в пять»",
+          "uk": "Подруга питає про вас із сестрою. Скажіть: «Щодня ми приїжджаємо о п’ятій»"
         },
         "orderedTokens": [
           "We",
           "arrive",
           "at",
-          "five"
+          "five",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "arrives"
@@ -77,10 +79,10 @@
           {
             "responseId": "en:lesson-06:session-42:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга спрашивает о вас с сестрой. Скажите: «Мы приезжаем в пять»",
+            "testedDimension": "Подруга спрашивает о вас с сестрой. Скажите: «Каждый день мы приезжаем в пять»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `arrive` — `We arrive at five.`",
-              "uk": "тут потрібно `arrive` — `We arrive at five.`"
+              "ru": "здесь нужно `arrive` — `We arrive at five every day.`",
+              "uk": "тут потрібно `arrive` — `We arrive at five every day.`"
             }
           }
         ],
@@ -173,7 +175,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о сестре: «Она приезжает в пять». Выберите слово",
+      "prompt": "Скажите о сестре: «Каждый день она приезжает в пять». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-42:i03:r1",
@@ -190,14 +192,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о сестре: «Она приезжает в пять». Выберите слово",
+      "accessibilityLabel": "Скажите о сестре: «Каждый день она приезжает в пять». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о сестре: «Она приезжает в пять». Выберите слово",
-          "uk": "Скажіть про сестру: «Вона приїжджає о п’ятій». Виберіть слово"
+          "ru": "Скажите о сестре: «Каждый день она приезжает в пять». Выберите слово",
+          "uk": "Скажіть про сестру: «Щодня вона приїжджає о п’ятій». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ at five.",
+        "gappedTargetPhrase": "She ___ at five every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-42:i03:r1",
@@ -212,12 +214,12 @@
             "text": "is arrives"
           }
         ],
-        "testedDimension": "Скажите о сестре: «Она приезжает в пять». Выберите слово",
+        "testedDimension": "Скажите о сестре: «Каждый день она приезжает в пять». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-42:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о сестре: «Она приезжает в пять». Выберите слово",
+            "testedDimension": "Скажите о сестре: «Каждый день она приезжает в пять». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `she` нужно `arrives`, с `s`.",
               "uk": "Після `she` потрібно `arrives`, з `s`."
@@ -226,7 +228,7 @@
           {
             "responseId": "en:lesson-06:session-42:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о сестре: «Она приезжает в пять». Выберите слово",
+            "testedDimension": "Скажите о сестре: «Каждый день она приезжает в пять». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `She arrives`, без `is`.",
               "uk": "Кажемо `She arrives`, без `is`."
@@ -527,7 +529,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе: «Я приезжаю в пять». Выберите слово",
+      "prompt": "Скажите о себе: «Каждый день я приезжаю в пять». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-42:i08:r1",
@@ -544,14 +546,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе: «Я приезжаю в пять». Выберите слово",
+      "accessibilityLabel": "Скажите о себе: «Каждый день я приезжаю в пять». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я приезжаю в пять». Выберите слово",
-          "uk": "Скажіть про себе: «Я приїжджаю о п’ятій». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я приезжаю в пять». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я приїжджаю о п’ятій». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ at five.",
+        "gappedTargetPhrase": "I ___ at five every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-42:i08:r1",
@@ -566,12 +568,12 @@
             "text": "am arrive"
           }
         ],
-        "testedDimension": "Скажите о себе: «Я приезжаю в пять». Выберите слово",
+        "testedDimension": "Скажите о себе: «Каждый день я приезжаю в пять». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-42:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я приезжаю в пять». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я приезжаю в пять». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `arrive`, без `s`.",
               "uk": "Після `I` потрібно `arrive`, без `s`."
@@ -580,7 +582,7 @@
           {
             "responseId": "en:lesson-06:session-42:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я приезжаю в пять». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я приезжаю в пять». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `I arrive`, без `am`.",
               "uk": "Кажемо `I arrive`, без `am`."
@@ -1174,5 +1176,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "41ee28dd482e50318b056175cb3bcb324a3828f7aceb2225f2c3d0fad32869d6"
+  "learnerFingerprint": "2d9ea1822346e722d584a98e90fcbc2ba831b20f0f8347a1b30e4d25365788df"
 }

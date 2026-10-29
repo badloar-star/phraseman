@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-06:session-35:intro3:q",
       "responseFeedbackById": {
         "en:lesson-06:session-35:intro3:r2": {
-          "ru": "Pyjamas имеет форму множественного числа: нужно are these.",
-          "uk": "Pyjamas має форму множини: потрібно are these."
+          "ru": "Pyjamas имеет форму для нескольких: нужно are these.",
+          "uk": "Pyjamas має форму для кількох: потрібно are these."
         },
         "en:lesson-06:session-35:intro3:r3": {
           "ru": "О владельце спрашиваем Whose — «чья».",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5e49bad0af84e4a90d8c2ebc309e887577407f7a726a8f4cf77adb6644b2073f"
+  "auxiliaryFingerprint": "4c67fcddc7feebcf79116ecf1382343bbcb0962710ad113f2e7e6842c5709b44"
 }

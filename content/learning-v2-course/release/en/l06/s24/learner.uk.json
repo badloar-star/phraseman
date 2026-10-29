@@ -52,23 +52,25 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега питає, що робить ваша сестра. Скажіть: «Вона наливає молоко»",
+      "prompt": "Колега питає, що робить ваша сестра. Скажіть: «Щодня вона наливає молоко»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега питає, що робить ваша сестра. Скажіть: «Вона наливає молоко»",
+      "accessibilityLabel": "Колега питає, що робить ваша сестра. Скажіть: «Щодня вона наливає молоко»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "She pours the milk.",
+        "targetPhrase": "She pours the milk every day.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, что делает ваша сестра. Скажите: «Она наливает молоко»",
-          "uk": "Колега питає, що робить ваша сестра. Скажіть: «Вона наливає молоко»"
+          "ru": "Коллега спрашивает, что делает ваша сестра. Скажите: «Каждый день она наливает молоко»",
+          "uk": "Колега питає, що робить ваша сестра. Скажіть: «Щодня вона наливає молоко»"
         },
         "orderedTokens": [
           "She",
           "pours",
           "the",
-          "milk"
+          "milk",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "pour"
@@ -77,10 +79,10 @@
           {
             "responseId": "en:lesson-06:session-24:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Колега питає, що робить ваша сестра. Скажіть: «Вона наливає молоко»",
+            "testedDimension": "Колега питає, що робить ваша сестра. Скажіть: «Щодня вона наливає молоко»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `pours` — `She pours the milk.`",
-              "uk": "тут потрібно `pours` — `She pours the milk.`"
+              "ru": "здесь нужно `pours` — `She pours the milk every day.`",
+              "uk": "тут потрібно `pours` — `She pours the milk every day.`"
             }
           }
         ],
@@ -259,7 +261,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово",
+      "prompt": "Скажіть про сестру: «Щодня вона нарізає хліб». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-24:i03:r1",
@@ -276,14 +278,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово",
+      "accessibilityLabel": "Скажіть про сестру: «Щодня вона нарізає хліб». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о сестре: «Она нарезает хлеб». Выберите слово",
-          "uk": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово"
+          "ru": "Скажите о сестре: «Каждый день она нарезает хлеб». Выберите слово",
+          "uk": "Скажіть про сестру: «Щодня вона нарізає хліб». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ the bread.",
+        "gappedTargetPhrase": "She ___ the bread every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-24:i03:r1",
@@ -298,12 +300,12 @@
             "text": "is slices"
           }
         ],
-        "testedDimension": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово",
+        "testedDimension": "Скажіть про сестру: «Щодня вона нарізає хліб». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-24:i03:r2",
             "correct": false,
-            "testedDimension": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово",
+            "testedDimension": "Скажіть про сестру: «Щодня вона нарізає хліб». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `she` — `slices`, с `s`.",
               "uk": "Після `she` — `slices`, з `s`."
@@ -312,7 +314,7 @@
           {
             "responseId": "en:lesson-06:session-24:i03:r3",
             "correct": false,
-            "testedDimension": "Скажіть про сестру: «Вона нарізає хліб». Виберіть слово",
+            "testedDimension": "Скажіть про сестру: «Щодня вона нарізає хліб». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `She slices`, без `is`.",
               "uk": "Кажемо `She slices`, без `is`."
@@ -492,22 +494,24 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Колега питає, ким працює ваш брат. Скажіть: «Він викладає англійську»",
+      "prompt": "Колега питає, ким працює ваш брат. Скажіть: «Щодня він викладає англійську»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Колега питає, ким працює ваш брат. Скажіть: «Він викладає англійську»",
+      "accessibilityLabel": "Колега питає, ким працює ваш брат. Скажіть: «Щодня він викладає англійську»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He teaches English.",
+        "targetPhrase": "He teaches English every day.",
         "localizedMeaning": {
-          "ru": "Коллега спрашивает, кем работает ваш брат. Скажите: «Он преподаёт английский»",
-          "uk": "Колега питає, ким працює ваш брат. Скажіть: «Він викладає англійську»"
+          "ru": "Коллега спрашивает, кем работает ваш брат. Скажите: «Каждый день он преподаёт английский»",
+          "uk": "Колега питає, ким працює ваш брат. Скажіть: «Щодня він викладає англійську»"
         },
         "orderedTokens": [
           "He",
           "teaches",
-          "English"
+          "English",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "teach"
@@ -516,10 +520,10 @@
           {
             "responseId": "en:lesson-06:session-24:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Колега питає, ким працює ваш брат. Скажіть: «Він викладає англійську»",
+            "testedDimension": "Колега питає, ким працює ваш брат. Скажіть: «Щодня він викладає англійську»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `teaches` — `He teaches English.`",
-              "uk": "тут потрібно `teaches` — `He teaches English.`"
+              "ru": "здесь нужно `teaches` — `He teaches English every day.`",
+              "uk": "тут потрібно `teaches` — `He teaches English every day.`"
             }
           }
         ],
@@ -569,7 +573,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про брата: «Він малює за столом». Виберіть слово",
+      "prompt": "Скажіть про брата: «Щодня він малює за столом». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-24:i08:r1",
@@ -586,14 +590,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про брата: «Він малює за столом». Виберіть слово",
+      "accessibilityLabel": "Скажіть про брата: «Щодня він малює за столом». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о брате: «Он рисует за столом». Выберите слово",
-          "uk": "Скажіть про брата: «Він малює за столом». Виберіть слово"
+          "ru": "Скажите о брате: «Каждый день он рисует за столом». Выберите слово",
+          "uk": "Скажіть про брата: «Щодня він малює за столом». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ at the table.",
+        "gappedTargetPhrase": "He ___ at the table every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-24:i08:r1",
@@ -608,12 +612,12 @@
             "text": "is draws"
           }
         ],
-        "testedDimension": "Скажіть про брата: «Він малює за столом». Виберіть слово",
+        "testedDimension": "Скажіть про брата: «Щодня він малює за столом». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-24:i08:r2",
             "correct": false,
-            "testedDimension": "Скажіть про брата: «Він малює за столом». Виберіть слово",
+            "testedDimension": "Скажіть про брата: «Щодня він малює за столом». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `he` — `draws`, с `s`.",
               "uk": "Після `he` — `draws`, з `s`."
@@ -622,7 +626,7 @@
           {
             "responseId": "en:lesson-06:session-24:i08:r3",
             "correct": false,
-            "testedDimension": "Скажіть про брата: «Він малює за столом». Виберіть слово",
+            "testedDimension": "Скажіть про брата: «Щодня він малює за столом». Виберіть слово",
             "feedbackByLocale": {
               "ru": "Говорим `He draws`, без `is`.",
               "uk": "Кажемо `He draws`, без `is`."
@@ -914,7 +918,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово",
+      "prompt": "Скажіть про сестру: «Щодня вона викладає англійську». Виберіть слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-24:i14:r1",
@@ -931,14 +935,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово",
+      "accessibilityLabel": "Скажіть про сестру: «Щодня вона викладає англійську». Виберіть слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о сестре: «Она преподаёт английский». Выберите слово",
-          "uk": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово"
+          "ru": "Скажите о сестре: «Каждый день она преподаёт английский». Выберите слово",
+          "uk": "Скажіть про сестру: «Щодня вона викладає англійську». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ English.",
+        "gappedTargetPhrase": "She ___ English every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-24:i14:r1",
@@ -953,12 +957,12 @@
             "text": "teachs"
           }
         ],
-        "testedDimension": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово",
+        "testedDimension": "Скажіть про сестру: «Щодня вона викладає англійську». Виберіть слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-24:i14:r2",
             "correct": false,
-            "testedDimension": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово",
+            "testedDimension": "Скажіть про сестру: «Щодня вона викладає англійську». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `she` — `teaches`, с `es`.",
               "uk": "Після `she` — `teaches`, з `es`."
@@ -967,7 +971,7 @@
           {
             "responseId": "en:lesson-06:session-24:i14:r3",
             "correct": false,
-            "testedDimension": "Скажіть про сестру: «Вона викладає англійську». Виберіть слово",
+            "testedDimension": "Скажіть про сестру: «Щодня вона викладає англійську». Виберіть слово",
             "feedbackByLocale": {
               "ru": "После `ch` нужно `es`: `teaches`.",
               "uk": "Після `ch` потрібно `es`: `teaches`."
@@ -1174,5 +1178,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5a7707b366d0f5782418b561c83a2fc93f5f406afdcd4bad28024a3286d464d3"
+  "learnerFingerprint": "45e16bb5356dd36db445bf3f0c53a3280551533079d0a2442a501070b6bde4c4"
 }

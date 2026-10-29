@@ -6,7 +6,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-32:i01",
-    "correctText": "We jog at sunrise.",
+    "correctText": "We jog at sunrise every day.",
     "correctResponseId": null
   },
   {
@@ -41,7 +41,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-32:i06",
-    "correctText": "She jogs with a playlist.",
+    "correctText": "She jogs with a playlist every day.",
     "correctResponseId": null
   },
   {

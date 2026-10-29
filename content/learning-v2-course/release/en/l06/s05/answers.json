@@ -6,7 +6,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-05:i01",
-    "correctText": "I buy apples.",
+    "correctText": "I buy apples every autumn.",
     "correctResponseId": null
   },
   {
@@ -76,7 +76,7 @@
   },
   {
     "interactionId": "en:lesson-06:session-05:i12",
-    "correctText": "We pack the apples in a box.",
+    "correctText": "We pack the apples in a box every autumn.",
     "correctResponseId": null
   },
   {

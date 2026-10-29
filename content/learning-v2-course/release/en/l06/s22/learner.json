@@ -52,24 +52,26 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Он читает в кресле»",
+      "prompt": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Каждый день он читает в кресле»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Он читает в кресле»",
+      "accessibilityLabel": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Каждый день он читает в кресле»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He reads in the armchair.",
+        "targetPhrase": "He reads in the armchair every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Он читает в кресле»",
-          "uk": "Подруга питає, що робить ваш брат у кріслі. Скажіть: «Він читає в кріслі»"
+          "ru": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Каждый день он читает в кресле»",
+          "uk": "Подруга питає, що робить ваш брат у кріслі. Скажіть: «Щодня він читає в кріслі»"
         },
         "orderedTokens": [
           "He",
           "reads",
           "in",
           "the",
-          "armchair"
+          "armchair",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "read"
@@ -78,10 +80,10 @@
           {
             "responseId": "en:lesson-06:session-22:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Он читает в кресле»",
+            "testedDimension": "Подруга спрашивает, что делает ваш брат в кресле. Скажите: «Каждый день он читает в кресле»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `reads` — `He reads in the armchair.`",
-              "uk": "тут потрібно `reads` — `He reads in the armchair.`"
+              "ru": "здесь нужно `reads` — `He reads in the armchair every day.`",
+              "uk": "тут потрібно `reads` — `He reads in the armchair every day.`"
             }
           }
         ],
@@ -493,24 +495,26 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга спрашивает, что делает ваш брат. Скажите: «Он смеётся над шуткой»",
+      "prompt": "Подруга спрашивает, что делает ваш брат. Скажите: «Каждый день он смеётся над шуткой»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга спрашивает, что делает ваш брат. Скажите: «Он смеётся над шуткой»",
+      "accessibilityLabel": "Подруга спрашивает, что делает ваш брат. Скажите: «Каждый день он смеётся над шуткой»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "He laughs at the joke.",
+        "targetPhrase": "He laughs at the joke every day.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает, что делает ваш брат. Скажите: «Он смеётся над шуткой»",
-          "uk": "Подруга питає, що робить ваш брат. Скажіть: «Він сміється з жарту»"
+          "ru": "Подруга спрашивает, что делает ваш брат. Скажите: «Каждый день он смеётся над шуткой»",
+          "uk": "Подруга питає, що робить ваш брат. Скажіть: «Щодня він сміється з жарту»"
         },
         "orderedTokens": [
           "He",
           "laughs",
           "at",
           "the",
-          "joke"
+          "joke",
+          "every",
+          "day"
         ],
         "authoredDistractorTokens": [
           "laugh"
@@ -519,10 +523,10 @@
           {
             "responseId": "en:lesson-06:session-22:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга спрашивает, что делает ваш брат. Скажите: «Он смеётся над шуткой»",
+            "testedDimension": "Подруга спрашивает, что делает ваш брат. Скажите: «Каждый день он смеётся над шуткой»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `laughs` — `He laughs at the joke.`",
-              "uk": "тут потрібно `laughs` — `He laughs at the joke.`"
+              "ru": "здесь нужно `laughs` — `He laughs at the joke every day.`",
+              "uk": "тут потрібно `laughs` — `He laughs at the joke every day.`"
             }
           }
         ],
@@ -572,7 +576,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о брате: «Он читает в кресле». Выберите слово",
+      "prompt": "Скажите о брате: «Каждый день он читает в кресле». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-22:i08:r1",
@@ -589,14 +593,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о брате: «Он читает в кресле». Выберите слово",
+      "accessibilityLabel": "Скажите о брате: «Каждый день он читает в кресле». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о брате: «Он читает в кресле». Выберите слово",
-          "uk": "Скажіть про брата: «Він читає в кріслі». Виберіть слово"
+          "ru": "Скажите о брате: «Каждый день он читает в кресле». Выберите слово",
+          "uk": "Скажіть про брата: «Щодня він читає в кріслі». Виберіть слово"
         },
-        "gappedTargetPhrase": "He ___ in the armchair.",
+        "gappedTargetPhrase": "He ___ in the armchair every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-22:i08:r1",
@@ -611,12 +615,12 @@
             "text": "is reads"
           }
         ],
-        "testedDimension": "Скажите о брате: «Он читает в кресле». Выберите слово",
+        "testedDimension": "Скажите о брате: «Каждый день он читает в кресле». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-22:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Он читает в кресле». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждый день он читает в кресле». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `he` — `reads`, с `s`.",
               "uk": "Після `he` — `reads`, з `s`."
@@ -625,7 +629,7 @@
           {
             "responseId": "en:lesson-06:session-22:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о брате: «Он читает в кресле». Выберите слово",
+            "testedDimension": "Скажите о брате: «Каждый день он читает в кресле». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `He reads`, без `is`.",
               "uk": "Кажемо `He reads`, без `is`."
@@ -917,7 +921,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
+      "prompt": "Скажите о соседке: «Каждый день она смеётся над шуткой». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-22:i14:r1",
@@ -934,14 +938,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
+      "accessibilityLabel": "Скажите о соседке: «Каждый день она смеётся над шуткой». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
-          "uk": "Скажіть про сусідку: «Вона сміється з жарту». Виберіть слово"
+          "ru": "Скажите о соседке: «Каждый день она смеётся над шуткой». Выберите слово",
+          "uk": "Скажіть про сусідку: «Щодня вона сміється з жарту». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ at the joke.",
+        "gappedTargetPhrase": "She ___ at the joke every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-22:i14:r1",
@@ -956,12 +960,12 @@
             "text": "is laughs"
           }
         ],
-        "testedDimension": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
+        "testedDimension": "Скажите о соседке: «Каждый день она смеётся над шуткой». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-22:i14:r2",
             "correct": false,
-            "testedDimension": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
+            "testedDimension": "Скажите о соседке: «Каждый день она смеётся над шуткой». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `she` — `laughs`, с `s`.",
               "uk": "Після `she` — `laughs`, з `s`."
@@ -970,7 +974,7 @@
           {
             "responseId": "en:lesson-06:session-22:i14:r3",
             "correct": false,
-            "testedDimension": "Скажите о соседке: «Она смеётся над шуткой». Выберите слово",
+            "testedDimension": "Скажите о соседке: «Каждый день она смеётся над шуткой». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `She laughs`, без `is`.",
               "uk": "Кажемо `She laughs`, без `is`."
@@ -1177,5 +1181,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0e85d1be9888496deee4b0be55960b9c184941ef46721191863e20ccb6365b91"
+  "learnerFingerprint": "27bb7cc00d7bf9bbc35cd235b954c93fb15a4c40fcc9a80880361b7a94f3828e"
 }

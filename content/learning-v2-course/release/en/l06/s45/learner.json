@@ -52,22 +52,24 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
+      "prompt": "Подруга спрашивает о вас с бабушкой. Скажите: «Каждую неделю мы чиним носки»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
+      "accessibilityLabel": "Подруга спрашивает о вас с бабушкой. Скажите: «Каждую неделю мы чиним носки»",
       "modePayload": {
         "family": "phrase_builder",
-        "targetPhrase": "We mend socks.",
+        "targetPhrase": "We mend socks every week.",
         "localizedMeaning": {
-          "ru": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
-          "uk": "Подруга питає про вас із бабусею. Скажіть: «Ми лагодимо шкарпетки»"
+          "ru": "Подруга спрашивает о вас с бабушкой. Скажите: «Каждую неделю мы чиним носки»",
+          "uk": "Подруга питає про вас із бабусею. Скажіть: «Щотижня ми лагодимо шкарпетки»"
         },
         "orderedTokens": [
           "We",
           "mend",
-          "socks"
+          "socks",
+          "every",
+          "week"
         ],
         "authoredDistractorTokens": [
           "mends"
@@ -76,10 +78,10 @@
           {
             "responseId": "en:lesson-06:session-45:i01:tile:d1",
             "correct": false,
-            "testedDimension": "Подруга спрашивает о вас с бабушкой. Скажите: «Мы чиним носки»",
+            "testedDimension": "Подруга спрашивает о вас с бабушкой. Скажите: «Каждую неделю мы чиним носки»",
             "feedbackByLocale": {
-              "ru": "здесь нужно `mend` — `We mend socks.`",
-              "uk": "тут потрібно `mend` — `We mend socks.`"
+              "ru": "здесь нужно `mend` — `We mend socks every week.`",
+              "uk": "тут потрібно `mend` — `We mend socks every week.`"
             }
           }
         ],
@@ -172,7 +174,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+      "prompt": "Скажите о бабушке: «Каждую неделю она чинит носки». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-45:i03:r1",
@@ -189,14 +191,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+      "accessibilityLabel": "Скажите о бабушке: «Каждую неделю она чинит носки». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о бабушке: «Она чинит носки». Выберите слово",
-          "uk": "Скажіть про бабусю: «Вона лагодить шкарпетки». Виберіть слово"
+          "ru": "Скажите о бабушке: «Каждую неделю она чинит носки». Выберите слово",
+          "uk": "Скажіть про бабусю: «Щотижня вона лагодить шкарпетки». Виберіть слово"
         },
-        "gappedTargetPhrase": "She ___ socks.",
+        "gappedTargetPhrase": "She ___ socks every week.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-45:i03:r1",
@@ -211,12 +213,12 @@
             "text": "is mends"
           }
         ],
-        "testedDimension": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+        "testedDimension": "Скажите о бабушке: «Каждую неделю она чинит носки». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-45:i03:r2",
             "correct": false,
-            "testedDimension": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+            "testedDimension": "Скажите о бабушке: «Каждую неделю она чинит носки». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `she` нужно `mends`, с `s`.",
               "uk": "Після `she` потрібно `mends`, з `s`."
@@ -225,7 +227,7 @@
           {
             "responseId": "en:lesson-06:session-45:i03:r3",
             "correct": false,
-            "testedDimension": "Скажите о бабушке: «Она чинит носки». Выберите слово",
+            "testedDimension": "Скажите о бабушке: «Каждую неделю она чинит носки». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `She mends`, без `is`.",
               "uk": "Кажемо `She mends`, без `is`."
@@ -528,7 +530,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Скажите о себе: «Я чиню свитер». Выберите слово",
+      "prompt": "Скажите о себе: «Каждый день я чиню свитер». Выберите слово",
       "responseOptions": [
         {
           "responseId": "en:lesson-06:session-45:i08:r1",
@@ -545,14 +547,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите о себе: «Я чиню свитер». Выберите слово",
+      "accessibilityLabel": "Скажите о себе: «Каждый день я чиню свитер». Выберите слово",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Скажите о себе: «Я чиню свитер». Выберите слово",
-          "uk": "Скажіть про себе: «Я лагоджу светр». Виберіть слово"
+          "ru": "Скажите о себе: «Каждый день я чиню свитер». Выберите слово",
+          "uk": "Скажіть про себе: «Щодня я лагоджу светр». Виберіть слово"
         },
-        "gappedTargetPhrase": "I ___ my sweater.",
+        "gappedTargetPhrase": "I ___ my sweater every day.",
         "gapOptions": [
           {
             "responseId": "en:lesson-06:session-45:i08:r1",
@@ -567,12 +569,12 @@
             "text": "am mend"
           }
         ],
-        "testedDimension": "Скажите о себе: «Я чиню свитер». Выберите слово",
+        "testedDimension": "Скажите о себе: «Каждый день я чиню свитер». Выберите слово",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-06:session-45:i08:r2",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я чиню свитер». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я чиню свитер». Выберите слово",
             "feedbackByLocale": {
               "ru": "После `I` нужно `mend`, без `s`.",
               "uk": "Після `I` потрібно `mend`, без `s`."
@@ -581,7 +583,7 @@
           {
             "responseId": "en:lesson-06:session-45:i08:r3",
             "correct": false,
-            "testedDimension": "Скажите о себе: «Я чиню свитер». Выберите слово",
+            "testedDimension": "Скажите о себе: «Каждый день я чиню свитер». Выберите слово",
             "feedbackByLocale": {
               "ru": "Говорим `I mend`, без `am`.",
               "uk": "Кажемо `I mend`, без `am`."
@@ -1176,5 +1178,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c033c44160d73ba2bb9ea939201900a034a50bb1d8fded96b0cfd7cc4f760fe2"
+  "learnerFingerprint": "46e9bbba83020c15111991d1e5694f7830b34d93d918cfb809d4445c9e86c3c0"
 }

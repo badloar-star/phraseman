@@ -23,7 +23,7 @@
   let AP = q.get('ap') === 'light' ? 'light' : 'dark'; let VIEW = q.get('view') === 'now' ? 'now' : 'variant'; let RULER = q.get('ruler') !== '0';
   let THEME = q.get('theme') === 'titanium' ? 'titanium' : 'graphite'; const BOTTOM = 'flat'; // владелец (крик 29.10): «вся сцена без затемнения внизу, вся сцена вот такого цвета целиком» — один тон, чипов низа неба нет
   /* тон неба тёмной темы — цифра «Тем» 29.10 для графита (1:1 с их кодом): один цвет на всю сцену, сверху белый диагональный перелив до 7 % */
-  const FLAT_SKY = { graphite: '#516583', sheen: 0.07 };
+  const FLAT_SKY = { graphite: '#516582', sheen: 0.07, sheenEnd: 0.7 }; // skyTone и diagonal из таблицы Тем scene-all-themes-2026-10-29.json; sun из таблицы не рисуем — владелец одобрил ровный тон
   /* высота обеих сцен (слово владельца 29.10): 412 dp = 1082 px — как в утверждённом эталоне, край там, где раньше начиналась карточка;
      392 dp = 1029 px — как у «Уроков» сейчас. Герой: 160 — эталон HERO_HOME, 200/280 — «громадный» (владелец), по умолчанию 280 — «на всю сцену» */
   /* владелец 29.10 (срочно): «линия сцены должна аж заходить под карточку «Сегодня», под её заголовок» — режим 'under': карточка лежит ПОВЕРХ
@@ -39,6 +39,9 @@
      карточка «Сегодня» с 1058, герой-книга 368 px в 721/294); Титан — реальные кадры 28.10 (край 1082/1081, карточка наезжает, чистое
      небо над кнопкой 819…868); «Уроки» HEAD — край 1029, скругление 32 dp, плитки с 1062 */
   const KEEP_AVATAR = [{ cx: 953.5, cy: 226, r: 85 }, { cx: 1018, cy: 279, r: 31 }];
+  /* область старого героя кадра HEAD (721…1089 × 294…662) и ореола-диска под ним (центр ≈ 905/478, r ≈ 220): закрашивается новым небом целиком —
+     иначе мягкая тень и ореол остаются «стеклом» и просвечивают вокруг новой книги (владелец: «свечения вокруг иконки»); аватар — keep, выше */
+  const OLD_HERO_ZONE = [{ x0: 600, y0: 250, x1: 1079, y1: 720 }];
   /* «Уроки» по оформлению: тёмное — кадр HEAD; светлое — кадр HEAD, когда снимут (head_lessons_graphite_light), пока — реальный светлый
      кадр 28.10 (край тот же 1029, плитки с 1061, скругление 32 dp) */
   const LESSONS_BY_AP = {
@@ -70,7 +73,7 @@
       const r = SA.rng(7); const lower = []; for (let i = 0; i < 102; i += 1) { const x = r(); const y = 0.4 + r() * 0.58; const rad = 0.9 + r() * 0.9; const a = 0.3 + r() * 0.35; lower.push({ x, y, r: rad, a }); }
       const stars = d.stars.list.concat(lower);
       // один тон на всю сцену (владелец: «вся сцена вот такого цвета целиком»), сверху белый диагональный перелив до 7 % (светлее слева сверху), звёзды везде
-      const { c, g } = canvasOf(W, Hs); g.fillStyle = FLAT_SKY.graphite; g.fillRect(0, 0, W, Hs); const sh = g.createLinearGradient(0, 0, W, Hs); sh.addColorStop(0, `rgba(255,255,255,${FLAT_SKY.sheen})`); sh.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = sh; g.fillRect(0, 0, W, Hs); // guard-ok: перелив неба макета, не баланс пользователя
+      const { c, g } = canvasOf(W, Hs); g.fillStyle = FLAT_SKY.graphite; g.fillRect(0, 0, W, Hs); const sh = g.createLinearGradient(0, 0, W, Hs * FLAT_SKY.sheenEnd); sh.addColorStop(0, `rgba(255,255,255,${FLAT_SKY.sheen})`); sh.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = sh; g.fillRect(0, 0, W, Hs); // guard-ok: перелив неба макета, не баланс пользователя
       stars.forEach((st) => { g.fillStyle = rgba([255, 255, 255], st.a); g.beginPath(); g.arc(st.x * W, st.y * Hs, st.r, 0, Math.PI * 2); g.fill(); });
       console.log(LOG, 'небо тёмное', JSON.stringify({ screen, Hs, tone: FLAT_SKY.graphite, sheen: FLAT_SKY.sheen, darkening: 'нет', stars: stars.length })); // guard-ok
       return { c, g, stars, a: 0 };
@@ -102,11 +105,11 @@
     if (m.formula) {
       sky = skyRaster('home', ap, edge, BOTTOM); const hero = await heroMask(m.hero, ap);
       // герой — в небо, под текст и кнопку (владелец 29.10): картинка hero512 размером HERO dp, справа 20 dp, по центру сцены, прозрачность .96
-      if (hero && hero.im) { const dp = Number(HERO); const size = Math.round(dp * DPX); const hx = W - size - Math.round(20 * DPX); const hy = m.hero.y; /* верх под шапкой, как на 2.0.3 и на кадре HEAD («там же, где был раньше») */ sky.g.save(); sky.g.globalAlpha = 0.96; sky.g.drawImage(hero.im, hx, hy, size, size); sky.g.restore(); heroDrawn = { dp, size, x: hx, y: hy }; }
+      if (hero && hero.im) { const dp = Number(HERO); const size = Math.round(dp * DPX); const hx = W - size - Math.round(20 * DPX); const hy = m.hero.y; /* верх под шапкой, как на 2.0.3 и на кадре HEAD («там же, где был раньше») */ sky.g.save(); sky.g.globalAlpha = 1; /* без прозрачности — владелец: «убрать наложение цвета на иконку» */ sky.g.drawImage(hero.im, hx, hy, size, size); sky.g.restore(); heroDrawn = { dp, size, x: hx, y: hy }; }
       const skyData = sky.g.getImageData(0, 0, W, edge).data; const scene = g.getImageData(0, 0, W, m.sceneH); st = {};
       // небо под строку кадра берём по строке ВЫВОДА: при вырезе (temy) строки кадра ниже выреза ложатся на 32 px выше
       let mapped = skyData; if (cut) { mapped = new Uint8ClampedArray(W * m.sceneH * 4); for (let y = 0; y < m.sceneH; y += 1) { const sy = y < cut0 + cut ? y : y - cut; mapped.set(skyData.subarray(sy * W * 4, (sy + 1) * W * 4), y * W * 4); } }
-      SR.recolor({ data: scene.data, W, H: m.sceneH, sceneH: m.sceneH, oldSpec: { image: { data: oldSky('home', ap, m.sceneH), width: W } }, newSpec: { image: { data: mapped, width: W } }, radius: 0, hero, heroHide: true, keep: KEEP_AVATAR, stats: st });
+      SR.recolor({ data: scene.data, W, H: m.sceneH, sceneH: m.sceneH, oldSpec: { image: { data: oldSky('home', ap, m.sceneH), width: W } }, newSpec: { image: { data: mapped, width: W } }, radius: 0, hero, heroHide: true, keep: KEEP_AVATAR, clear: OLD_HERO_ZONE, stats: st });
       const { c: sc, g: sg } = canvasOf(W, m.sceneH); sg.putImageData(scene, 0, 0); const top = m.sceneH - cut; // сцена кадра на выводе: до выреза как есть, после — выше на cut
       og.drawImage(sc, 0, 0, W, cut0, 0, 0, W, cut0); if (cut) og.drawImage(sc, 0, cut0 + cut, W, m.sceneH - cut0 - cut, 0, cut0, W, m.sceneH - cut0 - cut); else og.drawImage(sc, 0, cut0, W, m.sceneH - cut0, 0, cut0, W, m.sceneH - cut0);
       // сцена растёт вниз: строки top…edge — новое небо (с героем); свисающий низ кнопки «Продолжить» (строки sceneH…pillY1 кадра) — белым по его яркости
@@ -130,13 +133,15 @@
     }
     // фон страницы под сценой: у кадра HEAD над карточкой есть ≥ зазора строк чистого фона (со свечением темы) — берём их; у старого кадра — градиент по полям
     const fromFrame = m.cardTop - m.sceneH >= gap; const bgL = m.bgSample ? m.bgSample.map(([x, y]) => g.getImageData(x, y, 1, 1).data) : null;
-    const bgAt = (x, y) => (over ? Array.from(g.getImageData(x, y, 1, 1).data).slice(0, 3) : fromFrame ? Array.from(g.getImageData(x, m.bgRow || y, 1, 1).data).slice(0, 3) : [0, 1, 2].map((i) => bgL[0][i] + (bgL[1][i] - bgL[0][i]) * (x / W))); // поверх сцены: поля у края — фон кадра в той же строке
+    const bgAt = (x, y) => (over ? Array.from(g.getImageData(16, y, 1, 1).data).slice(0, 3) /* левое поле той же строки для ОБОИХ углов: правое поле кадра HEAD светлее */ : fromFrame ? Array.from(g.getImageData(x, m.bgRow || y, 1, 1).data).slice(0, 3) : [0, 1, 2].map((i) => bgL[0][i] + (bgL[1][i] - bgL[0][i]) * (x / W))); // поверх сцены: поля у края — фон кадра в той же строке
     if (over) { /* зазора нет: карточка поверх сцены */ } else if (fromFrame) og.drawImage(c, 0, m.cardTop - gap, W, gap, 0, edge, W, gap); else { const gr = og.createLinearGradient(0, 0, W, 0); gr.addColorStop(0, rgba(Array.from(bgL[0]).slice(0, 3))); gr.addColorStop(1, rgba(Array.from(bgL[1]).slice(0, 3))); og.fillStyle = gr; og.fillRect(0, edge, W, gap); }
     if (over) { // карточка «Сегодня» лежит поверх сцены: до края — только внутри её скруглённого контура (по углам и полям видна сцена), ниже края — кадр как есть
       const cr = m.cards[0]; og.save(); og.beginPath(); og.roundRect(cr.x0, cardY, cr.x1 - cr.x0, edge - cardY + cr.r, [cr.r, cr.r, 0, 0]); og.clip(); og.drawImage(c, 0, m.cardTop, W, edge - cardY, 0, cardY, W, edge - cardY); og.restore();
       if (shift < 0) { // карточка и всё ниже выше на |shift| (temy): под таббаром кадра содержимого нет — полоса фона страницы; таббар на месте
         og.drawImage(c, 0, edge - shift, W, V.tab - edge + shift, 0, edge, W, V.tab - edge + shift); { const yb = V.tab + shift - 1; const cc = g.getImageData(1000, yb + 92 - shift - 92, 1, 1).data; const bb = g.getImageData(16, yb - shift, 1, 1).data; const cr1 = m.cards[0]; og.fillStyle = rgba([bb[0], bb[1], bb[2]]); og.fillRect(0, V.tab + shift, W, -shift); og.fillStyle = rgba([cc[0], cc[1], cc[2]]); og.fillRect(cr1.x0, V.tab + shift, cr1.x1 - cr1.x0, -shift); } /* полоса под поднятым содержимым: тело карточки «Фраза дня» (цвет с кадра у её правого края) и поля — до таббара, без полос от значка */ og.drawImage(c, 0, V.tab, W, H - V.tab, 0, V.tab, W, H - V.tab);
       } else og.drawImage(c, 0, edge, W, H - edge, 0, edge, W, H - edge);
+      // поля ниже края зеркальны: правое поле кадра HEAD светлее левого (артефакт кадра) — справа у угла читалось светлой полосой
+      { const rows = Math.min(300, V.tab - edge); const z = og.getImageData(0, edge, W, rows); const d = z.data; for (let yy = 0; yy < rows; yy += 1) for (let x = cr.x1; x < W; x += 1) { const i = (yy * W + x) * 4; const q = (yy * W + (W - 1 - x)) * 4; d[i] = d[q]; d[i + 1] = d[q + 1]; d[i + 2] = d[q + 2]; } og.putImageData(z, 0, edge); }
     } else { og.drawImage(c, 0, m.cardTop, W, V.tab - m.cardTop, 0, cardY, W, V.tab - m.cardTop); og.drawImage(c, 0, V.tab, W, H - V.tab, 0, V.tab, W, H - V.tab); } // карточка и ниже на +shift, таббар на месте
     if (!over && m.sceneH > m.cardTop) { // старый кадр: карточка наезжала на сцену — снаружи её скруглённого контура торчала сцена → фон страницы
       const cr = m.cards[0]; const rows = (m.sceneH - m.cardTop) + cr.r + 4; const z = og.getImageData(0, cardY, W, rows); const d = z.data;

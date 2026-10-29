@@ -664,7 +664,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для смысла: Я не писал в дневнике домашних заданий",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна wasn’t.",
+              "ru": "С этим словом нужна wasn’t.",
               "uk": "З цим підметом потрібна wasn’t."
             }
           }
@@ -887,7 +887,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для смысла: Они не пользовались листом для ответов",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна weren’t.",
+              "ru": "С этим словом нужна weren’t.",
               "uk": "З цим підметом потрібна weren’t."
             }
           }
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3ed0372a5fd9c6fdabe6d86958de6195dbd63d37203e04de089b72fd4b21b74d"
+  "learnerFingerprint": "bfcb490253efffe8b180a5ee51d7b73f349bd8d112430eea8bab2ebcbf0a2e3a"
 }

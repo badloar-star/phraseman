@@ -665,7 +665,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для смысла: Я не пользовался кассовым аппаратом",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна wasn’t.",
+              "ru": "С этим словом нужна wasn’t.",
               "uk": "З цим підметом потрібна wasn’t."
             }
           }
@@ -888,7 +888,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для смысла: Они не чистили ленту у кассы",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна weren’t.",
+              "ru": "С этим словом нужна weren’t.",
               "uk": "З цим підметом потрібна weren’t."
             }
           }
@@ -1117,5 +1117,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a7546a0c45ea41ebec415e9382658d9ca8a65b5421208e7b2b0134d9bc0e30d6"
+  "learnerFingerprint": "7e113e35d66267bf2c47a49c458dacd16505095da054baa8b874475b69b5f8b5"
 }

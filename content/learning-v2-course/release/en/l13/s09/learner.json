@@ -164,7 +164,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Этого не было вчера. Выберите отрицание",
+      "prompt": "Речь о прошлом. Выберите, как сказать «не»",
       "responseOptions": [
         {
           "responseId": "en:lesson-13:session-09:i03:r1",
@@ -181,14 +181,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "accessibilityLabel": "Речь о прошлом. Выберите, как сказать «не»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Этого не было вчера. Выберите отрицание",
-          "uk": "Цього не було вчора. Виберіть заперечення"
+          "ru": "Речь о прошлом. Выберите, как сказать «не»",
+          "uk": "Ідеться про минуле. Виберіть, як сказати «не»"
         },
-        "gappedTargetPhrase": "I ___ save up for a bike.",
+        "gappedTargetPhrase": "I ___ save up for a bike yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-13:session-09:i03:r1",
@@ -203,12 +203,12 @@
             "text": "doesn't"
           }
         ],
-        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-13:session-09:i03:r2",
             "correct": false,
-            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
             "feedbackByLocale": {
               "ru": "Для прошлого нужна форма didn't.",
               "uk": "Для минулого потрібна форма didn't."
@@ -217,7 +217,7 @@
           {
             "responseId": "en:lesson-13:session-09:i03:r3",
             "correct": false,
-            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
             "feedbackByLocale": {
               "ru": "Это не форма прошлого. Нужна didn't.",
               "uk": "Це не форма минулого. Потрібна didn't."
@@ -387,7 +387,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Этого не было вчера. Выберите отрицание",
+      "prompt": "Речь о прошлом. Выберите, как сказать «не»",
       "responseOptions": [
         {
           "responseId": "en:lesson-13:session-09:i06:r1",
@@ -404,14 +404,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "accessibilityLabel": "Речь о прошлом. Выберите, как сказать «не»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Этого не было вчера. Выберите отрицание",
-          "uk": "Цього не було вчора. Виберіть заперечення"
+          "ru": "Речь о прошлом. Выберите, как сказать «не»",
+          "uk": "Ідеться про минуле. Виберіть, як сказати «не»"
         },
-        "gappedTargetPhrase": "I ___ pay back the money.",
+        "gappedTargetPhrase": "I ___ pay back the money yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-13:session-09:i06:r1",
@@ -426,12 +426,12 @@
             "text": "doesn't"
           }
         ],
-        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-13:session-09:i06:r2",
             "correct": false,
-            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
             "feedbackByLocale": {
               "ru": "Для прошлого нужна форма didn't.",
               "uk": "Для минулого потрібна форма didn't."
@@ -440,7 +440,7 @@
           {
             "responseId": "en:lesson-13:session-09:i06:r3",
             "correct": false,
-            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
             "feedbackByLocale": {
               "ru": "Это не форма прошлого. Нужна didn't.",
               "uk": "Це не форма минулого. Потрібна didn't."
@@ -610,7 +610,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Этого не было вчера. Выберите отрицание",
+      "prompt": "Речь о прошлом. Выберите, как сказать «не»",
       "responseOptions": [
         {
           "responseId": "en:lesson-13:session-09:i09:r1",
@@ -627,14 +627,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "accessibilityLabel": "Речь о прошлом. Выберите, как сказать «не»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Этого не было вчера. Выберите отрицание",
-          "uk": "Цього не було вчора. Виберіть заперечення"
+          "ru": "Речь о прошлом. Выберите, как сказать «не»",
+          "uk": "Ідеться про минуле. Виберіть, як сказати «не»"
         },
-        "gappedTargetPhrase": "I ___ take back the shoes.",
+        "gappedTargetPhrase": "I ___ take back the shoes yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-13:session-09:i09:r1",
@@ -649,12 +649,12 @@
             "text": "doesn't"
           }
         ],
-        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-13:session-09:i09:r2",
             "correct": false,
-            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
             "feedbackByLocale": {
               "ru": "Для прошлого нужна форма didn't.",
               "uk": "Для минулого потрібна форма didn't."
@@ -663,7 +663,7 @@
           {
             "responseId": "en:lesson-13:session-09:i09:r3",
             "correct": false,
-            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
             "feedbackByLocale": {
               "ru": "Это не форма прошлого. Нужна didn't.",
               "uk": "Це не форма минулого. Потрібна didn't."
@@ -833,7 +833,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Этого не было вчера. Выберите отрицание",
+      "prompt": "Речь о прошлом. Выберите, как сказать «не»",
       "responseOptions": [
         {
           "responseId": "en:lesson-13:session-09:i12:r1",
@@ -850,14 +850,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Этого не было вчера. Выберите отрицание",
+      "accessibilityLabel": "Речь о прошлом. Выберите, как сказать «не»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Этого не было вчера. Выберите отрицание",
-          "uk": "Цього не було вчора. Виберіть заперечення"
+          "ru": "Речь о прошлом. Выберите, как сказать «не»",
+          "uk": "Ідеться про минуле. Виберіть, як сказати «не»"
         },
-        "gappedTargetPhrase": "I ___ give back the book.",
+        "gappedTargetPhrase": "I ___ give back the book yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-13:session-09:i12:r1",
@@ -872,12 +872,12 @@
             "text": "doesn't"
           }
         ],
-        "testedDimension": "Этого не было вчера. Выберите отрицание",
+        "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-13:session-09:i12:r2",
             "correct": false,
-            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
             "feedbackByLocale": {
               "ru": "Для прошлого нужна форма didn't.",
               "uk": "Для минулого потрібна форма didn't."
@@ -886,7 +886,7 @@
           {
             "responseId": "en:lesson-13:session-09:i12:r3",
             "correct": false,
-            "testedDimension": "Этого не было вчера. Выберите отрицание",
+            "testedDimension": "Речь о прошлом. Выберите, как сказать «не»",
             "feedbackByLocale": {
               "ru": "Это не форма прошлого. Нужна didn't.",
               "uk": "Це не форма минулого. Потрібна didn't."
@@ -1116,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6f7f12a38d6563da020c51e851540e338343e84b50477739612c7d01ae79ad0f"
+  "learnerFingerprint": "41ce16b4520271a3c94a8d785b3c8a1ec32839d09d402da10fcbea8a34b6afa6"
 }

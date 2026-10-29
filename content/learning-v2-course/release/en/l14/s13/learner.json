@@ -663,7 +663,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для смысла: Они не шли через сугроб",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна weren’t.",
+              "ru": "С этим словом нужна weren’t.",
               "uk": "З цим підметом потрібна weren’t."
             }
           }
@@ -886,7 +886,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для смысла: Я не ехал за рулём в метель",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна wasn’t.",
+              "ru": "С этим словом нужна wasn’t.",
               "uk": "З цим підметом потрібна wasn’t."
             }
           }
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "575135bfd40bcc449b288b834234d6cf80f9a7ec95e2f899417fec753428fd69"
+  "learnerFingerprint": "b3142984b5d30ea3fbc0e701111864829c60afda12d5a8a917ea66dc78776b5d"
 }

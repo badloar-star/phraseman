@@ -186,7 +186,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ an unused towel.",
+        "gappedTargetPhrase": "I ___ an unused towel yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-50:i03:r1",
@@ -408,7 +408,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the creased shirt.",
+        "gappedTargetPhrase": "I ___ the creased shirt yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-50:i06:r1",
@@ -630,7 +630,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the unwashed clothes.",
+        "gappedTargetPhrase": "I ___ the unwashed clothes yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-50:i09:r1",
@@ -852,7 +852,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ an unironed shirt.",
+        "gappedTargetPhrase": "I ___ an unironed shirt yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-50:i12:r1",
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5d308b0643c4e4df9da138baa2db8dafe479e7b15866b439ee1976d5ec677834"
+  "learnerFingerprint": "5b57cce0119cfc0164bc6bb51984308e37b6f0325d02f0b9752cdd171f5837b2"
 }

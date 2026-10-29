@@ -186,7 +186,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the town centre.",
+        "gappedTargetPhrase": "I ___ the town centre yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-55:i03:r1",
@@ -408,7 +408,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the high street.",
+        "gappedTargetPhrase": "I ___ the high street yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-55:i06:r1",
@@ -630,7 +630,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the town square.",
+        "gappedTargetPhrase": "I ___ the town square yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-55:i09:r1",
@@ -852,7 +852,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the street market.",
+        "gappedTargetPhrase": "I ___ the street market yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-55:i12:r1",
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bd47eda3343ed36697f0fc7923648374de1960aa384f2e3d9219503dc13e322a"
+  "learnerFingerprint": "a87746454663f204b0c0a91bf4fe2b245c05079fcd1b8c30fc6731c23a938ae0"
 }

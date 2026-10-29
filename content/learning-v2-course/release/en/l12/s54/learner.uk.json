@@ -186,7 +186,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the sofa cushion.",
+        "gappedTargetPhrase": "I ___ the sofa cushion yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-54:i03:r1",
@@ -408,7 +408,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the cushion cover.",
+        "gappedTargetPhrase": "I ___ the cushion cover yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-54:i06:r1",
@@ -629,7 +629,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the footstool.",
+        "gappedTargetPhrase": "I ___ the footstool yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-54:i09:r1",
@@ -851,7 +851,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the rocking chair.",
+        "gappedTargetPhrase": "I ___ the rocking chair yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-54:i12:r1",
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a3a05d721d4a1b56835d9ad6050323fafcace0c8a34ba87b06f40dd207fcf451"
+  "learnerFingerprint": "17401b2bd75ccbde6a8902920ed12bea833049ef78ca90089085ce88a31c229c"
 }

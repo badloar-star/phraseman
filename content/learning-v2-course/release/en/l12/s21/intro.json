@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-12:session-21",
   "learningOutcomeByLocale": {
-    "ru": "рассказать о прошлом: escaped, checked, chose",
-    "uk": "розповісти про минуле: escaped, checked, chose"
+    "ru": "рассказать, что случилось с котом: The cat escaped yesterday.",
+    "uk": "розповісти, що трапилося з котом: The cat escaped yesterday."
   },
   "pages": [
     {

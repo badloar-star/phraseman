@@ -873,7 +873,7 @@
             "correct": false,
             "testedDimension": "Учора двері були відчинені. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Door — единственное число: was.",
+              "ru": "Door — форма для одного: was.",
               "uk": "Door — однина: was."
             }
           }
@@ -1100,5 +1100,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "24471d7a59770eba561d728ec8ba97a17122ccd343e4266516470abff15768fa"
+  "learnerFingerprint": "dd859362b0846e2017b82ec66d2edd2c221a867dfe8462034caac0520384b743"
 }

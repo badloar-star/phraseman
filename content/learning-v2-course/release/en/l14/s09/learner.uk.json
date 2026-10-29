@@ -666,7 +666,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для змісту: Вони не лазили по конструкції на майданчику",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна weren’t.",
+              "ru": "С этим словом нужна weren’t.",
               "uk": "З цим підметом потрібна weren’t."
             }
           }
@@ -890,7 +890,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для змісту: Я не грався на надувному замку",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна wasn’t.",
+              "ru": "С этим словом нужна wasn’t.",
               "uk": "З цим підметом потрібна wasn’t."
             }
           }
@@ -1118,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "51b0ac5e8fea03b80212a86ca2f337deab03495b1d055727d058b6ea6faae808"
+  "learnerFingerprint": "b418785f5077d0a748df9b4dbfee1672d01b77528e84ecf94f1deffadb3a08bb"
 }

@@ -664,7 +664,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для змісту: Вони не спостерігали за сорокою",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна weren’t.",
+              "ru": "С этим словом нужна weren’t.",
               "uk": "З цим підметом потрібна weren’t."
             }
           }
@@ -886,7 +886,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для змісту: Я не спостерігав за вільшанкою",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна wasn’t.",
+              "ru": "С этим словом нужна wasn’t.",
               "uk": "З цим підметом потрібна wasn’t."
             }
           }
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6d906a0c09e1713e0c6a7daad26fbc90f838e8543fbe00fdfcf0e8d7e7cd25e2"
+  "learnerFingerprint": "c003c3b3fd0601f9aa8f43a5c0b05cfc699ee4872486cbdda448041fb155e4f0"
 }

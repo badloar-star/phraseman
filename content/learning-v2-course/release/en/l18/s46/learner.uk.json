@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Підкресліть якість із so або such.",
+      "prompt": "Посильте опис словом so або such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-46:i03:r1",
@@ -180,12 +180,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "accessibilityLabel": "Посильте опис словом so або such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Подчеркните качество с so или such.",
-          "uk": "Підкресліть якість із so або such."
+          "uk": "Посильте опис словом so або such."
         },
         "gappedTargetPhrase": "This job advert is ___ clear.",
         "gapOptions": [
@@ -387,7 +387,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Підкресліть якість із so або such.",
+      "prompt": "Посильте опис словом so або such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-46:i06:r1",
@@ -404,12 +404,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "accessibilityLabel": "Посильте опис словом so або such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Подчеркните качество с so или such.",
-          "uk": "Підкресліть якість із so або such."
+          "uk": "Посильте опис словом so або such."
         },
         "gappedTargetPhrase": "This is ___ an interesting job vacancy.",
         "gapOptions": [
@@ -433,7 +433,7 @@
             "correct": false,
             "testedDimension": "Підкресліть якість із so або such.",
             "feedbackByLocale": {
-              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
+              "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.",
               "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
             }
           },
@@ -610,7 +610,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Підкресліть якість із so або such.",
+      "prompt": "Посильте опис словом so або such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-46:i09:r1",
@@ -627,12 +627,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "accessibilityLabel": "Посильте опис словом so або such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Подчеркните качество с so или such.",
-          "uk": "Підкресліть якість із so або such."
+          "uk": "Посильте опис словом so або such."
         },
         "gappedTargetPhrase": "The working hours are ___ long.",
         "gapOptions": [
@@ -833,7 +833,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Підкресліть якість із so або such.",
+      "prompt": "Посильте опис словом so або such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-46:i12:r1",
@@ -850,12 +850,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "accessibilityLabel": "Посильте опис словом so або such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Подчеркните качество с so или such.",
-          "uk": "Підкресліть якість із so або such."
+          "uk": "Посильте опис словом so або such."
         },
         "gappedTargetPhrase": "My annual leave is ___ short.",
         "gapOptions": [
@@ -1121,5 +1121,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a176f23cb41903906271c5eff30f28b9ee6ec4e5db93bf804adb63c0561a7a88"
+  "learnerFingerprint": "463fb1992110ab01a180c655dc0e4eb132abc885b6f8e16728929c82cf7cdbd5"
 }

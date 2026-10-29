@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-15:i03:r1",
@@ -180,11 +180,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "This dining chair is ___.",
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-15:i06:r1",
@@ -403,11 +403,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "This office chair is ___.",
@@ -609,7 +609,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-15:i09:r1",
@@ -626,11 +626,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "This kitchen table is ___.",
@@ -832,7 +832,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-15:i12:r1",
@@ -849,11 +849,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "This dining table is ___.",
@@ -1121,5 +1121,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e672e1cb7e122e30274d19255c5552c6b9f80d6948cbf5aba176db3bece5ba62"
+  "learnerFingerprint": "27582bbb34f768e0e750e6e04d5647c176dcb8fb6cfbfbb125aea1a56c8d1f4a"
 }

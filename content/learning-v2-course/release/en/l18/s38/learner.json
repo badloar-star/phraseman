@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-38:i03:r1",
@@ -180,11 +180,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "We received ___ a warm welcome.",
@@ -209,7 +209,7 @@
             "correct": false,
             "testedDimension": "Подчеркните качество с so или such.",
             "feedbackByLocale": {
-              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.",
               "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
             }
           },
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-38:i06:r1",
@@ -403,11 +403,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "A helping hand is ___ useful.",
@@ -609,7 +609,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-38:i09:r1",
@@ -626,11 +626,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "You have ___ a big smile.",
@@ -655,7 +655,7 @@
             "correct": false,
             "testedDimension": "Подчеркните качество с so или such.",
             "feedbackByLocale": {
-              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.",
               "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
             }
           },
@@ -832,7 +832,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-38:i12:r1",
@@ -849,11 +849,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "A friendly face is ___ welcome.",
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fa703ad80671f3d3d1a685970fc90e50e35a080a1747768c5f6de1e049bd014f"
+  "learnerFingerprint": "83a902ce69c3782c6ba240e557b25381ea5cd83f537805f09280bf2468de272e"
 }

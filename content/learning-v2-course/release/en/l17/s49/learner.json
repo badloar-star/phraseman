@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Несколько разрешений на школьные мероприятия уже подписаны. Permission slip → permission slips.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "В этом кружке не предоставляют питание вообще. School meal → school meals.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -662,7 +662,7 @@
             "correct": false,
             "testedDimension": "Для разных классов запланированы несколько встреч. Parents' evening → parents' evenings.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -884,7 +884,7 @@
             "correct": false,
             "testedDimension": "Вы не знаете, какие занятия бывают после уроков. Спросите нейтрально, без ожидания ответа «да». After-school club → after-school clubs.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "80b25b1cbf879799a01a55a1e68f1d17885ef1f601efa42ef6ac05d08ecffeb7"
+  "learnerFingerprint": "d11594e8bf0d6a00b440758622644ff53406ec59382eea0ab6eaceb5d2972bb0"
 }

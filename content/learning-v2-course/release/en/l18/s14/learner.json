@@ -164,7 +164,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-14:i03:r1",
@@ -181,11 +181,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "Standard delivery is ___ option here.",
@@ -388,7 +388,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-14:i06:r1",
@@ -405,11 +405,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "Express delivery is ___ option here.",
@@ -612,7 +612,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-14:i09:r1",
@@ -629,11 +629,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "This shop has ___ next-day delivery.",
@@ -836,7 +836,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-14:i12:r1",
@@ -853,11 +853,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "Free collection is ___ option here.",
@@ -1124,5 +1124,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "061c4cd97e88759c6146ac685b4c24f2f1db22d63a000694515a9c2452c67fe6"
+  "learnerFingerprint": "0435072f658ec37eabee4d7041ddb8d9a2dd1355735b3c7f6407e1e92df93bd1"
 }

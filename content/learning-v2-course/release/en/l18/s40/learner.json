@@ -162,7 +162,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-40:i03:r1",
@@ -179,11 +179,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "Free entry is ___ useful.",
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-40:i06:r1",
@@ -403,11 +403,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "Free parking is ___ a great help.",
@@ -432,7 +432,7 @@
             "correct": false,
             "testedDimension": "Подчеркните качество с so или such.",
             "feedbackByLocale": {
-              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.",
               "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
             }
           },
@@ -610,7 +610,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-40:i09:r1",
@@ -627,11 +627,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "This is ___ a fun public event.",
@@ -656,7 +656,7 @@
             "correct": false,
             "testedDimension": "Подчеркните качество с so или such.",
             "feedbackByLocale": {
-              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.",
               "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
             }
           },
@@ -833,7 +833,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-40:i12:r1",
@@ -850,11 +850,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "The charity event is ___ busy.",
@@ -1123,5 +1123,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c2a88f49b28f5bef5431f468c463154b373105eb196eeb43edb806ab94757bf8"
+  "learnerFingerprint": "3f88d570f919af8b630b591ae0277c731558820f1d20e3c030b12a8d3469acf5"
 }

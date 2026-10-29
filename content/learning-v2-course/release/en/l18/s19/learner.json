@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-19:i03:r1",
@@ -182,11 +182,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "These reading glasses are ___ mine.",
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-19:i06:r1",
@@ -407,11 +407,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "These contact lenses are ___ mine.",
@@ -616,7 +616,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-19:i09:r1",
@@ -633,11 +633,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "These eye drops are ___ those ones.",
@@ -841,7 +841,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-19:i12:r1",
@@ -858,11 +858,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "This glasses case is ___ mine.",
@@ -1129,5 +1129,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a49a66ff2474cc6a96a3b6e4dde3d492893c24aa28c435871b383c6a85618cf7"
+  "learnerFingerprint": "96f6041bad53be825c5dcf7ee4f0cbfe5d6a954e792e6e8df90b1e94bc05255c"
 }

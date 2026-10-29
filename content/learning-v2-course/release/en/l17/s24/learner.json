@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Подчеркните, что некоторые достижения уже есть. Achievement → achievements.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -438,7 +438,7 @@
             "correct": false,
             "testedDimension": "Вы ожидали больше препятствий, но их оказалось мало. Подчеркните малое количество. Setback → setbacks.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -660,7 +660,7 @@
             "correct": false,
             "testedDimension": "Подчеркните, что хоть немного смелости удалось найти.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -881,7 +881,7 @@
             "correct": false,
             "testedDimension": "Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "aa9bb8f905ccb48783ff14d857cca39faeb4aba496a931f4f73b0d358b81bd06"
+  "learnerFingerprint": "7ca124e3ca5b1ab6060899685e1457653bbd305e11265a965fbc41c978d089ba"
 }

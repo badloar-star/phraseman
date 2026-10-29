@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-33",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "выразить сильное впечатление: My close friend is so kind.",
+    "uk": "висловити сильне враження: My close friend is so kind."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Похвалити спільного друга"
       },
       "bodyByLocale": {
-        "ru": "Вы с сестрой обсуждаете общего друга, который помог вам обоим с переездом. Our mutual friend is such a helpful person — наш общий друг — такой отзывчивый человек. После Our mutual friend is идёт such a helpful person. Здесь главное слово person, поэтому усиливаем всю группу словом such. Артикль a ставим после such, а helpful — перед person.",
-        "uk": "Ви із сестрою обговорюєте спільного друга, який допоміг вам обом із переїздом. Our mutual friend is such a helpful person — наш спільний друг — така чуйна людина. Після Our mutual friend is йде such a helpful person. Тут головне слово person, тому підсилюємо всю групу словом such. Артикль a ставимо після such, а helpful — перед person."
+        "ru": "Вы с сестрой обсуждаете общего друга, который помог вам обоим с переездом. Our mutual friend is such a helpful person — наш общий друг — такой отзывчивый человек. После Our mutual friend is идёт such a helpful person. Здесь главное слово person, поэтому усиливаем всю группу словом such. Слово a ставим после such, а helpful — перед person.",
+        "uk": "Ви із сестрою обговорюєте спільного друга, який допоміг вам обом із переїздом. Our mutual friend is such a helpful person — наш спільний друг — така чуйна людина. Після Our mutual friend is йде such a helpful person. Тут головне слово person, тому підсилюємо всю групу словом such. Слово a ставимо після such, а helpful — перед person."
       },
       "question": {
         "interactionId": "en:lesson-18:session-33:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Тепло відгукнутися про сусіда"
       },
       "bodyByLocale": {
-        "ru": "Сосед из квартиры рядом поливал ваши растения, пока вы были в отъезде. My next-door neighbour is such a kind person — мой сосед — такой добрый человек. Сначала назовите соседа: My next-door neighbour. Затем is и оценка such a kind person. Порядок оценки: such + a + kind + person; such стоит перед артиклем, а не после него.",
-        "uk": "Сусід із квартири поруч поливав ваші рослини, поки ви були у від’їзді. My next-door neighbour is such a kind person — мій сусід — така добра людина. Спочатку назвіть сусіда: My next-door neighbour. Потім is та оцінка such a kind person. Порядок оцінки: such + a + kind + person; such стоїть перед артиклем, а не після нього."
+        "ru": "Сосед из квартиры рядом поливал ваши растения, пока вы были в отъезде. My next-door neighbour is such a kind person — мой сосед — такой добрый человек. Сначала назовите соседа: My next-door neighbour. Затем is и оценка such a kind person. Порядок оценки: such + a + kind + person; such стоит перед a, а не после него.",
+        "uk": "Сусід із квартири поруч поливав ваші рослини, поки ви були у від’їзді. My next-door neighbour is such a kind person — мій сусід — така добра людина. Спочатку назвіть сусіда: My next-door neighbour. Потім is та оцінка such a kind person. Порядок оцінки: such + a + kind + person; such стоїть перед a, а не після нього."
       },
       "question": {
         "interactionId": "en:lesson-18:session-33:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bc485e930d535ab517af5d8aed51903682824b236da44730cf8ff14f98d4af32"
+  "introFingerprint": "3ff0eabc4e0bc4ae05d3830aa5c7fa784408ef6207095ac47ccb46cd82ed64c5"
 }

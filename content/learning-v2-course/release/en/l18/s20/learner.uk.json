@@ -166,7 +166,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Висловіть однакову якість.",
+      "prompt": "Скажіть, що вони однакові.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-20:i03:r1",
@@ -183,12 +183,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Висловіть однакову якість.",
+      "accessibilityLabel": "Скажіть, що вони однакові.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выразите одинаковое качество.",
-          "uk": "Висловіть однакову якість."
+          "uk": "Скажіть, що вони однакові."
         },
         "gappedTargetPhrase": "This lunch menu is ___ that one.",
         "gapOptions": [
@@ -392,7 +392,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Висловіть однакову якість.",
+      "prompt": "Скажіть, що вони однакові.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-20:i06:r1",
@@ -409,12 +409,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Висловіть однакову якість.",
+      "accessibilityLabel": "Скажіть, що вони однакові.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выразите одинаковое качество.",
-          "uk": "Висловіть однакову якість."
+          "uk": "Скажіть, що вони однакові."
         },
         "gappedTargetPhrase": "The vegetarian option is ___ the chicken.",
         "gapOptions": [
@@ -618,7 +618,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Висловіть однакову якість.",
+      "prompt": "Скажіть, що вони однакові.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-20:i09:r1",
@@ -635,12 +635,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Висловіть однакову якість.",
+      "accessibilityLabel": "Скажіть, що вони однакові.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выразите одинаковое качество.",
-          "uk": "Висловіть однакову якість."
+          "uk": "Скажіть, що вони однакові."
         },
         "gappedTargetPhrase": "The daily special is ___ the salad.",
         "gapOptions": [
@@ -843,7 +843,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Висловіть однакову якість.",
+      "prompt": "Скажіть, що вони однакові.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-20:i12:r1",
@@ -860,12 +860,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Висловіть однакову якість.",
+      "accessibilityLabel": "Скажіть, що вони однакові.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выразите одинаковое качество.",
-          "uk": "Висловіть однакову якість."
+          "uk": "Скажіть, що вони однакові."
         },
         "gappedTargetPhrase": "This takeaway meal is ___ yours.",
         "gapOptions": [
@@ -1132,5 +1132,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cff5db6d2af0944bf45576a2da7017009f0098772a615e3345863b844c7fb8fc"
+  "learnerFingerprint": "be20ae81f914989c18f02dd3fe39cc59d2fa480708def9cb4f897ad078aa10e3"
 }

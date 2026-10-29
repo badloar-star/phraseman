@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-45",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "выразить сильное впечатление: A second chance is so helpful.",
+    "uk": "висловити сильне враження: A second chance is so helpful."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Вдале знайомство"
       },
       "bodyByLocale": {
-        "ru": "Друг впервые встретился с вашими соседями, и им понравилось с ним общаться. First impression — первое впечатление. You made such a good first impression. — Ты произвёл такое хорошее первое впечатление. You made означает «ты произвёл», затем идёт such a good first impression. Such усиливает всю группу с существительным impression. Артикль a ставим после such; дальше good first impression — хорошее первое впечатление.",
-        "uk": "Друг уперше зустрівся з вашими сусідами, і їм сподобалося з ним спілкуватися. First impression — перше враження. You made such a good first impression. — Ти справив таке добре перше враження. You made означає «ти справив», потім іде such a good first impression. Such підсилює всю групу з іменником impression. Артикль a ставимо після such; далі good first impression — добре перше враження."
+        "ru": "Друг впервые встретился с вашими соседями, и им понравилось с ним общаться. First impression — первое впечатление. You made such a good first impression. — Ты произвёл такое хорошее первое впечатление. You made означает «ты произвёл», затем идёт such a good first impression. Such усиливает всю группу с существительным impression. Слово a ставим после such; дальше good first impression — хорошее первое впечатление.",
+        "uk": "Друг уперше зустрівся з вашими сусідами, і їм сподобалося з ним спілкуватися. First impression — перше враження. You made such a good first impression. — Ти справив таке добре перше враження. You made означає «ти справив», потім іде such a good first impression. Such підсилює всю групу з іменником impression. Слово a ставимо після such; далі good first impression — добре перше враження."
       },
       "question": {
         "interactionId": "en:lesson-18:session-45:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "802a52ec7ca0733e08098dbb5e256e899a8a3e2ac1b0d81126af5cb53ed1da9e"
+  "introFingerprint": "84f60674ea0d38858b5edc65dbb51ed62fede2389ad39664f166dd0e2bd403fb"
 }

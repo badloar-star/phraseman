@@ -164,7 +164,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-03:i03:r1",
@@ -181,12 +181,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "The train journey is ___ than ours.",
         "gapOptions": [
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-03:i06:r1",
@@ -407,12 +407,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "The bus journey is ___ than the train journey.",
         "gapOptions": [
@@ -614,7 +614,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-03:i09:r1",
@@ -631,12 +631,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "This car journey is ___ than ours.",
         "gapOptions": [
@@ -839,7 +839,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-03:i12:r1",
@@ -856,12 +856,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "This walking route is ___ than that one.",
         "gapOptions": [
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "176c55b550c315421da0cb05edfcbd31a5b42a21ed5dac6a3ce6165fd93955a5"
+  "learnerFingerprint": "b5d22955436ed27fa7a03c0baf35178bf3b5fb2984878343630a054964d54e31"
 }

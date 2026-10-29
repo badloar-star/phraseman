@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть значення «най-» у цій групі.",
+      "prompt": "Виберіть, як сказати «най-».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-12:i03:r1",
@@ -182,12 +182,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "accessibilityLabel": "Виберіть, як сказати «най-».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите значение «самый» в этой группе.",
-          "uk": "Виберіть значення «най-» у цій групі."
+          "uk": "Виберіть, як сказати «най-»."
         },
         "gappedTargetPhrase": "The fresh fruit is ___ snack here.",
         "gapOptions": [
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть значення «най-» у цій групі.",
+      "prompt": "Виберіть, як сказати «най-».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-12:i06:r1",
@@ -407,12 +407,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "accessibilityLabel": "Виберіть, як сказати «най-».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите значение «самый» в этой группе.",
-          "uk": "Виберіть значення «най-» у цій групі."
+          "uk": "Виберіть, як сказати «най-»."
         },
         "gappedTargetPhrase": "The dried fruit is ___ snack here.",
         "gapOptions": [
@@ -615,7 +615,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть значення «най-» у цій групі.",
+      "prompt": "Виберіть, як сказати «най-».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-12:i09:r1",
@@ -632,12 +632,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "accessibilityLabel": "Виберіть, як сказати «най-».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите значение «самый» в этой группе.",
-          "uk": "Виберіть значення «най-» у цій групі."
+          "uk": "Виберіть, як сказати «най-»."
         },
         "gappedTargetPhrase": "This bag of mixed nuts is ___.",
         "gapOptions": [
@@ -839,7 +839,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть значення «най-» у цій групі.",
+      "prompt": "Виберіть, як сказати «най-».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-12:i12:r1",
@@ -856,12 +856,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "accessibilityLabel": "Виберіть, як сказати «най-».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите значение «самый» в этой группе.",
-          "uk": "Виберіть значення «най-» у цій групі."
+          "uk": "Виберіть, як сказати «най-»."
         },
         "gappedTargetPhrase": "The plain yoghurt is ___ option.",
         "gapOptions": [
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "51f595eac610392b165c60eb3bfd7e70f3bc1f0f41b814e008632cdfb25dc670"
+  "learnerFingerprint": "4acc95a172fb447b4769f83c141965103fb760e9f756501b37a6408ab07cb435"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-11",
   "learningOutcomeByLocale": {
-    "ru": "the + superlative adjective",
-    "uk": "the + superlative adjective"
+    "ru": "назвать самый лучший или худший вариант: This front garden is the smallest.",
+    "uk": "назвати найкращий чи найгірший варіант: This front garden is the smallest."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Знайти найширші ворота"
       },
       "bodyByLocale": {
-        "ru": "Вы измерили ворота перед тремя домами: эти оказались шире остальных. This front gate is the widest — эти ворота перед домом самые широкие. По-английски gate здесь в единственном числе, поэтому This и is. Затем поставьте the widest: к wide, оканчивающемуся на e, добавляем -st. Сравниваем ворота только этих трёх домов.",
-        "uk": "Ви виміряли ворота перед трьома будинками: ці виявилися ширшими за решту. This front gate is the widest — ці ворота перед будинком найширші. Англійською gate тут в однині, тому This та is. Потім поставте the widest: до wide, що закінчується на e, додаємо -st. Порівнюємо ворота лише цих трьох будинків."
+        "ru": "Вы измерили ворота перед тремя домами: эти оказались шире остальных. This front gate is the widest — эти ворота перед домом самые широкие. По-английски gate здесь в форме для одного, поэтому This и is. Затем поставьте the widest: к wide, оканчивающемуся на e, добавляем -st. Сравниваем ворота только этих трёх домов.",
+        "uk": "Ви виміряли ворота перед трьома будинками: ці виявилися ширшими за решту. This front gate is the widest — ці ворота перед будинком найширші. Англійською gate тут у формі для одного, тому This та is. Потім поставте the widest: до wide, що закінчується на e, додаємо -st. Порівнюємо ворота лише цих трьох будинків."
       },
       "question": {
         "interactionId": "en:lesson-18:session-11:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b0eaf0174a3589c6d14a353c624dd7c8c4c5862ed0bc52369a98c5242a8be527"
+  "introFingerprint": "0d01e30aa36a276e8df02b6ed0df9db5192228089d3965689bfd93580da9e4a0"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-38",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "выразить сильное впечатление: We received such a warm welcome.",
+    "uk": "висловити сильне враження: We received such a warm welcome."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Розповісти про теплий прийом"
       },
       "bodyByLocale": {
-        "ru": "Вы впервые приехали к родственникам друга, и вас встретили очень радушно. We received such a warm welcome — нас так тепло приняли. Начните с We received — мы получили, затем назовите то, что получили: a warm welcome. Чтобы подчеркнуть впечатление, поставьте such перед всей этой группой: such a warm welcome. Артикль остаётся после such, а warm — перед welcome.",
-        "uk": "Ви вперше приїхали до родичів друга, і вас зустріли дуже привітно. We received such a warm welcome — нас так тепло прийняли. Почніть із We received — ми отримали, потім назвіть те, що отримали: a warm welcome. Щоб підкреслити враження, поставте such перед усією цією групою: such a warm welcome. Артикль залишається після such, а warm — перед welcome."
+        "ru": "Вы впервые приехали к родственникам друга, и вас встретили очень радушно. We received such a warm welcome — нас так тепло приняли. Начните с We received — мы получили, затем назовите то, что получили: a warm welcome. Чтобы подчеркнуть впечатление, поставьте such перед всей этой группой: such a warm welcome. Слово a / the остаётся после such, а warm — перед welcome.",
+        "uk": "Ви вперше приїхали до родичів друга, і вас зустріли дуже привітно. We received such a warm welcome — нас так тепло прийняли. Почніть із We received — ми отримали, потім назвіть те, що отримали: a warm welcome. Щоб підкреслити враження, поставте such перед усією цією групою: such a warm welcome. Слово a / the залишається після such, а warm — перед welcome."
       },
       "question": {
         "interactionId": "en:lesson-18:session-38:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "36d1a758b314d44280f6594724304f66c99cc44269ea6f704a754cb5a66654ff"
+  "introFingerprint": "674a97a5ecd3004961cc57daaf08dc741f3db67e1a41c7801d42c58857554f8c"
 }

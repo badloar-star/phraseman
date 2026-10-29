@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-23:i03:r1",
@@ -182,11 +182,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "This glass jar is ___ yours.",
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-23:i06:r1",
@@ -407,11 +407,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "This water jug is ___ yours.",
@@ -615,7 +615,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-23:i09:r1",
@@ -632,11 +632,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "This storage box is ___ ours.",
@@ -840,7 +840,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-23:i12:r1",
@@ -857,11 +857,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "This lunch bag is ___ mine.",
@@ -1129,5 +1129,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "369f3f8889802e43a0d973d30bb3f785f116706c770e4aeabad05a6d30a6f700"
+  "learnerFingerprint": "9ba1ecde837e1d75e5cbb4c065109a865ba098283d2cf74f2de0f81207897aef"
 }

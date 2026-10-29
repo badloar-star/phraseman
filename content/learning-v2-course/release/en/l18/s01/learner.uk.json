@@ -164,7 +164,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-01:i03:r1",
@@ -181,12 +181,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "This hotel room is ___ than ours.",
         "gapOptions": [
@@ -388,7 +388,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-01:i06:r1",
@@ -405,12 +405,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "The shared bathroom is ___ than before.",
         "gapOptions": [
@@ -612,7 +612,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-01:i09:r1",
@@ -629,12 +629,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "The private bathroom is ___ than ours.",
         "gapOptions": [
@@ -836,7 +836,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-01:i12:r1",
@@ -853,12 +853,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "This living space is ___ than ours.",
         "gapOptions": [
@@ -1123,5 +1123,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "14eb6bc1943f41c348bc4f57b019efb554c405f39973f549b63efe4be159d74a"
+  "learnerFingerprint": "d7c91a4cfeeb33cae1fe68e39cd3a67cd8cee942ce3ad797e1f352215ce4286b"
 }

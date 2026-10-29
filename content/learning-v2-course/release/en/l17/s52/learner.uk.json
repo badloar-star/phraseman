@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Даних про прибуття більшості рейсів немає. Підкресліть, що відомі лише небагато. Arrival time → arrival times.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -663,7 +663,7 @@
             "correct": false,
             "testedDimension": "Для поїздок родини збережено кілька номерів рейсів. Підкресліть наявність записів. Flight number → flight numbers.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -885,7 +885,7 @@
             "correct": false,
             "testedDimension": "Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1b07c17bafd30668b262ed04dfda72190ce104d5ada1462fe3d0698d55f47cbb"
+  "learnerFingerprint": "83da07ff492673cdd2088cf0278ac2303dd5a3ebe7aaebc6a1c38ceb9f097768"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-47",
   "learningOutcomeByLocale": {
-    "ru": "some / any + plural count noun or non-count noun",
-    "uk": "some / any + plural count noun or non-count noun"
+    "ru": "спросить, есть ли что-то нужное: Do you charge any cancellation fees?",
+    "uk": "запитати, чи є щось потрібне: Do you charge any cancellation fees?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Повідомити про наявність"
       },
       "bodyByLocale": {
-        "ru": "entry fee — плата за вход. В списке мероприятий есть несколько платных входов. Подтвердите наличие платы. Entry fee → entry fees. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
-        "uk": "entry fee — плата за вхід. У списку заходів є кілька платних входів. Підтвердьте наявність плати. Entry fee → entry fees. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+        "ru": "entry fee — плата за вход. В списке мероприятий есть несколько платных входов. Подтвердите наличие платы. Entry fee → entry fees. Some ставим перед несколькими предметами или тем, что не считают поштучно, когда сообщаем о некотором количестве.",
+        "uk": "entry fee — плата за вхід. У списку заходів є кілька платних входів. Підтвердьте наявність плати. Entry fee → entry fees. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість."
       },
       "question": {
         "interactionId": "en:lesson-17:session-47:intro1:q",
@@ -70,7 +70,7 @@
       },
       "bodyByLocale": {
         "ru": "Вы хотите вступить в клуб настольных игр. Организатор объясняет, что членских взносов здесь вообще нет: There aren't any membership fees. Начните с There aren't — «нет», затем добавьте any membership fees. Fee можно посчитать, поэтому используем множественное fees и aren't. Any в этом отрицании подчёркивает полное отсутствие взносов.",
-        "uk": "Ви хочете вступити до клубу настільних ігор. Організатор пояснює, що членських внесків тут узагалі немає: There aren't any membership fees. Почніть із There aren't — «немає», потім додайте any membership fees. Fee можна порахувати, тому використовуємо множину fees і aren't. Any у цьому запереченні підкреслює повну відсутність внесків."
+        "uk": "Ви хочете вступити до клубу настільних ігор. Організатор пояснює, що членських внесків тут узагалі немає: There aren't any membership fees. Почніть із There aren't — «немає», потім додайте any membership fees. Fee можна порахувати, тому використовуємо форму для кількох fees і aren't. Any у цьому запереченні підкреслює повну відсутність внесків."
       },
       "question": {
         "interactionId": "en:lesson-17:session-47:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Уточнити плату за скасування"
       },
       "bodyByLocale": {
-        "ru": "Вы бронируете занятие и пока не знаете, берут ли деньги за отмену. Do you charge any cancellation fees? — вы взимаете плату за отмену? Соберите вопрос: Do + you + charge + any cancellation fees. После do глагол charge остаётся в начальной форме. Fees — множественное число fee. Any подходит, потому что вы не предполагаете ответ; some могло бы выражать ожидание, что такая плата есть.",
-        "uk": "Ви бронюєте заняття й поки не знаєте, чи беруть гроші за скасування. Do you charge any cancellation fees? — ви стягуєте плату за скасування? Складіть запитання: Do + you + charge + any cancellation fees. Після do дієслово charge залишається в початковій формі. Fees — множина fee. Any підходить, бо ви не припускаєте відповіді; some могло б виражати очікування, що така плата є."
+        "ru": "Вы бронируете занятие и пока не знаете, берут ли деньги за отмену. Do you charge any cancellation fees? — вы взимаете плату за отмену? Соберите вопрос: Do + you + charge + any cancellation fees. После do глагол charge остаётся в начальной форме. Fees — fee в форме для нескольких. Any подходит, потому что вы не предполагаете ответ; some могло бы выражать ожидание, что такая плата есть.",
+        "uk": "Ви бронюєте заняття й поки не знаєте, чи беруть гроші за скасування. Do you charge any cancellation fees? — ви стягуєте плату за скасування? Складіть запитання: Do + you + charge + any cancellation fees. Після do дієслово charge залишається в початковій формі. Fees — fee у формі для кількох. Any підходить, бо ви не припускаєте відповіді; some могло б виражати очікування, що така плата є."
       },
       "question": {
         "interactionId": "en:lesson-17:session-47:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "86e866c80757e9fa43077075137853f8ddc341cffd4615bd44c6af85371aff2d"
+  "introFingerprint": "31cc5d40eda608222d6b514f66cdee53583126c3fa7bca988246a0f67358655a"
 }

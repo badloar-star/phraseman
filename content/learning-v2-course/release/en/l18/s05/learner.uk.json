@@ -164,7 +164,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-05:i03:r1",
@@ -181,12 +181,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "The sale price is ___ than before.",
         "gapOptions": [
@@ -388,7 +388,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-05:i06:r1",
@@ -405,12 +405,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "The regular price is ___ than before.",
         "gapOptions": [
@@ -613,7 +613,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-05:i09:r1",
@@ -630,12 +630,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "The total cost is ___ than we expected.",
         "gapOptions": [
@@ -842,7 +842,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть порівняльну форму.",
+      "prompt": "Виберіть форму для порівняння.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-05:i12:r1",
@@ -859,12 +859,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть порівняльну форму.",
+      "accessibilityLabel": "Виберіть форму для порівняння.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите сравнительную форму.",
-          "uk": "Виберіть порівняльну форму."
+          "uk": "Виберіть форму для порівняння."
         },
         "gappedTargetPhrase": "The unit price is ___ in this shop than in that shop.",
         "gapOptions": [
@@ -1130,5 +1130,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f4fab38bd56cf8f084dec15ed1833e4afc447ce9706876fe1ba8fce986662d50"
+  "learnerFingerprint": "a019ec9920db1d28c27ade540803d12168604f5c1aa2be30ba8d9e11d33d9eaf"
 }

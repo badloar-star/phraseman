@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-24:i03:r1",
@@ -182,11 +182,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "Your weekend break is ___ ours.",
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-24:i06:r1",
@@ -407,11 +407,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "This city break is ___ ours.",
@@ -615,7 +615,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-24:i09:r1",
@@ -632,11 +632,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "This camping trip is ___ ours.",
@@ -840,7 +840,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-24:i12:r1",
@@ -857,11 +857,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "Your beach holiday is ___ ours.",
@@ -1130,5 +1130,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0620feda9753a37341b500f5ed52314220614724c42de27ee726287b7c0cb6e7"
+  "learnerFingerprint": "c5445824c7f33e2cc7649b56aeae0929b3e4d3eb8d72c7ae983afc4aa00846c1"
 }

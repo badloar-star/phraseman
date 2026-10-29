@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-30",
   "learningOutcomeByLocale": {
-    "ru": "some / any + plural count noun or non-count noun",
-    "uk": "some / any + plural count noun or non-count noun"
+    "ru": "сказать, что нужна финансовая поддержка: We need some financial support.",
+    "uk": "сказати, що потрібна фінансова підтримка: We need some financial support."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Повідомити про наявність"
       },
       "bodyByLocale": {
-        "ru": "bank transfer — банковский перевод. Несколько переводов были сделаны. Подтвердите это. Bank transfer → bank transfers. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
-        "uk": "bank transfer — банківський переказ. Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+        "ru": "bank transfer — банковский перевод. Несколько переводов были сделаны. Подтвердите это. Bank transfer → bank transfers. Some ставим перед несколькими предметами или тем, что не считают поштучно, когда сообщаем о некотором количестве.",
+        "uk": "bank transfer — банківський переказ. Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість."
       },
       "question": {
         "interactionId": "en:lesson-17:session-30:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Готівку не знімали"
       },
       "bodyByLocale": {
-        "ru": "Вы с родственником просматриваете выписку за прошлую неделю: за это время вы ни разу не снимали наличные. We didn't make any cash withdrawals — мы не снимали наличные. Соберите отрицание в прошлом: We + didn't make + any cash withdrawals. После didn't используем make, не made. Withdrawals — множественное число withdrawal; any подчёркивает, что не было ни одного снятия.",
-        "uk": "Ви з родичем переглядаєте виписку за минулий тиждень: за цей час ви жодного разу не знімали готівку. We didn't make any cash withdrawals — ми не знімали готівку. Складіть заперечення в минулому: We + didn't make + any cash withdrawals. Після didn't використовуємо make, не made. Withdrawals — множина withdrawal; any підкреслює, що не було жодного зняття."
+        "ru": "Вы с родственником просматриваете выписку за прошлую неделю: за это время вы ни разу не снимали наличные. We didn't make any cash withdrawals — мы не снимали наличные. Соберите отрицание в прошлом: We + didn't make + any cash withdrawals. После didn't используем make, не made. Withdrawals — withdrawal в форме для нескольких; any подчёркивает, что не было ни одного снятия.",
+        "uk": "Ви з родичем переглядаєте виписку за минулий тиждень: за цей час ви жодного разу не знімали готівку. We didn't make any cash withdrawals — ми не знімали готівку. Складіть заперечення в минулому: We + didn't make + any cash withdrawals. Після didn't використовуємо make, не made. Withdrawals — withdrawal у формі для кількох; any підкреслює, що не було жодного зняття."
       },
       "question": {
         "interactionId": "en:lesson-17:session-30:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Дізнатися про послугу банку"
       },
       "bodyByLocale": {
-        "ru": "Вы рассматриваете незнакомый банк и пока не знаете, можно ли управлять счётом через интернет. Does this bank offer any online banking? — этот банк предлагает управление счётом через интернет? Начните с Does this bank, затем добавьте offer any online banking. Для одного банка используем does; после него offer остаётся без -s. Online banking здесь неисчисляемое название услуги. Any соответствует нейтральному вопросу, а some могло бы выражать ожидание ответа «да».",
-        "uk": "Ви розглядаєте незнайомий банк і поки не знаєте, чи можна керувати рахунком через інтернет. Does this bank offer any online banking? — цей банк пропонує керування рахунком через інтернет? Почніть із Does this bank, потім додайте offer any online banking. Для одного банку використовуємо does; після нього offer залишається без -s. Online banking тут незлічувана назва послуги. Any відповідає нейтральному запитанню, а some могло б виражати очікування відповіді «так»."
+        "ru": "Вы рассматриваете незнакомый банк и пока не знаете, можно ли управлять счётом через интернет. Does this bank offer any online banking? — этот банк предлагает управление счётом через интернет? Начните с Does this bank, затем добавьте offer any online banking. Для одного банка используем does; после него offer остаётся без -s. Online banking здесь название услуги — его не считают поштучно. Any соответствует нейтральному вопросу, а some могло бы выражать ожидание ответа «да».",
+        "uk": "Ви розглядаєте незнайомий банк і поки не знаєте, чи можна керувати рахунком через інтернет. Does this bank offer any online banking? — цей банк пропонує керування рахунком через інтернет? Почніть із Does this bank, потім додайте offer any online banking. Для одного банку використовуємо does; після нього offer залишається без -s. Online banking тут назва послуги — її не рахують поштучно. Any відповідає нейтральному запитанню, а some могло б виражати очікування відповіді «так»."
       },
       "question": {
         "interactionId": "en:lesson-17:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7700970c104efc3be0ebb109f36cbabd995c7180acf3d89ad6c55064e5e4235a"
+  "introFingerprint": "417c933f09a27f9b112856ec72cdea004ded33998d2ef23139d727365282f8ec"
 }

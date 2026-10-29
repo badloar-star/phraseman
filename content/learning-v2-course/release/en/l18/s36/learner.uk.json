@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Підкресліть якість із so або such.",
+      "prompt": "Посильте опис словом so або such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-36:i03:r1",
@@ -180,12 +180,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "accessibilityLabel": "Посильте опис словом so або such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Подчеркните качество с so или such.",
-          "uk": "Підкресліть якість із so або such."
+          "uk": "Посильте опис словом so або such."
         },
         "gappedTargetPhrase": "The live music is ___ loud.",
         "gapOptions": [
@@ -388,7 +388,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Підкресліть якість із so або such.",
+      "prompt": "Посильте опис словом so або such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-36:i06:r1",
@@ -405,12 +405,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "accessibilityLabel": "Посильте опис словом so або such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Подчеркните качество с so или such.",
-          "uk": "Підкресліть якість із so або such."
+          "uk": "Посильте опис словом so або such."
         },
         "gappedTargetPhrase": "We are at ___ a great live concert.",
         "gapOptions": [
@@ -434,7 +434,7 @@
             "correct": false,
             "testedDimension": "Підкресліть якість із so або such.",
             "feedbackByLocale": {
-              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.",
               "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
             }
           },
@@ -611,7 +611,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Підкресліть якість із so або such.",
+      "prompt": "Посильте опис словом so або such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-36:i09:r1",
@@ -628,12 +628,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "accessibilityLabel": "Посильте опис словом so або such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Подчеркните качество с so или such.",
-          "uk": "Підкресліть якість із so або such."
+          "uk": "Посильте опис словом so або such."
         },
         "gappedTargetPhrase": "The street performance is ___ funny.",
         "gapOptions": [
@@ -835,7 +835,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Підкресліть якість із so або such.",
+      "prompt": "Посильте опис словом so або such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-36:i12:r1",
@@ -852,12 +852,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Підкресліть якість із so або such.",
+      "accessibilityLabel": "Посильте опис словом so або such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Подчеркните качество с so или such.",
-          "uk": "Підкресліть якість із so або such."
+          "uk": "Посильте опис словом so або such."
         },
         "gappedTargetPhrase": "This is ___ a big music festival.",
         "gapOptions": [
@@ -881,7 +881,7 @@
             "correct": false,
             "testedDimension": "Підкресліть якість із so або such.",
             "feedbackByLocale": {
-              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.",
               "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
             }
           },
@@ -1125,5 +1125,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8a15d2cc31b757075577cfee3398a8b38809eb3863a0b06afaf80ae30c960cab"
+  "learnerFingerprint": "715e85e8a4c4d115567557ad0cf8fbde0d03f6a57a76eba08f105f4a4e39dcfb"
 }

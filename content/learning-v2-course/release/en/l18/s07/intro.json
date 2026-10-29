@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-07",
   "learningOutcomeByLocale": {
-    "ru": "comparative adjective + than",
-    "uk": "comparative adjective + than"
+    "ru": "сравнить две вещи: These sports shoes are wider than mine.",
+    "uk": "порівняти дві речі: These sports shoes are wider than mine."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Знайти м'якшу пару"
       },
       "bodyByLocale": {
-        "ru": "Вы трогаете две пары кожаных туфель и замечаете, что эта мягче той. These leather shoes are softer than that pair — эти кожаные туфли мягче той пары. После These leather shoes ставим are: shoes — множественное число. Затем softer, сравнительную форму soft, и than that pair — «чем та пара». Так называем свойство и сразу указываем, с чем сравниваем.",
-        "uk": "Ви торкаєтеся двох пар шкіряних туфель і помічаєте, що ця м'якша за ту. These leather shoes are softer than that pair — ці шкіряні туфлі м'якші за ту пару. Після These leather shoes ставимо are: shoes — множина. Потім softer, порівняльну форму soft, і than that pair — «ніж та пара». Так називаємо властивість і відразу вказуємо, з чим порівнюємо."
+        "ru": "Вы трогаете две пары кожаных туфель и замечаете, что эта мягче той. These leather shoes are softer than that pair — эти кожаные туфли мягче той пары. После These leather shoes ставим are: shoes — форма для нескольких. Затем softer, сравнительную форму soft, и than that pair — «чем та пара». Так называем свойство и сразу указываем, с чем сравниваем.",
+        "uk": "Ви торкаєтеся двох пар шкіряних туфель і помічаєте, що ця м'якша за ту. These leather shoes are softer than that pair — ці шкіряні туфлі м'якші за ту пару. Після These leather shoes ставимо are: shoes — форма для кількох. Потім softer, порівняльну форму soft, і than that pair — «ніж та пара». Так називаємо властивість і відразу вказуємо, з чим порівнюємо."
       },
       "question": {
         "interactionId": "en:lesson-18:session-07:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ae6b21f8de71b0ef6e581bdc4a8493e6bbb94582d36cd246efb5579017d8c801"
+  "introFingerprint": "7ce8accd312cef921c8d8abe195e045f73f8e018e898d38e7302c6a9e529319b"
 }

@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть значення «най-» у цій групі.",
+      "prompt": "Виберіть, як сказати «най-».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-15:i03:r1",
@@ -180,12 +180,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "accessibilityLabel": "Виберіть, як сказати «най-».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите значение «самый» в этой группе.",
-          "uk": "Виберіть значення «най-» у цій групі."
+          "uk": "Виберіть, як сказати «най-»."
         },
         "gappedTargetPhrase": "This dining chair is ___.",
         "gapOptions": [
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть значення «най-» у цій групі.",
+      "prompt": "Виберіть, як сказати «най-».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-15:i06:r1",
@@ -403,12 +403,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "accessibilityLabel": "Виберіть, як сказати «най-».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите значение «самый» в этой группе.",
-          "uk": "Виберіть значення «най-» у цій групі."
+          "uk": "Виберіть, як сказати «най-»."
         },
         "gappedTargetPhrase": "This office chair is ___.",
         "gapOptions": [
@@ -609,7 +609,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть значення «най-» у цій групі.",
+      "prompt": "Виберіть, як сказати «най-».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-15:i09:r1",
@@ -626,12 +626,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "accessibilityLabel": "Виберіть, як сказати «най-».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите значение «самый» в этой группе.",
-          "uk": "Виберіть значення «най-» у цій групі."
+          "uk": "Виберіть, як сказати «най-»."
         },
         "gappedTargetPhrase": "This kitchen table is ___.",
         "gapOptions": [
@@ -832,7 +832,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть значення «най-» у цій групі.",
+      "prompt": "Виберіть, як сказати «най-».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-15:i12:r1",
@@ -849,12 +849,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть значення «най-» у цій групі.",
+      "accessibilityLabel": "Виберіть, як сказати «най-».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите значение «самый» в этой группе.",
-          "uk": "Виберіть значення «най-» у цій групі."
+          "uk": "Виберіть, як сказати «най-»."
         },
         "gappedTargetPhrase": "This dining table is ___.",
         "gapOptions": [
@@ -1121,5 +1121,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2967dccd497c3e0428ea363bdb21627a08f85588925292e3b91b23c36eb81991"
+  "learnerFingerprint": "1afeae5a6a1dfe2da7e27a6bf69beb4fd8f70992c4c6f0278b3efacf1fcd090a"
 }

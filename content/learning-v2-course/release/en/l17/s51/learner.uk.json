@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Для звірки потрібні рахунки за весь рік, але збереглося мало. Підкресліть брак документів. Electricity bill → electricity bills.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -663,7 +663,7 @@
             "correct": false,
             "testedDimension": "Кілька потрібних рахунків вдалося знайти. Підкресліть, що вони є. Water bill → water bills.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -885,7 +885,7 @@
             "correct": false,
             "testedDimension": "Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "32e86ec54360cc54ca915932079c8b509d6367780744f9caaec77f99948f99e9"
+  "learnerFingerprint": "afe181e585906b0fa86926851a41e50614837e4907b4d5971cd6cb5b0d58cba4"
 }

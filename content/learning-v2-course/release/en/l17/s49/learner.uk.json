@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Кілька дозволів на шкільні заходи вже підписано. Permission slip → permission slips.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "У цьому гуртку не надають харчування взагалі. School meal → school meals.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -662,7 +662,7 @@
             "correct": false,
             "testedDimension": "Для різних класів заплановано кілька зустрічей. Parents' evening → parents' evenings.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -884,7 +884,7 @@
             "correct": false,
             "testedDimension": "Ви не знаєте, які заняття бувають після уроків. Запитайте нейтрально, без очікування відповіді «так». After-school club → after-school clubs.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "add4ff0056b2e0555111f072e2aca36398ce4d7a767d45541b65cd382f1b29e3"
+  "learnerFingerprint": "15a2034d441fa6f5aa5ca43dc534a7ec076315d40138fc661f48e53bf493bf5b"
 }

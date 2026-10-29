@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-53",
   "learningOutcomeByLocale": {
-    "ru": "some / any + plural count noun or non-count noun",
-    "uk": "some / any + plural count noun or non-count noun"
+    "ru": "спросить, есть ли что-то нужное: Do you sell any weekly tickets?",
+    "uk": "запитати, чи є щось потрібне: Do you sell any weekly tickets?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Повідомити про наявність"
       },
       "bodyByLocale": {
-        "ru": "train platform — железнодорожная платформа, место посадки в поезд. Вы показываете, что несколько платформ находятся снаружи здания. Train platform → train platforms. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
-        "uk": "train platform — залізнична платформа, місце посадки в поїзд. Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+        "ru": "train platform — железнодорожная платформа, место посадки в поезд. Вы показываете, что несколько платформ находятся снаружи здания. Train platform → train platforms. Some ставим перед несколькими предметами или тем, что не считают поштучно, когда сообщаем о некотором количестве.",
+        "uk": "train platform — залізнична платформа, місце посадки в поїзд. Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість."
       },
       "question": {
         "interactionId": "en:lesson-17:session-53:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Дізнатися про квиток на тиждень"
       },
       "bodyByLocale": {
-        "ru": "Вы подошли к кассе и не знаете, продают ли здесь проездные на неделю. Do you sell any weekly tickets? — вы продаёте проездные на неделю? Начните с Do you, затем добавьте sell и any weekly tickets. После do глагол sell остаётся в начальной форме. Tickets стоит во множественном числе. Any подходит для вопроса без ожидания определённого ответа; some возможно при ожидании «да», которого здесь нет.",
-        "uk": "Ви підійшли до каси й не знаєте, чи продають тут проїзні на тиждень. Do you sell any weekly tickets? — ви продаєте проїзні на тиждень? Почніть із Do you, потім додайте sell і any weekly tickets. Після do дієслово sell залишається в початковій формі. Tickets стоїть у множині. Any підходить для запитання без очікування певної відповіді; some можливе за очікування «так», якого тут немає."
+        "ru": "Вы подошли к кассе и не знаете, продают ли здесь проездные на неделю. Do you sell any weekly tickets? — вы продаёте проездные на неделю? Начните с Do you, затем добавьте sell и any weekly tickets. После do глагол sell остаётся в начальной форме. Tickets стоит в форме для нескольких. Any подходит для вопроса без ожидания определённого ответа; some возможно при ожидании «да», которого здесь нет.",
+        "uk": "Ви підійшли до каси й не знаєте, чи продають тут проїзні на тиждень. Do you sell any weekly tickets? — ви продаєте проїзні на тиждень? Почніть із Do you, потім додайте sell і any weekly tickets. Після do дієслово sell залишається в початковій формі. Tickets стоїть у формі для кількох. Any підходить для запитання без очікування певної відповіді; some можливе за очікування «так», якого тут немає."
       },
       "question": {
         "interactionId": "en:lesson-17:session-53:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c86545e7eb568d55ce316fd1b3d2fc781bd25749c11b489ed26de5864f5ad9ff"
+  "introFingerprint": "665685444fa1ff245333746b2bd7fc74904ca7910094d406d2b4d027076f6bce"
 }

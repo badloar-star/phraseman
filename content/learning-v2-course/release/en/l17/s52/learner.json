@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Данных о прибытии большинства рейсов нет. Подчеркните, что известны лишь немногие. Arrival time → arrival times.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -663,7 +663,7 @@
             "correct": false,
             "testedDimension": "Для поездок семьи сохранены несколько номеров рейсов. Подчеркните наличие записей. Flight number → flight numbers.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -885,7 +885,7 @@
             "correct": false,
             "testedDimension": "Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "12e98a43d5da2d47a393ccded9b456b937c6960071e45bae7ee698068af00690"
+  "learnerFingerprint": "93a069e09feaf096fbe398b7421709384a508140a50a47869ace1ee8bad63eb7"
 }

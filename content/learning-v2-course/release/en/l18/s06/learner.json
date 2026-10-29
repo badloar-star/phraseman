@@ -164,7 +164,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите сравнительную форму.",
+      "prompt": "Выберите форму для сравнения.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-06:i03:r1",
@@ -181,11 +181,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите сравнительную форму.",
+      "accessibilityLabel": "Выберите форму для сравнения.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите сравнительную форму.",
+          "ru": "Выберите форму для сравнения.",
           "uk": "Виберіть порівняльну форму."
         },
         "gappedTargetPhrase": "This cotton shirt is ___ than mine.",
@@ -388,7 +388,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите сравнительную форму.",
+      "prompt": "Выберите форму для сравнения.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-06:i06:r1",
@@ -405,11 +405,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите сравнительную форму.",
+      "accessibilityLabel": "Выберите форму для сравнения.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите сравнительную форму.",
+          "ru": "Выберите форму для сравнения.",
           "uk": "Виберіть порівняльну форму."
         },
         "gappedTargetPhrase": "This wool jumper is ___ than mine.",
@@ -612,7 +612,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите сравнительную форму.",
+      "prompt": "Выберите форму для сравнения.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-06:i09:r1",
@@ -629,11 +629,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите сравнительную форму.",
+      "accessibilityLabel": "Выберите форму для сравнения.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите сравнительную форму.",
+          "ru": "Выберите форму для сравнения.",
           "uk": "Виберіть порівняльну форму."
         },
         "gappedTargetPhrase": "Your winter coat is ___ than mine.",
@@ -837,7 +837,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите сравнительную форму.",
+      "prompt": "Выберите форму для сравнения.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-06:i12:r1",
@@ -854,11 +854,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите сравнительную форму.",
+      "accessibilityLabel": "Выберите форму для сравнения.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите сравнительную форму.",
+          "ru": "Выберите форму для сравнения.",
           "uk": "Виберіть порівняльну форму."
         },
         "gappedTargetPhrase": "This summer dress is ___ than that one.",
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "351a3660acefc30420c065f1b969da89bd78b92c1ba033e20a05c5e7543bbe1c"
+  "learnerFingerprint": "0eb2e16b6b17f6c66b77de958629f154b04904d9433a7819ec378619915c2684"
 }

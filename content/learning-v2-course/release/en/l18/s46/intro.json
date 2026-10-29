@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-46",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "выразить сильное впечатление: This job advert is so clear.",
+    "uk": "висловити сильне враження: This job advert is so clear."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Коротка відпустка"
       },
       "bodyByLocale": {
-        "ru": "Вы планируете поездку и замечаете, что дней отпуска едва хватит на неё. Annual leave — ежегодный отпуск. My annual leave is so short. — Мой ежегодный отпуск такой короткий. My annual leave называет ваш отпуск, затем is связывает его с характеристикой short. So усиливает short и стоит перед ним. My уже показывает, чей отпуск, поэтому артикль перед annual leave не добавляем.",
-        "uk": "Ви плануєте поїздку й помічаєте, що днів відпустки ледь вистачить на неї. Annual leave — щорічна відпустка. My annual leave is so short. — Моя щорічна відпустка така коротка. My annual leave називає вашу відпустку, потім is пов’язує її з характеристикою short. So підсилює short і стоїть перед ним. My вже показує, чия відпустка, тому артикль перед annual leave не додаємо."
+        "ru": "Вы планируете поездку и замечаете, что дней отпуска едва хватит на неё. Annual leave — ежегодный отпуск. My annual leave is so short. — Мой ежегодный отпуск такой короткий. My annual leave называет ваш отпуск, затем is связывает его с характеристикой short. So усиливает short и стоит перед ним. My уже показывает, чей отпуск, поэтому a / the перед annual leave не добавляем.",
+        "uk": "Ви плануєте поїздку й помічаєте, що днів відпустки ледь вистачить на неї. Annual leave — щорічна відпустка. My annual leave is so short. — Моя щорічна відпустка така коротка. My annual leave називає вашу відпустку, потім is пов’язує її з характеристикою short. So підсилює short і стоїть перед ним. My вже показує, чия відпустка, тому a / the перед annual leave не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-18:session-46:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4959294e173cfcfa4b5fedfa113714955bf26fb3beba5f18d0921e7a1e4f40ca"
+  "introFingerprint": "075f1af7bbecd25eaec0b39c5df04860406065b179853ceb8364203e583b1ef1"
 }

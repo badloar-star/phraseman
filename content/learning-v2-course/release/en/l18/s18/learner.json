@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-18:i03:r1",
@@ -182,11 +182,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "This fabric softener is ___ yours.",
@@ -391,7 +391,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-18:i06:r1",
@@ -408,11 +408,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "This stain remover is ___ that one.",
@@ -617,7 +617,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-18:i09:r1",
@@ -634,11 +634,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "This laundry detergent is ___ that one.",
@@ -843,7 +843,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выразите одинаковое качество.",
+      "prompt": "Скажите, что они одинаковые.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-18:i12:r1",
@@ -860,11 +860,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выразите одинаковое качество.",
+      "accessibilityLabel": "Скажите, что они одинаковые.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выразите одинаковое качество.",
+          "ru": "Скажите, что они одинаковые.",
           "uk": "Висловіть однакову якість."
         },
         "gappedTargetPhrase": "This cleaning spray is ___ that one.",
@@ -1131,5 +1131,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fad990ed7613a9aa781b52fbead40c2443071ed019a722667a77527e43292bf8"
+  "learnerFingerprint": "67b2d136dbae12e987c06fbfe80b02fba77fd8478adaf4ca8f55c168dc5db1c8"
 }

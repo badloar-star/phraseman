@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Вы сравнили условия возврата у нескольких магазинов. Refund policy → refund policies.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Ни для одной посылки этикетки нет. Отрицайте наличие полностью. Return label → return labels.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -662,7 +662,7 @@
             "correct": false,
             "testedDimension": "Вы посмотрели курсы нескольких валют. Подтвердите это. Exchange rate → exchange rates.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -885,7 +885,7 @@
             "correct": false,
             "testedDimension": "Вы не знаете, сохранились ли документы из посылок. Спросите нейтрально. Delivery note → delivery notes.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "176aaa57cc82589e1a1eb064799be2f7ab2aa91b3cddb80cf8af0e11494db308"
+  "learnerFingerprint": "2eafb54371e69e068e90315efd27a08e99cf05a2727b7a487fb8386e14a253bc"
 }

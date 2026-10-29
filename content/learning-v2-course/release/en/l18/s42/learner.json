@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-42:i03:r1",
@@ -180,11 +180,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "This light lunch is ___ fresh.",
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-42:i06:r1",
@@ -403,11 +403,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "We had ___ a big breakfast.",
@@ -432,7 +432,7 @@
             "correct": false,
             "testedDimension": "Подчеркните качество с so или such.",
             "feedbackByLocale": {
-              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.",
               "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
             }
           },
@@ -609,7 +609,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-42:i09:r1",
@@ -626,11 +626,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "A quick snack is ___ useful.",
@@ -833,7 +833,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подчеркните качество с so или such.",
+      "prompt": "Усильте описание словом so или such.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-42:i12:r1",
@@ -850,11 +850,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подчеркните качество с so или such.",
+      "accessibilityLabel": "Усильте описание словом so или such.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подчеркните качество с so или such.",
+          "ru": "Усильте описание словом so или such.",
           "uk": "Підкресліть якість із so або such."
         },
         "gappedTargetPhrase": "This is ___ a nice hot drink.",
@@ -879,7 +879,7 @@
             "correct": false,
             "testedDimension": "Подчеркните качество с so или such.",
             "feedbackByLocale": {
-              "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.",
+              "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.",
               "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a."
             }
           },
@@ -1121,5 +1121,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9eacb567d1d6b5f0925ad20ee60b407c2553c6a8af6503397bb87d6664e8695d"
+  "learnerFingerprint": "269ebfefa1bc378f652e137e0be01263bc4ccaa6568044a5787cc48e719a7101"
 }

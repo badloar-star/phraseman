@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-44",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "выразить сильное впечатление: We have such high hopes.",
+    "uk": "висловити сильне враження: We have such high hopes."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Друг не в настрої"
       },
       "bodyByLocale": {
-        "ru": "Друг опоздал на автобус и теперь отвечает раздражённо. Bad mood — плохое настроение. He is in such a bad mood. — У него такое плохое настроение. С he выбираем is, затем in и группа such a bad mood. Mood — существительное, поэтому усиление строим с such. Артикль a остаётся после such, перед bad; порядок a such неверен.",
-        "uk": "Друг запізнився на автобус і тепер відповідає роздратовано. Bad mood — поганий настрій. He is in such a bad mood. — У нього такий поганий настрій. Із he вибираємо is, потім in і група such a bad mood. Mood — іменник, тому підсилення будуємо із such. Артикль a залишається після such, перед bad; порядок a such неправильний."
+        "ru": "Друг опоздал на автобус и теперь отвечает раздражённо. Bad mood — плохое настроение. He is in such a bad mood. — У него такое плохое настроение. С he выбираем is, затем in и группа such a bad mood. Mood — существительное, поэтому усиление строим с such. Слово a остаётся после such, перед bad; порядок a such неверен.",
+        "uk": "Друг запізнився на автобус і тепер відповідає роздратовано. Bad mood — поганий настрій. He is in such a bad mood. — У нього такий поганий настрій. Із he вибираємо is, потім in і група such a bad mood. Mood — іменник, тому підсилення будуємо із such. Слово a залишається після such, перед bad; порядок a such неправильний."
       },
       "question": {
         "interactionId": "en:lesson-18:session-44:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Радість і смуток перед переїздом"
       },
       "bodyByLocale": {
-        "ru": "Вы переезжаете в более удобную квартиру, но вам грустно расставаться с соседями. Mixed feelings — смешанные чувства. I have such mixed feelings. — У меня такие смешанные чувства. После I have ставим such mixed feelings. Such усиливает группу с существительным feelings; оно во множественном числе, поэтому a здесь не нужен. Радость и грусть относятся к одному переезду.",
-        "uk": "Ви переїжджаєте до зручнішої квартири, але вам сумно розлучатися із сусідами. Mixed feelings — змішані почуття. I have such mixed feelings. — У мене такі змішані почуття. Після I have ставимо such mixed feelings. Such підсилює групу з іменником feelings; він у множині, тому a тут не потрібен. Радість і смуток стосуються одного переїзду."
+        "ru": "Вы переезжаете в более удобную квартиру, но вам грустно расставаться с соседями. Mixed feelings — смешанные чувства. I have such mixed feelings. — У меня такие смешанные чувства. После I have ставим such mixed feelings. Such усиливает группу с существительным feelings; оно в форме для нескольких, поэтому a здесь не нужен. Радость и грусть относятся к одному переезду.",
+        "uk": "Ви переїжджаєте до зручнішої квартири, але вам сумно розлучатися із сусідами. Mixed feelings — змішані почуття. I have such mixed feelings. — У мене такі змішані почуття. Після I have ставимо such mixed feelings. Such підсилює групу з іменником feelings; він у формі для кількох, тому a тут не потрібен. Радість і смуток стосуються одного переїзду."
       },
       "question": {
         "interactionId": "en:lesson-18:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "32fb302d037e2d55cb154cc22ee01d2b384c32beda213a2d71947020f7b6b8c1"
+  "introFingerprint": "2413ed0fcb216e85b31f0bb7941ef21f5c7f6eb86093debb252801ba89d18394"
 }

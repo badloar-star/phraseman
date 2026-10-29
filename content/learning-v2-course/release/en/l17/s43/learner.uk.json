@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Для замовлень родини збережено кілька адрес. Підтвердьте це. Delivery address → delivery addresses.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "В отриманому списку немає таких адрес узагалі. Billing address → billing addresses.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -662,7 +662,7 @@
             "correct": false,
             "testedDimension": "Потрібно заповнити адреси відправників на кількох конвертах. Return address → return addresses.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -885,7 +885,7 @@
             "correct": false,
             "testedDimension": "Кілька мешканців переїхали. Ви не знаєте їхніх нових адрес. Запитайте нейтрально, без очікування відповіді «так». Forwarding address → forwarding addresses.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8aa16c3a8544b3f0f911837a2557439dfca08f3366154c4b502e310a8ba947d8"
+  "learnerFingerprint": "0b9d03671e2f238ff1a8c0319328d8d747f2c74ef8b2dc44361c11712323b6a7"
 }

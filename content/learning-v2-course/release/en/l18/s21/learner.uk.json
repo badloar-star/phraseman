@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Висловіть однакову якість.",
+      "prompt": "Скажіть, що вони однакові.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-21:i03:r1",
@@ -182,12 +182,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Висловіть однакову якість.",
+      "accessibilityLabel": "Скажіть, що вони однакові.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выразите одинаковое качество.",
-          "uk": "Висловіть однакову якість."
+          "uk": "Скажіть, що вони однакові."
         },
         "gappedTargetPhrase": "This dog food is ___ ours.",
         "gapOptions": [
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Висловіть однакову якість.",
+      "prompt": "Скажіть, що вони однакові.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-21:i06:r1",
@@ -407,12 +407,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Висловіть однакову якість.",
+      "accessibilityLabel": "Скажіть, що вони однакові.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выразите одинаковое качество.",
-          "uk": "Висловіть однакову якість."
+          "uk": "Скажіть, що вони однакові."
         },
         "gappedTargetPhrase": "This cat food is ___ yours.",
         "gapOptions": [
@@ -616,7 +616,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Висловіть однакову якість.",
+      "prompt": "Скажіть, що вони однакові.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-21:i09:r1",
@@ -633,12 +633,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Висловіть однакову якість.",
+      "accessibilityLabel": "Скажіть, що вони однакові.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выразите одинаковое качество.",
-          "uk": "Висловіть однакову якість."
+          "uk": "Скажіть, що вони однакові."
         },
         "gappedTargetPhrase": "This cat litter is ___ that one.",
         "gapOptions": [
@@ -841,7 +841,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Висловіть однакову якість.",
+      "prompt": "Скажіть, що вони однакові.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-21:i12:r1",
@@ -858,12 +858,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Висловіть однакову якість.",
+      "accessibilityLabel": "Скажіть, що вони однакові.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выразите одинаковое качество.",
-          "uk": "Висловіть однакову якість."
+          "uk": "Скажіть, що вони однакові."
         },
         "gappedTargetPhrase": "This litter tray is ___ ours.",
         "gapOptions": [
@@ -1130,5 +1130,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9cf76994fed5aedfeb8760502d80c65090816e8c0bc288577a8d575c0db3f5b9"
+  "learnerFingerprint": "f990f8052531ed5dd74e5d11fd44029930359f2ed702988dfd03ea224e5bd442"
 }

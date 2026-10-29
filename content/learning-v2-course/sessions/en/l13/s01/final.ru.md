@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросите друга, что он вчера помыл и убрал.
 
-**Что вы освоите:** спросить о прошлом: Did you clean the bread bin?
+**Что вы освоите:** спросить, убрал ли человек что-то на кухне: Did you clean the bread bin?
 **Новые слова:** bread bin, coffee mug, dish rack, tea strainer
 
 ## Интро 1

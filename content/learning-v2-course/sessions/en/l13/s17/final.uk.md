@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть другові, як учора змінювалися темп і настрій.
 
-**Що ви опануєте:** після did і didn’t ставити дію без змін: Did you calm down quickly yesterday?
+**Що ви опануєте:** сказати, що ви не сповільнилися: I didn't slow down.
 **Нові слова:** slow down, speed up, calm down, cheer up
 
 ## Інтро 1

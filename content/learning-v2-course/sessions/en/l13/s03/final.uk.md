@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга, які овочі він учора приготував.
 
-**Що ви опануєте:** повторити: запитати про минуле: Did you cook the aubergine?
+**Що ви опануєте:** запитати, чи приготувала людина овочі: Did you cook the aubergine?
 **Нові слова:** aubergine, courgette, Brussels sprouts, spring onion
 
 ## Інтро 1

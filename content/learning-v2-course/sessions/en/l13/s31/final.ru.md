@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете небольшую домашнюю случайность, объясняете открытое окно и готовитесь выйти.
 
-**Что вы освоите:** спросить о прошлом с yesterday, last week: Did you drop it yesterday?
+**Что вы освоите:** спросить, что случилось вчера: Did you drop it yesterday?
 **Новые слова:** accidentally, deliberately, properly, completely
 
 ## Интро 1

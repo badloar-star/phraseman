@@ -2,7 +2,7 @@
 
 **Ситуация.** Подведите итог поездки: дорога туда, пересадка, ночёвка и возвращение.
 
-**Что вы освоите:** повторить: спросить о прошлом и рассказать по порядку: Did you enjoy the outward journey?
+**Что вы освоите:** спросить о дороге туда и обратно: Did you enjoy the outward journey?
 **Новые слова:** outward journey, return journey, connecting flight, overnight stay
 
 ## Интро 1

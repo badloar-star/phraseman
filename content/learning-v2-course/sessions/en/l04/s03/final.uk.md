@@ -2,7 +2,7 @@
 
 **Ситуація.** Біля районного стенда ви дивитеся, скільки в районі місць одного виду. Коли місце одне, ви кажете There is a, як раніше. Коли місць кілька, ви кажете There are і додаєте s до назви: banks, museums. Слово a тоді не потрібне.
 
-**Що ви опануєте:** сказати, що місць кілька: There are banks here, There are museums nearby
+**Що ви опануєте:** сказати, що місць кілька: There are banks here.
 **Нові слова:** bank, museum, church, school
 **Повертаються:** library, hospital, garden, behind, near
 

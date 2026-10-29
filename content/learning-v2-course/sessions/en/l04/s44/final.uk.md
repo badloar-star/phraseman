@@ -2,7 +2,7 @@
 
 **Ситуація.** Управитель показує вам, де в домі що зберігається: у коморі, на кухні, у холі. Нової граматики немає: ви на слух розрізняєте, де предмет стоїть — in, on, under, next to чи between, — і самі кажете про це.
 
-**Що ви опануєте:** на слух розрізняти in, on, under, next to і between та говорити, де що стоїть
+**Що ви опануєте:** сказати, де що стоїть: The tin is in the storeroom.
 **Нові слова:** freezer, storeroom, coat rack, tin
 **Повертаються:** sink, shelf, hook, jar, cupboard, hall, wall, door, window, kitchen, balcony, bottle
 

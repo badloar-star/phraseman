@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви показуєте міські орієнтири гостям і сестрі: зупинку, світлофор, статую. Ви називаєте два місця по боках і кажете «між» словом between: between the bank and the library.
 
-**Що ви опануєте:** сказати, що предмет перебуває між двома місцями, зі словом between
+**Що ви опануєте:** сказати, що місце між двома іншими: between the bank and the hotel
 **Нові слова:** bus stop, traffic light, statue, pavement
 **Повертаються:** bank, library, school, park, tree, bench, cafe, hotel, road, lake, zoo
 

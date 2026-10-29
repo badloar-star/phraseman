@@ -2,7 +2,7 @@
 
 **Ситуация.** У районного стенда вы смотрите, сколько в районе мест одного вида. Когда место одно, вы говорите There is a, как раньше. Когда мест несколько, вы говорите There are и добавляете s к названию: banks, museums. Слово a тогда не нужно.
 
-**Что вы освоите:** сказать, что мест несколько: There are banks here, There are museums nearby
+**Что вы освоите:** сказать, что мест несколько: There are banks here.
 **Новые слова:** bank, museum, church, school
 **Возвращаются:** library, hospital, garden, behind, near
 

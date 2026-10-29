@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви приїхали на станцію й розпитуєте працівника, що є поруч. Нової граматики немає: ви ставите запитання Is there…? або Are there any…?, а короткі відповіді Yes, there is і No, there isn’t даєте окремим ходом.
 
-**Що ви опануєте:** запитати про наявність одного чи кількох предметів і окремо відповісти коротко
+**Що ви опануєте:** запитати, чи є щось поруч: Is there an information desk here?
 **Нові слова:** bus shelter, ticket machine, turnstile, information desk
 **Повертаються:** platform, timetable, entrance, bench, map, hall, lobby, reception, bank, gate, market
 

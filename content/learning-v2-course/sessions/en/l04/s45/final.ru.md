@@ -2,7 +2,7 @@
 
 **Ситуация.** Агент прислал описание квартиры, а в строках про технику есть ошибки. Вы идёте по квартире, сверяете и исправляете каждую строку. Новой грамматики нет: остаются обычные There is для одного предмета и There are для нескольких.
 
-**Что вы освоите:** исправить в описании ошибку в числе и в отрицании: There is, There are, There isn’t
+**Что вы освоите:** исправить в описании ошибку в числе и в отрицании: There is a microwave here.
 **Новые слова:** microwave, washing machine, ironing board, hairdryer
 **Возвращаются:** kitchen, basement, hall, cupboard, shelf, worktop, laundrette, fridge, toaster, kettle, door, sink
 

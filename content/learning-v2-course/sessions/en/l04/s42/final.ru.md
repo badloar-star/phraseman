@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы приехали на станцию и расспрашиваете сотрудника, что есть рядом. Новой грамматики нет: вы задаёте вопрос Is there…? или Are there any…?, а короткие ответы Yes, there is и No, there isn’t даёте отдельным ходом.
 
-**Что вы освоите:** спросить о наличии одного или нескольких предметов и отдельно ответить коротко
+**Что вы освоите:** спросить, есть ли что-то рядом: Is there an information desk here?
 **Новые слова:** bus shelter, ticket machine, turnstile, information desk
 **Возвращаются:** platform, timetable, entrance, bench, map, hall, lobby, reception, bank, gate, market
 

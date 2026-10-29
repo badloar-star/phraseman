@@ -2,7 +2,7 @@
 
 **Ситуация.** Управляющий показывает вам, где в доме что хранится: в кладовой, на кухне, в холле. Новой грамматики нет: вы на слух различаете, где предмет стоит — in, on, under, next to или between, — и сами говорите об этом.
 
-**Что вы освоите:** на слух различать in, on, under, next to и between и говорить, где что стоит
+**Что вы освоите:** сказать, где что стоит: The tin is in the storeroom.
 **Новые слова:** freezer, storeroom, coat rack, tin
 **Возвращаются:** sink, shelf, hook, jar, cupboard, hall, wall, door, window, kitchen, balcony, bottle
 

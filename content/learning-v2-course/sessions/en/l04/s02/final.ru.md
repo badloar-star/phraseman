@@ -2,7 +2,7 @@
 
 **Ситуация.** Администратор показывает вам новый дом и всё, что есть вокруг него. Вы по-прежнему говорите There is a и название места, а теперь ещё добавляете, где оно: behind the building (за зданием) или near the garden (рядом с садом).
 
-**Что вы освоите:** сказать, что место есть и где оно: There is a garden behind the building
+**Что вы освоите:** сказать, что место есть и где оно: There is a garden here.
 **Новые слова:** garden, behind, near, cinema
 **Возвращаются:** pharmacy, library, bakery, building, bench
 

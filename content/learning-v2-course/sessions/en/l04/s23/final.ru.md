@@ -2,7 +2,7 @@
 
 **Ситуация.** Перед приходом гостей вы проверяете, что есть на столе, и выбираете слово: в сообщении some — There is some cheese, в вопросе и когда чего-то нет any — Is there any honey? There isn't any jam.
 
-**Что вы освоите:** выбрать some или any: some в сообщении, any в вопросе и когда чего-то нет
+**Что вы освоите:** спросить, осталось ли что-то к чаю: Is there any honey here?
 **Новые слова:** cheese, honey, jam, cereal
 **Возвращаются:** milk, rice, bread, berry, near
 

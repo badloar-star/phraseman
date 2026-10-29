@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы показываете городские ориентиры гостям и сестре: остановку, светофор, статую. Вы называете два места по бокам и говорите «между» словом between: between the bank and the library.
 
-**Что вы освоите:** сказать, что предмет находится между двумя местами, со словом between
+**Что вы освоите:** сказать, что место между двумя другими: between the bank and the hotel
 **Новые слова:** bus stop, traffic light, statue, pavement
 **Возвращаются:** bank, library, school, park, tree, bench, cafe, hotel, road, lake, zoo
 

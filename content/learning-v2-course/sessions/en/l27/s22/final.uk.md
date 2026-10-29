@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви описуєте проблему зі стравою, обираєте заміну й уточнюєте склад напою.
 
-**Що ви опануєте:** сказати, що було б, якби…: Excuse me, could you help us?
+**Що ви опануєте:** сказати, що ви зробили б, якби…: We would sit outside if it were warmer.
 **Нові слова:** overcooked, undercooked, uneaten, caffeine
 
 ## Інтро 1

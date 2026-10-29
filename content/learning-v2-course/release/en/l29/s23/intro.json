@@ -69,8 +69,8 @@
         "uk": "Хто посадив зелень"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает о посадках, и вы объясняете, что их сделала ваша мать. Скажите: These herbs were planted by my mother — эту зелень посадила моя мать. Соберите These herbs + were planted + by my mother. Начните с растений во множественном числе, поэтому выберите were planted. После by назовите человека, который их посадил.",
-        "uk": "Друг запитує про насадження, і ви пояснюєте, що їх зробила ваша мати. Скажіть: These herbs were planted by my mother — цю зелень посадила моя мати. Складіть These herbs + were planted + by my mother. Почніть із рослин у множині, тому виберіть were planted. Після by назвіть людину, яка їх посадила."
+        "ru": "Друг спрашивает о посадках, и вы объясняете, что их сделала ваша мать. Скажите: These herbs were planted by my mother — эту зелень посадила моя мать. Соберите These herbs + were planted + by my mother. Растений несколько, поэтому выберите were planted. После by назовите человека, который их посадил.",
+        "uk": "Друг запитує про насадження, і ви пояснюєте, що їх зробила ваша мати. Скажіть: These herbs were planted by my mother — цю зелень посадила моя мати. Складіть These herbs + were planted + by my mother. Рослин кілька, тому виберіть were planted. Після by назвіть людину, яка їх посадила."
       },
       "question": {
         "interactionId": "en:lesson-29:session-23:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f64cba3d161e5b2e82cfe836bfe207a62b5c2bed0a2be5011358cd851a51a176"
+  "introFingerprint": "6cc44cd02d6e7ab7ff8abee924cb8b1f470b0304b164bf93c16af2b2192f7261"
 }

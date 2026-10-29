@@ -15,8 +15,8 @@
         "uk": "Пальці кровоточать із ранку"
       },
       "bodyByLocale": {
-        "ru": "Вы объясняете, что пальцы начали кровоточить утром и это продолжается сейчас. My fingers have been bleeding since this morning — мои пальцы кровоточат с утра. После my fingers выбираем have: fingers — множественное число. Затем ставим been и bleeding — bleed с -ing. Связка have been bleeding показывает процесс до настоящего момента. Since this morning называет, когда он начался.",
-        "uk": "Ви пояснюєте, що пальці почали кровоточити вранці й це триває зараз. My fingers have been bleeding since this morning — мої пальці кровоточать із ранку. Після my fingers вибираємо have: fingers — множина. Потім ставимо been і bleeding — bleed з -ing. Сполука have been bleeding показує процес до теперішнього моменту. Since this morning називає, коли він почався."
+        "ru": "Вы объясняете, что пальцы начали кровоточить утром и это продолжается сейчас. My fingers have been bleeding since this morning — мои пальцы кровоточат с утра. После my fingers выбираем have: fingers — форма для нескольких. Затем ставим been и bleeding — bleed с -ing. Связка have been bleeding показывает процесс до настоящего момента. Since this morning называет, когда он начался.",
+        "uk": "Ви пояснюєте, що пальці почали кровоточити вранці й це триває зараз. My fingers have been bleeding since this morning — мої пальці кровоточать із ранку. Після my fingers вибираємо have: fingers — форма для кількох. Потім ставимо been і bleeding — bleed з -ing. Сполука have been bleeding показує процес до теперішнього моменту. Since this morning називає, коли він почався."
       },
       "question": {
         "interactionId": "en:lesson-24:session-24:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Шкіра свербить увесь ранок"
       },
       "bodyByLocale": {
-        "ru": "Утро ещё продолжается, и вы объясняете, что кожа чешется всё это время. My skin has been itching all morning — кожа чешется всё утро. После my skin ставим has: skin согласуется как единственное число. Затем нужны been и itching — itch с -ing. All morning называет длительность процесса, который продолжается сейчас. Порядок — my skin + has + been + itching + all morning.",
-        "uk": "Ранок ще триває, і ви пояснюєте, що шкіра свербить увесь цей час. My skin has been itching all morning — шкіра свербить увесь ранок. Після my skin ставимо has: skin узгоджується як однина. Потім потрібні been та itching — itch з -ing. All morning називає тривалість процесу, який триває зараз. Порядок — my skin + has + been + itching + all morning."
+        "ru": "Утро ещё продолжается, и вы объясняете, что кожа чешется всё это время. My skin has been itching all morning — кожа чешется всё утро. После my skin ставим has: skin согласуется как форма для одного. Затем нужны been и itching — itch с -ing. All morning называет длительность процесса, который продолжается сейчас. Порядок — my skin + has + been + itching + all morning.",
+        "uk": "Ранок ще триває, і ви пояснюєте, що шкіра свербить увесь цей час. My skin has been itching all morning — шкіра свербить увесь ранок. Після my skin ставимо has: skin узгоджується як форма для одного. Потім потрібні been та itching — itch з -ing. All morning називає тривалість процесу, який триває зараз. Порядок — my skin + has + been + itching + all morning."
       },
       "question": {
         "interactionId": "en:lesson-24:session-24:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Ноги набрякають із ранку"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете, что ноги начали опухать утром и процесс продолжается. My feet have been swelling since this morning — мои ноги опухают с утра. My feet — множественное число, поэтому ставим have. Затем been + swelling описывает процесс до настоящего момента. Swelling образуется от swell с -ing; две l сохраняются. Since this morning в конце указывает начало процесса.",
-        "uk": "Ви розповідаєте, що ноги почали набрякати вранці й процес триває. My feet have been swelling since this morning — мої ноги набрякають із ранку. My feet — множина, тому ставимо have. Потім been + swelling описує процес до теперішнього моменту. Swelling утворюється від swell з -ing; дві l зберігаються. Since this morning наприкінці вказує початок процесу."
+        "ru": "Вы рассказываете, что ноги начали опухать утром и процесс продолжается. My feet have been swelling since this morning — мои ноги опухают с утра. My feet — форма для нескольких, поэтому ставим have. Затем been + swelling описывает процесс до настоящего момента. Swelling образуется от swell с -ing; две l сохраняются. Since this morning в конце указывает начало процесса.",
+        "uk": "Ви розповідаєте, що ноги почали набрякати вранці й процес триває. My feet have been swelling since this morning — мої ноги набрякають із ранку. My feet — форма для кількох, тому ставимо have. Потім been + swelling описує процес до теперішнього моменту. Swelling утворюється від swell з -ing; дві l зберігаються. Since this morning наприкінці вказує початок процесу."
       },
       "question": {
         "interactionId": "en:lesson-24:session-24:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ca0cc6b8573357292de180928f34deb5039a1de58b9ae5ef9302130837192b17"
+  "introFingerprint": "72d716e4de0f89c90e3ff67aa18fc00b06425d0a5eeecb53dc11bad4f692177d"
 }

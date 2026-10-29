@@ -15,8 +15,8 @@
         "uk": "Чи винесено сміття"
       },
       "bodyByLocale": {
-        "ru": "Перед выходом вы уточняете у друга, выполнено ли домашнее дело. Спросите: Have you taken out the garbage yet? — ты уже вынес мусор? Собираем: Have + you + taken out + the garbage + yet? Have ставим перед you, затем используем третью форму take — taken, не took. Yet в конце спрашивает о результате к настоящему моменту. The garbage обозначает тот мусор, который нужно было вынести; garbage здесь неисчисляемое, поэтому a не ставим.",
-        "uk": "Перед виходом ви уточнюєте в друга, чи виконано хатню справу. Запитайте: Have you taken out the garbage yet? — ти вже виніс сміття? Складаємо: Have + you + taken out + the garbage + yet? Have ставимо перед you, потім використовуємо третю форму take — taken, не took. Yet у кінці запитує про результат до теперішнього моменту. The garbage позначає те сміття, яке потрібно було винести; garbage тут незлічуване, тому a не ставимо."
+        "ru": "Перед выходом вы уточняете у друга, выполнено ли домашнее дело. Спросите: Have you taken out the garbage yet? — ты уже вынес мусор? Собираем: Have + you + taken out + the garbage + yet? Have ставим перед you, затем используем форму take — taken, не took. Yet в конце спрашивает о результате к настоящему моменту. The garbage обозначает тот мусор, который нужно было вынести; garbage здесь не считается поштучно, поэтому a не ставим.",
+        "uk": "Перед виходом ви уточнюєте в друга, чи виконано хатню справу. Запитайте: Have you taken out the garbage yet? — ти вже виніс сміття? Складаємо: Have + you + taken out + the garbage + yet? Have ставимо перед you, потім використовуємо форму take — taken, не took. Yet у кінці запитує про результат до теперішнього моменту. The garbage позначає те сміття, яке потрібно було винести; garbage тут не рахується поштучно, тому a не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-26:session-29:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e18e89d6923fdf771a713c914ecf46d3711b33c570491c0433fe1222881a8d47"
+  "introFingerprint": "60e94b296b0e54714d1403f2453b94a443158ce3d517ca7fbf87236e2868a300"
 }

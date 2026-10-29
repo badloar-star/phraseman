@@ -15,8 +15,8 @@
         "uk": "Що друг сказав про погоду"
       },
       "bodyByLocale": {
-        "ru": "Вы собираетесь на пикник. Друг сообщил, что в парке ветрено. Передайте это сестре: He said it was windy — он сказал, что было ветрено. Соберите He + said + it was windy. После said передаём сообщение целиком: it — подлежащее, was — связка, windy — описание погоды. В этой фразе можно обойтись без that.",
-        "uk": "Ви збираєтеся на пікнік. Друг повідомив, що в парку вітряно. Передайте це сестрі: He said it was windy — він сказав, що було вітряно. Складіть He + said + it was windy. Після said передаємо повідомлення цілком: it — підмет, was — зв’язка, windy — опис погоди. У цій фразі можна обійтися без that."
+        "ru": "Вы собираетесь на пикник. Друг сообщил, что в парке ветрено. Передайте это сестре: He said it was windy — он сказал, что было ветрено. Соберите He + said + it was windy. После said передаём сообщение целиком: it — о чём речь, was — «было», windy — описание погоды. В этой фразе можно обойтись без that.",
+        "uk": "Ви збираєтеся на пікнік. Друг повідомив, що в парку вітряно. Передайте це сестрі: He said it was windy — він сказав, що було вітряно. Складіть He + said + it was windy. Після said передаємо повідомлення цілком: it — про що йдеться, was — «було», windy — опис погоди. У цій фразі можна обійтися без that."
       },
       "question": {
         "interactionId": "en:lesson-30:session-24:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4f56003924eefa35d7226164795c358650e20ac5f3f40adc28fa7be08e7a644d"
+  "introFingerprint": "97cdf70b9cfe7ad5952fb7a2a850fb3055132c776fdd32fbbe2b80878ebf6c10"
 }

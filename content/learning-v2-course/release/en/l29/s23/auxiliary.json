@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-29:session-23:intro2:q",
       "responseFeedbackById": {
         "en:lesson-29:session-23:intro2:r2": {
-          "ru": "С herbs во множественном числе нужно were.",
-          "uk": "З herbs у множині потрібне were."
+          "ru": "С herbs в форме для нескольких нужно were.",
+          "uk": "З herbs у формі для кількох потрібне were."
         },
         "en:lesson-29:session-23:intro2:r3": {
           "ru": "Человека, выполнившего действие, вводит by.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "8453229f7704879baa772fd8ed256fda0e11ab527ff208fa05375cbd1760adb8"
+  "auxiliaryFingerprint": "ffb4fe0a7d0bb3c945e71d6896fb13499ffb02abae5706fc3335a2d47a0069ab"
 }

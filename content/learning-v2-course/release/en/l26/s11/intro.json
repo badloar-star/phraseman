@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-11",
   "learningOutcomeByLocale": {
-    "ru": "zero conditional; first conditional; just, already, yet; past perfect + by the time",
-    "uk": "zero conditional; first conditional; just, already, yet; past perfect + by the time"
+    "ru": "сказать, что бывает и что будет, если…, и что уже случилось к моменту",
+    "uk": "сказати, що буває і що буде, якщо…, і що вже сталося до моменту"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Щойно пошкодили стегно"
       },
       "bodyByLocale": {
-        "ru": "Вы неудачно повернулись во время игры и объясняете другу, почему остановились: I have just hurt my thigh — я только что повредил бедро. Собираем: I + have + just + hurt + my thigh — кто, have, только что, действие, что повредил. С I нужна have. Just ставим между have и третьей формой hurt. У hurt все три формы одинаковые, поэтому hurting здесь не подходит. Так сообщаем о совсем недавнем событии сейчас.",
-        "uk": "Ви невдало повернулися під час гри й пояснюєте другові, чому зупинилися: I have just hurt my thigh — я щойно пошкодив стегно. Складаємо: I + have + just + hurt + my thigh — хто, have, щойно, дія, що пошкодив. З I потрібна have. Just ставимо між have і третьою формою hurt. У hurt усі три форми однакові, тому hurting тут не підходить. Так повідомляємо про зовсім недавню подію зараз."
+        "ru": "Вы неудачно повернулись во время игры и объясняете другу, почему остановились: I have just hurt my thigh — я только что повредил бедро. Собираем: I + have + just + hurt + my thigh — кто, have, только что, действие, что повредил. С I нужна have. Just ставим между have и формой после have hurt. У hurt все три формы одинаковые, поэтому hurting здесь не подходит. Так сообщаем о совсем недавнем событии сейчас.",
+        "uk": "Ви невдало повернулися під час гри й пояснюєте другові, чому зупинилися: I have just hurt my thigh — я щойно пошкодив стегно. Складаємо: I + have + just + hurt + my thigh — хто, have, щойно, дія, що пошкодив. З I потрібна have. Just ставимо між have і формою після have hurt. У hurt усі три форми однакові, тому hurting тут не підходить. Так повідомляємо про зовсім недавню подію зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-11:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "16958f700f40b49f060a88ec94296b75f4f06c04e52b92e7761045301b519420"
+  "introFingerprint": "88517412a3705c8360ddd5cd373a5228d6e6ebda451534a77b57122a980224d7"
 }

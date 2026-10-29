@@ -69,8 +69,8 @@
         "uk": "Хто запакував подарунок"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, кто красиво упаковал купленный набор. Ответьте: The gift was wrapped by the assistant — подарок упаковал продавец. Соберите The gift + was wrapped + by the assistant. Начните с подарка, затем поставьте was и wrapped, третью форму wrap. После by назовите человека, который выполнил упаковку.",
-        "uk": "Друг запитує, хто гарно запакував придбаний набір. Дайте відповідь: The gift was wrapped by the assistant — подарунок запакував продавець. Складіть The gift + was wrapped + by the assistant. Почніть із подарунка, потім поставте was та wrapped, третю форму wrap. Після by назвіть людину, яка виконала пакування."
+        "ru": "Друг спрашивает, кто красиво упаковал купленный набор. Ответьте: The gift was wrapped by the assistant — подарок упаковал продавец. Соберите The gift + was wrapped + by the assistant. Начните с подарка, затем поставьте was и wrapped, форму wrap. После by назовите человека, который выполнил упаковку.",
+        "uk": "Друг запитує, хто гарно запакував придбаний набір. Дайте відповідь: The gift was wrapped by the assistant — подарунок запакував продавець. Складіть The gift + was wrapped + by the assistant. Почніть із подарунка, потім поставте was та wrapped, форму wrap. Після by назвіть людину, яка виконала пакування."
       },
       "question": {
         "interactionId": "en:lesson-29:session-03:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ee5df822ec65efe4e17f22c558489496ec6201c3e8b9b8caf4f810332c39bad0"
+  "introFingerprint": "7cac5dfcf2521bbae8f30a0dedf63b3a30ff9e6319c2ed921438d09739ff1bd6"
 }

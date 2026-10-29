@@ -15,8 +15,8 @@
         "uk": "Теплий десерт"
       },
       "bodyByLocale": {
-        "ru": "В кафе вы выбираете десерт и хотите узнать, подают ли его тёплым. Спросите: Is this dessert served warm? — этот десерт подают тёплым? Соберите Is + this dessert + served + warm? Вынесите Is перед названием десерта, затем добавьте served, третью форму serve. Warm в конце уточняет, каким десерт подают.",
-        "uk": "У кафе ви вибираєте десерт і хочете дізнатися, чи подають його теплим. Запитайте: Is this dessert served warm? — цей десерт подають теплим? Складіть Is + this dessert + served + warm? Поставте Is перед назвою десерту, потім додайте served, третю форму serve. Warm наприкінці уточнює, яким десерт подають."
+        "ru": "В кафе вы выбираете десерт и хотите узнать, подают ли его тёплым. Спросите: Is this dessert served warm? — этот десерт подают тёплым? Соберите Is + this dessert + served + warm? Вынесите Is перед названием десерта, затем добавьте served, форму serve. Warm в конце уточняет, каким десерт подают.",
+        "uk": "У кафе ви вибираєте десерт і хочете дізнатися, чи подають його теплим. Запитайте: Is this dessert served warm? — цей десерт подають теплим? Складіть Is + this dessert + served + warm? Поставте Is перед назвою десерту, потім додайте served, форму serve. Warm наприкінці уточнює, яким десерт подають."
       },
       "question": {
         "interactionId": "en:lesson-28:session-54:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Дві коробки"
       },
       "bodyByLocale": {
-        "ru": "Вы покупаете два пирожных для разных людей. Спросите: Can they be packed separately? — можно упаковать их отдельно? Соберите Can + they + be packed + separately? Начните с Can, затем поставьте they вместо названий пирожных. Добавьте be и packed, третью форму pack. Separately означает, что нужна отдельная упаковка для каждого.",
-        "uk": "Ви купуєте два тістечка для різних людей. Запитайте: Can they be packed separately? — чи можна запакувати їх окремо? Складіть Can + they + be packed + separately? Почніть із Can, потім поставте they замість назв тістечок. Додайте be та packed, третю форму pack. Separately означає, що потрібна окрема упаковка для кожного."
+        "ru": "Вы покупаете два пирожных для разных людей. Спросите: Can they be packed separately? — можно упаковать их отдельно? Соберите Can + they + be packed + separately? Начните с Can, затем поставьте they вместо названий пирожных. Добавьте be и packed, форму pack. Separately означает, что нужна отдельная упаковка для каждого.",
+        "uk": "Ви купуєте два тістечка для різних людей. Запитайте: Can they be packed separately? — чи можна запакувати їх окремо? Складіть Can + they + be packed + separately? Почніть із Can, потім поставте they замість назв тістечок. Додайте be та packed, форму pack. Separately означає, що потрібна окрема упаковка для кожного."
       },
       "question": {
         "interactionId": "en:lesson-28:session-54:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Коли приготували тістечка"
       },
       "bodyByLocale": {
-        "ru": "Вы спрашиваете о свежести пирожных на витрине. Продавец отвечает: These cakes were made this morning — эти пирожные приготовили сегодня утром. Соберите These cakes + were made + this morning. После These cakes поставьте were: пирожных несколько. Затем добавьте made, третью форму make, и время приготовления в конце.",
-        "uk": "Ви запитуєте про свіжість тістечок на вітрині. Продавець відповідає: These cakes were made this morning — ці тістечка приготували сьогодні вранці. Складіть These cakes + were made + this morning. Після These cakes поставте were: тістечок кілька. Потім додайте made, третю форму make, і час приготування наприкінці."
+        "ru": "Вы спрашиваете о свежести пирожных на витрине. Продавец отвечает: These cakes were made this morning — эти пирожные приготовили сегодня утром. Соберите These cakes + were made + this morning. После These cakes поставьте were: пирожных несколько. Затем добавьте made, форму make, и время приготовления в конце.",
+        "uk": "Ви запитуєте про свіжість тістечок на вітрині. Продавець відповідає: These cakes were made this morning — ці тістечка приготували сьогодні вранці. Складіть These cakes + were made + this morning. Після These cakes поставте were: тістечок кілька. Потім додайте made, форму make, і час приготування наприкінці."
       },
       "question": {
         "interactionId": "en:lesson-28:session-54:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e77f532e34c911b51da04f14bcad9d20d421a7e4f3687896bc23a61fa0dcd668"
+  "introFingerprint": "9fdf0af1dc7a46996e471f35ac3ffd4adf96db6823b0ccb923a987ae3829012d"
 }

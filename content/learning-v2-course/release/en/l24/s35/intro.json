@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-35",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Листа вже прочитано"
       },
       "bodyByLocale": {
-        "ru": "Вам пришло официальное письмо. Вы прочитали его и теперь знаете, что в нём написано. I have read the official letter — я прочитал официальное письмо. После I ставим have, затем третью форму read, которая произносится «ред». Present Perfect передаёт результат к настоящему моменту. The official letter называет прочитанное письмо; official стоит перед letter. Здесь собираем I + have + read + the official letter.",
-        "uk": "Вам надійшов офіційний лист. Ви прочитали його й тепер знаєте, що в ньому написано. I have read the official letter — я прочитав офіційного листа. Після I ставимо have, потім третю форму read, яка вимовляється «ред». Present Perfect передає результат на теперішній момент. The official letter називає прочитаного листа; official стоїть перед letter. Тут складаємо I + have + read + the official letter."
+        "ru": "Вам пришло официальное письмо. Вы прочитали его и теперь знаете, что в нём написано. I have read the official letter — я прочитал официальное письмо. После I ставим have, затем форму read, которая произносится «ред». Форма have / has + done передаёт результат к настоящему моменту. The official letter называет прочитанное письмо; official стоит перед letter. Здесь собираем I + have + read + the official letter.",
+        "uk": "Вам надійшов офіційний лист. Ви прочитали його й тепер знаєте, що в ньому написано. I have read the official letter — я прочитав офіційного листа. Після I ставимо have, потім форму read, яка вимовляється «ред». Форма have / has + done передає результат на теперішній момент. The official letter називає прочитаного листа; official стоїть перед letter. Тут складаємо I + have + read + the official letter."
       },
       "question": {
         "interactionId": "en:lesson-24:session-35:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "155556b010277ae444f3d8706d4c6b23eac85e00a2e82d4167b9e1220f4b63f8"
+  "introFingerprint": "80e65fce8bf2977a77f9d1088f3b90b91852112d9deaf7667c71e6d32f456af6"
 }

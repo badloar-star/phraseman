@@ -15,8 +15,8 @@
         "uk": "Зателефонувати після прання"
       },
       "bodyByLocale": {
-        "ru": "Вы ждёте окончания стирки и обещаете другу: I will call you when the washing is done — я позвоню тебе, когда стирка закончится. Собираем: I + will call + you + when the washing is done — кто, что сделает, кому, когда. Будущий звонок выражаем через will call. После when, задающего время звонка, используем is done без will: в этой части настоящее обозначает будущий момент. Washing здесь единственное неисчисляемое понятие, поэтому is, не are.",
-        "uk": "Ви чекаєте завершення прання й обіцяєте другові: I will call you when the washing is done — я зателефоную тобі, коли прання закінчиться. Складаємо: I + will call + you + when the washing is done — хто, що зробить, кому, коли. Майбутній дзвінок виражаємо через will call. Після when, яке задає час дзвінка, використовуємо is done без will: у цій частині теперішній час позначає майбутній момент. Washing тут єдине незлічуване поняття, тому is, не are."
+        "ru": "Вы ждёте окончания стирки и обещаете другу: I will call you when the washing is done — я позвоню тебе, когда стирка закончится. Собираем: I + will call + you + when the washing is done — кто, что сделает, кому, когда. Будущий звонок выражаем через will call. После when, задающего время звонка, используем is done без will: в этой части настоящее обозначает будущий момент. Washing здесь — одно общее понятие, его не считают поштучно, поэтому is, не are.",
+        "uk": "Ви чекаєте завершення прання й обіцяєте другові: I will call you when the washing is done — я зателефоную тобі, коли прання закінчиться. Складаємо: I + will call + you + when the washing is done — хто, що зробить, кому, коли. Майбутній дзвінок виражаємо через will call. Після when, яке задає час дзвінка, використовуємо is done без will: у цій частині теперішній час позначає майбутній момент. Washing тут — одне загальне поняття, його не рахують поштучно, тому is, не are."
       },
       "question": {
         "interactionId": "en:lesson-26:session-52:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "148ab1496fabcabb0805b14df457d6720ff6eaf4c0235c3571a8590aaf107e3a"
+  "introFingerprint": "d2ca722822edb9165f8c0df6f599f6562321e14749064dd64d3969655c66dac9"
 }

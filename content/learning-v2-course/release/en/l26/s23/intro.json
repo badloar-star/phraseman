@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-23",
   "learningOutcomeByLocale": {
-    "ru": "future time clauses; zero and first conditional; already, yet; past perfect",
-    "uk": "future time clauses; zero and first conditional; already, yet; past perfect"
+    "ru": "сказать, что будет, когда или если…, и что уже случилось к моменту",
+    "uk": "сказати, що буде, коли чи якщо…, і що вже сталося до моменту"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Смужку паперу вже відрізано"
       },
       "bodyByLocale": {
-        "ru": "Для открытки нужна полоска бумаги, и друг предлагает её отрезать. Ответьте: I have already cut a strip — я уже отрезал полоску. Собираем: I + have + already + cut + a strip — кто, have, уже, действие, что отрезал. Already стоит между have и cut. После I нужна have; после неё — третья форма cut, не cutted. Present perfect сообщает о готовом результате сейчас.",
-        "uk": "Для листівки потрібна смужка паперу, і друг пропонує її відрізати. Дайте відповідь: I have already cut a strip — я вже відрізав смужку. Складаємо: I + have + already + cut + a strip — хто, have, уже, дія, що відрізав. Already стоїть між have і cut. Після I потрібна have; після неї — третя форма cut, не cutted. Present perfect повідомляє про готовий результат зараз."
+        "ru": "Для открытки нужна полоска бумаги, и друг предлагает её отрезать. Ответьте: I have already cut a strip — я уже отрезал полоску. Собираем: I + have + already + cut + a strip — кто, have, уже, действие, что отрезал. Already стоит между have и cut. После I нужна have; после неё — форма cut, не cutted. Форма have / has + done сообщает о готовом результате сейчас.",
+        "uk": "Для листівки потрібна смужка паперу, і друг пропонує її відрізати. Дайте відповідь: I have already cut a strip — я вже відрізав смужку. Складаємо: I + have + already + cut + a strip — хто, have, уже, дія, що відрізав. Already стоїть між have і cut. Після I потрібна have; після неї — форма cut, не cutted. Форма have / has + done повідомляє про готовий результат зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-23:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0cf92d1b374b8340920d1f53a73219634e628d84cc923ac73c6a175e9c806903"
+  "introFingerprint": "133f8c00c1c681126ee42fab05cf0e171b39dcbdcf472fec2bca701e6501b24d"
 }

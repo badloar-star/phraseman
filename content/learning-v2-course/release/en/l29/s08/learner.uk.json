@@ -132,7 +132,7 @@
             "testedDimension": "Доповніть опис звичного ранкового звуку птахів.",
             "feedbackByLocale": {
               "ru": "С множественным birds используем chirp без окончания s.",
-              "uk": "Із множиною birds використовуємо chirp без закінчення s."
+              "uk": "З birds (їх кілька) використовуємо chirp без закінчення s."
             }
           },
           {
@@ -1050,5 +1050,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1bd59757a6cfb87fb0298e2822215d906127a773fa2a39af5be302ee0aacb9ab"
+  "learnerFingerprint": "8d2a67382ba0e4896ba206f01caa1e8ad3e6c93ef03d6b26170a111548b5c0b1"
 }

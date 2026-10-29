@@ -123,8 +123,8 @@
         "uk": "Хто виростив рослини"
       },
       "bodyByLocale": {
-        "ru": "Продавец показывает несколько растений и рассказывает об их происхождении: These plants were grown by my father — эти растения вырастил мой отец. Соберите These plants + were grown + by + my father. Для нескольких растений нужна were. Grown — третья форма grow. После by назовите человека, который их вырастил.",
-        "uk": "Продавець показує кілька рослин і розповідає про їхнє походження: These plants were grown by my father — ці рослини виростив мій батько. Складіть These plants + were grown + by + my father. Для кількох рослин потрібна were. Grown — третя форма grow. Після by назвіть людину, яка їх виростила."
+        "ru": "Продавец показывает несколько растений и рассказывает об их происхождении: These plants were grown by my father — эти растения вырастил мой отец. Соберите These plants + were grown + by + my father. Для нескольких растений нужна were. Grown — форма grow после have. После by назовите человека, который их вырастил.",
+        "uk": "Продавець показує кілька рослин і розповідає про їхнє походження: These plants were grown by my father — ці рослини виростив мій батько. Складіть These plants + were grown + by + my father. Для кількох рослин потрібна were. Grown — форма grow після have. Після by назвіть людину, яка їх виростила."
       },
       "question": {
         "interactionId": "en:lesson-28:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f0b6a0d583cf71858fcfeab9e96307efff9f9250a4a608906734fd8fc970d729"
+  "introFingerprint": "f84a17141048abce8d40706a87fef40dfaaacdde401ad8b028d7d6614d6e32f0"
 }

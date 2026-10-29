@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-39",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Матеріал для полиці"
       },
       "bodyByLocale": {
-        "ru": "Wood — дерево как материал, древесина. I have bought some wood — я купил немного древесины: например, для полки. Растущее дерево — знакомое tree. Wood здесь неисчисляемое, поэтому some wood, не a wood. Сообщаем результат покупки: материал уже есть.",
-        "uk": "Wood — дерево як матеріал, деревина. I have bought some wood — я купив трохи деревини: наприклад, для полиці. Дерево, що росте, — знайоме tree. Wood тут незлічуване, тому some wood, не a wood. Повідомляємо результат покупки: матеріал уже є."
+        "ru": "Wood — дерево как материал, древесина. I have bought some wood — я купил немного древесины: например, для полки. Растущее дерево — знакомое tree. Wood здесь не считается поштучно, поэтому some wood, не a wood. Сообщаем результат покупки: материал уже есть.",
+        "uk": "Wood — дерево як матеріал, деревина. I have bought some wood — я купив трохи деревини: наприклад, для полиці. Дерево, що росте, — знайоме tree. Wood тут не рахується поштучно, тому some wood, не a wood. Повідомляємо результат покупки: матеріал уже є."
       },
       "question": {
         "interactionId": "en:lesson-24:session-39:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Камінь із прогулянки"
       },
       "bodyByLocale": {
-        "ru": "Вчера подруга заметила красивый камень на дорожке и подняла его. She picked up a stone yesterday — вчера она подняла камень. После she ставим picked up: для вчерашнего события используем Past Simple, добавляя -ed к pick. Up сохраняем после глагола: pick up означает «поднять». A stone называет один камень, yesterday — время. Has в этом предложении не нужен.",
-        "uk": "Учора подруга помітила гарний камінь на доріжці й підняла його. She picked up a stone yesterday — учора вона підняла камінь. Після she ставимо picked up: для вчорашньої події використовуємо Past Simple, додаючи -ed до pick. Up зберігаємо після дієслова: pick up означає «підняти». A stone називає один камінь, yesterday — час. Has у цьому реченні не потрібен."
+        "ru": "Вчера подруга заметила красивый камень на дорожке и подняла его. She picked up a stone yesterday — вчера она подняла камень. После she ставим picked up: для вчерашнего события используем форму прошлого, добавляя -ed к pick. Up сохраняем после глагола: pick up означает «поднять». A stone называет один камень, yesterday — время. Has в этом предложении не нужен.",
+        "uk": "Учора подруга помітила гарний камінь на доріжці й підняла його. She picked up a stone yesterday — учора вона підняла камінь. Після she ставимо picked up: для вчорашньої події використовуємо форму минулого, додаючи -ed до pick. Up зберігаємо після дієслова: pick up означає «підняти». A stone називає один камінь, yesterday — час. Has у цьому реченні не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-24:session-39:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cd87b296de2cdee1cf0052de89b08d6260172288f4e4f6ffdb35c01816676284"
+  "introFingerprint": "4fc2741fd1ec580ee21c07cb57845be870b7f7d9a65c2fefaf6f2bb5aee96d90"
 }

@@ -216,8 +216,8 @@
             "correct": false,
             "testedDimension": "Остання зустріч була на весіллі Анни в травні. Виберіть минулу форму.",
             "feedbackByLocale": {
-              "ru": "Meeting здесь не заменяет сказуемое met.",
-              "uk": "Meeting тут не замінює присудок met."
+              "ru": "Meeting здесь не заменяет met.",
+              "uk": "Meeting тут не замінює met."
             }
           }
         ]
@@ -542,8 +542,8 @@
             "correct": false,
             "testedDimension": "Друг уже оплатив замовлення: важливий результат зараз, час не названо.",
             "feedbackByLocale": {
-              "ru": "После has нужна третья форма paid.",
-              "uk": "Після has потрібна третя форма paid."
+              "ru": "После has нужна форма paid.",
+              "uk": "Після has потрібна форма paid."
             }
           },
           {
@@ -551,8 +551,8 @@
             "correct": false,
             "testedDimension": "Друг уже оплатив замовлення: важливий результат зараз, час не названо.",
             "feedbackByLocale": {
-              "ru": "Здесь Present Perfect: has paid.",
-              "uk": "Тут Present Perfect: has paid."
+              "ru": "Здесь have / has + done: has paid.",
+              "uk": "Тут have / has + done: has paid."
             }
           }
         ]
@@ -1081,5 +1081,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2acbfc010aa3f13f6fc2f1639c102db452784bbaf611416be143abc2ffe93b72"
+  "learnerFingerprint": "d5ff1b9711d1f6e4b7c2d164a9930315c8ebe9782f95bdcb61560cc88edd18e2"
 }

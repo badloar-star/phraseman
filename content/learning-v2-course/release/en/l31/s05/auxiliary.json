@@ -23,8 +23,8 @@
           "uk": "Після where потрібен порядок our seats are."
         },
         "en:lesson-31:session-05:intro2:r3": {
-          "ru": "Множественное seats требует are.",
-          "uk": "Множина seats потребує are."
+          "ru": "Seats (их несколько) требуют are.",
+          "uk": "Seats (їх кілька) потребують are."
         }
       }
     },
@@ -36,11 +36,11 @@
           "uk": "Після were для дії потрібна форма checked."
         },
         "en:lesson-31:session-05:intro3:r3": {
-          "ru": "Множественное tickets требует were.",
-          "uk": "Множина tickets потребує were."
+          "ru": "Tickets (их несколько) требуют were.",
+          "uk": "Tickets (їх кілька) потребують were."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "21d58abe6cfad095e775d2ba1449675a0952d7d26eb29dedbb6221bc2ff6e755"
+  "auxiliaryFingerprint": "ef9302b43eece17c6f30f330175388fce75949afb69f82b8b20a6db66c934aa3"
 }

@@ -69,8 +69,8 @@
         "uk": "Коли спекли хліб"
       },
       "bodyByLocale": {
-        "ru": "Вы спрашиваете продавца, когда испекли хлеб на прилавке. Он отвечает: This bread was baked this morning — этот хлеб испекли сегодня утром. Начните с This bread, затем поставьте was baked и добавьте this morning. Bread здесь неисчисляемое, поэтому нужна was. Baked — форма bake с окончанием -d: хлеб не печёт, его испекли.",
-        "uk": "Ви запитуєте продавця, коли спекли хліб на прилавку. Він відповідає: This bread was baked this morning — цей хліб спекли сьогодні вранці. Почніть із This bread, потім поставте was baked і додайте this morning. Bread тут незлічуване, тому потрібна was. Baked — форма bake із закінченням -d: хліб не пече, його спекли."
+        "ru": "Вы спрашиваете продавца, когда испекли хлеб на прилавке. Он отвечает: This bread was baked this morning — этот хлеб испекли сегодня утром. Начните с This bread, затем поставьте was baked и добавьте this morning. Bread здесь не считается поштучно, поэтому нужна was. Baked — форма bake с окончанием -d: хлеб не печёт, его испекли.",
+        "uk": "Ви запитуєте продавця, коли спекли хліб на прилавку. Він відповідає: This bread was baked this morning — цей хліб спекли сьогодні вранці. Почніть із This bread, потім поставте was baked і додайте this morning. Bread тут не рахується поштучно, тому потрібна was. Baked — форма bake із закінченням -d: хліб не пече, його спекли."
       },
       "question": {
         "interactionId": "en:lesson-28:session-30:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0e75f7f3d53413f2d55ab4a33fdd174cc189dc720a9b52ecbe473783a2988db2"
+  "introFingerprint": "f8e076f07d3e56621772300a6507fe0d5cae05cbb18d370a7a1796ac6e4f2998"
 }

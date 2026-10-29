@@ -15,8 +15,8 @@
         "uk": "Хто зробив шарф"
       },
       "bodyByLocale": {
-        "ru": "Вы рассматриваете шарф в небольшом магазине. Продавец рассказывает: This scarf was made by a local artist — этот шарф сделал местный мастер. Соберите This scarf + was made + by + a local artist. Начните с шарфа. Was made сообщает, что его изготовили; made — третья форма make. By a local artist называет того, кто выполнил работу.",
-        "uk": "Ви розглядаєте шарф у невеликому магазині. Продавець розповідає: This scarf was made by a local artist — цей шарф зробив місцевий майстер. Складіть This scarf + was made + by + a local artist. Почніть із шарфа. Was made повідомляє, що його виготовили; made — третя форма make. By a local artist називає того, хто виконав роботу."
+        "ru": "Вы рассматриваете шарф в небольшом магазине. Продавец рассказывает: This scarf was made by a local artist — этот шарф сделал местный мастер. Соберите This scarf + was made + by + a local artist. Начните с шарфа. Was made сообщает, что его изготовили; made — форма make после have. By a local artist называет того, кто выполнил работу.",
+        "uk": "Ви розглядаєте шарф у невеликому магазині. Продавець розповідає: This scarf was made by a local artist — цей шарф зробив місцевий майстер. Складіть This scarf + was made + by + a local artist. Почніть із шарфа. Was made повідомляє, що його виготовили; made — форма make після have. By a local artist називає того, хто виконав роботу."
       },
       "question": {
         "interactionId": "en:lesson-28:session-40:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1b702b6acc24a2d05fa68bb733bfa669ea2f92650984722d6bd42ca97d829fc4"
+  "introFingerprint": "939ef2fa7a3ab24e304fcb9255b49d7118fdbc43a116b2bd9e9e276d8117f42f"
 }

@@ -23,8 +23,8 @@
           "uk": "У переказі потрібен порядок my keys were."
         },
         "en:lesson-30:session-56:intro2:r3": {
-          "ru": "Множественное keys требует were.",
-          "uk": "Множина keys потребує were."
+          "ru": "Keys (их несколько) требуют were.",
+          "uk": "Keys (їх кілька) потребують were."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "bcb47e0e2b8b1e3f7a2c19af9803830416a796962ba7cc5285152663a4da426f"
+  "auxiliaryFingerprint": "2e4cdf1c39f399792e9835f9cee10423621a32437bd58f1d18b1731d7631c10a"
 }

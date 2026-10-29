@@ -69,8 +69,8 @@
         "uk": "Зелень уже помито"
       },
       "bodyByLocale": {
-        "ru": "Друг предлагает помыть зелень для супа, но вы уже это сделали. Ответьте: I have already washed them — я уже её помыл. Them заменяет herbs: в английском это множественное число. Собираем: I + have + already + washed + them — кто, have, уже, действие, что помыл. Already ставим между have и washed. После have нужна третья форма washed с -ed. Present perfect сообщает о результате сейчас.",
-        "uk": "Друг пропонує помити зелень для супу, але ви вже це зробили. Дайте відповідь: I have already washed them — я вже її помив. Them замінює herbs: в англійській це множина. Складаємо: I + have + already + washed + them — хто, have, уже, дія, що помив. Already ставимо між have і washed. Після have потрібна третя форма washed із -ed. Present perfect повідомляє про результат зараз."
+        "ru": "Друг предлагает помыть зелень для супа, но вы уже это сделали. Ответьте: I have already washed them — я уже её помыл. Them заменяет herbs: в английском это форма для нескольких. Собираем: I + have + already + washed + them — кто, have, уже, действие, что помыл. Already ставим между have и washed. После have нужна форма washed с -ed. Форма have / has + done сообщает о результате сейчас.",
+        "uk": "Друг пропонує помити зелень для супу, але ви вже це зробили. Дайте відповідь: I have already washed them — я вже її помив. Them замінює herbs: в англійській це форма для кількох. Складаємо: I + have + already + washed + them — хто, have, уже, дія, що помив. Already ставимо між have і washed. Після have потрібна форма washed із -ed. Форма have / has + done повідомляє про результат зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-37:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e9680d1539db1fd04532a1bcaf773033291296b7a4634081d8a1b895f14eb510"
+  "introFingerprint": "abd984bff901641b092f8ae3977f746612e13e7071bc1836395d7e7014f7b7d0"
 }

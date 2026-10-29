@@ -955,8 +955,8 @@
             "correct": false,
             "testedDimension": "Передайте слова сестры о сильном раздражении в тот момент.",
             "feedbackByLocale": {
-              "ru": "Здесь нужно she felt; feeling без вспомогательного глагола не подходит.",
-              "uk": "Тут потрібне she felt; feeling без допоміжного дієслова не підходить."
+              "ru": "Здесь нужно she felt; одного feeling здесь мало.",
+              "uk": "Тут потрібне she felt; одного feeling тут замало."
             }
           },
           {
@@ -1046,5 +1046,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2d026b17890b6550eced96fa909baccddd4fe24395c4ff21a0c7d66af7fa214a"
+  "learnerFingerprint": "90f7f33ee4d36e4d0609ec8a537d33fa22041731ea97b1119a00f3d0a292f962"
 }

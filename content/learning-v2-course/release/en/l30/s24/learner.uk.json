@@ -997,8 +997,8 @@
             "correct": false,
             "testedDimension": "Подруга запитала вас із сестрою, чи вам холодно. Передайте запитання.",
             "feedbackByLocale": {
-              "ru": "Кому холодно, здесь обозначаем подлежащим we.",
-              "uk": "Кому холодно, тут позначаємо підметом we."
+              "ru": "Кому холодно, здесь ставим we.",
+              "uk": "Кому холодно, тут ставимо we."
             }
           }
         ]
@@ -1045,5 +1045,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0fad2b5c51415eb6c4089284cad0cc9e05eb7f8009b9c51c4f75921d7d95784f"
+  "learnerFingerprint": "dba22bfe2bb1cba958893ac0622b83b69c066b91a2d1f09525cc72036de2ecbe"
 }

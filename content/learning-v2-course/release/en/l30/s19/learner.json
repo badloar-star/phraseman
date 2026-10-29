@@ -992,8 +992,8 @@
             "correct": false,
             "testedDimension": "Сестра спросила вас с братом, готовы ли вы уходить. Передайте её вопрос.",
             "feedbackByLocale": {
-              "ru": "Кто готов — we; us не ставим на место подлежащего.",
-              "uk": "Хто готовий — we; us не ставимо на місце підмета."
+              "ru": "Кто готов — we; us на это место не ставим.",
+              "uk": "Хто готовий — we; us на це місце не ставимо."
             }
           }
         ]
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6276b701c3aa0607cb1934e73592da0e5f44e8c66c3857d8ba68dc8356357260"
+  "learnerFingerprint": "d3fbf7c24b3160fad389e867108da805cde776aeaeb91882865f464b42c93d67"
 }

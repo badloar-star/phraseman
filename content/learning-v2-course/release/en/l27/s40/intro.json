@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-40",
   "learningOutcomeByLocale": {
-    "ru": "wish + past; unreal condition; present perfect / past simple",
-    "uk": "wish + past; unreal condition; present perfect / past simple"
+    "ru": "сказать, чего вам хочется иначе, и о том, что было бы, если бы…",
+    "uk": "сказати, чого вам хочеться інакше, і про те, що було б, якби…"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Коли була перерва"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, когда вы в последний раз отдыхали. Ответьте: I had a break an hour ago — у меня был перерыв час назад. Have a break — сделать перерыв. Прошедшая форма have — had, не haved. An hour ago называет законченное время, поэтому используем Past Simple без have перед had.\n\nСобираем предложение: I + had + a break + an hour ago — кто → действие в прошлом → что сделал → когда.",
-        "uk": "Друг запитує, коли ви востаннє відпочивали. Дайте відповідь: I had a break an hour ago — у мене була перерва годину тому. Have a break — зробити перерву. Минула форма have — had, не haved. An hour ago називає завершений час, тому використовуємо Past Simple без have перед had.\n\nСкладаємо речення: I + had + a break + an hour ago — хто → дія в минулому → що зробив → коли."
+        "ru": "Друг спрашивает, когда вы в последний раз отдыхали. Ответьте: I had a break an hour ago — у меня был перерыв час назад. Have a break — сделать перерыв. Прошедшая форма have — had, не haved. An hour ago называет законченное время, поэтому используем форму прошлого без have перед had.\n\nСобираем предложение: I + had + a break + an hour ago — кто → действие в прошлом → что сделал → когда.",
+        "uk": "Друг запитує, коли ви востаннє відпочивали. Дайте відповідь: I had a break an hour ago — у мене була перерва годину тому. Have a break — зробити перерву. Минула форма have — had, не haved. An hour ago називає завершений час, тому використовуємо форму минулого без have перед had.\n\nСкладаємо речення: I + had + a break + an hour ago — хто → дія в минулому → що зробив → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-40:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1de8e6cbb8d2ab5aba1ed5f0bac5df225801d942976c732e59b8e9d1396dadca"
+  "introFingerprint": "985cac89f0a1fc6af39c9883868d970947f58d5f509d2dd229fcba4e5ad49c3b"
 }

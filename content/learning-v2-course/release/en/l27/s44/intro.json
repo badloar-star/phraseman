@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-44",
   "learningOutcomeByLocale": {
-    "ru": "present perfect / past simple; wish + past; if I were; unreal condition",
-    "uk": "present perfect / past simple; wish + past; if I were; unreal condition"
+    "ru": "сказать, чего вам хочется иначе, и о том, что было бы, если бы…",
+    "uk": "сказати, чого вам хочеться інакше, і про те, що було б, якби…"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Коли оплатили кімнату"
       },
       "bodyByLocale": {
-        "ru": "На стойке гостевого дома вас спрашивают, когда вы заплатили за комнату. Вы оплатили её вчера. Ответьте: I paid yesterday — я заплатил вчера. Paid — прошедшая форма pay. Yesterday указывает на законченное время, поэтому здесь нужен Past Simple paid без have. Что именно оплачено, уже понятно из вопроса.\n\nСобираем предложение: I + paid + yesterday — кто → действие в прошлом → когда.",
-        "uk": "На стійці гостьового будинку вас запитують, коли ви заплатили за кімнату. Ви оплатили її вчора. Дайте відповідь: I paid yesterday — я заплатив учора. Paid — минула форма pay. Yesterday указує на завершений час, тому тут потрібен Past Simple paid без have. Що саме оплачено, уже зрозуміло із запитання.\n\nСкладаємо речення: I + paid + yesterday — хто → дія в минулому → коли."
+        "ru": "На стойке гостевого дома вас спрашивают, когда вы заплатили за комнату. Вы оплатили её вчера. Ответьте: I paid yesterday — я заплатил вчера. Paid — прошедшая форма pay. Yesterday указывает на законченное время, поэтому здесь нужна форма прошлого paid без have. Что именно оплачено, уже понятно из вопроса.\n\nСобираем предложение: I + paid + yesterday — кто → действие в прошлом → когда.",
+        "uk": "На стійці гостьового будинку вас запитують, коли ви заплатили за кімнату. Ви оплатили її вчора. Дайте відповідь: I paid yesterday — я заплатив учора. Paid — минула форма pay. Yesterday указує на завершений час, тому тут потрібна форма минулого paid без have. Що саме оплачено, уже зрозуміло із запитання.\n\nСкладаємо речення: I + paid + yesterday — хто → дія в минулому → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-44:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8e8e93c1343cd192e45ad08b878af9080727d45083776615d28e67241f69d4c9"
+  "introFingerprint": "18a142b368ef1a71c256c82d7408090f92d38a735826f92fff00e87bee87ca06"
 }

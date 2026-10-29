@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-49",
   "learningOutcomeByLocale": {
-    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
-    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+    "ru": "сказать, чего вам хочется иначе, и о том, что было бы, если бы…",
+    "uk": "сказати, чого вам хочеться інакше, і про те, що було б, якби…"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Коли перевірили розклад"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, когда вы смотрели расписание автобусов. Это было десять минут назад. Ответьте: I checked them ten minutes ago — я проверил его десять минут назад. Them относится к bus times, буквально «времени отправления автобусов». Ten minutes ago называет законченный момент. Поэтому нужен Past Simple checked, без have.\n\nСобираем предложение: I + checked + them + ten minutes ago — кто → действие в прошлом → что проверил → когда.",
-        "uk": "Друг запитує, коли ви дивилися розклад автобусів. Це було десять хвилин тому. Дайте відповідь: I checked them ten minutes ago — я перевірив його десять хвилин тому. Them стосується bus times, буквально «часу відправлення автобусів». Ten minutes ago називає завершений момент. Тому потрібен Past Simple checked, без have.\n\nСкладаємо речення: I + checked + them + ten minutes ago — хто → дія в минулому → що перевірив → коли."
+        "ru": "Друг спрашивает, когда вы смотрели расписание автобусов. Это было десять минут назад. Ответьте: I checked them ten minutes ago — я проверил его десять минут назад. Them относится к bus times, буквально «времени отправления автобусов». Ten minutes ago называет законченный момент. Поэтому нужна форма прошлого checked, без have.\n\nСобираем предложение: I + checked + them + ten minutes ago — кто → действие в прошлом → что проверил → когда.",
+        "uk": "Друг запитує, коли ви дивилися розклад автобусів. Це було десять хвилин тому. Дайте відповідь: I checked them ten minutes ago — я перевірив його десять хвилин тому. Them стосується bus times, буквально «часу відправлення автобусів». Ten minutes ago називає завершений момент. Тому потрібна форма минулого checked, без have.\n\nСкладаємо речення: I + checked + them + ten minutes ago — хто → дія в минулому → що перевірив → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-49:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "be6dfeefaa7b78db04d32c4025807a0b5160ca37d411c0afaf76303e61560a79"
+  "introFingerprint": "b2a1d1278dd092bd16af378eb7cc0bfa505db0681fc5db0ee3b73da110c708d4"
 }

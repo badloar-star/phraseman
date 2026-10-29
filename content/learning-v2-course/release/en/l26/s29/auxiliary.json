@@ -10,8 +10,8 @@
           "uk": "Після have потрібна форма taken, не took."
         },
         "en:lesson-26:session-29:intro1:r3": {
-          "ru": "Garbage в этом значении неисчисляемое; a не нужно.",
-          "uk": "Garbage у цьому значенні незлічуване; a не потрібне."
+          "ru": "Garbage в этом значении не считается поштучно; a не нужно.",
+          "uk": "Garbage у цьому значенні не рахується поштучно; a не потрібне."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "52658a34d86b1d6637f9be611f3fe79a73cf1beef628f710f507b3e5b6d2e496"
+  "auxiliaryFingerprint": "7df280273e00ca9832e5250560910a8841bc02714c4f7a53a55eed4fad22d79f"
 }

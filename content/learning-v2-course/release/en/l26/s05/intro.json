@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-05",
   "learningOutcomeByLocale": {
-    "ru": "zero conditional: when + present simple, present simple",
-    "uk": "zero conditional: when + present simple, present simple"
+    "ru": "сказать, что всегда бывает, когда…",
+    "uk": "сказати, що завжди буває, коли…"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Двері відчиняються самі"
       },
       "bodyByLocale": {
-        "ru": "У входа в магазин двери открываются сами. The doors open automatically when I approach — двери открываются автоматически, когда я подхожу. Automatically показывает, что в этот момент мне не нужно открывать их руками. Это обычная работа этих дверей: open и approach в Present Simple. Doors — множественное число, поэтому open без -s.",
-        "uk": "Біля входу до магазину двері відчиняються самі. The doors open automatically when I approach — двері відчиняються автоматично, коли я підходжу. Automatically показує, що цієї миті мені не потрібно відчиняти їх руками. Це звичайна робота цих дверей: open і approach в Present Simple. Doors — множина, тому open без -s."
+        "ru": "У входа в магазин двери открываются сами. The doors open automatically when I approach — двери открываются автоматически, когда я подхожу. Automatically показывает, что в этот момент мне не нужно открывать их руками. Это обычная работа этих дверей: open и approach в форме work / works. Doors — форма для нескольких, поэтому open без -s.",
+        "uk": "Біля входу до магазину двері відчиняються самі. The doors open automatically when I approach — двері відчиняються автоматично, коли я підходжу. Automatically показує, що цієї миті мені не потрібно відчиняти їх руками. Це звичайна робота цих дверей: open і approach в формі work / works. Doors — форма для кількох, тому open без -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-05:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Чому говорите швидко"
       },
       "bodyByLocale": {
-        "ru": "Перед выступлением друг замечает, что вы торопитесь говорить. Объясните свою обычную реакцию: I speak rapidly when I get nervous — я говорю быстро, когда нервничаю. Собираем: I + speak + rapidly + when I get nervous — кто, что делает, как, в какой ситуации. Rapidly стоит после speak и описывает скорость речи. В обеих частях present simple, потому что вы рассказываете о повторяющейся реакции. После I используем speak и get без -s. When связывает быструю речь с волнением.",
-        "uk": "Перед виступом друг помічає, що ви поспішаєте говорити. Поясніть свою звичайну реакцію: I speak rapidly when I get nervous — я говорю швидко, коли нервую. Складаємо: I + speak + rapidly + when I get nervous — хто, що робить, як, у якій ситуації. Rapidly стоїть після speak і описує швидкість мовлення. В обох частинах present simple, бо ви розповідаєте про повторювану реакцію. Після I використовуємо speak і get без -s. When пов’язує швидке мовлення із хвилюванням."
+        "ru": "Перед выступлением друг замечает, что вы торопитесь говорить. Объясните свою обычную реакцию: I speak rapidly when I get nervous — я говорю быстро, когда нервничаю. Собираем: I + speak + rapidly + when I get nervous — кто, что делает, как, в какой ситуации. Rapidly стоит после speak и описывает скорость речи. В обеих частях форма work / works, потому что вы рассказываете о повторяющейся реакции. После I используем speak и get без -s. When связывает быструю речь с волнением.",
+        "uk": "Перед виступом друг помічає, що ви поспішаєте говорити. Поясніть свою звичайну реакцію: I speak rapidly when I get nervous — я говорю швидко, коли нервую. Складаємо: I + speak + rapidly + when I get nervous — хто, що робить, як, у якій ситуації. Rapidly стоїть після speak і описує швидкість мовлення. В обох частинах форма work / works, бо ви розповідаєте про повторювану реакцію. Після I використовуємо speak і get без -s. When пов’язує швидке мовлення із хвилюванням."
       },
       "question": {
         "interactionId": "en:lesson-26:session-05:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "aacc1839ee63c0dae9985a0ef6b13788ca53b49d7caea55f926ab77ec40e30f0"
+  "introFingerprint": "03cc657d51153418ed8abc303bb5b8819e07415eff6684d7fda39794e5a9f450"
 }

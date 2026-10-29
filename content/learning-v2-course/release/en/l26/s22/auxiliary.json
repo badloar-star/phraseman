@@ -23,8 +23,8 @@
           "uk": "У підрядному часу після when cool без will."
         },
         "en:lesson-26:session-22:intro2:r3": {
-          "ru": "The biscuits — множественное число, поэтому cool без -s.",
-          "uk": "The biscuits — множина, тому cool без -s."
+          "ru": "The biscuits — форма для нескольких, поэтому cool без -s.",
+          "uk": "The biscuits — форма для кількох, тому cool без -s."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "e98b1bfadede16296ea92c50d4d5d200ad39424e0585869e2d17893fe3618bbd"
+  "auxiliaryFingerprint": "bba14e978f2a53dc8a768196a58526f2423a36fe63db39c98597639d08eabe9b"
 }

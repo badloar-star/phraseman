@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-21",
   "learningOutcomeByLocale": {
-    "ru": "future time clauses; zero and first conditional; already, yet; past perfect",
-    "uk": "future time clauses; zero and first conditional; already, yet; past perfect"
+    "ru": "сказать, что будет, когда или если…, и что уже случилось к моменту",
+    "uk": "сказати, що буде, коли чи якщо…, і що вже сталося до моменту"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Правду вже сказано"
       },
       "bodyByLocale": {
-        "ru": "Вы сначала сказали неправду, а затем признались. Теперь собеседник советует рассказать правду. Ответьте: I have already told the truth — я уже сказал правду. Собираем: I + have + already + told + the truth — кто, have, уже, действие, что сказал. После I нужна have, после неё — третья форма tell: told. Already ставим между have и told. Эта форма сообщает о выполненном действии к настоящему моменту.",
-        "uk": "Ви спочатку сказали неправду, а потім зізналися. Тепер співрозмовник радить розповісти правду. Дайте відповідь: I have already told the truth — я вже сказав правду. Складаємо: I + have + already + told + the truth — хто, have, уже, дія, що сказав. Після I потрібна have, після неї — третя форма tell: told. Already ставимо між have і told. Ця форма повідомляє про виконану дію до теперішнього моменту."
+        "ru": "Вы сначала сказали неправду, а затем признались. Теперь собеседник советует рассказать правду. Ответьте: I have already told the truth — я уже сказал правду. Собираем: I + have + already + told + the truth — кто, have, уже, действие, что сказал. После I нужна have, после неё — форма tell: told. Already ставим между have и told. Эта форма сообщает о выполненном действии к настоящему моменту.",
+        "uk": "Ви спочатку сказали неправду, а потім зізналися. Тепер співрозмовник радить розповісти правду. Дайте відповідь: I have already told the truth — я вже сказав правду. Складаємо: I + have + already + told + the truth — хто, have, уже, дія, що сказав. Після I потрібна have, після неї — форма tell: told. Already ставимо між have і told. Ця форма повідомляє про виконану дію до теперішнього моменту."
       },
       "question": {
         "interactionId": "en:lesson-26:session-21:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3493e78a262738a7a78863c0c5d44978f9a21f2b2dd4076ed51fb53f30d1d967"
+  "introFingerprint": "a09a8c523bcfc806ac4c0eeaa5f7db3e6913ca76c73ae12391e6627996f3705f"
 }

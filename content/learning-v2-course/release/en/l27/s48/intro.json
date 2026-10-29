@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-48",
   "learningOutcomeByLocale": {
-    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
-    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+    "ru": "сказать, чего вам хочется иначе, и о том, что было бы, если бы…",
+    "uk": "сказати, чого вам хочеться інакше, і про те, що було б, якби…"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Коли зменшили гучність"
       },
       "bodyByLocale": {
-        "ru": "Сосед спрашивает, когда вы убавили звук телевизора. Это было час назад. Ответьте: I turned it down an hour ago — я убавил его час назад. It здесь заменяет the sound. Turn down — убавить; turned — форма прошедшего времени. An hour ago указывает на законченный момент, поэтому have не нужен.\n\nСобираем предложение: I + turned + it + down + an hour ago — кто → turned → что убавил → down → когда; местоимение it стоит между turned и down.",
-        "uk": "Сусід запитує, коли ви зменшили гучність телевізора. Це було годину тому. Дайте відповідь: I turned it down an hour ago — я зменшив її годину тому. It тут замінює the sound. Turn down — зменшити гучність; turned — форма минулого часу. An hour ago вказує на завершений момент, тому have не потрібне.\n\nСкладаємо речення: I + turned + it + down + an hour ago — хто → turned → що зменшив → down → коли; займенник it стоїть між turned і down."
+        "ru": "Сосед спрашивает, когда вы убавили звук телевизора. Это было час назад. Ответьте: I turned it down an hour ago — я убавил его час назад. It здесь заменяет the sound. Turn down — убавить; turned — форма прошедшего времени. An hour ago указывает на законченный момент, поэтому have не нужен.\n\nСобираем предложение: I + turned + it + down + an hour ago — кто → turned → что убавил → down → когда; слово it стоит между turned и down.",
+        "uk": "Сусід запитує, коли ви зменшили гучність телевізора. Це було годину тому. Дайте відповідь: I turned it down an hour ago — я зменшив її годину тому. It тут замінює the sound. Turn down — зменшити гучність; turned — форма минулого часу. An hour ago вказує на завершений момент, тому have не потрібне.\n\nСкладаємо речення: I + turned + it + down + an hour ago — хто → turned → що зменшив → down → коли; слово it стоїть між turned і down."
       },
       "question": {
         "interactionId": "en:lesson-27:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "36ea42771bfe584febd6b70448b9237b2f1394874d3c3a6a6c3f3649d3605ce8"
+  "introFingerprint": "dfb9adfa65a4217f926858a9fe76e9c6af20d616340c3b8e08fb1e82bd114fc2"
 }

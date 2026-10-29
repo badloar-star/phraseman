@@ -15,8 +15,8 @@
         "uk": "Продукти вже куплено"
       },
       "bodyByLocale": {
-        "ru": "Друг предлагает сходить за продуктами, но покупки уже сделаны. Ответьте: I have already bought them — я уже их купил. Them заменяет groceries — продукты. Собираем: I + have + already + bought + them — кто, have, уже, действие, что купил. Already ставим между have и bought. После have нужна третья форма buy — bought. Present perfect сообщает о результате сейчас: продукты куплены, идти за ними не нужно.",
-        "uk": "Друг пропонує сходити по продукти, але покупки вже зроблено. Дайте відповідь: I have already bought them — я вже їх купив. Them замінює groceries — продукти. Складаємо: I + have + already + bought + them — хто, have, уже, дія, що купив. Already ставимо між have і bought. Після have потрібна третя форма buy — bought. Present perfect повідомляє про результат зараз: продукти куплено, йти по них не потрібно."
+        "ru": "Друг предлагает сходить за продуктами, но покупки уже сделаны. Ответьте: I have already bought them — я уже их купил. Them заменяет groceries — продукты. Собираем: I + have + already + bought + them — кто, have, уже, действие, что купил. Already ставим между have и bought. После have нужна форма buy — bought. Форма have / has + done сообщает о результате сейчас: продукты куплены, идти за ними не нужно.",
+        "uk": "Друг пропонує сходити по продукти, але покупки вже зроблено. Дайте відповідь: I have already bought them — я вже їх купив. Them замінює groceries — продукти. Складаємо: I + have + already + bought + them — хто, have, уже, дія, що купив. Already ставимо між have і bought. Після have потрібна форма buy — bought. Форма have / has + done повідомляє про результат зараз: продукти куплено, йти по них не потрібно."
       },
       "question": {
         "interactionId": "en:lesson-26:session-34:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Нарізали фрукти до приходу"
       },
       "bodyByLocale": {
-        "ru": "Вчера друг пришёл к уже подготовленному перекусу. Расскажите: I had cut the fruit by the time he arrived — я нарезал фрукты к тому времени, как он пришёл. Собираем: I + had cut + the fruit + by the time he arrived — кто, что сделал раньше, что нарезал, к какому моменту в прошлом. Had cut показывает действие до прихода. После had нужна третья форма cut, которая не меняется; cutting здесь не подходит.",
-        "uk": "Учора друг прийшов до вже підготовленого перекусу. Розкажіть: I had cut the fruit by the time he arrived — я нарізав фрукти до того часу, як він прийшов. Складаємо: I + had cut + the fruit + by the time he arrived — хто, що зробив раніше, що нарізав, до якого моменту в минулому. Had cut показує дію до приходу. Після had потрібна третя форма cut, яка не змінюється; cutting тут не підходить."
+        "ru": "Вчера друг пришёл к уже подготовленному перекусу. Расскажите: I had cut the fruit by the time he arrived — я нарезал фрукты к тому времени, как он пришёл. Собираем: I + had cut + the fruit + by the time he arrived — кто, что сделал раньше, что нарезал, к какому моменту в прошлом. Had cut показывает действие до прихода. После had нужна форма cut, которая не меняется; cutting здесь не подходит.",
+        "uk": "Учора друг прийшов до вже підготовленого перекусу. Розкажіть: I had cut the fruit by the time he arrived — я нарізав фрукти до того часу, як він прийшов. Складаємо: I + had cut + the fruit + by the time he arrived — хто, що зробив раніше, що нарізав, до якого моменту в минулому. Had cut показує дію до приходу. Після had потрібна форма cut, яка не змінюється; cutting тут не підходить."
       },
       "question": {
         "interactionId": "en:lesson-26:session-34:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "32c864be48009d7eaa94154f6c0da801b1c86c4b2b2f3026d24ceaa27bff6a54"
+  "introFingerprint": "26c3869b36f5c921bd9b03c3bf11f983df0d5ac535cd535ffc44547b07cea288"
 }

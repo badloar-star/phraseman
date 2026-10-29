@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-26:session-23:intro2:q",
       "responseFeedbackById": {
         "en:lesson-26:session-23:intro2:r2": {
-          "ru": "Третья форма cut — cut, не cutted.",
-          "uk": "Третя форма cut — cut, не cutted."
+          "ru": "Форма после have cut — cut, не cutted.",
+          "uk": "Форма після have cut — cut, не cutted."
         },
         "en:lesson-26:session-23:intro2:r3": {
           "ru": "С I используем have.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "15cdadc1e79f483965580eaf34355f039e7e4a51d058972f2ebb38389e866af4"
+  "auxiliaryFingerprint": "8f3fc4f6bbf680ac662cb8d986a9b4c8345825dd8d27bdda1cae7055a5b59390"
 }

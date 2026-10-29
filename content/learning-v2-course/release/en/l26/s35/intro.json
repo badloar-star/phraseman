@@ -15,8 +15,8 @@
         "uk": "Запитати після повернення"
       },
       "bodyByLocale": {
-        "ru": "Вы хотите задать подруге вопрос, но она ненадолго вышла. Скажите: I will ask when she comes back — я спрошу, когда она вернётся. Собираем: I + will ask + when she comes back — кто, что сделает, когда. В главной части будущее передаёт will ask. После when, задающего время вопроса, используем present simple: comes back без will. С she к come добавляем -s.",
-        "uk": "Ви хочете поставити подрузі запитання, але вона ненадовго вийшла. Скажіть: I will ask when she comes back — я запитаю, коли вона повернеться. Складаємо: I + will ask + when she comes back — хто, що зробить, коли. У головній частині майбутнє передає will ask. Після when, яке задає час запитання, використовуємо present simple: comes back без will. З she до come додаємо -s."
+        "ru": "Вы хотите задать подруге вопрос, но она ненадолго вышла. Скажите: I will ask when she comes back — я спрошу, когда она вернётся. Собираем: I + will ask + when she comes back — кто, что сделает, когда. В главной части будущее передаёт will ask. После when, задающего время вопроса, используем форму work / works: comes back без will. С she к come добавляем -s.",
+        "uk": "Ви хочете поставити подрузі запитання, але вона ненадовго вийшла. Скажіть: I will ask when she comes back — я запитаю, коли вона повернеться. Складаємо: I + will ask + when she comes back — хто, що зробить, коли. У головній частині майбутнє передає will ask. Після when, яке задає час запитання, використовуємо форму work / works: comes back без will. З she до come додаємо -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-35:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "09d08845dabc1073f20f3bee803c5a67aeb3e7a85f7b628a043912b14398ddd1"
+  "introFingerprint": "fd7efeece253b30daf70fce98160d700f4adf6b951c8d80aae826c36c9ea8ff9"
 }

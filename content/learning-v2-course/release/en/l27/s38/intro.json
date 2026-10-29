@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-38",
   "learningOutcomeByLocale": {
-    "ru": "wish + past; unreal condition; present perfect / past simple",
-    "uk": "wish + past; unreal condition; present perfect / past simple"
+    "ru": "сказать, чего вам хочется иначе, и о том, что было бы, если бы…",
+    "uk": "сказати, чого вам хочеться інакше, і про те, що було б, якби…"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Коли помили посуд"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, когда вы помыли тарелки, стоящие на полке. Это было вчера. Ответьте: I washed them yesterday — я помыл их вчера. Them заменяет dishes, слово во множественном числе. Washed — прошедшая форма wash с окончанием -ed. Yesterday называет законченное время; have не нужен. Собираем предложение: I + washed + them + yesterday — кто, действие в прошлом, что помыл, когда.",
-        "uk": "Друг запитує, коли ви помили тарілки, що стоять на полиці. Це було вчора. Дайте відповідь: I washed them yesterday — я помив їх учора. Them замінює dishes, слово у множині. Washed — минула форма wash із закінченням -ed. Yesterday називає завершений час; have не потрібне. Складаємо речення: I + washed + them + yesterday — хто, дія в минулому, що помив, коли."
+        "ru": "Друг спрашивает, когда вы помыли тарелки, стоящие на полке. Это было вчера. Ответьте: I washed them yesterday — я помыл их вчера. Them заменяет dishes, слово в форме для нескольких. Washed — прошедшая форма wash с окончанием -ed. Yesterday называет законченное время; have не нужен. Собираем предложение: I + washed + them + yesterday — кто, действие в прошлом, что помыл, когда.",
+        "uk": "Друг запитує, коли ви помили тарілки, що стоять на полиці. Це було вчора. Дайте відповідь: I washed them yesterday — я помив їх учора. Them замінює dishes, слово у формі для кількох. Washed — минула форма wash із закінченням -ed. Yesterday називає завершений час; have не потрібне. Складаємо речення: I + washed + them + yesterday — хто, дія в минулому, що помив, коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-38:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b08c8cb7209596107c70487565a3e3cceb1e57e3fa4b7ef62897c9d35a33d733"
+  "introFingerprint": "3faaf58eae6298ae4408233b9ae0d42c9a4c990dcbb07767ca057f0ef6265bb7"
 }

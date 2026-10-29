@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-50",
   "learningOutcomeByLocale": {
-    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
-    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+    "ru": "сказать, чего вам хочется иначе, и о том, что было бы, если бы…",
+    "uk": "сказати, чого вам хочеться інакше, і про те, що було б, якби…"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Помітити поступовий успіх"
       },
       "bodyByLocale": {
-        "ru": "Друг учится плавать. На нескольких последних занятиях вы замечали, что движения получаются всё лучше. Поддержите его: You are improving steadily — ты постепенно становишься лучше. Steadily означает «постепенно и устойчиво». You are improving описывает изменение, которое происходит в этот период. С you нужна форма are; improving без are не образует здесь полное сказуемое.\n\nСобираем предложение: You + are + improving + steadily — кто → are → действие с -ing → как идёт изменение.",
-        "uk": "Друг вчиться плавати. На кількох останніх заняттях ви помічали, що рухи виходять дедалі краще. Підтримайте його: You are improving steadily — ти поступово стаєш кращим. Steadily означає «поступово й стабільно». You are improving описує зміну, яка відбувається в цей період. Із you потрібна форма are; improving без are тут не утворює повного присудка.\n\nСкладаємо речення: You + are + improving + steadily — хто → are → дія з -ing → як відбувається зміна."
+        "ru": "Друг учится плавать. На нескольких последних занятиях вы замечали, что движения получаются всё лучше. Поддержите его: You are improving steadily — ты постепенно становишься лучше. Steadily означает «постепенно и устойчиво». You are improving описывает изменение, которое происходит в этот период. С you нужна форма are; improving без are здесь не может стоять отдельно.\n\nСобираем предложение: You + are + improving + steadily — кто → are → действие с -ing → как идёт изменение.",
+        "uk": "Друг вчиться плавати. На кількох останніх заняттях ви помічали, що рухи виходять дедалі краще. Підтримайте його: You are improving steadily — ти поступово стаєш кращим. Steadily означає «поступово й стабільно». You are improving описує зміну, яка відбувається в цей період. Із you потрібна форма are; improving без are тут не може стояти окремо.\n\nСкладаємо речення: You + are + improving + steadily — хто → are → дія з -ing → як відбувається зміна."
       },
       "question": {
         "interactionId": "en:lesson-27:session-50:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a9cf2f46172a54361ce504846e16f482b8b12565ddf3f926399ea02ce1485898"
+  "introFingerprint": "4aba8a18e1949743c4b6ae1b48fad60863a7ecf37fc100195dd7202530c33a07"
 }

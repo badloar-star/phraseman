@@ -69,8 +69,8 @@
         "uk": "Хто привіз замовлення"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, кто привёз еду. Ответьте: The order was delivered by a courier — заказ доставил курьер. Соберите The order + was delivered + by a courier. Сначала назовите заказ, затем поставьте was и delivered, третью форму deliver. Часть by a courier указывает человека, который выполнил доставку.",
-        "uk": "Друг запитує, хто привіз їжу. Дайте відповідь: The order was delivered by a courier — замовлення доставив кур’єр. Складіть The order + was delivered + by a courier. Спочатку назвіть замовлення, потім поставте was та delivered, третю форму deliver. Частина by a courier вказує людину, яка виконала доставку."
+        "ru": "Друг спрашивает, кто привёз еду. Ответьте: The order was delivered by a courier — заказ доставил курьер. Соберите The order + was delivered + by a courier. Сначала назовите заказ, затем поставьте was и delivered, форму deliver. Часть by a courier указывает человека, который выполнил доставку.",
+        "uk": "Друг запитує, хто привіз їжу. Дайте відповідь: The order was delivered by a courier — замовлення доставив кур’єр. Складіть The order + was delivered + by a courier. Спочатку назвіть замовлення, потім поставте was та delivered, форму deliver. Частина by a courier вказує людину, яка виконала доставку."
       },
       "question": {
         "interactionId": "en:lesson-29:session-04:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9e8648e81cc4ff3bff2f1d33e4873cf13fc8c2d3c67bda093dc2e4f72ec33add"
+  "introFingerprint": "463f5fa24638b84073d16254b35b3616f85f34c49e3d2b9e93bf21b5b9479955"
 }

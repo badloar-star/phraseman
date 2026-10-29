@@ -15,8 +15,8 @@
         "uk": "Купити одну штуку"
       },
       "bodyByLocale": {
-        "ru": "Вы хотите купить одно пирожное, но видите их только в коробках. Спросите: Are these sold individually? — их продают поштучно? Соберите Are + these + sold + individually? Пирожных несколько, поэтому начните с Are, затем поставьте these. Sold — третья форма sell: речь о том, как продают товар. Individually уточняет «поштучно».",
-        "uk": "Ви хочете купити одне тістечко, але бачите їх лише в коробках. Запитайте: Are these sold individually? — їх продають поштучно? Складіть Are + these + sold + individually? Тістечок кілька, тому почніть з Are, потім поставте these. Sold — третя форма sell: ідеться про те, як продають товар. Individually уточнює «поштучно»."
+        "ru": "Вы хотите купить одно пирожное, но видите их только в коробках. Спросите: Are these sold individually? — их продают поштучно? Соберите Are + these + sold + individually? Пирожных несколько, поэтому начните с Are, затем поставьте these. Sold — форма sell после have: речь о том, как продают товар. Individually уточняет «поштучно».",
+        "uk": "Ви хочете купити одне тістечко, але бачите їх лише в коробках. Запитайте: Are these sold individually? — їх продають поштучно? Складіть Are + these + sold + individually? Тістечок кілька, тому почніть з Are, потім поставте these. Sold — форма sell після have: ідеться про те, як продають товар. Individually уточнює «поштучно»."
       },
       "question": {
         "interactionId": "en:lesson-28:session-48:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Окреме пакування"
       },
       "bodyByLocale": {
-        "ru": "Вы попросили не класть печенье в одну коробку с кремовым пирожным. Продавец обещает: The biscuits will be packed separately — печенье упакуют отдельно. Соберите The biscuits + will be + packed + separately. Сначала назовите печенье, затем поставьте will be и packed, третью форму pack. Так вы говорите о будущем действии над покупкой. Separately означает «отдельно».",
-        "uk": "Ви попросили не класти печиво в одну коробку з кремовим тістечком. Продавець обіцяє: The biscuits will be packed separately — печиво спакують окремо. Складіть The biscuits + will be + packed + separately. Спочатку назвіть печиво, потім поставте will be та packed, третю форму pack. Так ви говорите про майбутню дію з покупкою. Separately означає «окремо»."
+        "ru": "Вы попросили не класть печенье в одну коробку с кремовым пирожным. Продавец обещает: The biscuits will be packed separately — печенье упакуют отдельно. Соберите The biscuits + will be + packed + separately. Сначала назовите печенье, затем поставьте will be и packed, форму pack. Так вы говорите о будущем действии над покупкой. Separately означает «отдельно».",
+        "uk": "Ви попросили не класти печиво в одну коробку з кремовим тістечком. Продавець обіцяє: The biscuits will be packed separately — печиво спакують окремо. Складіть The biscuits + will be + packed + separately. Спочатку назвіть печиво, потім поставте will be та packed, форму pack. Так ви говорите про майбутню дію з покупкою. Separately означає «окремо»."
       },
       "question": {
         "interactionId": "en:lesson-28:session-48:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "223350b4821d72e875dce3fa68d14f5fd4ad05d23dc1bfc2836036d707e65342"
+  "introFingerprint": "c23ab15a64caea4b46cb0b2e1e1446715e82def8ecd287218a45fa4233ed9a99"
 }

@@ -10,8 +10,8 @@
           "uk": "Перед washed потрібна be."
         },
         "en:lesson-28:session-44:intro1:r3": {
-          "ru": "После be нужна третья форма washed.",
-          "uk": "Після be потрібна третя форма washed."
+          "ru": "После be нужна форма washed.",
+          "uk": "Після be потрібна форма washed."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f596377408ff5864f954221d13c5acb287b60c8b5c9d3d36f2544acef7c83fe8"
+  "auxiliaryFingerprint": "81cbba1330775aa5ba258f5a9b13a284f5dce39f157f019a4d1d5bdb92d5be6c"
 }

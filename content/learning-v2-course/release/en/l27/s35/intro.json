@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-35",
   "learningOutcomeByLocale": {
-    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
-    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+    "ru": "сказать, чего вам хочется иначе, и о том, что было бы, если бы…",
+    "uk": "сказати, чого вам хочеться інакше, і про те, що було б, якби…"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Куди поклали квитки вчора"
       },
       "bodyByLocale": {
-        "ru": "Вы ищете билеты и вспоминаете, что вчера оставили их на столе. Скажите: I put them on the table yesterday — я положил их на стол вчера. Прошедшая форма put совпадает с начальной: put, не putted. Them заменяет tickets. Собираем предложение: I + put + them + on the table + yesterday — кто, действие в прошлом, что положил, куда, когда. Yesterday требует здесь Past Simple без have.",
-        "uk": "Ви шукаєте квитки й згадуєте, що вчора залишили їх на столі. Скажіть: I put them on the table yesterday — я поклав їх на стіл учора. Минула форма put збігається з початковою: put, не putted. Them замінює tickets. Складаємо речення: I + put + them + on the table + yesterday — хто, дія в минулому, що поклав, куди, коли. Yesterday потребує тут Past Simple без have."
+        "ru": "Вы ищете билеты и вспоминаете, что вчера оставили их на столе. Скажите: I put them on the table yesterday — я положил их на стол вчера. Прошедшая форма put совпадает с начальной: put, не putted. Them заменяет tickets. Собираем предложение: I + put + them + on the table + yesterday — кто, действие в прошлом, что положил, куда, когда. Yesterday требует здесь формы прошлого без have.",
+        "uk": "Ви шукаєте квитки й згадуєте, що вчора залишили їх на столі. Скажіть: I put them on the table yesterday — я поклав їх на стіл учора. Минула форма put збігається з початковою: put, не putted. Them замінює tickets. Складаємо речення: I + put + them + on the table + yesterday — хто, дія в минулому, що поклав, куди, коли. Yesterday потребує тут форми минулого без have."
       },
       "question": {
         "interactionId": "en:lesson-27:session-35:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bd418980f3bd19d00f3ea7e4ac8d9990133265dbf4bca42ab7856e2259a397e1"
+  "introFingerprint": "22a466ab7b907412329c05e5e8d03b9a421bc5cea1316d71e22962bba07689f6"
 }

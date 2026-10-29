@@ -15,8 +15,8 @@
         "uk": "Квитки вже в сумці"
       },
       "bodyByLocale": {
-        "ru": "Перед поездкой сестра спрашивает про билеты. Вы уже положили их в сумку. I have put the tickets in my bag — я положил билеты в сумку. Сначала I + have + put: сообщаем о результате сейчас. У put третья форма тоже put. Затем the tickets — что положили, и in my bag — куда; my показывает, что сумка ваша.",
-        "uk": "Перед поїздкою сестра питає про квитки. Ви вже поклали їх у сумку. I have put the tickets in my bag — я поклав квитки в сумку. Спочатку I + have + put: повідомляємо про результат зараз. У put третя форма теж put. Потім the tickets — що поклали, і in my bag — куди; my показує, що сумка ваша."
+        "ru": "Перед поездкой сестра спрашивает про билеты. Вы уже положили их в сумку. I have put the tickets in my bag — я положил билеты в сумку. Сначала I + have + put: сообщаем о результате сейчас. У put форма после have тоже put. Затем the tickets — что положили, и in my bag — куда; my показывает, что сумка ваша.",
+        "uk": "Перед поїздкою сестра питає про квитки. Ви вже поклали їх у сумку. I have put the tickets in my bag — я поклав квитки в сумку. Спочатку I + have + put: повідомляємо про результат зараз. У put форма після have теж put. Потім the tickets — що поклали, і in my bag — куди; my показує, що сумка ваша."
       },
       "question": {
         "interactionId": "en:lesson-27:session-56:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4d936f2ba8094785af6534f54467e7dc305ab5dcaafe8f9769571b55a15dcb47"
+  "introFingerprint": "5f757d310e4098da87c268e3328a50eb5e878e979631ed221db7e71078734251"
 }

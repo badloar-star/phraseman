@@ -15,8 +15,8 @@
         "uk": "Щойно спорожнили відро"
       },
       "bodyByLocale": {
-        "ru": "Друг собирается вынести мусор, но вы только что освободили ведро. Скажите: I have just emptied it — я только что его опустошил. Собираем: I + have + just + emptied + it — кто, have, только что, действие, что опустошил. Just ставим между have и emptied. После have нужна третья форма emptied: у empty конечная y меняется на i перед -ed. Present perfect сообщает о результате сейчас — ведро пустое.",
-        "uk": "Друг збирається винести сміття, але ви щойно звільнили відро. Скажіть: I have just emptied it — я щойно його спорожнив. Складаємо: I + have + just + emptied + it — хто, have, щойно, дія, що спорожнив. Just ставимо між have і emptied. Після have потрібна третя форма emptied: у empty кінцева y змінюється на i перед -ed. Present perfect повідомляє про результат зараз — відро порожнє."
+        "ru": "Друг собирается вынести мусор, но вы только что освободили ведро. Скажите: I have just emptied it — я только что его опустошил. Собираем: I + have + just + emptied + it — кто, have, только что, действие, что опустошил. Just ставим между have и emptied. После have нужна форма emptied: у empty конечная y меняется на i перед -ed. Форма have / has + done сообщает о результате сейчас — ведро пустое.",
+        "uk": "Друг збирається винести сміття, але ви щойно звільнили відро. Скажіть: I have just emptied it — я щойно його спорожнив. Складаємо: I + have + just + emptied + it — хто, have, щойно, дія, що спорожнив. Just ставимо між have і emptied. Після have потрібна форма emptied: у empty кінцева y змінюється на i перед -ed. Форма have / has + done повідомляє про результат зараз — відро порожнє."
       },
       "question": {
         "interactionId": "en:lesson-26:session-41:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Розвісили білизну до дзвінка"
       },
       "bodyByLocale": {
-        "ru": "Вчера подруга позвонила, когда бельё уже висело на сушилке. Расскажите: I had hung up the washing by the time she called — я развесил бельё к тому времени, как она позвонила. Собираем: I + had hung up + the washing + by the time she called — кто, что сделал раньше, что развесил, к какому моменту в прошлом. Had hung up показывает действие до звонка. После had нужна третья форма hang — hung.",
-        "uk": "Учора подруга зателефонувала, коли білизна вже висіла на сушарці. Розкажіть: I had hung up the washing by the time she called — я розвісив білизну до того часу, як вона зателефонувала. Складаємо: I + had hung up + the washing + by the time she called — хто, що зробив раніше, що розвісив, до якого моменту в минулому. Had hung up показує дію до дзвінка. Після had потрібна третя форма hang — hung."
+        "ru": "Вчера подруга позвонила, когда бельё уже висело на сушилке. Расскажите: I had hung up the washing by the time she called — я развесил бельё к тому времени, как она позвонила. Собираем: I + had hung up + the washing + by the time she called — кто, что сделал раньше, что развесил, к какому моменту в прошлом. Had hung up показывает действие до звонка. После had нужна форма hang — hung.",
+        "uk": "Учора подруга зателефонувала, коли білизна вже висіла на сушарці. Розкажіть: I had hung up the washing by the time she called — я розвісив білизну до того часу, як вона зателефонувала. Складаємо: I + had hung up + the washing + by the time she called — хто, що зробив раніше, що розвісив, до якого моменту в минулому. Had hung up показує дію до дзвінка. Після had потрібна форма hang — hung."
       },
       "question": {
         "interactionId": "en:lesson-26:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "082a5e578124378bdeb6e949e48065f9a2b0bf7e0c0123b71001eeecd3cf67b3"
+  "introFingerprint": "6edb723999087031ddc8a550d9d0346b68f10057176f41888224ed32d132a091"
 }

@@ -28,8 +28,8 @@
             "responseId": "en:lesson-28:session-18:i01:r1",
             "targetText": "jewellery",
             "meaningByLocale": {
-              "ru": "Украшения, ювелирные изделия. В английском это неисчисляемое слово: jewellery is.",
-              "uk": "Прикраси, ювелірні вироби. В англійській це незлічуване слово: jewellery is."
+              "ru": "Украшения, ювелирные изделия. В английском это слово, которое не считают поштучно: jewellery is.",
+              "uk": "Прикраси, ювелірні вироби. В англійській це слово, яке не рахують поштучно: jewellery is."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "jewellery",
           "definitionByLocale": {
-            "ru": "Украшения, ювелирные изделия. В английском это неисчисляемое слово: jewellery is.",
-            "uk": "Прикраси, ювелірні вироби. В англійській це незлічуване слово: jewellery is."
+            "ru": "Украшения, ювелирные изделия. В английском это слово, которое не считают поштучно: jewellery is.",
+            "uk": "Прикраси, ювелірні вироби. В англійській це слово, яке не рахують поштучно: jewellery is."
           }
         }
       },
@@ -1035,5 +1035,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "521805dfe22695908c6e65ee1a8f088e996c66079bfe61c51178bda70341c36e"
+  "learnerFingerprint": "cfe93d1e7348cedf4a181681ac4400f9a5b92cf351a768ab5616366fc4d49933"
 }

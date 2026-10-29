@@ -10,8 +10,8 @@
           "uk": "В уточненні ставимо I перед bought."
         },
         "en:lesson-30:session-43:intro1:r3": {
-          "ru": "Множественное shoes требует are.",
-          "uk": "Множина shoes потребує are."
+          "ru": "Shoes (их несколько) требуют are.",
+          "uk": "Shoes (їх кілька) потребують are."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "123ea5d1ea2dea29f2a203ae88870696627b3ceac057258aaab80460de9ecb9d"
+  "auxiliaryFingerprint": "6403d338bf627306944122a85ef5db5fc1832ce71184c25833e03f68add5954a"
 }

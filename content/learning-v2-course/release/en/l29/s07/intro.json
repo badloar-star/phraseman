@@ -69,8 +69,8 @@
         "uk": "Хто полагодив полицю"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, кто починил полку после её падения. Ответьте: The shelf was repaired by my neighbour — полку починил мой сосед. Соберите The shelf + was repaired + by my neighbour. После The shelf поставьте was и repaired, третью форму repair. Часть by my neighbour указывает человека, который выполнил ремонт.",
-        "uk": "Друг запитує, хто полагодив полицю після її падіння. Дайте відповідь: The shelf was repaired by my neighbour — полицю полагодив мій сусід. Складіть The shelf + was repaired + by my neighbour. Після The shelf поставте was та repaired, третю форму repair. Частина by my neighbour вказує людину, яка виконала ремонт."
+        "ru": "Друг спрашивает, кто починил полку после её падения. Ответьте: The shelf was repaired by my neighbour — полку починил мой сосед. Соберите The shelf + was repaired + by my neighbour. После The shelf поставьте was и repaired, форму repair. Часть by my neighbour указывает человека, который выполнил ремонт.",
+        "uk": "Друг запитує, хто полагодив полицю після її падіння. Дайте відповідь: The shelf was repaired by my neighbour — полицю полагодив мій сусід. Складіть The shelf + was repaired + by my neighbour. Після The shelf поставте was та repaired, форму repair. Частина by my neighbour вказує людину, яка виконала ремонт."
       },
       "question": {
         "interactionId": "en:lesson-29:session-07:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ad14d4b7e21723f2a75ccde74d4d319c976db4d9ff54883af4bc2c42e6ce8472"
+  "introFingerprint": "2cfebbea2e8f3442717da7c394b868da022ab4fd156163f1fcf14ad99473b925"
 }

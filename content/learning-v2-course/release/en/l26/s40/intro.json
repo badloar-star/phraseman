@@ -69,8 +69,8 @@
         "uk": "Картоплю вже помито"
       },
       "bodyByLocale": {
-        "ru": "Друг собирается мыть картофель, но вы уже это сделали. Ответьте: I have already washed them — я уже его помыл. Them заменяет potatoes: в английском это множественное число. Собираем: I + have + already + washed + them — кто, have, уже, действие, что помыл. Already ставим между have и washed. После have нужна третья форма washed с -ed; present perfect сообщает о результате сейчас.",
-        "uk": "Друг збирається мити картоплю, але ви вже це зробили. Дайте відповідь: I have already washed them — я вже її помив. Them замінює potatoes: в англійській це множина. Складаємо: I + have + already + washed + them — хто, have, уже, дія, що помив. Already ставимо між have і washed. Після have потрібна третя форма washed із -ed; present perfect повідомляє про результат зараз."
+        "ru": "Друг собирается мыть картофель, но вы уже это сделали. Ответьте: I have already washed them — я уже его помыл. Them заменяет potatoes: в английском это форма для нескольких. Собираем: I + have + already + washed + them — кто, have, уже, действие, что помыл. Already ставим между have и washed. После have нужна форма washed с -ed; have / has + done сообщает о результате сейчас.",
+        "uk": "Друг збирається мити картоплю, але ви вже це зробили. Дайте відповідь: I have already washed them — я вже її помив. Them замінює potatoes: в англійській це форма для кількох. Складаємо: I + have + already + washed + them — хто, have, уже, дія, що помив. Already ставимо між have і washed. Після have потрібна форма washed із -ed; have / has + done повідомляє про результат зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-40:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "840b99056dac49b8b724e82fab4bbb261a06d184b9c0abc6813e78e553efe859"
+  "introFingerprint": "1839ada45aca7aeacc8b1185ef907b4fd204c9b09d00dade5cfd80a22922baac"
 }

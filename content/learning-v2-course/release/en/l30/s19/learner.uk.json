@@ -992,8 +992,8 @@
             "correct": false,
             "testedDimension": "Сестра запитала вас із братом, чи готові ви йти. Передайте її запитання.",
             "feedbackByLocale": {
-              "ru": "Кто готов — we; us не ставим на место подлежащего.",
-              "uk": "Хто готовий — we; us не ставимо на місце підмета."
+              "ru": "Кто готов — we; us на это место не ставим.",
+              "uk": "Хто готовий — we; us на це місце не ставимо."
             }
           }
         ]
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8496dfc5cff69bdf770aa864b0055baa5b388ed7e3b29648a2b98cddc8080076"
+  "learnerFingerprint": "34cf243563a397e0321eb1e2f34ea6dcbc47fa03c957102b959c63d1a57d0f8c"
 }

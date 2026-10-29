@@ -69,8 +69,8 @@
         "uk": "Чи куплено цукерки"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом собираете угощение к чаю и хотите узнать, куплены ли конфеты. Спросите: Have you bought any candy yet? — ты уже купил конфеты? Собираем вопрос: Have + you + bought + any candy + yet? Have ставим перед you; после подлежащего нужна третья форма buy — bought. Any candy называет покупку, yet в конце уточняет, сделано ли это к настоящему моменту.",
-        "uk": "Ви з другом збираєте частування до чаю й хочете дізнатися, чи куплено цукерки. Запитайте: Have you bought any candy yet? — ти вже купив цукерки? Складаємо запитання: Have + you + bought + any candy + yet? Have ставимо перед you; після підмета потрібна третя форма buy — bought. Any candy називає покупку, yet у кінці уточнює, чи зроблено це до теперішнього моменту."
+        "ru": "Вы с другом собираете угощение к чаю и хотите узнать, куплены ли конфеты. Спросите: Have you bought any candy yet? — ты уже купил конфеты? Собираем вопрос: Have + you + bought + any candy + yet? Have ставим перед you; после того, кто действует, нужна форма buy — bought. Any candy называет покупку, yet в конце уточняет, сделано ли это к настоящему моменту.",
+        "uk": "Ви з другом збираєте частування до чаю й хочете дізнатися, чи куплено цукерки. Запитайте: Have you bought any candy yet? — ти вже купив цукерки? Складаємо запитання: Have + you + bought + any candy + yet? Have ставимо перед you; після того, хто діє, потрібна форма buy — bought. Any candy називає покупку, yet у кінці уточнює, чи зроблено це до теперішнього моменту."
       },
       "question": {
         "interactionId": "en:lesson-26:session-30:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c60c0504fd5dbbed95cd0d2e5ca73aebe6b9e26de72ae4807070389457972396"
+  "introFingerprint": "089484ec21cc022951137846393483e381e5056535d2d3d6cec2d6b6375b6ce4"
 }

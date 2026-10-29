@@ -69,8 +69,8 @@
         "uk": "Хто проводить заняття"
       },
       "bodyByLocale": {
-        "ru": "Вы узнаёте, кто ведёт занятие в спортивном центре. Сотрудник отвечает: The class is taught by a local coach — занятие проводит местный тренер. Соберите The class + is taught + by a local coach. После The class поставьте is и taught, третью форму teach. Часть by a local coach называет того, кто проводит занятие.",
-        "uk": "Ви дізнаєтеся, хто веде заняття в спортивному центрі. Працівник відповідає: The class is taught by a local coach — заняття проводить місцевий тренер. Складіть The class + is taught + by a local coach. Після The class поставте is та taught, третю форму teach. Частина by a local coach називає того, хто проводить заняття."
+        "ru": "Вы узнаёте, кто ведёт занятие в спортивном центре. Сотрудник отвечает: The class is taught by a local coach — занятие проводит местный тренер. Соберите The class + is taught + by a local coach. После The class поставьте is и taught, форму teach. Часть by a local coach называет того, кто проводит занятие.",
+        "uk": "Ви дізнаєтеся, хто веде заняття в спортивному центрі. Працівник відповідає: The class is taught by a local coach — заняття проводить місцевий тренер. Складіть The class + is taught + by a local coach. Після The class поставте is та taught, форму teach. Частина by a local coach називає того, хто проводить заняття."
       },
       "question": {
         "interactionId": "en:lesson-29:session-06:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "274ac787a1bc0cf1797774417edb35bb27b8ff0522ed6a3a2cbc096b7eb81a54"
+  "introFingerprint": "603bb389b3e7edc3a7589e5583a5909a20de28f47bcf6697c269fe33bcc78f5c"
 }

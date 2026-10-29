@@ -980,8 +980,8 @@
             "correct": false,
             "testedDimension": "Работы положат на полку. Выберите нужную форму put.",
             "feedbackByLocale": {
-              "ru": "Здесь третья форма — put.",
-              "uk": "Тут третя форма — put."
+              "ru": "Здесь форма после have — put.",
+              "uk": "Тут форма після have — put."
             }
           },
           {
@@ -1037,5 +1037,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "101df1c4ee5501071b16ada1fdc6a1cb60ba24574cb05d6fa52fe9593ae6ca21"
+  "learnerFingerprint": "1174de8d1854c42bac88ac00616de4a92ef1bb47ec68dc7d21b68d954b5f52f0"
 }

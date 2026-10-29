@@ -908,8 +908,8 @@
             "correct": false,
             "testedDimension": "Если дождь закончится, вы пойдёте на пляж. Это возможный план на сегодня.",
             "feedbackByLocale": {
-              "ru": "В таком условии после if ставим Present Simple: stops.",
-              "uk": "У такій умові після if ставимо Present Simple: stops."
+              "ru": "В таком условии после if ставим форму work / works: stops.",
+              "uk": "У такій умові після if ставимо форму work / works: stops."
             }
           },
           {
@@ -1043,5 +1043,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7287bfdf246214bcde167fc21e192e1caa060e9e97bd2490761e19220fe54c92"
+  "learnerFingerprint": "74280af795e286e64dcb839aa6bff9167dd7cc713d77d6af6c7c4b6f3cca5175"
 }

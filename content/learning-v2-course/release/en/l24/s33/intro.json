@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-33",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Дані про опади перед поїздкою"
       },
       "bodyByLocale": {
-        "ru": "Вчера подруга готовилась к поездке и посмотрела данные о количестве дождя в месте отдыха. She checked the rainfall yesterday — вчера она посмотрела данные об осадках. После she ставим checked: к check добавляем -ed, поскольку говорим о событии в закончившийся день. The rainfall называет, что она проверила, а yesterday — когда. Здесь нужен Past Simple, поэтому has перед checked не добавляем.",
-        "uk": "Учора подруга готувалася до поїздки й переглянула дані про кількість дощу в місці відпочинку. She checked the rainfall yesterday — учора вона переглянула дані про опади. Після she ставимо checked: до check додаємо -ed, оскільки говоримо про подію в завершений день. The rainfall називає, що вона перевірила, а yesterday — коли. Тут потрібен Past Simple, тому has перед checked не додаємо."
+        "ru": "Вчера подруга готовилась к поездке и посмотрела данные о количестве дождя в месте отдыха. She checked the rainfall yesterday — вчера она посмотрела данные об осадках. После she ставим checked: к check добавляем -ed, поскольку говорим о событии в закончившийся день. The rainfall называет, что она проверила, а yesterday — когда. Здесь нужна форма прошлого, поэтому has перед checked не добавляем.",
+        "uk": "Учора подруга готувалася до поїздки й переглянула дані про кількість дощу в місці відпочинку. She checked the rainfall yesterday — учора вона переглянула дані про опади. Після she ставимо checked: до check додаємо -ed, оскільки говоримо про подію в завершений день. The rainfall називає, що вона перевірила, а yesterday — коли. Тут потрібна форма минулого, тому has перед checked не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-33:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a8419fa1b3046c748c032721b93c65e5a94a0aec24f71ca99e5f93a1b2389b8d"
+  "introFingerprint": "fb1432225bfd1f41f8bb4aadb43aed08054eb62ff71b2af6c898377100bc4859"
 }

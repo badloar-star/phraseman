@@ -6,6 +6,7 @@ import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import { useGuardedNav } from '../../hooks/use-guarded-nav';
 import { usePremium } from '../../components/PremiumContext';
+import { useHomeTrialRow } from '../../hooks/use_home_trial_row';
 import { useTabFocusTick, useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -775,9 +776,11 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     // шторка монтируется только пока открыта (hooks/use_home_survey_entry.ts). Делит строку с Poll V2 — анкета первой.
     const homeSurvey = useHomeSurveyEntry(lang, homeRuntimeActive);
     // Одна строка «Сегодня» на два источника (владелец 22.10): анкета-кампания из админки первой, иначе Poll V2.
-    const homeTodayRowSource: 'survey' | 'poll_v2' | 'none' = homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';
+    // зачем (владелец 29.10): общий хук Главной и экрана «Сегодня» — триал доступен и Plus нет → вместо анкеты/опроса строка «Попробуй Plus бесплатно» (✕ — отклонить)
+    const homeTrial = useHomeTrialRow(lang, homeRuntimeActive);
+    const homeTodayRowSource: 'trial' | 'survey' | 'poll_v2' | 'none' = homeTrial.show ? 'trial' : homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';
     useEffect(() => {
-      console.log('[SURVEY-ROW]', JSON.stringify({ source: homeTodayRowSource, surveyOffered: homeSurvey.row !== null, pollPhase: homePollV2.phase, reason: homeTodayRowSource === 'survey' ? 'active_survey_campaign' : homeTodayRowSource === 'poll_v2' ? 'no_survey_poll_active' : 'nothing_active' })); // guard-ok: одна строка на смену выбора
+      console.log('[SURVEY-ROW]', JSON.stringify({ source: homeTodayRowSource, surveyOffered: homeSurvey.row !== null, pollPhase: homePollV2.phase, reason: homeTodayRowSource === 'trial' ? 'trial_row_first' : homeTodayRowSource === 'survey' ? 'active_survey_campaign' : homeTodayRowSource === 'poll_v2' ? 'no_survey_poll_active' : 'nothing_active' })); // guard-ok: одна строка на смену выбора
     }, [homeTodayRowSource, homeSurvey.row, homePollV2.phase]);
     // зачем (координатор 14.10; эталон v3-all: Играть ведёт в игру): после синхронного закрытия окна — в раздел Пика; Пик недоступен этому языку / вкладка выключена → кнопка только закрывает окно
     const weekMomentPlay = useMemo(() => (spireTabEnabled && isLearningSurfaceReady(studyTarget, 'spire') ? () => { nav.push('/(tabs)/community?section=spire' as never); } : undefined), [nav, spireTabEnabled, studyTarget]);
@@ -2943,7 +2946,7 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
               tasks={homeTodayCardTasks}
               pairRow={homeFriendPairRow}
               onOpenTask={(task) => go(task.route)}
-              surveyRow={homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {
+              surveyRow={homeTodayRowSource === 'trial' && homeTrial.row ? homeTrial.row : homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {
                 title: triLang(lang, { ru: 'Опрос', uk: 'Опитування', en: 'Poll', es: 'Encuesta', 'pt-BR': 'Enquete', vi: 'Khảo sát', id: 'Jajak pendapat', tr: 'Anket', pl: 'Ankieta' }),
                 subtitle: triLang(lang, { ru: `${homePollV2.total} вопроса`, uk: `${homePollV2.total} питання`, en: `${homePollV2.total} questions`, es: `${homePollV2.total} preguntas`, 'pt-BR': `${homePollV2.total} perguntas`, vi: `${homePollV2.total} câu hỏi`, id: `${homePollV2.total} pertanyaan`, tr: `${homePollV2.total} soru`, pl: `${homePollV2.total} pytania` }),
                 onPress: () => setHomePollV2Open(true),

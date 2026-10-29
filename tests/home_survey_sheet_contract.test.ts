@@ -29,12 +29,12 @@ describe('Home-owned survey entry (Today row + sheet)', () => {
   });
 
   test('one Today row for both: an active survey campaign first, otherwise the V2 poll', () => {
-    expect(home).toContain("const homeTodayRowSource: 'survey' | 'poll_v2' | 'none' = homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';");
+    expect(home).toContain("const homeTodayRowSource: 'trial' | 'survey' | 'poll_v2' | 'none' = homeTrial.show ? 'trial' : homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';");
     // зачем (владелец 22.10 кнопкой): Poll V2 строкой на Главной — только без «Сцены» (с ней опрос на «Сегодня»); анкета-кампания — первой всегда
-    expect(home).toContain("surveyRow={homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {");
+    expect(home).toContain("surveyRow={homeTodayRowSource === 'trial' && homeTrial.row ? homeTrial.row : homeTodayRowSource === 'survey' && homeSurvey.row ? { ...homeSurvey.row, onPress: homeSurvey.openSurvey } : homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {");
     expect(home).toContain("console.log('[SURVEY-ROW]'");
     expect(home).toContain('onPress: () => setHomePollV2Open(true)');
-    expect(todayCard).toContain('surveyRow?: Readonly<{ title: string; subtitle?: string; onPress: () => void }> | null;');
+    expect(todayCard).toContain('surveyRow?: Readonly<{ title: string; subtitle?: string; onPress: () => void;');
     expect(todayCard).toContain('{surveyRow ? (');
     expect(todayCard).toContain('testID="home-v2-today-survey"');
   });

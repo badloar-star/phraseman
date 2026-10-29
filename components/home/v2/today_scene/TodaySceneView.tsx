@@ -12,7 +12,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { memo, useMemo, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
 import { useSceneStatusBar, useScrollAtTop } from '../../../../hooks/use_scene_status_bar';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
@@ -51,7 +51,7 @@ const ROW_ICON: Readonly<Record<TodayTaskKind, React.ComponentProps<typeof Ionic
 };
 
 /** Строка опроса дня в панели «Задания дня» (владелец 22.10: опрос живёт на экране «Сегодня», Главная — строго по макету). */
-export type TodayScenePollRow = Readonly<{ title: string; subtitle: string; onPress: () => void }>;
+export type TodayScenePollRow = Readonly<{ title: string; subtitle: string; onPress: () => void; /** ✕ (строка «Попробуй Plus бесплатно»): мгновенно скрывает строку, окно подписки не открывает. */ onDismiss?: () => void; dismissLabel?: string; /** Плитка с бриллиантом Plus вместо значка опроса. */ plus?: boolean }>;
 
 export type TodaySceneViewProps = Readonly<{
   /** Заголовок экрана справа от «назад» (28/34, белый) — на языке интерфейса. */
@@ -214,11 +214,22 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
             scaleTo={0.97}
             style={[s.row, { borderTopColor: separator, borderTopWidth: 1 }]} // shadow-ok: разделитель строк (верхняя линия 1, как у строк заданий; не обводка контейнера)
           >
-            <View style={[s.ic, { backgroundColor: card.opaqueControl }]}><Ionicons name="clipboard-outline" size={18} color={card.text} /></View>
+            {pollRow.plus ? (
+              // зачем (макет plus-task): плитка с бриллиантом Plus — цвета бейджа аватарки (фиолет → голубой), белый бриллиант; арт, не поверхность темы
+              <LinearGradient colors={['#8E7CFF', '#6FA8FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={s.ic}><Ionicons name="diamond" size={18} color="#FFFFFF" /></LinearGradient> /* theme-exempt: бриллиант Plus как на бейдже аватарки */
+            ) : (
+              <View style={[s.ic, { backgroundColor: card.opaqueControl }]}><Ionicons name="clipboard-outline" size={18} color={card.text} /></View>
+            )}
             <View style={s.tx}>
               <Text style={[s.rowTitle, { color: card.text }]} numberOfLines={1}>{pollRow.title}</Text>
               <Text style={[s.rowSub, { color: card.secondary }]} numberOfLines={1}>{pollRow.subtitle}</Text>
             </View>
+            {pollRow.onDismiss ? (
+              // зачем: ✕ — своя зона нажатия 44×44, тап не доходит до строки и не открывает окно подписки
+              <Pressable testID="today-scene-row-poll-dismiss" accessibilityRole="button" accessibilityLabel={pollRow.dismissLabel ?? 'Close'} hitSlop={6} onPress={pollRow.onDismiss} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}>
+                <Ionicons name="close" size={18} color={card.secondary} />
+              </Pressable>
+            ) : null}
             <Ionicons name="chevron-forward" size={16} color={card.secondary} />
           </V2Pressable>
         ) : null}

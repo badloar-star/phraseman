@@ -40,7 +40,7 @@ describe('home polls v2 bundled content and application wiring', () => {
     expect(home).toContain("import { useHomePollV2 } from '../../hooks/use_home_poll_v2'");
     expect(home).toContain('const homePollV2 = useHomePollV2({ lang, active: homeRuntimeActive });');
     // зачем (владелец 22.10, «вернуть анкеты»): одна строка «Сегодня» — анкета-кампания первой, иначе Poll V2
-    expect(home).toContain("const homeTodayRowSource: 'survey' | 'poll_v2' | 'none' = homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';");
+    expect(home).toContain("const homeTodayRowSource: 'trial' | 'survey' | 'poll_v2' | 'none' = homeTrial.show ? 'trial' : homeSurvey.row ? 'survey' : homePollV2.phase !== 'hidden' ? 'poll_v2' : 'none';");
     // зачем (владелец 22.10 кнопкой): строка опроса на Главной — только без «Сцены»; с новой Главной опрос на «Сегодня» тем же хуком и шторкой
     expect(home).toContain("homeTodayRowSource === 'poll_v2' && !HOME_SCENE_V2_ENABLED ? {");
     const todayScreen = read('app/today_tasks.tsx');

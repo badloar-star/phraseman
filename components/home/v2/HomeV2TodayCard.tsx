@@ -1,7 +1,8 @@
 import React, { memo, useMemo, useRef } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import V2Pressable from '../../v2/V2Pressable';
+import { LinearGradient } from 'expo-linear-gradient';
 import { V2, V2_TYPE } from '../../../constants/v2Style';
 import { useV2Palette } from '../../v2/useV2Palette';
 import { V2IconTile } from '../../v2/V2Glass';
@@ -32,7 +33,7 @@ type Props = {
   tasks: readonly TodayTask[];
   onOpenTask: (task: TodayTask) => void;
   /** Q90 (координатор 01.10): активный опрос — строка ПОД заданиями, тем же видом; null/нет — не рисуется. */
-  surveyRow?: Readonly<{ title: string; subtitle?: string; onPress: () => void }> | null;
+  surveyRow?: Readonly<{ title: string; subtitle?: string; onPress: () => void; /** ✕ справа (строка «Попробуй Plus бесплатно»): мгновенно скрывает строку, окно подписки не открывает. */ onDismiss?: () => void; dismissLabel?: string; /** Плитка с бриллиантом Plus вместо значка опроса. */ plus?: boolean }> | null;
   /** «Смотреть все» справа от заголовка → экран «Сегодня» с кольцом дня (владелец 17.10); видна только за флагом moments_v3, нет — ссылки нет. */
   seeAll?: Readonly<{ label: string; onPress: () => void }> | null;
   /** Цвет отметки выполненной строки по индексу (цвета колец на экране «Сегодня»); нет — нейтральный. */
@@ -63,7 +64,7 @@ export default function HomeV2TodayCard(props: Props) {
 function sameTodayCardData(a: ViewProps, b: ViewProps): boolean {
   if (a.title !== b.title || a.latestRef !== b.latestRef) return false;
   if ((a.scene?.count ?? null) !== (b.scene?.count ?? null)) return false;
-  if ((a.surveyRow?.title ?? null) !== (b.surveyRow?.title ?? null) || (a.surveyRow?.subtitle ?? null) !== (b.surveyRow?.subtitle ?? null)) return false;
+  if ((a.surveyRow?.title ?? null) !== (b.surveyRow?.title ?? null) || (a.surveyRow?.subtitle ?? null) !== (b.surveyRow?.subtitle ?? null) || Boolean(a.surveyRow?.onDismiss) !== Boolean(b.surveyRow?.onDismiss)) return false;
   if ((a.seeAll?.label ?? null) !== (b.seeAll?.label ?? null)) return false;
   if ((a.pairRow?.friendUid ?? null) !== (b.pairRow?.friendUid ?? null) || (a.pairRow?.title ?? null) !== (b.pairRow?.title ?? null) || (a.pairRow?.subtitle ?? null) !== (b.pairRow?.subtitle ?? null)) return false;
   const ac = a.doneColors ?? [];
@@ -162,11 +163,22 @@ const HomeV2TodayCardView = memo(function HomeV2TodayCardView({ title, tasks, su
             scaleTo={0.98}
             style={[s.sceneRow, { borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: `${g.text.slice(0, 7)}12` }]} // shadow-ok: разделитель строк
           >
-            <View style={[s.sceneIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name="clipboard-outline" size={18} color={g.text} /></View>
+            {surveyRow.plus ? (
+              // зачем (макет plus-task): плитка с бриллиантом Plus — цвета бейджа аватарки (фиолет → голубой), белый бриллиант; арт, не поверхность темы
+              <LinearGradient colors={['#8E7CFF', '#6FA8FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={s.sceneIcon}><Ionicons name="diamond" size={18} color="#FFFFFF" /></LinearGradient> /* theme-exempt: бриллиант Plus как на бейдже аватарки */
+            ) : (
+              <View style={[s.sceneIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name="clipboard-outline" size={18} color={g.text} /></View>
+            )}
             <View style={s.copy}>
               <Text numberOfLines={1} style={[s.taskTitle, { color: g.text }]}>{surveyRow.title}</Text>
               {surveyRow.subtitle ? <Text numberOfLines={1} style={[s.taskSubtitle, { color: g.secondary }]}>{surveyRow.subtitle}</Text> : null}
             </View>
+            {surveyRow.onDismiss ? (
+              // зачем: ✕ — своя зона нажатия 44×44 (не на весь ряд), тап не доходит до строки и не открывает окно подписки
+              <Pressable testID="home-v2-today-survey-dismiss" accessibilityRole="button" accessibilityLabel={surveyRow.dismissLabel ?? 'Close'} hitSlop={6} onPress={() => latestRef.current.surveyRow?.onDismiss?.()} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center', marginRight: -8 }}>
+                <Ionicons name="close" size={18} color={g.secondary} />
+              </Pressable>
+            ) : null}
             <Ionicons name="chevron-forward" size={16} color={g.secondary} />
           </V2Pressable>
         ) : null}

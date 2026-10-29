@@ -19,6 +19,7 @@ import { V2, V2_TYPE } from '../constants/v2Style';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import HomeV2TodayCard from '../components/home/v2/HomeV2TodayCard';
+import { useHomeTrialRow } from '../hooks/use_home_trial_row';
 import TodayActivityHistory from '../components/home/v2/TodayActivityHistory';
 import type { TodayTask } from '../components/home/v2/home_v2_types';
 import { todayRingColors, useStreakColors } from '../components/streak/moments/use_streak_colors';
@@ -86,6 +87,9 @@ export default function TodayTasksScreen() {
     subtitle: triLang(lang, { ru: `${poll.total} вопроса`, uk: `${poll.total} питання`, en: `${poll.total} questions`, es: `${poll.total} preguntas`, 'pt-BR': `${poll.total} perguntas`, vi: `${poll.total} câu hỏi`, id: `${poll.total} pertanyaan`, tr: `${poll.total} soru`, pl: `${poll.total} pytania` }),
     onPress: openPoll,
   } : null), [lang, openPoll, poll.phase, poll.total, pollOn]);
+  // зачем (владелец 29.10): та же строка «Попробуй Plus бесплатно», что и на Главной (общий хук и общее отклонение ✕): триал доступен и Plus нет → вместо опроса
+  const trial = useHomeTrialRow(lang, true);
+  const todayRow = trial.row ?? pollRow;
   useEffect(() => {
     console.log('[TODAY-POLL] row', JSON.stringify({ pollOn, phase: poll.phase, setId: poll.setId, step: poll.step, total: poll.total, shown: pollRow !== null, reason: !pollOn ? 'home_without_scene_keeps_poll' : poll.phase === 'hidden' ? 'no_set_or_answered' : 'shown' })); // guard-ok: журнал на смену состояния опроса
   }, [poll.phase, poll.setId, poll.step, poll.total, pollOn, pollRow]);
@@ -186,7 +190,7 @@ export default function TodayTasksScreen() {
           onBack={() => { noteBackDecision('today_tasks → home'); safeRouterBack(router, '/(tabs)/home' as never); }}
           backLabel={backLabel}
           onOpenTask={openTask}
-          pollRow={pollRow}
+          pollRow={todayRow}
         />
         {pollSheet}
       </View>
@@ -211,7 +215,7 @@ export default function TodayTasksScreen() {
               ) : null}
             </View>
           ) : null}
-          <HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColors={ringsOn ? doneColors : null} surveyRow={pollRow} />
+          <HomeV2TodayCard title={null} tasks={tasks} onOpenTask={openTask} doneColors={ringsOn ? doneColors : null} surveyRow={todayRow} />
           <TodayActivityHistory dayKey={todayTasks.dayKey} tasks={tasks} />
         </ScrollView>
       </SafeAreaView>

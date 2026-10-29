@@ -14,7 +14,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This causes such great stress.**
-- ❌ This causes so great stress. — *such здесь не считают поштучно, поэтому без a.*
+- ❌ This causes so great stress. — *Нужно such без a: stress здесь не считают поштучно.*
 - ❌ This causes such a great stress. — *В этом значении такое не считают поштучно, поэтому a не нужен.*
 
 ---
@@ -66,7 +66,7 @@
 **4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-55:i03; family: context_gap_grammar -->
 This causes ___ great stress. → **such** · so · much
-- so — *such здесь не считают поштучно, поэтому без a.*
+- so — *Нужно such без a: stress здесь не считают поштучно.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **5 · Карточка слова — pressure**

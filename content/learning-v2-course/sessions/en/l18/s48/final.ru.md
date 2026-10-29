@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There is such loud background noise.**
-- ❌ There is so loud background noise. — *such здесь не считают поштучно, поэтому без a.*
+- ❌ There is so loud background noise. — *Нужно such без a: noise здесь не считают поштучно.*
 - ❌ There is such loudly background noise. — *Перед существительным нужно прилагательное loud, не наречие loudly.*
 
 ---
@@ -126,7 +126,7 @@ The traffic noise is ___ loud. → **so** · such · much
 **16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-48:i12; family: context_gap_grammar -->
 There is ___ loud background noise. → **such** · so · much
-- so — *such здесь не считают поштучно, поэтому без a.*
+- so — *Нужно such без a: noise здесь не считают поштучно.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **17 · Соедините выражения с переводом**

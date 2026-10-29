@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This needs such careful attention.**
-- ❌ This needs so careful attention. — *such тут не рахують поштучно, тому без a.*
+- ❌ This needs so careful attention. — *Потрібне such без a: attention тут не рахують поштучно.*
 - ❌ This needs such a careful attention. — *У цьому значенні таке не рахують поштучно, тому a не потрібен.*
 
 ---
@@ -86,7 +86,7 @@ This is ___ a good opportunity. → **such** · so · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-51:i06; family: context_gap_grammar -->
 This needs ___ careful attention. → **such** · so · much
-- so — *such тут не рахують поштучно, тому без a.*
+- so — *Потрібне such без a: attention тут не рахують поштучно.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — interest**

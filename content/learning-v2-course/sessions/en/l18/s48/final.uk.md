@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There is such loud background noise.**
-- ❌ There is so loud background noise. — *such тут не рахують поштучно, тому без a.*
+- ❌ There is so loud background noise. — *Потрібне such без a: noise тут не рахують поштучно.*
 - ❌ There is such loudly background noise. — *Перед іменником потрібен прикметник loud, не прислівник loudly.*
 
 ---
@@ -126,7 +126,7 @@ The traffic noise is ___ loud. → **so** · such · much
 **16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-48:i12; family: context_gap_grammar -->
 There is ___ loud background noise. → **such** · so · much
-- so — *such тут не рахують поштучно, тому без a.*
+- so — *Потрібне such без a: noise тут не рахують поштучно.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **17 · Поєднайте вирази з перекладом**

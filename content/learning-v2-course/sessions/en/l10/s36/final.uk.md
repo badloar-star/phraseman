@@ -2,7 +2,7 @@
 
 **Ситуація.** Обговорити з другом плани на дощовий день.
 
-**Що ви опануєте:** We usually eat outdoors; We are eating indoors today; It is still raining
+**Що ви опануєте:** сказати, де ви зазвичай і де зараз: outdoors, indoors
 **Нові слова:** outdoors, indoors, still, instead
 
 ## Інтро 1

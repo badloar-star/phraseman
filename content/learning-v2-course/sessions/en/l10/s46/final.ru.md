@@ -2,7 +2,7 @@
 
 **Ситуация.** Рассказать, что вы обычно покупаете и что готовите сейчас.
 
-**Что вы освоите:** I usually buy cabbage; I am chopping garlic; We are cooking lentils
+**Что вы освоите:** говорить об овощах: что покупаете и готовите
 **Новые слова:** cabbage, cauliflower, garlic, lentils
 
 ## Интро 1

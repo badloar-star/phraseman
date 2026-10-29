@@ -2,7 +2,7 @@
 
 **Ситуация.** Назвать части лица и руки, описать то, что видите.
 
-**Что вы освоите:** Your chin is wet; Your cheek is dirty; My lips are dry; My thumb is clean
+**Что вы освоите:** описать лицо и руки: My lips are dry
 **Новые слова:** chin, cheek, lip, thumb
 
 ## Интро 1

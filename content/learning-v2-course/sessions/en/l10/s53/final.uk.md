@@ -2,7 +2,7 @@
 
 **Ситуація.** Обрати привітання за часом доби й попрощатися перед сном.
 
-**Що ви опануєте:** Good morning; Good afternoon; Good evening; Good night
+**Що ви опануєте:** вітатися й прощатися в різну пору дня
 **Нові слова:** good morning, good afternoon, good evening, good night
 
 ## Інтро 1

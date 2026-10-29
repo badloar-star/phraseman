@@ -2,7 +2,7 @@
 
 **Ситуация.** Найти вещь под мебелью и объяснить, как несёте стол через дверь.
 
-**Что вы освоите:** The keys are underneath the chair; The ladder is against the wall; I am walking backwards
+**Что вы освоите:** сказать, где что находится: underneath, against
 **Новые слова:** underneath, against, backwards, sideways
 
 ## Интро 1

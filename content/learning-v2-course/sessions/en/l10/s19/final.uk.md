@@ -2,7 +2,7 @@
 
 **Ситуація.** Вибачитися, подякувати, представити друга й попросити повторити.
 
-**Що ви опануєте:** I want to apologise; Thank you for your help; Can I introduce my friend?; Can you repeat that?
+**Що ви опануєте:** перепросити, подякувати, представити друга й перепитати
 **Нові слова:** apologise, thank, introduce, repeat
 
 ## Інтро 1

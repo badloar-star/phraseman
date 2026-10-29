@@ -2,7 +2,7 @@
 
 **Ситуація.** Вибрати страви з меню й сказати про розмір порції.
 
-**Що ви опануєте:** I would like a starter; I am choosing a main course; We need a side dish; This portion is small
+**Що ви опануєте:** замовити їжу в ресторані
 **Нові слова:** starter, main course, side dish, portion
 
 ## Інтро 1

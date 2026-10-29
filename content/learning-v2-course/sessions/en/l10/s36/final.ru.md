@@ -2,7 +2,7 @@
 
 **Ситуация.** Обсудить с другом планы на дождливый день.
 
-**Что вы освоите:** We usually eat outdoors; We are eating indoors today; It is still raining
+**Что вы освоите:** сказать, где вы обычно и где сейчас: outdoors, indoors
 **Новые слова:** outdoors, indoors, still, instead
 
 ## Интро 1

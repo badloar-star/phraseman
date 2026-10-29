@@ -2,7 +2,7 @@
 
 **Ситуация.** Назвать одноклассника и учебные предметы, рассказать о занятии сейчас.
 
-**Что вы освоите:** My classmate is reading; English is my favourite subject; Maths is difficult; We are studying history
+**Что вы освоите:** говорить об учёбе и школьных предметах
 **Новые слова:** classmate, subject, maths, history
 
 ## Интро 1

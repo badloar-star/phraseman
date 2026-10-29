@@ -4,7 +4,7 @@
 
 **Нові слова:** untidy, sleeveless, uncomfortable, yet
 
-**Що ви опануєте:** My room is untidy; I am wearing a sleeveless shirt; I am not ready yet
+**Що ви опануєте:** описати кімнату й одяг і сказати «ще не готовий»
 
 ## Інтро 1
 

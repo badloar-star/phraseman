@@ -2,7 +2,7 @@
 
 **Ситуация.** Рассказать, что вы обычно покупаете и что готовите сейчас.
 
-**Что вы освоите:** I like beetroot; The parsley is fresh; We are washing radishes
+**Что вы освоите:** говорить об овощах и зелени
 **Новые слова:** beetroot, leek, parsley, radishes
 
 ## Интро 1

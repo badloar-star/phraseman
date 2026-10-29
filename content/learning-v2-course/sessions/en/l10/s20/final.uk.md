@@ -2,7 +2,7 @@
 
 **Ситуація.** Повідомити, що ви очікуєте доставку, і розібратися в повідомленні про доставку.
 
-**Що ви опануєте:** I expect the parcel today; She expects confirmation; Do you have the tracking number?
+**Що ви опануєте:** говорити про посилку: коли чекаєте і як відстежити
 **Нові слова:** confirmation, arrival, delivery, tracking number
 
 ## Інтро 1

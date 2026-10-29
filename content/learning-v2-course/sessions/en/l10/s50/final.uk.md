@@ -2,7 +2,7 @@
 
 **Ситуація.** Домовитися про зустріч і уточнити час транспорту.
 
-**Що ви опануєте:** The train leaves soon; See you later; I am already here; The bus is on time
+**Що ви опануєте:** сказати «скоро», «уже», «вчасно» і попрощатися
 **Нові слова:** soon, later, already, on time
 
 ## Інтро 1

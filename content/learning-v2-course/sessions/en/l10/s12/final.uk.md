@@ -2,7 +2,7 @@
 
 **Ситуація.** Зібрати одяг у подорож і сказати, що ви носите вдома.
 
-**Що ви опануєте:** I am packing my underwear; She usually wears a nightdress; I need some tights; I am wearing a dressing gown
+**Що ви опануєте:** говорити про домашній одяг: що носите зазвичай і зараз
 **Нові слова:** underwear, nightdress, tights, dressing gown
 
 ## Інтро 1

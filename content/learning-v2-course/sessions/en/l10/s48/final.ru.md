@@ -2,7 +2,7 @@
 
 **Ситуация.** Подготовить фрукты к завтраку и сказать, хватает ли еды.
 
-**Что вы освоите:** I am peeling a grapefruit; We have enough bread; Breakfast is nearly ready
+**Что вы освоите:** сказать о завтраке: что делаете, чего хватает, что почти готово
 **Новые слова:** apricot, grapefruit, enough, nearly
 
 ## Интро 1

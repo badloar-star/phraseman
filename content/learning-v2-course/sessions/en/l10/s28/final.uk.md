@@ -2,7 +2,7 @@
 
 **Ситуація.** Сказати про сьогоднішній вечір і частоту звичних справ.
 
-**Що ви опануєте:** I am working tonight; I walk daily; We meet weekly; I pay monthly
+**Що ви опануєте:** сказати, як часто ви щось робите: daily, weekly, monthly
 **Нові слова:** tonight, daily, weekly, monthly
 
 ## Інтро 1

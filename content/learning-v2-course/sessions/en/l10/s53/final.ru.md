@@ -2,7 +2,7 @@
 
 **Ситуация.** Выбрать приветствие по времени суток и попрощаться перед сном.
 
-**Что вы освоите:** Good morning; Good afternoon; Good evening; Good night
+**Что вы освоите:** здороваться и прощаться в разное время дня
 **Новые слова:** good morning, good afternoon, good evening, good night
 
 ## Интро 1

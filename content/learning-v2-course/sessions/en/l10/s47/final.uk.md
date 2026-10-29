@@ -2,7 +2,7 @@
 
 **Ситуація.** Розповісти, що ви зазвичай купуєте й що готуєте зараз.
 
-**Що ви опануєте:** I like beetroot; The parsley is fresh; We are washing radishes
+**Що ви опануєте:** говорити про овочі й зелень
 **Нові слова:** beetroot, leek, parsley, radishes
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Сказать о сегодняшнем вечере и частоте обычных дел.
 
-**Что вы освоите:** I am working tonight; I walk daily; We meet weekly; I pay monthly
+**Что вы освоите:** сказать, как часто вы что-то делаете: daily, weekly, monthly
 **Новые слова:** tonight, daily, weekly, monthly
 
 ## Интро 1

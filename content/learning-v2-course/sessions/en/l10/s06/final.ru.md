@@ -2,7 +2,7 @@
 
 **Ситуация.** Предложить гостям напитки и попросить ложку.
 
-**Что вы освоите:** I usually drink decaf coffee; I am making herbal tea; I would like some sparkling water
+**Что вы освоите:** говорить о напитках: что пьёте обычно, что делаете сейчас, что хотите
 **Новые слова:** decaf, herbal, sparkling, teaspoon
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Розповісти про звички й уточнити список покупок.
 
-**Що ви опануєте:** I swim once a week; I swim twice a week; What else do you need?; I only need milk
+**Що ви опануєте:** сказати, як часто ви щось робите, і що ще потрібно
 **Нові слова:** once, twice, else, only
 
 ## Інтро 1

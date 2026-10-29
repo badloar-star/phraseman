@@ -2,7 +2,7 @@
 
 **Ситуація.** Припустити, де друг, який затримується, й описати погоду біля місця зустрічі.
 
-**Що ви опануєте:** Perhaps he is on the bus; He is probably at home; It is quite cold
+**Що ви опануєте:** сказати, де людина може бути, якщо ви не впевнені: He is probably at home
 **Нові слова:** perhaps, probably, quite, suddenly
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Сообщить о кондиционере и освещении, попросить воду.
 
-**Что вы освоите:** The air conditioning is working; There is a power cut; I would like some tap water
+**Что вы освоите:** сказать, что работает, чего нет, и вежливо попросить
 **Новые слова:** air conditioning, light bulb, power cut, tap water
 
 ## Интро 1

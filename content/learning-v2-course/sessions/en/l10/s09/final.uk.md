@@ -2,7 +2,7 @@
 
 **Ситуація.** Пояснити, що купуєте зазвичай і що берете сьогодні, прочитати прості позначення на їжі.
 
-**Що ви опануєте:** I usually buy tinned tomatoes; I am buying a ready-made meal today; This drink is sugar-free; This cake is dairy-free
+**Що ви опануєте:** говорити про купівлю їжі: що берете зазвичай і що сьогодні
 **Нові слова:** tinned, ready-made, sugar-free, dairy-free
 
 ## Інтро 1

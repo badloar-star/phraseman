@@ -2,7 +2,7 @@
 
 **Ситуация.** Выбрать поезд без пересадок, купить билет и показать документы при посадке.
 
-**Что вы освоите:** I need a direct train; I am showing my boarding pass; This is my hand luggage
+**Что вы освоите:** объясниться на вокзале и в аэропорту
 **Новые слова:** direct, single ticket, boarding pass, hand luggage
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Повідомити, що ви впізнаєте людину або знайому особливість.
 
-**Що ви опануєте:** I recognize her; I recognize her handwriting; Do you recognize the signature?
+**Що ви опануєте:** сказати, що ви когось або щось упізнаєте: I recognize her
 **Нові слова:** recognize, handwriting, signature, accent
 
 ## Інтро 1

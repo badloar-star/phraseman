@@ -2,7 +2,7 @@
 
 **Ситуація.** Описати прогулянку й пояснити, куди йти.
 
-**Що ви опануєте:** We are walking uphill; We are walking downhill; Go straight ahead; I go to work on foot
+**Що ви опануєте:** пояснити, куди і як іти: Go straight ahead
 **Нові слова:** uphill, downhill, straight ahead, on foot
 
 ## Інтро 1

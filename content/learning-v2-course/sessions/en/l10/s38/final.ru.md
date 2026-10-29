@@ -2,7 +2,7 @@
 
 **Ситуация.** Собрать вещи, проверить сумку и поискать телефон перед выходом.
 
-**Что вы освоите:** Do you need anything; Everything is ready; There is nothing in the bag
+**Что вы освоите:** спросить, нужно ли что-то, и сказать, что всё готово или ничего нет
 **Новые слова:** anything, everything, nothing, somewhere
 
 ## Интро 1

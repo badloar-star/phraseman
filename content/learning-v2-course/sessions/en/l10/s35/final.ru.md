@@ -2,7 +2,7 @@
 
 **Ситуация.** Поздравить с днём рождения, сказать о свадьбе и описать праздник.
 
-**Что вы освоите:** Happy birthday; The wedding is today; We celebrate at home; We are having fun
+**Что вы освоите:** поздравить и рассказать о празднике
 **Новые слова:** birthday, wedding, celebrate, have fun
 
 ## Интро 1

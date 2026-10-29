@@ -2,7 +2,7 @@
 
 **Ситуация.** Уточнить данные собеседника и сообщить свои.
 
-**Что вы освоите:** What is your first name?; My surname is Brown; What is your date of birth?; I am writing my postcode
+**Что вы освоите:** спросить и назвать имя, фамилию, дату рождения и адрес
 **Новые слова:** first name, surname, date of birth, postcode
 
 ## Интро 1

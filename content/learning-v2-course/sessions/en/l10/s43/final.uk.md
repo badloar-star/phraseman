@@ -2,7 +2,7 @@
 
 **Ситуація.** Вибрати негострий соус і описати суп, скибку хліба й твердий сир.
 
-**Що ви опануєте:** This sauce is mild; The soup is creamy; I am cutting a thin slice
+**Що ви опануєте:** описати смак і вигляд їжі: mild, creamy, thin
 **Нові слова:** mild, creamy, thin, hard
 
 ## Інтро 1

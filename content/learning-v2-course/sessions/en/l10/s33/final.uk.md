@@ -2,7 +2,7 @@
 
 **Ситуація.** Назвати частини обличчя й руки, описати те, що бачите.
 
-**Що ви опануєте:** Your chin is wet; Your cheek is dirty; My lips are dry; My thumb is clean
+**Що ви опануєте:** описати обличчя й руки: My lips are dry
 **Нові слова:** chin, cheek, lip, thumb
 
 ## Інтро 1

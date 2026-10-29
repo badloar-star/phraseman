@@ -2,7 +2,7 @@
 
 **Ситуація.** Запропонувати гостям напої й попросити ложку.
 
-**Що ви опануєте:** I usually drink decaf coffee; I am making herbal tea; I would like some sparkling water
+**Що ви опануєте:** говорити про напої: що п’єте зазвичай, що робите зараз, чого хочете
 **Нові слова:** decaf, herbal, sparkling, teaspoon
 
 ## Інтро 1

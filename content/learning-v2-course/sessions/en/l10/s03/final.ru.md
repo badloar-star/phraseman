@@ -2,7 +2,7 @@
 
 **Ситуация.** Объяснить, где живёт друг, где вы работаете и где гуляете сейчас.
 
-**Что вы освоите:** He lives in a suburb; I work downtown; We are walking along the shore
+**Что вы освоите:** сказать, где кто живёт, работает и гуляет
 **Новые слова:** suburb, downtown, outskirts, shore
 
 ## Интро 1

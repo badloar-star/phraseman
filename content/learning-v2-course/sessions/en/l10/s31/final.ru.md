@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросить о месяце поездки и рассказать об обычных делах в течение года.
 
-**Что вы освоите:** Do you travel in April; We swim in June; I usually stay home in October; We visit our family in November
+**Что вы освоите:** спросить и сказать, в каком месяце что происходит: in April
 **Новые слова:** April, June, October, November
 
 ## Интро 1

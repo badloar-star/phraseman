@@ -2,7 +2,7 @@
 
 **Ситуация.** Попросить удобное место и найти нужную часть аэропорта.
 
-**Что вы освоите:** I would like a window seat; I prefer an aisle seat; Where is the boarding gate?; I am waiting at baggage claim
+**Что вы освоите:** объясниться в аэропорту: выбрать место и найти выход
 **Новые слова:** window seat, aisle seat, boarding gate, baggage claim
 
 ## Интро 1

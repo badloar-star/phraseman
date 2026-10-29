@@ -2,7 +2,7 @@
 
 **Ситуация.** Попросить номер телефона, сообщить о пропущенном звонке и оставить сообщение.
 
-**Что вы освоите:** Can I have your phone number?; I am sending a text message; I have a missed call; I am leaving a voicemail
+**Что вы освоите:** говорить о телефоне: попросить номер, сказать о звонке и сообщении
 **Новые слова:** phone number, text message, missed call, voicemail
 
 ## Интро 1

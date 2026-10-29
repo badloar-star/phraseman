@@ -2,7 +2,7 @@
 
 **Ситуація.** Вибрати відповідний номер у готелі й зателефонувати, щоб замовити їжу в номер.
 
-**Що ви опануєте:** I would like a single room; Do you have a double room?; We need a twin room; I am calling room service
+**Що ви опануєте:** вибрати номер у готелі й звернутися до персоналу
 **Нові слова:** single room, double room, twin room, room service
 
 ## Інтро 1

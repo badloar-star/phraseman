@@ -2,7 +2,7 @@
 
 **Ситуация.** Рассказать о привычных поездках, отдыхе у моря сейчас и купить билет туда и обратно.
 
-**Что вы освоите:** I often travel abroad; We are staying at the seaside; I need a return ticket
+**Что вы освоите:** говорить о поездках: что вы делаете обычно и сейчас
 **Новые слова:** abroad, seaside, countryside, return ticket
 
 ## Интро 1

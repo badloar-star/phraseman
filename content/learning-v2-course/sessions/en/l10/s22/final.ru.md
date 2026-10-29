@@ -2,7 +2,7 @@
 
 **Ситуация.** Сообщить, что вы узнаёте человека или знакомую особенность.
 
-**Что вы освоите:** I recognize her; I recognize her handwriting; Do you recognize the signature?
+**Что вы освоите:** сказать, что вы кого-то или что-то узнаёте: I recognize her
 **Новые слова:** recognize, handwriting, signature, accent
 
 ## Интро 1

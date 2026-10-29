@@ -2,7 +2,7 @@
 
 **Ситуация.** Посмотреть прогноз перед прогулкой и назвать температуру.
 
-**Что вы освоите:** I am checking the forecast; What is the temperature; It is one degree; It is minus two
+**Что вы освоите:** говорить о погоде и температуре: It is minus two
 **Новые слова:** forecast, temperature, degree, minus
 
 ## Интро 1

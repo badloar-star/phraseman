@@ -2,7 +2,7 @@
 
 **Ситуація.** Розповісти, що ви зазвичай купуєте й що готуєте зараз.
 
-**Що ви опануєте:** I usually buy cabbage; I am chopping garlic; We are cooking lentils
+**Що ви опануєте:** говорити про овочі: що купуєте й готуєте
 **Нові слова:** cabbage, cauliflower, garlic, lentils
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Обсудить материал тёплой одежды, выбрать подарок и описать одежду на себе.
 
-**Что вы освоите:** I like wool; I am buying a silk scarf; She is wearing a flowery dress
+**Что вы освоите:** говорить о тканях и одежде: wool, silk
 **Новые слова:** wool, silk, denim, flowery
 
 ## Интро 1

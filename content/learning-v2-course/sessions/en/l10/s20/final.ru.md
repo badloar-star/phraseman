@@ -2,7 +2,7 @@
 
 **Ситуация.** Сообщить, что вы ожидаете доставку, и разобраться в сообщении о доставке.
 
-**Что вы освоите:** I expect the parcel today; She expects confirmation; Do you have the tracking number?
+**Что вы освоите:** говорить о посылке: когда ждёте и как отследить
 **Новые слова:** confirmation, arrival, delivery, tracking number
 
 ## Интро 1

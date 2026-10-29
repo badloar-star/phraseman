@@ -2,7 +2,7 @@
 
 **Ситуація.** Описати, хто стукає у двері, і пошукати загублені ключі.
 
-**Що ви опануєте:** Somebody is knocking; Nobody is at home; I am looking everywhere
+**Що ви опануєте:** сказати, що хтось прийшов, нікого немає або ви все обшукали
 **Нові слова:** somebody, nobody, everywhere, anywhere
 
 ## Інтро 1

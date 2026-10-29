@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитати про місяць поїздки й розповісти про звичні справи протягом року.
 
-**Що ви опануєте:** Do you travel in April; We swim in June; I usually stay home in October; We visit our family in November
+**Що ви опануєте:** запитати й сказати, у якому місяці що відбувається: in April
 **Нові слова:** April, June, October, November
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Назвати однокласника й навчальні предмети, розповісти про заняття зараз.
 
-**Що ви опануєте:** My classmate is reading; English is my favourite subject; Maths is difficult; We are studying history
+**Що ви опануєте:** говорити про навчання й шкільні предмети
 **Нові слова:** classmate, subject, maths, history
 
 ## Інтро 1

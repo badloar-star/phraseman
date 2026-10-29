@@ -2,7 +2,7 @@
 
 **Ситуация.** Описать, кто стучит в дверь, и поискать потерянные ключи.
 
-**Что вы освоите:** Somebody is knocking; Nobody is at home; I am looking everywhere
+**Что вы освоите:** сказать, что кто-то пришёл, никого нет или вы всё обыскали
 **Новые слова:** somebody, nobody, everywhere, anywhere
 
 ## Интро 1

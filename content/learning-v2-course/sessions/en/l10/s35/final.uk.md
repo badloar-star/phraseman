@@ -2,7 +2,7 @@
 
 **Ситуація.** Привітати з днем народження, сказати про весілля й описати свято.
 
-**Що ви опануєте:** Happy birthday; The wedding is today; We celebrate at home; We are having fun
+**Що ви опануєте:** привітати й розповісти про свято
 **Нові слова:** birthday, wedding, celebrate, have fun
 
 ## Інтро 1

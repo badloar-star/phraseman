@@ -2,7 +2,7 @@
 
 **Ситуация.** Договориться о встрече и уточнить время транспорта.
 
-**Что вы освоите:** The train leaves soon; See you later; I am already here; The bus is on time
+**Что вы освоите:** сказать «скоро», «уже», «вовремя» и попрощаться
 **Новые слова:** soon, later, already, on time
 
 ## Интро 1

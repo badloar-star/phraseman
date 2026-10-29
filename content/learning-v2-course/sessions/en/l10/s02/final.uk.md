@@ -2,7 +2,7 @@
 
 **Ситуація.** Вибрати потяг без пересадок, купити квиток і показати документи під час посадки.
 
-**Що ви опануєте:** I need a direct train; I am showing my boarding pass; This is my hand luggage
+**Що ви опануєте:** порозумітися на вокзалі й в аеропорту
 **Нові слова:** direct, single ticket, boarding pass, hand luggage
 
 ## Інтро 1

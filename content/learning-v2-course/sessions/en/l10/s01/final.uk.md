@@ -2,7 +2,7 @@
 
 **Ситуація.** Розповісти про звичні поїздки, відпочинок біля моря зараз і купити квиток туди й назад.
 
-**Що ви опануєте:** I often travel abroad; We are staying at the seaside; I need a return ticket
+**Що ви опануєте:** говорити про подорожі: що ви робите зазвичай і зараз
 **Нові слова:** abroad, seaside, countryside, return ticket
 
 ## Інтро 1

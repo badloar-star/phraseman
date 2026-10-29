@@ -2,7 +2,7 @@
 
 **Ситуация.** Встретить гостя, пообедать во дворе и объяснить, где хранятся вещи.
 
-**Что вы освоите:** I am waiting on the porch; We are eating on the patio; The boxes are in the attic
+**Что вы освоите:** сказать, где вы сейчас и где лежат вещи в доме
 **Новые слова:** porch, patio, attic, cellar
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Простими словами описати самопочуття співрозмовнику.
 
-**Що ви опануєте:** I have a sore throat; She has earache; I have toothache; He has backache
+**Що ви опануєте:** сказати, що в кого болить: I have a sore throat
 **Нові слова:** sore throat, earache, toothache, backache
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Сказать, в каком месяце вы работаете, отдыхаете и навещаете друзей.
 
-**Что вы освоите:** I work in January; We meet in February; I travel in July; We visit our friends in August
+**Что вы освоите:** сказать, в каком месяце что происходит: in January
 **Новые слова:** January, February, July, August
 
 ## Интро 1

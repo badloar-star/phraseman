@@ -2,7 +2,7 @@
 
 **Ситуация.** Выбрать блюда по меню и сказать о размере порции.
 
-**Что вы освоите:** I would like a starter; I am choosing a main course; We need a side dish; This portion is small
+**Что вы освоите:** заказать еду в ресторане
 **Новые слова:** starter, main course, side dish, portion
 
 ## Интро 1

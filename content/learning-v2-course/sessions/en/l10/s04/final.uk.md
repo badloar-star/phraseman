@@ -2,7 +2,7 @@
 
 **Ситуація.** Повідомити про кондиціонер та освітлення, попросити воду.
 
-**Що ви опануєте:** The air conditioning is working; There is a power cut; I would like some tap water
+**Що ви опануєте:** сказати, що працює, чого немає, і ввічливо попросити
 **Нові слова:** air conditioning, light bulb, power cut, tap water
 
 ## Інтро 1

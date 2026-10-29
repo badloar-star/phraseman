@@ -2,7 +2,7 @@
 
 **Ситуация.** Рассказать о внуках, назвать возрастную группу и купить билеты.
 
-**Что вы освоите:** My grandson is playing; My granddaughter is reading; My son is a teenager; One adult ticket, please
+**Что вы освоите:** рассказать о семье и купить билет
 **Новые слова:** grandson, granddaughter, teenager, adult
 
 ## Интро 1

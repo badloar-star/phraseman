@@ -2,7 +2,7 @@
 
 **Ситуація.** Підготувати фрукти до сніданку й сказати, чи вистачає їжі.
 
-**Що ви опануєте:** I am peeling a grapefruit; We have enough bread; Breakfast is nearly ready
+**Що ви опануєте:** сказати про сніданок: що робите, чого вистачає, що майже готове
 **Нові слова:** apricot, grapefruit, enough, nearly
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Зустріти гостя, пообідати у дворі й пояснити, де зберігаються речі.
 
-**Що ви опануєте:** I am waiting on the porch; We are eating on the patio; The boxes are in the attic
+**Що ви опануєте:** сказати, де ви зараз і де лежать речі в домі
 **Нові слова:** porch, patio, attic, cellar
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Рассказать, когда вы гуляете, читаете, работаете и спите.
 
-**Что вы освоите:** I walk at lunchtime; I read before bedtime; I am asleep at midnight; I work in the daytime
+**Что вы освоите:** сказать, в какое время дня вы что-то делаете
 **Новые слова:** lunchtime, bedtime, midnight, daytime
 
 ## Интро 1

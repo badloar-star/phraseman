@@ -2,7 +2,7 @@
 
 **Ситуація.** Пояснити, де живе друг, де ви працюєте й де гуляєте зараз.
 
-**Що ви опануєте:** He lives in a suburb; I work downtown; We are walking along the shore
+**Що ви опануєте:** сказати, де хто живе, працює і гуляє
 **Нові слова:** suburb, downtown, outskirts, shore
 
 ## Інтро 1

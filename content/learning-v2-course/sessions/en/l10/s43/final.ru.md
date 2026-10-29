@@ -2,7 +2,7 @@
 
 **Ситуация.** Выбрать неострый соус и описать суп, ломтик хлеба и твёрдый сыр.
 
-**Что вы освоите:** This sauce is mild; The soup is creamy; I am cutting a thin slice
+**Что вы освоите:** описать вкус и вид еды: mild, creamy, thin
 **Новые слова:** mild, creamy, thin, hard
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Розповісти, коли ви гуляєте, читаєте, працюєте й спите.
 
-**Що ви опануєте:** I walk at lunchtime; I read before bedtime; I am asleep at midnight; I work in the daytime
+**Що ви опануєте:** сказати, у яку пору дня ви щось робите
 **Нові слова:** lunchtime, bedtime, midnight, daytime
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Простыми словами описать самочувствие собеседнику.
 
-**Что вы освоите:** I have a sore throat; She has earache; I have toothache; He has backache
+**Что вы освоите:** сказать, что у кого болит: I have a sore throat
 **Новые слова:** sore throat, earache, toothache, backache
 
 ## Интро 1

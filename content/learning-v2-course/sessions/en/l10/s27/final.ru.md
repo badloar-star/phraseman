@@ -2,7 +2,7 @@
 
 **Ситуация.** Описать прогулку и объяснить, куда идти.
 
-**Что вы освоите:** We are walking uphill; We are walking downhill; Go straight ahead; I go to work on foot
+**Что вы освоите:** объяснить, куда и как идти: Go straight ahead
 **Новые слова:** uphill, downhill, straight ahead, on foot
 
 ## Интро 1

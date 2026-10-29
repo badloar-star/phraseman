@@ -2,7 +2,7 @@
 
 **Ситуація.** Сказати, у якому місяці ви працюєте, відпочиваєте й відвідуєте друзів.
 
-**Що ви опануєте:** I work in January; We meet in February; I travel in July; We visit our friends in August
+**Що ви опануєте:** сказати, у якому місяці що відбувається: in January
 **Нові слова:** January, February, July, August
 
 ## Інтро 1

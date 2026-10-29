@@ -2,7 +2,7 @@
 
 **Ситуація.** Обговорити матеріал теплого одягу, вибрати подарунок і описати одяг на собі.
 
-**Що ви опануєте:** I like wool; I am buying a silk scarf; She is wearing a flowery dress
+**Що ви опануєте:** говорити про тканини й одяг: wool, silk
 **Нові слова:** wool, silk, denim, flowery
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Розповісти про онуків, назвати вікову групу й купити квитки.
 
-**Що ви опануєте:** My grandson is playing; My granddaughter is reading; My son is a teenager; One adult ticket, please
+**Що ви опануєте:** розповісти про родину й купити квиток
 **Нові слова:** grandson, granddaughter, teenager, adult
 
 ## Інтро 1

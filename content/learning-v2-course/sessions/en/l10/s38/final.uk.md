@@ -2,7 +2,7 @@
 
 **Ситуація.** Зібрати речі, перевірити сумку й пошукати телефон перед виходом.
 
-**Що ви опануєте:** Do you need anything; Everything is ready; There is nothing in the bag
+**Що ви опануєте:** запитати, чи потрібно щось, і сказати, що все готове або нічого немає
 **Нові слова:** anything, everything, nothing, somewhere
 
 ## Інтро 1

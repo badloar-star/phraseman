@@ -2,7 +2,7 @@
 
 **Ситуация.** Извиниться, поблагодарить, представить друга и попросить повторить.
 
-**Что вы освоите:** I want to apologise; Thank you for your help; Can I introduce my friend?; Can you repeat that?
+**Что вы освоите:** извиниться, поблагодарить, представить друга и переспросить
 **Новые слова:** apologise, thank, introduce, repeat
 
 ## Интро 1

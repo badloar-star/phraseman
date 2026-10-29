@@ -2,7 +2,7 @@
 
 **Ситуація.** Подивитися прогноз перед прогулянкою й назвати температуру.
 
-**Що ви опануєте:** I am checking the forecast; What is the temperature; It is one degree; It is minus two
+**Що ви опануєте:** говорити про погоду й температуру: It is minus two
 **Нові слова:** forecast, temperature, degree, minus
 
 ## Інтро 1

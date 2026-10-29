@@ -2,7 +2,7 @@
 
 **Ситуация.** Объяснить, что покупаете обычно и что берёте сегодня, прочитать простые обозначения на еде.
 
-**Что вы освоите:** I usually buy tinned tomatoes; I am buying a ready-made meal today; This drink is sugar-free; This cake is dairy-free
+**Что вы освоите:** говорить о покупках еды: что берёте обычно и что сегодня
 **Новые слова:** tinned, ready-made, sugar-free, dairy-free
 
 ## Интро 1

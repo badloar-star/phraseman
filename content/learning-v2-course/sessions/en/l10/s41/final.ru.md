@@ -2,7 +2,7 @@
 
 **Ситуация.** Предположить, где задержавшийся друг, и описать погоду у места встречи.
 
-**Что вы освоите:** Perhaps he is on the bus; He is probably at home; It is quite cold
+**Что вы освоите:** сказать, где человек может быть, если вы не уверены: He is probably at home
 **Новые слова:** perhaps, probably, quite, suddenly
 
 ## Интро 1

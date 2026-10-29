@@ -2,7 +2,7 @@
 
 **Ситуація.** Уточнити дані співрозмовника й повідомити свої.
 
-**Що ви опануєте:** What is your first name?; My surname is Brown; What is your date of birth?; I am writing my postcode
+**Що ви опануєте:** запитати й назвати ім’я, прізвище, дату народження й адресу
 **Нові слова:** first name, surname, date of birth, postcode
 
 ## Інтро 1

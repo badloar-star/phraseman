@@ -9,7 +9,13 @@ import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { StyleSheet, Text, View, type LayoutChangeEvent, type NativeSyntheticEvent, type StyleProp, type TextLayoutEventData, type TextStyle, type ViewStyle } from 'react-native';
 import Animated, { runOnJS, useAnimatedReaction, useAnimatedStyle } from 'react-native-reanimated';
 import { EASE_CSS_OUT, EASE_OUT, EASE_SPRING, frameMs, groupThousands, phase, useStoryFrameClock } from './story_frame_clock';
-import { balancedWidth } from './story_template_layout';
+import { balancedWidth, titleWords } from './story_template_layout';
+
+/**
+ * Запас ширины строки заголовка, dp. зачем (логи Сверки 29.10, кадр 13): строка 334 dp на устройстве округляется до пикселя (876 px = 333,71 dp),
+ * а слово шириной 333,71 dp в неё «не влезало» на доли пикселя — Android переносил последнюю букву. 2 dp ≈ 5 px перекрывают округление.
+ */
+const WORDS_SLACK_DP = 2;
 
 export type EnterKind = 'a' | 'pop' | 'fade' | 'rise';
 
@@ -83,7 +89,7 @@ function predictedLines(words: readonly string[], widths: readonly number[], gap
 
 /** Заголовок, слова которого входят по очереди (.w.a). Ширина блока выравнивается как text-wrap: balance после первого замера. */
 export const Words = memo(function Words({ text, d0, step = 50, style, maxWidth, gap, testID, accessibilityRole }: WordsProps) {
-  const words = useMemo(() => text.split(' ').filter(Boolean), [text]);
+  const words = useMemo(() => titleWords(text), [text]);
   const [widths, setWidths] = useState<readonly number[] | null>(null);
   const measured = useMemo(() => new Map<number, number>(), [text]); // eslint-disable-line react-hooks/exhaustive-deps -- зачем: замер заново на новый текст
   const onWord = useCallback((i: number, e: LayoutChangeEvent) => {
@@ -99,7 +105,7 @@ export const Words = memo(function Words({ text, d0, step = 50, style, maxWidth,
     measured.set(i, next); // guard-ok: Map в памяти — ширины слов для выравнивания строк, не запись данных
     if (measured.size === words.length) setWidths(words.map((_, k) => measured.get(k) ?? 0));
   }, [measured, words, text]);
-  const width = widths ? balancedWidth(widths, gap, maxWidth) : maxWidth;
+  const width = widths ? balancedWidth(widths, gap, maxWidth) + WORDS_SLACK_DP : maxWidth;
   useEffect(() => {
     if (!widths) return;
     const flat = StyleSheet.flatten(style) ?? {};

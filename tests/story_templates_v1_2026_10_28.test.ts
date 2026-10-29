@@ -10,7 +10,7 @@ import {
 import { storyTemplateFromEvent } from '../components/stories/templates/story_template_from_event';
 import { cubicBezier, EASE_OUT, frameMs, groupThousands, phase, pingPong } from '../components/stories/templates/story_frame_clock';
 import {
-  balancedWidth, coinDrops, confettiPieces, monthCells, snowFlakes, splitAlpha, streakWeekCells, summitTowerSize, weekBars, WEEK_BAR_MAX,
+  balancedWidth, coinDrops, confettiPieces, monthCells, snowFlakes, splitAlpha, streakWeekCells, summitTowerSize, titleWords, weekBars, WEEK_BAR_MAX,
 } from '../components/stories/templates/story_template_layout';
 import { dayKeyToMs, DAY_MS } from '../components/stories/templates/story_template_dates';
 import { mix } from '../components/stories/templates/story_template_palette';
@@ -146,6 +146,18 @@ describe('шаблоны историй v1 — формулы макета', () 
     expect(one).toBeLessThanOrEqual(229);
     expect(balancedWidth([150, 150, 150], 9, 334)).toBeGreaterThanOrEqual(309);
     expect(balancedWidth([], 9, 334)).toBe(0);
+  });
+
+  // зачем (логи Сверки 29.10, кадр 13): «добавили 14 человек» было одним словом 333,71 dp при строке 334 — рвалось «челове|к».
+  // Граница перед числом после слова есть (как words() макета), склейка «число → слово» и разряды «10 000» — остаются.
+  it('слова заголовка: граница перед числом после слова, «14 человек» и «10 000» не делятся', () => {
+    const nb = ' ';
+    expect(titleWords(tplText('ru', 'packAddedTitle', { count: 14 }))).toEqual(['Набор', 'добавили', `14${nb}человек`]);
+    expect(titleWords(`Получено${nb}10${nb}000${nb}монет`)).toEqual(['Получено', `10${nb}000${nb}монет`]);
+    expect(titleWords(`14${nb}people added your pack`)).toEqual([`14${nb}people`, 'added', 'your', 'pack']);
+    expect(titleWords(`Ранг${nb}−5${nb}мест`)).toEqual(['Ранг', `−5${nb}мест`]);
+    expect(titleWords('Уровень A2 открыт')).toEqual(['Уровень', 'A2', 'открыт']);
+    expect(titleWords('  ')).toEqual([]);
   });
 
   it('неделя серии: горят последние min(days, 7) дней, буквы дней — по дате события', () => {

@@ -36,6 +36,33 @@ export function balancedWidth(widths: readonly number[], gap: number, maxWidth: 
   return Math.ceil(hi);
 }
 
+const NBSP = ' ';
+const DIGIT = /\d/;
+const SIGN = /[+−-]/;
+
+/**
+ * Слова заголовка «лесенкой» — как words() макета (деление по пробелам), но склейку glueNumbers уважаем только «число → слово»:
+ * «14 человек», «10 000 монет» остаются одним словом. Неразрывный пробел ПЕРЕД числом после слова («добавили 14») — граница слов.
+ *
+ * зачем (логи Сверки 29.10, кадр 13): glueNumbers склеивает и слово перед числом, и заголовок «Набор добавили 14 человек» делился
+ * всего на 2 слова — «Набор» и «добавили 14 человек» шириной 333,71 dp при строке 334; перенос внутри слова рвал «челове|к».
+ * В макете граница перед числом есть: «Набор добавили / 14 человек».
+ */
+export function titleWords(text: string): string[] {
+  const out: string[] = [];
+  for (const chunk of text.split(' ')) {
+    let start = 0;
+    for (let i = 1; i < chunk.length - 1; i += 1) {
+      if (chunk[i] !== NBSP) continue;
+      const after = chunk[i + 1] ?? '';
+      const startsNumber = DIGIT.test(after) || (SIGN.test(after) && DIGIT.test(chunk[i + 2] ?? ''));
+      if (startsNumber && !DIGIT.test(chunk[i - 1] ?? '')) { out.push(chunk.slice(start, i)); start = i + 1; }
+    }
+    out.push(chunk.slice(start));
+  }
+  return out.filter(Boolean);
+}
+
 // ── частицы ──────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 export type ConfettiPiece = Readonly<{ color: string; dx: number; dy: number; rot: number; d: number }>;

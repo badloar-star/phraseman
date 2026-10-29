@@ -89,9 +89,6 @@
 .sw { width: 22px; height: 22px; border-radius: 50%; flex: none; }
 .float { animation: gfloat 5s ease-in-out infinite alternate; }
 @keyframes gfloat { to { translate: 0 -8px; } }
-.plus-crown { width:32px; height:22px; object-fit:contain; vertical-align:middle; }
-.pv-pin, .ptag, .ph.lt .ptag { background:transparent; box-shadow:none; padding:0; }
-.pv-pin i, .pv-pin .plus-crown { width:100%; height:100%; object-fit:contain; }
 </style>
 <style>
   /* зачем (владелец 11.10: «наборы должны быть компактными плашечками, как были, но дизайн плашки — удобнее и красивее, в стиле 2.0»):
@@ -317,7 +314,7 @@
 <script>
 (() => {
 const KK = K;
-const DIA = '<img class="plus-crown" src="assets/plus-crown.webp" alt="Plus">';
+const DIA = '&#xf2a1;';
 const PLUS = new Set([5, 9, 11]);
 const FRAME = { 5: 'ring', 9: 'double', 11: 'dash' };
 const CUR = { v: 'B', lt: false };
@@ -344,9 +341,9 @@ const AVR = (rank, size, frameOverride) => {
   return `<span class="pav pv-${fr}">${img}${pin}</span>`;
 };
 const TAG = (big) => {
-  if (CUR.v === 'A' || CUR.v === 'AB') return `<span class="ptag${big ? '' : ' s'}"><i>${DIA}</i></span>`;
+  if (CUR.v === 'A' || CUR.v === 'AB') return `<span class="ptag${big ? '' : ' s'}"><i>${DIA}</i>Plus</span>`;
   if (CUR.v === 'C') return `<span class="pdia">${DIA}</span>`;
-  if (big) return `<span class="ptag"><i>${DIA}</i></span>`;
+  if (big) return `<span class="ptag"><i>${DIA}</i>Plus</span>`;
   return '';
 };
 const tagNames = (h, big) => h.replace(/(?<!class="value")>(Ирина|Марк|Алекс)((?: · вы)?)</g, (m, n, me) => `>${n}${me}${TAG(big)}<`);
@@ -372,7 +369,7 @@ function account(){return phone(`${back('Аккаунт')}<div class="center" st
 
   return { settings, account };
 })();
-const PLUSCARD = `<div class="pcard"><div class="grow"><div class="k"><i style="font-size:12px;margin-right:5px">${DIA}</i></div><div class="v">Всё открыто · с 12 августа</div></div><span class="ch">${KK.icon('fwd','s18')}</span></div>`;
+const PLUSCARD = `<div class="pcard"><div class="grow"><div class="k"><i style="font-size:12px;margin-right:5px">${DIA}</i>PLUS</div><div class="v">Всё открыто · с 12 августа</div></div><span class="ch">${KK.icon('fwd','s18')}</span></div>`;
 const FRAMES = () => `<div class="eyebrow" style="margin:24px 4px 10px;font-size:13px;line-height:16px;letter-spacing:3px">Рамка аватара · Plus</div><div class="frames"><div class="o on">${AVR(5,44,'ring')}Сияние</div><div class="o">${AVR(5,44,'double')}Двойная</div><div class="o">${AVR(5,44,'dash')}Пунктир</div></div>`;
 const sSettings = () => {
   let h = tagNames(PRF.settings(), true);

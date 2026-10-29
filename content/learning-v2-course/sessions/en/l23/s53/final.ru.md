@@ -15,7 +15,7 @@ Village — деревня или село, небольшое поселени�
 
 - ✅ **I have visited a small village.**
 - ❌ I has visited a small village. — *С I и we нужно have, с he и she — has.*
-- ❌ I have visit a small village. — *После have или has нужна третья форма: visited.*
+- ❌ I have visit a small village. — *После have или has нужна особая форма: visited.*
 
 ---
 
@@ -23,13 +23,13 @@ Village — деревня или село, небольшое поселени�
 
 ### Узнали о местных жителях
 
-На экскурсии вам рассказали о людях, которые живут в этом районе. Вы делитесь тем, что узнали: We have learned about the local population — мы узнали о местном населении. Population означает «население». Собираем: we + have + learned + about the local population. После we ставим have, learned — третью форму learn. About связывает действие с темой: о ком вы узнали. Have learned показывает, что теперь у вас есть эти сведения.
+На экскурсии вам рассказали о людях, которые живут в этом районе. Вы делитесь тем, что узнали: We have learned about the local population — мы узнали о местном населении. Population означает «население». Собираем: we + have + learned + about the local population. После we ставим have, learned — форму learn. About связывает действие с темой: о ком вы узнали. Have learned показывает, что теперь у вас есть эти сведения.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have learned about the local population.**
 - ❌ We has learned about the local population. — *С I и we нужно have, с he и she — has.*
-- ❌ We have learn about the local population. — *После have или has нужна третья форма: learned.*
+- ❌ We have learn about the local population. — *После have или has нужна особая форма: learned.*
 
 ---
 
@@ -37,13 +37,13 @@ Village — деревня или село, небольшое поселени�
 
 ### Опыт дальней поездки
 
-Знакомый рассказывает о друге, который уже побывал на другом континенте. He has travelled to another continent — он путешествовал на другой континент. Continent означает «континент». Собираем: he + has + travelled + to another continent. С he ставим has; travelled — третья форма travel. To вводит направление поездки. Has travelled сообщает об опыте без указания даты.
+Знакомый рассказывает о друге, который уже побывал на другом континенте. He has travelled to another continent — он путешествовал на другой континент. Continent означает «континент». Собираем: he + has + travelled + to another continent. С he ставим has; travelled — форма travel после have. To вводит направление поездки. Has travelled сообщает об опыте без указания даты.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has travelled to another continent.**
 - ❌ He have travelled to another continent. — *С I и we нужно have, с he и she — has.*
-- ❌ He has travel to another continent. — *После have или has нужна третья форма: travelled.*
+- ❌ He has travel to another continent. — *После have или has нужна особая форма: travelled.*
 
 ---
 
@@ -66,8 +66,8 @@ Village — деревня или село, небольшое поселени�
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i03; family: context_gap_grammar -->
 I have ___ a small village. → **visited** · visit · visits
-- visit — *Нужна третья форма: visited.*
-- visits — *Нужна третья форма: visited.*
+- visit — *Нужна форма после have: visited.*
+- visits — *Нужна форма после have: visited.*
 
 **5 · Карточка слова — border**
 <!-- interaction_id: en:lesson-23:session-53:word:border; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a small village. → **visited** · visit · visits
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i06; family: context_gap_grammar -->
 She has ___ the border. → **crossed** · cross · crosses
-- cross — *Нужна третья форма: crossed.*
-- crosses — *Нужна третья форма: crossed.*
+- cross — *Нужна форма после have: crossed.*
+- crosses — *Нужна форма после have: crossed.*
 
 **9 · Карточка слова — population**
 <!-- interaction_id: en:lesson-23:session-53:word:population; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ the border. → **crossed** · cross · crosses
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i09; family: context_gap_grammar -->
 We have ___ about the local population. → **learned** · learn · learns
-- learn — *Нужна третья форма: learned.*
-- learns — *Нужна третья форма: learned.*
+- learn — *Нужна форма после have: learned.*
+- learns — *Нужна форма после have: learned.*
 
 **13 · Карточка слова — continent**
 <!-- interaction_id: en:lesson-23:session-53:word:continent; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ about the local population. → **learned** · learn · learns
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-53:i12; family: context_gap_grammar -->
 He has ___ to another continent. → **travelled** · travel · travels
-- travel — *Нужна третья форма: travelled.*
-- travels — *Нужна третья форма: travelled.*
+- travel — *Нужна форма после have: travelled.*
+- travels — *Нужна форма после have: travelled.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-53:i13; family: speed_match -->

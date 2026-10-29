@@ -9,13 +9,13 @@
 
 ### Зустріли кмітливого студента
 
-На занятті ви познайомилися зі студентом, який швидко розв’язав складну задачу. I have met a clever student — я зустрічав розумного студента. Clever тут означає «кмітливий». Складаємо: I + have + met + a clever student. Після I ставимо have, met — третя форма meet. Clever описує student і стоїть перед ним. Have met повідомляє про досвід знайомства.
+На занятті ви познайомилися зі студентом, який швидко розв’язав складну задачу. I have met a clever student — я зустрічав розумного студента. Clever тут означає «кмітливий». Складаємо: I + have + met + a clever student. Після I ставимо have, met — форма meet після have. Clever описує student і стоїть перед ним. Have met повідомляє про досвід знайомства.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have met a clever student.**
-- ❌ I has met a clever student. — *Виберіть have або has за підметом.*
-- ❌ I have meet a clever student. — *Після have або has потрібна третя форма: met.*
+- ❌ I has met a clever student. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have meet a clever student. — *Після have або has потрібна особлива форма: met.*
 
 ---
 
@@ -28,8 +28,8 @@ Unfriendly — недружній, протилежність знайомого
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have met an unfriendly driver.**
-- ❌ We has met an unfriendly driver. — *Виберіть have або has за підметом.*
-- ❌ We have meet an unfriendly driver. — *Після have або has потрібна третя форма: met.*
+- ❌ We has met an unfriendly driver. — *Виберіть have або has за тим, хто діє.*
+- ❌ We have meet an unfriendly driver. — *Після have або has потрібна особлива форма: met.*
 
 ---
 
@@ -37,13 +37,13 @@ Unfriendly — недружній, протилежність знайомого
 
 ### Розповідає про неприємну зустріч
 
-Друг розповідає про людину, яка навмисно кривдила інших. He has met a cruel person — він зустрічав жорстоку людину. Cruel означає «жорстокий». Складаємо: he + has + met + a cruel person. Із he використовуємо has, met — третя форма meet. Прикметник cruel стоїть перед person. Has met повідомляє про досвід зустрічі; коли вона відбулася, тут не уточнюємо.
+Друг розповідає про людину, яка навмисно кривдила інших. He has met a cruel person — він зустрічав жорстоку людину. Cruel означає «жорстокий». Складаємо: he + has + met + a cruel person. Із he використовуємо has, met — форма meet після have. Прикметник cruel стоїть перед person. Has met повідомляє про досвід зустрічі; коли вона відбулася, тут не уточнюємо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has met a cruel person.**
-- ❌ He have met a cruel person. — *Виберіть have або has за підметом.*
-- ❌ He has meet a cruel person. — *Після have або has потрібна третя форма: met.*
+- ❌ He have met a cruel person. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has meet a cruel person. — *Після have або has потрібна особлива форма: met.*
 
 ---
 
@@ -66,8 +66,8 @@ Unfriendly — недружній, протилежність знайомого
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-26:i03; family: context_gap_grammar -->
 I have ___ a clever student. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **5 · Картка слова — talkative**
 <!-- interaction_id: en:lesson-23:session-26:word:talkative; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a clever student. → **met** · meet · meets
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-26:i06; family: context_gap_grammar -->
 She has ___ a talkative neighbour. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **9 · Картка слова — unfriendly**
 <!-- interaction_id: en:lesson-23:session-26:word:unfriendly; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a talkative neighbour. → **met** · meet · meets
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-26:i09; family: context_gap_grammar -->
 We have ___ an unfriendly driver. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **13 · Картка слова — cruel**
 <!-- interaction_id: en:lesson-23:session-26:word:cruel; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ an unfriendly driver. → **met** · meet · meets
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-26:i12; family: context_gap_grammar -->
 He has ___ a cruel person. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-26:i13; family: speed_match -->

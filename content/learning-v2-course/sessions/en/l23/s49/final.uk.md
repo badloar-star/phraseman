@@ -15,7 +15,7 @@ Wise — мудрий або розумний, коли йдеться про р
 
 - ✅ **I have made a wise decision.**
 - ❌ I has made a wise decision. — *З I та we потрібно have, з he та she — has.*
-- ❌ I have make a wise decision. — *Після have або has потрібна третя форма: made.*
+- ❌ I have make a wise decision. — *Після have або has потрібна особлива форма: made.*
 
 ---
 
@@ -23,13 +23,13 @@ Wise — мудрий або розумний, коли йдеться про р
 
 ### Безглузда відмовка
 
-Друг, який запізнився, пояснив, що не вийшов із дому, бо кіт заснув на його куртці. Ви із сестрою обговорюєте почуте: We have heard a ridiculous excuse — ми почули безглузду відмовку. Ridiculous означає «безглуздий». Складаємо: we + have + heard + a ridiculous excuse. Із we використовуємо have, heard — третя форма hear. Прикметник ridiculous ставимо перед excuse. Have heard повідомляє, що ви вже почули цю відмовку.
+Друг, який запізнився, пояснив, що не вийшов із дому, бо кіт заснув на його куртці. Ви із сестрою обговорюєте почуте: We have heard a ridiculous excuse — ми почули безглузду відмовку. Ridiculous означає «безглуздий». Складаємо: we + have + heard + a ridiculous excuse. Із we використовуємо have, heard — форма hear після have. Прикметник ridiculous ставимо перед excuse. Have heard повідомляє, що ви вже почули цю відмовку.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have heard a ridiculous excuse.**
 - ❌ We has heard a ridiculous excuse. — *З I та we потрібно have, з he та she — has.*
-- ❌ We have hear a ridiculous excuse. — *Після have або has потрібна третя форма: heard.*
+- ❌ We have hear a ridiculous excuse. — *Після have або has потрібна особлива форма: heard.*
 
 ---
 
@@ -37,13 +37,13 @@ Wise — мудрий або розумний, коли йдеться про р
 
 ### Розповідає про знайомство
 
-Друг познайомився з людиною, яка швидко розібралася зі складним завданням. He has met an intelligent person — він познайомився з розумною людиною. Intelligent означає «розумний». Складаємо: he + has + met + an intelligent person. Після he ставимо has, met — третя форма meet. Intelligent описує person і стоїть перед ним; вибираємо an, тому що intelligent починається з голосного звука. Has met повідомляє про знайомство, яке вже відбулося.
+Друг познайомився з людиною, яка швидко розібралася зі складним завданням. He has met an intelligent person — він познайомився з розумною людиною. Intelligent означає «розумний». Складаємо: he + has + met + an intelligent person. Після he ставимо has, met — форма meet після have. Intelligent описує person і стоїть перед ним; вибираємо an, тому що intelligent починається з голосного звука. Has met повідомляє про знайомство, яке вже відбулося.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has met an intelligent person.**
 - ❌ He have met an intelligent person. — *З I та we потрібно have, з he та she — has.*
-- ❌ He has meet an intelligent person. — *Після have або has потрібна третя форма: met.*
+- ❌ He has meet an intelligent person. — *Після have або has потрібна особлива форма: met.*
 
 ---
 
@@ -66,8 +66,8 @@ Wise — мудрий або розумний, коли йдеться про р
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i03; family: context_gap_grammar -->
 I have ___ a wise decision. → **made** · make · makes
-- make — *Потрібна третя форма: made.*
-- makes — *Потрібна третя форма: made.*
+- make — *Потрібна форма після have: made.*
+- makes — *Потрібна форма після have: made.*
 
 **5 · Картка слова — foolish**
 <!-- interaction_id: en:lesson-23:session-49:word:foolish; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a wise decision. → **made** · make · makes
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i06; family: context_gap_grammar -->
 She has ___ a foolish mistake. → **made** · make · makes
-- make — *Потрібна третя форма: made.*
-- makes — *Потрібна третя форма: made.*
+- make — *Потрібна форма після have: made.*
+- makes — *Потрібна форма після have: made.*
 
 **9 · Картка слова — ridiculous**
 <!-- interaction_id: en:lesson-23:session-49:word:ridiculous; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a foolish mistake. → **made** · make · makes
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i09; family: context_gap_grammar -->
 We have ___ a ridiculous excuse. → **heard** · hear · hears
-- hear — *Потрібна третя форма: heard.*
-- hears — *Потрібна третя форма: heard.*
+- hear — *Потрібна форма після have: heard.*
+- hears — *Потрібна форма після have: heard.*
 
 **13 · Картка слова — intelligent**
 <!-- interaction_id: en:lesson-23:session-49:word:intelligent; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a ridiculous excuse. → **heard** · hear · hears
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i12; family: context_gap_grammar -->
 He has ___ an intelligent person. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-49:i13; family: speed_match -->

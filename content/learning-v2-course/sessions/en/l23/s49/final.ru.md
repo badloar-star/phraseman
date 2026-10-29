@@ -15,7 +15,7 @@ Wise — мудрый или разумный, когда речь о решен
 
 - ✅ **I have made a wise decision.**
 - ❌ I has made a wise decision. — *С I и we нужно have, с he и she — has.*
-- ❌ I have make a wise decision. — *После have или has нужна третья форма: made.*
+- ❌ I have make a wise decision. — *После have или has нужна особая форма: made.*
 
 ---
 
@@ -23,13 +23,13 @@ Wise — мудрый или разумный, когда речь о решен
 
 ### Нелепая отговорка
 
-Опоздавший друг объяснил, что не вышел из дома, потому что кот уснул на его куртке. Вы с сестрой обсуждаете услышанное: We have heard a ridiculous excuse — мы услышали нелепую отговорку. Ridiculous означает «нелепый». Собираем: we + have + heard + a ridiculous excuse. С we используем have, heard — третья форма hear. Прилагательное ridiculous ставим перед excuse. Have heard сообщает, что вы уже услышали эту отговорку.
+Опоздавший друг объяснил, что не вышел из дома, потому что кот уснул на его куртке. Вы с сестрой обсуждаете услышанное: We have heard a ridiculous excuse — мы услышали нелепую отговорку. Ridiculous означает «нелепый». Собираем: we + have + heard + a ridiculous excuse. С we используем have, heard — форма hear после have. Прилагательное ridiculous ставим перед excuse. Have heard сообщает, что вы уже услышали эту отговорку.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have heard a ridiculous excuse.**
 - ❌ We has heard a ridiculous excuse. — *С I и we нужно have, с he и she — has.*
-- ❌ We have hear a ridiculous excuse. — *После have или has нужна третья форма: heard.*
+- ❌ We have hear a ridiculous excuse. — *После have или has нужна особая форма: heard.*
 
 ---
 
@@ -37,13 +37,13 @@ Wise — мудрый или разумный, когда речь о решен
 
 ### Рассказывает о знакомстве
 
-Друг познакомился с человеком, который быстро разобрался в сложной задаче. He has met an intelligent person — он познакомился с умным человеком. Intelligent означает «умный». Собираем: he + has + met + an intelligent person. После he ставим has, met — третья форма meet. Intelligent описывает person и стоит перед ним; выбираем an, потому что intelligent начинается с гласного звука. Has met сообщает о состоявшемся знакомстве.
+Друг познакомился с человеком, который быстро разобрался в сложной задаче. He has met an intelligent person — он познакомился с умным человеком. Intelligent означает «умный». Собираем: he + has + met + an intelligent person. После he ставим has, met — форма meet после have. Intelligent описывает person и стоит перед ним; выбираем an, потому что intelligent начинается с гласного звука. Has met сообщает о состоявшемся знакомстве.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has met an intelligent person.**
 - ❌ He have met an intelligent person. — *С I и we нужно have, с he и she — has.*
-- ❌ He has meet an intelligent person. — *После have или has нужна третья форма: met.*
+- ❌ He has meet an intelligent person. — *После have или has нужна особая форма: met.*
 
 ---
 
@@ -66,8 +66,8 @@ Wise — мудрый или разумный, когда речь о решен
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i03; family: context_gap_grammar -->
 I have ___ a wise decision. → **made** · make · makes
-- make — *Нужна третья форма: made.*
-- makes — *Нужна третья форма: made.*
+- make — *Нужна форма после have: made.*
+- makes — *Нужна форма после have: made.*
 
 **5 · Карточка слова — foolish**
 <!-- interaction_id: en:lesson-23:session-49:word:foolish; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a wise decision. → **made** · make · makes
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i06; family: context_gap_grammar -->
 She has ___ a foolish mistake. → **made** · make · makes
-- make — *Нужна третья форма: made.*
-- makes — *Нужна третья форма: made.*
+- make — *Нужна форма после have: made.*
+- makes — *Нужна форма после have: made.*
 
 **9 · Карточка слова — ridiculous**
 <!-- interaction_id: en:lesson-23:session-49:word:ridiculous; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a foolish mistake. → **made** · make · makes
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i09; family: context_gap_grammar -->
 We have ___ a ridiculous excuse. → **heard** · hear · hears
-- hear — *Нужна третья форма: heard.*
-- hears — *Нужна третья форма: heard.*
+- hear — *Нужна форма после have: heard.*
+- hears — *Нужна форма после have: heard.*
 
 **13 · Карточка слова — intelligent**
 <!-- interaction_id: en:lesson-23:session-49:word:intelligent; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a ridiculous excuse. → **heard** · hear · hears
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-49:i12; family: context_gap_grammar -->
 He has ___ an intelligent person. → **met** · meet · meets
-- meet — *Нужна третья форма: met.*
-- meets — *Нужна третья форма: met.*
+- meet — *Нужна форма после have: met.*
+- meets — *Нужна форма после have: met.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-49:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Где болит
 
-Wrist — запястье, часть руки рядом с кистью. I have hurt my wrist — я повредил запястье. Случившееся важно сейчас: запястье болит. У hurt третья форма тоже hurt. Перед названием части тела здесь используем my: речь о моём запястье.
+Wrist — запястье, часть руки рядом с кистью. I have hurt my wrist — я повредил запястье. Случившееся важно сейчас: запястье болит. У hurt форма после have тоже hurt. Перед названием части тела здесь используем my: речь о моём запястье.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have hurt my wrist.**
 - ❌ I has hurt my wrist. — *С I используем have.*
-- ❌ I have hurts my wrist. — *Третья форма — hurt.*
+- ❌ I have hurts my wrist. — *Форма после have — hurt.*
 
 ---
 
@@ -23,13 +23,13 @@ Wrist — запястье, часть руки рядом с кистью. I ha
 
 ### Горячий напиток
 
-Tongue — язык во рту. Это не language, то есть язык общения. She has burnt her tongue — она обожгла язык. Burnt — третья форма burn; также употребляется burned. Her tongue означает «её язык».
+Tongue — язык во рту. Это не language, то есть язык общения. She has burnt her tongue — она обожгла язык. Burnt — форма burn после have; также употребляется burned. Her tongue означает «её язык».
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She has burnt her tongue.**
 - ❌ She have burnt her tongue. — *С she нужно has.*
-- ❌ She has burn her tongue. — *После has нужна третья форма burnt.*
+- ❌ She has burn her tongue. — *После has нужна форма burnt.*
 
 ---
 
@@ -37,13 +37,13 @@ Tongue — язык во рту. Это не language, то есть язык о
 
 ### Порезали ладонь
 
-Вы порезали ладонь о разбитую чашку и объясняете, что случилось. I have cut my palm — я порезал ладонь. Palm означает «ладонь». Собираем: I + have + cut + my palm. С I ставим have; третья форма cut пишется так же, как начальная. My palm показывает, что повреждена ваша ладонь. Have cut связывает случившееся с результатом сейчас: на ладони порез.
+Вы порезали ладонь о разбитую чашку и объясняете, что случилось. I have cut my palm — я порезал ладонь. Palm означает «ладонь». Собираем: I + have + cut + my palm. С I ставим have; форма cut пишется так же, как начальная. My palm показывает, что повреждена ваша ладонь. Have cut связывает случившееся с результатом сейчас: на ладони порез.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have cut my palm.**
 - ❌ I has cut my palm. — *С I нужно have.*
-- ❌ I have cuts my palm. — *Третья форма — cut без s.*
+- ❌ I have cuts my palm. — *Форма после have — cut без s.*
 
 ---
 
@@ -66,8 +66,8 @@ Tongue — язык во рту. Это не language, то есть язык о
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-24:i03; family: context_gap_grammar -->
 I have ___ my wrist. → **hurt** · hurts · hurting
-- hurts — *Нужна третья форма: hurt.*
-- hurting — *Нужна третья форма: hurt.*
+- hurts — *Нужна форма после have: hurt.*
+- hurting — *Нужна форма после have: hurt.*
 
 **5 · Карточка слова — tongue**
 <!-- interaction_id: en:lesson-23:session-24:word:tongue; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ my wrist. → **hurt** · hurts · hurting
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-24:i06; family: context_gap_grammar -->
 She has ___ her tongue. → **burnt** · burn · burns
-- burn — *Нужна третья форма: burnt.*
-- burns — *Нужна третья форма: burnt.*
+- burn — *Нужна форма после have: burnt.*
+- burns — *Нужна форма после have: burnt.*
 
 **9 · Карточка слова — palm**
 <!-- interaction_id: en:lesson-23:session-24:word:palm; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ her tongue. → **burnt** · burn · burns
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-24:i09; family: context_gap_grammar -->
 I have ___ my palm. → **cut** · cuts · cutting
-- cuts — *Нужна третья форма: cut.*
-- cutting — *Нужна третья форма: cut.*
+- cuts — *Нужна форма после have: cut.*
+- cutting — *Нужна форма после have: cut.*
 
 **13 · Карточка слова — jaw**
 <!-- interaction_id: en:lesson-23:session-24:word:jaw; family: word_card -->
@@ -126,8 +126,8 @@ I have ___ my palm. → **cut** · cuts · cutting
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-24:i12; family: context_gap_grammar -->
 He has ___ his jaw. → **hurt** · hurts · hurting
-- hurts — *Нужна третья форма: hurt.*
-- hurting — *Нужна третья форма: hurt.*
+- hurts — *Нужна форма после have: hurt.*
+- hurting — *Нужна форма после have: hurt.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-24:i13; family: speed_match -->

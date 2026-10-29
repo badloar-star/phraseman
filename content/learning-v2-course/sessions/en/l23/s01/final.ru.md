@@ -9,13 +9,13 @@
 
 ### Ошибка в подсчёте видна сейчас
 
-Вы пересчитали билеты и обнаружили ошибку: I have miscounted the tickets — я ошибся при подсчёте билетов. Miscount означает «ошибиться при подсчёте». Present Perfect связывает сделанное с ситуацией сейчас. Собираем: I + have + miscounted + the tickets. Общая схема: I/you/we/they + have, he/she/it + has, затем третья форма глагола. У правильного miscount это miscounted с -ed. Have и has здесь помогают построить время и не означают «иметь».
+Вы пересчитали билеты и обнаружили ошибку: I have miscounted the tickets — я ошибся при подсчёте билетов. Miscount означает «ошибиться при подсчёте». have / has + done связывает сделанное с ситуацией сейчас. Собираем: I + have + miscounted + the tickets. Общая схема: I/you/we/they + have, he/she/it + has, затем форма после have (done, seen). У правильного miscount это miscounted с -ed. Have и has здесь помогают построить время и не означают «иметь».
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have miscounted the tickets.**
 - ❌ I has miscounted the tickets. — *С I используем have.*
-- ❌ I have miscount the tickets. — *Нужны have/has и третья форма глагола.*
+- ❌ I have miscount the tickets. — *Нужны have/has и форма после have (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### На линии другой человек
 
-Подруга хотела позвонить знакомому, но ошиблась в номере. She has misdialled the number — она набрала неправильный номер. Misdial означает «набрать неправильный номер». Собираем: she + has + misdialled + the number. С she используем has, затем третью форму misdialled. Это британское написание; американское misdialed тоже правильно. Has misdialled связывает ошибку с результатом сейчас: на линии другой человек.
+Подруга хотела позвонить знакомому, но ошиблась в номере. She has misdialled the number — она набрала неправильный номер. Misdial означает «набрать неправильный номер». Собираем: she + has + misdialled + the number. С she используем has, затем форму misdialled. Это британское написание; американское misdialed тоже правильно. Has misdialled связывает ошибку с результатом сейчас: на линии другой человек.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She has misdialled the number.**
 - ❌ She have misdialled the number. — *С she используем has.*
-- ❌ She has misdial the number. — *Нужны have/has и третья форма глагола.*
+- ❌ She has misdial the number. — *Нужны have/has и форма после have (done, seen).*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Сумку уложили заново
 
-Вы с другом переложили вещи в сумке, чтобы всё поместилось. We have repacked the bag — мы перепаковали сумку. Repack означает «уложить вещи заново». Собираем: we + have + repacked + the bag. С we ставим have, repacked — третья форма repack с окончанием -ed. Have repacked сообщает о результате: сумка теперь собрана иначе.
+Вы с другом переложили вещи в сумке, чтобы всё поместилось. We have repacked the bag — мы перепаковали сумку. Repack означает «уложить вещи заново». Собираем: we + have + repacked + the bag. С we ставим have, repacked — форма repack после have с окончанием -ed. Have repacked сообщает о результате: сумка теперь собрана иначе.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have repacked the bag.**
 - ❌ We has repacked the bag. — *С we используем have.*
-- ❌ We have repack the bag. — *Нужны have/has и третья форма глагола.*
+- ❌ We have repack the bag. — *Нужны have/has и форма после have (done, seen).*
 
 ---
 
@@ -56,8 +56,8 @@
 **2 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-01:i03; family: context_gap_grammar -->
 I have ___ the tickets. → **miscounted** · miscount · miscounts
-- miscount — *Нужны have/has и третья форма глагола.*
-- miscounts — *Нужны have/has и третья форма глагола.*
+- miscount — *Нужны have/has и форма после have (done, seen).*
+- miscounts — *Нужны have/has и форма после have (done, seen).*
 
 **3 · Билетов оказалось меньше, чем вы сказали. Скажите: «Я ошибся при подсчёте билетов».**
 <!-- interaction_id: en:lesson-23:session-01:i01; family: phrase_builder -->
@@ -76,8 +76,8 @@ I have ___ the tickets. → **miscounted** · miscount · miscounts
 **6 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-01:i06; family: context_gap_grammar -->
 She has ___ the number. → **misdialled** · misdial · misdials
-- misdial — *Нужны have/has и третья форма глагола.*
-- misdials — *Нужны have/has и третья форма глагола.*
+- misdial — *Нужны have/has и форма после have (done, seen).*
+- misdials — *Нужны have/has и форма после have (done, seen).*
 
 **7 · На звонок ответил незнакомый человек. Скажите: «Она неправильно набрала номер».**
 <!-- interaction_id: en:lesson-23:session-01:i04; family: phrase_builder -->
@@ -96,8 +96,8 @@ She has ___ the number. → **misdialled** · misdial · misdials
 **10 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-01:i09; family: context_gap_grammar -->
 We have ___ the bag. → **repacked** · repack · repacks
-- repack — *Нужны have/has и третья форма глагола.*
-- repacks — *Нужны have/has и третья форма глагола.*
+- repack — *Нужны have/has и форма после have (done, seen).*
+- repacks — *Нужны have/has и форма после have (done, seen).*
 
 **11 · Теперь вещи помещаются в сумку. Скажите: «Мы перепаковали сумку».**
 <!-- interaction_id: en:lesson-23:session-01:i07; family: phrase_builder -->
@@ -116,8 +116,8 @@ We have ___ the bag. → **repacked** · repack · repacks
 **14 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-01:i12; family: context_gap_grammar -->
 He has ___ the flight. → **rebooked** · rebook · rebooks
-- rebook — *Нужны have/has и третья форма глагола.*
-- rebooks — *Нужны have/has и третья форма глагола.*
+- rebook — *Нужны have/has и форма после have (done, seen).*
+- rebooks — *Нужны have/has и форма после have (done, seen).*
 
 **15 · У него теперь другое бронирование. Скажите: «Он заново забронировал перелёт».**
 <!-- interaction_id: en:lesson-23:session-01:i10; family: phrase_builder -->

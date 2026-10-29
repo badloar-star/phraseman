@@ -9,13 +9,13 @@
 
 ### Смак дині знайомий
 
-Вам пропонують диню, і ви кажете, що вже куштували її. I have tried melon — я куштував диню. Melon означає «диня». Складаємо: I + have + tried + melon. Після I ставимо have; tried — третя форма try, де y змінюється на i перед -ed. Have tried повідомляє про ваш досвід. Melon тут — їжа, яку ви куштували, а не один цілий плід, тому a не ставимо.
+Вам пропонують диню, і ви кажете, що вже куштували її. I have tried melon — я куштував диню. Melon означає «диня». Складаємо: I + have + tried + melon. Після I ставимо have; tried — форма try після have, де y змінюється на i перед -ed. Have tried повідомляє про ваш досвід. Melon тут — їжа, яку ви куштували, а не один цілий плід, тому a не ставимо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have tried melon.**
 - ❌ I has tried melon. — *З I та we потрібно have; із she та he — has.*
-- ❌ I have try melon. — *Після have або has потрібна третя форма.*
+- ❌ I have try melon. — *Після have або has потрібна особлива форма.*
 
 ---
 
@@ -37,13 +37,13 @@ Pineapple — ананас. We have cut a pineapple — ми розрізали 
 
 ### Що ви вже робили
 
-Mango — манго. Peel a mango — очистити манго від шкірки. He has peeled a mango: він уже робив це, має такий досвід. Англійське mango злічуване, тому a mango, хоча український переклад «манго» не змінюється.
+Mango — манго. Peel a mango — очистити манго від шкірки. He has peeled a mango: він уже робив це, має такий досвід. Англійське mango рахується поштучно, тому a mango, хоча український переклад «манго» не змінюється.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has peeled a mango.**
 - ❌ He have peeled a mango. — *З I та we потрібно have; із she та he — has.*
-- ❌ He has peel a mango. — *Після have або has потрібна третя форма.*
+- ❌ He has peel a mango. — *Після have або has потрібна особлива форма.*
 
 ---
 
@@ -66,8 +66,8 @@ Mango — манго. Peel a mango — очистити манго від шкі
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i03; family: context_gap_grammar -->
 I have ___ melon. → **tried** · try · tries
-- try — *Після have або has потрібна третя форма.*
-- tries — *Після have або has потрібна третя форма.*
+- try — *Після have або has потрібна особлива форма.*
+- tries — *Після have або has потрібна особлива форма.*
 
 **5 · Картка слова — watermelon**
 <!-- interaction_id: en:lesson-23:session-18:word:watermelon; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ melon. → **tried** · try · tries
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i06; family: context_gap_grammar -->
 She has ___ watermelon. → **eaten** · eat · ate
-- eat — *Після have або has потрібна третя форма.*
-- ate — *Після have або has потрібна третя форма.*
+- eat — *Після have або has потрібна особлива форма.*
+- ate — *Після have або has потрібна особлива форма.*
 
 **9 · Картка слова — pineapple**
 <!-- interaction_id: en:lesson-23:session-18:word:pineapple; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ watermelon. → **eaten** · eat · ate
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i09; family: context_gap_grammar -->
 We have ___ a pineapple. → **cut** · cuts · cutting
-- cuts — *Після have або has потрібна третя форма.*
-- cutting — *Після have або has потрібна третя форма.*
+- cuts — *Після have або has потрібна особлива форма.*
+- cutting — *Після have або has потрібна особлива форма.*
 
 **13 · Картка слова — mango**
 <!-- interaction_id: en:lesson-23:session-18:word:mango; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a pineapple. → **cut** · cuts · cutting
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i12; family: context_gap_grammar -->
 He has ___ a mango. → **peeled** · peel · peels
-- peel — *Після have або has потрібна третя форма.*
-- peels — *Після have або has потрібна третя форма.*
+- peel — *Після have або has потрібна особлива форма.*
+- peels — *Після have або has потрібна особлива форма.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-18:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Наречена вже тут
 
-Гості чекають на наречену, і ви бачите, що вона приїхала. The bride has arrived — наречена приїхала. Bride означає «наречена». Складаємо: the bride + has + arrived. The bride називає одну людину, тому використовуємо has. Arrived — третя форма arrive: до дієслова на -e додаємо -d. Has arrived повідомляє про результат: наречена вже тут.
+Гості чекають на наречену, і ви бачите, що вона приїхала. The bride has arrived — наречена приїхала. Bride означає «наречена». Складаємо: the bride + has + arrived. The bride називає одну людину, тому використовуємо has. Arrived — форма arrive після have: до дієслова на -e додаємо -d. Has arrived повідомляє про результат: наречена вже тут.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The bride has arrived.**
 - ❌ The bride have arrived. — *The bride — одна людина, потрібно has.*
-- ❌ The bride has arrive. — *Після have або has потрібна третя форма дієслова.*
+- ❌ The bride has arrive. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Квіти замовлені
 
-Bouquet — букет: кілька квітів, зібраних разом. I have ordered a bouquet: замовлення вже зроблено. A bouquet — один букет, тому потрібен артикль a. Букет можна подарувати й на день народження, не лише на весілля.
+Bouquet — букет: кілька квітів, зібраних разом. I have ordered a bouquet: замовлення вже зроблено. A bouquet — один букет, тому потрібен a. Букет можна подарувати й на день народження, не лише на весілля.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have ordered a bouquet.**
 - ❌ I has ordered a bouquet. — *З I потрібно have.*
-- ❌ I have order a bouquet. — *Після have або has потрібна третя форма дієслова.*
+- ❌ I have order a bouquet. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -37,13 +37,13 @@ Bouquet — букет: кілька квітів, зібраних разом. 
 
 ### Весільну подорож заброньовано
 
-Ви з чоловіком вибрали поїздку після весілля й завершили бронювання. We have booked our honeymoon — ми забронювали нашу весільну подорож. Honeymoon тут означає поїздку в медовий місяць. Складаємо: we + have + booked + our honeymoon. Із we ставимо have; booked — третя форма book із закінченням -ed. Our показує, чия це поїздка. Have booked повідомляє, що бронювання вже зроблено.
+Ви з чоловіком вибрали поїздку після весілля й завершили бронювання. We have booked our honeymoon — ми забронювали нашу весільну подорож. Honeymoon тут означає поїздку в медовий місяць. Складаємо: we + have + booked + our honeymoon. Із we ставимо have; booked — форма book після have із закінченням -ed. Our показує, чия це поїздка. Have booked повідомляє, що бронювання вже зроблено.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have booked our honeymoon.**
 - ❌ We has booked our honeymoon. — *Із we потрібно have.*
-- ❌ We have book our honeymoon. — *Після have або has потрібна третя форма дієслова.*
+- ❌ We have book our honeymoon. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -66,8 +66,8 @@ Bouquet — букет: кілька квітів, зібраних разом. 
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i03; family: context_gap_grammar -->
 The bride has ___. → **arrived** · arrive · arrives
-- arrive — *Після have або has потрібна третя форма дієслова.*
-- arrives — *Після have або has потрібна третя форма дієслова.*
+- arrive — *Після have або has потрібна особлива форма (done, seen).*
+- arrives — *Після have або has потрібна особлива форма (done, seen).*
 
 **5 · Картка слова — groom**
 <!-- interaction_id: en:lesson-23:session-07:word:groom; family: word_card -->
@@ -86,8 +86,8 @@ The bride has ___. → **arrived** · arrive · arrives
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i06; family: context_gap_grammar -->
 The groom has ___ his jacket. → **changed** · change · changes
-- change — *Після have або has потрібна третя форма дієслова.*
-- changes — *Після have або has потрібна третя форма дієслова.*
+- change — *Після have або has потрібна особлива форма (done, seen).*
+- changes — *Після have або has потрібна особлива форма (done, seen).*
 
 **9 · Картка слова — bouquet**
 <!-- interaction_id: en:lesson-23:session-07:word:bouquet; family: word_card -->
@@ -106,8 +106,8 @@ The groom has ___ his jacket. → **changed** · change · changes
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i09; family: context_gap_grammar -->
 I have ___ a bouquet. → **ordered** · order · orders
-- order — *Після have або has потрібна третя форма дієслова.*
-- orders — *Після have або has потрібна третя форма дієслова.*
+- order — *Після have або has потрібна особлива форма (done, seen).*
+- orders — *Після have або has потрібна особлива форма (done, seen).*
 
 **13 · Картка слова — honeymoon**
 <!-- interaction_id: en:lesson-23:session-07:word:honeymoon; family: word_card -->
@@ -126,8 +126,8 @@ I have ___ a bouquet. → **ordered** · order · orders
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i12; family: context_gap_grammar -->
 We have ___ our honeymoon. → **booked** · book · books
-- book — *Після have або has потрібна третя форма дієслова.*
-- books — *Після have або has потрібна третя форма дієслова.*
+- book — *Після have або has потрібна особлива форма (done, seen).*
+- books — *Після have або has потрібна особлива форма (done, seen).*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-07:i13; family: speed_match -->

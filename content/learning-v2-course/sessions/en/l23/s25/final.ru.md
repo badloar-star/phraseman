@@ -9,12 +9,12 @@
 
 ### Когда-нибудь
 
-Palace — дворец. Have you ever visited a palace? — ты когда-нибудь посещал дворец? Ever в таком вопросе означает «когда-нибудь». Ставим have перед you, а ever — перед третьей формой visited. Мы спрашиваем об опыте за всё время, а не о конкретной поездке.
+Palace — дворец. Have you ever visited a palace? — ты когда-нибудь посещал дворец? Ever в таком вопросе означает «когда-нибудь». Ставим have перед you, а ever — перед формой после have visited. Мы спрашиваем об опыте за всё время, а не о конкретной поездке.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Have you ever visited a palace?**
-- ❌ Have you ever visit a palace? — *После have нужна третья форма visited.*
+- ❌ Have you ever visit a palace? — *После have нужна форма visited.*
 - ❌ Has you ever visited a palace? — *С you используем have.*
 
 ---
@@ -29,7 +29,7 @@ Cathedral — собор. I have never visited a cathedral — я никогда
 
 - ✅ **I have never visited a cathedral.**
 - ❌ I have not never visited a cathedral. — *Для смысла «никогда» достаточно never, без not.*
-- ❌ I have never visit a cathedral. — *Нужна третья форма visited.*
+- ❌ I have never visit a cathedral. — *Нужна форма visited.*
 
 ---
 
@@ -37,13 +37,13 @@ Cathedral — собор. I have never visited a cathedral — я никогда
 
 ### Для неё это впервые
 
-Подруга собирается впервые посетить храм. До сих пор она никогда в храме не была: She has never visited a temple — она никогда не посещала храм. Temple означает «храм». Собираем: she + has + never + visited + a temple. С she используем has, never ставим перед третьей формой visited. Never уже означает «никогда», поэтому not не добавляем. Так говорим об отсутствии такого опыта до настоящего момента.
+Подруга собирается впервые посетить храм. До сих пор она никогда в храме не была: She has never visited a temple — она никогда не посещала храм. Temple означает «храм». Собираем: she + has + never + visited + a temple. С she используем has, never ставим перед формой после have visited. Never уже означает «никогда», поэтому not не добавляем. Так говорим об отсутствии такого опыта до настоящего момента.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She has never visited a temple.**
 - ❌ She have never visited a temple. — *С she нужно has.*
-- ❌ She has never visit a temple. — *Нужна третья форма visited.*
+- ❌ She has never visit a temple. — *Нужна форма visited.*
 
 ---
 
@@ -66,8 +66,8 @@ Cathedral — собор. I have never visited a cathedral — я никогда
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-25:i03; family: context_gap_grammar -->
 Have you ever ___ a palace? → **visited** · visit · visits
-- visit — *После have или has нужна третья форма visited.*
-- visits — *После have или has нужна третья форма visited.*
+- visit — *После have или has нужна форма visited.*
+- visits — *После have или has нужна форма visited.*
 
 **5 · Карточка слова — cathedral**
 <!-- interaction_id: en:lesson-23:session-25:word:cathedral; family: word_card -->
@@ -86,8 +86,8 @@ Have you ever ___ a palace? → **visited** · visit · visits
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-25:i06; family: context_gap_grammar -->
 I have never ___ a cathedral. → **visited** · visit · visits
-- visit — *После have или has нужна третья форма visited.*
-- visits — *После have или has нужна третья форма visited.*
+- visit — *После have или has нужна форма visited.*
+- visits — *После have или has нужна форма visited.*
 
 **9 · Карточка слова — mosque**
 <!-- interaction_id: en:lesson-23:session-25:word:mosque; family: word_card -->
@@ -106,8 +106,8 @@ I have never ___ a cathedral. → **visited** · visit · visits
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-25:i09; family: context_gap_grammar -->
 Have you ever ___ a mosque? → **visited** · visit · visits
-- visit — *После have или has нужна третья форма visited.*
-- visits — *После have или has нужна третья форма visited.*
+- visit — *После have или has нужна форма visited.*
+- visits — *После have или has нужна форма visited.*
 
 **13 · Карточка слова — temple**
 <!-- interaction_id: en:lesson-23:session-25:word:temple; family: word_card -->
@@ -126,8 +126,8 @@ Have you ever ___ a mosque? → **visited** · visit · visits
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-25:i12; family: context_gap_grammar -->
 She has never ___ a temple. → **visited** · visit · visits
-- visit — *После have или has нужна третья форма visited.*
-- visits — *После have или has нужна третья форма visited.*
+- visit — *После have или has нужна форма visited.*
+- visits — *После have или has нужна форма visited.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-25:i13; family: speed_match -->

@@ -15,7 +15,7 @@ Valley — долина, низьке місце між пагорбами аб�
 
 - ✅ **I have walked through a valley.**
 - ❌ I has walked through a valley. — *З I та we потрібно have, з he та she — has.*
-- ❌ I have walk through a valley. — *Після have або has потрібна третя форма: walked.*
+- ❌ I have walk through a valley. — *Після have або has потрібна особлива форма: walked.*
 
 ---
 
@@ -23,13 +23,13 @@ Valley — долина, низьке місце між пагорбами аб�
 
 ### Знайшли гілку на стежці
 
-На прогулянці ви з другом знайшли на стежці гілку, що впала. We have found a fallen branch — ми знайшли гілку, що впала. Branch означає «гілка». Складаємо: we + have + found + a fallen branch. Із we ставимо have, found — третя форма find. Fallen описує гілку й стоїть перед branch. Have found повідомляє про знахідку: гілку вже виявлено.
+На прогулянці ви з другом знайшли на стежці гілку, що впала. We have found a fallen branch — ми знайшли гілку, що впала. Branch означає «гілка». Складаємо: we + have + found + a fallen branch. Із we ставимо have, found — форма find після have. Fallen описує гілку й стоїть перед branch. Have found повідомляє про знахідку: гілку вже виявлено.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have found a fallen branch.**
 - ❌ We has found a fallen branch. — *З I та we потрібно have, з he та she — has.*
-- ❌ We have find a fallen branch. — *Після have або has потрібна третя форма: found.*
+- ❌ We have find a fallen branch. — *Після have або has потрібна особлива форма: found.*
 
 ---
 
@@ -37,13 +37,13 @@ Valley — долина, низьке місце між пагорбами аб�
 
 ### Фотографія вже готова
 
-На прогулянці друг сфотографував луг і тепер показує знімок. He has taken a photo of a meadow — він сфотографував луг. Meadow означає «луг». Складаємо: he + has + taken + a photo + of a meadow. Із he ставимо has, taken — третя форма take. Сполучення take a photo означає «сфотографувати», а of a meadow уточнює, що зображено. Has taken повідомляє про результат: фотографію вже зроблено.
+На прогулянці друг сфотографував луг і тепер показує знімок. He has taken a photo of a meadow — він сфотографував луг. Meadow означає «луг». Складаємо: he + has + taken + a photo + of a meadow. Із he ставимо has, taken — форма take після have. Сполучення take a photo означає «сфотографувати», а of a meadow уточнює, що зображено. Has taken повідомляє про результат: фотографію вже зроблено.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has taken a photo of a meadow.**
 - ❌ He have taken a photo of a meadow. — *З I та we потрібно have, з he та she — has.*
-- ❌ He has take a photo of a meadow. — *Після have або has потрібна третя форма: taken.*
+- ❌ He has take a photo of a meadow. — *Після have або has потрібна особлива форма: taken.*
 
 ---
 
@@ -66,8 +66,8 @@ Valley — долина, низьке місце між пагорбами аб�
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-48:i03; family: context_gap_grammar -->
 I have ___ through a valley. → **walked** · walk · walks
-- walk — *Потрібна третя форма: walked.*
-- walks — *Потрібна третя форма: walked.*
+- walk — *Потрібна форма після have: walked.*
+- walks — *Потрібна форма після have: walked.*
 
 **5 · Картка слова — field**
 <!-- interaction_id: en:lesson-23:session-48:word:field; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ through a valley. → **walked** · walk · walks
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-48:i06; family: context_gap_grammar -->
 She has ___ a field. → **crossed** · cross · crosses
-- cross — *Потрібна третя форма: crossed.*
-- crosses — *Потрібна третя форма: crossed.*
+- cross — *Потрібна форма після have: crossed.*
+- crosses — *Потрібна форма після have: crossed.*
 
 **9 · Картка слова — branch**
 <!-- interaction_id: en:lesson-23:session-48:word:branch; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a field. → **crossed** · cross · crosses
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-48:i09; family: context_gap_grammar -->
 We have ___ a fallen branch. → **found** · find · finds
-- find — *Потрібна третя форма: found.*
-- finds — *Потрібна третя форма: found.*
+- find — *Потрібна форма після have: found.*
+- finds — *Потрібна форма після have: found.*
 
 **13 · Картка слова — meadow**
 <!-- interaction_id: en:lesson-23:session-48:word:meadow; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a fallen branch. → **found** · find · finds
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-48:i12; family: context_gap_grammar -->
 He has ___ a photo of a meadow. → **taken** · take · takes
-- take — *Потрібна третя форма: taken.*
-- takes — *Потрібна третя форма: taken.*
+- take — *Потрібна форма після have: taken.*
+- takes — *Потрібна форма після have: taken.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-48:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Що вже зроблено
 
-Blouse — блузка. I have washed a blouse — я виправ блузку. Washed — третя форма wash. Так можна повідомити про зроблене: блузку вже випрано. Blouse — злічуваний іменник: тут потрібна форма a blouse.
+Blouse — блузка. I have washed a blouse — я виправ блузку. Washed — форма wash після have. Так можна повідомити про зроблене: блузку вже випрано. Blouse — це можна порахувати: тут потрібна форма a blouse.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have washed a blouse.**
-- ❌ I has washed a blouse. — *Виберіть have або has за підметом.*
-- ❌ I have wash a blouse. — *Після have або has потрібна третя форма: washed.*
+- ❌ I has washed a blouse. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have wash a blouse. — *Після have або has потрібна особлива форма: washed.*
 
 ---
 
@@ -23,13 +23,13 @@ Blouse — блузка. I have washed a blouse — я виправ блузку
 
 ### Штани вже попрасовані
 
-Друг підготував одяг до зустрічі: штани він уже попрасував. He has ironed his trousers — він попрасував свої штани. Trousers означає «штани». Складаємо: he + has + ironed + his trousers. Has вибираємо за he: дію виконала одна людина, хоча trousers має форму множини. Ironed — третя форма iron. Has ironed повідомляє про результат: штани вже готові.
+Друг підготував одяг до зустрічі: штани він уже попрасував. He has ironed his trousers — він попрасував свої штани. Trousers означає «штани». Складаємо: he + has + ironed + his trousers. Has вибираємо за he: дію виконала одна людина, хоча trousers має форму форми для кількох. Ironed — форма iron після have. Has ironed повідомляє про результат: штани вже готові.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has ironed his trousers.**
-- ❌ He have ironed his trousers. — *Виберіть have або has за підметом.*
-- ❌ He has iron his trousers. — *Після have або has потрібна третя форма: ironed.*
+- ❌ He have ironed his trousers. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has iron his trousers. — *Після have або has потрібна особлива форма: ironed.*
 
 ---
 
@@ -37,13 +37,13 @@ Blouse — блузка. I have washed a blouse — я виправ блузку
 
 ### Ще один приклад
 
-Leggings — легінси, еластичні штани, що облягають тіло. Це теж форма множини. I have bought new leggings — я купив нові легінси. Bought — третя форма buy. Прикметник new не змінюється перед словом у множині.
+Leggings — легінси, еластичні штани, що облягають тіло. Це теж форма форми для кількох. I have bought new leggings — я купив нові легінси. Bought — форма buy після have. Прикметник new не змінюється перед словом у формі для кількох.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have bought new leggings.**
-- ❌ I has bought new leggings. — *Виберіть have або has за підметом.*
-- ❌ I have buy new leggings. — *Після have або has потрібна третя форма: bought.*
+- ❌ I has bought new leggings. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have buy new leggings. — *Після have або has потрібна особлива форма: bought.*
 
 ---
 
@@ -66,8 +66,8 @@ Leggings — легінси, еластичні штани, що облягаю�
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-28:i03; family: context_gap_grammar -->
 I have ___ a blouse. → **washed** · wash · washes
-- wash — *Потрібна третя форма: washed.*
-- washes — *Потрібна третя форма: washed.*
+- wash — *Потрібна форма після have: washed.*
+- washes — *Потрібна форма після have: washed.*
 
 **5 · Картка слова — shorts**
 <!-- interaction_id: en:lesson-23:session-28:word:shorts; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a blouse. → **washed** · wash · washes
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-28:i06; family: context_gap_grammar -->
 She has ___ her shorts. → **packed** · pack · packs
-- pack — *Потрібна третя форма: packed.*
-- packs — *Потрібна третя форма: packed.*
+- pack — *Потрібна форма після have: packed.*
+- packs — *Потрібна форма після have: packed.*
 
 **9 · Картка слова — trousers**
 <!-- interaction_id: en:lesson-23:session-28:word:trousers; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ her shorts. → **packed** · pack · packs
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-28:i09; family: context_gap_grammar -->
 He has ___ his trousers. → **ironed** · iron · irons
-- iron — *Потрібна третя форма: ironed.*
-- irons — *Потрібна третя форма: ironed.*
+- iron — *Потрібна форма після have: ironed.*
+- irons — *Потрібна форма після have: ironed.*
 
 **13 · Картка слова — leggings**
 <!-- interaction_id: en:lesson-23:session-28:word:leggings; family: word_card -->
@@ -126,8 +126,8 @@ He has ___ his trousers. → **ironed** · iron · irons
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-28:i12; family: context_gap_grammar -->
 I have ___ new leggings. → **bought** · buy · buys
-- buy — *Потрібна третя форма: bought.*
-- buys — *Потрібна третя форма: bought.*
+- buy — *Потрібна форма після have: bought.*
+- buys — *Потрібна форма після have: bought.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-28:i13; family: speed_match -->

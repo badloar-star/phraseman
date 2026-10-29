@@ -9,13 +9,13 @@
 
 ### Навантаження виявилося завеликим
 
-Overwork — працювати забагато, до перевтоми. I have overworked: я працював забагато й тепер відчуваю наслідки. Тут have — помічник для Present Perfect, а не «мати».
+Overwork — працювати забагато, до перевтоми. I have overworked: я працював забагато й тепер відчуваю наслідки. Тут have — помічник для have / has + done, а не «мати».
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have overworked.**
 - ❌ I has overworked. — *З I використайте have.*
-- ❌ I have overwork. — *Потрібні have/has і третя форма дієслова.*
+- ❌ I have overwork. — *Потрібні have/has і форма після have (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@ Overwork — працювати забагато, до перевтоми. I hav
 
 ### Перестаралася
 
-Overdo — зробити щось надмірно. Overdo it — перестаратися: наприклад, виконати забагато вправ. Третя форма — overdone, як done у do. She has overdone it: вона перестаралася, і тепер їй потрібен відпочинок.
+Overdo — зробити щось надмірно. Overdo it — перестаратися: наприклад, виконати забагато вправ. Форма після have — overdone, як done у do. She has overdone it: вона перестаралася, і тепер їй потрібен відпочинок.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She has overdone it.**
 - ❌ She have overdone it. — *Із she використайте has.*
-- ❌ She has overdo it. — *Потрібні have/has і третя форма дієслова.*
+- ❌ She has overdo it. — *Потрібні have/has і форма після have (done, seen).*
 
 ---
 
@@ -43,7 +43,7 @@ Overdo — зробити щось надмірно. Overdo it — перест�
 
 - ✅ **We have underestimated the cost.**
 - ❌ We has underestimated the cost. — *Із we використайте have.*
-- ❌ We have underestimate the cost. — *Потрібні have/has і третя форма дієслова.*
+- ❌ We have underestimate the cost. — *Потрібні have/has і форма після have (done, seen).*
 
 ---
 
@@ -56,8 +56,8 @@ Overdo — зробити щось надмірно. Overdo it — перест�
 **2 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-04:i01; family: context_gap_grammar -->
 I have ___. → **overworked** · overwork · overworks
-- overwork — *Потрібні have/has і третя форма дієслова.*
-- overworks — *Потрібні have/has і третя форма дієслова.*
+- overwork — *Потрібні have/has і форма після have (done, seen).*
+- overworks — *Потрібні have/has і форма після have (done, seen).*
 
 **3 · Ви втомилися після надмірного навантаження. Скажіть: «Я працював забагато».**
 <!-- interaction_id: en:lesson-23:session-04:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ I have ___. → **overworked** · overwork · overworks
 **6 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-04:i04; family: context_gap_grammar -->
 She has ___ it. → **overdone** · overdo · overdoes
-- overdo — *Потрібні have/has і третя форма дієслова.*
-- overdoes — *Потрібні have/has і третя форма дієслова.*
+- overdo — *Потрібні have/has і форма після have (done, seen).*
+- overdoes — *Потрібні have/has і форма після have (done, seen).*
 
 **7 · Вона зробила забагато й тепер втомилася. Скажіть: «Вона перестаралася».**
 <!-- interaction_id: en:lesson-23:session-04:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ She has ___ it. → **overdone** · overdo · overdoes
 **10 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-04:i07; family: context_gap_grammar -->
 We have ___ the cost. → **underestimated** · underestimate · underestimates
-- underestimate — *Потрібні have/has і третя форма дієслова.*
-- underestimates — *Потрібні have/has і третя форма дієслова.*
+- underestimate — *Потрібні have/has і форма після have (done, seen).*
+- underestimates — *Потрібні have/has і форма після have (done, seen).*
 
 **11 · Потрібно більше грошей, ніж ви розраховували. Скажіть: «Ми недооцінили вартість».**
 <!-- interaction_id: en:lesson-23:session-04:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ We have ___ the cost. → **underestimated** · underestimate · underestimates
 **14 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-04:i10; family: context_gap_grammar -->
 He has ___ the problem. → **exaggerated** · exaggerate · exaggerates
-- exaggerate — *Потрібні have/has і третя форма дієслова.*
-- exaggerates — *Потрібні have/has і третя форма дієслова.*
+- exaggerate — *Потрібні have/has і форма після have (done, seen).*
+- exaggerates — *Потрібні have/has і форма після have (done, seen).*
 
 **15 · Проблема не така велика, як він сказав. Скажіть: «Він перебільшив проблему».**
 <!-- interaction_id: en:lesson-23:session-04:i11; family: phrase_builder -->

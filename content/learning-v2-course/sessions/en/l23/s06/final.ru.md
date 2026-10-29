@@ -9,13 +9,13 @@
 
 ### На небе появились облака
 
-Небо было ясным, но теперь на нём видны облака. Clouds have appeared — появились облака. Appear означает «появиться». Собираем: clouds + have + appeared. Clouds во множественном числе, поэтому ставим have. Appeared — третья форма appear с окончанием -ed. Have appeared сообщает об изменении с видимым результатом: облака теперь на небе.
+Небо было ясным, но теперь на нём видны облака. Clouds have appeared — появились облака. Appear означает «появиться». Собираем: clouds + have + appeared. Clouds в форме для нескольких, поэтому ставим have. Appeared — форма appear после have с окончанием -ed. Have appeared сообщает об изменении с видимым результатом: облака теперь на небе.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Clouds have appeared.**
-- ❌ Clouds has appeared. — *Clouds — множественное число, нужно have.*
-- ❌ Clouds have appear. — *Для результата сейчас используйте have/has и третью форму.*
+- ❌ Clouds has appeared. — *Clouds — форма для нескольких, нужно have.*
+- ❌ Clouds have appear. — *Для результата сейчас используйте have/has и форму после have.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Стало хуже
 
-Worsen — ухудшиться. The weather has worsened: погода теперь хуже, чем была. Weather — неисчисляемое существительное, здесь с ним используем has. Не добавляйте к worsen слово more: значение «хуже» уже есть в глаголе.
+Worsen — ухудшиться. The weather has worsened: погода теперь хуже, чем была. Weather — слово, которое не считают поштучно, здесь с ним используем has. Не добавляйте к worsen слово more: значение «хуже» уже есть в глаголе.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The weather has worsened.**
 - ❌ The weather have worsened. — *С weather здесь нужно has.*
-- ❌ The weather has worsen. — *Для результата сейчас используйте have/has и третью форму.*
+- ❌ The weather has worsen. — *Для результата сейчас используйте have/has и форму после have.*
 
 ---
 
@@ -37,13 +37,13 @@ Worsen — ухудшиться. The weather has worsened: погода тепе
 
 ### Порез зажил
 
-Heal — заживать. The cut has healed: порез зажил. Cut здесь существительное «порез», healed — третья форма глагола heal.
+Heal — заживать. The cut has healed: порез зажил. Cut здесь существительное «порез», healed — форма после have от heal.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The cut has healed.**
 - ❌ The cut have healed. — *The cut — один порез, нужно has.*
-- ❌ The cut has heal. — *Для результата сейчас используйте have/has и третью форму.*
+- ❌ The cut has heal. — *Для результата сейчас используйте have/has и форму после have.*
 
 ---
 
@@ -56,8 +56,8 @@ Heal — заживать. The cut has healed: порез зажил. Cut зде
 **2 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-06:i01; family: context_gap_grammar -->
 Clouds have ___. → **appeared** · appear · appears
-- appear — *Для результата сейчас используйте have/has и третью форму.*
-- appears — *Для результата сейчас используйте have/has и третью форму.*
+- appear — *Для результата сейчас используйте have/has и форму после have.*
+- appears — *Для результата сейчас используйте have/has и форму после have.*
 
 **3 · Небо уже не ясное. Скажите: «Появились облака».**
 <!-- interaction_id: en:lesson-23:session-06:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ Clouds have ___. → **appeared** · appear · appears
 **6 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-06:i04; family: context_gap_grammar -->
 My keys have ___. → **disappeared** · disappear · disappears
-- disappear — *Для результата сейчас используйте have/has и третью форму.*
-- disappears — *Для результата сейчас используйте have/has и третью форму.*
+- disappear — *Для результата сейчас используйте have/has и форму после have.*
+- disappears — *Для результата сейчас используйте have/has и форму после have.*
 
 **7 · Ключи лежали здесь, но теперь их нет. Скажите: «Мои ключи исчезли».**
 <!-- interaction_id: en:lesson-23:session-06:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ My keys have ___. → **disappeared** · disappear · disappears
 **10 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-06:i07; family: context_gap_grammar -->
 The weather has ___. → **worsened** · worsen · worsens
-- worsen — *Для результата сейчас используйте have/has и третью форму.*
-- worsens — *Для результата сейчас используйте have/has и третью форму.*
+- worsen — *Для результата сейчас используйте have/has и форму после have.*
+- worsens — *Для результата сейчас используйте have/has и форму после have.*
 
 **11 · На улице стало ещё хуже. Скажите: «Погода ухудшилась».**
 <!-- interaction_id: en:lesson-23:session-06:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ The weather has ___. → **worsened** · worsen · worsens
 **14 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-06:i10; family: context_gap_grammar -->
 The cut has ___. → **healed** · heal · heals
-- heal — *Для результата сейчас используйте have/has и третью форму.*
-- heals — *Для результата сейчас используйте have/has и третью форму.*
+- heal — *Для результата сейчас используйте have/has и форму после have.*
+- heals — *Для результата сейчас используйте have/has и форму после have.*
 
 **15 · Пореза больше нет. Скажите: «Порез зажил».**
 <!-- interaction_id: en:lesson-23:session-06:i11; family: phrase_builder -->

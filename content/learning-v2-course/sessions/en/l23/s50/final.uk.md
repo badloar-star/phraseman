@@ -15,7 +15,7 @@ Theft — крадіжка, наприклад велосипеда. I have repo
 
 - ✅ **I have reported a theft.**
 - ❌ I has reported a theft. — *З I та we потрібно have, з he та she — has.*
-- ❌ I have report a theft. — *Після have або has потрібна третя форма: reported.*
+- ❌ I have report a theft. — *Після have або has потрібна особлива форма: reported.*
 
 ---
 
@@ -23,13 +23,13 @@ Theft — крадіжка, наприклад велосипеда. I have repo
 
 ### Бачили крадіжку
 
-Ви з другом бачили, як людина вкрала сумку, й повідомляєте про це: We have seen a thief — ми бачили злодія. Thief означає «злодій». Складаємо: we + have + seen + a thief. Із we використовуємо have; seen — третя форма see, а не saw. Have seen пов’язує побачене з повідомленням зараз; точний час події в цій фразі не називаємо.
+Ви з другом бачили, як людина вкрала сумку, й повідомляєте про це: We have seen a thief — ми бачили злодія. Thief означає «злодій». Складаємо: we + have + seen + a thief. Із we використовуємо have; seen — форма see після have, а не saw. Have seen пов’язує побачене з повідомленням зараз; точний час події в цій фразі не називаємо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have seen a thief.**
 - ❌ We has seen a thief. — *З I та we потрібно have, з he та she — has.*
-- ❌ We have see a thief. — *Після have або has потрібна третя форма: seen.*
+- ❌ We have see a thief. — *Після have або has потрібна особлива форма: seen.*
 
 ---
 
@@ -43,7 +43,7 @@ Theft — крадіжка, наприклад велосипеда. I have repo
 
 - ✅ **He has described a suspect.**
 - ❌ He have described a suspect. — *З I та we потрібно have, з he та she — has.*
-- ❌ He has describe a suspect. — *Після have або has потрібна третя форма: described.*
+- ❌ He has describe a suspect. — *Після have або has потрібна особлива форма: described.*
 
 ---
 
@@ -66,8 +66,8 @@ Theft — крадіжка, наприклад велосипеда. I have repo
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i03; family: context_gap_grammar -->
 I have ___ a theft. → **reported** · report · reports
-- report — *Потрібна третя форма: reported.*
-- reports — *Потрібна третя форма: reported.*
+- report — *Потрібна форма після have: reported.*
+- reports — *Потрібна форма після have: reported.*
 
 **5 · Картка слова — victim**
 <!-- interaction_id: en:lesson-23:session-50:word:victim; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a theft. → **reported** · report · reports
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i06; family: context_gap_grammar -->
 She has ___ a victim. → **helped** · help · helps
-- help — *Потрібна третя форма: helped.*
-- helps — *Потрібна третя форма: helped.*
+- help — *Потрібна форма після have: helped.*
+- helps — *Потрібна форма після have: helped.*
 
 **9 · Картка слова — thief**
 <!-- interaction_id: en:lesson-23:session-50:word:thief; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a victim. → **helped** · help · helps
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i09; family: context_gap_grammar -->
 We have ___ a thief. → **seen** · see · sees
-- see — *Потрібна третя форма: seen.*
-- sees — *Потрібна третя форма: seen.*
+- see — *Потрібна форма після have: seen.*
+- sees — *Потрібна форма після have: seen.*
 
 **13 · Картка слова — suspect**
 <!-- interaction_id: en:lesson-23:session-50:word:suspect; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a thief. → **seen** · see · sees
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i12; family: context_gap_grammar -->
 He has ___ a suspect. → **described** · describe · describes
-- describe — *Потрібна третя форма: described.*
-- describes — *Потрібна третя форма: described.*
+- describe — *Потрібна форма після have: described.*
+- describes — *Потрібна форма після have: described.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-50:i13; family: speed_match -->

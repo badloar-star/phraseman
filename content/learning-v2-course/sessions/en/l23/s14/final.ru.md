@@ -9,13 +9,13 @@
 
 ### Видели обезьяну
 
-Друг спрашивает о животных, которых вы видели в зоопарке. I have seen a monkey — я видел обезьяну. Monkey означает «обезьяна». Собираем: I + have + seen + a monkey. С I используем have, seen — третья форма see. Have seen сообщает об опыте, без указания даты посещения.
+Друг спрашивает о животных, которых вы видели в зоопарке. I have seen a monkey — я видел обезьяну. Monkey означает «обезьяна». Собираем: I + have + seen + a monkey. С I используем have, seen — форма see после have. Have seen сообщает об опыте, без указания даты посещения.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have seen a monkey.**
 - ❌ I has seen a monkey. — *С I и we нужно have; с he — has.*
-- ❌ I have see a monkey. — *После have или has нужна третья форма глагола.*
+- ❌ I have see a monkey. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Сфотографировали кенгуру
 
-Вы с другом сделали снимок кенгуру и рассказываете об этом. We have taken a photo of a kangaroo — мы сфотографировали кенгуру. Kangaroo означает «кенгуру». Собираем: we + have + taken + a photo + of a kangaroo. После have нужна taken — третья форма take. Сочетание take a photo означает «сфотографировать», а of a kangaroo называет животное на снимке.
+Вы с другом сделали снимок кенгуру и рассказываете об этом. We have taken a photo of a kangaroo — мы сфотографировали кенгуру. Kangaroo означает «кенгуру». Собираем: we + have + taken + a photo + of a kangaroo. После have нужна taken — форма take после have. Сочетание take a photo означает «сфотографировать», а of a kangaroo называет животное на снимке.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have taken a photo of a kangaroo.**
 - ❌ We has taken a photo of a kangaroo. — *С I и we нужно have; с he — has.*
-- ❌ We have take a photo of a kangaroo. — *После have или has нужна третья форма глагола.*
+- ❌ We have take a photo of a kangaroo. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Рисовал крокодила
 
-Друг уже рисовал крокодила на занятии и рассказывает об этом опыте. He has drawn a crocodile — он рисовал крокодила. Crocodile означает «крокодил». Собираем: he + has + drawn + a crocodile. С he ставим has, drawn — третья форма draw. После has нужна drawn, а не drew. Has drawn сообщает об опыте рисования без даты.
+Друг уже рисовал крокодила на занятии и рассказывает об этом опыте. He has drawn a crocodile — он рисовал крокодила. Crocodile означает «крокодил». Собираем: he + has + drawn + a crocodile. С he ставим has, drawn — форма draw после have. После has нужна drawn, а не drew. Has drawn сообщает об опыте рисования без даты.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has drawn a crocodile.**
 - ❌ He have drawn a crocodile. — *С I и we нужно have; с he — has.*
-- ❌ He has draw a crocodile. — *После have или has нужна третья форма глагола.*
+- ❌ He has draw a crocodile. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-14:i03; family: context_gap_grammar -->
 I have ___ a monkey. → **seen** · see · saw
-- see — *После have или has нужна третья форма глагола.*
-- saw — *После have или has нужна третья форма глагола.*
+- see — *После have или has нужна особая форма (done, seen).*
+- saw — *После have или has нужна особая форма (done, seen).*
 
 **5 · Карточка слова — gorilla**
 <!-- interaction_id: en:lesson-23:session-14:word:gorilla; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a monkey. → **seen** · see · saw
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-14:i06; family: context_gap_grammar -->
 She has ___ a gorilla. → **watched** · watch · watches
-- watch — *После have или has нужна третья форма глагола.*
-- watches — *После have или has нужна третья форма глагола.*
+- watch — *После have или has нужна особая форма (done, seen).*
+- watches — *После have или has нужна особая форма (done, seen).*
 
 **9 · Карточка слова — kangaroo**
 <!-- interaction_id: en:lesson-23:session-14:word:kangaroo; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a gorilla. → **watched** · watch · watches
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-14:i09; family: context_gap_grammar -->
 We have ___ a photo of a kangaroo. → **taken** · take · took
-- take — *После have или has нужна третья форма глагола.*
-- took — *После have или has нужна третья форма глагола.*
+- take — *После have или has нужна особая форма (done, seen).*
+- took — *После have или has нужна особая форма (done, seen).*
 
 **13 · Карточка слова — crocodile**
 <!-- interaction_id: en:lesson-23:session-14:word:crocodile; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a photo of a kangaroo. → **taken** · take · took
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-14:i12; family: context_gap_grammar -->
 He has ___ a crocodile. → **drawn** · draw · drew
-- draw — *После have или has нужна третья форма глагола.*
-- drew — *После have или has нужна третья форма глагола.*
+- draw — *После have или has нужна особая форма (done, seen).*
+- drew — *После have или has нужна особая форма (done, seen).*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-14:i13; family: speed_match -->

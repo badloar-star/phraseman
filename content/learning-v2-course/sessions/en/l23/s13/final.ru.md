@@ -9,13 +9,13 @@
 
 ### Видели слона
 
-Друг спрашивает, доводилось ли вам видеть слона. I have seen an elephant — я видел слона. Elephant означает «слон». Собираем: I + have + seen + an elephant. После I ставим have, seen — третья форма see. Перед elephant выбираем an, потому что первый звук гласный. Have seen сообщает о таком опыте без даты.
+Друг спрашивает, доводилось ли вам видеть слона. I have seen an elephant — я видел слона. Elephant означает «слон». Собираем: I + have + seen + an elephant. После I ставим have, seen — форма see после have. Перед elephant выбираем an, потому что первый звук гласный. Have seen сообщает о таком опыте без даты.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have seen an elephant.**
 - ❌ I has seen an elephant. — *С I и we нужно have; с he — has.*
-- ❌ I have see an elephant. — *После have или has нужна третья форма глагола.*
+- ❌ I have see an elephant. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Наблюдали за тигром
 
-В зоопарке вы с другом некоторое время наблюдали, как двигается тигр, и теперь рассказываете об этом. We have watched a tiger — мы наблюдали за тигром. Tiger означает «тигр». Собираем: we + have + watched + a tiger. После we ставим have, watched — третья форма watch. Watch здесь означает наблюдать некоторое время. Have watched сообщает о вашем опыте наблюдения.
+В зоопарке вы с другом некоторое время наблюдали, как двигается тигр, и теперь рассказываете об этом. We have watched a tiger — мы наблюдали за тигром. Tiger означает «тигр». Собираем: we + have + watched + a tiger. После we ставим have, watched — форма watch после have. Watch здесь означает наблюдать некоторое время. Have watched сообщает о вашем опыте наблюдения.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have watched a tiger.**
 - ❌ We has watched a tiger. — *С I и we нужно have; с he — has.*
-- ❌ We have watch a tiger. — *После have или has нужна третья форма глагола.*
+- ❌ We have watch a tiger. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **He has drawn a giraffe.**
 - ❌ He have drawn a giraffe. — *С I и we нужно have; с he — has.*
-- ❌ He has draw a giraffe. — *После have или has нужна третья форма глагола.*
+- ❌ He has draw a giraffe. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i03; family: context_gap_grammar -->
 I have ___ an elephant. → **seen** · see · saw
-- see — *После have или has нужна третья форма глагола.*
-- saw — *После have или has нужна третья форма глагола.*
+- see — *После have или has нужна особая форма (done, seen).*
+- saw — *После have или has нужна особая форма (done, seen).*
 
 **5 · Карточка слова — lion**
 <!-- interaction_id: en:lesson-23:session-13:word:lion; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ an elephant. → **seen** · see · saw
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i06; family: context_gap_grammar -->
 She has ___ a photo of a lion. → **taken** · take · took
-- take — *После have или has нужна третья форма глагола.*
-- took — *После have или has нужна третья форма глагола.*
+- take — *После have или has нужна особая форма (done, seen).*
+- took — *После have или has нужна особая форма (done, seen).*
 
 **9 · Карточка слова — tiger**
 <!-- interaction_id: en:lesson-23:session-13:word:tiger; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a photo of a lion. → **taken** · take · took
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i09; family: context_gap_grammar -->
 We have ___ a tiger. → **watched** · watch · watches
-- watch — *После have или has нужна третья форма глагола.*
-- watches — *После have или has нужна третья форма глагола.*
+- watch — *После have или has нужна особая форма (done, seen).*
+- watches — *После have или has нужна особая форма (done, seen).*
 
 **13 · Карточка слова — giraffe**
 <!-- interaction_id: en:lesson-23:session-13:word:giraffe; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a tiger. → **watched** · watch · watches
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-13:i12; family: context_gap_grammar -->
 He has ___ a giraffe. → **drawn** · draw · drew
-- draw — *После have или has нужна третья форма глагола.*
-- drew — *После have или has нужна третья форма глагола.*
+- draw — *После have или has нужна особая форма (done, seen).*
+- drew — *После have или has нужна особая форма (done, seen).*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-13:i13; family: speed_match -->

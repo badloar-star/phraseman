@@ -9,13 +9,13 @@
 
 ### Новое животное дома
 
-Adopt — взять в семью: например, животное из приюта. I have adopted a cat — я взял кошку в семью. Adopted — третья форма adopt. Это сообщает о важном результате: теперь кошка живёт у меня. Судя по занятому дивану, она считает, что это я живу у неё.
+Adopt — взять в семью: например, животное из приюта. I have adopted a cat — я взял кошку в семью. Adopted — форма adopt после have. Это сообщает о важном результате: теперь кошка живёт у меня. Судя по занятому дивану, она считает, что это я живу у неё.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have adopted a cat.**
 - ❌ I has adopted a cat. — *С I нужно have.*
-- ❌ I have adopt a cat. — *Нужна третья форма adopted.*
+- ❌ I have adopt a cat. — *Нужна форма adopted.*
 
 ---
 
@@ -29,7 +29,7 @@ Adopt — взять в семью: например, животное из пр
 
 - ✅ **We have survived a storm.**
 - ❌ We has survived a storm. — *С we нужно have.*
-- ❌ We have survive a storm. — *Нужна третья форма survived.*
+- ❌ We have survive a storm. — *Нужна форма survived.*
 
 ---
 
@@ -37,13 +37,13 @@ Adopt — взять в семью: например, животное из пр
 
 ### Изменение привычки
 
-Quit — бросить, прекратить. He has quit smoking — он бросил курить. Запомните сочетание quit smoking целиком. Третья форма quit пишется так же, как начальная. С he используем has. Фраза сообщает об изменении, которое важно сейчас.
+Quit — бросить, прекратить. He has quit smoking — он бросил курить. Запомните сочетание quit smoking целиком. Форма после have quit пишется так же, как начальная. С he используем has. Фраза сообщает об изменении, которое важно сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has quit smoking.**
 - ❌ He have quit smoking. — *С he нужно has.*
-- ❌ He has quits smoking. — *Третья форма — quit без s.*
+- ❌ He has quits smoking. — *Форма после have — quit без s.*
 
 ---
 
@@ -56,8 +56,8 @@ Quit — бросить, прекратить. He has quit smoking — он бр
 **2 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i01; family: context_gap_grammar -->
 I have ___ a cat. → **adopted** · adopt · adopts
-- adopt — *Нужна третья форма: adopted.*
-- adopts — *Нужна третья форма: adopted.*
+- adopt — *Нужна форма после have: adopted.*
+- adopts — *Нужна форма после have: adopted.*
 
 **3 · Сообщите: «Я взял кошку в семью.»**
 <!-- interaction_id: en:lesson-23:session-43:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ I have ___ a cat. → **adopted** · adopt · adopts
 **6 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i04; family: context_gap_grammar -->
 She has ___ a dog. → **rescued** · rescue · rescues
-- rescue — *Нужна третья форма: rescued.*
-- rescues — *Нужна третья форма: rescued.*
+- rescue — *Нужна форма после have: rescued.*
+- rescues — *Нужна форма после have: rescued.*
 
 **7 · Сообщите: «Она спасла собаку.»**
 <!-- interaction_id: en:lesson-23:session-43:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ She has ___ a dog. → **rescued** · rescue · rescues
 **10 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i07; family: context_gap_grammar -->
 We have ___ a storm. → **survived** · survive · survives
-- survive — *Нужна третья форма: survived.*
-- survives — *Нужна третья форма: survived.*
+- survive — *Нужна форма после have: survived.*
+- survives — *Нужна форма после have: survived.*
 
 **11 · Сообщите: «Мы пережили бурю.»**
 <!-- interaction_id: en:lesson-23:session-43:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ We have ___ a storm. → **survived** · survive · survives
 **14 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i10; family: context_gap_grammar -->
 He has ___ smoking. → **quit** · quits · quitting
-- quits — *Нужна третья форма: quit.*
-- quitting — *Нужна третья форма: quit.*
+- quits — *Нужна форма после have: quit.*
+- quitting — *Нужна форма после have: quit.*
 
 **15 · Сообщите: «Он бросил курить.»**
 <!-- interaction_id: en:lesson-23:session-43:i11; family: phrase_builder -->

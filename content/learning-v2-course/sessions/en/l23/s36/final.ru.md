@@ -9,13 +9,13 @@
 
 ### Читали о короле
 
-В разговоре об исторической книге вы сообщаете, что уже читали о короле. I have read about a king — я читал о короле. King означает «король». Собираем: I + have + read + about a king. После have ставим третью форму read: она пишется как начальная, но произносится «рэд». About вводит тему чтения. Have read сообщает об опыте без даты.
+В разговоре об исторической книге вы сообщаете, что уже читали о короле. I have read about a king — я читал о короле. King означает «король». Собираем: I + have + read + about a king. После have ставим форму read: она пишется как начальная, но произносится «рэд». About вводит тему чтения. Have read сообщает об опыте без даты.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have read about a king.**
-- ❌ I has read about a king. — *Выберите have или has по подлежащему.*
-- ❌ I have reads about a king. — *После have или has нужна третья форма: read.*
+- ❌ I has read about a king. — *Выберите have или has по тому, кто действует.*
+- ❌ I have reads about a king. — *После have или has нужна особая форма: read.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Различаем слова
 
-Prince — принц. We have seen a film about a prince — мы смотрели фильм о принце. Seen — третья форма see. Так мы рассказываем о просмотренном фильме, не указывая конкретный день.
+Prince — принц. We have seen a film about a prince — мы смотрели фильм о принце. Seen — форма see после have. Так мы рассказываем о просмотренном фильме, не указывая конкретный день.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have seen a film about a prince.**
-- ❌ We has seen a film about a prince. — *Выберите have или has по подлежащему.*
-- ❌ We have see a film about a prince. — *После have или has нужна третья форма: seen.*
+- ❌ We has seen a film about a prince. — *Выберите have или has по тому, кто действует.*
+- ❌ We have see a film about a prince. — *После have или has нужна особая форма: seen.*
 
 ---
 
@@ -37,13 +37,13 @@ Prince — принц. We have seen a film about a prince — мы смотре�
 
 ### Фильм ему знаком
 
-Вы предлагаете другу фильм о принцессе, но узнаёте, что он уже смотрел такой фильм. He has seen a film about a princess — он смотрел фильм о принцессе. Princess означает «принцесса». Собираем: he + has + seen + a film + about a princess. С he используем has, seen — третья форма see. About a princess уточняет, о ком фильм. Has seen сообщает об опыте просмотра.
+Вы предлагаете другу фильм о принцессе, но узнаёте, что он уже смотрел такой фильм. He has seen a film about a princess — он смотрел фильм о принцессе. Princess означает «принцесса». Собираем: he + has + seen + a film + about a princess. С he используем has, seen — форма see после have. About a princess уточняет, о ком фильм. Has seen сообщает об опыте просмотра.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has seen a film about a princess.**
-- ❌ He have seen a film about a princess. — *Выберите have или has по подлежащему.*
-- ❌ He has see a film about a princess. — *После have или has нужна третья форма: seen.*
+- ❌ He have seen a film about a princess. — *Выберите have или has по тому, кто действует.*
+- ❌ He has see a film about a princess. — *После have или has нужна особая форма: seen.*
 
 ---
 
@@ -66,8 +66,8 @@ Prince — принц. We have seen a film about a prince — мы смотре�
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i03; family: context_gap_grammar -->
 I have ___ about a king. → **read** · reads · reading
-- reads — *Нужна третья форма: read.*
-- reading — *Нужна третья форма: read.*
+- reads — *Нужна форма после have: read.*
+- reading — *Нужна форма после have: read.*
 
 **5 · Карточка слова — queen**
 <!-- interaction_id: en:lesson-23:session-36:word:queen; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ about a king. → **read** · reads · reading
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i06; family: context_gap_grammar -->
 She has ___ about a queen. → **read** · reads · reading
-- reads — *Нужна третья форма: read.*
-- reading — *Нужна третья форма: read.*
+- reads — *Нужна форма после have: read.*
+- reading — *Нужна форма после have: read.*
 
 **9 · Карточка слова — prince**
 <!-- interaction_id: en:lesson-23:session-36:word:prince; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ about a queen. → **read** · reads · reading
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i09; family: context_gap_grammar -->
 We have ___ a film about a prince. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **13 · Карточка слова — princess**
 <!-- interaction_id: en:lesson-23:session-36:word:princess; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a film about a prince. → **seen** · see · sees
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i12; family: context_gap_grammar -->
 He has ___ a film about a princess. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-36:i13; family: speed_match -->

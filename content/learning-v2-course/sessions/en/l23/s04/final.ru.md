@@ -9,13 +9,13 @@
 
 ### Нагрузки оказалось слишком много
 
-Overwork — работать слишком много, до переутомления. I have overworked: я слишком много работал и теперь чувствую последствия. Здесь have — помощник для Present Perfect, а не «иметь».
+Overwork — работать слишком много, до переутомления. I have overworked: я слишком много работал и теперь чувствую последствия. Здесь have — помощник для have / has + done, а не «иметь».
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have overworked.**
 - ❌ I has overworked. — *С I используйте have.*
-- ❌ I have overwork. — *Нужны have/has и третья форма глагола.*
+- ❌ I have overwork. — *Нужны have/has и форма после have (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@ Overwork — работать слишком много, до переутомл
 
 ### Перестаралась
 
-Overdo — сделать что-то чрезмерно. Overdo it — перестараться: например, выполнить слишком много упражнений. Третья форма — overdone, как done у do. She has overdone it: она перестаралась, и теперь ей нужен отдых.
+Overdo — сделать что-то чрезмерно. Overdo it — перестараться: например, выполнить слишком много упражнений. Форма после have — overdone, как done у do. She has overdone it: она перестаралась, и теперь ей нужен отдых.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She has overdone it.**
 - ❌ She have overdone it. — *С she используйте has.*
-- ❌ She has overdo it. — *Нужны have/has и третья форма глагола.*
+- ❌ She has overdo it. — *Нужны have/has и форма после have (done, seen).*
 
 ---
 
@@ -43,7 +43,7 @@ Overdo — сделать что-то чрезмерно. Overdo it — пере
 
 - ✅ **We have underestimated the cost.**
 - ❌ We has underestimated the cost. — *С we используйте have.*
-- ❌ We have underestimate the cost. — *Нужны have/has и третья форма глагола.*
+- ❌ We have underestimate the cost. — *Нужны have/has и форма после have (done, seen).*
 
 ---
 
@@ -56,8 +56,8 @@ Overdo — сделать что-то чрезмерно. Overdo it — пере
 **2 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-04:i01; family: context_gap_grammar -->
 I have ___. → **overworked** · overwork · overworks
-- overwork — *Нужны have/has и третья форма глагола.*
-- overworks — *Нужны have/has и третья форма глагола.*
+- overwork — *Нужны have/has и форма после have (done, seen).*
+- overworks — *Нужны have/has и форма после have (done, seen).*
 
 **3 · Вы устали после слишком большой нагрузки. Скажите: «Я слишком много работал».**
 <!-- interaction_id: en:lesson-23:session-04:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ I have ___. → **overworked** · overwork · overworks
 **6 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-04:i04; family: context_gap_grammar -->
 She has ___ it. → **overdone** · overdo · overdoes
-- overdo — *Нужны have/has и третья форма глагола.*
-- overdoes — *Нужны have/has и третья форма глагола.*
+- overdo — *Нужны have/has и форма после have (done, seen).*
+- overdoes — *Нужны have/has и форма после have (done, seen).*
 
 **7 · Она сделала слишком много и теперь устала. Скажите: «Она перестаралась».**
 <!-- interaction_id: en:lesson-23:session-04:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ She has ___ it. → **overdone** · overdo · overdoes
 **10 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-04:i07; family: context_gap_grammar -->
 We have ___ the cost. → **underestimated** · underestimate · underestimates
-- underestimate — *Нужны have/has и третья форма глагола.*
-- underestimates — *Нужны have/has и третья форма глагола.*
+- underestimate — *Нужны have/has и форма после have (done, seen).*
+- underestimates — *Нужны have/has и форма после have (done, seen).*
 
 **11 · Нужно больше денег, чем вы рассчитывали. Скажите: «Мы недооценили стоимость».**
 <!-- interaction_id: en:lesson-23:session-04:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ We have ___ the cost. → **underestimated** · underestimate · underestimates
 **14 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-04:i10; family: context_gap_grammar -->
 He has ___ the problem. → **exaggerated** · exaggerate · exaggerates
-- exaggerate — *Нужны have/has и третья форма глагола.*
-- exaggerates — *Нужны have/has и третья форма глагола.*
+- exaggerate — *Нужны have/has и форма после have (done, seen).*
+- exaggerates — *Нужны have/has и форма после have (done, seen).*
 
 **15 · Проблема не такая большая, как он сказал. Скажите: «Он преувеличил проблему».**
 <!-- interaction_id: en:lesson-23:session-04:i11; family: phrase_builder -->

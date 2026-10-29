@@ -15,7 +15,7 @@
 
 - ✅ **I have torn my shirt.**
 - ❌ I has torn my shirt. — *З I потрібно have.*
-- ❌ I have tore my shirt. — *Третя форма — torn, не tore.*
+- ❌ I have tore my shirt. — *Форма після have — torn, не tore.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Скалки на підлозі
 
-Склянка впала й розбилася на багато скалок. Ви пояснюєте, що сталося: The glass has shattered — склянка розбилася. Shatter означає «розбитися на скалки». Складаємо: the glass + has + shattered. Склянка одна, тому ставимо has; shattered — третя форма shatter із закінченням -ed. Present Perfect пов’язує подію з результатом зараз: на підлозі лежать скалки.
+Склянка впала й розбилася на багато скалок. Ви пояснюєте, що сталося: The glass has shattered — склянка розбилася. Shatter означає «розбитися на скалки». Складаємо: the glass + has + shattered. Склянка одна, тому ставимо has; shattered — форма shatter після have із закінченням -ed. have / has + done пов’язує подію з результатом зараз: на підлозі лежать скалки.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The glass has shattered.**
 - ❌ The glass have shattered. — *Одна склянка: has.*
-- ❌ The glass has shatter. — *Після have або has потрібна третя форма.*
+- ❌ The glass has shatter. — *Після have або has потрібна особлива форма.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Колір став блідішим
 
-Fade — вицвітати, втрачати яскравість. The colour has faded: колір зараз блідіший, ніж раніше. Тут colour — британське написання; color — американське. Present Perfect пов’язує зміну з тим, що ми бачимо зараз; час на зразок yesterday не називаємо.
+Fade — вицвітати, втрачати яскравість. The colour has faded: колір зараз блідіший, ніж раніше. Тут colour — британське написання; color — американське. have / has + done пов’язує зміну з тим, що ми бачимо зараз; час на зразок yesterday не називаємо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The colour has faded.**
 - ❌ The colour have faded. — *Із the colour потрібно has.*
-- ❌ The colour has fade. — *Після have або has потрібна третя форма.*
+- ❌ The colour has fade. — *Після have або has потрібна особлива форма.*
 
 ---
 
@@ -56,8 +56,8 @@ Fade — вицвітати, втрачати яскравість. The colour h
 **2 · Виберіть форму слова для результату зараз.**
 <!-- interaction_id: en:lesson-23:session-17:i01; family: context_gap_grammar -->
 I have ___ my shirt. → **torn** · tear · tore
-- tear — *Після have або has потрібна третя форма.*
-- tore — *Після have або has потрібна третя форма.*
+- tear — *Після have або has потрібна особлива форма.*
+- tore — *Після have або has потрібна особлива форма.*
 
 **3 · На сорочці тепер дірка. Скажіть: «Я порвав сорочку».**
 <!-- interaction_id: en:lesson-23:session-17:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ I have ___ my shirt. → **torn** · tear · tore
 **6 · Виберіть форму слова для результату зараз.**
 <!-- interaction_id: en:lesson-23:session-17:i04; family: context_gap_grammar -->
 The glass has ___. → **shattered** · shatter · shatters
-- shatter — *Після have або has потрібна третя форма.*
-- shatters — *Після have або has потрібна третя форма.*
+- shatter — *Після have або has потрібна особлива форма.*
+- shatters — *Після have або has потрібна особлива форма.*
 
 **7 · На підлозі скалки. Скажіть: «Склянка розбилася».**
 <!-- interaction_id: en:lesson-23:session-17:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ The glass has ___. → **shattered** · shatter · shatters
 **10 · Виберіть форму слова для результату зараз.**
 <!-- interaction_id: en:lesson-23:session-17:i07; family: context_gap_grammar -->
 The drain has ___. → **clogged** · clog · clogs
-- clog — *Після have або has потрібна третя форма.*
-- clogs — *Після have або has потрібна третя форма.*
+- clog — *Після have або has потрібна особлива форма.*
+- clogs — *Після have або has потрібна особлива форма.*
 
 **11 · Вода тепер не стікає. Скажіть: «Злив засмітився».**
 <!-- interaction_id: en:lesson-23:session-17:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ The drain has ___. → **clogged** · clog · clogs
 **14 · Виберіть форму слова для результату зараз.**
 <!-- interaction_id: en:lesson-23:session-17:i10; family: context_gap_grammar -->
 The colour has ___. → **faded** · fade · fades
-- fade — *Після have або has потрібна третя форма.*
-- fades — *Після have або has потрібна третя форма.*
+- fade — *Після have або has потрібна особлива форма.*
+- fades — *Після have або has потрібна особлива форма.*
 
 **15 · Колір тепер блідіший. Скажіть: «Колір вицвів».**
 <!-- interaction_id: en:lesson-23:session-17:i11; family: phrase_builder -->

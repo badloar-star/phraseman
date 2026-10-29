@@ -9,13 +9,13 @@
 
 ### Вкус дыни знаком
 
-Вам предлагают дыню, и вы говорите, что уже пробовали её. I have tried melon — я пробовал дыню. Melon означает «дыня». Собираем: I + have + tried + melon. После I ставим have; tried — третья форма try, где y меняется на i перед -ed. Have tried сообщает о вашем опыте. Melon здесь — еда, которую вы пробовали, а не один целый плод, поэтому a не ставим.
+Вам предлагают дыню, и вы говорите, что уже пробовали её. I have tried melon — я пробовал дыню. Melon означает «дыня». Собираем: I + have + tried + melon. После I ставим have; tried — форма try после have, где y меняется на i перед -ed. Have tried сообщает о вашем опыте. Melon здесь — еда, которую вы пробовали, а не один целый плод, поэтому a не ставим.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have tried melon.**
 - ❌ I has tried melon. — *С I и we нужно have; с she и he — has.*
-- ❌ I have try melon. — *После have или has нужна третья форма.*
+- ❌ I have try melon. — *После have или has нужна особая форма.*
 
 ---
 
@@ -37,13 +37,13 @@ Pineapple — ананас. We have cut a pineapple — мы разрезали 
 
 ### Что вы уже делали
 
-Mango — манго. Peel a mango — очистить манго от кожуры. He has peeled a mango: он уже делал это, у него есть такой опыт. Английское mango исчисляемое, поэтому a mango, хотя русский перевод «манго» не меняется.
+Mango — манго. Peel a mango — очистить манго от кожуры. He has peeled a mango: он уже делал это, у него есть такой опыт. Английское mango считается поштучно, поэтому a mango, хотя русский перевод «манго» не меняется.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has peeled a mango.**
 - ❌ He have peeled a mango. — *С I и we нужно have; с she и he — has.*
-- ❌ He has peel a mango. — *После have или has нужна третья форма.*
+- ❌ He has peel a mango. — *После have или has нужна особая форма.*
 
 ---
 
@@ -66,8 +66,8 @@ Mango — манго. Peel a mango — очистить манго от кожу
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i03; family: context_gap_grammar -->
 I have ___ melon. → **tried** · try · tries
-- try — *После have или has нужна третья форма.*
-- tries — *После have или has нужна третья форма.*
+- try — *После have или has нужна особая форма.*
+- tries — *После have или has нужна особая форма.*
 
 **5 · Карточка слова — watermelon**
 <!-- interaction_id: en:lesson-23:session-18:word:watermelon; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ melon. → **tried** · try · tries
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i06; family: context_gap_grammar -->
 She has ___ watermelon. → **eaten** · eat · ate
-- eat — *После have или has нужна третья форма.*
-- ate — *После have или has нужна третья форма.*
+- eat — *После have или has нужна особая форма.*
+- ate — *После have или has нужна особая форма.*
 
 **9 · Карточка слова — pineapple**
 <!-- interaction_id: en:lesson-23:session-18:word:pineapple; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ watermelon. → **eaten** · eat · ate
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i09; family: context_gap_grammar -->
 We have ___ a pineapple. → **cut** · cuts · cutting
-- cuts — *После have или has нужна третья форма.*
-- cutting — *После have или has нужна третья форма.*
+- cuts — *После have или has нужна особая форма.*
+- cutting — *После have или has нужна особая форма.*
 
 **13 · Карточка слова — mango**
 <!-- interaction_id: en:lesson-23:session-18:word:mango; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a pineapple. → **cut** · cuts · cutting
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-18:i12; family: context_gap_grammar -->
 He has ___ a mango. → **peeled** · peel · peels
-- peel — *После have или has нужна третья форма.*
-- peels — *После have или has нужна третья форма.*
+- peel — *После have или has нужна особая форма.*
+- peels — *После have или has нужна особая форма.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-18:i13; family: speed_match -->

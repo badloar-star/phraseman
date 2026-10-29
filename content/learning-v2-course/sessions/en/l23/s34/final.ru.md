@@ -9,13 +9,13 @@
 
 ### Ваш опыт
 
-Island — остров, участок суши, со всех сторон окружённый водой. I have visited an island — я побывал на острове. Visited — третья форма visit. Перед island нужен an: первый звук — гласный, а буква s в island не произносится.
+Island — остров, участок суши, со всех сторон окружённый водой. I have visited an island — я побывал на острове. Visited — форма visit после have. Перед island нужен an: первый звук — гласный, а буква s в island не произносится.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have visited an island.**
-- ❌ I has visited an island. — *Выберите have или has по подлежащему.*
-- ❌ I have visit an island. — *После have или has нужна третья форма: visited.*
+- ❌ I has visited an island. — *Выберите have или has по тому, кто действует.*
+- ❌ I have visit an island. — *После have или has нужна особая форма: visited.*
 
 ---
 
@@ -23,13 +23,13 @@ Island — остров, участок суши, со всех сторон о�
 
 ### Уже поднимались на гору
 
-Обсуждая походы, вы с другом рассказываете, что у вас есть опыт подъёма на гору. We have climbed a mountain — мы поднимались на гору. Mountain означает «гора». Собираем: we + have + climbed + a mountain. После we ставим have, climbed — третья форма climb с окончанием -ed. Гору называем сразу после climbed, без on. Have climbed сообщает о вашем опыте, без указания конкретной поездки.
+Обсуждая походы, вы с другом рассказываете, что у вас есть опыт подъёма на гору. We have climbed a mountain — мы поднимались на гору. Mountain означает «гора». Собираем: we + have + climbed + a mountain. После we ставим have, climbed — форма climb после have с окончанием -ed. Гору называем сразу после climbed, без on. Have climbed сообщает о вашем опыте, без указания конкретной поездки.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have climbed a mountain.**
-- ❌ We has climbed a mountain. — *Выберите have или has по подлежащему.*
-- ❌ We have climb a mountain. — *После have или has нужна третья форма: climbed.*
+- ❌ We has climbed a mountain. — *Выберите have или has по тому, кто действует.*
+- ❌ We have climb a mountain. — *После have или has нужна особая форма: climbed.*
 
 ---
 
@@ -37,13 +37,13 @@ Island — остров, участок суши, со всех сторон о�
 
 ### Ещё один пример
 
-Ocean — океан. He has seen the ocean — он видел океан. Seen — третья форма see. Так мы рассказываем об опыте, не называя конкретную поездку. В этой фразе говорим the ocean: речь об океане как о знакомой части мира.
+Ocean — океан. He has seen the ocean — он видел океан. Seen — форма see после have. Так мы рассказываем об опыте, не называя конкретную поездку. В этой фразе говорим the ocean: речь об океане как о знакомой части мира.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has seen the ocean.**
-- ❌ He have seen the ocean. — *Выберите have или has по подлежащему.*
-- ❌ He has see the ocean. — *После have или has нужна третья форма: seen.*
+- ❌ He have seen the ocean. — *Выберите have или has по тому, кто действует.*
+- ❌ He has see the ocean. — *После have или has нужна особая форма: seen.*
 
 ---
 
@@ -66,8 +66,8 @@ Ocean — океан. He has seen the ocean — он видел океан. Seen
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-34:i03; family: context_gap_grammar -->
 I have ___ an island. → **visited** · visit · visits
-- visit — *Нужна третья форма: visited.*
-- visits — *Нужна третья форма: visited.*
+- visit — *Нужна форма после have: visited.*
+- visits — *Нужна форма после have: visited.*
 
 **5 · Карточка слова — forest**
 <!-- interaction_id: en:lesson-23:session-34:word:forest; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ an island. → **visited** · visit · visits
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-34:i06; family: context_gap_grammar -->
 She has ___ through a forest. → **walked** · walk · walks
-- walk — *Нужна третья форма: walked.*
-- walks — *Нужна третья форма: walked.*
+- walk — *Нужна форма после have: walked.*
+- walks — *Нужна форма после have: walked.*
 
 **9 · Карточка слова — mountain**
 <!-- interaction_id: en:lesson-23:session-34:word:mountain; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ through a forest. → **walked** · walk · walks
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-34:i09; family: context_gap_grammar -->
 We have ___ a mountain. → **climbed** · climb · climbs
-- climb — *Нужна третья форма: climbed.*
-- climbs — *Нужна третья форма: climbed.*
+- climb — *Нужна форма после have: climbed.*
+- climbs — *Нужна форма после have: climbed.*
 
 **13 · Карточка слова — ocean**
 <!-- interaction_id: en:lesson-23:session-34:word:ocean; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a mountain. → **climbed** · climb · climbs
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-34:i12; family: context_gap_grammar -->
 He has ___ the ocean. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-34:i13; family: speed_match -->

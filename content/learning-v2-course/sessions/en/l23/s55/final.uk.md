@@ -15,7 +15,7 @@ Flu — грип. I have had flu — я хворів на грип. Перше h
 
 - ✅ **I have had flu.**
 - ❌ I has had flu. — *З I та we потрібно have, з he та she — has.*
-- ❌ I have have flu. — *Після have або has потрібна третя форма: had.*
+- ❌ I have have flu. — *Після have або has потрібна особлива форма: had.*
 
 ---
 
@@ -29,7 +29,7 @@ Flu — грип. I have had flu — я хворів на грип. Перше h
 
 - ✅ **We have described the symptoms.**
 - ❌ We has described the symptoms. — *З I та we потрібно have, з he та she — has.*
-- ❌ We have describe the symptoms. — *Після have або has потрібна третя форма: described.*
+- ❌ We have describe the symptoms. — *Після have або has потрібна особлива форма: described.*
 
 ---
 
@@ -37,13 +37,13 @@ Flu — грип. I have had flu — я хворів на грип. Перше h
 
 ### Уже поставив запитання
 
-Друг хотів дізнатися про вакцину й уже поставив запитання лікарю. He has asked about the vaccine — він запитав про вакцину. Vaccine означає «вакцина». Після he ставимо has, потім asked — третю форму ask: he + has + asked + about the vaccine. About вводить тему запитання. Has asked повідомляє про виконану дію: запитання вже поставлено, але з цієї фрази невідомо, чи отримано відповідь.
+Друг хотів дізнатися про вакцину й уже поставив запитання лікарю. He has asked about the vaccine — він запитав про вакцину. Vaccine означає «вакцина». Після he ставимо has, потім asked — форму ask: he + has + asked + about the vaccine. About вводить тему запитання. Has asked повідомляє про виконану дію: запитання вже поставлено, але з цієї фрази невідомо, чи отримано відповідь.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has asked about the vaccine.**
 - ❌ He have asked about the vaccine. — *З I та we потрібно have, з he та she — has.*
-- ❌ He has ask about the vaccine. — *Після have або has потрібна третя форма: asked.*
+- ❌ He has ask about the vaccine. — *Після have або has потрібна особлива форма: asked.*
 
 ---
 
@@ -66,8 +66,8 @@ Flu — грип. I have had flu — я хворів на грип. Перше h
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i03; family: context_gap_grammar -->
 I have ___ flu. → **had** · have · has
-- have — *Потрібна третя форма: had.*
-- has — *Потрібна третя форма: had.*
+- have — *Потрібна форма після have: had.*
+- has — *Потрібна форма після have: had.*
 
 **5 · Картка слова — virus**
 <!-- interaction_id: en:lesson-23:session-55:word:virus; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ flu. → **had** · have · has
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i06; family: context_gap_grammar -->
 She has ___ a virus. → **caught** · catch · catches
-- catch — *Потрібна третя форма: caught.*
-- catches — *Потрібна третя форма: caught.*
+- catch — *Потрібна форма після have: caught.*
+- catches — *Потрібна форма після have: caught.*
 
 **9 · Картка слова — symptoms**
 <!-- interaction_id: en:lesson-23:session-55:word:symptoms; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a virus. → **caught** · catch · catches
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i09; family: context_gap_grammar -->
 We have ___ the symptoms. → **described** · describe · describes
-- describe — *Потрібна третя форма: described.*
-- describes — *Потрібна третя форма: described.*
+- describe — *Потрібна форма після have: described.*
+- describes — *Потрібна форма після have: described.*
 
 **13 · Картка слова — vaccine**
 <!-- interaction_id: en:lesson-23:session-55:word:vaccine; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ the symptoms. → **described** · describe · describes
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i12; family: context_gap_grammar -->
 He has ___ about the vaccine. → **asked** · ask · asks
-- ask — *Потрібна третя форма: asked.*
-- asks — *Потрібна третя форма: asked.*
+- ask — *Потрібна форма після have: asked.*
+- asks — *Потрібна форма після have: asked.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-55:i13; family: speed_match -->

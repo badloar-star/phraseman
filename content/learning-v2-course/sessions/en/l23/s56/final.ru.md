@@ -15,7 +15,7 @@ Illness — болезнь. I have recovered from an illness — я оправи
 
 - ✅ **I have recovered from an illness.**
 - ❌ I has recovered from an illness. — *С I и we нужно have, с he и she — has.*
-- ❌ I have recover from an illness. — *После have или has нужна третья форма: recovered.*
+- ❌ I have recover from an illness. — *После have или has нужна особая форма: recovered.*
 
 ---
 
@@ -23,13 +23,13 @@ Illness — болезнь. I have recovered from an illness — я оправи
 
 ### Вопрос врачу уже задан
 
-Вы с родственником поговорили с врачом об инфекции и сообщаете об этом семье. We have asked about the infection — мы спросили об инфекции. Infection означает «инфекция». Собираем: we + have + asked + about the infection. С we используем have, asked — третья форма правильного глагола ask. About вводит тему вопроса. Have asked показывает, что вопрос уже задан; время разговора здесь не уточняем.
+Вы с родственником поговорили с врачом об инфекции и сообщаете об этом семье. We have asked about the infection — мы спросили об инфекции. Infection означает «инфекция». Собираем: we + have + asked + about the infection. С we используем have, asked — форма после have правильного глагола ask. About вводит тему вопроса. Have asked показывает, что вопрос уже задан; время разговора здесь не уточняем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have asked about the infection.**
 - ❌ We has asked about the infection. — *С I и we нужно have, с he и she — has.*
-- ❌ We have ask about the infection. — *После have или has нужна третья форма: asked.*
+- ❌ We have ask about the infection. — *После have или has нужна особая форма: asked.*
 
 ---
 
@@ -37,13 +37,13 @@ Illness — болезнь. I have recovered from an illness — я оправи
 
 ### Снова может ходить
 
-Ваш знакомый повредил ногу, но теперь восстановился и снова ходит как прежде. He has recovered from an injury — он восстановился после травмы. Injury означает «травма». Собираем: he + has + recovered + from an injury. С he ставим has, затем recovered — третью форму recover. После recover используем from, чтобы назвать, после чего человек восстановился. Has recovered сообщает о результате сейчас: восстановление завершилось.
+Ваш знакомый повредил ногу, но теперь восстановился и снова ходит как прежде. He has recovered from an injury — он восстановился после травмы. Injury означает «травма». Собираем: he + has + recovered + from an injury. С he ставим has, затем recovered — форму recover. После recover используем from, чтобы назвать, после чего человек восстановился. Has recovered сообщает о результате сейчас: восстановление завершилось.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has recovered from an injury.**
 - ❌ He have recovered from an injury. — *С I и we нужно have, с he и she — has.*
-- ❌ He has recover from an injury. — *После have или has нужна третья форма: recovered.*
+- ❌ He has recover from an injury. — *После have или has нужна особая форма: recovered.*
 
 ---
 
@@ -66,8 +66,8 @@ Illness — болезнь. I have recovered from an illness — я оправи
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i03; family: context_gap_grammar -->
 I have ___ from an illness. → **recovered** · recover · recovers
-- recover — *Нужна третья форма: recovered.*
-- recovers — *Нужна третья форма: recovered.*
+- recover — *Нужна форма после have: recovered.*
+- recovers — *Нужна форма после have: recovered.*
 
 **5 · Карточка слова — operation**
 <!-- interaction_id: en:lesson-23:session-56:word:operation; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ from an illness. → **recovered** · recover · recovers
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i06; family: context_gap_grammar -->
 She has ___ an operation. → **had** · have · has
-- have — *Нужна третья форма: had.*
-- has — *Нужна третья форма: had.*
+- have — *Нужна форма после have: had.*
+- has — *Нужна форма после have: had.*
 
 **9 · Карточка слова — infection**
 <!-- interaction_id: en:lesson-23:session-56:word:infection; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ an operation. → **had** · have · has
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i09; family: context_gap_grammar -->
 We have ___ about the infection. → **asked** · ask · asks
-- ask — *Нужна третья форма: asked.*
-- asks — *Нужна третья форма: asked.*
+- ask — *Нужна форма после have: asked.*
+- asks — *Нужна форма после have: asked.*
 
 **13 · Карточка слова — injury**
 <!-- interaction_id: en:lesson-23:session-56:word:injury; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ about the infection. → **asked** · ask · asks
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-56:i12; family: context_gap_grammar -->
 He has ___ from an injury. → **recovered** · recover · recovers
-- recover — *Нужна третья форма: recovered.*
-- recovers — *Нужна третья форма: recovered.*
+- recover — *Нужна форма после have: recovered.*
+- recovers — *Нужна форма после have: recovered.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-56:i13; family: speed_match -->

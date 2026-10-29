@@ -9,13 +9,13 @@
 
 ### Видели орла
 
-Вы обсуждаете птиц и рассказываете, что уже видели орла. I have seen an eagle — я видел орла. Eagle означает «орёл». Собираем: I + have + seen + an eagle. После I ставим have, seen — третья форма see. Перед eagle выбираем an: первый звук гласный. Have seen сообщает об опыте встречи с птицей.
+Вы обсуждаете птиц и рассказываете, что уже видели орла. I have seen an eagle — я видел орла. Eagle означает «орёл». Собираем: I + have + seen + an eagle. После I ставим have, seen — форма see после have. Перед eagle выбираем an: первый звук гласный. Have seen сообщает об опыте встречи с птицей.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have seen an eagle.**
 - ❌ I has seen an eagle. — *С I и we нужно have; с he — has.*
-- ❌ I have see an eagle. — *После have или has нужна третья форма глагола.*
+- ❌ I have see an eagle. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Снимок змеи
 
-Во время прогулки вы с другом сфотографировали змею и теперь показываете снимок. We have taken a photo of a snake — мы сфотографировали змею. Snake означает «змея». Собираем: we + have + taken + a photo + of a snake. После we используем have, taken — третья форма take. Of a snake уточняет, кто изображён на фотографии. Have taken сообщает, что снимок уже сделан.
+Во время прогулки вы с другом сфотографировали змею и теперь показываете снимок. We have taken a photo of a snake — мы сфотографировали змею. Snake означает «змея». Собираем: we + have + taken + a photo + of a snake. После we используем have, taken — форма take после have. Of a snake уточняет, кто изображён на фотографии. Have taken сообщает, что снимок уже сделан.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have taken a photo of a snake.**
 - ❌ We has taken a photo of a snake. — *С I и we нужно have; с he — has.*
-- ❌ We have take a photo of a snake. — *После have или has нужна третья форма глагола.*
+- ❌ We have take a photo of a snake. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Рассказать об опыте
 
-He has drawn a lizard — он рисовал ящерицу. Не обязательно видеть животное вживую, чтобы нарисовать его: это опыт рисования. Третья форма draw — drawn; с he ставим has.
+He has drawn a lizard — он рисовал ящерицу. Не обязательно видеть животное вживую, чтобы нарисовать его: это опыт рисования. Форма после have draw — drawn; с he ставим has.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has drawn a lizard.**
 - ❌ He have drawn a lizard. — *С I и we нужно have; с he — has.*
-- ❌ He has draw a lizard. — *После have или has нужна третья форма глагола.*
+- ❌ He has draw a lizard. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -66,8 +66,8 @@ He has drawn a lizard — он рисовал ящерицу. Не обязат�
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-15:i03; family: context_gap_grammar -->
 I have ___ an eagle. → **seen** · see · saw
-- see — *После have или has нужна третья форма глагола.*
-- saw — *После have или has нужна третья форма глагола.*
+- see — *После have или has нужна особая форма (done, seen).*
+- saw — *После have или has нужна особая форма (done, seen).*
 
 **5 · Карточка слова — wolf**
 <!-- interaction_id: en:lesson-23:session-15:word:wolf; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ an eagle. → **seen** · see · saw
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-15:i06; family: context_gap_grammar -->
 She has ___ a wolf. → **watched** · watch · watches
-- watch — *После have или has нужна третья форма глагола.*
-- watches — *После have или has нужна третья форма глагола.*
+- watch — *После have или has нужна особая форма (done, seen).*
+- watches — *После have или has нужна особая форма (done, seen).*
 
 **9 · Карточка слова — snake**
 <!-- interaction_id: en:lesson-23:session-15:word:snake; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a wolf. → **watched** · watch · watches
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-15:i09; family: context_gap_grammar -->
 We have ___ a photo of a snake. → **taken** · take · took
-- take — *После have или has нужна третья форма глагола.*
-- took — *После have или has нужна третья форма глагола.*
+- take — *После have или has нужна особая форма (done, seen).*
+- took — *После have или has нужна особая форма (done, seen).*
 
 **13 · Карточка слова — lizard**
 <!-- interaction_id: en:lesson-23:session-15:word:lizard; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a photo of a snake. → **taken** · take · took
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-15:i12; family: context_gap_grammar -->
 He has ___ a lizard. → **drawn** · draw · drew
-- draw — *После have или has нужна третья форма глагола.*
-- drew — *После have или has нужна третья форма глагола.*
+- draw — *После have или has нужна особая форма (done, seen).*
+- drew — *После have или has нужна особая форма (done, seen).*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-15:i13; family: speed_match -->

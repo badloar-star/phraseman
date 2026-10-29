@@ -9,13 +9,13 @@
 
 ### Знайомство з репортером
 
-Друг запитує, чи зустрічалися ви з людиною, яка робить репортажі. I have met a reporter — я зустрічався з репортером. Reporter означає «репортер». Складаємо: I + have + met + a reporter. Після I ставимо have; met — третя форма meet, а не початкова meet. Have met повідомляє про ваш досвід, без дати зустрічі.
+Друг запитує, чи зустрічалися ви з людиною, яка робить репортажі. I have met a reporter — я зустрічався з репортером. Reporter означає «репортер». Складаємо: I + have + met + a reporter. Після I ставимо have; met — форма meet після have, а не початкова meet. Have met повідомляє про ваш досвід, без дати зустрічі.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have met a reporter.**
-- ❌ I has met a reporter. — *Виберіть have або has за підметом.*
-- ❌ I have meet a reporter. — *Після have або has потрібна третя форма: met.*
+- ❌ I has met a reporter. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have meet a reporter. — *Після have або has потрібна особлива форма: met.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Згадуєте зустріч
 
-Ви з другом згадуєте, як познайомилися із солдатом на родинному святі. We have met a soldier — ми зустрічалися із солдатом. Soldier означає «солдат». Складаємо: we + have + met + a soldier. Із we використовуємо have; met — третя форма meet. Після met одразу називаємо людину, без to. Have met повідомляє про досвід зустрічі; її час у цій фразі не зазначено.
+Ви з другом згадуєте, як познайомилися із солдатом на родинному святі. We have met a soldier — ми зустрічалися із солдатом. Soldier означає «солдат». Складаємо: we + have + met + a soldier. Із we використовуємо have; met — форма meet після have. Після met одразу називаємо людину, без to. Have met повідомляє про досвід зустрічі; її час у цій фразі не зазначено.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have met a soldier.**
-- ❌ We has met a soldier. — *Виберіть have або has за підметом.*
-- ❌ We have meet a soldier. — *Після have або has потрібна третя форма: met.*
+- ❌ We has met a soldier. — *Виберіть have або has за тим, хто діє.*
+- ❌ We have meet a soldier. — *Після have або has потрібна особлива форма: met.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Ще один приклад
 
-Firefighter — пожежник: людина, яка гасить пожежі й бере участь у порятунку людей. He has spoken to a firefighter — він говорив із пожежником. Після has потрібна третя форма spoken, а перед назвою людини — to.
+Firefighter — пожежник: людина, яка гасить пожежі й бере участь у порятунку людей. He has spoken to a firefighter — він говорив із пожежником. Після has потрібна форма spoken, а перед назвою людини — to.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has spoken to a firefighter.**
-- ❌ He have spoken to a firefighter. — *Виберіть have або has за підметом.*
-- ❌ He has speak to a firefighter. — *Після have або has потрібна третя форма: spoken.*
+- ❌ He have spoken to a firefighter. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has speak to a firefighter. — *Після have або has потрібна особлива форма: spoken.*
 
 ---
 
@@ -66,8 +66,8 @@ Firefighter — пожежник: людина, яка гасить пожежі
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-35:i03; family: context_gap_grammar -->
 I have ___ a reporter. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **5 · Картка слова — journalist**
 <!-- interaction_id: en:lesson-23:session-35:word:journalist; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a reporter. → **met** · meet · meets
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-35:i06; family: context_gap_grammar -->
 She has ___ to a journalist. → **spoken** · speak · speaks
-- speak — *Потрібна третя форма: spoken.*
-- speaks — *Потрібна третя форма: spoken.*
+- speak — *Потрібна форма після have: spoken.*
+- speaks — *Потрібна форма після have: spoken.*
 
 **9 · Картка слова — soldier**
 <!-- interaction_id: en:lesson-23:session-35:word:soldier; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ to a journalist. → **spoken** · speak · speaks
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-35:i09; family: context_gap_grammar -->
 We have ___ a soldier. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **13 · Картка слова — firefighter**
 <!-- interaction_id: en:lesson-23:session-35:word:firefighter; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a soldier. → **met** · meet · meets
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-35:i12; family: context_gap_grammar -->
 He has ___ to a firefighter. → **spoken** · speak · speaks
-- speak — *Потрібна третя форма: spoken.*
-- speaks — *Потрібна третя форма: spoken.*
+- speak — *Потрібна форма після have: spoken.*
+- speaks — *Потрібна форма після have: spoken.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-35:i13; family: speed_match -->

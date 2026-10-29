@@ -9,13 +9,13 @@
 
 ### Волейбол вам знаком
 
-Друзья собирают команду и спрашивают, играли ли вы раньше в волейбол. I have played volleyball — я играл в волейбол. Volleyball означает «волейбол». Собираем: I + have + played + volleyball. После I ставим have, played — третья форма play. Название спорта ставим сразу после played, без предлога. Have played сообщает о вашем опыте игры.
+Друзья собирают команду и спрашивают, играли ли вы раньше в волейбол. I have played volleyball — я играл в волейбол. Volleyball означает «волейбол». Собираем: I + have + played + volleyball. После I ставим have, played — форма play после have. Название спорта ставим сразу после played, без предлога. Have played сообщает о вашем опыте игры.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have played volleyball.**
 - ❌ I has played volleyball. — *С I нужно have.*
-- ❌ I have play volleyball. — *После have или has нужна третья форма played.*
+- ❌ I have play volleyball. — *После have или has нужна форма played.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Игра с мячом
 
-Basketball — баскетбол, игра, в которой мяч бросают в корзину. We have played basketball — мы играли в баскетбол. Это сообщает о нашем опыте, но не называет конкретный день игры. Played — третья форма play.
+Basketball — баскетбол, игра, в которой мяч бросают в корзину. We have played basketball — мы играли в баскетбол. Это сообщает о нашем опыте, но не называет конкретный день игры. Played — форма play после have.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have played basketball.**
 - ❌ We has played basketball. — *С we нужно have.*
-- ❌ We have play basketball. — *После have или has нужна третья форма played.*
+- ❌ We have play basketball. — *После have или has нужна форма played.*
 
 ---
 
@@ -37,13 +37,13 @@ Basketball — баскетбол, игра, в которой мяч броса
 
 ### Друг уже играл в хоккей
 
-Вы собираете игроков для хоккея и вспоминаете друга с таким опытом. He has played hockey — он играл в хоккей. Hockey означает «хоккей». Собираем: he + has + played + hockey. С he ставим has, а played — третья форма play с окончанием -ed. Has played сообщает об опыте; конкретный матч в этой фразе не называем.
+Вы собираете игроков для хоккея и вспоминаете друга с таким опытом. He has played hockey — он играл в хоккей. Hockey означает «хоккей». Собираем: he + has + played + hockey. С he ставим has, а played — форма play после have с окончанием -ed. Has played сообщает об опыте; конкретный матч в этой фразе не называем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has played hockey.**
 - ❌ He have played hockey. — *С he нужно has.*
-- ❌ He has play hockey. — *После have или has нужна третья форма played.*
+- ❌ He has play hockey. — *После have или has нужна форма played.*
 
 ---
 
@@ -66,8 +66,8 @@ Basketball — баскетбол, игра, в которой мяч броса
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-21:i03; family: context_gap_grammar -->
 I have ___ volleyball. → **played** · play · plays
-- play — *После have или has нужна третья форма played.*
-- plays — *После have или has нужна третья форма played.*
+- play — *После have или has нужна форма played.*
+- plays — *После have или has нужна форма played.*
 
 **5 · Карточка слова — badminton**
 <!-- interaction_id: en:lesson-23:session-21:word:badminton; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ volleyball. → **played** · play · plays
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-21:i06; family: context_gap_grammar -->
 She has ___ badminton. → **played** · play · plays
-- play — *После have или has нужна третья форма played.*
-- plays — *После have или has нужна третья форма played.*
+- play — *После have или has нужна форма played.*
+- plays — *После have или has нужна форма played.*
 
 **9 · Карточка слова — basketball**
 <!-- interaction_id: en:lesson-23:session-21:word:basketball; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ badminton. → **played** · play · plays
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-21:i09; family: context_gap_grammar -->
 We have ___ basketball. → **played** · play · plays
-- play — *После have или has нужна третья форма played.*
-- plays — *После have или has нужна третья форма played.*
+- play — *После have или has нужна форма played.*
+- plays — *После have или has нужна форма played.*
 
 **13 · Карточка слова — hockey**
 <!-- interaction_id: en:lesson-23:session-21:word:hockey; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ basketball. → **played** · play · plays
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-21:i12; family: context_gap_grammar -->
 He has ___ hockey. → **played** · play · plays
-- play — *После have или has нужна третья форма played.*
-- plays — *После have или has нужна третья форма played.*
+- play — *После have или has нужна форма played.*
+- plays — *После have или has нужна форма played.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-21:i13; family: speed_match -->

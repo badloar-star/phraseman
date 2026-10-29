@@ -15,7 +15,7 @@
 
 - ✅ **I have ridden a horse.**
 - ❌ I has ridden a horse. — *С I и we нужно have; с he — has.*
-- ❌ I have ride a horse. — *После have или has нужна третья форма глагола.*
+- ❌ I have ride a horse. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Видели свинью на ферме
 
-Вы с другом побывали на ферме и рассказываете, что видели свинью. We have seen a pig — мы видели свинью. Pig означает «свинья». Собираем: we + have + seen + a pig. С we ставим have, seen — третья форма see. Have seen сообщает об опыте: вы видели животное, но фраза не говорит, что вы его кормили.
+Вы с другом побывали на ферме и рассказываете, что видели свинью. We have seen a pig — мы видели свинью. Pig означает «свинья». Собираем: we + have + seen + a pig. С we ставим have, seen — форма see после have. Have seen сообщает об опыте: вы видели животное, но фраза не говорит, что вы его кормили.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have seen a pig.**
 - ❌ We has seen a pig. — *С I и we нужно have; с he — has.*
-- ❌ We have see a pig. — *После have или has нужна третья форма глагола.*
+- ❌ We have see a pig. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Рассказать об опыте
 
-He has drawn a pony — он рисовал пони. Английское pony здесь исчисляемое, поэтому a pony, хотя русский перевод «пони» не меняется. С he используем has, с we — have.
+He has drawn a pony — он рисовал пони. Английское pony здесь считается поштучно, поэтому a pony, хотя русский перевод «пони» не меняется. С he используем has, с we — have.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has drawn a pony.**
 - ❌ He have drawn a pony. — *С I и we нужно have; с he — has.*
-- ❌ He has draw a pony. — *После have или has нужна третья форма глагола.*
+- ❌ He has draw a pony. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -66,8 +66,8 @@ He has drawn a pony — он рисовал пони. Английское pony 
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i03; family: context_gap_grammar -->
 I have ___ a horse. → **ridden** · ride · rode
-- ride — *После have или has нужна третья форма глагола.*
-- rode — *После have или has нужна третья форма глагола.*
+- ride — *После have или has нужна особая форма (done, seen).*
+- rode — *После have или has нужна особая форма (done, seen).*
 
 **5 · Карточка слова — cow**
 <!-- interaction_id: en:lesson-23:session-16:word:cow; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a horse. → **ridden** · ride · rode
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i06; family: context_gap_grammar -->
 She has ___ a cow. → **fed** · feed · feeds
-- feed — *После have или has нужна третья форма глагола.*
-- feeds — *После have или has нужна третья форма глагола.*
+- feed — *После have или has нужна особая форма (done, seen).*
+- feeds — *После have или has нужна особая форма (done, seen).*
 
 **9 · Карточка слова — pig**
 <!-- interaction_id: en:lesson-23:session-16:word:pig; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a cow. → **fed** · feed · feeds
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i09; family: context_gap_grammar -->
 We have ___ a pig. → **seen** · see · saw
-- see — *После have или has нужна третья форма глагола.*
-- saw — *После have или has нужна третья форма глагола.*
+- see — *После have или has нужна особая форма (done, seen).*
+- saw — *После have или has нужна особая форма (done, seen).*
 
 **13 · Карточка слова — pony**
 <!-- interaction_id: en:lesson-23:session-16:word:pony; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a pig. → **seen** · see · saw
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i12; family: context_gap_grammar -->
 He has ___ a pony. → **drawn** · draw · drew
-- draw — *После have или has нужна третья форма глагола.*
-- drew — *После have или has нужна третья форма глагола.*
+- draw — *После have или has нужна особая форма (done, seen).*
+- drew — *После have или has нужна особая форма (done, seen).*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-16:i13; family: speed_match -->

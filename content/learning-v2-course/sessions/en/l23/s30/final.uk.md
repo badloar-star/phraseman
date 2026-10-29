@@ -9,13 +9,13 @@
 
 ### Мураха на кухні
 
-Ви помітили мураху на кухні й повідомляєте домашнім: I have seen an ant — я бачив мураху. Ant означає «мураха». Складаємо: I + have + seen + an ant. Із I використовуємо have; seen — третя форма see. Перед ant ставимо an, тому що слово починається з голосного звука. Have seen повідомляє про те, що ви вже помітили; мураха не обов’язково досі перед вами.
+Ви помітили мураху на кухні й повідомляєте домашнім: I have seen an ant — я бачив мураху. Ant означає «мураха». Складаємо: I + have + seen + an ant. Із I використовуємо have; seen — форма see після have. Перед ant ставимо an, тому що слово починається з голосного звука. Have seen повідомляє про те, що ви вже помітили; мураха не обов’язково досі перед вами.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have seen an ant.**
-- ❌ I has seen an ant. — *Виберіть have або has за підметом.*
-- ❌ I have see an ant. — *Після have або has потрібна третя форма: seen.*
+- ❌ I has seen an ant. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have see an ant. — *Після have або has потрібна особлива форма: seen.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розрізняємо слова
 
-Mosquito — комар. We have heard a mosquito — ми чули комара: наприклад, його писк у кімнаті. Heard — третя форма hear. Із we потрібно have.
+Mosquito — комар. We have heard a mosquito — ми чули комара: наприклад, його писк у кімнаті. Heard — форма hear після have. Із we потрібно have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have heard a mosquito.**
-- ❌ We has heard a mosquito. — *Виберіть have або has за підметом.*
-- ❌ We have hear a mosquito. — *Після have або has потрібна третя форма: heard.*
+- ❌ We has heard a mosquito. — *Виберіть have або has за тим, хто діє.*
+- ❌ We have hear a mosquito. — *Після have або has потрібна особлива форма: heard.*
 
 ---
 
@@ -37,13 +37,13 @@ Mosquito — комар. We have heard a mosquito — ми чули комара
 
 ### Ще один приклад
 
-Worm — черв’як, наприклад дощовий черв’як у землі. He has found a worm — він знайшов черв’яка. Found — третя форма find. Із he використовуємо has. Так можна повідомити, що людина щойно помітила в саду.
+Worm — черв’як, наприклад дощовий черв’як у землі. He has found a worm — він знайшов черв’яка. Found — форма find після have. Із he використовуємо has. Так можна повідомити, що людина щойно помітила в саду.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has found a worm.**
-- ❌ He have found a worm. — *Виберіть have або has за підметом.*
-- ❌ He has find a worm. — *Після have або has потрібна третя форма: found.*
+- ❌ He have found a worm. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has find a worm. — *Після have або has потрібна особлива форма: found.*
 
 ---
 
@@ -66,8 +66,8 @@ Worm — черв’як, наприклад дощовий черв’як у �
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i03; family: context_gap_grammar -->
 I have ___ an ant. → **seen** · see · sees
-- see — *Потрібна третя форма: seen.*
-- sees — *Потрібна третя форма: seen.*
+- see — *Потрібна форма після have: seen.*
+- sees — *Потрібна форма після have: seen.*
 
 **5 · Картка слова — spider**
 <!-- interaction_id: en:lesson-23:session-30:word:spider; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ an ant. → **seen** · see · sees
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i06; family: context_gap_grammar -->
 She has ___ a spider. → **seen** · see · sees
-- see — *Потрібна третя форма: seen.*
-- sees — *Потрібна третя форма: seen.*
+- see — *Потрібна форма після have: seen.*
+- sees — *Потрібна форма після have: seen.*
 
 **9 · Картка слова — mosquito**
 <!-- interaction_id: en:lesson-23:session-30:word:mosquito; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a spider. → **seen** · see · sees
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i09; family: context_gap_grammar -->
 We have ___ a mosquito. → **heard** · hear · hears
-- hear — *Потрібна третя форма: heard.*
-- hears — *Потрібна третя форма: heard.*
+- hear — *Потрібна форма після have: heard.*
+- hears — *Потрібна форма після have: heard.*
 
 **13 · Картка слова — worm**
 <!-- interaction_id: en:lesson-23:session-30:word:worm; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a mosquito. → **heard** · hear · hears
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i12; family: context_gap_grammar -->
 He has ___ a worm. → **found** · find · finds
-- find — *Потрібна третя форма: found.*
-- finds — *Потрібна третя форма: found.*
+- find — *Потрібна форма після have: found.*
+- finds — *Потрібна форма після have: found.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-30:i13; family: speed_match -->

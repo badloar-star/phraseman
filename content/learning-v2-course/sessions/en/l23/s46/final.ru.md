@@ -9,13 +9,13 @@
 
 ### Мука уже куплена
 
-Вы вернулись из магазина с пшеничной мукой для выпечки и сообщаете об этом дома. I have bought wheat flour — я купил пшеничную муку. Wheat означает «пшеница», а wheat flour — «пшеничная мука». Собираем: I + have + bought + wheat flour. С I используем have, bought — третья форма buy. Have bought показывает результат: нужная мука уже у вас.
+Вы вернулись из магазина с пшеничной мукой для выпечки и сообщаете об этом дома. I have bought wheat flour — я купил пшеничную муку. Wheat означает «пшеница», а wheat flour — «пшеничная мука». Собираем: I + have + bought + wheat flour. С I используем have, bought — форма buy после have. Have bought показывает результат: нужная мука уже у вас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have bought wheat flour.**
 - ❌ I has bought wheat flour. — *С I и we нужно have, с he и she — has.*
-- ❌ I have buy wheat flour. — *После have или has нужна третья форма: bought.*
+- ❌ I have buy wheat flour. — *После have или has нужна особая форма: bought.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **We have added yeast.**
 - ❌ We has added yeast. — *С I и we нужно have, с he и she — has.*
-- ❌ We have add yeast. — *После have или has нужна третья форма: added.*
+- ❌ We have add yeast. — *После have или has нужна особая форма: added.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Тесто для пирога готово
 
-Друг приготовил тесто для пирога; теперь его можно раскатывать. He has made pastry — он приготовил тесто для пирога. Pastry здесь означает тесто для такой выпечки. Собираем: he + has + made + pastry. С he ставим has, made — третья форма make. Has made сообщает о результате: тесто уже готово. Pastry здесь обозначает продукт, а не отдельное изделие, поэтому a не ставим.
+Друг приготовил тесто для пирога; теперь его можно раскатывать. He has made pastry — он приготовил тесто для пирога. Pastry здесь означает тесто для такой выпечки. Собираем: he + has + made + pastry. С he ставим has, made — форма make после have. Has made сообщает о результате: тесто уже готово. Pastry здесь обозначает продукт, а не отдельное изделие, поэтому a не ставим.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has made pastry.**
 - ❌ He have made pastry. — *С I и we нужно have, с he и she — has.*
-- ❌ He has make pastry. — *После have или has нужна третья форма: made.*
+- ❌ He has make pastry. — *После have или has нужна особая форма: made.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i03; family: context_gap_grammar -->
 I have ___ wheat flour. → **bought** · buy · buys
-- buy — *Нужна третья форма: bought.*
-- buys — *Нужна третья форма: bought.*
+- buy — *Нужна форма после have: bought.*
+- buys — *Нужна форма после have: bought.*
 
 **5 · Карточка слова — oats**
 <!-- interaction_id: en:lesson-23:session-46:word:oats; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ wheat flour. → **bought** · buy · buys
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i06; family: context_gap_grammar -->
 She has ___ oats. → **cooked** · cook · cooks
-- cook — *Нужна третья форма: cooked.*
-- cooks — *Нужна третья форма: cooked.*
+- cook — *Нужна форма после have: cooked.*
+- cooks — *Нужна форма после have: cooked.*
 
 **9 · Карточка слова — yeast**
 <!-- interaction_id: en:lesson-23:session-46:word:yeast; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ oats. → **cooked** · cook · cooks
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i09; family: context_gap_grammar -->
 We have ___ yeast. → **added** · add · adds
-- add — *Нужна третья форма: added.*
-- adds — *Нужна третья форма: added.*
+- add — *Нужна форма после have: added.*
+- adds — *Нужна форма после have: added.*
 
 **13 · Карточка слова — pastry**
 <!-- interaction_id: en:lesson-23:session-46:word:pastry; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ yeast. → **added** · add · adds
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-46:i12; family: context_gap_grammar -->
 He has ___ pastry. → **made** · make · makes
-- make — *Нужна третья форма: made.*
-- makes — *Нужна третья форма: made.*
+- make — *Нужна форма после have: made.*
+- makes — *Нужна форма после have: made.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-46:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Розповідаєте про навчання
 
-На першому занятті викладач запитує про ваш досвід вивчення китайської. I have studied Chinese — я вивчав китайську мову. Chinese тут — назва мови. Складаємо: I + have + studied + Chinese. Із I використовуємо have, studied — третя форма study. Have studied повідомляє, що ви вже мали такий досвід; у цій фразі не називаємо дату початку чи тривалість навчання.
+На першому занятті викладач запитує про ваш досвід вивчення китайської. I have studied Chinese — я вивчав китайську мову. Chinese тут — назва мови. Складаємо: I + have + studied + Chinese. Із I використовуємо have, studied — форма study після have. Have studied повідомляє, що ви вже мали такий досвід; у цій фразі не називаємо дату початку чи тривалість навчання.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have studied Chinese.**
-- ❌ I has studied Chinese. — *Виберіть have або has за підметом.*
-- ❌ I have study Chinese. — *Після have або has потрібна третя форма: studied.*
+- ❌ I has studied Chinese. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have study Chinese. — *Після have або has потрібна особлива форма: studied.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розрізняємо слова
 
-Arabic — арабська мова. We have studied Arabic — ми вивчали арабську мову. Після have потрібна третя форма studied. Закінчення ed тут стосується дієслова study, а назва Arabic залишається незмінною.
+Arabic — арабська мова. We have studied Arabic — ми вивчали арабську мову. Після have потрібна форма studied. Закінчення ed тут стосується дієслова study, а назва Arabic залишається незмінною.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have studied Arabic.**
-- ❌ We has studied Arabic. — *Виберіть have або has за підметом.*
-- ❌ We have study Arabic. — *Після have або has потрібна третя форма: studied.*
+- ❌ We has studied Arabic. — *Виберіть have або has за тим, хто діє.*
+- ❌ We have study Arabic. — *Після have або has потрібна особлива форма: studied.*
 
 ---
 
@@ -42,8 +42,8 @@ Portuguese — португальська мова. He has studied Portuguese �
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has studied Portuguese.**
-- ❌ He have studied Portuguese. — *Виберіть have або has за підметом.*
-- ❌ He has study Portuguese. — *Після have або has потрібна третя форма: studied.*
+- ❌ He have studied Portuguese. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has study Portuguese. — *Після have або has потрібна особлива форма: studied.*
 
 ---
 
@@ -66,8 +66,8 @@ Portuguese — португальська мова. He has studied Portuguese �
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-40:i03; family: context_gap_grammar -->
 I have ___ Chinese. → **studied** · study · studies
-- study — *Потрібна третя форма: studied.*
-- studies — *Потрібна третя форма: studied.*
+- study — *Потрібна форма після have: studied.*
+- studies — *Потрібна форма після have: studied.*
 
 **5 · Картка слова — Japanese**
 <!-- interaction_id: en:lesson-23:session-40:word:Japanese; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ Chinese. → **studied** · study · studies
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-40:i06; family: context_gap_grammar -->
 She has ___ Japanese. → **studied** · study · studies
-- study — *Потрібна третя форма: studied.*
-- studies — *Потрібна третя форма: studied.*
+- study — *Потрібна форма після have: studied.*
+- studies — *Потрібна форма після have: studied.*
 
 **9 · Картка слова — Arabic**
 <!-- interaction_id: en:lesson-23:session-40:word:Arabic; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ Japanese. → **studied** · study · studies
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-40:i09; family: context_gap_grammar -->
 We have ___ Arabic. → **studied** · study · studies
-- study — *Потрібна третя форма: studied.*
-- studies — *Потрібна третя форма: studied.*
+- study — *Потрібна форма після have: studied.*
+- studies — *Потрібна форма після have: studied.*
 
 **13 · Картка слова — Portuguese**
 <!-- interaction_id: en:lesson-23:session-40:word:Portuguese; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ Arabic. → **studied** · study · studies
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-40:i12; family: context_gap_grammar -->
 He has ___ Portuguese. → **studied** · study · studies
-- study — *Потрібна третя форма: studied.*
-- studies — *Потрібна третя форма: studied.*
+- study — *Потрібна форма після have: studied.*
+- studies — *Потрібна форма після have: studied.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-40:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Зустріч з актором
 
-Після вистави вам вдалося особисто познайомитися з актором. Розповідаючи про цей досвід, ви кажете: I have met an actor — я зустрічався з актором. Actor означає «актор». Складаємо: I + have + met + an actor. Із I ставимо have, met — третя форма meet. Перед actor використовуємо an, тому що слово починається з голосного звука. Have met повідомляє про зустріч без її дати.
+Після вистави вам вдалося особисто познайомитися з актором. Розповідаючи про цей досвід, ви кажете: I have met an actor — я зустрічався з актором. Actor означає «актор». Складаємо: I + have + met + an actor. Із I ставимо have, met — форма meet після have. Перед actor використовуємо an, тому що слово починається з голосного звука. Have met повідомляє про зустріч без її дати.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have met an actor.**
-- ❌ I has met an actor. — *Виберіть have або has за підметом.*
-- ❌ I have meet an actor. — *Після have або has потрібна третя форма: met.*
+- ❌ I has met an actor. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have meet an actor. — *Після have або has потрібна особлива форма: met.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розрізняємо слова
 
-Dancer — танцівник або танцівниця. We have met a dancer — ми зустрічалися з танцівником. Dancer називає людину, а знайоме dance — дію «танцювати». Present perfect тут повідомляє про досвід зустрічі, без конкретної дати.
+Dancer — танцівник або танцівниця. We have met a dancer — ми зустрічалися з танцівником. Dancer називає людину, а знайоме dance — дію «танцювати». have / has + done тут повідомляє про досвід зустрічі, без конкретної дати.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have met a dancer.**
-- ❌ We has met a dancer. — *Виберіть have або has за підметом.*
-- ❌ We have meet a dancer. — *Після have або has потрібна третя форма: met.*
+- ❌ We has met a dancer. — *Виберіть have або has за тим, хто діє.*
+- ❌ We have meet a dancer. — *Після have або has потрібна особлива форма: met.*
 
 ---
 
@@ -42,8 +42,8 @@ Musician — музикант. He has met a musician — він зустріча
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has met a musician.**
-- ❌ He have met a musician. — *Виберіть have або has за підметом.*
-- ❌ He has meet a musician. — *Після have або has потрібна третя форма: met.*
+- ❌ He have met a musician. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has meet a musician. — *Після have або has потрібна особлива форма: met.*
 
 ---
 
@@ -66,8 +66,8 @@ Musician — музикант. He has met a musician — він зустріча
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-32:i03; family: context_gap_grammar -->
 I have ___ an actor. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **5 · Картка слова — singer**
 <!-- interaction_id: en:lesson-23:session-32:word:singer; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ an actor. → **met** · meet · meets
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-32:i06; family: context_gap_grammar -->
 She has ___ a singer. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **9 · Картка слова — dancer**
 <!-- interaction_id: en:lesson-23:session-32:word:dancer; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a singer. → **met** · meet · meets
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-32:i09; family: context_gap_grammar -->
 We have ___ a dancer. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **13 · Картка слова — musician**
 <!-- interaction_id: en:lesson-23:session-32:word:musician; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a dancer. → **met** · meet · meets
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-32:i12; family: context_gap_grammar -->
 He has ___ a musician. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-32:i13; family: speed_match -->

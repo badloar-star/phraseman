@@ -9,13 +9,13 @@
 
 ### На сцене
 
-Opera — опера, спектакль, в котором роли исполняют певцы. I have seen an opera: я смотрел оперу, у меня есть такой опыт. Seen — третья форма see. Перед opera ставим an, потому что слово начинается с гласного звука.
+Opera — опера, спектакль, в котором роли исполняют певцы. I have seen an opera: я смотрел оперу, у меня есть такой опыт. Seen — форма see после have. Перед opera ставим an, потому что слово начинается с гласного звука.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have seen an opera.**
 - ❌ I has seen an opera. — *С I нужно have.*
-- ❌ I have saw an opera. — *Нужна третья форма seen.*
+- ❌ I have saw an opera. — *Нужна форма seen.*
 
 ---
 
@@ -23,13 +23,13 @@ Opera — опера, спектакль, в котором роли испол�
 
 ### Услышать оркестр
 
-Orchestra — оркестр, группа музыкантов, играющих вместе на разных инструментах. She has heard an orchestra: она слышала, как играет оркестр. Heard — третья форма hear. Здесь тоже an: an orchestra.
+Orchestra — оркестр, группа музыкантов, играющих вместе на разных инструментах. She has heard an orchestra: она слышала, как играет оркестр. Heard — форма hear после have. Здесь тоже an: an orchestra.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She has heard an orchestra.**
 - ❌ She have heard an orchestra. — *С she нужно has.*
-- ❌ She has hear an orchestra. — *После have или has нужна третья форма.*
+- ❌ She has hear an orchestra. — *После have или has нужна особая форма.*
 
 ---
 
@@ -37,13 +37,13 @@ Orchestra — оркестр, группа музыкантов, играющи�
 
 ### Бывали в цирке
 
-Друзья обсуждают цирк, и вы с сестрой говорите, что уже бывали там. We have been to a circus — мы бывали в цирке. Circus означает «цирк». Собираем: we + have + been + to a circus. С we ставим have; been — третья форма be. Сочетание have been to сообщает об опыте посещения: вы сходили и вернулись, а не находитесь там сейчас.
+Друзья обсуждают цирк, и вы с сестрой говорите, что уже бывали там. We have been to a circus — мы бывали в цирке. Circus означает «цирк». Собираем: we + have + been + to a circus. С we ставим have; been — форма be после have. Сочетание have been to сообщает об опыте посещения: вы сходили и вернулись, а не находитесь там сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have been to a circus.**
 - ❌ We has been to a circus. — *С we нужно have.*
-- ❌ We have was to a circus. — *Нужна третья форма been.*
+- ❌ We have was to a circus. — *Нужна форма been.*
 
 ---
 
@@ -66,8 +66,8 @@ Orchestra — оркестр, группа музыкантов, играющи�
 **4 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-12:i03; family: context_gap_grammar -->
 I have ___ an opera. → **seen** · see · saw
-- see — *После have или has нужна третья форма.*
-- saw — *После have или has нужна третья форма.*
+- see — *После have или has нужна особая форма.*
+- saw — *После have или has нужна особая форма.*
 
 **5 · Карточка слова — orchestra**
 <!-- interaction_id: en:lesson-23:session-12:word:orchestra; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ an opera. → **seen** · see · saw
 **8 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-12:i06; family: context_gap_grammar -->
 She has ___ an orchestra. → **heard** · hear · hears
-- hear — *После have или has нужна третья форма.*
-- hears — *После have или has нужна третья форма.*
+- hear — *После have или has нужна особая форма.*
+- hears — *После have или has нужна особая форма.*
 
 **9 · Карточка слова — circus**
 <!-- interaction_id: en:lesson-23:session-12:word:circus; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ an orchestra. → **heard** · hear · hears
 **12 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-12:i09; family: context_gap_grammar -->
 We have ___ to a circus. → **been** · be · was
-- be — *После have или has нужна третья форма.*
-- was — *После have или has нужна третья форма.*
+- be — *После have или has нужна особая форма.*
+- was — *После have или has нужна особая форма.*
 
 **13 · Карточка слова — exhibition**
 <!-- interaction_id: en:lesson-23:session-12:word:exhibition; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ to a circus. → **been** · be · was
 **16 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-12:i12; family: context_gap_grammar -->
 He has ___ an exhibition. → **visited** · visit · visits
-- visit — *После have или has нужна третья форма.*
-- visits — *После have или has нужна третья форма.*
+- visit — *После have или has нужна особая форма.*
+- visits — *После have или has нужна особая форма.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-12:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Ваш опыт
 
-Election — выборы. По-русски говорим во множественном числе, а по-английски одно событие можно назвать an election. I have voted in an election — я голосовал на выборах. Voted — форма знакомого vote после have.
+Election — выборы. По-русски говорим в форме для нескольких, а по-английски одно событие можно назвать an election. I have voted in an election — я голосовал на выборах. Voted — форма знакомого vote после have.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have voted in an election.**
 - ❌ I has voted in an election. — *С I и we нужно have, с he и she — has.*
-- ❌ I have vote in an election. — *После have или has нужна третья форма: voted.*
+- ❌ I have vote in an election. — *После have или has нужна особая форма: voted.*
 
 ---
 
@@ -23,13 +23,13 @@ Election — выборы. По-русски говорим во множест�
 
 ### Статья уже прочитана
 
-Вы с другом прочитали статью о правительстве и теперь можете обсудить её. We have read about the government — мы прочитали о правительстве. Government означает «правительство». Собираем: we + have + read + about the government. После have нужна третья форма read: она пишется как начальная форма, но произносится как red. About вводит тему статьи. Have read сообщает, что вы уже прочитали материал.
+Вы с другом прочитали статью о правительстве и теперь можете обсудить её. We have read about the government — мы прочитали о правительстве. Government означает «правительство». Собираем: we + have + read + about the government. После have нужна форма read: она пишется как начальная форма, но произносится как red. About вводит тему статьи. Have read сообщает, что вы уже прочитали материал.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have read about the government.**
 - ❌ We has read about the government. — *С I и we нужно have, с he и she — has.*
-- ❌ We have reads about the government. — *После have или has нужна третья форма: read.*
+- ❌ We have reads about the government. — *После have или has нужна особая форма: read.*
 
 ---
 
@@ -37,13 +37,13 @@ Election — выборы. По-русски говорим во множест�
 
 ### Видел по телевизору
 
-Вы рассказываете о знакомом, который видел президента в телепередаче. He has seen the president on TV — он видел президента по телевизору. President означает «президент». Собираем: he + has + seen + the president + on TV. После he ставим has, затем seen — третью форму see. On TV уточняет, где он видел президента. Has seen сообщает об этом опыте без указания даты.
+Вы рассказываете о знакомом, который видел президента в телепередаче. He has seen the president on TV — он видел президента по телевизору. President означает «президент». Собираем: he + has + seen + the president + on TV. После he ставим has, затем seen — форму see. On TV уточняет, где он видел президента. Has seen сообщает об этом опыте без указания даты.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has seen the president on TV.**
 - ❌ He have seen the president on TV. — *С I и we нужно have, с he и she — has.*
-- ❌ He has see the president on TV. — *После have или has нужна третья форма: seen.*
+- ❌ He has see the president on TV. — *После have или has нужна особая форма: seen.*
 
 ---
 
@@ -66,8 +66,8 @@ Election — выборы. По-русски говорим во множест�
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i03; family: context_gap_grammar -->
 I have ___ in an election. → **voted** · vote · votes
-- vote — *Нужна третья форма: voted.*
-- votes — *Нужна третья форма: voted.*
+- vote — *Нужна форма после have: voted.*
+- votes — *Нужна форма после have: voted.*
 
 **5 · Карточка слова — mayor**
 <!-- interaction_id: en:lesson-23:session-52:word:mayor; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ in an election. → **voted** · vote · votes
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i06; family: context_gap_grammar -->
 She has ___ the mayor. → **met** · meet · meets
-- meet — *Нужна третья форма: met.*
-- meets — *Нужна третья форма: met.*
+- meet — *Нужна форма после have: met.*
+- meets — *Нужна форма после have: met.*
 
 **9 · Карточка слова — government**
 <!-- interaction_id: en:lesson-23:session-52:word:government; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ the mayor. → **met** · meet · meets
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i09; family: context_gap_grammar -->
 We have ___ about the government. → **read** · reads · reading
-- reads — *Нужна третья форма: read.*
-- reading — *Нужна третья форма: read.*
+- reads — *Нужна форма после have: read.*
+- reading — *Нужна форма после have: read.*
 
 **13 · Карточка слова — president**
 <!-- interaction_id: en:lesson-23:session-52:word:president; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ about the government. → **read** · reads · reading
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i12; family: context_gap_grammar -->
 He has ___ the president on TV. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-52:i13; family: speed_match -->

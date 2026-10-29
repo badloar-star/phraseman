@@ -9,13 +9,13 @@
 
 ### Коридор уже чистый
 
-Вы закончили уборку коридора и сообщаете об этом соседу по квартире. I have cleaned the corridor — я убрал коридор. Corridor означает «коридор». Собираем: I + have + cleaned + the corridor. После I ставим have, cleaned — третья форма clean с окончанием -ed. Have cleaned показывает результат: уборка закончена. The corridor — конкретный коридор в вашей квартире.
+Вы закончили уборку коридора и сообщаете об этом соседу по квартире. I have cleaned the corridor — я убрал коридор. Corridor означает «коридор». Собираем: I + have + cleaned + the corridor. После I ставим have, cleaned — форма clean после have с окончанием -ed. Have cleaned показывает результат: уборка закончена. The corridor — конкретный коридор в вашей квартире.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have cleaned the corridor.**
-- ❌ I has cleaned the corridor. — *Выберите have или has по подлежащему.*
-- ❌ I have clean the corridor. — *После have или has нужна третья форма: cleaned.*
+- ❌ I has cleaned the corridor. — *Выберите have или has по тому, кто действует.*
+- ❌ I have clean the corridor. — *После have или has нужна особая форма: cleaned.*
 
 ---
 
@@ -28,8 +28,8 @@ Basin — раковина для умывания; это обычное бри
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have cleaned the basin.**
-- ❌ We has cleaned the basin. — *Выберите have или has по подлежащему.*
-- ❌ We have clean the basin. — *После have или has нужна третья форма: cleaned.*
+- ❌ We has cleaned the basin. — *Выберите have или has по тому, кто действует.*
+- ❌ We have clean the basin. — *После have или has нужна особая форма: cleaned.*
 
 ---
 
@@ -42,8 +42,8 @@ Basin — раковина для умывания; это обычное бри
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has decorated the lounge.**
-- ❌ He have decorated the lounge. — *Выберите have или has по подлежащему.*
-- ❌ He has decorate the lounge. — *После have или has нужна третья форма: decorated.*
+- ❌ He have decorated the lounge. — *Выберите have или has по тому, кто действует.*
+- ❌ He has decorate the lounge. — *После have или has нужна особая форма: decorated.*
 
 ---
 
@@ -66,8 +66,8 @@ Basin — раковина для умывания; это обычное бри
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i03; family: context_gap_grammar -->
 I have ___ the corridor. → **cleaned** · clean · cleans
-- clean — *Нужна третья форма: cleaned.*
-- cleans — *Нужна третья форма: cleaned.*
+- clean — *Нужна форма после have: cleaned.*
+- cleans — *Нужна форма после have: cleaned.*
 
 **5 · Карточка слова — cabinet**
 <!-- interaction_id: en:lesson-23:session-31:word:cabinet; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ the corridor. → **cleaned** · clean · cleans
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i06; family: context_gap_grammar -->
 She has ___ the cabinet. → **repaired** · repair · repairs
-- repair — *Нужна третья форма: repaired.*
-- repairs — *Нужна третья форма: repaired.*
+- repair — *Нужна форма после have: repaired.*
+- repairs — *Нужна форма после have: repaired.*
 
 **9 · Карточка слова — basin**
 <!-- interaction_id: en:lesson-23:session-31:word:basin; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ the cabinet. → **repaired** · repair · repairs
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i09; family: context_gap_grammar -->
 We have ___ the basin. → **cleaned** · clean · cleans
-- clean — *Нужна третья форма: cleaned.*
-- cleans — *Нужна третья форма: cleaned.*
+- clean — *Нужна форма после have: cleaned.*
+- cleans — *Нужна форма после have: cleaned.*
 
 **13 · Карточка слова — lounge**
 <!-- interaction_id: en:lesson-23:session-31:word:lounge; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ the basin. → **cleaned** · clean · cleans
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i12; family: context_gap_grammar -->
 He has ___ the lounge. → **decorated** · decorate · decorates
-- decorate — *Нужна третья форма: decorated.*
-- decorates — *Нужна третья форма: decorated.*
+- decorate — *Нужна форма после have: decorated.*
+- decorates — *Нужна форма после have: decorated.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-31:i13; family: speed_match -->

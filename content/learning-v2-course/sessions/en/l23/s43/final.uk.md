@@ -9,13 +9,13 @@
 
 ### Нова тварина вдома
 
-Adopt — взяти в родину: наприклад, тварину з притулку. I have adopted a cat — я взяв кішку в родину. Adopted — третя форма adopt. Це повідомляє про важливий результат: тепер кішка живе в мене. Судячи із зайнятого дивана, вона вважає, що це я живу в неї.
+Adopt — взяти в родину: наприклад, тварину з притулку. I have adopted a cat — я взяв кішку в родину. Adopted — форма adopt після have. Це повідомляє про важливий результат: тепер кішка живе в мене. Судячи із зайнятого дивана, вона вважає, що це я живу в неї.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have adopted a cat.**
 - ❌ I has adopted a cat. — *З I потрібно have.*
-- ❌ I have adopt a cat. — *Потрібна третя форма adopted.*
+- ❌ I have adopt a cat. — *Потрібна форма adopted.*
 
 ---
 
@@ -29,7 +29,7 @@ Adopt — взяти в родину: наприклад, тварину з пр
 
 - ✅ **We have survived a storm.**
 - ❌ We has survived a storm. — *Із we потрібно have.*
-- ❌ We have survive a storm. — *Потрібна третя форма survived.*
+- ❌ We have survive a storm. — *Потрібна форма survived.*
 
 ---
 
@@ -37,13 +37,13 @@ Adopt — взяти в родину: наприклад, тварину з пр
 
 ### Зміна звички
 
-Quit — кинути, припинити. He has quit smoking — він кинув курити. Запам’ятайте сполучення quit smoking цілком. Третя форма quit пишеться так само, як початкова. Із he використовуємо has. Фраза повідомляє про зміну, яка важлива зараз.
+Quit — кинути, припинити. He has quit smoking — він кинув курити. Запам’ятайте сполучення quit smoking цілком. Форма після have quit пишеться так само, як початкова. Із he використовуємо has. Фраза повідомляє про зміну, яка важлива зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has quit smoking.**
 - ❌ He have quit smoking. — *Із he потрібно has.*
-- ❌ He has quits smoking. — *Третя форма — quit без s.*
+- ❌ He has quits smoking. — *Форма після have — quit без s.*
 
 ---
 
@@ -56,8 +56,8 @@ Quit — кинути, припинити. He has quit smoking — він кин
 **2 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i01; family: context_gap_grammar -->
 I have ___ a cat. → **adopted** · adopt · adopts
-- adopt — *Потрібна третя форма: adopted.*
-- adopts — *Потрібна третя форма: adopted.*
+- adopt — *Потрібна форма після have: adopted.*
+- adopts — *Потрібна форма після have: adopted.*
 
 **3 · Повідомте: «Я взяв кішку в родину.»**
 <!-- interaction_id: en:lesson-23:session-43:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ I have ___ a cat. → **adopted** · adopt · adopts
 **6 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i04; family: context_gap_grammar -->
 She has ___ a dog. → **rescued** · rescue · rescues
-- rescue — *Потрібна третя форма: rescued.*
-- rescues — *Потрібна третя форма: rescued.*
+- rescue — *Потрібна форма після have: rescued.*
+- rescues — *Потрібна форма після have: rescued.*
 
 **7 · Повідомте: «Вона врятувала собаку.»**
 <!-- interaction_id: en:lesson-23:session-43:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ She has ___ a dog. → **rescued** · rescue · rescues
 **10 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i07; family: context_gap_grammar -->
 We have ___ a storm. → **survived** · survive · survives
-- survive — *Потрібна третя форма: survived.*
-- survives — *Потрібна третя форма: survived.*
+- survive — *Потрібна форма після have: survived.*
+- survives — *Потрібна форма після have: survived.*
 
 **11 · Повідомте: «Ми пережили бурю.»**
 <!-- interaction_id: en:lesson-23:session-43:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ We have ___ a storm. → **survived** · survive · survives
 **14 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-43:i10; family: context_gap_grammar -->
 He has ___ smoking. → **quit** · quits · quitting
-- quits — *Потрібна третя форма: quit.*
-- quitting — *Потрібна третя форма: quit.*
+- quits — *Потрібна форма після have: quit.*
+- quitting — *Потрібна форма після have: quit.*
 
 **15 · Повідомте: «Він кинув курити.»**
 <!-- interaction_id: en:lesson-23:session-43:i11; family: phrase_builder -->

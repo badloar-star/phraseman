@@ -9,13 +9,13 @@
 
 ### Бачили мавпу
 
-Друг запитує про тварин, яких ви бачили в зоопарку. I have seen a monkey — я бачив мавпу. Monkey означає «мавпа». Складаємо: I + have + seen + a monkey. Із I використовуємо have, seen — третя форма see. Have seen повідомляє про досвід, без зазначення дати відвідування.
+Друг запитує про тварин, яких ви бачили в зоопарку. I have seen a monkey — я бачив мавпу. Monkey означає «мавпа». Складаємо: I + have + seen + a monkey. Із I використовуємо have, seen — форма see після have. Have seen повідомляє про досвід, без зазначення дати відвідування.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have seen a monkey.**
 - ❌ I has seen a monkey. — *З I та we потрібно have; із he — has.*
-- ❌ I have see a monkey. — *Після have або has потрібна третя форма дієслова.*
+- ❌ I have see a monkey. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Сфотографували кенгуру
 
-Ви з другом зробили знімок кенгуру й розповідаєте про це. We have taken a photo of a kangaroo — ми сфотографували кенгуру. Kangaroo означає «кенгуру». Складаємо: we + have + taken + a photo + of a kangaroo. Після have потрібна taken — третя форма take. Сполучення take a photo означає «сфотографувати», а of a kangaroo називає тварину на знімку.
+Ви з другом зробили знімок кенгуру й розповідаєте про це. We have taken a photo of a kangaroo — ми сфотографували кенгуру. Kangaroo означає «кенгуру». Складаємо: we + have + taken + a photo + of a kangaroo. Після have потрібна taken — форма take після have. Сполучення take a photo означає «сфотографувати», а of a kangaroo називає тварину на знімку.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have taken a photo of a kangaroo.**
 - ❌ We has taken a photo of a kangaroo. — *З I та we потрібно have; із he — has.*
-- ❌ We have take a photo of a kangaroo. — *Після have або has потрібна третя форма дієслова.*
+- ❌ We have take a photo of a kangaroo. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Малював крокодила
 
-Друг уже малював крокодила на занятті й розповідає про цей досвід. He has drawn a crocodile — він малював крокодила. Crocodile означає «крокодил». Складаємо: he + has + drawn + a crocodile. Із he ставимо has, drawn — третя форма draw. Після has потрібна drawn, а не drew. Has drawn повідомляє про досвід малювання без дати.
+Друг уже малював крокодила на занятті й розповідає про цей досвід. He has drawn a crocodile — він малював крокодила. Crocodile означає «крокодил». Складаємо: he + has + drawn + a crocodile. Із he ставимо has, drawn — форма draw після have. Після has потрібна drawn, а не drew. Has drawn повідомляє про досвід малювання без дати.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has drawn a crocodile.**
 - ❌ He have drawn a crocodile. — *З I та we потрібно have; із he — has.*
-- ❌ He has draw a crocodile. — *Після have або has потрібна третя форма дієслова.*
+- ❌ He has draw a crocodile. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-14:i03; family: context_gap_grammar -->
 I have ___ a monkey. → **seen** · see · saw
-- see — *Після have або has потрібна третя форма дієслова.*
-- saw — *Після have або has потрібна третя форма дієслова.*
+- see — *Після have або has потрібна особлива форма (done, seen).*
+- saw — *Після have або has потрібна особлива форма (done, seen).*
 
 **5 · Картка слова — gorilla**
 <!-- interaction_id: en:lesson-23:session-14:word:gorilla; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a monkey. → **seen** · see · saw
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-14:i06; family: context_gap_grammar -->
 She has ___ a gorilla. → **watched** · watch · watches
-- watch — *Після have або has потрібна третя форма дієслова.*
-- watches — *Після have або has потрібна третя форма дієслова.*
+- watch — *Після have або has потрібна особлива форма (done, seen).*
+- watches — *Після have або has потрібна особлива форма (done, seen).*
 
 **9 · Картка слова — kangaroo**
 <!-- interaction_id: en:lesson-23:session-14:word:kangaroo; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a gorilla. → **watched** · watch · watches
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-14:i09; family: context_gap_grammar -->
 We have ___ a photo of a kangaroo. → **taken** · take · took
-- take — *Після have або has потрібна третя форма дієслова.*
-- took — *Після have або has потрібна третя форма дієслова.*
+- take — *Після have або has потрібна особлива форма (done, seen).*
+- took — *Після have або has потрібна особлива форма (done, seen).*
 
 **13 · Картка слова — crocodile**
 <!-- interaction_id: en:lesson-23:session-14:word:crocodile; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a photo of a kangaroo. → **taken** · take · took
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-14:i12; family: context_gap_grammar -->
 He has ___ a crocodile. → **drawn** · draw · drew
-- draw — *Після have або has потрібна третя форма дієслова.*
-- drew — *Після have або has потрібна третя форма дієслова.*
+- draw — *Після have або has потрібна особлива форма (done, seen).*
+- drew — *Після have або has потрібна особлива форма (done, seen).*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-14:i13; family: speed_match -->

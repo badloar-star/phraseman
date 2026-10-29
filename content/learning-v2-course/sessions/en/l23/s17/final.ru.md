@@ -15,7 +15,7 @@
 
 - ✅ **I have torn my shirt.**
 - ❌ I has torn my shirt. — *С I нужно have.*
-- ❌ I have tore my shirt. — *Третья форма — torn, не tore.*
+- ❌ I have tore my shirt. — *Форма после have — torn, не tore.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Осколки на полу
 
-Стакан упал и разбился на много осколков. Вы объясняете, что случилось: The glass has shattered — стакан разбился. Shatter означает «разбиться на осколки». Собираем: the glass + has + shattered. Стакан один, поэтому ставим has; shattered — третья форма shatter с окончанием -ed. Present Perfect связывает событие с результатом сейчас: на полу лежат осколки.
+Стакан упал и разбился на много осколков. Вы объясняете, что случилось: The glass has shattered — стакан разбился. Shatter означает «разбиться на осколки». Собираем: the glass + has + shattered. Стакан один, поэтому ставим has; shattered — форма shatter после have с окончанием -ed. have / has + done связывает событие с результатом сейчас: на полу лежат осколки.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The glass has shattered.**
 - ❌ The glass have shattered. — *Один стакан: has.*
-- ❌ The glass has shatter. — *После have или has нужна третья форма.*
+- ❌ The glass has shatter. — *После have или has нужна особая форма.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Цвет стал бледнее
 
-Fade — выцветать, терять яркость. The colour has faded: цвет сейчас бледнее прежнего. Здесь colour — британское написание; color — американское. Present Perfect связывает изменение с тем, что мы видим сейчас; время вроде yesterday не называем.
+Fade — выцветать, терять яркость. The colour has faded: цвет сейчас бледнее прежнего. Здесь colour — британское написание; color — американское. have / has + done связывает изменение с тем, что мы видим сейчас; время вроде yesterday не называем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The colour has faded.**
 - ❌ The colour have faded. — *С the colour нужно has.*
-- ❌ The colour has fade. — *После have или has нужна третья форма.*
+- ❌ The colour has fade. — *После have или has нужна особая форма.*
 
 ---
 
@@ -56,8 +56,8 @@ Fade — выцветать, терять яркость. The colour has faded: 
 **2 · Выберите форму слова для результата сейчас.**
 <!-- interaction_id: en:lesson-23:session-17:i01; family: context_gap_grammar -->
 I have ___ my shirt. → **torn** · tear · tore
-- tear — *После have или has нужна третья форма.*
-- tore — *После have или has нужна третья форма.*
+- tear — *После have или has нужна особая форма.*
+- tore — *После have или has нужна особая форма.*
 
 **3 · На рубашке теперь дыра. Скажите: «Я порвал рубашку».**
 <!-- interaction_id: en:lesson-23:session-17:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ I have ___ my shirt. → **torn** · tear · tore
 **6 · Выберите форму слова для результата сейчас.**
 <!-- interaction_id: en:lesson-23:session-17:i04; family: context_gap_grammar -->
 The glass has ___. → **shattered** · shatter · shatters
-- shatter — *После have или has нужна третья форма.*
-- shatters — *После have или has нужна третья форма.*
+- shatter — *После have или has нужна особая форма.*
+- shatters — *После have или has нужна особая форма.*
 
 **7 · На полу осколки. Скажите: «Стакан разбился».**
 <!-- interaction_id: en:lesson-23:session-17:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ The glass has ___. → **shattered** · shatter · shatters
 **10 · Выберите форму слова для результата сейчас.**
 <!-- interaction_id: en:lesson-23:session-17:i07; family: context_gap_grammar -->
 The drain has ___. → **clogged** · clog · clogs
-- clog — *После have или has нужна третья форма.*
-- clogs — *После have или has нужна третья форма.*
+- clog — *После have или has нужна особая форма.*
+- clogs — *После have или has нужна особая форма.*
 
 **11 · Вода теперь не уходит. Скажите: «Слив засорился».**
 <!-- interaction_id: en:lesson-23:session-17:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ The drain has ___. → **clogged** · clog · clogs
 **14 · Выберите форму слова для результата сейчас.**
 <!-- interaction_id: en:lesson-23:session-17:i10; family: context_gap_grammar -->
 The colour has ___. → **faded** · fade · fades
-- fade — *После have или has нужна третья форма.*
-- fades — *После have или has нужна третья форма.*
+- fade — *После have или has нужна особая форма.*
+- fades — *После have или has нужна особая форма.*
 
 **15 · Цвет теперь бледнее. Скажите: «Цвет выцвел».**
 <!-- interaction_id: en:lesson-23:session-17:i11; family: phrase_builder -->

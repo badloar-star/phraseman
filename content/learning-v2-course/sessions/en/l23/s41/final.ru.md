@@ -9,13 +9,13 @@
 
 ### Ваш опыт
 
-Shopkeeper — человек, который владеет небольшим магазином или управляет им. I have spoken to the shopkeeper — я поговорил с владельцем магазина. Spoken — третья форма speak. После spoken здесь нужно to: spoken to the shopkeeper.
+Shopkeeper — человек, который владеет небольшим магазином или управляет им. I have spoken to the shopkeeper — я поговорил с владельцем магазина. Spoken — форма speak после have. После spoken здесь нужно to: spoken to the shopkeeper.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have spoken to the shopkeeper.**
-- ❌ I has spoken to the shopkeeper. — *Выберите have или has по подлежащему.*
-- ❌ I have speak to the shopkeeper. — *После have или has нужна третья форма: spoken.*
+- ❌ I has spoken to the shopkeeper. — *Выберите have или has по тому, кто действует.*
+- ❌ I have speak to the shopkeeper. — *После have или has нужна особая форма: spoken.*
 
 ---
 
@@ -23,13 +23,13 @@ Shopkeeper — человек, который владеет небольшим 
 
 ### Помогли донести коробку
 
-Вы с другом помогли работнику магазина донести тяжёлую коробку. We have helped a worker — мы помогли работнику. Worker означает «работник». Собираем: we + have + helped + a worker. После we используем have, helped — третья форма help с окончанием -ed. Человека называем сразу после helped, без to. Have helped сообщает о помощи, которую вы уже оказали.
+Вы с другом помогли работнику магазина донести тяжёлую коробку. We have helped a worker — мы помогли работнику. Worker означает «работник». Собираем: we + have + helped + a worker. После we используем have, helped — форма help после have с окончанием -ed. Человека называем сразу после helped, без to. Have helped сообщает о помощи, которую вы уже оказали.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have helped a worker.**
-- ❌ We has helped a worker. — *Выберите have или has по подлежащему.*
-- ❌ We have help a worker. — *После have или has нужна третья форма: helped.*
+- ❌ We has helped a worker. — *Выберите have или has по тому, кто действует.*
+- ❌ We have help a worker. — *После have или has нужна особая форма: helped.*
 
 ---
 
@@ -37,13 +37,13 @@ Shopkeeper — человек, который владеет небольшим 
 
 ### Покупатель нашёлся
 
-Друг выставил велосипед на продажу и нашёл человека, готового его купить. He has found a buyer — он нашёл покупателя. Buyer означает «покупатель». Собираем: he + has + found + a buyer. С he ставим has; found — третья форма find. Has found сообщает о результате поиска: покупатель уже есть, хотя продажа могла ещё не состояться.
+Друг выставил велосипед на продажу и нашёл человека, готового его купить. He has found a buyer — он нашёл покупателя. Buyer означает «покупатель». Собираем: he + has + found + a buyer. С he ставим has; found — форма find после have. Has found сообщает о результате поиска: покупатель уже есть, хотя продажа могла ещё не состояться.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has found a buyer.**
-- ❌ He have found a buyer. — *Выберите have или has по подлежащему.*
-- ❌ He has find a buyer. — *После have или has нужна третья форма: found.*
+- ❌ He have found a buyer. — *Выберите have или has по тому, кто действует.*
+- ❌ He has find a buyer. — *После have или has нужна особая форма: found.*
 
 ---
 
@@ -66,8 +66,8 @@ Shopkeeper — человек, который владеет небольшим 
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i03; family: context_gap_grammar -->
 I have ___ to the shopkeeper. → **spoken** · speak · speaks
-- speak — *Нужна третья форма: spoken.*
-- speaks — *Нужна третья форма: spoken.*
+- speak — *Нужна форма после have: spoken.*
+- speaks — *Нужна форма после have: spoken.*
 
 **5 · Карточка слова — painter**
 <!-- interaction_id: en:lesson-23:session-41:word:painter; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ to the shopkeeper. → **spoken** · speak · speaks
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i06; family: context_gap_grammar -->
 She has ___ a painter. → **called** · call · calls
-- call — *Нужна третья форма: called.*
-- calls — *Нужна третья форма: called.*
+- call — *Нужна форма после have: called.*
+- calls — *Нужна форма после have: called.*
 
 **9 · Карточка слова — worker**
 <!-- interaction_id: en:lesson-23:session-41:word:worker; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a painter. → **called** · call · calls
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i09; family: context_gap_grammar -->
 We have ___ a worker. → **helped** · help · helps
-- help — *Нужна третья форма: helped.*
-- helps — *Нужна третья форма: helped.*
+- help — *Нужна форма после have: helped.*
+- helps — *Нужна форма после have: helped.*
 
 **13 · Карточка слова — buyer**
 <!-- interaction_id: en:lesson-23:session-41:word:buyer; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a worker. → **helped** · help · helps
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-41:i12; family: context_gap_grammar -->
 He has ___ a buyer. → **found** · find · finds
-- find — *Нужна третья форма: found.*
-- finds — *Нужна третья форма: found.*
+- find — *Нужна форма после have: found.*
+- finds — *Нужна форма после have: found.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-41:i13; family: speed_match -->

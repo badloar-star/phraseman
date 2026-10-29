@@ -15,7 +15,7 @@ Karate — карате. I have tried karate — я пробовал заним�
 
 - ✅ **I have tried karate.**
 - ❌ I has tried karate. — *С I и we нужно have, с he и she — has.*
-- ❌ I have try karate. — *После have или has нужна третья форма: tried.*
+- ❌ I have try karate. — *После have или has нужна особая форма: tried.*
 
 ---
 
@@ -23,13 +23,13 @@ Karate — карате. I have tried karate — я пробовал заним�
 
 ### Уже смотрели гимнастику
 
-Друг предлагает посмотреть гимнастику. Вы с сестрой уже видели такие выступления и отвечаете: We have watched gymnastics — мы смотрели гимнастику. Gymnastics означает «гимнастика». Собираем: we + have + watched + gymnastics. После we ставим have, watched — третья форма watch с окончанием -ed. Have watched сообщает о вашем опыте просмотра без даты.
+Друг предлагает посмотреть гимнастику. Вы с сестрой уже видели такие выступления и отвечаете: We have watched gymnastics — мы смотрели гимнастику. Gymnastics означает «гимнастика». Собираем: we + have + watched + gymnastics. После we ставим have, watched — форма watch после have с окончанием -ed. Have watched сообщает о вашем опыте просмотра без даты.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have watched gymnastics.**
 - ❌ We has watched gymnastics. — *С I и we нужно have, с he и she — has.*
-- ❌ We have watch gymnastics. — *После have или has нужна третья форма: watched.*
+- ❌ We have watch gymnastics. — *После have или has нужна особая форма: watched.*
 
 ---
 
@@ -37,13 +37,13 @@ Karate — карате. I have tried karate — я пробовал заним�
 
 ### Знаком со спортивной борьбой
 
-Обсуждая спорт, вы рассказываете о друге, который уже смотрел соревнования по борьбе. He has watched wrestling — он смотрел борьбу. Wrestling здесь — вид спорта. Собираем: he + has + watched + wrestling. С he выбираем has, затем ставим watched — третью форму watch. Has watched сообщает об опыте просмотра; конкретное соревнование и его дату здесь не называем.
+Обсуждая спорт, вы рассказываете о друге, который уже смотрел соревнования по борьбе. He has watched wrestling — он смотрел борьбу. Wrestling здесь — вид спорта. Собираем: he + has + watched + wrestling. С he выбираем has, затем ставим watched — форму watch. Has watched сообщает об опыте просмотра; конкретное соревнование и его дату здесь не называем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has watched wrestling.**
 - ❌ He have watched wrestling. — *С I и we нужно have, с he и she — has.*
-- ❌ He has watch wrestling. — *После have или has нужна третья форма: watched.*
+- ❌ He has watch wrestling. — *После have или has нужна особая форма: watched.*
 
 ---
 
@@ -66,8 +66,8 @@ Karate — карате. I have tried karate — я пробовал заним�
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-51:i03; family: context_gap_grammar -->
 I have ___ karate. → **tried** · try · tries
-- try — *Нужна третья форма: tried.*
-- tries — *Нужна третья форма: tried.*
+- try — *Нужна форма после have: tried.*
+- tries — *Нужна форма после have: tried.*
 
 **5 · Карточка слова — judo**
 <!-- interaction_id: en:lesson-23:session-51:word:judo; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ karate. → **tried** · try · tries
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-51:i06; family: context_gap_grammar -->
 She has ___ judo. → **tried** · try · tries
-- try — *Нужна третья форма: tried.*
-- tries — *Нужна третья форма: tried.*
+- try — *Нужна форма после have: tried.*
+- tries — *Нужна форма после have: tried.*
 
 **9 · Карточка слова — gymnastics**
 <!-- interaction_id: en:lesson-23:session-51:word:gymnastics; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ judo. → **tried** · try · tries
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-51:i09; family: context_gap_grammar -->
 We have ___ gymnastics. → **watched** · watch · watches
-- watch — *Нужна третья форма: watched.*
-- watches — *Нужна третья форма: watched.*
+- watch — *Нужна форма после have: watched.*
+- watches — *Нужна форма после have: watched.*
 
 **13 · Карточка слова — wrestling**
 <!-- interaction_id: en:lesson-23:session-51:word:wrestling; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ gymnastics. → **watched** · watch · watches
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-51:i12; family: context_gap_grammar -->
 He has ___ wrestling. → **watched** · watch · watches
-- watch — *Нужна третья форма: watched.*
-- watches — *Нужна третья форма: watched.*
+- watch — *Нужна форма после have: watched.*
+- watches — *Нужна форма после have: watched.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-51:i13; family: speed_match -->

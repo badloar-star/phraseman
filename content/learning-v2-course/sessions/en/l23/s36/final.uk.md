@@ -9,13 +9,13 @@
 
 ### Читали про короля
 
-У розмові про історичну книжку ви повідомляєте, що вже читали про короля. I have read about a king — я читав про короля. King означає «король». Складаємо: I + have + read + about a king. Після have ставимо третю форму read: вона пишеться як початкова, але вимовляється «ред». About вводить тему читання. Have read повідомляє про досвід без дати.
+У розмові про історичну книжку ви повідомляєте, що вже читали про короля. I have read about a king — я читав про короля. King означає «король». Складаємо: I + have + read + about a king. Після have ставимо форму read: вона пишеться як початкова, але вимовляється «ред». About вводить тему читання. Have read повідомляє про досвід без дати.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have read about a king.**
-- ❌ I has read about a king. — *Виберіть have або has за підметом.*
-- ❌ I have reads about a king. — *Після have або has потрібна третя форма: read.*
+- ❌ I has read about a king. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have reads about a king. — *Після have або has потрібна особлива форма: read.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розрізняємо слова
 
-Prince — принц. We have seen a film about a prince — ми дивилися фільм про принца. Seen — третя форма see. Так ми розповідаємо про переглянутий фільм, не зазначаючи конкретного дня.
+Prince — принц. We have seen a film about a prince — ми дивилися фільм про принца. Seen — форма see після have. Так ми розповідаємо про переглянутий фільм, не зазначаючи конкретного дня.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have seen a film about a prince.**
-- ❌ We has seen a film about a prince. — *Виберіть have або has за підметом.*
-- ❌ We have see a film about a prince. — *Після have або has потрібна третя форма: seen.*
+- ❌ We has seen a film about a prince. — *Виберіть have або has за тим, хто діє.*
+- ❌ We have see a film about a prince. — *Після have або has потрібна особлива форма: seen.*
 
 ---
 
@@ -37,13 +37,13 @@ Prince — принц. We have seen a film about a prince — ми дивили�
 
 ### Фільм йому знайомий
 
-Ви пропонуєте другу фільм про принцесу, але дізнаєтеся, що він уже дивився такий фільм. He has seen a film about a princess — він дивився фільм про принцесу. Princess означає «принцеса». Складаємо: he + has + seen + a film + about a princess. Із he використовуємо has, seen — третя форма see. About a princess уточнює, про кого фільм. Has seen повідомляє про досвід перегляду.
+Ви пропонуєте другу фільм про принцесу, але дізнаєтеся, що він уже дивився такий фільм. He has seen a film about a princess — він дивився фільм про принцесу. Princess означає «принцеса». Складаємо: he + has + seen + a film + about a princess. Із he використовуємо has, seen — форма see після have. About a princess уточнює, про кого фільм. Has seen повідомляє про досвід перегляду.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has seen a film about a princess.**
-- ❌ He have seen a film about a princess. — *Виберіть have або has за підметом.*
-- ❌ He has see a film about a princess. — *Після have або has потрібна третя форма: seen.*
+- ❌ He have seen a film about a princess. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has see a film about a princess. — *Після have або has потрібна особлива форма: seen.*
 
 ---
 
@@ -66,8 +66,8 @@ Prince — принц. We have seen a film about a prince — ми дивили�
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i03; family: context_gap_grammar -->
 I have ___ about a king. → **read** · reads · reading
-- reads — *Потрібна третя форма: read.*
-- reading — *Потрібна третя форма: read.*
+- reads — *Потрібна форма після have: read.*
+- reading — *Потрібна форма після have: read.*
 
 **5 · Картка слова — queen**
 <!-- interaction_id: en:lesson-23:session-36:word:queen; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ about a king. → **read** · reads · reading
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i06; family: context_gap_grammar -->
 She has ___ about a queen. → **read** · reads · reading
-- reads — *Потрібна третя форма: read.*
-- reading — *Потрібна третя форма: read.*
+- reads — *Потрібна форма після have: read.*
+- reading — *Потрібна форма після have: read.*
 
 **9 · Картка слова — prince**
 <!-- interaction_id: en:lesson-23:session-36:word:prince; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ about a queen. → **read** · reads · reading
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i09; family: context_gap_grammar -->
 We have ___ a film about a prince. → **seen** · see · sees
-- see — *Потрібна третя форма: seen.*
-- sees — *Потрібна третя форма: seen.*
+- see — *Потрібна форма після have: seen.*
+- sees — *Потрібна форма після have: seen.*
 
 **13 · Картка слова — princess**
 <!-- interaction_id: en:lesson-23:session-36:word:princess; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a film about a prince. → **seen** · see · sees
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-36:i12; family: context_gap_grammar -->
 He has ___ a film about a princess. → **seen** · see · sees
-- see — *Потрібна третя форма: seen.*
-- sees — *Потрібна третя форма: seen.*
+- see — *Потрібна форма після have: seen.*
+- sees — *Потрібна форма після have: seen.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-36:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Болит локоть
 
-Вы ударились локтем, и теперь он болит. Объясняете другу: I have hurt my elbow — я повредил локоть. Elbow означает «локоть». Собираем: I + have + hurt + my elbow. С I ставим have; третья форма hurt пишется так же, как начальная. My показывает, что речь о вашем локте. Have hurt связывает случившееся с состоянием сейчас.
+Вы ударились локтем, и теперь он болит. Объясняете другу: I have hurt my elbow — я повредил локоть. Elbow означает «локоть». Собираем: I + have + hurt + my elbow. С I ставим have; форма hurt пишется так же, как начальная. My показывает, что речь о вашем локте. Have hurt связывает случившееся с состоянием сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have hurt my elbow.**
-- ❌ I has hurt my elbow. — *Выберите have или has по подлежащему.*
-- ❌ I have hurting my elbow. — *После have или has нужна третья форма: hurt.*
+- ❌ I has hurt my elbow. — *Выберите have или has по тому, кто действует.*
+- ❌ I have hurting my elbow. — *После have или has нужна особая форма: hurt.*
 
 ---
 
@@ -28,8 +28,8 @@ Hip — область бедра у тазобедренного сустава
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has hurt his hip.**
-- ❌ He have hurt his hip. — *Выберите have или has по подлежащему.*
-- ❌ He has hurting his hip. — *После have или has нужна третья форма: hurt.*
+- ❌ He have hurt his hip. — *Выберите have или has по тому, кто действует.*
+- ❌ He has hurting his hip. — *После have или has нужна особая форма: hurt.*
 
 ---
 
@@ -37,13 +37,13 @@ Hip — область бедра у тазобедренного сустава
 
 ### Объясняете боль в шее
 
-После неудачного движения у вас болит шея. Вы объясняете, что случилось: I have hurt my neck — я повредил шею. Neck означает «шея». Собираем: I + have + hurt + my neck. После have нужна третья форма hurt; её написание не меняется. My neck называет вашу шею. Have hurt сообщает о случившемся, последствия которого вы ощущаете сейчас.
+После неудачного движения у вас болит шея. Вы объясняете, что случилось: I have hurt my neck — я повредил шею. Neck означает «шея». Собираем: I + have + hurt + my neck. После have нужна форма hurt; её написание не меняется. My neck называет вашу шею. Have hurt сообщает о случившемся, последствия которого вы ощущаете сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have hurt my neck.**
-- ❌ I has hurt my neck. — *Выберите have или has по подлежащему.*
-- ❌ I have hurting my neck. — *После have или has нужна третья форма: hurt.*
+- ❌ I has hurt my neck. — *Выберите have или has по тому, кто действует.*
+- ❌ I have hurting my neck. — *После have или has нужна особая форма: hurt.*
 
 ---
 
@@ -66,8 +66,8 @@ Hip — область бедра у тазобедренного сустава
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-27:i03; family: context_gap_grammar -->
 I have ___ my elbow. → **hurt** · hurts · hurting
-- hurts — *Нужна третья форма: hurt.*
-- hurting — *Нужна третья форма: hurt.*
+- hurts — *Нужна форма после have: hurt.*
+- hurting — *Нужна форма после have: hurt.*
 
 **5 · Карточка слова — knee**
 <!-- interaction_id: en:lesson-23:session-27:word:knee; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ my elbow. → **hurt** · hurts · hurting
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-27:i06; family: context_gap_grammar -->
 She has ___ her knee. → **hurt** · hurts · hurting
-- hurts — *Нужна третья форма: hurt.*
-- hurting — *Нужна третья форма: hurt.*
+- hurts — *Нужна форма после have: hurt.*
+- hurting — *Нужна форма после have: hurt.*
 
 **9 · Карточка слова — hip**
 <!-- interaction_id: en:lesson-23:session-27:word:hip; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ her knee. → **hurt** · hurts · hurting
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-27:i09; family: context_gap_grammar -->
 He has ___ his hip. → **hurt** · hurts · hurting
-- hurts — *Нужна третья форма: hurt.*
-- hurting — *Нужна третья форма: hurt.*
+- hurts — *Нужна форма после have: hurt.*
+- hurting — *Нужна форма после have: hurt.*
 
 **13 · Карточка слова — neck**
 <!-- interaction_id: en:lesson-23:session-27:word:neck; family: word_card -->
@@ -126,8 +126,8 @@ He has ___ his hip. → **hurt** · hurts · hurting
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-27:i12; family: context_gap_grammar -->
 I have ___ my neck. → **hurt** · hurts · hurting
-- hurts — *Нужна третья форма: hurt.*
-- hurting — *Нужна третья форма: hurt.*
+- hurts — *Нужна форма после have: hurt.*
+- hurting — *Нужна форма после have: hurt.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-27:i13; family: speed_match -->

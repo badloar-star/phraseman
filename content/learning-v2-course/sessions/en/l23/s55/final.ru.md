@@ -15,7 +15,7 @@ Flu — грипп. I have had flu — я болел гриппом. Перво�
 
 - ✅ **I have had flu.**
 - ❌ I has had flu. — *С I и we нужно have, с he и she — has.*
-- ❌ I have have flu. — *После have или has нужна третья форма: had.*
+- ❌ I have have flu. — *После have или has нужна особая форма: had.*
 
 ---
 
@@ -29,7 +29,7 @@ Flu — грипп. I have had flu — я болел гриппом. Перво�
 
 - ✅ **We have described the symptoms.**
 - ❌ We has described the symptoms. — *С I и we нужно have, с he и she — has.*
-- ❌ We have describe the symptoms. — *После have или has нужна третья форма: described.*
+- ❌ We have describe the symptoms. — *После have или has нужна особая форма: described.*
 
 ---
 
@@ -37,13 +37,13 @@ Flu — грипп. I have had flu — я болел гриппом. Перво�
 
 ### Уже задал вопрос
 
-Друг хотел узнать о вакцине и уже задал вопрос врачу. He has asked about the vaccine — он спросил о вакцине. Vaccine означает «вакцина». Собираем: he + has + asked + about the vaccine. После he ставим has, затем asked — третью форму ask. About вводит тему вопроса. Has asked сообщает о совершённом действии: вопрос уже задан, но из этой фразы неизвестно, получен ли ответ.
+Друг хотел узнать о вакцине и уже задал вопрос врачу. He has asked about the vaccine — он спросил о вакцине. Vaccine означает «вакцина». Собираем: he + has + asked + about the vaccine. После he ставим has, затем asked — форму ask. About вводит тему вопроса. Has asked сообщает о совершённом действии: вопрос уже задан, но из этой фразы неизвестно, получен ли ответ.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has asked about the vaccine.**
 - ❌ He have asked about the vaccine. — *С I и we нужно have, с he и she — has.*
-- ❌ He has ask about the vaccine. — *После have или has нужна третья форма: asked.*
+- ❌ He has ask about the vaccine. — *После have или has нужна особая форма: asked.*
 
 ---
 
@@ -66,8 +66,8 @@ Flu — грипп. I have had flu — я болел гриппом. Перво�
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i03; family: context_gap_grammar -->
 I have ___ flu. → **had** · have · has
-- have — *Нужна третья форма: had.*
-- has — *Нужна третья форма: had.*
+- have — *Нужна форма после have: had.*
+- has — *Нужна форма после have: had.*
 
 **5 · Карточка слова — virus**
 <!-- interaction_id: en:lesson-23:session-55:word:virus; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ flu. → **had** · have · has
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i06; family: context_gap_grammar -->
 She has ___ a virus. → **caught** · catch · catches
-- catch — *Нужна третья форма: caught.*
-- catches — *Нужна третья форма: caught.*
+- catch — *Нужна форма после have: caught.*
+- catches — *Нужна форма после have: caught.*
 
 **9 · Карточка слова — symptoms**
 <!-- interaction_id: en:lesson-23:session-55:word:symptoms; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a virus. → **caught** · catch · catches
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i09; family: context_gap_grammar -->
 We have ___ the symptoms. → **described** · describe · describes
-- describe — *Нужна третья форма: described.*
-- describes — *Нужна третья форма: described.*
+- describe — *Нужна форма после have: described.*
+- describes — *Нужна форма после have: described.*
 
 **13 · Карточка слова — vaccine**
 <!-- interaction_id: en:lesson-23:session-55:word:vaccine; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ the symptoms. → **described** · describe · describes
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-55:i12; family: context_gap_grammar -->
 He has ___ about the vaccine. → **asked** · ask · asks
-- ask — *Нужна третья форма: asked.*
-- asks — *Нужна третья форма: asked.*
+- ask — *Нужна форма после have: asked.*
+- asks — *Нужна форма после have: asked.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-55:i13; family: speed_match -->

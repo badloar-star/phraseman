@@ -9,13 +9,13 @@
 
 ### Коридор уже чистий
 
-Ви закінчили прибирання коридору й повідомляєте про це сусідові по квартирі. I have cleaned the corridor — я прибрав коридор. Corridor означає «коридор». Складаємо: I + have + cleaned + the corridor. Після I ставимо have, cleaned — третя форма clean із закінченням -ed. Have cleaned показує результат: прибирання завершено. The corridor — конкретний коридор у вашій квартирі.
+Ви закінчили прибирання коридору й повідомляєте про це сусідові по квартирі. I have cleaned the corridor — я прибрав коридор. Corridor означає «коридор». Складаємо: I + have + cleaned + the corridor. Після I ставимо have, cleaned — форма clean після have із закінченням -ed. Have cleaned показує результат: прибирання завершено. The corridor — конкретний коридор у вашій квартирі.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have cleaned the corridor.**
-- ❌ I has cleaned the corridor. — *Виберіть have або has за підметом.*
-- ❌ I have clean the corridor. — *Після have або has потрібна третя форма: cleaned.*
+- ❌ I has cleaned the corridor. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have clean the corridor. — *Після have або has потрібна особлива форма: cleaned.*
 
 ---
 
@@ -28,8 +28,8 @@ Basin — умивальник; це звичайне британське сл�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have cleaned the basin.**
-- ❌ We has cleaned the basin. — *Виберіть have або has за підметом.*
-- ❌ We have clean the basin. — *Після have або has потрібна третя форма: cleaned.*
+- ❌ We has cleaned the basin. — *Виберіть have або has за тим, хто діє.*
+- ❌ We have clean the basin. — *Після have або has потрібна особлива форма: cleaned.*
 
 ---
 
@@ -42,8 +42,8 @@ Basin — умивальник; це звичайне британське сл�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has decorated the lounge.**
-- ❌ He have decorated the lounge. — *Виберіть have або has за підметом.*
-- ❌ He has decorate the lounge. — *Після have або has потрібна третя форма: decorated.*
+- ❌ He have decorated the lounge. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has decorate the lounge. — *Після have або has потрібна особлива форма: decorated.*
 
 ---
 
@@ -66,8 +66,8 @@ Basin — умивальник; це звичайне британське сл�
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i03; family: context_gap_grammar -->
 I have ___ the corridor. → **cleaned** · clean · cleans
-- clean — *Потрібна третя форма: cleaned.*
-- cleans — *Потрібна третя форма: cleaned.*
+- clean — *Потрібна форма після have: cleaned.*
+- cleans — *Потрібна форма після have: cleaned.*
 
 **5 · Картка слова — cabinet**
 <!-- interaction_id: en:lesson-23:session-31:word:cabinet; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ the corridor. → **cleaned** · clean · cleans
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i06; family: context_gap_grammar -->
 She has ___ the cabinet. → **repaired** · repair · repairs
-- repair — *Потрібна третя форма: repaired.*
-- repairs — *Потрібна третя форма: repaired.*
+- repair — *Потрібна форма після have: repaired.*
+- repairs — *Потрібна форма після have: repaired.*
 
 **9 · Картка слова — basin**
 <!-- interaction_id: en:lesson-23:session-31:word:basin; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ the cabinet. → **repaired** · repair · repairs
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i09; family: context_gap_grammar -->
 We have ___ the basin. → **cleaned** · clean · cleans
-- clean — *Потрібна третя форма: cleaned.*
-- cleans — *Потрібна третя форма: cleaned.*
+- clean — *Потрібна форма після have: cleaned.*
+- cleans — *Потрібна форма після have: cleaned.*
 
 **13 · Картка слова — lounge**
 <!-- interaction_id: en:lesson-23:session-31:word:lounge; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ the basin. → **cleaned** · clean · cleans
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-31:i12; family: context_gap_grammar -->
 He has ___ the lounge. → **decorated** · decorate · decorates
-- decorate — *Потрібна третя форма: decorated.*
-- decorates — *Потрібна третя форма: decorated.*
+- decorate — *Потрібна форма після have: decorated.*
+- decorates — *Потрібна форма після have: decorated.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-31:i13; family: speed_match -->

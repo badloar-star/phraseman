@@ -9,13 +9,13 @@
 
 ### Почули грім
 
-Ви почули грім за вікном і повідомляєте домашнім: I have heard thunder — я чув грім. Thunder означає «грім». Складаємо: I + have + heard + thunder. Із I використовуємо have, heard — третя форма hear. Have heard пов’язує почуте з повідомленням зараз. Thunder позначає явище, тому в цій фразі перед ним немає a.
+Ви почули грім за вікном і повідомляєте домашнім: I have heard thunder — я чув грім. Thunder означає «грім». Складаємо: I + have + heard + thunder. Із I використовуємо have, heard — форма hear після have. Have heard пов’язує почуте з повідомленням зараз. Thunder позначає явище, тому в цій фразі перед ним немає a.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have heard thunder.**
-- ❌ I has heard thunder. — *Виберіть have або has за підметом.*
-- ❌ I have hear thunder. — *Після have або has потрібна третя форма: heard.*
+- ❌ I has heard thunder. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have hear thunder. — *Після have або has потрібна особлива форма: heard.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розрізняємо слова
 
-Flood — повінь, коли вода затоплює місце. We have seen a flood — ми бачили повінь. Seen — третя форма see. Тут розповідаємо про досвід, не називаючи конкретної дати. Перед flood потрібен артикль a.
+Flood — повінь, коли вода затоплює місце. We have seen a flood — ми бачили повінь. Seen — форма see після have. Тут розповідаємо про досвід, не називаючи конкретної дати. Перед flood потрібен a.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have seen a flood.**
-- ❌ We has seen a flood. — *Виберіть have або has за підметом.*
-- ❌ We have see a flood. — *Після have або has потрібна третя форма: seen.*
+- ❌ We has seen a flood. — *Виберіть have або has за тим, хто діє.*
+- ❌ We have see a flood. — *Після have або has потрібна особлива форма: seen.*
 
 ---
 
@@ -37,13 +37,13 @@ Flood — повінь, коли вода затоплює місце. We have s
 
 ### Вітерець із вікна
 
-Друг відчинив вікно й відчув легкий вітер. He has felt a breeze — він відчув легкий вітер. Breeze означає «легкий вітер». Складаємо: he + has + felt + a breeze. Із he ставимо has, felt — третя форма feel, а не feel із закінченням -ed. Has felt повідомляє про те, що він уже відчув.
+Друг відчинив вікно й відчув легкий вітер. He has felt a breeze — він відчув легкий вітер. Breeze означає «легкий вітер». Складаємо: he + has + felt + a breeze. Із he ставимо has, felt — форма feel після have, а не feel із закінченням -ed. Has felt повідомляє про те, що він уже відчув.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has felt a breeze.**
-- ❌ He have felt a breeze. — *Виберіть have або has за підметом.*
-- ❌ He has feel a breeze. — *Після have або has потрібна третя форма: felt.*
+- ❌ He have felt a breeze. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has feel a breeze. — *Після have або has потрібна особлива форма: felt.*
 
 ---
 
@@ -66,8 +66,8 @@ Flood — повінь, коли вода затоплює місце. We have s
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i03; family: context_gap_grammar -->
 I have ___ thunder. → **heard** · hear · hears
-- hear — *Потрібна третя форма: heard.*
-- hears — *Потрібна третя форма: heard.*
+- hear — *Потрібна форма після have: heard.*
+- hears — *Потрібна форма після have: heard.*
 
 **5 · Картка слова — lightning**
 <!-- interaction_id: en:lesson-23:session-22:word:lightning; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ thunder. → **heard** · hear · hears
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i06; family: context_gap_grammar -->
 She has ___ lightning. → **seen** · see · sees
-- see — *Потрібна третя форма: seen.*
-- sees — *Потрібна третя форма: seen.*
+- see — *Потрібна форма після have: seen.*
+- sees — *Потрібна форма після have: seen.*
 
 **9 · Картка слова — flood**
 <!-- interaction_id: en:lesson-23:session-22:word:flood; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ lightning. → **seen** · see · sees
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i09; family: context_gap_grammar -->
 We have ___ a flood. → **seen** · see · sees
-- see — *Потрібна третя форма: seen.*
-- sees — *Потрібна третя форма: seen.*
+- see — *Потрібна форма після have: seen.*
+- sees — *Потрібна форма після have: seen.*
 
 **13 · Картка слова — breeze**
 <!-- interaction_id: en:lesson-23:session-22:word:breeze; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a flood. → **seen** · see · sees
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i12; family: context_gap_grammar -->
 He has ___ a breeze. → **felt** · feel · feels
-- feel — *Потрібна третя форма: felt.*
-- feels — *Потрібна третя форма: felt.*
+- feel — *Потрібна форма після have: felt.*
+- feels — *Потрібна форма після have: felt.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-22:i13; family: speed_match -->

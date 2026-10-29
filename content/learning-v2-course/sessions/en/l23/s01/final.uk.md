@@ -9,13 +9,13 @@
 
 ### Помилка в підрахунку помітна зараз
 
-Ви перерахували квитки й виявили помилку: I have miscounted the tickets — я помилився під час підрахунку квитків. Miscount означає «помилитися під час підрахунку». Present Perfect пов’язує зроблене із ситуацією зараз. Складаємо: I + have + miscounted + the tickets. Загальна схема: I/you/we/they + have, he/she/it + has, потім третя форма дієслова. У правильного miscount це miscounted із -ed. Have і has тут допомагають побудувати час і не означають «мати».
+Ви перерахували квитки й виявили помилку: I have miscounted the tickets — я помилився під час підрахунку квитків. Miscount означає «помилитися під час підрахунку». have / has + done пов’язує зроблене із ситуацією зараз. Складаємо: I + have + miscounted + the tickets. Загальна схема: I/you/we/they + have, he/she/it + has, потім форма після have (done, seen). У правильного miscount це miscounted із -ed. Have і has тут допомагають побудувати час і не означають «мати».
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have miscounted the tickets.**
 - ❌ I has miscounted the tickets. — *З I використовуємо have.*
-- ❌ I have miscount the tickets. — *Потрібні have/has і третя форма дієслова.*
+- ❌ I have miscount the tickets. — *Потрібні have/has і форма після have (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### На лінії інша людина
 
-Подруга хотіла зателефонувати знайомому, але помилилася в номері. She has misdialled the number — вона набрала неправильний номер. Misdial означає «набрати неправильний номер». Складаємо: she + has + misdialled + the number. Із she використовуємо has, потім третю форму misdialled. Це британське написання; американське misdialed теж правильне. Has misdialled пов’язує помилку з результатом зараз: на лінії інша людина.
+Подруга хотіла зателефонувати знайомому, але помилилася в номері. She has misdialled the number — вона набрала неправильний номер. Misdial означає «набрати неправильний номер». Складаємо: she + has + misdialled + the number. Із she використовуємо has, потім форму misdialled. Це британське написання; американське misdialed теж правильне. Has misdialled пов’язує помилку з результатом зараз: на лінії інша людина.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She has misdialled the number.**
 - ❌ She have misdialled the number. — *Із she використовуємо has.*
-- ❌ She has misdial the number. — *Потрібні have/has і третя форма дієслова.*
+- ❌ She has misdial the number. — *Потрібні have/has і форма після have (done, seen).*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Сумку склали заново
 
-Ви з другом переклали речі в сумці, щоб усе помістилося. We have repacked the bag — ми перепакували сумку. Repack означає «скласти речі заново». Складаємо: we + have + repacked + the bag. Із we ставимо have, repacked — третя форма repack із закінченням -ed. Have repacked повідомляє про результат: сумка тепер складена інакше.
+Ви з другом переклали речі в сумці, щоб усе помістилося. We have repacked the bag — ми перепакували сумку. Repack означає «скласти речі заново». Складаємо: we + have + repacked + the bag. Із we ставимо have, repacked — форма repack після have із закінченням -ed. Have repacked повідомляє про результат: сумка тепер складена інакше.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have repacked the bag.**
 - ❌ We has repacked the bag. — *З we використовуємо have.*
-- ❌ We have repack the bag. — *Потрібні have/has і третя форма дієслова.*
+- ❌ We have repack the bag. — *Потрібні have/has і форма після have (done, seen).*
 
 ---
 
@@ -56,8 +56,8 @@
 **2 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-01:i03; family: context_gap_grammar -->
 I have ___ the tickets. → **miscounted** · miscount · miscounts
-- miscount — *Потрібні have/has і третя форма дієслова.*
-- miscounts — *Потрібні have/has і третя форма дієслова.*
+- miscount — *Потрібні have/has і форма після have (done, seen).*
+- miscounts — *Потрібні have/has і форма після have (done, seen).*
 
 **3 · Квитків виявилося менше, ніж ви сказали. Скажіть: «Я помилився під час підрахунку квитків».**
 <!-- interaction_id: en:lesson-23:session-01:i01; family: phrase_builder -->
@@ -76,8 +76,8 @@ I have ___ the tickets. → **miscounted** · miscount · miscounts
 **6 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-01:i06; family: context_gap_grammar -->
 She has ___ the number. → **misdialled** · misdial · misdials
-- misdial — *Потрібні have/has і третя форма дієслова.*
-- misdials — *Потрібні have/has і третя форма дієслова.*
+- misdial — *Потрібні have/has і форма після have (done, seen).*
+- misdials — *Потрібні have/has і форма після have (done, seen).*
 
 **7 · На дзвінок відповіла незнайома людина. Скажіть: «Вона неправильно набрала номер».**
 <!-- interaction_id: en:lesson-23:session-01:i04; family: phrase_builder -->
@@ -96,8 +96,8 @@ She has ___ the number. → **misdialled** · misdial · misdials
 **10 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-01:i09; family: context_gap_grammar -->
 We have ___ the bag. → **repacked** · repack · repacks
-- repack — *Потрібні have/has і третя форма дієслова.*
-- repacks — *Потрібні have/has і третя форма дієслова.*
+- repack — *Потрібні have/has і форма після have (done, seen).*
+- repacks — *Потрібні have/has і форма після have (done, seen).*
 
 **11 · Тепер речі вміщуються в сумку. Скажіть: «Ми перепакували сумку».**
 <!-- interaction_id: en:lesson-23:session-01:i07; family: phrase_builder -->
@@ -116,8 +116,8 @@ We have ___ the bag. → **repacked** · repack · repacks
 **14 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-01:i12; family: context_gap_grammar -->
 He has ___ the flight. → **rebooked** · rebook · rebooks
-- rebook — *Потрібні have/has і третя форма дієслова.*
-- rebooks — *Потрібні have/has і третя форма дієслова.*
+- rebook — *Потрібні have/has і форма після have (done, seen).*
+- rebooks — *Потрібні have/has і форма після have (done, seen).*
 
 **15 · У нього тепер інше бронювання. Скажіть: «Він заново забронював переліт».**
 <!-- interaction_id: en:lesson-23:session-01:i10; family: phrase_builder -->

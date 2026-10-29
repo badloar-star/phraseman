@@ -9,13 +9,13 @@
 
 ### Познайомилися з малюком
 
-Ви відвідали друзів і вперше побачили їхню новонароджену дитину. I have met their newborn — я познайомився з їхньою новонародженою дитиною. Newborn тут означає «новонароджена дитина». Складаємо: I + have + met + their newborn. Після I ставимо have, met — третя форма meet. Their уточнює, чия це дитина. Have met повідомляє, що знайомство вже відбулося.
+Ви відвідали друзів і вперше побачили їхню новонароджену дитину. I have met their newborn — я познайомився з їхньою новонародженою дитиною. Newborn тут означає «новонароджена дитина». Складаємо: I + have + met + their newborn. Після I ставимо have, met — форма meet після have. Their уточнює, чия це дитина. Have met повідомляє, що знайомство вже відбулося.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have met their newborn.**
 - ❌ I has met their newborn. — *З I потрібно have.*
-- ❌ I have meet their newborn. — *Після have або has потрібна третя форма дієслова.*
+- ❌ I have meet their newborn. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Знайшли, куди піти
 
-Playgroup — група, де маленькі діти грають разом. Це не спортивна команда. We have found a playgroup: відповідну групу знайдено, тепер можна туди піти. Третя форма find — found.
+Playgroup — група, де маленькі діти грають разом. Це не спортивна команда. We have found a playgroup: відповідну групу знайдено, тепер можна туди піти. Форма після have find — found.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have found a playgroup.**
 - ❌ We has found a playgroup. — *Із we потрібно have.*
-- ❌ We have find a playgroup. — *Після have або has потрібна третя форма дієслова.*
+- ❌ We have find a playgroup. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -37,13 +37,13 @@ Playgroup — група, де маленькі діти грають разом
 
 ### Няні вже зателефонували
 
-Подруга домовлялася про догляд за дитиною й уже зателефонувала няні. She has called the childminder — вона зателефонувала няні. Childminder — британська назва людини, яка за плату доглядає дітей, зазвичай у себе вдома. Складаємо: she + has + called + the childminder. Із she ставимо has, called — третя форма call із закінченням -ed. Після called одразу називаємо людину, без to. Has called повідомляє про дзвінок, який уже відбувся.
+Подруга домовлялася про догляд за дитиною й уже зателефонувала няні. She has called the childminder — вона зателефонувала няні. Childminder — британська назва людини, яка за плату доглядає дітей, зазвичай у себе вдома. Складаємо: she + has + called + the childminder. Із she ставимо has, called — форма call після have із закінченням -ed. Після called одразу називаємо людину, без to. Has called повідомляє про дзвінок, який уже відбувся.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She has called the childminder.**
 - ❌ She have called the childminder. — *Із she потрібно has.*
-- ❌ She has call the childminder. — *Після have або has потрібна третя форма дієслова.*
+- ❌ She has call the childminder. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -66,8 +66,8 @@ Playgroup — група, де маленькі діти грають разом
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i03; family: context_gap_grammar -->
 I have ___ their newborn. → **met** · meet · meets
-- meet — *Після have або has потрібна третя форма дієслова.*
-- meets — *Після have або has потрібна третя форма дієслова.*
+- meet — *Після have або has потрібна особлива форма (done, seen).*
+- meets — *Після have або has потрібна особлива форма (done, seen).*
 
 **5 · Картка слова — toddler**
 <!-- interaction_id: en:lesson-23:session-08:word:toddler; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ their newborn. → **met** · meet · meets
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i06; family: context_gap_grammar -->
 The toddler has ___ breakfast. → **finished** · finish · finishes
-- finish — *Після have або has потрібна третя форма дієслова.*
-- finishes — *Після have або has потрібна третя форма дієслова.*
+- finish — *Після have або has потрібна особлива форма (done, seen).*
+- finishes — *Після have або has потрібна особлива форма (done, seen).*
 
 **9 · Картка слова — playgroup**
 <!-- interaction_id: en:lesson-23:session-08:word:playgroup; family: word_card -->
@@ -106,8 +106,8 @@ The toddler has ___ breakfast. → **finished** · finish · finishes
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i09; family: context_gap_grammar -->
 We have ___ a playgroup. → **found** · find · finds
-- find — *Після have або has потрібна третя форма дієслова.*
-- finds — *Після have або has потрібна третя форма дієслова.*
+- find — *Після have або has потрібна особлива форма (done, seen).*
+- finds — *Після have або has потрібна особлива форма (done, seen).*
 
 **13 · Картка слова — childminder**
 <!-- interaction_id: en:lesson-23:session-08:word:childminder; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a playgroup. → **found** · find · finds
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-08:i12; family: context_gap_grammar -->
 She has ___ the childminder. → **called** · call · calls
-- call — *Після have або has потрібна третя форма дієслова.*
-- calls — *Після have або has потрібна третя форма дієслова.*
+- call — *Після have або has потрібна особлива форма (done, seen).*
+- calls — *Після have або has потрібна особлива форма (done, seen).*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-08:i13; family: speed_match -->

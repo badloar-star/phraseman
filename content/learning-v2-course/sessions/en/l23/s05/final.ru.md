@@ -9,13 +9,13 @@
 
 ### Ошибиться в оценке
 
-Misjudge — неверно оценить. Вы думали, что станция близко, но идти ещё долго: I have misjudged the distance. Мы говорим об ошибке, последствия которой видны сейчас. Misjudged — третья форма.
+Misjudge — неверно оценить. Вы думали, что станция близко, но идти ещё долго: I have misjudged the distance. Мы говорим об ошибке, последствия которой видны сейчас. Misjudged — форма после have.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have misjudged the distance.**
 - ❌ I has misjudged the distance. — *С I нужно have.*
-- ❌ I have misjudge the distance. — *После have или has нужна третья форма глагола.*
+- ❌ I have misjudge the distance. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@ Misjudge — неверно оценить. Вы думали, что станц
 
 ### Заплатили меньше обещанного
 
-Вы выполнили работу, но получили меньше обещанной суммы. They have underpaid me — они мне недоплатили. Underpay означает «недоплатить». Собираем: they + have + underpaid + me. С they используем have; underpaid — третья форма underpay, как paid у pay. Me показывает, кому недоплатили. Have underpaid связывает выплату с результатом сейчас: части обещанных денег у вас нет.
+Вы выполнили работу, но получили меньше обещанной суммы. They have underpaid me — они мне недоплатили. Underpay означает «недоплатить». Собираем: they + have + underpaid + me. С they используем have; underpaid — форма underpay после have, как paid у pay. Me показывает, кому недоплатили. Have underpaid связывает выплату с результатом сейчас: части обещанных денег у вас нет.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They have underpaid me.**
 - ❌ They has underpaid me. — *С they нужно have.*
-- ❌ They have underpay me. — *После have или has нужна третья форма глагола.*
+- ❌ They have underpay me. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -43,7 +43,7 @@ Regret — сожалеть о чём-либо. Regret a decision — сожал
 
 - ✅ **She has regretted her decision.**
 - ❌ She have regretted her decision. — *С she нужно has.*
-- ❌ She has regret her decision. — *После have или has нужна третья форма глагола.*
+- ❌ She has regret her decision. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -56,8 +56,8 @@ Regret — сожалеть о чём-либо. Regret a decision — сожал
 **2 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-05:i01; family: context_gap_grammar -->
 I have ___ the distance. → **misjudged** · misjudge · misjudges
-- misjudge — *После have или has нужна третья форма глагола.*
-- misjudges — *После have или has нужна третья форма глагола.*
+- misjudge — *После have или has нужна особая форма (done, seen).*
+- misjudges — *После have или has нужна особая форма (done, seen).*
 
 **3 · Идти оказалось дальше, чем вы думали. Скажите: «Я неверно оценил расстояние».**
 <!-- interaction_id: en:lesson-23:session-05:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ I have ___ the distance. → **misjudged** · misjudge · misjudges
 **6 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-05:i04; family: context_gap_grammar -->
 We have ___ the cost. → **overestimated** · overestimate · overestimates
-- overestimate — *После have или has нужна третья форма глагола.*
-- overestimates — *После have или has нужна третья форма глагола.*
+- overestimate — *После have или has нужна особая форма (done, seen).*
+- overestimates — *После have или has нужна особая форма (done, seen).*
 
 **7 · Поездка дешевле, чем вы рассчитывали. Скажите: «Мы переоценили стоимость».**
 <!-- interaction_id: en:lesson-23:session-05:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ We have ___ the cost. → **overestimated** · overestimate · overestimates
 **10 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-05:i07; family: context_gap_grammar -->
 They have ___ me. → **underpaid** · underpay · underpays
-- underpay — *После have или has нужна третья форма глагола.*
-- underpays — *После have или has нужна третья форма глагола.*
+- underpay — *После have или has нужна особая форма (done, seen).*
+- underpays — *После have или has нужна особая форма (done, seen).*
 
 **11 · Вам перевели меньше денег, чем обещали за работу. Скажите: «Они мне недоплатили».**
 <!-- interaction_id: en:lesson-23:session-05:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ They have ___ me. → **underpaid** · underpay · underpays
 **14 · Выберите форму слова после have или has.**
 <!-- interaction_id: en:lesson-23:session-05:i10; family: context_gap_grammar -->
 She has ___ her decision. → **regretted** · regret · regrets
-- regret — *После have или has нужна третья форма глагола.*
-- regrets — *После have или has нужна третья форма глагола.*
+- regret — *После have или has нужна особая форма (done, seen).*
+- regrets — *После have или has нужна особая форма (done, seen).*
 
 **15 · Она приняла решение, но потом пожалела об этом. Скажите: «Она пожалела о своём решении».**
 <!-- interaction_id: en:lesson-23:session-05:i11; family: phrase_builder -->

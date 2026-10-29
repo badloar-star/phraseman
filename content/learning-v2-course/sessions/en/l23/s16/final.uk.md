@@ -15,7 +15,7 @@
 
 - ✅ **I have ridden a horse.**
 - ❌ I has ridden a horse. — *З I та we потрібно have; із he — has.*
-- ❌ I have ride a horse. — *Після have або has потрібна третя форма дієслова.*
+- ❌ I have ride a horse. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Бачили свиню на фермі
 
-Ви з другом побували на фермі й розповідаєте, що бачили свиню. We have seen a pig — ми бачили свиню. Pig означає «свиня». Складаємо: we + have + seen + a pig. Із we ставимо have, seen — третя форма see. Have seen повідомляє про досвід: ви бачили тварину, але фраза не каже, що ви її годували.
+Ви з другом побували на фермі й розповідаєте, що бачили свиню. We have seen a pig — ми бачили свиню. Pig означає «свиня». Складаємо: we + have + seen + a pig. Із we ставимо have, seen — форма see після have. Have seen повідомляє про досвід: ви бачили тварину, але фраза не каже, що ви її годували.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have seen a pig.**
 - ❌ We has seen a pig. — *З I та we потрібно have; із he — has.*
-- ❌ We have see a pig. — *Після have або has потрібна третя форма дієслова.*
+- ❌ We have see a pig. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Розповісти про досвід
 
-He has drawn a pony — він малював поні. Англійське pony тут злічуване, тому a pony, хоча український переклад «поні» не змінюється. Із he використовуємо has, із we — have.
+He has drawn a pony — він малював поні. Англійське pony тут рахується поштучно, тому a pony, хоча український переклад «поні» не змінюється. Із he використовуємо has, із we — have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has drawn a pony.**
 - ❌ He have drawn a pony. — *З I та we потрібно have; із he — has.*
-- ❌ He has draw a pony. — *Після have або has потрібна третя форма дієслова.*
+- ❌ He has draw a pony. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -66,8 +66,8 @@ He has drawn a pony — він малював поні. Англійське pon
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i03; family: context_gap_grammar -->
 I have ___ a horse. → **ridden** · ride · rode
-- ride — *Після have або has потрібна третя форма дієслова.*
-- rode — *Після have або has потрібна третя форма дієслова.*
+- ride — *Після have або has потрібна особлива форма (done, seen).*
+- rode — *Після have або has потрібна особлива форма (done, seen).*
 
 **5 · Картка слова — cow**
 <!-- interaction_id: en:lesson-23:session-16:word:cow; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a horse. → **ridden** · ride · rode
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i06; family: context_gap_grammar -->
 She has ___ a cow. → **fed** · feed · feeds
-- feed — *Після have або has потрібна третя форма дієслова.*
-- feeds — *Після have або has потрібна третя форма дієслова.*
+- feed — *Після have або has потрібна особлива форма (done, seen).*
+- feeds — *Після have або has потрібна особлива форма (done, seen).*
 
 **9 · Картка слова — pig**
 <!-- interaction_id: en:lesson-23:session-16:word:pig; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a cow. → **fed** · feed · feeds
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i09; family: context_gap_grammar -->
 We have ___ a pig. → **seen** · see · saw
-- see — *Після have або has потрібна третя форма дієслова.*
-- saw — *Після have або has потрібна третя форма дієслова.*
+- see — *Після have або has потрібна особлива форма (done, seen).*
+- saw — *Після have або has потрібна особлива форма (done, seen).*
 
 **13 · Картка слова — pony**
 <!-- interaction_id: en:lesson-23:session-16:word:pony; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a pig. → **seen** · see · saw
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-16:i12; family: context_gap_grammar -->
 He has ___ a pony. → **drawn** · draw · drew
-- draw — *Після have або has потрібна третя форма дієслова.*
-- drew — *Після have або has потрібна третя форма дієслова.*
+- draw — *Після have або has потрібна особлива форма (done, seen).*
+- drew — *Після have або has потрібна особлива форма (done, seen).*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-16:i13; family: speed_match -->

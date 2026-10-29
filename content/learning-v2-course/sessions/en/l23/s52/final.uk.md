@@ -9,13 +9,13 @@
 
 ### Ваш досвід
 
-Election — вибори. Українською кажемо у множині, а англійською одну подію можна назвати an election. I have voted in an election — я голосував на виборах. Voted — форма знайомого vote після have.
+Election — вибори. Українською кажемо у формі для кількох, а англійською одну подію можна назвати an election. I have voted in an election — я голосував на виборах. Voted — форма знайомого vote після have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have voted in an election.**
 - ❌ I has voted in an election. — *З I та we потрібно have, з he та she — has.*
-- ❌ I have vote in an election. — *Після have або has потрібна третя форма: voted.*
+- ❌ I have vote in an election. — *Після have або has потрібна особлива форма: voted.*
 
 ---
 
@@ -23,13 +23,13 @@ Election — вибори. Українською кажемо у множині
 
 ### Статтю вже прочитано
 
-Ви з другом прочитали статтю про уряд і тепер можете обговорити її. We have read about the government — ми прочитали про уряд. Government означає «уряд». Складаємо: we + have + read + about the government. Після have потрібна третя форма read: вона пишеться як початкова форма, але вимовляється як red. About вводить тему статті. Have read повідомляє, що ви вже прочитали матеріал.
+Ви з другом прочитали статтю про уряд і тепер можете обговорити її. We have read about the government — ми прочитали про уряд. Government означає «уряд». Складаємо: we + have + read + about the government. Після have потрібна форма read: вона пишеться як початкова форма, але вимовляється як red. About вводить тему статті. Have read повідомляє, що ви вже прочитали матеріал.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have read about the government.**
 - ❌ We has read about the government. — *З I та we потрібно have, з he та she — has.*
-- ❌ We have reads about the government. — *Після have або has потрібна третя форма: read.*
+- ❌ We have reads about the government. — *Після have або has потрібна особлива форма: read.*
 
 ---
 
@@ -37,13 +37,13 @@ Election — вибори. Українською кажемо у множині
 
 ### Бачив по телевізору
 
-Ви розповідаєте про знайомого, який бачив президента в телепередачі. He has seen the president on TV — він бачив президента по телевізору. President означає «президент». Складаємо: he + has + seen + the president + on TV. Після he ставимо has, потім seen — третю форму see. On TV уточнює, де він бачив президента. Has seen повідомляє про цей досвід без зазначення дати.
+Ви розповідаєте про знайомого, який бачив президента в телепередачі. He has seen the president on TV — він бачив президента по телевізору. President означає «президент». Складаємо: he + has + seen + the president + on TV. Після he ставимо has, потім seen — форму see. On TV уточнює, де він бачив президента. Has seen повідомляє про цей досвід без зазначення дати.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has seen the president on TV.**
 - ❌ He have seen the president on TV. — *З I та we потрібно have, з he та she — has.*
-- ❌ He has see the president on TV. — *Після have або has потрібна третя форма: seen.*
+- ❌ He has see the president on TV. — *Після have або has потрібна особлива форма: seen.*
 
 ---
 
@@ -66,8 +66,8 @@ Election — вибори. Українською кажемо у множині
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i03; family: context_gap_grammar -->
 I have ___ in an election. → **voted** · vote · votes
-- vote — *Потрібна третя форма: voted.*
-- votes — *Потрібна третя форма: voted.*
+- vote — *Потрібна форма після have: voted.*
+- votes — *Потрібна форма після have: voted.*
 
 **5 · Картка слова — mayor**
 <!-- interaction_id: en:lesson-23:session-52:word:mayor; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ in an election. → **voted** · vote · votes
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i06; family: context_gap_grammar -->
 She has ___ the mayor. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **9 · Картка слова — government**
 <!-- interaction_id: en:lesson-23:session-52:word:government; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ the mayor. → **met** · meet · meets
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i09; family: context_gap_grammar -->
 We have ___ about the government. → **read** · reads · reading
-- reads — *Потрібна третя форма: read.*
-- reading — *Потрібна третя форма: read.*
+- reads — *Потрібна форма після have: read.*
+- reading — *Потрібна форма після have: read.*
 
 **13 · Картка слова — president**
 <!-- interaction_id: en:lesson-23:session-52:word:president; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ about the government. → **read** · reads · reading
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-52:i12; family: context_gap_grammar -->
 He has ___ the president on TV. → **seen** · see · sees
-- see — *Потрібна третя форма: seen.*
-- sees — *Потрібна третя форма: seen.*
+- see — *Потрібна форма після have: seen.*
+- sees — *Потрібна форма після have: seen.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-52:i13; family: speed_match -->

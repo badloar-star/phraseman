@@ -9,13 +9,13 @@
 
 ### Помилитися в оцінці
 
-Misjudge — неправильно оцінити. Ви думали, що станція близько, але йти ще довго: I have misjudged the distance. Ми говоримо про помилку, наслідки якої видно зараз. Misjudged — третя форма.
+Misjudge — неправильно оцінити. Ви думали, що станція близько, але йти ще довго: I have misjudged the distance. Ми говоримо про помилку, наслідки якої видно зараз. Misjudged — форма після have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have misjudged the distance.**
 - ❌ I has misjudged the distance. — *З I потрібно have.*
-- ❌ I have misjudge the distance. — *Після have або has потрібна третя форма дієслова.*
+- ❌ I have misjudge the distance. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@ Misjudge — неправильно оцінити. Ви думали, що ст
 
 ### Заплатили менше обіцяного
 
-Ви виконали роботу, але отримали менше обіцяної суми. They have underpaid me — вони мені недоплатили. Underpay означає «недоплатити». Складаємо: they + have + underpaid + me. Із they використовуємо have; underpaid — третя форма underpay, як paid у pay. Me показує, кому недоплатили. Have underpaid пов’язує виплату з результатом зараз: частини обіцяних грошей у вас немає.
+Ви виконали роботу, але отримали менше обіцяної суми. They have underpaid me — вони мені недоплатили. Underpay означає «недоплатити». Складаємо: they + have + underpaid + me. Із they використовуємо have; underpaid — форма underpay після have, як paid у pay. Me показує, кому недоплатили. Have underpaid пов’язує виплату з результатом зараз: частини обіцяних грошей у вас немає.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They have underpaid me.**
 - ❌ They has underpaid me. — *Із they потрібно have.*
-- ❌ They have underpay me. — *Після have або has потрібна третя форма дієслова.*
+- ❌ They have underpay me. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -43,7 +43,7 @@ Regret — шкодувати про щось. Regret a decision — шкоду�
 
 - ✅ **She has regretted her decision.**
 - ❌ She have regretted her decision. — *Із she потрібно has.*
-- ❌ She has regret her decision. — *Після have або has потрібна третя форма дієслова.*
+- ❌ She has regret her decision. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -56,8 +56,8 @@ Regret — шкодувати про щось. Regret a decision — шкоду�
 **2 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-05:i01; family: context_gap_grammar -->
 I have ___ the distance. → **misjudged** · misjudge · misjudges
-- misjudge — *Після have або has потрібна третя форма дієслова.*
-- misjudges — *Після have або has потрібна третя форма дієслова.*
+- misjudge — *Після have або has потрібна особлива форма (done, seen).*
+- misjudges — *Після have або has потрібна особлива форма (done, seen).*
 
 **3 · Іти виявилося далі, ніж ви думали. Скажіть: «Я неправильно оцінив відстань».**
 <!-- interaction_id: en:lesson-23:session-05:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ I have ___ the distance. → **misjudged** · misjudge · misjudges
 **6 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-05:i04; family: context_gap_grammar -->
 We have ___ the cost. → **overestimated** · overestimate · overestimates
-- overestimate — *Після have або has потрібна третя форма дієслова.*
-- overestimates — *Після have або has потрібна третя форма дієслова.*
+- overestimate — *Після have або has потрібна особлива форма (done, seen).*
+- overestimates — *Після have або has потрібна особлива форма (done, seen).*
 
 **7 · Подорож дешевша, ніж ви розраховували. Скажіть: «Ми переоцінили вартість».**
 <!-- interaction_id: en:lesson-23:session-05:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ We have ___ the cost. → **overestimated** · overestimate · overestimates
 **10 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-05:i07; family: context_gap_grammar -->
 They have ___ me. → **underpaid** · underpay · underpays
-- underpay — *Після have або has потрібна третя форма дієслова.*
-- underpays — *Після have або has потрібна третя форма дієслова.*
+- underpay — *Після have або has потрібна особлива форма (done, seen).*
+- underpays — *Після have або has потрібна особлива форма (done, seen).*
 
 **11 · Вам переказали менше грошей, ніж обіцяли за роботу. Скажіть: «Вони мені недоплатили».**
 <!-- interaction_id: en:lesson-23:session-05:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ They have ___ me. → **underpaid** · underpay · underpays
 **14 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-05:i10; family: context_gap_grammar -->
 She has ___ her decision. → **regretted** · regret · regrets
-- regret — *Після have або has потрібна третя форма дієслова.*
-- regrets — *Після have або has потрібна третя форма дієслова.*
+- regret — *Після have або has потрібна особлива форма (done, seen).*
+- regrets — *Після have або has потрібна особлива форма (done, seen).*
 
 **15 · Вона ухвалила рішення, але потім пошкодувала про це. Скажіть: «Вона пошкодувала про своє рішення».**
 <!-- interaction_id: en:lesson-23:session-05:i11; family: phrase_builder -->

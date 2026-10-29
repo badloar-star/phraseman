@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have entered a competition.**
-- ❌ I has entered a competition. — *Виберіть have або has за підметом.*
-- ❌ I have enter a competition. — *Після have або has потрібна третя форма: entered.*
+- ❌ I has entered a competition. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have enter a competition. — *Після have або has потрібна особлива форма: entered.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розрізняємо слова
 
-Opponent — суперник, проти якого ви граєте або виступаєте. We have spoken to an opponent — ми поговорили із суперником. Перед opponent потрібен an: слово починається з голосного звука. Spoken — третя форма speak.
+Opponent — суперник, проти якого ви граєте або виступаєте. We have spoken to an opponent — ми поговорили із суперником. Перед opponent потрібен an: слово починається з голосного звука. Spoken — форма speak після have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have spoken to an opponent.**
-- ❌ We has spoken to an opponent. — *Виберіть have або has за підметом.*
-- ❌ We have speak to an opponent. — *Після have або has потрібна третя форма: spoken.*
+- ❌ We has spoken to an opponent. — *Виберіть have або has за тим, хто діє.*
+- ❌ We have speak to an opponent. — *Після have або has потрібна особлива форма: spoken.*
 
 ---
 
@@ -37,13 +37,13 @@ Opponent — суперник, проти якого ви граєте або в
 
 ### Ще один приклад
 
-Competitor — учасник змагання. Він може брати участь у тому самому турнірі, навіть якщо ви не граєте один проти одного. He has helped a competitor — він допоміг учасникові змагання. Helped — третя форма help.
+Competitor — учасник змагання. Він може брати участь у тому самому турнірі, навіть якщо ви не граєте один проти одного. He has helped a competitor — він допоміг учасникові змагання. Helped — форма help після have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has helped a competitor.**
-- ❌ He have helped a competitor. — *Виберіть have або has за підметом.*
-- ❌ He has help a competitor. — *Після have або has потрібна третя форма: helped.*
+- ❌ He have helped a competitor. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has help a competitor. — *Після have або has потрібна особлива форма: helped.*
 
 ---
 
@@ -66,8 +66,8 @@ Competitor — учасник змагання. Він може брати уч�
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-42:i03; family: context_gap_grammar -->
 I have ___ a competition. → **entered** · enter · enters
-- enter — *Потрібна третя форма: entered.*
-- enters — *Потрібна третя форма: entered.*
+- enter — *Потрібна форма після have: entered.*
+- enters — *Потрібна форма після have: entered.*
 
 **5 · Картка слова — champion**
 <!-- interaction_id: en:lesson-23:session-42:word:champion; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a competition. → **entered** · enter · enters
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-42:i06; family: context_gap_grammar -->
 She has ___ a champion. → **met** · meet · meets
-- meet — *Потрібна третя форма: met.*
-- meets — *Потрібна третя форма: met.*
+- meet — *Потрібна форма після have: met.*
+- meets — *Потрібна форма після have: met.*
 
 **9 · Картка слова — opponent**
 <!-- interaction_id: en:lesson-23:session-42:word:opponent; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a champion. → **met** · meet · meets
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-42:i09; family: context_gap_grammar -->
 We have ___ to an opponent. → **spoken** · speak · speaks
-- speak — *Потрібна третя форма: spoken.*
-- speaks — *Потрібна третя форма: spoken.*
+- speak — *Потрібна форма після have: spoken.*
+- speaks — *Потрібна форма після have: spoken.*
 
 **13 · Картка слова — competitor**
 <!-- interaction_id: en:lesson-23:session-42:word:competitor; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ to an opponent. → **spoken** · speak · speaks
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-42:i12; family: context_gap_grammar -->
 He has ___ a competitor. → **helped** · help · helps
-- help — *Потрібна третя форма: helped.*
-- helps — *Потрібна третя форма: helped.*
+- help — *Потрібна форма після have: helped.*
+- helps — *Потрібна форма після have: helped.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-42:i13; family: speed_match -->

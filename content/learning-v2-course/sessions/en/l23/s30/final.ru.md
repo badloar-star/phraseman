@@ -9,13 +9,13 @@
 
 ### Муравей на кухне
 
-Вы заметили муравья на кухне и сообщаете домашним: I have seen an ant — я видел муравья. Ant означает «муравей». Собираем: I + have + seen + an ant. С I используем have; seen — третья форма see. Перед ant ставим an, потому что слово начинается с гласного звука. Have seen сообщает о том, что вы уже заметили; муравей не обязательно всё ещё перед вами.
+Вы заметили муравья на кухне и сообщаете домашним: I have seen an ant — я видел муравья. Ant означает «муравей». Собираем: I + have + seen + an ant. С I используем have; seen — форма see после have. Перед ant ставим an, потому что слово начинается с гласного звука. Have seen сообщает о том, что вы уже заметили; муравей не обязательно всё ещё перед вами.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have seen an ant.**
-- ❌ I has seen an ant. — *Выберите have или has по подлежащему.*
-- ❌ I have see an ant. — *После have или has нужна третья форма: seen.*
+- ❌ I has seen an ant. — *Выберите have или has по тому, кто действует.*
+- ❌ I have see an ant. — *После have или has нужна особая форма: seen.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Различаем слова
 
-Mosquito — комар. We have heard a mosquito — мы слышали комара: например, его писк в комнате. Heard — третья форма hear. С we нужно have.
+Mosquito — комар. We have heard a mosquito — мы слышали комара: например, его писк в комнате. Heard — форма hear после have. С we нужно have.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have heard a mosquito.**
-- ❌ We has heard a mosquito. — *Выберите have или has по подлежащему.*
-- ❌ We have hear a mosquito. — *После have или has нужна третья форма: heard.*
+- ❌ We has heard a mosquito. — *Выберите have или has по тому, кто действует.*
+- ❌ We have hear a mosquito. — *После have или has нужна особая форма: heard.*
 
 ---
 
@@ -37,13 +37,13 @@ Mosquito — комар. We have heard a mosquito — мы слышали ком
 
 ### Ещё один пример
 
-Worm — червь, например дождевой червь в земле. He has found a worm — он нашёл червя. Found — третья форма find. С he используем has. Так можно сообщить, что человек только что заметил в саду.
+Worm — червь, например дождевой червь в земле. He has found a worm — он нашёл червя. Found — форма find после have. С he используем has. Так можно сообщить, что человек только что заметил в саду.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has found a worm.**
-- ❌ He have found a worm. — *Выберите have или has по подлежащему.*
-- ❌ He has find a worm. — *После have или has нужна третья форма: found.*
+- ❌ He have found a worm. — *Выберите have или has по тому, кто действует.*
+- ❌ He has find a worm. — *После have или has нужна особая форма: found.*
 
 ---
 
@@ -66,8 +66,8 @@ Worm — червь, например дождевой червь в земле.
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i03; family: context_gap_grammar -->
 I have ___ an ant. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **5 · Карточка слова — spider**
 <!-- interaction_id: en:lesson-23:session-30:word:spider; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ an ant. → **seen** · see · sees
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i06; family: context_gap_grammar -->
 She has ___ a spider. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **9 · Карточка слова — mosquito**
 <!-- interaction_id: en:lesson-23:session-30:word:mosquito; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a spider. → **seen** · see · sees
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i09; family: context_gap_grammar -->
 We have ___ a mosquito. → **heard** · hear · hears
-- hear — *Нужна третья форма: heard.*
-- hears — *Нужна третья форма: heard.*
+- hear — *Нужна форма после have: heard.*
+- hears — *Нужна форма после have: heard.*
 
 **13 · Карточка слова — worm**
 <!-- interaction_id: en:lesson-23:session-30:word:worm; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a mosquito. → **heard** · hear · hears
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-30:i12; family: context_gap_grammar -->
 He has ___ a worm. → **found** · find · finds
-- find — *Нужна третья форма: found.*
-- finds — *Нужна третья форма: found.*
+- find — *Нужна форма после have: found.*
+- finds — *Нужна форма после have: found.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-30:i13; family: speed_match -->

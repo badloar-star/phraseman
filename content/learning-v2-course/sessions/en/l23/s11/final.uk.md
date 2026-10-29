@@ -9,13 +9,13 @@
 
 ### Що ви куштували
 
-Seafood — загальна назва морської їжі, зокрема риби. I have tried seafood: я куштував таку їжу, це мій досвід. Тут seafood незлічуване: не ставимо a. Tried — третя форма try.
+Seafood — загальна назва морської їжі, зокрема риби. I have tried seafood: я куштував таку їжу, це мій досвід. Тут seafood не рахується поштучно: не ставимо a. Tried — форма try після have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have tried seafood.**
 - ❌ I has tried seafood. — *З I потрібно have.*
-- ❌ I have try seafood. — *Після have або has потрібна третя форма.*
+- ❌ I have try seafood. — *Після have або has потрібна особлива форма.*
 
 ---
 
@@ -23,21 +23,21 @@ Seafood — загальна назва морської їжі, зокрема 
 
 ### Уже готувала морепродукти
 
-Ви вибираєте страву на вечерю й розповідаєте про подругу, яка вже готувала молюсків або ракоподібних. She has cooked shellfish — вона готувала такі морепродукти. Shellfish — морепродукти з мушлею або панциром. Складаємо: she + has + cooked + shellfish. Після she ставимо has, cooked — третя форма cook. Has cooked повідомляє про досвід приготування; дату вечері тут не називаємо.
+Ви вибираєте страву на вечерю й розповідаєте про подругу, яка вже готувала молюсків або ракоподібних. She has cooked shellfish — вона готувала такі морепродукти. Shellfish — морепродукти з мушлею або панциром. Складаємо: she + has + cooked + shellfish. Після she ставимо has, cooked — форма cook після have. Has cooked повідомляє про досвід приготування; дату вечері тут не називаємо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She has cooked shellfish.**
 - ❌ She have cooked shellfish. — *Із she потрібно has.*
-- ❌ She has cook shellfish. — *Після have або has потрібна третя форма.*
+- ❌ She has cook shellfish. — *Після have або has потрібна особлива форма.*
 
 ---
 
 ## Інтро 3
 
-### Третя форма eaten
+### Форма після have eaten
 
-У eat форми eat — ate — eaten. Для Present Perfect потрібна eaten: We have eaten lobster. Ate використовується в Past Simple. Ми розповідаємо, що вже куштували в житті, без дати конкретної вечері.
+У eat форми eat — ate — eaten. Для have / has + done потрібна eaten: We have eaten lobster. Ate використовується у формі минулого. Ми розповідаємо, що вже куштували в житті, без дати конкретної вечері.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -66,8 +66,8 @@ Seafood — загальна назва морської їжі, зокрема 
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-11:i03; family: context_gap_grammar -->
 I have ___ seafood. → **tried** · try · tries
-- try — *Після have або has потрібна третя форма.*
-- tries — *Після have або has потрібна третя форма.*
+- try — *Після have або has потрібна особлива форма.*
+- tries — *Після have або has потрібна особлива форма.*
 
 **5 · Картка слова — shellfish**
 <!-- interaction_id: en:lesson-23:session-11:word:shellfish; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ seafood. → **tried** · try · tries
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-11:i06; family: context_gap_grammar -->
 She has ___ shellfish. → **cooked** · cook · cooks
-- cook — *Після have або has потрібна третя форма.*
-- cooks — *Після have або has потрібна третя форма.*
+- cook — *Після have або has потрібна особлива форма.*
+- cooks — *Після have або has потрібна особлива форма.*
 
 **9 · Картка слова — lobster**
 <!-- interaction_id: en:lesson-23:session-11:word:lobster; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ shellfish. → **cooked** · cook · cooks
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-11:i09; family: context_gap_grammar -->
 We have ___ lobster. → **eaten** · eat · ate
-- eat — *Після have або has потрібна третя форма.*
-- ate — *Після have або has потрібна третя форма.*
+- eat — *Після have або has потрібна особлива форма.*
+- ate — *Після have або has потрібна особлива форма.*
 
 **13 · Картка слова — crab**
 <!-- interaction_id: en:lesson-23:session-11:word:crab; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ lobster. → **eaten** · eat · ate
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-11:i12; family: context_gap_grammar -->
 He has ___ crab. → **ordered** · order · orders
-- order — *Після have або has потрібна третя форма.*
-- orders — *Після have або has потрібна третя форма.*
+- order — *Після have або has потрібна особлива форма.*
+- orders — *Після have або has потрібна особлива форма.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-11:i13; family: speed_match -->

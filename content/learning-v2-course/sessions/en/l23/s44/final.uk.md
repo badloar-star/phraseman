@@ -9,13 +9,13 @@
 
 ### Знайшли нове кафе
 
-Під час прогулянки ви знайшли кафе, про яке раніше не знали, й розповідаєте другу: I have discovered a new cafe — я знайшов нове кафе. Discover тут означає «знайти щось нове для себе». Складаємо: I + have + discovered + a new cafe. Після I ставимо have, discovered — третя форма discover із закінченням -ed. Have discovered повідомляє про результат: тепер ви знаєте це місце.
+Під час прогулянки ви знайшли кафе, про яке раніше не знали, й розповідаєте другу: I have discovered a new cafe — я знайшов нове кафе. Discover тут означає «знайти щось нове для себе». Складаємо: I + have + discovered + a new cafe. Після I ставимо have, discovered — форма discover після have із закінченням -ed. Have discovered повідомляє про результат: тепер ви знаєте це місце.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have discovered a new cafe.**
 - ❌ I has discovered a new cafe. — *З I та we потрібно have, з he — has.*
-- ❌ I have discover a new cafe. — *Потрібна третя форма: discovered.*
+- ❌ I have discover a new cafe. — *Потрібна форма після have: discovered.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **We have developed a good habit.**
 - ❌ We has developed a good habit. — *З I та we потрібно have, з he — has.*
-- ❌ We have develop a good habit. — *Потрібна третя форма: developed.*
+- ❌ We have develop a good habit. — *Потрібна форма після have: developed.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Готова робота
 
-Create — створити. He has created a picture — він створив картину. Created — третя форма create. Можна створити картину фарбами або з різних матеріалів. Фраза повідомляє, що роботу вже зроблено.
+Create — створити. He has created a picture — він створив картину. Created — форма create після have. Можна створити картину фарбами або з різних матеріалів. Фраза повідомляє, що роботу вже зроблено.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has created a picture.**
 - ❌ He have created a picture. — *З I та we потрібно have, з he — has.*
-- ❌ He has create a picture. — *Потрібна третя форма: created.*
+- ❌ He has create a picture. — *Потрібна форма після have: created.*
 
 ---
 
@@ -56,8 +56,8 @@ Create — створити. He has created a picture — він створив 
 **2 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-44:i01; family: context_gap_grammar -->
 I have ___ a new cafe. → **discovered** · discover · discovers
-- discover — *Потрібна третя форма: discovered.*
-- discovers — *Потрібна третя форма: discovered.*
+- discover — *Потрібна форма після have: discovered.*
+- discovers — *Потрібна форма після have: discovered.*
 
 **3 · Повідомте: «Я виявив нове кафе.»**
 <!-- interaction_id: en:lesson-23:session-44:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ I have ___ a new cafe. → **discovered** · discover · discovers
 **6 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-44:i04; family: context_gap_grammar -->
 She has ___ a game. → **invented** · invent · invents
-- invent — *Потрібна третя форма: invented.*
-- invents — *Потрібна третя форма: invented.*
+- invent — *Потрібна форма після have: invented.*
+- invents — *Потрібна форма після have: invented.*
 
 **7 · Повідомте: «Вона вигадала гру.»**
 <!-- interaction_id: en:lesson-23:session-44:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ She has ___ a game. → **invented** · invent · invents
 **10 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-44:i07; family: context_gap_grammar -->
 We have ___ a good habit. → **developed** · develop · develops
-- develop — *Потрібна третя форма: developed.*
-- develops — *Потрібна третя форма: developed.*
+- develop — *Потрібна форма після have: developed.*
+- develops — *Потрібна форма після have: developed.*
 
 **11 · Повідомте: «Ми виробили добру звичку.»**
 <!-- interaction_id: en:lesson-23:session-44:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ We have ___ a good habit. → **developed** · develop · develops
 **14 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-44:i10; family: context_gap_grammar -->
 He has ___ a picture. → **created** · create · creates
-- create — *Потрібна третя форма: created.*
-- creates — *Потрібна третя форма: created.*
+- create — *Потрібна форма після have: created.*
+- creates — *Потрібна форма після have: created.*
 
 **15 · Повідомте: «Він створив картину.»**
 <!-- interaction_id: en:lesson-23:session-44:i11; family: phrase_builder -->

@@ -15,7 +15,7 @@ Canoe — каное, вузький човен із веслами. I have trav
 
 - ✅ **I have travelled in a canoe.**
 - ❌ I has travelled in a canoe. — *З I потрібно have.*
-- ❌ I have travel in a canoe. — *Після have або has потрібна третя форма дієслова.*
+- ❌ I have travel in a canoe. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@ Canoe — каное, вузький човен із веслами. I have trav
 
 ### Бувала на сафарі
 
-Подруга вже їздила спостерігати за дикими тваринами, і ви розповідаєте про цей досвід. She has been on a safari — вона бувала на сафарі. Safari тут — туристична поїздка для спостереження за тваринами. Складаємо: she + has + been + on a safari. Після she ставимо has, been — третя форма be. Сполучення on a safari називає поїздку. Has been повідомляє, що такий досвід уже був, а не що подруга зараз там.
+Подруга вже їздила спостерігати за дикими тваринами, і ви розповідаєте про цей досвід. She has been on a safari — вона бувала на сафарі. Safari тут — туристична поїздка для спостереження за тваринами. Складаємо: she + has + been + on a safari. Після she ставимо has, been — форма be після have. Сполучення on a safari називає поїздку. Has been повідомляє, що такий досвід уже був, а не що подруга зараз там.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She has been on a safari.**
 - ❌ She have been on a safari. — *Із she потрібно has.*
-- ❌ She has was on a safari. — *Потрібна третя форма been.*
+- ❌ She has was on a safari. — *Потрібна форма been.*
 
 ---
 
@@ -37,13 +37,13 @@ Canoe — каное, вузький човен із веслами. I have trav
 
 ### Ночувати в кемпінгу
 
-Campsite — місце для наметів або кемпінг. Stay at a campsite — зупинитися в кемпінгу. He has stayed at a campsite: він має такий досвід. Не додаємо yesterday або last summer: тоді розповідь була б про конкретний завершений час у Past Simple.
+Campsite — місце для наметів або кемпінг. Stay at a campsite — зупинитися в кемпінгу. He has stayed at a campsite: він має такий досвід. Не додаємо yesterday або last summer: тоді розповідь була б про конкретний завершений час у формі минулого.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has stayed at a campsite.**
 - ❌ He have stayed at a campsite. — *Із he потрібно has.*
-- ❌ He has stay at a campsite. — *Після have або has потрібна третя форма дієслова.*
+- ❌ He has stay at a campsite. — *Після have або has потрібна особлива форма (done, seen).*
 
 ---
 
@@ -66,8 +66,8 @@ Campsite — місце для наметів або кемпінг. Stay at a c
 **4 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-10:i03; family: context_gap_grammar -->
 I have ___ in a canoe. → **travelled** · travel · travels
-- travel — *Після have або has потрібна третя форма дієслова.*
-- travels — *Після have або has потрібна третя форма дієслова.*
+- travel — *Після have або has потрібна особлива форма (done, seen).*
+- travels — *Після have або has потрібна особлива форма (done, seen).*
 
 **5 · Картка слова — safari**
 <!-- interaction_id: en:lesson-23:session-10:word:safari; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ in a canoe. → **travelled** · travel · travels
 **8 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-10:i06; family: context_gap_grammar -->
 She has ___ on a safari. → **been** · be · was
-- be — *Після have або has потрібна третя форма дієслова.*
-- was — *Після have або has потрібна третя форма дієслова.*
+- be — *Після have або has потрібна особлива форма (done, seen).*
+- was — *Після have або has потрібна особлива форма (done, seen).*
 
 **9 · Картка слова — carnival**
 <!-- interaction_id: en:lesson-23:session-10:word:carnival; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ on a safari. → **been** · be · was
 **12 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-10:i09; family: context_gap_grammar -->
 We have ___ a carnival. → **visited** · visit · visits
-- visit — *Після have або has потрібна третя форма дієслова.*
-- visits — *Після have або has потрібна третя форма дієслова.*
+- visit — *Після have або has потрібна особлива форма (done, seen).*
+- visits — *Після have або has потрібна особлива форма (done, seen).*
 
 **13 · Картка слова — campsite**
 <!-- interaction_id: en:lesson-23:session-10:word:campsite; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a carnival. → **visited** · visit · visits
 **16 · Виберіть форму слова для розповіді про досвід.**
 <!-- interaction_id: en:lesson-23:session-10:i12; family: context_gap_grammar -->
 He has ___ at a campsite. → **stayed** · stay · stays
-- stay — *Після have або has потрібна третя форма дієслова.*
-- stays — *Після have або has потрібна третя форма дієслова.*
+- stay — *Після have або has потрібна особлива форма (done, seen).*
+- stays — *Після have або has потрібна особлива форма (done, seen).*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-10:i13; family: speed_match -->

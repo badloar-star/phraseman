@@ -9,13 +9,13 @@
 
 ### На небі з’явилися хмари
 
-Небо було ясним, але тепер на ньому видно хмари. Clouds have appeared — з’явилися хмари. Appear означає «з’явитися». Складаємо: clouds + have + appeared. Clouds у множині, тому ставимо have. Appeared — третя форма appear із закінченням -ed. Have appeared повідомляє про зміну з видимим результатом: хмари тепер на небі.
+Небо було ясним, але тепер на ньому видно хмари. Clouds have appeared — з’явилися хмари. Appear означає «з’явитися». Складаємо: clouds + have + appeared. Clouds у формі для кількох, тому ставимо have. Appeared — форма appear після have із закінченням -ed. Have appeared повідомляє про зміну з видимим результатом: хмари тепер на небі.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Clouds have appeared.**
-- ❌ Clouds has appeared. — *Clouds — множина, потрібно have.*
-- ❌ Clouds have appear. — *Для результату зараз використайте have/has і третю форму.*
+- ❌ Clouds has appeared. — *Clouds — форма для кількох, потрібно have.*
+- ❌ Clouds have appear. — *Для результату зараз використайте have/has і форму після have.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Стало гірше
 
-Worsen — погіршитися. The weather has worsened: погода тепер гірша, ніж була. Weather — незлічуваний іменник, тут із ним використовуємо has. Не додавайте до worsen слово more: значення «гірше» вже є в дієслові.
+Worsen — погіршитися. The weather has worsened: погода тепер гірша, ніж була. Weather — слово, яке не рахують поштучно, тут із ним використовуємо has. Не додавайте до worsen слово more: значення «гірше» вже є в дієслові.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The weather has worsened.**
 - ❌ The weather have worsened. — *Із weather тут потрібно has.*
-- ❌ The weather has worsen. — *Для результату зараз використайте have/has і третю форму.*
+- ❌ The weather has worsen. — *Для результату зараз використайте have/has і форму після have.*
 
 ---
 
@@ -37,13 +37,13 @@ Worsen — погіршитися. The weather has worsened: погода теп
 
 ### Поріз загоївся
 
-Heal — загоюватися. The cut has healed: поріз загоївся. Cut тут іменник «поріз», healed — третя форма дієслова heal.
+Heal — загоюватися. The cut has healed: поріз загоївся. Cut тут іменник «поріз», healed — форма після have від heal.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The cut has healed.**
 - ❌ The cut have healed. — *The cut — один поріз, потрібно has.*
-- ❌ The cut has heal. — *Для результату зараз використайте have/has і третю форму.*
+- ❌ The cut has heal. — *Для результату зараз використайте have/has і форму після have.*
 
 ---
 
@@ -56,8 +56,8 @@ Heal — загоюватися. The cut has healed: поріз загоївся
 **2 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-06:i01; family: context_gap_grammar -->
 Clouds have ___. → **appeared** · appear · appears
-- appear — *Для результату зараз використайте have/has і третю форму.*
-- appears — *Для результату зараз використайте have/has і третю форму.*
+- appear — *Для результату зараз використайте have/has і форму після have.*
+- appears — *Для результату зараз використайте have/has і форму після have.*
 
 **3 · Небо вже не ясне. Скажіть: «З’явилися хмари».**
 <!-- interaction_id: en:lesson-23:session-06:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ Clouds have ___. → **appeared** · appear · appears
 **6 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-06:i04; family: context_gap_grammar -->
 My keys have ___. → **disappeared** · disappear · disappears
-- disappear — *Для результату зараз використайте have/has і третю форму.*
-- disappears — *Для результату зараз використайте have/has і третю форму.*
+- disappear — *Для результату зараз використайте have/has і форму після have.*
+- disappears — *Для результату зараз використайте have/has і форму після have.*
 
 **7 · Ключі лежали тут, але тепер їх немає. Скажіть: «Мої ключі зникли».**
 <!-- interaction_id: en:lesson-23:session-06:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ My keys have ___. → **disappeared** · disappear · disappears
 **10 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-06:i07; family: context_gap_grammar -->
 The weather has ___. → **worsened** · worsen · worsens
-- worsen — *Для результату зараз використайте have/has і третю форму.*
-- worsens — *Для результату зараз використайте have/has і третю форму.*
+- worsen — *Для результату зараз використайте have/has і форму після have.*
+- worsens — *Для результату зараз використайте have/has і форму після have.*
 
 **11 · Надворі стало ще гірше. Скажіть: «Погода погіршилася».**
 <!-- interaction_id: en:lesson-23:session-06:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ The weather has ___. → **worsened** · worsen · worsens
 **14 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-06:i10; family: context_gap_grammar -->
 The cut has ___. → **healed** · heal · heals
-- heal — *Для результату зараз використайте have/has і третю форму.*
-- heals — *Для результату зараз використайте have/has і третю форму.*
+- heal — *Для результату зараз використайте have/has і форму після have.*
+- heals — *Для результату зараз використайте have/has і форму після have.*
 
 **15 · Порізу більше немає. Скажіть: «Поріз загоївся».**
 <!-- interaction_id: en:lesson-23:session-06:i11; family: phrase_builder -->

@@ -15,7 +15,7 @@ Strawberries — клубника. Одна ягода — a strawberry, нес�
 
 - ✅ **I have picked strawberries.**
 - ❌ I has picked strawberries. — *С I и we нужно have; с she и he — has.*
-- ❌ I have pick strawberries. — *После have или has нужна третья форма.*
+- ❌ I have pick strawberries. — *После have или has нужна особая форма.*
 
 ---
 
@@ -23,13 +23,13 @@ Strawberries — клубника. Одна ягода — a strawberry, нес�
 
 ### Выращивала малину
 
-Вы обсуждаете сад и рассказываете о подруге, которая раньше выращивала малину. She has grown raspberries — она выращивала малину. Raspberries означает «малина». Собираем: she + has + grown + raspberries. С she выбираем has, grown — третья форма grow, а не grew. Has grown сообщает об опыте выращивания; конкретный сезон здесь не называем.
+Вы обсуждаете сад и рассказываете о подруге, которая раньше выращивала малину. She has grown raspberries — она выращивала малину. Raspberries означает «малина». Собираем: she + has + grown + raspberries. С she выбираем has, grown — форма grow после have, а не grew. Has grown сообщает об опыте выращивания; конкретный сезон здесь не называем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She has grown raspberries.**
 - ❌ She have grown raspberries. — *С I и we нужно have; с she и he — has.*
-- ❌ She has grow raspberries. — *После have или has нужна третья форма.*
+- ❌ She has grow raspberries. — *После have или has нужна особая форма.*
 
 ---
 
@@ -37,13 +37,13 @@ Strawberries — клубника. Одна ягода — a strawberry, нес�
 
 ### Уже пробовал киви
 
-Вы предлагаете другу киви и узнаёте, что он уже пробовал этот фрукт. He has tried a kiwi — он пробовал киви. Kiwi здесь — фрукт. Собираем: he + has + tried + a kiwi. С he используем has, tried — третья форма try. A kiwi называет один плод. Has tried сообщает об опыте: вкус ему уже знаком, хотя когда он попробовал киви, здесь не уточняется.
+Вы предлагаете другу киви и узнаёте, что он уже пробовал этот фрукт. He has tried a kiwi — он пробовал киви. Kiwi здесь — фрукт. Собираем: he + has + tried + a kiwi. С he используем has, tried — форма try после have. A kiwi называет один плод. Has tried сообщает об опыте: вкус ему уже знаком, хотя когда он попробовал киви, здесь не уточняется.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has tried a kiwi.**
 - ❌ He have tried a kiwi. — *С I и we нужно have; с she и he — has.*
-- ❌ He has try a kiwi. — *После have или has нужна третья форма.*
+- ❌ He has try a kiwi. — *После have или has нужна особая форма.*
 
 ---
 
@@ -66,8 +66,8 @@ Strawberries — клубника. Одна ягода — a strawberry, нес�
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-19:i03; family: context_gap_grammar -->
 I have ___ strawberries. → **picked** · pick · picks
-- pick — *После have или has нужна третья форма.*
-- picks — *После have или has нужна третья форма.*
+- pick — *После have или has нужна особая форма.*
+- picks — *После have или has нужна особая форма.*
 
 **5 · Карточка слова — raspberries**
 <!-- interaction_id: en:lesson-23:session-19:word:raspberries; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ strawberries. → **picked** · pick · picks
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-19:i06; family: context_gap_grammar -->
 She has ___ raspberries. → **grown** · grow · grew
-- grow — *После have или has нужна третья форма.*
-- grew — *После have или has нужна третья форма.*
+- grow — *После have или has нужна особая форма.*
+- grew — *После have или has нужна особая форма.*
 
 **9 · Карточка слова — blueberries**
 <!-- interaction_id: en:lesson-23:session-19:word:blueberries; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ raspberries. → **grown** · grow · grew
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-19:i09; family: context_gap_grammar -->
 We have ___ blueberries. → **eaten** · eat · ate
-- eat — *После have или has нужна третья форма.*
-- ate — *После have или has нужна третья форма.*
+- eat — *После have или has нужна особая форма.*
+- ate — *После have или has нужна особая форма.*
 
 **13 · Карточка слова — kiwi**
 <!-- interaction_id: en:lesson-23:session-19:word:kiwi; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ blueberries. → **eaten** · eat · ate
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-19:i12; family: context_gap_grammar -->
 He has ___ a kiwi. → **tried** · try · tries
-- try — *После have или has нужна третья форма.*
-- tries — *После have или has нужна третья форма.*
+- try — *После have или has нужна особая форма.*
+- tries — *После have или has нужна особая форма.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-19:i13; family: speed_match -->

@@ -15,7 +15,7 @@ Theft — кража, например велосипеда. I have reported a t
 
 - ✅ **I have reported a theft.**
 - ❌ I has reported a theft. — *С I и we нужно have, с he и she — has.*
-- ❌ I have report a theft. — *После have или has нужна третья форма: reported.*
+- ❌ I have report a theft. — *После have или has нужна особая форма: reported.*
 
 ---
 
@@ -23,13 +23,13 @@ Theft — кража, например велосипеда. I have reported a t
 
 ### Видели кражу
 
-Вы с другом видели, как человек украл сумку, и сообщаете об этом: We have seen a thief — мы видели вора. Thief означает «вор». Собираем: we + have + seen + a thief. С we используем have; seen — третья форма see, а не saw. Have seen связывает увиденное с сообщением сейчас; точное время события в этой фразе не называем.
+Вы с другом видели, как человек украл сумку, и сообщаете об этом: We have seen a thief — мы видели вора. Thief означает «вор». Собираем: we + have + seen + a thief. С we используем have; seen — форма see после have, а не saw. Have seen связывает увиденное с сообщением сейчас; точное время события в этой фразе не называем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have seen a thief.**
 - ❌ We has seen a thief. — *С I и we нужно have, с he и she — has.*
-- ❌ We have see a thief. — *После have или has нужна третья форма: seen.*
+- ❌ We have see a thief. — *После have или has нужна особая форма: seen.*
 
 ---
 
@@ -43,7 +43,7 @@ Theft — кража, например велосипеда. I have reported a t
 
 - ✅ **He has described a suspect.**
 - ❌ He have described a suspect. — *С I и we нужно have, с he и she — has.*
-- ❌ He has describe a suspect. — *После have или has нужна третья форма: described.*
+- ❌ He has describe a suspect. — *После have или has нужна особая форма: described.*
 
 ---
 
@@ -66,8 +66,8 @@ Theft — кража, например велосипеда. I have reported a t
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i03; family: context_gap_grammar -->
 I have ___ a theft. → **reported** · report · reports
-- report — *Нужна третья форма: reported.*
-- reports — *Нужна третья форма: reported.*
+- report — *Нужна форма после have: reported.*
+- reports — *Нужна форма после have: reported.*
 
 **5 · Карточка слова — victim**
 <!-- interaction_id: en:lesson-23:session-50:word:victim; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a theft. → **reported** · report · reports
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i06; family: context_gap_grammar -->
 She has ___ a victim. → **helped** · help · helps
-- help — *Нужна третья форма: helped.*
-- helps — *Нужна третья форма: helped.*
+- help — *Нужна форма после have: helped.*
+- helps — *Нужна форма после have: helped.*
 
 **9 · Карточка слова — thief**
 <!-- interaction_id: en:lesson-23:session-50:word:thief; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a victim. → **helped** · help · helps
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i09; family: context_gap_grammar -->
 We have ___ a thief. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **13 · Карточка слова — suspect**
 <!-- interaction_id: en:lesson-23:session-50:word:suspect; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a thief. → **seen** · see · sees
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-50:i12; family: context_gap_grammar -->
 He has ___ a suspect. → **described** · describe · describes
-- describe — *Нужна третья форма: described.*
-- describes — *Нужна третья форма: described.*
+- describe — *Нужна форма после have: described.*
+- describes — *Нужна форма после have: described.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-50:i13; family: speed_match -->

@@ -15,7 +15,7 @@ Blood — кров. I have donated blood — я здав кров як доно�
 
 - ✅ **I have donated blood.**
 - ❌ I has donated blood. — *З I та we потрібно have, з he та she — has.*
-- ❌ I have donate blood. — *Після have або has потрібна третя форма: donated.*
+- ❌ I have donate blood. — *Після have або has потрібна особлива форма: donated.*
 
 ---
 
@@ -23,13 +23,13 @@ Blood — кров. I have donated blood — я здав кров як доно�
 
 ### Після заняття про мозок
 
-На занятті вам пояснили, як працює мозок. Ви розповідаєте про те, що дізналися: We have learned about the brain — ми дізналися про роботу мозку. Brain означає «мозок». Складаємо: we + have + learned + about the brain. Після we ставимо have, потім learned — третю форму learn. About вводить тему заняття. Have learned показує результат навчання: тепер ви знаєте про це більше.
+На занятті вам пояснили, як працює мозок. Ви розповідаєте про те, що дізналися: We have learned about the brain — ми дізналися про роботу мозку. Brain означає «мозок». Складаємо: we + have + learned + about the brain. Після we ставимо have, потім learned — форму learn. About вводить тему заняття. Have learned показує результат навчання: тепер ви знаєте про це більше.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have learned about the brain.**
 - ❌ We has learned about the brain. — *З I та we потрібно have, з he та she — has.*
-- ❌ We have learn about the brain. — *Після have або has потрібна третя форма: learned.*
+- ❌ We have learn about the brain. — *Після have або has потрібна особлива форма: learned.*
 
 ---
 
@@ -43,7 +43,7 @@ Toe — палець ноги. He has hurt his toe — він пошкодив �
 
 - ✅ **He has hurt his toe.**
 - ❌ He have hurt his toe. — *З I та we потрібно have, з he та she — has.*
-- ❌ He has hurts his toe. — *Після have або has потрібна третя форма: hurt.*
+- ❌ He has hurts his toe. — *Після have або has потрібна особлива форма: hurt.*
 
 ---
 
@@ -66,8 +66,8 @@ Toe — палець ноги. He has hurt his toe — він пошкодив �
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i03; family: context_gap_grammar -->
 I have ___ blood. → **donated** · donate · donates
-- donate — *Потрібна третя форма: donated.*
-- donates — *Потрібна третя форма: donated.*
+- donate — *Потрібна форма після have: donated.*
+- donates — *Потрібна форма після have: donated.*
 
 **5 · Картка слова — lungs**
 <!-- interaction_id: en:lesson-23:session-47:word:lungs; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ blood. → **donated** · donate · donates
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i06; family: context_gap_grammar -->
 The doctor has ___ my lungs. → **checked** · check · checks
-- check — *Потрібна третя форма: checked.*
-- checks — *Потрібна третя форма: checked.*
+- check — *Потрібна форма після have: checked.*
+- checks — *Потрібна форма після have: checked.*
 
 **9 · Картка слова — brain**
 <!-- interaction_id: en:lesson-23:session-47:word:brain; family: word_card -->
@@ -106,8 +106,8 @@ The doctor has ___ my lungs. → **checked** · check · checks
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i09; family: context_gap_grammar -->
 We have ___ about the brain. → **learned** · learn · learns
-- learn — *Потрібна третя форма: learned.*
-- learns — *Потрібна третя форма: learned.*
+- learn — *Потрібна форма після have: learned.*
+- learns — *Потрібна форма після have: learned.*
 
 **13 · Картка слова — toe**
 <!-- interaction_id: en:lesson-23:session-47:word:toe; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ about the brain. → **learned** · learn · learns
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i12; family: context_gap_grammar -->
 He has ___ his toe. → **hurt** · hurts · hurting
-- hurts — *Потрібна третя форма: hurt.*
-- hurting — *Потрібна третя форма: hurt.*
+- hurts — *Потрібна форма після have: hurt.*
+- hurting — *Потрібна форма після have: hurt.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-47:i13; family: speed_match -->

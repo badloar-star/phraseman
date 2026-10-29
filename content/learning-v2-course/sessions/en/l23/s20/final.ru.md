@@ -9,7 +9,7 @@
 
 ### Ваш опыт
 
-Avocado — авокадо. An avocado — один плод: an нужен перед гласным звуком. I have cut an avocado сообщает, что вы уже разрезали авокадо. У cut третья форма тоже cut, без -ed.
+Avocado — авокадо. An avocado — один плод: an нужен перед гласным звуком. I have cut an avocado сообщает, что вы уже разрезали авокадо. У cut форма после have тоже cut, без -ed.
 
 **Выберите фразу для этой ситуации.**
 
@@ -23,13 +23,13 @@ Avocado — авокадо. An avocado — один плод: an нужен пе
 
 ### Опыт выращивания салата
 
-Вы выбираете растения для огорода и рассказываете о подруге, которая уже выращивала листовой салат. She has grown lettuce — она выращивала салат. Lettuce здесь — растение. Собираем: she + has + grown + lettuce. С she используем has; grown — третья форма grow. Has grown сообщает об опыте выращивания, без указания года или сезона.
+Вы выбираете растения для огорода и рассказываете о подруге, которая уже выращивала листовой салат. She has grown lettuce — она выращивала салат. Lettuce здесь — растение. Собираем: she + has + grown + lettuce. С she используем has; grown — форма grow после have. Has grown сообщает об опыте выращивания, без указания года или сезона.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She has grown lettuce.**
 - ❌ She have grown lettuce. — *С I и we нужно have; с she и he — has.*
-- ❌ She has grow lettuce. — *После have или has нужна третья форма.*
+- ❌ She has grow lettuce. — *После have или has нужна особая форма.*
 
 ---
 
@@ -37,13 +37,13 @@ Avocado — авокадо. An avocado — один плод: an нужен пе
 
 ### Что вы уже делали
 
-Lime — лайм, обычно зелёный цитрусовый плод. Squeeze a lime — выжать сок из лайма. He has squeezed a lime: он уже делал это. С he нужна форма has; squeezed — третья форма squeeze.
+Lime — лайм, обычно зелёный цитрусовый плод. Squeeze a lime — выжать сок из лайма. He has squeezed a lime: он уже делал это. С he нужна форма has; squeezed — форма squeeze после have.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has squeezed a lime.**
 - ❌ He have squeezed a lime. — *С I и we нужно have; с she и he — has.*
-- ❌ He has squeeze a lime. — *После have или has нужна третья форма.*
+- ❌ He has squeeze a lime. — *После have или has нужна особая форма.*
 
 ---
 
@@ -66,8 +66,8 @@ Lime — лайм, обычно зелёный цитрусовый плод. Sq
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i03; family: context_gap_grammar -->
 I have ___ an avocado. → **cut** · cuts · cutting
-- cuts — *После have или has нужна третья форма.*
-- cutting — *После have или has нужна третья форма.*
+- cuts — *После have или has нужна особая форма.*
+- cutting — *После have или has нужна особая форма.*
 
 **5 · Карточка слова — lettuce**
 <!-- interaction_id: en:lesson-23:session-20:word:lettuce; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ an avocado. → **cut** · cuts · cutting
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i06; family: context_gap_grammar -->
 She has ___ lettuce. → **grown** · grow · grew
-- grow — *После have или has нужна третья форма.*
-- grew — *После have или has нужна третья форма.*
+- grow — *После have или has нужна особая форма.*
+- grew — *После have или has нужна особая форма.*
 
 **9 · Карточка слова — tangerine**
 <!-- interaction_id: en:lesson-23:session-20:word:tangerine; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ lettuce. → **grown** · grow · grew
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i09; family: context_gap_grammar -->
 We have ___ a tangerine. → **peeled** · peel · peels
-- peel — *После have или has нужна третья форма.*
-- peels — *После have или has нужна третья форма.*
+- peel — *После have или has нужна особая форма.*
+- peels — *После have или has нужна особая форма.*
 
 **13 · Карточка слова — lime**
 <!-- interaction_id: en:lesson-23:session-20:word:lime; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a tangerine. → **peeled** · peel · peels
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i12; family: context_gap_grammar -->
 He has ___ a lime. → **squeezed** · squeeze · squeezes
-- squeeze — *После have или has нужна третья форма.*
-- squeezes — *После have или has нужна третья форма.*
+- squeeze — *После have или has нужна особая форма.*
+- squeezes — *После have или has нужна особая форма.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-20:i13; family: speed_match -->

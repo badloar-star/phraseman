@@ -9,13 +9,13 @@
 
 ### Ваш досвід
 
-Bacon — бекон, який часто подають скибочками. I have tried bacon — я куштував бекон. Tried — третя форма try. Так можна розповісти про їжу, яку ви вже куштували; точної дати не називаємо.
+Bacon — бекон, який часто подають скибочками. I have tried bacon — я куштував бекон. Tried — форма try після have. Так можна розповісти про їжу, яку ви вже куштували; точної дати не називаємо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have tried bacon.**
-- ❌ I has tried bacon. — *Виберіть have або has за підметом.*
-- ❌ I have try bacon. — *Після have або has потрібна третя форма: tried.*
+- ❌ I has tried bacon. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have try bacon. — *Після have або has потрібна особлива форма: tried.*
 
 ---
 
@@ -23,13 +23,13 @@ Bacon — бекон, який часто подають скибочками. I
 
 ### Уже готувала яловичину
 
-Ви обговорюєте вечерю й розповідаєте про подругу, яка вже готувала яловичину. She has cooked beef — вона готувала яловичину. Beef означає «яловичина». Складаємо: she + has + cooked + beef. Із she ставимо has, cooked — третя форма cook із закінченням -ed. Has cooked повідомляє про досвід готування. Beef тут називає продукт, а не окремий предмет, тому a не ставимо.
+Ви обговорюєте вечерю й розповідаєте про подругу, яка вже готувала яловичину. She has cooked beef — вона готувала яловичину. Beef означає «яловичина». Складаємо: she + has + cooked + beef. Із she ставимо has, cooked — форма cook після have із закінченням -ed. Has cooked повідомляє про досвід готування. Beef тут називає продукт, а не окремий предмет, тому a не ставимо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She has cooked beef.**
-- ❌ She have cooked beef. — *Виберіть have або has за підметом.*
-- ❌ She has cook beef. — *Після have або has потрібна третя форма: cooked.*
+- ❌ She have cooked beef. — *Виберіть have або has за тим, хто діє.*
+- ❌ She has cook beef. — *Після have або has потрібна особлива форма: cooked.*
 
 ---
 
@@ -37,13 +37,13 @@ Bacon — бекон, який часто подають скибочками. I
 
 ### Ще один приклад
 
-Salami — салямі, вид ковбаси. He has bought salami — він купував салямі. Bought — третя форма buy. Тут salami — назва продукту без артикля a. Якщо ви не їсте м’яса, ці слова допоможуть пояснити, які продукти вам не підходять.
+Salami — салямі, вид ковбаси. He has bought salami — він купував салямі. Bought — форма buy після have. Тут salami — назва продукту без a. Якщо ви не їсте м’яса, ці слова допоможуть пояснити, які продукти вам не підходять.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has bought salami.**
-- ❌ He have bought salami. — *Виберіть have або has за підметом.*
-- ❌ He has buy salami. — *Після have або has потрібна третя форма: bought.*
+- ❌ He have bought salami. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has buy salami. — *Після have або has потрібна особлива форма: bought.*
 
 ---
 
@@ -66,8 +66,8 @@ Salami — салямі, вид ковбаси. He has bought salami — він 
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-23:i03; family: context_gap_grammar -->
 I have ___ bacon. → **tried** · try · tries
-- try — *Потрібна третя форма: tried.*
-- tries — *Потрібна третя форма: tried.*
+- try — *Потрібна форма після have: tried.*
+- tries — *Потрібна форма після have: tried.*
 
 **5 · Картка слова — beef**
 <!-- interaction_id: en:lesson-23:session-23:word:beef; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ bacon. → **tried** · try · tries
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-23:i06; family: context_gap_grammar -->
 She has ___ beef. → **cooked** · cook · cooks
-- cook — *Потрібна третя форма: cooked.*
-- cooks — *Потрібна третя форма: cooked.*
+- cook — *Потрібна форма після have: cooked.*
+- cooks — *Потрібна форма після have: cooked.*
 
 **9 · Картка слова — pork**
 <!-- interaction_id: en:lesson-23:session-23:word:pork; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ beef. → **cooked** · cook · cooks
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-23:i09; family: context_gap_grammar -->
 We have ___ pork. → **tried** · try · tries
-- try — *Потрібна третя форма: tried.*
-- tries — *Потрібна третя форма: tried.*
+- try — *Потрібна форма після have: tried.*
+- tries — *Потрібна форма після have: tried.*
 
 **13 · Картка слова — salami**
 <!-- interaction_id: en:lesson-23:session-23:word:salami; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ pork. → **tried** · try · tries
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-23:i12; family: context_gap_grammar -->
 He has ___ salami. → **bought** · buy · buys
-- buy — *Потрібна третя форма: bought.*
-- buys — *Потрібна третя форма: bought.*
+- buy — *Потрібна форма після have: bought.*
+- buys — *Потрібна форма після have: bought.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-23:i13; family: speed_match -->

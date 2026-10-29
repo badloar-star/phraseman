@@ -9,13 +9,13 @@
 
 ### Услышали гром
 
-Вы услышали гром за окном и сообщаете домашним: I have heard thunder — я слышал гром. Thunder означает «гром». Собираем: I + have + heard + thunder. С I используем have, heard — третья форма hear. Have heard связывает услышанное с сообщением сейчас. Thunder обозначает явление, поэтому в этой фразе перед ним нет a.
+Вы услышали гром за окном и сообщаете домашним: I have heard thunder — я слышал гром. Thunder означает «гром». Собираем: I + have + heard + thunder. С I используем have, heard — форма hear после have. Have heard связывает услышанное с сообщением сейчас. Thunder обозначает явление, поэтому в этой фразе перед ним нет a.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have heard thunder.**
-- ❌ I has heard thunder. — *Выберите have или has по подлежащему.*
-- ❌ I have hear thunder. — *После have или has нужна третья форма: heard.*
+- ❌ I has heard thunder. — *Выберите have или has по тому, кто действует.*
+- ❌ I have hear thunder. — *После have или has нужна особая форма: heard.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Различаем слова
 
-Flood — наводнение, когда вода затапливает место. We have seen a flood — мы видели наводнение. Seen — третья форма see. Здесь рассказываем об опыте, не называя конкретную дату. Перед flood нужен артикль a.
+Flood — наводнение, когда вода затапливает место. We have seen a flood — мы видели наводнение. Seen — форма see после have. Здесь рассказываем об опыте, не называя конкретную дату. Перед flood нужен a.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have seen a flood.**
-- ❌ We has seen a flood. — *Выберите have или has по подлежащему.*
-- ❌ We have see a flood. — *После have или has нужна третья форма: seen.*
+- ❌ We has seen a flood. — *Выберите have или has по тому, кто действует.*
+- ❌ We have see a flood. — *После have или has нужна особая форма: seen.*
 
 ---
 
@@ -37,13 +37,13 @@ Flood — наводнение, когда вода затапливает ме�
 
 ### Ветерок из окна
 
-Друг открыл окно и почувствовал лёгкий ветер. He has felt a breeze — он почувствовал лёгкий ветер. Breeze означает «лёгкий ветер». Собираем: he + has + felt + a breeze. С he ставим has, felt — третья форма feel, а не feel с окончанием -ed. Has felt сообщает о том, что он уже ощутил.
+Друг открыл окно и почувствовал лёгкий ветер. He has felt a breeze — он почувствовал лёгкий ветер. Breeze означает «лёгкий ветер». Собираем: he + has + felt + a breeze. С he ставим has, felt — форма feel после have, а не feel с окончанием -ed. Has felt сообщает о том, что он уже ощутил.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has felt a breeze.**
-- ❌ He have felt a breeze. — *Выберите have или has по подлежащему.*
-- ❌ He has feel a breeze. — *После have или has нужна третья форма: felt.*
+- ❌ He have felt a breeze. — *Выберите have или has по тому, кто действует.*
+- ❌ He has feel a breeze. — *После have или has нужна особая форма: felt.*
 
 ---
 
@@ -66,8 +66,8 @@ Flood — наводнение, когда вода затапливает ме�
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i03; family: context_gap_grammar -->
 I have ___ thunder. → **heard** · hear · hears
-- hear — *Нужна третья форма: heard.*
-- hears — *Нужна третья форма: heard.*
+- hear — *Нужна форма после have: heard.*
+- hears — *Нужна форма после have: heard.*
 
 **5 · Карточка слова — lightning**
 <!-- interaction_id: en:lesson-23:session-22:word:lightning; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ thunder. → **heard** · hear · hears
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i06; family: context_gap_grammar -->
 She has ___ lightning. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **9 · Карточка слова — flood**
 <!-- interaction_id: en:lesson-23:session-22:word:flood; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ lightning. → **seen** · see · sees
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i09; family: context_gap_grammar -->
 We have ___ a flood. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **13 · Карточка слова — breeze**
 <!-- interaction_id: en:lesson-23:session-22:word:breeze; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a flood. → **seen** · see · sees
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-22:i12; family: context_gap_grammar -->
 He has ___ a breeze. → **felt** · feel · feels
-- feel — *Нужна третья форма: felt.*
-- feels — *Нужна третья форма: felt.*
+- feel — *Нужна форма после have: felt.*
+- feels — *Нужна форма после have: felt.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-22:i13; family: speed_match -->

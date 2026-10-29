@@ -15,7 +15,7 @@ Canoe — каноэ, узкая лодка с вёслами. I have travelled 
 
 - ✅ **I have travelled in a canoe.**
 - ❌ I has travelled in a canoe. — *С I нужно have.*
-- ❌ I have travel in a canoe. — *После have или has нужна третья форма глагола.*
+- ❌ I have travel in a canoe. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@ Canoe — каноэ, узкая лодка с вёслами. I have travelled 
 
 ### Бывала на сафари
 
-Подруга уже ездила наблюдать за дикими животными, и вы рассказываете об этом опыте. She has been on a safari — она бывала на сафари. Safari здесь — туристическая поездка для наблюдения за животными. Собираем: she + has + been + on a safari. После she ставим has, been — третья форма be. Сочетание on a safari называет поездку. Has been сообщает, что такой опыт уже был, а не что подруга сейчас там.
+Подруга уже ездила наблюдать за дикими животными, и вы рассказываете об этом опыте. She has been on a safari — она бывала на сафари. Safari здесь — туристическая поездка для наблюдения за животными. Собираем: she + has + been + on a safari. После she ставим has, been — форма be после have. Сочетание on a safari называет поездку. Has been сообщает, что такой опыт уже был, а не что подруга сейчас там.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She has been on a safari.**
 - ❌ She have been on a safari. — *С she нужно has.*
-- ❌ She has was on a safari. — *Нужна третья форма been.*
+- ❌ She has was on a safari. — *Нужна форма been.*
 
 ---
 
@@ -37,13 +37,13 @@ Canoe — каноэ, узкая лодка с вёслами. I have travelled 
 
 ### Ночевать в кемпинге
 
-Campsite — место для палаток или кемпинг. Stay at a campsite — остановиться в кемпинге. He has stayed at a campsite: у него есть такой опыт. Не добавляем yesterday или last summer: тогда рассказ был бы о конкретном законченном времени в Past Simple.
+Campsite — место для палаток или кемпинг. Stay at a campsite — остановиться в кемпинге. He has stayed at a campsite: у него есть такой опыт. Не добавляем yesterday или last summer: тогда рассказ был бы о конкретном законченном времени в форме прошлого.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has stayed at a campsite.**
 - ❌ He have stayed at a campsite. — *С he нужно has.*
-- ❌ He has stay at a campsite. — *После have или has нужна третья форма глагола.*
+- ❌ He has stay at a campsite. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -66,8 +66,8 @@ Campsite — место для палаток или кемпинг. Stay at a c
 **4 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-10:i03; family: context_gap_grammar -->
 I have ___ in a canoe. → **travelled** · travel · travels
-- travel — *После have или has нужна третья форма глагола.*
-- travels — *После have или has нужна третья форма глагола.*
+- travel — *После have или has нужна особая форма (done, seen).*
+- travels — *После have или has нужна особая форма (done, seen).*
 
 **5 · Карточка слова — safari**
 <!-- interaction_id: en:lesson-23:session-10:word:safari; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ in a canoe. → **travelled** · travel · travels
 **8 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-10:i06; family: context_gap_grammar -->
 She has ___ on a safari. → **been** · be · was
-- be — *После have или has нужна третья форма глагола.*
-- was — *После have или has нужна третья форма глагола.*
+- be — *После have или has нужна особая форма (done, seen).*
+- was — *После have или has нужна особая форма (done, seen).*
 
 **9 · Карточка слова — carnival**
 <!-- interaction_id: en:lesson-23:session-10:word:carnival; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ on a safari. → **been** · be · was
 **12 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-10:i09; family: context_gap_grammar -->
 We have ___ a carnival. → **visited** · visit · visits
-- visit — *После have или has нужна третья форма глагола.*
-- visits — *После have или has нужна третья форма глагола.*
+- visit — *После have или has нужна особая форма (done, seen).*
+- visits — *После have или has нужна особая форма (done, seen).*
 
 **13 · Карточка слова — campsite**
 <!-- interaction_id: en:lesson-23:session-10:word:campsite; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a carnival. → **visited** · visit · visits
 **16 · Выберите форму слова для рассказа об опыте.**
 <!-- interaction_id: en:lesson-23:session-10:i12; family: context_gap_grammar -->
 He has ___ at a campsite. → **stayed** · stay · stays
-- stay — *После have или has нужна третья форма глагола.*
-- stays — *После have или has нужна третья форма глагола.*
+- stay — *После have или has нужна особая форма (done, seen).*
+- stays — *После have или has нужна особая форма (done, seen).*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-10:i13; family: speed_match -->

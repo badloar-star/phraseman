@@ -9,13 +9,13 @@
 
 ### Уже водили фургон
 
-Друг збирається перевозити речі й запитує, чи маєте ви досвід водіння фургона. I have driven a van — я водив фургон. Van означає «фургон». Складаємо: I + have + driven + a van. Із I ставимо have, driven — третя форма drive. Have driven повідомляє про досвід водіння, а не про те, що ви зараз за кермом.
+Друг збирається перевозити речі й запитує, чи маєте ви досвід водіння фургона. I have driven a van — я водив фургон. Van означає «фургон». Складаємо: I + have + driven + a van. Із I ставимо have, driven — форма drive після have. Have driven повідомляє про досвід водіння, а не про те, що ви зараз за кермом.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have driven a van.**
-- ❌ I has driven a van. — *Виберіть have або has за підметом.*
-- ❌ I have drive a van. — *Після have або has потрібна третя форма: driven.*
+- ❌ I has driven a van. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have drive a van. — *Після have або has потрібна особлива форма: driven.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розрізняємо слова
 
-Helicopter — гелікоптер. We have seen a helicopter — ми бачили гелікоптер. Seen — третя форма see. Ця фраза повідомляє лише, що ми його бачили: вона не означає, що ми на ньому літали.
+Helicopter — гелікоптер. We have seen a helicopter — ми бачили гелікоптер. Seen — форма see після have. Ця фраза повідомляє лише, що ми його бачили: вона не означає, що ми на ньому літали.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have seen a helicopter.**
-- ❌ We has seen a helicopter. — *Виберіть have або has за підметом.*
-- ❌ We have see a helicopter. — *Після have або has потрібна третя форма: seen.*
+- ❌ We has seen a helicopter. — *Виберіть have або has за тим, хто діє.*
+- ❌ We have see a helicopter. — *Після have або has потрібна особлива форма: seen.*
 
 ---
 
@@ -37,13 +37,13 @@ Helicopter — гелікоптер. We have seen a helicopter — ми бачи
 
 ### Ще один приклад
 
-Tractor — трактор, який часто використовують на фермі. He has driven a tractor — він водив трактор. Це досвід, без зазначення конкретного дня. Із he потрібно has, потім третя форма driven.
+Tractor — трактор, який часто використовують на фермі. He has driven a tractor — він водив трактор. Це досвід, без зазначення конкретного дня. Із he потрібно has, потім форма driven.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has driven a tractor.**
-- ❌ He have driven a tractor. — *Виберіть have або has за підметом.*
-- ❌ He has drive a tractor. — *Після have або has потрібна третя форма: driven.*
+- ❌ He have driven a tractor. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has drive a tractor. — *Після have або has потрібна особлива форма: driven.*
 
 ---
 
@@ -66,8 +66,8 @@ Tractor — трактор, який часто використовують н�
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-29:i03; family: context_gap_grammar -->
 I have ___ a van. → **driven** · drive · drives
-- drive — *Потрібна третя форма: driven.*
-- drives — *Потрібна третя форма: driven.*
+- drive — *Потрібна форма після have: driven.*
+- drives — *Потрібна форма після have: driven.*
 
 **5 · Картка слова — motorbike**
 <!-- interaction_id: en:lesson-23:session-29:word:motorbike; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a van. → **driven** · drive · drives
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-29:i06; family: context_gap_grammar -->
 She has ___ a motorbike. → **ridden** · ride · rides
-- ride — *Потрібна третя форма: ridden.*
-- rides — *Потрібна третя форма: ridden.*
+- ride — *Потрібна форма після have: ridden.*
+- rides — *Потрібна форма після have: ridden.*
 
 **9 · Картка слова — helicopter**
 <!-- interaction_id: en:lesson-23:session-29:word:helicopter; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a motorbike. → **ridden** · ride · rides
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-29:i09; family: context_gap_grammar -->
 We have ___ a helicopter. → **seen** · see · sees
-- see — *Потрібна третя форма: seen.*
-- sees — *Потрібна третя форма: seen.*
+- see — *Потрібна форма після have: seen.*
+- sees — *Потрібна форма після have: seen.*
 
 **13 · Картка слова — tractor**
 <!-- interaction_id: en:lesson-23:session-29:word:tractor; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a helicopter. → **seen** · see · sees
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-29:i12; family: context_gap_grammar -->
 He has ___ a tractor. → **driven** · drive · drives
-- drive — *Потрібна третя форма: driven.*
-- drives — *Потрібна третя форма: driven.*
+- drive — *Потрібна форма після have: driven.*
+- drives — *Потрібна форма після have: driven.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-29:i13; family: speed_match -->

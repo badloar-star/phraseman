@@ -9,13 +9,13 @@
 
 ### Видели медведя
 
-Друг спрашивает, доводилось ли вам видеть медведя. Вы видели его в зоопарке и отвечаете: I have seen a bear — я видел медведя. Bear означает «медведь». Собираем: I + have + seen + a bear. С I ставим have, seen — третья форма see. Have seen сообщает о вашем опыте; конкретный день посещения зоопарка здесь не называем.
+Друг спрашивает, доводилось ли вам видеть медведя. Вы видели его в зоопарке и отвечаете: I have seen a bear — я видел медведя. Bear означает «медведь». Собираем: I + have + seen + a bear. С I ставим have, seen — форма see после have. Have seen сообщает о вашем опыте; конкретный день посещения зоопарка здесь не называем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have seen a bear.**
-- ❌ I has seen a bear. — *Выберите have или has по подлежащему.*
-- ❌ I have see a bear. — *После have или has нужна третья форма: seen.*
+- ❌ I has seen a bear. — *Выберите have или has по тому, кто действует.*
+- ❌ I have see a bear. — *После have или has нужна особая форма: seen.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Различаем слова
 
-Rat — крыса. We have seen a rat — мы видели крысу. Это название другого животного, не знакомое mouse — мышь. С we используем have, затем третью форму seen.
+Rat — крыса. We have seen a rat — мы видели крысу. Это название другого животного, не знакомое mouse — мышь. С we используем have, затем форму seen.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have seen a rat.**
-- ❌ We has seen a rat. — *Выберите have или has по подлежащему.*
-- ❌ We have see a rat. — *После have или has нужна третья форма: seen.*
+- ❌ We has seen a rat. — *Выберите have или has по тому, кто действует.*
+- ❌ We have see a rat. — *После have или has нужна особая форма: seen.*
 
 ---
 
@@ -42,8 +42,8 @@ Octopus — осьминог, морское животное с восемью 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has seen an octopus.**
-- ❌ He have seen an octopus. — *Выберите have или has по подлежащему.*
-- ❌ He has see an octopus. — *После have или has нужна третья форма: seen.*
+- ❌ He have seen an octopus. — *Выберите have или has по тому, кто действует.*
+- ❌ He has see an octopus. — *После have или has нужна особая форма: seen.*
 
 ---
 
@@ -66,8 +66,8 @@ Octopus — осьминог, морское животное с восемью 
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-37:i03; family: context_gap_grammar -->
 I have ___ a bear. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **5 · Карточка слова — camel**
 <!-- interaction_id: en:lesson-23:session-37:word:camel; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a bear. → **seen** · see · sees
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-37:i06; family: context_gap_grammar -->
 She has ___ a camel. → **ridden** · ride · rides
-- ride — *Нужна третья форма: ridden.*
-- rides — *Нужна третья форма: ridden.*
+- ride — *Нужна форма после have: ridden.*
+- rides — *Нужна форма после have: ridden.*
 
 **9 · Карточка слова — rat**
 <!-- interaction_id: en:lesson-23:session-37:word:rat; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a camel. → **ridden** · ride · rides
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-37:i09; family: context_gap_grammar -->
 We have ___ a rat. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **13 · Карточка слова — octopus**
 <!-- interaction_id: en:lesson-23:session-37:word:octopus; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a rat. → **seen** · see · sees
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-37:i12; family: context_gap_grammar -->
 He has ___ an octopus. → **seen** · see · sees
-- see — *Нужна третья форма: seen.*
-- sees — *Нужна третья форма: seen.*
+- see — *Нужна форма после have: seen.*
+- sees — *Нужна форма после have: seen.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-37:i13; family: speed_match -->

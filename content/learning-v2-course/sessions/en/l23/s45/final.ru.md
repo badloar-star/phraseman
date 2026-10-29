@@ -15,7 +15,7 @@ Relative — родственник: например, дядя или двою�
 
 - ✅ **I have visited a relative.**
 - ❌ I has visited a relative. — *С I и we нужно have, с he и she — has.*
-- ❌ I have visit a relative. — *После have или has нужна третья форма: visited.*
+- ❌ I have visit a relative. — *После have или has нужна особая форма: visited.*
 
 ---
 
@@ -23,13 +23,13 @@ Relative — родственник: например, дядя или двою�
 
 ### Новые знакомые старше вас
 
-На встрече в библиотеке вы с другом познакомились с людьми намного старше вас. We have met people from another generation — мы познакомились с людьми другого поколения. Generation означает «поколение». Собираем: we + have + met + people + from another generation. С we ставим have, met — третья форма meet. From another generation уточняет, к какому поколению относятся люди. Have met сообщает о состоявшемся знакомстве.
+На встрече в библиотеке вы с другом познакомились с людьми намного старше вас. We have met people from another generation — мы познакомились с людьми другого поколения. Generation означает «поколение». Собираем: we + have + met + people + from another generation. С we ставим have, met — форма meet после have. From another generation уточняет, к какому поколению относятся люди. Have met сообщает о состоявшемся знакомстве.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have met people from another generation.**
 - ❌ We has met people from another generation. — *С I и we нужно have, с he и she — has.*
-- ❌ We have meet people from another generation. — *После have или has нужна третья форма: met.*
+- ❌ We have meet people from another generation. — *После have или has нужна особая форма: met.*
 
 ---
 
@@ -43,7 +43,7 @@ Citizen — гражданин страны. He has become a citizen — он с
 
 - ✅ **He has become a citizen.**
 - ❌ He have become a citizen. — *С I и we нужно have, с he и she — has.*
-- ❌ He has became a citizen. — *После have или has нужна третья форма: become.*
+- ❌ He has became a citizen. — *После have или has нужна особая форма: become.*
 
 ---
 
@@ -66,8 +66,8 @@ Citizen — гражданин страны. He has become a citizen — он с
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i03; family: context_gap_grammar -->
 I have ___ a relative. → **visited** · visit · visits
-- visit — *Нужна третья форма: visited.*
-- visits — *Нужна третья форма: visited.*
+- visit — *Нужна форма после have: visited.*
+- visits — *Нужна форма после have: visited.*
 
 **5 · Карточка слова — ancestor**
 <!-- interaction_id: en:lesson-23:session-45:word:ancestor; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ a relative. → **visited** · visit · visits
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i06; family: context_gap_grammar -->
 She has ___ a photo of an ancestor. → **found** · find · finds
-- find — *Нужна третья форма: found.*
-- finds — *Нужна третья форма: found.*
+- find — *Нужна форма после have: found.*
+- finds — *Нужна форма после have: found.*
 
 **9 · Карточка слова — generation**
 <!-- interaction_id: en:lesson-23:session-45:word:generation; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a photo of an ancestor. → **found** · find · finds
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i09; family: context_gap_grammar -->
 We have ___ people from another generation. → **met** · meet · meets
-- meet — *Нужна третья форма: met.*
-- meets — *Нужна третья форма: met.*
+- meet — *Нужна форма после have: met.*
+- meets — *Нужна форма после have: met.*
 
 **13 · Карточка слова — citizen**
 <!-- interaction_id: en:lesson-23:session-45:word:citizen; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ people from another generation. → **met** · meet · meets
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-45:i12; family: context_gap_grammar -->
 He has ___ a citizen. → **become** · became · becomes
-- became — *Нужна третья форма: become.*
-- becomes — *Нужна третья форма: become.*
+- became — *Нужна форма после have: become.*
+- becomes — *Нужна форма после have: become.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-45:i13; family: speed_match -->

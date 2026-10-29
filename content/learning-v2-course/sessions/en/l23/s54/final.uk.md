@@ -15,7 +15,7 @@ Librarian — бібліотекар, людина, яка працює в бі�
 
 - ✅ **I have asked the librarian.**
 - ❌ I has asked the librarian. — *З I та we потрібно have, з he та she — has.*
-- ❌ I have ask the librarian. — *Після have або has потрібна третя форма: asked.*
+- ❌ I have ask the librarian. — *Після have або has потрібна особлива форма: asked.*
 
 ---
 
@@ -23,13 +23,13 @@ Librarian — бібліотекар, людина, яка працює в бі�
 
 ### Розмова з перекладачем відбулася
 
-Перед зустріччю ви з колегою поговорили з усним перекладачем і повідомляєте про це організатору. We have spoken to an interpreter — ми поговорили з усним перекладачем. Interpreter перекладає усне мовлення. Складаємо: we + have + spoken + to an interpreter. Із we використовуємо have; spoken — третя форма speak. Після spoken ставимо to, потім називаємо співрозмовника. Have spoken повідомляє, що розмова вже відбулася.
+Перед зустріччю ви з колегою поговорили з усним перекладачем і повідомляєте про це організатору. We have spoken to an interpreter — ми поговорили з усним перекладачем. Interpreter перекладає усне мовлення. Складаємо: we + have + spoken + to an interpreter. Із we використовуємо have; spoken — форма speak після have. Після spoken ставимо to, потім називаємо співрозмовника. Have spoken повідомляє, що розмова вже відбулася.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have spoken to an interpreter.**
 - ❌ We has spoken to an interpreter. — *З I та we потрібно have, з he та she — has.*
-- ❌ We have speak to an interpreter. — *Після have або has потрібна третя форма: spoken.*
+- ❌ We have speak to an interpreter. — *Після have або has потрібна особлива форма: spoken.*
 
 ---
 
@@ -43,7 +43,7 @@ Accountant — бухгалтер. He has called an accountant — він зат
 
 - ✅ **He has called an accountant.**
 - ❌ He have called an accountant. — *З I та we потрібно have, з he та she — has.*
-- ❌ He has call an accountant. — *Після have або has потрібна третя форма: called.*
+- ❌ He has call an accountant. — *Після have або has потрібна особлива форма: called.*
 
 ---
 
@@ -66,8 +66,8 @@ Accountant — бухгалтер. He has called an accountant — він зат
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i03; family: context_gap_grammar -->
 I have ___ the librarian. → **asked** · ask · asks
-- ask — *Потрібна третя форма: asked.*
-- asks — *Потрібна третя форма: asked.*
+- ask — *Потрібна форма після have: asked.*
+- asks — *Потрібна форма після have: asked.*
 
 **5 · Картка слова — translator**
 <!-- interaction_id: en:lesson-23:session-54:word:translator; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ the librarian. → **asked** · ask · asks
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i06; family: context_gap_grammar -->
 She has ___ a translator. → **found** · find · finds
-- find — *Потрібна третя форма: found.*
-- finds — *Потрібна третя форма: found.*
+- find — *Потрібна форма після have: found.*
+- finds — *Потрібна форма після have: found.*
 
 **9 · Картка слова — interpreter**
 <!-- interaction_id: en:lesson-23:session-54:word:interpreter; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a translator. → **found** · find · finds
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i09; family: context_gap_grammar -->
 We have ___ to an interpreter. → **spoken** · speak · speaks
-- speak — *Потрібна третя форма: spoken.*
-- speaks — *Потрібна третя форма: spoken.*
+- speak — *Потрібна форма після have: spoken.*
+- speaks — *Потрібна форма після have: spoken.*
 
 **13 · Картка слова — accountant**
 <!-- interaction_id: en:lesson-23:session-54:word:accountant; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ to an interpreter. → **spoken** · speak · speaks
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i12; family: context_gap_grammar -->
 He has ___ an accountant. → **called** · call · calls
-- call — *Потрібна третя форма: called.*
-- calls — *Потрібна третя форма: called.*
+- call — *Потрібна форма після have: called.*
+- calls — *Потрібна форма після have: called.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-54:i13; family: speed_match -->

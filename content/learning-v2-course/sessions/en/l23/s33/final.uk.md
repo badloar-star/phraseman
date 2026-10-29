@@ -9,12 +9,12 @@
 
 ### Щойно
 
-Scientist — науковець, людина, яка займається наукою. I have just met a scientist — я щойно зустрівся з науковцем. Just стоїть між have і третьою формою met. У цій фразі just означає, що зустріч відбулася зовсім недавно.
+Scientist — науковець, людина, яка займається наукою. I have just met a scientist — я щойно зустрівся з науковцем. Just стоїть між have і формою після have met. У цій фразі just означає, що зустріч відбулася зовсім недавно.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have just met a scientist.**
-- ❌ I have just meet a scientist. — *Потрібна третя форма met.*
+- ❌ I have just meet a scientist. — *Потрібна форма met.*
 - ❌ I has just met a scientist. — *З I потрібно have.*
 
 ---
@@ -23,13 +23,13 @@ Scientist — науковець, людина, яка займається на
 
 ### Зустріч уже відбулася
 
-Подруга збиралася зустрітися з інженером, і тепер ви повідомляєте, що зустріч відбулася. She has already met an engineer — вона вже зустрілася з інженером. Engineer означає «інженер». Складаємо: she + has + already + met + an engineer. Already означає «вже»: ставимо його після has і перед третьою формою met. Так підкреслюємо, що на цей момент зустріч уже відбулася.
+Подруга збиралася зустрітися з інженером, і тепер ви повідомляєте, що зустріч відбулася. She has already met an engineer — вона вже зустрілася з інженером. Engineer означає «інженер». Складаємо: she + has + already + met + an engineer. Already означає «вже»: ставимо його після has і перед формою після have met. Так підкреслюємо, що на цей момент зустріч уже відбулася.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She has already met an engineer.**
 - ❌ She have already met an engineer. — *Із she потрібно has.*
-- ❌ She has already meet an engineer. — *Після has потрібна третя форма met.*
+- ❌ She has already meet an engineer. — *Після has потрібна форма met.*
 
 ---
 
@@ -42,7 +42,7 @@ Scientist — науковець, людина, яка займається на
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Have you met a builder yet?**
-- ❌ Have you meet a builder yet? — *Потрібна третя форма met.*
+- ❌ Have you meet a builder yet? — *Потрібна форма met.*
 - ❌ Has you met a builder yet? — *Із you потрібно have.*
 
 ---
@@ -66,8 +66,8 @@ Scientist — науковець, людина, яка займається на
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i03; family: context_gap_grammar -->
 I have just ___ a scientist. → **met** · meet · meets
-- meet — *Після have або has потрібна третя форма met.*
-- meets — *Після have або has потрібна третя форма met.*
+- meet — *Після have або has потрібна форма met.*
+- meets — *Після have або has потрібна форма met.*
 
 **5 · Картка слова — engineer**
 <!-- interaction_id: en:lesson-23:session-33:word:engineer; family: word_card -->
@@ -86,8 +86,8 @@ I have just ___ a scientist. → **met** · meet · meets
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i06; family: context_gap_grammar -->
 She has already ___ an engineer. → **met** · meet · meets
-- meet — *Після have або has потрібна третя форма met.*
-- meets — *Після have або has потрібна третя форма met.*
+- meet — *Після have або has потрібна форма met.*
+- meets — *Після have або has потрібна форма met.*
 
 **9 · Картка слова — architect**
 <!-- interaction_id: en:lesson-23:session-33:word:architect; family: word_card -->
@@ -106,8 +106,8 @@ She has already ___ an engineer. → **met** · meet · meets
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i09; family: context_gap_grammar -->
 We haven't ___ an architect yet. → **met** · meet · meets
-- meet — *Після have або has потрібна третя форма met.*
-- meets — *Після have або has потрібна третя форма met.*
+- meet — *Після have або has потрібна форма met.*
+- meets — *Після have або has потрібна форма met.*
 
 **13 · Картка слова — builder**
 <!-- interaction_id: en:lesson-23:session-33:word:builder; family: word_card -->
@@ -126,8 +126,8 @@ We haven't ___ an architect yet. → **met** · meet · meets
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-33:i12; family: context_gap_grammar -->
 Have you ___ a builder yet? → **met** · meet · meets
-- meet — *Після have або has потрібна третя форма met.*
-- meets — *Після have або has потрібна третя форма met.*
+- meet — *Після have або has потрібна форма met.*
+- meets — *Після have або has потрібна форма met.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-33:i13; family: speed_match -->

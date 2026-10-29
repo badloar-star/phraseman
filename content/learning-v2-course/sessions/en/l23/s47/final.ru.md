@@ -15,7 +15,7 @@ Blood — кровь. I have donated blood — я сдал кровь как д�
 
 - ✅ **I have donated blood.**
 - ❌ I has donated blood. — *С I и we нужно have, с he и she — has.*
-- ❌ I have donate blood. — *После have или has нужна третья форма: donated.*
+- ❌ I have donate blood. — *После have или has нужна особая форма: donated.*
 
 ---
 
@@ -23,13 +23,13 @@ Blood — кровь. I have donated blood — я сдал кровь как д�
 
 ### После занятия о мозге
 
-На занятии вам объяснили, как работает мозг. Вы рассказываете о том, что узнали: We have learned about the brain — мы узнали о работе мозга. Brain означает «мозг». Собираем: we + have + learned + about the brain. После we ставим have, затем learned — третью форму learn. About вводит тему занятия. Have learned показывает результат обучения: теперь вы знаете об этом больше.
+На занятии вам объяснили, как работает мозг. Вы рассказываете о том, что узнали: We have learned about the brain — мы узнали о работе мозга. Brain означает «мозг». Собираем: we + have + learned + about the brain. После we ставим have, затем learned — форму learn. About вводит тему занятия. Have learned показывает результат обучения: теперь вы знаете об этом больше.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have learned about the brain.**
 - ❌ We has learned about the brain. — *С I и we нужно have, с he и she — has.*
-- ❌ We have learn about the brain. — *После have или has нужна третья форма: learned.*
+- ❌ We have learn about the brain. — *После have или has нужна особая форма: learned.*
 
 ---
 
@@ -43,7 +43,7 @@ Toe — палец ноги. He has hurt his toe — он повредил па�
 
 - ✅ **He has hurt his toe.**
 - ❌ He have hurt his toe. — *С I и we нужно have, с he и she — has.*
-- ❌ He has hurts his toe. — *После have или has нужна третья форма: hurt.*
+- ❌ He has hurts his toe. — *После have или has нужна особая форма: hurt.*
 
 ---
 
@@ -66,8 +66,8 @@ Toe — палец ноги. He has hurt his toe — он повредил па�
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i03; family: context_gap_grammar -->
 I have ___ blood. → **donated** · donate · donates
-- donate — *Нужна третья форма: donated.*
-- donates — *Нужна третья форма: donated.*
+- donate — *Нужна форма после have: donated.*
+- donates — *Нужна форма после have: donated.*
 
 **5 · Карточка слова — lungs**
 <!-- interaction_id: en:lesson-23:session-47:word:lungs; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ blood. → **donated** · donate · donates
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i06; family: context_gap_grammar -->
 The doctor has ___ my lungs. → **checked** · check · checks
-- check — *Нужна третья форма: checked.*
-- checks — *Нужна третья форма: checked.*
+- check — *Нужна форма после have: checked.*
+- checks — *Нужна форма после have: checked.*
 
 **9 · Карточка слова — brain**
 <!-- interaction_id: en:lesson-23:session-47:word:brain; family: word_card -->
@@ -106,8 +106,8 @@ The doctor has ___ my lungs. → **checked** · check · checks
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i09; family: context_gap_grammar -->
 We have ___ about the brain. → **learned** · learn · learns
-- learn — *Нужна третья форма: learned.*
-- learns — *Нужна третья форма: learned.*
+- learn — *Нужна форма после have: learned.*
+- learns — *Нужна форма после have: learned.*
 
 **13 · Карточка слова — toe**
 <!-- interaction_id: en:lesson-23:session-47:word:toe; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ about the brain. → **learned** · learn · learns
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-47:i12; family: context_gap_grammar -->
 He has ___ his toe. → **hurt** · hurts · hurting
-- hurts — *Нужна третья форма: hurt.*
-- hurting — *Нужна третья форма: hurt.*
+- hurts — *Нужна форма после have: hurt.*
+- hurting — *Нужна форма после have: hurt.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-47:i13; family: speed_match -->

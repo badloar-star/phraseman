@@ -15,7 +15,7 @@ Librarian — библиотекарь, человек, который рабо�
 
 - ✅ **I have asked the librarian.**
 - ❌ I has asked the librarian. — *С I и we нужно have, с he и she — has.*
-- ❌ I have ask the librarian. — *После have или has нужна третья форма: asked.*
+- ❌ I have ask the librarian. — *После have или has нужна особая форма: asked.*
 
 ---
 
@@ -23,13 +23,13 @@ Librarian — библиотекарь, человек, который рабо�
 
 ### Разговор с переводчиком состоялся
 
-Перед встречей вы с коллегой поговорили с устным переводчиком и сообщаете об этом организатору. We have spoken to an interpreter — мы поговорили с устным переводчиком. Interpreter переводит устную речь. Собираем: we + have + spoken + to an interpreter. С we используем have; spoken — третья форма speak. После spoken ставим to, затем называем собеседника. Have spoken сообщает, что разговор уже состоялся.
+Перед встречей вы с коллегой поговорили с устным переводчиком и сообщаете об этом организатору. We have spoken to an interpreter — мы поговорили с устным переводчиком. Interpreter переводит устную речь. Собираем: we + have + spoken + to an interpreter. С we используем have; spoken — форма speak после have. После spoken ставим to, затем называем собеседника. Have spoken сообщает, что разговор уже состоялся.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have spoken to an interpreter.**
 - ❌ We has spoken to an interpreter. — *С I и we нужно have, с he и she — has.*
-- ❌ We have speak to an interpreter. — *После have или has нужна третья форма: spoken.*
+- ❌ We have speak to an interpreter. — *После have или has нужна особая форма: spoken.*
 
 ---
 
@@ -43,7 +43,7 @@ Accountant — бухгалтер. He has called an accountant — он позв
 
 - ✅ **He has called an accountant.**
 - ❌ He have called an accountant. — *С I и we нужно have, с he и she — has.*
-- ❌ He has call an accountant. — *После have или has нужна третья форма: called.*
+- ❌ He has call an accountant. — *После have или has нужна особая форма: called.*
 
 ---
 
@@ -66,8 +66,8 @@ Accountant — бухгалтер. He has called an accountant — он позв
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i03; family: context_gap_grammar -->
 I have ___ the librarian. → **asked** · ask · asks
-- ask — *Нужна третья форма: asked.*
-- asks — *Нужна третья форма: asked.*
+- ask — *Нужна форма после have: asked.*
+- asks — *Нужна форма после have: asked.*
 
 **5 · Карточка слова — translator**
 <!-- interaction_id: en:lesson-23:session-54:word:translator; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ the librarian. → **asked** · ask · asks
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i06; family: context_gap_grammar -->
 She has ___ a translator. → **found** · find · finds
-- find — *Нужна третья форма: found.*
-- finds — *Нужна третья форма: found.*
+- find — *Нужна форма после have: found.*
+- finds — *Нужна форма после have: found.*
 
 **9 · Карточка слова — interpreter**
 <!-- interaction_id: en:lesson-23:session-54:word:interpreter; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ a translator. → **found** · find · finds
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i09; family: context_gap_grammar -->
 We have ___ to an interpreter. → **spoken** · speak · speaks
-- speak — *Нужна третья форма: spoken.*
-- speaks — *Нужна третья форма: spoken.*
+- speak — *Нужна форма после have: spoken.*
+- speaks — *Нужна форма после have: spoken.*
 
 **13 · Карточка слова — accountant**
 <!-- interaction_id: en:lesson-23:session-54:word:accountant; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ to an interpreter. → **spoken** · speak · speaks
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-54:i12; family: context_gap_grammar -->
 He has ___ an accountant. → **called** · call · calls
-- call — *Нужна третья форма: called.*
-- calls — *Нужна третья форма: called.*
+- call — *Нужна форма после have: called.*
+- calls — *Нужна форма после have: called.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-54:i13; family: speed_match -->

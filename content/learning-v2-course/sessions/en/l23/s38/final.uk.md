@@ -9,13 +9,13 @@
 
 ### Предмет вам знайомий
 
-Друг запитує, чи знайома вам географія. Ви вивчали її й відповідаєте: I have studied geography — я вивчав географію. Geography означає «географія». Складаємо: I + have + studied + geography. Після I ставимо have. Третя форма study — studied: y змінюється на i перед -ed. Have studied повідомляє про досвід навчання без зазначення часу.
+Друг запитує, чи знайома вам географія. Ви вивчали її й відповідаєте: I have studied geography — я вивчав географію. Geography означає «географія». Складаємо: I + have + studied + geography. Після I ставимо have. Форма після have study — studied: y змінюється на i перед -ed. Have studied повідомляє про досвід навчання без зазначення часу.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have studied geography.**
-- ❌ I has studied geography. — *Виберіть have або has за підметом.*
-- ❌ I have study geography. — *Після have або has потрібна третя форма: studied.*
+- ❌ I has studied geography. — *Виберіть have або has за тим, хто діє.*
+- ❌ I have study geography. — *Після have або has потрібна особлива форма: studied.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розрізняємо слова
 
-Chemistry — хімія: предмет про речовини та їхні перетворення. We have studied chemistry — ми вивчали хімію. Перед назвою шкільного предмета в цій фразі немає артикля. Ми розповідаємо про досвід навчання, а не називаємо дату уроку.
+Chemistry — хімія: предмет про речовини та їхні перетворення. We have studied chemistry — ми вивчали хімію. Перед назвою шкільного предмета в цій фразі немає слова a / the. Ми розповідаємо про досвід навчання, а не називаємо дату уроку.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have studied chemistry.**
-- ❌ We has studied chemistry. — *Виберіть have або has за підметом.*
-- ❌ We have study chemistry. — *Після have або has потрібна третя форма: studied.*
+- ❌ We has studied chemistry. — *Виберіть have або has за тим, хто діє.*
+- ❌ We have study chemistry. — *Після have або has потрібна особлива форма: studied.*
 
 ---
 
@@ -37,13 +37,13 @@ Chemistry — хімія: предмет про речовини та їхні �
 
 ### Він вивчав фізику
 
-Ви шукаєте людину, якій знайома фізика, і згадуєте друга, що вивчав цей предмет. He has studied physics — він вивчав фізику. Physics означає «фізика». Складаємо: he + has + studied + physics. Вибираємо has, тому що про людину сказано he. Потім ставимо studied — третю форму study, а після неї назву предмета. Has studied повідомляє про досвід навчання.
+Ви шукаєте людину, якій знайома фізика, і згадуєте друга, що вивчав цей предмет. He has studied physics — він вивчав фізику. Physics означає «фізика». Складаємо: he + has + studied + physics. Вибираємо has, тому що про людину сказано he. Потім ставимо studied — форму study, а після неї назву предмета. Has studied повідомляє про досвід навчання.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has studied physics.**
-- ❌ He have studied physics. — *Виберіть have або has за підметом.*
-- ❌ He has study physics. — *Після have або has потрібна третя форма: studied.*
+- ❌ He have studied physics. — *Виберіть have або has за тим, хто діє.*
+- ❌ He has study physics. — *Після have або has потрібна особлива форма: studied.*
 
 ---
 
@@ -66,8 +66,8 @@ Chemistry — хімія: предмет про речовини та їхні �
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-38:i03; family: context_gap_grammar -->
 I have ___ geography. → **studied** · study · studies
-- study — *Потрібна третя форма: studied.*
-- studies — *Потрібна третя форма: studied.*
+- study — *Потрібна форма після have: studied.*
+- studies — *Потрібна форма після have: studied.*
 
 **5 · Картка слова — biology**
 <!-- interaction_id: en:lesson-23:session-38:word:biology; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ geography. → **studied** · study · studies
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-38:i06; family: context_gap_grammar -->
 She has ___ biology. → **studied** · study · studies
-- study — *Потрібна третя форма: studied.*
-- studies — *Потрібна третя форма: studied.*
+- study — *Потрібна форма після have: studied.*
+- studies — *Потрібна форма після have: studied.*
 
 **9 · Картка слова — chemistry**
 <!-- interaction_id: en:lesson-23:session-38:word:chemistry; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ biology. → **studied** · study · studies
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-38:i09; family: context_gap_grammar -->
 We have ___ chemistry. → **studied** · study · studies
-- study — *Потрібна третя форма: studied.*
-- studies — *Потрібна третя форма: studied.*
+- study — *Потрібна форма після have: studied.*
+- studies — *Потрібна форма після have: studied.*
 
 **13 · Картка слова — physics**
 <!-- interaction_id: en:lesson-23:session-38:word:physics; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ chemistry. → **studied** · study · studies
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-38:i12; family: context_gap_grammar -->
 He has ___ physics. → **studied** · study · studies
-- study — *Потрібна третя форма: studied.*
-- studies — *Потрібна третя форма: studied.*
+- study — *Потрібна форма після have: studied.*
+- studies — *Потрібна форма після have: studied.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-38:i13; family: speed_match -->

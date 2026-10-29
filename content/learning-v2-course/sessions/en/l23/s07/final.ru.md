@@ -9,13 +9,13 @@
 
 ### Невеста уже здесь
 
-Гости ждут невесту, и вы видите, что она приехала. The bride has arrived — невеста приехала. Bride означает «невеста». Собираем: the bride + has + arrived. The bride называет одного человека, поэтому используем has. Arrived — третья форма arrive: к глаголу на -e добавляем -d. Has arrived сообщает о результате: невеста уже здесь.
+Гости ждут невесту, и вы видите, что она приехала. The bride has arrived — невеста приехала. Bride означает «невеста». Собираем: the bride + has + arrived. The bride называет одного человека, поэтому используем has. Arrived — форма arrive после have: к глаголу на -e добавляем -d. Has arrived сообщает о результате: невеста уже здесь.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The bride has arrived.**
 - ❌ The bride have arrived. — *The bride — один человек, нужно has.*
-- ❌ The bride has arrive. — *После have или has нужна третья форма глагола.*
+- ❌ The bride has arrive. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Цветы заказаны
 
-Bouquet — букет: несколько цветов, собранных вместе. I have ordered a bouquet: заказ уже сделан. A bouquet — один букет, поэтому нужен артикль a. Букет можно подарить и на день рождения, не только на свадьбу.
+Bouquet — букет: несколько цветов, собранных вместе. I have ordered a bouquet: заказ уже сделан. A bouquet — один букет, поэтому нужен a. Букет можно подарить и на день рождения, не только на свадьбу.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have ordered a bouquet.**
 - ❌ I has ordered a bouquet. — *С I нужно have.*
-- ❌ I have order a bouquet. — *После have или has нужна третья форма глагола.*
+- ❌ I have order a bouquet. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -37,13 +37,13 @@ Bouquet — букет: несколько цветов, собранных вм
 
 ### Свадебное путешествие забронировано
 
-Вы с супругом выбрали поездку после свадьбы и закончили бронирование. We have booked our honeymoon — мы забронировали наше свадебное путешествие. Honeymoon здесь означает поездку в медовый месяц. Собираем: we + have + booked + our honeymoon. С we ставим have; booked — третья форма book с окончанием -ed. Our показывает, чья это поездка. Have booked сообщает, что бронирование уже сделано.
+Вы с супругом выбрали поездку после свадьбы и закончили бронирование. We have booked our honeymoon — мы забронировали наше свадебное путешествие. Honeymoon здесь означает поездку в медовый месяц. Собираем: we + have + booked + our honeymoon. С we ставим have; booked — форма book после have с окончанием -ed. Our показывает, чья это поездка. Have booked сообщает, что бронирование уже сделано.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have booked our honeymoon.**
 - ❌ We has booked our honeymoon. — *С we нужно have.*
-- ❌ We have book our honeymoon. — *После have или has нужна третья форма глагола.*
+- ❌ We have book our honeymoon. — *После have или has нужна особая форма (done, seen).*
 
 ---
 
@@ -66,8 +66,8 @@ Bouquet — букет: несколько цветов, собранных вм
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i03; family: context_gap_grammar -->
 The bride has ___. → **arrived** · arrive · arrives
-- arrive — *После have или has нужна третья форма глагола.*
-- arrives — *После have или has нужна третья форма глагола.*
+- arrive — *После have или has нужна особая форма (done, seen).*
+- arrives — *После have или has нужна особая форма (done, seen).*
 
 **5 · Карточка слова — groom**
 <!-- interaction_id: en:lesson-23:session-07:word:groom; family: word_card -->
@@ -86,8 +86,8 @@ The bride has ___. → **arrived** · arrive · arrives
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i06; family: context_gap_grammar -->
 The groom has ___ his jacket. → **changed** · change · changes
-- change — *После have или has нужна третья форма глагола.*
-- changes — *После have или has нужна третья форма глагола.*
+- change — *После have или has нужна особая форма (done, seen).*
+- changes — *После have или has нужна особая форма (done, seen).*
 
 **9 · Карточка слова — bouquet**
 <!-- interaction_id: en:lesson-23:session-07:word:bouquet; family: word_card -->
@@ -106,8 +106,8 @@ The groom has ___ his jacket. → **changed** · change · changes
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i09; family: context_gap_grammar -->
 I have ___ a bouquet. → **ordered** · order · orders
-- order — *После have или has нужна третья форма глагола.*
-- orders — *После have или has нужна третья форма глагола.*
+- order — *После have или has нужна особая форма (done, seen).*
+- orders — *После have или has нужна особая форма (done, seen).*
 
 **13 · Карточка слова — honeymoon**
 <!-- interaction_id: en:lesson-23:session-07:word:honeymoon; family: word_card -->
@@ -126,8 +126,8 @@ I have ___ a bouquet. → **ordered** · order · orders
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-07:i12; family: context_gap_grammar -->
 We have ___ our honeymoon. → **booked** · book · books
-- book — *После have или has нужна третья форма глагола.*
-- books — *После have или has нужна третья форма глагола.*
+- book — *После have или has нужна особая форма (done, seen).*
+- books — *После have или has нужна особая форма (done, seen).*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-07:i13; family: speed_match -->

@@ -15,7 +15,7 @@
 
 - ✅ **They have reopened the shop.**
 - ❌ They has reopened the shop. — *Із they потрібно have.*
-- ❌ They have reopen the shop. — *Після have або has потрібна третя форма: тут це форма на -ed.*
+- ❌ They have reopen the shop. — *Після have або has потрібна особлива форма: тут це форма на -ed.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **I have reorganised the kitchen.**
 - ❌ I has reorganised the kitchen. — *З I потрібно have.*
-- ❌ I have reorganise the kitchen. — *Після have або has потрібна третя форма: тут це форма на -ed.*
+- ❌ I have reorganise the kitchen. — *Після have або has потрібна особлива форма: тут це форма на -ed.*
 
 ---
 
@@ -43,7 +43,7 @@ Replant — посадити рослину заново або пересади
 
 - ✅ **She has replanted the flowers.**
 - ❌ She have replanted the flowers. — *Із she потрібно has.*
-- ❌ She has replant the flowers. — *Після have або has потрібна третя форма: тут це форма на -ed.*
+- ❌ She has replant the flowers. — *Після have або has потрібна особлива форма: тут це форма на -ed.*
 
 ---
 
@@ -56,8 +56,8 @@ Replant — посадити рослину заново або пересади
 **2 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-02:i03; family: context_gap_grammar -->
 They have ___ the shop. → **reopened** · reopen · reopens
-- reopen — *Після have або has потрібна третя форма: тут це форма на -ed.*
-- reopens — *Після have або has потрібна третя форма: тут це форма на -ed.*
+- reopen — *Після have або has потрібна особлива форма: тут це форма на -ed.*
+- reopens — *Після have або has потрібна особлива форма: тут це форма на -ed.*
 
 **3 · Магазин знову працює. Скажіть: «Вони знову відкрили магазин».**
 <!-- interaction_id: en:lesson-23:session-02:i01; family: phrase_builder -->
@@ -76,8 +76,8 @@ They have ___ the shop. → **reopened** · reopen · reopens
 **6 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-02:i06; family: context_gap_grammar -->
 I have ___ the kitchen. → **reorganised** · reorganise · reorganises
-- reorganise — *Після have або has потрібна третя форма: тут це форма на -ed.*
-- reorganises — *Після have або has потрібна третя форма: тут це форма на -ed.*
+- reorganise — *Після have або has потрібна особлива форма: тут це форма на -ed.*
+- reorganises — *Після have або has потрібна особлива форма: тут це форма на -ed.*
 
 **7 · Тепер посуд лежить зручніше. Скажіть: «Я по-новому організував кухню».**
 <!-- interaction_id: en:lesson-23:session-02:i04; family: phrase_builder -->
@@ -96,8 +96,8 @@ I have ___ the kitchen. → **reorganised** · reorganise · reorganises
 **10 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-02:i09; family: context_gap_grammar -->
 We have ___ the bedroom. → **redecorated** · redecorate · redecorates
-- redecorate — *Після have або has потрібна третя форма: тут це форма на -ed.*
-- redecorates — *Після have або has потрібна третя форма: тут це форма на -ed.*
+- redecorate — *Після have або has потрібна особлива форма: тут це форма на -ed.*
+- redecorates — *Після have або has потрібна особлива форма: тут це форма на -ed.*
 
 **11 · У спальні тепер інші шпалери. Скажіть: «Ми заново оздобили спальню».**
 <!-- interaction_id: en:lesson-23:session-02:i07; family: phrase_builder -->
@@ -116,8 +116,8 @@ We have ___ the bedroom. → **redecorated** · redecorate · redecorates
 **14 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-02:i12; family: context_gap_grammar -->
 She has ___ the flowers. → **replanted** · replant · replants
-- replant — *Після have або has потрібна третя форма: тут це форма на -ed.*
-- replants — *Після have або has потрібна третя форма: тут це форма на -ed.*
+- replant — *Після have або has потрібна особлива форма: тут це форма на -ed.*
+- replants — *Після have або has потрібна особлива форма: тут це форма на -ed.*
 
 **15 · Квіти тепер ростуть в іншому місці. Скажіть: «Вона пересадила квіти».**
 <!-- interaction_id: en:lesson-23:session-02:i10; family: phrase_builder -->

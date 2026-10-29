@@ -9,7 +9,7 @@
 
 ### Ваш досвід
 
-Avocado — авокадо. An avocado — один плід: an потрібен перед голосним звуком. I have cut an avocado повідомляє, що ви вже розрізали авокадо. У cut третя форма теж cut, без -ed.
+Avocado — авокадо. An avocado — один плід: an потрібен перед голосним звуком. I have cut an avocado повідомляє, що ви вже розрізали авокадо. У cut форма після have теж cut, без -ed.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -23,13 +23,13 @@ Avocado — авокадо. An avocado — один плід: an потрібе�
 
 ### Досвід вирощування салату
 
-Ви вибираєте рослини для городу й розповідаєте про подругу, яка вже вирощувала листковий салат. She has grown lettuce — вона вирощувала салат. Lettuce тут — рослина. Складаємо: she + has + grown + lettuce. Із she використовуємо has; grown — третя форма grow. Has grown повідомляє про досвід вирощування, без зазначення року чи сезону.
+Ви вибираєте рослини для городу й розповідаєте про подругу, яка вже вирощувала листковий салат. She has grown lettuce — вона вирощувала салат. Lettuce тут — рослина. Складаємо: she + has + grown + lettuce. Із she використовуємо has; grown — форма grow після have. Has grown повідомляє про досвід вирощування, без зазначення року чи сезону.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She has grown lettuce.**
 - ❌ She have grown lettuce. — *З I та we потрібно have; із she та he — has.*
-- ❌ She has grow lettuce. — *Після have або has потрібна третя форма.*
+- ❌ She has grow lettuce. — *Після have або has потрібна особлива форма.*
 
 ---
 
@@ -37,13 +37,13 @@ Avocado — авокадо. An avocado — один плід: an потрібе�
 
 ### Що ви вже робили
 
-Lime — лайм, зазвичай зелений цитрусовий плід. Squeeze a lime — вичавити сік із лайма. He has squeezed a lime: він уже робив це. Із he потрібна форма has; squeezed — третя форма squeeze.
+Lime — лайм, зазвичай зелений цитрусовий плід. Squeeze a lime — вичавити сік із лайма. He has squeezed a lime: він уже робив це. Із he потрібна форма has; squeezed — форма squeeze після have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He has squeezed a lime.**
 - ❌ He have squeezed a lime. — *З I та we потрібно have; із she та he — has.*
-- ❌ He has squeeze a lime. — *Після have або has потрібна третя форма.*
+- ❌ He has squeeze a lime. — *Після have або has потрібна особлива форма.*
 
 ---
 
@@ -66,8 +66,8 @@ Lime — лайм, зазвичай зелений цитрусовий плід
 **4 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i03; family: context_gap_grammar -->
 I have ___ an avocado. → **cut** · cuts · cutting
-- cuts — *Після have або has потрібна третя форма.*
-- cutting — *Після have або has потрібна третя форма.*
+- cuts — *Після have або has потрібна особлива форма.*
+- cutting — *Після have або has потрібна особлива форма.*
 
 **5 · Картка слова — lettuce**
 <!-- interaction_id: en:lesson-23:session-20:word:lettuce; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ an avocado. → **cut** · cuts · cutting
 **8 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i06; family: context_gap_grammar -->
 She has ___ lettuce. → **grown** · grow · grew
-- grow — *Після have або has потрібна третя форма.*
-- grew — *Після have або has потрібна третя форма.*
+- grow — *Після have або has потрібна особлива форма.*
+- grew — *Після have або has потрібна особлива форма.*
 
 **9 · Картка слова — tangerine**
 <!-- interaction_id: en:lesson-23:session-20:word:tangerine; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ lettuce. → **grown** · grow · grew
 **12 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i09; family: context_gap_grammar -->
 We have ___ a tangerine. → **peeled** · peel · peels
-- peel — *Після have або has потрібна третя форма.*
-- peels — *Після have або has потрібна третя форма.*
+- peel — *Після have або has потрібна особлива форма.*
+- peels — *Після have або has потрібна особлива форма.*
 
 **13 · Картка слова — lime**
 <!-- interaction_id: en:lesson-23:session-20:word:lime; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ a tangerine. → **peeled** · peel · peels
 **16 · Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-23:session-20:i12; family: context_gap_grammar -->
 He has ___ a lime. → **squeezed** · squeeze · squeezes
-- squeeze — *Після have або has потрібна третя форма.*
-- squeezes — *Після have або has потрібна третя форма.*
+- squeeze — *Після have або has потрібна особлива форма.*
+- squeezes — *Після have або has потрібна особлива форма.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-23:session-20:i13; family: speed_match -->

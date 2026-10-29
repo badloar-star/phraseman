@@ -9,13 +9,13 @@
 
 ### Знакомый язык
 
-На языковых занятиях преподаватель спрашивает, изучали ли вы раньше французский. I have studied French — я изучал французский язык. French здесь означает «французский язык». Собираем: I + have + studied + French. После I ставим have, затем studied — третью форму study. Название изученного языка ставим сразу после studied. Have studied сообщает о прежнем опыте, но не обещает свободного владения языком.
+На языковых занятиях преподаватель спрашивает, изучали ли вы раньше французский. I have studied French — я изучал французский язык. French здесь означает «французский язык». Собираем: I + have + studied + French. После I ставим have, затем studied — форму study. Название изученного языка ставим сразу после studied. Have studied сообщает о прежнем опыте, но не обещает свободного владения языком.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have studied French.**
-- ❌ I has studied French. — *Выберите have или has по подлежащему.*
-- ❌ I have study French. — *После have или has нужна третья форма: studied.*
+- ❌ I has studied French. — *Выберите have или has по тому, кто действует.*
+- ❌ I have study French. — *После have или has нужна особая форма: studied.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Различаем слова
 
-Spanish — испанский язык. We have studied Spanish — мы изучали испанский язык. Studied — третья форма study. Фраза сообщает об опыте учёбы; она сама по себе не говорит, насколько хорошо мы сейчас владеем языком.
+Spanish — испанский язык. We have studied Spanish — мы изучали испанский язык. Studied — форма study после have. Фраза сообщает об опыте учёбы; она сама по себе не говорит, насколько хорошо мы сейчас владеем языком.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have studied Spanish.**
-- ❌ We has studied Spanish. — *Выберите have или has по подлежащему.*
-- ❌ We have study Spanish. — *После have или has нужна третья форма: studied.*
+- ❌ We has studied Spanish. — *Выберите have или has по тому, кто действует.*
+- ❌ We have study Spanish. — *После have или has нужна особая форма: studied.*
 
 ---
 
@@ -42,8 +42,8 @@ Italian — итальянский язык. He has studied Italian — он и�
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He has studied Italian.**
-- ❌ He have studied Italian. — *Выберите have или has по подлежащему.*
-- ❌ He has study Italian. — *После have или has нужна третья форма: studied.*
+- ❌ He have studied Italian. — *Выберите have или has по тому, кто действует.*
+- ❌ He has study Italian. — *После have или has нужна особая форма: studied.*
 
 ---
 
@@ -66,8 +66,8 @@ Italian — итальянский язык. He has studied Italian — он и�
 **4 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-39:i03; family: context_gap_grammar -->
 I have ___ French. → **studied** · study · studies
-- study — *Нужна третья форма: studied.*
-- studies — *Нужна третья форма: studied.*
+- study — *Нужна форма после have: studied.*
+- studies — *Нужна форма после have: studied.*
 
 **5 · Карточка слова — German**
 <!-- interaction_id: en:lesson-23:session-39:word:German; family: word_card -->
@@ -86,8 +86,8 @@ I have ___ French. → **studied** · study · studies
 **8 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-39:i06; family: context_gap_grammar -->
 She has ___ German. → **studied** · study · studies
-- study — *Нужна третья форма: studied.*
-- studies — *Нужна третья форма: studied.*
+- study — *Нужна форма после have: studied.*
+- studies — *Нужна форма после have: studied.*
 
 **9 · Карточка слова — Spanish**
 <!-- interaction_id: en:lesson-23:session-39:word:Spanish; family: word_card -->
@@ -106,8 +106,8 @@ She has ___ German. → **studied** · study · studies
 **12 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-39:i09; family: context_gap_grammar -->
 We have ___ Spanish. → **studied** · study · studies
-- study — *Нужна третья форма: studied.*
-- studies — *Нужна третья форма: studied.*
+- study — *Нужна форма после have: studied.*
+- studies — *Нужна форма после have: studied.*
 
 **13 · Карточка слова — Italian**
 <!-- interaction_id: en:lesson-23:session-39:word:Italian; family: word_card -->
@@ -126,8 +126,8 @@ We have ___ Spanish. → **studied** · study · studies
 **16 · Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-23:session-39:i12; family: context_gap_grammar -->
 He has ___ Italian. → **studied** · study · studies
-- study — *Нужна третья форма: studied.*
-- studies — *Нужна третья форма: studied.*
+- study — *Нужна форма после have: studied.*
+- studies — *Нужна форма после have: studied.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-23:session-39:i13; family: speed_match -->

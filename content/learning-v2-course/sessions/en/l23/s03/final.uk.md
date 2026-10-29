@@ -15,7 +15,7 @@ Restock — поповнити запас. We have restocked the fridge: ви с
 
 - ✅ **We have restocked the fridge.**
 - ❌ We has restocked the fridge. — *Із we ставимо have.*
-- ❌ We have restock the fridge. — *Після have або has використайте третю форму дієслова.*
+- ❌ We have restock the fridge. — *Після have або has використайте форму після have (done, seen).*
 
 ---
 
@@ -23,13 +23,13 @@ Restock — поповнити запас. We have restocked the fridge: ви с
 
 ### Стіл уже оброблено
 
-Подруга завершила дезінфекцію столу й повідомляє про виконану роботу. She has disinfected the table — вона продезінфікувала стіл. Disinfect означає «дезінфікувати». Складаємо: she + has + disinfected + the table. Із she ставимо has, disinfected — третя форма disinfect із закінченням -ed. Has disinfected повідомляє про завершену дію: стіл уже оброблено.
+Подруга завершила дезінфекцію столу й повідомляє про виконану роботу. She has disinfected the table — вона продезінфікувала стіл. Disinfect означає «дезінфікувати». Складаємо: she + has + disinfected + the table. Із she ставимо has, disinfected — форма disinfect після have із закінченням -ed. Has disinfected повідомляє про завершену дію: стіл уже оброблено.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She has disinfected the table.**
 - ❌ She have disinfected the table. — *Із she ставимо has.*
-- ❌ She has disinfect the table. — *Після have або has використайте третю форму дієслова.*
+- ❌ She has disinfect the table. — *Після have або has використайте форму після have (done, seen).*
 
 ---
 
@@ -43,7 +43,7 @@ Air-dry — сушити на повітрі, без сушарки, у кімн
 
 - ✅ **He has air-dried the shirt.**
 - ❌ He have air-dried the shirt. — *Із he ставимо has.*
-- ❌ He has air-dry the shirt. — *Після have або has використайте третю форму дієслова.*
+- ❌ He has air-dry the shirt. — *Після have або has використайте форму після have (done, seen).*
 
 ---
 
@@ -56,8 +56,8 @@ Air-dry — сушити на повітрі, без сушарки, у кімн
 **2 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-03:i01; family: context_gap_grammar -->
 We have ___ the fridge. → **restocked** · restock · restocks
-- restock — *Після have або has використайте третю форму дієслова.*
-- restocks — *Після have або has використайте третю форму дієслова.*
+- restock — *Після have або has використайте форму після have (done, seen).*
+- restocks — *Після have або has використайте форму після have (done, seen).*
 
 **3 · У холодильнику знову є продукти. Скажіть: «Ми поповнили запаси в холодильнику».**
 <!-- interaction_id: en:lesson-23:session-03:i02; family: phrase_builder -->
@@ -76,8 +76,8 @@ We have ___ the fridge. → **restocked** · restock · restocks
 **6 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-03:i04; family: context_gap_grammar -->
 She has ___ the table. → **disinfected** · disinfect · disinfects
-- disinfect — *Після have або has використайте третю форму дієслова.*
-- disinfects — *Після have або has використайте третю форму дієслова.*
+- disinfect — *Після have або has використайте форму після have (done, seen).*
+- disinfects — *Після have або has використайте форму після have (done, seen).*
 
 **7 · Стіл оброблено відповідним засобом. Скажіть: «Вона продезінфікувала стіл».**
 <!-- interaction_id: en:lesson-23:session-03:i05; family: phrase_builder -->
@@ -96,8 +96,8 @@ She has ___ the table. → **disinfected** · disinfect · disinfects
 **10 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-03:i07; family: context_gap_grammar -->
 I have ___ the towels. → **bleached** · bleach · bleaches
-- bleach — *Після have або has використайте третю форму дієслова.*
-- bleaches — *Після have або has використайте третю форму дієслова.*
+- bleach — *Після have або has використайте форму після have (done, seen).*
+- bleaches — *Після have або has використайте форму після have (done, seen).*
 
 **11 · Білі рушники тепер без плям. Скажіть: «Я відбілив рушники».**
 <!-- interaction_id: en:lesson-23:session-03:i08; family: phrase_builder -->
@@ -116,8 +116,8 @@ I have ___ the towels. → **bleached** · bleach · bleaches
 **14 · Виберіть форму слова після have або has.**
 <!-- interaction_id: en:lesson-23:session-03:i10; family: context_gap_grammar -->
 He has ___ the shirt. → **air-dried** · air-dry · air-dries
-- air-dry — *Після have або has використайте третю форму дієслова.*
-- air-dries — *Після have або has використайте третю форму дієслова.*
+- air-dry — *Після have або has використайте форму після have (done, seen).*
+- air-dries — *Після have або has використайте форму після have (done, seen).*
 
 **15 · Сорочка висохла без сушарки. Скажіть: «Він висушив сорочку на повітрі».**
 <!-- interaction_id: en:lesson-23:session-03:i11; family: phrase_builder -->

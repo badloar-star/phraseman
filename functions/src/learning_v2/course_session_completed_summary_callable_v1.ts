@@ -1,4 +1,5 @@
 import * as admin from "firebase-admin";
+import { createHash } from "crypto";
 import type { Firestore } from "firebase-admin/firestore";
 import { HttpsError, onCall } from "firebase-functions/v2/https";
 import {
@@ -15,6 +16,7 @@ import {
   normalizeProgressStableUid,
   type ProgressEventAuthorization,
 } from "./progress_event_callable";
+import { LADDER_C_LOG, ladderServerDayPatch } from "../referral_ladder_plus";
 
 export const LEARNING_V2_COURSE_SESSION_COMPLETED_INBOX_SCHEMA_V1 =
   "learning-v2-course-session-completed-inbox.v1" as const;
@@ -287,6 +289,21 @@ export function createFirestoreLearningV2CourseSessionCompletedInboxStoreV1(
           recordRef,
           record as unknown as FirebaseFirestore.DocumentData,
         );
+        // зачем (лесенка C, владелец 29.10): Plus за друга — только при итогах в 2 разных серверных дня и только с новой
+        // версии (голова курса из списка). Документ пользователя уже прочитан выше → 0 новых чтений; не больше 2 записей
+        // поля за жизнь аккаунта. Время — серверное, не из итога. Повтор итога (existing) метку не ставит.
+        const dayDecision = ladderServerDayPatch({
+          progress: (user.data()?.progress ?? {}) as Record<string, unknown>,
+          nowMs: Date.now(),
+          targetLanguage: record.completion.targetLanguage,
+          activeHeadFingerprint: record.completion.activeHeadFingerprint,
+        });
+        console.log(
+          `${LADDER_C_LOG} day uid=${createHash("sha256").update(stableUid).digest("hex").slice(0, 10)} lang=${String(record.completion.targetLanguage)} head=${String(record.completion.activeHeadFingerprint).slice(0, 12)} reason=${dayDecision.reason} day=${dayDecision.day} write=${dayDecision.patch ? Object.keys(dayDecision.patch).join(",") : "none"}`,
+        );
+        if (dayDecision.patch) {
+          transaction.set(userRef, { progress: dayDecision.patch }, { merge: true });
+        }
         return "created" as const;
       }),
   });

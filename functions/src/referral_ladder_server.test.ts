@@ -26,15 +26,19 @@ describe('referral_ladder_server — чистая часть', () => {
   });
 
   it('счётчики: мусор → нули, чужие ключи месяцев отброшены', () => {
-    expect(readLadderStats(undefined)).toEqual({ countedTotal: 0, months: {}, plusTiersGranted: 0 });
+    const zero = { plusEligibleTotal: 0, plusTierClaimed: 0, lastLadderPlusAtMs: 0 };
+    expect(readLadderStats(undefined)).toEqual({ countedTotal: 0, months: {}, plusTiersGranted: 0, ...zero });
     expect(readLadderStats({ countedTotal: '4', months: { '2026-11': 4, bad: 9 }, plusTiersGranted: -1 }))
-      .toEqual({ countedTotal: 4, months: { '2026-11': 4 }, plusTiersGranted: 0 });
+      .toEqual({ countedTotal: 4, months: { '2026-11': 4 }, plusTiersGranted: 0, ...zero });
+    expect(readLadderStats({ plusEligibleTotal: '5', plusTierClaimed: 1, lastLadderPlusAtMs: 1700000000000 }))
+      .toMatchObject({ plusEligibleTotal: 5, plusTierClaimed: 1, lastLadderPlusAtMs: 1700000000000 });
   });
 
-  it('ответ списка (контракт с Дизайном): 7 друзей → 2 выдачи Plus, месячный счётчик текущего месяца', () => {
+  it('ответ списка (контракт с Дизайном): Plus — реально выданные ступени (лесенка C), месячный счётчик текущего месяца', () => {
     const now = Date.UTC(2026, 10, 15);
-    expect(ladderSummary(readLadderStats({ countedTotal: 7, months: { '2026-10': 4, '2026-11': 3 } }), now)).toEqual({
-      countedFriends: 7, plusGrants: 2, coinsPerFriend: 500, plusDaysPerGrant: 14, friendsPerGrant: 3,
+    // 7 друзей за монеты, но Plus выдан один раз: остальные не прошли проверки или ждут 30 дней
+    expect(ladderSummary(readLadderStats({ countedTotal: 7, plusTiersGranted: 1, months: { '2026-10': 4, '2026-11': 3 } }), now)).toEqual({
+      countedFriends: 7, plusGrants: 1, coinsPerFriend: 500, plusDaysPerGrant: 14, friendsPerGrant: 3,
       monthCounted: 3, monthlyCap: 10, lessonWindowDays: 30,
     });
   });

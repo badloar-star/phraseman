@@ -26,6 +26,12 @@ import {
 } from './referral_ladder';
 import { policyTimestampMs, referralRoulettePolicyFromData } from './referral_roulette_policy';
 import { beginStarLedgerTransactionAttempt, commitStarOperations, prepareStarOperations } from './stars_ledger';
+import {
+  LADDER_C_LOG,
+  decideLadderPlusEligibility,
+  ladderPlusClaim,
+  ladderPushTokenHash,
+} from './referral_ladder_plus';
 
 const LOG = '[REF-LADDER]';
 export const REFERRAL_LADDER_PROGRAM = 'ladder';
@@ -73,7 +79,16 @@ const TERMINAL_REFUSALS: ReadonlySet<LadderRefusal> = new Set<LadderRefusal>([
   'self_referral', 'same_installation', 'account_not_fresh', 'account_age_unknown', 'lesson_window_expired',
 ]);
 
-export type LadderStats = Readonly<{ countedTotal: number; months: Readonly<Record<string, number>>; plusTiersGranted: number }>;
+export type LadderStats = Readonly<{
+  countedTotal: number;
+  months: Readonly<Record<string, number>>;
+  plusTiersGranted: number;
+  /** Лесенка C: друзей, засчитанных для Plus (2 серверных дня, не то же устройство). */
+  plusEligibleTotal: number;
+  /** Лесенка C: последняя ступень, которую сервер «занял» под выдачу (кулдаун 30 дней проверен в той же транзакции). */
+  plusTierClaimed: number;
+  lastLadderPlusAtMs: number;
+}>;
 
 export function readLadderStats(raw: unknown): LadderStats {
   const data = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
@@ -81,7 +96,60 @@ export function readLadderStats(raw: unknown): LadderStats {
   const monthsRaw = (data.months && typeof data.months === 'object' ? data.months : {}) as Record<string, unknown>;
   const months: Record<string, number> = {};
   for (const [k, v] of Object.entries(monthsRaw)) if (/^\d{4}-\d{2}$/.test(k)) months[k] = int(v);
-  return { countedTotal: int(data.countedTotal), months, plusTiersGranted: int(data.plusTiersGranted) };
+  return {
+    countedTotal: int(data.countedTotal),
+    months,
+    plusTiersGranted: int(data.plusTiersGranted),
+    plusEligibleTotal: int(data.plusEligibleTotal),
+    plusTierClaimed: int(data.plusTierClaimed),
+    lastLadderPlusAtMs: int(data.lastLadderPlusAtMs),
+  };
+}
+
+/** Поле строки приглашения: статус друга для Plus-ступеней (лесенка C). Клиенту не уходит. */
+export type LadderPlusRowState = 'waiting' | 'eligible' | 'not_eligible';
+
+/**
+ * Лесенка C: решение по другу для Plus и, если пора, «занять» следующую ступень (кулдаун 30 дней) — всё на уже
+ * прочитанных в транзакции документах, без новых чтений. Возвращает поля для записи и ступень к выдаче.
+ */
+function ladderPlusStep(input: Readonly<{
+  tag: string;
+  stats: LadderStats;
+  att: Readonly<Record<string, unknown>>;
+  refereeData: Readonly<Record<string, unknown>> | undefined;
+  referrerData: Readonly<Record<string, unknown>> | undefined;
+  nowMs: number;
+}>): Readonly<{
+  rowPatch: Record<string, unknown>;
+  statsPatch: Record<string, unknown>;
+  claimTier: number | null;
+}> {
+  const eligibility = decideLadderPlusEligibility({
+    refereeProgress: (input.refereeData?.progress ?? {}) as Record<string, unknown>,
+    refereeTokenHash: ladderPushTokenHash(input.refereeData?.expoPushToken),
+    refereeApplyTokenHash: typeof input.att.ladderPushTokenHashAtApply === 'string' ? input.att.ladderPushTokenHashAtApply : null,
+    referrerTokenHash: ladderPushTokenHash(input.referrerData?.expoPushToken),
+  });
+  const plusEligibleTotal = input.stats.plusEligibleTotal + (eligibility.status === 'eligible' ? 1 : 0);
+  const claim = ladderPlusClaim({
+    plusEligibleTotal,
+    plusTierClaimed: input.stats.plusTierClaimed,
+    lastLadderPlusAtMs: input.stats.lastLadderPlusAtMs,
+    nowMs: input.nowMs,
+    friendsPerTier: LADDER_FRIENDS_PER_TIER,
+  });
+  console.log(`${LADDER_C_LOG} plus_step ${input.tag} eligibility=${eligibility.status} reason=${eligibility.reason} eligibleTotal=${input.stats.plusEligibleTotal}->${plusEligibleTotal} claimed=${input.stats.plusTierClaimed} granted=${input.stats.plusTiersGranted} claim=${claim.reason} claimTier=${claim.claimTier ?? 'none'} dueTiers=${claim.dueTiers} cooldownLeftMs=${claim.cooldownLeftMs}`);
+  const statsPatch: Record<string, unknown> = { plusEligibleTotal };
+  if (claim.claimTier !== null) {
+    statsPatch.plusTierClaimed = claim.claimTier;
+    statsPatch.lastLadderPlusAtMs = input.nowMs;
+  }
+  return {
+    rowPatch: { ladderPlus: eligibility.status as LadderPlusRowState, ladderPlusReason: eligibility.reason },
+    statsPatch,
+    claimTier: claim.claimTier,
+  };
 }
 
 /** Профиль: created_at, иначе время создания документа (метаданные Firestore, клиент не подделает). */
@@ -203,8 +271,19 @@ export async function processReferralLadderLesson(
         throw new Error(`ladder_coins_rejected:${String(bad.errorCode)}`);
       }
 
+      // зачем (лесенка C): Plus больше не «каждый 3-й засчитанный за монеты», а каждые 3 друга, прошедших проверки
+      // (2 серверных дня, не то же устройство), и не чаще раза в 30 дней. История монет — без строки про Plus:
+      // её пишет grantLadderPlusTier, когда ступень реально выдана.
+      const plusStep = ladderPlusStep({
+        tag: refTag,
+        stats,
+        att: att ?? {},
+        refereeData: refereeSnap.data(),
+        referrerData: referrerSnap.data(),
+        nowMs,
+      });
       const referrerStory = referralLadderStoryValue({
-        role: 'referrer', coins: decision.coinsEach, plusDays: decision.plusDays, friendNumber: decision.friendNumber, atMs: nowMs,
+        role: 'referrer', coins: decision.coinsEach, plusDays: 0, friendNumber: decision.friendNumber, atMs: nowMs,
       });
       const refereeStory = referralLadderStoryValue({
         role: 'referee', coins: decision.coinsEach, plusDays: 0, friendNumber: decision.friendNumber, atMs: nowMs,
@@ -219,13 +298,15 @@ export async function processReferralLadderLesson(
       tx.set(attRef, {
         status: 'rewarded', rewardKind: 'ladder', ladder: 'counted' as LadderRowState,
         lessonPassedAtMs: lessonAtMs, rewardedAtMs: nowMs, friendNumber: decision.friendNumber, ladderCapWaiting: false, updatedAtMs: nowMs,
+        ...plusStep.rowPatch,
       }, { merge: true });
       tx.set(statsRef, {
         countedTotal: stats.countedTotal + 1,
         months: { ...stats.months, [monthKey]: (stats.months[monthKey] ?? 0) + 1 },
+        ...plusStep.statsPatch,
         updatedAtMs: nowMs,
       }, { merge: true });
-      return { status: 'counted', friendNumber: decision.friendNumber, plusTier: decision.plusTier };
+      return { status: 'counted', friendNumber: decision.friendNumber, plusTier: plusStep.claimTier };
     });
   } catch (error) {
     console.warn(`${LOG} failed ${refTag} reason=${error instanceof Error ? error.message.slice(0, 160) : String(error)}`);
@@ -269,7 +350,16 @@ export async function grantLadderPlusTier(
     });
     console.log(`${LOG} plus ${tag} status=${result.status}`);
     if (result.status === 'user_missing') return false;
-    await db.collection(REFERRAL_LADDER_STATS).doc(referrerUid).set({ plusTiersGranted: tier, updatedAtMs: nowMs }, { merge: true });
+    // зачем (Ревизор 29.10): ступени могут выдаваться не по порядку (повтор после сбоя) — счётчик только растёт (max),
+    // иначе поздняя ступень 1 «откатила» бы уже выданную 2. Одно чтение на выдачу Plus (не чаще раза в 30 дней).
+    const statsRef = db.collection(REFERRAL_LADDER_STATS).doc(referrerUid);
+    const grantedAfter = await db.runTransaction(async (tx) => {
+      const before = readLadderStats((await tx.get(statsRef)).data()).plusTiersGranted;
+      const next = Math.max(before, tier);
+      tx.set(statsRef, { plusTiersGranted: next, updatedAtMs: nowMs }, { merge: true });
+      return next;
+    });
+    console.log(`${LADDER_C_LOG} plus_granted ${tag} plusTiersGranted=${grantedAfter}`);
     return true;
   } catch (error) {
     console.warn(`${LOG} plus_failed ${tag} reason=${error instanceof Error ? error.message.slice(0, 160) : String(error)}`);
@@ -292,7 +382,9 @@ export type LadderSummary = Readonly<{
 export function ladderSummary(stats: LadderStats, nowMs: number): LadderSummary {
   return {
     countedFriends: stats.countedTotal,
-    plusGrants: Math.floor(stats.countedTotal / LADDER_FRIENDS_PER_TIER),
+    // зачем (лесенка C): Plus идёт не за каждых 3 засчитанных за монеты, а за 3 прошедших проверки — показываем
+    // реально выданные ступени, а не обещание по числу друзей.
+    plusGrants: stats.plusTiersGranted,
     coinsPerFriend: LADDER_COINS_PER_FRIEND,
     plusDaysPerGrant: LADDER_PLUS_DAYS_PER_TIER,
     friendsPerGrant: LADDER_FRIENDS_PER_TIER,
@@ -323,10 +415,23 @@ export async function retryReferralLadderForReferrer(db: admin.firestore.Firesto
     // нет счётчиков — лесенка этому человеку ещё ничего не засчитывала и не упиралась в лимит: повторять нечего
     if (!statsSnap.exists) return;
     const stats = readLadderStats(statsSnap.data());
-    const dueTiers = Math.floor(stats.countedTotal / LADDER_FRIENDS_PER_TIER);
-    for (let tier = stats.plusTiersGranted + 1; tier <= Math.min(dueTiers, stats.plusTiersGranted + 2); tier += 1) {
-      console.log(`${LOG} retry_plus ${tag} tier=${tier} granted=${stats.plusTiersGranted} due=${dueTiers}`);
+    // (1) ступени, уже «занятые» под выдачу, но не выданные (сбой выдачи) — повтор безопасен по plus_grant_ledger
+    for (let tier = stats.plusTiersGranted + 1; tier <= Math.min(stats.plusTierClaimed, stats.plusTiersGranted + 2); tier += 1) {
+      console.log(`${LADDER_C_LOG} retry_plus ${tag} tier=${tier} granted=${stats.plusTiersGranted} claimed=${stats.plusTierClaimed}`);
       await grantLadderPlusTier(db, referrerUid, tier, tier * LADDER_FRIENDS_PER_TIER);
+    }
+    // (2) ступень заработана, но ждала кулдауна 30 дней — пробуем занять её сейчас (транзакция только по счётчикам)
+    const preClaim = ladderPlusClaim({
+      plusEligibleTotal: stats.plusEligibleTotal,
+      plusTierClaimed: stats.plusTierClaimed,
+      lastLadderPlusAtMs: stats.lastLadderPlusAtMs,
+      nowMs: Date.now(),
+      friendsPerTier: LADDER_FRIENDS_PER_TIER,
+    });
+    console.log(`${LADDER_C_LOG} retry_claim_check ${tag} reason=${preClaim.reason} dueTiers=${preClaim.dueTiers} claimed=${stats.plusTierClaimed} cooldownLeftMs=${preClaim.cooldownLeftMs}`);
+    if (preClaim.claimTier !== null) {
+      const claimed = await claimLadderPlusTier(db, referrerUid);
+      if (claimed !== null) await grantLadderPlusTier(db, referrerUid, claimed, claimed * LADDER_FRIENDS_PER_TIER);
     }
     const monthCounted = stats.months[ladderMonthKey(Date.now())] ?? 0;
     if (monthCounted >= LADDER_MAX_FRIENDS_PER_MONTH) return;
@@ -344,4 +449,108 @@ export async function retryReferralLadderForReferrer(db: admin.firestore.Firesto
     // повтор — не причина ронять список приглашений: человек увидит прежнее состояние, следующий заход повторит
     console.warn(`${LOG} retry_failed ${tag} reason=${error instanceof Error ? error.message.slice(0, 160) : String(error)}`);
   }
+}
+
+/**
+ * Лесенка C: занять следующую ступень Plus, если она заработана и прошло 30 дней с прошлой выдачи.
+ * Транзакция только по счётчикам пригласившего (1 чтение) — зовётся из повтора, когда проверка без транзакции
+ * уже показала, что ступень пора выдать. Возвращает номер занятой ступени или null.
+ */
+export async function claimLadderPlusTier(db: admin.firestore.Firestore, referrerUid: string, nowMsInput?: number): Promise<number | null> {
+  const tag = `referrer=${ladderLogId(referrerUid)}`;
+  const statsRef = db.collection(REFERRAL_LADDER_STATS).doc(referrerUid);
+  const claimTier = await db.runTransaction(async (tx) => {
+    const stats = readLadderStats((await tx.get(statsRef)).data());
+    const nowMs = nowMsInput ?? Date.now();
+    const claim = ladderPlusClaim({
+      plusEligibleTotal: stats.plusEligibleTotal,
+      plusTierClaimed: stats.plusTierClaimed,
+      lastLadderPlusAtMs: stats.lastLadderPlusAtMs,
+      nowMs,
+      friendsPerTier: LADDER_FRIENDS_PER_TIER,
+    });
+    console.log(`${LADDER_C_LOG} claim ${tag} reason=${claim.reason} claimTier=${claim.claimTier ?? 'none'} dueTiers=${claim.dueTiers} claimed=${stats.plusTierClaimed} cooldownLeftMs=${claim.cooldownLeftMs}`);
+    if (claim.claimTier === null) return null;
+    tx.set(statsRef, { plusTierClaimed: claim.claimTier, lastLadderPlusAtMs: nowMs, updatedAtMs: nowMs }, { merge: true });
+    return claim.claimTier;
+  });
+  return claimTier;
+}
+
+/**
+ * Лесенка C: друг, засчитанный за монеты раньше, дождался второго серверного дня — пересчитать его для Plus.
+ * Вызывается из триггера записи профиля на переходе «второго дня не было → появился» (раз в жизни аккаунта).
+ * Чтения: строка приглашения (1) — для всех; транзакция (строка, друг, пригласивший, счётчики) — только для друзей
+ * лесенки в статусе ожидания Plus.
+ */
+export async function processLadderPlusEligibility(
+  db: admin.firestore.Firestore,
+  refereeUid: string,
+  trigger: LadderTrigger,
+  nowMsInput?: number,
+): Promise<Readonly<{ status: string; claimTier: number | null }>> {
+  const tag = `referee=${ladderLogId(refereeUid)} trigger=${trigger}`;
+  const attRef = db.collection('referral_attributions').doc(refereeUid);
+  const pre = await attRef.get();
+  const pre0 = pre.data() as { program?: string; ladder?: string; ladderPlus?: string; referrerStableId?: string } | undefined;
+  if (!pre.exists || pre0?.program !== REFERRAL_LADDER_PROGRAM) {
+    console.log(`${LADDER_C_LOG} eligibility_skip ${tag} reason=${pre.exists ? 'not_ladder_row' : 'no_attribution'}`);
+    return { status: 'skipped', claimTier: null };
+  }
+  if (pre0.ladder !== 'counted') {
+    // ещё не засчитан за монеты — Plus проверится в той же транзакции, когда друг пройдёт урок
+    console.log(`${LADDER_C_LOG} eligibility_skip ${tag} reason=ladder_${String(pre0.ladder)}`);
+    return { status: 'skipped', claimTier: null };
+  }
+  if (pre0.ladderPlus === 'eligible' || pre0.ladderPlus === 'not_eligible') {
+    console.log(`${LADDER_C_LOG} eligibility_skip ${tag} reason=plus_${pre0.ladderPlus}`);
+    return { status: 'skipped', claimTier: null };
+  }
+  const referrerUid = String(pre0.referrerStableId ?? '').trim();
+  if (!referrerUid) {
+    console.warn(`${LADDER_C_LOG} eligibility_skip ${tag} reason=no_referrer`);
+    return { status: 'skipped', claimTier: null };
+  }
+  const refTag = `${tag} referrer=${ladderLogId(referrerUid)}`;
+  const configRef = db.collection('remote_config').doc('app');
+  const refereeRef = db.collection('users').doc(refereeUid);
+  const referrerRef = db.collection('users').doc(referrerUid);
+  const statsRef = db.collection(REFERRAL_LADDER_STATS).doc(referrerUid);
+  let result: Readonly<{ status: string; claimTier: number | null }>;
+  try {
+    result = await db.runTransaction(async (tx) => {
+      const [configSnap, attSnap, refereeSnap, referrerSnap, statsSnap] = await Promise.all([
+        tx.get(configRef), tx.get(attRef), tx.get(refereeRef), tx.get(referrerRef), tx.get(statsRef),
+      ]);
+      const nowMs = nowMsInput ?? Date.now();
+      const config = configSnap.data() as { bools?: Record<string, unknown>; numbers?: Record<string, unknown> } | undefined;
+      if (!referralLadderEnabledFromData(config)) return { status: 'flag_off', claimTier: null };
+      if (referralRoulettePolicyFromData(config).emergencyStop) return { status: 'emergency_stop', claimTier: null };
+      const att = (attSnap.data() ?? {}) as Record<string, unknown>;
+      if (att.ladder !== 'counted' || att.ladderPlus === 'eligible' || att.ladderPlus === 'not_eligible') {
+        return { status: 'row_changed', claimTier: null };
+      }
+      if (!refereeSnap.exists || !referrerSnap.exists) return { status: 'user_missing', claimTier: null };
+      const step = ladderPlusStep({
+        tag: refTag,
+        stats: readLadderStats(statsSnap.data()),
+        att,
+        refereeData: refereeSnap.data(),
+        referrerData: referrerSnap.data(),
+        nowMs,
+      });
+      tx.set(attRef, { ...step.rowPatch, updatedAtMs: nowMs }, { merge: true });
+      tx.set(statsRef, { ...step.statsPatch, updatedAtMs: nowMs }, { merge: true });
+      return { status: String(step.rowPatch.ladderPlus), claimTier: step.claimTier };
+    });
+  } catch (error) {
+    console.warn(`${LADDER_C_LOG} eligibility_failed ${refTag} reason=${error instanceof Error ? error.message.slice(0, 160) : String(error)}`);
+    throw error;
+  }
+  console.log(`${LADDER_C_LOG} eligibility_result ${refTag} ${JSON.stringify(result)}`);
+  if (result.claimTier !== null) {
+    // friendNumber для истории — номер ступени × 3 (сколько друзей прошли проверки к этой ступени)
+    await grantLadderPlusTier(db, referrerUid, result.claimTier, result.claimTier * LADDER_FRIENDS_PER_TIER);
+  }
+  return result;
 }

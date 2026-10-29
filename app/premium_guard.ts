@@ -26,6 +26,7 @@ import { emitAppEvent } from './events';
 import { rememberPremiumPlan } from './premium_plan_peek';
 import { notePlusStoreAccessEvidence, plusTransferHoldGrantsAccess } from './plus_transfer_hold';
 import { notePlusSource, type PlusSource } from './plus_source_diagnostics';
+import { markPlusCloudConfirmed } from './plus_cloud_confirmed_marker';
 import { noteSwallowedHandler, noteSwallowedAs } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
@@ -675,16 +676,29 @@ export async function getVerifiedPremiumAccessStatus(
   // Объект, а не let: присваивание из колбэка компилятор не видит и сузил бы переменную до null.
   const decided: { source: PlusSource | null } = { source: null };
   const setSource = (value: PlusSource): void => { decided.source = value; };
+  const generationAtStart = options?.generation ?? captureAccountGeneration();
   try {
     result = await getVerifiedPremiumAccessStatusTraced(options, mark, setSource);
     return result;
   } finally {
-    if (decided.source !== null) notePlusSource(decided.source, result);
+    if (decided.source !== null) {
+      notePlusSource(decided.source, result);
+      // зачем (координатор 29.10): ответ, которому можно верить (облако подтвердило или доступ найден на телефоне), — отметка
+      // «облако знает статус на этом устройстве»; без неё окно покупки при снимке «free» сначала ждёт облако (Plus только в облаке).
+      if (plusSourceConfirmsCloudStatus(decided.source) && accountGenerationIsCurrent(generationAtStart)) {
+        markPlusCloudConfirmed(generationAtStart.stableId);
+      }
+    }
     const totalMs = Date.now() - startedAt;
     if (totalMs > 1500) {
       console.warn('[PREMIUM-GUARD-STEP] access_status:slow', JSON.stringify({ totalMs, result, steps }));
     }
   }
+}
+
+/** «Нет» без облака и тестерские выключатели статус аккаунта не подтверждают. */
+function plusSourceConfirmsCloudStatus(source: PlusSource): boolean {
+  return source !== 'none_fast' && source !== 'none_unconfirmed' && source !== 'tester_off' && source !== 'tester_on';
 }
 
 async function getVerifiedPremiumAccessStatusTraced(

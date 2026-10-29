@@ -309,8 +309,21 @@ export function resolvePremiumModalEntry(input: Readonly<{
   hasPremiumAccess: boolean;
   impressionId: string;
   cachedEntitlement?: CachedPaywallEntitlement;
+  /**
+   * Подтверждало ли облако статус этого аккаунта на этом устройстве (app/plus_cloud_confirmed_marker.ts):
+   * true — да; false — нет (новое устройство / облако не ответило); null — отметку ещё читают; не передано — прежнее поведение.
+   */
+  cloudConfirmedOnDevice?: boolean | null;
 }>): PremiumModalEntryResolution {
   if (!input.accessResolved && input.cachedEntitlement !== 'free') return { decision: 'wait' };
+  // зачем (координатор 29.10, после жалобы №8): Plus только в облаке (Telegram-бот → VIP, промокод) на новом устройстве ещё не
+  // доехал, а снимок «free» открывал окно покупки сразу — можно было заплатить второй раз. Пока облако тут статус не подтверждало,
+  // снимку «free» не верим: ждём живую проверку (диспетчер держит потолок и маршрут прозрачный, без спиннера на весь экран).
+  const cloudUnconfirmed = input.cloudConfirmedOnDevice === false || input.cloudConfirmedOnDevice === null;
+  if (!input.accessResolved && cloudUnconfirmed) {
+    console.log(`[PAYWALL-ENTRY] wait reason=cloud_unconfirmed_on_device cached=${input.cachedEntitlement ?? 'none'} marker=${String(input.cloudConfirmedOnDevice)}`);
+    return { decision: 'wait' };
+  }
   // зачем (координатор 25.10, случай владельца): сервер отказал «нужен Plus», а телефон считает Plus включённым. Прежнее правило
   // «есть Plus → dismiss» закрывало окно, и человек не видел ни покупки, ни объяснения. Для ЭТОГО source — вариант «Не видим твой
   // Plus» (контекст plus_server_refused: «Восстановить покупки» / «Оформить Plus»). Для всех остальных source — как было.
@@ -328,11 +341,32 @@ export function resolvePremiumModalEntry(input: Readonly<{
     };
   }
   if (input.hasPremiumAccess) return { decision: 'dismiss' };
+  if (input.cloudConfirmedOnDevice === null) {
+    console.log('[PAYWALL-ENTRY] wait reason=cloud_marker_reading — отметку облака ещё читают с диска');
+    return { decision: 'wait' };
+  }
 
   logUnknownEntryParams(input.params);
   const context = parseContext(input.params.context);
   const source = parseSource(input.params.source);
   if (!context || !source) return { decision: 'dismiss' };
+
+  // зачем (координатор 29.10): облако статус не подтвердило (не ответило за потолок) — окно показываем, но вариантом «Не видим твой
+  // Plus» с «Восстановить покупки» первой кнопкой. Тексты варианта уже утверждены (25.10): «если подписка оформлена — восстанови».
+  // source остаётся исходным (аналитика входа не теряется). Диспетчер параллельно перечитывает облако: Plus нашёлся → окно закроется.
+  if (input.cloudConfirmedOnDevice === false) {
+    console.warn(`[PAYWALL-ENTRY] show reason=cloud_unconfirmed_on_device source=${source} requestedContext=${context} → context=${SERVER_REFUSED_CONTEXT}`);
+    return {
+      decision: 'show',
+      entry: createPaywallEntry({
+        context: SERVER_REFUSED_CONTEXT,
+        source,
+        entitlementState: 'free',
+        impressionId: input.impressionId,
+        attribution: parseAttribution(input.params),
+      }),
+    };
+  }
 
   return {
     decision: 'show',

@@ -10,8 +10,8 @@ import PaywallPlusScreen from '../components/paywall/PaywallPlusScreen';
 import { usePremium } from '../components/PremiumContext';
 import { notePlusPaywallDecision } from './plus_source_diagnostics';
 import { dismissPaywallModal } from './navigation_back';
-import { paywallEntryAccessInputs, resolvePremiumModalEntry, type CachedPaywallEntitlement } from './paywall_entry_contract';
-import { PAYWALL_ENTRY_WAIT_CEILING_MS } from './load_gate_config';
+import { paywallEntryAccessInputs, resolvePremiumModalEntry, SERVER_REFUSED_CONTEXT, type CachedPaywallEntitlement } from './paywall_entry_contract';
+import { paywallEntryWaitCeilingMs, usePlusCloudConfirmedOnDevice, usePlusCloudRecheckWhenUnconfirmed } from './plus_cloud_unconfirmed_entry';
 import { getAppSnapshot } from './app_snapshot_store';
 import { createTapLatencyProfilerHandler } from './tap_latency_trace';
 import { paywallCloseMark } from './paywall_close_trace';
@@ -72,13 +72,17 @@ export default function PremiumModalDispatcher() {
   // зачем (PM-214, D158): без кэша профиля окно ждало резолва доступа без потолка — без сети пустой экран
   // висел вечно. После PAYWALL_ENTRY_WAIT_CEILING_MS решаем по кэшу (paywallEntryAccessInputs).
   const [waitCeilingPassed, setWaitCeilingPassed] = useState(false);
+  // зачем (координатор 29.10): облако ещё не подтверждало статус на этом устройстве — снимку «free» не верим (Plus только в облаке).
+  const cloudConfirmedOnDevice = usePlusCloudConfirmedOnDevice(`${String(accessResolved)}:${String(hasPremiumAccess)}`, waitCeilingPassed);
+  const waitCeilingMs = paywallEntryWaitCeilingMs(cloudConfirmedOnDevice, cachedEntitlement);
   useEffect(() => {
     if (accessResolved || waitCeilingPassed) return;
     const timer = setTimeout(() => {
-      console.log('[PAYWALL] потолок ожидания доступа', JSON.stringify({ cached: cachedEntitlement, ceilingMs: PAYWALL_ENTRY_WAIT_CEILING_MS })); // guard-ok: один раз на открытие окна
+      console.log('[PAYWALL] потолок ожидания доступа', JSON.stringify({ cached: cachedEntitlement, ceilingMs: waitCeilingMs, cloudConfirmedOnDevice })); // guard-ok: один раз на открытие окна
       setWaitCeilingPassed(true);
-    }, PAYWALL_ENTRY_WAIT_CEILING_MS);
+    }, waitCeilingMs);
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- зачем: потолок считается от открытия окна; поздняя отметка его не перезапускает
   }, [accessResolved, cachedEntitlement, waitCeilingPassed]);
   const accessInputs = paywallEntryAccessInputs({ accessResolved, hasPremiumAccess, cachedEntitlement, waitCeilingPassed });
 
@@ -101,7 +105,13 @@ export default function PremiumModalDispatcher() {
         hasPremiumAccess: accessInputs.hasPremiumAccess,
         impressionId: paywallImpressionId,
         cachedEntitlement,
+        cloudConfirmedOnDevice,
       });
+  usePlusCloudRecheckWhenUnconfirmed(
+    entryResolution?.decision === 'show'
+      && entryResolution.entry.context === SERVER_REFUSED_CONTEXT
+      && entryResolution.entry.entitlementState === 'free',
+  );
   // зачем (R58 #12, денежный путь): после СОБСТВЕННОЙ покупки/восстановления доступ становится Plus и решение
   // переключалось show → dismiss: диспетчер размонтировал пейвол до шага «Напомнить о конце пробного?» и закрывал
   // маршрут вторым вызовом. Пока пейвол владеет закрытием (paywall_self_close_latch), держим показанный экран.

@@ -81,9 +81,6 @@ const GOAL_LABEL = { ru: '**Что вы освоите:** ', uk: '**Що ви о
 const COURSES = { en: SESSIONS, es: path.join(__dirname, '..', 'content/learning-v2-course/sessions/es') } as const;
 const GOAL_EXAMPLE = /(?:: | — )([¿¡A-Za-zÁÉÍÓÚÑ][^:а-яёіїєґ]*?)$/i;
 const WHOLE_EXAMPLE = /^[¿¡A-ZÁÉÍÓÚÑ].*[.?!]$/;
-// зачем: Learning V2 29.10 — es/l07/s17–s28 недописанные сироты из описи docs/work/handover/codex-orphans-2026-10-29.md,
-// их разбирает Learning V2; после разбора убрать отсюда (ниже тест краснеет, если сирота уже прошла проверку)
-const PENDING_ORPHANS = new Set(Array.from({ length: 12 }, (_, i) => `es/l07/s${17 + i}`));
 
 function goalLine(text: string, lang: 'ru' | 'uk'): string | null {
   const line = text.split('\n').find((l) => l.startsWith(GOAL_LABEL[lang]));
@@ -133,9 +130,7 @@ describe('Learning V2: «Что вы освоите» — простые сло�
       if (!fs.existsSync(uk)) continue;
       const where = `${course}/${path.relative(root, dir).replace(/\\/g, '/')}`;
       const texts = { ru: fs.readFileSync(path.join(dir, 'final.ru.md'), 'utf8'), uk: fs.readFileSync(uk, 'utf8') };
-      const problems = goalProblems(where, texts);
-      if (!PENDING_ORPHANS.has(where)) bad.push(...problems);
-      else if (problems.length === 0) bad.push(`${where}: сирота уже в порядке — уберите её из PENDING_ORPHANS`);
+      bad.push(...goalProblems(where, texts));
     }
     expect(bad).toEqual([]);
   });
@@ -148,7 +143,6 @@ describe('Learning V2: «Что вы освоите» — простые сло�
     const hits: string[] = [];
     for (const f of finalFiles(COURSES.es)) {
       const where = `es/${path.relative(COURSES.es, path.dirname(f)).replace(/\\/g, '/')}`;
-      if (PENDING_ORPHANS.has(where)) continue;
       fs.readFileSync(f, 'utf8').split('\n').forEach((line, i) => {
         if (ES_HARD_TERMS.test(line)) hits.push(`${where}/${path.basename(f)}:${i + 1}`);
       });

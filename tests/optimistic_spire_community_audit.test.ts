@@ -99,7 +99,7 @@ describe('источники: правки аудита на месте', () => 
 
   it('Наборы: лайк идёт через очередь, «Добавить» имеет замок', () => {
     const actions = read('app/community_packs/communityPackActions.ts');
-    expect(actions).toContain("likeQueue(`like:${packId}`, () => toggleCommunityPackLikeNow(packId))");
+    expect(actions).toContain("likeQueue(`like:${packId}`, () => toggleCommunityPackLikeNow(packId, account, desiredLiked, alreadyEmitted))");
     const bar = read('app/community_packs/CommunityPackSocialBar.tsx');
     expect(bar).toContain('const addInFlightRef = useRef(false);');
     expect(bar).toContain('addInFlightRef.current = true;');

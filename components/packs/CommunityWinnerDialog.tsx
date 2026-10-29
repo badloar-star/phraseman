@@ -74,7 +74,7 @@ export function CommunityWinnerDialogContent({ winner, claiming, error, reduced,
     <View style={[s.dialog, { backgroundColor: g.opaqueCard }]}>
       {!reduced && !winner.claimed ? <CommunityAwardConfetti accent={g.accent} /> : null}
       <ScrollView style={s.content} showsVerticalScrollIndicator={false} bounces={false}>
-      <View style={s.art}><CommunityAwardRays reduced={reduced} /><Animated.View entering={reduced ? undefined : trophyArrival}><LinearGradient colors={['#FFF1BD', '#F1BC52', '#D98A20']} style={s.medal}><Ionicons name="trophy" size={65} color="#82500C" /></LinearGradient></Animated.View><View style={s.rank}><Text style={s.rankText}>{winnerText(L, 'place', { n: winner.place })}</Text></View></View>
+      <View style={s.art}><CommunityAwardRays reduced={reduced} /><Animated.View entering={reduced ? undefined : trophyArrival}><LinearGradient colors={['#FFF1BD', '#F1BC52', '#D98A20']} style={s.medal}><Ionicons name="trophy" size={65} color="#82500C" /></LinearGradient></Animated.View><View style={s.rank}><Text style={s.rankText}>{winnerText(L, 'place', { n: winner.place })}</Text></View></View>{/* theme-exempt: золотая медаль приза — иллюстрация, не поверхность окна */}
       <Animated.View entering={reduced ? undefined : FadeInDown.delay(450).duration(600)}><Text style={[s.month, { color: g.secondary }]}>{winnerText(L, 'packOfMonth')} · {monthLabel}</Text><Text style={[s.title, { color: g.text }]}>{winner.claimed ? winnerText(L, 'received') : winnerText(L, 'congrats')}</Text><Text style={[s.body, { color: g.secondary }]}>{winnerText(L, 'yourPack', { title: winner.packTitle })}{ '\n' }{winner.place === 1 ? winnerText(L, 'won') : winnerText(L, 'finishedPlace', { n: winner.place })}</Text></Animated.View>
       {reward ? <Animated.View entering={reduced ? undefined : FadeInDown.delay(820).duration(600)} style={[s.prize, { backgroundColor: g.opaqueControl }]}><Ionicons name="diamond-outline" size={22} color={g.accent} /><Text style={[s.prizeText, { color: g.text }]}>{reward}</Text></Animated.View> : null}
       </ScrollView>
@@ -87,9 +87,10 @@ export function CommunityWinnerDialogContent({ winner, claiming, error, reduced,
 
 // theme-exempt: gold is the prize illustration, all surfaces and text use theme tokens.
 const s = StyleSheet.create({
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,.4)', alignItems: 'center', justifyContent: 'flex-start', padding: 22 },
+  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,.4)', alignItems: 'center', justifyContent: 'flex-start', padding: 22 }, // theme-exempt: затемнение под окном — единственное разрешённое исключение
   dialog: { width: '100%', maxWidth: 430, maxHeight: '100%', borderRadius: 30, padding: 20, overflow: 'hidden' },
   content: { flexGrow: 0, flexShrink: 1 },
-  art: { height: 190, alignItems: 'center', justifyContent: 'center', marginBottom: 12 }, medal: { width: 122, height: 122, borderRadius: 61, alignItems: 'center', justifyContent: 'center' }, rank: { position: 'absolute', bottom: 12, backgroundColor: '#F8D985', borderRadius: 12, paddingVertical: 9, paddingHorizontal: 22 }, rankText: { color: '#65400B', fontSize: 15, fontWeight: '800', letterSpacing: 2 },
+  art: { height: 190, alignItems: 'center', justifyContent: 'center', marginBottom: 12 }, // theme-exempt: золото приза (медаль и плашка места) — иллюстрация
+  medal: { width: 122, height: 122, borderRadius: 61, alignItems: 'center', justifyContent: 'center' }, rank: { position: 'absolute', bottom: 12, backgroundColor: '#F8D985', borderRadius: 12, paddingVertical: 9, paddingHorizontal: 22 }, rankText: { color: '#65400B', fontSize: 15, fontWeight: '800', letterSpacing: 2 }, // theme-exempt: золото приза — плашка места и её текст
   month: { fontSize: 13, fontWeight: '700', textAlign: 'center' }, title: { fontSize: 31, lineHeight: 38, fontWeight: '800', textAlign: 'center', marginTop: 8 }, body: { fontSize: 16, lineHeight: 23, textAlign: 'center', marginTop: 10 }, prize: { flexDirection: 'row', gap: 10, alignItems: 'center', justifyContent: 'center', minHeight: 54, borderRadius: 18, marginTop: 22 }, prizeText: { fontSize: 17, fontWeight: '700' }, button: { minHeight: 54, borderRadius: 27, alignItems: 'center', justifyContent: 'center', marginTop: 18 }, later: { minHeight: 44, alignItems: 'center', justifyContent: 'center', marginTop: 8 },
 });

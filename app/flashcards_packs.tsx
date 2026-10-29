@@ -436,7 +436,7 @@ export default function FlashcardsPacksScreen({ presentation = 'push' }: Flashca
           <View style={styles.headerActions}>
             <PackLanguagePicker
               pill={embedded}
-              renderTrigger={embedded ? open => <KitTouchable onPress={open} accessibilityRole="button" accessibilityLabel={packLanguage.toUpperCase()} style={{ height: 36, paddingHorizontal: 12, borderRadius: 18, backgroundColor: 'rgba(255,255,255,.17)', flexDirection: 'row', alignItems: 'center', gap: 7 }}><Text style={{ color: '#FFFFFF', fontSize: 15, fontWeight: '700' }}>{packLanguage.toUpperCase()}</Text><Ionicons name="chevron-down" size={14} color="#FFFFFF" /></KitTouchable> : undefined}
+              renderTrigger={embedded ? open => <KitTouchable onPress={open} accessibilityRole="button" accessibilityLabel={packLanguage.toUpperCase()} style={{ height: 36, paddingHorizontal: 12, borderRadius: 18, backgroundColor: 'rgba(255,255,255,.17)', flexDirection: 'row', alignItems: 'center', gap: 7 }}><Text style={{ color: '#FFFFFF', fontSize: 15, fontWeight: '700' }}>{packLanguage.toUpperCase()}</Text><Ionicons name="chevron-down" size={14} color="#FFFFFF" /></KitTouchable> : undefined} /* theme-exempt: кнопка языка на ТЁМНОЙ сцене «Наборов» — белый передний план и стекло, как в CommunityScene.tsx */
               lang={lang}
               t={t}
               value={packLanguage}

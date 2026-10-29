@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вибираєте поїздку: враховуєте ціну, памʼятаєте про обмежений час та ухвалюєте рішення.
 
-**Що ви опануєте:** ought to + base verb
+**Що ви опануєте:** дати м’яку пораду: You ought to rest
 **Нові слова:** take into account, keep in mind, make up your mind, take it seriously
 
 ## Інтро 1

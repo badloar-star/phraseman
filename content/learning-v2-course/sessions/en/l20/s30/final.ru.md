@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете поездку: учитываете цену, помните об ограниченном времени и принимаете решение.
 
-**Что вы освоите:** ought to + base verb
+**Что вы освоите:** дать мягкий совет: You ought to rest
 **Новые слова:** take into account, keep in mind, make up your mind, take it seriously
 
 ## Интро 1

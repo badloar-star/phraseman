@@ -13,6 +13,7 @@ import { isSpireTabEnabled, primeSpireTabFlag, useSpireTabEnabled } from '../spi
 import { refreshSpireTabFlagIfClosed } from '../spire_gate_refresh';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useSpireSceneHeaderTint } from '../../components/spire/scene/spire_scene_header_tint';
+import { traceSpireTabLayout, traceSpireTabsHeader } from '../../components/spire/scene/spire_tabs_scroll_trace';
 import { setSpireHeaderOverlayInset } from '../../components/spire/scene/spire_header_overlay';
 import { SPIRE_SCENE_INK } from '../../components/spire/scene/spire_scene_palette';
 import { useTabTopBleedInset } from '../../components/tab_top_bleed';
@@ -74,6 +75,8 @@ export default function CommunityTabRoute() {
   const overScene = section === 'packs' || (SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null);
   const [headerH, setHeaderH] = useState(0);
   useEffect(() => { setSpireHeaderOverlayInset(overScene ? headerH : 0); }, [overScene, headerH]);
+  // зачем (владелец 29.10, вкладки наезжают при прокрутке Пика; «сперва логи»): решение шапки пишется при каждой смене — см. spire_tabs_scroll_trace
+  useEffect(() => { traceSpireTabsHeader({ section, overScene, sceneTint, topInset, headerH }); }, [section, overScene, sceneTint, topInset, headerH]);
   useEffect(() => () => setSpireHeaderOverlayInset(0), []);
 
   useEffect(() => {
@@ -181,6 +184,7 @@ export default function CommunityTabRoute() {
                 // зачем: как у прежнего переключателя — отклик на нажатие только при смене вкладки.
                 onPressIn={() => { if (!on) hapticTap(); }}
                 onPress={() => setSection(seg.key)}
+                onLayout={(e) => traceSpireTabLayout(seg.key, e.nativeEvent.layout)}
                 // зачем (координатор 22.10: «тап при x≈93 dp не попадает»): зазор между вкладками 22 перекрыт целиком (11 + 11), высота зоны ≥ 44
                 hitSlop={{ top: 8, bottom: 8, left: 11, right: 11 }}
                 // зачем (packs-simple.html `.tabs3`): активная вкладка — белый текст и полоса 3px акцента под словом.

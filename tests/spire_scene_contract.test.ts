@@ -145,7 +145,9 @@ async function main(): Promise<void> {
   // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «верх цельный»; координатор после 2.0.2: «сцена от самого верха, шапка прозрачная поверх, слой spire_header_layer убрать»):
   // без «Сцены» (флаг выключен, другой раздел) шапка прежняя; со «Сценой» Пика она лежит поверх тела, вкладки белые, отдельного слоя нет
   assert.ok(community.includes("<View onLayout={(e) => setHeaderH(e.nativeEvent.layout.height)} style={[s.header, topInset > 0 ? { paddingTop: 12 + topInset } : null, overScene ? s.headerOver : null]}>"), "шапка без подложки; со «Сценой» Пика — поверх тела");
-  assert.ok(community.includes("const overScene = SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null;"), "поверх сцены — только при флаге, на Пике и когда сцена на экране");
+  // зачем (перепин 29.10): сводный коммит a82a3b220 добавил «Наборы» со своей сценой — условие стало «Наборы ИЛИ (Пик при флаге и готовой сцене)»; обе части проверяем по отдельности, Пик не ослаблен
+  assert.ok(community.includes("const overScene = section === 'packs' || (SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null);"), "поверх сцены — «Наборы» или Пик при флаге и когда сцена есть");
+  assert.ok(community.includes("(SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null)"), "Пик: только при флаге, на разделе Пика и когда сцена опубликовала цвет");
   assert.ok(community.includes("borderBottomColor: on ? (overScene ? SPIRE_SCENE_INK.text : accentGfx.border) : 'transparent'"), "черта вкладки — прежний цвет, на сцене белая");
   assert.ok(community.includes("color: overScene ? (on ? SPIRE_SCENE_INK.text : SPIRE_SCENE_INK.muted) : on ? p.text : p.textSecondary"), "текст вкладок — прежние цвета, на сцене белые");
   assert.ok(community.includes("{section === 'packs' ? packsSlot?.right : section === 'spire' && SPIRE_SCENE_V2_ENABLED ? <SpireEnergyPill ownerActive={tabVisible && section === 'spire'} /> : null}"), "справа — как раньше; на Пике со «Сценой» — настоящий EnergyBar (аудит F4)");

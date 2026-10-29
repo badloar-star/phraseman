@@ -11,6 +11,7 @@ import { useCallback, useEffect, useMemo, useRef } from 'react';
 import type { NativeScrollEvent, NativeSyntheticEvent } from 'react-native';
 
 import { useTopFadeScroll } from '../../TopFadeScrollContext';
+import { traceSpireTabsScroll } from './spire_tabs_scroll_trace';
 
 const LOG = '[SPIRE-SCENE]';
 
@@ -27,6 +28,7 @@ export function useSpireSceneScroll(enabled: boolean, active: boolean): SpireSce
   const lastYRef = useRef(0);
   const onScroll = useCallback((e: NativeSyntheticEvent<NativeScrollEvent>) => {
     lastYRef.current = e.nativeEvent.contentOffset.y;
+    traceSpireTabsScroll(lastYRef.current); // зачем (владелец 29.10, вкладки наезжают при прокрутке Пика): сэмпл позиции и раскладки вкладок, см. spire_tabs_scroll_trace
     topFade?.onScrollMaskOnly(e);
   }, [topFade]);
   useEffect(() => {

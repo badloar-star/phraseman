@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про зустріч і спільні плани.
 
-**Що ви опануєте:** сказати, що було до чи після: after we ate, before it rained
+**Що ви опануєте:** подякувати за запрошення: Thank you for inviting me.
 **Нові слова:** greeting, handshake, outing, gathering
 
 ## Інтро 1

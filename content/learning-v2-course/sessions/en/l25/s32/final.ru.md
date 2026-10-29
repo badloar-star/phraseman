@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы называете близких и рассказываете о семейном вечере.
 
-**Что вы освоите:** сказать, что было до или после: after we ate, before it rained
+**Что вы освоите:** сказать, что было до или после: My fiancé arrived before the guests.
 **Новые слова:** fiancé, fiancée, stepson, stepdaughter
 
 ## Интро 1

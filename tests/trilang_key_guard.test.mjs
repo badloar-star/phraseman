@@ -60,6 +60,14 @@ test('ключи верхнего уровня: вложенный объект 
   assert.deepEqual(topLevelKeys(" ru: { a: 1, b: 2 }, uk: fn({ x: 1 }), 'pt-BR': `t ${y}` "), ['ru', 'uk', 'pt-BR']);
 });
 
+test('fr/de законны только в файлах «Диалогов»; в обычном экране — ошибка (замечание Ревизора 29.10)', () => {
+  const src = "triLang(lang, { ru: 'а', uk: 'б', en: 'c', es: 'd', 'pt-BR': 'e', vi: 'f', id: 'g', tr: 'h', pl: 'i', fr: 'j', de: 'k' })";
+  assert.deepEqual(findTriLangKeyIssues(src, 'app/settings_screen.tsx')[0].bad, ['fr', 'de']);
+  assert.deepEqual(findTriLangKeyIssues(src, 'app/dialogue_v2_session.tsx'), []);
+  assert.deepEqual(findTriLangKeyIssues(src, 'components/dialogs/DialogueIncomingCall.tsx'), []);
+  assert.deepEqual(findTriLangKeyIssues(src)[0].bad, ['fr', 'de']); // без пути — только языки интерфейса
+});
+
 test('исключения: тесты, дев-превью и намеренные ru/uk-файлы', () => {
   assert.ok(isTriLangGuardSkipped('tests/foo.test.ts'));
   assert.ok(isTriLangGuardSkipped('app/dev_community_scene_preview.tsx'));

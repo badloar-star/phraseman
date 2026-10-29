@@ -36,8 +36,16 @@ export const EXTRA_DICT_KEYS = Object.freeze({
   de: 'целевой язык «Диалогов» (немецкий курс): то же',
 });
 
-export const KNOWN_LANG_KEYS = Object.freeze([...interfaceLangs(), ...Object.keys(EXTRA_DICT_KEYS)]);
-const FIVE = ['pt-BR', 'vi', 'id', 'tr', 'pl'].filter((k) => KNOWN_LANG_KEYS.includes(k));
+// зачем (Ревизор 29.10): fr/de законны только в «Диалогах» — в обычном экранном словаре это ошибка (подложенный fr прошёл бы молча)
+export const EXTRA_DICT_KEYS_FILES = /(^|\/)app\/dialogue_v2_[^/]+$|(^|\/)components\/dialogs\//;
+export const INTERFACE_LANG_KEYS = Object.freeze(interfaceLangs());
+export const KNOWN_LANG_KEYS = Object.freeze([...INTERFACE_LANG_KEYS, ...Object.keys(EXTRA_DICT_KEYS)]);
+const FIVE = ['pt-BR', 'vi', 'id', 'tr', 'pl'].filter((k) => INTERFACE_LANG_KEYS.includes(k));
+
+/** Какие ключи законны в словаре этого файла: языки интерфейса, а в файлах «Диалогов» ещё fr/de. Без пути — только языки интерфейса. */
+export function allowedKeysFor(rel = '') {
+  return EXTRA_DICT_KEYS_FILES.test(rel.replace(/\\/g, '/')) ? KNOWN_LANG_KEYS : INTERFACE_LANG_KEYS;
+}
 
 /** Файлы, где словари не на 9 языков намеренно (с причиной). Тесты и дев-превью отсекаются отдельно, по имени. */
 export const TRILANG_KEY_GUARD_EXEMPT = Object.freeze({
@@ -91,13 +99,14 @@ export function topLevelKeys(body) {
 }
 
 /** Находки в одном исходнике: [{ line, bad: [...], weak: bool, missing: [...] }]. Словари без ru и uk (не языковые) пропускаются. */
-export function findTriLangKeyIssues(source) {
+export function findTriLangKeyIssues(source, rel = '') {
+  const allowed = allowedKeysFor(rel);
   const out = []; const re = /\btriLang\s*\(\s*[\w.]+\s*,\s*\{/g; let m;
   while ((m = re.exec(source))) {
     const end = objectEnd(source, re.lastIndex); if (end < 0) continue;
     const keys = topLevelKeys(source.slice(re.lastIndex, end));
     if (keys.includes('...') || !keys.includes('ru') || !keys.includes('uk')) continue;
-    const bad = keys.filter((k) => !KNOWN_LANG_KEYS.includes(k));
+    const bad = keys.filter((k) => !allowed.includes(k));
     const missing = ['en', ...FIVE].filter((k) => !keys.includes(k));
     const weak = !keys.includes('en') || FIVE.every((k) => !keys.includes(k));
     if (!bad.length && !weak) continue;
@@ -110,7 +119,12 @@ const SCAN_DIRS = ['app', 'components', 'modules', 'hooks', 'constants'];
 const SKIP_DIR = /^(node_modules|__tests__|\.git|\.claude|\.codex-tmp|\.worktrees|tmp)$/;
 
 function walk(root, dir, out) {
-  let entries; try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch { return out; }
+  let entries;
+  try { entries = fs.readdirSync(dir, { withFileTypes: true }); } catch (error) {
+    // зачем (Ревизор 29.10): немой catch молча пропустил бы папку, и сторож сказал бы «0 ошибок» — пишем, что не прочитали
+    console.warn(`[TRILANG-KEYS] папка не прочитана, её файлы не проверены: ${dir} — ${error instanceof Error ? error.message : String(error)}`);
+    return out;
+  }
   for (const e of entries) {
     const abs = path.join(dir, e.name);
     if (e.isDirectory()) { if (!SKIP_DIR.test(e.name)) walk(root, abs, out); continue; }
@@ -124,9 +138,14 @@ export function scanTriLangKeys(root, files = null) {
   const list = (files ?? SCAN_DIRS.flatMap((d) => walk(root, path.join(root, d), []))).filter((f) => /\.(tsx?|jsx?)$/.test(f) && !isTriLangGuardSkipped(f));
   const findings = [];
   for (const rel of list) {
-    let src; try { src = fs.readFileSync(path.join(root, rel), 'utf8'); } catch { continue; }
+    let src;
+    try { src = fs.readFileSync(path.join(root, rel), 'utf8'); } catch (error) {
+      // файл из коммита мог быть удалён/переименован — говорим, что не проверен, а не молчим
+      console.warn(`[TRILANG-KEYS] файл не прочитан, не проверен: ${rel} — ${error instanceof Error ? error.message : String(error)}`);
+      continue;
+    }
     if (!src.includes('triLang')) continue;
-    for (const issue of findTriLangKeyIssues(src)) findings.push({ file: rel, ...issue });
+    for (const issue of findTriLangKeyIssues(src, rel)) findings.push({ file: rel, ...issue });
   }
   return findings;
 }

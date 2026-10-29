@@ -459,7 +459,10 @@ function stagedCodeFiles() {
 }
 
 function readTriLangBaseline() {
-  try { return JSON.parse(fs.readFileSync(TRILANG_BASELINE, 'utf8')); } catch { return { total: 0, files: {} }; }
+  try { return JSON.parse(fs.readFileSync(TRILANG_BASELINE, 'utf8')); } catch (error) {
+    console.warn(`[TRILANG-KEYS] база слабых словарей не прочитана (${error instanceof Error ? error.message : String(error)}) — считаю её пустой`);
+    return { total: 0, files: {} };
+  }
 }
 
 function weakByFile(findings) {

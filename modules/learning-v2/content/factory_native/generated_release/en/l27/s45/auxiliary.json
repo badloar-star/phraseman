@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-27:session-45:intro1:q",
       "responseFeedbackById": {
         "en:lesson-27:session-45:intro1:r2": {
-          "ru": "Mistake в единственном числе: is.",
-          "uk": "Mistake в однині: is."
+          "ru": "Речь об одном — Mistake: is.",
+          "uk": "Ідеться про одне — Mistake: is."
         },
         "en:lesson-27:session-45:intro1:r3": {
           "ru": "Перед прилагательным нужна is.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "10612ee27dbefe33f2cefb47be4507876e4f168eac5fa5b685fed691daadcff9"
+  "auxiliaryFingerprint": "cb938adf373b3fca607716026b6b8bc0c2bcaa42cfdade6e6c1757630edd3b26"
 }

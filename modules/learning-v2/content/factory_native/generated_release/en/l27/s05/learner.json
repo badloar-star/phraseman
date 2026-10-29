@@ -828,7 +828,7 @@
             "correct": false,
             "testedDimension": "Вы записались вчера. Назовите законченное время.",
             "feedbackByLocale": {
-              "ru": "С yesterday здесь past simple.",
+              "ru": "С yesterday здесь форма прошлого.",
               "uk": "Із yesterday тут past simple."
             }
           },
@@ -837,7 +837,7 @@
             "correct": false,
             "testedDimension": "Вы записались вчера. Назовите законченное время.",
             "feedbackByLocale": {
-              "ru": "Booking само по себе не образует сказуемое.",
+              "ru": "Booking само по себе здесь не подходит.",
               "uk": "Booking саме по собі не утворює присудок."
             }
           }
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "de8a16bcafdedde9347224ddc9b81ec5bc628e197278a10faf2a4cadd545b710"
+  "learnerFingerprint": "5b0a9853d2b336701d93c688fdff1892a614d8ddfb7edaed9f5932594c5d480c"
 }

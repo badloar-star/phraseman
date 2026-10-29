@@ -545,7 +545,7 @@
             "correct": false,
             "testedDimension": "Расскажите о покупке на прошлой неделе.",
             "feedbackByLocale": {
-              "ru": "С last week здесь past simple.",
+              "ru": "С last week здесь форма прошлого.",
               "uk": "Із last week тут past simple."
             }
           },
@@ -1047,5 +1047,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "757137652a1af339fbb30098ab6c122f1dd40e09567b6467c8c88ef095de8827"
+  "learnerFingerprint": "85522c352178821c0629aff968a0957d6f115ddc1e627463e9a464403a73622f"
 }

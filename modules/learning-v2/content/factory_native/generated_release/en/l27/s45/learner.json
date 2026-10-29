@@ -320,7 +320,7 @@
             "correct": false,
             "testedDimension": "Вы уже поговорили с ним.",
             "feedbackByLocale": {
-              "ru": "После have нужна третья форма spoken.",
+              "ru": "После have нужна форма spoken.",
               "uk": "Після have потрібна третя форма spoken."
             }
           },
@@ -1000,5 +1000,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "823870ac129fb294270c7c78edba61fb8a4ac3c9d40bba135928825cbd4f18c2"
+  "learnerFingerprint": "f994d6a86a27e5b2953e969f39b20184a709e119b1dd0ccf3d154db9f35c587d"
 }

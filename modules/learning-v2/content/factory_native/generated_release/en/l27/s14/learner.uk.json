@@ -506,7 +506,7 @@
             "correct": false,
             "testedDimension": "Ви подивилися його минулого року.",
             "feedbackByLocale": {
-              "ru": "С last year здесь past simple.",
+              "ru": "С last year здесь форма прошлого.",
               "uk": "Із last year тут past simple."
             }
           },
@@ -515,7 +515,7 @@
             "correct": false,
             "testedDimension": "Ви подивилися його минулого року.",
             "feedbackByLocale": {
-              "ru": "Для past simple нужна форма saw.",
+              "ru": "В прошлом нужна форма saw.",
               "uk": "Для past simple потрібна форма saw."
             }
           }
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "adbb2275f13541dcc9cedf08c256d4f9c21f64d531f0a303512445aeeeeee126"
+  "learnerFingerprint": "b83dc80ce50d63843cb7176f6914c88ecae6a716ba61372c99bc26ce5462d881"
 }

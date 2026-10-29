@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-27:session-15:intro2:q",
       "responseFeedbackById": {
         "en:lesson-27:session-15:intro2:r2": {
-          "ru": "С last Friday здесь past simple.",
-          "uk": "Із last Friday тут past simple."
+          "ru": "С last Friday здесь форма прошлого.",
+          "uk": "Із last Friday тут форма минулого."
         },
         "en:lesson-27:session-15:intro2:r3": {
           "ru": "Для прошлого события нужна форма played.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5eacf42d10423a4ba61578920bd37ae25ae44c92d98991f7e2a33b4d82e51a21"
+  "auxiliaryFingerprint": "e296f44f1fdf89986727f80ba2fb1112dd5d62883c4f3fbe69dee2cd01024066"
 }

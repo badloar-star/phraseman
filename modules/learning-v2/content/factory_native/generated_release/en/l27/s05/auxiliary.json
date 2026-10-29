@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-27:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-27:session-05:intro3:r2": {
-          "ru": "С законченным yesterday здесь past simple.",
-          "uk": "Із завершеним yesterday тут past simple."
+          "ru": "С законченным yesterday здесь форма прошлого.",
+          "uk": "Із завершеним yesterday тут форма минулого."
         },
         "en:lesson-27:session-05:intro3:r3": {
           "ru": "Для прошлого события нужна форма booked.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f4cc9e4c8e6d151bfa8dacb7941334a70d5c5f9d454b64b83ad60415168518a1"
+  "auxiliaryFingerprint": "f043f0765677b0e4a1f4ad6c7efb4010cb6527c32761213faa8e82e5f9787090"
 }

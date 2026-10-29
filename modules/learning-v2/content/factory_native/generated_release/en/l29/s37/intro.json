@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-29:session-37",
   "learningOutcomeByLocale": {
-    "ru": "как не раскрыть сюжет, назвать предисловие и сокращённую версию, уточнить книгу и автора.",
-    "uk": "як не розкрити сюжет, назвати передмову й скорочену версію, уточнити книжку та автора."
+    "ru": "спросить, есть ли в отзыве спойлер: Does this review contain a spoiler?",
+    "uk": "запитати, чи є у відгуку спойлер: Does this review contain a spoiler?"
   },
   "pages": [
     {

@@ -575,7 +575,7 @@
             "correct": false,
             "testedDimension": "Ви спекли його вчора.",
             "feedbackByLocale": {
-              "ru": "С yesterday здесь past simple.",
+              "ru": "С yesterday здесь форма прошлого.",
               "uk": "Із yesterday тут past simple."
             }
           },
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4a5223619fec6f207cf765dd0e3d80b28e4ab421b0b966d947000202f16b25a0"
+  "learnerFingerprint": "19a9353eeac277f9715630b218c9324050fb810da1ba0bcecaf762309bc79037"
 }

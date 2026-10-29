@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-27:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-27:session-16:intro2:r2": {
-          "ru": "С yesterday здесь past simple.",
-          "uk": "Із yesterday тут past simple."
+          "ru": "С yesterday здесь форма прошлого.",
+          "uk": "Із yesterday тут форма минулого."
         },
         "en:lesson-27:session-16:intro2:r3": {
           "ru": "Для прошлого события нужна форма baked.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "7c102046f5b85731bddea359c3e6b329d11c67b7303d0fae05a0efda53784130"
+  "auxiliaryFingerprint": "0a76b49e87f98b5a0facccabf2e3907a8f6e756bb22edef8ab947bc19ebd2439"
 }

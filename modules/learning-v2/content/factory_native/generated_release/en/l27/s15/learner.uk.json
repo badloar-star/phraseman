@@ -570,7 +570,7 @@
             "correct": false,
             "testedDimension": "Ви грали минулої п’ятниці. Назвіть завершений час.",
             "feedbackByLocale": {
-              "ru": "С last Friday здесь past simple.",
+              "ru": "С last Friday здесь форма прошлого.",
               "uk": "Із last Friday тут past simple."
             }
           },
@@ -1037,5 +1037,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fdc34cf51f1445ac923e2f2ec5f445f2ee6153b1b3ef3a107475d439f428e87c"
+  "learnerFingerprint": "e0fa44fef1d11d810d3e104b9eb98f21278a5238a932a1d6f8c071f497222e8f"
 }

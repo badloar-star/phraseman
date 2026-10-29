@@ -575,7 +575,7 @@
             "correct": false,
             "testedDimension": "Вы испекли его вчера.",
             "feedbackByLocale": {
-              "ru": "С yesterday здесь past simple.",
+              "ru": "С yesterday здесь форма прошлого.",
               "uk": "Із yesterday тут past simple."
             }
           },
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ab2c3eb9214f98c802f7983f02ce703c901547f893669a075c0178ce851de61f"
+  "learnerFingerprint": "8764cdd37fb1047830b770996dd25b5742d37f3aa03a25bb636da6e2e61b0f32"
 }

@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-27:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-27:session-10:intro3:r2": {
-          "ru": "С yesterday здесь past simple.",
-          "uk": "Із yesterday тут past simple."
+          "ru": "С yesterday здесь форма прошлого.",
+          "uk": "Із yesterday тут форма минулого."
         },
         "en:lesson-27:session-10:intro3:r3": {
           "ru": "Прошедшая форма pay в этом значении — paid.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "71a70597a9efdea7dac61fe32e279ebac2d40b22523cbe9f2a97492447fa8b78"
+  "auxiliaryFingerprint": "68fd9bd49d51a392c2b49b2f1217988d750cc9fe99b7e8d37518883a00e91f3e"
 }

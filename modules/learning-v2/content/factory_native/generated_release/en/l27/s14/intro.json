@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-14",
   "learningOutcomeByLocale": {
-    "ru": "if I were you; if + past simple, would + base verb; past simple / present perfect",
-    "uk": "if I were you; if + past simple, would + base verb; past simple / present perfect"
+    "ru": "спросить, что человек хотел бы посмотреть: What would you like to watch?",
+    "uk": "запитати, що людина хотіла б подивитися: What would you like to watch?"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Коли подивилися перший фільм"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, когда вы посмотрели первую часть фильма. Ответьте: I saw it last year — я посмотрел её в прошлом году. It заменяет the first film. Saw — прошедшая форма see. Last year называет законченное время, поэтому нужен Past Simple без have. Собираем предложение: I + saw + it + last year — кто, действие в прошлом, какой фильм, когда.",
-        "uk": "Друг запитує, коли ви подивилися першу частину фільму. Дайте відповідь: I saw it last year — я подивився її торік. It замінює the first film. Saw — минула форма see. Last year називає завершений час, тому потрібен Past Simple без have. Складаємо речення: I + saw + it + last year — хто, дія в минулому, який фільм, коли."
+        "ru": "Друг спрашивает, когда вы посмотрели первую часть фильма. Ответьте: I saw it last year — я посмотрел её в прошлом году. It заменяет the first film. Saw — прошедшая форма see. Last year называет законченное время, поэтому нужна форма прошлого без have. Собираем предложение: I + saw + it + last year — кто, действие в прошлом, какой фильм, когда.",
+        "uk": "Друг запитує, коли ви подивилися першу частину фільму. Дайте відповідь: I saw it last year — я подивився її торік. It замінює the first film. Saw — минула форма see. Last year називає завершений час, тому потрібна форма минулого без have. Складаємо речення: I + saw + it + last year — хто, дія в минулому, який фільм, коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-14:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "88ba2590800ca97456a5e52b7ab8cc2e878d57e07e3462fcbf373a6667a44192"
+  "introFingerprint": "645bba38d89174158268ffe35ba1c000a3f0368a01137f99b4c962efd50eead6"
 }

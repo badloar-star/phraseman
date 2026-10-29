@@ -585,8 +585,8 @@
             "correct": false,
             "testedDimension": "Уточніть час виходу з кафе.",
             "feedbackByLocale": {
-              "ru": "Нужен Past Simple: left.",
-              "uk": "Потрібен Past Simple: left."
+              "ru": "Нужна форма прошлого: left.",
+              "uk": "Потрібна форма минулого: left."
             }
           }
         ]
@@ -965,5 +965,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4828463e89ace55937adf6a19ee5753d49e002b682f99f177fafa0bf680f85dc"
+  "learnerFingerprint": "48d8fb7e549db79b676f7a68820a35236172cb7f22f8b24a5b308bac10a55a05"
 }

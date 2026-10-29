@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-27:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-27:session-13:intro2:r2": {
-          "ru": "С yesterday здесь past simple.",
-          "uk": "Із yesterday тут past simple."
+          "ru": "С yesterday здесь форма прошлого.",
+          "uk": "Із yesterday тут форма минулого."
         },
         "en:lesson-27:session-13:intro2:r3": {
           "ru": "Прошедшая форма hear — heard.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "4471ed5c466d95e2a31f32f1dfefc332e19616d1a515f5409c1cf865b8335054"
+  "auxiliaryFingerprint": "9965e748dd39f553fe95e8609667851f31cc81e090267b4cf17766185db72251"
 }

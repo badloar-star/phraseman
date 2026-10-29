@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-27:session-11:intro2:q",
       "responseFeedbackById": {
         "en:lesson-27:session-11:intro2:r2": {
-          "ru": "С last year здесь past simple.",
-          "uk": "Із last year тут past simple."
+          "ru": "С last year здесь форма прошлого.",
+          "uk": "Із last year тут форма минулого."
         },
         "en:lesson-27:session-11:intro2:r3": {
           "ru": "Прошедшая форма meet — met.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "d4af3ac659c0194a0d1ad5904bfafa3cdc7d13f392006dc83bec9b31a77d89c3"
+  "auxiliaryFingerprint": "3ba859087b495548faad4a3cc72c52d0956f3fc574ef05b38dcb2319b6a6169e"
 }

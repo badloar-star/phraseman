@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-27:session-07:intro2:q",
       "responseFeedbackById": {
         "en:lesson-27:session-07:intro2:r2": {
-          "ru": "С законченным last summer здесь past simple.",
-          "uk": "Із завершеним last summer тут past simple."
+          "ru": "С законченным last summer здесь форма прошлого.",
+          "uk": "Із завершеним last summer тут форма минулого."
         },
         "en:lesson-27:session-07:intro2:r3": {
           "ru": "Прошедшая форма take — took.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-27:session-07:intro3:q",
       "responseFeedbackById": {
         "en:lesson-27:session-07:intro3:r2": {
-          "ru": "С ago здесь past simple.",
-          "uk": "Із ago тут past simple."
+          "ru": "С ago здесь форма прошлого.",
+          "uk": "Із ago тут форма минулого."
         },
         "en:lesson-27:session-07:intro3:r3": {
           "ru": "Для прошлого события нужна личная форма found.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5bda75cfc6caa5c500c68ac5822d758efad6dc6c53daac096f740e5c09014ac9"
+  "auxiliaryFingerprint": "b63f12d8733beef9a979610126788c82a71e98c5bbc26e31ea18b7643bbaa5f6"
 }

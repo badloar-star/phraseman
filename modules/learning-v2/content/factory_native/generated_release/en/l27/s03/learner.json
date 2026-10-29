@@ -579,7 +579,7 @@
             "correct": false,
             "testedDimension": "Сейчас вечер. Расскажите о завершённой утренней прогулке.",
             "feedbackByLocale": {
-              "ru": "Утро закончилось: здесь past simple.",
+              "ru": "Утро закончилось: здесь форма прошлого.",
               "uk": "Ранок закінчився: тут past simple."
             }
           },
@@ -588,7 +588,7 @@
             "correct": false,
             "testedDimension": "Сейчас вечер. Расскажите о завершённой утренней прогулке.",
             "feedbackByLocale": {
-              "ru": "Taking само по себе не образует сказуемое.",
+              "ru": "Taking само по себе здесь не подходит.",
               "uk": "Taking саме по собі не утворює присудок."
             }
           }
@@ -1041,5 +1041,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "76f09b54dba431730402da5606db7bc52797ce9b83604d6650dee09e9a0cb044"
+  "learnerFingerprint": "f6162b96da3f4c5e81176acc59c6660501f76f85a57e5342441623f62e2c5154"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-19",
   "learningOutcomeByLocale": {
-    "ru": "if + past simple, would + base verb; if I were you; present perfect / past simple",
-    "uk": "if + past simple, would + base verb; if I were you; present perfect / past simple"
+    "ru": "сказать, что произошло бы при другом решении: We would arrive early if we left now.",
+    "uk": "сказати, що було б за іншого рішення: We would arrive early if we left now."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Коли помили посуд"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, когда вы помыли тарелки. Это было час назад. Ответьте: I washed them an hour ago — я помыл их час назад. Them заменяет dishes во множественном числе. Washed — прошедшая форма wash. An hour ago называет законченный момент; have не нужен. Собираем предложение: I + washed + them + an hour ago — кто, действие в прошлом, что помыл, когда.",
-        "uk": "Друг запитує, коли ви помили тарілки. Це було годину тому. Дайте відповідь: I washed them an hour ago — я помив їх годину тому. Them замінює dishes у множині. Washed — минула форма wash. An hour ago називає завершений момент; have не потрібне. Складаємо речення: I + washed + them + an hour ago — хто, дія в минулому, що помив, коли."
+        "ru": "Друг спрашивает, когда вы помыли тарелки. Это было час назад. Ответьте: I washed them an hour ago — я помыл их час назад. Them заменяет dishes в форме для нескольких. Washed — прошедшая форма wash. An hour ago называет законченный момент; have не нужен. Собираем предложение: I + washed + them + an hour ago — кто, действие в прошлом, что помыл, когда.",
+        "uk": "Друг запитує, коли ви помили тарілки. Це було годину тому. Дайте відповідь: I washed them an hour ago — я помив їх годину тому. Them замінює dishes у формі для кількох. Washed — минула форма wash. An hour ago називає завершений момент; have не потрібне. Складаємо речення: I + washed + them + an hour ago — хто, дія в минулому, що помив, коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-19:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ec2a96511ea7483c26cf5ddf7e17e51a4feb93ab51c6339bb14ad83c27fbcb4c"
+  "introFingerprint": "2dd61325e86b0ee0e38fc52dd6b3f41c90365ff20a9d5fbd235ff89161e6e07b"
 }

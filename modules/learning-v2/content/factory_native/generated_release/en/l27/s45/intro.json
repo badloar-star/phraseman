@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-45",
   "learningOutcomeByLocale": {
-    "ru": "wish + past; if I were; present perfect / past simple; unreal condition",
-    "uk": "wish + past; if I were; present perfect / past simple; unreal condition"
+    "ru": "спросить, где человек сейчас: Where are you now?",
+    "uk": "запитати, де людина зараз: Where are you now?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Зрозуміти помилку друга"
       },
       "bodyByLocale": {
-        "ru": "Друг неверно прочитал время встречи в нечётком сообщении. Вы понимаете, почему он ошибся. Скажите: Your mistake is understandable — твою ошибку можно понять. Understandable — понятный, объяснимый. Mistake — одно событие, поэтому нужна связка is. Порядок: назвать ошибку, поставить is, затем описать её прилагательным.\n\nСобираем предложение: Your mistake + is + understandable — что описываем → is для единственного числа → какое оно.",
-        "uk": "Друг неправильно прочитав час зустрічі в нечіткому повідомленні. Ви розумієте, чому він помилився. Скажіть: Your mistake is understandable — твою помилку можна зрозуміти. Understandable — зрозумілий, поясненний. Mistake — одна подія, тому потрібна зв’язка is. Порядок: назвати помилку, поставити is, потім описати її прикметником.\n\nСкладаємо речення: Your mistake + is + understandable — що описуємо → is для однини → яке воно."
+        "ru": "Друг неверно прочитал время встречи в нечётком сообщении. Вы понимаете, почему он ошибся. Скажите: Your mistake is understandable — твою ошибку можно понять. Understandable — понятный, объяснимый. Mistake — одно событие, поэтому нужна связка is. Порядок: назвать ошибку, поставить is, затем описать её прилагательным.\n\nСобираем предложение: Your mistake + is + understandable — что описываем → is для одного → какое оно.",
+        "uk": "Друг неправильно прочитав час зустрічі в нечіткому повідомленні. Ви розумієте, чому він помилився. Скажіть: Your mistake is understandable — твою помилку можна зрозуміти. Understandable — зрозумілий, поясненний. Mistake — одна подія, тому потрібна зв’язка is. Порядок: назвати помилку, поставити is, потім описати її прикметником.\n\nСкладаємо речення: Your mistake + is + understandable — що описуємо → is для одного → яке воно."
       },
       "question": {
         "interactionId": "en:lesson-27:session-45:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Коли зателефонували другові"
       },
       "bodyByLocale": {
-        "ru": "Вас спрашивают, когда вы звонили другу, которого ждёте. Это было десять минут назад. Ответьте: I called him ten minutes ago — я позвонил ему десять минут назад. После call человека называем без to: called him. Called — прошедшая форма call. Ten minutes ago требует здесь Past Simple, без have.\n\nСобираем предложение: I + called + him + ten minutes ago — кто → действие в прошлом → кому → когда.",
-        "uk": "Вас запитують, коли ви телефонували другові, на якого чекаєте. Це було десять хвилин тому. Дайте відповідь: I called him ten minutes ago — я зателефонував йому десять хвилин тому. Після call людину називаємо без to: called him. Called — минула форма call. Ten minutes ago потребує тут Past Simple, без have.\n\nСкладаємо речення: I + called + him + ten minutes ago — хто → дія в минулому → кому → коли."
+        "ru": "Вас спрашивают, когда вы звонили другу, которого ждёте. Это было десять минут назад. Ответьте: I called him ten minutes ago — я позвонил ему десять минут назад. После call человека называем без to: called him. Called — прошедшая форма call. Ten minutes ago требует здесь формы прошлого, без have.\n\nСобираем предложение: I + called + him + ten minutes ago — кто → действие в прошлом → кому → когда.",
+        "uk": "Вас запитують, коли ви телефонували другові, на якого чекаєте. Це було десять хвилин тому. Дайте відповідь: I called him ten minutes ago — я зателефонував йому десять хвилин тому. Після call людину називаємо без to: called him. Called — минула форма call. Ten minutes ago потребує тут форми минулого, без have.\n\nСкладаємо речення: I + called + him + ten minutes ago — хто → дія в минулому → кому → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-45:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d9e4eca40a33ce84428fbf6e4d2c404d0a52e2628b56feeefec38502c34d4065"
+  "introFingerprint": "0b2a6152bd8b4d114e3dad5de2b3b1b6ef826d5632f80e4fc9e3846ae395d9d4"
 }

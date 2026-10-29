@@ -864,7 +864,7 @@
             "correct": false,
             "testedDimension": "Вы позвонили ему вчера вечером.",
             "feedbackByLocale": {
-              "ru": "С last night здесь past simple.",
+              "ru": "С last night здесь форма прошлого.",
               "uk": "Із last night тут past simple."
             }
           },
@@ -995,5 +995,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "03398834ea8f2b97975760ea828457b233c9e52a42f3d4c4f1c49ee3a5d1abb3"
+  "learnerFingerprint": "b69a1e789464db9d5c3d35dcfff30077b0bbc025388e9be5ef98bd122fe22efc"
 }

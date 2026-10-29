@@ -799,7 +799,7 @@
             "correct": false,
             "testedDimension": "Ви помили посуд годину тому. Назвіть цей час.",
             "feedbackByLocale": {
-              "ru": "С an hour ago нужен past simple.",
+              "ru": "С an hour ago нужна форма прошлого.",
               "uk": "Із an hour ago потрібен past simple."
             }
           },
@@ -1038,5 +1038,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c1e16d7f6e536bc96fb40adddb1dc9c86ccec24f6c543ddf5f9e55bcd1378946"
+  "learnerFingerprint": "acf25dfecd214eb45d24591e41f53955982a75fef573e8c1555dbaada185b444"
 }

@@ -832,7 +832,7 @@
             "correct": false,
             "testedDimension": "Назвіть час: ви замовили десять хвилин тому.",
             "feedbackByLocale": {
-              "ru": "С ten minutes ago здесь past simple.",
+              "ru": "С ten minutes ago здесь форма прошлого.",
               "uk": "Із ten minutes ago тут past simple."
             }
           },
@@ -998,5 +998,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e54181a6f5146ffb8ccd9c76e6cba312318815a137b66e322ca474a4f0e97748"
+  "learnerFingerprint": "afe55a10f42dae7021370861ece81fec0752e4e4a183480785c3045614bae2e1"
 }

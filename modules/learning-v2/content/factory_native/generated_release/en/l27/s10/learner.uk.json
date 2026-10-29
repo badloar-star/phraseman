@@ -834,7 +834,7 @@
             "correct": false,
             "testedDimension": "Ви заплатили вчора. Назвіть завершений час.",
             "feedbackByLocale": {
-              "ru": "С yesterday здесь past simple.",
+              "ru": "С yesterday здесь форма прошлого.",
               "uk": "Із yesterday тут past simple."
             }
           },
@@ -1042,5 +1042,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "26bedd7237c26ce873ca6f7dbde9b22e780f5818c87e01b9529371bd4fe68f0d"
+  "learnerFingerprint": "279fdbe0e5af15ae69efb3aa88a74de3ed15cb00a45e032ba748f1cd92416d8e"
 }

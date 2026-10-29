@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-27:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-27:session-14:intro2:r2": {
-          "ru": "С last year здесь past simple.",
-          "uk": "Із last year тут past simple."
+          "ru": "С last year здесь форма прошлого.",
+          "uk": "Із last year тут форма минулого."
         },
         "en:lesson-27:session-14:intro2:r3": {
-          "ru": "В past simple нужна форма saw.",
-          "uk": "У past simple потрібна форма saw."
+          "ru": "В прошлом нужна форма saw.",
+          "uk": "У минулому потрібна форма saw."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5a3b688f6392046173cda87f9a5075558a7412bb719e397d134f1accee0923a4"
+  "auxiliaryFingerprint": "0974c22b410726079ebc41a61fb6b14169d67ddb6fe52f1cb96769a0c9224224"
 }

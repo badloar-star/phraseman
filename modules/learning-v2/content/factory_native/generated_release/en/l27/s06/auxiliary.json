@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-27:session-06:intro3:q",
       "responseFeedbackById": {
         "en:lesson-27:session-06:intro3:r2": {
-          "ru": "С yesterday здесь past simple.",
-          "uk": "Із yesterday тут past simple."
+          "ru": "С yesterday здесь форма прошлого.",
+          "uk": "Із yesterday тут форма минулого."
         },
         "en:lesson-27:session-06:intro3:r3": {
           "ru": "Прошедшая форма make — made.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "c462243ceb1508330dbdfdf74187bd63a53786747c3cfd1eaa26000e849b1ae4"
+  "auxiliaryFingerprint": "abad6391043d755fe1ee8a4fcdb1679d9949288aa4a7e6e716bce38ca7f3d291"
 }

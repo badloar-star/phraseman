@@ -50,12 +50,11 @@
  *  вечерней красной шапкой и иначе перекрашивается как фон — координатор 29.10: «аватар и кольцо не перекрашивать, только сцену») } */
   function recolor(o) {
     const data = o.data; const W = o.W; const sceneH = o.sceneH; const paintOld = painter(o.oldSpec, W, sceneH); const paintNew = painter(o.newSpec, W, sceneH);
-    const R = o.radius || 0; const hero = o.hero || null; const st = o.stats || {}; const swap = o.swap && o.swap.length ? o.swap : null; const ink = o.ink || null; const clear = o.clear && o.clear.length ? o.clear : null; const heroHide = !!o.heroHide; const keep = o.keep && o.keep.length ? o.keep : null;
+    const R = o.radius || 0; const hero = o.hero || null; const st = o.stats || {}; const swap = o.swap && o.swap.length ? o.swap : null; const ink = o.ink || null; const clear = o.clear && o.clear.length ? o.clear : null; const heroHide = !!o.heroHide; const keep = o.keep && o.keep.length ? o.keep : null; const fillCorners = !!o.fillCorners; /* углы скругления — формулой сцены: макет «нижний край без скругления» (владелец 29.10) */
     const inPill = (r, x, y) => { const m = 4; if (x < r.x0 + m || x >= r.x1 - m || y < r.y0 + m || y >= r.y1 - m) return false; const rad = Math.min(r.x1 - r.x0, r.y1 - r.y0) / 2; const cx = x < r.x0 + rad ? r.x0 + rad : x >= r.x1 - rad ? r.x1 - rad : x; const cy = y < r.y0 + rad ? r.y0 + rad : y >= r.y1 - rad ? r.y1 - rad : y; return Math.hypot(x - cx, y - cy) <= rad - m; }; st.bg = st.bg || 0; st.white = st.white || 0; st.dark = st.dark || 0; st.keep = st.keep || 0; st.hero = st.hero || 0; st.out = st.out || 0;
     for (let y = 0; y < sceneH; y += 1) {
       for (let x = 0; x < W; x += 1) {
-        if (R > 0 && y > sceneH - R && (x < R || x >= W - R)) { // снаружи скруглённого угла сцены — фон страницы, не трогаем
-          const cx = x < R ? R : W - R; const cy = sceneH - R; if (Math.hypot(x - cx, y - cy) > R) { st.out += 1; continue; }
+        if (R > 0 && y > sceneH - R && (x < R || x >= W - R)) { // снаружи скруглённого угла сцены — фон страницы, не трогаем          const cx = x < R ? R : W - R; const cy = sceneH - R; if (Math.hypot(x - cx, y - cy) > R) { if (fillCorners) { const i0 = (y * W + x) * 4; const nc0 = paintNew(x, y); data[i0] = clamp(nc0[0]); data[i0 + 1] = clamp(nc0[1]); data[i0 + 2] = clamp(nc0[2]); st.corner = (st.corner || 0) + 1; continue; } st.out += 1; continue; }
         }        if (keep) { let k = false; for (let j = 0; j < keep.length; j += 1) { const c = keep[j]; if (Math.hypot(x - c.cx, y - c.cy) <= c.r) { k = true; break; } } if (k) { st.kept = (st.kept || 0) + 1; continue; } } // как снято: аватар, кольцо, бейдж
         const i = (y * W + x) * 4; const pr = data[i]; const pg = data[i + 1]; const pb = data[i + 2];
         const oc = paintOld(x, y); const nc = paintNew(x, y);

@@ -1,0 +1,16 @@
+/* scene-edge.css — макет «Нижний край сцены» (см. scene-edge.app.js): четыре телефона в ряд (сейчас + три варианта) уменьшены до 0,8,
+   под каждым — лупа кромки с метками и строка чисел; служебных надписей в телефоне нет. Стили телефонов/рядов — scene-palettes.css. */
+#se .sp-real-row h3 { font-size: 20px; margin: 0 0 12px; }
+#se .sp-real-row { margin-top: 36px; }
+#se .se-phones { display: flex; gap: 14px; align-items: flex-start; zoom: 0.8; }
+#se .col { width: 430px; flex: none; }
+#se .col > .lbl { font-size: 15px; color: #FFFFFF; font-weight: 700; margin-bottom: 8px; }
+#se .sp-rf-badge { display: none !important; }
+.se-loupe { display: block; width: 430px; margin-top: 10px; border-radius: 10px; background: #000; }
+.se-note { margin-top: 8px; font-size: 13px; line-height: 18px; color: #C6CBD1; }
+.sf-empty { color: #8E8E96; font-size: 15px; margin: 40px 0; }
+.sf-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0 8px; }
+/* перерисованный заголовок урока — как в чистом макете */
+.sf-copy { position: absolute; left: 21px; z-index: 25; color: #fff; pointer-events: none; display: flex; flex-direction: column; gap: 4px; }
+.sf-copy small { font-size: 13.6px; line-height: 17px; color: rgba(255, 255, 255, .72); }
+.sf-copy b { font-weight: 700; font-size: 25px; line-height: 30px; letter-spacing: -.2px; text-wrap: balance; }

@@ -68,14 +68,15 @@ window.SceneReal = (() => {
     let frame; try { frame = await loadAny(job.src); } catch (e) { return fallback(row, job, e.message); }
     const { c, g } = canvasOf(frame, W, H);
     // область работы: сцена (перекраска фона) или полоса карточек под сценой (job.cards — новые стили карточек, scene-cards.js)
-    const ry0 = job.cards ? job.cards.y0 : 0; const ry1 = job.cards ? job.cards.y1 : job.sceneH;
+    const ry0 = job.cards ? job.cards.y0 : 0; const ry1 = job.cards ? job.cards.y1 : Math.min(H, job.sceneH + (job.postBelow || 0)); /* postBelow: строки под краем сцены для пост-обработки (переход под карточку) */
     let scene; try { scene = g.getImageData(0, ry0, W, ry1 - ry0); } catch (e) { return fallback(row, job, 'пиксели недоступны: ' + e.name); }
     const hero = job.cards ? null : await heroAlpha(job); const swap = !job.cards && job.ink && job.cta ? buttonsOf(scene, W, job.sceneH, job) : null;
     const bgRow = job.cards ? ((y) => { const i = ((y - ry0) * W + 8) * 4; return [scene.data[i], scene.data[i + 1], scene.data[i + 2]]; }) : null;
     for (const s of job.strats) {
       const ph = phones.find((p) => p.dataset.strat === s.key); if (!ph) continue;
       const data = new Uint8ClampedArray(scene.data);
-      const st = job.cards ? window.SceneCards.restyle({ data, W, y0: ry0, cards: job.cards.rects, fill: job.cards.fill, bgRow, accent: job.cards.accent, dark: job.ap === 'dark', v: s.spec.v }) : SR.recolor({ data, W, H: job.sceneH, sceneH: job.sceneH, oldSpec: job.old, newSpec: s.spec, radius: job.radius, hero, ink: job.ink || null, swap, clear: job.clear || null, keep: job.keep || null, heroHide: !!job.heroMove });
+      const st = job.cards ? window.SceneCards.restyle({ data, W, y0: ry0, cards: job.cards.rects, fill: job.cards.fill, bgRow, accent: job.cards.accent, dark: job.ap === 'dark', v: s.spec.v }) : SR.recolor({ data, W, H: job.sceneH, sceneH: job.sceneH, oldSpec: job.old, newSpec: s.spec, radius: job.radius, hero, ink: job.ink || null, swap, clear: job.clear || null, keep: job.keep || null, fillCorners: !!job.fillCorners, heroHide: !!job.heroMove });
+      if (job.post) { try { job.post(data, W, ry1 - ry0, job, s); } catch (e) { console.log(LOG, 'post упал:', job.file, s.key, e.message); } } // пост-обработка варианта (нижний край сцены) — до вывода на холст
       // страж: если кадр не совпал с моделью сцены (много «цветных» пикселей вне героя — другое состояние или тема), говорим об этом на телефоне
       const total = job.cards ? 1 : st.bg + st.white + st.dark + st.keep + st.hero; const keepShare = job.cards ? 0 : (total ? st.keep / total : 0);
       const keepMax = job.keepMax || 0.12;

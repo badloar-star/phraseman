@@ -513,6 +513,42 @@ function LearningV2SessionIntro({
     advanceLockRef.current = false;
   }, [safeIndex]);
 
+  // зачем (линт rules-of-hooks, 29.10): эффект поднят выше раннего `if (!screen) return null` — иначе смена «экранов нет ↔ есть» роняла бы вступление.
+  // зачем (координатор 17.10, владелец: «почему всё так размыто»; правило «сперва логи»): какие стили реально применены к тексту вступления и его карточке в момент показа страницы —
+  // тень текста, прозрачность, трансформ, тень карточки, шрифт/плотность. Рядом [INTRO-BLUR] entering/layout: дошла ли анимация появления до конца и какие размеры у карточки.
+  useEffect(() => {
+    // зачем (Ревизор 3.44, разбор красных 18.10): журнал только в dev и не в сторовой сборке; заодно тест вступления без PixelRatio в подмене react-native перестаёт падать на `PixelRatio.get()` (TypeError «reading get»)
+    if (!DIAG_ENABLED) return;
+    const fx = (style: unknown) => {
+      const f = (StyleSheet.flatten(style as never) ?? {}) as Record<string, unknown>;
+      return {
+        fontSize: f.fontSize ?? null,
+        fontWeight: f.fontWeight ?? null,
+        opacity: f.opacity ?? null,
+        transform: f.transform ?? null,
+        textShadowRadius: f.textShadowRadius ?? null,
+        textShadowColor: f.textShadowColor ?? null,
+        boxShadow: f.boxShadow ? 'yes' : 'no',
+        backgroundColor: f.backgroundColor ?? null,
+      };
+    };
+    console.log('[INTRO-BLUR] page', JSON.stringify({
+      page: safeIndex,
+      lesson: lessonId,
+      entering: !reducedMotion,
+      reducedMotion,
+      // зачем (разбор красных 18.10): тест вступления подменяет react-native без PixelRatio — журнал не должен ронять экран, поэтому `?.`
+      pixelRatio: PixelRatio?.get?.() ?? null,
+      fontScale: PixelRatio?.getFontScale?.() ?? null,
+      title: fx(sx.title),
+      paragraph: fx(sx.readerParagraph),
+      card: fx([sx.knowledgeFlow, lv2CardStyle(g)]),
+      textColor: g.text,
+      titleColor: lv2Alpha(g.text, 0.86),
+      cardFill: g.plateFillFrom,
+    })); // guard-ok: журнал стилей текста вступления
+  }, [g, lessonId, reducedMotion, safeIndex, sx.knowledgeFlow, sx.readerParagraph, sx.title]);
+
   if (!screen) return null;
 
   const chooseAnswer = (choiceIndex: number) => {
@@ -585,40 +621,6 @@ function LearningV2SessionIntro({
     setIndex((value) => Math.min(value + 1, screens.length - 1));
   };
 
-  // зачем (координатор 17.10, владелец: «почему всё так размыто»; правило «сперва логи»): какие стили реально применены к тексту вступления и его карточке в момент показа страницы —
-  // тень текста, прозрачность, трансформ, тень карточки, шрифт/плотность. Рядом [INTRO-BLUR] entering/layout: дошла ли анимация появления до конца и какие размеры у карточки.
-  useEffect(() => {
-    // зачем (Ревизор 3.44, разбор красных 18.10): журнал только в dev и не в сторовой сборке; заодно тест вступления без PixelRatio в подмене react-native перестаёт падать на `PixelRatio.get()` (TypeError «reading get»)
-    if (!DIAG_ENABLED) return;
-    const fx = (style: unknown) => {
-      const f = (StyleSheet.flatten(style as never) ?? {}) as Record<string, unknown>;
-      return {
-        fontSize: f.fontSize ?? null,
-        fontWeight: f.fontWeight ?? null,
-        opacity: f.opacity ?? null,
-        transform: f.transform ?? null,
-        textShadowRadius: f.textShadowRadius ?? null,
-        textShadowColor: f.textShadowColor ?? null,
-        boxShadow: f.boxShadow ? 'yes' : 'no',
-        backgroundColor: f.backgroundColor ?? null,
-      };
-    };
-    console.log('[INTRO-BLUR] page', JSON.stringify({
-      page: safeIndex,
-      lesson: lessonId,
-      entering: !reducedMotion,
-      reducedMotion,
-      // зачем (разбор красных 18.10): тест вступления подменяет react-native без PixelRatio — журнал не должен ронять экран, поэтому `?.`
-      pixelRatio: PixelRatio?.get?.() ?? null,
-      fontScale: PixelRatio?.getFontScale?.() ?? null,
-      title: fx(sx.title),
-      paragraph: fx(sx.readerParagraph),
-      card: fx([sx.knowledgeFlow, lv2CardStyle(g)]),
-      textColor: g.text,
-      titleColor: lv2Alpha(g.text, 0.86),
-      cardFill: g.plateFillFrom,
-    })); // guard-ok: журнал стилей текста вступления
-  }, [g, lessonId, reducedMotion, safeIndex, sx.knowledgeFlow, sx.readerParagraph, sx.title]);
   const logIntroLayout = (node: string) => (e: LayoutChangeEvent) => {
     if (!DIAG_ENABLED) return;
     const { x, y, width, height } = e.nativeEvent.layout;

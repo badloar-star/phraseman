@@ -1522,7 +1522,6 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
     const eliteQuickTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const eliteActivityTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const fadeAnim = useRef(new Animated.Value(1)).current;
-    const diagChecked = true;
     useEffect(() => {
         if (!homeRuntimeActive) return undefined;
         fadeAnim.setValue(0);
@@ -2426,8 +2425,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             }
         });
     };
-    if (!diagChecked)
-        return <ScreenGradient><View /></ScreenGradient>;
+    // зачем (линт rules-of-hooks, 29.10): здесь стоял мёртвый `if (!diagChecked) return` (флаг всегда был true) — ниже идут
+    // хуки, и любая будущая правка условия уронила бы Главную «Rendered more/fewer hooks». Ранних выходов до хуков быть не должно.
     // ── Новый стиль главного экрана ──────────────────────────────────────────
     const renderNewHome = () => {
         const lastLessonImage = getHomeLastLessonImage(themeMode);

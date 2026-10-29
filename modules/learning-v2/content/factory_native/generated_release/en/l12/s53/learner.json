@@ -186,7 +186,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ my sleeping bag.",
+        "gappedTargetPhrase": "I ___ my sleeping bag yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-53:i03:r1",
@@ -407,7 +407,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the airbed.",
+        "gappedTargetPhrase": "I ___ the airbed yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-53:i06:r1",
@@ -629,7 +629,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ a tent peg.",
+        "gappedTargetPhrase": "I ___ a tent peg yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-53:i09:r1",
@@ -851,7 +851,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the camping stove.",
+        "gappedTargetPhrase": "I ___ the camping stove yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-53:i12:r1",
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6c2d312dd786be59901a3d016bfdd4ee519cec4fcba1bf7900dcce2d68bb606c"
+  "learnerFingerprint": "22e9e7af6f085ca6299b1656d40055846e1fbd8bd4e76d2d2266bd85a498a773"
 }

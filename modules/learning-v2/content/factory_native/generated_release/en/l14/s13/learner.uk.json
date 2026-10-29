@@ -663,7 +663,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для змісту: Вони не йшли крізь замет",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна weren’t.",
+              "ru": "С этим словом нужна weren’t.",
               "uk": "З цим підметом потрібна weren’t."
             }
           }
@@ -886,7 +886,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для змісту: Я не їхав за кермом у заметіль",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна wasn’t.",
+              "ru": "С этим словом нужна wasn’t.",
               "uk": "З цим підметом потрібна wasn’t."
             }
           }
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ccc45584839f31d012787d3d50f86e076cb5385d7a85f638b9b41372dfc5073f"
+  "learnerFingerprint": "d333ec09dc4cddbc99835530652eed1b2f22f340dc4dbeb90544103a0985b4c7"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-14:session-01",
   "learningOutcomeByLocale": {
-    "ru": "Past Continuous: subject + was/were + verb-ing",
-    "uk": "Past Continuous: subject + was/were + verb-ing"
+    "ru": "сказать, чем вы были заняты в восемь: I was reading at eight.",
+    "uk": "сказати, чим ви були зайняті о восьмій: I was reading at eight."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Що ви читали о восьмій"
       },
       "bodyByLocale": {
-        "ru": "Вчера в восемь вечера вы сидели на диване и читали комикс. I was reading a comic book. — Я читал комикс. Past Continuous показывает действие, которое шло в определённый момент прошлого. Соберите предложение: I + was + reading + a comic book. Сначала назовите, кто действовал, затем поставьте was и глагол с -ing: read → reading. В конце добавьте, что читали. Здесь was reading передаёт процесс чтения в восемь, а не сообщает, что комикс уже прочитан.",
-        "uk": "Учора о восьмій вечора ви сиділи на дивані й читали комікс. I was reading a comic book. — Я читав комікс. Past Continuous показує дію, яка тривала в певний момент минулого. Складіть речення: I + was + reading + a comic book. Спочатку назвіть, хто діяв, потім поставте was і дієслово з -ing: read → reading. Наприкінці додайте, що читали. Тут was reading передає процес читання о восьмій, а не повідомляє, що комікс уже прочитано."
+        "ru": "Вчера в восемь вечера вы сидели на диване и читали комикс. I was reading a comic book. — Я читал комикс. Форма was / were + -ing показывает действие, которое шло в определённый момент прошлого. Соберите предложение: I + was + reading + a comic book. Сначала назовите, кто действовал, затем поставьте was и глагол с -ing: read → reading. В конце добавьте, что читали. Здесь was reading передаёт процесс чтения в восемь, а не сообщает, что комикс уже прочитан.",
+        "uk": "Учора о восьмій вечора ви сиділи на дивані й читали комікс. I was reading a comic book. — Я читав комікс. Форма was / were + -ing показує дію, яка тривала в певний момент минулого. Складіть речення: I + was + reading + a comic book. Спочатку назвіть, хто діяв, потім поставте was і дієслово з -ing: read → reading. Наприкінці додайте, що читали. Тут was reading передає процес читання о восьмій, а не повідомляє, що комікс уже прочитано."
       },
       "question": {
         "interactionId": "en:lesson-14:session-01:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ce0c65517512c27612a500df21760798b84961ddeb8c0312c1e3fe63cc919922"
+  "introFingerprint": "2e02641de5ff81de1f52c6078f2e5006c5ff085ed23ac2f8d40b941f99a3b6c8"
 }

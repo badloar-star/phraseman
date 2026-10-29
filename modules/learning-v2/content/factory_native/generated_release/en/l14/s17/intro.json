@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-14:session-17",
   "learningOutcomeByLocale": {
-    "ru": "Past Continuous as background of a past story",
-    "uk": "Past Continuous as background of a past story"
+    "ru": "описать, что происходило вокруг: It was raining that morning.",
+    "uk": "описати, що відбувалося навколо: It was raining that morning."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Що відбувалося біля машини"
       },
       "bodyByLocale": {
-        "ru": "Вчера такси остановилось рядом, когда вы меняли спущенную шину. Начните рассказ с действия, которое уже шло: I was changing a flat tyre. — Я менял спущенную шину. Past Continuous задаёт фон: показывает, чем вы были заняты в момент другого события. Соберите I + was + changing; у change уберите e и добавьте -ing. Затем назовите предмет: a flat tyre. I changed a flat tyre тоже грамматически верно, но представляет замену целиком, а здесь нужен процесс при остановке такси.",
-        "uk": "Учора таксі зупинилося поруч, коли ви міняли спущену шину. Почніть розповідь із дії, яка вже тривала: I was changing a flat tyre. — Я міняв спущену шину. Past Continuous задає тло: показує, чим ви були зайняті в момент іншої події. Складіть I + was + changing; у change приберіть e й додайте -ing. Потім назвіть предмет: a flat tyre. I changed a flat tyre теж граматично правильно, але подає заміну цілком, а тут потрібен процес під час зупинки таксі."
+        "ru": "Вчера такси остановилось рядом, когда вы меняли спущенную шину. Начните рассказ с действия, которое уже шло: I was changing a flat tyre. — Я менял спущенную шину. Форма was / were + -ing задаёт фон: показывает, чем вы были заняты в момент другого события. Соберите I + was + changing; у change уберите e и добавьте -ing. Затем назовите предмет: a flat tyre. I changed a flat tyre тоже грамматически верно, но представляет замену целиком, а здесь нужен процесс при остановке такси.",
+        "uk": "Учора таксі зупинилося поруч, коли ви міняли спущену шину. Почніть розповідь із дії, яка вже тривала: I was changing a flat tyre. — Я міняв спущену шину. Форма was / were + -ing задає тло: показує, чим ви були зайняті в момент іншої події. Складіть I + was + changing; у change приберіть e й додайте -ing. Потім назвіть предмет: a flat tyre. I changed a flat tyre теж граматично правильно, але подає заміну цілком, а тут потрібен процес під час зупинки таксі."
       },
       "question": {
         "interactionId": "en:lesson-14:session-17:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8d27c096bb67b304d1aab19cc1261aa40e76d6e3f31682ddc6a01f7ba3f9962f"
+  "introFingerprint": "9edb95d20bf6c6a76e5c7dd6507586694b2353b05273882ddfea1522320eeffd"
 }

@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У той момент минулого. Виберіть was або were",
+      "prompt": "Ідеться про момент у минулому. Виберіть was або were",
       "responseOptions": [
         {
           "responseId": "en:lesson-14:session-04:i03:r1",
@@ -180,12 +180,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "accessibilityLabel": "Ідеться про момент у минулому. Виберіть was або were",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В тот момент прошлого. Выберите was или were",
-          "uk": "У той момент минулого. Виберіть was або were"
+          "ru": "Речь о моменте в прошлом. Выберите was или were",
+          "uk": "Ідеться про момент у минулому. Виберіть was або were"
         },
         "gappedTargetPhrase": "I ___ filling a spray bottle.",
         "gapOptions": [
@@ -202,21 +202,21 @@
             "text": "is"
           }
         ],
-        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-14:session-04:i03:r2",
             "correct": false,
-            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим в прошлом нужна was.",
-              "uk": "З цим підметом у минулому потрібна was."
+              "ru": "С этим словом в прошлом нужна was.",
+              "uk": "З цим словом у минулому потрібна was."
             }
           },
           {
             "responseId": "en:lesson-14:session-04:i03:r3",
             "correct": false,
-            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
             "feedbackByLocale": {
               "ru": "Это не форма прошлого. Нужна was.",
               "uk": "Це не форма минулого. Потрібна was."
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У той момент минулого. Виберіть was або were",
+      "prompt": "Ідеться про момент у минулому. Виберіть was або were",
       "responseOptions": [
         {
           "responseId": "en:lesson-14:session-04:i06:r1",
@@ -403,14 +403,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "accessibilityLabel": "Ідеться про момент у минулому. Виберіть was або were",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В тот момент прошлого. Выберите was или were",
-          "uk": "У той момент минулого. Виберіть was або were"
+          "ru": "Речь о моменте в прошлом. Выберите was или were",
+          "uk": "Ідеться про момент у минулому. Виберіть was або were"
         },
-        "gappedTargetPhrase": "She ___ using a scrubbing brush.",
+        "gappedTargetPhrase": "She ___ using a scrubbing brush at that moment.",
         "gapOptions": [
           {
             "responseId": "en:lesson-14:session-04:i06:r1",
@@ -425,21 +425,21 @@
             "text": "is"
           }
         ],
-        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-14:session-04:i06:r2",
             "correct": false,
-            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим в прошлом нужна was.",
-              "uk": "З цим підметом у минулому потрібна was."
+              "ru": "С этим словом в прошлом нужна was.",
+              "uk": "З цим словом у минулому потрібна was."
             }
           },
           {
             "responseId": "en:lesson-14:session-04:i06:r3",
             "correct": false,
-            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
             "feedbackByLocale": {
               "ru": "Это не форма прошлого. Нужна was.",
               "uk": "Це не форма минулого. Потрібна was."
@@ -608,7 +608,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У той момент минулого. Виберіть was або were",
+      "prompt": "Ідеться про момент у минулому. Виберіть was або were",
       "responseOptions": [
         {
           "responseId": "en:lesson-14:session-04:i09:r1",
@@ -625,14 +625,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "accessibilityLabel": "Ідеться про момент у минулому. Виберіть was або were",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В тот момент прошлого. Выберите was или were",
-          "uk": "У той момент минулого. Виберіть was або were"
+          "ru": "Речь о моменте в прошлом. Выберите was или were",
+          "uk": "Ідеться про момент у минулому. Виберіть was або were"
         },
-        "gappedTargetPhrase": "We ___ using soapy water.",
+        "gappedTargetPhrase": "We ___ using soapy water at that moment.",
         "gapOptions": [
           {
             "responseId": "en:lesson-14:session-04:i09:r1",
@@ -647,21 +647,21 @@
             "text": "are"
           }
         ],
-        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-14:session-04:i09:r2",
             "correct": false,
-            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим в прошлом нужна were.",
-              "uk": "З цим підметом у минулому потрібна were."
+              "ru": "С этим словом в прошлом нужна were.",
+              "uk": "З цим словом у минулому потрібна were."
             }
           },
           {
             "responseId": "en:lesson-14:session-04:i09:r3",
             "correct": false,
-            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
             "feedbackByLocale": {
               "ru": "Это не форма прошлого. Нужна were.",
               "uk": "Це не форма минулого. Потрібна were."
@@ -831,7 +831,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "У той момент минулого. Виберіть was або were",
+      "prompt": "Ідеться про момент у минулому. Виберіть was або were",
       "responseOptions": [
         {
           "responseId": "en:lesson-14:session-04:i12:r1",
@@ -848,14 +848,14 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "У той момент минулого. Виберіть was або were",
+      "accessibilityLabel": "Ідеться про момент у минулому. Виберіть was або were",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В тот момент прошлого. Выберите was или were",
-          "uk": "У той момент минулого. Виберіть was або were"
+          "ru": "Речь о моменте в прошлом. Выберите was или were",
+          "uk": "Ідеться про момент у минулому. Виберіть was або were"
         },
-        "gappedTargetPhrase": "They ___ watching the soap bubbles.",
+        "gappedTargetPhrase": "They ___ watching the soap bubbles at that moment.",
         "gapOptions": [
           {
             "responseId": "en:lesson-14:session-04:i12:r1",
@@ -870,21 +870,21 @@
             "text": "are"
           }
         ],
-        "testedDimension": "У той момент минулого. Виберіть was або were",
+        "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-14:session-04:i12:r2",
             "correct": false,
-            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим в прошлом нужна were.",
-              "uk": "З цим підметом у минулому потрібна were."
+              "ru": "С этим словом в прошлом нужна were.",
+              "uk": "З цим словом у минулому потрібна were."
             }
           },
           {
             "responseId": "en:lesson-14:session-04:i12:r3",
             "correct": false,
-            "testedDimension": "У той момент минулого. Виберіть was або were",
+            "testedDimension": "Ідеться про момент у минулому. Виберіть was або were",
             "feedbackByLocale": {
               "ru": "Это не форма прошлого. Нужна were.",
               "uk": "Це не форма минулого. Потрібна were."
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8d74165beee9b00689728af1829c30a7d8ffeca2292c496adf26728971c9eae3"
+  "learnerFingerprint": "a7fd39f75350427142da0dee76f9a4683fc4354eb39b9f3032ea77023f2caae3"
 }

@@ -186,7 +186,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ a hair tie.",
+        "gappedTargetPhrase": "I ___ a hair tie yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-56:i03:r1",
@@ -408,7 +408,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ a hair clip.",
+        "gappedTargetPhrase": "I ___ a hair clip yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-56:i06:r1",
@@ -629,7 +629,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ a hairpin.",
+        "gappedTargetPhrase": "I ___ a hairpin yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-56:i09:r1",
@@ -851,7 +851,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ my shower cap.",
+        "gappedTargetPhrase": "I ___ my shower cap yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-56:i12:r1",
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1303757d632f1d54052052b6067aa98b5d61830efb68894a34331f3f9c9fa5ad"
+  "learnerFingerprint": "f90125ba474e75099778359c91bef0e3282cb6415dbd4f4dae187bc0c3a7027a"
 }

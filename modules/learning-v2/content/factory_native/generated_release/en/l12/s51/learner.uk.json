@@ -186,7 +186,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ an ice cube.",
+        "gappedTargetPhrase": "I ___ an ice cube yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-51:i03:r1",
@@ -408,7 +408,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the ice tray.",
+        "gappedTargetPhrase": "I ___ the ice tray yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-51:i06:r1",
@@ -630,7 +630,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ a freezer bag.",
+        "gappedTargetPhrase": "I ___ a freezer bag yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-51:i09:r1",
@@ -852,7 +852,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the food container.",
+        "gappedTargetPhrase": "I ___ the food container yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-51:i12:r1",
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8b75a692a39864a2ae36a74c22ebbc3fe4647e9e277142cfa13a7336413325bc"
+  "learnerFingerprint": "016a9031cc88cbce47deb29cb53a8f2b2aaca7de073ba9637482876b95a65d90"
 }

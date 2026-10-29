@@ -186,7 +186,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ a reusable bag.",
+        "gappedTargetPhrase": "I ___ a reusable bag yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-49:i03:r1",
@@ -408,7 +408,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the unwanted clothes.",
+        "gappedTargetPhrase": "I ___ the unwanted clothes yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-49:i06:r1",
@@ -630,7 +630,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ a brand-new coat.",
+        "gappedTargetPhrase": "I ___ a brand-new coat yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-49:i09:r1",
@@ -852,7 +852,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ the worn-out shoes.",
+        "gappedTargetPhrase": "I ___ the worn-out shoes yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-49:i12:r1",
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7a8ad64fc61b10e05dea2f2d440205631e0302c0729f425be0a78212e28abdb6"
+  "learnerFingerprint": "463e7c9d68d348796b21fe223a23b3154af1be46230ee55de9b951a03892a770"
 }

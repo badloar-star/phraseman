@@ -664,7 +664,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для смысла: Они не пользовались подставкой для нот",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна weren’t.",
+              "ru": "С этим словом нужна weren’t.",
               "uk": "З цим підметом потрібна weren’t."
             }
           }
@@ -887,7 +887,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для смысла: Я не читал ноты",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна wasn’t.",
+              "ru": "С этим словом нужна wasn’t.",
               "uk": "З цим підметом потрібна wasn’t."
             }
           }
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b426b367b82f6a464a9e1c0a3b51126b7a8e2feab5254f17a85785e7e808a379"
+  "learnerFingerprint": "30970706d812f8a32b19eb2e5a28009e659c0cccaae516fd230eded258833540"
 }

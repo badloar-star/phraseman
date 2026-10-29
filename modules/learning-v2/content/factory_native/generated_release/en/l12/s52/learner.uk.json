@@ -186,7 +186,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ a sticky note.",
+        "gappedTargetPhrase": "I ___ a sticky note yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-52:i03:r1",
@@ -408,7 +408,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ a paper clip.",
+        "gappedTargetPhrase": "I ___ a paper clip yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-52:i06:r1",
@@ -630,7 +630,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ a rubber band.",
+        "gappedTargetPhrase": "I ___ a rubber band yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-52:i09:r1",
@@ -852,7 +852,7 @@
           "ru": "Речь о прошлом. Выберите форму",
           "uk": "Йдеться про минуле. Виберіть форму"
         },
-        "gappedTargetPhrase": "I ___ a drawing pin.",
+        "gappedTargetPhrase": "I ___ a drawing pin yesterday.",
         "gapOptions": [
           {
             "responseId": "en:lesson-12:session-52:i12:r1",
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "45d3cf9f718110a389eccce1a6f806711c4ca1b389683fcaa9a14d4d893471ff"
+  "learnerFingerprint": "b3d63b332e8e7c8da243b33c67f3ffc72fc9c50494a4a979dd23795ae8a8b755"
 }

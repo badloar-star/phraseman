@@ -665,7 +665,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для змісту: Я не користувався велосипедним насосом",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна wasn’t.",
+              "ru": "С этим словом нужна wasn’t.",
               "uk": "З цим підметом потрібна wasn’t."
             }
           }
@@ -888,7 +888,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для змісту: Вони не користувалися велосипедним дзвінком",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна weren’t.",
+              "ru": "С этим словом нужна weren’t.",
               "uk": "З цим підметом потрібна weren’t."
             }
           }
@@ -1116,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "06e80e1d1c10349bbf266f1e5b65c52cff5d2db75b3d5d8f081913914f28f8dc"
+  "learnerFingerprint": "a497c3ad868cfed0f5437802d8dd3c91ea3e7cfc9b2502dec0afc91f8648cafe"
 }

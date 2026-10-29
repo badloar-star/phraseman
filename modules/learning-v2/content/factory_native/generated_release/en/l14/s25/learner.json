@@ -166,7 +166,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В тот момент прошлого. Выберите was или were",
+      "prompt": "Речь о моменте в прошлом. Выберите was или were",
       "responseOptions": [
         {
           "responseId": "en:lesson-14:session-25:i03:r1",
@@ -183,11 +183,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "accessibilityLabel": "Речь о моменте в прошлом. Выберите was или were",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В тот момент прошлого. Выберите was или were",
+          "ru": "Речь о моменте в прошлом. Выберите was или were",
           "uk": "У той момент минулого. Виберіть was або were"
         },
         "gappedTargetPhrase": "I ___ cleaning my ankle boots when you called.",
@@ -212,7 +212,7 @@
             "correct": false,
             "testedDimension": "В тот момент прошлого. Выберите was или were",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим в прошлом нужна was.",
+              "ru": "С этим словом в прошлом нужна was.",
               "uk": "З цим підметом у минулому потрібна was."
             }
           },
@@ -392,7 +392,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В тот момент прошлого. Выберите was или were",
+      "prompt": "Речь о моменте в прошлом. Выберите was или were",
       "responseOptions": [
         {
           "responseId": "en:lesson-14:session-25:i06:r1",
@@ -409,11 +409,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "accessibilityLabel": "Речь о моменте в прошлом. Выберите was или were",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В тот момент прошлого. Выберите was или were",
+          "ru": "Речь о моменте в прошлом. Выберите was или were",
           "uk": "У той момент минулого. Виберіть was або were"
         },
         "gappedTargetPhrase": "She ___ packing her ballet flats when I called.",
@@ -438,7 +438,7 @@
             "correct": false,
             "testedDimension": "В тот момент прошлого. Выберите was или were",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим в прошлом нужна was.",
+              "ru": "С этим словом в прошлом нужна was.",
               "uk": "З цим підметом у минулому потрібна was."
             }
           },
@@ -618,7 +618,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В тот момент прошлого. Выберите was или were",
+      "prompt": "Речь о моменте в прошлом. Выберите was или were",
       "responseOptions": [
         {
           "responseId": "en:lesson-14:session-25:i09:r1",
@@ -635,11 +635,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "accessibilityLabel": "Речь о моменте в прошлом. Выберите was или were",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В тот момент прошлого. Выберите was или were",
+          "ru": "Речь о моменте в прошлом. Выберите was или were",
           "uk": "У той момент минулого. Виберіть was або were"
         },
         "gappedTargetPhrase": "They ___ cleaning their walking boots when I arrived.",
@@ -664,7 +664,7 @@
             "correct": false,
             "testedDimension": "В тот момент прошлого. Выберите was или were",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим в прошлом нужна were.",
+              "ru": "С этим словом в прошлом нужна were.",
               "uk": "З цим підметом у минулому потрібна were."
             }
           },
@@ -844,7 +844,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В тот момент прошлого. Выберите was или were",
+      "prompt": "Речь о моменте в прошлом. Выберите was или were",
       "responseOptions": [
         {
           "responseId": "en:lesson-14:session-25:i12:r1",
@@ -861,11 +861,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В тот момент прошлого. Выберите was или were",
+      "accessibilityLabel": "Речь о моменте в прошлом. Выберите was или were",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В тот момент прошлого. Выберите was или were",
+          "ru": "Речь о моменте в прошлом. Выберите was или were",
           "uk": "У той момент минулого. Виберіть was або were"
         },
         "gappedTargetPhrase": "We ___ looking for an insole when you arrived.",
@@ -890,7 +890,7 @@
             "correct": false,
             "testedDimension": "В тот момент прошлого. Выберите was или were",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим в прошлом нужна were.",
+              "ru": "С этим словом в прошлом нужна were.",
               "uk": "З цим підметом у минулому потрібна were."
             }
           },
@@ -1130,5 +1130,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "02ea31528a46b59d6a1f1a9863ead503e7d64a80c2e03e967c6fac0cf57a7c66"
+  "learnerFingerprint": "6ae56e9cb65a1a4308a338bee63e3c92bc6e9205d9050dc2d317075ab2a5d052"
 }

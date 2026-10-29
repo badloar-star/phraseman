@@ -23,12 +23,12 @@
 
 ### Нечесна відповідь
 
-Друг заперечує, що розбив чашку, хоча ви бачили, як це сталося: That is such a dishonest answer — «це така нечесна відповідь». Після That is називаємо відповідь цілком: a dishonest answer. Щоб підсилити оцінку цієї групи, ставимо such перед a. Отримуємо such + a + dishonest + answer. Артикль потрібен перед одним злічуваним answer, а such іде перед артиклем.
+Друг заперечує, що розбив чашку, хоча ви бачили, як це сталося: That is such a dishonest answer — «це така нечесна відповідь». Після That is називаємо відповідь цілком: a dishonest answer. Щоб підсилити оцінку цієї групи, ставимо such перед a. Отримуємо such + a + dishonest + answer. Слово a / the потрібен перед одним рахується поштучно answer, а such іде перед словом a / the.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **That is such a dishonest answer.**
-- ❌ That is so a dishonest answer. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ That is so a dishonest answer. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ That is a such dishonest answer. — *Порядок: such a, не a such.*
 
 ---
@@ -86,7 +86,7 @@ This time is ___ inconvenient. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-19:session-37:i06; family: context_gap_grammar -->
 That is ___ a dishonest answer. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — unhealthy**

@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She can suggest a restaurant.**
-- ❌ She cans suggest a restaurant. — *Can однакове з I, she та іншими підметами.*
+- ❌ She cans suggest a restaurant. — *Can однакове з I, she та будь-яким іншим словом на початку.*
 - ❌ She can suggests a restaurant. — *Після can — suggest без -s.*
 
 ---

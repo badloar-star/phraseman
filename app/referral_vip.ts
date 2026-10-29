@@ -81,6 +81,7 @@ function normalizeDrain(value: Partial<ReferralDrainState> | null | undefined): 
     availableCreditCount: Math.max(0, Math.floor(Number(value?.availableCreditCount) || 0)),
     latestPendingDeadlineMs: Math.max(0, Math.floor(Number(value?.latestPendingDeadlineMs) || 0)),
     earliestCreditExpiryMs: Math.max(0, Math.floor(Number(value?.earliestCreditExpiryMs) || 0)),
+    ...(value?.ladder && typeof value.ladder === 'object' ? { ladder: value.ladder } : {}), // зачем: лесенка 29.10 — дальше только deriveReferralLadder (там все поля проверяются)
   };
 }
 
@@ -118,7 +119,7 @@ export async function getClaimableReferralState(options: { force?: boolean } = {
       invites: Array.isArray(res.invites) ? res.invites : [],
       qualifiedCount: res.qualifiedCount ?? 0,
       claimableVipDays: res.claimableVipDays ?? 0,
-      drain: normalizeDrain(res.drain),
+      drain: normalizeDrain({ ...res.drain, ladder: res.ladder ?? res.drain?.ladder }),
     };
     if (!isCurrentAccountGeneration(accountToken, stableId)) {
       return { ...EMPTY_INVITES, ok: false };

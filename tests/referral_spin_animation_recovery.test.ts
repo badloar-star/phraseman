@@ -154,8 +154,11 @@ describe('referral reward animation recovery', () => {
     const heroEnd = REFERRALS.indexOf('testID="referrals-my-code-card"');
     const hero = REFERRALS.slice(heroAt, heroEnd);
 
-    expect(hero).toContain('testID="referrals-enter-code"');
-    expect(hero).toContain('setCodeSheetOpen(true)');
-    expect(hero).toContain("L('Ввести код друга'");
+    // перепин 29.10 (владелец, лесенка): кнопка вынесена в константу enterCodeButton — она стоит и в блоке рулетки, и под лесенкой (одна разметка на оба места)
+    expect(hero).toContain('{ladderShown ? null : enterCodeButton}');
+    expect(REFERRALS).toContain('const enterCodeButton = marketingVisible ? (');
+    expect(REFERRALS).toContain('testID="referrals-enter-code"');
+    expect(REFERRALS).toContain('setCodeSheetOpen(true)');
+    expect(REFERRALS).toContain("L('Ввести код друга'");
   });
 });

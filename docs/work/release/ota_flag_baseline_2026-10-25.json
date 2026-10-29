@@ -18,6 +18,7 @@
   "account_delete_variant_b_ui_enabled": true,
   "spire_streak_heart": false,
   "ghost_friend_ab": false,
+  "referral_ladder_enabled": false,
   "spire_gold": true,
   "onboarding_skip_enabled": true,
   "speaking_strict_check_enabled": true,

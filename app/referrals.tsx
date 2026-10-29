@@ -10,7 +10,7 @@
  * Параметр ?enter=1 (из настроек «Ввести реферальный код») открывает шит ввода.
  * Режимы сворачивания программы (drain/emergencyStop/softEnabled) сохранены.
  */
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   InteractionManager,
@@ -34,6 +34,8 @@ import TapScale from '../components/TapScale';
 import PrizeArc, { type PrizeArcHandle } from '../components/prize_arc';
 import ReferralCodeSheet from '../components/referral_code_sheet';
 import ReferralHowSheet from '../components/referral_how_sheet';
+import ReferralLadder from '../components/referral_ladder'; // зачем (владелец 29.10): «Лесенка приглашений» вместо рулетки, за флагом referral_ladder_enabled
+import ReferralLadderHowSheet from '../components/referral_ladder_how_sheet';
 import RouletteWinModal from '../components/roulette_win_modal';
 import type { RouletteWinData } from '../components/roulette_win_modal';
 import RouletteWinCelebration from '../components/roulette_win_celebration';
@@ -55,6 +57,8 @@ import {
 } from './roulette_spin_client';
 import { preloadRoulettePrizeImages } from './roulette_prizes';
 import { useReferralRoulettePolicy } from './referral_roulette_flag';
+import { useReferralLadderEnabled } from './referral_ladder_flag';
+import { deriveReferralLadder, referralRouletteVisibleWithLadder } from './referral_ladder_model';
 import { formatReferralSunsetDate, referralSunsetCopy } from './referral_sunset_copy';
 import { selectAccountScopedReferralState, selectReferralSurfaceState } from './referral_surface_state';
 import { copyReferralCodeForAccount } from './referral_code_clipboard';
@@ -185,6 +189,13 @@ export default function ReferralsScreen() {
   const marketingVisible = referralSurface.marketingVisible;
   const drainVisible = referralSurface.drainVisible;
   const referralUiVisible = marketingVisible || drainVisible;
+  // зачем (владелец 29.10, макет v3 «Лесенка приглашений»): флаг включён и программа не в режиме сворачивания → вместо дуги призов стоит лесенка
+  // (два шага, прогресс x из 3, без кнопок «забрать»); дуга и «Получить приз» остаются только пока есть накопленные ключи. Флаг выключен — экран прежний.
+  const ladderEnabled = useReferralLadderEnabled();
+  const ladderShown = ladderEnabled && marketingVisible;
+  const ladderView = useMemo(() => deriveReferralLadder(scopedReferralState.drain?.ladder), [scopedReferralState.drain?.ladder]);
+  const rouletteShown = referralUiVisible && (!ladderShown || referralRouletteVisibleWithLadder(scopedReferralState.drain, spinCredits));
+  const [ladderHowOpen, setLadderHowOpen] = useState(false);
   const sunsetCopy = referralSunsetCopy[lang as Lang] ?? referralSunsetCopy.ru;
   const [referralCodeState, setReferralCode] = useState<string | null>(null);
   const [referralCodeAccountScope, setReferralCodeAccountScope] = useState<string | null>(() => (
@@ -673,6 +684,37 @@ export default function ReferralsScreen() {
     ? L('Открываем…', 'Відкриваємо…', 'Opening…', 'Abriendo…', 'Abrindo…', 'Đang mở…', 'Membuka…', 'Açılıyor…', 'Otwieramy…')
     : L('Получить приз', 'Отримати приз', 'Get the prize', 'Recibir premio', 'Receber prêmio', 'Nhận quà', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę');
 
+  // зачем (владелец 29.10, лесенка): одна кнопка «Ввести код друга» на оба места — под лесенкой и внутри блока рулетки
+  const enterCodeButton = marketingVisible ? (
+        <KitTouchable
+          testID="referrals-enter-code"
+          accessibilityRole="button"
+          activeOpacity={0.8}
+          onPress={() => {
+            hapticTap();
+            // зачем: самолечение зависшего шита — если Modal «открыт»
+            // невидимо (iOS-потеря во время перехода), сброс + повтор
+            // на следующем кадре гарантированно показывает шит.
+            setCodeSheetOpen(false);
+            requestAnimationFrame(() => setCodeSheetOpen(true));
+          }}
+          style={{
+            minHeight: 46,
+            borderRadius: 16,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 8,
+            backgroundColor: glassFill(t.bgSurface, 0.46),
+          }}
+        >
+          <Ionicons name="ticket-outline" size={18} color={t.accentText} />
+          <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '700' }}>
+            {L('Ввести код друга', 'Ввести код друга', 'Enter a friend\'s code', 'Ingresar código de amigo', 'Inserir código de amigo', 'Nhập mã của bạn bè', 'Masukkan kode teman', 'Arkadaş kodunu gir', 'Wpisz kod znajomego')}
+          </Text>
+        </KitTouchable>
+  ) : null;
+
   return (
     <ScreenGradient artBackdrop="friends">
       <SafeAreaView testID="screen-referrals" style={{ flex: 1 }}>
@@ -688,7 +730,7 @@ export default function ReferralsScreen() {
               testID="referrals-roulette-about"
               accessibilityRole="button"
               accessibilityLabel={L('Как это работает', 'Як це працює', 'How it works', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
-              onPress={() => setHowSheetOpen(true)}
+              onPress={() => { if (ladderShown) setLadderHowOpen(true); else setHowSheetOpen(true); }}
               style={{
                 width: 32,
                 height: 32,
@@ -708,7 +750,22 @@ export default function ReferralsScreen() {
           contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 34, gap: 16 }}
         >
 
-          {referralUiVisible && (
+          {ladderShown && (
+            <View style={{ gap: 12 }}>
+              <ReferralLadder
+                view={ladderView}
+                code={referralCode}
+                codeCopied={codeCopied}
+                shareBusy={inviteBusy}
+                onCopy={() => { void copyReferralCode(); }}
+                onShare={() => { void handleInvite(); }}
+                onHow={() => setLadderHowOpen(true)}
+              />
+              {enterCodeButton}
+            </View>
+          )}
+
+          {rouletteShown && (
             <View testID="referrals-roulette-hero" style={{ gap: 12 }}>
               {/* Дуга bleeds до физических краёв экрана — карточки клипаются рамкой, как у Kimi. */}
               <View style={{ marginHorizontal: -20 }}>
@@ -723,7 +780,7 @@ export default function ReferralsScreen() {
                 </View>
               </View>
 
-              <Text testID="referrals-condition-hint" style={{ color: t.accentText, fontSize: f.sub ?? 13, lineHeight: 19, fontFamily: ds.fontFamily, fontWeight: '400', textAlign: 'center', paddingHorizontal: 8 }}>
+              {ladderShown ? null : <Text testID="referrals-condition-hint" style={{ color: t.accentText, fontSize: f.sub ?? 13, lineHeight: 19, fontFamily: ds.fontFamily, fontWeight: '400', textAlign: 'center', paddingHorizontal: 8 }}>
                 {drainVisible ? sunsetCopy.drainBody : L(
                   'Пригласи друга — когда он введёт твой код и оформит Plus, получишь ключ. Награда — Plus от 1 дня до 365 дней.',
                   'Запроси друга — коли він введе твій код і оформить Plus, отримаєш ключ. Нагорода — Plus від 1 до 365 днів.',
@@ -735,7 +792,7 @@ export default function ReferralsScreen() {
                   'Bir arkadaşını davet et: kodunu girip Plus satın aldığında bir anahtar kazanırsın. Ödül: 1–365 gün Plus.',
                   'Zaproś znajomego: gdy wpisze twój kod i kupi Plus, dostaniesz klucz. Nagroda: Plus od 1 do 365 dni.',
                 )}
-              </Text>
+              </Text>}
 
               {/* зачем: D100 (владелец, 2026-09-30) — у Pro дни Plus бессмысленны, призы
                   приходят монетами; карточки те же, конверсию объясняет подпись. */}
@@ -782,7 +839,7 @@ export default function ReferralsScreen() {
                 </Text>
               </KitTouchable>
 
-              {marketingVisible && (
+              {marketingVisible && !ladderShown && (
                 <KitTouchable
                   testID="referrals-invite"
                   accessibilityRole="button"
@@ -813,35 +870,7 @@ export default function ReferralsScreen() {
               {/* зачем: владелец (2026-07-26) — ряд «Ввести реферальный код» убран из
                   настроек, а тихая строка внизу экрана не находилась. Ввод кода —
                   полноценная кнопка прямо в hero, под «Пригласить друга». */}
-              {marketingVisible && (
-                <KitTouchable
-                  testID="referrals-enter-code"
-                  accessibilityRole="button"
-                  activeOpacity={0.8}
-                  onPress={() => {
-                    hapticTap();
-                    // зачем: самолечение зависшего шита — если Modal «открыт»
-                    // невидимо (iOS-потеря во время перехода), сброс + повтор
-                    // на следующем кадре гарантированно показывает шит.
-                    setCodeSheetOpen(false);
-                    requestAnimationFrame(() => setCodeSheetOpen(true));
-                  }}
-                  style={{
-                    minHeight: 46,
-                    borderRadius: 16,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: 8,
-                    backgroundColor: glassFill(t.bgSurface, 0.46),
-                  }}
-                >
-                  <Ionicons name="ticket-outline" size={18} color={t.accentText} />
-                  <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '700' }}>
-                    {L('Ввести код друга', 'Ввести код друга', 'Enter a friend\'s code', 'Ingresar código de amigo', 'Inserir código de amigo', 'Nhập mã của bạn bè', 'Masukkan kode teman', 'Arkadaş kodunu gir', 'Wpisz kod znajomego')}
-                  </Text>
-                </KitTouchable>
-              )}
+              {ladderShown ? null : enterCodeButton}
 
               {drainVisible && drain.latestPendingDeadlineMs > 0 && (
                 <View testID="referrals-sunset-pending-deadline" style={{ padding: 12, borderRadius: 14, backgroundColor: t.bgSurface }}>
@@ -860,7 +889,7 @@ export default function ReferralsScreen() {
             </View>
           )}
 
-          {marketingVisible && referralCode ? (
+          {marketingVisible && !ladderShown && referralCode ? (
             <TonalSurface
               testID="referrals-my-code-card"
               radius={20}
@@ -930,6 +959,7 @@ export default function ReferralsScreen() {
 
         <ReferralCodeSheet visible={codeSheetOpen} onClose={() => setCodeSheetOpen(false)} />
         <ReferralHowSheet visible={howSheetOpen} onClose={() => setHowSheetOpen(false)} />
+        {ladderShown ? <ReferralLadderHowSheet visible={ladderHowOpen} onClose={() => setLadderHowOpen(false)} view={ladderView} /> : null}
         <RouletteWinModal data={win} onClose={closeWinAndStartCelebration} />
         <RouletteWinCelebration
           visible={winCelebrationVisible}

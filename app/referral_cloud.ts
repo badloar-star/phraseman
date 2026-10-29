@@ -46,6 +46,24 @@ export type ReferralInvite = {
   createdAtMs: number;
   deadlineAtMs: number;
   qualifiedAtMs?: number;
+  /** Лесенка (29.10): когда сервер засчитал первый урок друга. */
+  lessonPassedAtMs?: number;
+  /** Лесенка: waiting — урок ещё нужен, counted — засчитан, not_counted — не засчитан по правилам (причин клиенту сервер не отдаёт). */
+  ladder?: 'waiting' | 'counted' | 'not_counted';
+  /** Лесенка, для waiting: до какого времени нужен первый урок. */
+  ladderDeadlineMs?: number;
+};
+
+/** «Лесенка приглашений» (владелец 29.10): данные ступеней из referralListMyInvites; нет поля — сервер ещё без лесенки. */
+export type ReferralLadderData = {
+  countedFriends: number;
+  plusGrants: number;
+  coinsPerFriend: number;
+  plusDaysPerGrant: number;
+  friendsPerGrant: number;
+  monthCounted: number;
+  monthlyCap: number;
+  lessonWindowDays: number;
 };
 
 export type ReferralDrainState = {
@@ -57,6 +75,8 @@ export type ReferralDrainState = {
   availableCreditCount: number;
   latestPendingDeadlineMs: number;
   earliestCreditExpiryMs: number;
+  /** Лесенка приглашений едет здесь же, чтобы лечь в уже существующий кэш приглашений (память + диск, по аккаунту) без нового хранилища. */
+  ladder?: ReferralLadderData;
 };
 
 export type ListMyInvitesResult = {
@@ -65,6 +85,7 @@ export type ListMyInvitesResult = {
   qualifiedCount: number;
   claimableVipDays: number;
   drain: ReferralDrainState;
+  ladder?: ReferralLadderData;
 };
 
 /** Список приглашений текущего пользователя (для бейджей и кнопки «Открыть»). */

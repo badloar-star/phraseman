@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете, зачем выбираете разные способы учиться.
 
-**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
+**Что вы освоите:** сказать, зачем вы что-то делаете: to improve my English
 **Новые слова:** study group, evening class, language exchange, study partner
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про свої заняття та цілі.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
+**Що ви опануєте:** сказати, навіщо ви щось робите: to get stronger
 **Нові слова:** fitness class, exercise mat, walking group, running club
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете услуги и объясняете цель бронирования.
 
-**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
+**Что вы освоите:** сказать, зачем вы что-то делаете: I compare prices to save money.
 **Новые слова:** compare prices, read reviews, check availability, make a booking
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте, навіщо вибираєте різні способи навчатися.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
+**Що ви опануєте:** сказати, навіщо ви щось робите: to improve my English
 **Нові слова:** study group, evening class, language exchange, study partner
 
 ## Інтро 1

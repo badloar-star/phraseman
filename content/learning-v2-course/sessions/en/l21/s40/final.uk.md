@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вибираєте послуги й пояснюєте мету бронювання.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
+**Що ви опануєте:** сказати, навіщо ви щось робите: I compare prices to save money.
 **Нові слова:** compare prices, read reviews, check availability, make a booking
 
 ## Інтро 1

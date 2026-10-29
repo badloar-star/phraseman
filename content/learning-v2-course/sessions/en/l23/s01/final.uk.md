@@ -9,7 +9,7 @@
 
 ### Помилка в підрахунку помітна зараз
 
-Ви перерахували квитки й виявили помилку: I have miscounted the tickets — я помилився під час підрахунку квитків. Miscount означає «помилитися під час підрахунку». have / has + done пов’язує зроблене із ситуацією зараз. Складаємо: I + have + miscounted + the tickets. Загальна схема: I/you/we/they + have, he/she/it + has, потім форма після have (done, seen). У правильного miscount це miscounted із -ed. Have і has тут допомагають побудувати час і не означають «мати».
+Ви перерахували квитки й виявили помилку: I have miscounted the tickets — я помилився під час підрахунку квитків. Miscount означає «помилитися під час підрахунку». Форма have / has + done пов’язує зроблене із ситуацією зараз. Складаємо: I + have + miscounted + the tickets. Загальна схема: I/you/we/they + have, he/she/it + has, потім форма після have (done, seen). У правильного miscount це miscounted із -ed. Have і has тут допомагають побудувати час і не означають «мати».
 
 **Виберіть фразу для цієї ситуації.**
 

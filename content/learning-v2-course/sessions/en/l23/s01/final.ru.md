@@ -9,7 +9,7 @@
 
 ### Ошибка в подсчёте видна сейчас
 
-Вы пересчитали билеты и обнаружили ошибку: I have miscounted the tickets — я ошибся при подсчёте билетов. Miscount означает «ошибиться при подсчёте». have / has + done связывает сделанное с ситуацией сейчас. Собираем: I + have + miscounted + the tickets. Общая схема: I/you/we/they + have, he/she/it + has, затем форма после have (done, seen). У правильного miscount это miscounted с -ed. Have и has здесь помогают построить время и не означают «иметь».
+Вы пересчитали билеты и обнаружили ошибку: I have miscounted the tickets — я ошибся при подсчёте билетов. Miscount означает «ошибиться при подсчёте». Форма have / has + done связывает сделанное с ситуацией сейчас. Собираем: I + have + miscounted + the tickets. Общая схема: I/you/we/they + have, he/she/it + has, затем форма после have (done, seen). У правильного miscount это miscounted с -ed. Have и has здесь помогают построить время и не означают «иметь».
 
 **Выберите фразу для этой ситуации.**
 

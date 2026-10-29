@@ -2,7 +2,7 @@
 
 **Ситуация.** Предложенный вариант вам не подходит.
 
-**Что вы освоите:** попросить ещё одну вещь или выбрать другие: I need another payment method.
+**Что вы освоите:** сказать, что вам нужен другой вариант: I need another payment method.
 **Новые слова:** payment method, meeting place, delivery date, collection time
 
 ## Интро 1

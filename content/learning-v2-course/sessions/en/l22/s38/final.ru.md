@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете цель разговора.
 
-**Что вы освоите:** сказать, зачем вы что-то делаете: to find a solution
+**Что вы освоите:** сказать, зачем вы что-то делаете: I read the instructions to find a solution.
 **Новые слова:** sort out a problem, find a solution, reach an agreement, make a decision
 
 ## Интро 1

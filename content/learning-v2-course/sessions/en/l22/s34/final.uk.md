@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте змінені деталі поїздки.
 
-**Що ви опануєте:** попросити ще одну річ або вибрати інші: We need another train service.
+**Що ви опануєте:** сказати, що вам потрібен інший варіант: We need another train service.
 **Нові слова:** train service, departure gate, travel date, seat number
 
 ## Інтро 1

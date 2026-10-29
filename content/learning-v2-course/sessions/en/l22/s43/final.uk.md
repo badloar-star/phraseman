@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте прості дії з телефоном.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: to charge my phone
+**Що ви опануєте:** сказати, навіщо ви щось робите: I use this socket to charge my phone.
 **Нові слова:** check my messages, turn down the volume, put my phone on silent, charge my phone
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте свої дії дорогою.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: to catch a train
+**Що ви опануєте:** сказати, навіщо ви щось робите: I leave early to catch a train.
 **Нові слова:** catch a train, get a taxi, take a shortcut, cross the road
 
 ## Інтро 1

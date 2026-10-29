@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обираєте, чим виконати прибирання.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: to sweep the floor
+**Що ви опануєте:** сказати, навіщо ви щось робите: I use a broom to sweep the floor.
 **Нові слова:** sweep the floor, mop the floor, vacuum the carpet, dust the shelves
 
 ## Інтро 1

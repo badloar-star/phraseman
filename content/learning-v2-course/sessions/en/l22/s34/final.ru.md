@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете изменившиеся детали поездки.
 
-**Что вы освоите:** попросить ещё одну вещь или выбрать другие: We need another train service.
+**Что вы освоите:** сказать, что вам нужен другой вариант: We need another train service.
 **Новые слова:** train service, departure gate, travel date, seat number
 
 ## Интро 1

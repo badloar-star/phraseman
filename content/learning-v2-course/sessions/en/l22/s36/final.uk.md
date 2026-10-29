@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обираєте, що готувати й купувати.
 
-**Що ви опануєте:** попросити ще одну річ або вибрати інші: I use another recipe book.
+**Що ви опануєте:** сказати, що ви обираєте інший варіант: I use another recipe book.
 **Нові слова:** recipe book, main ingredient, meal plan, shopping budget
 
 ## Інтро 1

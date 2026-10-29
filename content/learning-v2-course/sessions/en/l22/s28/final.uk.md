@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте продукти в магазині.
 
-**Що ви опануєте:** не повторювати назву речі: I want the ready-to-eat one.
+**Що ви опануєте:** сказати, яку річ ви обираєте: I want the ready-to-eat one.
 **Нові слова:** ready-to-eat, freshly baked, pre-cooked, pre-sliced
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете простые действия с телефоном.
 
-**Что вы освоите:** сказать, зачем вы что-то делаете: to charge my phone
+**Что вы освоите:** сказать, зачем вы что-то делаете: I use this socket to charge my phone.
 **Новые слова:** check my messages, turn down the volume, put my phone on silent, charge my phone
 
 ## Интро 1

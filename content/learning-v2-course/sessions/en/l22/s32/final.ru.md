@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете время и подтверждаете планы.
 
-**Что вы освоите:** сказать, зачем вы что-то делаете: to pick a time
+**Что вы освоите:** сказать, зачем вы что-то делаете: I check my diary to pick a time.
 **Новые слова:** pick a time, agree on a date, confirm a booking, send an invitation
 
 ## Интро 1

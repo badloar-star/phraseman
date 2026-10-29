@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте, навіщо виконуєте дії вдома.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: to wipe the table
+**Що ви опануєте:** сказати, навіщо ви щось робите: I use a cloth to wipe the table.
 **Нові слова:** hang out the washing, fold the clothes, put away the dishes, wipe the table
 
 ## Інтро 1

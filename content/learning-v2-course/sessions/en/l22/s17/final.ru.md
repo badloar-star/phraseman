@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы представляете себя и поддерживаете собеседника.
 
-**Что вы освоите:** сказать, что вы сделали что-то сами или с собой: I can introduce myself.
+**Что вы освоите:** сказать, что вы делаете с собой: I can introduce myself.
 **Новые слова:** introduce yourself, look after yourself, believe in yourself, blame yourself
 
 ## Интро 1

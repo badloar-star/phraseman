@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете чувства, усилия и личные границы.
 
-**Что вы освоите:** сказать, что вы сделали что-то сами или с собой: I can express myself.
+**Что вы освоите:** сказать, что вы делаете с собой: I can express myself.
 **Новые слова:** express yourself, push yourself, treat yourself, defend yourself
 
 ## Интро 1

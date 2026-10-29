@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви відрекомендовуєте себе й підтримуєте співрозмовника.
 
-**Що ви опануєте:** сказати, що ви зробили щось самі або із собою: I can introduce myself.
+**Що ви опануєте:** сказати, що ви робите із собою: I can introduce myself.
 **Нові слова:** introduce yourself, look after yourself, believe in yourself, blame yourself
 
 ## Інтро 1

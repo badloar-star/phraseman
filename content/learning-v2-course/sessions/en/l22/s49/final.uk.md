@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте приготування до подорожі.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: to pack my bag
+**Що ви опануєте:** сказати, навіщо ви щось робите: I make a list to pack my bag.
 **Нові слова:** book a flight, pack my bag, check my passport, print my ticket
 
 ## Інтро 1

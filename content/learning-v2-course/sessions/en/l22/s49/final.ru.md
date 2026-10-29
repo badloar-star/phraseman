@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете приготовления к путешествию.
 
-**Что вы освоите:** сказать, зачем вы что-то делаете: to pack my bag
+**Что вы освоите:** сказать, зачем вы что-то делаете: I make a list to pack my bag.
 **Новые слова:** book a flight, pack my bag, check my passport, print my ticket
 
 ## Интро 1

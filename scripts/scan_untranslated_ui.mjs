@@ -25,9 +25,12 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { localLogHelperCall, maskMultilineLogCalls, maskPositionalTranslatorCalls, maskToastEntriesWithEnglishInSameObject } from './untranslated_ui_positional.mjs';
+import { KNOWN_LANG_KEYS, scanTriLangKeys } from './trilang_key_guard.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const BASELINE = path.join(ROOT, 'config', 'untranslated-ui-baseline.json');
+// зачем (координатор 29.10): храповик «слабых» словарей triLang (нет en или нет ни одного из pt-BR/vi/id/tr/pl) — по файлам
+const TRILANG_BASELINE = path.join(ROOT, 'config', 'trilang-weak-dicts-baseline.json');
 
 /** Где живут экраны. Копии дерева и временные папки не считаются. */
 const SCAN_DIRS = ['app', 'components'];
@@ -444,6 +447,53 @@ function addedUntranslatedLines() {
   }
 }
 
+/** Файлы этого коммита (.ts / .tsx / .js / .jsx) — для сторожа ключей triLang. */
+function stagedCodeFiles() {
+  try {
+    const out = execFileSync('git', ['diff', '--cached', '--name-only', '--diff-filter=ACMR'], { cwd: ROOT, encoding: 'utf8' });
+    return out.split('\n').map((line) => line.trim()).filter((line) => /\.(tsx?|jsx?)$/.test(line));
+  } catch (error) {
+    console.warn(`[TRILANG-KEYS] список файлов коммита не получен — проверяю всё дерево: ${error instanceof Error ? error.message : String(error)}`);
+    return null;
+  }
+}
+
+function readTriLangBaseline() {
+  try { return JSON.parse(fs.readFileSync(TRILANG_BASELINE, 'utf8')); } catch { return { total: 0, files: {} }; }
+}
+
+function weakByFile(findings) {
+  const by = {};
+  for (const f of findings) if (f.weak) by[f.file] = (by[f.file] || 0) + 1;
+  return by;
+}
+
+/**
+ * Сторож ключей языков в triLang(lang, { … }) — см. scripts/trilang_key_guard.mjs.
+ * (а) неверный ключ языка → ОТКАЗ всегда (это 100% баг); (б) «слабых» словарей в файле больше, чем в базе → только предупреждение
+ * (Ревизор/координатор 29.10: неполный словарь иногда законно падает на en).
+ * В режиме --staged смотрим только файлы коммита (чужая незакоммиченная работа в общем дереве не блокирует).
+ * Возвращает false только при (а).
+ */
+function triLangKeyGate(stagedMode) {
+  const staged = stagedMode ? stagedCodeFiles() : null;
+  const findings = scanTriLangKeys(ROOT, staged);
+  const bad = findings.filter((f) => f.bad.length);
+  const base = readTriLangBaseline().files ?? {};
+  const grown = Object.entries(weakByFile(findings)).filter(([file, n]) => n > (base[file] ?? 0));
+  if (grown.length) {
+    console.warn('ВНИМАНИЕ: словарь triLang без en или без всех из pt-BR / vi / id / tr / pl — эти языки получат запасной текст.');
+    for (const f of findings.filter((x) => x.weak && grown.some(([file]) => file === x.file)).slice(0, 10)) {
+      console.warn(`  ${f.file}:${f.line} — нет ${f.missing.join(', ')}`);
+    }
+  }
+  if (!bad.length) return true;
+  console.error(`ОТКАЗ: в словаре triLang ключ, которого нет среди языков (${KNOWN_LANG_KEYS.join(', ')}).`);
+  console.error('triLang не найдёт такой перевод, и человек увидит запасной язык (так бразилец видел английский из-за `pt:`).');
+  for (const f of bad.slice(0, 10)) console.error(`  ${f.file}:${f.line} — ключ ${f.bad.map((k) => `«${k}»`).join(', ')}`);
+  return false;
+}
+
 const args = new Set(process.argv.slice(2));
 const findings = scan();
 const total = findings.reduce((sum, f) => sum + f.count, 0);
@@ -453,6 +503,11 @@ if (args.has('--report')) {
   for (const f of findings.slice(0, Number(process.env.I18N_REPORT_LIMIT) || 25)) {
     console.log(`${String(f.count).padStart(4)}  ${f.file}`);
     for (const s of f.samples) console.log(`      ${s.slice(0, 90)}`);
+  }
+  const keyFindings = scanTriLangKeys(ROOT);
+  console.log(`\nСловари triLang с неверным ключом или без части языков: ${keyFindings.length}`);
+  for (const f of keyFindings.slice(0, 40)) {
+    console.log(`  ${f.file}:${f.line} — ${f.bad.length ? `неверный ключ ${f.bad.join(', ')}` : `нет ${f.missing.join(', ')}`}`);
   }
   process.exit(0);
 }
@@ -474,7 +529,27 @@ if (args.has('--update')) {
     note: 'Храповик: число может только уменьшаться. Обновлять через --update.',
   }, null, 2)}\n`, 'utf8');
   console.log(`База зафиксирована: ${total} строк в ${findings.length} файлах.`);
+  // база «слабых» словарей triLang — тоже только вниз, по каждому файлу
+  const prevWeak = readTriLangBaseline().files ?? {};
+  const nowWeak = weakByFile(scanTriLangKeys(ROOT));
+  const grownWeak = Object.entries(nowWeak).filter(([file, n]) => n > (prevWeak[file] ?? 0));
+  if (grownWeak.length) {
+    console.error(`База словарей triLang не обновлена: выросла в ${grownWeak.map(([file]) => file).join(', ')}. Сначала добавь переводы.`);
+    process.exit(1);
+  }
+  fs.writeFileSync(TRILANG_BASELINE, `${JSON.stringify({
+    total: Object.values(nowWeak).reduce((a, b) => a + b, 0),
+    files: nowWeak,
+    updatedAt: new Date().toISOString().slice(0, 10),
+    note: 'Храповик: словари triLang без en или без всех из pt-BR/vi/id/tr/pl. Число по файлу может только уменьшаться.',
+  }, null, 2)}\n`, 'utf8');
   process.exit(0);
+}
+
+if (!triLangKeyGate(args.has('--staged'))) {
+  console.error('');
+  console.error('Где именно: node scripts/scan_untranslated_ui.mjs --report');
+  process.exit(1);
 }
 
 const baseline = readBaseline();

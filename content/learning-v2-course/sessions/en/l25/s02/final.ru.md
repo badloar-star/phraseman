@@ -62,7 +62,7 @@ Athletics — лёгкая атлетика: бег, прыжки и други�
 **3 · Речь об одном уроке вчера, а не о прежней привычке.**
 <!-- interaction_id: en:lesson-25:session-02:i02; family: context_gap_grammar -->
 I ___ a photo in class yesterday. → **took** · have taken · used to take
-- have taken — *Yesterday — законченное время в прошлом, поэтому нужна форма прошлого: took.*
+- have taken — *Yesterday — это уже прошлое, поэтому нужна форма прошлого: took.*
 - used to take — *Used to take описывает прежнюю привычку; здесь речь об одном снимке вчера.*
 
 **4 · Теперь вы редко пользуетесь камерой. Скажите: «Раньше я носил камеру повсюду».**

@@ -123,7 +123,7 @@ greeting — приветствие · handshake — рукопожатие · o
 <!-- interaction_id: en:lesson-25:session-30:i12; family: scripted_repeat_compare -->
 🎙 **Can I bring another friend?**
 
-**17 · Вы поговорили с тётей вчера, в законченное время.**
+**17 · Вы поговорили с тётей вчера — это уже прошлое.**
 <!-- interaction_id: en:lesson-25:session-30:i13; family: context_gap_grammar -->
 I ___ to my aunt yesterday. → **spoke** · have spoken · would speak
 - have spoken — *Yesterday требует формы прошлого spoke.*

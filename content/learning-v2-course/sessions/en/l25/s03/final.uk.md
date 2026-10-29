@@ -132,7 +132,7 @@ everybody — усі, кожен · anybody — хто завгодно · somet
 **18 · Йдеться про одну розмову минулого вечора. Виберіть форму для завершеної події.**
 <!-- interaction_id: en:lesson-25:session-03:i14; family: context_gap_grammar -->
 I ___ my old neighbour last night. → **called** · have called · used to call
-- have called — *Last night — завершений час: потрібна форма минулого called.*
+- have called — *Last night — це вже минуле: потрібна форма минулого called.*
 - used to call — *Used to call описує колишню звичку, а тут була одна розмова.*
 
 **19 · Послухайте й виберіть**

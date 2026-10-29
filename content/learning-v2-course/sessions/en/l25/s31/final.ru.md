@@ -136,7 +136,7 @@ The guests ___ left before I returned. → **had** · have · were
 **19 · Вы остались у друзей на одну ночь вчера.**
 <!-- interaction_id: en:lesson-25:session-31:i15; family: context_gap_grammar -->
 We ___ here last night. → **stayed** · have stayed · would stay
-- have stayed — *Last night — законченное время; нужна форма прошлого stayed.*
+- have stayed — *Last night — это уже прошлое; нужна форма прошлого stayed.*
 - would stay — *Would stay описывает привычку, а здесь одна ночь.*
 
 **20 · Послушайте и выберите**

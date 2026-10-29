@@ -14,7 +14,7 @@ Delighted — дуже радий, у захваті. I was delighted with the g
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I was delighted with the gift yesterday.**
-- ❌ I is delighted with the gift yesterday. — *Yesterday — завершений час у минулому: was.*
+- ❌ I is delighted with the gift yesterday. — *Yesterday — це вже минуле: was.*
 - ❌ I been delighted with the gift yesterday. — *Для I чи she у формі минулого потрібна форма was.*
 
 ---
@@ -23,12 +23,12 @@ Delighted — дуже радий, у захваті. I was delighted with the g
 
 ### Здивуватися вчорашній ціні
 
-Ви згадуєте вчорашній похід до крамниці: ціна виявилася зовсім не такою, як ви очікували. Скажіть: I was astonished by the price yesterday — учора я був вражений ціною. Складаємо: I + was + astonished + by the price + yesterday — хто, був, у якому стані, чим він викликаний, коли. Yesterday задає завершений час у минулому, тому з I потрібна was. Astonished стоїть після was, а by the price називає причину здивування.
+Ви згадуєте вчорашній похід до крамниці: ціна виявилася зовсім не такою, як ви очікували. Скажіть: I was astonished by the price yesterday — учора я був вражений ціною. Складаємо: I + was + astonished + by the price + yesterday — хто, був, у якому стані, чим він викликаний, коли. Yesterday показує, що це вже минуле, тому з I потрібна was. Astonished стоїть після was, а by the price називає причину здивування.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I was astonished by the price yesterday.**
-- ❌ I is astonished by the price yesterday. — *Yesterday — завершений час у минулому: was.*
+- ❌ I is astonished by the price yesterday. — *Yesterday — це вже минуле: was.*
 - ❌ I been astonished by the price yesterday. — *Для I чи she у формі минулого потрібна форма was.*
 
 ---
@@ -37,12 +37,12 @@ Delighted — дуже радий, у захваті. I was delighted with the g
 
 ### Сильне горе
 
-Heartbroken — убитий горем, той, хто відчуває дуже сильний душевний біль. She was heartbroken after the news yesterday — учора після цих новин вона була вбита горем. Це набагато сильніше за невелике засмучення. After показує порядок: спочатку новини, потім її реакція. Yesterday відносить розповідь до завершеного часу в минулому. Із she тут теж was: she was heartbroken.
+Heartbroken — убитий горем, той, хто відчуває дуже сильний душевний біль. She was heartbroken after the news yesterday — учора після цих новин вона була вбита горем. Це набагато сильніше за невелике засмучення. After показує порядок: спочатку новини, потім її реакція. Yesterday показує, що йдеться про минуле. Із she тут теж was: she was heartbroken.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She was heartbroken after the news yesterday.**
-- ❌ She is heartbroken after the news yesterday. — *Yesterday — завершений час у минулому: was.*
+- ❌ She is heartbroken after the news yesterday. — *Yesterday — це вже минуле: was.*
 - ❌ She been heartbroken after the news yesterday. — *Для I чи she у формі минулого потрібна форма was.*
 
 ---

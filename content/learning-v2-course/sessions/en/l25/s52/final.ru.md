@@ -14,7 +14,7 @@ Delighted — очень рад, в восторге. I was delighted with the g
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I was delighted with the gift yesterday.**
-- ❌ I is delighted with the gift yesterday. — *Yesterday — законченное время в прошлом: was.*
+- ❌ I is delighted with the gift yesterday. — *Yesterday — это уже прошлое: was.*
 - ❌ I been delighted with the gift yesterday. — *Для I или she в форме прошлого нужна форма was.*
 
 ---
@@ -23,12 +23,12 @@ Delighted — очень рад, в восторге. I was delighted with the g
 
 ### Удивиться вчерашней цене
 
-Вы вспоминаете вчерашний поход в магазин: цена оказалась совсем не такой, как вы ожидали. Скажите: I was astonished by the price yesterday — вчера я был изумлён ценой. Собираем: I + was + astonished + by the price + yesterday — кто, был, в каком состоянии, чем оно вызвано, когда. Yesterday задаёт законченное время в прошлом, поэтому с I нужна was. Astonished стоит после was, а by the price называет причину удивления.
+Вы вспоминаете вчерашний поход в магазин: цена оказалась совсем не такой, как вы ожидали. Скажите: I was astonished by the price yesterday — вчера я был изумлён ценой. Собираем: I + was + astonished + by the price + yesterday — кто, был, в каком состоянии, чем оно вызвано, когда. Yesterday говорит, что это уже прошлое, поэтому с I нужна was. Astonished стоит после was, а by the price называет причину удивления.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I was astonished by the price yesterday.**
-- ❌ I is astonished by the price yesterday. — *Yesterday — законченное время в прошлом: was.*
+- ❌ I is astonished by the price yesterday. — *Yesterday — это уже прошлое: was.*
 - ❌ I been astonished by the price yesterday. — *Для I или she в форме прошлого нужна форма was.*
 
 ---
@@ -42,7 +42,7 @@ Heartbroken — убитый горем, испытывающий очень с�
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She was heartbroken after the news yesterday.**
-- ❌ She is heartbroken after the news yesterday. — *Yesterday — законченное время в прошлом: was.*
+- ❌ She is heartbroken after the news yesterday. — *Yesterday — это уже прошлое: was.*
 - ❌ She been heartbroken after the news yesterday. — *Для I или she в форме прошлого нужна форма was.*
 
 ---

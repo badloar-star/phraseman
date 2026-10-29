@@ -118,7 +118,7 @@ wildlife — дикие животные в природе · scenery — пей
 **15 · Речь об одном вчерашнем походе, не о прежней привычке.**
 <!-- interaction_id: en:lesson-25:session-09:i11; family: context_gap_grammar -->
 We ___ to the lake yesterday. → **walked** · have walked · would walk
-- have walked — *Yesterday — завершённое время: выбираем walked.*
+- have walked — *Yesterday — это уже прошлое: выбираем walked.*
 - would walk — *Для одного вчерашнего похода нужна форма прошлого; would walk здесь не передаёт нужное событие.*
 
 **16 · Предложите посетить ещё один парк: «Давай посетим ещё один парк».**

@@ -85,7 +85,7 @@ My ___ hurts. → **knuckle** · nostril · tissue
 <!-- interaction_id: en:lesson-25:session-34:i05; family: listen_build_dictation -->
 🔊 *My fingernails are too long.* Плитки: `long` `too` `are` `fingernails` `My` → **My fingernails are too long.**
 
-**9 · Ви підстригли нігті вчора. Виберіть час для завершеної події.**
+**9 · Ви підстригли нігті вчора. Виберіть форму для завершеної події.**
 <!-- interaction_id: en:lesson-25:session-34:i06; family: context_gap_grammar -->
 I ___ my nails yesterday. → **cut** · have cut · had cutting
 - have cut — *Yesterday називає завершений момент; тут потрібна форма минулого cut.*

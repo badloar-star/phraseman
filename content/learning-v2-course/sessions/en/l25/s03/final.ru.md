@@ -132,7 +132,7 @@ everybody — все, каждый · anybody — кто угодно · somethi
 **18 · Речь об одном разговоре прошлым вечером. Выберите форму для законченного события.**
 <!-- interaction_id: en:lesson-25:session-03:i14; family: context_gap_grammar -->
 I ___ my old neighbour last night. → **called** · have called · used to call
-- have called — *Last night — законченное время: нужна форма прошлого called.*
+- have called — *Last night — это уже прошлое: нужна форма прошлого called.*
 - used to call — *Used to call описывает прежнюю привычку, а здесь был один разговор.*
 
 **19 · Послушайте и выберите**

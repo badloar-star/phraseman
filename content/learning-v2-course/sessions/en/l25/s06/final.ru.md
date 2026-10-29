@@ -138,7 +138,7 @@ I like his ___ to work. → **attitude** · personality · adulthood
 **19 · Вы говорите об одном вечере на прошлой неделе.**
 <!-- interaction_id: en:lesson-25:session-06:i15; family: context_gap_grammar -->
 We ___ about our school days last week. → **talked** · have talked · used to talk
-- have talked — *Last week — законченное время: нужна форма прошлого talked.*
+- have talked — *Last week — это уже прошлое: нужна форма прошлого talked.*
 - used to talk — *Used to talk описывает прежнюю привычку; здесь был один разговор.*
 
 **20 · Теперь вы любите встречи. Скажите о прошлом: «Раньше я предпочитал быть один».**

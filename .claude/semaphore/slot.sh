@@ -17,7 +17,17 @@
 set -u
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # зачем: 04.10 ПК падал до 12 МБ — один jest-воркер берёт 3–4 ГБ, а CapCut держит ~8 ГБ. Один слот на ПК.
-SLOTS=${PM_SLOTS:-1}
+# зачем (владелец 29.10 «2 места»): очередь из 11 прогонов держала пересборку 2.0.4 часами при 8,6 ГБ свободной памяти.
+# Второй слот даём, только пока свободно ≥ 6 ГБ (MemFree из /proc/meminfo Git Bash); меньше или не прочиталось — один, как раньше.
+PM_MIN_FREE_KB_FOR_2=${PM_MIN_FREE_KB_FOR_2:-6291456}
+_free_kb=$(awk '/^MemFree:/ {print $2; exit}' /proc/meminfo 2>/dev/null)
+if [ -n "${PM_SLOTS:-}" ]; then
+  SLOTS=$PM_SLOTS
+elif [ -n "$_free_kb" ] && [ "$_free_kb" -ge "$PM_MIN_FREE_KB_FOR_2" ] 2>/dev/null; then
+  SLOTS=2
+else
+  SLOTS=1
+fi
 TTL=900   # 15 минут — после этого слот считается протухшим (сессия умерла); живой длинный прогон продлевает слот (renew / run)
 RENEW_EVERY=${PM_SLOT_RENEW_EVERY:-60}
 # Стабильный ID сессии: $$ в Git Bash меняется на каждый вызов и ломал

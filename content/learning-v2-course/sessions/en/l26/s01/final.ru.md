@@ -61,7 +61,7 @@ Stiffen — становиться жёстче, терять гибкость. 
 <!-- interaction_id: en:lesson-26:session-01:i02; family: context_gap_grammar -->
 I ___ a towel when my hands are wet. → **use** · uses · using
 - uses — *После I в форме work / works нужно use без -s.*
-- using — *Для привычки здесь нужна форма use; using без do / does не подходит.*
+- using — *Для привычки здесь нужна форма use; using без am / is / are не подходит.*
 
 **4 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-26:session-01:i03; family: listen_choose -->

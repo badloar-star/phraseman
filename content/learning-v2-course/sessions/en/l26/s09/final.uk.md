@@ -88,7 +88,7 @@ I will get a cloth if I ___ the juice. → **spill** · will spill · spilling
 **9 · Ви ще не знаєте, чи прийдуть гості. Доповніть рішення на цей випадок.**
 <!-- interaction_id: en:lesson-26:session-09:i06; family: context_gap_grammar -->
 We ___ more food if our friends come. → **will buy** · buying · will buying
-- buying — *Для майбутнього рішення потрібно will buy; buying без do / does не підходить.*
+- buying — *Для майбутнього рішення потрібно will buy; buying без am / is / are не підходить.*
 - will buying — *Після will ставимо buy, не buying.*
 
 **10 · Картка слова — guy**

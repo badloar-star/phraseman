@@ -123,7 +123,7 @@ rigid — жорсткий · brittle — ламкий · transparent — про
 <!-- interaction_id: en:lesson-26:session-07:i12; family: context_gap_grammar -->
 I ___ the lid if a jar is empty. → **close** · closes · closing
 - closes — *Після I потрібна форма close без -s.*
-- closing — *Тут потрібна форма work / works: close, а не closing без do / does.*
+- closing — *Тут потрібна форма work / works: close, а не closing без am / is / are.*
 
 **17 · Відновіть почуту умову вибору.**
 <!-- interaction_id: en:lesson-26:session-07:i13; family: listen_build_dictation -->

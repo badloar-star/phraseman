@@ -43,7 +43,7 @@
 
 - ✅ **If I make a mistake, I say sorry.**
 - ❌ If I makes a mistake, I say sorry. — *З I вживаємо make без -s.*
-- ❌ If I make a mistake, I saying sorry. — *Потрібна повна форма say, а не saying без do / does.*
+- ❌ If I make a mistake, I saying sorry. — *Потрібна повна форма say, а не saying без am / is / are.*
 
 ---
 

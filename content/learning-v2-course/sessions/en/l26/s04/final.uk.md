@@ -67,7 +67,7 @@ Rhythm — ритм. I follow the rhythm when I dance — я дотримуюс�
 <!-- interaction_id: en:lesson-26:session-04:i03; family: context_gap_grammar -->
 I ___ carefully when the teacher shows a new step. → **watch** · watches · watching
 - watches — *Після I потрібна форма watch без -s.*
-- watching — *Для звички потрібна форма work / works: watch, не watching без do / does.*
+- watching — *Для звички потрібна форма work / works: watch, не watching без am / is / are.*
 
 **5 · Почуйте, коли мовець робить паузу.**
 <!-- interaction_id: en:lesson-26:session-04:i04; family: listen_build_dictation -->

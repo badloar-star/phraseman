@@ -15,7 +15,7 @@
 
 - ✅ **My shoes squeak when the floor is wet.**
 - ❌ My shoes squeaks when the floor is wet. — *У формі work / works із цим словом потрібна форма squeak.*
-- ❌ My shoes squeaking when the floor is wet. — *Звичайний результат: форма work / works, а не форма з -ing без do / does.*
+- ❌ My shoes squeaking when the floor is wet. — *Звичайний результат: форма work / works, а не форма з -ing без am / is / are.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **The leaves rustle when the wind blows.**
 - ❌ The leaves rustles when the wind blows. — *У формі work / works із цим словом потрібна форма rustle.*
-- ❌ The leaves rustling when the wind blows. — *Звичайний результат: форма work / works, а не форма з -ing без do / does.*
+- ❌ The leaves rustling when the wind blows. — *Звичайний результат: форма work / works, а не форма з -ing без am / is / are.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **The engine roars when I press the pedal.**
 - ❌ The engine roar when I press the pedal. — *У формі work / works із цим словом потрібна форма roars.*
-- ❌ The engine roaring when I press the pedal. — *Звичайний результат: форма work / works, а не форма з -ing без do / does.*
+- ❌ The engine roaring when I press the pedal. — *Звичайний результат: форма work / works, а не форма з -ing без am / is / are.*
 
 ---
 

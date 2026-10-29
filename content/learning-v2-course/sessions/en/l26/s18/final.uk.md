@@ -29,7 +29,7 @@
 
 - ✅ **If a film is dull, I stop watching.**
 - ❌ If a film is dull, I stops watching. — *З I потрібно stop без -s.*
-- ❌ If a film is dull, I stopping watching. — *Потрібна повна форма stop, а не stopping без do / does.*
+- ❌ If a film is dull, I stopping watching. — *Потрібна повна форма stop, а не stopping без am / is / are.*
 
 ---
 

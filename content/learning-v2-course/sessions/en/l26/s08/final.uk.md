@@ -71,7 +71,7 @@ Shortage — нестача. I use frozen fruit when there is a shortage of fres
 <!-- interaction_id: en:lesson-26:session-08:i03; family: context_gap_grammar -->
 I ___ excess fat when I prepare meat. → **remove** · removes · removing
 - removes — *Після I у формі work / works потрібна форма remove без -s.*
-- removing — *Для звичної дії тут потрібно remove; removing без do / does не підходить.*
+- removing — *Для звичної дії тут потрібно remove; removing без am / is / are не підходить.*
 
 **6 · Відновіть почуте пояснення зберігання.**
 <!-- interaction_id: en:lesson-26:session-08:i04; family: listen_build_dictation -->

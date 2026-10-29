@@ -15,7 +15,7 @@
 
 - ✅ **I am going to turn the handle clockwise.**
 - ❌ I am turning the handle clockwise. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to turn the handle clockwise. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to turn the handle clockwise. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Домовитися зустрітися внизу
 
-Ви з друзями домовилися зустрітися завтра на нижньому поверсі будинку. We are meeting downstairs tomorrow. — Завтра ми зустрічаємося внизу. Для домовленості поставте we are meeting: до meet додаємо -ing. Потім укажіть місце downstairs і час tomorrow. Складіть we + are meeting + downstairs + tomorrow. Перед downstairs не потрібен прийменник. Тут тренуємо Present Continuous; going to також можливе.
+Ви з друзями домовилися зустрітися завтра на нижньому поверсі будинку. We are meeting downstairs tomorrow. — Завтра ми зустрічаємося внизу. Для домовленості поставте we are meeting: до meet додаємо -ing. Потім укажіть місце downstairs і час tomorrow. Складіть we + are meeting + downstairs + tomorrow. Перед downstairs не потрібен прийменник. Тут тренуємо am / is / are + -ing; going to також можливе.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are meeting downstairs tomorrow.**
-- ❌ We are going to meet downstairs tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is meeting downstairs tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to meet downstairs tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is meeting downstairs tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Розповісти про прикрашання зали
 
-Друзі домовилися завтра прикрасити залу: вони повісять вогники над місцем, де стоятимуть гості. They are hanging lights overhead tomorrow. — Завтра вони вішають вогники над головами гостей. Назвіть друзів словом they, потім поставте are hanging: до hang додаємо -ing. Додайте lights — що вішають — overhead — де — і tomorrow — коли. Порядок такий: they + are hanging + lights + overhead + tomorrow. Тут використайте Present Continuous для узгодженої справи; going to також можливе.
+Друзі домовилися завтра прикрасити залу: вони повісять вогники над місцем, де стоятимуть гості. They are hanging lights overhead tomorrow. — Завтра вони вішають вогники над головами гостей. Назвіть друзів словом they, потім поставте are hanging: до hang додаємо -ing. Додайте lights — що вішають — overhead — де — і tomorrow — коли. Порядок такий: they + are hanging + lights + overhead + tomorrow. Тут використайте am / is / are + -ing для узгодженої справи; going to також можливе.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are hanging lights overhead tomorrow.**
-- ❌ They are going to hang lights overhead tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is hanging lights overhead tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to hang lights overhead tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is hanging lights overhead tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

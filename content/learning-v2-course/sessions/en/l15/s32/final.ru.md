@@ -15,7 +15,7 @@
 
 - ✅ **I am going to try needlework.**
 - ❌ I am trying needlework. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to try needlework. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to try needlework. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are trying calligraphy tomorrow.**
-- ❌ We are going to try calligraphy tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is trying calligraphy tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to try calligraphy tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is trying calligraphy tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are trying flower pressing on Sunday.**
-- ❌ They are going to try flower pressing on Sunday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is trying flower pressing on Sunday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to try flower pressing on Sunday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is trying flower pressing on Sunday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

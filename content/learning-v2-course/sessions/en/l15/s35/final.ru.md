@@ -15,7 +15,7 @@
 
 - ✅ **I am going to get a haircut.**
 - ❌ I am getting a haircut. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to get a haircut. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to get a haircut. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are having a pedicure on Saturday.**
-- ❌ We are going to have a pedicure on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is having a pedicure on Saturday. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to have a pedicure on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is having a pedicure on Saturday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are paying for hair colouring tomorrow.**
-- ❌ They are going to pay for hair colouring tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is paying for hair colouring tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to pay for hair colouring tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is paying for hair colouring tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -106,7 +106,7 @@ She ___ a manicure. → **is going to book** · is booking · book
 **12 · Вы с подругой записались на педикюр в субботу; салон подтвердил обе записи. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-35:i09; family: context_gap_grammar -->
 We ___ a pedicure on Saturday. → **are having** · are going to have · have
-- are going to have — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+- are going to have — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через am / is / are + -ing.*
 - have — *Нужна полная форма: are having.*
 
 **13 · Карточка слова — hair colouring**

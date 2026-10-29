@@ -15,7 +15,7 @@
 
 - ✅ **I am going to try a guava.**
 - ❌ I am trying a guava. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to try a guava. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to try a guava. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are collecting the quince tomorrow.**
-- ❌ We are going to collect the quince tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is collecting the quince tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to collect the quince tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is collecting the quince tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are collecting the rhubarb on Friday.**
-- ❌ They are going to collect the rhubarb on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is collecting the rhubarb on Friday. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to collect the rhubarb on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is collecting the rhubarb on Friday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

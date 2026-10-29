@@ -15,7 +15,7 @@
 
 - ✅ **I am going to use the launderette.**
 - ❌ I am using the launderette. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to use the launderette. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to use the launderette. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are paying for key cutting tomorrow.**
-- ❌ We are going to pay for key cutting tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is paying for key cutting tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to pay for key cutting tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is paying for key cutting tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are paying for shoe repair on Friday.**
-- ❌ They are going to pay for shoe repair on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is paying for shoe repair on Friday. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to pay for shoe repair on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is paying for shoe repair on Friday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

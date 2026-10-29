@@ -66,8 +66,8 @@
 **4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-11:i03; family: context_gap_grammar -->
 The chair ___ going to wobble. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **5 · Картка слова — tilt**
 <!-- interaction_id: en:lesson-15:session-11:word:tilt; family: word_card -->
@@ -86,8 +86,8 @@ The chair ___ going to wobble. → **is** · are · am
 **8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-11:i06; family: context_gap_grammar -->
 The picture ___ going to tilt. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **9 · Картка слова — sag**
 <!-- interaction_id: en:lesson-15:session-11:word:sag; family: word_card -->
@@ -106,8 +106,8 @@ The picture ___ going to tilt. → **is** · are · am
 **12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-11:i09; family: context_gap_grammar -->
 The shelves ___ going to sag. → **are** · is · am
-- is — *З цим підметом потрібна форма are.*
-- am — *Для цього підмета потрібна are.*
+- is — *З цим словом потрібна форма are.*
+- am — *Для цього слова потрібна are.*
 
 **13 · Картка слова — darken**
 <!-- interaction_id: en:lesson-15:session-11:word:darken; family: word_card -->
@@ -126,8 +126,8 @@ The shelves ___ going to sag. → **are** · is · am
 **16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-11:i12; family: context_gap_grammar -->
 The room ___ going to darken. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-11:i13; family: speed_match -->

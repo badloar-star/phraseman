@@ -15,7 +15,7 @@
 
 - ✅ **I am going to visit my modest friend.**
 - ❌ I am visiting my modest friend. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to visit my modest friend. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to visit my modest friend. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are travelling with our easy-going friend on Saturday.**
-- ❌ We are going to travel with our easy-going friend on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is travelling with our easy-going friend on Saturday. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to travel with our easy-going friend on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is travelling with our easy-going friend on Saturday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are meeting their bossy cousin tomorrow.**
-- ❌ They are going to meet their bossy cousin tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is meeting their bossy cousin tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to meet their bossy cousin tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is meeting their bossy cousin tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

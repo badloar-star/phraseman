@@ -15,7 +15,7 @@
 
 - ✅ **I am meeting the gardener tomorrow morning.**
 - ❌ I is meeting the gardener tomorrow morning. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ I are meeting the gardener tomorrow morning. — *Форма be має відповідати підмету.*
+- ❌ I are meeting the gardener tomorrow morning. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **We are meeting the decorator on Monday.**
 - ❌ We am meeting the decorator on Monday. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ We is meeting the decorator on Monday. — *Форма be має відповідати підмету.*
+- ❌ We is meeting the decorator on Monday. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are meeting the roofer on Tuesday.**
 - ❌ They am meeting the roofer on Tuesday. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ They is meeting the roofer on Tuesday. — *Форма be має відповідати підмету.*
+- ❌ They is meeting the roofer on Tuesday. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-18:i03; family: context_gap_grammar -->
 I ___ meeting the gardener tomorrow morning. → **am** · is · are
-- is — *З цим підметом потрібна форма am.*
-- are — *Для цього підмета потрібна am.*
+- is — *З цим словом потрібна форма am.*
+- are — *Для цього слова потрібна am.*
 
 **5 · Картка слова — decorator**
 <!-- interaction_id: en:lesson-15:session-18:word:decorator; family: word_card -->
@@ -86,8 +86,8 @@ I ___ meeting the gardener tomorrow morning. → **am** · is · are
 **8 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-18:i06; family: context_gap_grammar -->
 We ___ meeting the decorator on Monday. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **9 · Картка слова — locksmith**
 <!-- interaction_id: en:lesson-15:session-18:word:locksmith; family: word_card -->
@@ -106,8 +106,8 @@ We ___ meeting the decorator on Monday. → **are** · am · is
 **12 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-18:i09; family: context_gap_grammar -->
 She ___ meeting the locksmith at two tomorrow. → **is** · am · are
-- am — *З цим підметом потрібна форма is.*
-- are — *Для цього підмета потрібна is.*
+- am — *З цим словом потрібна форма is.*
+- are — *Для цього слова потрібна is.*
 
 **13 · Картка слова — roofer**
 <!-- interaction_id: en:lesson-15:session-18:word:roofer; family: word_card -->
@@ -126,8 +126,8 @@ She ___ meeting the locksmith at two tomorrow. → **is** · am · are
 **16 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-18:i12; family: context_gap_grammar -->
 They ___ meeting the roofer on Tuesday. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-18:i13; family: speed_match -->

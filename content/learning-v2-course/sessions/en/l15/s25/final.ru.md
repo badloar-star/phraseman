@@ -15,7 +15,7 @@
 
 - ✅ **I am going to renew my pass.**
 - ❌ I am renewing my pass. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to renew my pass. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to renew my pass. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I am bringing my appointment card tomorrow.**
-- ❌ I am going to bring my appointment card tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ I is bringing my appointment card tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ I am going to bring my appointment card tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ I is bringing my appointment card tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are paying for our membership on Friday.**
-- ❌ We are going to pay for our membership on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is paying for our membership on Friday. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to pay for our membership on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is paying for our membership on Friday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

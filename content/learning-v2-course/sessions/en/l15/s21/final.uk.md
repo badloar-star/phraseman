@@ -15,7 +15,7 @@
 
 - ✅ **We are having a playdate on Saturday.**
 - ❌ We am having a playdate on Saturday. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ We is having a playdate on Saturday. — *Форма be має відповідати підмету.*
+- ❌ We is having a playdate on Saturday. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **I am having a sleepover on Friday.**
 - ❌ I is having a sleepover on Friday. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ I are having a sleepover on Friday. — *Форма be має відповідати підмету.*
+- ❌ I are having a sleepover on Friday. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are attending a reunion on Sunday.**
 - ❌ They am attending a reunion on Sunday. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ They is attending a reunion on Sunday. — *Форма be має відповідати підмету.*
+- ❌ They is attending a reunion on Sunday. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-21:i03; family: context_gap_grammar -->
 We ___ having a playdate on Saturday. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **5 · Картка слова — sleepover**
 <!-- interaction_id: en:lesson-15:session-21:word:sleepover; family: word_card -->
@@ -86,8 +86,8 @@ We ___ having a playdate on Saturday. → **are** · am · is
 **8 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-21:i06; family: context_gap_grammar -->
 I ___ having a sleepover on Friday. → **am** · is · are
-- is — *З цим підметом потрібна форма am.*
-- are — *Для цього підмета потрібна am.*
+- is — *З цим словом потрібна форма am.*
+- are — *Для цього слова потрібна am.*
 
 **9 · Картка слова — potluck**
 <!-- interaction_id: en:lesson-15:session-21:word:potluck; family: word_card -->
@@ -106,8 +106,8 @@ I ___ having a sleepover on Friday. → **am** · is · are
 **12 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-21:i09; family: context_gap_grammar -->
 She ___ coming to the potluck tomorrow. → **is** · am · are
-- am — *З цим підметом потрібна форма is.*
-- are — *Для цього підмета потрібна is.*
+- am — *З цим словом потрібна форма is.*
+- are — *Для цього слова потрібна is.*
 
 **13 · Картка слова — reunion**
 <!-- interaction_id: en:lesson-15:session-21:word:reunion; family: word_card -->
@@ -126,8 +126,8 @@ She ___ coming to the potluck tomorrow. → **is** · am · are
 **16 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-21:i12; family: context_gap_grammar -->
 They ___ attending a reunion on Sunday. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-21:i13; family: speed_match -->

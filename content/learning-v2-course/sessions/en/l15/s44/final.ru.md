@@ -15,7 +15,7 @@
 
 - ✅ **I am going to ask my creative friend for help.**
 - ❌ I am asking my creative friend for help. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to ask my creative friend for help. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to ask my creative friend for help. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are meeting our musical neighbour tomorrow.**
-- ❌ We are going to meet our musical neighbour tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is meeting our musical neighbour tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to meet our musical neighbour tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is meeting our musical neighbour tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are meeting their athletic friend on Sunday.**
-- ❌ They are going to meet their athletic friend on Sunday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is meeting their athletic friend on Sunday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to meet their athletic friend on Sunday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is meeting their athletic friend on Sunday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

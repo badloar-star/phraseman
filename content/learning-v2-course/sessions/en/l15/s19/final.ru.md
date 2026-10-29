@@ -15,7 +15,7 @@
 
 - ✅ **We are hiring a removal van on Saturday.**
 - ❌ We am hiring a removal van on Saturday. — *Выберите am с I, is с she, are с we или they.*
-- ❌ We is hiring a removal van on Saturday. — *Форма be должна подходить к подлежащему.*
+- ❌ We is hiring a removal van on Saturday. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **I am having a housewarming on Friday.**
 - ❌ I is having a housewarming on Friday. — *Выберите am с I, is с she, are с we или they.*
-- ❌ I are having a housewarming on Friday. — *Форма be должна подходить к подлежащему.*
+- ❌ I are having a housewarming on Friday. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are meeting the tenant at ten tomorrow.**
 - ❌ They am meeting the tenant at ten tomorrow. — *Выберите am с I, is с she, are с we или they.*
-- ❌ They is meeting the tenant at ten tomorrow. — *Форма be должна подходить к подлежащему.*
+- ❌ They is meeting the tenant at ten tomorrow. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-19:i03; family: context_gap_grammar -->
 We ___ hiring a removal van on Saturday. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **5 · Карточка слова — housewarming**
 <!-- interaction_id: en:lesson-15:session-19:word:housewarming; family: word_card -->
@@ -86,8 +86,8 @@ We ___ hiring a removal van on Saturday. → **are** · am · is
 **8 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-19:i06; family: context_gap_grammar -->
 I ___ having a housewarming on Friday. → **am** · is · are
-- is — *С этим подлежащим нужна форма am.*
-- are — *Для этого подлежащего нужна am.*
+- is — *С этим словом нужна форма am.*
+- are — *Для этого слова нужна am.*
 
 **9 · Карточка слова — viewing**
 <!-- interaction_id: en:lesson-15:session-19:word:viewing; family: word_card -->
@@ -106,8 +106,8 @@ I ___ having a housewarming on Friday. → **am** · is · are
 **12 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-19:i09; family: context_gap_grammar -->
 She ___ attending a viewing tomorrow. → **is** · am · are
-- am — *С этим подлежащим нужна форма is.*
-- are — *Для этого подлежащего нужна is.*
+- am — *С этим словом нужна форма is.*
+- are — *Для этого слова нужна is.*
 
 **13 · Карточка слова — tenant**
 <!-- interaction_id: en:lesson-15:session-19:word:tenant; family: word_card -->
@@ -126,8 +126,8 @@ She ___ attending a viewing tomorrow. → **is** · am · are
 **16 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-19:i12; family: context_gap_grammar -->
 They ___ meeting the tenant at ten tomorrow. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-19:i13; family: speed_match -->

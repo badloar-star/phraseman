@@ -15,7 +15,7 @@
 
 - ✅ **We are having a stopover in Paris tomorrow.**
 - ❌ We am having a stopover in Paris tomorrow. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ We is having a stopover in Paris tomorrow. — *Форма be має відповідати підмету.*
+- ❌ We is having a stopover in Paris tomorrow. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **I am taking the outbound flight tomorrow.**
 - ❌ I is taking the outbound flight tomorrow. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ I are taking the outbound flight tomorrow. — *Форма be має відповідати підмету.*
+- ❌ I are taking the outbound flight tomorrow. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are carpooling tomorrow.**
 - ❌ They am carpooling tomorrow. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ They is carpooling tomorrow. — *Форма be має відповідати підмету.*
+- ❌ They is carpooling tomorrow. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-24:i03; family: context_gap_grammar -->
 We ___ having a stopover in Paris tomorrow. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **5 · Картка слова — outbound**
 <!-- interaction_id: en:lesson-15:session-24:word:outbound; family: word_card -->
@@ -86,8 +86,8 @@ We ___ having a stopover in Paris tomorrow. → **are** · am · is
 **8 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-24:i06; family: context_gap_grammar -->
 I ___ taking the outbound flight tomorrow. → **am** · is · are
-- is — *З цим підметом потрібна форма am.*
-- are — *Для цього підмета потрібна am.*
+- is — *З цим словом потрібна форма am.*
+- are — *Для цього слова потрібна am.*
 
 **9 · Картка слова — guided tour**
 <!-- interaction_id: en:lesson-15:session-24:word:guided-tour; family: word_card -->
@@ -106,8 +106,8 @@ I ___ taking the outbound flight tomorrow. → **am** · is · are
 **12 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-24:i09; family: context_gap_grammar -->
 She ___ joining a guided tour on Friday. → **is** · am · are
-- am — *З цим підметом потрібна форма is.*
-- are — *Для цього підмета потрібна is.*
+- am — *З цим словом потрібна форма is.*
+- are — *Для цього слова потрібна is.*
 
 **13 · Картка слова — carpool**
 <!-- interaction_id: en:lesson-15:session-24:word:carpool; family: word_card -->
@@ -126,8 +126,8 @@ She ___ joining a guided tour on Friday. → **is** · am · are
 **16 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-24:i12; family: context_gap_grammar -->
 They ___ carpooling tomorrow. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-24:i13; family: speed_match -->

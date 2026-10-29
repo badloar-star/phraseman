@@ -15,7 +15,7 @@
 
 - ✅ **We are hiring a removal van on Saturday.**
 - ❌ We am hiring a removal van on Saturday. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ We is hiring a removal van on Saturday. — *Форма be має відповідати підмету.*
+- ❌ We is hiring a removal van on Saturday. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **I am having a housewarming on Friday.**
 - ❌ I is having a housewarming on Friday. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ I are having a housewarming on Friday. — *Форма be має відповідати підмету.*
+- ❌ I are having a housewarming on Friday. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are meeting the tenant at ten tomorrow.**
 - ❌ They am meeting the tenant at ten tomorrow. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ They is meeting the tenant at ten tomorrow. — *Форма be має відповідати підмету.*
+- ❌ They is meeting the tenant at ten tomorrow. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-19:i03; family: context_gap_grammar -->
 We ___ hiring a removal van on Saturday. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **5 · Картка слова — housewarming**
 <!-- interaction_id: en:lesson-15:session-19:word:housewarming; family: word_card -->
@@ -86,8 +86,8 @@ We ___ hiring a removal van on Saturday. → **are** · am · is
 **8 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-19:i06; family: context_gap_grammar -->
 I ___ having a housewarming on Friday. → **am** · is · are
-- is — *З цим підметом потрібна форма am.*
-- are — *Для цього підмета потрібна am.*
+- is — *З цим словом потрібна форма am.*
+- are — *Для цього слова потрібна am.*
 
 **9 · Картка слова — viewing**
 <!-- interaction_id: en:lesson-15:session-19:word:viewing; family: word_card -->
@@ -106,8 +106,8 @@ I ___ having a housewarming on Friday. → **am** · is · are
 **12 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-19:i09; family: context_gap_grammar -->
 She ___ attending a viewing tomorrow. → **is** · am · are
-- am — *З цим підметом потрібна форма is.*
-- are — *Для цього підмета потрібна is.*
+- am — *З цим словом потрібна форма is.*
+- are — *Для цього слова потрібна is.*
 
 **13 · Картка слова — tenant**
 <!-- interaction_id: en:lesson-15:session-19:word:tenant; family: word_card -->
@@ -126,8 +126,8 @@ She ___ attending a viewing tomorrow. → **is** · am · are
 **16 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-19:i12; family: context_gap_grammar -->
 They ___ meeting the tenant at ten tomorrow. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-19:i13; family: speed_match -->

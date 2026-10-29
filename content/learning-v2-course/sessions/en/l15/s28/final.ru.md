@@ -15,7 +15,7 @@
 
 - ✅ **I am going to choose a delivery slot.**
 - ❌ I am choosing a delivery slot. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to choose a delivery slot. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to choose a delivery slot. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are using click and collect tomorrow.**
-- ❌ We are going to use click and collect tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is using click and collect tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to use click and collect tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is using click and collect tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are meeting by the photo booth at ten tomorrow.**
-- ❌ They are going to meet by the photo booth at ten tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is meeting by the photo booth at ten tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to meet by the photo booth at ten tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is meeting by the photo booth at ten tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

@@ -15,7 +15,7 @@
 
 - ✅ **I am going to try origami.**
 - ❌ I am trying origami. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to try origami. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to try origami. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are going birdwatching on Saturday.**
-- ❌ We are going to go birdwatching on Saturday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is going birdwatching on Saturday. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to go birdwatching on Saturday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is going birdwatching on Saturday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are going stargazing tonight.**
-- ❌ They are going to go stargazing tonight. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is going stargazing tonight. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to go stargazing tonight. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is going stargazing tonight. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -106,7 +106,7 @@ She ___ woodworking. → **is going to learn** · is learning · learn
 **12 · Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-31:i09; family: context_gap_grammar -->
 We ___ birdwatching on Saturday. → **are going** · are going to go · go
-- are going to go — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+- are going to go — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через am / is / are + -ing.*
 - go — *Потрібна повна форма: are going.*
 
 **13 · Картка слова — stargazing**
@@ -126,7 +126,7 @@ We ___ birdwatching on Saturday. → **are going** · are going to go · go
 **16 · Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-31:i12; family: context_gap_grammar -->
 They ___ stargazing tonight. → **are going** · are going to go · go
-- are going to go — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+- are going to go — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через am / is / are + -ing.*
 - go — *Потрібна повна форма: are going.*
 
 **17 · Поєднайте слова й вирази з перекладом**

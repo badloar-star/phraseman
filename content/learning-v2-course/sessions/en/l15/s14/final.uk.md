@@ -66,8 +66,8 @@
 **4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-14:i03; family: context_gap_grammar -->
 There ___ going to be dew on the grass. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **5 · Картка слова — rainbow**
 <!-- interaction_id: en:lesson-15:session-14:word:rainbow; family: word_card -->
@@ -86,8 +86,8 @@ There ___ going to be dew on the grass. → **is** · are · am
 **8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-14:i06; family: context_gap_grammar -->
 There ___ going to be a rainbow. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **9 · Картка слова — sunbeam**
 <!-- interaction_id: en:lesson-15:session-14:word:sunbeam; family: word_card -->
@@ -106,8 +106,8 @@ There ___ going to be a rainbow. → **is** · are · am
 **12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-14:i09; family: context_gap_grammar -->
 A sunbeam ___ going to reach the floor. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **13 · Картка слова — treetop**
 <!-- interaction_id: en:lesson-15:session-14:word:treetop; family: word_card -->
@@ -126,8 +126,8 @@ A sunbeam ___ going to reach the floor. → **is** · are · am
 **16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-14:i12; family: context_gap_grammar -->
 The treetop ___ going to touch the window. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-14:i13; family: speed_match -->

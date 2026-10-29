@@ -15,7 +15,7 @@
 
 - ✅ **I am going to talk to my reckless brother.**
 - ❌ I am talking to my reckless brother. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to talk to my reckless brother. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to talk to my reckless brother. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are meeting our narrow-minded cousin tomorrow.**
-- ❌ We are going to meet our narrow-minded cousin tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is meeting our narrow-minded cousin tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to meet our narrow-minded cousin tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is meeting our narrow-minded cousin tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are meeting their ungrateful friend on Saturday.**
-- ❌ They are going to meet their ungrateful friend on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is meeting their ungrateful friend on Saturday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to meet their ungrateful friend on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is meeting their ungrateful friend on Saturday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

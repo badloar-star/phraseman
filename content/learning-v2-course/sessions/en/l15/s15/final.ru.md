@@ -66,8 +66,8 @@
 **4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-15:i03; family: context_gap_grammar -->
 The skylight ___ going to leak. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **5 · Карточка слова — veranda**
 <!-- interaction_id: en:lesson-15:session-15:word:veranda; family: word_card -->
@@ -86,8 +86,8 @@ The skylight ___ going to leak. → **is** · are · am
 **8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-15:i06; family: context_gap_grammar -->
 The veranda ___ going to get wet. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **9 · Карточка слова — conservatory**
 <!-- interaction_id: en:lesson-15:session-15:word:conservatory; family: word_card -->
@@ -106,8 +106,8 @@ The veranda ___ going to get wet. → **is** · are · am
 **12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-15:i09; family: context_gap_grammar -->
 The conservatory ___ going to get hot. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **13 · Карточка слова — doorstop**
 <!-- interaction_id: en:lesson-15:session-15:word:doorstop; family: word_card -->
@@ -126,8 +126,8 @@ The conservatory ___ going to get hot. → **is** · are · am
 **16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-15:i12; family: context_gap_grammar -->
 The doorstop ___ going to slide. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-15:i13; family: speed_match -->

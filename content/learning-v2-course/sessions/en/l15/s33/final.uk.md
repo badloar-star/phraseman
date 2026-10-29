@@ -15,7 +15,7 @@
 
 - ✅ **I am going to attend a christening.**
 - ❌ I am attending a christening. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to attend a christening. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to attend a christening. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are attending a hen party on Saturday.**
-- ❌ We are going to attend a hen party on Saturday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is attending a hen party on Saturday. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to attend a hen party on Saturday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is attending a hen party on Saturday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are attending a stag party on Friday.**
-- ❌ They are going to attend a stag party on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is attending a stag party on Friday. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to attend a stag party on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is attending a stag party on Friday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

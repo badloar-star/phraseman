@@ -15,7 +15,7 @@
 
 - ✅ **I am going to renew my pass.**
 - ❌ I am renewing my pass. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to renew my pass. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to renew my pass. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I am bringing my appointment card tomorrow.**
-- ❌ I am going to bring my appointment card tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ I is bringing my appointment card tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ I am going to bring my appointment card tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ I is bringing my appointment card tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are paying for our membership on Friday.**
-- ❌ We are going to pay for our membership on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is paying for our membership on Friday. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to pay for our membership on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is paying for our membership on Friday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

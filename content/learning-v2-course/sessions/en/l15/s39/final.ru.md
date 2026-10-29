@@ -15,7 +15,7 @@
 
 - ✅ **I am going to see a dietitian.**
 - ❌ I am seeing a dietitian. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to see a dietitian. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to see a dietitian. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are meeting the midwife on Monday.**
-- ❌ We are going to meet the midwife on Monday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is meeting the midwife on Monday. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to meet the midwife on Monday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is meeting the midwife on Monday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are meeting the beautician tomorrow.**
-- ❌ They are going to meet the beautician tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is meeting the beautician tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to meet the beautician tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is meeting the beautician tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

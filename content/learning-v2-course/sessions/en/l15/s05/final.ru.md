@@ -66,8 +66,8 @@
 **4 · План уже принят. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-05:i03; family: context_gap_grammar -->
 I ___ going to book a room with an en-suite. → **am** · is · are
-- is — *С этим подлежащим нужна форма am.*
-- are — *Для этого подлежащего нужна am.*
+- is — *С этим словом нужна форма am.*
+- are — *Для этого слова нужна am.*
 
 **5 · Карточка слова — all-inclusive**
 <!-- interaction_id: en:lesson-15:session-05:word:all-inclusive; family: word_card -->
@@ -86,8 +86,8 @@ I ___ going to book a room with an en-suite. → **am** · is · are
 **8 · План уже принят. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-05:i06; family: context_gap_grammar -->
 They ___ going to book an all-inclusive holiday. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **9 · Карточка слова — connecting room**
 <!-- interaction_id: en:lesson-15:session-05:word:connecting-room; family: word_card -->
@@ -106,8 +106,8 @@ They ___ going to book an all-inclusive holiday. → **are** · am · is
 **12 · План уже принят. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-05:i09; family: context_gap_grammar -->
 She ___ going to book a connecting room. → **is** · am · are
-- am — *С этим подлежащим нужна форма is.*
-- are — *Для этого подлежащего нужна is.*
+- am — *С этим словом нужна форма is.*
+- are — *Для этого слова нужна is.*
 
 **13 · Карточка слова — walk-in shower**
 <!-- interaction_id: en:lesson-15:session-05:word:walk-in-shower; family: word_card -->
@@ -126,8 +126,8 @@ She ___ going to book a connecting room. → **is** · am · are
 **16 · План уже принят. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-05:i12; family: context_gap_grammar -->
 We ___ going to choose a room with a walk-in shower. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-05:i13; family: speed_match -->

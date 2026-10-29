@@ -15,7 +15,7 @@
 
 - ✅ **I am going to buy washer fluid.**
 - ❌ I am buying washer fluid. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to buy washer fluid. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to buy washer fluid. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are collecting the hubcap tomorrow.**
-- ❌ We are going to collect the hubcap tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is collecting the hubcap tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to collect the hubcap tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is collecting the hubcap tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are bringing jump leads at nine tomorrow.**
-- ❌ They are going to bring jump leads at nine tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is bringing jump leads at nine tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to bring jump leads at nine tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is bringing jump leads at nine tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

@@ -66,8 +66,8 @@
 **4 · План уже ухвалено. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-06:i03; family: context_gap_grammar -->
 I ___ going to sleep in a bunk bed. → **am** · is · are
-- is — *З цим підметом потрібна форма am.*
-- are — *Для цього підмета потрібна am.*
+- is — *З цим словом потрібна форма am.*
+- are — *Для цього слова потрібна am.*
 
 **5 · Картка слова — sleeping mat**
 <!-- interaction_id: en:lesson-15:session-06:word:sleeping-mat; family: word_card -->
@@ -86,8 +86,8 @@ I ___ going to sleep in a bunk bed. → **am** · is · are
 **8 · План уже ухвалено. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-06:i06; family: context_gap_grammar -->
 She ___ going to take a sleeping mat. → **is** · am · are
-- am — *З цим підметом потрібна форма is.*
-- are — *Для цього підмета потрібна is.*
+- am — *З цим словом потрібна форма is.*
+- are — *Для цього слова потрібна is.*
 
 **9 · Картка слова — groundsheet**
 <!-- interaction_id: en:lesson-15:session-06:word:groundsheet; family: word_card -->
@@ -106,8 +106,8 @@ She ___ going to take a sleeping mat. → **is** · am · are
 **12 · План уже ухвалено. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-06:i09; family: context_gap_grammar -->
 They ___ going to buy a groundsheet. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **13 · Картка слова — cool box**
 <!-- interaction_id: en:lesson-15:session-06:word:cool-box; family: word_card -->
@@ -126,8 +126,8 @@ They ___ going to buy a groundsheet. → **are** · am · is
 **16 · План уже ухвалено. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-06:i12; family: context_gap_grammar -->
 We ___ going to put the drinks in a cool box. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-06:i13; family: speed_match -->

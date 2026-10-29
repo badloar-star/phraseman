@@ -15,7 +15,7 @@
 
 - ✅ **I am going to learn first aid.**
 - ❌ I am learning first aid. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to learn first aid. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to learn first aid. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are having a swimming lesson tomorrow.**
-- ❌ We are going to have a swimming lesson tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is having a swimming lesson tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to have a swimming lesson tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is having a swimming lesson tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are attending a dance class on Friday.**
-- ❌ They are going to attend a dance class on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is attending a dance class on Friday. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to attend a dance class on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is attending a dance class on Friday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -106,7 +106,7 @@ She ___ a driving lesson. → **is going to book** · is booking · book
 **12 · Ви з другом записалися на завтрашнє заняття в басейні; інструктор підтвердив час. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-34:i09; family: context_gap_grammar -->
 We ___ a swimming lesson tomorrow. → **are having** · are going to have · have
-- are going to have — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+- are going to have — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через am / is / are + -ing.*
 - have — *Потрібна повна форма: are having.*
 
 **13 · Картка слова — dance class**

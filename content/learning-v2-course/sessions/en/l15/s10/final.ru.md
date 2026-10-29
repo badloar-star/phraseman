@@ -66,8 +66,8 @@
 **4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-10:i03; family: context_gap_grammar -->
 The fish ___ going to thaw. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **5 · Карточка слова — soften**
 <!-- interaction_id: en:lesson-15:session-10:word:soften; family: word_card -->
@@ -86,8 +86,8 @@ The fish ___ going to thaw. → **is** · are · am
 **8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-10:i06; family: context_gap_grammar -->
 The butter ___ going to soften. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **9 · Карточка слова — harden**
 <!-- interaction_id: en:lesson-15:session-10:word:harden; family: word_card -->
@@ -106,8 +106,8 @@ The butter ___ going to soften. → **is** · are · am
 **12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-10:i09; family: context_gap_grammar -->
 The chocolate ___ going to harden. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **13 · Карточка слова — crumble**
 <!-- interaction_id: en:lesson-15:session-10:word:crumble; family: word_card -->
@@ -126,8 +126,8 @@ The chocolate ___ going to harden. → **is** · are · am
 **16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-10:i12; family: context_gap_grammar -->
 The biscuits ___ going to crumble. → **are** · is · am
-- is — *С этим подлежащим нужна форма are.*
-- am — *Для этого подлежащего нужна are.*
+- is — *С этим словом нужна форма are.*
+- am — *Для этого слова нужна are.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-10:i13; family: speed_match -->

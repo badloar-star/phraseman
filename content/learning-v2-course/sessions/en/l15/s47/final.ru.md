@@ -15,7 +15,7 @@
 
 - ✅ **I am going to buy a practical coat.**
 - ❌ I am buying a practical coat. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to buy a practical coat. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to buy a practical coat. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are viewing an affordable flat tomorrow.**
-- ❌ We are going to view an affordable flat tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is viewing an affordable flat tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to view an affordable flat tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is viewing an affordable flat tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are viewing an overpriced flat on Friday.**
-- ❌ They are going to view an overpriced flat on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is viewing an overpriced flat on Friday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to view an overpriced flat on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is viewing an overpriced flat on Friday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

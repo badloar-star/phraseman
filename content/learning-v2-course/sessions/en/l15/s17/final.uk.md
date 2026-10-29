@@ -15,7 +15,7 @@
 
 - ✅ **I am meeting the carer tomorrow.**
 - ❌ I is meeting the carer tomorrow. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ I are meeting the carer tomorrow. — *Форма be має відповідати підмету.*
+- ❌ I are meeting the carer tomorrow. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **We are meeting the babysitter at six tomorrow.**
 - ❌ We am meeting the babysitter at six tomorrow. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ We is meeting the babysitter at six tomorrow. — *Форма be має відповідати підмету.*
+- ❌ We is meeting the babysitter at six tomorrow. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are meeting the cleaner tomorrow morning.**
 - ❌ They am meeting the cleaner tomorrow morning. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ They is meeting the cleaner tomorrow morning. — *Форма be має відповідати підмету.*
+- ❌ They is meeting the cleaner tomorrow morning. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-17:i03; family: context_gap_grammar -->
 I ___ meeting the carer tomorrow. → **am** · is · are
-- is — *З цим підметом потрібна форма am.*
-- are — *Для цього підмета потрібна am.*
+- is — *З цим словом потрібна форма am.*
+- are — *Для цього слова потрібна am.*
 
 **5 · Картка слова — babysitter**
 <!-- interaction_id: en:lesson-15:session-17:word:babysitter; family: word_card -->
@@ -86,8 +86,8 @@ I ___ meeting the carer tomorrow. → **am** · is · are
 **8 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-17:i06; family: context_gap_grammar -->
 We ___ meeting the babysitter at six tomorrow. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **9 · Картка слова — dog walker**
 <!-- interaction_id: en:lesson-15:session-17:word:dog-walker; family: word_card -->
@@ -106,8 +106,8 @@ We ___ meeting the babysitter at six tomorrow. → **are** · am · is
 **12 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-17:i09; family: context_gap_grammar -->
 She ___ meeting the dog walker on Friday. → **is** · am · are
-- am — *З цим підметом потрібна форма is.*
-- are — *Для цього підмета потрібна is.*
+- am — *З цим словом потрібна форма is.*
+- are — *Для цього слова потрібна is.*
 
 **13 · Картка слова — cleaner**
 <!-- interaction_id: en:lesson-15:session-17:word:cleaner; family: word_card -->
@@ -126,8 +126,8 @@ She ___ meeting the dog walker on Friday. → **is** · am · are
 **16 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-17:i12; family: context_gap_grammar -->
 They ___ meeting the cleaner tomorrow morning. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-17:i13; family: speed_match -->

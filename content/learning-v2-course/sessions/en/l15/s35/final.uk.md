@@ -15,7 +15,7 @@
 
 - ✅ **I am going to get a haircut.**
 - ❌ I am getting a haircut. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to get a haircut. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to get a haircut. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are having a pedicure on Saturday.**
-- ❌ We are going to have a pedicure on Saturday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is having a pedicure on Saturday. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to have a pedicure on Saturday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is having a pedicure on Saturday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are paying for hair colouring tomorrow.**
-- ❌ They are going to pay for hair colouring tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is paying for hair colouring tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to pay for hair colouring tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is paying for hair colouring tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -106,7 +106,7 @@ She ___ a manicure. → **is going to book** · is booking · book
 **12 · Ви з подругою записалися на педикюр у суботу; салон підтвердив обидва записи. Скажіть, що це вже вирішено.**
 <!-- interaction_id: en:lesson-15:session-35:i09; family: context_gap_grammar -->
 We ___ a pedicure on Saturday. → **are having** · are going to have · have
-- are going to have — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous.*
+- are going to have — *Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через am / is / are + -ing.*
 - have — *Потрібна повна форма: are having.*
 
 **13 · Картка слова — hair colouring**

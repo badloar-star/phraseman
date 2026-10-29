@@ -15,7 +15,7 @@
 
 - ✅ **I am going to cook for my picky brother.**
 - ❌ I am cooking for my picky brother. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to cook for my picky brother. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to cook for my picky brother. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are meeting our sociable neighbour tomorrow.**
-- ❌ We are going to meet our sociable neighbour tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is meeting our sociable neighbour tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to meet our sociable neighbour tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is meeting our sociable neighbour tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are meeting their sensitive friend on Saturday.**
-- ❌ They are going to meet their sensitive friend on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is meeting their sensitive friend on Saturday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to meet their sensitive friend on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is meeting their sensitive friend on Saturday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

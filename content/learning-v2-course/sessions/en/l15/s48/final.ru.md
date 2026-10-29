@@ -15,7 +15,7 @@
 
 - ✅ **I am going to turn the handle clockwise.**
 - ❌ I am turning the handle clockwise. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to turn the handle clockwise. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to turn the handle clockwise. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Договориться встретиться внизу
 
-Вы с друзьями договорились встретиться завтра на нижнем этаже дома. We are meeting downstairs tomorrow. — Завтра мы встречаемся внизу. Для договорённости поставьте we are meeting: к meet добавляем -ing. Затем укажите место downstairs и время tomorrow. Соберите we + are meeting + downstairs + tomorrow. Перед downstairs не нужен предлог. Здесь тренируем Present Continuous; going to также возможно.
+Вы с друзьями договорились встретиться завтра на нижнем этаже дома. We are meeting downstairs tomorrow. — Завтра мы встречаемся внизу. Для договорённости поставьте we are meeting: к meet добавляем -ing. Затем укажите место downstairs и время tomorrow. Соберите we + are meeting + downstairs + tomorrow. Перед downstairs не нужен предлог. Здесь тренируем am / is / are + -ing; going to также возможно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are meeting downstairs tomorrow.**
-- ❌ We are going to meet downstairs tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is meeting downstairs tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to meet downstairs tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is meeting downstairs tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Рассказать об украшении зала
 
-Друзья договорились завтра украсить зал: они повесят огни над местом, где будут стоять гости. They are hanging lights overhead tomorrow. — Завтра они вешают огни над головами гостей. Назовите друзей словом they, затем поставьте are hanging: к hang добавляем -ing. Добавьте lights — что вешают — overhead — где — и tomorrow — когда. Порядок такой: they + are hanging + lights + overhead + tomorrow. Здесь используйте Present Continuous для согласованного дела; going to тоже возможно.
+Друзья договорились завтра украсить зал: они повесят огни над местом, где будут стоять гости. They are hanging lights overhead tomorrow. — Завтра они вешают огни над головами гостей. Назовите друзей словом they, затем поставьте are hanging: к hang добавляем -ing. Добавьте lights — что вешают — overhead — где — и tomorrow — когда. Порядок такой: they + are hanging + lights + overhead + tomorrow. Здесь используйте am / is / are + -ing для согласованного дела; going to тоже возможно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are hanging lights overhead tomorrow.**
-- ❌ They are going to hang lights overhead tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is hanging lights overhead tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to hang lights overhead tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is hanging lights overhead tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

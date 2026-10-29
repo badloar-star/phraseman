@@ -15,7 +15,7 @@
 
 - ✅ **I am going to call my half-brother.**
 - ❌ I am calling my half-brother. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to call my half-brother. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to call my half-brother. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are meeting our son-in-law on Sunday.**
-- ❌ We are going to meet our son-in-law on Sunday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is meeting our son-in-law on Sunday. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to meet our son-in-law on Sunday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is meeting our son-in-law on Sunday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are meeting their daughter-in-law tomorrow.**
-- ❌ They are going to meet their daughter-in-law tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is meeting their daughter-in-law tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to meet their daughter-in-law tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is meeting their daughter-in-law tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

@@ -15,7 +15,7 @@
 
 - ✅ **I am going to attend a christening.**
 - ❌ I am attending a christening. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to attend a christening. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to attend a christening. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are attending a hen party on Saturday.**
-- ❌ We are going to attend a hen party on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is attending a hen party on Saturday. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to attend a hen party on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is attending a hen party on Saturday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are attending a stag party on Friday.**
-- ❌ They are going to attend a stag party on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is attending a stag party on Friday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to attend a stag party on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is attending a stag party on Friday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

@@ -15,7 +15,7 @@
 
 - ✅ **We are having a stopover in Paris tomorrow.**
 - ❌ We am having a stopover in Paris tomorrow. — *Выберите am с I, is с she, are с we или they.*
-- ❌ We is having a stopover in Paris tomorrow. — *Форма be должна подходить к подлежащему.*
+- ❌ We is having a stopover in Paris tomorrow. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **I am taking the outbound flight tomorrow.**
 - ❌ I is taking the outbound flight tomorrow. — *Выберите am с I, is с she, are с we или they.*
-- ❌ I are taking the outbound flight tomorrow. — *Форма be должна подходить к подлежащему.*
+- ❌ I are taking the outbound flight tomorrow. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are carpooling tomorrow.**
 - ❌ They am carpooling tomorrow. — *Выберите am с I, is с she, are с we или they.*
-- ❌ They is carpooling tomorrow. — *Форма be должна подходить к подлежащему.*
+- ❌ They is carpooling tomorrow. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-24:i03; family: context_gap_grammar -->
 We ___ having a stopover in Paris tomorrow. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **5 · Карточка слова — outbound**
 <!-- interaction_id: en:lesson-15:session-24:word:outbound; family: word_card -->
@@ -86,8 +86,8 @@ We ___ having a stopover in Paris tomorrow. → **are** · am · is
 **8 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-24:i06; family: context_gap_grammar -->
 I ___ taking the outbound flight tomorrow. → **am** · is · are
-- is — *С этим подлежащим нужна форма am.*
-- are — *Для этого подлежащего нужна am.*
+- is — *С этим словом нужна форма am.*
+- are — *Для этого слова нужна am.*
 
 **9 · Карточка слова — guided tour**
 <!-- interaction_id: en:lesson-15:session-24:word:guided-tour; family: word_card -->
@@ -106,8 +106,8 @@ I ___ taking the outbound flight tomorrow. → **am** · is · are
 **12 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-24:i09; family: context_gap_grammar -->
 She ___ joining a guided tour on Friday. → **is** · am · are
-- am — *С этим подлежащим нужна форма is.*
-- are — *Для этого подлежащего нужна is.*
+- am — *С этим словом нужна форма is.*
+- are — *Для этого слова нужна is.*
 
 **13 · Карточка слова — carpool**
 <!-- interaction_id: en:lesson-15:session-24:word:carpool; family: word_card -->
@@ -126,8 +126,8 @@ She ___ joining a guided tour on Friday. → **is** · am · are
 **16 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-24:i12; family: context_gap_grammar -->
 They ___ carpooling tomorrow. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-24:i13; family: speed_match -->

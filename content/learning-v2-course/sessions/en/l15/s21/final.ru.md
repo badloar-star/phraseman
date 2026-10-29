@@ -15,7 +15,7 @@
 
 - ✅ **We are having a playdate on Saturday.**
 - ❌ We am having a playdate on Saturday. — *Выберите am с I, is с she, are с we или they.*
-- ❌ We is having a playdate on Saturday. — *Форма be должна подходить к подлежащему.*
+- ❌ We is having a playdate on Saturday. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **I am having a sleepover on Friday.**
 - ❌ I is having a sleepover on Friday. — *Выберите am с I, is с she, are с we или they.*
-- ❌ I are having a sleepover on Friday. — *Форма be должна подходить к подлежащему.*
+- ❌ I are having a sleepover on Friday. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are attending a reunion on Sunday.**
 - ❌ They am attending a reunion on Sunday. — *Выберите am с I, is с she, are с we или they.*
-- ❌ They is attending a reunion on Sunday. — *Форма be должна подходить к подлежащему.*
+- ❌ They is attending a reunion on Sunday. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-21:i03; family: context_gap_grammar -->
 We ___ having a playdate on Saturday. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **5 · Карточка слова — sleepover**
 <!-- interaction_id: en:lesson-15:session-21:word:sleepover; family: word_card -->
@@ -86,8 +86,8 @@ We ___ having a playdate on Saturday. → **are** · am · is
 **8 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-21:i06; family: context_gap_grammar -->
 I ___ having a sleepover on Friday. → **am** · is · are
-- is — *С этим подлежащим нужна форма am.*
-- are — *Для этого подлежащего нужна am.*
+- is — *С этим словом нужна форма am.*
+- are — *Для этого слова нужна am.*
 
 **9 · Карточка слова — potluck**
 <!-- interaction_id: en:lesson-15:session-21:word:potluck; family: word_card -->
@@ -106,8 +106,8 @@ I ___ having a sleepover on Friday. → **am** · is · are
 **12 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-21:i09; family: context_gap_grammar -->
 She ___ coming to the potluck tomorrow. → **is** · am · are
-- am — *С этим подлежащим нужна форма is.*
-- are — *Для этого подлежащего нужна is.*
+- am — *С этим словом нужна форма is.*
+- are — *Для этого слова нужна is.*
 
 **13 · Карточка слова — reunion**
 <!-- interaction_id: en:lesson-15:session-21:word:reunion; family: word_card -->
@@ -126,8 +126,8 @@ She ___ coming to the potluck tomorrow. → **is** · am · are
 **16 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-21:i12; family: context_gap_grammar -->
 They ___ attending a reunion on Sunday. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-21:i13; family: speed_match -->

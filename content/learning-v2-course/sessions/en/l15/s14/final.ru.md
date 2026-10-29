@@ -66,8 +66,8 @@
 **4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-14:i03; family: context_gap_grammar -->
 There ___ going to be dew on the grass. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **5 · Карточка слова — rainbow**
 <!-- interaction_id: en:lesson-15:session-14:word:rainbow; family: word_card -->
@@ -86,8 +86,8 @@ There ___ going to be dew on the grass. → **is** · are · am
 **8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-14:i06; family: context_gap_grammar -->
 There ___ going to be a rainbow. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **9 · Карточка слова — sunbeam**
 <!-- interaction_id: en:lesson-15:session-14:word:sunbeam; family: word_card -->
@@ -106,8 +106,8 @@ There ___ going to be a rainbow. → **is** · are · am
 **12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-14:i09; family: context_gap_grammar -->
 A sunbeam ___ going to reach the floor. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **13 · Карточка слова — treetop**
 <!-- interaction_id: en:lesson-15:session-14:word:treetop; family: word_card -->
@@ -126,8 +126,8 @@ A sunbeam ___ going to reach the floor. → **is** · are · am
 **16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-14:i12; family: context_gap_grammar -->
 The treetop ___ going to touch the window. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-14:i13; family: speed_match -->

@@ -15,7 +15,7 @@
 
 - ✅ **I am going to visit my modest friend.**
 - ❌ I am visiting my modest friend. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to visit my modest friend. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to visit my modest friend. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are travelling with our easy-going friend on Saturday.**
-- ❌ We are going to travel with our easy-going friend on Saturday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is travelling with our easy-going friend on Saturday. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to travel with our easy-going friend on Saturday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is travelling with our easy-going friend on Saturday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are meeting their bossy cousin tomorrow.**
-- ❌ They are going to meet their bossy cousin tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is meeting their bossy cousin tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to meet their bossy cousin tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is meeting their bossy cousin tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

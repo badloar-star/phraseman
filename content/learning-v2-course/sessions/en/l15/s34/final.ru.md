@@ -15,7 +15,7 @@
 
 - ✅ **I am going to learn first aid.**
 - ❌ I am learning first aid. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to learn first aid. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to learn first aid. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are having a swimming lesson tomorrow.**
-- ❌ We are going to have a swimming lesson tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is having a swimming lesson tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to have a swimming lesson tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is having a swimming lesson tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are attending a dance class on Friday.**
-- ❌ They are going to attend a dance class on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is attending a dance class on Friday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to attend a dance class on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is attending a dance class on Friday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -106,7 +106,7 @@ She ___ a driving lesson. → **is going to book** · is booking · book
 **12 · Вы с другом записались на завтрашнее занятие в бассейне; инструктор подтвердил время. Скажите, что это уже решено.**
 <!-- interaction_id: en:lesson-15:session-34:i09; family: context_gap_grammar -->
 We ___ a swimming lesson tomorrow. → **are having** · are going to have · have
-- are going to have — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.*
+- are going to have — *Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через am / is / are + -ing.*
 - have — *Нужна полная форма: are having.*
 
 **13 · Карточка слова — dance class**

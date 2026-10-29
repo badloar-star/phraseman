@@ -66,8 +66,8 @@
 **4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-13:i03; family: context_gap_grammar -->
 There ___ going to be a downpour. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **5 · Картка слова — gale**
 <!-- interaction_id: en:lesson-15:session-13:word:gale; family: word_card -->
@@ -86,8 +86,8 @@ There ___ going to be a downpour. → **is** · are · am
 **8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-13:i06; family: context_gap_grammar -->
 There ___ going to be a gale. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **9 · Картка слова — gust**
 <!-- interaction_id: en:lesson-15:session-13:word:gust; family: word_card -->
@@ -106,8 +106,8 @@ There ___ going to be a gale. → **is** · are · am
 **12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-13:i09; family: context_gap_grammar -->
 Another gust ___ going to hit the window. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **13 · Картка слова — slush**
 <!-- interaction_id: en:lesson-15:session-13:word:slush; family: word_card -->
@@ -126,8 +126,8 @@ Another gust ___ going to hit the window. → **is** · are · am
 **16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-13:i12; family: context_gap_grammar -->
 There ___ going to be slush on the road. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-13:i13; family: speed_match -->

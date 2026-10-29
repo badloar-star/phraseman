@@ -15,7 +15,7 @@
 
 - ✅ **I am going to ask my creative friend for help.**
 - ❌ I am asking my creative friend for help. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to ask my creative friend for help. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to ask my creative friend for help. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are meeting our musical neighbour tomorrow.**
-- ❌ We are going to meet our musical neighbour tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is meeting our musical neighbour tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to meet our musical neighbour tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is meeting our musical neighbour tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are meeting their athletic friend on Sunday.**
-- ❌ They are going to meet their athletic friend on Sunday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is meeting their athletic friend on Sunday. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to meet their athletic friend on Sunday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is meeting their athletic friend on Sunday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

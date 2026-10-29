@@ -66,8 +66,8 @@
 **4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-10:i03; family: context_gap_grammar -->
 The fish ___ going to thaw. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **5 · Картка слова — soften**
 <!-- interaction_id: en:lesson-15:session-10:word:soften; family: word_card -->
@@ -86,8 +86,8 @@ The fish ___ going to thaw. → **is** · are · am
 **8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-10:i06; family: context_gap_grammar -->
 The butter ___ going to soften. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **9 · Картка слова — harden**
 <!-- interaction_id: en:lesson-15:session-10:word:harden; family: word_card -->
@@ -106,8 +106,8 @@ The butter ___ going to soften. → **is** · are · am
 **12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-10:i09; family: context_gap_grammar -->
 The chocolate ___ going to harden. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **13 · Картка слова — crumble**
 <!-- interaction_id: en:lesson-15:session-10:word:crumble; family: word_card -->
@@ -126,8 +126,8 @@ The chocolate ___ going to harden. → **is** · are · am
 **16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-10:i12; family: context_gap_grammar -->
 The biscuits ___ going to crumble. → **are** · is · am
-- is — *З цим підметом потрібна форма are.*
-- am — *Для цього підмета потрібна are.*
+- is — *З цим словом потрібна форма are.*
+- am — *Для цього слова потрібна are.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-10:i13; family: speed_match -->

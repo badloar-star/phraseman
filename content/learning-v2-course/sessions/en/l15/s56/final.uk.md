@@ -15,7 +15,7 @@
 
 - ✅ **I am going to shuffle the cards.**
 - ❌ I am shuffling the cards. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to shuffle the cards. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to shuffle the cards. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розповісти про запис на тренування
 
-Ви з другом записалися на завтрашнє тренування з кидків м'яча в ціль; час підтверджено. We are learning to aim tomorrow. — Завтра ми будемо вчитися цілитися. Для домовленості використайте Present Continuous: we + are + learning. Потім додайте to aim — чого вчитиметеся — і tomorrow. Виходить we are learning + to aim + tomorrow. З we потрібне are, а на завтра вказує tomorrow. Тут тренуємо Present Continuous; going to також може описувати цей майбутній план.
+Ви з другом записалися на завтрашнє тренування з кидків м'яча в ціль; час підтверджено. We are learning to aim tomorrow. — Завтра ми будемо вчитися цілитися. Для домовленості використайте am / is / are + -ing: we + are + learning. Потім додайте to aim — чого вчитиметеся — і tomorrow. Виходить we are learning + to aim + tomorrow. З we потрібне are, а на завтра вказує tomorrow. Тут тренуємо am / is / are + -ing; going to також може описувати цей майбутній план.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are learning to aim tomorrow.**
-- ❌ We are going to learn to aim tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is learning to aim tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to learn to aim tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is learning to aim tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Розповісти про заняття дітей
 
-Ваші діти записані на завтрашнє заняття, де вчитимуться відбивати м'яч від підлоги. They are learning to bounce a ball tomorrow. — Завтра вони вчитимуться відбивати м'яч від підлоги. Назвіть дітей словом they, потім поставте are learning. Додайте to bounce a ball — чого вони вчитимуться — і tomorrow — коли. Складіть they + are learning + to bounce a ball + tomorrow. Для узгодженого заняття тут використайте Present Continuous; going to також можливе, але відпрацьовуємо вказану форму.
+Ваші діти записані на завтрашнє заняття, де вчитимуться відбивати м'яч від підлоги. They are learning to bounce a ball tomorrow. — Завтра вони вчитимуться відбивати м'яч від підлоги. Назвіть дітей словом they, потім поставте are learning. Додайте to bounce a ball — чого вони вчитимуться — і tomorrow — коли. Складіть they + are learning + to bounce a ball + tomorrow. Для узгодженого заняття тут використайте am / is / are + -ing; going to також можливе, але відпрацьовуємо вказану форму.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are learning to bounce a ball tomorrow.**
-- ❌ They are going to learn to bounce a ball tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is learning to bounce a ball tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to learn to bounce a ball tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is learning to bounce a ball tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

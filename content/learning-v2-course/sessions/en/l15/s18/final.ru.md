@@ -15,7 +15,7 @@
 
 - ✅ **I am meeting the gardener tomorrow morning.**
 - ❌ I is meeting the gardener tomorrow morning. — *Выберите am с I, is с she, are с we или they.*
-- ❌ I are meeting the gardener tomorrow morning. — *Форма be должна подходить к подлежащему.*
+- ❌ I are meeting the gardener tomorrow morning. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **We are meeting the decorator on Monday.**
 - ❌ We am meeting the decorator on Monday. — *Выберите am с I, is с she, are с we или they.*
-- ❌ We is meeting the decorator on Monday. — *Форма be должна подходить к подлежащему.*
+- ❌ We is meeting the decorator on Monday. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are meeting the roofer on Tuesday.**
 - ❌ They am meeting the roofer on Tuesday. — *Выберите am с I, is с she, are с we или they.*
-- ❌ They is meeting the roofer on Tuesday. — *Форма be должна подходить к подлежащему.*
+- ❌ They is meeting the roofer on Tuesday. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-18:i03; family: context_gap_grammar -->
 I ___ meeting the gardener tomorrow morning. → **am** · is · are
-- is — *С этим подлежащим нужна форма am.*
-- are — *Для этого подлежащего нужна am.*
+- is — *С этим словом нужна форма am.*
+- are — *Для этого слова нужна am.*
 
 **5 · Карточка слова — decorator**
 <!-- interaction_id: en:lesson-15:session-18:word:decorator; family: word_card -->
@@ -86,8 +86,8 @@ I ___ meeting the gardener tomorrow morning. → **am** · is · are
 **8 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-18:i06; family: context_gap_grammar -->
 We ___ meeting the decorator on Monday. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **9 · Карточка слова — locksmith**
 <!-- interaction_id: en:lesson-15:session-18:word:locksmith; family: word_card -->
@@ -106,8 +106,8 @@ We ___ meeting the decorator on Monday. → **are** · am · is
 **12 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-18:i09; family: context_gap_grammar -->
 She ___ meeting the locksmith at two tomorrow. → **is** · am · are
-- am — *С этим подлежащим нужна форма is.*
-- are — *Для этого подлежащего нужна is.*
+- am — *С этим словом нужна форма is.*
+- are — *Для этого слова нужна is.*
 
 **13 · Карточка слова — roofer**
 <!-- interaction_id: en:lesson-15:session-18:word:roofer; family: word_card -->
@@ -126,8 +126,8 @@ She ___ meeting the locksmith at two tomorrow. → **is** · am · are
 **16 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-18:i12; family: context_gap_grammar -->
 They ___ meeting the roofer on Tuesday. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-18:i13; family: speed_match -->

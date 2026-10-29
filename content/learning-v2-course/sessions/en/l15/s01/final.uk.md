@@ -66,8 +66,8 @@
 **4 · План уже ухвалено. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-01:i03; family: context_gap_grammar -->
 I ___ going to descale the kettle. → **am** · is · are
-- is — *З цим підметом потрібна форма am.*
-- are — *Для цього підмета потрібна am.*
+- is — *З цим словом потрібна форма am.*
+- are — *Для цього слова потрібна am.*
 
 **5 · Картка слова — declutter**
 <!-- interaction_id: en:lesson-15:session-01:word:declutter; family: word_card -->
@@ -86,8 +86,8 @@ I ___ going to descale the kettle. → **am** · is · are
 **8 · План уже ухвалено. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-01:i06; family: context_gap_grammar -->
 They ___ going to declutter the room. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **9 · Картка слова — repaint**
 <!-- interaction_id: en:lesson-15:session-01:word:repaint; family: word_card -->
@@ -106,8 +106,8 @@ They ___ going to declutter the room. → **are** · am · is
 **12 · План уже ухвалено. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-01:i09; family: context_gap_grammar -->
 She ___ going to repaint the wall. → **is** · am · are
-- am — *З цим підметом потрібна форма is.*
-- are — *Для цього підмета потрібна is.*
+- am — *З цим словом потрібна форма is.*
+- are — *Для цього слова потрібна is.*
 
 **13 · Картка слова — alter**
 <!-- interaction_id: en:lesson-15:session-01:word:alter; family: word_card -->
@@ -126,8 +126,8 @@ She ___ going to repaint the wall. → **is** · am · are
 **16 · План уже ухвалено. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-01:i12; family: context_gap_grammar -->
 We ___ going to alter the dress. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-01:i13; family: speed_match -->

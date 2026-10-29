@@ -66,8 +66,8 @@
 **4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-12:i03; family: context_gap_grammar -->
 The jumper ___ going to shrink. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **5 · Карточка слова — unravel**
 <!-- interaction_id: en:lesson-15:session-12:word:unravel; family: word_card -->
@@ -86,8 +86,8 @@ The jumper ___ going to shrink. → **is** · are · am
 **8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-12:i06; family: context_gap_grammar -->
 The scarf ___ going to unravel. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **9 · Карточка слова — scorch**
 <!-- interaction_id: en:lesson-15:session-12:word:scorch; family: word_card -->
@@ -106,8 +106,8 @@ The scarf ___ going to unravel. → **is** · are · am
 **12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-12:i09; family: context_gap_grammar -->
 The iron ___ going to scorch the shirt. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **13 · Карточка слова — rot**
 <!-- interaction_id: en:lesson-15:session-12:word:rot; family: word_card -->
@@ -126,8 +126,8 @@ The iron ___ going to scorch the shirt. → **is** · are · am
 **16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-12:i12; family: context_gap_grammar -->
 The boards ___ going to rot. → **are** · is · am
-- is — *С этим подлежащим нужна форма are.*
-- am — *Для этого подлежащего нужна are.*
+- is — *С этим словом нужна форма are.*
+- am — *Для этого слова нужна are.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-12:i13; family: speed_match -->

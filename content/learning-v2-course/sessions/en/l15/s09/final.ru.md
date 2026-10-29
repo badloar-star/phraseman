@@ -66,8 +66,8 @@
 **4 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-09:i03; family: context_gap_grammar -->
 The sink ___ going to overflow. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **5 · Карточка слова — topple**
 <!-- interaction_id: en:lesson-15:session-09:word:topple; family: word_card -->
@@ -86,8 +86,8 @@ The sink ___ going to overflow. → **is** · are · am
 **8 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-09:i06; family: context_gap_grammar -->
 The tower ___ going to topple. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **9 · Карточка слова — burst**
 <!-- interaction_id: en:lesson-15:session-09:word:burst; family: word_card -->
@@ -106,8 +106,8 @@ The tower ___ going to topple. → **is** · are · am
 **12 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-09:i09; family: context_gap_grammar -->
 The balloons ___ going to burst. → **are** · is · am
-- is — *С этим подлежащим нужна форма are.*
-- am — *Для этого подлежащего нужна are.*
+- is — *С этим словом нужна форма are.*
+- am — *Для этого слова нужна are.*
 
 **13 · Карточка слова — collapse**
 <!-- interaction_id: en:lesson-15:session-09:word:collapse; family: word_card -->
@@ -126,8 +126,8 @@ The balloons ___ going to burst. → **are** · is · am
 **16 · Это видно уже сейчас. Выберите is или are**
 <!-- interaction_id: en:lesson-15:session-09:i12; family: context_gap_grammar -->
 The shelf ___ going to collapse. → **is** · are · am
-- are — *С этим подлежащим нужна форма is.*
-- am — *Для этого подлежащего нужна is.*
+- are — *С этим словом нужна форма is.*
+- am — *Для этого слова нужна is.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-09:i13; family: speed_match -->

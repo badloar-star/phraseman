@@ -15,7 +15,7 @@
 
 - ✅ **I am going to buy a practical coat.**
 - ❌ I am buying a practical coat. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to buy a practical coat. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to buy a practical coat. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are viewing an affordable flat tomorrow.**
-- ❌ We are going to view an affordable flat tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is viewing an affordable flat tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to view an affordable flat tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is viewing an affordable flat tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are viewing an overpriced flat on Friday.**
-- ❌ They are going to view an overpriced flat on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is viewing an overpriced flat on Friday. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to view an overpriced flat on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is viewing an overpriced flat on Friday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

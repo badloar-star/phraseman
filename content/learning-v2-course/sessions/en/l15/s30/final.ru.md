@@ -15,7 +15,7 @@
 
 - ✅ **I am going to call my half-brother.**
 - ❌ I am calling my half-brother. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to call my half-brother. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to call my half-brother. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are meeting our son-in-law on Sunday.**
-- ❌ We are going to meet our son-in-law on Sunday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is meeting our son-in-law on Sunday. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to meet our son-in-law on Sunday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is meeting our son-in-law on Sunday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are meeting their daughter-in-law tomorrow.**
-- ❌ They are going to meet their daughter-in-law tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is meeting their daughter-in-law tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to meet their daughter-in-law tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is meeting their daughter-in-law tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

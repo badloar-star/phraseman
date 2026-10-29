@@ -15,7 +15,7 @@
 
 - ✅ **I am going to visit a coastal town.**
 - ❌ I am visiting a coastal town. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to visit a coastal town. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to visit a coastal town. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розповісти про бронювання за містом
 
-Ви з родиною забронювали будинок у сільській місцевості на наступний тиждень. Господар підтвердив бронювання. We are staying in a rural area next week. — Наступного тижня ми житимемо в сільській місцевості. Для узгодженого плану складіть we + are + staying, потім додайте in a rural area — де — і next week — коли. У staying до stay додаємо -ing, зберігаючи y. Тут тренуємо Present Continuous; going to також може описувати цей майбутній план.
+Ви з родиною забронювали будинок у сільській місцевості на наступний тиждень. Господар підтвердив бронювання. We are staying in a rural area next week. — Наступного тижня ми житимемо в сільській місцевості. Для узгодженого плану складіть we + are + staying, потім додайте in a rural area — де — і next week — коли. У staying до stay додаємо -ing, зберігаючи y. Тут тренуємо am / is / are + -ing; going to також може описувати цей майбутній план.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are staying in a rural area next week.**
-- ❌ We are going to stay in a rural area next week. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is staying in a rural area next week. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to stay in a rural area next week. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is staying in a rural area next week. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Розповісти про прогулянку друзів
 
-Друзі домовилися завтра сходити до міського парку. They are visiting an urban park tomorrow. — Завтра вони йдуть до міського парку. Назвіть друзів словом they, потім поставте are visiting: до visit додається -ing. Додайте an urban park — куди йдуть — і tomorrow — коли. Порядок такий: they + are visiting + an urban park + tomorrow. Тут використайте Present Continuous для домовленості; going to також можливе.
+Друзі домовилися завтра сходити до міського парку. They are visiting an urban park tomorrow. — Завтра вони йдуть до міського парку. Назвіть друзів словом they, потім поставте are visiting: до visit додається -ing. Додайте an urban park — куди йдуть — і tomorrow — коли. Порядок такий: they + are visiting + an urban park + tomorrow. Тут використайте am / is / are + -ing для домовленості; going to також можливе.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are visiting an urban park tomorrow.**
-- ❌ They are going to visit an urban park tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is visiting an urban park tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to visit an urban park tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is visiting an urban park tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

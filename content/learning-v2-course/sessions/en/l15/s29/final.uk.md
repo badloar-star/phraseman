@@ -15,7 +15,7 @@
 
 - ✅ **I am going to buy washer fluid.**
 - ❌ I am buying washer fluid. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to buy washer fluid. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to buy washer fluid. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are collecting the hubcap tomorrow.**
-- ❌ We are going to collect the hubcap tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is collecting the hubcap tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to collect the hubcap tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is collecting the hubcap tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are bringing jump leads at nine tomorrow.**
-- ❌ They are going to bring jump leads at nine tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is bringing jump leads at nine tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to bring jump leads at nine tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is bringing jump leads at nine tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

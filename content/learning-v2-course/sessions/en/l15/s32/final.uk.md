@@ -15,7 +15,7 @@
 
 - ✅ **I am going to try needlework.**
 - ❌ I am trying needlework. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to try needlework. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to try needlework. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are trying calligraphy tomorrow.**
-- ❌ We are going to try calligraphy tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is trying calligraphy tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to try calligraphy tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is trying calligraphy tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are trying flower pressing on Sunday.**
-- ❌ They are going to try flower pressing on Sunday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is trying flower pressing on Sunday. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to try flower pressing on Sunday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is trying flower pressing on Sunday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

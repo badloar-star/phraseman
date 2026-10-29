@@ -15,7 +15,7 @@
 
 - ✅ **I am going to buy turmeric.**
 - ❌ I am buying turmeric. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to buy turmeric. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to buy turmeric. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are collecting the cloves tomorrow.**
-- ❌ We are going to collect the cloves tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is collecting the cloves tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to collect the cloves tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is collecting the cloves tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are collecting the nutmeg on Friday.**
-- ❌ They are going to collect the nutmeg on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is collecting the nutmeg on Friday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to collect the nutmeg on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is collecting the nutmeg on Friday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

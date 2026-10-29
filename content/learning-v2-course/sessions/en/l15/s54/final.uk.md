@@ -15,7 +15,7 @@
 
 - ✅ **I am going to travel for a fortnight.**
 - ❌ I am travelling for a fortnight. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to travel for a fortnight. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to travel for a fortnight. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розповісти про куплені квитки
 
-Ви з родиною купили квитки на найближчі короткі шкільні канікули посеред навчального періоду. We are travelling at half-term. — Ми їдемо під час канікул посеред навчального періоду. Для узгодженої поїздки поставте we are travelling, потім час at half-term. Складіть we + are + travelling + at half-term. У travelling до travel додається -ing із подвоєнням l у британському написанні. Тут використайте Present Continuous; going to також можливе, але тренуємо are travelling.
+Ви з родиною купили квитки на найближчі короткі шкільні канікули посеред навчального періоду. We are travelling at half-term. — Ми їдемо під час канікул посеред навчального періоду. Для узгодженої поїздки поставте we are travelling, потім час at half-term. Складіть we + are + travelling + at half-term. У travelling до travel додається -ing із подвоєнням l у британському написанні. Тут використайте am / is / are + -ing; going to також можливе, але тренуємо are travelling.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are travelling at half-term.**
-- ❌ We are going to travel at half-term. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is travelling at half-term. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to travel at half-term. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is travelling at half-term. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Розповісти про шкільну екскурсію
 
-Діти записані на майбутню шкільну екскурсію до музею; вона відбудеться в навчальний час, не на канікулах. They are visiting the museum in term time. — Вони підуть до музею в навчальний час. Назвіть дітей словом they, потім поставте are visiting: до visit додаємо -ing. Додайте the museum — куди йдуть — і in term time — коли. Порядок такий: they + are visiting + the museum + in term time. Тут тренуємо Present Continuous для узгодженої екскурсії; going to також можливе.
+Діти записані на майбутню шкільну екскурсію до музею; вона відбудеться в навчальний час, не на канікулах. They are visiting the museum in term time. — Вони підуть до музею в навчальний час. Назвіть дітей словом they, потім поставте are visiting: до visit додаємо -ing. Додайте the museum — куди йдуть — і in term time — коли. Порядок такий: they + are visiting + the museum + in term time. Тут тренуємо am / is / are + -ing для узгодженої екскурсії; going to також можливе.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are visiting the museum in term time.**
-- ❌ They are going to visit the museum in term time. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is visiting the museum in term time. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to visit the museum in term time. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is visiting the museum in term time. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

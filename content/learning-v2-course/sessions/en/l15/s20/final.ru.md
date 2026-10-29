@@ -15,7 +15,7 @@
 
 - ✅ **We are visiting a car boot sale on Sunday.**
 - ❌ We am visiting a car boot sale on Sunday. — *Выберите am с I, is с she, are с we или they.*
-- ❌ We is visiting a car boot sale on Sunday. — *Форма be должна подходить к подлежащему.*
+- ❌ We is visiting a car boot sale on Sunday. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **I am visiting a craft fair on Saturday.**
 - ❌ I is visiting a craft fair on Saturday. — *Выберите am с I, is с she, are с we или they.*
-- ❌ I are visiting a craft fair on Saturday. — *Форма be должна подходить к подлежащему.*
+- ❌ I are visiting a craft fair on Saturday. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are meeting at the book club tonight.**
 - ❌ They am meeting at the book club tonight. — *Выберите am с I, is с she, are с we или they.*
-- ❌ They is meeting at the book club tonight. — *Форма be должна подходить к подлежащему.*
+- ❌ They is meeting at the book club tonight. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-20:i03; family: context_gap_grammar -->
 We ___ visiting a car boot sale on Sunday. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **5 · Карточка слова — craft fair**
 <!-- interaction_id: en:lesson-15:session-20:word:craft-fair; family: word_card -->
@@ -86,8 +86,8 @@ We ___ visiting a car boot sale on Sunday. → **are** · am · is
 **8 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-20:i06; family: context_gap_grammar -->
 I ___ visiting a craft fair on Saturday. → **am** · is · are
-- is — *С этим подлежащим нужна форма am.*
-- are — *Для этого подлежащего нужна am.*
+- is — *С этим словом нужна форма am.*
+- are — *Для этого слова нужна am.*
 
 **9 · Карточка слова — fun run**
 <!-- interaction_id: en:lesson-15:session-20:word:fun-run; family: word_card -->
@@ -106,8 +106,8 @@ I ___ visiting a craft fair on Saturday. → **am** · is · are
 **12 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-20:i09; family: context_gap_grammar -->
 She ___ taking part in a fun run tomorrow. → **is** · am · are
-- am — *С этим подлежащим нужна форма is.*
-- are — *Для этого подлежащего нужна is.*
+- am — *С этим словом нужна форма is.*
+- are — *Для этого слова нужна is.*
 
 **13 · Карточка слова — book club**
 <!-- interaction_id: en:lesson-15:session-20:word:book-club; family: word_card -->
@@ -126,8 +126,8 @@ She ___ taking part in a fun run tomorrow. → **is** · am · are
 **16 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-20:i12; family: context_gap_grammar -->
 They ___ meeting at the book club tonight. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-20:i13; family: speed_match -->

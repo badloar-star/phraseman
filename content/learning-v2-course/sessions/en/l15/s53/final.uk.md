@@ -15,7 +15,7 @@
 
 - ✅ **I am going to buy gluten-free bread.**
 - ❌ I am buying gluten-free bread. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to buy gluten-free bread. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to buy gluten-free bread. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Домовитися забрати йогурт
 
-Ви з партнером замовили йогурт без доданих підсолоджувачів. Магазин підтвердив отримання на завтра. We are collecting the unsweetened yoghurt tomorrow. — Завтра ми забираємо йогурт без доданих підсолоджувачів. Для домовленості складіть we + are + collecting. Collecting утворюється з collect додаванням -ing. Потім додайте the unsweetened yoghurt — що забираєте — і tomorrow — коли. Тут використайте Present Continuous; going to також можливе, але відпрацьовуємо узгоджений план через are collecting.
+Ви з партнером замовили йогурт без доданих підсолоджувачів. Магазин підтвердив отримання на завтра. We are collecting the unsweetened yoghurt tomorrow. — Завтра ми забираємо йогурт без доданих підсолоджувачів. Для домовленості складіть we + are + collecting. Collecting утворюється з collect додаванням -ing. Потім додайте the unsweetened yoghurt — що забираєте — і tomorrow — коли. Тут використайте am / is / are + -ing; going to також можливе, але відпрацьовуємо узгоджений план через are collecting.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are collecting the unsweetened yoghurt tomorrow.**
-- ❌ We are going to collect the unsweetened yoghurt tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is collecting the unsweetened yoghurt tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to collect the unsweetened yoghurt tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is collecting the unsweetened yoghurt tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Розповісти про замовлення батьків
 
-Батьки замовили несолоне масло й узгодили отримання на п'ятницю. They are collecting the unsalted butter on Friday. — У п'ятницю вони забирають несолоне масло. Назвіть батьків словом they, потім поставте are collecting. Додайте the unsalted butter — що забирають — і on Friday — коли. Порядок такий: they + are collecting + the unsalted butter + on Friday. З they потрібне are. Тут тренуємо Present Continuous для домовленості; going to також можливе.
+Батьки замовили несолоне масло й узгодили отримання на п'ятницю. They are collecting the unsalted butter on Friday. — У п'ятницю вони забирають несолоне масло. Назвіть батьків словом they, потім поставте are collecting. Додайте the unsalted butter — що забирають — і on Friday — коли. Порядок такий: they + are collecting + the unsalted butter + on Friday. З they потрібне are. Тут тренуємо am / is / are + -ing для домовленості; going to також можливе.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are collecting the unsalted butter on Friday.**
-- ❌ They are going to collect the unsalted butter on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is collecting the unsalted butter on Friday. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to collect the unsalted butter on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is collecting the unsalted butter on Friday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

@@ -66,8 +66,8 @@
 **4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-16:i03; family: context_gap_grammar -->
 He ___ going to stumble. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **5 · Картка слова — doze**
 <!-- interaction_id: en:lesson-15:session-16:word:doze; family: word_card -->
@@ -86,8 +86,8 @@ He ___ going to stumble. → **is** · are · am
 **8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-16:i06; family: context_gap_grammar -->
 She ___ going to doze. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **9 · Картка слова — blush**
 <!-- interaction_id: en:lesson-15:session-16:word:blush; family: word_card -->
@@ -106,8 +106,8 @@ She ___ going to doze. → **is** · are · am
 **12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-16:i09; family: context_gap_grammar -->
 He ___ going to blush. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **13 · Картка слова — hiccup**
 <!-- interaction_id: en:lesson-15:session-16:word:hiccup; family: word_card -->
@@ -126,8 +126,8 @@ He ___ going to blush. → **is** · are · am
 **16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-16:i12; family: context_gap_grammar -->
 She ___ going to hiccup again. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-16:i13; family: speed_match -->

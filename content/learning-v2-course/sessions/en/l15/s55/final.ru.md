@@ -15,7 +15,7 @@
 
 - ✅ **I am going to buy a pinstripe suit.**
 - ❌ I am buying a pinstripe suit. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to buy a pinstripe suit. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to buy a pinstripe suit. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Договориться забрать рубашку
 
-Вы с другом заказали рубашку в мелкую клетку. Магазин подтвердил, что вы можете забрать её завтра. We are collecting the gingham shirt tomorrow. — Завтра мы забираем рубашку в мелкую клетку. Для договорённости соберите we + are + collecting: к collect добавляем -ing. Затем назовите вещь the gingham shirt и время tomorrow. Здесь используйте Present Continuous; going to тоже возможно, но отрабатываем согласованное дело через are collecting.
+Вы с другом заказали рубашку в мелкую клетку. Магазин подтвердил, что вы можете забрать её завтра. We are collecting the gingham shirt tomorrow. — Завтра мы забираем рубашку в мелкую клетку. Для договорённости соберите we + are + collecting: к collect добавляем -ing. Затем назовите вещь the gingham shirt и время tomorrow. Здесь используйте am / is / are + -ing; going to тоже возможно, но отрабатываем согласованное дело через are collecting.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are collecting the gingham shirt tomorrow.**
-- ❌ We are going to collect the gingham shirt tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is collecting the gingham shirt tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to collect the gingham shirt tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is collecting the gingham shirt tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Рассказать о заказе родителей
 
-Родители договорились забрать заказанное пальто с узором «гусиная лапка» в субботу. They are collecting the houndstooth coat on Saturday. — В субботу они забирают пальто с узором «гусиная лапка». Назовите родителей словом they, затем поставьте are collecting. Добавьте the houndstooth coat — что забирают — и on Saturday — когда. Порядок такой: they + are collecting + the houndstooth coat + on Saturday. Здесь тренируем Present Continuous для договорённости; going to также возможно.
+Родители договорились забрать заказанное пальто с узором «гусиная лапка» в субботу. They are collecting the houndstooth coat on Saturday. — В субботу они забирают пальто с узором «гусиная лапка». Назовите родителей словом they, затем поставьте are collecting. Добавьте the houndstooth coat — что забирают — и on Saturday — когда. Порядок такой: they + are collecting + the houndstooth coat + on Saturday. Здесь тренируем am / is / are + -ing для договорённости; going to также возможно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are collecting the houndstooth coat on Saturday.**
-- ❌ They are going to collect the houndstooth coat on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is collecting the houndstooth coat on Saturday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to collect the houndstooth coat on Saturday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is collecting the houndstooth coat on Saturday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

@@ -15,7 +15,7 @@
 
 - ✅ **I am going to buy turmeric.**
 - ❌ I am buying turmeric. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to buy turmeric. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to buy turmeric. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are collecting the cloves tomorrow.**
-- ❌ We are going to collect the cloves tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is collecting the cloves tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to collect the cloves tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is collecting the cloves tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are collecting the nutmeg on Friday.**
-- ❌ They are going to collect the nutmeg on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is collecting the nutmeg on Friday. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to collect the nutmeg on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is collecting the nutmeg on Friday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

@@ -15,7 +15,7 @@
 
 - ✅ **I am trying flower arranging tomorrow.**
 - ❌ I is trying flower arranging tomorrow. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ I are trying flower arranging tomorrow. — *Форма be має відповідати підмету.*
+- ❌ I are trying flower arranging tomorrow. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **We are trying pottery on Sunday.**
 - ❌ We am trying pottery on Sunday. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ We is trying pottery on Sunday. — *Форма be має відповідати підмету.*
+- ❌ We is trying pottery on Sunday. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are attending a taster session tomorrow.**
 - ❌ They am attending a taster session tomorrow. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ They is attending a taster session tomorrow. — *Форма be має відповідати підмету.*
+- ❌ They is attending a taster session tomorrow. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-23:i03; family: context_gap_grammar -->
 I ___ trying flower arranging tomorrow. → **am** · is · are
-- is — *З цим підметом потрібна форма am.*
-- are — *Для цього підмета потрібна am.*
+- is — *З цим словом потрібна форма am.*
+- are — *Для цього слова потрібна am.*
 
 **5 · Картка слова — pottery**
 <!-- interaction_id: en:lesson-15:session-23:word:pottery; family: word_card -->
@@ -86,8 +86,8 @@ I ___ trying flower arranging tomorrow. → **am** · is · are
 **8 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-23:i06; family: context_gap_grammar -->
 We ___ trying pottery on Sunday. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **9 · Картка слова — open day**
 <!-- interaction_id: en:lesson-15:session-23:word:open-day; family: word_card -->
@@ -106,8 +106,8 @@ We ___ trying pottery on Sunday. → **are** · am · is
 **12 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-23:i09; family: context_gap_grammar -->
 She ___ attending an open day on Saturday. → **is** · am · are
-- am — *З цим підметом потрібна форма is.*
-- are — *Для цього підмета потрібна is.*
+- am — *З цим словом потрібна форма is.*
+- are — *Для цього слова потрібна is.*
 
 **13 · Картка слова — taster session**
 <!-- interaction_id: en:lesson-15:session-23:word:taster-session; family: word_card -->
@@ -126,8 +126,8 @@ She ___ attending an open day on Saturday. → **is** · am · are
 **16 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-23:i12; family: context_gap_grammar -->
 They ___ attending a taster session tomorrow. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-23:i13; family: speed_match -->

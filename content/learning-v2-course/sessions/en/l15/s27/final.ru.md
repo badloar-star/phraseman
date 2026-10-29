@@ -15,7 +15,7 @@
 
 - ✅ **I am going to use the launderette.**
 - ❌ I am using the launderette. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to use the launderette. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to use the launderette. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are paying for key cutting tomorrow.**
-- ❌ We are going to pay for key cutting tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is paying for key cutting tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to pay for key cutting tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is paying for key cutting tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are paying for shoe repair on Friday.**
-- ❌ They are going to pay for shoe repair on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is paying for shoe repair on Friday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to pay for shoe repair on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is paying for shoe repair on Friday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

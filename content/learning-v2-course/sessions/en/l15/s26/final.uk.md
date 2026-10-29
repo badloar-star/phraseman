@@ -15,7 +15,7 @@
 
 - ✅ **I am going to buy a subscription.**
 - ❌ I am buying a subscription. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to buy a subscription. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to buy a subscription. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are collecting our day pass tomorrow.**
-- ❌ We are going to collect our day pass tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is collecting our day pass tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to collect our day pass tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is collecting our day pass tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are using their family pass on Sunday.**
-- ❌ They are going to use their family pass on Sunday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is using their family pass on Sunday. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to use their family pass on Sunday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is using their family pass on Sunday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

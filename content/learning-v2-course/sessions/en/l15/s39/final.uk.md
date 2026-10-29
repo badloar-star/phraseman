@@ -15,7 +15,7 @@
 
 - ✅ **I am going to see a dietitian.**
 - ❌ I am seeing a dietitian. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to see a dietitian. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to see a dietitian. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are meeting the midwife on Monday.**
-- ❌ We are going to meet the midwife on Monday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is meeting the midwife on Monday. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to meet the midwife on Monday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is meeting the midwife on Monday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are meeting the beautician tomorrow.**
-- ❌ They are going to meet the beautician tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is meeting the beautician tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to meet the beautician tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is meeting the beautician tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

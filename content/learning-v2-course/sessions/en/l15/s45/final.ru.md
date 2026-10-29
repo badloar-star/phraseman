@@ -15,7 +15,7 @@
 
 - ✅ **I am going to travel with my adventurous friend.**
 - ❌ I am travelling with my adventurous friend. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to travel with my adventurous friend. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to travel with my adventurous friend. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are working with our cooperative neighbour tomorrow.**
-- ❌ We are going to work with our cooperative neighbour tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is working with our cooperative neighbour tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to work with our cooperative neighbour tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is working with our cooperative neighbour tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are meeting their supportive teacher on Friday.**
-- ❌ They are going to meet their supportive teacher on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is meeting their supportive teacher on Friday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to meet their supportive teacher on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is meeting their supportive teacher on Friday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

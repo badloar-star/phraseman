@@ -15,7 +15,7 @@
 
 - ✅ **I am going to call my optimistic friend.**
 - ❌ I am calling my optimistic friend. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to call my optimistic friend. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to call my optimistic friend. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are meeting our indecisive cousin on Friday.**
-- ❌ We are going to meet our indecisive cousin on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is meeting our indecisive cousin on Friday. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to meet our indecisive cousin on Friday. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is meeting our indecisive cousin on Friday. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are meeting their decisive coach tomorrow.**
-- ❌ They are going to meet their decisive coach tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is meeting their decisive coach tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to meet their decisive coach tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is meeting their decisive coach tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

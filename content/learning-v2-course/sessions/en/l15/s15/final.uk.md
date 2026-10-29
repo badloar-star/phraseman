@@ -66,8 +66,8 @@
 **4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-15:i03; family: context_gap_grammar -->
 The skylight ___ going to leak. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **5 · Картка слова — veranda**
 <!-- interaction_id: en:lesson-15:session-15:word:veranda; family: word_card -->
@@ -86,8 +86,8 @@ The skylight ___ going to leak. → **is** · are · am
 **8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-15:i06; family: context_gap_grammar -->
 The veranda ___ going to get wet. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **9 · Картка слова — conservatory**
 <!-- interaction_id: en:lesson-15:session-15:word:conservatory; family: word_card -->
@@ -106,8 +106,8 @@ The veranda ___ going to get wet. → **is** · are · am
 **12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-15:i09; family: context_gap_grammar -->
 The conservatory ___ going to get hot. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **13 · Картка слова — doorstop**
 <!-- interaction_id: en:lesson-15:session-15:word:doorstop; family: word_card -->
@@ -126,8 +126,8 @@ The conservatory ___ going to get hot. → **is** · are · am
 **16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-15:i12; family: context_gap_grammar -->
 The doorstop ___ going to slide. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-15:i13; family: speed_match -->

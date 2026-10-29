@@ -15,7 +15,7 @@
 
 - ✅ **I am trying flower arranging tomorrow.**
 - ❌ I is trying flower arranging tomorrow. — *Выберите am с I, is с she, are с we или they.*
-- ❌ I are trying flower arranging tomorrow. — *Форма be должна подходить к подлежащему.*
+- ❌ I are trying flower arranging tomorrow. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **We are trying pottery on Sunday.**
 - ❌ We am trying pottery on Sunday. — *Выберите am с I, is с she, are с we или they.*
-- ❌ We is trying pottery on Sunday. — *Форма be должна подходить к подлежащему.*
+- ❌ We is trying pottery on Sunday. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are attending a taster session tomorrow.**
 - ❌ They am attending a taster session tomorrow. — *Выберите am с I, is с she, are с we или they.*
-- ❌ They is attending a taster session tomorrow. — *Форма be должна подходить к подлежащему.*
+- ❌ They is attending a taster session tomorrow. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-23:i03; family: context_gap_grammar -->
 I ___ trying flower arranging tomorrow. → **am** · is · are
-- is — *С этим подлежащим нужна форма am.*
-- are — *Для этого подлежащего нужна am.*
+- is — *С этим словом нужна форма am.*
+- are — *Для этого слова нужна am.*
 
 **5 · Карточка слова — pottery**
 <!-- interaction_id: en:lesson-15:session-23:word:pottery; family: word_card -->
@@ -86,8 +86,8 @@ I ___ trying flower arranging tomorrow. → **am** · is · are
 **8 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-23:i06; family: context_gap_grammar -->
 We ___ trying pottery on Sunday. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **9 · Карточка слова — open day**
 <!-- interaction_id: en:lesson-15:session-23:word:open-day; family: word_card -->
@@ -106,8 +106,8 @@ We ___ trying pottery on Sunday. → **are** · am · is
 **12 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-23:i09; family: context_gap_grammar -->
 She ___ attending an open day on Saturday. → **is** · am · are
-- am — *С этим подлежащим нужна форма is.*
-- are — *Для этого подлежащего нужна is.*
+- am — *С этим словом нужна форма is.*
+- are — *Для этого слова нужна is.*
 
 **13 · Карточка слова — taster session**
 <!-- interaction_id: en:lesson-15:session-23:word:taster-session; family: word_card -->
@@ -126,8 +126,8 @@ She ___ attending an open day on Saturday. → **is** · am · are
 **16 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-23:i12; family: context_gap_grammar -->
 They ___ attending a taster session tomorrow. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-23:i13; family: speed_match -->

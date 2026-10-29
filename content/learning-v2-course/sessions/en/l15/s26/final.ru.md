@@ -15,7 +15,7 @@
 
 - ✅ **I am going to buy a subscription.**
 - ❌ I am buying a subscription. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to buy a subscription. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to buy a subscription. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are collecting our day pass tomorrow.**
-- ❌ We are going to collect our day pass tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is collecting our day pass tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to collect our day pass tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is collecting our day pass tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are using their family pass on Sunday.**
-- ❌ They are going to use their family pass on Sunday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is using their family pass on Sunday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to use their family pass on Sunday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is using their family pass on Sunday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

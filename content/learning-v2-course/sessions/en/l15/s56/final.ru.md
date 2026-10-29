@@ -15,7 +15,7 @@
 
 - ✅ **I am going to shuffle the cards.**
 - ❌ I am shuffling the cards. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to shuffle the cards. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to shuffle the cards. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Рассказать о записи на тренировку
 
-Вы с другом записались на завтрашнюю тренировку по броскам мяча в цель; время подтверждено. We are learning to aim tomorrow. — Завтра мы будем учиться целиться. Для договорённости используйте Present Continuous: we + are + learning. Затем добавьте to aim — чему будете учиться — и tomorrow. Получается we are learning + to aim + tomorrow. С we нужен are, а завтра указывает tomorrow. Здесь тренируем Present Continuous; going to также может описывать этот будущий план.
+Вы с другом записались на завтрашнюю тренировку по броскам мяча в цель; время подтверждено. We are learning to aim tomorrow. — Завтра мы будем учиться целиться. Для договорённости используйте am / is / are + -ing: we + are + learning. Затем добавьте to aim — чему будете учиться — и tomorrow. Получается we are learning + to aim + tomorrow. С we нужен are, а завтра указывает tomorrow. Здесь тренируем am / is / are + -ing; going to также может описывать этот будущий план.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are learning to aim tomorrow.**
-- ❌ We are going to learn to aim tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is learning to aim tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to learn to aim tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is learning to aim tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Рассказать о занятии детей
 
-Ваши дети записаны на завтрашнее занятие, где будут учиться отбивать мяч от пола. They are learning to bounce a ball tomorrow. — Завтра они будут учиться отбивать мяч от пола. Назовите детей словом they, затем поставьте are learning. Добавьте to bounce a ball — чему они будут учиться — и tomorrow — когда. Соберите they + are learning + to bounce a ball + tomorrow. Для согласованного занятия здесь используйте Present Continuous; going to тоже возможно, но отрабатываем указанную форму.
+Ваши дети записаны на завтрашнее занятие, где будут учиться отбивать мяч от пола. They are learning to bounce a ball tomorrow. — Завтра они будут учиться отбивать мяч от пола. Назовите детей словом they, затем поставьте are learning. Добавьте to bounce a ball — чему они будут учиться — и tomorrow — когда. Соберите they + are learning + to bounce a ball + tomorrow. Для согласованного занятия здесь используйте am / is / are + -ing; going to тоже возможно, но отрабатываем указанную форму.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are learning to bounce a ball tomorrow.**
-- ❌ They are going to learn to bounce a ball tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is learning to bounce a ball tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to learn to bounce a ball tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is learning to bounce a ball tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

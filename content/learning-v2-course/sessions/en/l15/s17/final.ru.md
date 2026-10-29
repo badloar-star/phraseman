@@ -15,7 +15,7 @@
 
 - ✅ **I am meeting the carer tomorrow.**
 - ❌ I is meeting the carer tomorrow. — *Выберите am с I, is с she, are с we или they.*
-- ❌ I are meeting the carer tomorrow. — *Форма be должна подходить к подлежащему.*
+- ❌ I are meeting the carer tomorrow. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **We are meeting the babysitter at six tomorrow.**
 - ❌ We am meeting the babysitter at six tomorrow. — *Выберите am с I, is с she, are с we или they.*
-- ❌ We is meeting the babysitter at six tomorrow. — *Форма be должна подходить к подлежащему.*
+- ❌ We is meeting the babysitter at six tomorrow. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are meeting the cleaner tomorrow morning.**
 - ❌ They am meeting the cleaner tomorrow morning. — *Выберите am с I, is с she, are с we или they.*
-- ❌ They is meeting the cleaner tomorrow morning. — *Форма be должна подходить к подлежащему.*
+- ❌ They is meeting the cleaner tomorrow morning. — *Форма be должна подходить к тому, о ком речь.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-17:i03; family: context_gap_grammar -->
 I ___ meeting the carer tomorrow. → **am** · is · are
-- is — *С этим подлежащим нужна форма am.*
-- are — *Для этого подлежащего нужна am.*
+- is — *С этим словом нужна форма am.*
+- are — *Для этого слова нужна am.*
 
 **5 · Карточка слова — babysitter**
 <!-- interaction_id: en:lesson-15:session-17:word:babysitter; family: word_card -->
@@ -86,8 +86,8 @@ I ___ meeting the carer tomorrow. → **am** · is · are
 **8 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-17:i06; family: context_gap_grammar -->
 We ___ meeting the babysitter at six tomorrow. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **9 · Карточка слова — dog walker**
 <!-- interaction_id: en:lesson-15:session-17:word:dog-walker; family: word_card -->
@@ -106,8 +106,8 @@ We ___ meeting the babysitter at six tomorrow. → **are** · am · is
 **12 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-17:i09; family: context_gap_grammar -->
 She ___ meeting the dog walker on Friday. → **is** · am · are
-- am — *С этим подлежащим нужна форма is.*
-- are — *Для этого подлежащего нужна is.*
+- am — *С этим словом нужна форма is.*
+- are — *Для этого слова нужна is.*
 
 **13 · Карточка слова — cleaner**
 <!-- interaction_id: en:lesson-15:session-17:word:cleaner; family: word_card -->
@@ -126,8 +126,8 @@ She ___ meeting the dog walker on Friday. → **is** · am · are
 **16 · Будущая договорённость. Выберите am, is или are**
 <!-- interaction_id: en:lesson-15:session-17:i12; family: context_gap_grammar -->
 They ___ meeting the cleaner tomorrow morning. → **are** · am · is
-- am — *С этим подлежащим нужна форма are.*
-- is — *Для этого подлежащего нужна are.*
+- am — *С этим словом нужна форма are.*
+- is — *Для этого слова нужна are.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-15:session-17:i13; family: speed_match -->

@@ -15,7 +15,7 @@
 
 - ✅ **I am going to find a secluded beach.**
 - ❌ I am finding a secluded beach. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте намір через going to.*
-- ❌ I is going to find a secluded beach. — *Форма be не узгоджена з підметом.*
+- ❌ I is going to find a secluded beach. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розповісти про підтверджене бронювання
 
-Ви з родиною забронювали будинок на вулиці з багатьма деревами на наступний тиждень. We are staying on a leafy street next week. — Наступного тижня ми житимемо на вулиці з багатьма деревами. Для узгодженого проживання складіть we + are + staying. До stay додаємо -ing, зберігаючи y. Потім додайте on a leafy street — де — і next week — коли. Тут тренуємо Present Continuous; going to також може описувати цей майбутній план.
+Ви з родиною забронювали будинок на вулиці з багатьма деревами на наступний тиждень. We are staying on a leafy street next week. — Наступного тижня ми житимемо на вулиці з багатьма деревами. Для узгодженого проживання складіть we + are + staying. До stay додаємо -ing, зберігаючи y. Потім додайте on a leafy street — де — і next week — коли. Тут тренуємо am / is / are + -ing; going to також може описувати цей майбутній план.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are staying on a leafy street next week.**
-- ❌ We are going to stay on a leafy street next week. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ We is staying on a leafy street next week. — *Форма be не узгоджена з підметом.*
+- ❌ We are going to stay on a leafy street next week. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ We is staying on a leafy street next week. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Розповісти про зустріч друзів
 
-Друзі домовилися зустрітися завтра в саду, захищеному стінами від вітру. They are meeting in a sheltered garden tomorrow. — Завтра вони зустрічаються в захищеному від вітру саду. Назвіть друзів словом they, потім поставте are meeting: до meet додаємо -ing. Додайте in a sheltered garden і час tomorrow. Порядок такий: they + are meeting + in a sheltered garden + tomorrow. Тут використайте Present Continuous для домовленості; going to також можливе.
+Друзі домовилися зустрітися завтра в саду, захищеному стінами від вітру. They are meeting in a sheltered garden tomorrow. — Завтра вони зустрічаються в захищеному від вітру саду. Назвіть друзів словом they, потім поставте are meeting: до meet додаємо -ing. Додайте in a sheltered garden і час tomorrow. Порядок такий: they + are meeting + in a sheltered garden + tomorrow. Тут використайте am / is / are + -ing для домовленості; going to також можливе.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They are meeting in a sheltered garden tomorrow.**
-- ❌ They are going to meet in a sheltered garden tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через Present Continuous.*
-- ❌ They is meeting in a sheltered garden tomorrow. — *Форма be не узгоджена з підметом.*
+- ❌ They are going to meet in a sheltered garden tomorrow. — *Фраза можлива, але в цьому завданні потрібна інша форма. Передайте домовленість через am / is / are + -ing.*
+- ❌ They is meeting in a sheltered garden tomorrow. — *Форма be не підходить до того, про кого йдеться.*
 
 ---
 

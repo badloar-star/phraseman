@@ -15,7 +15,7 @@
 
 - ✅ **I am going to buy gluten-free bread.**
 - ❌ I am buying gluten-free bread. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to buy gluten-free bread. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to buy gluten-free bread. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Договориться забрать йогурт
 
-Вы с партнёром заказали йогурт без добавленных подсластителей. Магазин подтвердил получение на завтра. We are collecting the unsweetened yoghurt tomorrow. — Завтра мы забираем йогурт без добавленных подсластителей. Для договорённости соберите we + are + collecting. Collecting получается из collect добавлением -ing. Затем добавьте the unsweetened yoghurt — что забираете — и tomorrow — когда. Здесь используйте Present Continuous; going to также возможно, но отрабатываем согласованный план через are collecting.
+Вы с партнёром заказали йогурт без добавленных подсластителей. Магазин подтвердил получение на завтра. We are collecting the unsweetened yoghurt tomorrow. — Завтра мы забираем йогурт без добавленных подсластителей. Для договорённости соберите we + are + collecting. Collecting получается из collect добавлением -ing. Затем добавьте the unsweetened yoghurt — что забираете — и tomorrow — когда. Здесь используйте am / is / are + -ing; going to также возможно, но отрабатываем согласованный план через are collecting.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are collecting the unsweetened yoghurt tomorrow.**
-- ❌ We are going to collect the unsweetened yoghurt tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is collecting the unsweetened yoghurt tomorrow. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to collect the unsweetened yoghurt tomorrow. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is collecting the unsweetened yoghurt tomorrow. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Рассказать о заказе родителей
 
-Родители заказали несолёное масло и согласовали получение на пятницу. They are collecting the unsalted butter on Friday. — В пятницу они забирают несолёное масло. Назовите родителей словом they, затем поставьте are collecting. Добавьте the unsalted butter — что забирают — и on Friday — когда. Порядок такой: they + are collecting + the unsalted butter + on Friday. С they нужен are. Здесь тренируем Present Continuous для договорённости; going to тоже возможно.
+Родители заказали несолёное масло и согласовали получение на пятницу. They are collecting the unsalted butter on Friday. — В пятницу они забирают несолёное масло. Назовите родителей словом they, затем поставьте are collecting. Добавьте the unsalted butter — что забирают — и on Friday — когда. Порядок такой: they + are collecting + the unsalted butter + on Friday. С they нужен are. Здесь тренируем am / is / are + -ing для договорённости; going to тоже возможно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are collecting the unsalted butter on Friday.**
-- ❌ They are going to collect the unsalted butter on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is collecting the unsalted butter on Friday. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to collect the unsalted butter on Friday. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is collecting the unsalted butter on Friday. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

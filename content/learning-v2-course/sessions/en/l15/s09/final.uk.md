@@ -66,8 +66,8 @@
 **4 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-09:i03; family: context_gap_grammar -->
 The sink ___ going to overflow. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **5 · Картка слова — topple**
 <!-- interaction_id: en:lesson-15:session-09:word:topple; family: word_card -->
@@ -86,8 +86,8 @@ The sink ___ going to overflow. → **is** · are · am
 **8 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-09:i06; family: context_gap_grammar -->
 The tower ___ going to topple. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **9 · Картка слова — burst**
 <!-- interaction_id: en:lesson-15:session-09:word:burst; family: word_card -->
@@ -106,8 +106,8 @@ The tower ___ going to topple. → **is** · are · am
 **12 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-09:i09; family: context_gap_grammar -->
 The balloons ___ going to burst. → **are** · is · am
-- is — *З цим підметом потрібна форма are.*
-- am — *Для цього підмета потрібна are.*
+- is — *З цим словом потрібна форма are.*
+- am — *Для цього слова потрібна are.*
 
 **13 · Картка слова — collapse**
 <!-- interaction_id: en:lesson-15:session-09:word:collapse; family: word_card -->
@@ -126,8 +126,8 @@ The balloons ___ going to burst. → **are** · is · am
 **16 · Це видно вже зараз. Виберіть is або are**
 <!-- interaction_id: en:lesson-15:session-09:i12; family: context_gap_grammar -->
 The shelf ___ going to collapse. → **is** · are · am
-- are — *З цим підметом потрібна форма is.*
-- am — *Для цього підмета потрібна is.*
+- are — *З цим словом потрібна форма is.*
+- am — *Для цього слова потрібна is.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-09:i13; family: speed_match -->

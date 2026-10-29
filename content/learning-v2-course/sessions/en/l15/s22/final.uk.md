@@ -15,7 +15,7 @@
 
 - ✅ **We are watching the school play on Friday.**
 - ❌ We am watching the school play on Friday. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ We is watching the school play on Friday. — *Форма be має відповідати підмету.*
+- ❌ We is watching the school play on Friday. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **I am attending a rehearsal tomorrow.**
 - ❌ I is attending a rehearsal tomorrow. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ I are attending a rehearsal tomorrow. — *Форма be має відповідати підмету.*
+- ❌ I are attending a rehearsal tomorrow. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **They are sitting in the front row tonight.**
 - ❌ They am sitting in the front row tonight. — *Виберіть am з I, is із she, are з we або they.*
-- ❌ They is sitting in the front row tonight. — *Форма be має відповідати підмету.*
+- ❌ They is sitting in the front row tonight. — *Форма be має підходити до того, про кого йдеться.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-22:i03; family: context_gap_grammar -->
 We ___ watching the school play on Friday. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **5 · Картка слова — rehearsal**
 <!-- interaction_id: en:lesson-15:session-22:word:rehearsal; family: word_card -->
@@ -86,8 +86,8 @@ We ___ watching the school play on Friday. → **are** · am · is
 **8 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-22:i06; family: context_gap_grammar -->
 I ___ attending a rehearsal tomorrow. → **am** · is · are
-- is — *З цим підметом потрібна форма am.*
-- are — *Для цього підмета потрібна am.*
+- is — *З цим словом потрібна форма am.*
+- are — *Для цього слова потрібна am.*
 
 **9 · Картка слова — matinee**
 <!-- interaction_id: en:lesson-15:session-22:word:matinee; family: word_card -->
@@ -106,8 +106,8 @@ I ___ attending a rehearsal tomorrow. → **am** · is · are
 **12 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-22:i09; family: context_gap_grammar -->
 She ___ watching a matinee on Saturday. → **is** · am · are
-- am — *З цим підметом потрібна форма is.*
-- are — *Для цього підмета потрібна is.*
+- am — *З цим словом потрібна форма is.*
+- are — *Для цього слова потрібна is.*
 
 **13 · Картка слова — front row**
 <!-- interaction_id: en:lesson-15:session-22:word:front-row; family: word_card -->
@@ -126,8 +126,8 @@ She ___ watching a matinee on Saturday. → **is** · am · are
 **16 · Майбутня домовленість. Виберіть am, is або are**
 <!-- interaction_id: en:lesson-15:session-22:i12; family: context_gap_grammar -->
 They ___ sitting in the front row tonight. → **are** · am · is
-- am — *З цим підметом потрібна форма are.*
-- is — *Для цього підмета потрібна are.*
+- am — *З цим словом потрібна форма are.*
+- is — *Для цього слова потрібна are.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-15:session-22:i13; family: speed_match -->

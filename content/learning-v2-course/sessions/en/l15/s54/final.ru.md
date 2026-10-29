@@ -15,7 +15,7 @@
 
 - ✅ **I am going to travel for a fortnight.**
 - ❌ I am travelling for a fortnight. — *Фраза возможна, но в этом задании нужна другая форма. Передайте намерение через going to.*
-- ❌ I is going to travel for a fortnight. — *Форма be не согласована с подлежащим.*
+- ❌ I is going to travel for a fortnight. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Рассказать о купленных билетах
 
-Вы с семьёй купили билеты на ближайшие короткие школьные каникулы в середине учебного периода. We are travelling at half-term. — Мы едем во время каникул в середине учебного периода. Для согласованной поездки поставьте we are travelling, затем время at half-term. Соберите we + are + travelling + at half-term. В travelling к travel добавляется -ing с удвоением l в британском написании. Здесь используйте Present Continuous; going to также возможно, но тренируем are travelling.
+Вы с семьёй купили билеты на ближайшие короткие школьные каникулы в середине учебного периода. We are travelling at half-term. — Мы едем во время каникул в середине учебного периода. Для согласованной поездки поставьте we are travelling, затем время at half-term. Соберите we + are + travelling + at half-term. В travelling к travel добавляется -ing с удвоением l в британском написании. Здесь используйте am / is / are + -ing; going to также возможно, но тренируем are travelling.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are travelling at half-term.**
-- ❌ We are going to travel at half-term. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ We is travelling at half-term. — *Форма be не согласована с подлежащим.*
+- ❌ We are going to travel at half-term. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ We is travelling at half-term. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Рассказать о школьной экскурсии
 
-Дети записаны на предстоящую школьную экскурсию в музей; она состоится в учебное время, не на каникулах. They are visiting the museum in term time. — Они пойдут в музей в учебное время. Назовите детей словом they, затем поставьте are visiting: к visit добавляем -ing. Добавьте the museum — куда идут — и in term time — когда. Порядок такой: they + are visiting + the museum + in term time. Здесь тренируем Present Continuous для согласованной экскурсии; going to тоже возможно.
+Дети записаны на предстоящую школьную экскурсию в музей; она состоится в учебное время, не на каникулах. They are visiting the museum in term time. — Они пойдут в музей в учебное время. Назовите детей словом they, затем поставьте are visiting: к visit добавляем -ing. Добавьте the museum — куда идут — и in term time — когда. Порядок такой: they + are visiting + the museum + in term time. Здесь тренируем am / is / are + -ing для согласованной экскурсии; going to тоже возможно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They are visiting the museum in term time.**
-- ❌ They are going to visit the museum in term time. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через Present Continuous.*
-- ❌ They is visiting the museum in term time. — *Форма be не согласована с подлежащим.*
+- ❌ They are going to visit the museum in term time. — *Фраза возможна, но в этом задании нужна другая форма. Передайте договорённость через am / is / are + -ing.*
+- ❌ They is visiting the museum in term time. — *Форма be не подходит к тому, о ком речь.*
 
 ---
 

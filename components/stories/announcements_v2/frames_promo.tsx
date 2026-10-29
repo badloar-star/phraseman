@@ -98,10 +98,9 @@ const PodiumColumn = memo(function PodiumColumn({ col }: Readonly<{ col: PodiumC
   );
 });
 
-/** confetti(20, 1500) макета объявлений: .conf i стартует с 50 %/40 % кадра, а Confetti личных кадров — с 50 %/42 %. */
+/** confetti(20, 1500) макета объявлений: .conf i стартует с 50 %/40 % кадра; у Confetti личных кадров старт 42 % — проп fromPct Моментов (571dbd8e3). */
 const ContestConfetti = memo(function ContestConfetti() {
-  // зачем: слой поднят на 2 % высоты кадра (top −2 %, bottom 2 %: высота та же) — старт ровно в 50 %/40 %, как в макете
-  return <View style={f.conf40}><Confetti n={20} d0={1500} /></View>;
+  return <Confetti n={20} d0={1500} fromPct={40} />;
 });
 
 export const ContestFrame = memo(function ContestFrame({ content }: AnnFrameProps) {
@@ -230,7 +229,6 @@ const f = StyleSheet.create({
   t3: { fontSize: 44, lineHeight: 50, fontWeight: '800', letterSpacing: -1, textAlign: 'center' },
   bigRing: { position: 'absolute', left: '50%', top: '32%', width: 180, height: 180, marginLeft: -90, marginTop: -90 },
   // конфетти: слой кадра, поднятый на 2 % (старт 50 %/40 %)
-  conf40: { position: 'absolute', left: 0, right: 0, top: '-2%', bottom: '2%' },
   // .podium: ряд по низу, зазор 10; .pc 90, зазор 6; .nm 13/17 700 max 90; .bar 90, радиус 16 сверху, поле 10, 20/24 800; .cn 12/16
   podium: { flexDirection: 'row', alignItems: 'flex-end', gap: 10 },
   pc: { width: 90, alignItems: 'center', gap: 6 },

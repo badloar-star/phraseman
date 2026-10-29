@@ -859,7 +859,26 @@ if (document.body.classList.contains('preview')) {
   window.parent.postMessage({ channel: 'pm-ann-preview-ready', designs: TPL.map((t) => ({ id: t.id, name: t.name, group: t.group, comp: t.comp, fields: t.fields, ext: t.ext, motion: t.motion, cta: !!t.cta, left: !!t.left })), themes: IDS.map((id) => ({ id, name: THEMES[id].name, gradient: !!THEMES[id].gradient })) }, '*');
 }
 
-window.ST = { TPL, players, IDS, THEMES, geo, preview: previewRender, setTheme: (id, ap) => { state.theme = id; state.ap = ap; sel.value = id; document.querySelectorAll('[data-ap]').forEach((x) => x.classList.toggle('on', x.dataset.ap === ap)); applyAll(); },
+/* ── критерий (а) гейта (координатор 28.10): геометрия по testID ±2 dp при 390 × 844. rects(k) отдаёт прямоугольники метки (.ov),
+   заголовка (.h1) и блоков (.p/.blk по порядку) кадра k в координатах телефона (dp = px при ширине 390): те же имена, что testID в
+   приложении (story-ann-badge / -title / -block-<i>), конвейер эмулятора читает их из uiautomator (resource-id = testID). Берём
+   рамку элемента целиком: у .h1 это строки × межстрочный (как у AnnWords), у .blk.acc — плашка с полями (как у Enter с t.acc). */
+const rects = (k) => {
+  const p = players[k]; if (!p) return [];
+  const ph = p.ph.getBoundingClientRect(); const scale = ph.width / 390 || 1;
+  const vis = (el) => { let e = el; while (e && e !== p.sl) { const cs = getComputedStyle(e); if (cs.display === 'none' || cs.visibility === 'hidden' || parseFloat(cs.opacity) <= 0.02) return false; e = e.parentElement; } return true; };
+  const box = (id, el) => { const r = el.getBoundingClientRect(); return { id, x: Math.round((r.left - ph.left) / scale * 10) / 10, y: Math.round((r.top - ph.top) / scale * 10) / 10, w: Math.round(r.width / scale * 10) / 10, h: Math.round(r.height / scale * 10) / 10 }; };
+  const out = []; let blocks = 0;
+  for (const el of p.sl.querySelectorAll('.ov, .h1, .p, .blk')) {
+    if (!vis(el) || !el.textContent.trim()) continue;
+    if (el.classList.contains('ov')) out.push(box('story-ann-badge', el));
+    else if (el.classList.contains('h1')) out.push(box('story-ann-title', el));
+    else { out.push(box(`story-ann-block-${blocks}`, el)); blocks += 1; }
+  }
+  return out;
+};
+
+window.ST = { TPL, players, IDS, THEMES, geo, rects, preview: previewRender, setTheme: (id, ap) => { state.theme = id; state.ap = ap; sel.value = id; document.querySelectorAll('[data-ap]').forEach((x) => x.classList.toggle('on', x.dataset.ap === ap)); applyAll(); },
   phone: (k, id, ap) => { const p = players[k]; if (p) p.setTheme(id, ap); return !!p; }, freeze: (k, ms = 6000) => { const p = players[k]; return p ? p.freeze(ms) : -1; }, setLong: (v) => { LONG = !!v; document.querySelectorAll('[data-len]').forEach((x) => x.classList.toggle('on', (x.dataset.len === 'long') === LONG)); players.forEach((p) => p.restart()); setHint(); },
   settle: (on) => { INSTANT.on = !!on; document.documentElement.classList.toggle('settle', !!on); players.forEach((p) => p.restart()); }, speed: (ms) => { SPEED = ms; }, ready: true };
 })();

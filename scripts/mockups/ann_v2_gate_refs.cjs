@@ -54,7 +54,9 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
         await sleep(60);
         await el.screenshot({ path: file });
         const cta = await page.evaluate((k) => !!ST.players[k + 1].st.querySelector('.scta'), k);
-        frames.push({ design, long, theme, ap, file: path.basename(file), cta });
+        // зачем (критерий (а)): рамки метки/заголовка/блоков кадра в dp телефона — сравнение сверит их с resource-id story-ann-* эмулятора
+        const rects = await page.evaluate((k) => (ST.rects ? ST.rects(k + 1) : []), k);
+        frames.push({ design, long, theme, ap, file: path.basename(file), cta, rects });
         n += 1;
       }
       if (k % 6 === 5) console.log(`[GATE-REF] ${long ? 'long' : 'short'} ${k + 1}/${designs.length} — ${n} кадров`);
@@ -62,7 +64,7 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
   }
   if (MODE === 'settle') await page.evaluate(() => ST.settle(false));
   await browser.close();
-  const manifest = { mode: MODE, freezeMs: MODE === 'freeze' ? FREEZE_MS : null, mockup: path.relative(ROOT, MOCKUP).replace(/\\/g, '/'), mockupSha256: mockupSha, phone: { width: 390, height: 844 }, slide: { top: 120, bottom: 60, bottomWithCta: 150 }, themes: THEMES, titles: ['short', 'long'], modes: ['dark', 'light'], frames, errors, madeAt: new Date().toISOString() };
+  const manifest = { mode: MODE, freezeMs: MODE === 'freeze' ? FREEZE_MS : null, geometry: { tolDp: 2, ids: ['story-ann-badge', 'story-ann-title', 'story-ann-block-<i>'] }, mockup: path.relative(ROOT, MOCKUP).replace(/\\/g, '/'), mockupSha256: mockupSha, phone: { width: 390, height: 844 }, slide: { top: 120, bottom: 60, bottomWithCta: 150 }, themes: THEMES, titles: ['short', 'long'], modes: ['dark', 'light'], frames, errors, madeAt: new Date().toISOString() };
   fs.writeFileSync(path.join(OUT, 'manifest.json'), JSON.stringify(manifest, null, 1));
   console.log(JSON.stringify({ frames: frames.length, errors: errors.length, out: OUT, mockupSha256: mockupSha.slice(0, 12) }));
   if (errors.length) { console.log(errors.slice(0, 5)); process.exit(1); }

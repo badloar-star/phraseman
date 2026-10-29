@@ -23,6 +23,30 @@ const SHEET = args.sheet || 'C:/Temp/claude/ann_gate/worst.png';
 const THRESHOLD = args.threshold !== undefined ? Number(args.threshold) : null;
 const CALIBRATE = args.calibrate === 'true';
 const DOWN = 4;
+/** Критерий (а): допуск геометрии по testID, dp (координатор 28.10: ±2 dp при 390 × 844). */
+const GEO_TOL_DP = Number(args['geo-tol'] || 2);
+
+/**
+ * Геометрия кадра: рамки макета (ST.rects, dp телефона) против узлов эмулятора (uiautomator, px экрана → dp по ширине экрана / 390).
+ * Совпадение по id: |dy| и |dh| ≤ допуска и (|dx| ≤ допуска ИЛИ |dcx| ≤ допуска) — кадр либо прижат влево, либо центрирован, а ширина
+ * текста (dw) зависит от шрифта и только печатается. Нет узла в эмуляторе при наличии рамки в макете — расхождение «missing».
+ */
+function geometryCheck(refRects, emuNodes, emuWidthPx) {
+  if (!Array.isArray(refRects) || !refRects.length) return { checked: 0, mismatches: [], skipped: 'no_ref_rects' };
+  if (!Array.isArray(emuNodes)) return { checked: 0, mismatches: [], skipped: 'no_emu_nodes' };
+  const k = 390 / (emuWidthPx || 1170);
+  const mismatches = []; let checked = 0;
+  for (const r of refRects) {
+    const n = emuNodes.find((e) => e.id === r.id);
+    if (!n) { mismatches.push({ id: r.id, why: 'missing' }); continue; }
+    checked += 1;
+    const e = { x: n.x * k, y: n.y * k, w: n.w * k, h: n.h * k };
+    const dx = e.x - r.x, dy = e.y - r.y, dw = e.w - r.w, dh = e.h - r.h, dcx = (e.x + e.w / 2) - (r.x + r.w / 2);
+    const ok = Math.abs(dy) <= GEO_TOL_DP && Math.abs(dh) <= GEO_TOL_DP && (Math.abs(dx) <= GEO_TOL_DP || Math.abs(dcx) <= GEO_TOL_DP);
+    if (!ok) mismatches.push({ id: r.id, dx: +dx.toFixed(1), dcx: +dcx.toFixed(1), dy: +dy.toFixed(1), dw: +dw.toFixed(1), dh: +dh.toFixed(1) });
+  }
+  return { checked, mismatches };
+}
 
 /** Область кадра истории в кадре телефона: от 120 до 844 − 60 (или − 150 с кнопкой); эмулятор — в масштабе своей ширины к 390. */
 function slideCrop(width, height, cta) {
@@ -60,7 +84,11 @@ function diffPct(a, b) {
       const [a, b] = await Promise.all([rawSmall(refFile, f.cta), rawSmall(emuFile, f.cta)]);
       if (a.info.width !== b.info.width || a.info.height !== b.info.height) { results.push({ name, diffPct: null, ok: false, why: `size ${a.info.width}x${a.info.height} vs ${b.info.width}x${b.info.height}` }); continue; }
       const d = diffPct(a, b);
-      results.push({ name, design: f.design, long: f.long, theme: f.theme, ap: f.ap, diffPct: Math.round(d * 100) / 100, ok: THRESHOLD === null ? null : d <= THRESHOLD });
+      const emuFrame = emuManifest ? (emuManifest.frames || []).find((x) => x.file === f.file) : null;
+      const emuMeta = await sharp(emuFile).metadata();
+      const geo = geometryCheck(f.rects, emuFrame ? emuFrame.nodes : null, emuMeta.width);
+      const geoOk = geo.mismatches.length === 0;
+      results.push({ name, design: f.design, long: f.long, theme: f.theme, ap: f.ap, diffPct: Math.round(d * 100) / 100, ok: THRESHOLD === null ? null : (d <= THRESHOLD && geoOk), geo });
     } catch (e) {
       results.push({ name, diffPct: null, ok: false, why: String(e).slice(0, 120) });
     }
@@ -68,14 +96,20 @@ function diffPct(a, b) {
   const measured = results.filter((r) => r.diffPct !== null).map((r) => r.diffPct).sort((x, y) => x - y);
   const stats = measured.length ? { min: measured[0], median: measured[Math.floor(measured.length / 2)], p90: measured[Math.floor(measured.length * 0.9)], max: measured[measured.length - 1] } : null;
   const mismatches = results.filter((r) => r.ok === false).length;
+  const geoChecked = results.reduce((s, r) => s + (r.geo ? r.geo.checked : 0), 0);
+  const geoMismatches = results.reduce((s, r) => s + (r.geo ? r.geo.mismatches.length : 0), 0);
+  const geoSkipped = results.filter((r) => r.geo && r.geo.skipped).length;
   const summary = {
     madeAt: new Date().toISOString(), mockup: refManifest.mockup, mockupSha256: refManifest.mockupSha256, refMadeAt: refManifest.madeAt, device: emuManifest ? { device: emuManifest.device, resized: emuManifest.resized } : null,
     threshold: THRESHOLD, frames: refManifest.frames.length, compared: results.length, missing: missing.length, mismatches, stats,
+    geometry: { tolDp: GEO_TOL_DP, checked: geoChecked, mismatches: geoMismatches, skippedFrames: geoSkipped },
     results, missingNames: missing,
   };
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, JSON.stringify(summary, null, 1));
-  console.log(LOG, JSON.stringify({ frames: summary.frames, compared: summary.compared, missing: summary.missing, mismatches, threshold: THRESHOLD, stats }));
+  console.log(LOG, JSON.stringify({ frames: summary.frames, compared: summary.compared, missing: summary.missing, mismatches, threshold: THRESHOLD, stats, geometry: summary.geometry }));
+  const geoWorst = results.filter((r) => r.geo && r.geo.mismatches.length).slice(0, 8);
+  if (geoWorst.length) console.log(LOG, 'геометрия, расхождения:', geoWorst.map((r) => `${r.name}: ${r.geo.mismatches.map((m) => m.why ? `${m.id} ${m.why}` : `${m.id} dx ${m.dx} dcx ${m.dcx} dy ${m.dy} dh ${m.dh} (dw ${m.dw})`).join('; ')}`).join(' · '));
   if (CALIBRATE) {
     const byDesign = {};
     for (const r of results) if (r.diffPct !== null) { byDesign[r.design] = byDesign[r.design] || []; byDesign[r.design].push(r.diffPct); }
@@ -96,5 +130,5 @@ function diffPct(a, b) {
     await sharp({ create: { width: 3 * (2 * W + 3 * G), height: rows * (H + G), channels: 3, background: '#111' } }).composite(tiles).png().toFile(SHEET);
     console.log(LOG, 'худшие пары:', worst.map((r) => `${r.name} ${r.diffPct}%`).join(' · '), '→', SHEET);
   }
-  if (THRESHOLD !== null && (mismatches > 0 || missing.length > 0)) process.exit(1);
+  if (THRESHOLD !== null && (mismatches > 0 || missing.length > 0 || geoMismatches > 0)) process.exit(1);
 })().catch((e) => { console.error(LOG, 'FATAL', e); process.exit(1); });

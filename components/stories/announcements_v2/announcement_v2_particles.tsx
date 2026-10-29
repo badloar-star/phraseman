@@ -55,7 +55,9 @@ export const Hearts = memo(function Hearts() {
   return (
     <>
       {specs.map((s) => {
-        const keys: readonly Key[] = [{ at: 0, y: 0, x: 0, scale: 0.6, opacity: 0 }, { at: 0.1, y: -64, x: s.sx * 0.1, scale: 0.65, opacity: 0.9 }, { at: 1, y: -640, x: s.sx, scale: 1.1, opacity: 0 }];
+        // зачем (stHeart макета): на ключе 10 % задана только прозрачность .9 — движение и рост идут одним отрезком 0 → 100 % с общим
+        // ease; ключи без свойства keyValue пропускает, так что y/x/scale на 10 % не задаём, иначе изгиб траектории отличается от CSS.
+        const keys: readonly Key[] = [{ at: 0, y: 0, x: 0, scale: 0.6, opacity: 0 }, { at: 0.1, opacity: 0.9 }, { at: 1, y: -640, x: s.sx, scale: 1.1, opacity: 0 }];
         return (
           <Loop key={s.key} keys={keys} periodMs={s.periodMs} d={s.d} ease={EASE_CSS_OUT} style={[p.heart, { left: `${s.x}%` }]}>
             <Ionicons name="heart" size={s.size} color={pal.accG} />

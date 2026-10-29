@@ -15,7 +15,6 @@ import { Platform, StyleSheet, Text, View, useWindowDimensions, type LayoutChang
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../SafeLinearGradient';
-import { liquidGlassGradientTheme } from '../../../constants/liquidGlassGradientThemes';
 import { resolveThemedArt } from '../../theme/themed_art_registry';
 import { Art } from '../templates/story_template_kit';
 import { ThemeSwatch } from '../templates/story_template_layers';
@@ -134,21 +133,22 @@ const ThemeWipe = memo(function ThemeWipe({ estW, estH }: Readonly<{ estW: numbe
 const INK_SIZE = { 14: { fontSize: 14, lineHeight: 20 }, 16: { fontSize: 16, lineHeight: 22 }, 20: { fontSize: 20, lineHeight: 27 } } as const; // typo-exempt: кегли .p.b14/b16/b20 макета (владелец 28.10)
 
 /** Блок на плоскости темы (.sl .onink .p / .blk): текст accentInk; плашка .acc и планка .q — как у AnnBlock. */
-const InkBlock = memo(function InkBlock({ block, d }: Readonly<{ block: AnnouncementV2Block; d: number }>) {
+/** Блок на чернилах темы; testID — как у AnnBlock (story-ann-block-<i>), чтобы гейт сверял рамку с .p/.blk макета (критерий (а)). */
+const InkBlock = memo(function InkBlock({ block, d, testID }: Readonly<{ block: AnnouncementV2Block; d: number; testID?: string }>) {
   const pal = useAnnPalette();
   const size = INK_SIZE[block.size] ?? INK_SIZE[16];
   if (block.style === 'accent') {
-    return <Enter d={d} style={[typo.blk, typo.acc, { backgroundColor: mix(pal.tx, 0.1) }]}><Text style={[size, typo.accT, { color: pal.accInk, textAlign: 'center' }]}>{block.text}</Text></Enter>;
+    return <Enter d={d} testID={testID} style={[typo.blk, typo.acc, { backgroundColor: mix(pal.tx, 0.1) }]}><Text style={[size, typo.accT, { color: pal.accInk, textAlign: 'center' }]}>{block.text}</Text></Enter>;
   }
   if (block.style === 'quote') {
     return (
-      <Enter d={d} style={[typo.blk, typo.q]}>
+      <Enter d={d} testID={testID} style={[typo.blk, typo.q]}>
         <View style={[typo.qBar, { backgroundColor: pal.accG }]} />
         <Text style={[size, typo.qT, { color: pal.accInk }]}>{block.text}</Text>
       </Enter>
     );
   }
-  return <Enter d={d} style={typo.pBox}><Text style={[size, { color: pal.accInk, textAlign: 'center' }]}>{block.text}</Text></Enter>;
+  return <Enter d={d} testID={testID} style={typo.pBox}><Text style={[size, { color: pal.accInk, textAlign: 'center' }]}>{block.text}</Text></Enter>;
 });
 
 /**
@@ -176,17 +176,18 @@ export const ThemeFrame = memo(function ThemeFrame({ content }: AnnFrameProps) {
   const win = useWindowDimensions();
   // зачем: оценка кадра до замера — просмотр ставит кадр от 120 сверху до 150 снизу с кнопкой (.sl.hascta), без кнопки — до 60
   const estH = win.height - 120 - (announcementCta(content) ? 150 : 60);
-  // зачем (правило «цвета — только токены»): образец — сама открытая тема из каталога (как ThemeFrame личных историй); нет в каталоге — акцент текущей
-  const def = liquidGlassGradientTheme(content.themeId);
+  // зачем (.swatch макета, строго по макету — владелец 28.10): ядро — сплошной var(--card) палитры кадра (не градиент темы из каталога),
+  // орбиты — var(--acc-ink); пропс orbitColor и colorA = colorB — слои Моментов 571dbd8e3. Выбранная тема (content.themeId) живёт в кнопке
+  // «Включить тему» и в заливке ThemeWipe, образец её не перекрашивает — как на снимке макета.
   // зачем (.onink макета): метка, заголовок и блок — цветом accentInk; .8 / .82 из `.onink .ov / .p` в макете перекрывает анимация .a
   // (fill both → opacity 1 в конечном состоянии; замер макета: opacity 1), поэтому прозрачности нет — как на снимке макета
   return (
     <AnnRoot testID="story-ann-theme" back={<ThemeWipe estW={win.width} estH={estH} />}>
       <InkColumn title={content.title}>
-        <Art><Enter kind="pop" d={900}><ThemeSwatch colorA={def?.accent ?? pal.accB} colorB={def?.glowA ?? pal.accG} /></Enter></Art>
+        <Art><Enter kind="pop" d={900}><ThemeSwatch colorA={pal.card} colorB={pal.card} orbitColor={pal.accInk} /></Enter></Art>
         <AnnBadge text={content.badge} d={1300} color={pal.accInk} />
         <AnnTitle text={content.title} d0={1360} color={pal.accInk} />
-        {content.blocks.slice(0, 1).map((b, i) => <InkBlock key={`${i}-${b.text}`} block={b} d={1700 + i * 160} />)}
+        {content.blocks.slice(0, 1).map((b, i) => <InkBlock key={`${i}-${b.text}`} block={b} d={1700 + i * 160} testID={`story-ann-block-${i}`} />)}
       </InkColumn>
     </AnnRoot>
   );

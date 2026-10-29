@@ -33,7 +33,9 @@ export type Align = 'center' | 'left';
 export const AnnBadge = memo(function AnnBadge({ text, d, align = 'center', color, style }: Readonly<{ text: string; d: number; align?: Align; color?: string; style?: StyleProp<ViewStyle> }>) {
   const pal = useAnnPalette();
   if (!text) return null;
-  return <Enter d={d} style={[t.ovBox, style]}><Text style={[t.ov, { color: color ?? pal.acc, textAlign: align }]}>{text}</Text></Enter>;
+  // зачем (гейт, критерий (а) — геометрия по testID ±2 dp): границы метки/заголовка/блоков конвейер читает из иерархии эмулятора
+  // (resource-id = testID) и сверяет с ST.rects(k) макета; имена общие для всех 36 кадров: story-ann-badge / -title / -block-<i>.
+  return <Enter d={d} testID="story-ann-badge" style={[t.ovBox, style]}><Text style={[t.ov, { color: color ?? pal.acc, textAlign: align }]}>{text}</Text></Enter>;
 });
 
 // ── заголовок (.h1): слова лесенкой ───────────────────────────────────────────────────────────────────────────────
@@ -46,10 +48,10 @@ const H1: Readonly<Record<AnnouncementTitleSize, TextStyle>> = {
 };
 const GAP: Readonly<Record<AnnouncementTitleSize, number>> = { 40: 10, 34: 9, 28: 7, 24: 6 };
 
-type WordsProps = Readonly<{ text: string; d0: number; step?: number; style: StyleProp<TextStyle>; maxWidth: number; gap: number; align: Align }>;
+type WordsProps = Readonly<{ text: string; d0: number; step?: number; style: StyleProp<TextStyle>; maxWidth: number; gap: number; align: Align; testID?: string }>;
 
 /** Слова заголовка входят по очереди (.w.a); ширина блока — как text-wrap: balance после замера слов; выравнивание по центру или слева. */
-export const AnnWords = memo(function AnnWords({ text, d0, step = 50, style, maxWidth, gap, align }: WordsProps) {
+export const AnnWords = memo(function AnnWords({ text, d0, step = 50, style, maxWidth, gap, align, testID }: WordsProps) {
   const words = useMemo(() => text.split(' ').filter(Boolean), [text]);
   const [widths, setWidths] = useState<readonly number[] | null>(null);
   const measured = useMemo(() => new Map<number, number>(), [text]); // eslint-disable-line react-hooks/exhaustive-deps -- зачем: замер заново на новый текст
@@ -59,7 +61,7 @@ export const AnnWords = memo(function AnnWords({ text, d0, step = 50, style, max
   }, [measured, words]);
   const width = widths ? balancedWidth(widths, gap, maxWidth) : maxWidth;
   return (
-    <View accessible accessibilityRole="header" accessibilityLabel={text} style={[t.words, { width, columnGap: gap, justifyContent: align === 'left' ? 'flex-start' : 'center', alignSelf: align === 'left' ? 'flex-start' : 'center' }]}>
+    <View testID={testID} accessible accessibilityRole="header" accessibilityLabel={text} style={[t.words, { width, columnGap: gap, justifyContent: align === 'left' ? 'flex-start' : 'center', alignSelf: align === 'left' ? 'flex-start' : 'center' }]}>
       {words.map((word, i) => (
         <Enter key={`${i}-${word}`} kind="a" d={d0 + i * step}>
           <Text style={style} onLayout={(e) => onWord(i, e)}>{word}</Text>
@@ -80,7 +82,7 @@ export const AnnTitle = memo(function AnnTitle({ text, d0, align = 'center', nar
   if (!text) return null;
   return (
     <View style={[t.h1Box, align === 'left' ? t.leftBox : null, style]} onLayout={onLayout}>
-      <AnnWords text={text} d0={d0} style={[t.h1, H1[size], { color: color ?? pal.tx, textAlign: align }]} maxWidth={Math.min(maxWidth, avail ?? maxWidth)} gap={GAP[size]} align={align} />
+      <AnnWords testID="story-ann-title" text={text} d0={d0} style={[t.h1, H1[size], { color: color ?? pal.tx, textAlign: align }]} maxWidth={Math.min(maxWidth, avail ?? maxWidth)} gap={GAP[size]} align={align} />
     </View>
   );
 });
@@ -94,26 +96,26 @@ export function titleTextStyle(size: AnnouncementTitleSize, color: string, align
 
 const BLOCK_SIZE: Readonly<Record<14 | 16 | 20, TextStyle>> = { 14: { fontSize: 14, lineHeight: 20 }, 16: { fontSize: 16, lineHeight: 22 }, 20: { fontSize: 20, lineHeight: 27 } }; // typo-exempt: макет stories-announcements-v1 — кегль и межстрочный кадра 1:1
 
-export const AnnBlock = memo(function AnnBlock({ block, d, align = 'center' }: Readonly<{ block: AnnouncementV2Block; d: number; align?: Align }>) {
+export const AnnBlock = memo(function AnnBlock({ block, d, align = 'center', testID }: Readonly<{ block: AnnouncementV2Block; d: number; align?: Align; testID?: string }>) {
   const pal = useAnnPalette();
   const size = BLOCK_SIZE[block.size] ?? BLOCK_SIZE[16];
   if (block.style === 'accent') {
-    return <Enter d={d} style={[t.blk, t.acc, { backgroundColor: mix(pal.tx, 0.1) }, align === 'left' ? t.leftBox : null]}><Text style={[size, t.accT, { color: pal.tx, textAlign: align }]}>{block.text}</Text></Enter>;
+    return <Enter d={d} testID={testID} style={[t.blk, t.acc, { backgroundColor: mix(pal.tx, 0.1) }, align === 'left' ? t.leftBox : null]}><Text style={[size, t.accT, { color: pal.tx, textAlign: align }]}>{block.text}</Text></Enter>;
   }
   if (block.style === 'quote') {
     return (
-      <Enter d={d} style={[t.blk, t.q, align === 'left' ? t.leftBox : null]}>
+      <Enter d={d} testID={testID} style={[t.blk, t.q, align === 'left' ? t.leftBox : null]}>
         <View style={[t.qBar, { backgroundColor: pal.accG }]} />
         <Text style={[size, t.qT, { color: pal.tx }]}>{block.text}</Text>
       </Enter>
     );
   }
-  return <Enter d={d} style={[t.pBox, align === 'left' ? t.leftBox : null]}><Text style={[size, { color: block.size === 20 ? pal.tx : pal.sec, textAlign: align }]}>{block.text}</Text></Enter>;
+  return <Enter d={d} testID={testID} style={[t.pBox, align === 'left' ? t.leftBox : null]}><Text style={[size, { color: block.size === 20 ? pal.tx : pal.sec, textAlign: align }]}>{block.text}</Text></Enter>;
 });
 
 /** Блоки объявления по очереди (blocks(list, d0, step) макета: d0 + 160·i). `max` — сколько держит кадр. */
 export const AnnBlocks = memo(function AnnBlocks({ blocks, d0, step = 160, align = 'center', max = 4 }: Readonly<{ blocks: readonly AnnouncementV2Block[]; d0: number; step?: number; align?: Align; max?: number }>) {
-  return <>{blocks.slice(0, max).map((b, i) => <AnnBlock key={`${i}-${b.text}`} block={b} d={d0 + i * step} align={align} />)}</>;
+  return <>{blocks.slice(0, max).map((b, i) => <AnnBlock key={`${i}-${b.text}`} block={b} d={d0 + i * step} align={align} testID={`story-ann-block-${i}`} />)}</>;
 });
 
 // ── большое число (.big) ─────────────────────────────────────────────────────────────────────────────────────────

@@ -233,7 +233,8 @@ export const NewYearFrame = memo(function NewYearFrame({ content }: AnnFrameProp
     DebugLogger.info(LOG, `newyear: год ${year} по ${eventAtMs !== null ? 'дате события' : 'сегодняшней дате'}`);
   }, [eventAtMs, year]);
   return (
-    <AnnRoot testID="story-ann-newyear" layer={<Snow />} maskText>
+    // зачем (stSnow макета объявлений: translateY(760px)): у личных историй снег падает на 880 — проп Моментов (571dbd8e3)
+    <AnnRoot testID="story-ann-newyear" layer={<Snow fallTo={760} />} maskText>
       <TextZone>
         <View style={f.yr} accessible accessibilityLabel={year}>
           {year.split('').map((ch, i) => (
@@ -277,7 +278,8 @@ export const HolidayFrame = memo(function HolidayFrame({ content }: AnnFrameProp
     DebugLogger.info(LOG, source ? `holiday: арт ${name} (${art?.origin})` : `holiday: арта нет (art=${String(content.art ?? '—')} → ${name ?? '—'}, ${art?.origin ?? 'none'}) — кадр без подарка`);
   }, [art?.origin, content.art, name, source]);
   return (
-    <AnnRoot testID="story-ann-holiday" layer={<Confetti n={22} d0={900} />} maskText>
+    // зачем (.conf i макета: top 40 %): конфетти личных историй стартует с 42 % — проп Моментов (571dbd8e3)
+    <AnnRoot testID="story-ann-holiday" layer={<Confetti n={22} d0={900} fromPct={40} />} maskText>
       {source ? (
         <Art>
           <Keyframed keys={DROP} d={100} dur={1000} ease={EASE_SPRING}>

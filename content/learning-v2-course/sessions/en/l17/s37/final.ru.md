@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы называете объём и вес нужных покупок.
 
-**Что вы освоите:** назвать количество: two bottles of water, a kilo of rice
+**Что вы освоите:** назвать количество: We need two kilos of rice.
 **Новые слова:** litre of milk, litre of petrol, kilo of rice, kilo of meat
 
 ## Интро 1

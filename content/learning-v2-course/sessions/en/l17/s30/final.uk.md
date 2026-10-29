@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте перекази, зняття готівки, допомогу й послуги банку.
 
-**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
+**Що ви опануєте:** сказати, що потрібна фінансова підтримка: We need some financial support.
 **Нові слова:** bank transfer, cash withdrawal, financial support, online banking
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви складаєте список покупок і називаєте потрібну кількість упаковок.
 
-**Що ви опануєте:** назвати кількість: two bottles of water, a kilo of rice
+**Що ви опануєте:** назвати кількість: We need two tubes of toothpaste.
 **Нові слова:** tube of toothpaste, bar of soap, roll of toilet paper, box of cereal
 
 ## Інтро 1

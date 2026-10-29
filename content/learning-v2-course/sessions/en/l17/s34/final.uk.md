@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви складаєте список покупок і називаєте кількість упаковок.
 
-**Що ви опануєте:** назвати кількість: two bottles of water, a kilo of rice
+**Що ви опануєте:** назвати кількість: We need two bags of rice.
 **Нові слова:** bag of rice, bag of sugar, bag of flour, jar of jam
 
 ## Інтро 1

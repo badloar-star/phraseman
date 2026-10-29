@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви перевіряєте адреси кількох замовлень і листів родини після переїзду.
 
-**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
+**Що ви опануєте:** запитати про нові адреси: Do you have any forwarding addresses?
 **Нові слова:** delivery address, billing address, return address, forwarding address
 
 ## Інтро 1

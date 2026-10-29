@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете школьные бланки, питание, встречи с учителями и кружки.
 
-**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
+**Что вы освоите:** спросить, есть ли что-то нужное: Are there any after-school clubs?
 **Новые слова:** permission slip, school meal, parents' evening, after-school club
 
 ## Интро 1

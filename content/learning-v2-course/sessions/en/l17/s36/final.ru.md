@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете, сколько советов, сведений и вещей вам нужно.
 
-**Что вы освоите:** назвать количество: two bottles of water, a kilo of rice
+**Что вы освоите:** назвать количество: I need two pieces of advice.
 **Новые слова:** piece of advice, piece of information, piece of furniture, item of clothing
 
 ## Интро 1

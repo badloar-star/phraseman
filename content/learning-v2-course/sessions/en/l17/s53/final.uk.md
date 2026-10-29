@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви оглядаєте вокзал і уточнюєте вартість та види квитків.
 
-**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
+**Що ви опануєте:** запитати, чи є щось потрібне: Do you sell any weekly tickets?
 **Нові слова:** train platform, train fare, day ticket, weekly ticket
 
 ## Інтро 1

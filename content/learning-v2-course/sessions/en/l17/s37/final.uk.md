@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви називаєте об’єм і вагу потрібних покупок.
 
-**Що ви опануєте:** назвати кількість: two bottles of water, a kilo of rice
+**Що ви опануєте:** назвати кількість: We need two kilos of rice.
 **Нові слова:** litre of milk, litre of petrol, kilo of rice, kilo of meat
 
 ## Інтро 1

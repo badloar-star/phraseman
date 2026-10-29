@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы разбираете семейные документы и бланки для регистрации.
 
-**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
+**Что вы освоите:** спросить, есть ли что-то нужное: Do you have any registration forms?
 **Новые слова:** birth certificate, marriage certificate, identity card, registration form
 
 ## Интро 1

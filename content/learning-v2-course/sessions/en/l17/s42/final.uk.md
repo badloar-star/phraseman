@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте варіанти оплати, виписки й регулярні перекази.
 
-**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
+**Що ви опануєте:** запитати про регулярні перекази: Do you have any standing orders?
 **Нові слова:** payment plan, late fee, bank statement, standing order
 
 ## Інтро 1

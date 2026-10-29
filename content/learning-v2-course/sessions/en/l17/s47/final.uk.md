@@ -2,7 +2,7 @@
 
 **Ситуація.** Перед записом на заняття або відвідуванням заходів ви з’ясовуєте можливі платежі.
 
-**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
+**Що ви опануєте:** запитати, чи є щось потрібне: Do you charge any cancellation fees?
 **Нові слова:** entry fee, membership fee, monthly payment, cancellation fee
 
 ## Інтро 1

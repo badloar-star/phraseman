@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте шкільні бланки, харчування, зустрічі з учителями й гуртки.
 
-**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
+**Що ви опануєте:** запитати, чи є щось потрібне: Are there any after-school clubs?
 **Нові слова:** permission slip, school meal, parents' evening, after-school club
 
 ## Інтро 1

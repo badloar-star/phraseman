@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте паркування, перекриті дороги й освітлення вулиць.
 
-**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
+**Що ви опануєте:** запитати, де припаркуватися: Is there any public parking here?
 **Нові слова:** parking ticket, road closure, street lighting, public parking
 
 ## Інтро 1

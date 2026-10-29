@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте місця, плату за бронювання, гроші й страхування для поїздки.
 
-**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
+**Що ви опануєте:** запитати про страховку в поїздку: Do you have any travel insurance?
 **Нові слова:** seat reservation, booking fee, foreign currency, travel insurance
 
 ## Інтро 1

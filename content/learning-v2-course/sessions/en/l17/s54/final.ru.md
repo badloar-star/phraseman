@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы проверяете, сколько еды и воды осталось.
 
-**Что вы освоите:** сказать, что чего-то немного или почти нет: a little milk, little time
+**Что вы освоите:** сказать, что чего-то немного или почти нет: We have little leftover food.
 **Новые слова:** fresh food, leftover food, food waste, bottled water
 
 ## Интро 1

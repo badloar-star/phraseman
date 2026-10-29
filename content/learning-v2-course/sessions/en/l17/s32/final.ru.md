@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете парковку, перекрытые дороги и освещение улиц.
 
-**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
+**Что вы освоите:** спросить, где припарковаться: Is there any public parking here?
 **Новые слова:** parking ticket, road closure, street lighting, public parking
 
 ## Интро 1

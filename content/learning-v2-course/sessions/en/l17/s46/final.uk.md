@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розбираєте сімейні документи й бланки для реєстрації.
 
-**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
+**Що ви опануєте:** запитати, чи є щось потрібне: Do you have any registration forms?
 **Нові слова:** birth certificate, marriage certificate, identity card, registration form
 
 ## Інтро 1

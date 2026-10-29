@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте потрібну кількість покупок або порцій.
 
-**Що ви опануєте:** назвати кількість: two bottles of water, a kilo of rice
+**Що ви опануєте:** назвати кількість: We need two bowls of rice.
 **Нові слова:** bowl of rice, bowl of pasta, bowl of cereal, bowl of porridge
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте відгуки на вакансії й умови майбутньої роботи.
 
-**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
+**Що ви опануєте:** запитати про гнучкий графік: Do you offer any flexible working?
 **Нові слова:** reference, cover letter, job security, flexible working
 
 ## Інтро 1

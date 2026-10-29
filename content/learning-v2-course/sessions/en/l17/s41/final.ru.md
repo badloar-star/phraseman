@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете отклики на вакансии и условия будущей работы.
 
-**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
+**Что вы освоите:** спросить о гибком графике: Do you offer any flexible working?
 **Новые слова:** reference, cover letter, job security, flexible working
 
 ## Интро 1

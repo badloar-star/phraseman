@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете места, плату за бронирование, деньги и страховку для поездки.
 
-**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
+**Что вы освоите:** спросить о страховке в поездку: Do you have any travel insurance?
 **Новые слова:** seat reservation, booking fee, foreign currency, travel insurance
 
 ## Интро 1

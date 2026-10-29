@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете нужное количество покупок или порций.
 
-**Что вы освоите:** назвать количество: two bottles of water, a kilo of rice
+**Что вы освоите:** назвать количество: We need two bottles of shampoo.
 **Новые слова:** bottle of shampoo, bottle of conditioner, bottle of shower gel, tube of cream
 
 ## Интро 1

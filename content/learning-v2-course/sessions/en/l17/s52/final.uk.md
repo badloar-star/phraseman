@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте, які відомості є і яких бракує.
 
-**Що ви опануєте:** сказати, що речей чи людей трохи або майже немає: a few friends, few cars
+**Що ви опануєте:** сказати, що речей чи людей трохи або майже немає: We know few arrival times.
 **Нові слова:** departure time, arrival time, flight number, booking reference
 
 ## Інтро 1

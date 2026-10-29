@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви перевіряєте, скільки їжі та води залишилося.
 
-**Що ви опануєте:** сказати, що чогось трохи або майже немає: a little milk, little time
+**Що ви опануєте:** сказати, що чогось трохи або майже немає: We have little leftover food.
 **Нові слова:** fresh food, leftover food, food waste, bottled water
 
 ## Інтро 1

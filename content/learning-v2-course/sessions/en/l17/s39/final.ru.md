@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете нужное количество покупок или порций.
 
-**Что вы освоите:** назвать количество: two bottles of water, a kilo of rice
+**Что вы освоите:** назвать количество: We need two slices of cheese.
 **Новые слова:** slice of cheese, slice of ham, piece of cake, bowl of soup
 
 ## Интро 1

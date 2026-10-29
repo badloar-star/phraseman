@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы составляете список покупок и называете количество упаковок.
 
-**Что вы освоите:** назвать количество: two bottles of water, a kilo of rice
+**Что вы освоите:** назвать количество: We need two bags of rice.
 **Новые слова:** bag of rice, bag of sugar, bag of flour, jar of jam
 
 ## Интро 1

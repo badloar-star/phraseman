@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете переводы, снятие наличных, помощь и услуги банка.
 
-**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
+**Что вы освоите:** сказать, что нужна финансовая поддержка: We need some financial support.
 **Новые слова:** bank transfer, cash withdrawal, financial support, online banking
 
 ## Интро 1

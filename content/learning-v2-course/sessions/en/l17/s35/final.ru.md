@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы составляете список покупок и называете количество упаковок.
 
-**Что вы освоите:** назвать количество: two bottles of water, a kilo of rice
+**Что вы освоите:** назвать количество: We need two bottles of oil.
 **Новые слова:** carton of juice, bottle of oil, pot of yoghurt, packet of pasta
 
 ## Интро 1

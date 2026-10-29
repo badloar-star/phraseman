@@ -23,3 +23,5 @@
 .sh-pm-b { width: 324px; height: 230px; right: -105px; top: 42px; background: radial-gradient(ellipse at 70% 50%, #ff322966, transparent 65%); box-shadow: inset -2px -1px 0 #ff857166; rotate: -32deg; animation-duration: 49.4s; animation-delay: -19s; animation-direction: alternate-reverse; }
 @keyframes sh-pm { from { transform: translate(-7px, -3px); opacity: .72; } to { transform: translate(5px, 4px); opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .sh-star, .sh-pm i { animation: none !important; } }
+/* выпадающий список всех тем (29): в тон чипов панели */
+.sh-sel { font: inherit; font-size: 13px; font-weight: 700; color: #FFFFFF; background: #1C1C22; border: 0; border-radius: 999px; padding: 6px 12px; outline: none; cursor: pointer; }

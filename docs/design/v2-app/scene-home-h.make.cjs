@@ -30,6 +30,12 @@ const realLine = `<script>window.__REAL = ${JSON.stringify(realFrames)};</script
 const SH_FRAMES = ['head_home_graphite_dark', 'head_home_graphite_light', 'head_lessons_graphite_dark', 'head_lessons_graphite_light', 'scene_home_grad_full_titanium_dark', 'scene_home_grad_full_titanium_light', 'scene_season_graphite_light'].map((f) => `assets/real/${f}.png`);
 const shFiles = SH_FRAMES.filter((f) => fs.existsSync(path.join(__dirname, f)));
 const shFilesLine = `<script>window.__SH_FILES = ${JSON.stringify(shFiles)};</script>`;
+// таблица неба всех тем от «Тем» (ровный тон, без потемнения) и русские имена тем из приложения
+const skyTable = JSON.parse(fs.readFileSync(path.join(__dirname, '..', '..', 'work', 'handover', 'scene-all-themes-2026-10-29.json'), 'utf8')).themes;
+const sky = {}; Object.entries(skyTable).forEach(([id, t]) => { sky[id] = { dark: { skyTone: t.dark && t.dark.skyTone, premiumHome: t.dark && t.dark.premiumHome ? { sceneTop: t.dark.premiumHome.sceneTop, sceneBottom: t.dark.premiumHome.sceneBottom, edge: t.dark.premiumHome.edge } : undefined }, light: { top: t.light && t.light.top, skyTone: t.light && t.light.skyTone } }; });
+const namesTs = fs.readFileSync(path.join(__dirname, '..', '..', '..', 'app', 'theme_display_names.ts'), 'utf8'); const names = {}; namesTs.replace(/^\s*([a-z_]+): \{ ru: '([^']+)'/gm, (m, id, ru) => { names[id] = ru; return m; });
+const skyLine = `<script>window.__SKY = ${JSON.stringify(sky)}; window.__THEME_NAMES = ${JSON.stringify(names)};</script>`;
+console.log('[SH-MAKE] тем в таблице неба', Object.keys(sky).length, 'имён', Object.keys(names).length);
 const html = `<!doctype html>
 <html lang="ru">
 <head>
@@ -48,7 +54,7 @@ ${engineCss}
 <body>
 <div class="page">
   <h1 class="page-h1">Сцена Главной — высота как у «Уроков»</h1>
-  <div class="thm sp-bar sf-bar"><span id="shView" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Высота</span><span id="shHeight" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Оформление</span><span id="shAp" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Тема</span><span id="shTheme" style="display:inline-flex;gap:8px"></span><span id="shBottomWrap" style="display:inline-flex;align-items:center;gap:8px"><span class="sp-lbl">Низ неба</span><span id="shBottom" style="display:inline-flex;gap:8px"></span></span><span id="shHeroWrap" style="display:inline-flex;align-items:center;gap:8px"><span class="sp-lbl">Герой</span><span id="shHero" style="display:inline-flex;gap:8px"></span></span><span class="sp-lbl">Сравнение</span><span id="shRuler" style="display:inline-flex;gap:8px"></span></div>
+  <div class="thm sp-bar sf-bar"><span id="shView" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Высота</span><span id="shHeight" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Оформление</span><span id="shAp" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Тема</span><select id="shThemeSel" class="sh-sel"></select><span id="shBottomWrap" style="display:inline-flex;align-items:center;gap:8px"><span class="sp-lbl">Низ неба</span><span id="shBottom" style="display:inline-flex;gap:8px"></span></span><span id="shHeroWrap" style="display:inline-flex;align-items:center;gap:8px"><span class="sp-lbl">Герой</span><span id="shHero" style="display:inline-flex;gap:8px"></span></span><span class="sp-lbl">Сравнение</span><span id="shRuler" style="display:inline-flex;gap:8px"></span></div>
   <div id="sh"></div>
   <div id="spControls" style="display:none"><span id="apList"></span><span id="modeList"></span><span id="stratList"></span></div>
   <div id="thmList" style="display:none"></div>
@@ -66,6 +72,7 @@ ${themesLine}
 ${icodeLine}
 ${realLine}
 ${shFilesLine}
+${skyLine}
 <script src="scene-palettes.app.js"></script>
 <script src="dark-themes.app.js"></script>
 <script src="scene-home-h.app.js"></script>

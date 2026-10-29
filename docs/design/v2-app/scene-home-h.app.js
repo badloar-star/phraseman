@@ -2,15 +2,15 @@
    Телефоны: Главная «сейчас» (кадр HEAD как есть) / «вариант», рядом «Уроки» — тоже «сейчас» / «вариант» той же высоты (у Тем высота
    обеих сцен — одна константа), линейка по краю сцены «Уроков».
    Переключатели: Высота — «Край под «Сегодня»» (по умолчанию: карточка «Сегодня» лежит поверх сцены, край 1182 px проходит под её
-   заголовком; слово владельца 29.10) / «412 dp — край над карточкой» (1082 px, карточка ниже с зазором) / «392 dp — как «Уроки»» (1029 px) · Оформление · Тема Графит/Титан · Низ неба (графит, тёмное) · Герой 160/200/280 dp (графит) ·
+   заголовком; слово владельца 29.10) / «412 dp — край над карточкой» (1082 px, карточка ниже с зазором) / «392 dp — как «Уроки»» (1029 px) · Оформление · Тема Графит/Титан · Герой 160/200/280 dp (графит) ·
    Линейка. Вариант: сцена — отдельный блок: край резкий, скругление 28 dp, тень 0/9 dp размытие 18 dp α .70/.32, зазор 12 dp до
    карточки «Сегодня» (карточка и всё ниже сдвигаются вниз, таббар на месте).
    Графит (формульная тема, кадр HEAD с краем 984): небо заново растром нужной высоты — без затемнения низа и без vignette, звёзды по всей
    площади (70 формулы + 102 нижних той же плотности; у «Тем» в коде пока 48), мерцает каждая 8-я; герой — картинка hero512 выбранного
    размера справа 20 dp по центру сцены, впечатан В НЕБО под текстом и кнопкой (владелец: «текст не спорит с иконками, может ложиться
    поверх»); UI и заголовок на своих местах, сцена растёт вниз под кнопкой. «Уроки»: тот же рецепт по формуле «Сезона», скругление 32 dp
-   как на кадре, плитки ниже на ту же величину. Низ неба (предложение «Тем» для контраста белого текста): без затемнения · горизонт глубже
-   в самих остановках градиента · с полосой затемнения как сейчас.
+   как на кадре, плитки ниже на ту же величину. Небо тёмной темы — один тон (графит #516583, цифра «Тем»), белый диагональный
+   перелив до 7 %, без любого потемнения вниз (владелец 29.10, крик), звёзды по всей площади; светлое «А» без scrim.
    Титан (премиум: свой фон как на бою, движение PremiumThemeMotion поверх, без общих звёзд): HEAD-кадра в премиум-теме нет — «сейчас» =
    реальный кадр 28.10 (край 1082, карточка наезжает), вариант из него без перекраски: 392 — вырез 29 строк чистого неба над кнопкой;
    412 — строки под карточкой достроены продолжением градиента. Светлое «А» графита — ждём кадры HEAD. Служебного текста внутри телефонов
@@ -21,7 +21,9 @@
   const THEMES = SP.THEMES; const W = 1080; const H = 2400; const DPX = 2.625;
   const q = new URLSearchParams(location.search);
   let AP = q.get('ap') === 'light' ? 'light' : 'dark'; let VIEW = q.get('view') === 'now' ? 'now' : 'variant'; let RULER = q.get('ruler') !== '0';
-  let THEME = q.get('theme') === 'titanium' ? 'titanium' : 'graphite'; let BOTTOM = ['none', 'stops', 'band'].includes(q.get('bottom')) ? q.get('bottom') : 'stops'; // владелец: «горизонт глубже — подходит, затемнение снизу убрать полностью»
+  let THEME = q.get('theme') === 'titanium' ? 'titanium' : 'graphite'; const BOTTOM = 'flat'; // владелец (крик 29.10): «вся сцена без затемнения внизу, вся сцена вот такого цвета целиком» — один тон, чипов низа неба нет
+  /* тон неба тёмной темы — цифра «Тем» 29.10 для графита (1:1 с их кодом): один цвет на всю сцену, сверху белый диагональный перелив до 7 % */
+  const FLAT_SKY = { graphite: '#516583', sheen: 0.07 };
   /* высота обеих сцен (слово владельца 29.10): 412 dp = 1082 px — как в утверждённом эталоне, край там, где раньше начиналась карточка;
      392 dp = 1029 px — как у «Уроков» сейчас. Герой: 160 — эталон HERO_HOME, 200/280 — «громадный» (владелец), по умолчанию 280 — «на всю сцену» */
   /* владелец 29.10 (срочно): «линия сцены должна аж заходить под карточку «Сегодня», под её заголовок» — режим 'under': карточка лежит ПОВЕРХ
@@ -64,20 +66,14 @@
   const skyRaster = (screen, ap, Hs, bottom) => {
     const t = THEMES.graphite[ap];
     if (ap === 'dark') {
-      const d = SA.approved(t, 'dark', screen, W, Hs, {}); const raw = d.raw; const rawOf = [raw.zen, raw.mid, raw.hor, raw.hor, raw.gnd, raw.bottom];
+      const d = SA.approved(t, 'dark', screen, W, Hs, {});
       const r = SA.rng(7); const lower = []; for (let i = 0; i < 102; i += 1) { const x = r(); const y = 0.4 + r() * 0.58; const rad = 0.9 + r() * 0.9; const a = 0.3 + r() * 0.35; lower.push({ x, y, r: rad, a }); }
       const stars = d.stars.list.concat(lower);
-      const paint = (g, dark) => {
-        const gr = g.createLinearGradient(0, 0, 0, Hs); d.gradient.stops.forEach((s, i) => { const k = s.at >= 0.62 ? 1 - dark : 1; gr.addColorStop(s.at, rgba(rawOf[i].map((v) => v * k))); }); g.fillStyle = gr; g.fillRect(0, 0, W, Hs);
-        const l = d.sun; g.save(); g.translate(l.cx * W, l.cy * Hs); g.scale(l.rx * W, l.ry * Hs); const lg = g.createRadialGradient(0, 0, 0, 0, 0, 1); lg.addColorStop(0, rgba(raw.lightC, l.a)); lg.addColorStop(1, rgba(raw.lightC, 0)); g.fillStyle = lg; g.fillRect(-1, -1, 2, 2); g.restore(); // guard-ok: альфа света на холсте макета, не баланс пользователя
-        const hz = d.haze; const bg = g.createLinearGradient(0, Hs * hz.y0, 0, Hs * hz.y1); bg.addColorStop(0, rgba(raw.haze, 0)); bg.addColorStop(0.5, rgba(raw.haze, hz.a[1])); bg.addColorStop(1, rgba(raw.haze, 0)); g.fillStyle = bg; g.fillRect(0, Hs * hz.y0, W, Hs * (hz.y1 - hz.y0));
-        stars.forEach((s) => { g.fillStyle = rgba([255, 255, 255], s.a); g.beginPath(); g.arc(s.x * W, s.y * Hs, s.r, 0, Math.PI * 2); g.fill(); });
-      };
-      const { g: pg } = canvasOf(W, Hs); paint(pg, 0); const v = d.vignette; pg.save(); pg.translate(W / 2, Hs / 2); pg.scale(W * v.scale, Hs * v.scale); const vg = pg.createRadialGradient(0, 0, v.inner, 0, 0, 1); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, `rgba(0,0,0,${v.a})`); pg.fillStyle = vg; pg.fillRect(-2, -2, 4, 4); pg.restore(); // guard-ok
-      const guard = SA.guardSky(pg, W, Hs); const a = Math.min(0.7, guard.aBottom + 0.04); // a полосы — как считает страж приложения (графит ≈ .24)
-      const { c, g } = canvasOf(W, Hs); if (bottom === 'band') g.drawImage(pg.canvas, 0, 0); else paint(g, bottom === 'stops' ? a : 0);
-      console.log(LOG, 'небо тёмное', JSON.stringify({ screen, Hs, bottom, a: +a.toFixed(3), stars: stars.length })); // guard-ok
-      return { c, g, stars, a };
+      // один тон на всю сцену (владелец: «вся сцена вот такого цвета целиком»), сверху белый диагональный перелив до 7 % (светлее слева сверху), звёзды везде
+      const { c, g } = canvasOf(W, Hs); g.fillStyle = FLAT_SKY.graphite; g.fillRect(0, 0, W, Hs); const sh = g.createLinearGradient(0, 0, W, Hs); sh.addColorStop(0, `rgba(255,255,255,${FLAT_SKY.sheen})`); sh.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = sh; g.fillRect(0, 0, W, Hs); // guard-ok: перелив неба макета, не баланс пользователя
+      stars.forEach((st) => { g.fillStyle = rgba([255, 255, 255], st.a); g.beginPath(); g.arc(st.x * W, st.y * Hs, st.r, 0, Math.PI * 2); g.fill(); });
+      console.log(LOG, 'небо тёмное', JSON.stringify({ screen, Hs, tone: FLAT_SKY.graphite, sheen: FLAT_SKY.sheen, darkening: 'нет', stars: stars.length })); // guard-ok
+      return { c, g, stars, a: 0 };
     }
     const spec = Object.assign({}, SA.approved(t, 'light', screen, W, Hs, {}).spec, { scrim: null }); const paint = SR.painter(spec, W, Hs); const { c, g } = canvasOf(W, Hs); const id = g.createImageData(W, Hs); const d = id.data;
     for (let y = 0; y < Hs; y += 1) for (let x = 0; x < W; x += 1) { const i = (y * W + x) * 4; const col = paint(x, y); d[i] = col[0]; d[i + 1] = col[1]; d[i + 2] = col[2]; d[i + 3] = 255; }
@@ -193,7 +189,7 @@
     const ctl = (id, items, cur, key) => { const el = document.getElementById(id); if (el) el.innerHTML = items.map(([k, n]) => `<span class="chp${cur === k ? ' on' : ''}" data-${key}="${k}">${n}</span>`).join(''); };
     const show = (id, on) => { const el = document.getElementById(id); if (el) el.style.display = on ? '' : 'none'; };
     ctl('shView', [['now', 'Сейчас'], ['variant', 'Вариант']], VIEW, 'sh-view'); ctl('shHeight', [['under', 'Край под «Сегодня»'], ['temy', '412 dp, карточка поверх на 44 dp'], ['412', '412 dp — край над карточкой'], ['392', '392 dp — как «Уроки»']], HGT, 'sh-h'); ctl('shAp', [['dark', 'Тёмная'], ['light', 'Светлая «А»']], AP, 'sh-ap'); ctl('shTheme', [['graphite', 'Графит'], ['titanium', 'Титан']], THEME, 'sh-theme');
-    show('shBottomWrap', THEME === 'graphite' && AP === 'dark'); ctl('shBottom', [['none', 'Без затемнения'], ['stops', 'Горизонт глубже'], ['band', 'С полосой (сейчас)']], BOTTOM, 'sh-bottom');
+    show('shBottomWrap', false); // низ неба один — чипов нет (владелец 29.10)
     show('shHeroWrap', THEME === 'graphite'); ctl('shHero', [['160', '160 dp (эталон)'], ['200', '200 dp'], ['280', '280 dp']], HERO, 'sh-hero'); ctl('shRuler', [['1', 'Линейка'], ['0', 'Без линейки']], RULER ? '1' : '0', 'sh-ruler');
     const ok = window.__SH_FILES ? haveFile(m.file) && haveFile(LESSONS.file) : await loadImg(m.file).then(() => true, (e) => { console.log(LOG, 'кадра нет:', e.message); return false; }); // список наличных кадров пишет сборщик
     if (!ok) { root.innerHTML = '<p class="sf-empty">Кадры ещё не сняты</p>'; window.__shDone = true; console.log(LOG, 'нет кадра', JSON.stringify({ theme: THEME, ap: AP, file: m.file })); return; }
@@ -217,10 +213,9 @@
     const h = pick('sh-h', 'shH'); if (h) { HGT = h; render(); return; }
     const a = pick('sh-ap', 'shAp'); if (a) { AP = a; render(); return; }
     const t = pick('sh-theme', 'shTheme'); if (t) { THEME = t; render(); return; }
-    const b = pick('sh-bottom', 'shBottom'); if (b) { BOTTOM = b; render(); return; }
     const hr = pick('sh-hero', 'shHero'); if (hr) { HERO = hr; render(); return; }
     const r = pick('sh-ruler', 'shRuler'); if (r) { RULER = r === '1'; render(); }
   });
-  window.__sh = { render, V, EDGE, FRAMES, LESSONS_BY_AP, cache: CACHE, homeKey, lessonsKey, last: null, setView: (v) => { VIEW = v; return render(); }, setAp: (a) => { AP = a; return render(); }, setTheme: (t) => { THEME = t; return render(); }, setBottom: (b) => { BOTTOM = b; return render(); }, setHero: (h) => { HERO = h; return render(); }, setHeight: (h) => { HGT = h; return render(); } };
+  window.__sh = { render, V, EDGE, FRAMES, LESSONS_BY_AP, cache: CACHE, homeKey, lessonsKey, last: null, setView: (v) => { VIEW = v; return render(); }, setAp: (a) => { AP = a; return render(); }, setTheme: (t) => { THEME = t; return render(); }, setHero: (h) => { HERO = h; return render(); }, setHeight: (h) => { HGT = h; return render(); } };
   render();
 })();

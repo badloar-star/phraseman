@@ -588,7 +588,7 @@
             "testedDimension": "Вставте слово — одна пара штанів",
             "feedbackByLocale": {
               "ru": "Здесь единственное pantalón: un.",
-              "uk": "Тут однина pantalón: un."
+              "uk": "Тут один pantalón: un."
             }
           }
         ]
@@ -793,5 +793,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b3d89ad46001fc6bb40f14b01373152a7ba41590ce12c7c2bb23aeefc46b9735"
+  "learnerFingerprint": "ab8699ada1930c8063334a15aed736ba7a58ad741228302f8c0c780178ceed5b"
 }

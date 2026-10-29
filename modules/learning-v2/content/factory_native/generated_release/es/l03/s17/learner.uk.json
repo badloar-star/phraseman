@@ -538,8 +538,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — це червоний зошит",
             "feedbackByLocale": {
-              "ru": "Нужны мужской род и единственное число: rojo.",
-              "uk": "Потрібні чоловічий рід та однина: rojo."
+              "ru": "Нужны мужской род и форма для одного: rojo.",
+              "uk": "Потрібні чоловічий рід та форма для одного: rojo."
             }
           }
         ]
@@ -685,5 +685,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a420d66692affcec0379e375672bfc8aea0aba621b1b5b44bce52e4d2888cc5e"
+  "learnerFingerprint": "2301955516f0db2885bdfbf2fd96311594410ba7640cfbb9b042f71f812de145"
 }

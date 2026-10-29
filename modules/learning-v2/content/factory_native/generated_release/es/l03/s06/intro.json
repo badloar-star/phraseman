@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-06",
   "learningOutcomeByLocale": {
-    "ru": "описать ширину словами ancho и estrecho.",
-    "uk": "описати ширину словами ancho та estrecho."
+    "ru": "описать ширину предмета: La puerta es estrecha.",
+    "uk": "описати ширину предмета: La puerta es estrecha."
   },
   "pages": [
     {
@@ -16,7 +16,7 @@
       },
       "bodyByLocale": {
         "ru": "Вы смотрите на широкую входную дверь. `Ancho` — «широкий», для женского рода — ancha. Скажите `La puerta es ancha` — «Дверь широкая». Соберите `la puerta` + `es` + `ancha`. Puerta женского рода: окончание признака -a.",
-        "uk": "Ви дивитеся на широкі вхідні двері. `Ancho` — «широкий», для жіночого роду — ancha. Скажіть `La puerta es ancha` — «Двері широкі». Складіть `la puerta` + `es` + `ancha`. Іспанське puerta жіночого роду в однині, тому es та ancha, хоча українське «двері» має форму множини."
+        "uk": "Ви дивитеся на широкі вхідні двері. `Ancho` — «широкий», для жіночого роду — ancha. Скажіть `La puerta es ancha` — «Двері широкі». Складіть `la puerta` + `es` + `ancha`. Іспанське puerta жіночого роду й означає одну річ, тому es та ancha, хоча українське «двері» має форму для кількох."
       },
       "question": {
         "interactionId": "es:lesson-03:session-06:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bfad0ceae98d9a184e88289178a2ea8099e6c294942d25959de16f5f4f34dd73"
+  "introFingerprint": "0160ccdd4d413cfa97d3185604e942c11d2fee13a684e412111231d4b1381163"
 }

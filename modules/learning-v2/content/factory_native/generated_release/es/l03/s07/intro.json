@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-07",
   "learningOutcomeByLocale": {
-    "ru": "выбрать largo, larga, largos или largas по роду и числу вещи.",
-    "uk": "вибрати largo, larga, largos або largas за родом і числом речі."
+    "ru": "описать длину одежды: Las camisas son largas.",
+    "uk": "описати довжину одягу: Las camisas son largas."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Пальта для тієї самої поїздки"
       },
       "bodyByLocale": {
-        "ru": "Рядом висят несколько длинных пальто. Скажите `Los abrigos son largos` — «Пальто длинные». Соберите `los abrigos` + `son` + `largos`. Abrigos мужского рода во множественном числе: largos. Для одного пальто знакомая форма — El abrigo es largo. Выбирайте окончание по испанскому слову, а не по переводу.",
-        "uk": "Поруч висять кілька довгих пальт. Скажіть `Los abrigos son largos` — «Пальта довгі». Складіть `los abrigos` + `son` + `largos`. Abrigos чоловічого роду в множині: largos. Для одного пальта знайома форма — El abrigo es largo. Вибирайте закінчення за іспанським словом, а не за перекладом."
+        "ru": "Рядом висят несколько длинных пальто. Скажите `Los abrigos son largos` — «Пальто длинные». Соберите `los abrigos` + `son` + `largos`. Abrigos мужского рода, когда их несколько: largos. Для одного пальто знакомая форма — El abrigo es largo. Выбирайте окончание по испанскому слову, а не по переводу.",
+        "uk": "Поруч висять кілька довгих пальт. Скажіть `Los abrigos son largos` — «Пальта довгі». Складіть `los abrigos` + `son` + `largos`. Abrigos чоловічого роду, коли їх кілька: largos. Для одного пальта знайома форма — El abrigo es largo. Вибирайте закінчення за іспанським словом, а не за перекладом."
       },
       "question": {
         "interactionId": "es:lesson-03:session-07:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3b887684429d680647f4680ee06bf0418ee2e6cc0d2983713c3fef1f976e0220"
+  "introFingerprint": "87c707be3b75c9625e70bda25c349da61d8b39877ce2361717a6a73e24eaa78c"
 }

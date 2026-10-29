@@ -208,7 +208,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — они молодые; без имён и местоимения",
+      "prompt": "Соберите фразу — они молодые; без имён и без «они»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-40:i04:r1",
@@ -225,13 +225,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — они молодые; без имён и местоимения",
+      "accessibilityLabel": "Соберите фразу — они молодые; без имён и без «они»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son jóvenes.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они молодые; без имён и местоимения",
-          "uk": "Зберіть фразу — вони молоді; без імен і займенника"
+          "ru": "Соберите фразу — они молодые; без имён и без «они»",
+          "uk": "Зберіть фразу — вони молоді; без імен і без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -244,7 +244,7 @@
           {
             "responseId": "es:lesson-03:session-40:i04:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — они молодые; без имён и местоимения",
+            "testedDimension": "Соберите фразу — они молодые; без имён и без «они»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -402,7 +402,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — обе женщины разговорчивые; без имён и местоимения",
+      "prompt": "Соберите фразу — обе женщины разговорчивые; без имён и без «они»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-40:i07:r1",
@@ -419,13 +419,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — обе женщины разговорчивые; без имён и местоимения",
+      "accessibilityLabel": "Соберите фразу — обе женщины разговорчивые; без имён и без «они»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son habladoras.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — обе женщины разговорчивые; без имён и местоимения",
-          "uk": "Зберіть фразу — обидві жінки говіркі; без імен і займенника"
+          "ru": "Соберите фразу — обе женщины разговорчивые; без имён и без «они»",
+          "uk": "Зберіть фразу — обидві жінки говіркі; без імен і без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -438,7 +438,7 @@
           {
             "responseId": "es:lesson-03:session-40:i07:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — обе женщины разговорчивые; без имён и местоимения",
+            "testedDimension": "Соберите фразу — обе женщины разговорчивые; без имён и без «они»",
             "feedbackByLocale": {
               "ru": "речь о женщинах.",
               "uk": "йдеться про жінок."
@@ -660,7 +660,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — какие они? Без имён и местоимения",
+      "prompt": "Соберите фразу — какие они? Без имён и без «они»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-40:i11:r1",
@@ -677,13 +677,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — какие они? Без имён и местоимения",
+      "accessibilityLabel": "Соберите фразу — какие они? Без имён и без «они»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "¿Cómo son?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — какие они? Без имён и местоимения",
-          "uk": "Зберіть фразу — які вони? Без імен і займенника"
+          "ru": "Соберите фразу — какие они? Без имён и без «они»",
+          "uk": "Зберіть фразу — які вони? Без імен і без «вони»"
         },
         "orderedTokens": [
           "¿Cómo",
@@ -696,7 +696,7 @@
           {
             "responseId": "es:lesson-03:session-40:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — какие они? Без имён и местоимения",
+            "testedDimension": "Соберите фразу — какие они? Без имён и без «они»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -851,13 +851,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — обе женщины разговорчивые; без имён и местоимения",
+      "prompt": "Скажите вслух — обе женщины разговорчивые; без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-40:i15:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — обе женщины разговорчивые; без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — обе женщины разговорчивые; без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -884,13 +884,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — какие они? Попросите описание людей без имён и местоимения",
+      "prompt": "Скажите вслух — какие они? Попросите описание людей без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-40:i16:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — какие они? Попросите описание людей без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — какие они? Попросите описание людей без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -917,13 +917,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — эти люди очень терпеливые; без имён и местоимения",
+      "prompt": "Скажите вслух — эти люди очень терпеливые; без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-40:i17:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — эти люди очень терпеливые; без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — эти люди очень терпеливые; без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -950,13 +950,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — они молодые; без имён и местоимения",
+      "prompt": "Скажите вслух — они молодые; без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-40:i18:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — они молодые; без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — они молодые; без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -984,5 +984,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b44be44174c0b128c58d79bd505ebd8a9462438f7360c3f998eafd2040b270a7"
+  "learnerFingerprint": "01ca85aaa7bd44493eebf733ece7f898429cc7c4938041d5a00b8b14675075c5"
 }

@@ -672,7 +672,7 @@
             "testedDimension": "Вставте слово — це холодні супи за рецептом",
             "feedbackByLocale": {
               "ru": "Нужно женское множественное frías.",
-              "uk": "Потрібна жіноча множина frías."
+              "uk": "Потрібна жіноча форма для кількох frías."
             }
           }
         ]
@@ -887,5 +887,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "02d4236ade4553e215afd0e088ec977a9dd1a72fd0baf30d58ec74c8b96487d5"
+  "learnerFingerprint": "ec8bd79cce36c36dbfcf5c5947595b8bf05738375da458c2d023aae56936d6fb"
 }

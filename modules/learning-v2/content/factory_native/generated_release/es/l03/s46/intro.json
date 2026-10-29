@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-46",
   "learningOutcomeByLocale": {
-    "ru": "описать тёплое одеяло в единственном и множественном числе.",
-    "uk": "описати теплу ковдру в однині та множині."
+    "ru": "сказать, что вещь тёплая: La manta es cálida.",
+    "uk": "сказати, що річ тепла: La manta es cálida."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Ковдри для всієї родини"
       },
       "bodyByLocale": {
-        "ru": "Выбираете несколько таких одеял. Скажите `Las mantas son cálidas` — «Одеяла тёплые». Соберите `las mantas` + `son` + `cálidas`. Несколько одеял требуют son. К женской форме cálida добавьте -s, чтобы признак тоже стоял во множественном числе.",
-        "uk": "Вибираєте кілька таких ковдр. Скажіть `Las mantas son cálidas` — «Ковдри теплі». Зберіть `las mantas` + `son` + `cálidas`. Кілька ковдр потребують son. До жіночої форми cálida додайте -s, щоб ознака теж стояла в множині."
+        "ru": "Выбираете несколько таких одеял. Скажите `Las mantas son cálidas` — «Одеяла тёплые». Соберите `las mantas` + `son` + `cálidas`. Несколько одеял требуют son. К женской форме cálida добавьте -s, чтобы признак тоже был в форме для нескольких.",
+        "uk": "Вибираєте кілька таких ковдр. Скажіть `Las mantas son cálidas` — «Ковдри теплі». Зберіть `las mantas` + `son` + `cálidas`. Кілька ковдр потребують son. До жіночої форми cálida додайте -s, щоб ознака теж стояла у формі для кількох."
       },
       "question": {
         "interactionId": "es:lesson-03:session-46:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "56abf42ca6e504bde859683197506f9295d94826814acf6130ae63cdd50ac75c"
+  "introFingerprint": "62f21ade5375f11e27e88daf4aaada4877b63c954c55e3b4d67678e85b1dc0cf"
 }

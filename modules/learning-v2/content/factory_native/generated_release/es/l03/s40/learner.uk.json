@@ -208,7 +208,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — вони молоді; без імен і займенника",
+      "prompt": "Зберіть фразу — вони молоді; без імен і без «вони»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-40:i04:r1",
@@ -225,13 +225,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — вони молоді; без імен і займенника",
+      "accessibilityLabel": "Зберіть фразу — вони молоді; без імен і без «вони»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son jóvenes.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они молодые; без имён и местоимения",
-          "uk": "Зберіть фразу — вони молоді; без імен і займенника"
+          "ru": "Соберите фразу — они молодые; без имён и без «они»",
+          "uk": "Зберіть фразу — вони молоді; без імен і без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -244,7 +244,7 @@
           {
             "responseId": "es:lesson-03:session-40:i04:tile:d1",
             "correct": false,
-            "testedDimension": "Зберіть фразу — вони молоді; без імен і займенника",
+            "testedDimension": "Зберіть фразу — вони молоді; без імен і без «вони»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -402,7 +402,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — обидві жінки говіркі; без імен і займенника",
+      "prompt": "Зберіть фразу — обидві жінки говіркі; без імен і без «вони»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-40:i07:r1",
@@ -419,13 +419,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — обидві жінки говіркі; без імен і займенника",
+      "accessibilityLabel": "Зберіть фразу — обидві жінки говіркі; без імен і без «вони»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son habladoras.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — обе женщины разговорчивые; без имён и местоимения",
-          "uk": "Зберіть фразу — обидві жінки говіркі; без імен і займенника"
+          "ru": "Соберите фразу — обе женщины разговорчивые; без имён и без «они»",
+          "uk": "Зберіть фразу — обидві жінки говіркі; без імен і без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -438,7 +438,7 @@
           {
             "responseId": "es:lesson-03:session-40:i07:tile:d1",
             "correct": false,
-            "testedDimension": "Зберіть фразу — обидві жінки говіркі; без імен і займенника",
+            "testedDimension": "Зберіть фразу — обидві жінки говіркі; без імен і без «вони»",
             "feedbackByLocale": {
               "ru": "речь о женщинах.",
               "uk": "йдеться про жінок."
@@ -660,7 +660,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — які вони? Без імен і займенника",
+      "prompt": "Зберіть фразу — які вони? Без імен і без «вони»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-40:i11:r1",
@@ -677,13 +677,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — які вони? Без імен і займенника",
+      "accessibilityLabel": "Зберіть фразу — які вони? Без імен і без «вони»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "¿Cómo son?",
         "localizedMeaning": {
-          "ru": "Соберите фразу — какие они? Без имён и местоимения",
-          "uk": "Зберіть фразу — які вони? Без імен і займенника"
+          "ru": "Соберите фразу — какие они? Без имён и без «они»",
+          "uk": "Зберіть фразу — які вони? Без імен і без «вони»"
         },
         "orderedTokens": [
           "¿Cómo",
@@ -696,7 +696,7 @@
           {
             "responseId": "es:lesson-03:session-40:i11:tile:d1",
             "correct": false,
-            "testedDimension": "Зберіть фразу — які вони? Без імен і займенника",
+            "testedDimension": "Зберіть фразу — які вони? Без імен і без «вони»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -851,13 +851,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — обидві жінки говіркі; без імен і займенника",
+      "prompt": "Скажіть уголос — обидві жінки говіркі; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-40:i15:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — обидві жінки говіркі; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — обидві жінки говіркі; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -884,13 +884,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — які вони? Попросіть опис людей без імен і займенника",
+      "prompt": "Скажіть уголос — які вони? Попросіть опис людей без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-40:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — які вони? Попросіть опис людей без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — які вони? Попросіть опис людей без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -917,13 +917,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — ці люди дуже терплячі; без імен і займенника",
+      "prompt": "Скажіть уголос — ці люди дуже терплячі; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-40:i17:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — ці люди дуже терплячі; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — ці люди дуже терплячі; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -950,13 +950,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — вони молоді; без імен і займенника",
+      "prompt": "Скажіть уголос — вони молоді; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-40:i18:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — вони молоді; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — вони молоді; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -984,5 +984,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c1b0fbbe9f7fe66622a5db656b77f41b705ceb188cd3dbc85cf632defb42d260"
+  "learnerFingerprint": "28133f1a11a28c3afde27c6fed997870ad2dcd6dd0d4b88b0daff0ee0cc506c3"
 }

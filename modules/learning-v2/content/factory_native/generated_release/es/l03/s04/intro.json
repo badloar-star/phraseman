@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-04",
   "learningOutcomeByLocale": {
-    "ru": "согласовать pequeña с несколькими предметами женского рода.",
-    "uk": "узгодити pequeña з кількома предметами жіночого роду."
+    "ru": "сказать, что несколько предметов маленькие: Las tazas son pequeñas.",
+    "uk": "сказати, що кілька предметів маленькі: Las tazas son pequeñas."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Невеликі чашки"
       },
       "bodyByLocale": {
-        "ru": "Для гостей приготовили несколько маленьких чашек. Скажите `Las tazas son pequeñas` — «Чашки маленькие». Соберите `las tazas` + `son` + `pequeñas`. Tazas женского рода во множественном числе: к pequeña добавьте -s. Окончание -as одновременно показывает женский род и несколько предметов.",
-        "uk": "Для гостей приготували кілька маленьких чашок. Скажіть `Las tazas son pequeñas` — «Чашки маленькі». Складіть `las tazas` + `son` + `pequeñas`. Tazas жіночого роду в множині: до pequeña додайте -s. Закінчення -as одночасно показує жіночий рід і кілька предметів."
+        "ru": "Для гостей приготовили несколько маленьких чашек. Скажите `Las tazas son pequeñas` — «Чашки маленькие». Соберите `las tazas` + `son` + `pequeñas`. Tazas женского рода, когда их несколько: к pequeña добавьте -s. Окончание -as одновременно показывает женский род и несколько предметов.",
+        "uk": "Для гостей приготували кілька маленьких чашок. Скажіть `Las tazas son pequeñas` — «Чашки маленькі». Складіть `las tazas` + `son` + `pequeñas`. Tazas жіночого роду, коли їх кілька: до pequeña додайте -s. Закінчення -as одночасно показує жіночий рід і кілька предметів."
       },
       "question": {
         "interactionId": "es:lesson-03:session-04:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Пляшки на столі"
       },
       "bodyByLocale": {
-        "ru": "Рядом стоят несколько маленьких бутылок с напитками. Скажите `Las botellas son pequeñas` — «Бутылки маленькие». Соберите `las botellas` + `son` + `pequeñas`. Botellas, как и tazas, женского рода во множественном числе: форма pequeñas остаётся той же.",
-        "uk": "Поруч стоять кілька маленьких пляшок із напоями. Скажіть `Las botellas son pequeñas` — «Пляшки маленькі». Складіть `las botellas` + `son` + `pequeñas`. Botellas, як і tazas, жіночого роду в множині: форма pequeñas залишається такою самою."
+        "ru": "Рядом стоят несколько маленьких бутылок с напитками. Скажите `Las botellas son pequeñas` — «Бутылки маленькие». Соберите `las botellas` + `son` + `pequeñas`. Botellas, как и tazas, женского рода, когда их несколько: форма pequeñas остаётся той же.",
+        "uk": "Поруч стоять кілька маленьких пляшок із напоями. Скажіть `Las botellas son pequeñas` — «Пляшки маленькі». Складіть `las botellas` + `son` + `pequeñas`. Botellas, як і tazas, жіночого роду, коли їх кілька: форма pequeñas залишається такою самою."
       },
       "question": {
         "interactionId": "es:lesson-03:session-04:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f6d09cb80e5e4d6ace7e72ba4d126841e647a10d60714587f5abc66a325844a7"
+  "introFingerprint": "ded8f27009bb305bbb4fc94ab6f6ee4b55acd0051eb53e6f5e5c083aaaf4b994"
 }

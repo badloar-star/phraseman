@@ -378,7 +378,7 @@
             "testedDimension": "Вставте слово — соуси не солоні за рецептом",
             "feedbackByLocale": {
               "ru": "Нужно множественное saladas.",
-              "uk": "Потрібна множина saladas."
+              "uk": "Потрібна форма для кількох saladas."
             }
           },
           {
@@ -787,7 +787,7 @@
             "testedDimension": "Послухайте й виберіть слово",
             "feedbackByLocale": {
               "ru": "В записи множественное limones.",
-              "uk": "У записі множина limones."
+              "uk": "У записі форма для кількох limones."
             }
           }
         ],
@@ -1001,5 +1001,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0ba5195665bcba75cb77ab4d21e8b3f12bc7f41301acd6e20eb913f9efb411c3"
+  "learnerFingerprint": "f74d05fda9e53970cbaff126493e72cf8facc3d4a8d064d86e7d268da841181e"
 }

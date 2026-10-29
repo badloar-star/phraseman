@@ -19,8 +19,8 @@
       "interactionId": "es:lesson-02:session-12:intro2:q",
       "responseFeedbackById": {
         "es:lesson-02:session-12:intro2:r2": {
-          "ru": "Во множественном числе пишется lápices, с c.",
-          "uk": "У множині пишеться lápices, з c."
+          "ru": "Когда их несколько, пишется lápices, с c.",
+          "uk": "Коли їх кілька, пишеться lápices, з c."
         },
         "es:lesson-02:session-12:intro2:r3": {
           "ru": "Для нескольких нужна форма lápices.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "3c1fed8ccfdff1c438a841af52dad8a83f6b3e7cb19eb7a10fa97681c57f3957"
+  "auxiliaryFingerprint": "18e1f5ddec7eed0279dd978df71fb7298daf6ddaf2ff035198a0b0cd4416f954"
 }

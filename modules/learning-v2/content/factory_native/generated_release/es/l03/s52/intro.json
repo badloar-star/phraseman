@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-52",
   "learningOutcomeByLocale": {
-    "ru": "сохранить bastante при смене рода и числа.",
-    "uk": "зберегти bastante при зміні роду й числа."
+    "ru": "сказать, что вещи довольно дорогие: Los zapatos son bastante caros.",
+    "uk": "сказати, що речі досить дорогі: Los zapatos son bastante caros."
   },
   "pages": [
     {
@@ -16,7 +16,7 @@
       },
       "bodyByLocale": {
         "ru": "Смотрите на пару обуви и замечаете: `Los zapatos son bastante caros` — «Туфли довольно дорогие». Соберите `los zapatos` + `son` + `bastante caros`. Caros согласуется с мужским множественным zapatos. Bastante перед прилагательным не получает -s: это оценка степени дороговизны.",
-        "uk": "Дивитеся на пару взуття й зауважуєте: `Los zapatos son bastante caros` — «Туфлі досить дорогі». Зберіть `los zapatos` + `son` + `bastante caros`. Caros узгоджується з чоловічою множиною zapatos. Bastante перед прикметником не отримує -s: це оцінка ступеня дорожнечі."
+        "uk": "Дивитеся на пару взуття й зауважуєте: `Los zapatos son bastante caros` — «Туфлі досить дорогі». Зберіть `los zapatos` + `son` + `bastante caros`. Caros узгоджується з чоловічим zapatos, коли їх кілька. Bastante перед прикметником не отримує -s: це оцінка ступеня дорожнечі."
       },
       "question": {
         "interactionId": "es:lesson-03:session-52:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Одна сумка"
       },
       "bodyByLocale": {
-        "ru": "Переводите взгляд на одну сумку. Скажите `El bolso es bastante caro` — «Сумка довольно дорогая». Соберите `el bolso` + `es` + `bastante caro`. В испанском bolso мужского рода: caro. В единственном числе вместо son используйте es, но bastante менять не нужно.",
-        "uk": "Переводите погляд на одну сумку. Скажіть `El bolso es bastante caro` — «Сумка досить дорога». Зберіть `el bolso` + `es` + `bastante caro`. В іспанській bolso чоловічого роду: caro. В однині замість son використовуйте es, але bastante змінювати не потрібно."
+        "ru": "Переводите взгляд на одну сумку. Скажите `El bolso es bastante caro` — «Сумка довольно дорогая». Соберите `el bolso` + `es` + `bastante caro`. В испанском bolso мужского рода: caro. Когда предмет один, вместо son используйте es, но bastante менять не нужно.",
+        "uk": "Переводите погляд на одну сумку. Скажіть `El bolso es bastante caro` — «Сумка досить дорога». Зберіть `el bolso` + `es` + `bastante caro`. В іспанській bolso чоловічого роду: caro. Коли предмет один, замість son використовуйте es, але bastante змінювати не потрібно."
       },
       "question": {
         "interactionId": "es:lesson-03:session-52:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Інші сумки"
       },
       "bodyByLocale": {
-        "ru": "Рядом несколько сумок, которые здесь называем bolsas. Скажите `Las bolsas son bastante caras` — «Сумки довольно дорогие». Соберите `las bolsas` + `son` + `bastante caras`. Bolsa женского рода, поэтому во множественном числе caras. Перед ним по-прежнему bastante: ни род, ни число предметов его не меняют.",
-        "uk": "Поруч кілька сумок, які тут називаємо bolsas. Скажіть `Las bolsas son bastante caras` — «Сумки досить дорогі». Зберіть `las bolsas` + `son` + `bastante caras`. Bolsa жіночого роду, тому в множині caras. Перед ним, як і раніше, bastante: ні рід, ні число предметів його не змінюють."
+        "ru": "Рядом несколько сумок, которые здесь называем bolsas. Скажите `Las bolsas son bastante caras` — «Сумки довольно дорогие». Соберите `las bolsas` + `son` + `bastante caras`. Bolsa женского рода, поэтому когда их несколько, caras. Перед ним по-прежнему bastante: ни род, ни число предметов его не меняют.",
+        "uk": "Поруч кілька сумок, які тут називаємо bolsas. Скажіть `Las bolsas son bastante caras` — «Сумки досить дорогі». Зберіть `las bolsas` + `son` + `bastante caras`. Bolsa жіночого роду, тому коли їх кілька, caras. Перед ним, як і раніше, bastante: ні рід, ні число предметів його не змінюють."
       },
       "question": {
         "interactionId": "es:lesson-03:session-52:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8e974665fdd2786f4be8e322527ae6aaf0724b896150308a65d1cb081ed9da1d"
+  "introFingerprint": "2866b8d6775e4edc9e1a60c2c6b1eeec18c0d79a1a52604a1af310cecc40f6b0"
 }

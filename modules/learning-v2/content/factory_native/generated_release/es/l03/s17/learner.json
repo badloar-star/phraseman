@@ -538,8 +538,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — это красная тетрадь",
             "feedbackByLocale": {
-              "ru": "Нужны мужской род и единственное число: rojo.",
-              "uk": "Потрібні чоловічий рід та однина: rojo."
+              "ru": "Нужны мужской род и форма для одного: rojo.",
+              "uk": "Потрібні чоловічий рід та форма для одного: rojo."
             }
           }
         ]
@@ -685,5 +685,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8c2828c6e8c80fe7a09da86e694d49e9579a59d164edfe52d4ac5c21b290e87a"
+  "learnerFingerprint": "8fe3e64b452fb87892eb31efdf6b9d68e230edbd3cac1e2ba1225c60c5a31320"
 }

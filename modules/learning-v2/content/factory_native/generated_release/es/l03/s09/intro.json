@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-09",
   "learningOutcomeByLocale": {
-    "ru": "описать белый цвет с правильным родом и числом.",
-    "uk": "описати білий колір із правильним родом і числом."
+    "ru": "сказать, что вещь белая: El coche es blanco.",
+    "uk": "сказати, що річ біла: El coche es blanco."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Будинки на сусідній вулиці"
       },
       "bodyByLocale": {
-        "ru": "Друг прислал ещё одну фотографию: несколько белых домов. Скажите `Las casas son blancas` — «Дома белые». Соберите `las casas` + `son` + `blancas`. Casas женского рода во множественном числе: к blanca добавьте -s. Цвет согласуется по тому же правилу, что знакомое pequeña.",
-        "uk": "Друг надіслав ще одну фотографію: кілька білих будинків. Скажіть `Las casas son blancas` — «Будинки білі». Складіть `las casas` + `son` + `blancas`. Casas жіночого роду в множині: до blanca додайте -s. Колір узгоджується за тим самим правилом, що знайоме pequeña."
+        "ru": "Друг прислал ещё одну фотографию: несколько белых домов. Скажите `Las casas son blancas` — «Дома белые». Соберите `las casas` + `son` + `blancas`. Casas женского рода, когда их несколько: к blanca добавьте -s. Цвет согласуется по тому же правилу, что знакомое pequeña.",
+        "uk": "Друг надіслав ще одну фотографію: кілька білих будинків. Скажіть `Las casas son blancas` — «Будинки білі». Складіть `las casas` + `son` + `blancas`. Casas жіночого роду, коли їх кілька: до blanca додайте -s. Колір узгоджується за тим самим правилом, що знайоме pequeña."
       },
       "question": {
         "interactionId": "es:lesson-03:session-09:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7cb6465a62937c6d2c47038bda7e51ab103f5774601b2f5f67ab2f491e02ac45"
+  "introFingerprint": "84b0595366c318e98f6cbbedccdc1ae9f90ce2440ad3e33f0ac99f22e51d616e"
 }

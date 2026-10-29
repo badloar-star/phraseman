@@ -29,7 +29,7 @@
             "targetText": "la luz",
             "meaningByLocale": {
               "ru": "свет. Женский род; множественное — las luces. 🔊 *la luz*",
-              "uk": "світло. Жіночий рід; множина — las luces. 🔊 *la luz*"
+              "uk": "світло. Жіночий рід; для кількох — las luces. 🔊 *la luz*"
             }
           }
         ],
@@ -40,7 +40,7 @@
           "word": "la luz",
           "definitionByLocale": {
             "ru": "свет. Женский род; множественное — las luces. 🔊 *la luz*",
-            "uk": "світло. Жіночий рід; множина — las luces. 🔊 *la luz*"
+            "uk": "світло. Жіночий рід; для кількох — las luces. 🔊 *la luz*"
           }
         }
       },
@@ -94,8 +94,8 @@
             "correct": false,
             "testedDimension": "Послушайте и выберите слово",
             "feedbackByLocale": {
-              "ru": "Звучит единственное число luz.",
-              "uk": "Звучить однина luz."
+              "ru": "Звучит форма для одного luz.",
+              "uk": "Звучить форма для одного luz."
             }
           }
         ],
@@ -208,8 +208,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — спросите о подходящем свете la luz",
             "feedbackByLocale": {
-              "ru": "Нужна женская форма единственного числа.",
-              "uk": "Потрібна жіноча форма однини."
+              "ru": "Нужна женская форма для одного.",
+              "uk": "Потрібна жіноча форма для одного."
             }
           }
         ]
@@ -297,8 +297,8 @@
             "responseId": "es:lesson-01:session-52:i06:r1",
             "targetText": "suficiente",
             "meaningByLocale": {
-              "ru": "достаточный; множественное число — suficientes. 🔊 *suficiente*",
-              "uk": "достатній; множина — suficientes. 🔊 *suficiente*"
+              "ru": "достаточный; для нескольких — suficientes. 🔊 *suficiente*",
+              "uk": "достатній; для кількох — suficientes. 🔊 *suficiente*"
             }
           }
         ],
@@ -308,8 +308,8 @@
         "wordCard": {
           "word": "suficiente",
           "definitionByLocale": {
-            "ru": "достаточный; множественное число — suficientes. 🔊 *suficiente*",
-            "uk": "достатній; множина — suficientes. 🔊 *suficiente*"
+            "ru": "достаточный; для нескольких — suficientes. 🔊 *suficiente*",
+            "uk": "достатній; для кількох — suficientes. 🔊 *suficiente*"
           }
         }
       },
@@ -417,8 +417,8 @@
             "correct": false,
             "testedDimension": "Соберите фразу — спросите, достаточно ли света la luz",
             "feedbackByLocale": {
-              "ru": "la luz в единственном числе.",
-              "uk": "la luz в однині."
+              "ru": "la luz — один предмет.",
+              "uk": "la luz — одна річ."
             }
           }
         ],
@@ -481,8 +481,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — спросите, достаточно ли источников las luces",
             "feedbackByLocale": {
-              "ru": "Las luces во множественном числе: son.",
-              "uk": "Las luces у множині: son."
+              "ru": "Las luces — их несколько: son.",
+              "uk": "Las luces — їх кілька: son."
             }
           },
           {
@@ -627,5 +627,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "465a214383e0e3e173f1ab173233786f7417a07e08f6ab3f75fb2fc900179fa6"
+  "learnerFingerprint": "bc518be8442e9ec56e789d327e53d707dc0cfc8fd109f6e7399f0ac842adcad7"
 }

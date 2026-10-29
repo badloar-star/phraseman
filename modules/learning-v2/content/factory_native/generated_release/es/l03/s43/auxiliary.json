@@ -20,11 +20,11 @@
       "responseFeedbackById": {
         "es:lesson-03:session-43:intro2:r2": {
           "ru": "Нужно множественное dulces.",
-          "uk": "Потрібна множина dulces."
+          "uk": "Потрібна форма для кількох dulces."
         },
         "es:lesson-03:session-43:intro2:r3": {
-          "ru": "Форма множественного числа — dulces.",
-          "uk": "Форма множини — dulces."
+          "ru": "Форма для нескольких — dulces.",
+          "uk": "Форма для кількох — dulces."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "ecf3da40b50e2244f7c9603409e2b911cc98709428076a6c1fa4d949ad68aad4"
+  "auxiliaryFingerprint": "786377e3ebc057175be546e376a422227249678f20dff9b80df251d0159e82f2"
 }

@@ -32,8 +32,8 @@
       "interactionId": "es:lesson-03:session-27:intro3:q",
       "responseFeedbackById": {
         "es:lesson-03:session-27:intro3:r2": {
-          "ru": "Нужна форма множественного числа resistentes.",
-          "uk": "Потрібна форма множини resistentes."
+          "ru": "Нужна форма для нескольких resistentes.",
+          "uk": "Потрібна форма для кількох resistentes."
         },
         "es:lesson-03:session-27:intro3:r3": {
           "ru": "Не меняйте -e на -a: resistentes.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "0466e0f5df5284420302f1d1571be2f6351f40b7a3567c9edf47ee23428dac94"
+  "auxiliaryFingerprint": "5de5817655d96eb8ad9ade2d4da7a903fb4371fd37830d42236260e13c6bd4e0"
 }

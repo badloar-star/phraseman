@@ -6,8 +6,8 @@
       "interactionId": "es:lesson-03:session-37:intro1:q",
       "responseFeedbackById": {
         "es:lesson-03:session-37:intro1:r2": {
-          "ru": "Нужно множественное число amables.",
-          "uk": "Потрібна множина amables."
+          "ru": "Нужна форма для нескольких amables.",
+          "uk": "Потрібна форма для кількох amables."
         },
         "es:lesson-03:session-37:intro1:r3": {
           "ru": "Не заменяйте -e на -a: amables.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5bdfdcaf905110b26abd6ac922286e5accaee7a1e50f81bb25d55b562a3e651b"
+  "auxiliaryFingerprint": "98bd6c1ad94164917def3ec1cc5715b31cfad737bb6f04ce16691a22a1fdeac4"
 }

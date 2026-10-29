@@ -608,8 +608,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — комната не маленькая",
             "feedbackByLocale": {
-              "ru": "Нужна форма женского рода единственного числа: pequeña.",
-              "uk": "Потрібна форма жіночого роду однини: pequeña."
+              "ru": "Нужна форма женского рода для одного: pequeña.",
+              "uk": "Потрібна форма жіночого роду для одного: pequeña."
             }
           }
         ]
@@ -689,5 +689,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "70851cd11435dafa749298d3eaa67591bfc1d517654fbb44b8d5219a8219ab2a"
+  "learnerFingerprint": "c225f680ef2d0f20770b4156f27c3c1f720f15843cb3849712a503c5cbf84e8f"
 }

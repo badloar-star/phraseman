@@ -217,8 +217,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — несколько грецких орехов",
             "feedbackByLocale": {
-              "ru": "Нужно множественное число: nueces.",
-              "uk": "Потрібна множина: nueces."
+              "ru": "Нужна форма для нескольких: nueces.",
+              "uk": "Потрібна форма для кількох: nueces."
             }
           },
           {
@@ -692,5 +692,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "484e83ed00eabbafc05809a040067030e970fa4aa918f2a97f475bfaeb14704d"
+  "learnerFingerprint": "0a985cf52bc912771f81520e6426a8dbf332b24b1b2d9b91c0c05cad824e95ec"
 }

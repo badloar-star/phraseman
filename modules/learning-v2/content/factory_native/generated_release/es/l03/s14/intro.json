@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-14",
   "learningOutcomeByLocale": {
-    "ru": "использовать azul для обоих родов и azules для нескольких вещей.",
-    "uk": "використовувати azul для обох родів та azules для кількох речей."
+    "ru": "сказать, что вещь синяя: Las toallas son azules.",
+    "uk": "сказати, що річ синя: Las toallas son azules."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Рушники для всієї родини"
       },
       "bodyByLocale": {
-        "ru": "Теперь выбрали несколько синих полотенец. Скажите `Las toallas son azules` — «Полотенца синие». Соберите `las toallas` + `son` + `azules`. Azul заканчивается на согласную l, поэтому для множественного числа добавляем -es: azul → azules.",
-        "uk": "Тепер вибрали кілька синіх рушників. Скажіть `Las toallas son azules` — «Рушники сині». Складіть `las toallas` + `son` + `azules`. Azul закінчується на приголосну l, тому для множини додаємо -es: azul → azules."
+        "ru": "Теперь выбрали несколько синих полотенец. Скажите `Las toallas son azules` — «Полотенца синие». Соберите `las toallas` + `son` + `azules`. Azul заканчивается на согласную l, поэтому для нескольких добавляем -es: azul → azules.",
+        "uk": "Тепер вибрали кілька синіх рушників. Скажіть `Las toallas son azules` — «Рушники сині». Складіть `las toallas` + `son` + `azules`. Azul закінчується на приголосну l, тому для кількох додаємо -es: azul → azules."
       },
       "question": {
         "interactionId": "es:lesson-03:session-14:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ab78b3200d2777c6b0bd192eb3f54173c768b610e872c5d4298f7b7036619805"
+  "introFingerprint": "d6b5ac15ad8d1ef9d3468e3553f94bf5bba53de75e60be08412ac426158e6dd0"
 }

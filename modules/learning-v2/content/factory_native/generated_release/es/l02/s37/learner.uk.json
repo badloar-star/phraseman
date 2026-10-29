@@ -342,8 +342,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — це шкарпетки, використайте unos",
             "feedbackByLocale": {
-              "ru": "Нужно множественное число: calcetines.",
-              "uk": "Потрібна множина: calcetines."
+              "ru": "Нужна форма для нескольких: calcetines.",
+              "uk": "Потрібна форма для кількох: calcetines."
             }
           },
           {
@@ -682,5 +682,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b8d096caa4a5b952826a5931f1a1d779f98ccc228f3306bdf1dd42430b6fde48"
+  "learnerFingerprint": "a9e4bf825b50ebe671cf2d83e6e1ea0fdcc016dfe6a06f2017c2d973c5fe8e54"
 }

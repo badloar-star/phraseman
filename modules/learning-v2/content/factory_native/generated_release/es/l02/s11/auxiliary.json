@@ -6,8 +6,8 @@
       "interactionId": "es:lesson-02:session-11:intro1:q",
       "responseFeedbackById": {
         "es:lesson-02:session-11:intro1:r2": {
-          "ru": "У этого слова множественное число papeles.",
-          "uk": "У цього слова множина papeles."
+          "ru": "Для нескольких у этого слова papeles.",
+          "uk": "Для кількох у цього слова papeles."
         },
         "es:lesson-02:session-11:intro1:r3": {
           "ru": "Для нескольких бумаг нужна форма papeles.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "2292a215020b79ce8b4b5d725e3282e7f9c77abd1681944fb9686156747ad1c0"
+  "auxiliaryFingerprint": "27bac229d5efe8225c1b3403bfd2b26e5d29a353a773cfcc56e6e8ed57482142"
 }

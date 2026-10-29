@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-20",
   "learningOutcomeByLocale": {
-    "ru": "назвать несколько вещей женского рода вместе с цветом или размером.",
-    "uk": "називати кілька речей жіночого роду разом із кольором або розміром."
+    "ru": "назвать несколько предметов посуды: Son unas tazas blancas.",
+    "uk": "назвати кілька предметів посуду: Son unas tazas blancas."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Білі чашки"
       },
       "bodyByLocale": {
-        "ru": "Разворачиваете покупку: `Son unas tazas blancas` — «Это белые чашки». Соберите `son` + `unas tazas` + `blancas`. Tazas женского рода и во множественном числе: выбирайте unas, а не unos. Цвет blanco получает окончание -as и стоит после tazas.",
-        "uk": "Розгортаєте покупку: `Son unas tazas blancas` — «Це білі чашки». Зберіть `son` + `unas tazas` + `blancas`. Tazas жіночого роду й у множині: обирайте unas, а не unos. Колір blanco отримує закінчення -as і стоїть після tazas."
+        "ru": "Разворачиваете покупку: `Son unas tazas blancas` — «Это белые чашки». Соберите `son` + `unas tazas` + `blancas`. Tazas женского рода, и их несколько: выбирайте unas, а не unos. Цвет blanco получает окончание -as и стоит после tazas.",
+        "uk": "Розгортаєте покупку: `Son unas tazas blancas` — «Це білі чашки». Зберіть `son` + `unas tazas` + `blancas`. Tazas жіночого роду, і їх кілька: обирайте unas, а не unos. Колір blanco отримує закінчення -as і стоїть після tazas."
       },
       "question": {
         "interactionId": "es:lesson-03:session-20:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Маленькі ложки"
       },
       "bodyByLocale": {
-        "ru": "К чашкам купили маленькие ложки. Скажите `Son unas cucharas pequeñas` — «Это маленькие ложки». Соберите `son` + `unas cucharas` + `pequeñas`. Cucharas женского рода и во множественном числе, поэтому размер выражаем формой pequeñas. В этой фразе поставьте размер после cucharas.",
-        "uk": "До чашок купили маленькі ложки. Скажіть `Son unas cucharas pequeñas` — «Це маленькі ложки». Зберіть `son` + `unas cucharas` + `pequeñas`. Cucharas жіночого роду й у множині, тому розмір виражаємо формою pequeñas. У цій фразі поставте розмір після cucharas."
+        "ru": "К чашкам купили маленькие ложки. Скажите `Son unas cucharas pequeñas` — «Это маленькие ложки». Соберите `son` + `unas cucharas` + `pequeñas`. Cucharas женского рода, и их несколько, поэтому размер выражаем формой pequeñas. В этой фразе поставьте размер после cucharas.",
+        "uk": "До чашок купили маленькі ложки. Скажіть `Son unas cucharas pequeñas` — «Це маленькі ложки». Зберіть `son` + `unas cucharas` + `pequeñas`. Cucharas жіночого роду, і їх кілька, тому розмір виражаємо формою pequeñas. У цій фразі поставте розмір після cucharas."
       },
       "question": {
         "interactionId": "es:lesson-03:session-20:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b7fc95cd63691080aa6d3f30aa51600f875440c0b4d4545a6272d3e50e2e56b9"
+  "introFingerprint": "5eec10fcfa921b0df00f8b1659a4226df7264ac7eeba7412ee33f2e82a0efca9"
 }

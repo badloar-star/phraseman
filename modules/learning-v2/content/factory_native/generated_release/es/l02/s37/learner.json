@@ -342,8 +342,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — это носки, используйте unos",
             "feedbackByLocale": {
-              "ru": "Нужно множественное число: calcetines.",
-              "uk": "Потрібна множина: calcetines."
+              "ru": "Нужна форма для нескольких: calcetines.",
+              "uk": "Потрібна форма для кількох: calcetines."
             }
           },
           {
@@ -682,5 +682,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "34d9c9420314cf013fae958ba11fd5ef0cdf36cb0cdddbdcd0e302af86d1fbae"
+  "learnerFingerprint": "681344bda31c95277abac3b06f96fe31464e852dff339617d25a218ba1fc19da"
 }

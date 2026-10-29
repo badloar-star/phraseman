@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-03",
   "learningOutcomeByLocale": {
-    "ru": "согласовать размер с несколькими предметами.",
-    "uk": "узгодити розмір із кількома предметами."
+    "ru": "сказать, что несколько вещей большие: Los libros son grandes.",
+    "uk": "сказати, що кілька речей великі: Los libros son grandes."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Залишилися невеликі книги"
       },
       "bodyByLocale": {
-        "ru": "Большие книги уже упаковали. Оставшиеся книги маленькие. Скажите `Los libros son pequeños` — «Книги маленькие». Соберите `los libros` + `son` + `pequeños`. К мужской форме pequeño добавьте -s. Здесь нужны и мужской род, и множественное число: pequeños.",
-        "uk": "Великі книги вже упакували. Решта книг маленькі. Скажіть `Los libros son pequeños` — «Книги маленькі». Складіть `los libros` + `son` + `pequeños`. До чоловічої форми pequeño додайте -s. Тут потрібні й чоловічий рід, і множина: pequeños."
+        "ru": "Большие книги уже упаковали. Оставшиеся книги маленькие. Скажите `Los libros son pequeños` — «Книги маленькие». Соберите `los libros` + `son` + `pequeños`. К мужской форме pequeño добавьте -s. Здесь нужны и мужской род, и форма для нескольких: pequeños.",
+        "uk": "Великі книги вже упакували. Решта книг маленькі. Скажіть `Los libros son pequeños` — «Книги маленькі». Складіть `los libros` + `son` + `pequeños`. До чоловічої форми pequeño додайте -s. Тут потрібні й чоловічий рід, і форма для кількох: pequeños."
       },
       "question": {
         "interactionId": "es:lesson-03:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "88fd765cfe8e4a4bbe2260095884315438c42611691422dba366f4f9a35a178c"
+  "introFingerprint": "21b1e89ce7da4164ffee99ebb2e1a3060265d7adfd05c8d6857491a92b94ed00"
 }

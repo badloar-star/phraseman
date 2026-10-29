@@ -19,8 +19,8 @@
       "interactionId": "es:lesson-03:session-14:intro2:q",
       "responseFeedbackById": {
         "es:lesson-03:session-14:intro2:r2": {
-          "ru": "Нужна форма множественного числа azules.",
-          "uk": "Потрібна форма множини azules."
+          "ru": "Нужна форма для нескольких azules.",
+          "uk": "Потрібна форма для кількох azules."
         },
         "es:lesson-03:session-14:intro2:r3": {
           "ru": "Род не меняет основу: azules.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "783ac9d9fd258efbd0e740205b6bcf6398138530c08f51cbb053b4c983114b4b"
+  "auxiliaryFingerprint": "4997dce6b21e0d4f65d9deb8fb041621d2be034673ee006fe82bc9a1c2af3186"
 }

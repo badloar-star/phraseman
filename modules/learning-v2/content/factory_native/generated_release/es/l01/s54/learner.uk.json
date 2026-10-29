@@ -467,8 +467,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — назвіть одну групу el grupo численною",
             "feedbackByLocale": {
-              "ru": "Группа одна, нужна форма единственного числа.",
-              "uk": "Група одна, потрібна форма однини."
+              "ru": "Группа одна, нужна форма для одного.",
+              "uk": "Група одна, потрібна форма для одного."
             }
           }
         ]
@@ -630,5 +630,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "294265289bea4f40b17e3b92f2b74602fbf8f01d663a7b9946b95e66cf8c854b"
+  "learnerFingerprint": "6178acd661ecee603466f8e143dea8f64047713850fd3f07ebbb9204f3194a17"
 }

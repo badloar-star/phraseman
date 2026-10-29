@@ -7,7 +7,7 @@
       "responseFeedbackById": {
         "es:lesson-03:session-03:intro1:r2": {
           "ru": "Нужна множественная форма grandes.",
-          "uk": "Потрібна форма множини grandes."
+          "uk": "Потрібна форма для кількох grandes."
         },
         "es:lesson-03:session-03:intro1:r3": {
           "ru": "С libros используйте son.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5f079929d234c40f1f4611b7c7fbd78e99f37e48df7b4e359a53d1ec2250628c"
+  "auxiliaryFingerprint": "365c4d1cbd1c83d441cc943062e8c7b818b53258096441220610c8e80f6b39fe"
 }

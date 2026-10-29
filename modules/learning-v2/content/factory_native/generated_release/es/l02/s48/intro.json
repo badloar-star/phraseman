@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-02:session-48",
   "learningOutcomeByLocale": {
-    "ru": "определить число по es/son и артиклю, даже если слово не меняется.",
-    "uk": "визначити число за es/son та артиклем, навіть якщо слово не змінюється."
+    "ru": "сказать, чьи это зонты: Son los paraguas de Luis.",
+    "uk": "сказати, чиї це парасольки: Son los paraguas de Luis."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Одна парасоля"
       },
       "bodyByLocale": {
-        "ru": "У двери стоит один зонт. `Paraguas` — «зонт», слово мужского рода: el paraguas. Скажите `Es un paraguas` — «Это зонт». Соберите `es` + `un` + `paraguas`. Конечная -s здесь есть уже в единственном числе: не убирайте её. Один предмет обозначают es и un.",
-        "uk": "Біля дверей стоїть одна парасоля. `Paraguas` — «парасоля», слово чоловічого роду: el paraguas. Скажіть `Es un paraguas` — «Це парасоля». Зберіть `es` + `un` + `paraguas`. Кінцева -s тут є вже в однині: не прибирайте її. Один предмет позначають es та un."
+        "ru": "У двери стоит один зонт. `Paraguas` — «зонт», слово мужского рода: el paraguas. Скажите `Es un paraguas` — «Это зонт». Соберите `es` + `un` + `paraguas`. Конечная -s здесь есть уже у одного предмета: не убирайте её. Один предмет обозначают es и un.",
+        "uk": "Біля дверей стоїть одна парасоля. `Paraguas` — «парасоля», слово чоловічого роду: el paraguas. Скажіть `Es un paraguas` — «Це парасоля». Зберіть `es` + `un` + `paraguas`. Кінцева -s тут є вже в слові про один предмет: не прибирайте її. Один предмет позначають es та un."
       },
       "question": {
         "interactionId": "es:lesson-02:session-48:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Кілька парасоль"
       },
       "bodyByLocale": {
-        "ru": "Рядом стоят ещё несколько зонтов. Назовите их с unos: `Son unos paraguas` — «Это зонты». Соберите `son` + `unos` + `paraguas`. Само paraguas не меняется; множественное число показывают son и unos. Не добавляйте к paraguas ещё одно окончание.",
-        "uk": "Поруч стоять ще кілька парасоль. Назвіть їх з unos: `Son unos paraguas` — «Це парасолі». Зберіть `son` + `unos` + `paraguas`. Саме paraguas не змінюється; множину показують son та unos. Не додавайте до paraguas ще одне закінчення."
+        "ru": "Рядом стоят ещё несколько зонтов. Назовите их с unos: `Son unos paraguas` — «Это зонты». Соберите `son` + `unos` + `paraguas`. Само paraguas не меняется; то, что их несколько, показывают son и unos. Не добавляйте к paraguas ещё одно окончание.",
+        "uk": "Поруч стоять ще кілька парасоль. Назвіть їх з unos: `Son unos paraguas` — «Це парасолі». Зберіть `son` + `unos` + `paraguas`. Саме paraguas не змінюється; те, що їх кілька, показують son та unos. Не додавайте до paraguas ще одне закінчення."
       },
       "question": {
         "interactionId": "es:lesson-02:session-48:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "96d870f1e0bb03c9d992ac23728b54575e9aab7d107922c9b4a08fc02b160937"
+  "introFingerprint": "bfb3c7d88d35a0930903d8f17273d7b4b0a573f195d3dbf799285f789e19e95c"
 }

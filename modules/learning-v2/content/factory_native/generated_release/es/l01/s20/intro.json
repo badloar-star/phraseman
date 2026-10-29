@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-01:session-20",
   "learningOutcomeByLocale": {
-    "ru": "превратить оценку с es в вопрос и уточнить достоверность сообщения.",
-    "uk": "перетворити оцінку з es на запитання й уточнити достовірність повідомлення."
+    "ru": "уточнить, правда ли это: ¿Es verdad?",
+    "uk": "уточнити, чи це правда: ¿Es verdad?"
   },
   "pages": [
     {

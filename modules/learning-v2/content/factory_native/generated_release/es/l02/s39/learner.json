@@ -731,8 +731,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — снова несколько книг",
             "feedbackByLocale": {
-              "ru": "Множественное число libro — libros.",
-              "uk": "Множина libro — libros."
+              "ru": "Для нескольких: libro — libros.",
+              "uk": "Для кількох: libro — libros."
             }
           }
         ]
@@ -779,5 +779,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1243b4eb8dfe7de72e0752bf49aadbe8b83a57a0423021303c6bd94bb7869133"
+  "learnerFingerprint": "08f9284d9b4225b26e4a9bdc3d2f13b44cb7069a16dea0ad68d0622ff4b077ce"
 }

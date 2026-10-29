@@ -251,8 +251,8 @@
             "correct": false,
             "testedDimension": "Соберите фразу — это те самые настенные часы, один предмет",
             "feedbackByLocale": {
-              "ru": "reloj в единственном числе.",
-              "uk": "reloj в однині."
+              "ru": "reloj — один предмет.",
+              "uk": "reloj — одна річ."
             }
           }
         ],
@@ -701,5 +701,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5bc2933f03394d6048da3ee4075eb7257e06245bc36afd968824bb8a98b70831"
+  "learnerFingerprint": "257722db06d661015e208fac4ce3f07fbdd745329b9e78fa566bc280067f7041"
 }

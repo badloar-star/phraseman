@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-02:session-45",
   "learningOutcomeByLocale": {
-    "ru": "различить один целый предмет и несколько отдельных вещей при выборе es/son.",
-    "uk": "розрізнити один цілий предмет і кілька окремих речей під час вибору es/son."
+    "ru": "сказать, что внутри несколько карандашей: Son unos lápices.",
+    "uk": "сказати, що всередині кілька олівців: Son unos lápices."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Кілька олівців усередині"
       },
       "bodyByLocale": {
-        "ru": "Вы открыли посылку и достали несколько карандашей. Назовите их с unos: `Son unos lápices` — «Это карандаши». Соберите `son` + `unos` + `lápices`. Теперь речь об отдельных карандашах, а не о посылке целиком, поэтому son. Знакомое lápiz во множественном числе становится lápices.",
-        "uk": "Ви відкрили посилку й дістали кілька олівців. Назвіть їх з unos: `Son unos lápices` — «Це олівці». Зберіть `son` + `unos` + `lápices`. Тепер йдеться про окремі олівці, а не про посилку цілком, тому son. Знайоме lápiz у множині стає lápices."
+        "ru": "Вы открыли посылку и достали несколько карандашей. Назовите их с unos: `Son unos lápices` — «Это карандаши». Соберите `son` + `unos` + `lápices`. Теперь речь об отдельных карандашах, а не о посылке целиком, поэтому son. Знакомое lápiz, когда их несколько, становится lápices.",
+        "uk": "Ви відкрили посилку й дістали кілька олівців. Назвіть їх з unos: `Son unos lápices` — «Це олівці». Зберіть `son` + `unos` + `lápices`. Тепер йдеться про окремі олівці, а не про посилку цілком, тому son. Знайоме lápiz, коли їх кілька, стає lápices."
       },
       "question": {
         "interactionId": "es:lesson-02:session-45:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9fbb34f1df0cd5880b62bdd9faf6baeabf0b5267da8878b5cc2033cde8c2e30e"
+  "introFingerprint": "2ae8153568bbb54d501f7e5dd9ecf61f0e64b9b624341bc6bac39d563f1514c2"
 }

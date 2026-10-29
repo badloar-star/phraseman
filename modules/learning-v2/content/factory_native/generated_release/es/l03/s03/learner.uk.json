@@ -64,8 +64,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — книги великі",
             "feedbackByLocale": {
-              "ru": "Форма grande не меняется по роду; во множественном числе grandes.",
-              "uk": "Форма grande не змінюється за родом; у множині grandes."
+              "ru": "Форма grande не меняется по роду; для нескольких — grandes.",
+              "uk": "Форма grande не змінюється за родом; для кількох — grandes."
             }
           }
         ]
@@ -721,5 +721,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d6e2f5ff3913a87c7ef9233ad4b39e34749dcbc2d44b430e548f987e605a8f06"
+  "learnerFingerprint": "b883d11010d5c91614c3907e6ba67dee2d3246d59aad725aab9d2f3a598eb0b0"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-01:session-24",
   "learningOutcomeByLocale": {
-    "ru": "выбрать вопрос или утверждение с es, отрицание и окончание по смыслу условия.",
-    "uk": "обрати запитання або твердження з es, заперечення й закінчення за змістом умови."
+    "ru": "спросить, обязательно ли это: ¿Es obligatorio?",
+    "uk": "запитати, чи це обов'язково: ¿Es obligatorio?"
   },
   "pages": [
     {

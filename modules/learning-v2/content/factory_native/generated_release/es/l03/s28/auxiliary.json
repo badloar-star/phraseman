@@ -19,8 +19,8 @@
       "interactionId": "es:lesson-03:session-28:intro2:q",
       "responseFeedbackById": {
         "es:lesson-03:session-28:intro2:r2": {
-          "ru": "Нужно множественное число frágiles.",
-          "uk": "Потрібна множина frágiles."
+          "ru": "Нужна форма для нескольких frágiles.",
+          "uk": "Потрібна форма для кількох frágiles."
         },
         "es:lesson-03:session-28:intro2:r3": {
           "ru": "Добавьте -es целиком: frágiles.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "3453e9cf97f2bd66d78fb3b38933620a53b3a0c0530fe3f0bc91e0e86f83861a"
+  "auxiliaryFingerprint": "3e50de43e392951852c17ddccc6aa15f441b6a3bed7dba82fba40211cfda6e9a"
 }

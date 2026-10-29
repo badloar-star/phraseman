@@ -28,6 +28,7 @@ import SeasonNavTiles from './SeasonNavTiles';
 import SeasonCardFace from './SeasonCardFace';
 import { hexChroma, hexHue, seasonThemedArt, type SeasonTheme } from './season_art';
 import SceneBackdropFill from '../../scene/SceneBackdropFill';
+import SceneBlockShadow from '../../scene/SceneBlockShadow';
 import { scenePaletteCached, sceneTopHex } from '../../scene/scene_palette';
 import { seasonStarTones } from './season_star_tones';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
@@ -271,6 +272,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
       onLayout={(e) => { scrollInfo.current.viewportH = e.nativeEvent.layout.height; }}
       onContentSizeChange={(_w, h) => { scrollInfo.current.contentH = h; logCaption('content_size'); }}
       onMomentumScrollEnd={() => logCaption('scroll_end')} onScrollEndDrag={() => logCaption('drag_end')}>
+      <SceneBlockShadow tone={heroSceneTop}>
       <View ref={heroRef} onLayout={onHeroLayout} style={[styles.hero, props.topBleed && props.topBleed > 0 ? styles.heroTall : null]} testID="season-hero">
         <SceneBackdropFill screen="season" logName="lessons:season-cover" idPrefix="seasonHero" fallback={[heroSceneTop, heroSceneTop]} />
         <View style={[styles.heroTop, props.pushBack
@@ -311,6 +313,7 @@ function SeasonCourseView(props: SeasonCourseViewProps) {
           ) : null}
         </View>
       </View>
+      </SceneBlockShadow>
 
       <SeasonNavTiles
         allChaptersLabel={seasonCardText(lang, 'allChapters')}

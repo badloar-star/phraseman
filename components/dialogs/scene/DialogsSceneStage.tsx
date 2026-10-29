@@ -16,6 +16,7 @@ import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanima
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { alphaHex } from '../../../constants/v2Style';
+import SceneBlockShadow from '../../scene/SceneBlockShadow';
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import V2Pressable from '../../v2/V2Pressable';
@@ -80,6 +81,7 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
     p.onRound();
   };
   return (
+    <SceneBlockShadow tone={c.bottom}>
     <View testID={`dialogs-scene-${state}`} style={[s.stage, { minHeight: stageH }]}>
       <DialogsSceneBackdrop colors={c} idPrefix="dlgScene" />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
@@ -162,6 +164,7 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
         ) : null}
       </View>
     </View>
+    </SceneBlockShadow>
   );
 }
 

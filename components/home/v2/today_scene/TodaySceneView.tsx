@@ -28,6 +28,7 @@ import { useV2Palette } from '../../../v2/useV2Palette';
 import type { TodayTask, TodayTaskKind } from '../home_v2_types';
 import { liquidGlassTokens } from '../../../../constants/liquidGlassThemePalette';
 import { useTheme } from '../../../ThemeContext';
+import SceneBlockShadow from '../../../scene/SceneBlockShadow';
 import { homeSceneTokensForTheme } from '../scene/home_scene_tokens';
 import { homeSceneWarmTone } from '../scene/home_scene_warm_tone';
 import type { TodaySceneCopy } from './today_scene_copy';
@@ -104,6 +105,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
   const separator = `${card.text.slice(0, 7)}12`;
   return (
     <ScrollView decelerationRate="fast" testID="today-scene" style={[s.root, { backgroundColor: p.bg }]} contentContainerStyle={s.content} showsVerticalScrollIndicator={false} bounces={false} onScroll={onSceneScroll} scrollEventThrottle={32}>
+      <SceneBlockShadow tone={tokens.sceneBottom}>
       <View testID="today-scene-stage" style={[s.stage, { minHeight: stageH }]}>
         <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
         <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
@@ -167,6 +169,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
           ) : null}
         </View>
       </View>
+      </SceneBlockShadow>
       <View testID="today-scene-panel" style={[s.panel, { backgroundColor: card.opaqueCard, boxShadow: plateBoxShadow(glass) }]}>
         <View style={s.panelHead}>
           <Text accessibilityRole="header" style={[s.panelTitle, { color: card.text }]}>{copy.panelTitle}</Text>
@@ -229,7 +232,7 @@ export default TodaySceneView;
 const baseStyles = StyleSheet.create({
   root: { flex: 1 },
   content: { paddingBottom: 40 },
-  stage: { borderBottomLeftRadius: 32, borderBottomRightRadius: 32, overflow: 'hidden', justifyContent: 'space-between' },
+  stage: { borderBottomLeftRadius: 28, borderBottomRightRadius: 28, overflow: 'hidden', justifyContent: 'space-between' },
   hero: { position: 'absolute', right: 8, top: 96, width: HERO_SIZE, height: HERO_SIZE, alignItems: 'center', justifyContent: 'center' },
   heroSlot: { flex: 1, minHeight: 0, alignItems: 'flex-end', paddingRight: 8 },
   heroBoundedBox: { width: HERO_SIZE, height: HERO_SIZE, alignItems: 'center', justifyContent: 'center', transformOrigin: 'right top' },

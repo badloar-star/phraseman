@@ -16,6 +16,7 @@ import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from '
 import MaskedView from '@react-native-masked-view/masked-view';
 import { PixelRatio, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
 import SceneBackdrop from '../../../scene/SceneBackdrop';
+import SceneBlockShadow from '../../../scene/SceneBlockShadow';
 import { scenePaletteCached } from '../../../scene/scene_palette';
 import { logSceneEdge, logSceneLayers, logSceneTheme } from './scene_theme_log';
 import Animated, { Easing, FadeIn, FadeInDown, useReducedMotion } from 'react-native-reanimated';
@@ -171,6 +172,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   return (
     // зачем (владелец 22.10: «ВЕРХНЯЯ СЕЙФ-ЗОНА ВСЕГДА ЧАСТЬ ОБЩЕЙ КОМПОЗИЦИИ»): градиент и свет сцены — от верха экрана, под часами;
     // высота сцены считается от верха экрана, как в эталоне (.a-stage 540 вместе со строкой статуса), раскладка отступает на зону часов
+    <SceneBlockShadow tone={tokens.sceneBottom}>
     <View
       testID="home-scene-stage"
       style={[s.stage, { minHeight: stageH }, topInset > 0 ? { paddingTop: topInset } : null]}
@@ -275,6 +277,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
         {copy.note ? <Text style={s.note}>{copy.note}</Text> : null}
       </View>
     </View>
+    </SceneBlockShadow>
   );
 });
 

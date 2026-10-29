@@ -12,6 +12,7 @@ import { StyleSheet } from 'react-native';
 import Svg, { Circle, Defs, G, LinearGradient, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { isSkyPalette, type ScenePaletteResult } from './scene_palette';
+import SceneStarTwinkle, { SCENE_TWINKLE_EVERY } from './SceneStarTwinkle';
 
 type Props = Readonly<{ palette: ScenePaletteResult; idPrefix: string }>;
 
@@ -30,6 +31,7 @@ function SceneBackdrop({ palette, idPrefix }: Props) {
     const sunColor = rgb(p.raw.lightC);
     const hazeColor = rgb(p.raw.haze);
     return (
+      <>
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
         <Defs>
           <LinearGradient id={id('Sky')} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2={H}>
@@ -70,12 +72,15 @@ function SceneBackdrop({ palette, idPrefix }: Props) {
         <Rect x="0" y={H * p.haze.y0} width={W} height={H * (p.haze.y1 - p.haze.y0)} fill={`url(#${id('Haze')})`} />
         {p.warmEdge ? <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Warm')})`} /> : null}
         <G>
-          {p.stars.list.map((s, i) => <Circle key={i} cx={s.x * W} cy={s.y * H} r={s.r} fill="#FFFFFF" fillOpacity={s.a} />)}
+          {/* зачем (владелец 29.10): каждая 5-я звезда мерцает отдельным слоем SceneStarTwinkle (UI-тред), остальные статичны здесь */}
+          {p.stars.list.map((s, i) => (i % SCENE_TWINKLE_EVERY === 0 ? null : <Circle key={i} cx={s.x * W} cy={s.y * H} r={s.r} fill="#FFFFFF" fillOpacity={s.a} />))}
         </G>
         <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Vig')})`} />
         {p.guard.aBottom > 0 ? <Rect x="0" y={H * 0.42} width={W} height={H * 0.58} fill={`url(#${id('GuardB')})`} /> : null}
         {p.guard.aTop > 0 ? <Rect x="0" y="0" width={W} height={GUARD_TOP_H} fill={`url(#${id('GuardT')})`} /> : null}
       </Svg>
+      <SceneStarTwinkle stars={p.stars.list} />
+      </>
     );
   }
   const p = palette;

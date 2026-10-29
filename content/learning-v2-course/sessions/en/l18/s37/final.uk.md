@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is such hard work.**
-- ❌ This is so hard work. — *Тут це не рахують поштучно: such без a.*
+- ❌ This is so hard work. — *such тут не рахують поштучно, тому без a.*
 - ❌ This is such a hard work. — *У цьому значенні таке не рахують поштучно, тому a не потрібен.*
 
 ---
@@ -86,7 +86,7 @@ The fresh air is ___ nice. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-37:i06; family: context_gap_grammar -->
 This is ___ hard work. → **such** · so · much
-- so — *Тут це не рахують поштучно: such без a.*
+- so — *such тут не рахують поштучно, тому без a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — good company**
@@ -106,7 +106,7 @@ This is ___ hard work. → **such** · so · much
 **12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-37:i09; family: context_gap_grammar -->
 You are ___ good company. → **such** · so · much
-- so — *Тут це не рахують поштучно: such без a.*
+- so — *such тут не рахують поштучно, тому без a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **13 · Картка слова — peace and quiet**

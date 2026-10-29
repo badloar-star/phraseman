@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This fiction is interesting.**
-- ❌ This fiction are interesting. — *Fiction как вид литературы — это не считают поштучно: is.*
+- ❌ This fiction are interesting. — *Fiction как вид литературы не считают поштучно: is.*
 - ❌ These fictions are interesting. — *В этом значении нет -s для нескольких.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ on the shelf. → **autobiographies** · autobiography · an a
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-03:i09; family: context_gap_grammar -->
 This fiction ___ interesting. → **is** · are · am
-- are — *Fiction как вид литературы — это не считают поштучно: is.*
-- am — *Fiction как вид литературы — это не считают поштучно: is.*
+- are — *Fiction как вид литературы не считают поштучно: is.*
+- am — *Fiction как вид литературы не считают поштучно: is.*
 
 **13 · Карточка слова — non-fiction**
 <!-- interaction_id: en:lesson-17:session-03:word:non-fiction; family: word_card -->

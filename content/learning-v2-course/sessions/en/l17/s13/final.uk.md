@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much entertainment do we need?**
-- ❌ How many entertainment do we need? — *entertainment у цьому значенні — це не рахують поштучно: much.*
+- ❌ How many entertainment do we need? — *entertainment у цьому значенні не рахують поштучно: much.*
 - ❌ How a much entertainment do we need? — *Перед many/much тут не ставимо a.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We don't have much funding.**
-- ❌ We don't have many funding. — *funding у цьому значенні — це не рахують поштучно: much.*
+- ❌ We don't have many funding. — *funding у цьому значенні не рахують поштучно: much.*
 - ❌ We don't have a much funding. — *Перед many/much тут не ставимо a.*
 
 ---
@@ -106,7 +106,7 @@ We don't have ___ sponsors. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-13:i09; family: context_gap_grammar -->
 How ___ entertainment do we need? → **much** · many · a much
-- many — *entertainment у цьому значенні — це не рахують поштучно: much.*
+- many — *entertainment у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — funding**
@@ -126,7 +126,7 @@ How ___ entertainment do we need? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-13:i12; family: context_gap_grammar -->
 We don't have ___ funding. → **much** · many · a much
-- many — *funding у цьому значенні — це не рахують поштучно: much.*
+- many — *funding у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

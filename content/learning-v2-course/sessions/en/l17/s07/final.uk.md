@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This gravel is clean.**
-- ❌ This gravel are clean. — *Gravel як матеріал — це не рахують поштучно: is.*
+- ❌ This gravel are clean. — *Gravel як матеріал не рахують поштучно: is.*
 - ❌ These gravels are clean. — *У цьому значенні не має -s для кількох.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ by the door. → **planters** · planter · a planter
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-07:i09; family: context_gap_grammar -->
 This gravel ___ clean. → **is** · are · am
-- are — *Gravel як матеріал — це не рахують поштучно: is.*
-- am — *Gravel як матеріал — це не рахують поштучно: is.*
+- are — *Gravel як матеріал не рахують поштучно: is.*
+- am — *Gravel як матеріал не рахують поштучно: is.*
 
 **13 · Картка слова — equipment**
 <!-- interaction_id: en:lesson-17:session-07:word:equipment; family: word_card -->
@@ -126,8 +126,8 @@ This gravel ___ clean. → **is** · are · am
 **16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-07:i12; family: context_gap_grammar -->
 We need ___. → **equipment** · an equipment · equipments
-- an equipment — *Equipment — це не рахують поштучно: без an та без -s для кількох.*
-- equipments — *Equipment — це не рахують поштучно: без an та без -s для кількох.*
+- an equipment — *Equipment не рахують поштучно: без an та без -s для кількох.*
+- equipments — *Equipment не рахують поштучно: без an та без -s для кількох.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-07:i13; family: speed_match -->

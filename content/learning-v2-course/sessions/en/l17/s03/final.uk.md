@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This fiction is interesting.**
-- ❌ This fiction are interesting. — *Fiction як вид літератури — це не рахують поштучно: is.*
+- ❌ This fiction are interesting. — *Fiction як вид літератури не рахують поштучно: is.*
 - ❌ These fictions are interesting. — *У цьому значенні не має -s для кількох.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ on the shelf. → **autobiographies** · autobiography · an a
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-03:i09; family: context_gap_grammar -->
 This fiction ___ interesting. → **is** · are · am
-- are — *Fiction як вид літератури — це не рахують поштучно: is.*
-- am — *Fiction як вид літератури — це не рахують поштучно: is.*
+- are — *Fiction як вид літератури не рахують поштучно: is.*
+- am — *Fiction як вид літератури не рахують поштучно: is.*
 
 **13 · Картка слова — non-fiction**
 <!-- interaction_id: en:lesson-17:session-03:word:non-fiction; family: word_card -->

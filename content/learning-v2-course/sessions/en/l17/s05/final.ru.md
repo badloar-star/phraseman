@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This litter is dangerous.**
-- ❌ This litter are dangerous. — *Litter в значении мусора — это не считают поштучно: is.*
+- ❌ This litter are dangerous. — *Litter в значении мусора не считают поштучно: is.*
 - ❌ These litters are dangerous. — *В этом значении нет -s для нескольких.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ on the ground. → **cigarette ends** · cigarette end · a ci
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-05:i09; family: context_gap_grammar -->
 This litter ___ dangerous. → **is** · are · am
-- are — *Litter в значении мусора — это не считают поштучно: is.*
-- am — *Litter в значении мусора — это не считают поштучно: is.*
+- are — *Litter в значении мусора не считают поштучно: is.*
+- am — *Litter в значении мусора не считают поштучно: is.*
 
 **13 · Карточка слова — clutter**
 <!-- interaction_id: en:lesson-17:session-05:word:clutter; family: word_card -->

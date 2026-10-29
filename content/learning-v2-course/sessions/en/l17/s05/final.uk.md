@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This litter is dangerous.**
-- ❌ This litter are dangerous. — *Litter у значенні сміття — це не рахують поштучно: is.*
+- ❌ This litter are dangerous. — *Litter у значенні сміття не рахують поштучно: is.*
 - ❌ These litters are dangerous. — *У цьому значенні не має -s для кількох.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ on the ground. → **cigarette ends** · cigarette end · a ci
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-05:i09; family: context_gap_grammar -->
 This litter ___ dangerous. → **is** · are · am
-- are — *Litter у значенні сміття — це не рахують поштучно: is.*
-- am — *Litter у значенні сміття — це не рахують поштучно: is.*
+- are — *Litter у значенні сміття не рахують поштучно: is.*
+- am — *Litter у значенні сміття не рахують поштучно: is.*
 
 **13 · Картка слова — clutter**
 <!-- interaction_id: en:lesson-17:session-05:word:clutter; family: word_card -->

@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How much knowledge do we need?**
-- ❌ How many knowledge do we need? — *knowledge в этом значении — это не считают поштучно: much.*
+- ❌ How many knowledge do we need? — *knowledge в этом значении не считают поштучно: much.*
 - ❌ How a much knowledge do we need? — *Перед many/much здесь не ставим a.*
 
 ---
@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We don't need much tuition.**
-- ❌ We don't need many tuition. — *tuition в этом значении — это не считают поштучно: much.*
+- ❌ We don't need many tuition. — *tuition в этом значении не считают поштучно: much.*
 - ❌ We don't need a much tuition. — *Перед many/much здесь не ставим a.*
 
 ---
@@ -106,7 +106,7 @@ We don't have ___ certificates. → **many** · much · a many
 **12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-12:i09; family: context_gap_grammar -->
 How ___ knowledge do we need? → **much** · many · a much
-- many — *knowledge в этом значении — это не считают поштучно: much.*
+- many — *knowledge в этом значении не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **13 · Карточка слова — tuition**
@@ -126,7 +126,7 @@ How ___ knowledge do we need? → **much** · many · a much
 **16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-12:i12; family: context_gap_grammar -->
 We don't need ___ tuition. → **much** · many · a much
-- many — *tuition в этом значении — это не считают поштучно: much.*
+- many — *tuition в этом значении не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **17 · Соедините слова с переводом**

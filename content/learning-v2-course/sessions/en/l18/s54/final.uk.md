@@ -14,7 +14,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **You have such great energy.**
-- ❌ You have so great energy. — *Тут це не рахують поштучно: such без a.*
+- ❌ You have so great energy. — *such тут не рахують поштучно, тому без a.*
 - ❌ You have such a great energy. — *У цьому значенні таке не рахують поштучно, тому a не потрібен.*
 
 ---
@@ -66,7 +66,7 @@
 **4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-54:i03; family: context_gap_grammar -->
 You have ___ great energy. → **such** · so · much
-- so — *Тут це не рахують поштучно: such без a.*
+- so — *such тут не рахують поштучно, тому без a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **5 · Картка слова — strength**

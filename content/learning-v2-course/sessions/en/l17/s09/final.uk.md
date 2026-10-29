@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much polenta do we need?**
-- ❌ How many polenta do we need? — *Polenta як страва — це не рахують поштучно: much.*
+- ❌ How many polenta do we need? — *Polenta як страва не рахують поштучно: much.*
 - ❌ How a much polenta do we need? — *Слово a тут не ставиться перед many або much.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We don't have much semolina.**
-- ❌ We don't have many semolina. — *Semolina як крупа — це не рахують поштучно: much, не many.*
+- ❌ We don't have many semolina. — *Semolina як крупа не рахують поштучно: much, не many.*
 - ❌ We don't have a much semolina. — *Слово a тут не ставиться перед many або much.*
 
 ---
@@ -106,7 +106,7 @@ We don't have ___ Brazil nuts. → **many** · much · a many
 **12 · Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-09:i09; family: context_gap_grammar -->
 How ___ polenta do we need? → **much** · many · a much
-- many — *Polenta як страва — це не рахують поштучно: much.*
+- many — *Polenta як страва не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — semolina**
@@ -126,7 +126,7 @@ How ___ polenta do we need? → **much** · many · a much
 **16 · Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-09:i12; family: context_gap_grammar -->
 We don't have ___ semolina. → **much** · many · a much
-- many — *Semolina як крупа — це не рахують поштучно: much, не many.*
+- many — *Semolina як крупа не рахують поштучно: much, не many.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

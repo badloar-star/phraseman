@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This bulgur is dry.**
-- ❌ This bulgur are dry. — *Bulgur как название крупы — это не считают поштучно: is.*
+- ❌ This bulgur are dry. — *Bulgur как название крупы не считают поштучно: is.*
 - ❌ These bulgurs are dry. — *В этом значении нет -s для нескольких.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ in the bowl. → **peppercorns** · peppercorn · a peppercorn
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-02:i09; family: context_gap_grammar -->
 This bulgur ___ dry. → **is** · are · am
-- are — *Bulgur как название крупы — это не считают поштучно: is.*
-- am — *Bulgur как название крупы — это не считают поштучно: is.*
+- are — *Bulgur как название крупы не считают поштучно: is.*
+- am — *Bulgur как название крупы не считают поштучно: is.*
 
 **13 · Карточка слова — barley**
 <!-- interaction_id: en:lesson-17:session-02:word:barley; family: word_card -->

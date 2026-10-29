@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How much congestion is there today?**
-- ❌ How many congestion is there today? — *congestion в этом значении — это не считают поштучно: much.*
+- ❌ How many congestion is there today? — *congestion в этом значении не считают поштучно: much.*
 - ❌ How a much congestion is there today? — *Перед many/much здесь не ставим a.*
 
 ---
@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There isn't much pollution here.**
-- ❌ There isn't many pollution here. — *pollution в этом значении — это не считают поштучно: much.*
+- ❌ There isn't many pollution here. — *pollution в этом значении не считают поштучно: much.*
 - ❌ There isn't a much pollution here. — *Перед many/much здесь не ставим a.*
 
 ---
@@ -106,7 +106,7 @@ We don't see ___ motorists here. → **many** · much · a many
 **12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-11:i09; family: context_gap_grammar -->
 How ___ congestion is there today? → **much** · many · a much
-- many — *congestion в этом значении — это не считают поштучно: much.*
+- many — *congestion в этом значении не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **13 · Карточка слова — pollution**
@@ -126,7 +126,7 @@ How ___ congestion is there today? → **much** · many · a much
 **16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-11:i12; family: context_gap_grammar -->
 There isn't ___ pollution here. → **much** · many · a much
-- many — *pollution в этом значении — это не считают поштучно: much.*
+- many — *pollution в этом значении не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **17 · Соедините слова с переводом**

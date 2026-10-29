@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This housework is tiring.**
-- ❌ This housework are tiring. — *Housework — это не считают поштучно: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет -s для нескольких.*
+- ❌ This housework are tiring. — *Housework не считают поштучно: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет -s для нескольких.*
 - ❌ These houseworks are tiring. — *В этом значении нет -s для нескольких.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ in the shop. → **replacements** · replacement · a replacem
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-06:i09; family: context_gap_grammar -->
 This housework ___ tiring. → **is** · are · am
-- are — *Housework — это не считают поштучно: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет -s для нескольких.*
-- am — *Housework — это не считают поштучно: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет -s для нескольких.*
+- are — *Housework не считают поштучно: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет -s для нескольких.*
+- am — *Housework не считают поштучно: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет -s для нескольких.*
 
 **13 · Карточка слова — public transport**
 <!-- interaction_id: en:lesson-17:session-06:word:public-transport; family: word_card -->

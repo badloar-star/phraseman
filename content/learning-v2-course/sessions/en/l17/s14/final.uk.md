@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much accommodation do we need?**
-- ❌ How many accommodation do we need? — *accommodation у цьому значенні — це не рахують поштучно: much.*
+- ❌ How many accommodation do we need? — *accommodation у цьому значенні не рахують поштучно: much.*
 - ❌ How a much accommodation do we need? — *Перед many/much тут не ставимо a.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The house doesn't need much maintenance.**
-- ❌ The house doesn't need many maintenance. — *maintenance у цьому значенні — це не рахують поштучно: much.*
+- ❌ The house doesn't need many maintenance. — *maintenance у цьому значенні не рахують поштучно: much.*
 - ❌ The house doesn't need a much maintenance. — *Перед many/much тут не ставимо a.*
 
 ---
@@ -106,7 +106,7 @@ We don't know ___ landladies. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-14:i09; family: context_gap_grammar -->
 How ___ accommodation do we need? → **much** · many · a much
-- many — *accommodation у цьому значенні — це не рахують поштучно: much.*
+- many — *accommodation у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — maintenance**
@@ -126,7 +126,7 @@ How ___ accommodation do we need? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-14:i12; family: context_gap_grammar -->
 The house doesn't need ___ maintenance. → **much** · many · a much
-- many — *maintenance у цьому значенні — це не рахують поштучно: much.*
+- many — *maintenance у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

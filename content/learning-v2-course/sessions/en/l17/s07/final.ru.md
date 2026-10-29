@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This gravel is clean.**
-- ❌ This gravel are clean. — *Gravel как материал — это не считают поштучно: is.*
+- ❌ This gravel are clean. — *Gravel как материал не считают поштучно: is.*
 - ❌ These gravels are clean. — *В этом значении нет -s для нескольких.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ by the door. → **planters** · planter · a planter
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-07:i09; family: context_gap_grammar -->
 This gravel ___ clean. → **is** · are · am
-- are — *Gravel как материал — это не считают поштучно: is.*
-- am — *Gravel как материал — это не считают поштучно: is.*
+- are — *Gravel как материал не считают поштучно: is.*
+- am — *Gravel как материал не считают поштучно: is.*
 
 **13 · Карточка слова — equipment**
 <!-- interaction_id: en:lesson-17:session-07:word:equipment; family: word_card -->
@@ -126,8 +126,8 @@ This gravel ___ clean. → **is** · are · am
 **16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-07:i12; family: context_gap_grammar -->
 We need ___. → **equipment** · an equipment · equipments
-- an equipment — *Equipment — это не считают поштучно: без an и без -s для нескольких.*
-- equipments — *Equipment — это не считают поштучно: без an и без -s для нескольких.*
+- an equipment — *Equipment не считают поштучно: без an и без -s для нескольких.*
+- equipments — *Equipment не считают поштучно: без an и без -s для нескольких.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-07:i13; family: speed_match -->

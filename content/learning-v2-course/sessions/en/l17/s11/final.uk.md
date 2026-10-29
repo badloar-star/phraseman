@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much congestion is there today?**
-- ❌ How many congestion is there today? — *congestion у цьому значенні — це не рахують поштучно: much.*
+- ❌ How many congestion is there today? — *congestion у цьому значенні не рахують поштучно: much.*
 - ❌ How a much congestion is there today? — *Перед many/much тут не ставимо a.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There isn't much pollution here.**
-- ❌ There isn't many pollution here. — *pollution у цьому значенні — це не рахують поштучно: much.*
+- ❌ There isn't many pollution here. — *pollution у цьому значенні не рахують поштучно: much.*
 - ❌ There isn't a much pollution here. — *Перед many/much тут не ставимо a.*
 
 ---
@@ -106,7 +106,7 @@ We don't see ___ motorists here. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-11:i09; family: context_gap_grammar -->
 How ___ congestion is there today? → **much** · many · a much
-- many — *congestion у цьому значенні — це не рахують поштучно: much.*
+- many — *congestion у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — pollution**
@@ -126,7 +126,7 @@ How ___ congestion is there today? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-11:i12; family: context_gap_grammar -->
 There isn't ___ pollution here. → **much** · many · a much
-- many — *pollution у цьому значенні — це не рахують поштучно: much.*
+- many — *pollution у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

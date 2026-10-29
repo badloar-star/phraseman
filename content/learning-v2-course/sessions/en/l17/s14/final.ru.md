@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How much accommodation do we need?**
-- ❌ How many accommodation do we need? — *accommodation в этом значении — это не считают поштучно: much.*
+- ❌ How many accommodation do we need? — *accommodation в этом значении не считают поштучно: much.*
 - ❌ How a much accommodation do we need? — *Перед many/much здесь не ставим a.*
 
 ---
@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The house doesn't need much maintenance.**
-- ❌ The house doesn't need many maintenance. — *maintenance в этом значении — это не считают поштучно: much.*
+- ❌ The house doesn't need many maintenance. — *maintenance в этом значении не считают поштучно: much.*
 - ❌ The house doesn't need a much maintenance. — *Перед many/much здесь не ставим a.*
 
 ---
@@ -106,7 +106,7 @@ We don't know ___ landladies. → **many** · much · a many
 **12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-14:i09; family: context_gap_grammar -->
 How ___ accommodation do we need? → **much** · many · a much
-- many — *accommodation в этом значении — это не считают поштучно: much.*
+- many — *accommodation в этом значении не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **13 · Карточка слова — maintenance**
@@ -126,7 +126,7 @@ How ___ accommodation do we need? → **much** · many · a much
 **16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-14:i12; family: context_gap_grammar -->
 The house doesn't need ___ maintenance. → **much** · many · a much
-- many — *maintenance в этом значении — это не считают поштучно: much.*
+- many — *maintenance в этом значении не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **17 · Соедините слова с переводом**

@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much supervision do they need?**
-- ❌ How many supervision do they need? — *supervision у цьому значенні — це не рахують поштучно: much.*
+- ❌ How many supervision do they need? — *supervision у цьому значенні не рахують поштучно: much.*
 - ❌ How a much supervision do they need? — *Перед many/much тут не ставимо a.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They don't need much guidance.**
-- ❌ They don't need many guidance. — *guidance у цьому значенні — це не рахують поштучно: much.*
+- ❌ They don't need many guidance. — *guidance у цьому значенні не рахують поштучно: much.*
 - ❌ They don't need a much guidance. — *Перед many/much тут не ставимо a.*
 
 ---
@@ -106,7 +106,7 @@ We don't have ___ apprentices. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-15:i09; family: context_gap_grammar -->
 How ___ supervision do they need? → **much** · many · a much
-- many — *supervision у цьому значенні — це не рахують поштучно: much.*
+- many — *supervision у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — guidance**
@@ -126,7 +126,7 @@ How ___ supervision do they need? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-15:i12; family: context_gap_grammar -->
 They don't need ___ guidance. → **much** · many · a much
-- many — *guidance у цьому значенні — це не рахують поштучно: much.*
+- many — *guidance у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

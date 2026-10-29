@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This housework is tiring.**
-- ❌ This housework are tiring. — *Housework — це не рахують поштучно: is. Окремі хатні справи можна порахувати, але загальна назва housework не має -s для кількох.*
+- ❌ This housework are tiring. — *Housework не рахують поштучно: is. Окремі хатні справи можна порахувати, але загальна назва housework не має -s для кількох.*
 - ❌ These houseworks are tiring. — *У цьому значенні не має -s для кількох.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ in the shop. → **replacements** · replacement · a replacem
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-06:i09; family: context_gap_grammar -->
 This housework ___ tiring. → **is** · are · am
-- are — *Housework — це не рахують поштучно: is. Окремі хатні справи можна порахувати, але загальна назва housework не має -s для кількох.*
-- am — *Housework — це не рахують поштучно: is. Окремі хатні справи можна порахувати, але загальна назва housework не має -s для кількох.*
+- are — *Housework не рахують поштучно: is. Окремі хатні справи можна порахувати, але загальна назва housework не має -s для кількох.*
+- am — *Housework не рахують поштучно: is. Окремі хатні справи можна порахувати, але загальна назва housework не має -s для кількох.*
 
 **13 · Картка слова — public transport**
 <!-- interaction_id: en:lesson-17:session-06:word:public-transport; family: word_card -->

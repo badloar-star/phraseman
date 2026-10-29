@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This packaging is wet.**
-- ❌ This packaging are wet. — *Packaging как упаковочные материалы — это не считают поштучно: is.*
+- ❌ This packaging are wet. — *Packaging как упаковочные материалы не считают поштучно: is.*
 - ❌ These packagings are wet. — *В этом значении нет -s для нескольких.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ on the table. → **estimates** · estimate · an estimate
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-08:i09; family: context_gap_grammar -->
 This packaging ___ wet. → **is** · are · am
-- are — *Packaging как упаковочные материалы — это не считают поштучно: is.*
-- am — *Packaging как упаковочные материалы — это не считают поштучно: is.*
+- are — *Packaging как упаковочные материалы не считают поштучно: is.*
+- am — *Packaging как упаковочные материалы не считают поштучно: is.*
 
 **13 · Карточка слова — damage**
 <!-- interaction_id: en:lesson-17:session-08:word:damage; family: word_card -->

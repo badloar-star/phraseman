@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much poetry do you read?**
-- ❌ How many poetry do you read? — *poetry у цьому значенні — це не рахують поштучно: much.*
+- ❌ How many poetry do you read? — *poetry у цьому значенні не рахують поштучно: much.*
 - ❌ How a much poetry do you read? — *Перед many/much тут не ставимо a.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We don't read much prose.**
-- ❌ We don't read many prose. — *prose у цьому значенні — це не рахують поштучно: much.*
+- ❌ We don't read many prose. — *prose у цьому значенні не рахують поштучно: much.*
 - ❌ We don't read a much prose. — *Перед many/much тут не ставимо a.*
 
 ---
@@ -106,7 +106,7 @@ We don't know ___ novelists. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-16:i09; family: context_gap_grammar -->
 How ___ poetry do you read? → **much** · many · a much
-- many — *poetry у цьому значенні — це не рахують поштучно: much.*
+- many — *poetry у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — prose**
@@ -126,7 +126,7 @@ How ___ poetry do you read? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-16:i12; family: context_gap_grammar -->
 We don't read ___ prose. → **much** · many · a much
-- many — *prose у цьому значенні — це не рахують поштучно: much.*
+- many — *prose у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

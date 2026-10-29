@@ -106,8 +106,8 @@ There are two ___ in the room. → **ottomans** · ottoman · an ottoman
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-01:i09; family: context_gap_grammar -->
 This crockery ___ new. → **is** · are · am
-- are — *Crockery — це не рахують поштучно; узгоджуємо з is, не are.*
-- am — *Crockery — це не рахують поштучно; узгоджуємо з is, не are.*
+- are — *Crockery не рахують поштучно; узгоджуємо з is, не are.*
+- am — *Crockery не рахують поштучно; узгоджуємо з is, не are.*
 
 **13 · Картка слова — bedding**
 <!-- interaction_id: en:lesson-17:session-01:word:bedding; family: word_card -->
@@ -126,8 +126,8 @@ This crockery ___ new. → **is** · are · am
 **16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-01:i12; family: context_gap_grammar -->
 We need ___. → **bedding** · a bedding · beddings
-- a bedding — *Bedding — це не рахують поштучно: без a та без закінчення -s.*
-- beddings — *Bedding — це не рахують поштучно: без a та без закінчення -s.*
+- a bedding — *Bedding не рахують поштучно: без a та без закінчення -s.*
+- beddings — *Bedding не рахують поштучно: без a та без закінчення -s.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-01:i13; family: speed_match -->

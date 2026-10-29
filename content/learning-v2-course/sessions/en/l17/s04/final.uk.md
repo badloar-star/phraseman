@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This paperwork is important.**
-- ❌ This paperwork are important. — *Paperwork — це не рахують поштучно: is, не are.*
+- ❌ This paperwork are important. — *Paperwork не рахують поштучно: is, не are.*
 - ❌ These paperworks are important. — *У цьому значенні не має -s для кількох.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ in this shop. → **vacancies** · vacancy · a vacancy
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-04:i09; family: context_gap_grammar -->
 This paperwork ___ important. → **is** · are · am
-- are — *Paperwork — це не рахують поштучно: is, не are.*
-- am — *Paperwork — це не рахують поштучно: is, не are.*
+- are — *Paperwork не рахують поштучно: is, не are.*
+- am — *Paperwork не рахують поштучно: is, не are.*
 
 **13 · Картка слова — training**
 <!-- interaction_id: en:lesson-17:session-04:word:training; family: word_card -->

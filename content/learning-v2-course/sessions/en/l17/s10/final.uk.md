@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much coursework do we have?**
-- ❌ How many coursework do we have? — *coursework у цьому значенні — це не рахують поштучно: much.*
+- ❌ How many coursework do we have? — *coursework у цьому значенні не рахують поштучно: much.*
 - ❌ How a much coursework do we have? — *Перед many/much тут не ставимо a.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We don't need much revision.**
-- ❌ We don't need many revision. — *revision у цьому значенні — це не рахують поштучно: much.*
+- ❌ We don't need many revision. — *revision у цьому значенні не рахують поштучно: much.*
 - ❌ We don't need a much revision. — *Перед many/much тут не ставимо a.*
 
 ---
@@ -106,7 +106,7 @@ We don't have ___ worksheets. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-10:i09; family: context_gap_grammar -->
 How ___ coursework do we have? → **much** · many · a much
-- many — *coursework у цьому значенні — це не рахують поштучно: much.*
+- many — *coursework у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — revision**
@@ -126,7 +126,7 @@ How ___ coursework do we have? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-10:i12; family: context_gap_grammar -->
 We don't need ___ revision. → **much** · many · a much
-- many — *revision у цьому значенні — це не рахують поштучно: much.*
+- many — *revision у цьому значенні не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

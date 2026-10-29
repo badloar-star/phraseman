@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This bulgur is dry.**
-- ❌ This bulgur are dry. — *Bulgur як назва крупи — це не рахують поштучно: is.*
+- ❌ This bulgur are dry. — *Bulgur як назва крупи не рахують поштучно: is.*
 - ❌ These bulgurs are dry. — *У цьому значенні не має -s для кількох.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ in the bowl. → **peppercorns** · peppercorn · a peppercorn
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-02:i09; family: context_gap_grammar -->
 This bulgur ___ dry. → **is** · are · am
-- are — *Bulgur як назва крупи — це не рахують поштучно: is.*
-- am — *Bulgur як назва крупи — це не рахують поштучно: is.*
+- are — *Bulgur як назва крупи не рахують поштучно: is.*
+- am — *Bulgur як назва крупи не рахують поштучно: is.*
 
 **13 · Картка слова — barley**
 <!-- interaction_id: en:lesson-17:session-02:word:barley; family: word_card -->

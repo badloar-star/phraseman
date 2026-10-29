@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This paperwork is important.**
-- ❌ This paperwork are important. — *Paperwork — это не считают поштучно: is, не are.*
+- ❌ This paperwork are important. — *Paperwork не считают поштучно: is, не are.*
 - ❌ These paperworks are important. — *В этом значении нет -s для нескольких.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ in this shop. → **vacancies** · vacancy · a vacancy
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-04:i09; family: context_gap_grammar -->
 This paperwork ___ important. → **is** · are · am
-- are — *Paperwork — это не считают поштучно: is, не are.*
-- am — *Paperwork — это не считают поштучно: is, не are.*
+- are — *Paperwork не считают поштучно: is, не are.*
+- am — *Paperwork не считают поштучно: is, не are.*
 
 **13 · Карточка слова — training**
 <!-- interaction_id: en:lesson-17:session-04:word:training; family: word_card -->

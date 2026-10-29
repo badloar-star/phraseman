@@ -106,8 +106,8 @@ There are two ___ in the room. → **ottomans** · ottoman · an ottoman
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-01:i09; family: context_gap_grammar -->
 This crockery ___ new. → **is** · are · am
-- are — *Crockery — это не считают поштучно; согласуем с is, не are.*
-- am — *Crockery — это не считают поштучно; согласуем с is, не are.*
+- are — *Crockery не считают поштучно; согласуем с is, не are.*
+- am — *Crockery не считают поштучно; согласуем с is, не are.*
 
 **13 · Карточка слова — bedding**
 <!-- interaction_id: en:lesson-17:session-01:word:bedding; family: word_card -->
@@ -126,8 +126,8 @@ This crockery ___ new. → **is** · are · am
 **16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-01:i12; family: context_gap_grammar -->
 We need ___. → **bedding** · a bedding · beddings
-- a bedding — *Bedding — это не считают поштучно: без a и без окончания -s.*
-- beddings — *Bedding — это не считают поштучно: без a и без окончания -s.*
+- a bedding — *Bedding не считают поштучно: без a и без окончания -s.*
+- beddings — *Bedding не считают поштучно: без a и без окончания -s.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-01:i13; family: speed_match -->

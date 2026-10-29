@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This packaging is wet.**
-- ❌ This packaging are wet. — *Packaging як пакувальні матеріали — це не рахують поштучно: is.*
+- ❌ This packaging are wet. — *Packaging як пакувальні матеріали не рахують поштучно: is.*
 - ❌ These packagings are wet. — *У цьому значенні не має -s для кількох.*
 
 ---
@@ -106,8 +106,8 @@ There are two ___ on the table. → **estimates** · estimate · an estimate
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-08:i09; family: context_gap_grammar -->
 This packaging ___ wet. → **is** · are · am
-- are — *Packaging як пакувальні матеріали — це не рахують поштучно: is.*
-- am — *Packaging як пакувальні матеріали — це не рахують поштучно: is.*
+- are — *Packaging як пакувальні матеріали не рахують поштучно: is.*
+- am — *Packaging як пакувальні матеріали не рахують поштучно: is.*
 
 **13 · Картка слова — damage**
 <!-- interaction_id: en:lesson-17:session-08:word:damage; family: word_card -->

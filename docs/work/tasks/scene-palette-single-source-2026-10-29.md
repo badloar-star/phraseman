@@ -210,3 +210,29 @@ Security and privacy: данных не касается.
 Technical debt: сила тени подбирается по кадрам Сверки.
 Verification: тесты scene_shadow_and_stars_contract и scene_bottom_edge_contract, проверка синтаксиса, кадры Pixel от Сверки.
 Rollback: git revert коммита.
+
+## Шаг 19: темы за награды — вернуть их собственные сцены; высота сцены Главной = «Уроки»; тёмная сцена — звёздное небо без затемнения низа (слова владельца 29.10, КОД В РАБОЧЕМ ДЕРЕВЕ, коммит только после одобрения макета)
+
+Governance-ID: TG-F118CA58549B
+Governance-ID: TG-2F4173BEDFFE
+Governance-ID: TG-D53A4C0FCEE3
+
+Outcome: (1) у шести тем за награды (olive, signal_lime, storm_violet, titanium, horizon, gravity_blue) сцена Главной снова своя из premiumThemeVisualSpec, как на da0a435e3, с их PremiumThemeMotion, без общих звёзд неба; обычные темы остаются на «Глубоком небе»; (2) высота сцены Главной равна высоте сцены «Уроки» (Сезон) на любом окне и шрифте; (3) в тёмных темах нет затемнения низа, звёзды по всей сцене.
+Scope: HomeScene.tsx (токены), HomeSceneStage.tsx (фон премиум-тем), home_scene_fit.ts, SceneBackdrop/scene_palette (затемнение и звёзды), DialogsSceneStage, сторожа, журнал [SCENE-SOURCE] и [SCENE-EDGE].
+Architecture: премиум-тема выбирается по isPremiumSceneTheme; фон = LinearGradient токенов + свет края, остальное по 2.0.3; общая форма (радиус 28, тень, зазор) для всех.
+Security and privacy: данные не затрагиваются.
+Technical debt: исключение из вердикта 29.10 для 6 тем фиксируется в OWNER_LOCKS через координатора.
+Verification: тесты на 6 тем (цвета сцены = premiumThemeVisualSpec, звёзд нет, PremiumThemeMotion на месте), сторож высоты Главная=Уроки, кадры «2.0.3 / сейчас / после».
+Rollback: git revert коммита.
+
+## Шаг 20: герой на сцене Главной — крупный, как в утверждённом эталоне, текст поверх (слово владельца 29.10, код в рабочем дереве до выбора на макете)
+
+Governance-ID: TG-F118CA58549B
+
+Outcome: герой Главной 160 dp (эталон approved/scene, HERO_HOME) вместо вписанного 140 dp у самого края; справа 20, по центру сцены по вертикали, не ужимается под текст; слои фон → герой → текст, читаемость текста держит собственная тень текста. Журнал [HERO-SIZE] показывает размер героя и долю высоты сцены.
+Scope: HomeSceneStage.tsx (размер, место, отключение маски/вписывания, тень текста), сторож.
+Architecture: константы HERO и отступы в одном месте, маска и вписывание отключены флагом HERO_OVER_TEXT; логика homeSceneHeroFade остаётся нетронутой.
+Security and privacy: данные не затрагиваются.
+Technical debt: мёртвые ветви маски героя удалить после одобрения макета.
+Verification: тесты сцены, замер в журнале, кадры «было / эталон / сейчас».
+Rollback: git revert коммита.

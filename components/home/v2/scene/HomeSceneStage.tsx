@@ -17,7 +17,7 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import { PixelRatio, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
 import SceneBackdrop from '../../../scene/SceneBackdrop';
 import SceneBlockShadow from '../../../scene/SceneBlockShadow';
-import { scenePaletteCached } from '../../../scene/scene_palette';
+import { isPremiumSceneTheme, scenePaletteCached } from '../../../scene/scene_palette';
 import { logSceneEdge, logSceneLayers, logSceneTheme } from './scene_theme_log';
 import Animated, { Easing, FadeIn, FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
@@ -116,6 +116,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const reduceMotion = useReducedMotion();
   const { lang } = useLang();
   const { liquidGlassThemeId, liquidGlassAppearance, isDark } = useTheme();
+  const isPremium = isPremiumSceneTheme(liquidGlassThemeId);
   const heroReady = useAfterFirstFrame('home:hero'); // зачем (ускорение первого кадра; координатор 22.10): герой — со 2-го кадра тем же FadeIn
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
   const { fontScale, height: windowH, width: windowW } = useWindowDimensions();
@@ -150,8 +151,10 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   }, [liquidGlassThemeId, liquidGlassAppearance, windowW, stageH, topInset, heroSpaceH, heroBounded]);
   // зачем (слово владельца 29.10, [SCENE-EDGE]): блок сцены Главной — высота, доля окна, нижний край (радиус 32, без плавного ухода в фон), источник палитры
   useEffect(() => {
-    logSceneEdge('home', { sceneH: Math.round(stageH), sceneW: Math.round(windowW), windowH: Math.round(windowH), shareOfWindow: Math.round((stageH / windowH) * 100), bottomRadius: 28, fadeToBg: false, panelOverlap: HOME_SCENE_PANEL_OVERLAP, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: scenePal.mode, source: 'scenePalette', evening });
-  }, [stageH, windowW, windowH, liquidGlassThemeId, liquidGlassAppearance, scenePal.mode, evening]);
+    logSceneEdge('home', { sceneH: Math.round(stageH), sceneW: Math.round(windowW), windowH: Math.round(windowH), shareOfWindow: Math.round((stageH / windowH) * 100), bottomRadius: 28, fadeToBg: false, panelOverlap: HOME_SCENE_PANEL_OVERLAP, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: scenePal.mode, source: isPremium ? 'premiumThemeVisualSpec' : 'scenePalette', evening });
+    // зачем ([SCENE-SOURCE], слово владельца 29.10: «темы за достижения сломаны»; сперва логи): откуда сцена и иконки у темы сейчас
+    console.log('[SCENE-SOURCE]', JSON.stringify({ screen: 'home', themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, scene: isPremium ? 'premiumThemeVisualSpec(как 2.0.3)' : 'scenePalette', motion: isPremium ? 'PremiumThemeMotion' : 'none', stars: isPremium ? 'свои' : 'общие', icons: 'themed_art_registry (не менялись)' })); // guard-ok: одна строка на смену темы/оформления
+  }, [stageH, windowW, windowH, liquidGlassThemeId, liquidGlassAppearance, scenePal.mode, evening, isPremium]);
   // зачем (слово владельца 29.10, [SCENE-LAYERS]): порядок слоёв сцены Главной снизу вверх — слои цвета лежат ПОД героем-иконкой, герой и текст рисуются последними
   useEffect(() => {
     logSceneLayers('home', [
@@ -187,16 +190,24 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
       }}
     >
       {/* зачем (вердикт владельца 29.10, scenePalette): фон Главной — утверждённая сцена; тёмное «Глубокое небо», светлое «А»; вечер — «Небо + тёплый край» (справа внизу тёплый отсвет оттенка темы, без красного света и углей) */}
-      <SceneBackdrop palette={scenePal} idPrefix="homeSc" />
+      {/* зачем (слово владельца 29.10: «темы за достижения сломаны, там были свои уникальные сцены, не надо было трогать»): у 6 тем за награды фон сцены свой — градиент из premiumThemeVisualSpec и свет края, как на da0a435e3; общего неба и звёзд у них нет */}
+      {isPremium ? <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} /> : <SceneBackdrop palette={scenePal} idPrefix="homeSc" />}
       <PremiumThemeMotion themeId={liquidGlassThemeId} isLight={!isDark} width={windowW} height={stageH} />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%" onLayout={() => { if (!glowLoggedRef.current) { glowLoggedRef.current = true; console.log('[HOME-SCENE-FIRST]', JSON.stringify({ at: 'glow_first_layout', msSinceJsEntry: msSinceJsEntry(), source: 'svg_glow' })); } /* guard-ok: одна строка на монтирование */ }}>
         <Defs>
+          {isPremium ? (
+            <RadialGradient id="sceneLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">
+              <Stop offset="0" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="1" />
+              <Stop offset="1" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="0" />
+            </RadialGradient>
+          ) : null}
           <RadialGradient id="sceneHalo" cx="50%" cy="50%" r="50%">
             <Stop offset="0" stopColor={HOME_SCENE_INK.halo} stopOpacity={HOME_SCENE_INK.haloOpacity} />
             <Stop offset="1" stopColor={HOME_SCENE_INK.halo} stopOpacity="0" />
           </RadialGradient>
         </Defs>
         {/* зачем (Темы 25.10, season-home-contrast): при крупном шрифте герой уходит в свободное место над текстом — ореол уходит вместе с ним, иначе светлое пятно остаётся под надзаголовком */}
+        {isPremium ? <Rect x="0" y="0" width="100%" height="100%" fill="url(#sceneLight)" /> : null}
         {heroBounded ? null : <Rect x="57%" y={topInset + HERO_TOP} width={168} height={168} fill="url(#sceneHalo)" />}
       </Svg>
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}

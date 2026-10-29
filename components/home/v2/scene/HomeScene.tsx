@@ -28,7 +28,7 @@ import { homeSceneAllReleasedDone, homeSceneDaysAwayByVisits, homeSceneDaysSince
 import { useAppVisitGap } from '../../../../modules/welcome_back/use_app_visit_gap';
 import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from './home_scene_state';
 import { homeSceneTokensForTheme, relativeLuminance, type HomeSceneStageTokens } from './home_scene_tokens';
-import { scenePaletteCached, sceneBottomHex, sceneTopHex } from '../../../scene/scene_palette';
+import { isPremiumSceneTheme, scenePaletteCached, sceneBottomHex, sceneTopHex } from '../../../scene/scene_palette';
 import { logSceneTheme } from './scene_theme_log';
 import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
@@ -264,6 +264,8 @@ export function useHomeSceneStageTokens(evening: boolean): HomeSceneStageTokens 
   // Размер эталонной канвы (1080 × 1082) — для цвета достаточно: от размера зависят только число шагов стража и затемнение; сам фон Главной считается по реальному размеру в HomeSceneStage.
   const tokens = useMemo(() => {
     const base = homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening);
+    // зачем (слово владельца 29.10: «темы за достижения сломаны, там были свои уникальные сцены»): у 6 тем за награды цвета сцены свои (premiumThemeVisualSpec), как на da0a435e3
+    if (isPremiumSceneTheme(liquidGlassThemeId)) return base;
     const pal = scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'home', 1080, 1082, 2.625);
     const sceneTop = sceneTopHex(pal);
     const sceneBottom = sceneBottomHex(pal);

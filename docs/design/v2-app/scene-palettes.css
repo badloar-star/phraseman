@@ -195,3 +195,10 @@
 /* пометка выбранного владельцем варианта (вердикт 29.10): зелёная плашка над названием колонки */
 .sp-ok { display: inline-block; margin: 0 0 6px; padding: 3px 10px; border-radius: 999px; background: rgba(52, 199, 89, .18); color: #1E8E3E; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: .01em; }
 .sp-real-row[data-frame$="#approved"] .ph[data-ph="sp-rf-will"] { box-shadow: 0 0 0 3px rgba(52, 199, 89, .55), 0 18px 40px rgba(0, 0, 0, .35); }
+
+/* состояние сборки телефона — в подписи колонки, не на экране (координатор 29.10) */
+.sp-rf-state { display: block; margin-top: 4px; font-size: 12px; font-weight: 500; color: #8E8E96; }
+.sp-rf-state.warn { color: #D9A05B; }
+/* прежний вид вечера — свёрнут */
+.sp-old > details > summary { cursor: pointer; font-size: 14px; color: #8E8E96; margin-bottom: 10px; }
+.sp-old > details > summary:hover { color: #D6D6D8; }

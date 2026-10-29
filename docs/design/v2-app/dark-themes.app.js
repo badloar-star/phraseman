@@ -19,7 +19,7 @@
   const q = new URLSearchParams(location.search);
   let AP = q.get('ap') === 'light' ? 'light' : 'dark';
   let THEME = THEMES[q.get('th')] ? q.get('th') : 'graphite'; // тема владельца — «Затмение» (координатор 28.10)
-  let WARM = ['theme', 'warmer', 'band'].includes(q.get('warm')) ? q.get('warm') : 'warmer'; // вечер: трактовка «тёплый цвет — оттенок темы» (владелец 29.10 ~08:05), чипы в разделе «Утверждено»
+  let WARM = ['theme', 'warmer', 'band'].includes(q.get('warm')) ? q.get('warm') : 'band'; // по умолчанию «Тёплый янтарь» (координатор 29.10: рекомендуемый — первым) // вечер: трактовка «тёплый цвет — оттенок темы» (владелец 29.10 ~08:05), чипы в разделе «Утверждено»
   let JOBS = {}; const STYLE_CACHE = new Map();
   const hasFrame = (id, ap) => (byTheme[id] || []).some((m) => m.ap === ap);
   const frameOf = (screen, state = 'day') => (byTheme[THEME] || []).find((m) => m.screen === screen && m.ap === AP && (m.state || 'day') === state) || null;
@@ -95,8 +95,8 @@
     const job = { file: m.file, src: `assets/real/${m.file}`, sceneH: m.sceneH || 1082, status: m.status || 100, tab: m.tab || 2140, hero: m.hero || null, ap: m.ap, radius: 32 * DPX, old: oldSpecFor(m), keepMax: m.screen === 'peak' ? 0.5 : 0.12, strats: variants.map((v) => ({ key: v.key, spec: v.spec })) }; // башня Пика — цветная деталь на четверть сцены, порог стража выше
     JOBS[key] = job;
     const now = RF.phone({ src: job.src, exists: true, cls: 'sp-rf', status: job.status, tab: job.tab });
-    const will = (v) => RF.phone({ src: job.src, exists: true, cls: 'sp-rf sp-rf-will', status: job.status, tab: job.tab, fixed: '<span class="sp-rf-badge">считаю…</span>' }).replace('data-ph="sp-rf sp-rf-will"', `data-ph="sp-rf-will" data-strat="${v.key}"`);
-    return `<div class="sp-real-row" data-frame="${key}"><h3>${title}<small>${m.file}${!m.hero && (m.screen === 'home' || m.screen === 'dialogs') ? ' · герой не найден: под ним классификатор' : ''}${m.note ? ' · ' + m.note : ''}</small></h3><div class="phones">${col('Сейчас · кадр приложения', now)}${variants.map((v) => col(`${v.approved ? '<span class="sp-ok">утверждено 29.10</span>' : ''}${v.name}<br><small>${v.why}</small>`, will(v))).join('')}</div></div>`;
+    const will = (v) => RF.phone({ src: job.src, exists: true, cls: 'sp-rf sp-rf-will', status: job.status, tab: job.tab }).replace('data-ph="sp-rf sp-rf-will"', `data-ph="sp-rf-will" data-strat="${v.key}"`);
+    return `<div class="sp-real-row" data-frame="${key}"><h3>${title}<small>${m.file}${!m.hero && (m.screen === 'home' || m.screen === 'dialogs') ? ' · герой не найден: под ним классификатор' : ''}${m.note ? ' · ' + m.note : ''}</small></h3><div class="phones">${col('Сейчас · кадр приложения', now)}${variants.map((v) => col(`${v.approved ? '<span class="sp-ok">утверждено 29.10</span>' : ''}${v.name}<br><small>${v.why}</small><small class="sp-rf-state">считаю…</small>`, will(v))).join('')}</div></div>`;
   };
   const missing = (title, file) => `<div class="sp-real-row"><h3>${title}<small>${file}</small></h3><div class="phones">${col('кадр снимается', RF.phone({ src: file, exists: false, cls: 'sp-rf' }).replace('кадр не снят', 'кадр снимается'))}</div></div>`;
   const stylesOf = (m, keys) => keys.map((k) => ({ key: k, name: SS.STYLES[k].name, why: SS.STYLES[k].why, spec: styleSpec(THEME, m, k), approved: k === 'sky' && m.ap === 'dark' }));
@@ -122,14 +122,14 @@
     return `<section class="block" id="dt-art"><h2>Стили сцен — другие манеры рисования в цветах темы</h2><p class="sp-note">Суми-э (тушь на тёмной бумаге), маркер (пастельные штрихи), аврора, витраж (грани), бумажный коллаж. Каждый стиль берёт оттенок и свет темы, поэтому переносится на все темы; белый на зоне текста ≥ 4,5:1 — страж затемняет низ, если нужно.</p>${rows || '<p class="sp-note sp-warn">Кадры этой темы в этом оформлении ещё снимаются.</p>'}</section>`;
   };
   const sectionEvening = () => {
-    const m = frameOf('home', 'evening'); if (!m) return `<section class="block" id="dt-evening"><h2>Вечерняя Главная — красная шапка после 20:00</h2><p class="sp-note sp-warn">Вечерний кадр для этой темы ещё снимается (scene_home_evening_${THEME}_${AP}.png).</p></section>`;
+    const m = frameOf('home', 'evening'); if (!m) return `<section class="block sp-old" id="dt-evening"><details><summary>Прежний вид вечера — красная шапка и угли (не выбран: владелец 29.10 выбрал «небо + тёплый край», см. раздел «Утверждено»)</summary><h2>Вечерняя Главная — красная шапка после 20:00</h2><p class="sp-note sp-warn">Вечерний кадр для этой темы ещё снимается (scene_home_evening_${THEME}_${AP}.png).</p></details></section>`;
     const day = withSceneH(homeOld(THEME, 'day', AP), m.sceneH); const ev = withSceneH(homeOld(THEME, 'evening', AP), m.sceneH);
     const variants = [
       { key: 'ev_spark', name: 'Как днём + красный огонёк', why: 'дневная сцена темы, от вечера остаётся только маленький тёплый огонёк слева снизу', spec: Object.assign({}, day, { lights: day.lights.concat([Object.assign({}, ev.lights[1], { rx: 80 * DPX / W, ry: 80 * DPX / m.sceneH, a: 0.42 })]) }) },
       { key: 'ev_soft', name: 'Мягче', why: 'тот же вечер, но свет справа и угли вдвое слабее — красная шапка не спорит с текстом', spec: Object.assign({}, ev, { lights: [Object.assign({}, ev.lights[0], { a: 0.32 }), Object.assign({}, ev.lights[1], { a: 0.28, rx: 110 * DPX / W, ry: 110 * DPX / m.sceneH })] }) },
       { key: 'dawn', name: 'Новый · закатный горизонт', why: 'вечер как тёплый свет от горизонта снизу, спокойный верх', spec: styleSpec(THEME, m, 'dawn') },
     ];
-    return `<section class="block" id="dt-evening"><h2>Вечерняя Главная — красная шапка после 20:00</h2><p class="sp-note">Слева — вечер как сейчас (серия под угрозой: тёплый свет справа, угли слева). Три варианта по списку владельца: как днём с красным огоньком · мягче · новый.</p>${row(`${m.file}#evening`, m, variants, 'Главная · вечер')}</section>`;
+    return `<section class="block sp-old" id="dt-evening"><details><summary>Прежний вид вечера — красная шапка и угли (не выбран: владелец 29.10 выбрал «небо + тёплый край», см. раздел «Утверждено»)</summary><h2>Вечерняя Главная — красная шапка после 20:00</h2><p class="sp-note">Слева — вечер как сейчас (серия под угрозой: тёплый свет справа, угли слева). Три варианта по списку владельца: как днём с красным огоньком · мягче · новый.</p>${row(`${m.file}#evening`, m, variants, 'Главная · вечер')}</details></section>`;
   };
   /* карточки: полоса под сценой до таббара; прямоугольники — из описи кадра (detectCards); варианты — scene-cards.js */
   const sectionCards = () => {
@@ -151,7 +151,7 @@
      чтобы макет и формула были одним и тем же кодом; в светлом — формула А + третий свет (светлых вечерних кадров пока нет) */
   const eveningVariant = (m) => {
     const SA = window.SceneApproved; const t = THEMES[THEME][m.ap]; const a = SA.approved(t, m.ap, 'home', W, m.sceneH, { premium: !!THEMES[THEME].premium, evening: true, warm: WARM }); const e = a.warmEdge;
-    const why = `тёплый край: ${e.mode === 'warmer' ? 'тон темы, теплее' : e.mode === 'theme' ? 'тон темы' : 'тёплая полоса'} → ${e.hue}° · OKLCH ${e.oklch[0]} / ${e.oklch[1]} · ${e.hex} · альфа ${e.a} справа внизу`;
+    const why = `тёплый край: ${e.mode === 'warmer' ? 'тон темы теплее' : e.mode === 'theme' ? 'тон темы светлее' : 'тёплый янтарь'} → ${e.hue}° · OKLCH ${e.oklch[0]} / ${e.oklch[1]} · ${e.hex} · альфа ${e.a} справа внизу`;
     if (m.ap === 'dark') { const c = document.createElement('canvas'); c.width = W; c.height = m.sceneH; const g = c.getContext('2d', { willReadFrequently: true }); SA.drawSky(g, a, W, m.sceneH); return { key: 'sky_evening', name: 'Небо + тёплый край', why, spec: { image: g.getImageData(0, 0, W, m.sceneH) }, approved: true }; }
     return { key: 'A_evening', name: 'А + тёплый край', why, spec: a.spec, approved: true };
   };
@@ -164,7 +164,7 @@
     }).join('');
     const ev = frameOf('home', 'evening'); const evFile = `scene_home_evening_${THEME}_${AP}.png`;
     const evRow = !ev ? missing('Главная · вечер (после 20:00) · небо + тёплый край', evFile) : row(`${ev.file}#approved`, ev, [eveningVariant(ev)], 'Главная · вечер (после 20:00) · небо + тёплый край');
-    const warmBar = `<div class="thm sp-bar" id="dtWarm"><span class="sp-lbl">Тёплый край — оттенок</span>${[['warmer', 'тон темы, теплее (≤ 35° к янтарю)'], ['theme', 'тон темы как есть, светлее'], ['band', 'тёплая полоса 40–80°, точка — от темы']].map(([k, n]) => `<span class="chp${WARM === k ? ' on' : ''}" data-dt-warm="${k}">${n}</span>`).join('')}</div>`;
+    const warmBar = `<div class="thm sp-bar" id="dtWarm"><span class="sp-lbl">Тёплый край — оттенок</span>${[['band', 'Тёплый янтарь'], ['warmer', 'Тон темы теплее'], ['theme', 'Тон темы светлее']].map(([k, n]) => `<span class="chp${WARM === k ? ' on' : ''}" data-dt-warm="${k}">${n}</span>`).join('')}</div>`;
     const inkNote = AP === 'light' ? ' Светлые Диалоги: сцена становится тёмной, тёмные надписи кадра переведены в белые приближённо (по доле краски) — цвета текста и кнопок на тёмной сцене решают Темы.' : '';
     return `<section class="block" id="dt-approved"><h2>Утверждено владельцем 29.10 — тёмное: «Глубокое небо», светлое: «А — тон темы ярче и глубже»</h2><p class="sp-note">Слово владельца дословно: «Тёмная тема везде должна стать глубокое небо!!! а светлая — тон темы ярче и глубже! Это всех экранов касается». На каждом экране — ровно выбранный вариант; формулы для переноса в код — scene-approved.js и scene-approved-2026-10-29.md, эталонные кадры — assets/approved/scene/. Стили сцен, вечер и карточки не выбраны — ниже остаются как варианты.${inkNote}</p>${rows}<p class="sp-note" style="margin-top:26px"><b>Вечер (после 20:00)</b> — слово владельца 29.10 ~08:05: «Небо + тёплый край» — небо остаётся, справа внизу лёгкий тёплый отсвет как намёк на угрозу серии, без красного и без углей; тёплый цвет — от оттенка темы, не отдельный красный. Как именно «от оттенка темы» — три трактовки, выбери чипом (подпись под телефоном — число и цвет). Светлых вечерних кадров пока нет — Сверка снимала вечер только в тёмном.</p>${warmBar}${evRow}</section>`;
   };

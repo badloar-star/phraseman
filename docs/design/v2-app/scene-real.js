@@ -16,6 +16,8 @@ window.SceneReal = (() => {
   const cssBg = (s) => (s.image || !s.lights ? 'transparent' : s.lights.map((l) => `radial-gradient(${(l.rx * 100 * (l.fade || 1)).toFixed(1)}% ${(l.ry * 100 * (l.fade || 1)).toFixed(1)}% at ${l.cx * 100}% ${l.cy * 100}%, ${rgba(l.color, l.a)}, transparent 100%)`).concat(`linear-gradient(165deg, ${rgba(s.top, 1)} 0%, ${rgba(s.bot, 1)} 100%)`).join(', '));
   const setPhoneSrc = (ph, url) => ph.querySelectorAll('.rf-status, .rf-slice, .rf-tab').forEach((el) => { el.style.backgroundImage = `url("${url}")`; });
   const willPhones = (row) => [...row.querySelectorAll('.ph[data-ph="sp-rf-will"]')];
+  /* состояние сборки — в подписи колонки (.sp-rf-state), не в рамке телефона (координатор 29.10); старые разделы без подписи — бейдж на телефоне */
+  const stateEl = (ph) => { const c = ph.closest('.col'); return (c && c.querySelector('.sp-rf-state')) || ph.querySelector('.sp-rf-badge'); };
   const heroAlpha = async (job) => {
     const h = job.hero; if (!h) return null;
     const src = h.dir === 'v2art' ? `assets/v2art/${job.ap}/${h.art}.webp` : `assets/v2art/hero512/${job.ap}/${h.art || 'home_scene_continue'}.webp`;
@@ -56,7 +58,7 @@ window.SceneReal = (() => {
     willPhones(row).forEach((ph) => {
       const s = job.strats.find((x) => x.key === ph.dataset.strat); const body = ph.querySelector('.rf-body');
       if (s && body) body.insertAdjacentHTML('beforeend', `<div class="sp-rf-tint" style="top:${-RF.px(job.status)}px;height:${RF.px(job.sceneH)}px;background:${cssBg(s.spec)}"></div>`);
-      const b = ph.querySelector('.sp-rf-badge'); if (b) b.textContent = 'приближённо';
+      const b = stateEl(ph); if (b) { b.textContent = 'приближённо (слой цвета)'; b.classList.add('warn'); }
     });
     state.mode[job.file] = 'tint';
     console.log(LOG, 'запасной путь (слой цвета):', job.file, why);
@@ -81,7 +83,7 @@ window.SceneReal = (() => {
       g.putImageData(new ImageData(data, W, ry1 - ry0), 0, ry0);
       const url = await new Promise((res, rej) => c.toBlob((b) => (b ? res(URL.createObjectURL(b)) : rej(new Error('toBlob пуст'))), 'image/png'));
       ph.dataset.now = job.src; ph.dataset.will = url; setPhoneSrc(ph, url);
-      const b = ph.querySelector('.sp-rf-badge'); if (b) { if (keepShare > keepMax) b.textContent = 'кадр не совпал с моделью сцены'; else b.remove(); } ph.classList.add('sp-rf-ready');
+      const b = stateEl(ph); if (b) { if (keepShare > keepMax) { b.textContent = 'кадр не совпал с моделью сцены'; b.classList.add('warn'); } else b.remove(); } ph.classList.add('sp-rf-ready');
       console.log(LOG, 'стратегия', s.key, job.file, 'классы', JSON.stringify(st)); // guard-ok: одна строка на стратегию
       await new Promise((r) => setTimeout(r, 0)); // отдать кадр странице между стратегиями
     }

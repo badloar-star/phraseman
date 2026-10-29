@@ -55,7 +55,10 @@ describe('объявление Plus у владельца Plus', () => {
     const src = read('modules/story_events/use_story_events.ts');
     expect(src).toContain('const { hasPremiumAccess } = usePremium();');
     expect(src).toContain('announcementsForViewer(announcements.stories, hasPremiumAccess)');
-    expect(src).toContain('[...snapshot.stories,...forViewer.visible]');
+    // зачем (Моменты 29.10): в ленту за объявлениями встали истории из проекции (победитель, лесенка) — проверяем суть: в ленте только
+    // отфильтрованные объявления, нефильтрованных нет; точный вид строки не прибиваем
+    expect(src).toContain('[...snapshot.stories,...forViewer.visible,');
+    expect(src).not.toContain('...announcements.stories');
     expect(src).toContain('объявления скрыты: у человека Plus');
   });
 });

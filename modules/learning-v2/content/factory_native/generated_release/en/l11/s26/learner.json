@@ -219,7 +219,7 @@
             "correct": false,
             "testedDimension": "Вчера питание было в холодильнике. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Food здесь неисчисляемое: was.",
+              "ru": "Food здесь не считается поштучно: was.",
               "uk": "Food тут незлічуване: was."
             }
           }
@@ -1117,5 +1117,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ed8a23406b01bf95df3fc60722ea16ebf309a9c6790987d08943e8dcc7611eff"
+  "learnerFingerprint": "bdfe58aa007a2ce11ad2eec6b5c674deac255f62dbfa30cda42f9883fcfb9d08"
 }

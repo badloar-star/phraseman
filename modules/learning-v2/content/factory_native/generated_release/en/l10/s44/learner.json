@@ -829,7 +829,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите вспомогательный глагол для she перед wearing",
+      "prompt": "Выберите do или does для she перед wearing",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-44:i12:r1",
@@ -846,11 +846,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите вспомогательный глагол для she перед wearing",
+      "accessibilityLabel": "Выберите do или does для she перед wearing",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите вспомогательный глагол для she перед wearing",
+          "ru": "Выберите do или does для she перед wearing",
           "uk": "Виберіть допоміжне дієслово для she перед wearing"
         },
         "gappedTargetPhrase": "She ___ wearing a flowery dress.",
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a83aae27f4d7fb425e4d51f83d01a7a3f375af917a6f49cd57476c0c5dc955d0"
+  "learnerFingerprint": "d92fd56336c1451359052a84de98be3bd4102c2396595e33383524ed531adab5"
 }

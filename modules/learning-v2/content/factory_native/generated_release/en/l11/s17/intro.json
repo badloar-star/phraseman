@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-17",
   "learningOutcomeByLocale": {
-    "ru": "there was + один предмет; there were + несколько предметов",
-    "uk": "there was + один предмет; there were + кілька предметів"
+    "ru": "сказать, что было в комнате: There was a bath mat on the floor.",
+    "uk": "сказати, що було в кімнаті: There was a bath mat on the floor."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Дві прищіпки в сумці"
       },
       "bodyByLocale": {
-        "ru": "До уборки в сумке лежали две прищепки для белья. Скажите: There were two clothes pegs in the bag. Для нескольких предметов в прошлом начните с there were. Затем укажите количество two и предметы clothes pegs. Слово pegs получает окончание множественного числа -s; перед two не ставим a. Завершите фразу местом in the bag. Выбор were зависит от двух прищепок, а не от одной сумки.",
-        "uk": "До прибирання в сумці лежали дві прищіпки для білизни. Скажіть: There were two clothes pegs in the bag. Для кількох предметів у минулому почніть із there were. Потім укажіть кількість two і предмети clothes pegs. Слово pegs отримує закінчення множини -s; перед two не ставимо a. Завершіть фразу місцем in the bag. Вибір were залежить від двох прищіпок, а не від однієї сумки."
+        "ru": "До уборки в сумке лежали две прищепки для белья. Скажите: There were two clothes pegs in the bag. Для нескольких предметов в прошлом начните с there were. Затем укажите количество two и предметы clothes pegs. Слово pegs получает окончание формы для нескольких -s; перед two не ставим a. Завершите фразу местом in the bag. Выбор were зависит от двух прищепок, а не от одной сумки.",
+        "uk": "До прибирання в сумці лежали дві прищіпки для білизни. Скажіть: There were two clothes pegs in the bag. Для кількох предметів у минулому почніть із there were. Потім укажіть кількість two і предмети clothes pegs. Слово pegs отримує закінчення -s для кількох; перед two не ставимо a. Завершіть фразу місцем in the bag. Вибір were залежить від двох прищіпок, а не від однієї сумки."
       },
       "question": {
         "interactionId": "en:lesson-11:session-17:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "30a9ac594cf13b3e863d55f055cdd9db1fff441fbc858a6d1f05e5fcf8dfb646"
+  "introFingerprint": "e3daac16169192bb30cb0718732e33ac39cd2f328bc29bc939027a55f389313c"
 }

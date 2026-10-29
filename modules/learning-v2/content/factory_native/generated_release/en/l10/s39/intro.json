@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-39",
   "learningOutcomeByLocale": {
-    "ru": "Both chairs are free; Each person has a cup; Is anyone sitting here",
-    "uk": "Both chairs are free; Each person has a cup; Is anyone sitting here"
+    "ru": "спросить, свободно ли место: Is anyone sitting here?",
+    "uk": "запитати, чи вільне місце: Is anyone sitting here?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Два вільні стільці"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом нашли столик с двумя свободными стульями. Both — «оба»: Both chairs are free — «Оба стула свободны». Both относится к двум предметам. Chairs — множественное число, поэтому are.",
-        "uk": "Ви з другом знайшли столик із двома вільними стільцями. Both — «обидва»: Both chairs are free — «Обидва стільці вільні». Both стосується двох предметів. Chairs — множина, тому are."
+        "ru": "Вы с другом нашли столик с двумя свободными стульями. Both — «оба»: Both chairs are free — «Оба стула свободны». Both относится к двум предметам. Chairs — форма для нескольких, поэтому are.",
+        "uk": "Ви з другом знайшли столик із двома вільними стільцями. Both — «обидва»: Both chairs are free — «Обидва стільці вільні». Both стосується двох предметів. Chairs — форма для кількох, тому are."
       },
       "question": {
         "interactionId": "en:lesson-10:session-39:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Чашка для кожного"
       },
       "bodyByLocale": {
-        "ru": "К вам присоединились друзья. Вы расставили чашки и проверяете: Each person has a cup — «У каждого человека есть чашка». Each — «каждый»: мы рассматриваем людей по одному. Поэтому person в единственном числе и has, а не have.",
-        "uk": "До вас приєдналися друзі. Ви розставили чашки й перевіряєте: Each person has a cup — «У кожної людини є чашка». Each — «кожний»: ми розглядаємо людей по одному. Тому person в однині й has, а не have."
+        "ru": "К вам присоединились друзья. Вы расставили чашки и проверяете: Each person has a cup — «У каждого человека есть чашка». Each — «каждый»: мы рассматриваем людей по одному. Поэтому person в форме для одного и has, а не have.",
+        "uk": "До вас приєдналися друзі. Ви розставили чашки й перевіряєте: Each person has a cup — «У кожної людини є чашка». Each — «кожний»: ми розглядаємо людей по одному. Тому person у формі для одного й has, а не have."
       },
       "question": {
         "interactionId": "en:lesson-10:session-39:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c04776195f936896ec463fced0a44a5dc5b4641b219779f6c705989d65b83c9f"
+  "introFingerprint": "6ec700b2656b65e605232f276d90430dfccac9efecc9929abb01c317ce30baf3"
 }

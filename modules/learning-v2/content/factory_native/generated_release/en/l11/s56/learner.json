@@ -873,7 +873,7 @@
             "correct": false,
             "testedDimension": "Вчера дверь была открыта. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Door — единственное число: was.",
+              "ru": "Door — форма для одного: was.",
               "uk": "Door — однина: was."
             }
           }
@@ -1100,5 +1100,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fa263c5586f51d53352f5fbe566ba0d605618ad3acef40779c1d8d05e1518a7e"
+  "learnerFingerprint": "b77ea59a9c02b8a2687abb5dfa11dc65b3f3d0ee9b2e2043a1c71662673309bb"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-21",
   "learningOutcomeByLocale": {
-    "ru": "there was / there were; was / were",
-    "uk": "there was / there were; was / were"
+    "ru": "сказать, каким был питомец: The kitten was hungry.",
+    "uk": "сказати, яким був улюбленець: The kitten was hungry."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Корм у мисці"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете вчерашнюю миску питомца: в ней был корм. Скажите: There was pet food in the bowl. Начните с there was, чтобы сообщить о наличии еды в прошлом. Затем добавьте pet food — «корм для домашних животных». Food здесь неисчисляемое: корм не считаем отдельными предметами, поэтому нужны was и название без a. Завершите фразу местом in the bowl — «в миске».",
-        "uk": "Ви згадуєте вчорашню миску улюбленця: у ній був корм. Скажіть: There was pet food in the bowl. Почніть із there was, щоб повідомити про наявність їжі в минулому. Потім додайте pet food — «корм для домашніх тварин». Food тут незлічуване: корм не рахуємо окремими предметами, тому потрібні was і назва без a. Завершіть фразу місцем in the bowl — «у мисці»."
+        "ru": "Вы вспоминаете вчерашнюю миску питомца: в ней был корм. Скажите: There was pet food in the bowl. Начните с there was, чтобы сообщить о наличии еды в прошлом. Затем добавьте pet food — «корм для домашних животных». Food здесь не считается поштучно: корм не считаем отдельными предметами, поэтому нужны was и название без a. Завершите фразу местом in the bowl — «в миске».",
+        "uk": "Ви згадуєте вчорашню миску улюбленця: у ній був корм. Скажіть: There was pet food in the bowl. Почніть із there was, щоб повідомити про наявність їжі в минулому. Потім додайте pet food — «корм для домашніх тварин». Food тут не рахується поштучно: корм не рахуємо окремими предметами, тому потрібні was і назва без a. Завершіть фразу місцем in the bowl — «у мисці»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-21:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6bc3349ca35b2d88bd3a243372de490376f8ea7691ed83a613b61456618b92ea"
+  "introFingerprint": "5558b082a64bd8cd87789e3e38a2753e9d5795b2679f1ea117b061f343a77fab"
 }

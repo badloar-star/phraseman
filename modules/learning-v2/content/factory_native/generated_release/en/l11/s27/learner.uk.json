@@ -658,7 +658,7 @@
             "correct": false,
             "testedDimension": "На торішньому фото двоє чоловіків були лисі. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Прошлое, множественное число: were.",
+              "ru": "Прошлое, форма для нескольких: were.",
               "uk": "Минулий час, множина: were."
             }
           }
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b5d0c0f3d012c6ada4e09b4b279071c3534818bb7be5364d229827fa0b4122e6"
+  "learnerFingerprint": "d61ffde966c9ce646c1672b08e1bc1e91b6b0fda47b616db897e1c9e7ec2073a"
 }

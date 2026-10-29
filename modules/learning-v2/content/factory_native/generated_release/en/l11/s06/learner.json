@@ -878,7 +878,7 @@
             "correct": false,
             "testedDimension": "Расскажите, как дети чувствовали себя в субботу",
             "feedbackByLocale": {
-              "ru": "Children — множественное число: were.",
+              "ru": "Children — форма для нескольких: were.",
               "uk": "Children — множина: were."
             }
           },
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7d3d7634e1939577a8915e0977893d9679c3fdff593a16e343875bd6c21cb29e"
+  "learnerFingerprint": "becfec76da3260bbbeb488ec106c1e84a0417aefa10e794b470bf9d69f936ef2"
 }

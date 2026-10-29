@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть артикль перед aisle seat",
+      "prompt": "Виберіть слово перед aisle seat",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-14:i06:r1",
@@ -402,12 +402,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть артикль перед aisle seat",
+      "accessibilityLabel": "Виберіть слово перед aisle seat",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите артикль перед aisle seat",
-          "uk": "Виберіть артикль перед aisle seat"
+          "uk": "Виберіть слово перед aisle seat"
         },
         "gappedTargetPhrase": "I would like ___ aisle seat.",
         "gapOptions": [
@@ -607,7 +607,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви запитуєте про один вихід. Виберіть зв’язку",
+      "prompt": "Ви запитуєте про один вихід. Виберіть форму be",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-14:i09:r1",
@@ -624,12 +624,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви запитуєте про один вихід. Виберіть зв’язку",
+      "accessibilityLabel": "Ви запитуєте про один вихід. Виберіть форму be",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы спрашиваете об одном выходе. Выберите связку",
-          "uk": "Ви запитуєте про один вихід. Виберіть зв’язку"
+          "uk": "Ви запитуєте про один вихід. Виберіть форму be"
         },
         "gappedTargetPhrase": "Where ___ the boarding gate?",
         "gapOptions": [
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "df2222fc1f2b132cbc2a1fa6519cab4d1e27e97a27c30e3ae70aea1621d86c21"
+  "learnerFingerprint": "b4bed1a2e178888a572fcf7cfed692af53f4b17ea1ac57ef901096ea048827ed"
 }

@@ -23,8 +23,8 @@
           "uk": "Учора: was."
         },
         "en:lesson-11:session-43:intro2:r3": {
-          "ru": "Uniform здесь в единственном числе: was.",
-          "uk": "Uniform тут в однині: was."
+          "ru": "Uniform здесь в форме для одного: was.",
+          "uk": "Uniform тут у формі для одного: was."
         }
       }
     },
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-11:session-43:intro3:q",
       "responseFeedbackById": {
         "en:lesson-11:session-43:intro3:r2": {
-          "ru": "Shoes — множественное число: were.",
-          "uk": "Shoes — множина: were."
+          "ru": "Shoes — форма для нескольких: were.",
+          "uk": "Shoes — форма для кількох: were."
         },
         "en:lesson-11:session-43:intro3:r3": {
           "ru": "Are спрашивает о настоящем, а нужно прошлое.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "28f58764020a189a482dae92b097d75955baf2ca2300d825979164f8ea928663"
+  "auxiliaryFingerprint": "53240fa09602daffe933ffaf0e67f6e3e213c0587c0d06ac904f9cb491f61b61"
 }

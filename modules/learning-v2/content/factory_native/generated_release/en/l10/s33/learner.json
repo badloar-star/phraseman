@@ -494,11 +494,11 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Одна губа сухая. Скажите об этом, используя lip в единственном числе",
+      "prompt": "Одна губа сухая. Скажите об этом, используя lip — одна губа",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Одна губа сухая. Скажите об этом, используя lip в единственном числе",
+      "accessibilityLabel": "Одна губа сухая. Скажите об этом, используя lip — одна губа",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "My lip is dry.",
@@ -603,7 +603,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите глагол для lips во множественном числе",
+      "prompt": "Выберите глагол для lips: их несколько",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-33:i09:r1",
@@ -620,11 +620,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите глагол для lips во множественном числе",
+      "accessibilityLabel": "Выберите глагол для lips: их несколько",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите глагол для lips во множественном числе",
+          "ru": "Выберите глагол для lips: их несколько",
           "uk": "Виберіть дієслово для lips у множині"
         },
         "gappedTargetPhrase": "My lips ___ dry.",
@@ -1105,5 +1105,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5b7de93425e4fac40549a150e5ecf1b73ec92899cecd2b52684ae6595d066641"
+  "learnerFingerprint": "ff698d30f4b7a966705fe87b0283afef2969d1fc0212859a5cc45e9973da1653"
 }

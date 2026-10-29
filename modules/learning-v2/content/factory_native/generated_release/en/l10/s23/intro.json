@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-23",
   "learningOutcomeByLocale": {
-    "ru": "I trust you; Tell me the truth; Can I ask for advice; Do I need permission",
-    "uk": "I trust you; Tell me the truth; Can I ask for advice; Do I need permission"
+    "ru": "попросить совета: Can I ask for advice?",
+    "uk": "попросити поради: Can I ask for advice?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Сказати, що довіряєте другу"
       },
       "bodyByLocale": {
-        "ru": "Друг обещает вернуть вашу книгу, и вы говорите, что доверяете ему: I trust you — «Я тебе доверяю». Сначала I — кто доверяет, затем trust — «доверяю», и you — кому. Trust здесь описывает отношение, поэтому используем Present Simple без am. С I глагол остаётся без -s. В английском после trust сразу называем человека: you, без предлога.",
-        "uk": "Друг обіцяє повернути вашу книжку, і ви кажете, що довіряєте йому: I trust you — «Я тобі довіряю». Спочатку I — хто довіряє, потім trust — «довіряю», і you — кому. Trust тут описує ставлення, тому використовуємо Present Simple без am. З I дієслово залишається без -s. В англійській після trust одразу називаємо людину: you, без прийменника."
+        "ru": "Друг обещает вернуть вашу книгу, и вы говорите, что доверяете ему: I trust you — «Я тебе доверяю». Сначала I — кто доверяет, затем trust — «доверяю», и you — кому. Trust здесь описывает отношение, поэтому используем форму без -ing без am. С I глагол остаётся без -s. В английском после trust сразу называем человека: you, без предлога.",
+        "uk": "Друг обіцяє повернути вашу книжку, і ви кажете, що довіряєте йому: I trust you — «Я тобі довіряю». Спочатку I — хто довіряє, потім trust — «довіряю», і you — кому. Trust тут описує ставлення, тому використовуємо форму без -ing без am. З I дієслово залишається без -s. В англійській після trust одразу називаємо людину: you, без прийменника."
       },
       "question": {
         "interactionId": "en:lesson-10:session-23:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Попросити поради"
       },
       "bodyByLocale": {
-        "ru": "Вы выбираете подарок и хотите посоветоваться с другом. Advice — «совет, советы»: Can I ask for advice? — «Можно попросить совета?» Здесь advice неисчисляемое: без a и без окончания s. После can — ask без to.",
-        "uk": "Ви обираєте подарунок і хочете порадитися з другом. Advice — «порада, поради»: Can I ask for advice? — «Можна попросити поради?» Тут advice незлічуване: без a й без закінчення s. Після can — ask без to."
+        "ru": "Вы выбираете подарок и хотите посоветоваться с другом. Advice — «совет, советы»: Can I ask for advice? — «Можно попросить совета?» Здесь advice не считается поштучно: без a и без окончания s. После can — ask без to.",
+        "uk": "Ви обираєте подарунок і хочете порадитися з другом. Advice — «порада, поради»: Can I ask for advice? — «Можна попросити поради?» Тут advice не рахується поштучно: без a й без закінчення s. Після can — ask без to."
       },
       "question": {
         "interactionId": "en:lesson-10:session-23:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "631815efa4f448a01c776821cbf3fa7ed55b4c1d307f692afce77072aface209"
+  "introFingerprint": "b72f337036329a9094d6cc31f7b6684abdcdd2e02bd1c799449c5eb0eecabe61"
 }

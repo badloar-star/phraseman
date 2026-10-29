@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-20",
   "learningOutcomeByLocale": {
-    "ru": "I expect the parcel today; She expects confirmation; Do you have the tracking number?",
-    "uk": "I expect the parcel today; She expects confirmation; Do you have the tracking number?"
+    "ru": "сказать, когда вы ждёте посылку: I expect the parcel today.",
+    "uk": "сказати, коли ви чекаєте на посилку: I expect the parcel today."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Очікувати посилку сьогодні"
       },
       "bodyByLocale": {
-        "ru": "В сообщении магазина указана сегодняшняя дата доставки. I expect the parcel today — «Я ожидаю посылку сегодня». Expect означает «ожидать, считать вероятным». Собираем предложение: I — кто ожидает, expect — глагол, the parcel — знакомая нам посылка, today — когда. С I используем expect без -s и без am. Present Simple здесь передаёт ваше ожидание. Это не запрет на Continuous с expect: у него тоже есть такое употребление, но сейчас собираем фразу с expect.",
-        "uk": "У повідомленні магазину вказана сьогоднішня дата доставки. I expect the parcel today — «Я очікую посилку сьогодні». Expect означає «очікувати, вважати ймовірним». Складаємо речення: I — хто очікує, expect — дієслово, the parcel — знайома нам посилка, today — коли. З I використовуємо expect без -s і без am. Present Simple тут передає ваше очікування. Це не заборона на Continuous з expect: у нього теж є таке вживання, але зараз складаємо фразу з expect."
+        "ru": "В сообщении магазина указана сегодняшняя дата доставки. I expect the parcel today — «Я ожидаю посылку сегодня». Expect означает «ожидать, считать вероятным». Собираем предложение: I — кто ожидает, expect — глагол, the parcel — знакомая нам посылка, today — когда. С I используем expect без -s и без am. форма без -ing здесь передаёт ваше ожидание. Это не запрет на -ing с expect: у него тоже есть такое употребление, но сейчас собираем фразу с expect.",
+        "uk": "У повідомленні магазину вказана сьогоднішня дата доставки. I expect the parcel today — «Я очікую посилку сьогодні». Expect означає «очікувати, вважати ймовірним». Складаємо речення: I — хто очікує, expect — дієслово, the parcel — знайома нам посилка, today — коли. З I використовуємо expect без -s і без am. форма без -ing тут передає ваше очікування. Це не заборона на -ing з expect: у нього теж є таке вживання, але зараз складаємо фразу з expect."
       },
       "question": {
         "interactionId": "en:lesson-10:session-20:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Очікувати підтвердження"
       },
       "bodyByLocale": {
-        "ru": "Confirmation — «подтверждение». Коллега оформила заказ и ожидает письмо о том, что магазин его принял. She expects confirmation — «Она ожидает подтверждения». С she в Present Simple нужна expects. Здесь confirmation — подтверждение как информация, поэтому без a.",
-        "uk": "Confirmation — «підтвердження». Колега оформила замовлення й очікує лист про те, що магазин його прийняв. She expects confirmation — «Вона очікує підтвердження». З she у Present Simple потрібна expects. Тут confirmation — підтвердження як інформація, тому без a."
+        "ru": "Confirmation — «подтверждение». Коллега оформила заказ и ожидает письмо о том, что магазин его принял. She expects confirmation — «Она ожидает подтверждения». С she в форме без -ing нужна expects. Здесь confirmation — подтверждение как информация, поэтому без a.",
+        "uk": "Confirmation — «підтвердження». Колега оформила замовлення й очікує лист про те, що магазин його прийняв. She expects confirmation — «Вона очікує підтвердження». З she у формі без -ing потрібна expects. Тут confirmation — підтвердження як інформація, тому без a."
       },
       "question": {
         "interactionId": "en:lesson-10:session-20:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Уточнити день прибуття"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает о прибытии вашей посылки. Вы смотрите в уведомление: она прибудет завтра. Arrival is tomorrow — «Прибытие завтра». Arrival означает «прибытие». Сначала называем событие — arrival, затем ставим is и указываем время — tomorrow. Arrival здесь в единственном числе, поэтому нужна is. Перед tomorrow предлог не ставим.",
-        "uk": "Друг запитує про прибуття вашої посилки. Ви дивитеся в повідомлення: вона прибуде завтра. Arrival is tomorrow — «Прибуття завтра». Arrival означає «прибуття». Спочатку називаємо подію — arrival, потім ставимо is і вказуємо час — tomorrow. Arrival тут в однині, тому потрібна is. Перед tomorrow прийменника не ставимо."
+        "ru": "Друг спрашивает о прибытии вашей посылки. Вы смотрите в уведомление: она прибудет завтра. Arrival is tomorrow — «Прибытие завтра». Arrival означает «прибытие». Сначала называем событие — arrival, затем ставим is и указываем время — tomorrow. Arrival здесь в форме для одного, поэтому нужна is. Перед tomorrow предлог не ставим.",
+        "uk": "Друг запитує про прибуття вашої посилки. Ви дивитеся в повідомлення: вона прибуде завтра. Arrival is tomorrow — «Прибуття завтра». Arrival означає «прибуття». Спочатку називаємо подію — arrival, потім ставимо is і вказуємо час — tomorrow. Arrival тут у формі для одного, тому потрібна is. Перед tomorrow прийменника не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-10:session-20:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "31526b7407e235d5ced7f0d523e53a92c07d873dc9386d35a49ba4fcf33fa433"
+  "introFingerprint": "eca896e5eaf1b50e67367b51262b468dac72db332b9e42438a99c41dd78dc25f"
 }

@@ -659,7 +659,7 @@
             "correct": false,
             "testedDimension": "Зараз шкільна форма суха. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Uniform здесь в единственном числе: is.",
+              "ru": "Uniform здесь в форме для одного: is.",
               "uk": "Uniform тут в однині: is."
             }
           }
@@ -873,7 +873,7 @@
             "correct": false,
             "testedDimension": "Учора взуття для прогулянок було брудне. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Shoes — множественное число: were.",
+              "ru": "Shoes — форма для нескольких: were.",
               "uk": "Shoes — множина: were."
             }
           },
@@ -1113,5 +1113,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cd5078a2bebeb44de07a7158173007082ba8d4f36b6433a4b6cd1869f907719c"
+  "learnerFingerprint": "22edf70fd6811bca6fbbf774e7e27b91f19798165c789a5c37bce4cffe10d336"
 }

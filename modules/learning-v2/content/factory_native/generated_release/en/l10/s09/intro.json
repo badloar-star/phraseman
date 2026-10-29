@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-09",
   "learningOutcomeByLocale": {
-    "ru": "I usually buy tinned tomatoes; I am buying a ready-made meal today; This drink is sugar-free; This cake is dairy-free",
-    "uk": "I usually buy tinned tomatoes; I am buying a ready-made meal today; This drink is sugar-free; This cake is dairy-free"
+    "ru": "сказать, какую еду вы обычно покупаете: I usually buy tinned tomatoes.",
+    "uk": "сказати, які продукти ви зазвичай купуєте: I usually buy tinned tomatoes."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Напій без цукру"
       },
       "bodyByLocale": {
-        "ru": "Друг ищет напиток без сахара. Вы читаете этикетку бутылки и сообщаете: This drink is sugar-free — «Этот напиток без сахара». Sugar-free означает «без сахара»; free здесь не значит «бесплатный». Сначала this drink — какой предмет описываем, затем is и его свойство sugar-free. Drink в единственном числе, поэтому нужна is. В русском переводе глагол можно не произносить, но в этой английской фразе is обязателен.",
-        "uk": "Друг шукає напій без цукру. Ви читаєте етикетку пляшки й повідомляєте: This drink is sugar-free — «Цей напій без цукру». Sugar-free означає «без цукру»; free тут не означає «безкоштовний». Спочатку this drink — який предмет описуємо, потім is і його властивість sugar-free. Drink в однині, тому потрібна is. В українському перекладі дієслово можна не вимовляти, але в цій англійській фразі is обов’язкове."
+        "ru": "Друг ищет напиток без сахара. Вы читаете этикетку бутылки и сообщаете: This drink is sugar-free — «Этот напиток без сахара». Sugar-free означает «без сахара»; free здесь не значит «бесплатный». Сначала this drink — какой предмет описываем, затем is и его свойство sugar-free. Drink в форме для одного, поэтому нужна is. В русском переводе глагол можно не произносить, но в этой английской фразе is обязателен.",
+        "uk": "Друг шукає напій без цукру. Ви читаєте етикетку пляшки й повідомляєте: This drink is sugar-free — «Цей напій без цукру». Sugar-free означає «без цукру»; free тут не означає «безкоштовний». Спочатку this drink — який предмет описуємо, потім is і його властивість sugar-free. Drink у формі для одного, тому потрібна is. В українському перекладі дієслово можна не вимовляти, але в цій англійській фразі is обов’язкове."
       },
       "question": {
         "interactionId": "en:lesson-10:session-09:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ceec06364abea3a1f78aacb1b8adf2b058e939993add4395d3f5be1e74d57229"
+  "introFingerprint": "6fc248583482c173403ecf41010f320ed33e30919304fe5b66f091b5bc9be2d9"
 }

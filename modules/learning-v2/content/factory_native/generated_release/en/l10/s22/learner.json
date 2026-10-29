@@ -824,7 +824,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите вспомогательный глагол для вопроса с you",
+      "prompt": "Выберите do или does для вопроса с you",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-22:i12:r1",
@@ -841,11 +841,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите вспомогательный глагол для вопроса с you",
+      "accessibilityLabel": "Выберите do или does для вопроса с you",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите вспомогательный глагол для вопроса с you",
+          "ru": "Выберите do или does для вопроса с you",
           "uk": "Виберіть допоміжне дієслово для запитання з you"
         },
         "gappedTargetPhrase": "___ you recognize the accent?",
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6d47b5e06419a2e2a7a1e54ebb95f50d488daffc2115e44caeba0a29ef5e1bd3"
+  "learnerFingerprint": "43359f57520654d1f4a6ca6219fafdd2bcc6ef8493a21f6d69e7f4c22c483897"
 }

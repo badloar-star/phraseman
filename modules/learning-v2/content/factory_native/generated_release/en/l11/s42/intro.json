@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-42",
   "learningOutcomeByLocale": {
-    "ru": "was/were; singular / plural; yesterday / now",
-    "uk": "was/were; singular / plural; yesterday / now"
+    "ru": "сказать, что было с вещами для бассейна: The swimming cap was blue.",
+    "uk": "сказати, що було з речами для басейну: The swimming cap was blue."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Де вчора лежали окуляри"
       },
       "bodyByLocale": {
-        "ru": "Вчера ваши очки для плавания лежали в вашей сумке. Скажите: The swimming goggles were in my bag — очки для плавания были в моей сумке. Сначала назовите предмет: the swimming goggles. В английском goggles имеет форму множественного числа, даже когда речь об одной паре, поэтому дальше нужно were. В конце добавьте место: in my bag. My показывает, чья это сумка.",
-        "uk": "Учора ваші окуляри для плавання лежали у вашій сумці. Скажіть: The swimming goggles were in my bag — окуляри для плавання були в моїй сумці. Спочатку назвіть предмет: the swimming goggles. В англійській goggles має форму множини, навіть коли йдеться про одну пару, тому далі потрібне were. Наприкінці додайте місце: in my bag. My показує, чия це сумка."
+        "ru": "Вчера ваши очки для плавания лежали в вашей сумке. Скажите: The swimming goggles were in my bag — очки для плавания были в моей сумке. Сначала назовите предмет: the swimming goggles. В английском goggles имеет форму для нескольких, даже когда речь об одной паре, поэтому дальше нужно were. В конце добавьте место: in my bag. My показывает, чья это сумка.",
+        "uk": "Учора ваші окуляри для плавання лежали у вашій сумці. Скажіть: The swimming goggles were in my bag — окуляри для плавання були в моїй сумці. Спочатку назвіть предмет: the swimming goggles. В англійській goggles має форму для кількох, навіть коли йдеться про одну пару, тому далі потрібне were. Наприкінці додайте місце: in my bag. My показує, чия це сумка."
       },
       "question": {
         "interactionId": "en:lesson-11:session-42:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1693eb54f14d51e2c8e1d8995ddfc32796633f2213e31c4c3a6858836b5e1fba"
+  "introFingerprint": "83c6b57ca70c2b08eb6be1fa115ce141aff89ed5ddafeb82be547cc165969d9c"
 }

@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку: ключі у множині",
+      "prompt": "Виберіть форму be: ключі: їх кілька",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-37:i03:r1",
@@ -180,12 +180,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку: ключі у множині",
+      "accessibilityLabel": "Виберіть форму be: ключі: їх кілька",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку: ключи во множественном числе",
-          "uk": "Виберіть зв’язку: ключі у множині"
+          "uk": "Виберіть форму be: ключі: їх кілька"
         },
         "gappedTargetPhrase": "The keys ___ underneath the chair.",
         "gapOptions": [
@@ -209,7 +209,7 @@
             "correct": false,
             "testedDimension": "Виберіть зв’язку: ключі у множині",
             "feedbackByLocale": {
-              "ru": "Keys во множественном числе: are.",
+              "ru": "Keys в форме для нескольких: are.",
               "uk": "Keys у множині: are."
             }
           },
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку: одна драбина",
+      "prompt": "Виберіть форму be: одна драбина",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-37:i06:r1",
@@ -403,12 +403,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку: одна драбина",
+      "accessibilityLabel": "Виберіть форму be: одна драбина",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку: одна лестница",
-          "uk": "Виберіть зв’язку: одна драбина"
+          "uk": "Виберіть форму be: одна драбина"
         },
         "gappedTargetPhrase": "The ladder ___ against the wall.",
         "gapOptions": [
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4e8ed2e9a1e17a2fdeebc78cfacbab511ee2132aa764ce841fc770745b5318c7"
+  "learnerFingerprint": "53728df819693e427e2196bfea2527ddfd868b7e0b4f613f16f1e778ac6a5934"
 }

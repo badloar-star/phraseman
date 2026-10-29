@@ -892,7 +892,7 @@
             "correct": false,
             "testedDimension": "Поруч із дверима були три паперові пакети. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Нужно прошлое и множественное число: were.",
+              "ru": "Нужно прошлое и форма для нескольких: were.",
               "uk": "Потрібен минулий час і множина: were."
             }
           }
@@ -1122,5 +1122,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "34c52e0c35e89f7d034aeb6a0af71e856dbdc3caf2b5692b9c0ba9ea8ba1f805"
+  "learnerFingerprint": "082ba9fc6804919c2cf819018960dbbe1ca82cd3a934d5fc16a0e08ab5fb093f"
 }

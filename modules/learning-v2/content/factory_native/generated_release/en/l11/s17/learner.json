@@ -220,7 +220,7 @@
             "correct": false,
             "testedDimension": "На кровати была одна простыня. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Are — настоящее и множественное число; здесь was.",
+              "ru": "Are — настоящее и форма для нескольких; здесь was.",
               "uk": "Are — теперішній час і множина; тут was."
             }
           }
@@ -895,7 +895,7 @@
             "correct": false,
             "testedDimension": "В комнате была одна перекладина для полотенец. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Are — настоящее и множественное число; здесь was.",
+              "ru": "Are — настоящее и форма для нескольких; здесь was.",
               "uk": "Are — теперішній час і множина; тут was."
             }
           }
@@ -1130,5 +1130,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1be0202fbfb383988b7faa8b193c614d737464d77d63776822baed77877538d8"
+  "learnerFingerprint": "31bb810d31be20b50fc066711d5183ec985e3396a6415cb91dd33debed6a6f4b"
 }

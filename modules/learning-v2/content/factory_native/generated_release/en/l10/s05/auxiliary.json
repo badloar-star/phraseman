@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-10:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-05:intro3:r2": {
-          "ru": "Boxes во множественном числе: are.",
-          "uk": "Boxes у множині: are."
+          "ru": "Boxes в форме для нескольких: are.",
+          "uk": "Boxes у формі для кількох: are."
         },
         "en:lesson-10:session-05:intro3:r3": {
           "ru": "Перед in нужна связка are.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "19ae452b8006e0883c4d1b0d6c1871c1b6bad5089d01b22211981efc5a715f6d"
+  "auxiliaryFingerprint": "62f075bc6cd9cf11e2c1c33ecaade4d8e085bf74734a683b72d3f5e1d98bf498"
 }

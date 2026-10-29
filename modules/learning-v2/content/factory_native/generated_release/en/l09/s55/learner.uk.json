@@ -162,7 +162,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для agenda",
+      "prompt": "Виберіть is або are: agenda",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-55:i03:r1",
@@ -179,12 +179,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для agenda",
+      "accessibilityLabel": "Виберіть is або are: agenda",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку для agenda",
-          "uk": "Виберіть зв’язку для agenda"
+          "uk": "Виберіть is або are: agenda"
         },
         "gappedTargetPhrase": "The agenda ___ on the table.",
         "gapOptions": [
@@ -208,7 +208,7 @@
             "correct": false,
             "testedDimension": "Виберіть зв’язку для agenda",
             "feedbackByLocale": {
-              "ru": "Agenda здесь в единственном числе: is.",
+              "ru": "Agenda здесь в форме для одного: is.",
               "uk": "Agenda тут в однині: is."
             }
           },
@@ -967,7 +967,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть артикль перед attendee",
+      "prompt": "Виберіть слово перед attendee",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-55:i15:r1",
@@ -984,12 +984,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть артикль перед attendee",
+      "accessibilityLabel": "Виберіть слово перед attendee",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите артикль перед attendee",
-          "uk": "Виберіть артикль перед attendee"
+          "uk": "Виберіть слово перед attendee"
         },
         "gappedTargetPhrase": "___ attendee is nodding.",
         "gapOptions": [
@@ -1022,7 +1022,7 @@
             "correct": false,
             "testedDimension": "Виберіть артикль перед attendee",
             "feedbackByLocale": {
-              "ru": "Are не артикль; здесь нужен an.",
+              "ru": "Здесь нужно an, а не are.",
               "uk": "Are не артикль; тут потрібне an."
             }
           }
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2f31631d72850099b9177dc907479e9c036825060226a6e15b40d0e99b7a61f3"
+  "learnerFingerprint": "8c24cbda8cdcad023533f15c8dc0b73fbb0179d73538fb6f5ba803baf8275cb4"
 }

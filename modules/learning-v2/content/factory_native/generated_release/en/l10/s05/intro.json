@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-05",
   "learningOutcomeByLocale": {
-    "ru": "I am waiting on the porch; We are eating on the patio; The boxes are in the attic",
-    "uk": "I am waiting on the porch; We are eating on the patio; The boxes are in the attic"
+    "ru": "сказать, где вы сейчас находитесь у дома: I am waiting on the porch.",
+    "uk": "сказати, де ви зараз біля будинку: I am waiting on the porch."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Знайти коробки на горищі"
       },
       "bodyByLocale": {
-        "ru": "После переезда друг ищет коробки. Вы объясняете: The boxes are in the attic — «Коробки на чердаке». Attic означает «чердак», помещение под крышей. Сначала the boxes — известные вам коробки, затем are и место in the attic. Boxes во множественном числе, поэтому нужна are. Предлог in показывает, что коробки внутри помещения. Здесь сообщаем, где они находятся; отдельного глагола действия не нужно.",
-        "uk": "Після переїзду друг шукає коробки. Ви пояснюєте: The boxes are in the attic — «Коробки на горищі». Attic означає «горище», приміщення під дахом. Спочатку the boxes — відомі вам коробки, потім are і місце in the attic. Boxes у множині, тому потрібна are. Прийменник in показує, що коробки всередині приміщення. Тут повідомляємо, де вони розташовані; окремого дієслова дії не потрібно."
+        "ru": "После переезда друг ищет коробки. Вы объясняете: The boxes are in the attic — «Коробки на чердаке». Attic означает «чердак», помещение под крышей. Сначала the boxes — известные вам коробки, затем are и место in the attic. Boxes в форме для нескольких, поэтому нужна are. Предлог in показывает, что коробки внутри помещения. Здесь сообщаем, где они находятся; отдельного глагола действия не нужно.",
+        "uk": "Після переїзду друг шукає коробки. Ви пояснюєте: The boxes are in the attic — «Коробки на горищі». Attic означає «горище», приміщення під дахом. Спочатку the boxes — відомі вам коробки, потім are і місце in the attic. Boxes у формі для кількох, тому потрібна are. Прийменник in показує, що коробки всередині приміщення. Тут повідомляємо, де вони розташовані; окремого дієслова дії не потрібно."
       },
       "question": {
         "interactionId": "en:lesson-10:session-05:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1abcec80160141cc3cbec73df0670a087c49e3e45540b4744316c31a15f9b757"
+  "introFingerprint": "8f6abc1dd9b0282a9892cc4b7e9086ca64a21ec9617ed6eb24ed6dbb14baddeb"
 }

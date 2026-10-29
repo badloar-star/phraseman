@@ -433,7 +433,7 @@
             "correct": false,
             "testedDimension": "Тепер гель поруч із вами: виберіть теперішній час",
             "feedbackByLocale": {
-              "ru": "Здесь единственное число: is.",
+              "ru": "Здесь форма для одного: is.",
               "uk": "Тут однина: is."
             }
           },
@@ -666,7 +666,7 @@
             "correct": false,
             "testedDimension": "Згадайте вчорашнє місце паперу",
             "feedbackByLocale": {
-              "ru": "Are — настоящее и множественное число. Здесь was.",
+              "ru": "Are — настоящее и форма для нескольких. Здесь was.",
               "uk": "Are — теперішній час і множина. Тут was."
             }
           }
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d60ac41fff1d9a0a38a29d9412c6f65ef5a06433f6a111bb1f6261d774a878f7"
+  "learnerFingerprint": "b14fb5d312a60470521ea311f59df228111c17ae6fcd6b51b97906e411479fd0"
 }

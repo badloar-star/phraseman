@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку после he",
+      "prompt": "Выберите форму be после he",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-41:i03:r1",
@@ -180,11 +180,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку после he",
+      "accessibilityLabel": "Выберите форму be после he",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку после he",
+          "ru": "Выберите форму be после he",
           "uk": "Виберіть зв’язку після he"
         },
         "gappedTargetPhrase": "Perhaps he ___ on the bus.",
@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку после he",
+      "prompt": "Выберите форму be после he",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-41:i06:r1",
@@ -402,11 +402,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку после he",
+      "accessibilityLabel": "Выберите форму be после he",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку после he",
+          "ru": "Выберите форму be после he",
           "uk": "Виберіть зв’язку після he"
         },
         "gappedTargetPhrase": "He ___ probably at home.",
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку в описании погоды",
+      "prompt": "Выберите форму be в описании погоды",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-41:i09:r1",
@@ -623,11 +623,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку в описании погоды",
+      "accessibilityLabel": "Выберите форму be в описании погоды",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку в описании погоды",
+          "ru": "Выберите форму be в описании погоды",
           "uk": "Виберіть зв’язку в описі погоди"
         },
         "gappedTargetPhrase": "It ___ quite cold.",
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1c9ebda699cdf6379f4750992921f99e17948e37c4d552191cd59e8d53c9e255"
+  "learnerFingerprint": "e6eefa7b5c91bba2b3573230e98234b61b6f6f003e8b2d64b75a5e65a83ed83a"
 }

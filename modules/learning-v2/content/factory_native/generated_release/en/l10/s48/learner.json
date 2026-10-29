@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Один фрукт. Выберите связку",
+      "prompt": "Один фрукт. Выберите форму be",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-48:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Один фрукт. Выберите связку",
+      "accessibilityLabel": "Один фрукт. Выберите форму be",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Один фрукт. Выберите связку",
+          "ru": "Один фрукт. Выберите форму be",
           "uk": "Один фрукт. Виберіть зв’язку"
         },
         "gappedTargetPhrase": "This apricot ___ sweet.",
@@ -383,7 +383,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы чистите фрукт сейчас. Выберите вспомогательный глагол",
+      "prompt": "Вы чистите фрукт сейчас. Выберите do или does",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-48:i06:r1",
@@ -400,11 +400,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы чистите фрукт сейчас. Выберите вспомогательный глагол",
+      "accessibilityLabel": "Вы чистите фрукт сейчас. Выберите do или does",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы чистите фрукт сейчас. Выберите вспомогательный глагол",
+          "ru": "Вы чистите фрукт сейчас. Выберите do или does",
           "uk": "Ви чистите фрукт зараз. Виберіть допоміжне дієслово"
         },
         "gappedTargetPhrase": "I ___ peeling a grapefruit.",
@@ -825,7 +825,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Опишите готовность завтрака. Выберите связку",
+      "prompt": "Опишите готовность завтрака. Выберите форму be",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-48:i12:r1",
@@ -842,11 +842,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Опишите готовность завтрака. Выберите связку",
+      "accessibilityLabel": "Опишите готовность завтрака. Выберите форму be",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Опишите готовность завтрака. Выберите связку",
+          "ru": "Опишите готовность завтрака. Выберите форму be",
           "uk": "Опишіть готовність сніданку. Виберіть зв’язку"
         },
         "gappedTargetPhrase": "Breakfast ___ nearly ready.",
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "813c792689997a8146a85321ab2dad625c791d7ccdcb296ba543d8077a10422a"
+  "learnerFingerprint": "a7f8a68a967dc12f3c8490b7ff307a1c2065373ebea9a8997a104563129a5ffe"
 }

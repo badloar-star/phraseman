@@ -10,8 +10,8 @@
           "uk": "Два стільці: are, не is."
         },
         "en:lesson-10:session-39:intro1:r3": {
-          "ru": "После both здесь нужна chairs во множественном числе.",
-          "uk": "Після both тут потрібна chairs у множині."
+          "ru": "После both здесь нужна chairs в форме для нескольких.",
+          "uk": "Після both тут потрібна chairs у формі для кількох."
         }
       }
     },
@@ -23,8 +23,8 @@
           "uk": "З each person потрібна has."
         },
         "en:lesson-10:session-39:intro2:r3": {
-          "ru": "После each здесь нужна person в единственном числе.",
-          "uk": "Після each тут потрібна person в однині."
+          "ru": "После each здесь нужна person в форме для одного.",
+          "uk": "Після each тут потрібна person у формі для одного."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "54ad3e6a4a667fbbba216d2c7e0453f81c459e1aec881b4945cd7fc52f3a4759"
+  "auxiliaryFingerprint": "dbcc9ae4f0035cd754652b630836cfecc08c88c5bffbeabe631b8ae8362ec801"
 }

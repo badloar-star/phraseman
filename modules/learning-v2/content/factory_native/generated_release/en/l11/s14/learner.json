@@ -428,7 +428,7 @@
             "correct": false,
             "testedDimension": "Скажите, что несколько крекеров были не свежими",
             "feedbackByLocale": {
-              "ru": "Crackers — множественное число: were.",
+              "ru": "Crackers — форма для нескольких: were.",
               "uk": "Crackers — множина: were."
             }
           },
@@ -1106,5 +1106,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9de1e57fc6de3997409cf3acc0afc6eaae3581155ca8438f8ca32f4ba046fb92"
+  "learnerFingerprint": "59437f560dcb3ce9f6cab84f241868f071d43c5d1d85d1b8f065435f3e87d2a2"
 }

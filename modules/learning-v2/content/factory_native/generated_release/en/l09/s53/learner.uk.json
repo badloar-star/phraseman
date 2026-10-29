@@ -605,7 +605,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для acoustics у значенні звучання приміщення",
+      "prompt": "Виберіть is або are: acoustics — як звучить приміщення",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-53:i09:r1",
@@ -622,12 +622,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для acoustics у значенні звучання приміщення",
+      "accessibilityLabel": "Виберіть is або are: acoustics — як звучить приміщення",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку для acoustics в значении звучания помещения",
-          "uk": "Виберіть зв’язку для acoustics у значенні звучання приміщення"
+          "uk": "Виберіть is або are: acoustics — як звучить приміщення"
         },
         "gappedTargetPhrase": "The acoustics ___ good.",
         "gapOptions": [
@@ -651,7 +651,7 @@
             "correct": false,
             "testedDimension": "Виберіть зв’язку для acoustics у значенні звучання приміщення",
             "feedbackByLocale": {
-              "ru": "В этом значении acoustics во множественном числе: are.",
+              "ru": "В этом значении acoustics в форме для нескольких: are.",
               "uk": "У цьому значенні acoustics у множині: are."
             }
           },
@@ -1117,5 +1117,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d956b40f07aaa13bf9144f2e2f50446e6d7b6214b0cd0ff4cf7fef9b66bdb030"
+  "learnerFingerprint": "96e835b43db2d3fae0894f6aab044ee036439910066c209a9ebbe74879d2df97"
 }

@@ -828,7 +828,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите артикль перед одной ложкой",
+      "prompt": "Выберите слово перед одной ложкой",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-06:i12:r1",
@@ -845,11 +845,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите артикль перед одной ложкой",
+      "accessibilityLabel": "Выберите слово перед одной ложкой",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед одной ложкой",
+          "ru": "Выберите слово перед одной ложкой",
           "uk": "Виберіть артикль перед однією ложкою"
         },
         "gappedTargetPhrase": "I need ___ teaspoon.",
@@ -883,7 +883,7 @@
             "correct": false,
             "testedDimension": "Выберите артикль перед одной ложкой",
             "feedbackByLocale": {
-              "ru": "Одна исчисляемая ложка: a teaspoon.",
+              "ru": "Ложка одна: a teaspoon.",
               "uk": "Одна злічувана ложка: a teaspoon."
             }
           }
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "75f8f3758c110c63f9b09f74cb479e4221ae19dc5f4c88e74cb41e441e8713df"
+  "learnerFingerprint": "92f510ac21270b438d8ed2f6f3514d6f920b9a7cadfd4071d6b2f59df01fb27b"
 }

@@ -382,7 +382,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Опишіть овоч. Виберіть зв’язку",
+      "prompt": "Опишіть овоч. Виберіть форму be",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-46:i06:r1",
@@ -399,12 +399,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Опишіть овоч. Виберіть зв’язку",
+      "accessibilityLabel": "Опишіть овоч. Виберіть форму be",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Опишите овощ. Выберите связку",
-          "uk": "Опишіть овоч. Виберіть зв’язку"
+          "uk": "Опишіть овоч. Виберіть форму be"
         },
         "gappedTargetPhrase": "The cauliflower ___ fresh.",
         "gapOptions": [
@@ -824,7 +824,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку з множиною lentils",
+      "prompt": "Виберіть форму be з lentils (їх кілька)",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-46:i12:r1",
@@ -841,12 +841,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку з множиною lentils",
+      "accessibilityLabel": "Виберіть форму be з lentils (їх кілька)",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку с множественным lentils",
-          "uk": "Виберіть зв’язку з множиною lentils"
+          "uk": "Виберіть форму be з lentils (їх кілька)"
         },
         "gappedTargetPhrase": "The lentils ___ ready.",
         "gapOptions": [
@@ -870,7 +870,7 @@
             "correct": false,
             "testedDimension": "Виберіть зв’язку з множиною lentils",
             "feedbackByLocale": {
-              "ru": "Lentils — множественное число: are.",
+              "ru": "Lentils — форма для нескольких: are.",
               "uk": "Lentils — множина: are."
             }
           },
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b3e278c362fae535102d4ff8f7c4cc0238fcb1e8771b96d667c9f102da0741bf"
+  "learnerFingerprint": "3765d9e225e80fa518cce77c193692e039fef727c4210772bb0d0f55a8d57a9e"
 }

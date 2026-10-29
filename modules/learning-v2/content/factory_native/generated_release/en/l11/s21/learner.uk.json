@@ -219,7 +219,7 @@
             "correct": false,
             "testedDimension": "У саду було двоє кошенят. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Прошлое и множественное число: were.",
+              "ru": "Прошлое и форма для нескольких: were.",
               "uk": "Минулий час і множина: were."
             }
           }
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c87a10c2d2bb3b8a634f7139654cdb536eb29098077bd98cc52245e99aa5f147"
+  "learnerFingerprint": "3b33b63f9314eca34733050be05b1abee437bef5d50466f686ad8634650a2669"
 }

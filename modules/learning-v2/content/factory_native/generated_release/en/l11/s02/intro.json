@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-02",
   "learningOutcomeByLocale": {
-    "ru": "was/were; yesterday и right now",
-    "uk": "was/were; yesterday і right now"
+    "ru": "сказать, где вчера была вещь: The soap was on the shelf.",
+    "uk": "сказати, де вчора була річ: The soap was on the shelf."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Де вчора було мило"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете, где лежало мыло во время вчерашней уборки: The soap was on the shelf yesterday — «Мыло вчера было на полке». Сначала называем вещь — the soap, затем ставим was, после него место — on the shelf, а в конце время — yesterday. Soap здесь неисчисляемое, поэтому нужна was, не were. Yesterday относит сообщение к прошлому: настоящее is здесь не подходит.",
-        "uk": "Ви згадуєте, де лежало мило під час учорашнього прибирання: The soap was on the shelf yesterday — «Мило вчора було на полиці». Спочатку називаємо річ — the soap, потім ставимо was, після нього місце — on the shelf, а наприкінці час — yesterday. Soap тут незлічуване, тому потрібна was, не were. Yesterday відносить повідомлення до минулого: теперішнє is тут не підходить."
+        "ru": "Вы вспоминаете, где лежало мыло во время вчерашней уборки: The soap was on the shelf yesterday — «Мыло вчера было на полке». Сначала называем вещь — the soap, затем ставим was, после него место — on the shelf, а в конце время — yesterday. Soap здесь не считается поштучно, поэтому нужна was, не were. Yesterday относит сообщение к прошлому: настоящее is здесь не подходит.",
+        "uk": "Ви згадуєте, де лежало мило під час учорашнього прибирання: The soap was on the shelf yesterday — «Мило вчора було на полиці». Спочатку називаємо річ — the soap, потім ставимо was, після нього місце — on the shelf, а наприкінці час — yesterday. Soap тут не рахується поштучно, тому потрібна was, не were. Yesterday відносить повідомлення до минулого: теперішнє is тут не підходить."
       },
       "question": {
         "interactionId": "en:lesson-11:session-02:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Де був папір"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, куда вы положили туалетную бумагу во время уборки. Вы вспоминаете её место: The toilet paper was in the cupboard — «Туалетная бумага была в шкафу». Собираем предложение: the toilet paper + was + in the cupboard. Paper здесь неисчисляемое, поэтому используем was. The показывает, что речь о той самой бумаге, которую вы убирали; in означает, что она находилась внутри шкафа.",
-        "uk": "Друг запитує, куди ви поклали туалетний папір під час прибирання. Ви згадуєте його місце: The toilet paper was in the cupboard — «Туалетний папір був у шафці». Складаємо речення: the toilet paper + was + in the cupboard. Paper тут незлічуване, тому використовуємо was. The показує, що йдеться про той самий папір, який ви прибирали; in означає, що він був усередині шафки."
+        "ru": "Друг спрашивает, куда вы положили туалетную бумагу во время уборки. Вы вспоминаете её место: The toilet paper was in the cupboard — «Туалетная бумага была в шкафу». Собираем предложение: the toilet paper + was + in the cupboard. Paper здесь не считается поштучно, поэтому используем was. The показывает, что речь о той самой бумаге, которую вы убирали; in означает, что она находилась внутри шкафа.",
+        "uk": "Друг запитує, куди ви поклали туалетний папір під час прибирання. Ви згадуєте його місце: The toilet paper was in the cupboard — «Туалетний папір був у шафці». Складаємо речення: the toilet paper + was + in the cupboard. Paper тут не рахується поштучно, тому використовуємо was. The показує, що йдеться про той самий папір, який ви прибирали; in означає, що він був усередині шафки."
       },
       "question": {
         "interactionId": "en:lesson-11:session-02:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "dd42094d98dab8deffe159da9bd4246061f94c022e2a8b4256719ded35e4114d"
+  "introFingerprint": "5020dbb718f325ba169e612d8934893631dc28ef435b862cefc43f952c60dfc1"
 }

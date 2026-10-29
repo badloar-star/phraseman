@@ -605,7 +605,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово перед tights во множественном числе",
+      "prompt": "Выберите слово перед tights: их несколько",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-12:i09:r1",
@@ -622,11 +622,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово перед tights во множественном числе",
+      "accessibilityLabel": "Выберите слово перед tights: их несколько",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово перед tights во множественном числе",
+          "ru": "Выберите слово перед tights: их несколько",
           "uk": "Виберіть слово перед tights у множині"
         },
         "gappedTargetPhrase": "I need ___ tights.",
@@ -651,7 +651,7 @@
             "correct": false,
             "testedDimension": "Выберите слово перед tights во множественном числе",
             "feedbackByLocale": {
-              "ru": "Tights — множественное число, a не подходит.",
+              "ru": "Tights — форма для нескольких, a не подходит.",
               "uk": "Tights — множина, a не підходить."
             }
           },
@@ -660,7 +660,7 @@
             "correct": false,
             "testedDimension": "Выберите слово перед tights во множественном числе",
             "feedbackByLocale": {
-              "ru": "Tights — множественное число, an не подходит.",
+              "ru": "Tights — форма для нескольких, an не подходит.",
               "uk": "Tights — множина, an не підходить."
             }
           }
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6b17de1a325855d129322b2297fb3c7ca67a904929745d0ad38f5676b3ef82c9"
+  "learnerFingerprint": "546f7404340f2a772fd45eea32a9b62ca7c75212b1bb75b06a570571f17e5819"
 }

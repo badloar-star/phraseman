@@ -658,7 +658,7 @@
             "correct": false,
             "testedDimension": "На прошлогоднем фото двое мужчин были лысыми. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Прошлое, множественное число: were.",
+              "ru": "Прошлое, форма для нескольких: were.",
               "uk": "Минулий час, множина: were."
             }
           }
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1e58628f8f1cd33b86d480d7414277543e71ab5afed72773abb226e8ff95d87a"
+  "learnerFingerprint": "d1dff9db4c53de5eb0ffa118092dec661c38eb230c128a43c97dfb9428474e42"
 }

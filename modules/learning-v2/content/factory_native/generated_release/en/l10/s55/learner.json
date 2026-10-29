@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку: одна комната",
+      "prompt": "Выберите форму be: одна комната",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-55:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку: одна комната",
+      "accessibilityLabel": "Выберите форму be: одна комната",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку: одна комната",
+          "ru": "Выберите форму be: одна комната",
           "uk": "Виберіть зв’язку: одна кімната"
         },
         "gappedTargetPhrase": "My room ___ untidy.",
@@ -605,7 +605,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку: ботинки во множественном числе",
+      "prompt": "Выберите форму be: ботинки: их несколько",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-55:i09:r1",
@@ -622,11 +622,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку: ботинки во множественном числе",
+      "accessibilityLabel": "Выберите форму be: ботинки: их несколько",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку: ботинки во множественном числе",
+          "ru": "Выберите форму be: ботинки: их несколько",
           "uk": "Виберіть зв’язку: черевики у множині"
         },
         "gappedTargetPhrase": "These boots ___ uncomfortable.",
@@ -651,7 +651,7 @@
             "correct": false,
             "testedDimension": "Выберите связку: ботинки во множественном числе",
             "feedbackByLocale": {
-              "ru": "Множественное число: are.",
+              "ru": "Форма для нескольких: are.",
               "uk": "Множина: are."
             }
           },
@@ -827,7 +827,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку после I",
+      "prompt": "Выберите форму be после I",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-55:i12:r1",
@@ -844,11 +844,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку после I",
+      "accessibilityLabel": "Выберите форму be после I",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку после I",
+          "ru": "Выберите форму be после I",
           "uk": "Виберіть зв’язку після I"
         },
         "gappedTargetPhrase": "I ___ not ready yet.",
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7c9f37ce29bf2a29fad13db232398c5aa13b468fccda22208e2969bfe201fb67"
+  "learnerFingerprint": "1a0fab3c30b1d919052a22345fa9caa2d5e4359740a62d199463f8127a2e1223"
 }

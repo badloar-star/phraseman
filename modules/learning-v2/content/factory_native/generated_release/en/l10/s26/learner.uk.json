@@ -828,7 +828,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для однієї порції",
+      "prompt": "Виберіть is або are: одна порція",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-26:i12:r1",
@@ -845,12 +845,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для однієї порції",
+      "accessibilityLabel": "Виберіть is або are: одна порція",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку для одной порции",
-          "uk": "Виберіть зв’язку для однієї порції"
+          "uk": "Виберіть is або are: одна порція"
         },
         "gappedTargetPhrase": "This portion ___ small.",
         "gapOptions": [
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "254f0b2512b61909bbc8a495bf0ac759c828d503f3444f4dcfb9e05046121834"
+  "learnerFingerprint": "1adc24dd5578ea58fd4a8fee9d8cf255f79bcf5ea05ae63d675f78d6098dd9b8"
 }

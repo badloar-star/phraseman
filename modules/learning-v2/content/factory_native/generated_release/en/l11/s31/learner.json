@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "В магазине были две примерочные. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Прошлое, множественное число: were.",
+              "ru": "Прошлое, форма для нескольких: were.",
               "uk": "Минулий час, множина: were."
             }
           }
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "428ee5f1e8d9fe897a9e03463a04a035704a0d29e144b3d0ca5e05463fee01d1"
+  "learnerFingerprint": "e28f4129d8c3057018a81e39ef4f255389b2231d7f3f4745dc3b85124afb980f"
 }

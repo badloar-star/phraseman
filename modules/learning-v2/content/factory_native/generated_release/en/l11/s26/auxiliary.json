@@ -10,8 +10,8 @@
           "uk": "Учора: was, не is."
         },
         "en:lesson-11:session-26:intro1:r3": {
-          "ru": "Food здесь неисчисляемое: was.",
-          "uk": "Food тут незлічуване: was."
+          "ru": "Food здесь не считается поштучно: was.",
+          "uk": "Food тут не рахується поштучно: was."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "097191b4ba06da1bb2785e98f26da95657e365ca4ba4f9dbb6673fa6ae0c7b73"
+  "auxiliaryFingerprint": "41d0f5436f115f8abb381f93d28e81b85ab8d2949b93f6b6d1758f292a46fe73"
 }

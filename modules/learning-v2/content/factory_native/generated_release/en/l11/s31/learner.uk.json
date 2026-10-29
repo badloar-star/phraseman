@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "У магазині були дві примірювальні. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Прошлое, множественное число: were.",
+              "ru": "Прошлое, форма для нескольких: were.",
               "uk": "Минулий час, множина: were."
             }
           }
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "021bcb03e841e0f2a2840802219497aa0449c69d8f61a9b88c914698c715ec49"
+  "learnerFingerprint": "688d4b9196e2605b4db9d7cf52d285b31a54983b3dd7b2be7d106405a6af1a39"
 }

@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-09:session-56:intro3:q",
       "responseFeedbackById": {
         "en:lesson-09:session-56:intro3:r2": {
-          "ru": "В выражении do a headcount нужен артикль a.",
-          "uk": "У виразі do a headcount потрібний артикль a."
+          "ru": "В выражении do a headcount нужен a.",
+          "uk": "У виразі do a headcount потрібний a."
         },
         "en:lesson-09:session-56:intro3:r3": {
           "ru": "После are нужна форма doing.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "09a1dcbbd19243b604e357bb10a99a377b73449378f26839997a4ccc12a3569d"
+  "auxiliaryFingerprint": "ceb74682f4fe7dd2057111bf6564511f1cb5cda87bc5a73f9d29e684e9879a84"
 }

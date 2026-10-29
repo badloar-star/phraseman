@@ -603,7 +603,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Дождь продолжается. Выберите вспомогательный глагол",
+      "prompt": "Дождь продолжается. Выберите do или does",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-36:i09:r1",
@@ -620,11 +620,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Дождь продолжается. Выберите вспомогательный глагол",
+      "accessibilityLabel": "Дождь продолжается. Выберите do или does",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Дождь продолжается. Выберите вспомогательный глагол",
+          "ru": "Дождь продолжается. Выберите do или does",
           "uk": "Дощ триває. Виберіть допоміжне дієслово"
         },
         "gappedTargetPhrase": "It ___ still raining.",
@@ -1107,5 +1107,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7e1b43bdc0c2902f1db0a0399f9332e31f0407415badd24cd324d812c0244d63"
+  "learnerFingerprint": "b756039b633eaabe912bf795ea7c47511249e1042fe8e6cead44ec16e91626e0"
 }

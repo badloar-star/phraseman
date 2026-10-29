@@ -431,7 +431,7 @@
             "correct": false,
             "testedDimension": "Вчера плавки были в сумке. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Trunks — множественное число: were.",
+              "ru": "Trunks — форма для нескольких: were.",
               "uk": "Trunks — множина: were."
             }
           },
@@ -664,7 +664,7 @@
             "correct": false,
             "testedDimension": "Сейчас очки для плавания здесь. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Goggles — множественное число: are.",
+              "ru": "Goggles — форма для нескольких: are.",
               "uk": "Goggles — множина: are."
             }
           }
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "300e1584c0a6f79b293604d35280c363a3bb9c26b554ddb53a15ade04ea335e3"
+  "learnerFingerprint": "94d787d192e4abc78bab89b4c1fcf3803436400fb0f8f7f87e2a8e4c79f7fb4b"
 }

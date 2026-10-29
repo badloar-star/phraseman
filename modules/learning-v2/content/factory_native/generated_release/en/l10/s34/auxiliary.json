@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-10:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-34:intro3:r2": {
-          "ru": "После one нужен ticket в единственном числе.",
-          "uk": "Після one потрібен ticket в однині."
+          "ru": "После one нужен ticket в форме для одного.",
+          "uk": "Після one потрібен ticket у формі для одного."
         },
         "en:lesson-10:session-34:intro3:r3": {
           "ru": "Перед ticket здесь adult без s.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "c5bf1713a123e38dca1c21e79eaa17585bd5b8feade198e5a20b27c44cd01fa6"
+  "auxiliaryFingerprint": "3d12ec894734582ae64a50f103b0547aeefa70ce5429ff6036b2e5f83c6239c5"
 }

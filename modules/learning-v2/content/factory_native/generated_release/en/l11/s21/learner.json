@@ -219,7 +219,7 @@
             "correct": false,
             "testedDimension": "В саду были два котёнка. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Прошлое и множественное число: were.",
+              "ru": "Прошлое и форма для нескольких: were.",
               "uk": "Минулий час і множина: were."
             }
           }
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "012311983e79da743aed905360ab4aa1a5f1e07d3bcfbf1324e84ce7121da9e7"
+  "learnerFingerprint": "b24441f0a53e6bae26256aa24ba9045c72b9ee2b55a4d20658bd922d8c4c899b"
 }

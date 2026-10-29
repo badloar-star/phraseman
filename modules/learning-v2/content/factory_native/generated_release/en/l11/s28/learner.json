@@ -442,7 +442,7 @@
             "correct": false,
             "testedDimension": "Сейчас апельсиновый сок тёплый. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Juice неисчисляемое: is.",
+              "ru": "Juice не считается поштучно: is.",
               "uk": "Juice незлічуване: is."
             }
           }
@@ -1116,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f7bb15b8729d5909ba24c596ba952ad0a7087312ccb6193c7aa70fc0e5ecf06c"
+  "learnerFingerprint": "728074534dc3d5dbcc1a91efe1ec9023c71f6480bb27ca484d435fb7f8604920"
 }

@@ -8,10 +8,10 @@ type Nine = Readonly<{ ru: string; uk: string; en: string; es: string; ptBr: str
 
 const T = {
   place: { ru: '{n} МЕСТО', uk: '{n} МІСЦЕ', en: 'PLACE {n}', es: 'PUESTO {n}', ptBr: '{n}º LUGAR', vi: 'HẠNG {n}', id: 'PERINGKAT {n}', tr: '{n}. SIRA', pl: 'MIEJSCE {n}' },
-  packOfMonth: { ru: 'Набор месяца', uk: 'Набір місяця', en: 'Pack of the month', es: 'Paquete del mes', ptBr: 'Pacote do mês', vi: 'Bộ thẻ của tháng', id: 'Paket bulan ini', tr: 'Ayın paketi', pl: 'Zestaw miesiąca' },
+  packOfMonth: { ru: 'Набор месяца', uk: 'Набір місяця', en: 'Pack of the month', es: 'Pack del mes', ptBr: 'Pacote do mês', vi: 'Bộ thẻ của tháng', id: 'Paket bulan ini', tr: 'Ayın paketi', pl: 'Zestaw miesiąca' },
   received: { ru: 'Награда получена!', uk: 'Нагороду отримано!', en: 'Reward received!', es: '¡Premio recibido!', ptBr: 'Prêmio recebido!', vi: 'Đã nhận thưởng!', id: 'Hadiah diterima!', tr: 'Ödül alındı!', pl: 'Nagroda odebrana!' },
   congrats: { ru: 'Поздравляем!', uk: 'Вітаємо!', en: 'Congratulations!', es: '¡Felicidades!', ptBr: 'Parabéns!', vi: 'Chúc mừng!', id: 'Selamat!', tr: 'Tebrikler!', pl: 'Gratulacje!' },
-  yourPack: { ru: 'Твой набор «{title}»', uk: 'Твій набір «{title}»', en: 'Your pack “{title}”', es: 'Tu paquete «{title}»', ptBr: 'Seu pacote “{title}”', vi: 'Bộ thẻ “{title}” của bạn', id: 'Paketmu “{title}”', tr: '“{title}” paketin', pl: 'Twój zestaw „{title}”' },
+  yourPack: { ru: 'Твой набор «{title}»', uk: 'Твій набір «{title}»', en: 'Your pack “{title}”', es: 'Tu pack «{title}»', ptBr: 'Seu pacote “{title}”', vi: 'Bộ thẻ “{title}” của bạn', id: 'Paketmu “{title}”', tr: '“{title}” paketin', pl: 'Twój zestaw „{title}”' },
   won: { ru: 'победил в конкурсе!', uk: 'переміг у конкурсі!', en: 'won the contest!', es: '¡ganó el concurso!', ptBr: 'venceu o concurso!', vi: 'đã thắng cuộc thi!', id: 'memenangkan kontes!', tr: 'yarışmayı kazandı!', pl: 'wygrał konkurs!' },
   finishedPlace: { ru: 'занял {n}-е место!', uk: 'посів {n}-е місце!', en: 'finished in place {n}!', es: '¡quedó en el puesto {n}!', ptBr: 'ficou em {n}º lugar!', vi: 'đạt hạng {n}!', id: 'meraih peringkat {n}!', tr: '{n}. oldu!', pl: 'zajął {n}. miejsce!' },
   plus1: { ru: 'Plus на 1 месяц', uk: 'Plus на 1 місяць', en: 'Plus for 1 month', es: 'Plus por 1 mes', ptBr: 'Plus por 1 mês', vi: 'Plus 1 tháng', id: 'Plus 1 bulan', tr: '1 ay Plus', pl: 'Plus na 1 miesiąc' },

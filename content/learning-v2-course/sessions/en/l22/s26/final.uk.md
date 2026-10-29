@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обираєте речі для тепла й зручності.
 
-**Що ви опануєте:** determiner|adjective + one|ones
+**Що ви опануєте:** не повторювати назву речі: this one, the red ones
 **Нові слова:** thermal, padded, non-slip, cushioned
 
 ## Інтро 1

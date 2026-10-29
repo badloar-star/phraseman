@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте змінені деталі поїздки.
 
-**Що ви опануєте:** another + singular noun; other + noun
+**Що ви опануєте:** попросити ще одну річ або вибрати інші: another cup, other cups
 **Нові слова:** train service, departure gate, travel date, seat number
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете условия покупки и оплаты.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** ask for a receipt, get a refund, try a sample, pay separately
 
 ## Интро 1

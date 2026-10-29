@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы предлагаете помочь с ежедневными делами.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** water the plants, feed the cat, walk the dog, empty the bin
 
 ## Интро 1

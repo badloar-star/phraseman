@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете порядок действий перед вылетом.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** check in online, drop off my bag, go through security, join the queue
 
 ## Интро 1

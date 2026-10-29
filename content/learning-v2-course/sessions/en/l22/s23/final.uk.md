@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви домовляєтеся про місця й поїздку.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** save a seat, change seats, sit by the window, get a lift
 
 ## Інтро 1

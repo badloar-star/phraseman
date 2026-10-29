@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете варианты в гостинице.
 
-**Что вы освоите:** another + singular noun; other + noun
+**Что вы освоите:** попросить ещё одну вещь или выбрать другие: another cup, other cups
 **Новые слова:** room type, bed size, room rate, breakfast time
 
 ## Интро 1

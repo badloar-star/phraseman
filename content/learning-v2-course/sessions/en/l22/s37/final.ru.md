@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете, зачем меняете привычный план.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** make a fresh start, have a backup plan, try a different approach, get a change of scene
 
 ## Интро 1

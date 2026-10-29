@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете вещи и выбираете подходящие.
 
-**Что вы освоите:** determiner|adjective + one|ones
+**Что вы освоите:** не повторять название вещи: this one, the red ones
 **Новые слова:** hooded, patterned, loose-fitting, tight-fitting
 
 ## Интро 1

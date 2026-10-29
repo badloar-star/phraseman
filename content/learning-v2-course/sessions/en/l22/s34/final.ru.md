@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете изменившиеся детали поездки.
 
-**Что вы освоите:** another + singular noun; other + noun
+**Что вы освоите:** попросить ещё одну вещь или выбрать другие: another cup, other cups
 **Новые слова:** train service, departure gate, travel date, seat number
 
 ## Интро 1

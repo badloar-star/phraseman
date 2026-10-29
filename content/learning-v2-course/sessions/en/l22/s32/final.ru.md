@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете время и подтверждаете планы.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** pick a time, agree on a date, confirm a booking, send an invitation
 
 ## Интро 1

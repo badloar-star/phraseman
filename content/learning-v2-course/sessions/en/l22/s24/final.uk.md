@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте свої дії дорогою.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** catch a train, get a taxi, take a shortcut, cross the road
 
 ## Інтро 1

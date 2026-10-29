@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете оплату и проверяете сумму.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** pay in advance, check the bill, count the change, round up
 
 ## Интро 1

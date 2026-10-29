@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете о целях своих повседневных действий.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** stay dry, keep fit, eat well, get enough rest
 
 ## Интро 1

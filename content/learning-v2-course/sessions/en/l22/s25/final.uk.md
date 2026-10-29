@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте речі й обираєте відповідні.
 
-**Що ви опануєте:** determiner|adjective + one|ones
+**Що ви опануєте:** не повторювати назву речі: this one, the red ones
 **Нові слова:** hooded, patterned, loose-fitting, tight-fitting
 
 ## Інтро 1

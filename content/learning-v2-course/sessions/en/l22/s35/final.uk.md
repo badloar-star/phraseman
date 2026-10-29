@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте варіанти в готелі.
 
-**Що ви опануєте:** another + singular noun; other + noun
+**Що ви опануєте:** попросити ще одну річ або вибрати інші: another cup, other cups
 **Нові слова:** room type, bed size, room rate, breakfast time
 
 ## Інтро 1

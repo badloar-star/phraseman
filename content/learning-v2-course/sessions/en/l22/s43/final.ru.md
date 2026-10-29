@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете простые действия с телефоном.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** check my messages, turn down the volume, put my phone on silent, charge my phone
 
 ## Интро 1

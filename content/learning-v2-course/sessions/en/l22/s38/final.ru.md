@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете цель разговора.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** sort out a problem, find a solution, reach an agreement, make a decision
 
 ## Интро 1

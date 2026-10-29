@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте приготування до подорожі.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** book a flight, pack my bag, check my passport, print my ticket
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы представляете себя и поддерживаете собеседника.
 
-**Что вы освоите:** subject + verb + matching reflexive pronoun
+**Что вы освоите:** сказать, что вы сделали что-то сами или с собой: I hurt myself, she made it herself
 **Новые слова:** introduce yourself, look after yourself, believe in yourself, blame yourself
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы в гостях или на экскурсии и уточняете, что можно делать.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** take a photo, record a video, make a phone call, send a text
 
 ## Интро 1

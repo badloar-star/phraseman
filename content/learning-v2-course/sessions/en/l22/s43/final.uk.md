@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте прості дії з телефоном.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** check my messages, turn down the volume, put my phone on silent, charge my phone
 
 ## Інтро 1

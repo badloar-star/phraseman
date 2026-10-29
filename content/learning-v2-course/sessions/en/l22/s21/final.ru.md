@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы просите сделать перерыв в поездке или в гостях.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** get some fresh air, stretch my legs, have a lie-down, take a nap
 
 ## Интро 1

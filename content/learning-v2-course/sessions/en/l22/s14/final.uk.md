@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте умови покупки й оплати.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** ask for a receipt, get a refund, try a sample, pay separately
 
 ## Інтро 1

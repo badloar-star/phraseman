@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте навчання, підготовку й ставлення до власних помилок.
 
-**Що ви опануєте:** subject + verb + matching reflexive pronoun
+**Що ви опануєте:** сказати, що ви зробили щось самі або із собою: I hurt myself, she made it herself
 **Нові слова:** teach yourself, prepare yourself, remind yourself, forgive yourself
 
 ## Інтро 1

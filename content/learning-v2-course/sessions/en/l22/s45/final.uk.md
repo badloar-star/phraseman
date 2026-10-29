@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви питаєте, чи можна щось змінити в кімнаті.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** lock the door, turn off the lights, close the curtains, open the window
 
 ## Інтро 1

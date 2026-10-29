@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете учёбу, подготовку и отношение к своим ошибкам.
 
-**Что вы освоите:** subject + verb + matching reflexive pronoun
+**Что вы освоите:** сказать, что вы сделали что-то сами или с собой: I hurt myself, she made it herself
 **Новые слова:** teach yourself, prepare yourself, remind yourself, forgive yourself
 
 ## Интро 1

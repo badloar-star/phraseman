@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете свои действия по дороге.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** catch a train, get a taxi, take a shortcut, cross the road
 
 ## Интро 1

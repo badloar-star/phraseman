@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы просите разрешения в гостях и на работе.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** make a suggestion, ask a favour, use the toilet, leave early
 
 ## Интро 1

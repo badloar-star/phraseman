@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы договариваетесь о местах и поездке.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** save a seat, change seats, sit by the window, get a lift
 
 ## Интро 1

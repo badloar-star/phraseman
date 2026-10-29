@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви просите зробити перерву в подорожі або в гостях.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** get some fresh air, stretch my legs, have a lie-down, take a nap
 
 ## Інтро 1

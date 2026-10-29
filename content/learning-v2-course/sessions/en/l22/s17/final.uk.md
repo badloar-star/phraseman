@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви відрекомендовуєте себе й підтримуєте співрозмовника.
 
-**Що ви опануєте:** subject + verb + matching reflexive pronoun
+**Що ви опануєте:** сказати, що ви зробили щось самі або із собою: I hurt myself, she made it herself
 **Нові слова:** introduce yourself, look after yourself, believe in yourself, blame yourself
 
 ## Інтро 1

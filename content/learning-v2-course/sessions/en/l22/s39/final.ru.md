@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы вежливо просите дать вам слово.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** give an example, explain the problem, ask for advice, add a detail
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обираєте час і підтверджуєте плани.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** pick a time, agree on a date, confirm a booking, send an invitation
 
 ## Інтро 1

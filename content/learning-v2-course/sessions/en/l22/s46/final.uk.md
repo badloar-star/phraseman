@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пропонуєте допомогти зі щоденними справами.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** water the plants, feed the cat, walk the dog, empty the bin
 
 ## Інтро 1

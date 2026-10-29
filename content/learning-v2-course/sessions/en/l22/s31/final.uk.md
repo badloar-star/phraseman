@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте, як займаєтеся.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** make progress, stay focused, learn a poem by heart, check my work
 
 ## Інтро 1

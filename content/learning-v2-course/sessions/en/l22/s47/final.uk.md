@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обираєте, чим виконати прибирання.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** sweep the floor, mop the floor, vacuum the carpet, dust the shelves
 
 ## Інтро 1

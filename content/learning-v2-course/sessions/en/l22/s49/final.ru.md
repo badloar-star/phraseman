@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете приготовления к путешествию.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** book a flight, pack my bag, check my passport, print my ticket
 
 ## Интро 1

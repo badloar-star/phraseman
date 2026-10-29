@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы разбираете вещи и говорите, кому они принадлежат.
 
-**Что вы освоите:** possessive pronoun without following noun
+**Что вы освоите:** сказать, чья вещь, не называя её: It’s mine
 **Новые слова:** electric toothbrush, electric razor, hair straighteners, travel adapter
 
 ## Интро 1

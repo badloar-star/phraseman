@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете чувства, усилия и личные границы.
 
-**Что вы освоите:** subject + verb + matching reflexive pronoun
+**Что вы освоите:** сказать, что вы сделали что-то сами или с собой: I hurt myself, she made it herself
 **Новые слова:** express yourself, push yourself, treat yourself, defend yourself
 
 ## Интро 1

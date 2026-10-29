@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете вещи для тепла и удобства.
 
-**Что вы освоите:** determiner|adjective + one|ones
+**Что вы освоите:** не повторять название вещи: this one, the red ones
 **Новые слова:** thermal, padded, non-slip, cushioned
 
 ## Интро 1

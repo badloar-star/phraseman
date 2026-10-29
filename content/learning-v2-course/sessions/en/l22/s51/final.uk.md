@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви питаєте про купівлю та зміну квитка.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** buy a return ticket, reserve a seat, change my ticket, cancel my ticket
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте продукти в магазині.
 
-**Що ви опануєте:** determiner|adjective + one|ones
+**Що ви опануєте:** не повторювати назву речі: this one, the red ones
 **Нові слова:** ready-to-eat, freshly baked, pre-cooked, pre-sliced
 
 ## Інтро 1

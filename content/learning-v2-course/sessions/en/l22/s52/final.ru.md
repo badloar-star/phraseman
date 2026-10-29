@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете, как готовитесь к дороге.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** check the platform, reach the station, avoid the traffic, find a parking space
 
 ## Интро 1

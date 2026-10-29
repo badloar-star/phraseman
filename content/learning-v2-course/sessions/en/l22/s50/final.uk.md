@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте порядок дій перед вильотом.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** check in online, drop off my bag, go through security, join the queue
 
 ## Інтро 1

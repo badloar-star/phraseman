@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте, який квиток або послуга вам підходить.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** refundable, non-refundable, complimentary, reserved
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте, навіщо виконуєте дії вдома.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** hang out the washing, fold the clothes, put away the dishes, wipe the table
 
 ## Інтро 1

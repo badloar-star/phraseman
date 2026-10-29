@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы спрашиваете о покупке и изменении билета.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** buy a return ticket, reserve a seat, change my ticket, cancel my ticket
 
 ## Интро 1

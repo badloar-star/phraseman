@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете, как занимаетесь.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** make progress, stay focused, learn a poem by heart, check my work
 
 ## Интро 1

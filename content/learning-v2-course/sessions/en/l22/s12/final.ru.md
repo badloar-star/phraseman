@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы разбираете вещи и говорите, кому они принадлежат.
 
-**Что вы освоите:** possessive pronoun without following noun
+**Что вы освоите:** сказать, чья вещь, не называя её: It’s mine
 **Новые слова:** wash bag, overnight bag, tote bag, eye mask
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете действия на кухне.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** boil the water, chop the vegetables, fry an egg, bake a cake
 
 ## Интро 1

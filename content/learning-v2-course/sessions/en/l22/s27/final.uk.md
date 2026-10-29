@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви читаєте описи посуду, одягу й рушників.
 
-**Що ви опануєте:** determiner|adjective + one|ones
+**Що ви опануєте:** не повторювати назву речі: this one, the red ones
 **Нові слова:** dishwasher-safe, microwave-safe, machine-washable, absorbent
 
 ## Інтро 1

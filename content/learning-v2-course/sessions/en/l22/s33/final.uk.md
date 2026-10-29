@@ -2,7 +2,7 @@
 
 **Ситуація.** Запропонований варіант вам не підходить.
 
-**Що ви опануєте:** another + singular noun; other + noun
+**Що ви опануєте:** попросити ще одну річ або вибрати інші: another cup, other cups
 **Нові слова:** payment method, meeting place, delivery date, collection time
 
 ## Інтро 1

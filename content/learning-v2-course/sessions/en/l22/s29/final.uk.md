@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обираєте речі для тепла й зручності.
 
-**Що ви опануєте:** determiner|adjective + one|ones
+**Що ви опануєте:** не повторювати назву речі: this one, the red ones
 **Нові слова:** lace-up, slip-on, pull-on, fleece-lined
 
 ## Інтро 1

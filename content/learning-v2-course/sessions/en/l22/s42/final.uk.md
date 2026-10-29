@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте важливі дані телефоном.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** check the address, repeat the number, confirm the time, spell my name
 
 ## Інтро 1

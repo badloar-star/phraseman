@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте мету розмови.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** sort out a problem, find a solution, reach an agreement, make a decision
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ввічливо просите дати вам слово.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** give an example, explain the problem, ask for advice, add a detail
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете, какой билет или услуга вам подходит.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** refundable, non-refundable, complimentary, reserved
 
 ## Интро 1

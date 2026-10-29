@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете продукты в магазине.
 
-**Что вы освоите:** determiner|adjective + one|ones
+**Что вы освоите:** не повторять название вещи: this one, the red ones
 **Новые слова:** ready-to-eat, freshly baked, pre-cooked, pre-sliced
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про мету своїх повсякденних дій.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** stay dry, keep fit, eat well, get enough rest
 
 ## Інтро 1

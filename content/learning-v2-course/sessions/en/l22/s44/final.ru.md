@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете, зачем выполняете действия по дому.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** hang out the washing, fold the clothes, put away the dishes, wipe the table
 
 ## Интро 1

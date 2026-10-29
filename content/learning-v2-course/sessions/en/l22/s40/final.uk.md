@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте оплату й перевіряєте суму.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** pay in advance, check the bill, count the change, round up
 
 ## Інтро 1

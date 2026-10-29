@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте дії на кухні.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** boil the water, chop the vegetables, fry an egg, bake a cake
 
 ## Інтро 1

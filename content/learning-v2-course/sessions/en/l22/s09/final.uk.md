@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розбираєте речі й кажете, кому вони належать.
 
-**Що ви опануєте:** possessive pronoun without following noun
+**Що ви опануєте:** сказати, чия річ, не називаючи її: It’s mine
 **Нові слова:** phone case, travel mug, woolly hat, rain jacket
 
 ## Інтро 1

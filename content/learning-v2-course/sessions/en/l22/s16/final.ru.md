@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы звоните в ресторан и обсуждаете планы с друзьями.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** book a table, change a booking, cancel a booking, bring a friend
 
 ## Интро 1

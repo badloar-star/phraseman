@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы звоните в организацию и оставляете информацию.
 
-**Что вы освоите:** Could I + base verb?
+**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
 **Новые слова:** make an enquiry, leave my number, pass on a message, take a message
 
 ## Интро 1

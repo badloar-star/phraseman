@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви в гостях або на екскурсії й уточнюєте, що можна робити.
 
-**Що ви опануєте:** Could I + base verb?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
 **Нові слова:** take a photo, record a video, make a phone call, send a text
 
 ## Інтро 1

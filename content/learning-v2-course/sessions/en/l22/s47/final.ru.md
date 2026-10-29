@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете, чем выполнить уборку.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** sweep the floor, mop the floor, vacuum the carpet, dust the shelves
 
 ## Интро 1

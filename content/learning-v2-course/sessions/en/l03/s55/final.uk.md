@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви з подругою робите останній огляд покупок і називаєте, які вони: форма, матеріал, візерунок, стиль. Ці слова стоять після the: The shape is oval. Один предмет — is, кілька — are.
 
-**Що ви опануєте:** назвати ознаку речі й запитати про неї: The shape is oval, What is the material?
+**Що ви опануєте:** запитати, з чого зроблена річ: What is the material?
 **Нові слова:** shape, material, pattern, style
 **Повертаються:** oval, cotton, leather, floral, striped
 

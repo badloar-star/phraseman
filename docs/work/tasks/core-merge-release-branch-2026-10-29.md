@@ -61,3 +61,27 @@ devRunesGrant, devShardsGrant, flashcardPackGiftGrantGlobalBroadcast, flashcardP
 leagueActivateGroupBoost (Лиги удалены D54/D74), questGetActive, recalcCoinExchangeRate, referralDevGrantSpin (удалена D78/D81),
 resolveLearningV2CourseUnlockReceipt, shardsApplyDelta, videoWatchRunesClaim (доживает до min_app_version ≥ 2.0 — DEPLOY_NOW Шаг 2).
 Часть — сознательно удалённые из кода функции, которые зовут старые сборки (их удаляет из облака только координатор по имени).
+
+Governance-ID: TG-1F37DD96C24A
+(29.10 ~11:45: убрать из рабочей копии functions/src/index.ts незакоммиченные экспорты membership/invitation — сборка из рабочего дерева не должна включить персонал; spireFloorRecords не трогать — Темы)
+
+## Разбор 4 «денежных» функций без экспорта в HEAD (29.10 ~11:55, для координатора и владельца)
+Все 4 живы на бою (firebase functions:list: v2 callable, us-central1). Факты:
+| функция | исходник в HEAD | клиент 147/148 (da0a435e3) зовёт? | живой трафик (журнал функций) |
+|---|---|---|---|
+| authorizeLearningV2CourseUnlock | есть (learning_v2_course_unlock.ts:375), экспорта нет | нет — строки нет в app/components/hooks/modules | записей нет |
+| resolveLearningV2CourseUnlockReceipt | есть (learning_v2_course_unlock.ts:380), экспорта нет | строка есть (app/learning_v2_owner_repository_runtime.ts:441), но путь мёртвый: commitLearningV2AuthorizedCourseUnlock в клиенте никто не вызывает | записей нет |
+| aiDialogSyncPurchase | есть (ai_dialog_sync_purchase.ts:96), экспорта нет | нет | записей нет |
+| leagueActivateGroupBoost | нет исходника | нет (Лиги удалены D54/D74) | последний вызов 19.10 (9 записей 18–19.10, старые сборки) |
+Вывод: клиент 2.0.3 ни одну из 4 не вызывает → экспорт НЕ возвращаю (поимённые выкладки их не трогают).
+Решение «удалить из облака или оставить» — владельцу через координатора; leagueActivateGroupBoost — кандидат на удаление
+по имени (как прочие функции удалённых разделов), когда старые сборки уйдут.
+
+## Рабочая копия functions/src/index.ts (29.10 ~11:45)
+Удалены 3 незакоммиченные строки Codex (экспорты membership/invitation + комментарий) — сборка из рабочего дерева не включит
+персонал. Осталась одна чужая строка export { spireFloorRecords } (Темы) — не трогал.
+
+## Поправка к сообщению коммита слияния 13f66f310
+В сообщении написано «adminStaff* exports kept as in release» — неверно: в index.ts взяты только боевые
+adminStaffIsolatedSession и adminGetProductStatistics; 7 membership/invitation не экспортируются (на бою их нет). Код верный.
+Выложенный SHA b053df5e8 — ДО слияния (b053df5e8 → 8fb602097 → 13f66f310): выгрузка выкладки шла по SHA со старта скрипта.

@@ -1,0 +1,15 @@
+10-15 14:18:50.753 I/ReactNativeJS( 5456): [ONB-STEP-WAIT] press testID=onboarding-finish
+10-15 14:18:50.761 I/ReactNativeJS( 5456): [ONB-STALL] name_finish:enter analyticsAllowed=false source=friends age=yes +0ms
+10-15 14:18:50.797 I/ReactNativeJS( 5456): [ONB-STALL] name_finish:multiSet_done +37ms
+10-15 14:18:50.826 I/ReactNativeJS( 5456): [ONB-STALL] name_finish:ageAttestation_done +65ms
+10-15 14:18:50.852 I/ReactNativeJS( 5456): [ONB-STALL] name_finish:consent_to_cloud_started +92ms
+10-15 14:18:50.861 I/ReactNativeJS( 5456): [ONB-PAYWALL-WAIT] effects:skip preparePaywall=false busy=false
+10-15 14:18:50.864 I/ReactNativeJS( 5456): [ONB-STEP-WAIT] go requested=trialReminder next=trialReminder
+10-15 14:18:50.868 I/ReactNativeJS( 5456): [ONB-STALL] name_finish:advance_done +108ms
+10-15 14:18:51.128 I/ReactNativeJS( 5456): [ONB-TAP] slide:start step=trialReminder from=name instant=false reduceMotion=false exitMs=260
+10-15 14:18:51.195 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=trialReminder поток стоял 320ms
+10-15 14:18:51.422 I/ReactNativeJS( 5456): [ONB-TAP] slide:exit_done step=trialReminder finished=true afterMs=296
+10-15 14:18:51.684 W/ReactNativeJS( 5456): [JS-STALL] onboarding step=trialReminder поток стоял 347ms
+10-15 14:18:51.709 I/ReactNativeJS( 5456): [ONB-TAP] slide:exit_stop step=trialReminder afterMs=582
+10-15 14:18:51.718 I/ReactNativeJS( 5456): [ONB-TAP] slide:enter shown=trialReminder
+10-15 14:18:51.725 I/ReactNativeJS( 5456): [ONB-STALL] {"step":"go_to_shown:trialReminder","ms":858}

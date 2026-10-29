@@ -1,0 +1,5 @@
+10-15 14:35:11.855 I/ReactNativeJS( 8801): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman:///","initial":true,"out":"/home"}'
+10-15 14:35:13.184 I/ReactNativeJS( 8801): '[SPIRE]', '[SPIRE-GATE]', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","where":"isSpireTabEnabled source=context"}'
+10-15 14:35:25.235 I/ReactNativeJS( 8801): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=streak_at_risk&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=streak_at_risk&next=/(tabs)/home"}'
+10-15 14:35:25.237 I/ReactNativeJS( 8801): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=streak_at_risk&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=streak_at_risk&next=/(tabs)/home"}'
+10-15 14:35:27.035 I/ReactNativeJS( 8801): [PUSH-TAP-DEV] simulate {"type":"streak_at_risk"}

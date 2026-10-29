@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "small_talk_neighbor",
+  "candidatePrefix": "dialog_scene_small_talk_neighbor_option_",
+  "concepts": [
+    "doorbell button and blank plaque",
+    "key and blank tag",
+    "welcome mat with inset patch",
+    "closed mailbox",
+    "minimal door panel and peephole"
+  ],
+  "style": "S2 neutral graphite clay / derived warm ivory, transparent alpha, separate white accent, no people",
+  "status": "Five dark/light variants generated; see neighbor-preparation-dark.log and neighbor-preparation-light.log for technical measures; unapproved until owner selects."
+}

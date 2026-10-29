@@ -31,7 +31,7 @@ export function hashLearningV2EnglishCourseBlueprintBodyV2(body: unknown): strin
 }
 
 export const LEARNING_V2_ENGLISH_OWNER_APPROVED_BLUEPRINT_FINGERPRINT_V2 =
-  "f776cf32cd9a46df28ce54ff548c29abd1b9722a76e243fedc30cf5109a418b0" as const;
+  "d956442e0946194e3de8105601ae993fe6f7932e7904cc3e4e972fc8444875da" as const;
 
 export const LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_BODY_V2 = Object.freeze({
   schemaVersion: "learning-v2-english-course-blueprint.v2" as const,

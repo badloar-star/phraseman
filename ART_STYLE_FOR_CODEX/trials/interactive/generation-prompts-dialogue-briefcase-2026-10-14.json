@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "category": "dialogue theme briefcase",
+  "optionsGenerated": 5,
+  "concepts": [
+    "front-facing hard attaché case with centered cyan latch",
+    "soft rectangular business case with broad cyan front panel",
+    "slim portfolio folder with cyan clasp",
+    "messenger bag with a cyan flap",
+    "compact front-facing work case with a narrow cyan side panel"
+  ],
+  "style": "S2 matte clay; true-alpha generated geometry; grayscale tone mapping produces dark graphite and light ivory; cyan temporary marker extracted as separate white .accent",
+  "measurements": {
+    "01": {"dark": {"accentFramePct": 2.53, "alphaTransparencyPct": 51.24, "alignment": "pass"}, "light": {"accentFramePct": 2.53, "alphaTransparencyPct": 51.24, "alignment": "pass"}},
+    "02": {"dark": {"accentFramePct": 21.933, "alphaTransparencyPct": 51.71, "alignment": "pass", "gate": "draft: accent exceeds 8% limit"}, "light": {"accentFramePct": 21.933, "alphaTransparencyPct": 51.71, "alignment": "pass", "gate": "draft: accent exceeds 8% limit"}},
+    "03": {"dark": {"accentFramePct": 1.2, "alphaTransparencyPct": 54.49, "alignment": "pass"}, "light": {"accentFramePct": 1.2, "alphaTransparencyPct": 54.49, "alignment": "pass"}},
+    "04": {"dark": {"accentFramePct": 20.274, "alphaTransparencyPct": 60.72, "alignment": "pass", "gate": "draft: accent exceeds 8% limit"}, "light": {"accentFramePct": 20.274, "alphaTransparencyPct": 60.72, "alignment": "pass", "gate": "draft: accent exceeds 8% limit"}},
+    "05": {"dark": {"accentFramePct": 7.565, "alphaTransparencyPct": 51.94, "alignment": "pass"}, "light": {"accentFramePct": 7.565, "alphaTransparencyPct": 51.94, "alignment": "pass"}}
+  },
+  "acceptance": "All five concepts are exposed in the trial workbench. Options 1, 3, and 5 meet current numeric gates; 2 and 4 remain drafts due to oversized accent areas. All remain unapproved pending owner review."
+}

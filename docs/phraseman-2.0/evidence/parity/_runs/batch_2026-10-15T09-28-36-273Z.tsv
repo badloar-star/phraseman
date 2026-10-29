@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-007	2026-10-15T09:29:25.877Z	error	13130	step_target_not_found:#account-link-row+ждали_metro_33мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T09-28-36-273Z/auth-gap-007.error.png	0

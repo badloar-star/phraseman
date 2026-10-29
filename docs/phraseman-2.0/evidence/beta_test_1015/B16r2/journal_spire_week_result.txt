@@ -1,0 +1,7 @@
+10-15 15:04:17.440 I/ReactNativeJS(14295): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman:///","initial":true,"out":"/home"}'
+10-15 15:04:18.943 I/ReactNativeJS(14295): '[SPIRE]', '[SPIRE-GATE]', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","where":"isSpireTabEnabled source=context"}'
+10-15 15:04:32.710 I/ReactNativeJS(14295): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=spire_week_result&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=spire_week_result&next=/(tabs)/home"}'
+10-15 15:04:32.711 I/ReactNativeJS(14295): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=spire_week_result&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=spire_week_result&next=/(tabs)/home"}'
+10-15 15:04:37.944 I/ReactNativeJS(14295): [PUSH-TAP-DEV] simulate {"type":"spire_week_result"}
+10-15 15:04:37.945 W/ReactNativeJS(14295): '[PUSH-TAP-DEV] after_route simulate', '{"notif":"spire_week_result","ok":true}'
+10-15 15:04:38.897 I/ReactNativeJS(14295): '[SPIRE-GATE] screen', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","locked":false,"previous":null,"preview":false,"config":"enabled","result":"screen_allowed"}'

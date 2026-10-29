@@ -6,6 +6,8 @@ exports.parseLearningV2CourseSessionIntroChildV1 = parseLearningV2CourseSessionI
 exports.materializeLearningV2CourseSessionIntroChildV1 = materializeLearningV2CourseSessionIntroChildV1;
 exports.parseLearningV2CourseSessionLearnerChildV1 = parseLearningV2CourseSessionLearnerChildV1;
 exports.materializeLearningV2CourseSessionLearnerChildV1 = materializeLearningV2CourseSessionLearnerChildV1;
+exports.bindLearningV2CourseSessionLearnerProjectionToSourceV1 = bindLearningV2CourseSessionLearnerProjectionToSourceV1;
+exports.learnerProjectionFingerprintV1 = learnerProjectionFingerprintV1;
 exports.parseLearningV2CourseSessionAuxiliaryChildV1 = parseLearningV2CourseSessionAuxiliaryChildV1;
 exports.materializeLearningV2CourseSessionAuxiliaryChildV1 = materializeLearningV2CourseSessionAuxiliaryChildV1;
 const generator_course_contract_1 = require("../content/generator_course_contract");
@@ -16,13 +18,19 @@ const course_session_limits_v1_1 = require("./course_session_limits_v1");
 exports.LEARNING_V2_COURSE_SESSION_INTRO_CHILD_SCHEMA_V1 = "learning-v2-course-session-intro-child.v1";
 exports.LEARNING_V2_COURSE_SESSION_LEARNER_CHILD_SCHEMA_V1 = "learning-v2-course-session-learner-child.v1";
 exports.LEARNING_V2_COURSE_SESSION_AUXILIARY_CHILD_SCHEMA_V1 = "learning-v2-course-session-auxiliary-child.v1";
-exports.LEARNING_V2_COURSE_SESSION_CLIENT_CHILD_MAX_BYTES_V1 = 256 * 1024;
+// Keep the client parser aligned with the release-package contract. Rich
+// learner projections can legitimately exceed 256 KiB after locale expansion,
+// while the release package already caps this child at 4 MiB.
+exports.LEARNING_V2_COURSE_SESSION_CLIENT_CHILD_MAX_BYTES_V1 = 4 * 1024 * 1024;
 const ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/u;
+const HASH_RE = /^[a-f0-9]{64}$/u;
 const LANGUAGE_RE = /^[a-z]{2,3}(?:-[A-Z][a-z]{3})?(?:-(?:[A-Z]{2}|[0-9]{3}))?$/u;
 const CONTROL_RE = /[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2060-\u2069\ufeff]/u;
 const RESERVED = new Set(["__proto__", "prototype", "constructor"]);
 const introHandles = new WeakSet();
 const learnerHandles = new WeakSet();
+const learnerRawByHandle = new WeakMap();
+const learnerProjectionFingerprintByHandle = new WeakMap();
 const auxiliaryHandles = new WeakSet();
 function fail() {
     throw new Error("learning_v2_course_session_client_child_invalid");
@@ -124,7 +132,7 @@ function preflight(value) {
     let nodes = 0;
     while (stack.length) {
         const current = stack.pop();
-        if (++nodes > 12_000 || current.depth > 20)
+        if (++nodes > 200_000 || current.depth > 64)
             fail();
         if (typeof current.value === "string") {
             if (current.value.length > 8_192 ||
@@ -136,7 +144,7 @@ function preflight(value) {
                 fail();
         }
         else if (Array.isArray(current.value)) {
-            if (current.value.length > 128)
+            if (current.value.length > 100_000)
                 fail();
             current.value.forEach((child) => stack.push({ value: child, depth: current.depth + 1 }));
         }
@@ -340,7 +348,7 @@ function parseLearningV2CourseSessionLearnerChildV1(raw) {
         !["standard", "rapid", "voice_heavy"].includes(String(value.interactionProfile)))
         fail();
     const ids = new Set();
-    const interactions = Object.freeze(value.interactions.map((entry, index) => {
+    const sourceInteractions = Object.freeze(value.interactions.map((entry, index) => {
         if (!record(entry))
             fail();
         exactKeys(entry, INTERACTION_KEYS);
@@ -421,8 +429,8 @@ function parseLearningV2CourseSessionLearnerChildV1(raw) {
         courseSessionId: id(value.courseSessionId),
         targetLanguage: value.targetLanguage,
         interactionProfile: value.interactionProfile,
-        interactions,
-        practiceInteractionCount: interactions.length,
+        interactions: sourceInteractions,
+        practiceInteractionCount: sourceInteractions.length,
         firstPracticeOrdinal: 4,
         evaluatorPayload: "absent_by_exact_schema",
         acceptedAnswerPayload: "absent_by_exact_schema",
@@ -440,16 +448,32 @@ function parseLearningV2CourseSessionLearnerChildV1(raw) {
         fail();
     const result = Object.freeze({
         ...body,
+        interactions: Object.freeze(sourceInteractions.map((interaction) => Object.freeze({
+            ...interaction,
+            modePayload: interaction.modePayload === null
+                ? null
+                : (0, mode_native_payload_v1_1.projectLearningV2ModeNativePayloadForLearnerV1)(interaction.modePayload, interaction.family),
+        }))),
         learnerFingerprint: value.learnerFingerprint,
     });
     learnerHandles.add(result);
+    learnerRawByHandle.set(result, raw);
     return result;
 }
 function materializeLearningV2CourseSessionLearnerChildV1(input) {
+    const interactions = Object.freeze(input.interactions.map((interaction) => Object.freeze({
+        ...interaction,
+        modePayload: interaction.modePayload === null
+            ? null
+            : (0, mode_native_payload_v1_1.projectLearningV2ModeNativePayloadForLearnerV1)(interaction.modePayload, interaction.family),
+    })));
     const body = {
         schemaVersion: exports.LEARNING_V2_COURSE_SESSION_LEARNER_CHILD_SCHEMA_V1,
-        ...input,
-        practiceInteractionCount: input.interactions.length,
+        courseSessionId: input.courseSessionId,
+        targetLanguage: input.targetLanguage,
+        interactionProfile: input.interactionProfile,
+        interactions,
+        practiceInteractionCount: interactions.length,
         firstPracticeOrdinal: 4,
         evaluatorPayload: "absent_by_exact_schema",
         acceptedAnswerPayload: "absent_by_exact_schema",
@@ -457,6 +481,32 @@ function materializeLearningV2CourseSessionLearnerChildV1(input) {
         releaseAuthority: false,
     };
     return parseLearningV2CourseSessionLearnerChildV1((0, decision_registry_1.canonicalJsonV1)({ ...body, learnerFingerprint: (0, decision_registry_1.hashCanonicalBody)(body) }));
+}
+/**
+ * Binds a server-verified learner-safe transport projection back to the
+ * immutable source learner fingerprint used by the audio/package join. The
+ * projected canonical bytes remain the only bytes that can be re-encoded.
+ */
+function bindLearningV2CourseSessionLearnerProjectionToSourceV1({ projectedLearner, projectedLearnerRaw, expectedProjectionFingerprint, sourceLearnerFingerprint, }) {
+    if (!learnerHandles.has(projectedLearner) ||
+        !HASH_RE.test(expectedProjectionFingerprint) ||
+        !HASH_RE.test(sourceLearnerFingerprint) ||
+        projectedLearner.learnerFingerprint !== expectedProjectionFingerprint ||
+        learnerRawByHandle.get(projectedLearner) !== projectedLearnerRaw)
+        fail();
+    const bound = Object.freeze({
+        ...projectedLearner,
+        learnerFingerprint: sourceLearnerFingerprint,
+    });
+    learnerHandles.add(bound);
+    learnerRawByHandle.set(bound, projectedLearnerRaw);
+    learnerProjectionFingerprintByHandle.set(bound, expectedProjectionFingerprint);
+    return bound;
+}
+function learnerProjectionFingerprintV1(value) {
+    if (!learnerHandles.has(value))
+        fail();
+    return learnerProjectionFingerprintByHandle.get(value) ?? value.learnerFingerprint;
 }
 const AUX_ROOT_KEYS = [
     "schemaVersion",
@@ -754,7 +804,10 @@ exports.encodeLearningV2CourseSessionIntroChildV1 = encodeLearningV2CourseSessio
 const encodeLearningV2CourseSessionLearnerChildV1 = (value) => {
     if (!learnerHandles.has(value))
         fail();
-    return (0, decision_registry_1.canonicalJsonV1)(value);
+    const raw = learnerRawByHandle.get(value);
+    if (!raw)
+        fail();
+    return raw;
 };
 exports.encodeLearningV2CourseSessionLearnerChildV1 = encodeLearningV2CourseSessionLearnerChildV1;
 const isLearningV2CourseSessionLearnerChildV1 = (value) => typeof value === "object" && value !== null && learnerHandles.has(value);

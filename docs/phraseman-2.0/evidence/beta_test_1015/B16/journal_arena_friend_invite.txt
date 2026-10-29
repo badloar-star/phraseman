@@ -1,0 +1,5 @@
+10-15 14:39:13.684 I/ReactNativeJS(10638): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman:///","initial":true,"out":"/home"}'
+10-15 14:39:15.041 I/ReactNativeJS(10638): '[SPIRE]', '[SPIRE-GATE]', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","where":"isSpireTabEnabled source=context"}'
+10-15 14:39:25.784 I/ReactNativeJS(10638): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=arena_friend_invite&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=arena_friend_invite&next=/(tabs)/home"}'
+10-15 14:39:25.785 I/ReactNativeJS(10638): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman://dev_state?notif=arena_friend_invite&next=/(tabs)/home","initial":false,"out":"/dev_state?notif=arena_friend_invite&next=/(tabs)/home"}'
+10-15 14:39:27.493 I/ReactNativeJS(10638): [PUSH-TAP-DEV] simulate {"type":"arena_friend_invite"}

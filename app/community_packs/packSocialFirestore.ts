@@ -1,3 +1,4 @@
+import { contestMonth } from '../../shared/community_month_contest';
 /**
  * Firestore-реализация соц-слоя наборов (Cards 2.1 §2): лайки и счётчик добавлений.
  *
@@ -102,10 +103,29 @@ function packRef(packId: string) {
  * `packAddedByMe()` в правилах честно запрещал писать отклик. `update`
  * бьёт ровно в ту ветку правил, которая для него и написана.
  */
-function firestoreTx(tx: any): PackSocialTx {
+let contestCapability: Promise<boolean> | null = null;
+/** Fail closed for prizes and preserve ordinary likes on servers predating contest rollout. */
+function contestVotesEnabled(): Promise<boolean> {
+  if (!contestCapability) contestCapability = firestore().collection('community_contest_config').doc('current').get()
+    .then(snap => snap.data()?.enabled === true)
+    .catch(error => { DebugLogger.warn('community-contest:capability', String(error?.code ?? 'unavailable')); return false; });
+  return contestCapability;
+}
+function firestoreTx(tx: any, contestEnabled = false): PackSocialTx {
+  const contestOpen = new Map<string, boolean>();
+  const writeContestVote = (packId: string, userId: string, liked: boolean) => {
+    if (contestEnabled && contestOpen.get(packId)) {
+      const monthId = contestMonth(Date.now()).id;
+      tx.set(packRef(packId).collection('contest_votes').doc(`${monthId}_${userId}`), {
+        monthId, userId, liked, updatedAt: firestore.FieldValue.serverTimestamp(),
+      }); // guard-ok: one snapshot per voter and month, frozen at month end
+    }
+  };
   return {
     async packExists(packId) {
       const snap = await tx.get(packRef(packId));
+      const publishedAt = Number(snap?.data()?.publishedAt);
+      contestOpen.set(packId, Number.isFinite(publishedAt) && publishedAt > 0 && publishedAt <= Date.now());
       return !!snap?.exists;
     },
     async hasMembership(kind, packId, userId) {
@@ -113,6 +133,7 @@ function firestoreTx(tx: any): PackSocialTx {
       return !!snap?.exists;
     },
     async setMembership(kind, packId, userId) {
+      if (kind === 'like') writeContestVote(packId, userId, true);
       // guard-ok: внутри runTransaction записи НЕ возвращают Promise (контракт
       // Firestore — атомарность даёт сама транзакция, отказ поднимется
       // исключением из runTransaction и логируется в вызывающей функции).
@@ -125,6 +146,7 @@ function firestoreTx(tx: any): PackSocialTx {
       });
     },
     async deleteMembership(kind, packId, userId) {
+      if (kind === 'like') writeContestVote(packId, userId, false);
       tx.delete(membershipRef(kind, packId, userId)); // guard-ok: транзакционная запись, не fire-and-forget
     },
     async bumpCounter(field, packId, delta) {
@@ -160,8 +182,9 @@ export async function setCommunityPackLikeRemote(
   }
   const startedAt = Date.now();
   try {
+    const contestEnabled = await contestVotesEnabled();
     const res = await firestore().runTransaction(async (tx: any) =>
-      applyPackLike(firestoreTx(tx), packId, userId, nextLiked),
+      applyPackLike(firestoreTx(tx, contestEnabled), packId, userId, nextLiked),
     );
     return { ...res, ok: true };
   } catch (e) {

@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "lesson20_lost_bag",
+  "candidatePrefix": "dialog_scene_lesson20_lost_bag_option_",
+  "concepts": [
+    "shoulder bag with blank tag",
+    "tote with locator token",
+    "backpack with front pocket marker",
+    "blank claim card and folded bag",
+    "empty pocket detail and search tag"
+  ],
+  "style": "S2 neutral clay dark/light pair, genuine alpha, white accent layer, no people",
+  "status": "Five candidates generated in both modes; detailed checks are in lost-bag-preparation-dark.log and lost-bag-preparation-light.log. All remain drafts."
+}

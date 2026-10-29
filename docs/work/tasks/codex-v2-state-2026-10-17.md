@@ -289,3 +289,23 @@ Governance-ID: TG-6D7E13F9097E
 
 Governance-ID: TG-06E4BE608D5F
 (21.10: №46 интро в проверке главы + защита finish + логи; №47 клиент синхронизации — решение владельца через координатора)
+
+Governance-ID: TG-97CB773D1B64
+(21.10: №22 продолжение с места, №25 голос без сердечек, №7 «Эпизод», починка learning_v2_session_runtime_contract — решения владельца)
+Governance-ID: TG-93B6DBF55ACC
+Governance-ID: TG-0BBE4B188E18
+(21.10: в очереди после коммита №22б — новый словарь Learning V2 по макету dictionary-v2.html вариант A + галочки уроков из B)
+Governance-ID: TG-63DF9838674A
+Governance-ID: TG-FBA1789F0608
+Governance-ID: TG-084AA29D8215 — вставка строк «Эпизод» от Переводчика (episode-strings-9-lang-2026-10-21.md) в session_copy/ChaptersCourse/horizon/voice headsup/resume card
+Governance-ID: TG-4C1297CCE11D — после падения ПК: вставка строк Переводчика «Эпизод» + общий прогон и коммит Learning V2
+Governance-ID: TG-F10F84425F3F — Сверка: «Новое слово» по-русски — журнал [V2-WORD-CARD] (лицо/оборот/причина переворота) до диагноза
+Governance-ID: TG-F10F84425F3F — словарь V2: колода lv2:<id> в deck_sources/deck_selection + реестр слов словаря (план learning-v2-dictionary-v2-plan-2026-10-22.md)
+Governance-ID: TG-9B3027746F1C — словарь V2: экран LearningV2DictionaryV2 + хук сохранения + тексты 9 языков + dev-маршрут для Сверки
+Governance-ID: TG-9B3027746F1C — router.ctx.js: dev-маршрут словаря V2 вырезается из сборки для стора
+Governance-ID: TG-731917C05453 — шрифты словаря V2 к шкале D145 (13/16); ключ продолжения эпизода в чистку при удалении аккаунта (согласование с ВХОД)
+Governance-ID: TG-85C279964509 — ключи learning_v2_episode_resume_v1:/dictionary_training_decks/cant_speak_until в стирание аккаунта (cloud_sync + guest_clean_classifier)
+Governance-ID: TG-D79447C14904 — экран теории урока Learning V2 (вид A): генератор, данные, шторка, dev-маршрут
+Governance-ID: TG-D79447C14904 — карта занятие→раздел теории для уроков 2–14 (scripts/learning_v2_theory_session_sections.json)
+Governance-ID: TG-D79447C14904 — TS2590 в factory_native_*.generated.ts: явный тип у Object.freeze в генераторе scripts/build_learning_v2_factory_native_manifest.mjs
+Governance-ID: TG-2AC45EB509DD — горизонты: фильтр рядов по раскрытому уроку (контракт карты с 20.09) + заглушки Animated/FONT_SCALE в тесте

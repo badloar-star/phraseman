@@ -126,15 +126,15 @@ try {
       await page.getByRole("button", { name: "Закрыть сравнение", exact: true }).click();
       await page.getByRole("button", { name: "I tired.", exact: true }).click();
       await page.locator('.fb[role="status"]').waitFor();
-      assert.equal(await page.locator(".explanation-units").count() > 0, true);
+      assert.equal(await page.locator(".explanation-units").count(), 0, "wrong answer must show no full phrase analysis");
       assert.equal(await page.getByRole("button", { name: "Дальше", exact: true }).isEnabled(), true);
       await page.locator("#home").click();
       assert.equal(await page.locator("button.card").count(), 186);
       assert.equal(await page.locator("button.card").nth(2).evaluate((node) => node.classList.contains("text-verified")), false);
       await page.locator("button.card").nth(1).click();
       await page.getByRole("button", { name: "I am tired.", exact: true }).click();
-      await page.locator('.fb[role="status"]').waitFor();
-      assert.equal(await page.locator(".explanation-units").count() > 0, true);
+      assert.equal(await page.locator('.fb[role="status"]').count(), 0, "correct answer must not display an explanation");
+      assert.equal(await page.locator(".explanation-units").count(), 0, "correct answer must not display a phrase analysis");
       assert.equal(await page.getByRole("button", { name: "Дальше", exact: true }).isEnabled(), true);
     } finally {
       await browser.close();

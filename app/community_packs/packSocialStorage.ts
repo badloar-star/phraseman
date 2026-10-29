@@ -6,6 +6,7 @@
  * локальное хранилище — источник правды для «моего» флага до синхронизации.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { captureAccountGeneration, isCurrentAccountGeneration, withAccountTransitionLock } from '../account_generation';
 import { DebugLogger } from '../debug-logger';
 import { devCommunitySetLiked, isDevCommunityLiked, isDevCommunityPackId } from '../dev_cards_state';
 
@@ -54,7 +55,17 @@ export async function isCommunityPackLikedLocally(packId: string): Promise<boole
 }
 
 /** Сохранить локальный флаг лайка; возвращает true, если состояние реально изменилось. */
-export async function setCommunityPackLikedLocally(packId: string, liked: boolean): Promise<boolean> {
+let likedWriteTail: Promise<unknown> = Promise.resolve();
+export function setCommunityPackLikedLocally(packId: string, liked: boolean): Promise<boolean> {
+  const account = captureAccountGeneration();
+  const pending = likedWriteTail.then(() => withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(account)) throw new Error('pack_like_account_changed');
+    return writeCommunityPackLikedLocally(packId, liked);
+  }));
+  likedWriteTail = pending.catch(() => undefined);
+  return pending;
+}
+async function writeCommunityPackLikedLocally(packId: string, liked: boolean): Promise<boolean> {
   if (isDevCommunityPackId(packId)) return devCommunitySetLiked(packId, liked);
   const cur = await loadLikedCommunityPackIds();
   const has = cur.includes(packId);

@@ -1,0 +1,6 @@
+id	time	result	detail	file
+coins-005	2026-10-15T09:15:35.830Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-15T08:58:15.312Z code_changed_at=2026-10-15T10:07:12+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/coins-005.png
+learn-032	2026-10-15T09:15:38.135Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-15T08:59:01.179Z code_changed_at=2026-10-15T10:07:12+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/learn-032.png
+paywall-gap-003	2026-10-15T09:15:39.603Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-15T09:13:49.166Z code_changed_at=2026-10-15T10:07:12+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/paywall-gap-003.png
+paywalls-012	2026-10-15T09:15:40.985Z	stitched	склейка_1800x1328 raw_shot_at=2026-10-15T09:15:30.430Z code_changed_at=2026-10-15T10:07:12+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/paywalls-012.png
+settings-gap-035	2026-10-15T09:15:42.778Z	stitched	склейка_1800x1328 raw_shot_at=2026-10-15T08:57:59.147Z code_changed_at=2026-10-15T10:07:12+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/settings-gap-035.png

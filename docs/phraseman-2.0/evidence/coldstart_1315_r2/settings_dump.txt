@@ -1,0 +1,2 @@
+'' '' app.phraseman:id/action_bar_root (0, 0, 1080, 2400)
+'' '' android:id/content (0, 0, 1080, 2400)

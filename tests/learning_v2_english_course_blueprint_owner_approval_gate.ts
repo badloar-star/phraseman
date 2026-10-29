@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 
 import { LEARNING_V2_ENGLISH_BLUEPRINT_APPROVAL_REGISTRY_V2 } from "../modules/learning-v2/curriculum/en/blueprint_approval_registry_en_v2";
+import {
+  LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V2,
+  LEARNING_V2_ENGLISH_OWNER_APPROVED_BLUEPRINT_FINGERPRINT_V2,
+} from "../modules/learning-v2/curriculum/en/course_blueprint_en_v2";
 import { LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V1 } from "../modules/learning-v2/curriculum/en/course_blueprint_en_v1";
 
 const OLD_OWNER_APPROVED_FINGERPRINT =
@@ -11,8 +15,10 @@ const CURRENT_AMENDED_FINGERPRINT =
   "3a4ca1422a6125bb317121c312c0166fdb595ee90111f297c480c8a82b7716e4";
 const PREVIOUS_OWNER_APPROVED_FINGERPRINT =
   "bb53181a104f8476761eef548949b0f978a0fd2f0caacdb239ad70c5cbb1845c";
-const CURRENT_OWNER_APPROVED_FINGERPRINT =
+const PREVIOUS_OWNER_APPROVED_FINGERPRINT_2026_10_04 =
   "f776cf32cd9a46df28ce54ff548c29abd1b9722a76e243fedc30cf5109a418b0";
+const CURRENT_OWNER_APPROVED_FINGERPRINT =
+  "d956442e0946194e3de8105601ae993fe6f7932e7904cc3e4e972fc8444875da";
 
 assert.equal(
   LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V1.blueprintFingerprint,
@@ -69,12 +75,39 @@ assert.deepEqual(
 );
 
 assert.deepEqual(
+  LEARNING_V2_ENGLISH_BLUEPRINT_APPROVAL_REGISTRY_V2[PREVIOUS_OWNER_APPROVED_FINGERPRINT_2026_10_04],
+  {
+    status: "SUPERSEDED",
+    reason: "SUPERSEDED_BY_EXACT_CURRENT_BLUEPRINT_OWNER_APPROVAL_2026_10_14",
+  },
+  "previous_lesson_four_blueprint_approval_must_not_authorize_changed_bytes",
+);
+
+assert.deepEqual(
   LEARNING_V2_ENGLISH_BLUEPRINT_APPROVAL_REGISTRY_V2[CURRENT_OWNER_APPROVED_FINGERPRINT],
   {
     status: "APPROVED",
-    reason: "OWNER_EXPLICIT_CONTINUE_AND_WRITE_LESSON_4_2026_10_04",
+    reason: "OWNER_EXPLICIT_EXACT_BLUEPRINT_APPROVAL_2026_10_14",
   },
-  "current_lesson_four_blueprint_requires_exact_owner_evidence",
+  "current_blueprint_requires_exact_owner_evidence",
+);
+
+assert.equal(
+  LEARNING_V2_ENGLISH_OWNER_APPROVED_BLUEPRINT_FINGERPRINT_V2,
+  CURRENT_OWNER_APPROVED_FINGERPRINT,
+  "approval_constant_must_bind_the_exact_owner_approved_current_hash",
+);
+
+assert.equal(
+  LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V2.blueprintFingerprint,
+  CURRENT_OWNER_APPROVED_FINGERPRINT,
+  "current_blueprint_body_must_match_the_exact_owner_approved_hash",
+);
+
+assert.equal(
+  LEARNING_V2_ENGLISH_COURSE_BLUEPRINT_V2.ownerApproval,
+  "APPROVED",
+  "exact_current_blueprint_owner_approval_must_be_effective",
 );
 
 process.stdout.write(

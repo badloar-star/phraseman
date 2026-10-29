@@ -1,0 +1,14 @@
+{
+  "scenario": "wrong_wedding",
+  "title": "Ты попал не на ту свадьбу",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "two wedding rings on an invitation envelope",
+    "tiered cake and mismatched place-setting plate",
+    "bouquet ribbon on an empty chair-back form and ring dish",
+    "wedding bell with cake slice on ring tray",
+    "crossed place cards and a misplaced wedding band/fork"
+  ],
+  "constraints": ["true transparent RGBA", "no people or text", "cyan internal marker for separate white accent extraction", "dark and light trial pairs", "trial location only"]
+}

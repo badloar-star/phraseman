@@ -1,0 +1,15 @@
+12:32:05 launch
+12:33:30 ready-wait i=17
+12:33:42 предполёт: нет DEV-STATE и пейвола
+12:33:53 Продолжить нажато, урок
+12:33:58 назад
+12:33:58 switch 1 lessons
+12:34:01 switch 1 home
+12:34:05 switch 2 lessons
+12:34:08 switch 2 home
+12:34:11 switch 3 lessons
+12:34:14 switch 3 home
+12:34:18 switch 4 lessons
+12:34:21 switch 4 home
+12:34:24 switch 5 lessons
+12:34:27 switch 5 home

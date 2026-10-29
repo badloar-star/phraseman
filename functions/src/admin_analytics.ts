@@ -18,6 +18,8 @@ import {
   type ShardTransactionRow,
 } from './admin_analytics_core';
 import { readThroughAnalyticsCache, wantsAnalyticsRefresh } from './admin_analytics_cache';
+import { aggregateAdminSpireStatistics } from './admin_spire_statistics_core';
+import { getWeekKey, isoDateUtc } from './progress_events';
 
 const REGION = 'us-central1';
 const USER_CAP = 10_000;
@@ -196,6 +198,13 @@ export const adminGetAnalyticsSnapshot = onCall(
     const state = analyticsSnapshotState(Object.values(sources));
     const access = aggregateActiveAccess(users.rows as unknown as AnalyticsUserRow[], generatedAtMs);
     const analyticsConsent = aggregateAnalyticsConsent(users.rows as unknown as AnalyticsUserRow[]);
+    const spireStatistics = aggregateAdminSpireStatistics({
+      rows: users.rows,
+      generatedWeek: getWeekKey(isoDateUtc(new Date(generatedAtMs))),
+      cap: USER_CAP,
+      truncated: users.truncated,
+      sourceError: users.errorCode ?? null,
+    });
     const storeActivity = aggregateRevenueCatPeriod(premium.rows as unknown as RevenueCatEventRow[]);
     const shardActivity = aggregateShardPeriod(shards.rows as unknown as ShardTransactionRow[]);
     const funnelSignals = aggregateFunnelSignals(funnel.rows as unknown as FunnelEventRow[]);
@@ -216,6 +225,7 @@ export const adminGetAnalyticsSnapshot = onCall(
       sources,
       access,
       analyticsConsent,
+      spireStatistics,
       storeActivity,
       shardActivity,
       funnelSignals,

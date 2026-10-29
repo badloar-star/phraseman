@@ -1,0 +1,14 @@
+{
+  "scenario": "moving_day_help",
+  "title": "Помощь на переезде",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "hand truck carrying two blank moving boxes with inset strap",
+    "moving box with grip cutouts and folded tape seam",
+    "rolled rug tied with a band beside a blank carton",
+    "drawer chest wrapped in folded moving blanket",
+    "key ring on a moving box beside a doorway token"
+  ],
+  "constraints": ["true transparent RGBA", "no people, hands, text, labels or logos", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

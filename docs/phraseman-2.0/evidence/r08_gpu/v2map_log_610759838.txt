@@ -1,0 +1,25 @@
+ LOG  [LESSONS-BOOT] layout_prime:scheduled {"studyTarget":"en","atEpochMs":1792082216380}
+ LOG  [LESSONS-BOOT] layout_prime:fire {"studyTarget":"en","waitInteractionsMs":316,"sinceScheduledMs":1040}
+ LOG  [LESSONS-BOOT] load:start {"sinceModuleMs":2782,"atEpochMs":1792082217421,"target":"en","caller":"layout_prime","inflight":1,"cached":false}
+ LOG  [LESSONS-BOOT] load:done {"sinceModuleMs":3374,"atEpochMs":1792082218013,"target":"en","caller":"layout_prime","keys":117,"totalMs":592,"multiGetMs":588,"parseMs":2,"cachedResult":"stored","scoredLessons":0}
+ LOG  [LESSONS-REBUILD] premount_release {"reason":"home_painted","outcome":"not_active","heldMs":1,"cancelled":false}
+ LOG  [LESSONS-BOOT] initial_state {"sinceModuleMs":4894,"atEpochMs":1792082219533,"target":"en","result":"hit","generation":1,"snapshotAgeMs":1520,"inflight":0,"scoredLessons":0}
+ LOG  [LESSONS-TABS] вход: initialPage=lessons память=null v2Доступен=true → старт=lessons
+ LOG  [V2-AVAILABILITY] shown {"authored":186,"shown":15,"devUnlockAll":false}
+ WARN  [LESSONS-HEADER] lock {"label":"A1","locked":false,"isPremium":false,"devMode":false,"noLimits":false}
+ LOG  [LESSONS-EPOCH] skip {"reason":"same_active_owner","prevPhase":"active","nextPhase":"active","generation":1,"epoch":0}
+ LOG  [LEGACY-V2-SYNC] restore key=flashcards_v1 source=none pages_len=0
+ LOG  [V2-PAGE] LessonsTab:mount {"instanceId":"kqxlek","presentation":"tab","initialPage":"lessons"}
+ LOG  [LESSONS-REBUILD] lessons_tab_mounted {"instanceId":"kqxlek","presentation":"tab","onboardingActive":false,"atMs":1792082220013}
+ LOG  [V2-MAP] page:commit {"instanceId":"kqxlek","page":"lessons","branch":"legacy_list","presentation":"tab","runtimeOwnerId":"home","visible":false,"navFocused":true,"atMs":1792082220025}
+ WARN  [LESSONS-LIST] data {"rows":40,"queryLength":0,"firstKinds":["header","lesson","lesson","lesson"]}
+ LOG  [V2-MAP] lessons-pane {"freezeWanted":false,"coverLessons":false,"shouldLoad":true,"epoch":0,"phase":"active","atMs":1792082220031}
+ WARN  [LESSONS-EXAM] status {"level":"A1","hasResult":true,"resultPct":0,"passed":false,"examSourceAvailable":true,"allDone":false,"examPremiumRequired":true,"isPremium":false,"kind":"plus","chosen":"Откроется с Plus"}
+ WARN  [LESSONS-HEADER] lock {"label":"A2","locked":true,"isPremium":false,"devMode":false,"noLimits":false}
+ LOG  [LEGACY-V2-SYNC] restore key=flashcards_v2::fr::flashcards_v1 source=none pages_len=0
+ LOG  [LESSONS-BOOT] v2_catalog:materialized {"interfaceLocale":"ru","ms":2024,"lessons":4,"memoSize":1}
+ LOG  [V2-OPEN] progress:disk {"diskMs":32,"completed":0,"current":"lesson-01:session:01"}
+ LOG  [V2-OPEN] progress:applied {"sinceTap":null,"warmupMs":2155,"completed":0,"current":"lesson-01:session:01"}
+ LOG  [LEGACY-V2-SYNC] sync key=community_owned_pack_ids_v1 decision=kept local_len=21 snapshot=has equal=true
+ LOG  [V2-AUDIO-SEED] start paint=painted splash=hidden delayedMs=8015
+ LOG  [V2-AUDIO-SEED] end outcome=ok ms=925

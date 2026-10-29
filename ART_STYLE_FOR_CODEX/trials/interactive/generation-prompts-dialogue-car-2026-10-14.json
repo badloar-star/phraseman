@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "category": "dialogue theme car",
+  "optionsGenerated": 5,
+  "concepts": [
+    "minimal side-profile coupe with two plain wheels and cyan roof panel",
+    "minimal side-profile sedan with cyan door panel",
+    "single plain car tire with central cyan hub",
+    "compact car key fob and short key blade with cyan button",
+    "simple steering wheel with cyan center hub"
+  ],
+  "style": "S2 matte clay; true-alpha generated common geometry, dark graphite and light ivory tone-mapped from each source, cyan temporary marker extracted into separate white .accent layer",
+  "modes": {
+    "01": {"dark": {"accentFramePct": 2.661, "alphaTransparencyPct": 83.16, "alignment": "pass", "interiorEdgePct": 0}, "light": {"accentFramePct": 2.661, "alphaTransparencyPct": 83.16, "alignment": "pass", "interiorEdgePct": 0}},
+    "02": {"dark": {"accentFramePct": 3.278, "alphaTransparencyPct": 86.16, "alignment": "pass", "interiorEdgePct": 0}, "light": {"accentFramePct": 3.278, "alphaTransparencyPct": 86.16, "alignment": "pass", "interiorEdgePct": 0}},
+    "03": {"dark": {"accentFramePct": 1.009, "alphaTransparencyPct": 52.76, "alignment": "pass", "interiorEdgePct": 6.7, "revision": "r2"}, "light": {"accentFramePct": 1.009, "alphaTransparencyPct": 52.76, "alignment": "pass", "interiorEdgePct": 7.3, "revision": "r2"}},
+    "04": {"dark": {"accentFramePct": 3.067, "alphaTransparencyPct": 77.92, "alignment": "pass", "interiorEdgePct": 1.6}, "light": {"accentFramePct": 3.067, "alphaTransparencyPct": 77.92, "alignment": "pass", "interiorEdgePct": 1.6}},
+    "05": {"dark": {"accentFramePct": 3.761, "alphaTransparencyPct": 70.1, "alignment": "pass", "interiorEdgePct": 0}, "light": {"accentFramePct": 3.761, "alphaTransparencyPct": 70.1, "alignment": "pass", "interiorEdgePct": 0}}
+  },
+  "acceptance": "Options 1, 2, 4, and 5 pass alpha, accent-size, and mask alignment gates; option 3 revision r2 also passes with a compact wheel-hub accent. All remain drafts pending owner visual review. Option 3 r1 and the first, overly realistic generation pass were not used as the active picker candidates."
+}

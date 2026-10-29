@@ -1,0 +1,97 @@
+==== 10-24 20:16:05 home worst 1741 ms 
+    10-24 20:16:01 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] dev-solve: выбор tp2_20260801_v10_odd_d1_2e5bca0310ef96d4393f индекс=2
+    10-24 20:16:01 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 1
+    10-24 20:16:01 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 2
+    10-24 20:16:01 ( 5046): [SPIRE-DOCK] button {"ready":true,"busy":false,"enabled":true,"dis":false,"block":"none","source":"props: ready=climbReady(HomeScreen), busy=
+    10-24 20:16:01 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] step: закрыт floor=1 step=2 task=10 за 207с кадров=8796 длинных=524 худший=869мс рендеров всего=24
+    10-24 20:16:01 ( 5046): '[SPIRE-SUMMIT] dock', '{"branch":"climb","summit":false,"ready":true,"busy":false,"block":"none","text":"Играть"}'
+    10-24 20:16:01 ( 5046): [SPIRE-RISE-QUEUE] позиционные окна ждут: причина=открыт итог ступени (итог=true ступень=false старт=false) решение Ядра: rise=— overtake=— l
+    10-24 20:16:01 ( 5046): '[SPIRE-SUMMIT] home', '{"source":"local_week","weekKey":"2026-W43","rawFloor":1,"stepInFloor":2,"stepsCleared":2,"shownFloor":1,"summit":fal
+    10-24 20:16:01 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":1,"myFloor":1,"selected":1,"shownFloor
+    10-24 20:16:02 ( 5046): [INFO] [SPIRE]: [PEAK-COINS] add report=2026-W43:en:t0:f1:s1:1792869361402 coins=10 base=600 Σ=20
+    10-24 20:16:02 ( 5046): [INFO] [SPIRE]: home: локальная неделя ok (tier=0 floor=1 stepInFloor=2 steps=2) из AsyncStorage
+    10-24 20:16:03 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] result: открыт kind=passed floor=1 рендеров=1
+==== 10-24 20:36:59 home worst 1550 ms 
+    10-24 20:36:53 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] dev-solve: выбор tp2_20260801_v10_odd_d1_67c0ff0c64cf5adbcffe индекс=1
+    10-24 20:36:53 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 1
+    10-24 20:36:57 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] dev-solve: выбор tp2_20260801_v10_odd_d2_b2f202025b9f281bae0b индекс=2
+    10-24 20:36:57 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 1
+    10-24 20:36:57 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 2
+    10-24 20:36:57 ( 5046): [SPIRE-DOCK] button {"ready":true,"busy":false,"enabled":true,"dis":false,"block":"none","source":"props: ready=climbReady(HomeScreen), busy=
+    10-24 20:36:58 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] step: закрыт floor=4 step=8 task=10 за 50с кадров=1765 длинных=128 худший=403мс рендеров всего=24
+    10-24 20:36:58 ( 5046): '[SPIRE-DOCK-INSET] top', '{"why":"смена-этажа","floor":5,"windowH":642.4,"contentTop":0,"sceneTopY":64.6,"requestedY":64.6,"devTop":false,"m
+    10-24 20:36:58 ( 5046): '[SPIRE-SUMMIT] dock', '{"branch":"climb","summit":false,"ready":true,"busy":false,"block":"none","text":"Играть"}'
+    10-24 20:36:59 ( 5046): [SPIRE-RISE-QUEUE] позиционные окна ждут: причина=открыт итог ступени (итог=true ступень=false старт=false) решение Ядра: rise=2026-W43:rise:
+    10-24 20:36:59 ( 5046): '[SPIRE-SUMMIT] home', '{"source":"local_week","weekKey":"2026-W43","rawFloor":5,"stepInFloor":0,"stepsCleared":26,"shownFloor":5,"summit":fa
+    10-24 20:36:59 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":5,"myFloor":5,"selected":4,"shownFloor
+    10-24 20:36:59 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":5,"myFloor":5,"selected":5,"shownFloor
+    10-24 20:36:59 ( 5046): [INFO] [SPIRE]: [PEAK-COINS] add report=2026-W43:en:t0:f4:s7:1792870617652 coins=50 base=650 Σ=340
+==== 10-24 20:30:00 home worst 1334 ms 
+    10-24 20:29:58 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] dev-solve: выбор tp2_20260801_v10_guess_d2_1f2d1f193d678d368b91 индекс=2
+    10-24 20:29:58 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 1
+    10-24 20:29:58 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 2
+    10-24 20:29:58 ( 5046): [SPIRE-DOCK] button {"ready":true,"busy":false,"enabled":true,"dis":false,"block":"none","source":"props: ready=climbReady(HomeScreen), busy=
+    10-24 20:29:58 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] step: закрыт floor=3 step=7 task=10 за 43с кадров=1724 длинных=100 худший=222мс рендеров всего=24
+    10-24 20:29:58 ( 5046): '[SPIRE-DOCK-INSET] top', '{"why":"смена-этажа","floor":4,"windowH":642.4,"contentTop":0,"sceneTopY":64.6,"requestedY":64.6,"devTop":false,"m
+    10-24 20:29:58 ( 5046): '[SPIRE-SUMMIT] dock', '{"branch":"climb","summit":false,"ready":true,"busy":false,"block":"none","text":"Играть"}'
+    10-24 20:29:59 ( 5046): [SPIRE-RISE-QUEUE] позиционные окна ждут: причина=открыт итог ступени (итог=true ступень=false старт=false) решение Ядра: rise=2026-W43:rise:
+    10-24 20:29:59 ( 5046): '[SPIRE-SUMMIT] home', '{"source":"local_week","weekKey":"2026-W43","rawFloor":4,"stepInFloor":0,"stepsCleared":18,"shownFloor":4,"summit":fa
+    10-24 20:29:59 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":4,"myFloor":4,"selected":3,"shownFloor
+    10-24 20:29:59 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":4,"myFloor":4,"selected":4,"shownFloor
+    10-24 20:30:00 ( 5046): [INFO] [SPIRE]: [PEAK-COINS] add report=2026-W43:en:t0:f3:s6:1792870198477 coins=40 base=650 Σ=220
+    10-24 20:30:00 ( 5046): [INFO] [SPIRE]: home: локальная неделя ok (tier=0 floor=4 stepInFloor=0 steps=18) из AsyncStorage
+==== 10-24 20:24:18 home worst 1315 ms 
+    10-24 20:24:13 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] dev-solve: выбор tp2_20260801_v10_guess_d1_50ca37f88585a1853ed6 индекс=0
+    10-24 20:24:13 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 1
+    10-24 20:24:13 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 2
+    10-24 20:24:14 ( 5046): [SPIRE-DOCK] button {"ready":true,"busy":false,"enabled":true,"dis":false,"block":"none","source":"props: ready=climbReady(HomeScreen), busy=
+    10-24 20:24:14 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] step: закрыт floor=2 step=6 task=10 за 51с кадров=2000 длинных=152 худший=300мс рендеров всего=24
+    10-24 20:24:14 ( 5046): '[SPIRE-DOCK-INSET] top', '{"why":"смена-этажа","floor":3,"windowH":642.4,"contentTop":0,"sceneTopY":64.6,"requestedY":64.6,"devTop":false,"m
+    10-24 20:24:14 ( 5046): '[SPIRE-SUMMIT] dock', '{"branch":"climb","summit":false,"ready":true,"busy":false,"block":"none","text":"Играть"}'
+    10-24 20:24:15 ( 5046): [SPIRE-RISE-QUEUE] позиционные окна ждут: причина=открыт итог ступени (итог=true ступень=false старт=false) решение Ядра: rise=2026-W43:rise:
+    10-24 20:24:15 ( 5046): '[SPIRE-SUMMIT] home', '{"source":"local_week","weekKey":"2026-W43","rawFloor":3,"stepInFloor":0,"stepsCleared":11,"shownFloor":3,"summit":fa
+    10-24 20:24:15 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":3,"myFloor":3,"selected":2,"shownFloor
+    10-24 20:24:15 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":3,"myFloor":3,"selected":3,"shownFloor
+    10-24 20:24:15 ( 5046): [INFO] [SPIRE]: [PEAK-COINS] add report=2026-W43:en:t0:f2:s5:1792869854236 coins=30 base=650 Σ=120
+    10-24 20:24:16 ( 5046): [INFO] [SPIRE]: home: локальная неделя ok (tier=0 floor=3 stepInFloor=0 steps=11) из AsyncStorage
+    10-24 20:24:18 ( 5046): [SPIRE-DOCK] button {"ready":false,"busy":true,"enabled":false,"dis":false,"block":"none","source":"props: ready=climbReady(HomeScreen), busy
+    10-24 20:24:18 ( 5046): '[SPIRE-SUMMIT] dock', '{"branch":"climb","summit":false,"ready":false,"busy":true,"block":"none","text":"Играть"}'
+    10-24 20:24:18 ( 5046): [SPIRE-RISE-QUEUE] позиционные окна ждут: причина=идёт или готовится ступень (итог=false ступень=true старт=true) решение Ядра: rise=2026-W43
+    10-24 20:24:18 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] step: открыт floor=3 step=1 task=1 рендеров=1
+    10-24 20:24:18 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":3,"myFloor":3,"selected":3,"shownFloor
+    10-24 20:24:18 ( 5046): [SPIRE-DOCK] button {"ready":false,"busy":false,"enabled":false,"dis":true,"block":"none","source":"props: ready=climbReady(HomeScreen), busy
+    10-24 20:24:18 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] step: закрыт floor=3 step=1 task=1 за 0с кадров=0 длинных=0 худший=0мс рендеров всего=1
+    10-24 20:24:18 ( 5046): '[SPIRE-SUMMIT] dock', '{"branch":"climb","summit":false,"ready":false,"busy":false,"block":"none","text":"Играть"}'
+    10-24 20:24:18 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] step: открыт floor=3 step=1 task=1 рендеров=1
+    10-24 20:24:18 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":3,"myFloor":3,"selected":3,"shownFloor
+==== 10-24 20:30:56 home worst 1095 ms 
+    10-24 20:30:53 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] dev-solve: сборка tp2_20260801_v10_build_d2_ce2b9b6f57057cd973a3 найден=да
+    10-24 20:30:53 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 1
+    10-24 20:30:53 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 2
+    10-24 20:30:53 ( 5046): [SPIRE-DOCK] button {"ready":true,"busy":false,"enabled":true,"dis":false,"block":"none","source":"props: ready=climbReady(HomeScreen), busy=
+    10-24 20:30:53 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] step: закрыт floor=4 step=1 task=10 за 52с кадров=2050 длинных=145 худший=270мс рендеров всего=24
+    10-24 20:30:53 ( 5046): '[SPIRE-SUMMIT] dock', '{"branch":"climb","summit":false,"ready":true,"busy":false,"block":"none","text":"Играть"}'
+    10-24 20:30:53 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] result: открыт kind=passed floor=4 рендеров=1
+    10-24 20:30:53 ( 5046): [SPIRE-RISE-QUEUE] позиционные окна ждут: причина=открыт итог ступени (итог=true ступень=false старт=false) решение Ядра: rise=2026-W43:rise:
+    10-24 20:30:53 ( 5046): '[SPIRE-SUMMIT] home', '{"source":"local_week","weekKey":"2026-W43","rawFloor":4,"stepInFloor":1,"stepsCleared":19,"shownFloor":4,"summit":fa
+    10-24 20:30:53 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":4,"myFloor":4,"selected":4,"shownFloor
+    10-24 20:30:54 ( 5046): [INFO] [SPIRE]: [PEAK-COINS] add report=2026-W43:en:t0:f4:s0:1792870253579 coins=10 base=650 Σ=230
+    10-24 20:30:55 ( 5046): [INFO] [SPIRE]: home: локальная неделя ok (tier=0 floor=4 stepInFloor=1 steps=19) из AsyncStorage
+==== 10-24 20:18:51 home worst 1010 ms 
+    10-24 20:18:47 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] dev-solve: выбор tp2_20260801_v10_guess_d1_1ca90a48fd48e5f07df7 индекс=3
+    10-24 20:18:47 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 1
+    10-24 20:18:47 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] runner: таймер +280мс, ждут 2
+    10-24 20:18:47 ( 5046): [SPIRE-DOCK] button {"ready":true,"busy":false,"enabled":true,"dis":false,"block":"none","source":"props: ready=climbReady(HomeScreen), busy=
+    10-24 20:18:47 ( 5046): [INFO] [SPIRE]: [PEAK-PERF] step: закрыт floor=1 step=5 task=10 за 50с кадров=1846 длинных=133 худший=229мс рендеров всего=24
+    10-24 20:18:47 ( 5046): '[SPIRE-DOCK-INSET] top', '{"why":"смена-этажа","floor":2,"windowH":642.4,"contentTop":0,"sceneTopY":64.6,"requestedY":64.6,"devTop":false,"m
+    10-24 20:18:47 ( 5046): '[SPIRE-SUMMIT] dock', '{"branch":"climb","summit":false,"ready":true,"busy":false,"block":"none","text":"Играть"}'
+    10-24 20:18:47 ( 5046): [SPIRE-RISE-QUEUE] позиционные окна ждут: причина=открыт итог ступени (итог=true ступень=false старт=false) решение Ядра: rise=— overtake=— l
+    10-24 20:18:47 ( 5046): '[SPIRE-SUMMIT] home', '{"source":"local_week","weekKey":"2026-W43","rawFloor":2,"stepInFloor":0,"stepsCleared":5,"shownFloor":2,"summit":fal
+    10-24 20:18:47 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":2,"myFloor":2,"selected":1,"shownFloor
+    10-24 20:18:48 ( 5046): [SPIRE-DOCK] home {"source":"живые данные (week из локального хранилища, комната из кэша)","weekFloor":2,"myFloor":2,"selected":2,"shownFloor
+    10-24 20:18:48 ( 5046): [INFO] [SPIRE]: [PEAK-COINS] add report=2026-W43:en:t0:f1:s4:1792869527621 coins=20 base=650 Σ=40
+    10-24 20:18:49 ( 5046): [INFO] [SPIRE]: home: локальная неделя ok (tier=0 floor=2 stepInFloor=0 steps=5) из AsyncStorage
+    10-24 20:18:51 ( 5046): [SPIRE-DOCK] button {"ready":false,"busy":true,"enabled":false,"dis":false,"block":"none","source":"props: ready=climbReady(HomeScreen), busy
+    10-24 20:18:51 ( 5046): '[SPIRE-SUMMIT] dock', '{"branch":"climb","summit":false,"ready":false,"busy":true,"block":"none","text":"Играть"}'
+    10-24 20:18:51 ( 5046): [SPIRE-RISE-QUEUE] позиционные окна ждут: причина=идёт или готовится ступень (итог=false ступень=true старт=true) решение Ядра: rise=— overta
+==== 10-24 20:15:16 step worst 869 ms floor=1 step=2 task=8

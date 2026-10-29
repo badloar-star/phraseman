@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "category": "dialogue theme train",
+  "optionsGenerated": 5,
+  "concepts": [
+    "three-quarter high-speed train nose with cyan front windows",
+    "side-profile metro carriage with two cyan doors",
+    "front-facing electric locomotive with cyan central front panel",
+    "railway wheel on one short rail segment with small cyan hub",
+    "blank ticket with embossed train profile and cyan end stripe"
+  ],
+  "style": "S2 matte clay; true-alpha generated common geometry; shared grayscale tone mapping produces dark graphite and light ivory; cyan temporary marker extracted to white .accent",
+  "measurements": {
+    "01": {"dark": {"accentFramePct": 3.902, "alphaTransparencyPct": 67.04, "alignment": "pass", "interiorEdgePct": 0}, "light": {"accentFramePct": 3.902, "alphaTransparencyPct": 67.04, "alignment": "pass", "interiorEdgePct": 0}},
+    "02": {"dark": {"accentFramePct": 2.168, "alphaTransparencyPct": 75.71, "alignment": "pass", "interiorEdgePct": 5.1}, "light": {"accentFramePct": 2.168, "alphaTransparencyPct": 75.71, "alignment": "pass", "interiorEdgePct": 0.3}},
+    "03": {"dark": {"accentFramePct": 3.972, "alphaTransparencyPct": 63.22, "alignment": "pass", "interiorEdgePct": 0}, "light": {"accentFramePct": 3.972, "alphaTransparencyPct": 63.22, "alignment": "pass", "interiorEdgePct": 0}},
+    "04": {"dark": {"accentFramePct": 1.0, "alphaTransparencyPct": 58.99, "alignment": "pass", "interiorEdgePct": 10.1}, "light": {"accentFramePct": 1.0, "alphaTransparencyPct": 58.99, "alignment": "pass", "interiorEdgePct": 9.8}},
+    "05": {"dark": {"accentFramePct": 6.901, "alphaTransparencyPct": 64.0, "alignment": "pass", "interiorEdgePct": 2.9}, "light": {"accentFramePct": 6.901, "alphaTransparencyPct": 64.0, "alignment": "pass", "interiorEdgePct": 2.9}}
+  },
+  "acceptance": "All five concepts pass the present alpha, accent-area, and layer-alignment gates in dark/light modes. They remain drafts until visual selection in the workbench."
+}

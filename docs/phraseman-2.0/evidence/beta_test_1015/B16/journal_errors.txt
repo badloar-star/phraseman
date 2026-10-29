@@ -1,0 +1,28 @@
+10-15 14:39:47.309 I/ReactNativeJS(10921): [FIRESTORE-FIRST-TOUCH] installed default:locked(TypeError) getFirestore:locked(TypeError) ms=2488446
+10-15 14:39:48.677 W/ReactNativeJS(10921): [JS-STALL] +1049ms поток стоял 1047ms (с +2ms)
+10-15 14:39:49.362 W/ReactNativeJS(10921): [JS-STALL] +1734ms поток стоял 573ms (с +1161ms)
+10-15 14:39:50.451 W/ReactNativeJS(10921): [JS-STALL] +2823ms поток стоял 1087ms (с +1736ms)
+10-15 14:39:50.817 W/ReactNativeJS(10921): [JS-STALL] +3190ms поток стоял 367ms (с +2823ms)
+10-15 14:39:53.571 W/ReactNativeJS(10921): [JS-STALL] +5942ms поток стоял 2585ms (с +3357ms)
+10-15 14:39:53.573 W/ReactNativeJS(10921): [JS-STALL] heartbeat +5942ms splash=hidden@+3957ms
+10-15 14:39:53.850 W/ReactNativeJS(10921): [JS-STALL] +6222ms поток стоял 280ms (с +5942ms)
+10-15 14:39:54.359 W/ReactNativeJS(10921): [JS-STALL] +6729ms поток стоял 507ms (с +6222ms)
+10-15 14:39:56.363 W/ReactNativeJS(10921): [JS-STALL] +8736ms поток стоял 828ms (с +7908ms)
+10-15 14:39:56.759 W/ReactNativeJS(10921): [JS-STALL] +9125ms поток стоял 388ms (с +8737ms)
+10-15 14:39:57.245 W/ReactNativeJS(10921): [JS-STALL] +9618ms поток стоял 470ms (с +9148ms)
+10-15 14:39:57.646 W/ReactNativeJS(10921): [JS-STALL] +10018ms поток стоял 332ms (с +9686ms)
+10-15 14:39:58.821 W/ReactNativeJS(10921): [JS-STALL] +11193ms поток стоял 481ms (с +10712ms)
+10-15 14:39:58.822 W/ReactNativeJS(10921): [JS-STALL] heartbeat +11193ms splash=hidden@+3957ms
+10-15 14:40:02.998 W/ReactNativeJS(10921): [JS-STALL] skipped_background ms=787 gap=3565ms counted=2778ms at=+15370ms
+10-15 14:40:03.000 W/ReactNativeJS(10921): [JS-STALL] +15370ms поток стоял 2778ms (с +12592ms)
+10-15 14:40:03.643 W/ReactNativeJS(10921): [JS-STALL] +16016ms поток стоял 381ms (с +15635ms)
+10-15 14:40:03.963 W/ReactNativeJS(10921): [JS-STALL] +16336ms поток стоял 317ms (с +16019ms)
+10-15 14:40:03.964 W/ReactNativeJS(10921): [JS-STALL] heartbeat +16336ms splash=hidden@+3957ms
+10-15 14:40:04.876 W/ReactNativeJS(10921): [JS-STALL] +17248ms поток стоял 879ms (с +16369ms)
+10-15 14:40:05.403 W/ReactNativeJS(10921): [JS-STALL] +17775ms поток стоял 501ms (с +17274ms)
+10-15 14:40:06.050 W/ReactNativeJS(10921): [JS-STALL] +18423ms поток стоял 472ms (с +17951ms)
+10-15 14:40:06.510 W/ReactNativeJS(10921): [JS-STALL] +18882ms поток стоял 432ms (с +18450ms)
+10-15 14:40:07.045 W/ReactNativeJS(10921): [JS-STALL] +19418ms поток стоял 347ms (с +19071ms)
+10-15 14:40:08.849 W/ReactNativeJS(10921): [JS-STALL] +21221ms поток стоял 633ms (с +20588ms)
+10-15 14:40:09.229 W/ReactNativeJS(10921): [JS-STALL] +21601ms поток стоял 315ms (с +21286ms)
+10-15 14:40:09.229 W/ReactNativeJS(10921): [JS-STALL] heartbeat +21601ms splash=hidden@+3957ms

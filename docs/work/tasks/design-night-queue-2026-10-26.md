@@ -24,3 +24,5 @@ tests/lesson_complete_repeat_navigation.test.ts; Настройки → Обуч
 
 ## Rollback
 Откат коммитов по хэшам; панель М выключена флагом.
+
+Governance-ID: TG-A9263DE1D5CE

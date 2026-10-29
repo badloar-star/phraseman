@@ -1,3 +1,4 @@
+import { PlusMark } from '../plus/PlusMark';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
@@ -68,10 +69,7 @@ export function DialogueV2PlusTools({
         </View>
         {!hasPremiumAccess ? (
           <View style={styles.right}>
-            <View testID="dialogue-v2-freeform-plus-badge" style={[styles.plus, { backgroundColor: t.plus.bg }]}>
-              <Ionicons name="diamond" size={12} color={t.plus.ink} />
-              <Text style={[styles.plusText, { color: t.plus.ink }]} maxFontSizeMultiplier={1.2}>Plus</Text>
-            </View>
+            <PlusMark testID="dialogue-v2-freeform-plus-badge" width={32} decorative />
             <Ionicons name="lock-closed" size={18} color={t.tile.count} />
           </View>
         ) : (

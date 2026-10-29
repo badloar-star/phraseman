@@ -1,6 +1,7 @@
 # Task packet: аватар на Главной срабатывает 3 из 5 — сперва логи [AVATAR-TAP]
 
 Governance-ID: TG-E40F116D2434
+Governance-ID: TG-A0F6D8A1976D
 Status: логи поставлены, ждём прогон Сверки
 Owner: 5 · ВХОД И АККАУНТ (координатор 22.10)
 

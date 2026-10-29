@@ -1,0 +1,29 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "mode": "light",
+  "subject": "Spanish flag icon",
+  "variants": [
+    {
+      "asset": "light/flag_es_option_01r1",
+      "prompt": "Use case: icon for a language-learning mobile app. Asset: light-theme Spanish language flag icon, S2 clay style. Subject: one small upright sculpted ivory matte-clay flagpole with a softly waved Spanish flag clearly showing three horizontal bands red, wider golden yellow, red. Frontal centered isolated product icon, rounded sculpted edges, restrained soft gray shading, no heavy shadow. Add exactly one small flat cyan #00ffff circular inset at the base of the pole, 3% of image, for separate accent-mask extraction. Square 1024 canvas, occupy 78%. Background must be genuinely transparent alpha. Avoid checkerboard, podium, plinth, coat of arms, green, any other colors on flag, stars, text, letters, extra objects, particles, detached shapes, specks, halo, pixels outside object."
+    },
+    {
+      "asset": "light/flag_es_option_02r1",
+      "prompt": "Use case: product-mockup. Asset type: language selector flag icon for the light theme. Primary request: a distinctive premium 3D matte-ivory-clay flag medallion representing Spain, option 2 (not a flagpole). Subject: a rounded shield-shaped horizontal tablet with a shallow inset Spanish flag: exact three horizontal red / broad golden-yellow / red bands. One small flat cyan #00ffff recessed round detail, 10% of canvas, centered at the bottom tip for separate tint mask. Style: elegant adult learning app, soft beveled clay, restrained gray contact shading, crisp simple silhouette, orthographic front view, centered at 76% canvas. Background: true transparent alpha. Avoid checkerboard, poles, pedestals, coat of arms, letters, text, detached shapes, specks, halo, pixels outside silhouette, extra colors in the flag."
+    },
+    {
+      "asset": "light/flag_es_option_03r1",
+      "prompt": "Use case: product-mockup. Asset type: Spanish flag icon, light theme, clay design family, option 3. Subject: an upright softly waved Spanish flag on a short ivory-clay pole with broad rounded foot; accurate horizontal bands red / golden yellow / red, center band twice the height of each red band. At the foot, add a flat vivid cyan #00ffff inset shaped like a wide lozenge, approx 18% of full square canvas, as a clean segmentation marker for a separate tint mask. Ivory matte clay pole and foot, soft restrained gray bevels, frontal orthographic view, icon occupies 75% square. Background genuinely transparent alpha. Avoid checkerboard, green, any coat of arms, other flag colors, text, letters, extra objects, particles, stray marks, holes, halo."
+    },
+    {
+      "asset": "light/flag_es_option_04r1",
+      "prompt": "Use case: product-mockup. Asset type: language-learning icon, Spanish flag, light theme, option 4. Create an unmistakably Spanish red-gold-red horizontal flag, gently waving from a short upright ivory matte-clay pole, mounted on a small rounded ivory base. Make this silhouette distinct from a shield plaque: visibly separate cloth, straight pole, broad low base. At the front of the base place one flat cyan #00ffff inset lozenge that covers about one quarter of the base face and is large enough to yield a 1–8% canvas mask after extraction. Frontal view, centered, restrained gray bevel shading, no perspective. Isolated on genuinely transparent alpha. Avoid checkerboard, artifacts outside object, specks, coat of arms, text, lettering, other flag colors, green, detached objects, halo."
+    },
+    {
+      "asset": "light/flag_es_option_04r2",
+      "editPrompt": "Edit the supplied image only. Preserve the exact Spanish flag, pole, ivory clay material, composition, proportions, red-gold-red stripes and lighting. Remove every detached colored or ivory speck and all fringe outside the object; keep genuinely transparent alpha outside the clean silhouette. Change only the small cyan inset: enlarge it to a clearly visible but tasteful recessed lozenge covering about 7% of the full 1024×1024 canvas, with solid #00ffff center and a crisp boundary, so it can be extracted as a separate theme accent. Keep the object centered; no extra symbols, text, coat of arms, checkerboard, background, halo or external shadow."
+    }
+  ],
+  "postprocessing": "prepare-clay-candidates.mjs extracted base and aligned white accent; no alpha cleanup was performed",
+  "acceptance": "Options 1–3 and 4r2 are drafts. Accent area: 0.146%, 0.583%, 0.784%, 0.900% (target 1-8%). Colored edge artifacts remain."
+}

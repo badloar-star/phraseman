@@ -1,0 +1,16 @@
+15:01:19 старт B16r2
+15:01:48 тип upsell_d4: ссылка (ждём: пейвол notification_upsell)
+15:02:00 снимок notif2_upsell_d4
+15:02:01 тип upsell_d4: снято, PUSH-TAP-DEV строк 2
+15:02:29 тип youtube_premiere: ссылка (ждём: lingman_videos)
+15:02:42 снимок notif2_youtube_premiere
+15:02:42 тип youtube_premiere: снято, PUSH-TAP-DEV строк 2
+15:03:11 тип premium_expiry_reminder: ссылка (ждём: Управление Plus)
+15:03:23 снимок notif2_premium_expiry_reminder
+15:03:24 тип premium_expiry_reminder: снято, PUSH-TAP-DEV строк 2
+15:03:48 тип premium_expiry_vip: ссылка (ждём: пейвол vip_expired)
+15:04:01 снимок notif2_premium_expiry_vip
+15:04:01 тип premium_expiry_vip: снято, PUSH-TAP-DEV строк 2
+15:04:30 тип spire_week_result: ссылка (ждём: Сообщество, Пик (или Главная при скрытом Пике))
+15:04:42 снимок notif2_spire_week_result
+15:04:42 тип spire_week_result: снято, PUSH-TAP-DEV строк 2

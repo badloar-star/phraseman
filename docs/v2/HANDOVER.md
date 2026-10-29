@@ -22476,3 +22476,101 @@ authority. No push, deploy, production mutation or API-key use occurred.
   packet bytes, learner RU/UK, mockup, audio, runtime, release, English edit,
   push, deployment or API-key use. Preserve all partial attempts and the
   explicit `s02`/`s10` conflict mutation as HOLD evidence.
+
+#### 2026-10-14 — English Learning V2 — exact current blueprint approval recorded
+
+- Owner decision: «Да, одобряю именно d956…75da» binds exact current canonical
+  body SHA-256
+  `d956442e0946194e3de8105601ae993fe6f7932e7904cc3e4e972fc8444875da`.
+  A new append-only receipt is stored at
+  `content/learning-v2-course/judgements/owner/2026-10-14_english_blueprint_d956_approval.md`;
+  the frozen 2026-08-30 receipt and frozen 2026-10-04 L4 specification remain
+  unchanged.
+- Machine authority now binds the exact hash in the course constant, approval
+  registry, artifact gate and owner-map gate. `f776cf32…18b0` remains preserved
+  as a superseded historical approval. Both current START documents point to
+  the new receipt and retain older blocks as non-authoritative history.
+- The preauthoring receipt gate again invokes its mandatory authority-conflict
+  check. It compares the two top current START blocks with the successor owner
+  receipt, ignores explicitly historical documents and ignores lower stale
+  current blocks after the first/top block. Existing lifecycle/preflight edits
+  were preserved.
+- Scope boundary: no lesson/session, existing preauthoring receipt, release,
+  mockup source, audio, status, deployment or production data was changed. The
+  generated owner map is local ignored evidence only. No API, TTS, push, deploy
+  or release occurred.
+- Fresh deterministic evidence on final source bytes: reviewer matrix 13/13
+  gates PASS; aggregate curriculum gate PASS with `approval_pass=true` and
+  fingerprint `d956…75da`; preauthoring guard 29/29 PASS; rebuilt owner map
+  gate PASS at 32 lessons / 224 chapters / 1,792 packets; scoped
+  `git diff --check` PASS. The initial RED was artifact approval `PENDING`; the
+  historical-conflict regression also failed before the parser repair.
+- Next exact permission cycle: the owner/coordinator must run a fresh S01
+  preflight with a new trusted host lifecycle epoch, then a fresh independent
+  guardian must evaluate the resulting unchanged packet. Blueprint approval
+  alone does not authorize S01 edits and does not establish course or release
+  readiness.
+
+#### 2026-10-15 — English Learning V2 L01/S11 locally activated; fresh review PASS
+
+**Mission.** Preserve the accepted English L01/S11 candidate byte-for-byte while extending only the local learner-visible green prefix from S01–S10 to S01–S11. Keep the course on `HOLD`, keep S12 unavailable, make the two physically incomplete audio interactions fail closed through an exact bundle/source-bound omission policy, and leave approval to a fresh reviewer. No audio listening/generation, project OpenAI API use, commit, push, deployment, release, rollback, or automation change is authorized or performed.
+
+| Phase/task | Status | Evidence / boundary |
+|---|---|---|
+| Exact S11 acceptance | Complete; fresh review PASS | Receipt SHA-256 `b3225f3f70f310efe339e7693003dbe483596296fa3fe0d7148e8c8f75ac9214`; candidate bundle `1445fa85a7dc2eb496a574ec93c379f1f616019628bbb95fd7f6cb0a5b60c35d`; validator reports `TEXT_CANONICAL`, `releaseAuthority:false`, `semanticAudioVerified:false`. |
+| Activation policy | Complete; fresh review PASS | Active manifest is exact S01–S11; `courseReleaseState:HOLD`; S12 absent. Omission policy binds source fingerprint `4ebf35a89ba1ca33e3171e8872bc3964a8fcb4e252d428359b24a626f0d9de66` and disables only i17/i18. |
+| Release/native projection | Complete | Candidate, release, and factory-native files match the five accepted hashes: answers `170ca2…652`, auxiliary `252eb8…7cb0`, intro `2e449e…1420`, learner RU `a9710e…4c38`, learner UK `6c802e…3c46`. |
+| Runtime availability | Complete | Ceiling=11, buildable=66, manifest=186; S12 is first unavailable. Runtime/native/availability suite 34/34 PASS. |
+| Production audio boundary | Complete without semantic listening | Missing physical requirements are exactly 8: i17 `You are not busy.` and i18 `You are not wrong.`, voices ash/coral/nova/onyx. Production-audio 1/1 PASS; audio-ceiling 6/6 PASS; coverage released=11/contiguous=11. |
+| Owner review | Complete for activation surface | Status/browser suite 16/16 PASS; full-course HTTP gate PASS; live `http://127.0.0.1:59691/` shows 11 active green cards and S12 inactive. Server command: `node scripts/serve_learning_v2_static_owner_review.mjs --full-course --port 59691`. |
+| Broad static authoring bundle | Open pre-existing warning | `tests/learning_v2_static_owner_review_bundle_v1_gate.ts` is red because its separate registry returns zero `LOCKED` sessions; no unrelated registry mutation was made. |
+| Fresh independent review | PASS; no P0/P1/P2 findings | Reviewer independently reproduced acceptance, activation, native/runtime/availability, audio, owner-review HTTP and five-file parity evidence. Residual: no pre-task blobs exist for several already-dirty files, so preservation proof is bounded rather than whole-worktree. |
+
+**Workspace state.** Repository `C:\\appsprojects\\phraseman`, branch `feature/referral-roulette`, task-start HEAD `80c151340e3ae0e5b646eeaac2f0bf3d67669a8c`, current HEAD `5a8f2d6fd31b4bd0a2dfcbe8dccd032b29e241aa`, upstream `origin/feature/referral-roulette`. While this task was running, an unrelated concurrent commit moved HEAD and changed only `docs/design/v2-app/CARDS_LOCKED.md` plus `docs/design/v2-app/packs-simple.lock.json`; this task made no commit and did not touch those files. The worktree was already broadly dirty; unrelated modified/untracked files were preserved. S11 activation touched the active/omission manifests, accepted release/native S11 projections, native catalog/manifest, availability artifact, activation/runtime/audio/owner-review tests, this handover, and the append-only improvement log. Whole-worktree byte-for-byte preservation cannot be claimed across the concurrent HEAD move; proof is bounded to the recorded activation artifacts, generator commands, patch hunks, hashes, and gates.
+
+**RED → GREEN evidence.** Activation test first failed 2/3 because S11 was stopped by eight missing audio files and the active manifest ended at S10; after exact omission policy plus write, 3/3 passed. Runtime test then failed on stale S11 native fingerprint and ceiling=10; after bounded native rebuild and availability generation, 20/20 passed. Owner-review tests failed 2/16 on the old S10 activation assertions; after updating the exact S01–S11 contract, 16/16 passed. Production-audio contract failed on released count 10; after the S11 omission/count assertion, 1/1 passed. Final combined evidence: acceptance/activation 7/7 PASS; runtime/native/availability 34/34 PASS; production-audio 1/1 PASS; audio-ceiling 6/6 PASS; full-course owner-review PASS.
+
+**Exact next executable task.** Keep S12 unavailable. Before any S12 activation, require its own immutable acceptance receipt, physical audio-presence audit, exact omission decision if needed, RED→GREEN activation/runtime/owner-review gates, and a fresh read-only critical review. Expected starting state is exact S01–S11 active, S12 inactive, and `courseReleaseState:HOLD`; do not commit, push, deploy, release, roll back, touch automations, or use the project OpenAI API without a new exact owner authorization.
+
+#### 2026-10-15 — English Learning V2 L01/S12 v12 locally activated
+
+**Mission.** Supersede only the locally active S12 candidate after exact-source v12 polish and fresh independent review, preserving S01–S11, keeping S13 closed, and retaining `courseReleaseState:HOLD`. No audio listening/playback/generation, project API use, automation mutation, commit, push, deploy, production release, or rollback was authorized or performed.
+
+| Phase/task | Status | Evidence / boundary |
+|---|---|---|
+| Exact v12 acceptance | Complete | Bundle `e10d6dc1a99359d29755c4ec20af69c36cf16d6391659a794e57b0d1762f4ca3`; receipt `315c1a6a2805920edb01eb6ae540f5a58fc3945a2a1532442b3e0e27f6c7e6b8`; acceptance `1646a700c90324ac4e17a35e6d4809f4a52c25ed4df4b2c8ea441950170e88f2`; `releaseAuthority:false`, `semanticAudioVerified:false`. |
+| Fresh reviews | PASS | Strict one-file blind packet `92461883de7d1dcc14d2ed42a1fb3edf7cd366502d8dd1498b358ae578db6f64`; locale reviewer rehashed 18/18 receipt files. Both returned empty findings and `audioReviewed=false`. |
+| Activation | Complete | Active manifest is exact S01–S12, S13 absent, course HOLD. Omission policy is bound to source/runtime fingerprint `b868110c1a628ed5a3d45b73799d314f76329de74a2a871275fc967fb003eca7`. |
+| Media boundary | Complete without playback | Missing physical requirements are exactly i08 `start`, i16 `You are quiet.`, i20 `You are brave.`, four voices each. Only those three interactions are disabled; the preceding `honest` word card is retained and carried to the next enabled interaction. |
+| Runtime/native | Complete | Availability ceiling=12, buildable=67, manifest=186; S13 first unavailable. Candidate/release/native equality holds for all five S12 files. Runtime/native/availability suite 37/37 PASS. |
+| Owner review | Complete | Status/activation 16/16 PASS; browser 4/4 PASS; full-course HTTP gate PASS. Live `http://127.0.0.1:59693/` has 12 active green cards and S13 inactive; server command is `node scripts/serve_learning_v2_static_owner_review.mjs --full-course --port 59693`. |
+
+**Source and projection hashes.** Current source: atomic `83e6219a42d76dc6d7f10532f70b90b19764b807118aa8041baa0aa32e4c8066`; final RU `141b59c2bbb50c06f20adf2cd0781ca2104bd60158946021c71237bb0af94896`; final UK `5b02de66b87a2187b6677e905993cd0ae4bc915d7cbf84f421a5c47945290e86`; locale batch `d11b589177ef4e61011e190c4c1a1db7c64f912abb4746e958e554843fef74b5`. Projection hashes: answers `ab4ef6cd926fb0f9b18549b9d55ca7a470a47626177de60b181e48853694cde5`; auxiliary `7351c12ace16a723b636354b8301e08a0f784e2c4692e8040bf1cb6238dacabd`; intro `865304a36b7855b7291684614cef3f8c67b89bfa1dc89298da9b439128396ee1`; learner RU `8e3a128f4869391bbe734c0cfa93972faa5f0a0ed0641e2796019382104c9897`; learner UK `d778cc2d4da010de42e8558ddde3e1478f8bb3d39f4f39c5f9716eebe353232f`.
+
+**Verification.** Focused source and immutable candidate contracts 58/58 PASS; activation/status 16/16 PASS; native manifest FRESH; runtime/native/availability 37/37 PASS; production-audio 1/1 PASS; audio-ceiling 6/6 PASS; omission-aware coverage released=12/contiguous=12; owner-review browser 4/4 and full-course gate PASS. The recurring ts-jest `isolatedModules` deprecation warning remains. A reviewer could not execute a test from the deliberately minimal immutable snapshot because that snapshot omits `owner_quality.mjs`; the authoritative repository-root gate passed 23/23.
+
+**Workspace.** Repository `C:\\appsprojects\\phraseman`, branch `feature/referral-roulette`, observed HEAD `70feacccfd63fc5da96beacc95b5f680907e6d88`, upstream `origin/feature/referral-roulette`. The worktree was already broadly dirty and concurrent unrelated edits were preserved. This task made no commit.
+
+**Exact next executable task.** Keep S13 unavailable. It may advance only after its own source repair, immutable candidate and exact-current reviews, acceptance, physical-only media audit, RED→GREEN activation/runtime/owner-review gates, and fresh critical review. Preserve exact S01–S12 and course HOLD.
+
+#### 2026-10-15 — English Learning V2 L01/S13 locally activated
+
+**Mission.** Register, independently review, accept, and locally activate only S13 while preserving accepted S01–S12, keeping S14 closed, and retaining `courseReleaseState:HOLD`. No lesson content was edited by the activation writer. No audio listening/playback/generation, project API use, automation mutation, commit, push, deploy, production release, or rollback occurred.
+
+| Phase/task | Status | Evidence / boundary |
+|---|---|---|
+| Exact acceptance | Complete | Bundle `538f4e2004ba4575944a49a00bd80a34d7d1c18407175b49acd7e1f6afb8670b`; receipt `e3b3cb3ae5757edcbc91e94f1764104df5a8ec614c1e4f9ece35e2435cc1872a`; acceptance `91bd34c0e421347bb5f4d09ea7c12df96aa4fe2da17f2cfa1ca7bfa69c4a8c68`; `releaseAuthority:false`, `semanticAudioVerified:false`. |
+| Fresh reviews | PASS | Strict one-file blind packet `d1c70a6262aa8f47f4e868d7a5aab5c444475117d90ad98391b25281fb14d68f`; locale reviewer rehashed 18/18 receipt files. Both returned empty findings and `audioReviewed=false`. |
+| Activation | Complete | Active manifest is exact S01–S13, S14 absent, course HOLD. Omission policy binds source/runtime fingerprint `0c9766f7f9d491f1fb57ec9b7a90cb803b755f1d2e2a60ea4028f8c8e3e9fd1d`. |
+| Media boundary | Complete without playback | Missing physical requirements are exactly i18 `You are kind.` for ash/coral/nova/onyx; only that interaction is disabled. |
+| Runtime/native | Complete | Availability ceiling=13, buildable=68, manifest=186; S14 first unavailable. Candidate/release/native equality holds for all five S13 files. Runtime/native/availability 39/39 PASS; production-audio 1/1 PASS. |
+| Owner review | Complete | Activation/status 17/17 PASS; browser 4/4 PASS; full-course HTTP gate PASS. Live `http://127.0.0.1:59694/` has 186 cards, 13 active green cards, and S14 inactive. Server command: `node scripts/serve_learning_v2_static_owner_review.mjs --full-course --port 59694`. |
+| Fresh critical review | PASS | No P0/P1/P2/P3 findings. Reviewer independently rehashed 18 receipt files, validated all 13 active acceptances and legacy S09 lineage, reproduced projection parity, exact omission metadata, live HTTP state, and all bounded gates. |
+
+**Source and projection hashes.** Source: final RU `b2c4d2dbc1faf101ab98a8cbac254f913da20bd70213b60ea6d805adc9a15bc7`; final UK `1601b6c27da0249b5de06f623be17c64070ca5ad2af1fa4af9e55f928ac65a6f`; atomic `d0e6a2427091c6d9d2e40b258d2c8e3aabfb18b7e76c3d7eca021e015e7c53a1`; locale batch `9769341b289b15f648b3c9cf04216e25dac8194aaf37c4c0bb5612d5fc845592`. Projection hashes: answers `52121bd3508b94ad6cde854a1e7e4df027b813ae17b665ed25a60a4bdcaef1ea`; auxiliary `1a66306720c5b1632a923a57d47df9764a3119615cd953e3a1d8af724379e944`; intro `0d8515869af8ca421f58cb88dbf403c79a4121c82d033bc752636ba9c0b009b4`; learner RU `247508e90d6758a004cf188a997066d933916d18706de520eaf37f713a6c721a`; learner UK `55883ba357ad5251c2a5cc98036456f7cb495bdc1afb86a866c4bbf2a980d132`.
+
+**Verification.** Focused source 9/9; blind packet 2/2; receipt builder 29/29; acceptance 4/4; promotion 2/2; activation/status 17/17; native manifest FRESH; runtime/native/availability 39/39; production-audio 1/1; audio-ceiling 6/6; coverage released=13/contiguous=13; owner-review browser 4/4 and full-course gate PASS. The recurring ts-jest `isolatedModules` deprecation remains.
+
+**Workspace.** Repository `C:\\appsprojects\\phraseman`, branch `feature/referral-roulette`, observed HEAD `82e78b17c912d96a956d78000d5ebd26ac303a31`. The worktree was already broadly dirty and HEAD moved concurrently during this task; unrelated edits were preserved and no commit was created.
+
+**Exact next executable task.** Keep S14 unavailable. Advance it only after its own bounded repair, immutable candidate and exact-current reviews, acceptance, physical-only media audit, RED→GREEN activation/runtime/owner-review gates, and fresh critical review. Preserve exact S01–S13 and course HOLD.

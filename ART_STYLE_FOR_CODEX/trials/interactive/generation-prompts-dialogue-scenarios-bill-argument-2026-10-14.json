@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "bill_argument",
+  "candidatePrefix": "dialog_scene_bill_argument_option_",
+  "concepts": [
+    "blank bill folder",
+    "two-panel check presenter",
+    "blank-face calculator",
+    "coin stacks and blank receipt",
+    "two token piles and folded check"
+  ],
+  "style": "S2 neutral graphite clay / derived warm ivory, true alpha and separate white accent",
+  "status": "Five dark/light options generated; measurements are in bill-argument-preparation-dark.log and bill-argument-preparation-light.log. Drafts await review."
+}

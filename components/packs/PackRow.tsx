@@ -419,11 +419,11 @@ export const PackDeckPlayButton = memo(function PackDeckPlayButton({ g, label, o
 });
 
 /** `likes()` каталога — ♥ и число справа в стопке, вторичным тоном. Число — счётчик, не подпись. */
-export const PackDeckLikes = memo(function PackDeckLikes({ g, value }: Readonly<{ g: GlassTokens; value: number }>) {
+export const PackDeckLikes = memo(function PackDeckLikes({ g, value, liked = false }: Readonly<{ g: GlassTokens; value: number; liked?: boolean }>) {
   const lh = useLineScale();
   return (
     <View style={styles.deckLikes} accessible accessibilityLabel={String(value)}>
-      <Ionicons name="heart-outline" size={18} color={g.secondary} />
+      <Ionicons name={liked ? "heart" : "heart-outline"} size={18} color={g.secondary} />
       <Text style={[styles.deckLikesText, { color: g.secondary, lineHeight: lh(18) }]}>{value}</Text>{/* guard-ok: счётчик, не подпись */}
     </View>
   );

@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "taxi_wrong_way",
+  "candidatePrefix": "dialog_scene_taxi_wrong_way_option_",
+  "concepts": [
+    "folded map with off-route line",
+    "compass with off-axis arrow",
+    "forked blank road sign",
+    "car and folded map",
+    "route pin beside curving road tile"
+  ],
+  "style": "S2 graphite matte clay / derived warm ivory, true transparency, separate white accent",
+  "status": "Five dark/light options generated; per-mode measurements are in taxi-wrong-way-preparation-dark.log and taxi-wrong-way-preparation-light.log. Drafts await review."
+}

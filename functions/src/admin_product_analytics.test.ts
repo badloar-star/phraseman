@@ -1,4 +1,6 @@
 import {
+  ADMIN_PRODUCT_ANALYTICS_OPTIONS,
+  buildProductAnalyticsAggregateQuery,
   buildProductAnalyticsPurchaseFailureQuery,
   clampProductAnalyticsDays,
   isAnalyticsExportPendingError,
@@ -8,6 +10,7 @@ import {
 } from './admin_product_analytics';
 import fs from 'fs';
 import path from 'path';
+import { ENFORCE_APP_CHECK_ADMIN } from './callable_options';
 
 describe('parseProductAnalyticsPayload', () => {
   it('returns only parsed JSON records and never throws for invalid warehouse rows', () => {
@@ -23,6 +26,15 @@ describe('parseProductAnalyticsPayload', () => {
 });
 
 describe('admin product analytics input contract', () => {
+  it('allows the governed warehouse query to finish inside the callable deadline', () => {
+    expect(ADMIN_PRODUCT_ANALYTICS_OPTIONS).toMatchObject({
+      timeoutSeconds: 180,
+      memory: '512MiB',
+      enforceAppCheck: ENFORCE_APP_CHECK_ADMIN,
+    });
+    expect(ENFORCE_APP_CHECK_ADMIN).toBe(false);
+  });
+
   it('requires the server-side money.read permission', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_product_analytics.ts'), 'utf8');
     expect(source).toContain("hasVerifiedCallablePermission(request.auth, 'money.read')");
@@ -114,6 +126,23 @@ describe('admin conversion and observed-return analytics contract', () => {
     expect(source).toContain('p90_inventory_resolution_ms');
     expect(source).toContain('inventoryReadiness');
     expect(source).toContain('failureReasons: conversionFailures.sort');
+  });
+
+  it('groups governed purchase-failure reasons from a named relation', () => {
+    const query = buildProductAnalyticsAggregateQuery('`safe_dataset.events_*`');
+
+    expect(query).toMatch(/governed_conversion_failures AS \([\s\S]*END AS reason[\s\S]*FROM conversion_events[\s\S]*WHERE event_name = 'purchase_failed'[\s\S]*\)/);
+    expect(query).toMatch(/conversion_failure_rows AS \([\s\S]*FROM governed_conversion_failures\s+GROUP BY reason[\s\S]*\)/);
+  });
+
+  it('groups every derived label from a visible relation or its source field', () => {
+    const query = buildProductAnalyticsAggregateQuery('`safe_dataset.events_*`');
+
+    expect(query).toMatch(/governed_acquisition_channels AS \([\s\S]*AS channel[\s\S]*FROM first_touch_instance_facts[\s\S]*\)/);
+    expect(query).toMatch(/acquisition_channel_rows AS \([\s\S]*FROM governed_acquisition_channels\s+GROUP BY channel[\s\S]*\)/);
+    expect(query).toContain('GROUP BY experiment_id, experiment_definition_version, experiment_variant_id, experiment_control_variant_id, experiment_surface, experiment_config_revision');
+    expect(query).toMatch(/daily_kpi_facts AS \([\s\S]*AS local_date[\s\S]*FROM base[\s\S]*\)/);
+    expect(query).toMatch(/daily_kpi_rows AS \([\s\S]*FROM daily_kpi_facts\s+GROUP BY local_date[\s\S]*\)/);
   });
 });
 

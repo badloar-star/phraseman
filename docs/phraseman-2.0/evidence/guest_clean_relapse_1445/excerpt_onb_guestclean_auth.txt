@@ -1,0 +1,20 @@
+10-15 14:58:11.697 I/ReactNativeJS(12028): [ONB-SHOW] effective=false show=false devRoute=false path=/ reason=initial_state
+10-15 14:58:11.880 I/ReactNativeJS(12028): [DEV-STATE] toast: хост смонтирован lang=ru
+10-15 14:58:11.885 I/ReactNativeJS(12028): [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=никто
+10-15 14:58:19.122 I/ReactNativeJS(12028): [ONB-SHOW] effective=true show=true devRoute=false path=/ reason=boot onboarding_done=null qa=off
+10-15 14:59:21.984 I/ReactNativeJS(12028): [ONB-SHOW] effective=false show=false devRoute=false path=/home reason=onboarding_done
+10-15 14:59:53.767 I/ReactNativeJS(12028): [SIGNIN] ui:tap provider=google context=settings
+10-15 14:59:54.029 W/ReactNativeJS(12028): [AUTH-LINK-GOOGLE] start {"provider":"google","authState":"anonymous","authUid":"h:d297f0a8","localStable":"h:0dff08bc","requireOwnership":false,"t":3695165}
+10-15 15:00:07.927 W/ReactNativeJS(12028): [AUTH-LINK-GOOGLE] native ok {"provider":"google","providerSubject":"h:c49d60c6","deferIdentityPreparation":false,"t":3709063}
+10-15 15:00:07.928 W/ReactNativeJS(12028): [AUTH-LINK-GOOGLE] link decision {"provider":"google","canTryLink":true,"anonymous":true,"sourceUid":"h:d297f0a8","preProviderStable":"h:0dff08bc","t":3709065}
+10-15 15:00:09.603 W/ReactNativeJS(12028): [AUTH-LINK-GOOGLE] link conflict {"provider":"google","code":"auth/credential-already-in-use","expectedConflict":true,"t":3710740}
+10-15 15:00:09.916 W/ReactNativeJS(12028): [AUTH-LINK-GOOGLE] clean_proof timing {"allKeys":91,"getAllKeysMs":38,"selected":2215,"filterMs":24,"multiGetMs":241,"bytes":3777,"top5":"achievements_v1=2504 user_profile=266 level_spin_star_projection_v1:<id>=199 cli","t":3711051}
+10-15 15:00:09.933 W/ReactNativeJS(12028): [AUTH-LINK-GOOGLE] clean_proof dirty {"count":14,"t":3711070}
+10-15 15:00:09.936 W/ReactNativeJS(12028): [AUTH-LINK-GOOGLE] clean_proof dirty_keys 1/2 {"keys":"streak_count=1 active_days_v1={\"anchor\":\"2026-10-15\",\" unlocked_lessons=[1] achi","t":3711073}
+10-15 15:00:09.938 W/ReactNativeJS(12028): [AUTH-LINK-GOOGLE] clean_proof dirty_keys 2/2 {"keys":"user_profile(len=266) energy_state(len=120) install_date(len=13) client_shard_ph","t":3711075}
+10-15 15:00:10.454 W/ReactNativeJS(12028): [AUTH-LINK-GOOGLE] handoff proof {"provider":"google","localClean":false,"postCompletionHandoff":false,"t":3711590}
+10-15 15:00:10.455 W/ReactNativeJS(12028): [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:0dff08bc","tookMs":16428,"t":3711591}
+10-15 15:00:10.456 W/ReactNativeJS(12028): [WARNING] [AUTH-LINK-GOOGLE] branch account_switch_required: [AUTH-LINK-GOOGLE] branch account_switch_required {"provider":"google","source":"anonymous_link_conflict","localStable":"h:0dff08bc","tookMs":16428,"t":3711591}
+10-15 15:00:11.632 I/ReactNativeJS(12028): [AUTH-SWITCH-OFFER] resume_credential not_stored provider=google reason=caller_not_capturing
+10-15 15:00:11.643 I/ReactNativeJS(12028): [SIGNIN] ui:returned provider=google result=error in=17874ms
+10-15 15:00:11.647 W/ReactNativeJS(12028): '[RegistrationPromptModal] sign-in error', 'account_switch_required'

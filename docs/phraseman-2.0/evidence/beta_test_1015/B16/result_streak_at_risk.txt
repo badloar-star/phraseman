@@ -1,0 +1,2 @@
+ждём: lessons_list
+10-15 14:35:27.035 I/ReactNativeJS( 8801): [PUSH-TAP-DEV] simulate {"type":"streak_at_risk"}

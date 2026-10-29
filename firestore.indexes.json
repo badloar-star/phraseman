@@ -1195,6 +1195,16 @@
       ]
     },
     {
+      "collectionGroup": "safety_flags",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "__name__",
+          "order": "DESCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "arena_v2_receipts",
       "queryScope": "COLLECTION",
       "fields": [

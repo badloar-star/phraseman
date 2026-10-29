@@ -1,0 +1,14 @@
+{
+  "scenario": "dramatic_taxi_actor",
+  "title": "Таксист — драматичный актёр",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "taxi roof lamp with comedy-mask relief",
+    "steering wheel and curled stage-curtain ribbon",
+    "blank taxi meter shape and tragedy-mask relief",
+    "cab beacon spotlight on empty stage block",
+    "car key fob and opposing theatrical masks"
+  ],
+  "constraints": ["true transparent RGBA", "no humans or lettering/digits", "cyan internal marker for separate white accent extraction", "dark and light trial pairs", "trial location only"]
+}

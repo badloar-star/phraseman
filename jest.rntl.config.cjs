@@ -8,6 +8,8 @@ module.exports = {
   // зачем (03.10): запись про удалённый tests/learning_v2_rune_flight_lifecycle.test.tsx убрана — раннер искал несуществующий файл,
   // а tests/text_integrity_primitives.test.tsx (сторож «каждая запись существует») из-за этого был красным.
   testMatch: [
+    '<rootDir>/tests/community_winner_dialog.test.tsx',
+    '<rootDir>/tests/community_podium_navigation.test.tsx',
     '<rootDir>/tests/season_shared_modal.test.tsx',
     '<rootDir>/tests/spire_all_members_profile.test.tsx',
     '<rootDir>/tests/text_integrity_primitives.test.tsx',
@@ -71,6 +73,7 @@ module.exports = {
     '<rootDir>/tests/use_guarded_nav_stable.test.tsx',
     '<rootDir>/tests/use_voice_attempt_gate.test.tsx',
     '<rootDir>/tests/voice_allowance_d194_contract.test.tsx',
+    '<rootDir>/tests/paywall_admin_controls_render.test.tsx',
   ],
   // Официальная настройка gesture-handler для jest (без неё — «RNGestureHandlerModule could not be found»).
   setupFiles: ['react-native-gesture-handler/jestSetup'],

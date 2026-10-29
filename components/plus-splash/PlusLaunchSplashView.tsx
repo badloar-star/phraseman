@@ -1,3 +1,4 @@
+import { PlusMark } from '../plus/PlusMark';
 // ════════════════════════════════════════════════════════════════════════════
 // PlusLaunchSplashView.tsx — вёрстка заставки Plus при запуске (№35), эталон docs/design/v2-app/plus-launch-etalon.html.
 //
@@ -99,7 +100,7 @@ function PlusLaunchSplashView({ lang, offer, onPrimary, onDismiss }: PlusSplashV
           </V2Pressable>
 
           <View style={styles.kickRow}>
-            <Ionicons name="diamond" size={12} color={VIOLET_SOFT} />
+            <PlusMark width={30} decorative />
             <Text style={styles.kick}>{pick(lang, COPY.kicker)}</Text>
           </View>
           <Text accessibilityRole="header" style={styles.title}>{plusSplashText(lang, 'title')}</Text>

@@ -374,7 +374,13 @@ export function createV2CourseReleasedSessionHandlerV2(
   };
 }
 
+export function createV2CourseReleasedSessionTombstoneHandlerV2() {
+  return async (_request: unknown): Promise<never> => {
+    throw new HttpsError("failed-precondition", "upgrade_required");
+  };
+}
+
 export const learningV2CourseReleasedSessionGetV2 = onCall(
   V2_COURSE_RELEASED_SESSION_CALLABLE_OPTIONS_V2,
-  createV2CourseReleasedSessionHandlerV2(),
+  createV2CourseReleasedSessionTombstoneHandlerV2(),
 );

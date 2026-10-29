@@ -97,7 +97,7 @@ export default function LearningV2AuthoringPreviewScreen() {
           <PressableHybrid
             variant="card"
             accessibilityRole="button"
-            accessibilityLabel={`Открыть урок ${item.lessonOrdinal}, сессию ${item.sessionOrdinal}. Статус: ${STATUS_COPY.OWNER_APPROVED}`}
+            accessibilityLabel={`Открыть урок ${item.lessonOrdinal}, сессию ${item.sessionOrdinal}. Статус: ${item.lessonOrdinal === 1 && item.sessionOrdinal <= 15 ? STATUS_COPY.OWNER_APPROVED : STATUS_COPY.DRAFT}`}
             onPress={() => openSession(item)}
             style={styles.rowHit}
             contentStyle={[
@@ -110,7 +110,7 @@ export default function LearningV2AuthoringPreviewScreen() {
             </View>
             <View style={styles.rowCopy}>
               <Text style={[styles.rowTitle, { color: t.textPrimary }]}>Урок {item.lessonOrdinal} · Сессия {item.sessionOrdinal}</Text>
-              <Text style={[styles.rowStatus, { color: t.textMuted }]}>{STATUS_COPY.OWNER_APPROVED}</Text>
+              <Text style={[styles.rowStatus, { color: t.textMuted }]}>{item.lessonOrdinal === 1 && item.sessionOrdinal <= 15 ? STATUS_COPY.OWNER_APPROVED : STATUS_COPY.DRAFT}</Text>
             </View>
             <Ionicons name="play" size={18} color={t.accent} />
           </PressableHybrid>

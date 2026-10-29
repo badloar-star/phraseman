@@ -66,6 +66,59 @@ describe("session package children built from an authored shard", () => {
     ).toHaveLength(practiceCount);
   });
 
+  it("projects after-attempt reveal only onto independent scripted repeats", () => {
+    const children = buildSessionChildBodiesFromShard(shard, "ru", "lesson-01:session:01");
+    const interactions = (children.learner as {
+      interactions: readonly {
+        purpose: string;
+        family: string;
+        modePayload: Record<string, unknown> | null;
+      }[];
+    }).interactions;
+    const independent = interactions.filter((interaction) =>
+      interaction.family === "scripted_repeat_compare"
+      && interaction.purpose === "independent_check");
+    expect(independent.length).toBeGreaterThan(0);
+    for (const interaction of independent) {
+      expect(interaction.modePayload?.scriptedRepeatRevealPolicy).toEqual({
+        schemaVersion: "learning-v2-scripted-repeat-reveal-policy.v1",
+        revealAfter: "first_submitted_attempt",
+        answerExposedBeforeAttempt: false,
+        targetPhraseVisibleBeforeAttempt: false,
+        referenceAudioAvailableBeforeAttempt: false,
+        modelPlaybackAvailableBeforeAttempt: false,
+      });
+    }
+
+    const guidedShard = {
+      ...shard,
+      cards: shard.cards.map((card) =>
+        card.modePayload?.family === "scripted_repeat_compare"
+        && card.purpose === "independent_check"
+          ? { ...card, purpose: "guided_practice" as const }
+          : card),
+    };
+    const guided = (buildSessionChildBodiesFromShard(
+      guidedShard,
+      "ru",
+      "lesson-01:session:01",
+    ).learner as {
+      interactions: readonly {
+        purpose: string;
+        family: string;
+        modePayload: Record<string, unknown> | null;
+      }[];
+    }).interactions.filter((interaction) =>
+      interaction.family === "scripted_repeat_compare"
+      && interaction.purpose === "guided_practice");
+    expect(guided.length).toBeGreaterThan(0);
+    for (const interaction of guided) {
+      expect(interaction.modePayload).not.toHaveProperty(
+        "scriptedRepeatRevealPolicy",
+      );
+    }
+  });
+
   // зачем (координатор, «(2) облегчённый», 2026-10-01): кейс с точными числами
   // старого контракта (3 варианта, одна инструкция на семейство) снят; его
   // инварианты для en и es живут в learning_v2_authored_pipeline_invariants.test.ts.

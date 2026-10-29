@@ -1,0 +1,17 @@
+{
+  "iconId": "ui_01_02",
+  "label": "назад",
+  "style": "S2 matte clay",
+  "options": 5,
+  "themeModes": ["dark", "light"],
+  "transparentBackground": true,
+  "concepts": [
+    "short left arrow with rounded shaft and beveled head",
+    "raised left chevron with separate tail",
+    "bent return arrow curling left",
+    "left arrow engraved through a rounded clay tab",
+    "continuous clay ribbon looping back left"
+  ],
+  "segmentation": "Cyan circular inlay extracted to a separate white accent layer; light variants derived from each corresponding dark option.",
+  "qualityNote": "All ten dark/light pairs preserve alpha and pass the required accent-area and alignment checks (1.147–2.041%)."
+}

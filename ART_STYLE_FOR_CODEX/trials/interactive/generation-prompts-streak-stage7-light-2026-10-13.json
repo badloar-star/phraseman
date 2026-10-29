@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "mode": "light",
+  "stage": 7,
+  "tierDays": 60,
+  "prompts": [
+    {"asset":"light/streak_07_option_01r1","reference":"dark/streak_07_option_01","prompt":"Light-theme clay material adaptation of the exact droplet-flame streak icon. Preserve silhouette and cyan inset exactly; matte warm ivory clay, soft neutral gray relief, centered front view, true transparent alpha outside; no specks or extra objects."},
+    {"asset":"light/streak_07_option_02r1","reference":"dark/streak_07_option_02","prompt":"Light-theme clay material adaptation of the exact intertwined teardrop/ribbon-loop streak icon. Preserve loop, transparent center hole and cyan lower inset exactly; matte warm ivory clay, soft neutral gray relief, centered front view, transparent outside and through the hole; no specks or extra objects."},
+    {"asset":"light/streak_07_option_03r1","reference":"dark/streak_07_option_03","prompt":"Light-theme clay material adaptation of the exact hooked S-flame streak icon. Preserve curl, asymmetry and cyan inset exactly; matte warm ivory clay, soft gray relief, centered front view, transparent outside and through curled opening; no specks or extra objects."},
+    {"asset":"light/streak_07_option_04r1","reference":"dark/streak_07_option_04","prompt":"Light-theme clay material adaptation of the exact rounded-square streak badge. Preserve plaque, five-part flame emboss and cyan lower pill exactly; matte warm ivory clay, soft gray relief, centered front view, true transparent alpha outside; no specks or extra objects."},
+    {"asset":"light/streak_07_option_05r1","reference":"dark/streak_07_option_05","prompt":"Light-theme clay material adaptation of the exact three-petal flame icon. Preserve tall center petal, two side petals and cyan oval inset exactly; matte warm ivory clay, soft neutral gray relief, centered front view, true transparent alpha outside; no specks or extra objects."}
+  ],
+  "acceptance": "All five PNG outputs retain actual transparency; base and separate white accent WebP files were prepared at 1024x1024. Accent areas: 5.090%, 1.340%, 3.331%, 1.328%, 2.425%. Alignment checks pass without geometry changes. All five remain visual drafts because detached/rough alpha-edge fragments are visible; no alpha cleanup was performed."
+}

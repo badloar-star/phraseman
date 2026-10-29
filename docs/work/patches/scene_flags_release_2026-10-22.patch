@@ -1,0 +1,145 @@
+diff --git a/components/dialogs/scene/dialogs_scene_flags.ts b/components/dialogs/scene/dialogs_scene_flags.ts
+index 7c26425..3426852 100644
+--- a/components/dialogs/scene/dialogs_scene_flags.ts
++++ b/components/dialogs/scene/dialogs_scene_flags.ts
+@@ -1,10 +1,7 @@
+ // ═══════════════════════════════════════════════════════════════════════════
+ // dialogs_scene_flags.ts — флаг «Сцены» в «Диалогах».
+ //
+-// зачем (координатор 21.10, вариант A одобрен владельцем): «Сцена» для «Диалогов» выкатывается за флагом — в разработке включена, в бою выключена,
+-// пока Сверка не пройдёт состояния, а 4 · ТЕМЫ не добавит картинки dialogs_scene_* в реестр. Выключатель одной строкой: DIALOGS_SCENE_V2_ENABLED.
+-// Без флага раздел рисует прежнюю шапку (app/ai_dialog_home.tsx) — ничего не меняется.
++// зачем (координатор 21.10, вариант A одобрен владельцем; владелец 22.10, после вердикта Сверки «как в эталоне»): «Сцена» для «Диалогов» включена у людей в выпуске.
++// Откат одной строкой — false: раздел рисует прежнюю шапку (app/ai_dialog_home.tsx), лист согласия — прежний верх, список диалогов — прежний.
+ // ═══════════════════════════════════════════════════════════════════════════
+-import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from '../../../app/config';
+-
+-export const DIALOGS_SCENE_V2_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE;
++export const DIALOGS_SCENE_V2_ENABLED: boolean = true;
+diff --git a/components/home/v2/scene/HomeScene.tsx b/components/home/v2/scene/HomeScene.tsx
+index a880b0b..1784766 100644
+--- a/components/home/v2/scene/HomeScene.tsx
++++ b/components/home/v2/scene/HomeScene.tsx
+@@ -30,13 +30,12 @@ import { setHomeSceneStatusTint } from './home_scene_status_tint';
+ import { useHomeSceneOffline } from './use_home_scene_offline';
+ 
+ const LOG = '[HOME-SCENE]';
+-const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
+ 
+ /**
+- * зачем (координатор 22.10): «Сцена» на Главной — в dev-сборке да, в релизе нет, пока владелец не посмотрит её на эмуляторе.
+- * В релиз — заменить на true; совсем выключить — false (Главная рисует прежние шапку и карточку «Продолжить»).
++ * зачем (владелец 22.10, после вердикта Сверки «как в эталоне»): «Сцена» на Главной включена у людей в выпуске.
++ * Откат одной строкой — false (Главная рисует прежние шапку и карточку «Продолжить»).
+  */
+-export const HOME_SCENE_V2_ENABLED: boolean = IS_DEV;
++export const HOME_SCENE_V2_ENABLED: boolean = true;
+ /** зачем (координатор 22.10): чип «Слова» прячем, пока словарь не подключён к «Урокам»; включается этой строкой. */
+ export const HOME_SCENE_WORDS_CHIP_ENABLED = false;
+ 
+diff --git a/components/home/v2/today_scene/today_scene_flag.ts b/components/home/v2/today_scene/today_scene_flag.ts
+index 3143026..5641233 100644
+--- a/components/home/v2/today_scene/today_scene_flag.ts
++++ b/components/home/v2/today_scene/today_scene_flag.ts
+@@ -1,4 +1,3 @@
+-// зачем (координатор 22.10): «Сегодня» в стиле «Сцена» (вариант A) — в dev-сборке да, в релизе нет, пока владелец не посмотрит на устройстве.
+-// В релиз — заменить на true; совсем выключить — false (экран рисуется прежним: кольца, строки, история).
+-const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
+-export const TODAY_SCENE_V2_ENABLED: boolean = IS_DEV;
++// зачем (владелец 22.10, после вердикта Сверки «как в эталоне»): «Сегодня» в стиле «Сцена» (вариант A) включено у людей в выпуске.
++// Откат одной строкой — false (экран рисуется прежним: кольца, строки, история).
++export const TODAY_SCENE_V2_ENABLED: boolean = true;
+diff --git a/tests/dialogs_scene_contract.test.ts b/tests/dialogs_scene_contract.test.ts
+index acc3a1f..cc57fff 100644
+--- a/tests/dialogs_scene_contract.test.ts
++++ b/tests/dialogs_scene_contract.test.ts
+@@ -216,8 +216,10 @@ describe('Сцена Диалогов: превью и защита релиза
+     expect(route).toMatch(/useStableSafeAreaInsets/);
+     expect(route).not.toMatch(/useSafeAreaInsets\(/);
+   });
+-  it('флаг: в разработке вкл, в стор-релизе выкл — одной строкой', () => {
+-    expect(read('components/dialogs/scene/dialogs_scene_flags.ts')).toMatch(/DIALOGS_SCENE_V2_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE;/);
++  it('флаг: включён у людей в выпуске (решение владельца 22.10, после вердикта Сверки); откат — одна строка', () => {
++    const flags = read('components/dialogs/scene/dialogs_scene_flags.ts');
++    expect(flags).toMatch(/DIALOGS_SCENE_V2_ENABLED: boolean = true;/);
++    expect(flags).not.toMatch(/ENABLE_DEV_TOOLS|IS_STORE_RELEASE|__DEV__/);
+   });
+   it('вёрстка без обводок и без ужатия шрифта', () => {
+     for (const file of ['DialogsSceneStage.tsx', 'DialogsScenePanel.tsx', 'DialogsScene.tsx']) {
+diff --git a/tests/today_scene_wiring_contract.test.ts b/tests/today_scene_wiring_contract.test.ts
+index 32ba9ff..3bc3f22 100644
+--- a/tests/today_scene_wiring_contract.test.ts
++++ b/tests/today_scene_wiring_contract.test.ts
+@@ -3,10 +3,10 @@
+ import { readSource } from './helpers/read_source';
+ 
+ describe('«Сегодня» в стиле «Сцена»: подключение', () => {
+-  it('флаг: включён только в dev-сборке', () => {
++  it('флаг: включён у людей в выпуске (решение владельца 22.10, после вердикта Сверки); откат — одна строка', () => {
+     const flag = readSource('components/home/v2/today_scene/today_scene_flag.ts');
+-    expect(flag).toContain("typeof __DEV__ !== 'undefined' && __DEV__ === true");
+-    expect(flag).toContain('export const TODAY_SCENE_V2_ENABLED: boolean = IS_DEV;');
++    expect(flag).toContain('export const TODAY_SCENE_V2_ENABLED: boolean = true;');
++    expect(flag).not.toContain('__DEV__');
+   });
+ 
+   it('экран /today_tasks: ветка сцены стоит ПОСЛЕ всех хуков и перед прежним видом, дальше прежний код целиком', () => {
+diff --git a/components/spire/scene/spire_scene_flag.ts b/components/spire/scene/spire_scene_flag.ts
+--- a/components/spire/scene/spire_scene_flag.ts
++++ b/components/spire/scene/spire_scene_flag.ts
+@@ -1,10 +1,7 @@
+ // ═══════════════════════════════════════════════════════════════════════════
+ // spire_scene_flag.ts — выключатель «Сцены» Пика (V2 «Пьедестал перед башней»).
+ //
+-// зачем (координатор 22.10; решение владельца — вопрос 32: Пик V2 включается у людей в этом выпуске после вердикта «Сверки», как остальные
+-// «Сцены»): в dev-сборке да, в релизе нет. Включение в релизе — одной строкой (заменить на true) у 2 · ДИЗАЙН по сигналу координатора.
+-// Отдельный крошечный модуль: его читает и полоса под часами в оболочке вкладок (грузится на старте) — модель Пика туда не тянем.
++// зачем (координатор 22.10; решение владельца — вопрос 32; владелец 22.10, после вердикта «Сверки»): Пик V2 включён у людей в этом выпуске, как остальные «Сцены».
++// Откат одной строкой — false: Пик рисует прежний вид. Отдельный крошечный модуль: его читает и полоса под часами в оболочке вкладок (грузится на старте) — модель Пика туда не тянем.
+ // ═══════════════════════════════════════════════════════════════════════════
+-const IS_DEV = typeof __DEV__ !== 'undefined' && __DEV__ === true;
+-
+-export const SPIRE_SCENE_V2_ENABLED: boolean = IS_DEV;
++export const SPIRE_SCENE_V2_ENABLED: boolean = true;
+diff --git a/tests/spire_scene_contract.test.ts b/tests/spire_scene_contract.test.ts
+--- a/tests/spire_scene_contract.test.ts
++++ b/tests/spire_scene_contract.test.ts
+@@ -97,6 +97,11 @@
+   }
+   assert.equal(spireScenePreviewSetup("search", false).members, null, "подбор комнаты: комнаты ещё нет — пьедестал-скелет");
+   assert.equal(typeof SPIRE_SCENE_V2_ENABLED, "boolean");
++  // флаг: включён у людей в выпуске (решение владельца 22.10, после вердикта Сверки); откат — одна строка
++  const spireFlag = read("components/spire/scene/spire_scene_flag.ts");
++  assert.equal(SPIRE_SCENE_V2_ENABLED, true, "Пик V2 включён у людей");
++  assert.match(spireFlag, /SPIRE_SCENE_V2_ENABLED: boolean = true;/);
++  assert.ok(!/__DEV__|IS_DEV/.test(spireFlag.split(String.fromCharCode(10)).filter((line) => !line.trim().startsWith("/" + "/")).join(" ")), "флаг не зависит от dev-сборки");
+ 
+   // ── dev-вход, стор-бандл, башня и кнопка в режиме «Сцены» ──
+   const route = read("app/dev_spire_scene_preview.tsx");
+diff --git a/components/learning-v2/season/season_flags.ts b/components/learning-v2/season/season_flags.ts
+index 5648f46..583e6ed 100644
+--- a/components/learning-v2/season/season_flags.ts
++++ b/components/learning-v2/season/season_flags.ts
+@@ -12,5 +12,5 @@ import { ENABLE_DEV_TOOLS, IS_STORE_RELEASE } from '../../../app/config';
+ export const SEASON_CHAPTER_EXAM_ENABLED = false as boolean;
+ 
+ // зачем (Ф4, владелец 22.10 «ПОЧЕМУ РАЗДЕЛ УРОКИ ЕЩЁ НЕ СДЕЛАН?»; координатор): экран «Обучение — способ 2» (SeasonCourseConnected) во вкладке «Уроки» вместо старой карты глав —
+-// в разработке включён, в выпуске выключен (как у сцен Главной/Диалогов/«Сегодня»). Выключатель одной строкой; в патч «включить сцены» входит эта же строка.
+-export const SEASON_SCENE_V2_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE;
++// включён у людей в выпуске (решение владельца 22.10, после вердикта Сверки). Откат одной строкой — false (вкладка снова рисует старую карту глав).
++export const SEASON_SCENE_V2_ENABLED: boolean = true;
+diff --git a/tests/season_wire_contract.test.ts b/tests/season_wire_contract.test.ts
+index 506fd22..dcfc7ba 100644
+--- a/tests/season_wire_contract.test.ts
++++ b/tests/season_wire_contract.test.ts
+@@ -7,8 +7,8 @@ const flags = readSource('components/learning-v2/season/season_flags.ts');
+ const lessons = readSource('app/(tabs)/lessons.tsx');
+ 
+ describe('Сезон во вкладке «Уроки»', () => {
+-  it('флаг: в разработке включён, в выпуске выключен', () => {
+-    expect(flags).toMatch(/SEASON_SCENE_V2_ENABLED: boolean = ENABLE_DEV_TOOLS && !IS_STORE_RELEASE/);
++  it('флаг: включён у людей в выпуске (решение владельца 22.10, после вердикта Сверки); откат — одна строка', () => {
++    expect(flags).toMatch(/SEASON_SCENE_V2_ENABLED: boolean = true;/);
+   });
+   it('вкладка подставляет Сезон под флагом, старая карта остаётся запасной', () => {
+     expect(lessons).toContain('SEASON_SCENE_V2_ENABLED ? (SeasonCourseConnected as unknown as typeof LearningV2ChaptersCourse) : LearningV2ChaptersCourse');

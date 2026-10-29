@@ -3,10 +3,12 @@
 <head>
 <meta charset="utf-8"><base href="../../../docs/design/v2-app/">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Шпиль 2.0</title>
+<title>Пик 2.0</title>
 <link rel="stylesheet" href="kit.css">
 <style>
-/* Локальные детали Шпиля. Ничего из kit.* не переопределяем — только добавляем. */
+/* зачем (D170): у энергии в шапке Пика нет капсулы — гасим и общий блик-обводку стиля «Тень» (::after из kit.css) */
+.pill.encap.bare::after { display: none; }
+/* Локальные детали Пика. Ничего из kit.* не переопределяем — только добавляем. */
 .tview { position: relative; height: 400px; overflow-y: auto; overflow-x: hidden; border-radius: 22px; background: #131315; border: 1px solid var(--line); scrollbar-width: none; }
 .tview::-webkit-scrollbar { display: none; }
 .tview.tall { height: 470px; }
@@ -89,7 +91,7 @@ svg[data-tower] .celeb { animation: celeb 1.6s ease-in-out infinite; }
 .note svg { color: var(--text); }
 .pgbtn { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 19px; border: 1px solid var(--line-2); background: #161618; color: var(--text); font: 600 14px Inter, sans-serif; cursor: pointer; margin-top: 4px; }
 .demo { display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 17px; border: 1px dashed var(--outline); color: var(--sec); font-size: 14px; font-weight: 600; margin-top: 12px; }
-/* зачем (координатор 12.10): Шпиль берёт общий фон темы «Затмение» (graphite): bg #0C0D10, bgTop #181A1F — утверждённая палитра, закреплена тестами (liquidGlassThemePalette.ts) */
+/* зачем (координатор 12.10): Пик берёт общий фон темы «Затмение» (graphite): bg #0C0D10, bgTop #181A1F — утверждённая палитра, закреплена тестами (liquidGlassThemePalette.ts) */
 .ph { --bg: #0C0D10; --bg-top: #181A1F; }
 
 #tower-tools select,#tower-tools button{font:inherit;background:#303239;color:#eee;border:0;border-radius:8px;padding:8px}body:has(#tower-tools:empty) .page{padding:0}
@@ -97,12 +99,13 @@ svg[data-tower] .celeb { animation: celeb 1.6s ease-in-out infinite; }
 </head>
 <body><div id="tower-tools" style="position:sticky;top:0;z-index:100;background:#18191d;color:#eee;padding:12px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;font:14px system-ui"><label>Конструкция <select id="tower-design"></select></label><label>Лига <select id="tower-tier"></select></label><label>Этаж <input id="tower-floor" type="range" min="1" max="15" value="4"><output id="floor-value">4</output></label><button id="save-tower" type="button">Выбрать конструкцию</button><span id="tower-selection" aria-live="polite"></span></div>
 <div class="page">
-  <h1 class="page-h1">Шпиль — раздел вместо Лиги</h1>
-  <p class="page-lead">Вкладка «Сообщество». Каждую неделю новый шпиль-камень, 15 этажей, ступень = 10 заданий на общее время с тремя сердцами. Башня нарисована кодом (SVG) и интерактивна: этаж тапается, свой этаж подсвечен, маркер поднимается после ступени.</p>
-  <nav class="page-nav"><a href="#tour">Тур</a><a href="#main" class="on">Шпиль</a><a href="#all">Все участники</a><a href="#step">Ступень</a><a href="#result">Итог ступени</a><a href="#floor">Этаж и вершина</a><a href="#week">Итог недели</a><a href="#edge">Нет энергии / сети</a></nav>
+  <h1 class="page-h1">Пик — раздел вместо Лиги</h1>
+  <p class="page-lead">Вкладка «Сообщество». Каждую неделю новый пик-камень, 15 этажей, ступень = 10 заданий на общее время с тремя сердцами. Башня нарисована кодом (SVG) и интерактивна: этаж тапается, свой этаж подсвечен, маркер поднимается после ступени.</p>
+  <nav class="page-nav"><a href="#tour">Тур</a><a href="#main" class="on">Пик</a><a href="#all">Все участники</a><a href="#step">Ступень</a><a href="#result">Итог ступени</a><a href="#floor">Этаж и вершина</a><a href="#week">Итог недели</a><a href="#edge">Нет энергии / сети</a></nav>
   <div id="root"></div>
 </div>
 <script src="kit.js"></script>
+<script src="spire-tower-render.js"></script>
 <script>
 
 const PARAMS=new URLSearchParams(location.search);
@@ -115,14 +118,19 @@ const MATERIALS=['#77736e','#373b43','#dad8d0','#4c8876','#cad3d7','#a87b68','#3
 const MATERIAL=MATERIALS[TIER];
 
 const { icon, phone, col, block, sheet, energy, coins, coinImg } = K;
-const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Шпиля — только значок и число, без капсулы (SpireEnergyPill)
+const energyBare = (n) => energy(n).replace('class="pill encap"', 'class="pill encap bare" style="background:none;box-shadow:none;min-width:0;padding:0 6px;height:37px"'); // зачем (приказ владельца 01.10 через координатора 13.10): энергия в шапке Пика — только значок и число, без капсулы (SpireEnergyPill)
 const ch = `<span class="ch">${icon('fwd', 's20')}</span>`;
 
 /* ===================== ДАННЫЕ КОМНАТЫ (30 человек, боты не раскрываются) ===================== */
 const NAMES = ['Аня', 'Марк', 'Ольга', 'Тимур', 'Лея', 'Иван', 'Денис', 'Nadia', 'Kirill', 'Софья', 'Dmytro', 'Юля', 'Артём', 'Halyna', 'Роман', 'Вера', 'Oleh', 'Мария', 'Глеб', 'Ирина', 'Sergio', 'Даша', 'Павел', 'Лидия', 'Natalia', 'Егор', 'Кира', 'Богдан', 'Алина', 'Максим'];
 const STEPS = [47, 39, 33, 31, 29, 27, 25, 24, 22, 21, 19, 18, 17, 15, 14, 12, 11, 11, 9, 8, 7, 6, 5, 5, 4, 3, 2, 1, 0, 0];
 const RANKS = [12, 9, 7, 11, 6, 8, 5, 4, 10, 3, 7, 6, 2, 9, 5, 1, 8, 4, 3, 6, 2, 0, 7, 1, 5, 3, 0, 2, 1, 0];
-const ROOM = NAMES.map((name, i) => ({ name, steps: STEPS[i], rank: RANKS[i], me: name === 'Денис' }));
+// зачем (D162/D184): монеты за неделю во всех режимах — по ним место; порядок не совпадает со ступенями (Тимур выше Ольги по монетам)
+const COINS = [612, 538, 455, 470, 402, 395, 340, 318, 330, 290, 268, 255, 240, 215, 198, 180, 166, 150, 140, 122, 110, 96, 88, 70, 64, 52, 40, 26, 0, 0];
+const ROOM = NAMES.map((name, i) => ({ name, steps: STEPS[i], coins: COINS[i], rank: RANKS[i], me: name === 'Денис' }));
+const plCoins = (n) => { const a = n % 10, b = n % 100; return a === 1 && b !== 11 ? 'монета' : a >= 2 && a <= 4 && (b < 12 || b > 14) ? 'монеты' : 'монет'; };
+const coinsTxt = (n) => `${n.toLocaleString('ru-RU')} ${plCoins(n)}`;
+const byCoins = (a, b) => b.coins - a.coins || b.steps - a.steps; // ничья по монетам — по ступеням, отдельно не показывается
 const ME = ROOM.find((m) => m.me);
 const FRIENDS = [{ name: 'Аня', rank: 12, floor: 7 }, { name: 'Kirill', rank: 10, floor: 3 }, { name: 'Лидия', rank: 1, floor: 1 }, { name: 'Sergio', rank: 2, floor: 2 }];
 
@@ -136,164 +144,19 @@ const floorOf = (steps) => { for (let f = 1; f <= FLOORS; f++) if (steps < cum(f
 const doneIn = (steps, f) => steps - cum(f - 1);
 const onFloor = (f) => ROOM.filter((m) => !m.me && floorOf(m.steps) === f);
 
-/* ===================== БАШНЯ (SVG, без картинок) ===================== */
-// зачем: владелец — «Я ЖДУ БАШНЮ НАСТОЯЩУЮ», «ОХУЕННУЮ», «ГДЕ ТВОЙ ЭТАЖ ПОДСВЕЧИВАЕТСЯ».
-// Круглая каменная башня с объёмом: цилиндрическая светотень, кладка рядами с изгибом,
-// окна по окружности (сужаются к краям), карнизы-кольца, у Стражей зубцы и машикули,
-// на вершине конус с черепицей и светящимся навершием. Соперники — слева от башни,
-// мой маркер — справа, чтобы ничего не лежало поверх кладки.
-const TW = 390, CX = 195;
-const FH=(f)=>(isGuard(f)?60:46)+(DESIGN===1?5:DESIGN===2&&isGuard(f)?8:0);
-const FW=(f)=>{const progression=TIER*.8;if(DESIGN===1)return 172+progression-(f-1)*3.8;if(DESIGN===2)return 204+progression-Math.floor((f-1)/5)*26-(f%5===0?-6:0);if(DESIGN===3)return 192+progression-(f-1)*4.5;if(DESIGN===4)return 180+progression-(f-1)*2.7;return 196+progression-(f-1)*5;};
-function towerGeom() {
-  const topPad = 300, basePad = 96; let h = 0;
-  for (let f = 1; f <= FLOORS; f++) h += FH(f);
-  const H = topPad + h + basePad; let yb = H - basePad; const floors = [];
-  for (let f = 1; f <= FLOORS; f++) { const fh = FH(f), w = FW(f); yb -= fh; floors.push({ f, y: yb, h: fh, w, x0: CX - w / 2 }); }
-  return { floors, H, base: H - basePad, top: floors[FLOORS - 1].y };
-}
-const G = towerGeom();
-const markerXY = (fl) => ({ x: fl.x0 + fl.w + 34, y: fl.y + fl.h / 2 + 2 });
-const winPath = (x, y, w, hh) => `M${x.toFixed(1)} ${(y + w / 2).toFixed(1)}a${(w / 2).toFixed(1)} ${(w / 2).toFixed(1)} 0 0 1 ${w.toFixed(1)} 0V${y + hh}H${x.toFixed(1)}Z`;
-function winState(f, myFloor, o) {
-  if (o.summit) return f === FLOORS ? 'lit' : 'past';
-  if (o.celebrate && f === o.celebrate) return 'lit';
-  if (f === myFloor) return 'lit';
-  return f < myFloor ? 'past' : 'dark';
-}
-function stones(fl) {
-  // ряды кладки с лёгким изгибом (смотрим на цилиндр снизу) и швы, сгущающиеся к краям
-  const { f, y, h, w, x0 } = fl; const r = w / 2; let d = '', hl = ''; let row = 0;
-  for (let yy = y + 11; yy < y + h; yy += 11, row++) {
-    d += `M${x0} ${yy}Q${CX} ${yy + 4} ${x0 + w} ${yy}`;
-    hl += `M${x0} ${yy + 1.2}Q${CX} ${yy + 5.2} ${x0 + w} ${yy + 1.2}`;
-    for (let t = -1.35 + (row % 2) * 0.14; t < 1.4; t += 0.28) { const x = CX + r * Math.sin(t); d += `M${x.toFixed(1)} ${(yy - 11 + 1.5 * Math.cos(t)).toFixed(1)}V${(yy + 3 * Math.cos(t)).toFixed(1)}`; }
-  }
-  return `<path d="${d}" stroke="rgba(0,0,0,.34)" stroke-width="1.1" fill="none" clip-path="url(#cl${f})"/><path d="${hl}" stroke="rgba(255,255,255,.045)" stroke-width="1" fill="none" clip-path="url(#cl${f})"/>`;
-}
-function windows(fl, st) {
-  const { f, y, w } = fl; const r = w / 2; const g = isGuard(f);
-  const ts = f >= 12 ? [-0.55, 0.55] : [-0.72, 0, 0.72];
-  let out = '';
-  ts.forEach((t) => {
-    const big = g && t === 0; const ww = (big ? 16 : 12) * Math.cos(t), wh = big ? 30 : 20;
-    const x = CX + r * Math.sin(t) - ww / 2, yy = y + (g ? 22 : 12) - (big ? 6 : 0);
-    const d = winPath(x, yy, ww, wh);
-    out += `<path class="win ${st}" d="${d}"/>`;
-    if (st === 'lit') out += `<path class="wglow" d="${d}" fill="#EEF0F6" filter="url(#wglow)"/>`;
-    out += `<rect x="${(x - 2).toFixed(1)}" y="${yy + wh}" width="${(ww + 4).toFixed(1)}" height="2.6" rx="1" fill="#6B6B72"/>`;
-  });
-  return out;
-}
-function parapet(fl) {
-  // зубцы Стража по кругу: ширина и свет зависят от угла
-  const { y, w, x0 } = fl; const r = w / 2 + 7;
-  let out = `<rect x="${x0 - 7}" y="${y - 4}" width="${w + 14}" height="10" rx="2" fill="url(#cylCorn)"/>`;
-  for (let t = -1.32; t <= 1.33; t += 0.3) {
-    const mw = 11 * Math.cos(t), x = CX + r * Math.sin(t) - mw / 2, sh = 0.62 - 0.38 * Math.sin(t + 0.45);
-    const c = Math.round(66 + 44 * sh);
-    out += `<rect x="${x.toFixed(1)}" y="${y - 17}" width="${mw.toFixed(1)}" height="14" rx="1.2" fill="rgb(${c},${c},${c + 5})"/>`;
-  }
-  // машикули — ряд кронштейнов под парапетом
-  for (let t = -1.25; t <= 1.26; t += 0.25) { const cw = 6 * Math.cos(t), x = CX + (w / 2 + 3) * Math.sin(t) - cw / 2; out += `<path d="M${x.toFixed(1)} ${y + 6}h${cw.toFixed(1)}l-1 7h${(-cw + 2).toFixed(1)}Z" fill="rgba(0,0,0,.45)"/>`; }
-  return out;
-}
-function floorSvg(fl, myFloor, o) {
-  const { f, y, h, w, x0 } = fl; const g = isGuard(f), st = winState(f, myFloor, o);
-  const mine = f === myFloor && !o.summit;
-  const others = onFloor(f); const shown = Math.min(others.length, 2); const extra = others.length - shown;
-  let avs = '';
-  if (others.length) {
-    const ax = x0 - 10 - (22 + (shown - 1) * 13) - (extra ? 22 : 0);
-    others.slice(0, shown).forEach((m, k) => { avs += `<circle cx="${ax + 11 + k * 13}" cy="${y + h / 2}" r="11.5" fill="#0C0D10"/><image href="${K.coin(m.rank)}" x="${ax + k * 13}" y="${y + h / 2 - 11}" width="22" height="22"/>`; });
-    if (extra) avs += `<text x="${ax + 22 + (shown - 1) * 13 + 5}" y="${y + h / 2 + 4}" font-size="11" font-weight="700" fill="#9A9A9E">+${extra}</text>`;
-  }
-  const label = o.clean ? '' : f === FLOORS ? 'ВЕРШИНА' : g ? 'СТРАЖ' : '';
-  if (o.clean) avs = '';
-  const lit = mine || st === 'lit';
-  return `<g class="fl${mine ? ' mine' : ''}${f === o.sel ? ' sel' : ''}" data-floor="${f}">
-    <clipPath id="cl${f}"><rect x="${x0}" y="${y}" width="${w}" height="${h}"/></clipPath>
-    ${lit ? `<ellipse class="halo2" cx="${CX}" cy="${y + h / 2}" rx="${w / 2 + 70}" ry="${h}" fill="url(#litfloor)"/>` : ''}
-    <rect class="face" x="${x0}" y="${y}" width="${w}" height="${h}" fill="url(#${g ? 'cylG' : 'cyl'})"/>
-    ${DESIGN===4?stones(fl).replace(/stroke-width="1.1"/g,'stroke-width=".5"'):stones(fl)}${DESIGN===3?`<rect x="${x0+4}" y="${y}" width="7" height="${h}" fill="url(#cylCorn)"/><rect x="${x0+w-11}" y="${y}" width="7" height="${h}" fill="url(#cylCorn)"/>`:""}
-    <rect x="${x0}" y="${y}" width="${w}" height="${h}" fill="url(#under)"/>
-    ${windows(fl, st)}
-    ${g ? '' : `<rect x="${x0 - 5}" y="${y - 3}" width="${w + 10}" height="7" rx="3" fill="url(#cylCorn)"/><rect x="${x0 - 5}" y="${y - 3}" width="${w + 10}" height="1.4" rx=".7" fill="rgba(255,255,255,.28)"/>`}
-    ${avs}
-    ${o.clean ? '' : `<text class="fn" x="14" y="${y + h / 2 + (label ? 0 : 5)}" font-size="14" font-weight="${mine ? 700 : 600}" fill="${mine ? '#FFFFFF' : '#6E6E72'}" text-anchor="middle">${f}</text>`}
-    ${label ? `<text x="20" y="${y + h / 2 + 14}" font-size="7.5" font-weight="700" letter-spacing=".5" fill="#8E8E92" text-anchor="middle">${label}</text>` : ''}
-    <rect class="selr" x="${x0 - 9}" y="${y - (g ? 20 : 6)}" width="${w + 18}" height="${h + (g ? 23 : 9)}" rx="5" fill="none" stroke="rgba(255,255,255,.8)" stroke-width="1.4"/>
-    <rect x="0" y="${y - 4}" width="${TW}" height="${h + 4}" fill="transparent"/>
-  </g>`;
-}
-function spireSvg(o) {
-  const t = G.floors[FLOORS - 1]; const dw = t.w - 22, dx = CX - dw / 2, yd = t.y - 34, apex = yd - 168, rw = dw + 26;
-  const big = o.summit; let shingles = '';
-  for (let yy = yd - 10; yy > apex + 10; yy -= 11) { const k = (yd - yy) / (yd - apex); const hw = (rw / 2) * (1 - k); shingles += `M${(CX - hw).toFixed(1)} ${yy}Q${CX} ${(yy + 4 * (1 - k)).toFixed(1)} ${(CX + hw).toFixed(1)} ${yy}`; }
-  const dwin = [-0.5, 0, 0.5].map((a) => { const ww = 9 * Math.cos(a), x = CX + (dw / 2) * Math.sin(a) - ww / 2; return `<path class="win ${big || o.myFloor > FLOORS ? 'lit' : 'dark'}" d="${winPath(x, yd + 9, ww, 15)}"/>`; }).join('');
-  return `<g>
-    <rect x="${dx}" y="${yd}" width="${dw}" height="34" fill="url(#cyl)"/>
-    ${dwin}
-    <rect x="${CX - rw / 2}" y="${yd - 4}" width="${rw}" height="8" rx="4" fill="url(#cylCorn)"/>
-    <polygon points="${CX - rw / 2},${yd} ${CX + rw / 2},${yd} ${CX},${apex}" fill="url(#cone)"/>
-    <path d="${shingles}" stroke="rgba(0,0,0,.38)" stroke-width="1.1" fill="none"/>
-    <polygon points="${CX - rw / 2},${yd} ${CX - rw * 0.12},${yd} ${CX},${apex}" fill="rgba(255,255,255,.06)"/>
-    <circle class="halo" cx="${CX}" cy="${apex - 14}" r="${big ? 90 : 34}" fill="url(#glow)"/>
-    <line x1="${CX}" y1="${apex + 4}" x2="${CX}" y2="${apex - 12}" stroke="#D6D6D8" stroke-width="2"/>
-    <circle cx="${CX}" cy="${apex - 16}" r="${big ? 7 : 5.5}" fill="#FFFFFF"/>
-  </g>`;
-}
-function skySvg() {
-  const y = G.top - 250; let stars = '';
-  const pts = [[40, 30], [96, 70], [150, 22], [238, 54], [300, 18], [352, 76], [70, 128], [330, 140], [20, 190], [372, 210], [120, 180]];
-  pts.forEach(([x, yy], i) => { stars += `<circle cx="${x}" cy="${y - 40 + yy}" r="${i % 3 ? 0.8 : 1.2}" fill="rgba(255,255,255,${i % 2 ? 0.35 : 0.55})"/>`; });
-  return `${stars}<g filter="url(#blur)"><ellipse cx="60" cy="${G.top - 150}" rx="120" ry="14" fill="rgba(255,255,255,.07)"/><ellipse cx="330" cy="${G.top - 170}" rx="130" ry="16" fill="rgba(255,255,255,.06)"/><ellipse cx="80" cy="${G.top - 96}" rx="100" ry="10" fill="rgba(255,255,255,.04)"/><ellipse cx="320" cy="${G.top - 90}" rx="110" ry="11" fill="rgba(255,255,255,.045)"/></g>
-    <text x="${CX}" y="${G.top - 272}" font-size="11" font-weight="700" letter-spacing="3" fill="#5E5E62" text-anchor="middle">НАД ОБЛАКАМИ</text>`;
-}
-function markerSvg(o) {
-  const fl = G.floors[Math.min(o.myFloor, FLOORS) - 1]; const p = markerXY(fl);
-  return `<g class="mk" data-mk style="transform:translate(${p.x}px,${p.y}px)">
-    <line x1="-24" y1="0" x2="-13" y2="0" stroke="rgba(255,255,255,.6)" stroke-width="1.4" stroke-dasharray="2 3"/>
-    <circle r="28" fill="url(#glow)"/>
-    <circle r="20" fill="#0C0D10" stroke="#F2F1F6" stroke-width="1.6"/>
-    <image href="${K.coin(ME.rank)}" x="-17" y="-17" width="34" height="34"/>
-  </g>`;
-}
-function towerSvg(o = {}) {
-  const myFloor = o.myFloor ?? floorOf(o.mySteps ?? ME.steps);
-  o.myFloor = myFloor; o.sel = o.sel ?? myFloor;
-  const b = G.floors[0];
-  const celeb = o.celebrate ? (() => { const fl = G.floors[o.celebrate - 1]; return `<ellipse class="celeb" cx="${CX}" cy="${fl.y + fl.h / 2}" rx="190" ry="${fl.h * 1.6}" fill="url(#litfloor)"/>`; })() : '';
-  return `<svg viewBox="0 0 ${TW} ${G.H}" width="${TW}" height="${G.H}" xmlns="http://www.w3.org/2000/svg" data-tower>
-  <defs>
-    <linearGradient id="cyl" x1="0" x2="1"><stop offset="0" stop-color="#1F1F23"/><stop offset=".16" stop-color="#3D3D44"/><stop offset=".36" stop-color="#5A5A62"/><stop offset=".55" stop-color="#46464D"/><stop offset=".8" stop-color="#2C2C31"/><stop offset="1" stop-color="#18181B"/></linearGradient>
-    <linearGradient id="cylG" x1="0" x2="1"><stop offset="0" stop-color="#232328"/><stop offset=".16" stop-color="#46464D"/><stop offset=".36" stop-color="#67676F"/><stop offset=".55" stop-color="#505058"/><stop offset=".8" stop-color="#303035"/><stop offset="1" stop-color="#1A1A1D"/></linearGradient>
-    <linearGradient id="cylCorn" x1="0" x2="1"><stop offset="0" stop-color="#2A2A2F"/><stop offset=".35" stop-color="#77777F"/><stop offset=".6" stop-color="#55555C"/><stop offset="1" stop-color="#222226"/></linearGradient>
-    <linearGradient id="cone" x1="0" x2="1"><stop offset="0" stop-color="#1E1E22"/><stop offset=".35" stop-color="#55555D"/><stop offset=".6" stop-color="#3A3A41"/><stop offset="1" stop-color="#151518"/></linearGradient>
-    <linearGradient id="under" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#000" stop-opacity=".42"/><stop offset=".3" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".12"/></linearGradient>
-    <radialGradient id="glow"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".5"/><stop offset=".45" stop-color="#FFFFFF" stop-opacity=".1"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
-    <radialGradient id="litfloor"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".16"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#101013"/><stop offset=".5" stop-color="#17171A"/><stop offset="1" stop-color="#0E0E10"/></linearGradient>
-    <radialGradient id="ground" cy=".2"><stop offset="0" stop-color="#26262A"/><stop offset="1" stop-color="#0E0E10" stop-opacity="0"/></radialGradient>
-    <filter id="wglow" x="-150%" y="-150%" width="400%" height="400%"><feGaussianBlur stdDeviation="4"/></filter>
-    <filter id="blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter>
-  </defs>
-  ${o.clean ? '' : `<rect width="${TW}" height="${G.H}" fill="url(#sky)"/>
-  <ellipse cx="${CX}" cy="${G.top - 120}" rx="200" ry="260" fill="rgba(255,255,255,.03)"/>`}
-  ${skySvg()}
-  ${celeb}
-  <ellipse cx="${CX}" cy="${G.base + 44}" rx="210" ry="40" fill="url(#ground)"/>
-  <ellipse cx="${CX}" cy="${G.base + 30}" rx="${b.w / 2 + 64}" ry="12" fill="rgba(0,0,0,.55)"/>
-  <rect x="${b.x0 - 30}" y="${G.base + 16}" width="${b.w + 60}" height="14" rx="3" fill="url(#cylCorn)" opacity=".7"/>
-  <rect x="${b.x0 - 16}" y="${G.base + 2}" width="${b.w + 32}" height="16" rx="3" fill="url(#cylCorn)"/>
-  <rect x="${b.x0 - 16}" y="${G.base + 2}" width="${b.w + 32}" height="1.5" fill="rgba(255,255,255,.25)"/>
-  ${G.floors.map((fl) => floorSvg(fl, myFloor, o)).join('')}
-  ${G.floors.filter((fl) => isGuard(fl.f) && fl.f < FLOORS).map(parapet).join('')}
-  ${spireSvg(o)}
-  ${o.noMarker ? '' : markerSvg(o)}
-</svg>`;
-}
-const towerView = (o = {}, cls = '') => { const my = Math.min(o.myFloor ?? floorOf(o.mySteps ?? ME.steps), FLOORS); const fl = G.floors[my - 1]; return `<div class="tview ${cls}" data-center="${o.centerY ?? (fl.y + fl.h / 2)}">${towerSvg(o)}</div>`; };
+/* ===================== БАШНЯ — единый рендер spire-tower-render.js (№36) ===================== */
+// зачем (приказ владельца 13.10 через координатора): «ВСЕ БАШНИ ВО ВСЕХ МАКЕТАХ — ИМЕННО ТАК, КАК В ПРИЛОЖЕНИИ». Своей отрисовки башни здесь больше нет:
+// рисует SpireTowerRender — перенос 1:1 SpireTowerSvg/SpireTower (наряд лиги, сцена темы, окно, прокрутка как в коде, маркер 40, соперники слева).
+const R = SpireTowerRender;
+const TW = R.TW, CX = R.CX, G = Object.assign({ H: R.GEOM.height }, R.GEOM);
+// league is selected by the preview URL setup above
+const WIN_W = 390; // окно башни во всю ширину содержимого телефона образца (430 − 2·20)
+const rivalsMap = () => ROOM.filter((m) => !m.me).reduce((a, m) => { const f = Math.min(floorOf(m.steps), FLOORS); (a[f] = a[f] || []).push(m.rank); return a; }, {});
+const towerOpts = (o = {}) => { const my = Math.max(1, Math.min(o.myFloor ?? (o.summit ? FLOORS : floorOf(o.mySteps ?? ME.steps)), FLOORS)); return { tier: o.tier ?? TIER, myFloor: my, selected: o.sel ?? my, theme: o.light ? 'light' : 'dark' }; };
+const towerSvg = (o = {}) => R.svg(towerOpts(o));
+const winOpts = (o = {}, h = 400) => Object.assign(towerOpts(o), { width: WIN_W, height: h, myRank: ME.rank, rivals: rivalsMap(), noMarker: !!o.noMarker });
+const winHost = (opts) => `<div class="tview-host" data-tower-opts='${JSON.stringify(opts)}'>${R.windowHtml(Object.assign({ coin: K.coin }, opts))}</div>`;
+const towerView = (o = {}, cls = '') => winHost(winOpts(o, cls === 'tall' ? 470 : 400));
 const floorInfo = (f, o = {}) => {
   const others = onFloor(f); const steps = o.mySteps ?? ME.steps; const my = o.myFloor ?? floorOf(steps); const g = isGuard(f);
   const tt = `Этаж ${f}${f === FLOORS ? ' · Вершина' : g ? ' · Страж' : ''}`;
@@ -304,16 +167,17 @@ const floorInfo = (f, o = {}) => {
 };
 
 /* ===================== ОБЩИЕ КУСКИ ЭКРАНА ШПИЛЯ ===================== */
-const spireHeader = (e = 3) => `<div class="flex" style="gap:14px;align-items:flex-start;margin-top:6px"><div class="grow"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Шпиль</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:6px">Гранит · до конца недели 2 д 14 ч</div></div><span class="rb t" style="width:44px;height:44px;flex:none"><svg class="i s20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 10.8v6.2"/><path d="M12 7.3h.01" stroke-width="2.8"/></svg></span>${energyBare(e)}</div>`;
+const spireHeader = (e = 3) => `<div class="flex" style="gap:14px;align-items:flex-start;margin-top:6px"><div class="grow"><div style="font-size:34px;line-height:40px;font-weight:700;letter-spacing:-.5px">Пик</div><div style="font-size:16px;line-height:20px;color:var(--sec);margin-top:6px">Гранит · до конца недели 2 д 14 ч</div></div>${energyBare(e)}</div>`;
 const friendsRow = () => `<div class="sec" style="margin:26px 2px 12px"><div class="ti" style="font-size:18px">Друзья на этой неделе</div></div><div class="friends">${FRIENDS.map((f) => `<div class="fr t">${coinImg(f.rank, 30)}${f.name}<span class="fl-n">${f.floor} этаж</span></div>`).join('')}</div>`;
 const podium = (dim = false) => {
-  const top = [...ROOM].filter((m) => !m.me).sort((a, b) => b.steps - a.steps).slice(0, 3);
-  const pd = (m, p) => `<div class="pd p${p} t"${dim ? ' style="opacity:.55"' : ''}>${coinImg(m.rank, p === 1 ? 56 : 46)}<div class="nm">${m.name}</div><div class="sp">${m.steps} ступ.</div><div class="blk">${p}</div></div>`;
-  return `<div class="sec" style="margin:26px 2px 0"><div class="ti" style="font-size:18px">Комната недели</div><div class="ac">30 человек</div></div><div class="podium">${pd(top[1], 2)}${pd(top[0], 1)}${pd(top[2], 3)}</div>
-  <div class="cta gh t" style="margin-top:16px">Все участники · ты 7-й</div>`;
+  const top = [...ROOM].filter((m) => !m.me).sort(byCoins).slice(0, 3);
+  const pd = (m, p) => `<div class="pd p${p} t"${dim ? ' style="opacity:.55"' : ''}>${coinImg(m.rank, p === 1 ? 56 : 46)}<div class="nm">${m.name}</div><div class="sp">${coinsTxt(m.coins)}</div><div class="blk">${p}</div></div>`;
+  return `<div class="sec" style="margin:26px 2px 0"><div class="ti" style="font-size:18px">Комната недели</div><div class="ac">30</div></div><div class="podium">${pd(top[1], 2)}${pd(top[0], 1)}${pd(top[2], 3)}</div>
+  <div class="cta gh t" style="margin-top:16px">Все участники · 7</div>`;
 };
-const spireBody = (o = {}) => `${spireHeader(o.energy ?? 3)}${o.top || ''}<div style="margin-top:18px">${towerView(o.tower || {})}</div>${floorInfo((o.tower && o.tower.sel) || floorOf(ME.steps), { mySteps: o.tower && o.tower.mySteps, myFloor: o.tower && o.tower.myFloor })}${friendsRow()}${podium(o.dim)}`;
-const climbCta = `<div class="bp scrim"><div class="cta t">Подняться<span class="ar">${icon('arrowR', 's20')}</span></div></div>`;
+/* зачем (D181, владелец 13.10, код ab3408bdd): «Комната недели» (пьедестал + «Все участники · N») — сразу под заголовком, выше башни; кнопки правил нет (D173) */
+const spireBody = (o = {}) => `${spireHeader(o.energy ?? 3)}${podium(o.dim)}${o.top || ''}<div style="margin-top:18px">${towerView(o.tower || {})}</div>${floorInfo((o.tower && o.tower.sel) || floorOf(ME.steps), { mySteps: o.tower && o.tower.mySteps, myFloor: o.tower && o.tower.myFloor })}${friendsRow()}`;
+const climbCta = `<div class="bp scrim"><div class="cta t">Играть<span class="ar">${icon('arrowR', 's20')}</span></div></div>`;
 
 /* ===================== 1. ТУР ===================== */
 const tourPhone = (n, title, text, img, last) => phone(`
@@ -324,9 +188,9 @@ const tourPhone = (n, title, text, img, last) => phone(`
   <div class="dots">${[1, 2, 3].map((i) => `<i class="${i === n ? 'on' : ''}"></i>`).join('')}</div>`,
   { fixed: `<div class="bp"><div class="cta t">${last ? 'Начать' : 'Далее'}<span class="ar">${icon('arrowR', 's20')}</span></div></div>` });
 // зачем: в туре башня видна целиком — силуэт от основания до навершия
-const tourTower = towerSvg({ mySteps: 25, sel: 0, clean: true, noMarker: true }).replace(`width="${TW}" height="${G.H}"`, 'width="100%" height="100%" preserveAspectRatio="xMidYMid meet"').replace(`viewBox="0 0 ${TW} ${G.H}"`, `viewBox="60 ${G.top - 250} ${TW - 120} ${G.H - G.top + 230}"`);
+const tourTower = R.tourHtml(); // зачем (№36): как SpireTour.TourTower — Оникс без лиги, этажи не горят, видна верхушка
 const tourRing = `<div style="display:flex;flex-direction:column;align-items:center;gap:26px"><div class="ring"><svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="59" fill="none" stroke="var(--track)" stroke-width="7"/><circle cx="66" cy="66" r="59" fill="none" stroke="#E9E9EB" stroke-width="7" stroke-linecap="round" stroke-dasharray="370.7" stroke-dashoffset="93"/></svg><div class="tm">1:42</div></div><span class="pill" style="height:40px;gap:9px;padding:0 16px">${icon('heartF', 's20')}${icon('heartF', 's20')}${icon('heartF', 's20')}</span></div>`;
-const tourTop = `<div style="display:flex;flex-direction:column;gap:12px;width:100%;padding:0 34px">${[[12, 'Аня', 47], [9, 'Марк', 39], [7, 'Ольга', 33]].map(([r, n, s], i) => `<div class="mrow" style="background:var(--card-2);border:1px solid var(--line)"><div class="pl">${i + 1}</div>${coinImg(r, 40)}<div class="nm">${n}</div><span style="color:var(--good)">${icon('up', 's18')}</span><div class="sp">${s}<span>ступ.</span></div></div>`).join('')}</div>`;
+const tourTop = `<div style="display:flex;flex-direction:column;gap:12px;width:100%;padding:0 34px">${[[12, 'Аня', 612], [9, 'Марк', 538], [11, 'Тимур', 470]].map(([r, n, s], i) => `<div class="mrow" style="background:var(--card-2);border:1px solid var(--line)"><div class="pl">${i + 1}</div>${coinImg(r, 40)}<div class="nm">${n}</div><span style="color:var(--good)">${icon('up', 's18')}</span><div class="sp">${s.toLocaleString('ru-RU')}<span>${plCoins(s)}</span></div></div>`).join('')}</div>`;
 
 /* ===================== 4–6. СТУПЕНЬ ===================== */
 const stepHead = (hearts = 3, e = 2) => `<div class="flex" style="gap:8px;margin-top:6px"><span class="rb l t" style="margin-right:8px">${icon('back', 's20')}</span><div class="grow"><div style="font-size:20px;font-weight:700">Ступень 8</div><div style="font-size:15px;color:var(--sec);margin-top:2px;white-space:nowrap">Этаж 4 · Гранит</div></div>
@@ -353,19 +217,22 @@ const summit = () => scenePhone({ mySteps: 135, myFloor: 15, sel: 15, summit: tr
 
 /* ===================== 3. ВСЕ УЧАСТНИКИ ===================== */
 const allMembers = () => {
-  const sorted = [...ROOM].sort((a, b) => b.steps - a.steps);
-  const row = (m, i) => `<div class="mrow t${m.me ? ' me' : ''}"><div class="pl">${i + 1}</div><span class="t" style="width:40px;height:40px;border-radius:50%;background:#2A2A2D;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;flex:none">${m.name.trim()[0].toUpperCase()}</span><div class="nm">${m.me ? 'Ты' : m.name}${m.me ? '<span class="you">Ты</span>' : ''}</div>${i < 5 ? `<span style="color:var(--good)">${icon('up', 's16')}</span>` : i >= 25 ? `<span style="color:var(--bad)">${icon('down', 's16')}</span>` : ''}<div class="sp">${m.steps}<span>ступ.</span></div></div>`;
-  return phone(`<div class="flex" style="gap:18px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow"><div style="font-size:26px;line-height:30px;font-weight:700;letter-spacing:-.3px">Все участники</div><div style="font-size:15px;color:var(--sec);margin-top:2px">Гранит · 30 человек · место по ступеням</div></div></div>
+  const sorted = [...ROOM].sort(byCoins);
+  const zero = sorted.filter((m) => m.coins === 0).length; // понижение — только без монет за неделю
+  const row = (m, i) => `<div class="mrow t${m.me ? ' me' : ''}"><div class="pl">${i + 1}</div>${coinImg(m.rank, 40)}<div class="nm">${m.me ? 'Ты' : m.name}${m.me ? '<span class="you">Ты</span>' : ''}</div>${i < 5 ? `<span style="color:var(--good)">${icon('up', 's16')}</span>` : i >= sorted.length - zero ? `<span style="color:var(--bad)">${icon('down', 's16')}</span>` : ''}<div class="sp">${m.coins.toLocaleString('ru-RU')}<span>${plCoins(m.coins)}</span></div></div>`;
+  return phone(`<div class="flex" style="gap:18px"><span class="rb l t">${icon('back', 's20')}</span><div class="grow"><div style="font-size:26px;line-height:30px;font-weight:700;letter-spacing:-.3px">Все участники</div><div style="font-size:15px;color:var(--sec);margin-top:2px">Гранит · 30 человек · место по монетам недели</div></div></div>
     <div class="zone up">Зона повышения</div><div class="stack" style="--g:4px">${sorted.slice(0, 5).map(row).join('')}</div>
-    <div class="zone sf">Остаются</div><div class="stack">${sorted.slice(5, 25).map((m, i) => row(m, i + 5)).join('')}</div>
-    <div class="zone dn">Зона понижения</div><div class="stack">${sorted.slice(25).map((m, i) => row(m, i + 25)).join('')}</div>`, { time: '9:41' });
+    <div class="zone sf">Остаются</div><div class="stack">${sorted.slice(5, sorted.length - zero).map((m, i) => row(m, i + 5)).join('')}</div>
+    <div class="zone dn">Зона понижения</div><div class="stack">${sorted.slice(sorted.length - zero).map((m, i) => row(m, i + sorted.length - zero)).join('')}</div>`, { time: '9:41' });
 };
 
 /* ===================== 9–11. ИТОГ НЕДЕЛИ, НЕТ ЭНЕРГИИ, НЕТ СЕТИ ===================== */
-const weekCard = (up) => `<div class="week">${coinImg(ME.rank, 52)}<div class="grow"><div class="ov" style="letter-spacing:2px">Итог недели</div><div class="ti" style="margin-top:6px">${up ? 'Ты поднимаешься в Базальт' : 'Остаёшься в шпиле Гранит'}</div><div class="su">${up ? '3 место · 47 ступеней · +150 · +100 монет' : '12 место · 25 ступеней · новая неделя, все с 1 этажа'}</div></div><span class="rb fill t" style="align-self:flex-start">${icon('close', 's16')}</span></div>`;
+/* зачем (D182): мини-башня нового наряда в карточке «Итог недели» + значок моей монеты (SpireWeekResultCard) */
+const miniTower = (up) => R.weekTowerHtml({ tier: up ? TIER + 1 : TIER, promoted: !!up, myRank: ME.rank, coin: K.coin, card: 'var(--card, #1C1C1E)' }); // зачем (№36): SpireWeekResultCard 58×103 + монета 26
+const weekCard = (up) => `<div class="week">${miniTower(up)}<div class="grow"><div class="ov" style="letter-spacing:2px">Итог недели</div><div class="ti" style="margin-top:6px">${up ? 'Ты поднимаешься в Базальт' : 'Остаёшься на пике Гранит'}</div><div class="su">${up ? '3 место · 470 монет за неделю · +150 · +100 монет' : '12 место · 255 монет за неделю · новая неделя, все с 1 этажа'}</div></div></div>`; /* крестика нет: карточка показывается один раз (12cc1deea) */
 const weekUp = () => phone(spireBody({ top: weekCard(true), tower: { mySteps: 0, myFloor: 1, sel: 1 } }), { fixed: climbCta, inStyle: 'padding-bottom:120px' });
 const weekStay = () => phone(spireBody({ top: weekCard(false), tower: { mySteps: 0, myFloor: 1, sel: 1 } }), { fixed: climbCta, inStyle: 'padding-bottom:120px' });
-const noEnergy = () => phone(spireBody({ energy: 0 }), { fixed: `<div class="bp scrim"><div class="cta dis" style="gap:10px">${icon('boltF', 's18')}Энергия через 6:40</div><div class="flex t" style="justify-content:center;gap:8px;margin-top:12px;font-size:15px;color:var(--sec);font-weight:600">Поднимайся без ожидания <span style="color:#fff">с Plus</span>${icon('fwd', 's16')}</div></div>`, inStyle: 'padding-bottom:150px' });
+const noEnergy = () => phone(spireBody({ energy: 0 }), { fixed: `<div class="bp scrim"><div class="cta dis" style="gap:10px">${icon('boltF', 's18')}Энергия через 6:40</div><div class="flex t" style="justify-content:center;gap:8px;margin-top:12px;font-size:15px;color:var(--sec);font-weight:600">Играй без ожидания <span style="color:#fff">с Plus</span>${icon('fwd', 's16')}</div></div>`, inStyle: 'padding-bottom:150px' });
 const noNet = () => phone(spireBody({ dim: true, top: `<div class="note">${icon('wifiOff', 's20')}<span>Нет сети. Свой прогресс сохраняется, чужие цифры обновим при связи.</span></div>` }), { fixed: climbCta, inStyle: 'padding-bottom:120px' });
 
 /* ===================== 2. ГЛАВНЫЙ ЭКРАН ===================== */
@@ -374,12 +241,12 @@ const mainScrolled = () => phone(spireBody({}), { fixed: climbCta, inStyle: 'pad
 
 document.getElementById('root').innerHTML = [
   block('tour', '1. Тур первого входа', 'Три экрана, «Пропустить» на каждом. Показывается один раз.', [
-    col('Тур 1 — за неделю выше всех', tourPhone(1, 'Поднимайся выше всех за неделю', 'Каждую неделю — новый шпиль. 15 этажей из ступеней, комната на 30 человек, место считается по ступеням.', tourTower)),
+    col('Тур 1 — за неделю выше всех', tourPhone(1, 'Поднимайся выше всех за неделю', 'Каждую неделю — новый пик. 15 этажей из ступеней, комната на 30 человек, место — по монетам за неделю.', tourTower)),
     col('Тур 2 — как устроена ступень', tourPhone(2, '10 заданий, общее время, 3 сердца', 'Один таймер на всю ступень. Ошибка — минус сердце и сразу правильный ответ. Провалил — остаёшься на месте.', tourRing)),
-    col('Тур 3 — повышение', tourPhone(3, 'Верхние 15% переходят в следующий шпиль', 'Гранит, Базальт, Мрамор… до Алмаза. Нижние 15% и все без ступеней спускаются. В понедельник все снова с 1 этажа.', tourTop, true))]),
-  block('main', '2. Шпиль — главный экран', 'Башня интерактивна: тап по этажу подсвечивает его и показывает ступени, монеты и соперников. Свой этаж — свет в окнах и монета ранга. «Проиграть подъём» — маркер уходит на этаж выше (этаж 4 → Страж 5).', [
-    col('Шпиль — башня, я на 4 этаже', mainScreen() + `<button class="pgbtn" data-climb-ext>${icon('up', 's16')}Показать подъём на этаж выше</button>`), col('Шпиль — ниже: друзья, пьедестал', mainScrolled())]),
-  block('all', '3. Все участники', 'Комната недели: место по ступеням, монета = аватар. Верхние 15% — повышение, нижние 15% и все с нулём — понижение.', [col('Все участники', allMembers())]),
+    col('Тур 3 — повышение', tourPhone(3, 'Верхние 15% переходят на пик выше', 'Гранит, Базальт, Мрамор… до Алмаза. Кто за неделю не заработал ни одной монеты, спускается. В понедельник все снова с 1 этажа.', tourTop, true))]),
+  block('main', '2. Пик — главный экран', 'Башня интерактивна: тап по этажу подсвечивает его и показывает ступени, монеты и соперников. Свой этаж — свет в окнах и монета ранга. «Проиграть подъём» — маркер уходит на этаж выше (этаж 4 → Страж 5).', [
+    col('Пик — башня, я на 4 этаже', mainScreen() + `<button class="pgbtn" data-climb-ext>${icon('up', 's16')}Показать подъём на этаж выше</button>`), col('Пик — ниже: этаж и друзья', mainScrolled())]),
+  block('all', '3. Все участники', 'Комната недели (D162/D184): место по монетам за неделю во всех режимах, монета = аватар. Пятеро лучших — повышение, понижение — только у кого 0 монет за неделю.', [col('Все участники', allMembers())]),
   block('step', '4–6. Ступень', 'Кольцевой таймер на всю ступень, 3 сердца, энергия. При ошибке таймер стоит и показан правильный ответ. «Назад» — шторка с подтверждением.', [
     col('Ступень — задание', stepScreen()), col('Ошибка — правильный ответ', stepError()), col('Выход — подтверждение', stepExit())]),
   block('result', '7. Итог ступени внутри сцены башни', 'Пройдена: маркер едет вверх, +10 монет, «Выше» сразу стартует следующую. Провалена: остаёшься, «Ещё раз» даёт новые 10 заданий.', [
@@ -387,39 +254,57 @@ document.getElementById('root').innerHTML = [
   block('floor', '8. Этаж пройден и Вершина', 'Празднование на экране башни фактом. Этаж N даёт 10×N (Страж ×2), вершина +200 и дальше «над облаками».', [
     col('Этаж 4 пройден — впереди Страж', floorPassed()), col('Вершина — 15 этаж', summit())]),
   block('week', '9. Итог недели', 'При первом заходе новой недели — карточка фактом, не модалка. Все снова на 1 этаже.', [
-    col('Ты поднимаешься в Базальт', weekUp()), col('Остаёшься в шпиле Гранит', weekStay())]),
+    col('Ты поднимаешься в Базальт', weekUp()), col('Остаёшься на пике Гранит', weekStay())]),
   block('edge', '10–11. Нет энергии · Нет сети', 'Без блокирующих модалок: таймер до энергии и мягкий Plus; при отсутствии сети свой маркер живой, чужие цифры приглушены.', [
     col('Нет энергии', noEnergy()), col('Нет сети', noNet())]),
+  /* зачем (D178): окно башни берёт цвета темы, а не наряда лиги — тёмная и светлая плита рядом (кадры приложения в светлой теме сверять по правой) */
+  block('scene', '12. Окно башни по теме', 'Окно — плита темы: неба по наряду нет. Звёзды — цвета текста и только в тёмной теме; облака и земля — тон текста; номера этажей — вторичный текст темы, свой этаж — основной. Башня остаётся нарядом лиги.', [
+    col('Тёмная тема', winHost(winOpts({ myFloor: 4, sel: 4 }, 460))),
+    col('Светлая тема', winHost(winOpts({ myFloor: 4, sel: 4, light: true }, 460)))]),
 ].join('');
 
 /* ===================== ПОВЕДЕНИЕ БАШНИ ===================== */
 document.querySelectorAll('[data-scroll="bottom"]').forEach((s) => { s.scrollTop = s.scrollHeight; });
-// центрируем свой этаж в окне башни
-document.querySelectorAll('.tview').forEach((v) => { const c = Number(v.dataset.center); v.scrollTop = Math.max(0, c - v.clientHeight / 2); });
-// тап по этажу
+// зачем (№36): окно башни перерисовывает только рендер; прокрутку к своему этажу он ставит сам (правило кода spireWindowScrollY)
+function rerenderTower(host, opts, keepScroll) {
+  const old = host.querySelector('[data-st-scroll]'); const keep = old ? old.scrollTop : 0;
+  host.dataset.towerOpts = JSON.stringify(opts);
+  host.innerHTML = R.windowHtml(Object.assign({ coin: K.coin }, opts));
+  const sc = host.querySelector('[data-st-scroll]');
+  if (keepScroll) { sc.setAttribute('data-st-scroll', String(keep)); sc.scrollTop = keep; }
+  return sc;
+}
+// тап по этажу: рамка выбора и карточка этажа
 document.body.addEventListener('click', (e) => {
-  const fl = e.target.closest('.fl'); if (!fl) return;
-  const ph = fl.closest('.ph'); const f = Number(fl.dataset.floor);
-  ph.querySelectorAll('.fl.sel').forEach((n) => n.classList.remove('sel')); fl.classList.add('sel');
-  const info = ph.querySelector('[data-finfo]'); const mine = ph.querySelector('.fl.mine'); const my = mine ? Number(mine.dataset.floor) : floorOf(ME.steps);
-  if (info) info.outerHTML = floorInfo(f, { myFloor: my });
+  const fl = e.target.closest('.tview-host [data-floor]'); if (!fl) return;
+  const host = fl.closest('.tview-host'); const ph = host.closest('.ph'); const f = Number(fl.dataset.floor);
+  const opts = JSON.parse(host.dataset.towerOpts); opts.selected = f; rerenderTower(host, opts, true);
+  const info = ph && ph.querySelector('[data-finfo]'); if (info) info.outerHTML = floorInfo(f, { myFloor: opts.myFloor });
 });
-// «Проиграть подъём» / «Выше»: маркер на этаж выше, окна переезжают
+// «Проиграть подъём» / «Выше»: маркер перелетает на этаж выше (900 мс, как Animated в SpireTower), окно догоняет плавно
 document.body.addEventListener('click', (e) => {
   const b = e.target.closest('[data-climb],[data-climb-ext]'); if (!b) return;
-  const ph = b.closest('.ph') || b.parentElement.querySelector('.ph'); const svg = ph.querySelector('[data-tower]'); const mk = svg.querySelector('[data-mk]');
-  const cur = svg.querySelector('.fl.mine'); const f = Number(cur.dataset.floor); if (f >= FLOORS) return;
-  const nxt = svg.querySelector(`.fl[data-floor="${f + 1}"]`); const g = G.floors[f];
-  cur.classList.remove('mine'); cur.querySelectorAll('.win').forEach((w) => { w.classList.remove('lit', 'dark'); w.classList.add('past'); });
-  nxt.classList.add('mine'); nxt.querySelectorAll('.win').forEach((w) => { w.classList.remove('dark', 'past'); w.classList.add('lit'); if (!(w.nextElementSibling && w.nextElementSibling.classList.contains('wglow'))) w.insertAdjacentHTML('afterend', `<path class="wglow" d="${w.getAttribute('d')}" fill="#EEF0F6" filter="url(#wglow)"/>`); }); if (!nxt.querySelector('.halo2')) nxt.insertAdjacentHTML('afterbegin', `<ellipse class="halo2" cx="${CX}" cy="${g.y + g.h / 2}" rx="${g.w / 2 + 70}" ry="${g.h}" fill="url(#litfloor)"/>`);
-  const mp = markerXY(g); mk.style.transform = `translate(${mp.x}px, ${mp.y}px)`; mk.classList.remove('jump'); void mk.offsetWidth; mk.classList.add('jump');
-  svg.querySelectorAll('.fl.sel').forEach((n) => n.classList.remove('sel')); nxt.classList.add('sel');
-  const v = ph.querySelector('.tview'); v.scrollTo({ top: Math.max(0, g.y + g.h / 2 - v.clientHeight / 2), behavior: 'smooth' });
-  const cn = cur.querySelector('.fn'), nn = nxt.querySelector('.fn'); if (cn) { cn.setAttribute('fill', '#6E6E72'); cn.setAttribute('font-weight', '600'); } if (nn) { nn.setAttribute('fill', '#FFFFFF'); nn.setAttribute('font-weight', '700'); }
-  const info = ph.querySelector('[data-finfo]'); if (info) info.outerHTML = floorInfo(f + 1, { myFloor: f + 1, mySteps: cum(f) });
+  const ph = b.closest('.ph') || b.parentElement.querySelector('.ph'); const host = ph && ph.querySelector('.tview-host'); if (!host) return;
+  const opts = JSON.parse(host.dataset.towerOpts); if (opts.myFloor >= FLOORS) return;
+  const from = R.markerXY(G.floors[opts.myFloor - 1]); opts.myFloor += 1; opts.selected = opts.myFloor; const to = R.markerXY(G.floors[opts.myFloor - 1]);
+  const k = opts.width / TW; const sc = rerenderTower(host, opts, true);
+  const mk = sc.querySelector('[data-spire-marker]');
+  if (mk) { mk.style.transform = `translate(${(from.x - to.x) * k}px, ${(from.y - to.y) * k}px)`; void mk.offsetWidth; mk.style.transition = 'transform 900ms cubic-bezier(.2,.9,.2,1)'; mk.style.transform = 'none'; }
+  sc.scrollTo({ top: R.scrollYFor(opts), behavior: 'smooth' });
+  const info = ph.querySelector('[data-finfo]'); if (info) info.outerHTML = floorInfo(opts.myFloor, { myFloor: opts.myFloor, mySteps: cum(opts.myFloor - 1) });
 });
 // проверка анимации подъёма из headless: spire.html?climb
 if (location.search.includes('climb')) setTimeout(() => document.querySelector('[data-climb]').click(), 300);
+
+// In the comparison atlas keep the original main screen and its original tower interactions.
+if(COMPARE){document.querySelectorAll('.block').forEach(b=>{if(b.id!=='main')b.remove()});document.querySelectorAll('.page-h1,.page-lead,.page-nav,#tower-tools,#main>h2,#main>p').forEach(e=>e.remove());document.querySelectorAll('#main .col').forEach((e,i)=>{if(i)e.remove()});document.querySelectorAll('#main .pgbtn').forEach(e=>e.remove());}
+document.querySelectorAll('.ph').forEach(ph=>{const walker=document.createTreeWalker(ph,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){if(node.nodeValue.includes('Гранит'))node.nodeValue=node.nodeValue.replaceAll('Гранит',TIER_NAMES[TIER]);}});
+// Tint actual architectural surfaces only; do not recolor avatars, windows or floor markers.
+const rgb=MATERIAL.match(/[a-f0-9]{2}/gi).map(x=>parseInt(x,16));
+document.querySelectorAll('svg[data-tower]').forEach(svg=>{['cyl','cylG','cylCorn','cone'].forEach(id=>svg.querySelectorAll('linearGradient[id="'+id+'"] stop').forEach(stop=>{const original=stop.getAttribute('stop-color');const grey=parseInt(original.slice(1,3),16);const gain=.48+grey/110;stop.setAttribute('stop-color','rgb('+rgb.map(v=>Math.round(Math.max(0,Math.min(255,v*gain)))).join(',')+')');}));});
+const designControl=document.getElementById('tower-design'),tierControl=document.getElementById('tower-tier');
+if(designControl){designControl.innerHTML=DESIGN_NAMES.map((n,i)=>'<option value="'+i+'">'+n+'</option>').join('');designControl.value=String(DESIGN);tierControl.innerHTML=TIER_NAMES.map((n,i)=>'<option value="'+i+'">'+n+'</option>').join('');tierControl.value=String(TIER);const navigate=()=>{const url=new URL(location.href);url.searchParams.set('design',designControl.value);url.searchParams.set('tier',tierControl.value);location.href=url.href};designControl.onchange=navigate;tierControl.onchange=navigate;document.getElementById('save-tower').onclick=()=>{try{localStorage.setItem('phraseman-tower-design',String(DESIGN))}catch{}document.getElementById('tower-selection').textContent='Выбрано: '+DESIGN_NAMES[DESIGN]};document.getElementById('tower-floor').oninput=e=>{const f=Number(e.target.value);document.getElementById('floor-value').value=String(f);document.querySelectorAll('svg[data-tower] .fl[data-floor="'+f+'"]').forEach(fl=>{fl.dispatchEvent(new MouseEvent('click',{bubbles:true}));const view=fl.closest('.tview');if(view)view.scrollTop=Math.max(0,G.floors[f-1].y+G.floors[f-1].h/2-view.clientHeight/2);});};}
+
 K.init();
 </script>
 </body>

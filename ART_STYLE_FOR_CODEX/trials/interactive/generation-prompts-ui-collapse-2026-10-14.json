@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-14",
+  "category": "ui_01_05",
+  "label": "свернуть",
+  "tool": "built-in image_gen",
+  "sharedConstraints": [
+    "1024x1024 square canvas",
+    "genuine transparent alpha background; no checkerboard",
+    "adult refined matte warm-gray clay UI icon",
+    "one cyan/turquoise isolated accent marker on a continuous front-facing clay plane",
+    "separate base image and white .accent mask extracted from marker",
+    "no text or watermark",
+    "trial-only; do not replace production assets"
+  ],
+  "options": [
+    { "number": 1, "selectedRevision": "r3", "concept": "Two broad inward-curving wings meeting a flat square center hub with an isolated round inset medallion." },
+    { "number": 2, "selectedRevision": "r2", "concept": "A narrow upright panel compressing from both sides, with integrated inward folds and a round center accent." },
+    { "number": 3, "selectedRevision": "r2", "concept": "Two horizontal clay slabs compressing vertically into a compact hourglass pinch, with an isolated center accent." },
+    { "number": 4, "selectedRevision": "r3", "concept": "Four rounded flaps folding inward to a compact diamond/window around a central medallion." },
+    { "number": 5, "selectedRevision": "r3", "concept": "Four square accordion panels closing inward around a raised central tile and round accent." }
+  ],
+  "validation": {
+    "darkLightPairs": 10,
+    "alphaTransparency": "pass",
+    "accentAreaPercent": { "minimum": 1, "maximum": 8, "allPairsPass": true },
+    "accentAlignment": { "allPairsPass": true },
+    "browserVisualVerification": "not performed; local preview server connection refused"
+  }
+}

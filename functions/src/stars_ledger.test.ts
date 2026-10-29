@@ -95,6 +95,18 @@ async function run(
 }
 
 describe('единый журнал звёзд', () => {
+  it.each([2000, 1000])('monthly contest grants %i coins once without increasing learning earnings', async amount => {
+    const reward = op({ opId: 'community_month:2026-10_pack', delta: amount, reason: 'community_month_reward', sourceKind: 'community_month', sourceId: '2026-10_pack' });
+    const first = await run(settled(100), [reward]);
+    expect(first.result.balance).toBe(100 + amount);
+    expect(first.result.earnedTotal).toBe(100);
+    expect(first.result.grantedTotal).toBe(amount);
+    const receipt = first.world.writes.creates.find(w => w.ref.id === reward.opId);
+    expect(receipt).toBeDefined();
+    const replay = await run(first.result, [reward], ctx(), { [reward.opId]: receipt.data });
+    expect(replay.result.balance).toBe(first.result.balance);
+    expect(replay.world.writes.creates).toHaveLength(0);
+  });
   it('начисляет и пишет ровно одну запись игрока и одну расписку', async () => {
     const { result, world } = await run(undefined, [op()]);
     expect(result.balance).toBe(24);

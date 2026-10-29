@@ -1,0 +1,211 @@
+10-15 14:26:31.655 I/SVERKA  ( 7404): === PWT start 14:26:31 ===
+10-15 14:26:31.786 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=91785 tab_tap requested=4 active=0 page=0
+10-15 14:26:32.185 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":77312,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 14:26:32.189 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":77315,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 14:26:32.924 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":78050}'
+10-15 14:26:32.926 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":78053}'
+10-15 14:26:34.600 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=94599 focus active=true dirty=true authReady=false shown=none focusTick=1
+10-15 14:26:34.602 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=94600 refresh enter active=true inflight=false dirty=true gen=0
+10-15 14:26:36.233 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=96232 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=1628
+10-15 14:26:36.235 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=96233 refresh result=none applied=true gen=0/0 active=true
+10-15 14:26:36.425 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=96424 focus active=true dirty=false authReady=true shown=none focusTick=1
+10-15 14:26:36.920 I/SVERKA  ( 7421): === PWT 1 open-tap 14:26:37 ===
+10-15 14:26:40.321 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=310 tab_tap requested=2 active=4 page=4
+10-15 14:26:41.042 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=1041 focus active=false dirty=false authReady=true shown=none focusTick=1
+10-15 14:26:41.046 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":86173,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 14:26:41.051 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":86175,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&plat
+10-15 14:26:41.442 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":86569}'
+10-15 14:26:41.444 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":86570}'
+10-15 14:26:45.252 I/SVERKA  ( 7469): === PWT 1 close-tap 14:26:45 ===
+10-15 14:26:57.921 I/SVERKA  ( 7531): === PWT 1 tab-tap 14:26:58 ===
+10-15 14:26:58.004 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=18003 tab_tap requested=0 active=2 page=2
+10-15 14:26:58.646 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":103774,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&pla
+10-15 14:26:58.647 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":103775,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&pla
+10-15 14:26:59.006 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":104131}'
+10-15 14:26:59.008 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":104135}'
+10-15 14:26:59.727 I/ReactNativeJS( 6996): [INFO] [SPIRE]: [D191-GATE] вход ui=ru study=en tab=true now=2026-10-15T13:26:59.726Z
+10-15 14:26:59.728 I/ReactNativeJS( 6996): [INFO] [SPIRE]: [D191-GATE] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 14:26:59.728 I/ReactNativeJS( 6996): [INFO] [SPIRE]: [D191-GATE] не показываем: флаг moments_v3 выключен
+10-15 14:26:59.731 I/ReactNativeJS( 6996): [WELCOME-BACK] вход study=en rank=0 energy=4/5
+10-15 14:26:59.731 I/ReactNativeJS( 6996): [WELCOME-BACK] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 14:26:59.732 I/ReactNativeJS( 6996): [WELCOME-BACK] не показываем: флаг moments_v3 выключен
+10-15 14:27:02.683 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=22682 tab_tap requested=4 active=0 page=0
+10-15 14:27:03.274 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=23269 focus active=true dirty=true authReady=true shown=none focusTick=1
+10-15 14:27:03.279 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=23275 refresh enter active=true inflight=false dirty=true gen=1
+10-15 14:27:03.283 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":108411,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&pla
+10-15 14:27:03.285 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":108412,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&pla
+10-15 14:27:03.737 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":108863}'
+10-15 14:27:03.739 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":108866}'
+10-15 14:27:05.544 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=25544 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=2264
+10-15 14:27:05.545 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=25544 refresh result=none applied=true gen=1/1 active=true
+10-15 14:27:07.832 I/SVERKA  ( 7559): === PWT 2 open-tap 14:27:08 ===
+10-15 14:27:10.941 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"premium_modal","noop":false,"atMs":116067,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&
+10-15 14:27:10.943 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"premium_modal","noop":false,"atMs":116069,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&
+10-15 14:27:11.332 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=31331 focus active=false dirty=false authReady=true shown=none focusTick=1
+10-15 14:27:11.344 I/ReactNativeJS( 6996): [INFO] [PAYWALL-OPEN]: шапка: ctx=generic source=settings_premium текст=generic контекстная=false выгода=есть lang=ru
+10-15 14:27:11.357 I/ReactNativeJS( 6996): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"generic","source":"settings_premium","shownContext":"generic","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"live","rootNavReady":true}'
+10-15 14:27:11.361 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=31361 tabs blur
+10-15 14:27:11.363 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9,premium_modal#aYKlsK*]","atMs":116490}'
+10-15 14:27:11.364 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9,premium_modal#aYKlsK*]","atMs":116492}'
+10-15 14:27:15.916 I/SVERKA  ( 7593): === PWT 2 close-tap 14:27:16 ===
+10-15 14:27:18.953 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=handleClose +0ms d=0ms via=x reason=close context=generic source=settings_premium
+10-15 14:27:18.954 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=handleClose:haptic +4ms d=4ms
+10-15 14:27:18.956 I/ReactNativeJS( 6996): [PAYWALL-CLOSE] via=x reason=close context=generic source=settings_premium
+10-15 14:27:18.960 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=doClose:analytics_start +8ms d=4ms
+10-15 14:27:18.963 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=doClose:analytics_done +10ms d=2ms
+10-15 14:27:18.971 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=dismiss:pre_log +18ms d=8ms branch=dismiss(1) shouldReplace=false candidate=yes
+10-15 14:27:18.975 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=38975 branch=dismiss(1) why: shouldReplace=false candidate=yes canDismiss=true nativePopToBack=true
+10-15 14:27:18.979 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=dismiss:call +28ms d=10ms branch=dismiss(1)
+10-15 14:27:18.982 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=dismiss:returned +32ms d=4ms dismiss(1)
+10-15 14:27:19.043 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"POP","noop":false,"atMs":124170,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&platform=android&dev=tru
+10-15 14:27:19.047 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"POP","noop":false,"atMs":124171,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&platform=android&dev=tru
+10-15 14:27:19.155 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=1 +204ms
+10-15 14:27:19.159 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=1 +208ms changed=settingsRuntimeActive
+10-15 14:27:19.386 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=57 +433ms
+10-15 14:27:19.388 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=1 +436ms
+10-15 14:27:19.408 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=paywall:unmount +457ms d=425ms
+10-15 14:27:19.430 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=39428 focus active=true dirty=true authReady=true shown=none focusTick=1
+10-15 14:27:19.432 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=39430 refresh enter active=true inflight=false dirty=true gen=2
+10-15 14:27:19.434 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=39433 tabs focus
+10-15 14:27:19.436 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=settings:focus +485ms d=28ms
+10-15 14:27:19.438 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":124566}'
+10-15 14:27:19.440 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":124568}'
+10-15 14:27:19.549 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=2 +599ms
+10-15 14:27:19.552 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=2 +601ms changed=focusTick
+10-15 14:27:19.745 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=57 +791ms
+10-15 14:27:19.747 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=1 +795ms
+10-15 14:27:19.766 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=39764 focus active=true dirty=false authReady=true shown=none focusTick=2
+10-15 14:27:19.803 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=3 +853ms
+10-15 14:27:19.806 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=3 +855ms changed=нет
+10-15 14:27:19.867 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=39866 +0ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 14:27:19.868 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] tick +917ms plan=+28ms lag=889ms
+10-15 14:27:19.870 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] tick +919ms plan=+78ms lag=841ms
+10-15 14:27:19.871 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] tick +921ms plan=+178ms lag=743ms
+10-15 14:27:19.872 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=39872 +300ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 14:27:19.873 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] tick +923ms plan=+328ms lag=595ms
+10-15 14:27:19.876 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=settings:frame1 +925ms d=440ms
+10-15 14:27:19.879 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=39878 +800ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 14:27:19.893 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=4 +942ms
+10-15 14:27:19.895 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=4 +944ms changed=focusTick,settingsRuntimeActive,authReady,settingsReferralDrain,snapshotProfile,snapshotSettings
+10-15 14:27:20.026 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=5 +1073ms
+10-15 14:27:20.028 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=5 +1078ms changed=focusTick,settingsRuntimeActive,authReady,settingsReferralDrain
+10-15 14:27:20.188 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=update actualMs=78 +1236ms
+10-15 14:27:20.193 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=update actualMs=1 +1238ms
+10-15 14:27:20.199 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=update actualMs=65 +1247ms
+10-15 14:27:20.201 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=update actualMs=2 +1250ms
+10-15 14:27:20.269 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=6 +1318ms
+10-15 14:27:20.272 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=6 +1322ms changed=focusTick,settingsRuntimeActive,authReady,settingsReferralDrain
+10-15 14:27:20.398 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=7 +1447ms
+10-15 14:27:20.400 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=7 +1449ms changed=focusTick,settingsRuntimeActive,authReady,settingsReferralDrain
+10-15 14:27:20.554 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=61 +1603ms
+10-15 14:27:20.558 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=1 +1606ms
+10-15 14:27:20.564 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=63 +1612ms
+10-15 14:27:20.566 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=1 +1614ms
+10-15 14:27:20.780 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=settings:frame +1829ms d=904ms
+10-15 14:27:20.781 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] END reason=settings_frame total=1830ms settingsRenders=7 selfLogMs=67.4 (4% of total; dev-зонд и старые [WINBACK-FREEZE] см. dismiss:pre_log -> dismiss:call)
+10-15 14:27:20.790 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=40790 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=1357
+10-15 14:27:20.791 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=40790 refresh result=none applied=true gen=2/2 active=true
+10-15 14:27:20.792 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=40791 +1500ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 14:27:23.277 I/SVERKA  ( 7640): === PWT 2 tab-tap 14:27:23 ===
+10-15 14:27:23.338 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=43337 tab_tap requested=0 active=4 page=4
+10-15 14:27:24.035 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=44033 focus active=false dirty=false authReady=true shown=none focusTick=2
+10-15 14:27:24.040 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":129167,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&pla
+10-15 14:27:24.042 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":129169,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&pla
+10-15 14:27:24.380 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":129508}'
+10-15 14:27:24.390 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":129514}'
+10-15 14:27:25.443 I/ReactNativeJS( 6996): [INFO] [SPIRE]: [D191-GATE] вход ui=ru study=en tab=true now=2026-10-15T13:27:25.442Z
+10-15 14:27:25.443 I/ReactNativeJS( 6996): [INFO] [SPIRE]: [D191-GATE] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 14:27:25.446 I/ReactNativeJS( 6996): [INFO] [SPIRE]: [D191-GATE] не показываем: флаг moments_v3 выключен
+10-15 14:27:25.450 I/ReactNativeJS( 6996): [WELCOME-BACK] вход study=en rank=0 energy=4/5
+10-15 14:27:25.451 I/ReactNativeJS( 6996): [WELCOME-BACK] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 14:27:25.451 I/ReactNativeJS( 6996): [WELCOME-BACK] не показываем: флаг moments_v3 выключен
+10-15 14:27:28.080 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=48079 tab_tap requested=4 active=0 page=0
+10-15 14:27:28.780 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=48777 focus active=true dirty=true authReady=true shown=none focusTick=2
+10-15 14:27:28.782 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=48780 refresh enter active=true inflight=false dirty=true gen=3
+10-15 14:27:28.786 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":133914,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&pla
+10-15 14:27:28.787 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":133915,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&pla
+10-15 14:27:29.323 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":134450}'
+10-15 14:27:29.325 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":134452}'
+10-15 14:27:31.329 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=51329 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=2547
+10-15 14:27:31.330 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=51329 refresh result=none applied=true gen=3/3 active=true
+10-15 14:27:33.203 I/SVERKA  ( 7676): === PWT 3 open-tap 14:27:33 ===
+10-15 14:27:35.856 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"premium_modal","noop":false,"atMs":140983,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&
+10-15 14:27:35.857 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"PUSH","name":"premium_modal","noop":false,"atMs":140984,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&
+10-15 14:27:36.233 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=56231 focus active=false dirty=false authReady=true shown=none focusTick=2
+10-15 14:27:36.244 I/ReactNativeJS( 6996): [INFO] [PAYWALL-OPEN]: шапка: ctx=generic source=settings_premium текст=generic контекстная=false выгода=есть lang=ru
+10-15 14:27:36.256 I/ReactNativeJS( 6996): '[PAYWALL-OPEN] решение окна', '{"decision":"show","reason":"show","context":"generic","source":"settings_premium","shownContext":"generic","accessResolved":true,"hasPremiumAccess":false,"cachedEntitlement":"free","waitCeilingPassed":false,"accessFrom":"live","rootNavReady":true}'
+10-15 14:27:36.261 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=56260 tabs blur
+10-15 14:27:36.262 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9,premium_modal#iH1K9a*]","atMs":141390}'
+10-15 14:27:36.265 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9,premium_modal#iH1K9a*]","atMs":141392}'
+10-15 14:27:41.202 I/SVERKA  ( 7715): === PWT 3 close-tap 14:27:41 ===
+10-15 14:27:43.781 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=handleClose +0ms d=0ms via=x reason=close context=generic source=settings_premium
+10-15 14:27:43.782 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=handleClose:haptic +2ms d=2ms
+10-15 14:27:43.784 I/ReactNativeJS( 6996): [PAYWALL-CLOSE] via=x reason=close context=generic source=settings_premium
+10-15 14:27:43.785 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=doClose:analytics_start +6ms d=4ms
+10-15 14:27:43.790 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=doClose:analytics_done +11ms d=5ms
+10-15 14:27:43.792 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=dismiss:pre_log +12ms d=1ms branch=dismiss(1) shouldReplace=false candidate=yes
+10-15 14:27:43.794 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=63793 branch=dismiss(1) why: shouldReplace=false candidate=yes canDismiss=true nativePopToBack=true
+10-15 14:27:43.796 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=dismiss:call +15ms d=3ms branch=dismiss(1)
+10-15 14:27:43.797 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=dismiss:returned +18ms d=3ms dismiss(1)
+10-15 14:27:43.847 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"POP","noop":false,"atMs":148974,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&platform=android&dev=tru
+10-15 14:27:43.848 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"POP","noop":false,"atMs":148975,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&platform=android&dev=tru
+10-15 14:27:43.959 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=1 +180ms
+10-15 14:27:43.961 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=1 +182ms changed=settingsRuntimeActive
+10-15 14:27:44.191 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=63 +409ms
+10-15 14:27:44.193 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=1 +412ms
+10-15 14:27:44.207 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=paywall:unmount +427ms d=409ms
+10-15 14:27:44.231 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=64230 focus active=true dirty=true authReady=true shown=none focusTick=2
+10-15 14:27:44.234 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=64231 refresh enter active=true inflight=false dirty=true gen=4
+10-15 14:27:44.237 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=64235 tabs focus
+10-15 14:27:44.239 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=settings:focus +459ms d=32ms
+10-15 14:27:44.242 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":149369}'
+10-15 14:27:44.244 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":149371}'
+10-15 14:27:44.372 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=2 +593ms
+10-15 14:27:44.374 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=2 +595ms changed=focusTick
+10-15 14:27:44.551 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=53 +770ms
+10-15 14:27:44.553 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=1 +772ms
+10-15 14:27:44.570 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=64568 focus active=true dirty=false authReady=true shown=none focusTick=3
+10-15 14:27:44.596 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=3 +816ms
+10-15 14:27:44.598 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=3 +818ms changed=нет
+10-15 14:27:44.661 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=64660 +0ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 14:27:44.662 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] tick +882ms plan=+15ms lag=867ms
+10-15 14:27:44.664 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] tick +884ms plan=+65ms lag=819ms
+10-15 14:27:44.665 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] tick +886ms plan=+165ms lag=721ms
+10-15 14:27:44.666 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=64666 +300ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 14:27:44.666 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] tick +887ms plan=+315ms lag=572ms
+10-15 14:27:44.669 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=settings:frame1 +889ms d=430ms
+10-15 14:27:44.670 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=64670 +800ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 14:27:44.682 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=4 +901ms
+10-15 14:27:44.683 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=4 +904ms changed=focusTick,settingsRuntimeActive,authReady,settingsReferralDrain,snapshotProfile,snapshotSettings
+10-15 14:27:44.797 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=5 +1017ms
+10-15 14:27:44.799 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=5 +1019ms changed=focusTick,settingsRuntimeActive,authReady,settingsReferralDrain
+10-15 14:27:44.954 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=update actualMs=66 +1173ms
+10-15 14:27:44.956 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=update actualMs=1 +1175ms
+10-15 14:27:44.961 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=update actualMs=68 +1180ms
+10-15 14:27:44.963 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=update actualMs=1 +1182ms
+10-15 14:27:45.011 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=6 +1232ms
+10-15 14:27:45.015 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=6 +1234ms changed=focusTick,settingsRuntimeActive,authReady,settingsReferralDrain
+10-15 14:27:45.127 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] render SettingsMain n=7 +1347ms
+10-15 14:27:45.128 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] cause SettingsMain n=7 +1348ms changed=focusTick,settingsRuntimeActive,authReady,settingsReferralDrain
+10-15 14:27:45.262 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=55 +1481ms
+10-15 14:27:45.264 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=1 +1484ms
+10-15 14:27:45.271 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_body phase=nested-update actualMs=53 +1490ms
+10-15 14:27:45.273 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] profile id=settings_auth_modal phase=nested-update actualMs=1 +1492ms
+10-15 14:27:45.478 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] stage=settings:frame +1698ms d=809ms
+10-15 14:27:45.478 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-TIMING] END reason=settings_frame total=1699ms settingsRenders=7 selfLogMs=57.1 (3% of total; dev-зонд и старые [WINBACK-FREEZE] см. dismiss:pre_log -> dismiss:call)
+10-15 14:27:45.485 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=65485 getLinkedAuthInfo source=users_doc_without_linkedAuth→currentUser result=none ms=1251
+10-15 14:27:45.486 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=65485 refresh result=none applied=true gen=4/4 active=true
+10-15 14:27:45.486 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=65486 +1500ms branch=dismiss(1) stack=[*__root] > [(tabs),*(tabs)] index=0 top=__root paywallInStack=false overlay=none
+10-15 14:27:48.200 I/SVERKA  ( 7759): === PWT 3 tab-tap 14:27:48 ===
+10-15 14:27:48.280 I/ReactNativeJS( 6996): [PAYWALL-CLOSE-FREEZE] t=68279 tab_tap requested=0 active=4 page=4
+10-15 14:27:48.973 I/ReactNativeJS( 6996): [SETTINGS-ACCOUNT-CARD] t=68972 focus active=false dirty=false authReady=true shown=none focusTick=3
+10-15 14:27:48.978 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":154104,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&pla
+10-15 14:27:48.978 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":154106,"stack":"anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | forEach (native) | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minif | apply (native) | latestCallback (http://localhost:8081/index.bundle//&pla
+10-15 14:27:49.288 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":154415}'
+10-15 14:27:49.291 I/ReactNativeJS( 6996): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#hCsyQH*[(tabs)#C2vL2k,(tabs)#Cz8VG9*]","atMs":154418}'
+10-15 14:27:50.208 I/ReactNativeJS( 6996): [INFO] [SPIRE]: [D191-GATE] вход ui=ru study=en tab=true now=2026-10-15T13:27:50.208Z
+10-15 14:27:50.209 I/ReactNativeJS( 6996): [INFO] [SPIRE]: [D191-GATE] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 14:27:50.210 I/ReactNativeJS( 6996): [INFO] [SPIRE]: [D191-GATE] не показываем: флаг moments_v3 выключен
+10-15 14:27:50.214 I/ReactNativeJS( 6996): [WELCOME-BACK] вход study=en rank=0 energy=4/5
+10-15 14:27:50.215 I/ReactNativeJS( 6996): [WELCOME-BACK] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 14:27:50.218 I/ReactNativeJS( 6996): [WELCOME-BACK] не показываем: флаг moments_v3 выключен

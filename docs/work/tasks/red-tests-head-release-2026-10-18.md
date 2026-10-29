@@ -1,6 +1,7 @@
 # Task packet: красные проверки на HEAD к релизу
 
 Governance-ID: TG-DF03926CD13D
+Governance-ID: TG-A65721782DDF
 Status: In progress
 Owner: Ядро (сессия 1)
 Related epic/enabler: координатор 18.10 — «красные тесты на HEAD к релизу».

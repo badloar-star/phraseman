@@ -1,0 +1,18 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "mode": "light",
+  "option": 2,
+  "sources": [1, 2, 3, 4, 5, 6],
+  "acceptance": {
+    "all_have_true_alpha": true,
+    "accent_areas_percent": [3.784, 5.991, 6.903, 6.051, 4.829, 4.638],
+    "alignment_pass": [1, 2, 3],
+    "alignment_fail": {
+      "4": "15.9% interior edge mismatch; limit 12%",
+      "5": "17.6% interior edge mismatch; limit 12%",
+      "6": "18.3% interior edge mismatch; limit 12%"
+    },
+    "visual": "Generated exterior speckles are visible, so all six remain drafts. No alpha cleanup was performed."
+  },
+  "prompt": "Preserve exact rank banner silhouette, number and location of raised cyan chevrons, camera and position; change only charcoal material to warm ivory clay/porcelain with neutral gray relief shading; true transparent alpha; no text or additions."
+}

@@ -1,0 +1,14 @@
+{
+  "scenario": "neighbour_morning_routine",
+  "title": "Сосед о твоём дне",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "sunrise arc behind alarm clock and coffee cup",
+    "folded towel beside blank schedule tile and cup",
+    "toothbrush cup with sunrise medallion",
+    "house slippers beside clock and closed-door token",
+    "kettle, empty checklist tablet, and sun inset"
+  ],
+  "constraints": ["true transparent RGBA", "no people, faces, words or written time", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

@@ -8,6 +8,7 @@ import {
   v2ActivitySessionIdV2,
 } from "../modules/learning-v2/contracts/activity_session_package_v2";
 import { V2_REQUIRED_SESSION_FAMILIES_V2 } from "../modules/learning-v2/contracts/activity_catalog_v2";
+import { LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1 } from "../modules/learning-v2/contracts/mode_native_payload_v1";
 import { canonicalJsonV1 } from "../modules/learning-v2/policies/decision_registry";
 
 const buildPackage = () => ({
@@ -118,6 +119,58 @@ describe("Learning V2 activity session package v2", () => {
     expect(Object.isFrozen(parsed.sessions[0].tasks)).toBe(true);
   });
 
+  it("accepts independent scripted repeat only with the strict after-attempt reveal evidence", () => {
+    const value = buildPackage();
+    value.sessions[0].tasks[9].family = "scripted_repeat_compare";
+    Object.assign(value.sessions[0].tasks[9], {
+      scriptedRepeatRevealPolicy:
+        LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1,
+    });
+
+    const parsed = parseV2ActivitySessionPackageV2(canonicalJsonV1(value));
+
+    expect(parsed.sessions[0].tasks[9]).toMatchObject({
+      family: "scripted_repeat_compare",
+      support: "none",
+      hintsAllowed: 0,
+      answerExposure: "forbidden",
+      scriptedRepeatRevealPolicy: {
+        schemaVersion: "learning-v2-scripted-repeat-reveal-policy.v1",
+        revealAfter: "first_submitted_attempt",
+        answerExposedBeforeAttempt: false,
+        targetPhraseVisibleBeforeAttempt: false,
+        referenceAudioAvailableBeforeAttempt: false,
+        modelPlaybackAvailableBeforeAttempt: false,
+      },
+    });
+  });
+
+  it.each([
+    ["missing policy", undefined],
+    [
+      "legacy pre-attempt policy",
+      {
+        ...LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1,
+        revealAfter: "before_attempt",
+      },
+    ],
+    [
+      "answer exposure claim",
+      {
+        ...LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1,
+        answerExposedBeforeAttempt: true,
+      },
+    ],
+  ])("rejects independent scripted repeat with %s", (_label, policy) => {
+    const value = buildPackage() as any;
+    value.sessions[0].tasks[9].family = "scripted_repeat_compare";
+    if (policy !== undefined) value.sessions[0].tasks[9].scriptedRepeatRevealPolicy = policy;
+
+    expect(() =>
+      parseV2ActivitySessionPackageV2(canonicalJsonV1(value)),
+    ).toThrow(/scripted repeat|reveal policy|keys mismatch/);
+  });
+
   it.each([
     [
       "wrong session count",
@@ -164,7 +217,7 @@ describe("Learning V2 activity session package v2", () => {
       },
     ],
     [
-      "scripted repeat as independent assessment",
+      "scripted repeat as independent assessment without reveal policy",
       (value: any) => {
         value.sessions[0].tasks[9].family = "scripted_repeat_compare";
       },

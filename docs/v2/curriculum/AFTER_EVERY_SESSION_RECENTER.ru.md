@@ -1,6 +1,19 @@
 # Learning V2 — обязательный recenter после каждой сессии
 
-> **Owner override 2026-09-19.** Каждая сессия, включая checkpoint/voice/recall,
+> **Current owner-approved override v2, 2026-10-15.** Для English точный session
+> packet из blueprint с fingerprint
+> `d956442e0946194e3de8105601ae993fe6f7932e7904cc3e4e972fc8444875da`
+> имеет приоритет над общим правилом `1–5` новых senses. Если exact packet
+> помечен как checkpoint и содержит пустой `newLexicalSenseIds`, checkpoint не
+> вводит новые senses и извлекает только перечисленные
+> `retrievalLexicalSenseIds`. `content/learning-v2-course/curriculum/en/ПЛАН_КУРСА.md`
+> сохраняется как историческая/справочная карта и не является semantic
+> authority при расхождении с exact approved packet. Семантическое расхождение
+> записывается как diagnostic в `legacyPlanReference`, но само по себе не даёт
+> `HOLD`: authoring использует только exact packet. Наличие, закреплённый digest
+> и точная сериализация строки исторического плана остаются fail-closed.
+
+> **Historical owner override 2026-09-19.** Каждая сессия, включая checkpoint/voice/recall,
 > обязана вводить 1–5 новых lexical senses и новую ситуацию. Grammar-контракт
 > остаётся прежним: новая operation либо явный review set с learning delta.
 > Раздел `retrieval_only` ниже сохранён как история и
@@ -43,6 +56,11 @@
   разнообразия.
 
 ## 3. Проверить lexical plan
+
+Нижеследующая классификация фиксирует историческое общее правило. Для текущего
+English blueprint её числовые требования применяются только там, где они
+совпадают с exact approved packet; checkpoint packet `d956…75da` с нулём новых
+senses не получает `HOLD` только из-за нулевого `newLexicalSenseIds`.
 
 Каждая сессия явно имеет одну из двух ролей. Более новое прямое решение
 владельца 2026-08-30 отменяет прежние исключения для voice/repair/transfer:
@@ -133,5 +151,7 @@ status: ON TRACK | HOLD
 ```
 
 Пустое поле, stale map, неизвестный fingerprint или неразрешённое расхождение
-дают `HOLD`. `ON TRACK` разрешает только переход к следующей точной session и
-не заменяет independent review или owner approval.
+между действующими exact contracts дают `HOLD`. Diagnostic расхождения с
+`HISTORICAL_REFERENCE_ONLY` планом сюда не относится. `ON TRACK` разрешает
+только переход к следующей точной session и не заменяет independent review или
+owner approval.

@@ -1,0 +1,17 @@
+{
+  "iconId": "ui_01_20",
+  "label": "поиск",
+  "style": "S2 matte clay",
+  "options": 5,
+  "themeModes": ["dark", "light"],
+  "transparentBackground": true,
+  "concepts": [
+    "circular lens with angled handle",
+    "rounded-square lens with angled handle",
+    "faceted circular lens and tapered handle",
+    "narrow-ring lens and gently curved stem",
+    "oval lens with broad handle and bevel"
+  ],
+  "segmentation": "Cyan front-surface inserts extracted as independent white accent masks; light sources derived from the corresponding dark option.",
+  "qualityNote": "All five options are in the interactive workbench. Current revisions fail the required 1-8% accent-area gate: option 01 is 0.622%, options 02-05 are 8.665-9.142%. Alignment is true, but these remain drafts pending a mask-sized regeneration."
+}

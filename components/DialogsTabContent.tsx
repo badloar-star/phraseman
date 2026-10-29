@@ -1,3 +1,4 @@
+import { PlusMark } from './plus/PlusMark';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { dialogLimitPaywallParams } from '../app/dialog_first_free_summary';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -781,9 +782,7 @@ function DialogsTabContentBody({
                   'pt-BR': 'Conversa livre', vi: 'Trò chuyện tự do', id: 'Percakapan bebas', tr: 'Serbest konuşma', pl: 'Swobodna rozmowa',
                 })}
               </Text>
-              <View style={{ borderRadius: 8, paddingHorizontal: 6, paddingVertical: 2, backgroundColor: t.accent }}>
-                <Text style={{ color: t.textOnGold, fontSize: 13, fontWeight: '700' }}>PLUS</Text>
-              </View>
+              <PlusMark width={32} />
             </View>
             <Text
               style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3, lineHeight: Math.round(f.sub * 1.4) }}

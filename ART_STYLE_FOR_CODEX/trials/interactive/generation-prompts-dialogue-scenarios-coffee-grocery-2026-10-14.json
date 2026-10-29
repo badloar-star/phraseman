@@ -1,0 +1,28 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scope": "actual dialogue scenarios; one generated silhouette each, derived warm-ivory light source from its dark source while preserving the cyan segmentation marker",
+  "coffee": {
+    "scenarioId": "coffee",
+    "candidatePrefix": "dialog_scene_coffee_option_",
+    "concepts": [
+      "takeaway cup paired with small receipt tab",
+      "espresso cup and saucer with inset center medallion",
+      "compact French press with marked plunger cap",
+      "blank order ticket beside a small cup",
+      "cappuccino bowl with marked handle inset"
+    ],
+    "status": "5 generated; true alpha; separate white accents created for dark and light; all await visual owner selection. Some accent areas are below the 1% gate and remain drafts."
+  },
+  "grocery": {
+    "scenarioId": "grocery",
+    "candidatePrefix": "dialog_scene_grocery_option_",
+    "concepts": [
+      "handled grocery basket with front medallion",
+      "structured reusable tote with front patch",
+      "minimal cart with marked handle grip",
+      "produce crate with front tag",
+      "jar and paper bag with jar seal"
+    ],
+    "status": "5 generated; true alpha; separate white accents created for dark and light. All masks align within the current ≤12% internal-edge threshold; options 1 and 3 have accent area below the 1% minimum and remain drafts. All await visual owner selection."
+  }
+}

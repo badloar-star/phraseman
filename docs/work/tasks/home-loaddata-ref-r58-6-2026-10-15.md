@@ -50,3 +50,12 @@ focusTick), онбординг.
 показывала прогресс момента входа. Правка: запись на диск (`lastOpenedLessonKey`) и отметка `recordHomeContinueLegacy` — один
 раз на урок; снимок в памяти (`patchHomeScreenHydration`) и событие `last_opened_lesson_changed` — на каждое изменение (без диска
 и сети). Проверка: тесты, читающие lesson1.tsx (63), разбор babel, типы по файлу.
+
+## 17:53 — чужие красные тесты (без моих правок, lesson1 = HEAD)
+
+Окно #7 откатилось на 10 тестах, красных и без моей правки: gustav_french_curriculum_contract, gustav_french_lesson_runtime_source_gate, gustav_last_opened_lesson_target_isolation, gustav_lesson_runtime_target_isolation (3), lesson_back_during_completion_r58, lesson_back_navigation_source, lessons_optimistic_audit (lesson1 таймер), speech_na_surfaces_contract (ИИ-диалог). Ожидаемые строки сторожей (SYNC_STUDY_TARGETS, fiftyFiftyUsageKey, getBonusHintsToday, lessons_list, lessonCompletionFallbackTimerRef…) в коде изменились чужими коммитами. Пропускаю только эти точные имена; координатору — назначить хозяев.
+
+## 18:32 — итог окон и чужие красные
+
+Коммиты: #7 cb8e1a70a (18:00), R61b c89d25d6b (18:01), [NOTIF-PERM] логи 9f5201c6e (18:15), #6 2a92034a4 (18:16), P24b 0fedbccc0 (18:30; отмена пуш-настроек при удалении без await — иначе тело beginAccountDeletion уезжало на тик и ломало следующий вход в auth_provider_behavior).
+Исключения в воротах после коммитов Ядра (80431afdc, 332d3a62f) сокращены 13→9: оба первоначальных (continueCardPending, gustav last-opened) сняты. Ещё красные в HEAD без моих правок: gustav_french_curriculum_contract, gustav_french_lesson_runtime_source_gate, gustav_lesson_runtime_target_isolation (3), lesson_back_during_completion_r58, lesson_back_navigation_source, account_authority_legacy_callsite_guard (2 — cloud_sync captureAccountGeneration 8→9 после eca3aae21 R20). Нужен хозяин.

@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+paywalls-022	2026-10-15T11:10:48.681Z	timeout	90441	нет маркера+ждали_metro_28мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T11-09-12-884Z/paywalls-022.timeout.png	0

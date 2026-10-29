@@ -24,20 +24,23 @@ const localizedRuns = (
 export function assertApprovedFirstTenSession(
   source: SessionSource,
   ordinal: number,
+  expectedGenerationInputFingerprint = APPROVED_FIRST_TEN_CANDIDATE_SHA_V2,
+  expectedPhraseCount = 15,
+  expectedIntroBodyMinLength = 300,
+  requireTargetCorrectRun = true,
+  expectedDistractorCount = 5,
 ): void {
   expect(source.requiredSessionOrdinal).toBe(ordinal);
-  expect(source.generationInputFingerprint).toBe(
-    APPROVED_FIRST_TEN_CANDIDATE_SHA_V2,
-  );
+  expect(source.generationInputFingerprint).toBe(expectedGenerationInputFingerprint);
   expect(EPISODE_01_SESSION_MAP_V1[ordinal - 1].sessionOrdinal).toBe(ordinal);
   expect(source.introPages.map((page) => page.kind)).toEqual([
     'concept',
     'formula',
     'trap',
   ]);
-  expect(source.phrases).toHaveLength(15);
-  expect(new Set(source.phrases.map((phrase) => phrase.id)).size).toBe(15);
-  expect(new Set(source.phrases.map((phrase) => phrase.english)).size).toBe(15);
+  expect(source.phrases).toHaveLength(expectedPhraseCount);
+  expect(new Set(source.phrases.map((phrase) => phrase.id)).size).toBe(expectedPhraseCount);
+  expect(new Set(source.phrases.map((phrase) => phrase.english)).size).toBe(expectedPhraseCount);
 
   for (const field of [source.title, source.summary, source.learningGoal]) {
     for (const locale of LOCALES)
@@ -54,10 +57,12 @@ export function assertApprovedFirstTenSession(
         page.bodyRuns as unknown as Record<string, unknown>,
         locale,
       );
-      expect(body.length).toBeGreaterThanOrEqual(300);
+      expect(body.length).toBeGreaterThanOrEqual(expectedIntroBodyMinLength);
       expect(runs).toBeDefined();
       expect(introRunsPlainTextV1(runs ?? [])).toBe(body);
-      expect(runs?.some((run) => run.semantic === 'targetCorrect')).toBe(true);
+      if (requireTargetCorrectRun) {
+        expect(runs?.some((run) => run.semantic === 'targetCorrect')).toBe(true);
+      }
       for (const field of [
         page.title,
         page.question.prompt,
@@ -82,8 +87,8 @@ export function assertApprovedFirstTenSession(
       expect(details?.explanation.length).toBeGreaterThanOrEqual(80);
       expect(details?.words).toHaveLength(phrase.words.length);
       for (const word of details?.words ?? []) {
-        expect(word.distractors).toHaveLength(5);
-        expect(new Set(word.distractors.map((item) => item.value)).size).toBe(5);
+        expect(word.distractors).toHaveLength(expectedDistractorCount);
+        expect(new Set(word.distractors.map((item) => item.value)).size).toBe(expectedDistractorCount);
       }
     }
   }

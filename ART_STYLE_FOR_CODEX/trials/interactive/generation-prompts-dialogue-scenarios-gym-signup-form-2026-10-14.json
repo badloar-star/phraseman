@@ -1,0 +1,14 @@
+{
+  "scenario": "gym_signup_form",
+  "title": "Запись в спортзал",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "blank clipboard form crossed with compact dumbbell",
+    "membership tag looped through kettlebell handle",
+    "rolled exercise mat and blank calendar tile",
+    "water bottle and folded blank intake card on tray",
+    "folded towel, plain access fob, and weight plate"
+  ],
+  "constraints": ["true transparent RGBA", "no people, text, digits or logos", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "mode": "light",
+  "stage": 3,
+  "tierDays": 20,
+  "prompts": [
+    {"asset":"light/streak_03_option_01r1","prompt":"Edit light ten-day droplet flame; advance to twenty days. Preserve compact droplet identity; add two broad rounded secondary tongues integrated on its shoulders, body 16% broader than day one. Cyan inset remains on same detail. Ivory matte clay #e9e5dd, soft gray shade; transparent alpha, no stray pixels."},
+    {"asset":"light/streak_03_option_02r1","prompt":"Edit light ten-day open ribbon-loop; preserve clear hollow and continuous teardrop shape. Advance to twenty days: ribbon 20% thicker and tip 12% taller than day one. Cyan inset stays on same lower ribbon. Ivory matte clay #e9e5dd, soft gray shade; transparent alpha, no stray pixels."},
+    {"asset":"light/streak_03_option_03r1","prompt":"Edit light ten-day leaning S-shaped hooked flame; advance to twenty days: extend curled tip 16%, broaden base 20%, make shoulder more pronounced, no more than three broad lobes. Cyan inset stays on same detail. Ivory matte clay #e9e5dd, soft gray shade; transparent alpha, no stray pixels."},
+    {"asset":"light/streak_03_option_04r1","prompt":"Edit light ten-day rounded-square badge; preserve exact frame and cyan pill. Advance to twenty days: embossed flame has four broad integrated tongues, taller center and deeper raised relief. Ivory matte clay #e9e5dd, soft gray shade; true transparent alpha outside badge, no stray pixels."},
+    {"asset":"light/streak_03_option_05r1","prompt":"Edit light ten-day three-petal flame; keep exactly three integrated petals, central 20% taller and side petals 24% broader than day one. Cyan inset remains at lower center. Ivory matte clay #e9e5dd, soft gray shade; transparent alpha, no stray pixels."}
+  ],
+  "sharedConstraints":"Precise edit; preserve each family's silhouette identity, frontal camera and centered scale; marker flat cyan #00ffff, 2–5% canvas, neutral bevel; single icon square1024; no background, floor, checkerboard, opaque specks, halo, text, digits, crown, tower, glass, metal, particles, or extra symbols."
+}

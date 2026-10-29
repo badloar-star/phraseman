@@ -32,6 +32,18 @@ describe('лайк набора: сбой локальной записи не �
     await expect(setCommunityPackLikedLocally('p1', true)).resolves.toBe(true);
     await expect(loadLikedCommunityPackIds()).resolves.toEqual(['p1']);
   });
+  it('сохраняет лайки разных наборов при одновременных нажатиях', async () => {
+    await Promise.all([setCommunityPackLikedLocally('p1', true), setCommunityPackLikedLocally('p2', true), setCommunityPackLikedLocally('p3', true)]);
+    expect((await loadLikedCommunityPackIds()).sort()).toEqual(['p1', 'p2', 'p3']);
+    await Promise.all([setCommunityPackLikedLocally('p2', false), setCommunityPackLikedLocally('p4', true)]);
+    expect((await loadLikedCommunityPackIds()).sort()).toEqual(['p1', 'p3', 'p4']);
+  });
+  it('не записывает отложенный лайк в хранилище нового аккаунта', async () => {
+    const pending = setCommunityPackLikedLocally('old-account-pack', true);
+    beginAccountGeneration('another-account');
+    await expect(pending).rejects.toThrow('pack_like_account_changed');
+    expect(await loadLikedCommunityPackIds()).toEqual([]);
+  });
 
   it('сбой диска: бросает pack_like_local_write_failed и пишет [PACK-LIKE]', async () => {
     jest.spyOn(AsyncStorage, 'setItem').mockRejectedValueOnce(new Error('disk full'));

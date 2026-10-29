@@ -1,0 +1,14 @@
+{
+  "scenario": "club_skills_chat",
+  "title": "Что ты умеешь",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "partly opened tool roll with three implements",
+    "blank portfolio tile and three raised skill tokens",
+    "three interlocking capability blocks",
+    "notebook with blank raised tabs and plain seal",
+    "gear, pencil, and abstract music-note token set"
+  ],
+  "constraints": ["true transparent RGBA", "no people, faces, text or AI sparkle motif", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "work_call",
+  "candidatePrefix": "dialog_scene_work_call_option_",
+  "concepts": [
+    "headset with closed laptop",
+    "closed laptop with lid medallion",
+    "desk microphone with inset barrel band",
+    "desk phone and blank control panel",
+    "webcam with blank monitor"
+  ],
+  "style": "S2 graphite matte clay / derived warm ivory, true alpha, separately extracted white accent; no human figures",
+  "status": "Five concepts generated in both theme modes; mask/size checks are in work-call-preparation-dark.log and work-call-preparation-light.log. Candidates remain drafts."
+}

@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-011	2026-10-15T09:57:34.509Z	error	11829	step_target_not_found:#account-delete-button+ждали_metro_46мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T09-56-47-916Z/auth-gap-011.error.png	0

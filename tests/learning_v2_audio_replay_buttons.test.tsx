@@ -72,6 +72,15 @@ jest.mock("../hooks/use-haptics", () => ({
   hapticSuccess: jest.fn(),
 }));
 jest.mock("../hooks/useLineScale", () => ({ useScaledTextStyles: (styles: unknown) => styles }));
+// зачем (задания №23, 22.10): общее тело заданий тянет шапку заданий и переводы — их тема/Platform в этом тесте не нужны, подменяем лёгкими заглушками
+jest.mock("../constants/i18n", () => ({ triLang: (lang: string, txt: Record<string, unknown>) => txt[lang] ?? txt.ru }));
+jest.mock("../components/learning-v2/LearningV2TaskChrome", () => {
+  const ReactInMock = jest.requireActual<typeof React>("react");
+  return {
+    LearningV2TaskTitle: ({ title, trailing, testID }: { title: string; trailing?: React.ReactNode; testID?: string }) =>
+      ReactInMock.createElement("View", { testID }, ReactInMock.createElement("Text", null, title), trailing),
+  };
+});
 jest.mock("../hooks/use_runtime_active", () => ({ useRuntimeActive: () => true }));
 
 const commonProps = {

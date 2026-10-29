@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "neighbor_noise",
+  "candidatePrefix": "dialog_scene_neighbor_noise_option_",
+  "concepts": [
+    "blank sound meter",
+    "speaker with restrained waves",
+    "earplug case",
+    "acoustic panel with muted-wave relief",
+    "doorbell plaque with muted wave"
+  ],
+  "style": "S2 matte graphite / warm ivory clay, transparent RGBA and distinct white accent",
+  "status": "Five options generated for dark/light; per-mode gates are in neighbor-noise-preparation-dark.log and neighbor-noise-preparation-light.log. Owner selection pending."
+}

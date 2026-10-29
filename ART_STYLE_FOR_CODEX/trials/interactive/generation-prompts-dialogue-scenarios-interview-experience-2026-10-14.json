@@ -1,0 +1,14 @@
+{
+  "scenario": "interview_experience",
+  "title": "Твой опыт",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "open blank portfolio folder with three tabs",
+    "briefcase and blank credential medallion with speech tile",
+    "blank project cards and rising arc",
+    "work journal with bookmark and blank badge token",
+    "portfolio case with three inset material samples"
+  ],
+  "constraints": ["true transparent RGBA", "no people, text, logos or trophies", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

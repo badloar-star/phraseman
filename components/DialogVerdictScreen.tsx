@@ -1,3 +1,4 @@
+import { PlusMark } from './plus/PlusMark';
 /**
  * DialogVerdictScreen — полноэкранный финал ИИ-диалога.
  *
@@ -794,9 +795,7 @@ export default function DialogVerdictScreen({
                     pl: 'Analiza błędów AI — w Plus',
                   })}
                 </Text>
-                <View style={{ borderRadius: 9, paddingHorizontal: 7, paddingVertical: 3, backgroundColor: t.accent }}>
-                  <Text style={{ color: t.textOnGold, fontSize: 13, fontWeight: '700' }}>PLUS</Text>
-                </View>
+                <PlusMark width={32} />
               </View>
               {[
                 triLang(lang, {

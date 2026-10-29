@@ -1,0 +1,5 @@
+id	time	result	detail	file
+auth-gap-001	2026-10-15T09:23:58.328Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-15T09:23:54.253Z code_changed_at=2026-10-15T10:07:12+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/auth-gap-001.png
+community-021	2026-10-15T09:23:59.764Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-15T09:21:49.093Z code_changed_at=2026-10-15T10:07:12+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/community-021.png
+community-022	2026-10-15T09:24:01.186Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-15T09:22:17.787Z code_changed_at=2026-10-15T10:07:12+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/community-022.png
+paywalls-016	2026-10-15T09:24:02.754Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-15T09:18:02.126Z code_changed_at=2026-10-15T10:07:12+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/paywalls-016.png

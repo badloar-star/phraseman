@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-004	2026-10-15T09:26:54.789Z	error	12940	step_target_not_found:#account-link-row+ждали_metro_32мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T09-26-06-664Z/auth-gap-004.error.png	0

@@ -13,6 +13,10 @@ import {
 } from "../../../modules/learning-v2/contracts/activity_session_package_v2";
 import { V2_REQUIRED_SESSION_FAMILIES_V2 } from "../../../modules/learning-v2/contracts/activity_catalog_v2";
 import {
+  isLearningV2ScriptedRepeatRevealPolicyV1,
+  type LearningV2ScriptedRepeatRevealPolicyV1,
+} from "../../../modules/learning-v2/contracts/mode_native_payload_v1";
+import {
   buildV2LocalEvaluatorCapsuleRawV1,
   createV2LocalEvaluatorCommitmentV1,
   normalizeV2LocalEvaluatorResponseV1,
@@ -101,6 +105,7 @@ export interface V2ActivityProjectionSourceTask {
   readonly inputMode: V2ActivityInputMode;
   readonly support: V2ActivitySupport;
   readonly hintsAllowed: 0 | 1 | 2;
+  readonly scriptedRepeatRevealPolicy?: LearningV2ScriptedRepeatRevealPolicyV1;
   readonly introQuestionRef: V2ActivityIntroQuestionRefV2 | null;
   readonly reviewSource: V2ActivityReviewSourceV2 | null;
   readonly learner: V2ActivityLearnerPayload;
@@ -135,6 +140,7 @@ export interface V2ActivityRenderTask {
   readonly inputMode: V2ActivityInputMode;
   readonly support: V2ActivitySupport;
   readonly hintsAllowed: 0 | 1 | 2;
+  readonly scriptedRepeatRevealPolicy?: LearningV2ScriptedRepeatRevealPolicyV1;
   readonly learner: V2ActivityLearnerPayload;
   readonly scriptedAlternate: V2ActivityScriptedAlternate | null;
   readonly runtimeCapabilityId: string;
@@ -286,6 +292,10 @@ const TASK_KEYS = [
   "slot",
   "support",
   "taskId",
+];
+const TASK_KEYS_WITH_SCRIPTED_REPEAT_REVEAL_POLICY = [
+  ...TASK_KEYS,
+  "scriptedRepeatRevealPolicy",
 ];
 const LEARNER_KEYS = [
   "accessibilityLabel",
@@ -524,7 +534,16 @@ function validateSource(
   const earlierTasksById = new Map<string, V2ActivityProjectionSourceTask>();
 
   rawSession.tasks.forEach((rawTask, taskIndex) => {
-    exactKeys(rawTask, TASK_KEYS, "v2_activity_session_task_fields_invalid");
+    exactKeys(
+      rawTask,
+      Object.prototype.hasOwnProperty.call(
+        rawTask,
+        "scriptedRepeatRevealPolicy",
+      )
+        ? TASK_KEYS_WITH_SCRIPTED_REPEAT_REVEAL_POLICY
+        : TASK_KEYS,
+      "v2_activity_session_task_fields_invalid",
+    );
     const slot = taskIndex + 1;
     if (rawTask.slot !== slot) fail("v2_activity_session_task_slot_invalid");
     const slotPolicy = V2_REQUIRED_SESSION_TASK_SLOT_POLICY_V2[taskIndex];
@@ -592,8 +611,25 @@ function validateSource(
           rawTask.promptNovelty === "trained"))
     )
       fail("v2_activity_session_independent_check_invalid");
-    if (slotPolicy.independent && rawTask.family === "scripted_repeat_compare")
-      fail("v2_activity_session_independent_scripted_repeat_invalid");
+    const scriptedRepeatRevealPolicy = rawTask.scriptedRepeatRevealPolicy;
+    if (
+      scriptedRepeatRevealPolicy !== undefined &&
+      (rawTask.family !== "scripted_repeat_compare" ||
+        !isLearningV2ScriptedRepeatRevealPolicyV1(
+          scriptedRepeatRevealPolicy,
+        ))
+    ) {
+      fail("v2_activity_session_scripted_repeat_reveal_policy_invalid");
+    }
+    if (
+      slotPolicy.independent &&
+      rawTask.family === "scripted_repeat_compare" &&
+      !isLearningV2ScriptedRepeatRevealPolicyV1(
+        scriptedRepeatRevealPolicy,
+      )
+    ) {
+      fail("v2_activity_session_independent_scripted_repeat_reveal_invalid");
+    }
 
     if (slot <= 3) {
       exactKeys(
@@ -982,6 +1018,13 @@ export const buildV2ActivitySessionProjection = (
         inputMode: task.inputMode,
         support: task.support,
         hintsAllowed: task.hintsAllowed,
+        ...(task.scriptedRepeatRevealPolicy === undefined
+          ? {}
+          : {
+              scriptedRepeatRevealPolicy: Object.freeze({
+                ...task.scriptedRepeatRevealPolicy,
+              }),
+            }),
         learner: copyLearner(task.learner),
         scriptedAlternate: copyAlternate(task.scriptedAlternate),
         runtimeCapabilityId: CLASSIFICATIONS[task.family].runtimeCapabilityId,

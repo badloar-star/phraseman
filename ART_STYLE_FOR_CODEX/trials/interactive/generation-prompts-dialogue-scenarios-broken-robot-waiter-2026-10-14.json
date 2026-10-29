@@ -1,0 +1,14 @@
+{
+  "scenario": "broken_robot_waiter",
+  "title": "Робот-официант сломался",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "serving tray and misaligned robotic pincer arm",
+    "geometric robot head with loose antenna and covered dish",
+    "gear serving stand with tilted cloche and fallen utensil",
+    "abstract robot torso built from plates with displaced joint",
+    "robotic serving arm holding a tilted bowl above gear base"
+  ],
+  "constraints": ["true transparent RGBA", "adult restrained mechanical design, no face", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

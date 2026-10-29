@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "invite_friend",
+  "candidatePrefix": "dialog_scene_invite_friend_option_",
+  "concepts": [
+    "blank invitation envelope with seal",
+    "two blank event tickets",
+    "desk calendar with date marker",
+    "die with game token",
+    "wrapped invite gift with blank tag"
+  ],
+  "style": "S2 graphite clay / derived warm ivory, no people, genuine alpha and separate white accent layer",
+  "status": "Five candidates generated for dark/light; numeric layer checks are in invite-friend-preparation-dark.log and invite-friend-preparation-light.log. None owner-approved."
+}

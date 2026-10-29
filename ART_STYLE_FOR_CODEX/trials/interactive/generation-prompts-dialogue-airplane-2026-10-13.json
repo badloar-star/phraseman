@@ -1,0 +1,30 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "category": "dialogue theme airplane",
+  "style": "S2 monochrome matte clay with one cyan temporary segmentation marker extracted into a white overlay",
+  "options": [
+    {"option": 1, "concept": "three-quarter front passenger jet; accent stripe on upper nose ridge"},
+    {"option": 2, "concept": "side-profile airliner with one broad curved route arc; accent on raised wing panel"},
+    {"option": 3, "concept": "balanced top-down airplane silhouette; accent on central fuselage facet"},
+    {"option": 4, "concept": "folded-clay paper airplane with rounded folds; accent on one wing fold"},
+    {"option": 5, "concept": "three-quarter rear airplane with separated wings and tail; accent on tail fin"}
+  ],
+  "modeMeasurements": {
+    "dark": [
+      {"option": 1, "accentFramePct": 1.14, "alignment": "pass"},
+      {"option": 2, "accentFramePct": 0.403, "alignment": "pass"},
+      {"option": 3, "accentFramePct": 0.577, "alignment": "pass"},
+      {"option": 4, "accentFramePct": 1.274, "alignment": "fail", "interiorEdgePct": 22.7, "limitPct": 12},
+      {"option": 5, "accentFramePct": 0.224, "alignment": "pass"}
+    ],
+    "light": [
+      {"option": 1, "accentFramePct": 1.61, "alignment": "pass"},
+      {"option": 2, "accentFramePct": 0.29, "alignment": "fail", "interiorEdgePct": 17, "limitPct": 12},
+      {"option": 3, "accentFramePct": 0.907, "alignment": "fail", "interiorEdgePct": 21, "limitPct": 12},
+      {"option": 4, "accentFramePct": 3.095, "alignment": "pass"},
+      {"option": 5, "accentFramePct": 0.562, "alignment": "pass"}
+    ]
+  },
+  "acceptance": "Three pairs pass asset checks; seven remain incomplete. Visible external artifacts mean none has completed visual acceptance.",
+  "promptTemplate": "Premium minimal 3D app dialogue-theme icon; one centered, three-quarter-view matte clay airplane concept, 75% of a 1024 square. Neutral graphite for dark / warm ivory for light with soft relief shading. Cyan temporary mask marker on one raised facet, 2–4% target full-canvas coverage. Truly transparent alpha; no checkerboard, text, figures, extra scenery, frame or ground shadow."
+}

@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "category": "dialogue theme branch choice",
+  "optionsGenerated": 5,
+  "concepts": [
+    "Y-shaped route splitting into two arrows, cyan on one branch",
+    "forked tree branch with a cyan leaf",
+    "two-way signpost with cyan arrow tip",
+    "raised Y-shaped river/path with cyan center channel",
+    "two curved arrows diverging from a round hub, one cyan"
+  ],
+  "style": "S2 matte clay; true alpha; grayscale tone mapping produces dark graphite and light ivory; cyan temporary markers extracted as separate white .accent layers",
+  "measurements": {
+    "01": {"dark": {"accentFramePct": 9.428, "alphaTransparencyPct": 74.59, "alignment": "pass; area exceeds 8% limit"}, "light": {"accentFramePct": 9.428, "alphaTransparencyPct": 74.59, "alignment": "pass; area exceeds 8% limit"}},
+    "02": {"dark": {"accentFramePct": 5.384, "alphaTransparencyPct": 85.68, "alignment": "fail; interior mismatch 12.8%"}, "light": {"accentFramePct": 5.384, "alphaTransparencyPct": 85.68, "alignment": "fail; interior mismatch 12.7%"}},
+    "03": {"dark": {"accentFramePct": 1.784, "alphaTransparencyPct": 76.35, "alignment": "pass; interior mismatch 5.2%"}, "light": {"accentFramePct": 1.784, "alphaTransparencyPct": 76.35, "alignment": "pass; interior mismatch 5.2%"}},
+    "04": {"dark": {"accentFramePct": 13.73, "alphaTransparencyPct": 66.95, "alignment": "pass; area exceeds 8% limit"}, "light": {"accentFramePct": 13.73, "alphaTransparencyPct": 66.95, "alignment": "pass; area exceeds 8% limit"}},
+    "05": {"dark": {"accentFramePct": 5.435, "alphaTransparencyPct": 82.36, "alignment": "pass; interior mismatch 0.8%"}, "light": {"accentFramePct": 5.435, "alphaTransparencyPct": 82.36, "alignment": "pass; interior mismatch 0.8%"}}
+  },
+  "acceptance": "Options 3 and 5 meet current numeric gates. Options 1 and 4 exceed accent area; option 2 misses alignment narrowly. All remain drafts pending owner review."
+}

@@ -125,11 +125,11 @@ const screen = (inner, fixed) => `<div class="cs-screen"><div class="scr"><div c
 const like = (p, o = {}) => `<span class="cs-like${o.cls ? ' ' + o.cls : ''}${o.locked ? ' locked' : ''}${p.mine ? ' mine' : ''}" data-act="like">${io('heart-outline')}<span class="cs-num">${p.likes}</span></span>`;
 
 /* ═════ 1 · каталог: сцена с «Набором месяца» (пьедестал V2), панель «Топ / Новые» с плитками, док «Создать набор» ═════ */
-const blk = (x, y, w, h, inner, cls = '', d = 0) => `<div class="pk2-blk${cls}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;--d:${d}ms">${inner}</div>`;
-const coinAt = (r, x, y, s, d) => `<div class="pk2-coin" style="left:${x}px;top:${y}px;width:${s}px;height:${s}px;--d:${d}ms"><img src="${K.coin(r)}" alt=""></div>`;
+const blk = (x, y, w, h, inner, cls = '', d = 0, p) => `<div role="button" tabindex="0" aria-label="Открыть набор ${p.t}" data-act="go:pack:${p.t}" class="pk2-blk${cls}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;--d:${d}ms">${inner}</div>`;
+const coinAt = (r, x, y, s, d, p) => `<div data-act="go:pack:${p.t}" class="pk2-coin t" style="left:${x}px;top:${y}px;width:${s}px;height:${s}px;--d:${d}ms"><img src="${K.coin(r)}" alt=""></div>`;
 const face = (place, p) => `<span class="pl">${place}</span><span class="nm cs-nm">${p.t}</span><span class="cn">${io('heart')}${p.likes}</span>`;
-const pedestal = () => blk(22, 430, 124, 100, `<span style="height:12px"></span>${face(2, LEAD[1])}`, ' t', 240) + blk(153, 406, 124, 124, `<span style="height:22px"></span>${face(1, LEAD[0])}`, ' first t', 320)
-  + blk(284, 450, 124, 80, `<span style="height:12px"></span>${face(3, LEAD[2])}`, ' t', 400) + coinAt(LEAD[1].r, 65, 410, 38, 330) + coinAt(LEAD[0].r, 191, 380, 48, 420) + coinAt(LEAD[2].r, 327, 430, 38, 490);
+const pedestal = () => blk(22, 430, 124, 100, `<span style="height:12px"></span>${face(2, LEAD[1])}`, ' t', 240, LEAD[1]) + blk(153, 406, 124, 124, `<span style="height:22px"></span>${face(1, LEAD[0])}`, ' first t', 320, LEAD[0])
+  + blk(284, 450, 124, 80, `<span style="height:12px"></span>${face(3, LEAD[2])}`, ' t', 400, LEAD[2]) + coinAt(LEAD[1].r, 65, 410, 38, 330, LEAD[1]) + coinAt(LEAD[0].r, 191, 380, 48, 420, LEAD[0]) + coinAt(LEAD[2].r, 327, 430, 38, 490, LEAD[2]);
 const catCopy = () => `<div class="pk2-copy cs-copy" data-e style="--d:120ms"><div class="a-kick">Набор месяца</div><div class="a-title">Ещё 5 дней</div><div class="pk-rew"><span class="np t" data-act="open:rules">Условия участия${io('chevron-forward')}</span></div></div>`;
 const meBlock = () => `<div class="pk2-me" style="left:20px;top:300px;--d:200ms" data-e><div class="k">Твой набор</div><div class="v">${ci(MINE.r, 30)}${MINE.place} место</div><div class="s">${io('heart')}${MINE.likes}</div></div>`;
 const catStage = () => `<div class="a-stage"><div class="a-glow" style="right:10px;top:140px;width:260px;height:260px"></div>${hero(224, -18, 92)}<div class="a-scrim"></div><div class="a-top">${seg()}</div>${catCopy()}${meBlock()}${pedestal()}</div>`;
@@ -143,7 +143,7 @@ const catalogScreen = (st) => screen(`<div class="cs-cat cs-enter">${catStage()}
 const packScreen = (p) => screen(`<div class="cs-pack cs-enter"><div class="a-stage"><div class="a-glow" style="right:20px;top:90px;width:240px;height:240px"></div>${hero(206, -10, 94)}<div class="a-scrim"></div>
   <div class="a-top"><div class="pk-top" data-e><span class="qround glass t" data-act="back">${io('chevron-back')}</span><span style="flex:1"></span><span class="qround glass t">${io('ellipsis-horizontal')}</span></div></div>
   <div class="a-body" data-e style="--d:100ms"><div class="a-kick">${p.lang} · ${p.lvl}</div><div class="a-title">${p.t}</div><div class="a-prog">${ci(p.r, 22)}${p.a}</div>
-  <div class="a-cta"><div class="qbtn white t${p.mine ? ' added' : ''}" data-act="add"><span class="cs-sw">${p.mine ? `${io('checkmark')}Твой набор` : `${io('add')}Добавить себе`}</span></div>${like(p, { cls: 'qbtn glass t', locked: !p.mine })}</div></div></div>
+  <div class="a-cta"><div class="qbtn white t${p.mine ? ' added' : ''}" data-act="add"><span class="cs-sw">${p.mine ? `${io('checkmark')}Твой набор` : `${io('add')}Добавить себе`}</span></div>${like(p, { cls: 'qbtn glass t' })}</div></div></div>
   <div class="a-panel" data-e style="--d:220ms"><div class="hm-h">Карточки<span>${p.n}</span></div>${(W[p.t] || W['25 прилагательных']).map(([w, t]) => `<div class="hm-row t"><span class="ic">${io('volume-high')}</span><div class="tx"><div class="t">${w}</div><div class="s">${t}</div></div></div>`).join('')}</div><div style="height:150px"></div></div>`, tabbar());
 
 /* ═════ 3 · создание, шаг «Проверка»: карточки проверяются по очереди, правка — на месте, одна кнопка «Опубликовать и участвовать» ═════ */
@@ -156,10 +156,10 @@ const checkScreen = () => screen(`<div class="cs-check cs-enter"><div class="a-s
   dock('Опубликовать и участвовать', 'trending-up', 'publish', 'pk2-off') + tabbar());
 
 /* ═════ 4 · шторка «Условия участия» · 5 · победитель · 6 · итоги ═════ */
-const rulesSheet = () => `<div class="qdim" data-act="close"></div><div class="qsheet"><div class="qgrab"></div><div class="qt" style="text-align:center">Условия участия</div><div style="margin-top:10px">${[['heart', 'Голос — это лайк. Один на набор'], ['albums-outline', 'Участвуют все новые наборы месяца'], ['trophy', '1 место — Plus на 3 месяца'], ['medal-outline', '2 и 3 место — по 500 монет']].map(([i, t]) => `<div class="hm-row"><span class="ic">${io(i)}</span><div class="tx"><div class="t">${t}</div></div></div>`).join('')}</div><div class="qbtn solid t" style="margin-top:16px" data-act="close">Понятно</div></div>`;
-const confetti = () => `<div class="cs-conf">${Array.from({ length: 18 }, (_, i) => `<i style="left:${4 + (i * 23) % 92}%;--d:${(i * 37) % 420};--dx:${((i * 29) % 60) - 30}px;--r:${120 + (i * 53) % 260}deg;background:${['var(--acc)', 'var(--good)', 'color-mix(in srgb, var(--acc) 45%, var(--tx))'][i % 3]}"></i>`).join('')}</div>`;
-const winnerModal = () => `<div class="qdim"></div><div class="cs-modal">${confetti()}<div class="cs-medal">${io('trophy')}</div><div class="qk cs-late" style="justify-content:center;margin-top:18px;--d:260ms">Набор месяца · октябрь</div><div class="qt cs-late" style="font-size:26px;line-height:31px;text-align:center;--d:320ms">Твой набор — №1!</div><div class="qm cs-late" style="text-align:center;margin-top:6px;--d:380ms">«${MINE.t}» · ${io('heart')} <span data-count="214">0</span></div><div class="cs-prize cs-late" style="--d:520ms">${io('diamond')}Plus на 3 месяца</div><div class="qbtn solid t cs-late" style="margin-top:16px;--d:600ms" data-act="claim"><span class="cs-sw">Забрать приз</span></div></div>`;
-const resultsModal = () => `<div class="qdim"></div><div class="cs-modal" style="top:120px"><div class="qk" style="justify-content:center">Набор месяца · октябрь</div><div class="qt" style="font-size:26px;line-height:31px;text-align:center">Итоги</div><div class="pk-pod" style="margin-top:16px">${LEAD.map((p, i) => `<div class="p${i === 0 ? ' first' : ''}" style="--d:${[260, 160, 360][i]}ms">${ci(p.r, 40)}<div class="nm">${p.t}</div><div class="c">${io('heart')}${p.likes}</div></div>`).join('')}</div><div class="pk-me cs-late" style="--d:460ms">${ci(MINE.r, 40)}<div class="tx"><div class="t">${MINE.t}</div><div class="s">${io('heart')}${MINE.likes}</div></div><span class="c">${MINE.place} место</span></div><div class="qbtn solid t cs-late" style="margin-top:16px;--d:540ms" data-act="close">Смотреть наборы</div></div>`;
+const rulesSheet = () => `<div class="qdim" data-act="close"></div><div class="qsheet cs-rules"><div class="qgrab"></div><div class="qt" style="text-align:center">Как участвовать</div><p class="cs-rule-intro">Делись наборами, учись с другими и получай награды.</p>${[["albums-outline", "Создавай и делись", "Опубликованные наборы доступны другим участникам: они могут добавлять их себе и учиться по твоим карточкам. Участвовать можно каждый месяц, пока набор не занял призовое место."], ["heart", "Лучшие выбирают участники", "Понравился набор? Поставь ему сердечко. Место в конкурсе зависит только от новых сердечек за текущий месяц. Один участник может поставить набору одно сердечко."], ["trophy", "Три лучших набора — три награды", "В конце месяца авторы трёх наборов с наибольшим числом сердечек получают награды:"]].map(([i, t, d]) => `<div class="hm-row"><span class="ic">${io(i)}</span><div class="tx"><div class="t">${t}</div><div class="s">${d}</div></div></div>`).join("")}<div class="cs-rule-prizes"><div><b>1 место</b><span>Plus на 3 месяца</span></div><div><b>2 место</b><span>2000 монет</span></div><div><b>3 место</b><span>1000 монет</span></div></div><p class="qm">В рейтинге учитываются только новые сердечки за этот месяц (UTC), а не общий счёт. Набор участвует снова, пока не занял 1, 2 или 3 место. После любого призового места он больше не участвует. Сердечко можно поставить без добавления набора себе; своему набору — нельзя.</p><div class="qbtn solid t" style="margin-top:16px" data-act="close">Понятно</div></div>`;
+const confetti = () => `<div class="cs-conf" aria-hidden="true">${Array.from({ length: 64 }, (_, i) => `<i style="left:${3 + (i * 23) % 94}%;--d:${(i * 67) % 1100};--dx:${((i * 29) % 140) - 70}px;--r:${180 + (i * 53) % 540}deg;background:${["#F5BD58", "#FFE7AB", "var(--acc)", "#A6DCEB"][i % 4]}"></i>`).join("")}</div>`;
+const winnerModal = () => `<div class="qdim"></div><div class="cs-modal cs-winner">${confetti()}<div class="cs-victory-art" aria-hidden="true"><div class="cs-victory-rays"></div><div class="cs-medal">${io("trophy")}</div><span class="cs-winner-rank">1 МЕСТО</span></div><div class="qk cs-late" style="justify-content:center;--d:450ms">Набор месяца · октябрь</div><div class="qt cs-late cs-congrats" style="--d:560ms">Поздравляем!</div><div class="qm cs-late cs-winner-copy" style="--d:660ms">Твой набор «${MINE.t}»<br>победил в конкурсе!</div><div class="cs-prize cs-late" style="--d:820ms">${io("diamond")}Plus на 3 месяца</div><div class="qbtn solid t cs-late" style="margin-top:18px;--d:950ms" data-act="claim"><span class="cs-sw">Забрать приз</span></div><button class="cs-recelebrate" data-act="celebrate">Повторить поздравление</button></div>`;
+const resultsModal = () => `<div class="qdim"></div><div class="cs-modal" style="top:120px"><div class="qk" style="justify-content:center">Набор месяца · октябрь</div><div class="qt" style="font-size:26px;line-height:31px;text-align:center">Итоги</div><div class="pk-pod" style="margin-top:16px">${LEAD.map((p, i) => `<div role="button" tabindex="0" aria-label="Открыть набор ${p.t}" data-act="go:pack:${p.t}" class="p${i === 0 ? ' first' : ''} t" style="--d:${[260, 160, 360][i]}ms">${ci(p.r, 40)}<div class="nm">${p.t}</div><div class="c">${io('heart')}${p.likes}</div></div>`).join('')}</div><div class="pk-me cs-late" style="--d:460ms">${ci(MINE.r, 40)}<div class="tx"><div class="t">${MINE.t}</div><div class="s">${io('heart')}${MINE.likes}</div></div><span class="c">${MINE.place} место</span></div><div class="qbtn solid t cs-late" style="margin-top:16px;--d:540ms" data-act="close">Смотреть наборы</div></div>`;
 
 /* ═════ телефон: стопка экранов, переходы, действия ═════ */
 const topScreen = (ph) => ph.querySelector('.cs-stack').lastElementChild;
@@ -176,7 +176,8 @@ const pop = (ph) => {
   prev.classList.remove('cs-hidden'); prev.classList.add('cs-back-in'); cur.classList.add('cs-back-out');
   after(360, () => { cur.remove(); prev.classList.remove('cs-back-in'); });
 };
-const openOverlay = (ph, html) => { const scr = topScreen(ph); const old = scr.querySelector('.cs-ov'); if (old) old.remove(); const ov = el(`<div class="cs-ov">${html}</div>`); scr.appendChild(ov); requestAnimationFrame(() => requestAnimationFrame(() => { ov.classList.add('on'); ov.querySelectorAll('[data-count]').forEach((n) => after(380, () => countUp(n))); })); return ov; };
+const celebrationObserver = new IntersectionObserver((entries) => { for (const e of entries) { if (!e.isIntersecting) continue; const ov = e.target.closest(".cs-ov"); if (ov) ov.classList.add("cs-celebrating"); celebrationObserver.unobserve(e.target); } }, { threshold: 0.55 });
+const openOverlay = (ph, html) => { const scr = topScreen(ph); const old = scr.querySelector(".cs-ov"); if (old) { const w = old.querySelector(".cs-winner"); if (w) celebrationObserver.unobserve(w); old.remove(); } const ov = el(`<div class="cs-ov">${html}</div>`); scr.appendChild(ov); requestAnimationFrame(() => requestAnimationFrame(() => { ov.classList.add("on"); const winner = ov.querySelector(".cs-winner"); if (winner) celebrationObserver.observe(winner); ov.querySelectorAll("[data-count]").forEach((n) => after(380, () => countUp(n))); })); return ov; };
 const closeOverlay = (ph) => { const ov = topScreen(ph).querySelector('.cs-ov'); if (!ov || ov.classList.contains('off')) return; ov.classList.remove('on'); ov.classList.add('off'); after(340, () => ov.remove()); };
 const movePuck = (segEl) => { const on = segEl.querySelector('.qchip.on'); const puck = segEl.querySelector('.cs-puck'); if (!on || !puck) return; puck.style.width = `${on.offsetWidth}px`; puck.style.transform = `translateX(${on.offsetLeft}px)`; };
 const once = (node, cls) => { node.classList.remove(cls); void node.offsetWidth; node.classList.add(cls); node.addEventListener('animationend', () => node.classList.remove(cls), { once: true }); };
@@ -185,7 +186,7 @@ const swapText = (node, html) => { node.classList.add('cs-blur'); after(160, () 
 
 /* лайк: сразу, с отскоком и прыжком счётчика; свой набор и набор до добавления — «нельзя» показываем покачиванием */
 const toggleLike = (node) => {
-  if (node.classList.contains('locked') || node.classList.contains('mine')) { once(node, 'cs-shake'); console.log(LOG, 'like:blocked', node.classList.contains('mine') ? 'own_pack' : 'not_added'); return; }
+  if (node.classList.contains('mine')) { once(node, 'cs-shake'); console.log(LOG, 'like:blocked', node.classList.contains('mine') ? 'own_pack' : 'not_added'); return; }
   const on = node.classList.toggle('on'); node.querySelector('.io').innerHTML = glyph(on ? 'heart' : 'heart-outline');
   const num = node.querySelector('.cs-num'); num.textContent = Number(num.textContent) + (on ? 1 : -1); once(num, on ? 'up' : 'dn'); once(node, 'cs-pop');
 };
@@ -200,7 +201,7 @@ const runCheck = async (ph, scr) => {
   await wait(420);
   for (let i = 0; i < rows.length; i += 1) {
     const r = rows[i]; if (!r.isConnected) return; r.classList.remove('pending');
-    if (r.dataset.row === 'ok') { r.classList.add('ok'); r.querySelector('.ck').classList.add('on'); } else r.classList.add('issue');
+    if (r.dataset.row === 'ok') { r.classList.add('ok'); r.querySelector('.ck').classList.add('on'); } else if (!r.classList.contains('fixed')) r.classList.add('issue');
     head.textContent = `${i + 1} из 12`;
     await wait(320);
   }
@@ -209,7 +210,7 @@ const runCheck = async (ph, scr) => {
 };
 const updateCheck = (scr) => {
   const left = scr.querySelectorAll('.cs-fix.issue').length; const line = scr.querySelector('[data-count-line]'); const btn = scr.querySelector('[data-act="publish"]');
-  swapText(line, `${io('sparkles')}${left === 2 ? 'Поправь 2 карточки — и в конкурс' : left === 1 ? 'Ещё одна карточка — и в конкурс' : 'Всё готово — публикуй'}`);
+  swapText(line, `${io('sparkles')}${left === 2 ? 'Нужно исправить 2 карточки' : left === 1 ? 'Осталось исправить 1 карточку' : 'Набор готов к публикации'}`);
   if (left === 0) { btn.classList.replace('pk2-off', 'solid'); once(btn, 'cs-ready'); btn.dataset.ready = '1'; } else { btn.classList.replace('solid', 'pk2-off'); delete btn.dataset.ready; }
 };
 const fixCard = (scr, chip) => {
@@ -233,6 +234,9 @@ const act = (ph, node) => {
   if (name === 'close') return closeOverlay(ph);
   if (name === 'fix') return fixCard(scr, node);
   if (name === 'publish') { if (!node.dataset.ready) { once(node, 'cs-shake'); return; } ph._st = { ...ph._st, sort: 'new', published: true }; const next = mountScreen(ph, catalogScreen(ph._st), 'push'); after(420, () => toast(next, 'Набор в конкурсе!')); return; }
+  if (name === 'demo-retry') { mountScreen(ph, catalogScreen(ph._st), 'push'); return; }
+  if (name === 'demo-prize') { swapText(node.querySelector('.cs-sw') || node, io('checkmark') + 'Награда получена'); return; }
+  if (name === 'celebrate') { const ov = node.closest('.cs-ov'); ov.classList.remove('cs-celebrating'); void ov.offsetWidth; ov.classList.add('cs-celebrating'); return; }
   if (name === 'claim') { swapText(node.querySelector('.cs-sw'), `${io('checkmark')}Plus включён`); after(900, () => closeOverlay(ph)); return; }
   return undefined;
 };
@@ -246,8 +250,28 @@ const PHONES = [
   ['winner', 'Победитель месяца', (ph) => { mountScreen(ph, catalogScreen(ph._st)); after(600, () => openOverlay(ph, winnerModal())); }],
   ['results', 'Итоги месяца', (ph) => { mountScreen(ph, catalogScreen(ph._st)); after(600, () => openOverlay(ph, resultsModal())); }],
 ];
+
+/* Additional reviewable states; fixtures never call application services. */
+const stateMessage = (title, body, icon = 'albums-outline', action = '') => screen('<div class="cs-cat">' + catStage() + '<div class="a-panel cs-state-panel"><div class="hm-h">' + title + '</div><div class="cs-state-icon">' + io(icon) + '</div><p>' + body + '</p>' + action + '</div></div>', dock('Создать набор', 'add', 'go:check') + tabbar());
+const prizeState = (place, claimed = false) => winnerModal().replace('1 МЕСТО', place + ' МЕСТО').replace('победил в конкурсе!', place === 1 ? 'победил в конкурсе!' : 'занял ' + place + '-е место!').replace('Plus на 3 месяца', place === 1 ? 'Plus на 3 месяца' : (place === 2 ? '2000' : '1000') + ' монет').replace('Забрать приз', claimed ? 'Награда получена' : 'Забрать приз').replace('data-act="claim"', claimed ? 'data-act="close"' : 'data-act="demo-prize:' + place + '"');
+const stateOverlay = (ph, html) => { mountScreen(ph, catalogScreen(ph._st)); openOverlay(ph, html); };
+PHONES.push(
+ ['empty', 'Каталог пуст', ph => mountScreen(ph, stateMessage('Пока нет наборов', 'Создай первый набор на этом языке. Другие участники смогут добавить его себе и учиться по твоим карточкам.'))],
+ ['loading', 'Каталог загружается', ph => { const scr=mountScreen(ph, stateMessage('Наборы', 'Загружаем наборы…')); scr.querySelector('.cs-state-panel').insertAdjacentHTML('beforeend','<div class="cs-tiles">'+Array.from({length:4},()=>'<div class="cs-state-skeleton"></div>').join('')+'</div>'); }],
+ ['offline', 'Нет сети · повторить загрузку', ph => mountScreen(ph, stateMessage('Нет подключения', 'Сохранённые наборы доступны. Чтобы загрузить каталог, подключись к интернету и попробуй ещё раз.', 'albums-outline', '<div class="qbtn solid t" data-act="demo-retry">Повторить</div>'))],
+ ['added', 'Набор добавлен · сердечко поставлено', ph => { const scr=mountScreen(ph,packScreen(JERICCO)); const btn=scr.querySelector('[data-act="add"]');btn.classList.add('added');btn.querySelector('.cs-sw').innerHTML=io('checkmark')+'В твоих наборах';const lk=scr.querySelector('.cs-like');lk.classList.remove('locked');lk.classList.add('on');lk.querySelector('.io').innerHTML=glyph('heart');lk.querySelector('.cs-num').textContent='13'; }],
+ ['check-ready', 'Ошибки исправлены · можно публиковать', ph => { const scr=mountScreen(ph,checkScreen());scr.querySelectorAll('[data-act="fix"]').forEach(n=>fixCard(scr,n)); }],
+ ['published', 'Набор опубликован · первым в новых', ph => { ph._st={sort:'new',published:true};const scr=mountScreen(ph,catalogScreen(ph._st));toast(scr,'Набор опубликован и участвует в конкурсе'); }],
+ ['publish-error', 'Публикация не прошла · черновик сохранён', ph => mountScreen(ph,stateMessage('Не удалось опубликовать', 'Твои карточки сохранены в черновике. Попробуй отправить набор ещё раз.', 'albums-outline','<div class="qbtn solid t" data-act="go:check">Вернуться к проверке</div>'))],
+ ['second', '2 место · 2000 монет', ph => stateOverlay(ph,prizeState(2))],
+ ['third', '3 место · 1000 монет', ph => stateOverlay(ph,prizeState(3))],
+ ['claimed', 'Награда получена', ph => stateOverlay(ph,prizeState(2,true))],
+ ['claim-error', 'Награда сохранена · повторное получение', ph => stateOverlay(ph,'<div class="qdim"></div><div class="cs-modal"><div class="qt">Приз ждёт тебя</div><p class="qm">Не удалось получить подтверждение. Награда сохранена — попробуй ещё раз. Повторное нажатие не начислит её дважды.</p><div class="cs-prize">2000 монет</div><div class="qbtn solid t" style="margin-top:16px" data-act="demo-prize:2"><span class="cs-sw">Повторить</span></div></div>')]
+);
+
 const shell = (id) => tok(T(`<div class="ph" data-ph="${id}">${sb()}<div class="cs-stack"></div><div class="hi"></div></div>`, 'onart'), THEME_ID, AP);
 const mountAll = () => {
+  celebrationObserver.disconnect();
   document.querySelectorAll('[data-ph]').forEach((ph) => { ph._st = { sort: 'top' }; ph.querySelector('.cs-stack').innerHTML = ''; const def = PHONES.find((p) => p[0] === ph.dataset.ph); def[2](ph); });
 };
 const controls = () => {
@@ -260,6 +284,7 @@ const render = () => {
   document.getElementById('root').innerHTML = block('cs', `Наборы и «Набор месяца» — «${name}», ${AP === 'dark' ? 'тёмное' : 'светлое'}`, '', PHONES.map(([id, label]) => col(label, shell(id))));
   controls(); mountAll();
 };
+document.body.addEventListener('keydown', (e) => { if (e.key !== 'Enter' && e.key !== ' ') return; const node = e.target.closest('[role="button"][data-act]'); if (node) { e.preventDefault(); node.click(); } });
 document.body.addEventListener('click', (e) => {
   const a = e.target.closest('[data-act]'); const ph = a && a.closest('[data-ph]');
   if (a && ph) { act(ph, a); return; }

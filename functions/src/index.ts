@@ -708,6 +708,8 @@ export {
 export { openAiBudgetDashboard } from "./openai_budget_dashboard";
 export { adminProductAnalytics } from "./admin_product_analytics";
 export { adminSubscriptionAnalytics } from "./admin_subscription_analytics";
+export { adminGetProductStatistics } from "./admin_statistics";
+export { adminStaffIsolatedSession } from "./admin_staff_isolated_endpoint";
 export { adminMonthlyDecisionPack } from "./admin_monthly_decision_pack";
 export { adminGetAnalyticsSnapshot } from "./admin_analytics";
 export { adminGetRevenueCatOverviewMetrics } from "./admin_revenuecat_overview";
@@ -1050,7 +1052,6 @@ export {
   premiumThemeConditionClaim,
   premiumThemeVideoWatchReport,
 } from "./premium_themes";
-
 // зачем (D78/PM-080, Q109): videoWatchRunesClaim (руны за просмотр видео) удалена вместе
 // с кодом. В облаке функция доживает до min_app_version >= 2.0 (её зовёт 1.6.24) —
 // см. DEPLOY_NOW.md, Шаг 2. Полная выкладка предложит её удалить — до релиза отвечать «нет».
@@ -1200,3 +1201,4 @@ export { storyPollVote } from './story_poll_vote';
 
 // Admin Hosting uses this bounded read-only projection. The separate admin codebase is not configured for deployment yet.
 export { adminListOpsLog } from './admin_ops_log';
+

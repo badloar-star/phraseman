@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "party_fast_talk",
+  "candidatePrefix": "dialog_scene_party_fast_talk_option_",
+  "concepts": [
+    "metronome with blank panel",
+    "blank-face stopwatch",
+    "speech bubble with speed arcs",
+    "stacked blank speech cards",
+    "sand timer"
+  ],
+  "style": "S2 graphite clay / warm ivory pair, transparent RGBA, separate white accent",
+  "status": "Five candidates in both themes; per-mode mask/area data is in fast-talk-preparation-dark.log and fast-talk-preparation-light.log. Pending owner review."
+}

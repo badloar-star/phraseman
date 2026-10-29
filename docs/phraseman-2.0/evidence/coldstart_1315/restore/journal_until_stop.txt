@@ -1,0 +1,160 @@
+10-15 13:59:35.196 W/ReactNativeJS( 1516): [JS-STALL] +1541ms поток стоял 1540ms (с +1ms)
+10-15 13:59:35.939 W/ReactNativeJS( 1516): [JS-STALL] +2286ms поток стоял 690ms (с +1596ms)
+10-15 13:59:36.466 W/ReactNativeJS( 1516): [JS-STALL] +2814ms поток стоял 527ms (с +2287ms)
+10-15 13:59:37.364 W/ReactNativeJS( 1516): [JS-STALL] +3711ms поток стоял 724ms (с +2987ms)
+10-15 13:59:38.230 W/ReactNativeJS( 1516): [JS-STALL] +4574ms поток стоял 831ms (с +3743ms)
+10-15 13:59:38.632 W/ReactNativeJS( 1516): [JS-STALL] +4979ms поток стоял 290ms (с +4689ms)
+10-15 13:59:38.772 W/ReactNativeJS( 1516): [JS-STALL] heartbeat +5120ms splash=hidden@+4677ms
+10-15 13:59:38.814 I/ReactNativeJS( 1516): [ACC-SWITCH-BACKUP] skip reason=throttled source=cold_start sinceMs=1081245
+10-15 13:59:39.721 I/ReactNativeJS( 1516): [ACC-MUT] firestore_cache_clear check ms=0 marker=0 lock=0 reason=none source=startup_multiget
+10-15 13:59:40.531 W/ReactNativeJS( 1516): [JS-STALL] +6878ms поток стоял 1758ms (с +5120ms)
+10-15 13:59:40.960 W/ReactNativeJS( 1516): [JS-STALL] +7308ms поток стоял 430ms (с +6878ms)
+10-15 13:59:41.763 W/ReactNativeJS( 1516): [JS-STALL] +8110ms поток стоял 652ms (с +7458ms)
+10-15 13:59:42.688 W/ReactNativeJS( 1516): [JS-STALL] +9033ms поток стоял 589ms (с +8444ms)
+10-15 13:59:44.245 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 1519ms
+10-15 13:59:44.252 W/ReactNativeJS( 1516): [JS-STALL] +10596ms поток стоял 1419ms (с +9177ms)
+10-15 13:59:44.255 W/ReactNativeJS( 1516): [JS-STALL] heartbeat +10596ms splash=hidden@+4677ms
+10-15 13:59:45.045 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 652ms
+10-15 13:59:45.054 W/ReactNativeJS( 1516): [JS-STALL] +11394ms поток стоял 660ms (с +10734ms)
+10-15 13:59:45.369 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 267ms
+10-15 13:59:45.383 W/ReactNativeJS( 1516): [JS-STALL] +11730ms поток стоял 281ms (с +11449ms)
+10-15 13:59:45.541 I/ReactNativeJS( 1516): [WARM-FETCH] fn=authStampAnonOwnership outcome=warm_ok code=200 ms=2808 source=onboarding
+10-15 13:59:45.622 I/ReactNativeJS( 1516): [WARM-FETCH] fn=authEnsureStableLink outcome=warm_ok code=200 ms=2890 source=onboarding
+10-15 13:59:45.623 I/ReactNativeJS( 1516): [WARM-FETCH] fn=authMergeStableAccounts outcome=warm_ok code=200 ms=2890 source=onboarding
+10-15 13:59:46.465 W/ReactNativeJS( 1516): [JS-STALL] +12813ms поток стоял 720ms (с +12093ms)
+10-15 13:59:46.467 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 721ms
+10-15 13:59:46.961 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 306ms
+10-15 13:59:46.964 W/ReactNativeJS( 1516): [JS-STALL] +13310ms поток стоял 307ms (с +13003ms)
+10-15 13:59:49.292 W/ReactNativeJS( 1516): [JS-STALL] heartbeat +15616ms splash=hidden@+4677ms
+10-15 13:59:51.323 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 1958ms
+10-15 13:59:51.323 W/ReactNativeJS( 1516): [JS-STALL] +17671ms поток стоял 1959ms (с +15712ms)
+10-15 13:59:52.154 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 693ms
+10-15 13:59:52.154 W/ReactNativeJS( 1516): [JS-STALL] +18502ms поток стоял 694ms (с +17808ms)
+10-15 13:59:52.837 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 661ms
+10-15 13:59:52.838 W/ReactNativeJS( 1516): [JS-STALL] +19185ms поток стоял 676ms (с +18509ms)
+10-15 13:59:53.184 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 340ms
+10-15 13:59:53.185 W/ReactNativeJS( 1516): [JS-STALL] +19533ms поток стоял 341ms (с +19192ms)
+10-15 13:59:53.971 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 681ms
+10-15 13:59:53.973 W/ReactNativeJS( 1516): [JS-STALL] +20320ms поток стоял 683ms (с +19637ms)
+10-15 13:59:54.365 W/ReactNativeJS( 1516): [JS-STALL] heartbeat +20711ms splash=hidden@+4677ms
+10-15 13:59:55.507 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 642ms
+10-15 13:59:55.510 W/ReactNativeJS( 1516): [JS-STALL] +21857ms поток стоял 645ms (с +21212ms)
+10-15 13:59:59.209 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 3343ms
+10-15 13:59:59.211 W/ReactNativeJS( 1516): [JS-STALL] +25557ms поток стоял 3344ms (с +22213ms)
+10-15 13:59:59.379 W/ReactNativeJS( 1516): [JS-STALL] heartbeat +25726ms splash=hidden@+4677ms
+10-15 13:59:59.935 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 449ms
+10-15 13:59:59.936 W/ReactNativeJS( 1516): [JS-STALL] +26283ms поток стоял 450ms (с +25833ms)
+10-15 14:00:01.048 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 1018ms
+10-15 14:00:01.051 W/ReactNativeJS( 1516): [JS-STALL] +27397ms поток стоял 1019ms (с +26378ms)
+10-15 14:00:02.210 W/ReactNativeJS( 1516): [JS-STALL] +28557ms поток стоял 736ms (с +27821ms)
+10-15 14:00:02.218 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 738ms
+10-15 14:00:04.983 W/ReactNativeJS( 1516): [JS-STALL] +31329ms поток стоял 951ms (с +30378ms)
+10-15 14:00:04.984 W/ReactNativeJS( 1516): [JS-STALL] heartbeat +31329ms splash=hidden@+4677ms
+10-15 14:00:04.985 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 954ms
+10-15 14:00:05.921 W/ReactNativeJS( 1516): [JS-STALL] +32266ms поток стоял 329ms (с +31937ms)
+10-15 14:00:05.922 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 332ms
+10-15 14:00:07.919 W/ReactNativeJS( 1516): [JS-STALL] +34266ms поток стоял 971ms (с +33295ms)
+10-15 14:00:07.922 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 974ms
+10-15 14:00:10.125 W/ReactNativeJS( 1516): [JS-STALL] heartbeat +36473ms splash=hidden@+4677ms
+10-15 14:00:15.244 W/ReactNativeJS( 1516): [JS-STALL] heartbeat +41592ms splash=hidden@+4677ms
+10-15 14:00:20.277 W/ReactNativeJS( 1516): [JS-STALL] heartbeat +46625ms splash=hidden@+4677ms
+10-15 14:00:25.405 W/ReactNativeJS( 1516): [JS-STALL] heartbeat +51752ms splash=hidden@+4677ms
+10-15 14:00:30.425 W/ReactNativeJS( 1516): [JS-STALL] heartbeat +56772ms splash=hidden@+4677ms
+10-15 14:00:33.737 W/ReactNativeJS( 1516): [JS-STALL] watchdog stop +60084ms
+10-15 14:01:19.544 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 272ms
+10-15 14:02:04.466 W/ReactNativeJS( 1516): [JS-STALL] onboarding step=privacy поток стоял 260ms
+10-15 14:06:39.526 W/ReactNativeJS( 4136): [JS-STALL] +1123ms поток стоял 1122ms (с +1ms)
+10-15 14:06:40.291 W/ReactNativeJS( 4136): [JS-STALL] +1889ms поток стоял 697ms (с +1192ms)
+10-15 14:06:40.827 W/ReactNativeJS( 4136): [JS-STALL] +2426ms поток стоял 536ms (с +1890ms)
+10-15 14:06:41.992 W/ReactNativeJS( 4136): [JS-STALL] +3591ms поток стоял 1016ms (с +2575ms)
+10-15 14:06:42.485 I/ReactNativeJS( 4136): [ACC-MUT] firestore_cache_clear check ms=1 marker=0 lock=0 reason=none source=startup_multiget
+10-15 14:06:44.728 W/ReactNativeJS( 4136): [JS-STALL] +6321ms поток стоял 2501ms (с +3820ms)
+10-15 14:06:44.729 W/ReactNativeJS( 4136): [JS-STALL] heartbeat +6321ms splash=shown
+10-15 14:06:45.034 W/ReactNativeJS( 4136): [JS-STALL] +6632ms поток стоял 311ms (с +6321ms)
+10-15 14:06:45.629 W/ReactNativeJS( 4136): [JS-STALL] +7227ms поток стоял 343ms (с +6884ms)
+10-15 14:06:45.682 I/ReactNativeJS( 4136): [ACC-SWITCH-BACKUP] skip reason=throttled source=cold_start sinceMs=1508366
+10-15 14:06:47.405 W/ReactNativeJS( 4136): [JS-STALL] skipped_background ms=1362 gap=1723ms counted=361ms at=+9003ms
+10-15 14:06:47.408 W/ReactNativeJS( 4136): [JS-STALL] +9003ms поток стоял 361ms (с +8642ms)
+10-15 14:06:47.508 W/ReactNativeJS( 4136): [JS-STALL] onboarding step=welcome skipped_background ms=926 gap=1336ms counted=410ms
+10-15 14:06:47.514 W/ReactNativeJS( 4136): [JS-STALL] onboarding step=welcome поток стоял 410ms
+10-15 14:06:47.969 I/ReactNativeJS( 4136): [WARM-FETCH] fn=authStampAnonOwnership outcome=warm_ok code=200 ms=1786 source=onboarding
+10-15 14:06:48.479 I/ReactNativeJS( 4136): [WARM-FETCH] fn=authMergeStableAccounts outcome=warm_ok code=200 ms=2295 source=onboarding
+10-15 14:06:48.480 I/ReactNativeJS( 4136): [WARM-FETCH] fn=authEnsureStableLink outcome=warm_ok code=200 ms=2299 source=onboarding
+10-15 14:06:48.491 W/ReactNativeJS( 4136): [JS-STALL] +10089ms поток стоял 532ms (с +9557ms)
+10-15 14:06:51.165 W/ReactNativeJS( 4136): [JS-STALL] +12763ms поток стоял 1641ms (с +11122ms)
+10-15 14:06:51.166 W/ReactNativeJS( 4136): [JS-STALL] heartbeat +12763ms splash=hidden@+7068ms
+10-15 14:06:51.647 W/ReactNativeJS( 4136): [JS-STALL] +13245ms поток стоял 450ms (с +12795ms)
+10-15 14:06:52.393 W/ReactNativeJS( 4136): [JS-STALL] +13992ms поток стоял 488ms (с +13504ms)
+10-15 14:06:53.399 W/ReactNativeJS( 4136): [JS-STALL] +14998ms поток стоял 885ms (с +14113ms)
+10-15 14:06:53.877 W/ReactNativeJS( 4136): [JS-STALL] +15472ms поток стоял 474ms (с +14998ms)
+10-15 14:06:53.983 I/ReactNativeJS( 4136): [ACC-SWITCH-BACKUP] skip reason=already_ran source=cold_start
+10-15 14:06:54.448 W/ReactNativeJS( 4136): [JS-STALL] +16044ms поток стоял 351ms (с +15693ms)
+10-15 14:06:54.814 W/ReactNativeJS( 4136): [JS-STALL] +16412ms поток стоял 328ms (с +16084ms)
+10-15 14:06:55.896 W/ReactNativeJS( 4136): [JS-STALL] +17494ms поток стоял 271ms (с +17223ms)
+10-15 14:06:56.226 W/ReactNativeJS( 4136): [JS-STALL] heartbeat +17824ms splash=hidden@+7068ms
+10-15 14:06:56.603 W/ReactNativeJS( 4136): [JS-STALL] +18202ms поток стоял 378ms (с +17824ms)
+10-15 14:06:57.322 W/ReactNativeJS( 4136): [JS-STALL] +18920ms поток стоял 263ms (с +18657ms)
+10-15 14:06:58.044 W/ReactNativeJS( 4136): [JS-STALL] +19643ms поток стоял 723ms (с +18920ms)
+10-15 14:06:58.360 W/ReactNativeJS( 4136): [JS-STALL] +19959ms поток стоял 277ms (с +19682ms)
+10-15 14:06:58.734 W/ReactNativeJS( 4136): [JS-STALL] +20332ms поток стоял 331ms (с +20001ms)
+10-15 14:07:00.160 W/ReactNativeJS( 4136): [JS-STALL] +21758ms поток стоял 376ms (с +21382ms)
+10-15 14:07:00.846 I/SVERKA  ( 4410): === ABA R-dev_state onboarding=done 14:07:01 ===
+10-15 14:07:00.989 I/SVERKA  ( 4413): === ABA R-BEGIN 14:07:01 ===
+10-15 14:07:01.639 W/ReactNativeJS( 4136): [JS-STALL] +23237ms поток стоял 1364ms (с +21873ms)
+10-15 14:07:01.640 W/ReactNativeJS( 4136): [JS-STALL] heartbeat +23237ms splash=hidden@+7068ms
+10-15 14:07:02.220 W/ReactNativeJS( 4136): [JS-STALL] +23818ms поток стоял 569ms (с +23249ms)
+10-15 14:07:02.763 W/ReactNativeJS( 4136): [JS-STALL] +24362ms поток стоял 506ms (с +23856ms)
+10-15 14:07:03.686 W/ReactNativeJS( 4136): [JS-STALL] +25284ms поток стоял 253ms (с +25031ms)
+10-15 14:07:07.311 W/ReactNativeJS( 4136): [JS-STALL] +28910ms поток стоял 3419ms (с +25491ms)
+10-15 14:07:07.312 W/ReactNativeJS( 4136): [JS-STALL] heartbeat +28910ms splash=hidden@+7068ms
+10-15 14:07:09.923 W/ReactNativeJS( 4136): [JS-STALL] +31520ms поток стоял 1896ms (с +29624ms)
+10-15 14:07:10.558 W/ReactNativeJS( 4136): [JS-STALL] +32156ms поток стоял 618ms (с +31538ms)
+10-15 14:07:11.319 W/ReactNativeJS( 4136): [JS-STALL] +32917ms поток стоял 751ms (с +32166ms)
+10-15 14:07:12.177 W/ReactNativeJS( 4136): [JS-STALL] +33776ms поток стоял 840ms (с +32936ms)
+10-15 14:07:12.451 W/ReactNativeJS( 4136): [JS-STALL] +34050ms поток стоял 267ms (с +33783ms)
+10-15 14:07:12.452 W/ReactNativeJS( 4136): [JS-STALL] heartbeat +34050ms splash=hidden@+7068ms
+10-15 14:07:13.718 W/ReactNativeJS( 4136): [JS-STALL] +35316ms поток стоял 1005ms (с +34311ms)
+10-15 14:07:14.143 I/ReactNativeJS( 4136): [ENSURE-LINK] authoritative_memo miss reason=empty
+10-15 14:07:15.078 W/ReactNativeJS( 4136): [JS-STALL] +36676ms поток стоял 272ms (с +36404ms)
+10-15 14:07:15.702 W/ReactNativeJS( 4136): [JS-STALL] +37301ms поток стоял 307ms (с +36994ms)
+10-15 14:07:16.363 W/ReactNativeJS( 4136): [JS-STALL] +37961ms поток стоял 267ms (с +37694ms)
+10-15 14:07:16.980 W/ReactNativeJS( 4136): [JS-STALL] +38578ms поток стоял 307ms (с +38271ms)
+10-15 14:07:17.743 W/ReactNativeJS( 4136): [JS-STALL] +39341ms поток стоял 361ms (с +38980ms)
+10-15 14:07:17.743 W/ReactNativeJS( 4136): [JS-STALL] heartbeat +39341ms splash=hidden@+7068ms
+10-15 14:07:18.280 W/ReactNativeJS( 4136): [JS-STALL] +39878ms поток стоял 320ms (с +39558ms)
+10-15 14:07:18.979 W/ReactNativeJS( 4136): [JS-STALL] +40577ms поток стоял 318ms (с +40259ms)
+10-15 14:07:19.624 W/ReactNativeJS( 4136): [JS-STALL] +41223ms поток стоял 262ms (с +40961ms)
+10-15 14:07:20.226 W/ReactNativeJS( 4136): [JS-STALL] +41824ms поток стоял 516ms (с +41308ms)
+10-15 14:07:20.765 W/ReactNativeJS( 4136): [JS-STALL] +42363ms поток стоял 531ms (с +41832ms)
+10-15 14:07:21.353 W/ReactNativeJS( 4136): [JS-STALL] +42951ms поток стоял 260ms (с +42691ms)
+10-15 14:07:21.971 W/ReactNativeJS( 4136): [JS-STALL] +43569ms поток стоял 307ms (с +43262ms)
+10-15 14:07:22.785 W/ReactNativeJS( 4136): [JS-STALL] +44384ms поток стоял 656ms (с +43728ms)
+10-15 14:07:22.787 W/ReactNativeJS( 4136): [JS-STALL] heartbeat +44384ms splash=hidden@+7068ms
+10-15 14:07:23.424 W/ReactNativeJS( 4136): [JS-STALL] +45023ms поток стоял 631ms (с +44392ms)
+10-15 14:07:24.142 W/ReactNativeJS( 4136): [JS-STALL] +45740ms поток стоял 383ms (с +45357ms)
+10-15 14:07:24.866 W/ReactNativeJS( 4136): [JS-STALL] +46465ms поток стоял 399ms (с +46066ms)
+10-15 14:07:25.222 W/ReactNativeJS( 4136): [JS-STALL] +46820ms поток стоял 355ms (с +46465ms)
+10-15 14:07:26.395 W/ReactNativeJS( 4136): [JS-STALL] +47990ms поток стоял 769ms (с +47221ms)
+10-15 14:07:27.084 W/ReactNativeJS( 4136): [JS-STALL] +48683ms поток стоял 411ms (с +48272ms)
+10-15 14:07:27.396 I/ReactNativeJS( 4136): [SIGNIN] ui:tap provider=google context=settings
+10-15 14:07:27.494 W/ReactNativeJS( 4136): [JS-STALL] +49092ms поток стоял 409ms (с +48683ms)
+10-15 14:07:27.851 W/ReactNativeJS( 4136): [JS-STALL] heartbeat +49447ms splash=hidden@+7068ms
+10-15 14:07:31.735 I/ReactNativeJS( 4136): [ENSURE-LINK] authoritative_memo hit ageMs=6497 generation=1
+10-15 14:07:40.955 I/SVERKA  ( 4682): === ABA R-PICKED 14:07:41 ===
+10-15 14:07:46.460 W/ReactNativeJS( 4136): [JS-STALL] skipped_background ms=14763 gap=18481ms counted=3718ms at=+68058ms
+10-15 14:07:46.461 W/ReactNativeJS( 4136): [JS-STALL] +68058ms поток стоял 3718ms (с +64340ms)
+10-15 14:07:46.462 W/ReactNativeJS( 4136): [JS-STALL] heartbeat +68058ms splash=hidden@+7068ms
+10-15 14:07:46.463 W/ReactNativeJS( 4136): [JS-STALL] watchdog stop +68058ms
+10-15 14:07:51.264 I/ReactNativeJS( 4136): [ACC-SWITCH-WIPE] memory_reset cache=streak_milestone_pending reason=owner_changed to=none
+10-15 14:07:51.267 I/ReactNativeJS( 4136): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_signal reason=owner_changed to=none
+10-15 14:07:51.272 I/ReactNativeJS( 4136): [ACC-SWITCH-WIPE] memory_reset cache=streak_day_marks reason=owner_changed to=none
+10-15 14:07:51.274 I/ReactNativeJS( 4136): [ACC-SWITCH-WIPE] memory_reset cache=today_tasks reason=owner_changed to=none
+10-15 14:07:51.282 I/ReactNativeJS( 4136): [ACC-SWITCH-WIPE] memory_reset cache=medals reason=owner_changed to=none
+10-15 14:07:51.283 I/ReactNativeJS( 4136): [ACC-SWITCH-WIPE] memory_reset cache=stats_preload reason=owner_changed to=none
+10-15 14:07:51.283 I/ReactNativeJS( 4136): [ACC-SWITCH-WIPE] memory_reset cache=dialog_voice_attempts reason=owner_changed to=none
+10-15 14:07:51.287 I/ReactNativeJS( 4136): [ACC-SWITCH-WIPE] memory_reset cache=diagnostic_peek reason=owner_changed to=none
+10-15 14:07:51.297 I/ReactNativeJS( 4136): [ACC-SWITCH-WIPE] memory_reset cache=activity_365 reason=owner_changed to=none
+10-15 14:07:51.302 I/ReactNativeJS( 4136): [ACC-SWITCH-WIPE] memory_reset cache=streak_stats_peeks reason=owner_changed to=none
+10-15 14:07:53.763 I/ReactNativeJS( 4136): [AUTH-SWITCH-OFFER] resume_credential not_stored provider=google reason=caller_not_capturing
+10-15 14:07:53.768 I/ReactNativeJS( 4136): [SIGNIN] ui:returned provider=google result=error in=26373ms
+10-15 14:07:59.957 I/SVERKA  ( 4761): === ABA R-SIGNED 14:08:00 ===

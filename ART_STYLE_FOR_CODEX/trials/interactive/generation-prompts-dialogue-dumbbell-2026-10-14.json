@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "category": "dialogue theme dumbbell",
+  "optionsGenerated": 5,
+  "concepts": [
+    "short classic dumbbell with cyan central grip band",
+    "angular hex dumbbell with a cyan end cap",
+    "compact kettlebell-style hand weight with cyan grip insert",
+    "two crossed dumbbells with a cyan band on one handle",
+    "adjustable dumbbell with layered plates and cyan locking collars"
+  ],
+  "style": "S2 matte clay; genuine transparent background; grayscale tone mapping produces dark graphite and light ivory; temporary cyan markers become separate white .accent layers",
+  "measurements": {
+    "01": {"dark": {"accentFramePct": 1.018, "alphaTransparencyPct": 81.13, "alignment": "pass; inset 0, on-base 98.8%"}, "light": {"accentFramePct": 1.018, "alphaTransparencyPct": 81.13, "alignment": "pass; inset 0, on-base 98.8%"}},
+    "02": {"dark": {"accentFramePct": 0.615, "alphaTransparencyPct": 76.17, "alignment": "fail; interior mismatch 22.6%"}, "light": {"accentFramePct": 0.615, "alphaTransparencyPct": 76.17, "alignment": "fail; interior mismatch 22.3%"}},
+    "03": {"dark": {"accentFramePct": 4.948, "alphaTransparencyPct": 60.29, "alignment": "pass"}, "light": {"accentFramePct": 4.948, "alphaTransparencyPct": 60.29, "alignment": "pass"}},
+    "04": {"dark": {"accentFramePct": 0.9, "alphaTransparencyPct": 62.56, "alignment": "pass; below 1% minimum"}, "light": {"accentFramePct": 0.9, "alphaTransparencyPct": 62.56, "alignment": "pass; below 1% minimum"}},
+    "05": {"dark": {"accentFramePct": 1.085, "alphaTransparencyPct": 79.97, "alignment": "fail; interior mismatch 52.9%"}, "light": {"accentFramePct": 1.085, "alphaTransparencyPct": 79.97, "alignment": "fail; interior mismatch 52.5%"}}
+  },
+  "acceptance": "Options 1 and 3 meet current numeric gates. Option 2 fails area/alignment, 4 is below the 1% accent minimum, and 5 has a strongly misaligned marker. All remain drafts pending owner review."
+}

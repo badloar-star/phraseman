@@ -84,6 +84,8 @@ const CONTENT_FILES = [
   /app\/dev_state\.tsx$/,
   /app\/dev_cards_result_preview\.tsx$/,
   /app\/dev_spire_preview\.tsx$/,
+  // Russian visual fixtures only; router.ctx.js excludes this route from store builds.
+  /app\/dev_community_scene_preview\.tsx$/,
   /app\/dev_moments_preview\.tsx$/,
   // зачем (Макеты/Сверка 15.10): моки m08/m10/m18 для dev_moments_preview (state=combo|donechain|dlgchain) — тексты образца, импортирует только dev-экран
   /components\/dev\/MomentsChainPreview\.tsx$/,

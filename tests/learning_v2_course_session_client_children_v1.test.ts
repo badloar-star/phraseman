@@ -2,6 +2,7 @@ import {
   encodeLearningV2CourseSessionAuxiliaryChildV1,
   encodeLearningV2CourseSessionIntroChildV1,
   encodeLearningV2CourseSessionLearnerChildV1,
+  bindLearningV2CourseSessionLearnerProjectionToSourceV1,
   materializeLearningV2CourseSessionAuxiliaryChildV1,
   materializeLearningV2CourseSessionIntroChildV1,
   materializeLearningV2CourseSessionLearnerChildV1,
@@ -9,8 +10,12 @@ import {
   parseLearningV2CourseSessionAuxiliaryChildV1,
   parseLearningV2CourseSessionIntroChildV1,
   parseLearningV2CourseSessionLearnerChildV1,
+  learnerProjectionFingerprintV1,
 } from "../modules/learning-v2/runtime/course_session_client_children_v1";
-import { canonicalJsonV1 } from "../modules/learning-v2/policies/decision_registry";
+import {
+  canonicalJsonV1,
+  hashCanonicalBody,
+} from "../modules/learning-v2/policies/decision_registry";
 
 const locales = [
   "ru",
@@ -33,6 +38,29 @@ const ids = Array.from(
   { length: 16 },
   (_, index) => `interaction-${index + 1}`,
 );
+
+test("trusted transport binding preserves projected raw while joining audio to verified source fingerprint", () => {
+  const projected = learner();
+  const projectedRaw = encodeLearningV2CourseSessionLearnerChildV1(projected);
+  const sourceFingerprint = "a".repeat(64);
+  const bound = bindLearningV2CourseSessionLearnerProjectionToSourceV1({
+    projectedLearner: projected,
+    projectedLearnerRaw: projectedRaw,
+    expectedProjectionFingerprint: projected.learnerFingerprint,
+    sourceLearnerFingerprint: sourceFingerprint,
+  });
+
+  expect(bound.learnerFingerprint).toBe(sourceFingerprint);
+  expect(learnerProjectionFingerprintV1(bound)).toBe(projected.learnerFingerprint);
+  expect(encodeLearningV2CourseSessionLearnerChildV1(bound)).toBe(projectedRaw);
+  expect(JSON.parse(projectedRaw).learnerFingerprint).toBe(projected.learnerFingerprint);
+  expect(() => bindLearningV2CourseSessionLearnerProjectionToSourceV1({
+    projectedLearner: projected,
+    projectedLearnerRaw: projectedRaw,
+    expectedProjectionFingerprint: "b".repeat(64),
+    sourceLearnerFingerprint: sourceFingerprint,
+  })).toThrow("learning_v2_course_session_client_child_invalid");
+});
 
 function intro() {
   return materializeLearningV2CourseSessionIntroChildV1({
@@ -170,6 +198,165 @@ describe("Learning V2 direct session learner child contracts", () => {
     expect(parsed.interactions.at(-1)?.ordinal).toBe(16);
     expect(parsed.evaluatorPayload).toBe("absent_by_exact_schema");
     expect(parsed.acceptedAnswerPayload).toBe("absent_by_exact_schema");
+  });
+
+  test("projects nested correctness markers out of the canonical learner child", () => {
+    const source = learner();
+    const interactions = source.interactions.map((interaction, index) =>
+      index !== 0
+        ? interaction
+        : {
+            ...interaction,
+            family: "context_gap_grammar" as const,
+            inputMode: "single_choice" as const,
+            responseOptions: [
+              { responseId: "ready-correct", text: "am" },
+              { responseId: "ready-wrong", text: "is" },
+            ],
+            modePayload: {
+              family: "context_gap_grammar" as const,
+              localizedScene: localized("I am ready"),
+              gappedTargetPhrase: "I ___ ready.",
+              gapOptions: [
+                { responseId: "ready-correct", text: "am" },
+                { responseId: "ready-wrong", text: "is" },
+              ],
+              testedDimension: "present_be_first_person",
+              choiceFeedback: [
+                {
+                  responseId: "ready-correct",
+                  correct: true,
+                  feedbackByLocale: localized("Correct"),
+                },
+                {
+                  responseId: "ready-wrong",
+                  correct: false,
+                  feedbackByLocale: localized("Use am with I"),
+                },
+              ],
+            },
+          },
+    );
+    const value = materializeLearningV2CourseSessionLearnerChildV1({
+      courseSessionId: source.courseSessionId,
+      targetLanguage: source.targetLanguage,
+      interactionProfile: source.interactionProfile,
+      interactions,
+    });
+    const raw = encodeLearningV2CourseSessionLearnerChildV1(value);
+
+    expect(raw).not.toMatch(/"correct":(?:true|false)/u);
+    expect(JSON.stringify(value)).not.toMatch(/"correct":(?:true|false)/u);
+    expect(
+      (value.interactions[0]!.modePayload as any).choiceFeedback,
+    ).toEqual([
+      expect.objectContaining({ responseId: "ready-correct" }),
+      expect.objectContaining({ responseId: "ready-wrong" }),
+    ]);
+  });
+
+  test("reads legacy pinned learner bytes while exposing a marker-free object", () => {
+    const source = learner();
+    const value = materializeLearningV2CourseSessionLearnerChildV1({
+      courseSessionId: source.courseSessionId,
+      targetLanguage: source.targetLanguage,
+      interactionProfile: source.interactionProfile,
+      interactions: source.interactions.map((interaction, index) =>
+        index !== 0
+          ? interaction
+          : {
+              ...interaction,
+              family: "context_gap_grammar" as const,
+              inputMode: "single_choice" as const,
+              responseOptions: [
+                { responseId: "legacy-correct", text: "am" },
+                { responseId: "legacy-wrong", text: "is" },
+              ],
+              modePayload: {
+                family: "context_gap_grammar" as const,
+                localizedScene: localized("I am ready"),
+                gappedTargetPhrase: "I ___ ready.",
+                gapOptions: [
+                  { responseId: "legacy-correct", text: "am" },
+                  { responseId: "legacy-wrong", text: "is" },
+                ],
+                testedDimension: "present_be_first_person",
+                choiceFeedback: [
+                  {
+                    responseId: "legacy-correct",
+                    correct: true,
+                    feedbackByLocale: localized("Correct"),
+                  },
+                  {
+                    responseId: "legacy-wrong",
+                    correct: false,
+                    feedbackByLocale: localized("Use am with I"),
+                  },
+                ],
+              },
+            },
+      ),
+    });
+    const legacy = JSON.parse(encodeLearningV2CourseSessionLearnerChildV1(value));
+    legacy.interactions[0].modePayload.choiceFeedback[0].correct = true;
+    legacy.interactions[0].modePayload.choiceFeedback[1].correct = false;
+    const { learnerFingerprint: _old, ...legacyBody } = legacy;
+    legacy.learnerFingerprint = hashCanonicalBody(legacyBody);
+    const legacyRaw = canonicalJsonV1(legacy);
+
+    const parsed = parseLearningV2CourseSessionLearnerChildV1(legacyRaw);
+    expect(JSON.stringify(parsed)).not.toMatch(/"correct":(?:true|false)/u);
+    expect(parsed.learnerFingerprint).toBe(legacy.learnerFingerprint);
+    expect(encodeLearningV2CourseSessionLearnerChildV1(parsed)).toBe(legacyRaw);
+  });
+
+  test("keeps only wrong ordered-token feedback across learner materialize and parse", () => {
+    const source = learner();
+    const interaction = source.interactions[0]!;
+    const value = materializeLearningV2CourseSessionLearnerChildV1({
+      courseSessionId: source.courseSessionId,
+      targetLanguage: source.targetLanguage,
+      interactionProfile: source.interactionProfile,
+      interactions: source.interactions.map((candidate, index) => index === 0 ? {
+          ...interaction,
+          family: "phrase_builder",
+          inputMode: "ordered_tokens",
+          responseOptions: [
+            { responseId: "tile-I", text: "I" },
+            { responseId: "tile-am", text: "am" },
+            { responseId: "tile-is", text: "is" },
+          ],
+          modePayload: {
+            family: "phrase_builder",
+            targetPhrase: "I am ready.",
+            localizedMeaning: localized("Я готов."),
+            orderedTokens: ["I", "am", "ready"],
+            authoredDistractorTokens: ["is"],
+            slotFeedback: [
+              {
+                responseId: "tile-I",
+                correct: true,
+                feedbackByLocale: localized("Correct token"),
+              },
+              {
+                responseId: "tile-is",
+                correct: false,
+                feedbackByLocale: localized("Use am with I"),
+              },
+            ],
+          },
+        } : candidate),
+    });
+
+    const raw = encodeLearningV2CourseSessionLearnerChildV1(value);
+    const parsed = parseLearningV2CourseSessionLearnerChildV1(raw);
+    expect(raw).not.toContain('"correct"');
+    expect((value.interactions[0]!.modePayload as any).slotFeedback).toEqual([
+      expect.objectContaining({ responseId: "tile-is" }),
+    ]);
+    expect((parsed.interactions[0]!.modePayload as any).slotFeedback).toEqual([
+      expect.objectContaining({ responseId: "tile-is" }),
+    ]);
   });
 
   test("accepts the bounded single-phrase migration ceiling and rejects overflow", () => {

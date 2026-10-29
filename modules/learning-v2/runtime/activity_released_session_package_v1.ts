@@ -26,6 +26,10 @@ import {
   type V2LocalEvaluatorResponseV1,
   type V2LocalEvaluatorVerdictV1,
 } from "./local_evaluator_capsule_v1";
+import {
+  isLearningV2ScriptedRepeatRevealPolicyV1,
+  type LearningV2ScriptedRepeatRevealPolicyV1,
+} from "../contracts/mode_native_payload_v1";
 
 export const LEARNING_V2_ACTIVITY_RELEASED_SESSION_PACKAGE_SCHEMA_V1 =
   "learning-v2-activity-released-session-package.v1" as const;
@@ -62,6 +66,7 @@ export type LearningV2ActivityReleasedTaskV1 = Readonly<{
   inputMode: "ordered_tokens" | "single_choice" | "scripted_speech";
   support: "model" | "full_text" | "partial" | "visual" | "none";
   hintsAllowed: 0 | 1 | 2;
+  scriptedRepeatRevealPolicy?: LearningV2ScriptedRepeatRevealPolicyV1;
   learner: LearningV2ActivityReleasedLearnerPayloadV1;
   scriptedAlternate: Readonly<{
     alternateId: string;
@@ -231,6 +236,10 @@ const TASK_KEYS = Object.freeze([
   "learner",
   "scriptedAlternate",
   "runtimeCapabilityId",
+] as const);
+const TASK_KEYS_WITH_SCRIPTED_REPEAT_REVEAL_POLICY = Object.freeze([
+  ...TASK_KEYS,
+  "scriptedRepeatRevealPolicy",
 ] as const);
 const LEARNER_KEYS = Object.freeze([
   "promptId",
@@ -426,7 +435,12 @@ function parseLearner(
 
 function parseTask(value: unknown, expectedSlot: number): ParsedTask {
   if (!record(value)) fail();
-  exactKeys(value, TASK_KEYS);
+  exactKeys(
+    value,
+    Object.prototype.hasOwnProperty.call(value, "scriptedRepeatRevealPolicy")
+      ? TASK_KEYS_WITH_SCRIPTED_REPEAT_REVEAL_POLICY
+      : TASK_KEYS,
+  );
   if (
     value.slot !== expectedSlot ||
     !PURPOSE_SET.has(String(value.purpose)) ||
@@ -438,6 +452,27 @@ function parseTask(value: unknown, expectedSlot: number): ParsedTask {
     !INPUT_MODE_SET.has(String(value.inputMode)) ||
     !SUPPORT_SET.has(String(value.support)) ||
     ![0, 1, 2].includes(Number(value.hintsAllowed))
+  )
+    fail();
+  const scriptedRepeatRevealPolicy = value.scriptedRepeatRevealPolicy;
+  if (
+    scriptedRepeatRevealPolicy !== undefined &&
+    (value.family !== "scripted_repeat_compare" ||
+      !isLearningV2ScriptedRepeatRevealPolicyV1(
+        scriptedRepeatRevealPolicy,
+      ))
+  )
+    fail();
+  if (
+    value.purpose === "independent_check" &&
+    value.family === "scripted_repeat_compare" &&
+    (!isLearningV2ScriptedRepeatRevealPolicyV1(
+      scriptedRepeatRevealPolicy,
+    ) ||
+      value.support !== "none" ||
+      value.hintsAllowed !== 0 ||
+      value.answerExposure !== "forbidden" ||
+      value.promptNovelty === "trained")
   )
     fail();
   let scriptedAlternate: ParsedTask["scriptedAlternate"] = null;
@@ -466,6 +501,13 @@ function parseTask(value: unknown, expectedSlot: number): ParsedTask {
     inputMode: value.inputMode as ParsedTask["inputMode"],
     support: value.support as ParsedTask["support"],
     hintsAllowed: Number(value.hintsAllowed) as 0 | 1 | 2,
+    ...(scriptedRepeatRevealPolicy === undefined
+      ? {}
+      : {
+          scriptedRepeatRevealPolicy: Object.freeze({
+            ...scriptedRepeatRevealPolicy,
+          }),
+        }),
     learner: parseLearner(value.learner),
     scriptedAlternate,
     runtimeCapabilityId: exactId(value.runtimeCapabilityId),

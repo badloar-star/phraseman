@@ -1,0 +1,14 @@
+{
+  "scenario": "salesman_talks_you_out",
+  "title": "Продавец отговаривает покупать",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "backward-facing blank price tag and unopened box",
+    "display plinth and closed empty shopping bag",
+    "closed shoe box with small item silhouette tucked back in",
+    "folded-down blank product placard beside sealed package",
+    "bag tipped away from item returned to a plinth"
+  ],
+  "constraints": ["true transparent RGBA", "no characters, hands, text or logos", "cyan internal marker for separate white accent extraction", "dark and light trial pairs", "trial location only"]
+}

@@ -20,6 +20,8 @@ import SpireEnergyPill from '../../components/spire/SpireEnergyPill';
 import ScreenBackButton, { SCREEN_BACK_RESERVED } from '../../components/v2/ScreenBackButton';
 import { tabEnteredByMenu } from '../tab_entry_source';
 import { SPIRE_SCENE_V2_ENABLED } from '../../components/spire/scene/spire_scene_flag';
+import { useIsFocused } from '@react-navigation/native';
+import { useSceneStatusBar } from '../../hooks/use_scene_status_bar';
 
 type Section = SubRuntimeOwnerId;
 type SectionScreen = React.ComponentType<{ presentation?: 'push' | 'embedded' }>;
@@ -69,7 +71,7 @@ export default function CommunityTabRoute() {
   // зачем (ЗАМОК ВЛАДЕЛЬЦА 25.10 «верх цельный»; координатор: «сцена от самого верха, шапка прозрачная поверх, слой spire_header_layer убрать»):
   // на Пике со «Сценой» шапка лежит ПОВЕРХ тела, тело — от верха экрана, лента Пика отступает на высоту шапки (spire_header_overlay); вкладки белые
   const sceneTint = useSpireSceneHeaderTint();
-  const overScene = SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null;
+  const overScene = section === 'packs' || (SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null);
   const [headerH, setHeaderH] = useState(0);
   useEffect(() => { setSpireHeaderOverlayInset(overScene ? headerH : 0); }, [overScene, headerH]);
   useEffect(() => () => setSpireHeaderOverlayInset(0), []);
@@ -112,6 +114,8 @@ export default function CommunityTabRoute() {
   ], [lang, spireVisible]);
 
   const tabVisible = runtimeOwnerId === 'community' || segments.some((s) => s.key === runtimeOwnerId);
+  const screenFocused = useIsFocused();
+  useSceneStatusBar('community-packs', tabVisible && screenFocused && section === 'packs', 'community_scene_under_clock');
   // зачем (владелец 11.10: «ШПИЛЬ НЕМЕДЛЕННО»): вкладка скрыта по кэшу рубильников (TTL 6 ч) — при входе в раздел один
   // принудительный перечит, не чаще раза в 60 секунд; включили на сервере → вкладка появляется без перезапуска.
   useEffect(() => {

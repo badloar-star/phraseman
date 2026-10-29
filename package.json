@@ -10,7 +10,7 @@
     "learning-v2:release-parity-gate": "node scripts/learning_v2_release_parity_gate.mjs",
     "learning-v2:progression-gate": "node content/learning-v2-course/pipeline/progression_quality_gate.mjs --sessions-root content/learning-v2-course/sessions/en/l03 --from 25",
     "learning-v2:curriculum-blueprint-gate": "npx tsx tests/learning_v2_course_blueprint_contract_gate.ts && npx tsx tests/learning_v2_grammar_prerequisite_dag_gate.ts && npx tsx tests/learning_v2_chapter_blueprints_gate.ts && npx tsx tests/learning_v2_lexical_registry_gate.ts && npx tsx tests/learning_v2_exact_session_packets_gate.ts && npx tsx tests/learning_v2_coverage_matrices_gate.ts && npx tsx scripts/learning_v2_curriculum_blueprint_gate.ts",
-    "learning-v2:curriculum-owner-map:build": "npx tsx scripts/build_learning_v2_curriculum_owner_map.ts",
+    "learning-v2:curriculum-owner-map:build": "npx tsx scripts/build_learning_v2_curriculum_owner_map_v2.ts",
     "learning-v2:pdf-course-pack": "npx tsx scripts/build_learning_v2_course_pdf_pack.ts",
     "learning-v2:codex-preview": "node scripts/canonical_workspace_guard.mjs && cross-env NODE_OPTIONS=--max-old-space-size=5120 BROWSER=none CI=false expo start --web --localhost --port 8085 --max-workers 1",
     "learning-v2:owner-review-html:build": "npx tsx scripts/build_learning_v2_static_owner_review.ts",

@@ -1,0 +1,10 @@
+id	time	result	detail	file
+dialogs-035	2026-10-15T07:17:52.974Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-15T06:54:52.120Z code_changed_at=2026-10-15T08:00:18+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/dialogs-035.png
+dialogs-037	2026-10-15T07:17:55.117Z	stitched	склейка_1800x1328 raw_shot_at=2026-10-15T06:56:07.023Z code_changed_at=2026-10-15T08:00:18+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/dialogs-037.png
+dialogs-040	2026-10-15T07:17:57.182Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-15T06:57:36.330Z code_changed_at=2026-10-15T08:00:18+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/dialogs-040.png
+dialogs-041	2026-10-15T07:17:59.800Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-15T06:59:05.253Z code_changed_at=2026-10-15T08:00:18+01:00 КАДР_СТАРШЕ_КОДА	docs/phraseman-2.0/evidence/parity/dialogs-041.png
+dialogs-042	2026-10-15T07:18:02.218Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-15T07:00:53.052Z code_changed_at=2026-10-15T08:00:18+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/dialogs-042.png
+dialogs-044	2026-10-15T07:18:04.091Z	stitched	склейка_1800x1304 raw_shot_at=2026-10-15T07:12:18.114Z code_changed_at=2026-10-15T08:00:18+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/dialogs-044.png
+dialogs-gap-007	2026-10-15T07:18:05.484Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-15T07:14:26.689Z code_changed_at=2026-10-15T08:00:18+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/dialogs-gap-007.png
+dialogs-gap-014	2026-10-15T07:18:06.964Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-15T07:15:53.933Z code_changed_at=2026-10-15T08:00:18+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/dialogs-gap-014.png
+dialogs-gap-016	2026-10-15T07:18:08.544Z	stitched	склейка_1800x1303 raw_shot_at=2026-10-15T07:17:47.710Z code_changed_at=2026-10-15T08:00:18+01:00 кадр_не_старше_кода	docs/phraseman-2.0/evidence/parity/dialogs-gap-016.png

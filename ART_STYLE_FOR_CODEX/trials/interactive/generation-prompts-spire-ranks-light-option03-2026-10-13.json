@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "mode": "light",
+  "option": 3,
+  "sources": [1, 2, 3, 4, 5, 6],
+  "acceptance": {
+    "all_have_true_alpha": true,
+    "accent_areas_percent": [4.861, 5.128, 7.809, 6.379, 4.669, 5.185],
+    "alignment_pass": [],
+    "alignment_fail": {
+      "1": "20.0% interior edge mismatch; limit 12%",
+      "2": "27.4% interior edge mismatch; limit 12%",
+      "3": "26.4% interior edge mismatch; limit 12%",
+      "4": "25.8% interior edge mismatch; limit 12%",
+      "5": "26.2% interior edge mismatch; limit 12%",
+      "6": "27.8% interior edge mismatch; limit 12%"
+    },
+    "visual": "Generated fragments/noise remain visible. All six are drafts. No alpha cleanup was performed."
+  },
+  "prompt": "Using each exact dark rank badge as its own reference, preserve the complete silhouette, camera, position, badge relief, and exact existing cyan chevron count. Change only the charcoal body material to warm ivory clay/porcelain with neutral gray relief shading. True transparent alpha, no text, no extra marks, no debris, no surrounding pixels."
+}

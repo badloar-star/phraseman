@@ -4,6 +4,7 @@ Governance-ID: TG-B369A7C8070E
 Governance-ID: TG-DFECB6558371
 Governance-ID: TG-C50203D34A2D
 Governance-ID: TG-1B4CFF2E81A5
+Governance-ID: TG-3EFF3F51FB85
 Status: In progress (шаг 2: чистая модель и адаптер; шаг 1 — банк фраз, отдельный пакет)
 Owner: 2 · ДИЗАЙН (по заданию 0 · КООРДИНАТОР, решение владельца 25.10: вариант Б, макет утверждён «Да, так»)
 Related epic/enabler: docs/work/tasks/classic-mode-for-v2-chapters-2026-10-25.md, docs/work/tasks/classic-lesson-phrase-bank-2026-10-25.md, макет https://claude.ai/artifact/Mgiat3h327LrNzinagLX87

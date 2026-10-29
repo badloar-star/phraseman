@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "upsell_trap",
+  "candidatePrefix": "dialog_scene_upsell_trap_option_",
+  "concepts": [
+    "oversized blank price tag on empty box",
+    "plain jar and mismatched oversized lid",
+    "shopping bag with awkward block item",
+    "irregular paperweight on plinth",
+    "overwrapped package and blank tag"
+  ],
+  "style": "S2 adult matte clay with understated wit, neutral dark/light, transparent, separate white accent",
+  "status": "Five dark/light candidates generated. See upsell-preparation-dark.log and upsell-preparation-light.log for technical gates; awaiting owner review."
+}

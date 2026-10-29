@@ -12,7 +12,7 @@ const scripts = [
   'scripts/pages/retention-diagnostics.js',
   'scripts/pages/product-analytics.js',
   'scripts/pages/subscription-analytics.js',
-  'daily-digest.js',
+
 ];
 
 type StubElement = {

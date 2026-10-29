@@ -12,7 +12,7 @@ describe('dev_state appearance (только память)', () => {
   afterEach(() => { setDevAppearance(null); log.mockRestore(); });
 
   it('оверрайд: по умолчанию нет; set/get; подписчики получают смену, повтор того же значения молчит; clear = null', () => {
-    const seen: Array<string | null> = [];
+    const seen: (string | null)[] = [];
     const off = subscribeDevAppearance((v) => seen.push(v));
     expect(getDevAppearance()).toBeNull();
     setDevAppearance('light');
@@ -38,7 +38,7 @@ describe('dev_state appearance (только память)', () => {
     const ctx = read('components', 'ThemeContext.tsx');
     // зачем (владелец 13.10): между оверрайдом и сохранённым стоит «пара по умолчанию для новичка» (следует за системой), оверрайд по-прежнему первый
     expect(ctx).toContain('const liquidGlassAppearance: LiquidGlassAppearance = devAppearance ?? (followSystem ? systemDefault.appearance : savedLiquidGlassAppearance);');
-    expect(ctx).toContain('subscribeDevAppearance(setDevAppearanceState)');
+    expect(ctx).toContain('useSyncExternalStore(subscribeDevAppearance, getDevAppearance, getDevAppearance)');
     const override = read('app', 'dev_appearance_override.ts');
     expect(override).not.toMatch(/AsyncStorage|setItem|firestore|persist/i);
   });
@@ -48,7 +48,7 @@ describe('dev_state appearance (только память)', () => {
     afterEach(() => setDevThemeChoice(null));
 
     it('оверрайд: set/get; подписчики получают смену, повтор молчит; пустой выбор = null', () => {
-      const seen: Array<string> = [];
+      const seen: string[] = [];
       const off = subscribeDevThemeChoice((v) => seen.push(JSON.stringify(v)));
       expect(getDevThemeChoice()).toBeNull();
       setDevThemeChoice({ themeId: 'grad_aurora', intensity: 1 });
@@ -75,7 +75,7 @@ describe('dev_state appearance (только память)', () => {
       const ctx = read('components', 'ThemeContext.tsx');
       expect(ctx).toContain('previewLiquidGlassIntensity ?? devThemeChoice?.intensity ?? appliedLiquidGlassIntensity');
       expect(ctx).toContain('devThemeChoice?.themeId ? resolveLiquidGlassTheme(devThemeChoice.themeId) : null) ?? (followSystem ? resolveLiquidGlassTheme(systemDefault.themeId) : appliedLiquidGlassThemeId)');
-      expect(ctx).toContain('subscribeDevThemeChoice(setDevThemeChoiceState)');
+      expect(ctx).toContain('useSyncExternalStore(subscribeDevThemeChoice, getDevThemeChoice, getDevThemeChoice)');
       expect(read('app', 'dev_appearance_override.ts')).not.toMatch(/AsyncStorage|setItem|firestore|persist/i);
     });
   });

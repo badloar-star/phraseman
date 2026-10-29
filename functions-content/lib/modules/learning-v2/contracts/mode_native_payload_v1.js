@@ -1,8 +1,51 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1 = exports.LEARNING_V2_SCRIPTED_REPEAT_REVEAL_POLICY_SCHEMA_V1 = void 0;
+exports.isLearningV2ScriptedRepeatRevealPolicyV1 = isLearningV2ScriptedRepeatRevealPolicyV1;
+exports.learningV2ScriptedRepeatAnswerBearingContentRevealedV1 = learningV2ScriptedRepeatAnswerBearingContentRevealedV1;
 exports.validateLearningV2ModeNativePayloadV1 = validateLearningV2ModeNativePayloadV1;
+exports.projectLearningV2ModeNativePayloadForLearnerV1 = projectLearningV2ModeNativePayloadForLearnerV1;
 exports.validateLearningV2ModeTextAnalysisV1 = validateLearningV2ModeTextAnalysisV1;
 exports.learningV2ModeNativeAudioTargetIdsV1 = learningV2ModeNativeAudioTargetIdsV1;
+exports.LEARNING_V2_SCRIPTED_REPEAT_REVEAL_POLICY_SCHEMA_V1 = "learning-v2-scripted-repeat-reveal-policy.v1";
+exports.LEARNING_V2_SCRIPTED_REPEAT_AFTER_FIRST_ATTEMPT_REVEAL_POLICY_V1 = Object.freeze({
+    schemaVersion: exports.LEARNING_V2_SCRIPTED_REPEAT_REVEAL_POLICY_SCHEMA_V1,
+    revealAfter: "first_submitted_attempt",
+    answerExposedBeforeAttempt: false,
+    targetPhraseVisibleBeforeAttempt: false,
+    referenceAudioAvailableBeforeAttempt: false,
+    modelPlaybackAvailableBeforeAttempt: false,
+});
+const SCRIPTED_REPEAT_REVEAL_POLICY_KEYS_V1 = Object.freeze([
+    "answerExposedBeforeAttempt",
+    "modelPlaybackAvailableBeforeAttempt",
+    "referenceAudioAvailableBeforeAttempt",
+    "revealAfter",
+    "schemaVersion",
+    "targetPhraseVisibleBeforeAttempt",
+]);
+function isLearningV2ScriptedRepeatRevealPolicyV1(value) {
+    if (!value || typeof value !== "object" || Array.isArray(value))
+        return false;
+    const policy = value;
+    const actualKeys = Object.keys(policy).sort();
+    const expectedKeys = [...SCRIPTED_REPEAT_REVEAL_POLICY_KEYS_V1].sort();
+    return (actualKeys.length === expectedKeys.length &&
+        actualKeys.every((key, index) => key === expectedKeys[index]) &&
+        policy.schemaVersion ===
+            exports.LEARNING_V2_SCRIPTED_REPEAT_REVEAL_POLICY_SCHEMA_V1 &&
+        policy.revealAfter === "first_submitted_attempt" &&
+        policy.answerExposedBeforeAttempt === false &&
+        policy.targetPhraseVisibleBeforeAttempt === false &&
+        policy.referenceAudioAvailableBeforeAttempt === false &&
+        policy.modelPlaybackAvailableBeforeAttempt === false);
+}
+function learningV2ScriptedRepeatAnswerBearingContentRevealedV1(revealPolicy, attemptSubmitted) {
+    if (revealPolicy === undefined)
+        return true;
+    return (isLearningV2ScriptedRepeatRevealPolicyV1(revealPolicy) &&
+        attemptSubmitted === true);
+}
 const FAMILY_REQUIRED_FIELDS = Object.freeze({
     phrase_builder: [
         "targetPhrase",
@@ -75,8 +118,56 @@ function validateLearningV2ModeNativePayloadV1(value, expectedFamily) {
             throw new Error(`learning_v2_mode_native_payload_field_missing:${family}:${field}`);
         }
     }
+    if ("scriptedRepeatRevealPolicy" in payload &&
+        (family !== "scripted_repeat_compare" ||
+            !isLearningV2ScriptedRepeatRevealPolicyV1(payload.scriptedRepeatRevealPolicy))) {
+        throw new Error("learning_v2_scripted_repeat_reveal_policy_invalid");
+    }
     validateOptionalAnalyses(payload, family);
     return Object.freeze(payload);
+}
+function stripLearnerCorrectnessMarkersV1(value) {
+    if (Array.isArray(value)) {
+        return Object.freeze(value.map(stripLearnerCorrectnessMarkersV1));
+    }
+    if (value && typeof value === "object") {
+        return Object.freeze(Object.fromEntries(Object.entries(value)
+            .filter(([key]) => key !== "correct")
+            .map(([key, child]) => [
+            key,
+            stripLearnerCorrectnessMarkersV1(child),
+        ])));
+    }
+    return value;
+}
+function retainWrongSlotFeedbackRowsV1(payload) {
+    if (!("slotFeedback" in payload))
+        return payload;
+    const rows = payload.slotFeedback;
+    const carriesCorrectnessMarkers = rows.some((row) => Object.prototype.hasOwnProperty.call(row, "correct"));
+    if (!carriesCorrectnessMarkers)
+        return payload;
+    return Object.freeze({
+        ...payload,
+        // Ordered-token feedback is useful only for the distractor that caused a
+        // wrong attempt. Correct rows would become indistinguishable after the
+        // marker is stripped and could be shown as the explanation for an error.
+        slotFeedback: Object.freeze(rows.filter((row) => "correct" in row && row.correct === false)),
+    });
+}
+/**
+ * Exact learner-wire redaction. It retains the validated mode payload for
+ * backward compatibility while removing every nested property named
+ * `correct`. For ordered-token modes it retains only explicitly wrong rows
+ * before stripping the marker, so a correct-row explanation cannot later be
+ * mistaken for error feedback. Target phrases and audio transcripts remain
+ * because current modes reveal/use them as instructional media after an
+ * attempt. This is not a cryptographic secrecy boundary: the evaluator
+ * capsule is intentionally device-inspectable.
+ */
+function projectLearningV2ModeNativePayloadForLearnerV1(value, expectedFamily) {
+    const payload = validateLearningV2ModeNativePayloadV1(value, expectedFamily);
+    return stripLearnerCorrectnessMarkersV1(retainWrongSlotFeedbackRowsV1(payload));
 }
 function localizedTextPresent(value) {
     if (!value || typeof value !== "object" || Array.isArray(value))

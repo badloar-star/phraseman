@@ -1,0 +1,11 @@
+13:22:48 аккаунт проверен (нет №1/support)
+13:22:56 b_signed_in_1: старт
+13:24:09 b_signed_in_1: 70 с прошло
+13:24:14 b_signed_in_1: FS-READS 0, COLD-START 0, BOOT-TIMING 0
+13:24:18 c_signed_in_2: старт
+13:25:30 c_signed_in_2: 70 с прошло
+13:25:34 c_signed_in_2: FS-READS 0, COLD-START 0, BOOT-TIMING 0
+13:25:34 а: pm clear
+13:25:43 а: старт после set_debug_host
+13:26:56 а: FS-READS 0, COLD-START 0, BOOT-TIMING 0, HOME-RENDERS 0
+13:26:57 GU: кадры overlays-campaigns гостем

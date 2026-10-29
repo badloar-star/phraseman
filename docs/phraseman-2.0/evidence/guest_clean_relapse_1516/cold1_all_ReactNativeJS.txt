@@ -1,0 +1,814 @@
+--------- beginning of main
+10-15 15:45:17.742 W/ReactNativeJS(19479): Require cycle: app/debug-logger.ts -> app/app_health.ts -> app/firebase.ts -> app/analytics_consent.ts -> app/debug-logger.ts
+10-15 15:45:17.742 W/ReactNativeJS(19479): 
+10-15 15:45:17.742 W/ReactNativeJS(19479): Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
+10-15 15:45:17.748 W/ReactNativeJS(19479): Require cycle: app/debug-logger.ts -> app/app_health.ts -> app/firebase.ts -> app/analytics_consent.ts -> app/swallow_log.ts -> app/debug-logger.ts
+10-15 15:45:17.748 W/ReactNativeJS(19479): 
+10-15 15:45:17.748 W/ReactNativeJS(19479): Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
+10-15 15:45:17.753 W/ReactNativeJS(19479): Require cycle: app/debug-logger.ts -> app/app_health.ts -> app/debug-logger.ts
+10-15 15:45:17.753 W/ReactNativeJS(19479): 
+10-15 15:45:17.753 W/ReactNativeJS(19479): Require cycles are allowed, but can result in uninitialized values. Consider refactoring to remove the need for a cycle.
+10-15 15:45:17.779 I/ReactNativeJS(19479): [FS-READS] счётчик включён (только dev): get/onSnapshot документа и запроса
+10-15 15:45:18.311 I/ReactNativeJS(19479): Running "main" with {"rootTag":1,"initialProps":{},"fabric":true}
+10-15 15:45:20.700 W/ReactNativeJS(19479): 'setLayoutAnimationEnabledExperimental is currently a no-op in the New Architecture.', { [Stack] name: 'Stack' }
+10-15 15:45:21.815 W/ReactNativeJS(19479): '[ROUTE-EVAL] lessons module evaluated', '{"epochMs":1792075521792,"stack":["at anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:1262614:28)","at loadModuleImplementation (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:252:41)","at guardedLoadModule (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:158:47)","at metroRequire (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:78:92)","at get (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:1756767:23)","at metroContext (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:1757426:15)","at loadRoute (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:217917:42)","at _loop3 (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:217991:43)"]}', { [Stack] name: 'Stack' }
+10-15 15:45:21.848 I/ReactNativeJS(19479): [FIRESTORE-FIRST-TOUCH] installed default:locked(TypeError) getFirestore:locked(TypeError) ms=6422985
+10-15 15:45:21.970 W/ReactNativeJS(19479): '[SETTINGS-PERF] module_eval at=1792075521968', { [Stack] name: 'Stack' }
+10-15 15:45:22.659 W/ReactNativeJS(19479): '[BOOT] _layout module eval START', { [Stack] name: 'Stack' }
+10-15 15:45:22.663 I/ReactNativeJS(19479): [SNAPSHOT-CLEAN] LogBox отключён: чистые кадры сверки (EXPO_PUBLIC_SNAPSHOT_CLEAN=1)
+10-15 15:45:22.667 I/ReactNativeJS(19479): [FONT-WEIGHT] семейство=Inter зарегистрировано=400,600,700,800,900 план: 400→400 500→400 600→600 700→700 800→800 900→900 | рисуется НЕ тем, что заказано: 500→400 (Android при ничьей берёт нижнее начертание)
+10-15 15:45:22.676 I/ReactNativeJS(19479): [COLD-START] layout.module_imports:done proc=6423812ms src=_layout {"entryToImportsMs":5100}
+10-15 15:45:22.704 I/ReactNativeJS(19479): [COLD-START] layout.module_eval:self_top proc=6423841ms src=_layout {"modules":3010,"selfSumMs":4930,"top":"286ms app/lesson_words.tsx | 267ms node_modules/@revenuecat/purchases-js-hybrid-mappings/dist/index.umd.js | 121ms node_modules/expo-image/src/ExpoImage.tsx | 73ms node_modules/react-native-reanimated/src/specs/NativeReanimatedModule.ts | 70ms node_modules/expo-constants/build/Constants.js | 70ms node_modules/react-native/Libraries/Renderer/implementations/ReactFabric-dev.js | 69ms node_modules/react-native/Libraries/Renderer/implementations/ReactNativeRenderer-dev.js | 59ms app/cloud_sync.ts | 58ms node_modules/react-native-reanimated/src/layoutReanimation/animationsManager.ts | 54ms node_modules/expo-modules-core/src/NativeModulesProxy.native.ts | 50ms modules/learning-v2/content/factory_native/factory_native_catalog_v1.generated.ts | 47ms app/(tabs)/lessons.tsx | 46ms app/dialogue_language_packs.ts | 45ms app/ai_dialog_scenarios.ts | 44ms node_modules/react-native-reanimated/src/layoutReanimation/web/animation/Bounce.web.ts"}
+10-15 15:45:22.706 I/ReactNativeJS(19479): [COLD-START] layout.module_eval:total_top proc=6423842ms src=_layout {"top":"2370ms app/(tabs)/_layout.tsx | 838ms node_modules/react-native-gesture-handler/src/index.ts | 777ms app/(tabs)/lessons.tsx | 665ms app/(tabs)/home.tsx | 634ms node_modules/react-native-gesture-handler/src/init.ts | 633ms node_modules/react-native-gesture-handler/src/handlers/gestures/eventReceiver.ts | 631ms node_modules/react-native-gesture-handler/src/handlers/gestures/gestureStateManager.ts | 630ms node_modules/react-native-gesture-handler/src/handlers/gestures/reanimatedWrapper.ts | 629ms node_modules/react-native-reanimated/src/index.ts | 581ms app/user_notifications.ts | 581ms hooks/use_community_tab_dot.ts | 552ms app/cloud_sync.ts | 462ms app/lesson_menu.tsx | 440ms node_modules/expo-router/entry-classic.js | 440ms node_modules/expo-router/entry.js"}
+10-15 15:45:22.708 I/ReactNativeJS(19479): [COLD-START] layout.module_eval:chains proc=6423845ms src=_layout {"chains":"app/(tabs)/_layout.tsx || node_modules/react-native-gesture-handler/src/index.ts ← app/(tabs)/_layout.tsx || app/(tabs)/lessons.tsx || app/(tabs)/home.tsx ← app/(tabs)/_layout.tsx || node_modules/react-native-gesture-handler/src/init.ts ← node_modules/react-native-gesture-handler/src/index.ts ← app/(tabs)/_layout.tsx || node_modules/react-native-gesture-handler/src/handlers/gestures/eventReceiver.ts ← node_modules/react-native-gesture-handler/src/init.ts ← node_modules/react-native-gesture-handler/src/index.ts ← app/(tabs)/_layout.tsx || node_modules/react-native-gesture-handler/src/handlers/gestures/gestureStateManager.ts ← node_modules/react-native-gesture-handler/src/handlers/gestures/eventReceiver.ts ← node_modules/react-native-gesture-handler/src/init.ts ← node_modules/react-native-gesture-handler/src/index.ts ← app/(tabs)/_layout.tsx || node_modules/react-native-gesture-handler/src/handlers/gestures/reanimatedWrapper.ts ← node_modules/react-native-gesture-handler/src/handlers/gestures/gestureStateManager.ts ← node_modules/react-native-gesture-handler/src/handlers/gestures/eventReceiver.ts ← node_modules/react-native-gesture-handler/src/init.ts ← node_modules/react-native-gesture-handler/src/index.ts ← app/(tabs)/_layout.tsx"}
+10-15 15:45:25.504 I/ReactNativeJS(19479): [LESSONS-TABS] диск: сохранено=null → память=null
+10-15 15:45:25.505 W/ReactNativeJS(19479): [JS-STALL] +2845ms поток стоял 2841ms (с +4ms)
+10-15 15:45:25.507 W/ReactNativeJS(19479): [COLD-START-IO] slow name=AS.get:fc_low_power_override_v# ms=2696 startedAtMs=137 inflightAtStart=0 valueBytes=-1 ok=true
+10-15 15:45:25.508 W/ReactNativeJS(19479): [COLD-START-IO] slow name=AS.get:voice_last_known_access_v# ms=2516 startedAtMs=319 inflightAtStart=1 valueBytes=-1 ok=true
+10-15 15:45:25.509 W/ReactNativeJS(19479): [COLD-START-IO] slow name=AS.get:fc_gallery_step_v# ms=1936 startedAtMs=901 inflightAtStart=2 valueBytes=-1 ok=true
+10-15 15:45:25.510 I/ReactNativeJS(19479): [CARDS-ZOOM] прочитан сохранённый шаг raw=null → null
+10-15 15:45:25.525 I/ReactNativeJS(19479): '[DEEPLINK] redirectSystemPath', '{"in":"phraseman:///","initial":true,"out":"/home"}'
+10-15 15:45:25.792 W/ReactNativeJS(19479): '[BOOT] RootLayout render', { [Stack] name: 'Stack' }
+10-15 15:45:25.939 I/ReactNativeJS(19479): '[UI-LANG]', '{"step":"resolved","lang":"ru","previous":null,"source":"initial","listeners":0}'
+10-15 15:45:26.192 I/ReactNativeJS(19479): '[PERF-R1-MOUNT]', '{"tag":"tabs_layout","inst":1,"event":"render","at":6006}'
+10-15 15:45:26.205 I/ReactNativeJS(19479): '[PERF-R1-MOUNT]', '{"tag":"tab_scaffold","inst":1,"event":"render","at":6019}'
+10-15 15:45:26.231 I/ReactNativeJS(19479): [HOME-PLATE] topscrim theme=graphite isLight=false tone=auto scrim=rgba(0,0,0,0.446) source=theme-dark height=86.28571319580078
+10-15 15:45:26.268 I/ReactNativeJS(19479): '[PERF-R1-MOUNT]', '{"tag":"home_host","inst":1,"event":"render","at":6081}'
+10-15 15:45:26.861 W/ReactNativeJS(19479): '[BOOT-COMMIT]', '{"id":"app_content","phase":"mount","actualMs":686,"baseMs":616,"atEpochMs":1792075526853}', { [Stack] name: 'Stack' }
+10-15 15:45:26.889 W/ReactNativeJS(19479): [JS-STALL] +4229ms поток стоял 1183ms (с +3046ms)
+10-15 15:45:26.972 I/ReactNativeJS(19479): '[PERF-R1-MOUNT]', '{"tag":"tab_scaffold","inst":1,"event":"mount","at":6778,"renderToEffectMs":759}'
+10-15 15:45:27.093 I/ReactNativeJS(19479): '[PERF-R1-MOUNT]', '{"tag":"tabs_layout","inst":1,"event":"mount","at":6906,"renderToEffectMs":900}'
+10-15 15:45:27.098 I/ReactNativeJS(19479): '[PERF-R1-NAV]', '{"event":"attached","attempt":0,"atMs":6909}'
+10-15 15:45:27.198 W/ReactNativeJS(19479): '[COLD-START-HOLD] app_content:mount n=1 boot=+4534ms', { [Stack] name: 'Stack' }
+10-15 15:45:27.208 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=lv2_completion_scheduler_install fallbackMs=2500 proc=6428344ms
+10-15 15:45:27.219 I/ReactNativeJS(19479): [ONB-SHOW] effective=false show=false devRoute=false path=/ reason=initial_state
+10-15 15:45:27.230 I/ReactNativeJS(19479): [ACCOUNT-V2] layout skip ready=false firstContentReady=false
+10-15 15:45:27.234 I/ReactNativeJS(19479): [FC-TRAIN-ENTRY] bootstrap:skip — ready=false, firstContentReady=false, homePainted=false
+10-15 15:45:27.246 W/ReactNativeJS(19479): '[LESSON-EXIT] layout:pathname_root_or_empty pathname="/" lastPath=null ready=false rootNavigationReady=false', { [Stack] name: 'Stack' }
+10-15 15:45:27.258 W/ReactNativeJS(19479): '[BOOTSPLASH] +4593ms splash gate :: {"fontsReady":false,"ready":false,"firstContentReady":false,"homeScreenReady":false,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":false,"canHide":false,"sinceFirstContentSetMs":null}', { [Stack] name: 'Stack' }
+10-15 15:45:27.264 I/ReactNativeJS(19479): '[COLD-START-HOLD] heavy_init:skip', '{"ready":false,"effectiveShowOnboarding":false,"isBanned":false,"firstContentReady":false,"started":false,"ran":false}'
+10-15 15:45:27.286 I/ReactNativeJS(19479): [LESSONS-BOOT] layout_prime:scheduled {"studyTarget":"en","atEpochMs":1792075527272}
+10-15 15:45:27.459 W/ReactNativeJS(19479): '[BOOTSPLASH] +4792ms bootstrap START -> ensureFreshPostDeletionIdentity', { [Stack] name: 'Stack' }
+10-15 15:45:27.470 I/ReactNativeJS(19479): [WINBACK-FREEZE] t=27466 check skip ready=false onboarding=false banned=false firstContent=false
+10-15 15:45:27.475 I/ReactNativeJS(19479): '[OVERLAY-QUEUE]', '{"holder":"никто","asking":[],"waiting":[],"wants":{"update":false,"authRecovery":false,"releaseNotes":null,"broadcast":null,"appMessageModal":null,"personalAdminMessage":null,"notifNudge":false},"onboarding":false}'
+10-15 15:45:27.477 I/ReactNativeJS(19479): [DEV-STATE] toast: хост смонтирован lang=ru
+10-15 15:45:27.486 I/ReactNativeJS(19479): [DEV-STATE] toast: слот хоста wanted=false visible=false слотДержит=никто
+10-15 15:45:27.536 I/ReactNativeJS(19479): '[THEMES-PERF] first', '{"id":"graphite","level":"calm","appearance":"dark","intensity":0,"fontSize":"medium","buildMs":1}'
+10-15 15:45:27.784 W/ReactNativeJS(19479): '[BOOT-COMMIT]', '{"id":"app_content","phase":"update","actualMs":137,"baseMs":209,"atEpochMs":1792075527779}', { [Stack] name: 'Stack' }
+10-15 15:45:27.796 I/ReactNativeJS(19479): [PAYWALL-CLOSE-FREEZE] t=27791 tabs focus
+10-15 15:45:27.804 I/ReactNativeJS(19479): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#UnTV-a*[(tabs)#18FIwR*]","atMs":7618}'
+10-15 15:45:27.818 I/ReactNativeJS(19479): [FS-READS] listen:open #1 account_deletion_auth_markers/{id} by=attach t=10040ms
+10-15 15:45:27.873 W/ReactNativeJS(19479): '[MANUAL-UPDATE] skip: gate says no', { enabled: false,
+10-15 15:45:27.873 W/ReactNativeJS(19479):   campaignId: '',
+10-15 15:45:27.873 W/ReactNativeJS(19479):   mode: 'optional',
+10-15 15:45:27.873 W/ReactNativeJS(19479):   platformFilter: '',
+10-15 15:45:27.873 W/ReactNativeJS(19479):   platform: 'android',
+10-15 15:45:27.873 W/ReactNativeJS(19479):   targetBuild: '',
+10-15 15:45:27.873 W/ReactNativeJS(19479):   currentBuild: '1.6.24',
+10-15 15:45:27.873 W/ReactNativeJS(19479):   alreadySeen: false,
+10-15 15:45:27.873 W/ReactNativeJS(19479):   userId: null }
+10-15 15:45:27.879 I/ReactNativeJS(19479): [TABS-SINGLE] flag tabs_single_guard=on source=rc_cache
+10-15 15:45:27.885 I/ReactNativeJS(19479): [INFO] [TABBAR]: layout {"windowW":411.4,"fontScale":1,"pixelRatio":2.625,"insetL":0,"insetR":0,"count":5,"activeIndex":0,"barX":12.2,"barW":387.4,"barH":65.90478515625,"expectedH":66,"expectedW":387.4,"slotW":73.9,"slotsOverflow":0,"capLeft":9,"capRight":82.88571166992188,"barInnerRight":378.4285583496094,"capFits":true}
+10-15 15:45:28.213 W/ReactNativeJS(19479): '[BOOT-COMMIT]', '{"id":"app_content","phase":"nested-update","actualMs":180,"baseMs":201,"atEpochMs":1792075528201}', { [Stack] name: 'Stack' }
+10-15 15:45:28.244 I/ReactNativeJS(19479): [ACCOUNT-V2] layout skip ready=false firstContentReady=false
+10-15 15:45:28.332 W/ReactNativeJS(19479): [JS-STALL] +5673ms поток стоял 1440ms (с +4233ms)
+10-15 15:45:28.336 W/ReactNativeJS(19479): [JS-STALL] heartbeat +5673ms splash=shown
+10-15 15:45:28.349 I/ReactNativeJS(19479): '[MEM-TICK]', '{"tSec":6,"route":"unknown","heapMb":36,"gc":"14gc/345ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":31,"timeoutsByCaller":{"anonymous <- react-stack-bottom-frame":7,"anonymous <- anonymous":7,"anonymous <- onLayout":6,"anonymous <- tryCallTwo (address at InternalBytecode.js:1:1222)":4,"start <- animate":3},"pendingTimeouts":16,"firestoreReads":{"account_deletion_auth_markers":1},"firestoreReadsByCaller":{"account_deletion_auth_markers|doc_listen|attach <- anonymous":{"listen":1}}}'
+10-15 15:45:28.358 W/ReactNativeJS(19479): [BOOTSPLASH] +5699ms homeScreenReady FALLBACK fired (чанк Главной не доехал за потолок)
+10-15 15:45:28.369 I/ReactNativeJS(19479): [FS-READS] === старт 10 с: до 10000 мс — оплачено документов 0, вызовов 0, из кэша 0, слушателей открыто 0
+10-15 15:45:28.372 I/ReactNativeJS(19479): [INFO] [TABBAR]: window x=12.2 y=768 w=387.4 h=66 right=399.6 windowW=411.4
+10-15 15:45:28.384 I/ReactNativeJS(19479): [SMART-REMINDER] record:skip kind=session reason=dedupe_30min sinceMs=686641
+10-15 15:45:28.388 W/ReactNativeJS(19479): [WARNING] ThemeContext:hydration_ceiling: theme read exceeded 400ms
+10-15 15:45:28.405 I/ReactNativeJS(19479): [THEME-DEFAULT] new_user {"reason":"follow_system_marker","apply":true,"themeId":"marine","intensity":1}
+10-15 15:45:28.406 I/ReactNativeJS(19479): [DEFAULT-THEME] первый запуск=true решение=new_user/follow_system_marker системный режим=light → тема=ink источник=по умолчанию (следует за системой)
+10-15 15:45:28.412 I/ReactNativeJS(19479): '[THEME-INTENSITY] hydrate', { storedThemeId: null,
+10-15 15:45:28.412 I/ReactNativeJS(19479):   appliedThemeId: 'ink',
+10-15 15:45:28.412 I/ReactNativeJS(19479):   storedAppearance: null,
+10-15 15:45:28.412 I/ReactNativeJS(19479):   storedIntensity: '1',
+10-15 15:45:28.412 I/ReactNativeJS(19479):   storedLevel: null,
+10-15 15:45:28.412 I/ReactNativeJS(19479):   source: 'intensity',
+10-15 15:45:28.412 I/ReactNativeJS(19479):   intensity: 1,
+10-15 15:45:28.412 I/ReactNativeJS(19479):   skippedBecauseTouched: false }
+10-15 15:45:28.417 I/ReactNativeJS(19479): [INFO] [TABBAR]: cells windowW=411.4 insetL=0 insetR=0 count=5 fontScale=1 rowW=387.4 expectedSlot=73.9 widths=[73.9,73.9,73.9,73.9,73.9] xs=[9.1,83,157,230.5,304.4] sum=369.5 lastRight=378.3
+10-15 15:45:28.427 W/ReactNativeJS(19479): [BOOTSPLASH] +5767ms ensureFreshPostDeletionIdentity DONE :: {"status":"pending_auth","phase":"prepared"}
+10-15 15:45:28.428 W/ReactNativeJS(19479): [BOOTSPLASH] +5769ms runAuthRecoveryBootGate START
+10-15 15:45:28.458 W/ReactNativeJS(19479): '[BOOT] RootLayout render', { [Stack] name: 'Stack' }
+10-15 15:45:28.580 I/ReactNativeJS(19479): [HOME-PLATE] topscrim theme=ink isLight=true tone=auto scrim=rgba(243,244,253,0.800) source=theme-light bgTop=#F3F4FD height=86.28571319580078
+10-15 15:45:28.655 I/ReactNativeJS(19479): '[PERF-R1-MOUNT]', '{"tag":"home_host","inst":2,"event":"render","at":8466}'
+10-15 15:45:28.784 I/ReactNativeJS(19479): '[PERF-R1-MOUNT]', '{"tag":"probe:home","inst":1,"event":"render","at":8598}'
+10-15 15:45:28.793 I/ReactNativeJS(19479): '[SPIRE]', '[SPIRE-GATE]', '{"lang":"ru","allowed":true,"reason":"ui_lang_allowed","where":"isSpireTabEnabled source=context"}'
+10-15 15:45:28.806 W/ReactNativeJS(19479): '[HOME-COLD] boot_card:null', '{"reason":"no_lessons_in_snapshot","atEpochMs":1792075528803,"hasLessons":false,"primedAt":null,"snapshotTarget":null,"expectedTarget":"en","lastOpenedLesson":null,"lastOpenedLessonCorrect":null}', { [Stack] name: 'Stack' }
+10-15 15:45:28.815 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"cold","n":1,"changed":["mount"],"atMs":1}'
+10-15 15:45:28.845 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","window":"cold","n":1,"changed":["mount"],"atMs":0}'
+10-15 15:45:28.978 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:continue","window":"cold","n":1,"changed":["mount"],"atMs":0}'
+10-15 15:45:29.011 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"cold","n":1,"changed":["mount"],"atMs":0}'
+10-15 15:45:29.015 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":1,"viewRenders":0,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:29.021 I/ReactNativeJS(19479): '[HOME-RENDER] tiles view', '{"wrapperRenders":1,"viewRenders":1}'
+10-15 15:45:29.054 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"cold","n":1,"changed":["mount"],"atMs":0}'
+10-15 15:45:29.069 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","window":"cold","n":1,"changed":["mount"],"atMs":0}'
+10-15 15:45:29.176 I/ReactNativeJS(19479): '[DAILY-PHRASE-GATE] decision', '{"studyTarget":"en","enabled":true,"reason":"english_daily_phrase_bank_available","packSource":"bundled_idiom_bank"}'
+10-15 15:45:29.183 I/ReactNativeJS(19479): '[DAILY-PHRASE-PEEK] defer — снимок ещё читается, каталог не поднимаю', '{"today":"2026-10-15"}'
+10-15 15:45:29.636 W/ReactNativeJS(19479): '[HOME-RENDER] first', '{"moduleToRenderMs":7925,"renderToCommitMs":846,"committedEpochMs":1792075529629}', { [Stack] name: 'Stack' }
+10-15 15:45:29.643 W/ReactNativeJS(19479): '[HOME-COLD] first_frame', '{"lessonCard":"empty","lessonId":null,"hydrationInMemory":false,"videos":0,"videoStatus":"loading","catalogRail":false}', { [Stack] name: 'Stack' }
+10-15 15:45:29.649 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"home","n":1,"phase":"mount","actualMs":537,"baseMs":460,"startedAtMs":6429794,"commitAtMs":6430692}'
+10-15 15:45:29.670 W/ReactNativeJS(19479): '[BOOT-COMMIT]', '{"id":"app_content","phase":"update","actualMs":733,"baseMs":622,"atEpochMs":1792075529666}', { [Stack] name: 'Stack' }
+10-15 15:45:29.692 W/ReactNativeJS(19479): [BOOTSPLASH] +7032ms runAuthRecoveryBootGate DONE :: {"result":"proceed"}
+10-15 15:45:29.697 W/ReactNativeJS(19479): [BOOTSPLASH] +7034ms getStableId START
+10-15 15:45:29.698 W/ReactNativeJS(19479): [BOOTSPLASH] +7038ms bootstrap DEADLINE — setReady(true) по потолку, работа идёт фоном
+10-15 15:45:29.700 W/ReactNativeJS(19479): [WARNING] _layout:bootstrap_deadline: bootstrap_exceeded_1000ms
+10-15 15:45:29.707 W/ReactNativeJS(19479): [JS-STALL] +7046ms поток стоял 1284ms (с +5762ms)
+10-15 15:45:29.710 I/ReactNativeJS(19479): [LESSONS-BOOT] layout_prime:fire {"studyTarget":"en","waitInteractionsMs":590,"sinceScheduledMs":2437}
+10-15 15:45:29.714 I/ReactNativeJS(19479): [LESSONS-BOOT] load:start {"sinceModuleMs":8023,"atEpochMs":1792075529714,"target":"en","caller":"layout_prime","inflight":1,"cached":false}
+10-15 15:45:29.746 I/ReactNativeJS(19479): '[HOME-CONTINUE-ART] layout', '{"node":"card","x":12,"y":70,"w":387,"h":96}', '{"pending":true,"artWide":true,"accent":true,"badge":null,"artSize":80}'
+10-15 15:45:29.752 I/ReactNativeJS(19479): '[HOME-CONTINUE-ART] layout', '{"node":"artColumn","x":263,"y":0,"w":124,"h":96}', '{"pending":true,"artWide":true,"accent":true,"badge":null,"artSize":80}'
+10-15 15:45:29.809 I/ReactNativeJS(19479): [HOME-PLATE] mount isLight=true level=max intensity=1 bgAlpha=0.5 plate=rgba(252,252,255,0.5) raised=rgba(252,252,255,0.5) source=#FCFCFF/#FCFCFF todayCard=no-fill sheen=off
+10-15 15:45:29.815 I/ReactNativeJS(19479): [THEMED-ART] tint=#5F5CB1 level=max intensity=1 theme=ink appearance=light
+10-15 15:45:29.839 I/ReactNativeJS(19479): '[DAILY-PHRASE-PEEK] defer — снимок ещё читается, каталог не поднимаю', '{"today":"2026-10-15"}'
+10-15 15:45:29.853 I/ReactNativeJS(19479): '[PERF-R1-MOUNT]', '{"tag":"probe:home","inst":1,"event":"mount","at":9662,"renderToEffectMs":1064}'
+10-15 15:45:29.860 I/ReactNativeJS(19479): '[TAB-PILL]', '{"bottomInset":24,"screenH":914.2857142857143,"uiScale":0.9916483516483516,"oldTabBarHeight":56,"pillHeight":66,"pillTop":96}'
+10-15 15:45:29.870 I/ReactNativeJS(19479): '[HOME-CONTINUE] card', '{"visible":false,"reason":"last_lesson_pending","lessonId":null,"progress":null,"studyTarget":"en","source":"hydration_or_loadData"}'
+10-15 15:45:29.877 I/ReactNativeJS(19479): [HOME-CONTINUE] выбор=none причина=нет ни старого урока, ни занятия V2 время: старый=нет урока V2=нет target=en
+10-15 15:45:29.888 W/ReactNativeJS(19479): '[HOME-COLD] video:skip', '{"homeRuntimeActive":false,"videoButtonEnabled":true,"runtimeOwnerId":"home","homeOnboardingDone":false,"sinceFirstRenderMs":1102}', { [Stack] name: 'Stack' }
+10-15 15:45:29.894 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=home_lazy_modals_prewarm fallbackMs=2500 proc=6431029ms
+10-15 15:45:29.900 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=spire_config_warm fallbackMs=2500 proc=6431035ms
+10-15 15:45:29.905 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=account_switch_backup_gc fallbackMs=2500 proc=6431040ms
+10-15 15:45:29.911 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=legacy_bonus_convert fallbackMs=2500 proc=6431046ms
+10-15 15:45:29.915 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=onboarding_level_flush fallbackMs=2500 proc=6431049ms
+10-15 15:45:29.919 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=spire_week_modal_probe fallbackMs=2500 proc=6431054ms
+10-15 15:45:29.927 I/ReactNativeJS(19479): [PERF] home: mounted (no nav start recorded)
+10-15 15:45:29.937 W/ReactNativeJS(19479): '[HOME-EFFECTS] first_mount', '{"sinceCommitMs":225,"ownPassiveMs":76,"doneEpochMs":1792075529930}', { [Stack] name: 'Stack' }
+10-15 15:45:29.945 I/ReactNativeJS(19479): '[PERF-R1-MOUNT]', '{"tag":"home_host","inst":2,"event":"mount","at":9755,"renderToEffectMs":1294}'
+10-15 15:45:29.952 W/ReactNativeJS(19479): '[BOOTSPLASH] +7291ms splash gate :: {"fontsReady":true,"ready":false,"firstContentReady":false,"homeScreenReady":true,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":true,"canHide":false,"sinceFirstContentSetMs":null}', { [Stack] name: 'Stack' }
+10-15 15:45:29.958 I/ReactNativeJS(19479): [DEFAULT-THEME] системный режим=light → тема=ink оформление=light насыщенность=1 источник=по умолчанию
+10-15 15:45:29.971 W/ReactNativeJS(19479): '[BOOT] RootLayout render', { [Stack] name: 'Stack' }
+10-15 15:45:30.013 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"cold","n":2,"changed":["dailyPhraseCardVisible","homeSurvey","weekMoment","welcomeBack"],"atMs":1199}'
+10-15 15:45:30.021 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","window":"cold","n":2,"changed":["bellSlot","avatarSlot","stats"],"atMs":1175}'
+10-15 15:45:30.048 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:continue","window":"cold","n":2,"changed":["onPress"],"atMs":1066}'
+10-15 15:45:30.063 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"cold","n":2,"changed":["tiles"],"atMs":1052}'
+10-15 15:45:30.068 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":2,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:30.072 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"cold","n":2,"changed":["onSeeAll"],"atMs":1018}'
+10-15 15:45:30.084 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","window":"cold","n":2,"changed":["tasks","onOpenTask"],"atMs":1016}'
+10-15 15:45:30.318 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"home","n":2,"phase":"update","actualMs":79,"baseMs":154,"startedAtMs":6431147,"commitAtMs":6431351}'
+10-15 15:45:30.334 W/ReactNativeJS(19479): '[BOOT-COMMIT]', '{"id":"app_content","phase":"update","actualMs":121,"baseMs":319,"atEpochMs":1792075530331}', { [Stack] name: 'Stack' }
+10-15 15:45:30.411 I/ReactNativeJS(19479): [ACCOUNT-V2] layout skip ready=true firstContentReady=false
+10-15 15:45:30.425 I/ReactNativeJS(19479): [FC-TRAIN-ENTRY] bootstrap:skip — ready=true, firstContentReady=false, homePainted=false
+10-15 15:45:30.437 I/ReactNativeJS(19479): [DEEPLINK] initial_link_none
+10-15 15:45:30.453 I/ReactNativeJS(19479): '[DEEPLINK-SETTINGS]', 'root_replace', '{"pathname":"/","initialLink":null,"target":"/(tabs)/home"}'
+10-15 15:45:30.468 W/ReactNativeJS(19479): '[LESSON-EXIT] layout:rootIndex_replace_home pathname="/" ready=true rootNavigationReady=true effectiveShowOnboarding=false isBanned=false target=/(tabs)/home segments=[] tabsShellMounted=true', { [Stack] name: 'Stack' }
+10-15 15:45:30.477 W/ReactNativeJS(19479): '[LESSON-EXIT] layout:rootIndex_navigate_home segments=[] target=/(tabs)/home', { [Stack] name: 'Stack' }
+10-15 15:45:30.491 W/ReactNativeJS(19479): '[BOOTSPLASH] +7830ms splash gate :: {"fontsReady":true,"ready":true,"firstContentReady":false,"homeScreenReady":true,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":true,"canHide":false,"sinceFirstContentSetMs":null}', { [Stack] name: 'Stack' }
+10-15 15:45:30.546 I/ReactNativeJS(19479): [ONB-DEFER] state null→false where=_layout waiting=0
+10-15 15:45:30.555 I/ReactNativeJS(19479): '[COLD-START-HOLD] heavy_init:skip', '{"ready":true,"effectiveShowOnboarding":false,"isBanned":false,"firstContentReady":false,"started":false,"ran":false}'
+10-15 15:45:30.561 I/ReactNativeJS(19479): [WINBACK-FREEZE] t=30557 check skip ready=true onboarding=false banned=false firstContent=false
+10-15 15:45:30.609 I/ReactNativeJS(19479): '[PERF-R1-NAV]', '{"event":"action","type":"NAVIGATE","name":"(tabs)","noop":false,"atMs":10423,"stack":"anonymous@148226:34 | forEach | anonymous@148226:25 | anonymous@145542:19 | apply | latestCallback@147261:31 | anonymous@153578:29 | dispatch@153278:31 | anonymous@145472:61 | anonymous@153114:27 | anonymous@153102:37 | anonymous@145472:27 | apply | latestCallback@147261:31 | run@213626:31 | anonymous@216195:33 | react-stack-bottom-frame@28676:26 | runWithFiberInDEV@20473:135"}'
+10-15 15:45:30.727 I/ReactNativeJS(19479): '[PERF-R1-NAV]', '{"event":"state","routes":"__root#UnTV-a*[(tabs)#18FIwR*]","atMs":10542}'
+10-15 15:45:30.733 I/ReactNativeJS(19479): [INFO] [STORY-EVENTS]: flag: remote=false dev=false source=prime cache=present
+10-15 15:45:30.740 I/ReactNativeJS(19479): [INFO] [STORY-EVENTS]: prime: reason=use_story_events skip enabled=false owner=none
+10-15 15:45:30.747 W/ReactNativeJS(19479): [JS-STALL] +8088ms поток стоял 1010ms (с +7078ms)
+10-15 15:45:30.753 W/ReactNativeJS(19479): [DIAG] code=swallowed screen=BillingIssueToastHost op=promise_1 build=1.6.24+unknown trace=mv9ni1a6-001 ctx={} err=There is no singleton instance. Make sure you configure Purchases before trying to get the default instance. More info here: https://errors.rev.cat/configuring-…
+10-15 15:45:30.761 I/ReactNativeJS(19479): [LESSONS-BOOT] load:done {"sinceModuleMs":9068,"atEpochMs":1792075530760,"target":"en","caller":"layout_prime","keys":117,"totalMs":1046,"multiGetMs":1039,"parseMs":2,"cachedResult":"stored","scoredLessons":0}
+10-15 15:45:30.768 W/ReactNativeJS(19479): [PROFILE-FLIP] startup source {"source":"secure_store","stable":"h:de10a251","asyncStable":"h:de10a251","layersAgree":true,"t":6431905}
+10-15 15:45:30.773 I/ReactNativeJS(19479): [APP-MESSAGE] fresh_install verdict fresh=false reason=no_timestamp ageMs=null raw=null
+10-15 15:45:30.782 I/ReactNativeJS(19479): [DAILY-PHRASE] source=day_cache date=2026-10-15 — без сети
+10-15 15:45:30.788 I/ReactNativeJS(19479): '[IDIOMS-LAZY] tomorrow deferred — сегодняшняя записана, каталог позже', '{"today":"2026-10-15","tomorrow":"2026-10-16","delayMs":10000}'
+10-15 15:45:30.791 I/ReactNativeJS(19479): [HOME-CONTINUE] early: пропуск cancelled=false resolved=false accountCurrent=false raw=null
+10-15 15:45:30.794 W/ReactNativeJS(19479): '[HOME-COLD] video:raw_cache', '{"ms":908,"videos":0,"alive":true,"memo":false}'
+10-15 15:45:30.809 W/ReactNativeJS(19479): '[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":1,"sinceEntryMs":13233,"source":"emitFirstHomeFrameReady <- RN$rafFn"}'
+10-15 15:45:30.813 W/ReactNativeJS(19479): [BOOTSPLASH] +8153ms app_first_content_ready event received :: {"timerAlreadyPending":false}
+10-15 15:45:30.818 I/ReactNativeJS(19479): '[PERF-R1]', '{"screen":"home","stage":"first_frame","ms":2033,"commits":2}'
+10-15 15:45:30.825 W/ReactNativeJS(19479): [HOME-PAINT] first_frame epochMs=1792075530819
+10-15 15:45:30.845 W/ReactNativeJS(19479): [COLD-START] home_paint.module_eval {"modules":1347,"selfSumMs":2854,"self":"102ms app/_layout.tsx | 90ms app/hint.tsx | 79ms modules/learning-v2/contracts/activity_catalog_v2.ts | 51ms app/diagnostic_test.tsx | 47ms app/theory_content_lesson28.ts | 47ms app/theory_content_lesson29.ts | 27ms app/flashcards/system-cards.ts | 24ms app/lesson1_smart_options.ts | 22ms modules/learning-v2/progress/progress_reducer.ts | 21ms app/pos_taxonomy.ts | 21ms app/pos_workout_engine.ts | 21ms modules/spire/pack_plan.ts | 21ms app/learning-v2/session/[id].tsx | 20ms modules/learning-v2/progress/owner_repository_economic_manifest.ts | 18ms modules/sound_v2/catalog.ts","total":"570ms app/learning-v2/session/[id].tsx | 449ms app/_layout.tsx | 432ms app/learning_v2_completion_background_scheduler.ts | 354ms app/hint.tsx | 283ms app/learning_v2_required_session_completion_sync.ts | 236ms app/theory_content_registry.ts | 185ms app/dev_moments_preview.tsx | 177ms app/learning_v2_owner_repository_runtime.ts | 159ms modules/learning-v2/progress/owner_repository.ts | 143ms node_modules/expo-notifications/build/index.js | 133ms app/flashcards_collection.tsx | 112ms app/_motion_showcase.tsx | 111ms app/learning_v2_activity_released_completion_sync_v1.ts | 110ms components/dev/motion_showcase/index.ts | 110ms app/dev_spire_preview.tsx"}
+10-15 15:45:30.849 W/ReactNativeJS(19479): [COLD-START] home_paint.module_eval:chains app/learning-v2/session/[id].tsx || app/_layout.tsx || app/learning_v2_completion_background_scheduler.ts ← app/learning-v2/session/[id].tsx || app/hint.tsx || app/learning_v2_required_session_completion_sync.ts ← app/learning_v2_completion_background_scheduler.ts ← app/learning-v2/session/[id].tsx || app/theory_content_registry.ts ← app/hint.tsx || app/dev_moments_preview.tsx || app/learning_v2_owner_repository_runtime.ts ← app/learning_v2_required_session_completion_sync.ts ← app/learning_v2_completion_background_scheduler.ts ← app/learning-v2/session/[id].tsx
+10-15 15:45:30.853 W/ReactNativeJS(19479): [BOOTSPLASH] +8193ms HOME-PAINT early hide — сплеш скрыт по кадру Главной :: {"fontsReady":true,"ready":true,"liquidGlassChoiceReady":true,"effectiveShowOnboarding":false,"isBanned":false}
+10-15 15:45:30.864 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=lv2_completion_scheduler_install trigger=fallback splash=hidden waitedMs=3657
+10-15 15:45:30.868 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=lv2_completion_scheduler_install proc=6432004ms
+10-15 15:45:30.871 I/ReactNativeJS(19479): [COLD-START] phone_state.gate:home_painted proc=6432008ms src=_layout
+10-15 15:45:30.877 W/ReactNativeJS(19479): [FIRST-FRAME] home_painted proc=6432011ms
+10-15 15:45:30.881 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=home_lazy_modals_prewarm trigger=home_painted splash=hidden waitedMs=986
+10-15 15:45:30.883 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=spire_config_warm trigger=home_painted splash=hidden waitedMs=985
+10-15 15:45:30.884 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=account_switch_backup_gc trigger=home_painted splash=hidden waitedMs=982
+10-15 15:45:30.885 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=legacy_bonus_convert trigger=home_painted splash=hidden waitedMs=977
+10-15 15:45:30.886 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=onboarding_level_flush trigger=home_painted splash=hidden waitedMs=975
+10-15 15:45:30.890 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=spire_week_modal_probe trigger=home_painted splash=hidden waitedMs=971
+10-15 15:45:30.891 W/ReactNativeJS(19479): '[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":2,"sinceEntryMs":13316,"source":"RN$rafFn"}'
+10-15 15:45:30.892 W/ReactNativeJS(19479): [BOOTSPLASH] +8233ms app_first_content_ready event received :: {"timerAlreadyPending":true}
+10-15 15:45:30.893 I/ReactNativeJS(19479): '[MEM]', 'home_painted', '{"heapMb":36,"allocatedMb":31.2,"externalMb":1.4,"numGCs":41,"gcTimeMs":817}'
+10-15 15:45:30.894 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=home_lazy_modals_prewarm proc=6432031ms
+10-15 15:45:30.896 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=account_switch_backup_gc proc=6432033ms
+10-15 15:45:30.908 I/ReactNativeJS(19479): [HOME-LAZY] prewarm:done 12мс
+10-15 15:45:30.912 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=home_lazy_modals_prewarm taskMs=17 syncMs=1 proc=6432049ms
+10-15 15:45:30.916 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=spire_config_warm proc=6432052ms
+10-15 15:45:30.930 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=legacy_bonus_convert proc=6432065ms
+10-15 15:45:30.941 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=onboarding_level_flush proc=6432077ms
+10-15 15:45:30.948 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=spire_week_modal_probe proc=6432083ms
+10-15 15:45:30.970 I/ReactNativeJS(19479): [LEGACY-BONUS] skip reason=no_owner phase=uninitialized source=home_first_frame
+10-15 15:45:30.994 I/ReactNativeJS(19479): [INFO] [SPIRE]: [SPIRE-WEEK-MODAL] вход ui=ru study=en tab=false
+10-15 15:45:31.002 I/ReactNativeJS(19479): [INFO] [SPIRE]: [SPIRE-WEEK-MODAL] не показали бы: вкладка Пика выключена (spire_tab_enabled)
+10-15 15:45:31.006 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=legacy_bonus_convert taskMs=76 syncMs=12 proc=6432140ms
+10-15 15:45:31.010 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=spire_week_modal_probe taskMs=61 syncMs=7 proc=6432144ms
+10-15 15:45:31.022 I/ReactNativeJS(19479): '[THEMES-PERF] change', '{"changed":["id","level","appearance","intensity"],"from":["graphite","calm","dark",0],"to":["ink","max","light",1],"buildMs":52,"consumersRendered":40,"writes":0,"settleMs":1056}'
+10-15 15:45:31.028 I/ReactNativeJS(19479): [INFO] [SPIRE]: tab flag: remote=true dev=false (из кэша remote_config_cache_v1)
+10-15 15:45:31.053 W/ReactNativeJS(19479): [BOOTSPLASH] +8391ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":201}
+10-15 15:45:31.058 W/ReactNativeJS(19479): '[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":3,"sinceEntryMs":13482,"source":"emitFirstHomeFrameReady <- apply"}'
+10-15 15:45:31.061 W/ReactNativeJS(19479): [BOOTSPLASH] +8401ms app_first_content_ready event received :: {"timerAlreadyPending":false}
+10-15 15:45:31.103 I/ReactNativeJS(19479): [INFO] [PACK-CONTINUE]: смена аккаунта — память позиций сброшена
+10-15 15:45:31.173 I/ReactNativeJS(19479): [WHATSNEW-GATE] owner_changed from=none to=3ca0ca… hadWindow=false pendingClear=false — память сброшена, метка прошлого владельца в хранилище остаётся
+10-15 15:45:31.190 I/ReactNativeJS(19479): [ACCOUNT-DELETE-GUARD] read:fast_none — замка нет, хранилище не читаем (дальше без лога)
+10-15 15:45:31.195 W/ReactNativeJS(19479): [BOOTSPLASH] +8535ms getStableId DONE
+10-15 15:45:31.216 I/ReactNativeJS(19479): [COLD-START] content_migration.wait_cloud:start proc=6432351ms src=_layout
+10-15 15:45:31.287 W/ReactNativeJS(19479): [BOOTSPLASH] +8624ms startupLocalHydration RACE START (budget 350ms)
+10-15 15:45:31.315 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=mistake_practice_v2::en::owner%3A3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519%3Aevents_v2 writesInFlight=0', ''
+10-15 15:45:31.355 I/ReactNativeJS(19479): [ACCOUNT-V2] client_flag accounts_v2_client_enabled=false source=cache
+10-15 15:45:31.369 I/ReactNativeJS(19479): [REMOTE-GATES] lessons=default flashcards=default dialog=default energy=default speaking=default stats=default themes=default mistakes=default extra_languages=default spire_tab=true accounts_v2_client=default boot_restore_defer=default source=cache
+10-15 15:45:31.382 I/ReactNativeJS(19479): [INFO] [STORY-EVENTS]: flag: remote=false dev=false source=remote_config_changed cache=present
+10-15 15:45:31.418 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=stable_auth_link_cache_v1 writesInFlight=0', ''
+10-15 15:45:31.423 I/ReactNativeJS(19479): [ACC-SWITCH-BACKUP] skip reason=throttled source=cold_start sinceMs=685773
+10-15 15:45:31.431 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=account_switch_backup_gc taskMs=532 syncMs=10 proc=6432565ms
+10-15 15:45:31.438 I/ReactNativeJS(19479): '[PM-214] spire_config_warm', '{"source":"disk","ms":479,"ageMs":444264,"enabled":true}'
+10-15 15:45:31.444 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=spire_config_warm taskMs=523 syncMs=1 proc=6432576ms
+10-15 15:45:31.455 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=onboarding_level_flush taskMs=510 syncMs=6 proc=6432587ms
+10-15 15:45:31.461 I/ReactNativeJS(19479): [INFO] [SPIRE-CONFIG]: loadSpireConfig: из кэша (возраст=444288мс)
+10-15 15:45:31.483 I/ReactNativeJS(19479): '[DAILY-PHRASE-PEEK] hydrate', '{"state":"ready","ms":219,"today":"2026-10-15","keys":["2026-10-15"]}'
+10-15 15:45:31.571 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=mistake_practice_v2::en::owner%3A3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519%3Amanifest_page_v1%3A809a11f7ac75e980082f7ea478e3ba5e1fbe22bb4a09fd722ac46969032eff64 writesInFlight=0', ''
+10-15 15:45:31.582 I/ReactNativeJS(19479): [ACC-MUT] firestore_cache_clear check ms=1 marker=1 lock=0 reason=marker source=startup_multiget
+10-15 15:45:31.586 I/ReactNativeJS(19479): [FIRESTORE-FIRST-TOUCH] clear_start ms=6432720 touchesBefore=0
+10-15 15:45:31.590 I/ReactNativeJS(19479): [ACC-MUT] firestore_cache_clear start reason=marker
+10-15 15:45:31.600 I/ReactNativeJS(19479): '[BOOT-RESTORE-DEFER]', '{"event":"identity","freshStatus":"pending_auth","freshPhase":"prepared","deleteLock":"empty","identityReady":true}'
+10-15 15:45:31.606 I/ReactNativeJS(19479): '[BOOT-RESTORE-DEFER]', '{"event":"decision","defer":false,"reason":"no_owner_mark"}'
+10-15 15:45:31.628 I/ReactNativeJS(19479): [STREAK] snapshot:personal streak=2 prev=undefined@undefined
+10-15 15:45:31.682 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","stage":"renders_window","window":"cold","count":2,"byCause":{"mount":1,"dailyPhraseCardVisible":1,"homeSurvey":1,"weekMoment":1,"welcomeBack":1},"ms":2851}'
+10-15 15:45:31.688 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":1,"changed":["homeRuntimeActive","homeOnboardingDone","mistakeAccountGeneration","homeFeatureTipsHydrated","spireTabEnabled","homeSurvey","weekMoment","welcomeBack","appSnapshot"],"atMs":0}'
+10-15 15:45:31.744 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","stage":"renders_window","window":"cold","count":2,"byCause":{"mount":1,"bellSlot":1,"avatarSlot":1,"stats":1},"ms":2897}'
+10-15 15:45:31.749 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#1","n":1,"changed":["bellSlot","avatarSlot","stats"],"atMs":0}'
+10-15 15:45:31.794 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:continue","stage":"renders_window","window":"cold","count":2,"byCause":{"mount":1,"onPress":1},"ms":2814}'
+10-15 15:45:31.796 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:continue","window":"refocus#1","n":1,"changed":["onPress"],"atMs":0}'
+10-15 15:45:31.809 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","stage":"renders_window","window":"cold","count":2,"byCause":{"mount":1,"tiles":1},"ms":2800}'
+10-15 15:45:31.813 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#1","n":1,"changed":["tiles"],"atMs":0}'
+10-15 15:45:31.814 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":3,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:31.831 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","stage":"renders_window","window":"cold","count":2,"byCause":{"mount":1,"onSeeAll":1},"ms":2777}'
+10-15 15:45:31.832 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#1","n":1,"changed":["ownerActive","onSeeAll"],"atMs":0}'
+10-15 15:45:31.847 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","stage":"renders_window","window":"cold","count":2,"byCause":{"mount":1,"tasks":1,"onOpenTask":1},"ms":2777}'
+10-15 15:45:31.849 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","window":"refocus#1","n":1,"changed":["tasks","onOpenTask"],"atMs":0}'
+10-15 15:45:32.167 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"home","n":3,"phase":"nested-update","actualMs":286,"baseMs":265,"startedAtMs":6432798,"commitAtMs":6433263}'
+10-15 15:45:32.173 W/ReactNativeJS(19479): '[BOOT-COMMIT]', '{"id":"app_content","phase":"nested-update","actualMs":354,"baseMs":388,"atEpochMs":1792075532169}', { [Stack] name: 'Stack' }
+10-15 15:45:32.188 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:cancel label=spire_week_modal_probe stage=after_release phase=done lost=0 aliveMs=2262 proc=6433317ms
+10-15 15:45:32.222 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=legacy_bonus_welcome fallbackMs=2500 proc=6433354ms
+10-15 15:45:32.261 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=coin_rank_v1:3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519 writesInFlight=0', '', { [Stack] name: 'Stack' }
+10-15 15:45:32.275 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=spire_week_moment_gate fallbackMs=2500 proc=6433406ms
+10-15 15:45:32.282 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=welcome_back_gate fallbackMs=2500 proc=6433416ms
+10-15 15:45:32.292 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=coin_rank_enough_gate fallbackMs=2500 proc=6433423ms
+10-15 15:45:32.305 W/ReactNativeJS(19479): '[HOME-COLD] video:start', '{"sinceFirstRenderMs":3511,"catalogRail":false,"focusTick":1,"homeRuntimeActive":true,"studyTarget":"en","pipelineRunning":false}', { [Stack] name: 'Stack' }
+10-15 15:45:32.315 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=spire_week_modal_probe fallbackMs=2500 proc=6433445ms
+10-15 15:45:32.341 I/ReactNativeJS(19479): [STREAK] home:snapshot_apply source=local snapshot=2 prev=0
+10-15 15:45:32.450 I/ReactNativeJS(19479): [AA-S7] bootstrap skip reason=cutover_off v2=off
+10-15 15:45:32.453 I/ReactNativeJS(19479): [ACCOUNT-V2] auth_sync skip reason=flag_off
+10-15 15:45:32.455 I/ReactNativeJS(19479): [FC-TRAIN-ENTRY] bootstrap:start stableId=3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519 generation=1
+10-15 15:45:32.457 I/ReactNativeJS(19479): [COLD-START] fc_train_entry.bootstrap:start proc=6433593ms src=_layout {"generation":1}
+10-15 15:45:32.468 W/ReactNativeJS(19479): '[BOOTSPLASH] +9805ms splash gate :: {"fontsReady":true,"ready":true,"firstContentReady":true,"homeScreenReady":true,"effectiveShowOnboarding":false,"isBanned":false,"liquidGlassChoiceReady":true,"canHide":true,"sinceFirstContentSetMs":1411}', { [Stack] name: 'Stack' }
+10-15 15:45:32.470 W/ReactNativeJS(19479): '[BOOTSPLASH] +9809ms SplashScreen.hideAsync() пропущен — сплеш уже снят по кадру Главной', { [Stack] name: 'Stack' }
+10-15 15:45:32.473 W/ReactNativeJS(19479): '[COLD-START-HOLD] heavy_init:schedule', '{"ready":true,"effectiveShowOnboarding":false,"isBanned":false,"firstContentReady":true,"started":false,"ran":false,"boot":"+9811ms"}', { [Stack] name: 'Stack' }
+10-15 15:45:32.477 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=heavy_init fallbackMs=2500 proc=6433612ms
+10-15 15:45:32.538 I/ReactNativeJS(19479): [COLD-START] phone_state.identity:start proc=6433675ms src=phone_state_bootstrap
+10-15 15:45:32.547 W/ReactNativeJS(19479): '[HOME-COLD] video:import_done', '{"ms":252,"memo":false}'
+10-15 15:45:32.557 W/ReactNativeJS(19479): '[MANUAL-UPDATE] skip: gate says no', { enabled: false,
+10-15 15:45:32.557 W/ReactNativeJS(19479):   campaignId: '',
+10-15 15:45:32.557 W/ReactNativeJS(19479):   mode: 'optional',
+10-15 15:45:32.557 W/ReactNativeJS(19479):   platformFilter: '',
+10-15 15:45:32.557 W/ReactNativeJS(19479):   platform: 'android',
+10-15 15:45:32.557 W/ReactNativeJS(19479):   targetBuild: '',
+10-15 15:45:32.557 W/ReactNativeJS(19479):   currentBuild: '1.6.24',
+10-15 15:45:32.557 W/ReactNativeJS(19479):   alreadySeen: false,
+10-15 15:45:32.557 W/ReactNativeJS(19479):   userId: '3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519' }
+10-15 15:45:32.564 I/ReactNativeJS(19479): [COLD-START] phone_state.identity:ok proc=6433701ms src=phone_state_bootstrap {"stepMs":26}
+10-15 15:45:32.565 I/ReactNativeJS(19479): [COLD-START] phone_state.account_context:start proc=6433702ms src=phone_state_bootstrap
+10-15 15:45:32.600 I/ReactNativeJS(19479): [INFO] [SPIRE]: tab flag: remote=true dev=false (из кэша remote_config_cache_v1)
+10-15 15:45:32.602 I/ReactNativeJS(19479): [INFO] [SPIRE]: tab flag: remote=true dev=false (из кэша remote_config_cache_v1)
+10-15 15:45:32.608 I/ReactNativeJS(19479): [FS-READS] listen:open #2 users/{id}/access_projection/{id} by=unknown t=14830ms
+10-15 15:45:32.623 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=premium_vip_snapshot_v1:3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519 writesInFlight=0', ''
+10-15 15:45:32.631 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=mistake_practice_v2::en::owner%3A3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519%3Aevent_chunk_v1%3A48eac989a640951223b99726c31653ecdca6d19b4cfb6a3783cd71c48a008a89 writesInFlight=0', ''
+10-15 15:45:32.638 I/ReactNativeJS(19479): '[APP-MESSAGES-REFRESH]', '{"mode":"foreground_interval","markSource":"storage","minIntervalMs":21600000}'
+10-15 15:45:32.650 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=app_messages_cache_v2:3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519 writesInFlight=0', ''
+10-15 15:45:32.734 I/ReactNativeJS(19479): [STREAK] snapshot:personal streak=2 prev=2@local
+10-15 15:45:32.771 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":2,"changed":["myCoinRank","streak","displayStreak","homeStatsReady","belowFoldReady","homeSurvey","weekMoment","welcomeBack","appSnapshot"],"atMs":1083}'
+10-15 15:45:32.828 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#1","n":2,"changed":["bellSlot","avatarSlot","stats"],"atMs":1080}'
+10-15 15:45:32.863 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:continue","window":"refocus#1","n":2,"changed":["onPress"],"atMs":1066}'
+10-15 15:45:32.873 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#1","n":2,"changed":["tiles"],"atMs":1062}'
+10-15 15:45:32.876 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":4,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:32.880 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#1","n":2,"changed":["onSeeAll"],"atMs":1047}'
+10-15 15:45:32.892 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","window":"refocus#1","n":2,"changed":["tasks","onOpenTask"],"atMs":1044}'
+10-15 15:45:33.015 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"home","n":4,"phase":"nested-update","actualMs":140,"baseMs":188,"startedAtMs":6433895,"commitAtMs":6434118}'
+10-15 15:45:33.019 W/ReactNativeJS(19479): '[BOOT-COMMIT]', '{"id":"app_content","phase":"nested-update","actualMs":149,"baseMs":311,"atEpochMs":1792075533016}', { [Stack] name: 'Stack' }
+10-15 15:45:33.026 W/ReactNativeJS(19479): '[FIRST-FRAME] deferred:cancel label=welcome_back_gate stage=before_release phase=waiting_home lost=1 aliveMs=744 proc=6434161ms', { [Stack] name: 'Stack' }
+10-15 15:45:33.033 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=welcome_back_gate fallbackMs=2500 proc=6434168ms
+10-15 15:45:33.043 W/ReactNativeJS(19479): '[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":4,"sinceEntryMs":15463,"source":"react-stack-bottom-frame <- runWithFiberInDEV <- commitHookEffectListMount <- commitHookPassiveMountEffects"}', { [Stack] name: 'Stack' }
+10-15 15:45:33.065 W/ReactNativeJS(19479): '[BOOTSPLASH] +10385ms app_first_content_ready event received :: {"timerAlreadyPending":true}', { [Stack] name: 'Stack' }
+10-15 15:45:33.070 I/ReactNativeJS(19479): '[HOME-LOADDATA-PARTS] parallel6', '{"totalMs":626,"parts":{"streak_week_markers":194,"home_keys":291,"premium_active":291,"personal_progress":626},"gc":"4gc/101ms"}'
+10-15 15:45:33.072 I/ReactNativeJS(19479): [STREAK] home:hydration personal=2 snapshot=2@local streakVal=2 -> 2
+10-15 15:45:33.080 I/ReactNativeJS(19479): [INFO] [SPIRE-CONFIG]: loadSpireConfig: из кэша (возраст=445908мс)
+10-15 15:45:33.084 W/ReactNativeJS(19479): '[HOME-COLD] video_cache:miss', '{"getItemMs":531}'
+10-15 15:45:33.085 W/ReactNativeJS(19479): '[HOME-COLD] video:cache_read', '{"ms":790,"hit":false}'
+10-15 15:45:33.089 W/ReactNativeJS(19479): '[HOME-COLD] video:cache_miss', '{"ms":794}'
+10-15 15:45:33.104 I/ReactNativeJS(19479): [SURVEY-HOME] storage:hit {"ageMs":247741,"hasSurvey":true}
+10-15 15:45:33.105 I/ReactNativeJS(19479): [SURVEY-HOME] cache:fresh → без сети {"ageMs":247218,"hasSurvey":true}
+10-15 15:45:33.108 I/ReactNativeJS(19479): '[SURVEY-ROW]', '{"lang":"ru","source":"cache","ageMin":4,"surveyId":"survey_preset_053__2026-10-15","titleScript":"ru","mismatch":false}'
+10-15 15:45:33.111 I/ReactNativeJS(19479): [SURVEY-HOME] row {"shown":true,"surveyId":"survey_preset_053__2026-10-15"}
+10-15 15:45:33.121 I/ReactNativeJS(19479): '[ACTIVITY-FEED]', 'refresh skipped: ttl', { force: false, sinceLastMs: 252074, minIntervalMs: 43200000 }
+10-15 15:45:33.135 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss many=6 first=premium_active', ''
+10-15 15:45:33.169 I/ReactNativeJS(19479): [TODAY-TASKS] hook:refresh {"reason":"mount_or_target_change","studyTarget":"en","kinds":["lesson","dialog","cards","video","spire_steps"],"pinned":[],"live":{"spireLive":true,"mistakesReady":2,"mistakesActive":2}}
+10-15 15:45:33.172 I/ReactNativeJS(19479): [TODAY-TASKS] hook:refresh {"reason":"mount_or_target_change","studyTarget":"en","kinds":["lesson","dialog","cards","video","spire_steps"],"pinned":[],"live":{"spireLive":true,"mistakesReady":2,"mistakesActive":2}}
+10-15 15:45:33.189 I/ReactNativeJS(19479): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=null)
+10-15 15:45:33.192 W/ReactNativeJS(19479): '[COIN-RECOVER] slow', '{"outcome":"ok","totalMs":863,"stages":{"account_lock_wait":199,"part_phone_state":25,"part_stored_ops":130,"phone_state_and_stored_ops":130,"phone_credit_fingerprints":0,"storage_lock_wait":72,"storage_reads":453,"prepared_fingerprints":1,"practice_journal_reads":1,"compute_projection":6,"compaction":0,"multi_set":0,"prepared_clear":1},"counts":{"phoneCredits":0,"storedOperations":0,"projectionBytes":199,"prepared":0,"projectionOperations":0,"compacted":0,"writes":0,"writeBytes":0,"skippedUnchanged":2}}'
+10-15 15:45:33.195 I/ReactNativeJS(19479): [INFO] runes_wallet:read_unified: {"owner":"3ca0ca0e","balance":0,"earnedTotal":0}
+10-15 15:45:33.197 W/ReactNativeJS(19479): [PREMIUM-RC] RevenueCat не настроен — фоновое обновление Plus пропускается (дальше без повторов)
+10-15 15:45:33.201 I/ReactNativeJS(19479): [PHONE-STATE-DB] key:lineage_read 632мс proc=6434338ms found=true
+10-15 15:45:33.205 I/ReactNativeJS(19479): [COLD-START] phone_state.account_context:ok proc=6434342ms src=phone_state_bootstrap {"stepMs":638}
+10-15 15:45:33.206 I/ReactNativeJS(19479): [COLD-START] phone_state.open_account:start proc=6434343ms src=phone_state_bootstrap
+10-15 15:45:33.214 I/ReactNativeJS(19479): [COLD-START] phone_state.db_open:start proc=6434351ms src=phone_state_runtime
+10-15 15:45:33.219 I/ReactNativeJS(19479): [PHONE-STATE-DB] key:digest 1мс proc=6434356ms
+10-15 15:45:33.242 I/ReactNativeJS(19479): '[HOME-LOADDATA-PARTS] lessons_read', '{"ms":166,"keys":33,"gc":"1gc/18ms"}'
+10-15 15:45:33.243 I/ReactNativeJS(19479): [HOME-FIRST-FRAME] continue_card:none — заготовка снята
+10-15 15:45:33.246 W/ReactNativeJS(19479): '[HOME-COLD] lesson_card:none', '{"lastId":null,"atEpochMs":1792075533245}'
+10-15 15:45:33.256 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=last_active_date writesInFlight=0', ''
+10-15 15:45:33.287 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":3,"changed":["userName","weekMarkers","continueResolved","mistakeReadySnapshot","userFrame","specialTitleStats","runesKnown","homeSurvey","weekMoment","welcomeBack","appSnapshot"],"atMs":1599}'
+10-15 15:45:33.296 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#1","n":3,"changed":["bellSlot","avatarSlot","stats"],"atMs":1548}'
+10-15 15:45:33.396 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#1","n":3,"changed":["tiles"],"atMs":1585}'
+10-15 15:45:33.400 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":5,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:33.405 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#1","n":3,"changed":["onSeeAll"],"atMs":1573}'
+10-15 15:45:33.423 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","window":"refocus#1","n":3,"changed":["tasks","onOpenTask","surveyRow"],"atMs":1574}'
+10-15 15:45:33.610 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"home","n":5,"phase":"nested-update","actualMs":166,"baseMs":192,"startedAtMs":6434420,"commitAtMs":6434726}'
+10-15 15:45:33.614 W/ReactNativeJS(19479): '[BOOT-COMMIT]', '{"id":"app_content","phase":"nested-update","actualMs":220,"baseMs":338,"atEpochMs":1792075533612}', { [Stack] name: 'Stack' }
+10-15 15:45:33.638 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:continue","stage":"renders_window","window":"refocus#1","count":2,"byCause":{"onPress":2},"ms":1839}'
+10-15 15:45:33.653 I/ReactNativeJS(19479): '[HOME-NAME] snapshot_changed → обновляем имя на Главной', '{"fromLen":0,"toLen":11}'
+10-15 15:45:33.662 I/ReactNativeJS(19479): '[HOME-CONTINUE] card', '{"visible":false,"reason":"no_last_lesson","lessonId":null,"progress":null,"studyTarget":"en","source":"hydration_or_loadData"}'
+10-15 15:45:33.680 I/ReactNativeJS(19479): '[HOME-COINS] boot:read', '{"balance":0}'
+10-15 15:45:33.681 W/ReactNativeJS(19479): '[BOOT-SNAPSHOT] parts', '{"runesImportMs":1,"settingsMs":554,"runesPeekMs":555,"multiGetMs":556,"keys":43,"sincePrimeStartMs":2454}'
+10-15 15:45:33.688 W/ReactNativeJS(19479): '[BOOT-SNAPSHOT] published', '{"ms":2460,"preReadMs":1898,"publishedAtEpochMs":1792075533687,"lastOpenedKey":"last_opened_lesson","lastOpenedLesson":null,"lastOpenedLessonCorrect":null,"studyTarget":"en","lessonProgressKeysFound":1}'
+10-15 15:45:33.709 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":4,"changed":["homeSurvey","weekMoment","welcomeBack","appSnapshot"],"atMs":2022}'
+10-15 15:45:33.721 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#1","n":4,"changed":["bellSlot","avatarSlot","stats"],"atMs":1972}'
+10-15 15:45:33.762 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#1","n":4,"changed":["tiles"],"atMs":1951}'
+10-15 15:45:33.763 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":6,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:33.768 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#1","n":4,"changed":["onSeeAll"],"atMs":1935}'
+10-15 15:45:33.780 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","window":"refocus#1","n":4,"changed":["tasks","onOpenTask","surveyRow"],"atMs":1932}'
+10-15 15:45:33.864 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"home","n":6,"phase":"nested-update","actualMs":82,"baseMs":196,"startedAtMs":6434843,"commitAtMs":6434989}'
+10-15 15:45:33.868 W/ReactNativeJS(19479): '[BOOT-COMMIT]', '{"id":"app_content","phase":"nested-update","actualMs":89,"baseMs":343,"atEpochMs":1792075533864}', { [Stack] name: 'Stack' }
+10-15 15:45:33.911 W/ReactNativeJS(19479): '[BOOT-SNAPSHOT] runes_patched', '{"ms":2682}'
+10-15 15:45:33.933 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":5,"changed":["homeSurvey","weekMoment","welcomeBack","appSnapshot"],"atMs":2246}'
+10-15 15:45:33.950 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#1","n":5,"changed":["bellSlot","avatarSlot","stats"],"atMs":2201}'
+10-15 15:45:34.037 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#1","n":5,"changed":["tiles"],"atMs":2226}'
+10-15 15:45:34.038 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":7,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:34.041 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#1","n":5,"changed":["onSeeAll"],"atMs":2209}'
+10-15 15:45:34.056 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","window":"refocus#1","n":5,"changed":["tasks","onOpenTask","surveyRow"],"atMs":2207}'
+10-15 15:45:34.181 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"home","n":7,"phase":"nested-update","actualMs":142,"baseMs":229,"startedAtMs":6435066,"commitAtMs":6435309}'
+10-15 15:45:34.220 W/ReactNativeJS(19479): '[BOOT-COMMIT]', '{"id":"app_content","phase":"nested-update","actualMs":155,"baseMs":375,"atEpochMs":1792075534181}', { [Stack] name: 'Stack' }
+10-15 15:45:34.232 I/ReactNativeJS(19479): [PHONE-STATE-DB] key:secure_store_read 1012мс proc=6435369ms found=true
+10-15 15:45:34.240 W/ReactNativeJS(19479): '[PREMIUM-RESOLVE] reload:exit', '{"reason":"stale_after_verified_local","epoch":1,"currentEpoch":2,"totalMs":3083,"steps":{"identity_sync:false":312,"dev_override":1146,"verified_local":1625}}'
+10-15 15:45:34.250 I/ReactNativeJS(19479): [INTRO-REMOVED] get_state now=1792075534246: «Бонус на старт» выключен (D186) — состояние неактивно, выдачи нет
+10-15 15:45:34.254 W/ReactNativeJS(19479): '[PREMIUM-RESOLVE] reload:not_resolved', '{"requestedEpoch":1,"currentEpoch":2,"resolvedEpoch":null}'
+10-15 15:45:34.293 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":6,"changed":["homeSurvey","weekMoment","welcomeBack"],"atMs":2606}'
+10-15 15:45:34.362 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"home","n":8,"phase":"update","actualMs":0,"baseMs":229,"startedAtMs":6435427,"commitAtMs":6435477}'
+10-15 15:45:34.370 I/ReactNativeJS(19479): [TODAY-TASKS] available:set {"kinds":["lesson","dialog","cards","video","spire_steps"]}
+10-15 15:45:34.382 I/ReactNativeJS(19479): [PHONE-STATE-DB] deferred_integrity:flag_read pending=false
+10-15 15:45:34.383 I/ReactNativeJS(19479): [PHONE-STATE-DB] deferred_integrity:flag_read_ms 1169
+10-15 15:45:34.390 I/ReactNativeJS(19479): [PHONE-STATE-DB] key:credentials_from_memory
+10-15 15:45:34.393 I/ReactNativeJS(19479): [PHONE-STATE-DB] open:credentials 4мс
+10-15 15:45:34.402 I/ReactNativeJS(19479): [PHONE-STATE-DB] open:in "phone-state-v1-a8b08e623773066c663e73707b9173f7-1.db" +1ms step=1ms proc=6435539ms jsLagMax=0ms
+10-15 15:45:34.423 I/ReactNativeJS(19479): [WINBACK-FREEZE] t=34423 gate no reason=recent awayDays=0
+10-15 15:45:34.429 I/ReactNativeJS(19479): [WINBACK-FREEZE] t=34428 check decision show=false isPremium=false introPending=false path=/
+10-15 15:45:34.457 I/ReactNativeJS(19479): [TODAY-TASKS] load:from_disk {"dayKey":"2026-10-15","kinds":["lesson","video","spire_steps"]}
+10-15 15:45:34.608 I/ReactNativeJS(19479): [WELCOME-BACK] signal skip reason=recent awayDays=0.0
+10-15 15:45:34.617 I/ReactNativeJS(19479): [PERF] home:loadData: 2175ms  ⚠️ SLOW
+10-15 15:45:34.622 I/ReactNativeJS(19479): [PERF-STEPS] home:loadData: total=2176ms · parallel6=628ms · streak=4ms · avatar=1ms · titles+achievements+greeting=0ms · titles+achievements=0ms · lessons+unlockLoop=173ms  ⚠️ SLOW
+10-15 15:45:34.646 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":7,"changed":["todayTasks","homeSurvey","weekMoment","welcomeBack"],"atMs":2959}'
+10-15 15:45:34.670 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#1","n":6,"changed":["bellSlot","avatarSlot","stats"],"atMs":2922}'
+10-15 15:45:34.699 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#1","n":6,"changed":["tiles"],"atMs":2888}'
+10-15 15:45:34.700 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":8,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:34.703 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#1","n":6,"changed":["onSeeAll"],"atMs":2872}'
+10-15 15:45:34.715 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","window":"refocus#1","n":6,"changed":["tasks","onOpenTask","surveyRow"],"atMs":2863}'
+10-15 15:45:34.824 W/ReactNativeJS(19479): '[BOOT-COMMIT]', '{"id":"app_content","phase":"update","actualMs":119,"baseMs":348,"atEpochMs":1792075534812}', { [Stack] name: 'Stack' }
+10-15 15:45:34.831 I/ReactNativeJS(19479): [PHONE-STATE-DB] open:step 1/5 файл открыт +431ms step=430ms proc=6435969ms jsLagMax=0ms
+10-15 15:45:34.844 I/ReactNativeJS(19479): [PHONE-STATE-DB] open:step 2/5 ключ применён +443ms step=12ms proc=6435981ms jsLagMax=0ms
+10-15 15:45:34.909 I/ReactNativeJS(19479): [INFO] [STARTUP-READS]: app_messages: cache (ageMs=250485 < minIntervalMs=21600000) -> network skipped
+10-15 15:45:34.914 I/ReactNativeJS(19479): [PHONE-STATE-DB] open:step 3/5 cipher_version={"cipher_version":"4.7.0 community"} +514ms step=71ms proc=6436052ms jsLagMax=0ms
+10-15 15:45:34.916 I/ReactNativeJS(19479): [PHONE-STATE-DB] open:step 4/5 полная проверка целостности отложена в фон +516ms step=2ms proc=6436054ms jsLagMax=0ms
+10-15 15:45:34.949 I/ReactNativeJS(19479): '[OVERLAY-QUEUE]', '{"holder":"никто","asking":[],"waiting":[],"wants":{"update":false,"authRecovery":false,"releaseNotes":null,"broadcast":null,"appMessageModal":null,"personalAdminMessage":null,"notifNudge":false},"onboarding":false}'
+10-15 15:45:34.979 I/ReactNativeJS(19479): [PHONE-STATE-DB] open:step 5/5 страница данных расшифрована, sqlite_master tables=35, user_version={"user_version":1} +578ms step=62ms proc=6436116ms jsLagMax=0ms
+10-15 15:45:35.005 I/ReactNativeJS(19479): [PHONE-STATE-DB] open:step 6/6 проба записи прошла через WAL — база пригодна +604ms step=26ms proc=6436142ms jsLagMax=0ms
+10-15 15:45:35.005 I/ReactNativeJS(19479): [PHONE-STATE-DB] open:ok +605ms step=1ms proc=6436142ms jsLagMax=0ms
+10-15 15:45:35.006 I/ReactNativeJS(19479): [COLD-START] phone_state.db_open:ok proc=6436143ms src=phone_state_runtime {"stepMs":1793}
+10-15 15:45:35.008 I/ReactNativeJS(19479): [COLD-START] phone_state.schema_migrate:start proc=6436145ms src=phone_state_runtime
+10-15 15:45:35.053 I/ReactNativeJS(19479): [COLD-START] phone_state.schema_migrate:ok proc=6436180ms src=phone_state_runtime {"stepMs":34}
+10-15 15:45:35.210 I/ReactNativeJS(19479): [COLD-START] phone_state.open_account:ok proc=6436347ms src=phone_state_bootstrap {"stepMs":2005}
+10-15 15:45:35.213 I/ReactNativeJS(19479): [COLD-START] phone_state.import_legacy:start proc=6436348ms src=phone_state_bootstrap
+10-15 15:45:35.216 I/ReactNativeJS(19479): [COLD-START] phone_state.import_core_progress:start proc=6436352ms src=phone_state_runtime
+10-15 15:45:35.226 I/ReactNativeJS(19479): [COLD-START] phone_state.import_core_progress:ok proc=6436364ms src=phone_state_runtime {"stepMs":12}
+10-15 15:45:35.233 I/ReactNativeJS(19479): [COLD-START] phone_state.import_registers:start proc=6436364ms src=phone_state_runtime
+10-15 15:45:35.243 I/ReactNativeJS(19479): [COLD-START] phone_state.import_registers:ok proc=6436380ms src=phone_state_runtime {"stepMs":16}
+10-15 15:45:35.244 I/ReactNativeJS(19479): [COLD-START] phone_state.import_economy:start proc=6436381ms src=phone_state_runtime
+10-15 15:45:35.267 I/ReactNativeJS(19479): [COLD-START] phone_state.import_economy:ok proc=6436403ms src=phone_state_runtime {"stepMs":21}
+10-15 15:45:35.268 I/ReactNativeJS(19479): [COLD-START] phone_state.import_legacy:ok proc=6436405ms src=phone_state_bootstrap {"stepMs":56}
+10-15 15:45:35.269 I/ReactNativeJS(19479): [COLD-START] phone_state.install_sync:start proc=6436407ms src=phone_state_bootstrap
+10-15 15:45:35.288 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=client_shard_phone_state_backfill fallbackMs=2500 proc=6436425ms
+10-15 15:45:35.306 I/ReactNativeJS(19479): [COLD-START] phone_state.install_sync:ok proc=6436443ms src=phone_state_bootstrap {"stepMs":37}
+10-15 15:45:35.307 I/ReactNativeJS(19479): [FC-TRAIN-ENTRY] bootstrap:ok started=true за 2853мс (started=false → lifecycle не сконфигурирован)
+10-15 15:45:35.312 I/ReactNativeJS(19479): [COLD-START] fc_train_entry.bootstrap:ok proc=6436447ms src=_layout {"started":true,"totalMs":2855}
+10-15 15:45:35.333 I/ReactNativeJS(19479): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=null)
+10-15 15:45:35.350 I/ReactNativeJS(19479): [PHONE-STATE-DB] deferred_integrity:scheduled через 30000мс
+10-15 15:45:35.424 I/ReactNativeJS(19479): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=null)
+10-15 15:45:36.412 W/ReactNativeJS(19479): [JS-STALL] +13752ms поток стоял 5363ms (с +8389ms)
+10-15 15:45:36.415 W/ReactNativeJS(19479): [JS-STALL] heartbeat +13752ms splash=hidden@+8204ms
+10-15 15:45:36.417 W/ReactNativeJS(19479): '[BOOTSPLASH-EVT] emit app_first_content_ready', '{"n":5,"sinceEntryMs":18842,"source":"emitFirstHomeFrameReady <- apply"}'
+10-15 15:45:36.424 W/ReactNativeJS(19479): [BOOTSPLASH] +13758ms app_first_content_ready event received :: {"timerAlreadyPending":true}
+10-15 15:45:36.441 W/ReactNativeJS(19479): '[NET-STATUS] transition', '{"from":"unknown","to":"online","listeners":1}'
+10-15 15:45:36.446 W/ReactNativeJS(19479): '[NET-BANNER] status', '{"online":true,"wasOffline":false,"wouldShowBackOnline":false}'
+10-15 15:45:36.449 W/ReactNativeJS(19479): [LESSON-EXIT] layout:rootIndex_navigate_home_check currentRoute=(tabs) params={"screen":"home","params":{}} pathnameFromRender="/" action=keep
+10-15 15:45:36.456 W/ReactNativeJS(19479): [BOOTSPLASH] +13796ms firstContentReady timer fired -> setFirstContentReady(true) :: {"plannedMs":32,"lateMs":5362}
+10-15 15:45:36.460 I/ReactNativeJS(19479): '[TABS-PREMOUNT] start', '{"reason":"home_painted","startTabIdx":0,"startedAlready":false}'
+10-15 15:45:36.465 I/ReactNativeJS(19479): '[LESSONS-REBUILD] premount_release', '{"reason":"home_painted","outcome":"not_active","heldMs":0,"cancelled":false}'
+10-15 15:45:36.467 W/ReactNativeJS(19479): [BOOTSPLASH] +13808ms startupLocalHydration RACE DONE
+10-15 15:45:36.470 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=achievements_coins_boot_check fallbackMs=2500 proc=6437607ms
+10-15 15:45:36.495 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=paywall_price_cache_warmup fallbackMs=2500 proc=6437632ms
+10-15 15:45:36.504 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=published_pack_card_remove_flush fallbackMs=2500 proc=6437639ms
+10-15 15:45:36.524 I/ReactNativeJS(19479): [COLD-START] pre_ready.primary_tab_images:start proc=6437660ms src=_layout
+10-15 15:45:36.549 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=sound_v2_boot fallbackMs=2500 proc=6437685ms
+10-15 15:45:36.550 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:register label=v2_audio_seed fallbackMs=2500 proc=6437687ms
+10-15 15:45:36.550 W/ReactNativeJS(19479): [BOOTSPLASH] +13891ms setReady(true) — bootstrap COMPLETE
+10-15 15:45:36.553 I/ReactNativeJS(19479): [COLD-START] pre_ready.primary_tab_images:ok proc=6437689ms src=_layout {"stepMs":28}
+10-15 15:45:36.553 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=legacy_bonus_welcome trigger=home_painted splash=hidden waitedMs=4336
+10-15 15:45:36.554 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=legacy_bonus_welcome proc=6437691ms
+10-15 15:45:36.555 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=legacy_bonus_welcome taskMs=1 syncMs=1 proc=6437692ms
+10-15 15:45:36.627 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=spire_week_moment_gate trigger=home_painted splash=hidden waitedMs=4359
+10-15 15:45:36.629 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=spire_week_moment_gate proc=6437766ms
+10-15 15:45:36.691 I/ReactNativeJS(19479): [INFO] [SPIRE]: [D191-GATE] вход ui=ru study=en tab=true now=2026-10-15T14:45:36.690Z
+10-15 15:45:36.702 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:sync_heavy label=spire_week_moment_gate syncMs=64 proc=6437830ms
+10-15 15:45:36.703 I/ReactNativeJS(19479): [INFO] [SPIRE]: [D191-GATE] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 15:45:36.703 I/ReactNativeJS(19479): [INFO] [SPIRE]: [D191-GATE] не показываем: флаг moments_v3 выключен
+10-15 15:45:36.704 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=spire_week_moment_gate taskMs=76 syncMs=64 proc=6437841ms
+10-15 15:45:36.705 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=coin_rank_enough_gate trigger=home_painted splash=hidden waitedMs=4419
+10-15 15:45:36.706 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=coin_rank_enough_gate proc=6437843ms
+10-15 15:45:36.710 I/ReactNativeJS(19479): [INFO] [RANK-ENOUGH]: нет (first_frame): флаг moments_v3 выключен
+10-15 15:45:36.710 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=coin_rank_enough_gate taskMs=5 syncMs=4 proc=6437848ms
+10-15 15:45:36.711 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=spire_week_modal_probe trigger=home_painted splash=hidden waitedMs=4403
+10-15 15:45:36.712 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=spire_week_modal_probe proc=6437849ms
+10-15 15:45:36.736 I/ReactNativeJS(19479): [INFO] [SPIRE]: [SPIRE-WEEK-MODAL] вход ui=ru study=en tab=true
+10-15 15:45:36.737 I/ReactNativeJS(19479): '[PM-214] spire_config_warm', '{"source":"memory","ms":0}'
+10-15 15:45:36.759 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=heavy_init trigger=home_painted splash=hidden waitedMs=4284
+10-15 15:45:36.767 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=heavy_init proc=6437898ms
+10-15 15:45:36.773 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=heavy_init taskMs=8 syncMs=8 proc=6437906ms
+10-15 15:45:36.786 I/ReactNativeJS(19479): '[PERF-R1]', '{"screen":"home","stage":"commits_3s","commits":8,"ms":7989}'
+10-15 15:45:36.794 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=welcome_back_gate trigger=home_painted splash=hidden waitedMs=3757
+10-15 15:45:36.799 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=welcome_back_gate proc=6437934ms
+10-15 15:45:36.842 I/ReactNativeJS(19479): [WELCOME-BACK] вход study=en rank=0 energy=5/5
+10-15 15:45:36.866 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:sync_heavy label=welcome_back_gate syncMs=55 proc=6437988ms
+10-15 15:45:36.883 I/ReactNativeJS(19479): [WELCOME-BACK] флаг moments_v3: remote=false dev=false кэш=есть
+10-15 15:45:36.883 I/ReactNativeJS(19479): [WELCOME-BACK] не показываем: флаг moments_v3 выключен
+10-15 15:45:36.884 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=welcome_back_gate taskMs=88 syncMs=55 proc=6438021ms
+10-15 15:45:36.892 I/ReactNativeJS(19479): '[MEM-TICK]', '{"tSec":14,"route":"/","heapMb":40,"gc":"34gc/713ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":107,"timeoutsByCaller":{"anonymous <- react-stack-bottom-frame":20,"anonymous <- tryCallTwo (address at InternalBytecode.js:1:1222)":16,"runAfterHomeFirstFrame <- anonymous":13,"onAppEvent <- runAfterHomeFirstFrame":13,"runAfterHomeFirstFrame <- ?anon_0_":6},"pendingTimeouts":32,"firestoreReads":{"banned_users":1,"users":3},"firestoreReadsByCaller":{"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc_listen|?anon_0_ <- next (native)":{"listen":1},"users|doc|apply (native) <- anonymous":{"pending":1}}}'
+10-15 15:45:36.978 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=client_shard_phone_state_backfill trigger=home_painted splash=hidden waitedMs=1689
+10-15 15:45:36.981 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=client_shard_phone_state_backfill proc=6438116ms
+10-15 15:45:37.053 W/ReactNativeJS(19479): [SFX-PREWARM] startup start reason=startup:painted sinceMountMs=9813
+10-15 15:45:37.060 I/ReactNativeJS(19479): [SFX-PREWARM] enqueue added=3 queued=3 running=false
+10-15 15:45:37.439 W/ReactNativeJS(19479): [SFX-PREWARM] step event=pm.ui.tap_soft ms=372 left=2 slow
+10-15 15:45:37.449 I/ReactNativeJS(19479): [SFX-PREWARM] lesson_end reason=startup:painted
+10-15 15:45:37.450 I/ReactNativeJS(19479): [SFX-PREWARM] enqueue added=4 queued=6 running=true
+10-15 15:45:37.477 I/ReactNativeJS(19479): [FS-READS] +1 get banned_users/{id} by=unknown t=19696ms
+10-15 15:45:37.484 W/ReactNativeJS(19479): [ACC-MUT] firestore_cache_clear failed code=firestore/failed-precondition ms=5897 — метка оставлена, повтор на следующем старте (Firestore уже был запущен)
+10-15 15:45:37.506 I/ReactNativeJS(19479): [FIRESTORE-FIRST-TOUCH] clear_end failed touches=0 ms=6438637
+10-15 15:45:37.575 I/ReactNativeJS(19479): [FS-READS] +1 get users/{id} by=unknown t=19796ms
+10-15 15:45:37.587 I/ReactNativeJS(19479): [BAN-CHECK] restore_doc noted banned=false waiters=1
+10-15 15:45:37.595 I/ReactNativeJS(19479): [BAN-CHECK] users/{uid} из восстановления ageMs=6 banned=false (второе чтение не нужно)
+10-15 15:45:37.611 I/ReactNativeJS(19479): [FS-READS] +1 get users/{id} by=readGiftProgressFromNetwork t=19833ms
+10-15 15:45:37.615 I/ReactNativeJS(19479): [GIFT-ACCESS-READ] network users/3ca0ca ms=3192
+10-15 15:45:37.658 I/ReactNativeJS(19479): [PREMIUM-CLOUD] restore joined_in_flight_boot_restore — второе восстановление не запускаем
+10-15 15:45:37.663 W/ReactNativeJS(19479): [JS-STALL] +15003ms поток стоял 1251ms (с +13752ms)
+10-15 15:45:37.671 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=achievements_coins_boot_check trigger=home_painted splash=hidden waitedMs=1197
+10-15 15:45:37.675 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=achievements_coins_boot_check proc=6438810ms
+10-15 15:45:37.680 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=paywall_price_cache_warmup trigger=home_painted splash=hidden waitedMs=1184
+10-15 15:45:37.685 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=paywall_price_cache_warmup proc=6438820ms
+10-15 15:45:37.695 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=published_pack_card_remove_flush trigger=home_painted splash=hidden waitedMs=1191
+10-15 15:45:37.698 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=published_pack_card_remove_flush proc=6438833ms
+10-15 15:45:37.701 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=sound_v2_boot trigger=home_painted splash=hidden waitedMs=1152
+10-15 15:45:37.705 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=sound_v2_boot proc=6438840ms
+10-15 15:45:37.721 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:release label=v2_audio_seed trigger=home_painted splash=hidden waitedMs=1171
+10-15 15:45:37.726 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:start label=v2_audio_seed proc=6438860ms
+10-15 15:45:37.742 I/ReactNativeJS(19479): [STREAK] snapshot:personal streak=2 prev=2@storage
+10-15 15:45:37.778 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":8,"changed":["homeSurvey","weekMoment","welcomeBack","appSnapshot"],"atMs":6090}'
+10-15 15:45:37.796 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#1","n":7,"changed":["bellSlot","avatarSlot","stats"],"atMs":6047}'
+10-15 15:45:37.870 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#1","n":7,"changed":["tiles"],"atMs":6058}'
+10-15 15:45:37.874 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":9,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:37.879 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#1","n":7,"changed":["onSeeAll"],"atMs":6046}'
+10-15 15:45:37.896 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","window":"refocus#1","n":7,"changed":["tasks","onOpenTask","surveyRow"],"atMs":6045}'
+10-15 15:45:38.038 I/ReactNativeJS(19479): [FIRST-FRAME] deferred:cancel label=legacy_bonus_welcome stage=after_release phase=done lost=0 aliveMs=5813 proc=6439168ms
+10-15 15:45:38.048 I/ReactNativeJS(19479): '[HOME-LOADDATA-PARTS] parallel6', '{"totalMs":1293,"parts":{"streak_week_markers":988,"home_keys":988,"premium_active":988,"personal_progress":1293},"gc":"4gc/118ms"}'
+10-15 15:45:38.051 I/ReactNativeJS(19479): [STREAK] home:hydration personal=2 snapshot=2@local streakVal=2 -> 2
+10-15 15:45:38.186 W/ReactNativeJS(19479): '[HOME-COLD] video_feed:network_ok', '{"ms":4508,"videos":15}'
+10-15 15:45:38.195 W/ReactNativeJS(19479): '[HOME-COLD] video:resolved', '{"source":"network","alive":true,"ms":5899,"sinceFirstRenderMs":9410,"videos":15,"error":null}'
+10-15 15:45:38.199 W/ReactNativeJS(19479): [JS-STALL] +15539ms поток стоял 536ms (с +15003ms)
+10-15 15:45:38.222 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=lv2_completion_scheduler_install taskMs=7353 syncMs=3 proc=6439357ms
+10-15 15:45:38.226 W/ReactNativeJS(19479): '[COLD-START-HOLD] heavy_init:run', '{"hasRunner":true,"boot":"+15564ms"}'
+10-15 15:45:38.247 I/ReactNativeJS(19479): [INFO] [STARTUP-READS]: marketplace prefetch: no-op (catalog stub, 0 reads)
+10-15 15:45:38.373 I/ReactNativeJS(19479): [INFO] [STORY-EVENTS]: flag: remote=false dev=false source=remote_config_changed cache=present
+10-15 15:45:38.425 I/ReactNativeJS(19479): [GIFT-ACCESS-READ] seed from restore users/3ca0ca loyaltyActive=false
+10-15 15:45:38.702 W/ReactNativeJS(19479): [JS-STALL] +16038ms поток стоял 287ms (с +15751ms)
+10-15 15:45:38.709 W/ReactNativeJS(19479): [COLD-START-IO] summary windowMs=15000 startedEpochMs=1792075522672 calls=189 groups=136 maxInflight=32 patched={"asyncGetItem":true,"asyncSetItem":true,"asyncRemoveItem":true,"asyncMergeItem":true,"asyncMultiGet":true,"asyncMultiSet":true,"asyncMultiRemove":true,"asyncGetAllKeys":true,"secureGet":true,"secureSet":true,"secureDelete":true} top=["AS.multiGet:[2]tester_no_premium n=9 total=4500ms max=1158ms","AS.get:spire_tab_dev_override_v# n=3 total=2716ms max=1215ms","AS.get:fc_low_power_override_v# n=1 total=2696ms max=2696ms","AS.getAllKeys:* n=5 total=2554ms max=1387ms","AS.get:voice_last_known_access_v# n=1 total=2516ms max=2516ms","AS.get:dev_moments_v#_override n=2 total=2165ms max=1219ms","AS.get:achievements_v#::fr::achievements_v# n=2 total=1978ms max=1440ms","AS.get:fc_gallery_step_v# n=1 total=1936ms max=1936ms","AS.get:achievements_v# n=2 total=1840ms max=1302ms","AS.get:mistake_practice_v#::en::owner%#A#ca#ca#e-#c#a-#deb-ac#-a#bd n=3 total=1809ms max=1055ms"] lock={"acquisitions":6,"maxQueueDepth":0,"maxWaitMs":0,"slowWaits":0,"maxHoldMs":535,"deadlineTimeouts":0} callers=["AS.getAllKeys<?anon_0_ @&platform=android&dev=true&lazy=false&minify=false&app=app.p < next (native) n=5","AS.get<readStoredItem @&platform=android&dev=true&lazy=false&minify=false&app < ?anon_0_ @&platform=android&dev=true&lazy=false&minify=false&app=app.p n=3","AS.get<?anon_0_ @&platform=android&dev=true&lazy=false&minify=false&app=app.p < next (native) n=1"]
+10-15 15:45:38.718 I/ReactNativeJS(19479): [INFO] [PAYWALL]: кэш цен: диск → пусто
+10-15 15:45:38.731 W/ReactNativeJS(19479): [PAYWALL] цены прогреты: нет кэша importMs=0 hydrateMs=1030
+10-15 15:45:38.738 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=paywall_price_cache_warmup taskMs=1050 syncMs=6 proc=6439871ms
+10-15 15:45:38.753 I/ReactNativeJS(19479): [SOUND-V2] flag: sound_v2=false (из кэша remote_config_cache_v1, раньше=null)
+10-15 15:45:38.771 I/ReactNativeJS(19479): [SOUND-V2] prime ms=1037 flag=off — файлы не грузим, старые звуки без изменений
+10-15 15:45:38.783 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=sound_v2_boot taskMs=1069 syncMs=8 proc=6439909ms
+10-15 15:45:38.857 I/ReactNativeJS(19479): [SFX-PREWARM] step event=pm.ui.tap_primary ms=64 left=5
+10-15 15:45:38.865 I/ReactNativeJS(19479): [INFO] [SPIRE]: [SPIRE-WEEK-CARD] where=home_week_modal weekId=2026-W41 lang=en peek_skip: в комнате не сидел (недели=—) — 0 чтений
+10-15 15:45:38.873 I/ReactNativeJS(19479): [INFO] [SPIRE]: [SPIRE-WEEK-MODAL] не показали бы: итога прошлой недели нет / уже показан / не играл (lang=en)
+10-15 15:45:38.874 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=spire_week_modal_probe taskMs=2161 syncMs=1 proc=6440011ms
+10-15 15:45:38.903 W/ReactNativeJS(19479): [LEGACY-BONUS] failed source=owner_changed reason=NOT_FOUND ms=7716
+10-15 15:45:38.924 I/ReactNativeJS(19479): '[HOME-LOADDATA-PARTS] lessons_read', '{"ms":849,"keys":33,"gc":"6gc/79ms"}'
+10-15 15:45:38.970 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":9,"changed":["weekMarkers","homeV2Videos","homeV2VideoStatus","specialTitleStats","homeSurvey","weekMoment","welcomeBack","appSnapshot"],"atMs":7281}'
+10-15 15:45:39.020 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#1","n":8,"changed":["bellSlot","avatarSlot","stats"],"atMs":7259}'
+10-15 15:45:39.063 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#1","n":8,"changed":["tiles"],"atMs":7251}'
+10-15 15:45:39.070 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":10,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:39.084 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#1","n":8,"changed":["videos","status","onSeeAll"],"atMs":7248}'
+10-15 15:45:39.231 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","window":"refocus#1","n":8,"changed":["tasks","onOpenTask","surveyRow"],"atMs":7383}'
+10-15 15:45:39.358 W/ReactNativeJS(19479): [JS-STALL] +16698ms поток стоял 454ms (с +16244ms)
+10-15 15:45:39.391 I/ReactNativeJS(19479): [INFO] [SPIRE]: tab flag: remote=true dev=false (из кэша remote_config_cache_v1)
+10-15 15:45:39.394 I/ReactNativeJS(19479): [INFO] [SPIRE]: tab flag: remote=true dev=false (из кэша remote_config_cache_v1)
+10-15 15:45:39.397 I/ReactNativeJS(19479): [SOUND-V2] flag: sound_v2=false (из кэша remote_config_cache_v1, раньше=null)
+10-15 15:45:39.399 I/ReactNativeJS(19479): [INFO] [STARTUP-READS]: remote_config: cache fresh (ageMin=11, ttlMin=360) -> network skipped
+10-15 15:45:39.404 I/ReactNativeJS(19479): [PHONE-STATE-DB] key:lineage_read 709мс proc=6440541ms found=true
+10-15 15:45:39.411 I/ReactNativeJS(19479): '[DIALOGUE-V2] warm', '{"event":"sent","source":"home_tile","tookMs":1678,"failed":[]}'
+10-15 15:45:39.623 W/ReactNativeJS(19479): [SFX-PREWARM] step event=pm.ui.tap_blocked ms=209 left=4 slow
+10-15 15:45:39.671 I/ReactNativeJS(19479): [THUMB] start home_video_rail id=RM4wp5OzsVI url=i3.ytimg.com/vi/RM4wp5OzsVI/hqdefault.jpg
+10-15 15:45:39.675 I/ReactNativeJS(19479): [THUMB] start home_video_rail id=cnrVN_uz7Sg url=i4.ytimg.com/vi/cnrVN_uz7Sg/hqdefault.jpg
+10-15 15:45:39.676 I/ReactNativeJS(19479): [THUMB] start home_video_rail id=rGPfdiI3S1k url=i3.ytimg.com/vi/rGPfdiI3S1k/hqdefault.jpg
+10-15 15:45:39.694 I/ReactNativeJS(19479): [THUMB] start home_video_rail id=OHxgJuazJO0 url=i4.ytimg.com/vi/OHxgJuazJO0/hqdefault.jpg
+10-15 15:45:39.696 I/ReactNativeJS(19479): [THUMB] start home_video_rail id=2pL6Et4DnA8 url=i3.ytimg.com/vi/2pL6Et4DnA8/hqdefault.jpg
+10-15 15:45:39.701 I/ReactNativeJS(19479): [THUMB] start home_video_rail id=Tyo95ydzoPs url=i1.ytimg.com/vi/Tyo95ydzoPs/hqdefault.jpg
+10-15 15:45:39.706 I/ReactNativeJS(19479): [THUMB] start home_video_rail id=GKn9GmHndMQ url=i4.ytimg.com/vi/GKn9GmHndMQ/hqdefault.jpg
+10-15 15:45:39.712 I/ReactNativeJS(19479): [THUMB] start home_video_rail id=Ert2Mhtjb0g url=i2.ytimg.com/vi/Ert2Mhtjb0g/hqdefault.jpg
+10-15 15:45:39.837 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":10,"changed":["homeSurvey","weekMoment","welcomeBack"],"atMs":8076}'
+10-15 15:45:40.029 I/ReactNativeJS(19479): [SFX-PREWARM] step event=pm.complete.micro ms=54 left=3
+10-15 15:45:40.099 I/ReactNativeJS(19479): [OVERLAY-QUEUE] broadcast:fetch → null reason=no_valid_payload items=1
+10-15 15:45:40.107 I/ReactNativeJS(19479): [OVERLAY-QUEUE] broadcast: запрошено id=нет kind=- награда=-
+10-15 15:45:40.157 W/ReactNativeJS(19479): [PLUS-TRANSFER] check rate_limited {"trigger":"startup","sinceLastMs":260984,"attempts":1,"t":6441290}
+10-15 15:45:40.259 W/ReactNativeJS(19479): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":3259,"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:114584:33) <- anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:98814:14) <- anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:98806:25) <- ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:1383317:64) <- anonymous","waitedMs":1}'
+10-15 15:45:40.265 W/ReactNativeJS(19479): '[ACCOUNT-LOCK] wait_exceeded', '{"waitedMs":2041,"caller":"withExactActiveScope <- loadLearningV2CompletionRetryCursor <- loadCursor","blockedBy":[{"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:114584:33) <- anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:98814:14) <- anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:98806:25) <- ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:1383317:64) <- anonymous","heldMs":3259}]}'
+10-15 15:45:40.357 I/ReactNativeJS(19479): [PERF] home:loadData: 3602ms  ⚠️ SLOW
+10-15 15:45:40.368 I/ReactNativeJS(19479): [PERF-STEPS] home:loadData: total=3606ms · parallel6=1297ms · streak=4ms · avatar=2ms · titles+achievements+greeting=1ms · titles+achievements=0ms · lessons+unlockLoop=869ms  ⚠️ SLOW
+10-15 15:45:40.558 W/ReactNativeJS(19479): [SFX-PREWARM] step event=pm.reward.chest_open ms=172 left=2 slow
+10-15 15:45:40.565 I/ReactNativeJS(19479): [THUMB] load home_video_rail id=Ert2Mhtjb0g url=i2.ytimg.com/vi/Ert2Mhtjb0g/hqdefault.jpg источник=сеть 480x360 - 855мс
+10-15 15:45:40.577 W/ReactNativeJS(19479): [JS-STALL] +17915ms поток стоял 266ms (с +17649ms)
+10-15 15:45:40.682 W/ReactNativeJS(19479): '[LV2-RETRY-CURSOR] slow', '{"op":"load","outcome":"ok","heldMs":404,"stages":{"lock_wait":2059,"scope_hash":19,"get_item":384}}'
+10-15 15:45:40.713 I/ReactNativeJS(19479): [THUMB] load home_video_rail id=OHxgJuazJO0 url=i4.ytimg.com/vi/OHxgJuazJO0/hqdefault.jpg источник=сеть 480x360 - 1031мс
+10-15 15:45:41.208 I/ReactNativeJS(19479): '[IDIOMS-LOAD] first require', '{"ms":373,"count":176,"gc":"0gc/0ms","caller":"at computeTomorrowPeek (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:341715:48) <- at anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:341772:43) <- at anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:67081:19) <- at apply (native)"}'
+10-15 15:45:41.213 I/ReactNativeJS(19479): '[IDIOMS-LAZY] tomorrow source=deferred_load', '{"tomorrow":"2026-10-16","ok":true,"ms":378}'
+10-15 15:45:41.220 I/ReactNativeJS(19479): [THUMB] load home_video_rail id=rGPfdiI3S1k url=i3.ytimg.com/vi/rGPfdiI3S1k/hqdefault.jpg источник=сеть 480x360 - 1541мс
+10-15 15:45:41.224 I/ReactNativeJS(19479): [THUMB] load home_video_rail id=RM4wp5OzsVI url=i3.ytimg.com/vi/RM4wp5OzsVI/hqdefault.jpg источник=сеть 480x360 - 1553мс
+10-15 15:45:41.229 I/ReactNativeJS(19479): [THUMB] load home_video_rail id=cnrVN_uz7Sg url=i4.ytimg.com/vi/cnrVN_uz7Sg/hqdefault.jpg источник=сеть 480x360 - 1554мс
+10-15 15:45:41.243 I/ReactNativeJS(19479): [THUMB] load home_video_rail id=Tyo95ydzoPs url=i1.ytimg.com/vi/Tyo95ydzoPs/hqdefault.jpg источник=сеть 480x360 - 1534мс
+10-15 15:45:41.247 I/ReactNativeJS(19479): [THUMB] load home_video_rail id=2pL6Et4DnA8 url=i3.ytimg.com/vi/2pL6Et4DnA8/hqdefault.jpg источник=сеть 480x360 - 1550мс
+10-15 15:45:41.251 I/ReactNativeJS(19479): [THUMB] load home_video_rail id=GKn9GmHndMQ url=i4.ytimg.com/vi/GKn9GmHndMQ/hqdefault.jpg источник=сеть 480x360 - 1544мс
+10-15 15:45:41.292 I/ReactNativeJS(19479): [SFX-PREWARM] step event=pm.reward.small ms=25 left=1
+10-15 15:45:41.302 W/ReactNativeJS(19479): [JS-STALL] +18643ms поток стоял 473ms (с +18170ms)
+10-15 15:45:41.335 W/ReactNativeJS(19479): [STATS-RECONCILE] in target=en cloudType=string cloudDays=0 localStored=2b localDays=0 mergedDays=0 readMs=68
+10-15 15:45:41.339 W/ReactNativeJS(19479): [STATS-RECONCILE] write:skipped unchanged target=en bytes=2
+10-15 15:45:41.346 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=client_shard_phone_state_backfill taskMs=4368 syncMs=6 proc=6442484ms
+10-15 15:45:41.359 W/ReactNativeJS(19479): [STATS-RECONCILE] in target=fr cloudType=string cloudDays=0 localStored=2b localDays=0 mergedDays=0 readMs=13
+10-15 15:45:41.361 W/ReactNativeJS(19479): [STATS-RECONCILE] write:skipped unchanged target=fr bytes=2
+10-15 15:45:41.363 W/ReactNativeJS(19479): '[BOOT-STATS]', '{"importMs":1,"reconcileEnMs":82,"reconcileFrMs":19,"dev":true}'
+10-15 15:45:41.444 I/ReactNativeJS(19479): [STREAK] cloud_restore local=2@2026-10-15 cloud=2@2026-10-15 merged=2@2026-10-15 restore=true phoneOwns=false serverAuth=true pending=false
+10-15 15:45:41.456 I/ReactNativeJS(19479): [STREAK] snapshot_guard ok — серия не менялась с чтения (2), в снимок слитое 2
+10-15 15:45:41.471 I/ReactNativeJS(19479): [STREAK] snapshot:authoritative_cloud cloud=2 merged=2 -> 2 prev=2@storage
+10-15 15:45:41.506 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":11,"changed":["homeSurvey","weekMoment","welcomeBack","appSnapshot"],"atMs":9820}'
+10-15 15:45:41.522 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","window":"refocus#1","n":9,"changed":["bellSlot","avatarSlot","stats"],"atMs":9774}'
+10-15 15:45:41.540 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","window":"refocus#1","n":9,"changed":["tiles"],"atMs":9729}'
+10-15 15:45:41.543 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":11,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:41.546 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","window":"refocus#1","n":9,"changed":["onSeeAll"],"atMs":9713}'
+10-15 15:45:41.584 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","window":"refocus#1","n":9,"changed":["tasks","onOpenTask","surveyRow"],"atMs":9734}'
+10-15 15:45:41.649 I/ReactNativeJS(19479): [STREAK] home:snapshot_apply source=live snapshot=2 prev=2
+10-15 15:45:41.656 W/ReactNativeJS(19479): [JS-STALL] +18996ms поток стоял 288ms (с +18708ms)
+10-15 15:45:41.657 W/ReactNativeJS(19479): [JS-STALL] heartbeat +18996ms splash=hidden@+8204ms
+10-15 15:45:41.689 I/ReactNativeJS(19479): [SFX-PREWARM] step event=pm.streak.saved ms=24 left=0
+10-15 15:45:41.709 I/ReactNativeJS(19479): '[RESTORE-MERGE]', '{"key":"active_days_v1","winner":"same","localLen":38,"cloudLen":38,"resultLen":38}'
+10-15 15:45:41.740 I/ReactNativeJS(19479): '[RESTORE-MERGE]', '{"key":"achievement_foundation_progress_v2","winner":"same","localLen":153,"cloudLen":153,"resultLen":153}'
+10-15 15:45:41.746 I/ReactNativeJS(19479): '[LOGIN-BONUS-RESTORE]', '{"local":null,"cloud":null,"winner":"local_kept_no_cloud"}'
+10-15 15:45:41.748 I/ReactNativeJS(19479): '[FREEZE-RESTORE]', '{"local":null,"cloud":null,"winner":"local_kept_no_cloud"}'
+10-15 15:45:41.755 I/ReactNativeJS(19479): '[RESTORE-MERGE]', '{"key":"user_stats_v1","winner":"same","localLen":251,"cloudLen":251,"resultLen":251}'
+10-15 15:45:41.760 I/ReactNativeJS(19479): '[RESTORE-MERGE]', '{"key":"phraseman_foreground_usage_ms_v1","winner":"same","localLen":7,"cloudLen":7,"resultLen":7}'
+10-15 15:45:41.767 I/ReactNativeJS(19479): '[RESTORE-MERGE]', '{"key":"phraseman_foreground_daily_ms_v1","winner":"same","localLen":81,"cloudLen":81,"resultLen":81}'
+10-15 15:45:41.776 I/ReactNativeJS(19479): [STREAK] restore_pair streak=2 localRead=2 cloud=2 readAgoMs=354
+10-15 15:45:41.805 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","window":"refocus#1","n":12,"changed":["homeSurvey","weekMoment","welcomeBack"],"atMs":10109}'
+10-15 15:45:41.847 I/ReactNativeJS(19479): '[RESTORE-MERGE]', '{"key":"achievements_v1","winner":"same","localLen":2504,"cloudLen":2504,"resultLen":2504}'
+10-15 15:45:41.856 I/ReactNativeJS(19479): '[ACH-RESTORE]', '{"localUnlocked":0,"cloudUnlocked":0,"wouldLose":[]}'
+10-15 15:45:41.923 I/ReactNativeJS(19479): '[MEM-TICK]', '{"tSec":19,"route":"/","heapMb":44,"gc":"23gc/398ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":50,"timeoutsByCaller":{"setTimer <- tick":17,"anonymous <- tryCallTwo (address at InternalBytecode.js:1:1222)":11,"pollQuiet <- apply (native)":10,"prewarmStep <- anonymous":5,"anonymous (address at InternalBytecode.js:1:3837) <- reject (address at InternalBytecode.js:1:2296)":3},"pendingTimeouts":0,"firestoreReads":{"query":1},"firestoreReadsByCaller":{"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"pending":1}}}'
+10-15 15:45:42.072 I/ReactNativeJS(19479): [FS-READS] +1 get users/{id}/flashcard_pages by=_readFlashcardPagesResult<readFlashcardPagesResult t=24293ms
+10-15 15:45:42.080 I/ReactNativeJS(19479): [FLASHCARD-PAGES] read result=empty code=- from=server target=en ms=211
+10-15 15:45:42.085 I/ReactNativeJS(19479): [LEGACY-V2-SYNC] restore key=flashcards_v1 source=none pages_len=0
+10-15 15:45:42.191 W/ReactNativeJS(19479): [COLD-START] interactive entryToPaintMs=13276 paintToInteractiveMs=10807 entryToInteractiveMs=24083 maxStallAfterPaintMs=5515 stallsOver200=7
+10-15 15:45:42.207 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:header","stage":"renders_window","window":"refocus#1","count":9,"byCause":{"bellSlot":9,"avatarSlot":9,"stats":9},"ms":10459}'
+10-15 15:45:42.229 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:video_rail","stage":"renders_window","window":"refocus#1","count":9,"byCause":{"ownerActive":1,"onSeeAll":9,"videos":1,"status":1},"ms":10393}'
+10-15 15:45:42.232 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:tiles","stage":"renders_window","window":"refocus#1","count":9,"byCause":{"tiles":9},"ms":10420}'
+10-15 15:45:42.235 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home:today","stage":"renders_window","window":"refocus#1","count":9,"byCause":{"tasks":9,"onOpenTask":9,"surveyRow":7},"ms":10387}'
+10-15 15:45:42.268 I/ReactNativeJS(19479): [FS-READS] +1 get users/{id}/flashcard_pages by=readFlashcardPagesResult t=24489ms
+10-15 15:45:42.275 I/ReactNativeJS(19479): [FLASHCARD-PAGES] read result=empty code=- from=server target=fr ms=185
+10-15 15:45:42.276 I/ReactNativeJS(19479): [LEGACY-V2-SYNC] restore key=flashcards_v2::fr::flashcards_v1 source=none pages_len=0
+10-15 15:45:42.289 I/ReactNativeJS(19479): [STREAK] restore_guard ok branch=cloud_main — серия не менялась с чтения (2), пишем слитое 2
+10-15 15:45:42.346 I/ReactNativeJS(19479): '[BOOT-RESTORE-APPLY]', '{"totalMs":3902,"tailMs":923,"lastPoint":"at:pending_events","points":{"at:authority":247,"at:stats_import":2572,"at:stats_en":1,"at:stats_fr":82,"at:streak_reads":42,"at:pending_events":35},"gc":{"at:authority":"0gc/0ms","at:stats_import":"7gc/135ms","at:stats_en":"0gc/0ms","at:stats_fr":"1gc/13ms","at:streak_reads":"0gc/0ms","at:pending_events":"0gc/0ms"},"tailGc":"5gc/53ms","applied":true}'
+10-15 15:45:42.350 I/ReactNativeJS(19479): [PROGRESS-RESEED] skip reason=cloud_has_lessons cloud_lesson_keys=2
+10-15 15:45:42.360 I/ReactNativeJS(19479): '[MISTAKE-RESTORE]', '{"reason":"active_and_local","targets":["en"],"active":null,"withLocalEvents":["en"],"fullRestoreDone":true}'
+10-15 15:45:42.431 I/ReactNativeJS(19479): [ERROR-JOURNAL-THROTTLE] target=en источник=диск пропуск: осталось 21344945мс, локально 2 ≥ 2
+10-15 15:45:42.456 I/ReactNativeJS(19479): '[HOME-RENDERS]', '{"tag":"home","stage":"renders_window","window":"refocus#1","count":12,"byCause":{"homeRuntimeActive":1,"homeOnboardingDone":1,"mistakeAccountGeneration":1,"homeFeatureTipsHydrated":1,"spireTabEnabled":1,"homeSurvey":12,"weekMoment":12,"welcomeBack":12,"appSnapshot":8,"myCoinRank":1,"streak":1,"displayStreak":1,"homeStatsReady":1,"belowFoldReady":1,"userName":1,"weekMarkers":2,"continueResolved":1,"mistakeReadySnapshot":1,"userFrame":1,"specialTitleStats":2,"runesKnown":1,"todayTasks":1,"homeV2Videos":1,"homeV2VideoStatus":1},"ms":10770}'
+10-15 15:45:42.490 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=mistake_practice_v2::es::owner%3A3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519%3Aevents_v2 writesInFlight=0', ''
+10-15 15:45:42.504 W/ReactNativeJS(19479): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"es","kept":0,"dropped":2,"foreignByTarget":{"en":2}}'
+10-15 15:45:42.509 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=mistake_practice_v2::fr::owner%3A3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519%3Aevents_v2 writesInFlight=0', ''
+10-15 15:45:42.521 W/ReactNativeJS(19479): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"fr","kept":0,"dropped":2,"foreignByTarget":{"en":2}}'
+10-15 15:45:42.525 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=mistake_practice_v2::de::owner%3A3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519%3Aevents_v2 writesInFlight=0', ''
+10-15 15:45:42.536 W/ReactNativeJS(19479): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"de","kept":0,"dropped":2,"foreignByTarget":{"en":2}}'
+10-15 15:45:42.541 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=mistake_practice_v2::it::owner%3A3ca0ca0e-5c6a-4deb-ac45-a2bd3207e519%3Aevents_v2 writesInFlight=0', ''
+10-15 15:45:42.604 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":12,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:42.871 I/ReactNativeJS(19479): '[PERF-R1-MOUNT]', '{"tag":"probe:lessons","inst":1,"event":"render","at":22685}'
+10-15 15:45:42.876 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"a_tab_pad","sinceBodyStartMs":2.5}'
+10-15 15:45:42.877 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"b_energy","sinceBodyStartMs":6.8}'
+10-15 15:45:42.879 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"c_lang","sinceBodyStartMs":8.5}'
+10-15 15:45:42.881 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"d_boot_read_before","sinceBodyStartMs":10.5}'
+10-15 15:45:42.885 I/ReactNativeJS(19479): [LESSONS-BOOT] initial_state {"sinceModuleMs":21193,"atEpochMs":1792075542884,"target":"en","result":"miss","generation":1,"snapshotAgeMs":null,"inflight":0,"scoredLessons":null}
+10-15 15:45:42.888 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"e_boot_read_after","sinceBodyStartMs":16}'
+10-15 15:45:42.892 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"f_feature_access","sinceBodyStartMs":21.8}'
+10-15 15:45:42.898 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"g_bouncy","sinceBodyStartMs":26.7}'
+10-15 15:45:42.904 I/ReactNativeJS(19479): [LESSONS-TABS] вход: initialPage=lessons память=null v2Доступен=true → старт=lessons
+10-15 15:45:42.908 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"h_coin_bindings","sinceBodyStartMs":35.8}'
+10-15 15:45:42.911 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"i_v2_callbacks","sinceBodyStartMs":40.2}'
+10-15 15:45:42.913 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"j_v2_scope","sinceBodyStartMs":42.3}'
+10-15 15:45:42.917 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"k_v2_warmup","sinceBodyStartMs":46}'
+10-15 15:45:42.920 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"l_v2_generation","sinceBodyStartMs":48}'
+10-15 15:45:42.921 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"before_v2_progress","sinceBodyStartMs":50.6}'
+10-15 15:45:42.925 I/ReactNativeJS(19479): '[V2-AVAILABILITY] shown', '{"authored":186,"shown":15,"devUnlockAll":false}'
+10-15 15:45:42.930 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"before_lessons_memo","sinceBodyStartMs":59.2}'
+10-15 15:45:42.933 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"before_list_data","sinceBodyStartMs":62.3}'
+10-15 15:45:42.936 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"before_render_helpers","sinceBodyStartMs":65.5}'
+10-15 15:45:42.940 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":1,"label":"before_return","sinceBodyStartMs":67}'
+10-15 15:45:43.182 E/ReactNativeJS(19479): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 15:45:43.245 W/ReactNativeJS(19479): '[LESSONS-HEADER] lock', '{"label":"A1","locked":false,"isPremium":false,"devMode":true,"noLimits":false}', { [Stack] name: 'Stack' }
+10-15 15:45:43.666 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"lessons","n":1,"phase":"mount","actualMs":831,"baseMs":587,"startedAtMs":6443793,"commitAtMs":6444776}'
+10-15 15:45:43.669 I/ReactNativeJS(19479): '[LESSONS-EPOCH]', 'skip', '{"reason":"same_active_owner","prevPhase":"active","nextPhase":"active","generation":1,"epoch":0}'
+10-15 15:45:43.695 W/ReactNativeJS(19479): [JS-STALL] +21035ms поток стоял 1167ms (с +19868ms)
+10-15 15:45:43.695 W/ReactNativeJS(19479): [PREMIUM-CLOUD] ceiling reason=slow_cloud waitMs=5000 origin=started — решаем по локальным данным, restore доезжает фоном
+10-15 15:45:43.698 W/ReactNativeJS(19479): [PREMIUM-CLOUD] ceiling reason=slow_cloud waitMs=5000 origin=joined_in_flight — решаем по локальным данным, restore доезжает фоном
+10-15 15:45:43.700 W/ReactNativeJS(19479): [PREMIUM-CLOUD] ceiling reason=slow_cloud waitMs=5000 origin=joined_in_flight — решаем по локальным данным, restore доезжает фоном
+10-15 15:45:43.701 W/ReactNativeJS(19479): [PREMIUM-CLOUD] ceiling reason=slow_cloud waitMs=5000 origin=joined_in_flight — решаем по локальным данным, restore доезжает фоном
+10-15 15:45:43.776 I/ReactNativeJS(19479): '[V2-PAGE] LessonsTab:mount', '{"instanceId":"z35dho","presentation":"tab","initialPage":"lessons"}'
+10-15 15:45:43.778 I/ReactNativeJS(19479): '[LESSONS-REBUILD] lessons_tab_mounted', '{"instanceId":"z35dho","presentation":"tab","onboardingActive":false,"atMs":1792075543776}'
+10-15 15:45:43.781 I/ReactNativeJS(19479): '[PERF-R1-MOUNT]', '{"tag":"probe:lessons","inst":1,"event":"mount","at":23593,"renderToEffectMs":908}'
+10-15 15:45:43.783 I/ReactNativeJS(19479): '[TAB-PILL]', '{"bottomInset":24,"screenH":914.2857142857143,"uiScale":0.9916483516483516,"oldTabBarHeight":56,"pillHeight":66,"pillTop":96}'
+10-15 15:45:43.789 I/ReactNativeJS(19479): '[V2-MAP] page:commit', '{"instanceId":"z35dho","page":"lessons","branch":"legacy_list","presentation":"tab","runtimeOwnerId":"home","visible":false,"atMs":1792075543788}'
+10-15 15:45:43.795 W/ReactNativeJS(19479): '[LESSONS-LIST] data', '{"rows":40,"queryLength":0,"firstKinds":["header","lesson","lesson","lesson"]}', { [Stack] name: 'Stack' }
+10-15 15:45:43.812 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"a_tab_pad","sinceBodyStartMs":0.2}'
+10-15 15:45:43.815 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"b_energy","sinceBodyStartMs":3.7}'
+10-15 15:45:43.817 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"c_lang","sinceBodyStartMs":6.7}'
+10-15 15:45:43.821 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"d_boot_read_before","sinceBodyStartMs":9.1}'
+10-15 15:45:43.823 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"e_boot_read_after","sinceBodyStartMs":12.5}'
+10-15 15:45:43.824 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"f_feature_access","sinceBodyStartMs":14.7}'
+10-15 15:45:43.829 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"g_bouncy","sinceBodyStartMs":17.1}'
+10-15 15:45:43.831 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"h_coin_bindings","sinceBodyStartMs":21.1}'
+10-15 15:45:43.833 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"i_v2_callbacks","sinceBodyStartMs":23.5}'
+10-15 15:45:43.833 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"j_v2_scope","sinceBodyStartMs":24.2}'
+10-15 15:45:43.837 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"k_v2_warmup","sinceBodyStartMs":25.1}'
+10-15 15:45:43.840 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"l_v2_generation","sinceBodyStartMs":29.4}'
+10-15 15:45:43.842 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"before_v2_progress","sinceBodyStartMs":32.2}'
+10-15 15:45:43.850 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"before_lessons_memo","sinceBodyStartMs":37.1}'
+10-15 15:45:43.859 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"before_list_data","sinceBodyStartMs":41.7}'
+10-15 15:45:43.865 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"before_render_helpers","sinceBodyStartMs":53}'
+10-15 15:45:43.870 I/ReactNativeJS(19479): '[PERF-R1-BODY]', '{"tag":"lessons","render":2,"label":"before_return","sinceBodyStartMs":60.3}'
+10-15 15:45:43.963 E/ReactNativeJS(19479): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 15:45:44.029 W/ReactNativeJS(19479): '[LESSONS-EXAM] status', '{"level":"A1","hasResult":false,"resultPct":null,"passed":null,"examSourceAvailable":true,"allDone":true,"examPremiumRequired":false,"isPremium":false,"kind":"start","chosen":"Нажми, чтобы начать"}', { [Stack] name: 'Stack' }
+10-15 15:45:44.079 W/ReactNativeJS(19479): '[LESSONS-HEADER] lock', '{"label":"A2","locked":false,"isPremium":false,"devMode":true,"noLimits":false}', { [Stack] name: 'Stack' }
+10-15 15:45:44.440 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"lessons","n":2,"phase":"update","actualMs":412,"baseMs":380,"startedAtMs":6444946,"commitAtMs":6445531}'
+10-15 15:45:44.470 W/ReactNativeJS(19479): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":13340,"result":false,"steps":{"tester_flags":343,"tester_no_limits":1154,"verified_local":1620,"intro":16,"loyalty_gift_local:false":155,"loyalty_gift_cloud":3205,"cloud_refresh:false":6075}}'
+10-15 15:45:44.473 W/ReactNativeJS(19479): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":11219,"result":false,"steps":{"tester_flags":1158,"tester_no_limits":193,"verified_local":225,"intro":0,"loyalty_gift_local:false":8,"loyalty_gift_cloud":2797,"cloud_refresh:false":6064}}'
+10-15 15:45:44.476 W/ReactNativeJS(19479): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":10236,"result":false,"steps":{"tester_flags":173,"tester_no_limits":194,"verified_local":224,"intro":0,"loyalty_gift_local:false":19,"loyalty_gift_cloud":2790,"cloud_refresh:false":6061}}'
+10-15 15:45:44.482 W/ReactNativeJS(19479): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":9870,"result":false,"steps":{"tester_flags":218,"tester_no_limits":8,"verified_local":15,"intro":0,"loyalty_gift_local:false":50,"loyalty_gift_cloud":2754,"cloud_refresh:false":6046}}'
+10-15 15:45:44.517 I/ReactNativeJS(19479): [ENERGY-RESTORE] runLoad: unlimited=false reason=none:limited
+10-15 15:45:44.547 W/ReactNativeJS(19479): '[PREMIUM-RESOLVE] reload:done', '{"epoch":2,"totalMs":11296,"steps":{"identity_sync:false":1118,"dev_override":64,"verified_local":180,"verified_cloud:false":9872,"tester_flags":59,"intro_state":0},"access":false}'
+10-15 15:45:44.550 W/ReactNativeJS(19479): '[MISTAKE-JOURNAL] foreign_target_facts', '{"studyTarget":"it","kept":0,"dropped":2,"foreignByTarget":{"en":2}}'
+10-15 15:45:44.551 I/ReactNativeJS(19479): '[BOOT-RESTORE-STEP]', '{"totalMs":11963,"syncMissingDocument":false,"lastStage":"mistake_rewards:it","stages":{"anon":4,"stable_link":12,"user_doc_read":4971,"migration_flag":835,"apply":3936,"reseed":5,"mistake_restore_select":9,"mistake_events:en":71,"mistake_rewards:en":58,"mistake_rewards:es":15,"mistake_rewards:fr":17,"mistake_rewards:de":15,"mistake_rewards:it":2014},"gc":{"anon":"0gc/0ms","stable_link":"0gc/0ms","user_doc_read":"19gc/394ms","migration_flag":"9gc/159ms","apply":"13gc/201ms","reseed":"0gc/0ms","mistake_restore_select":"0gc/0ms","mistake_events:en":"1gc/7ms","mistake_rewards:en":"1gc/8ms","mistake_rewards:es":"0gc/0ms","mistake_rewards:fr":"0gc/0ms","mistake_rewards:de":"0gc/0ms","mistake_rewards:it":"14gc/218ms"},"status":"restored","failureReason":null}'
+10-15 15:45:44.553 I/ReactNativeJS(19479): [PREMIUM-CLOUD] restore done ms=6918
+10-15 15:45:44.562 I/ReactNativeJS(19479): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792075292103 elapsedMs=252430 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=false
+10-15 15:45:44.643 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":13,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:44.862 E/ReactNativeJS(19479): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 15:45:45.111 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"lessons","n":3,"phase":"update","actualMs":263,"baseMs":383,"startedAtMs":6445858,"commitAtMs":6446232}'
+10-15 15:45:45.126 I/ReactNativeJS(19479): '[BOOT-RESTORE]', '{"anonMs":968,"restoreMs":12541,"totalMs":13514,"status":"restored","failureReason":null}'
+10-15 15:45:45.137 W/ReactNativeJS(19479): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":6211,"result":false,"steps":{"tester_flags":798,"tester_no_limits":618,"verified_local":365,"intro":0,"loyalty_gift_local:false":14,"loyalty_gift_cloud":1,"cloud_refresh:true":3837}}'
+10-15 15:45:45.146 W/ReactNativeJS(19479): [JS-STALL] +22486ms поток стоял 1441ms (с +21045ms)
+10-15 15:45:45.152 I/ReactNativeJS(19479): '[PERF-R1]', '{"screen":"lessons","stage":"first_frame","ms":2279,"commits":2}'
+10-15 15:45:45.266 I/ReactNativeJS(19479): [PREMIUM-CLOUD] skip reason=ttl ageMs=7636 ttlMs=1800000
+10-15 15:45:45.369 W/ReactNativeJS(19479): '[LESSONS-EXAM] status', '{"level":"A2","hasResult":false,"resultPct":null,"passed":null,"examSourceAvailable":true,"allDone":true,"examPremiumRequired":false,"isPremium":false,"kind":"start","chosen":"Нажми, чтобы начать"}', { [Stack] name: 'Stack' }
+10-15 15:45:45.384 W/ReactNativeJS(19479): '[LESSONS-HEADER] lock', '{"label":"B1","locked":false,"isPremium":false,"devMode":true,"noLimits":false}', { [Stack] name: 'Stack' }
+10-15 15:45:45.450 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"lessons","n":4,"phase":"update","actualMs":99,"baseMs":402,"startedAtMs":6446418,"commitAtMs":6446577}'
+10-15 15:45:45.479 I/ReactNativeJS(19479): [STREAK] boot:step=hydrate_done +0ms
+10-15 15:45:45.481 I/ReactNativeJS(19479): [STREAK-DAY] touch reason=cold_start mode=passive day=2026-10-15
+10-15 15:45:45.482 I/ReactNativeJS(19479): [COLD-START] content_migration.wait_cloud:ok proc=6446619ms src=_layout {"stepMs":14269}
+10-15 15:45:45.484 I/ReactNativeJS(19479): [COLD-START] content_migration.apply:start proc=6446620ms src=_layout
+10-15 15:45:45.489 I/ReactNativeJS(19479): '[TABS-PREMOUNT] step', '{"idx":1,"outcome":"mounted","queuedMs":0,"totalMs":7823,"quietReason":"quiet","quietWaitMs":4862,"cleanTicks":4,"lastLagMs":21,"maxLagMs":1010,"sinceTouchMs":1200,"idleWaitMs":5,"prewarmMs":0,"commitMs":2605}'
+10-15 15:45:45.496 I/ReactNativeJS(19479): [STREAK] snapshot:personal streak=2 prev=2@live
+10-15 15:45:45.562 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":14,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:45.641 I/ReactNativeJS(19479): '[HOME-RESTORE-JUMP]', '{"memoryStreak":2,"storedStreak":2,"snapshotStreak":2,"snapshotSource":"live","runes":0,"homeActive":true,"willReload":"debounced_refresh_400ms"}'
+10-15 15:45:45.643 I/ReactNativeJS(19479): [STREAK-DAY] migration since=2026-10-15 today=2026-10-15 legacyRuleDay=true
+10-15 15:45:45.646 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss key=last_active_date writesInFlight=0', ''
+10-15 15:45:45.648 I/ReactNativeJS(19479): [COLD-START] content_migration.apply:ok proc=6446784ms src=_layout {"stepMs":164}
+10-15 15:45:45.654 I/ReactNativeJS(19479): [STREAK] boot:step=content_migration +172ms
+10-15 15:45:45.658 I/ReactNativeJS(19479): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792075544533 elapsedMs=954 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=false
+10-15 15:45:45.706 I/ReactNativeJS(19479): [STREAK] boot:step=before_await_streak +218ms
+10-15 15:45:46.006 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"lessons","n":5,"phase":"update","actualMs":172,"baseMs":484,"startedAtMs":6446874,"commitAtMs":6447129}'
+10-15 15:45:46.026 W/ReactNativeJS(19479): '[SNAPSHOT-RT] miss many=2 first=streak_count', ''
+10-15 15:45:46.027 I/ReactNativeJS(19479): [STREAK] update:called streak_count=2 last_active_date=2026-10-15 streak_last_date=2026-10-15
+10-15 15:45:46.030 I/ReactNativeJS(19479): [V2-AUDIO-SEED] start paint=painted splash=hidden delayedMs=8300
+10-15 15:45:46.032 I/ReactNativeJS(19479): [COLD-START] after_home.v2_audio_seed[painted,hidden]:start proc=6447168ms src=_layout
+10-15 15:45:46.066 W/ReactNativeJS(19479): [JS-STALL] +23406ms поток стоял 401ms (с +23005ms)
+10-15 15:45:46.068 I/ReactNativeJS(19479): [HOME-RESTORE-JUMP] refresh: requested active=true → loadData сейчас
+10-15 15:45:46.078 W/ReactNativeJS(19479): '[ENERGY-LOAD] lock_slow', '{"outcome":"ok","heldMs":1548,"stages":{"admin_command":0,"read_recover_state_1":615,"refund_credit_and_session_operations":342,"read_recover_state_2":539,"publish":52}}'
+10-15 15:45:46.087 W/ReactNativeJS(19479): '[ACCOUNT-LOCK] hold_exceeded', '{"heldMs":1558,"caller":"raw: ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:114584:33) <- anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:98814:14) <- anonymous (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:98806:25) <- ?anon_0_ (http://localhost:8081/index.bundle//&platform=android&dev=true&lazy=false&minify=false&app=app.phraseman&modulesOnly=false&runModule=true&excludeSource=true&sourcePaths=url-server&transform.routerRoot=app&transform.engine=hermes&transform.bytecode=1&unstable_transformProfile=hermes-stable:939121:68) <- anonymous","waitedMs":4}'
+10-15 15:45:46.109 I/ReactNativeJS(19479): [STREAK] snapshot:personal streak=2 prev=2@local
+10-15 15:45:46.164 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":15,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:46.456 E/ReactNativeJS(19479): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 15:45:46.618 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"lessons","n":6,"phase":"update","actualMs":166,"baseMs":459,"startedAtMs":6447475,"commitAtMs":6447730}'
+10-15 15:45:46.656 I/ReactNativeJS(19479): '[HOME-LOADDATA-PARTS] parallel6', '{"totalMs":586,"parts":{"streak_week_markers":38,"home_keys":38,"premium_active":38,"personal_progress":585},"gc":"2gc/28ms"}'
+10-15 15:45:46.658 I/ReactNativeJS(19479): [STREAK] home:hydration personal=2 snapshot=2@local streakVal=2 -> 2
+10-15 15:45:46.667 I/ReactNativeJS(19479): [LANG-SWITCH] notification_lang source=android_channel stored=none resolved=ru via=device
+10-15 15:45:46.676 I/ReactNativeJS(19479): [STREAK] update:enter today=2026-10-15 utcToday=2026-10-15 lastActive=2026-10-15 streak=2 relation=today sameDay=true yesterday=false
+10-15 15:45:46.682 W/ReactNativeJS(19479): [JS-STALL] +24022ms поток стоял 609ms (с +23413ms)
+10-15 15:45:46.683 W/ReactNativeJS(19479): [JS-STALL] heartbeat +24022ms splash=hidden@+8204ms
+10-15 15:45:46.777 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":16,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:47.008 E/ReactNativeJS(19479): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 15:45:47.284 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"lessons","n":7,"phase":"update","actualMs":196,"baseMs":467,"startedAtMs":6448034,"commitAtMs":6448362}'
+10-15 15:45:47.946 W/ReactNativeJS(19479): [CONTENT-LAZY] loaded key=learning_v2_factory_production_audio ms=650 epochMs=1792075547295
+10-15 15:45:48.220 I/ReactNativeJS(19479): '[HOME-LOADDATA-PARTS] lessons_read', '{"ms":1558,"keys":33,"gc":"11gc/114ms"}'
+10-15 15:45:51.802 I/ReactNativeJS(19479): [LESSONS-BOOT] v2_catalog:materialized {"interfaceLocale":"ru","ms":3568,"lessons":4,"memoSize":1}
+10-15 15:45:51.842 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":17,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:51.904 E/ReactNativeJS(19479): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 15:45:51.988 I/ReactNativeJS(19479): '[PERF-R1-PROFILE]', '{"id":"lessons","n":8,"phase":"update","actualMs":57,"baseMs":409,"startedAtMs":6453013,"commitAtMs":6453110}'
+10-15 15:45:51.999 W/ReactNativeJS(19479): '[ACCOUNT-LOCK] wait_exceeded', '{"waitedMs":3768,"caller":"callback <- react-stack-bottom-frame <- runWithFiberInDEV <- commitHookEffectListMount <- commitHookPassiveMountEffects","blockedBy":[]}'
+10-15 15:45:52.007 I/ReactNativeJS(19479): [ENERGY-RESTORE] runLoad: unlimited=false reason=none:limited
+10-15 15:45:52.008 I/ReactNativeJS(19479): [STREAK] update:journal runToYesterday=1
+10-15 15:45:52.011 I/ReactNativeJS(19479): [STREAK] update:branch=same_day keep=2
+10-15 15:45:52.014 W/ReactNativeJS(19479): [JS-STALL] +29354ms поток стоял 5316ms (с +24038ms)
+10-15 15:45:52.014 W/ReactNativeJS(19479): [JS-STALL] heartbeat +29354ms splash=hidden@+8204ms
+10-15 15:45:52.016 I/ReactNativeJS(19479): '[PERF-R1]', '{"screen":"lessons","stage":"commits_3s","commits":6,"ms":9143}'
+10-15 15:45:52.019 I/ReactNativeJS(19479): '[MEM-TICK]', '{"tSec":29,"route":"/","heapMb":56,"gc":"158gc/1640ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":28,"timeoutsByCaller":{"anonymous <- tryCallTwo (address at InternalBytecode.js:1:1222)":5,"pollQuiet <- apply (native)":5,"setTimer <- tick":4,"anonymous <- anonymous":4,"_scheduleCellsToRenderUpdate <- componentDidUpdate":3},"pendingTimeouts":1,"firestoreReads":{"query":1},"firestoreReadsByCaller":{"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"network":1,"pending":1}}}'
+10-15 15:45:52.024 I/ReactNativeJS(19479): [FS-READS] === старт 30 с: до 30000 мс — оплачено документов 5, вызовов 5, из кэша 2, слушателей открыто 2
+10-15 15:45:52.025 I/ReactNativeJS(19479): [FS-READS]   2 док / 2 выз  users/{id}  ← unknown, readGiftProgressFromNetwork
+10-15 15:45:52.025 I/ReactNativeJS(19479): [FS-READS]   2 док / 2 выз  users/{id}/flashcard_pages  ← _readFlashcardPagesResult<readFlashcardPagesResult, readFlashcardPagesResult
+10-15 15:45:52.027 I/ReactNativeJS(19479): [FS-READS]   1 док / 1 выз  banned_users/{id}  ← unknown
+10-15 15:45:52.028 I/ReactNativeJS(19479): [FS-READS]   слушатель #1 account_deletion_auth_markers/{id} живёт 24204 мс, оплачено 0  ← attach
+10-15 15:45:52.029 I/ReactNativeJS(19479): [FS-READS]   слушатель #2 users/{id}/access_projection/{id} живёт 19414 мс, оплачено 0  ← unknown
+10-15 15:45:52.082 W/ReactNativeJS(19479): '[SNAPSHOT-RT] summary windowMs=20000 {"hits":33,"misses":21,"hydrated":0,"bypass":0,"writes":0,"errors":0} cached=19', ''
+10-15 15:45:52.085 W/ReactNativeJS(19479): '[PREMIUM-GUARD-STEP] access_status:slow', '{"totalMs":3862,"result":false,"steps":{"tester_flags":3862}}'
+10-15 15:45:52.090 I/ReactNativeJS(19479): '[V2-OPEN] progress:disk', '{"diskMs":84,"completed":0,"current":"lesson-01:session:01"}'
+10-15 15:45:52.114 I/ReactNativeJS(19479): [PERF] home:loadData: 6044ms  ⚠️ SLOW
+10-15 15:45:52.116 I/ReactNativeJS(19479): [PERF-STEPS] home:loadData: total=6044ms · parallel6=586ms · streak=4ms · avatar=0ms · titles+achievements+greeting=0ms · titles+achievements=0ms · lessons+unlockLoop=1560ms  ⚠️ SLOW
+10-15 15:45:52.118 I/ReactNativeJS(19479): '[V2-OPEN] progress:applied', '{"sinceTap":null,"warmupMs":3886,"completed":0,"current":"lesson-01:session:01"}'
+10-15 15:45:52.121 I/ReactNativeJS(19479): [PHONE-STATE-DB] key:lineage_read 43мс proc=6453258ms found=true
+10-15 15:45:52.150 I/ReactNativeJS(19479): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792075545487 elapsedMs=6632 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=false
+10-15 15:45:52.206 I/ReactNativeJS(19479): [STREAK-DAY] counted:already source=migration:cold_start days=2
+10-15 15:45:52.246 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":18,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:52.376 E/ReactNativeJS(19479): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 15:45:52.554 I/ReactNativeJS(19479): [STREAK] boot:step=after_updateStreak streak=2 +7075ms
+10-15 15:45:52.591 W/ReactNativeJS(19479): [JS-STALL] +29932ms поток стоял 420ms (с +29512ms)
+10-15 15:45:52.597 I/ReactNativeJS(19479): '[V1-AUDIO-AHEAD]', '{"event":"skip","reason":"study_target_not_english","studyTarget":null}'
+10-15 15:45:52.599 I/ReactNativeJS(19479): [INFO] [V1-AUDIO-AHEAD]: {"event":"skip","reason":"study_target_not_english","studyTarget":null}
+10-15 15:45:52.656 I/ReactNativeJS(19479): [ENERGY-RESTORE] readAndRecoverState: onDisk=5 lastSettledAt=1792075552119 elapsedMs=490 unitMs=600000 cap=5 -> afterRecovery=5 -> final=5 fillPermanentPool=false
+10-15 15:45:52.812 I/ReactNativeJS(19479): '[PUSH-LANG]', '{"step":"boot_lang","storedAppLang":null,"uiLang":"ru","chosen":"ru","source":"ui","notifEnabled":false}'
+10-15 15:45:52.852 W/ReactNativeJS(19479): '[ENERGY-LOAD] lock_slow', '{"outcome":"ok","heldMs":736,"stages":{"admin_command":2,"read_recover_state_1":74,"refund_credit_and_session_operations":416,"read_recover_state_2":195,"publish":49}}'
+10-15 15:45:53.229 I/ReactNativeJS(19479): [LEVEL-SPIN-STAR] recover:prepared_clear_skipped — список уже пуст (raw=null)
+10-15 15:45:53.235 I/ReactNativeJS(19479): [INFO] runes_wallet:read_unified: {"owner":"3ca0ca0e","balance":0,"earnedTotal":0}
+10-15 15:45:53.328 I/ReactNativeJS(19479): [INFO] [STARTUP-READS]: flashcard_pending_grants: trigger=boot result={"status":"maintained","removed":0,"retained":0} tookMs=1250
+10-15 15:45:53.445 I/ReactNativeJS(19479): [STREAK] snapshot:personal streak=2 prev=2@storage
+10-15 15:45:53.494 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":19,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:53.631 W/ReactNativeJS(19479): [JS-STALL] +30955ms поток стоял 256ms (с +30699ms)
+10-15 15:45:53.648 W/ReactNativeJS(19479): '[ACH-CHECK] done', '{"event":"shards","unlocked":0,"eligible":0,"totalMs":410,"stages":{"queue_wait":1,"load_states":50,"backfill_marker":40,"reduce_progress":88,"evaluate_snapshot":231}}'
+10-15 15:45:53.650 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=achievements_coins_boot_check taskMs=15975 syncMs=4 proc=6454786ms
+10-15 15:45:54.227 I/ReactNativeJS(19479): [V2-AUDIO-SEED] end outcome=ok ms=8193
+10-15 15:45:54.232 I/ReactNativeJS(19479): [COLD-START] after_home.v2_audio_seed[painted,hidden]:ok proc=6455365ms src=_layout {"stepMs":8197}
+10-15 15:45:54.234 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=v2_audio_seed taskMs=16511 syncMs=6 proc=6455371ms
+10-15 15:45:54.378 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":20,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:54.523 E/ReactNativeJS(19479): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 15:45:55.003 I/ReactNativeJS(19479): '[FEATURE-INTRO] entry', '{"id":"videos_first_visit","enabled":false,"active":false,"hasDef":true,"introVisible":false,"shown":false}'
+10-15 15:45:55.097 I/ReactNativeJS(19479): '[FRIEND-ADD-SHEET]', 'lift', '{"keyboardHeight":0,"rootBase":null,"rootHeight":null,"shrunkBy":0,"safeBottom":24,"lift":0}'
+10-15 15:45:55.110 I/ReactNativeJS(19479): '[TAB-PILL]', '{"bottomInset":24,"screenH":914.2857142857143,"uiScale":0.9916483516483516,"oldTabBarHeight":56,"pillHeight":66,"pillTop":96}'
+10-15 15:45:55.114 I/ReactNativeJS(19479): '[ALL-VIDEOS]', 'хук: канал ещё не известен — ждём, загрузку не начинаем'
+10-15 15:45:55.123 I/ReactNativeJS(19479): '[VIDEO-TAB] hero', '{"studyTarget":"en","catalogLoaded":false,"channel":null,"videos":0,"activeEvent":null,"hero":null,"savedOnly":false,"inTab":true}'
+10-15 15:45:55.283 W/ReactNativeJS(19479): [JS-STALL] +32621ms поток стоял 977ms (с +31644ms)
+10-15 15:45:55.546 I/ReactNativeJS(19479): '[TABS-PREMOUNT] step', '{"idx":2,"outcome":"mounted","queuedMs":7291,"totalMs":10056,"quietReason":"ceiling","quietWaitMs":8155,"cleanTicks":0,"lastLagMs":87,"maxLagMs":5128,"sinceTouchMs":1200,"idleWaitMs":659,"prewarmMs":0,"commitMs":1055}'
+10-15 15:45:55.731 I/ReactNativeJS(19479): [FS-READS] +1 get users/{id}/video_favorites by=list t=37952ms
+10-15 15:45:55.954 I/ReactNativeJS(19479): [PM111-FAV] refresh: облако 0, итог 0
+10-15 15:45:57.072 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":21,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:57.321 E/ReactNativeJS(19479): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }
+10-15 15:45:58.097 I/ReactNativeJS(19479): '[FEATURE-INTRO] entry', '{"id":"friends_first_visit","enabled":false,"active":false,"hasDef":true,"introVisible":false,"shown":false}'
+10-15 15:45:58.121 I/ReactNativeJS(19479): '[FRIEND-ADD-SHEET]', 'lift', '{"keyboardHeight":0,"rootBase":null,"rootHeight":null,"shrunkBy":0,"safeBottom":24,"lift":0}'
+10-15 15:45:58.156 I/ReactNativeJS(19479): '[TAB-PILL]', '{"bottomInset":24,"screenH":914.2857142857143,"uiScale":0.9916483516483516,"oldTabBarHeight":56,"pillHeight":66,"pillTop":96}'
+10-15 15:45:58.330 W/ReactNativeJS(19479): [JS-STALL] +35664ms поток стоял 1430ms (с +34234ms)
+10-15 15:45:58.336 W/ReactNativeJS(19479): [JS-STALL] heartbeat +35664ms splash=hidden@+8204ms
+10-15 15:45:58.348 I/ReactNativeJS(19479): '[MEM-TICK]', '{"tSec":36,"route":"/","heapMb":56,"gc":"32gc/468ms","intervals":1,"intervalsByCaller":{"onAppState <- installForegroundUsageMsTracker":1},"timeoutsCreated":19,"timeoutsByCaller":{"pollQuiet <- apply (native)":8,"anonymous <- tryCallTwo (address at InternalBytecode.js:1:1222)":4,"_scheduleCellsToRenderUpdate <- componentDidUpdate":3,"tick <- apply (native)":1,"anonymous <- RN$rafFn (native)":1},"pendingTimeouts":1,"firestoreReads":{"query":1},"firestoreReadsByCaller":{"banned_users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|?anon_0_ <- next (native)":{"pending":1},"users|doc|apply (native) <- anonymous":{"pending":1},"query|query|apply (native) <- anonymous":{"network":1,"pending":1}}}'
+10-15 15:45:58.576 W/ReactNativeJS(19479): [FIRST-FRAME] deferred:done label=published_pack_card_remove_flush taskMs=20879 syncMs=4 proc=6459711ms
+10-15 15:45:58.798 I/ReactNativeJS(19479): [FS-READS] +1 get users/{id}/blocked by=fetchRemote t=41018ms
+10-15 15:45:58.800 I/ReactNativeJS(19479): '[FRIEND-BLOCK] client: refresh from server', { count: 0 }
+10-15 15:45:58.802 I/ReactNativeJS(19479): '[TABS-PREMOUNT] step', '{"idx":3,"outcome":"mounted","queuedMs":17345,"totalMs":3255,"quietReason":"quiet","quietWaitMs":1333,"cleanTicks":4,"lastLagMs":11,"maxLagMs":193,"sinceTouchMs":1200,"idleWaitMs":0,"prewarmMs":0,"commitMs":1661}'
+10-15 15:45:59.581 I/ReactNativeJS(19479): '[HOME-RENDER] tiles wrapper', '{"wrapperRenders":22,"viewRenders":1,"keys":["lessons","dialogs","cards"]}'
+10-15 15:45:59.780 E/ReactNativeJS(19479): 'Invalid prop `%s` supplied to `React.Fragment`. React.Fragment can only have `key` and `children` props.', 'overScrollMode', { [Stack] name: 'Stack' }

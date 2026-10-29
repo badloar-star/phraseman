@@ -1,0 +1,21 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "category": "dialogue theme map",
+  "optionsGenerated": 5,
+  "concepts": [
+    "wide accordion road map with a winding cyan route and two endpoints",
+    "partly rolled travel map with a raised cyan destination pin",
+    "square city-map tile with roads and a large location marker",
+    "folded terrain map with a broad cyan river-route stripe",
+    "layered relief-map booklet with a small cyan pin and river detail"
+  ],
+  "style": "S2 matte clay; true-alpha generated geometry; grayscale tone mapping produces dark graphite and light ivory; temporary cyan markers become separate white .accent layers",
+  "measurements": {
+    "01": {"dark": {"accentFramePct": 6.316, "alphaTransparencyPct": 61.55, "alignment": "pass; edge 87.9%, interior 7.5%"}, "light": {"accentFramePct": 6.316, "alphaTransparencyPct": 61.55, "alignment": "pass; edge 100%, interior 7.1%"}},
+    "02": {"dark": {"accentFramePct": 1.997, "alphaTransparencyPct": 67.44, "alignment": "pass; edge 82%, interior 9.5%"}, "light": {"accentFramePct": 1.997, "alphaTransparencyPct": 67.44, "alignment": "pass; edge 66.2%, interior 9.5%"}},
+    "03": {"dark": {"accentFramePct": 10.483, "alphaTransparencyPct": 37.39, "alignment": "pass; accent exceeds 8% limit"}, "light": {"accentFramePct": 10.483, "alphaTransparencyPct": 37.39, "alignment": "pass; accent exceeds 8% limit"}},
+    "04": {"dark": {"accentFramePct": 5.007, "alphaTransparencyPct": 55.42, "alignment": "pass; edge 100%, interior 0.2%"}, "light": {"accentFramePct": 5.007, "alphaTransparencyPct": 55.42, "alignment": "pass; edge 95.3%, interior 0%"}},
+    "05": {"dark": {"accentFramePct": 1.063, "alphaTransparencyPct": 58.35, "alignment": "fail; interior mismatch 33.5%"}, "light": {"accentFramePct": 1.063, "alphaTransparencyPct": 58.35, "alignment": "fail; interior mismatch 32.9%"}}
+  },
+  "acceptance": "Options 1, 2, and 4 meet numeric gates; 3 exceeds the accent limit and 5 has misaligned relief detail. All candidates remain drafts pending human visual selection."
+}

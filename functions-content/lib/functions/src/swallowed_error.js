@@ -33,9 +33,11 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SWALLOWED_ERROR_PREFIX = void 0;
+exports.SERVER_CAUSE_PREFIX = exports.SWALLOWED_ERROR_PREFIX = void 0;
 exports.reportSwallowedServer = reportSwallowedServer;
 exports.swallowed = swallowed;
+exports.maskServerCauseText = maskServerCauseText;
+exports.reportCauseServer = reportCauseServer;
 // PM-229 (A1): серверный аналог клиентского swallowError — обработчик для
 // `.catch(swallowed('модуль:операция', null))`, который НЕ глотает молча.
 //
@@ -77,5 +79,27 @@ function swallowed(tag, fallback) {
         reportSwallowedServer(tag, error);
         return fallback;
     };
+}
+// зачем (координатор 13.10, SERVER_SILENT_CATCH_R1): в Диалогах и пушах catch подменял исходную ошибку кодом категории
+// (release_unavailable, provider_failed, session_not_found…) — в журнале было «что», но не «почему» (ответ Firestore/OpenAI).
+// Пишем причину одной строкой, БЕЗ изменения поведения. Без личных данных: куски 20+ букв/цифр (uid, id документов, токены)
+// маскируются; для разбора текста модели (omitMessage) сообщение не пишется вовсе — в нём фрагмент реплики.
+exports.SERVER_CAUSE_PREFIX = '[SERVER-CAUSE]';
+function maskServerCauseText(text) {
+    return text.replace(/[A-Za-z0-9_-]{20,}/g, '…').slice(0, MAX_MESSAGE_CHARS);
+}
+function reportCauseServer(tag, error, opts = {}) {
+    try {
+        const { code } = describe(error);
+        const name = error instanceof Error ? error.name.slice(0, 64) : typeof error;
+        const fields = { tag, code, name, ...(opts.extra ?? {}) };
+        if (!opts.omitMessage)
+            fields.message = maskServerCauseText(describe(error).message);
+        logger.warn(`${exports.SERVER_CAUSE_PREFIX} ${tag}`, fields);
+    }
+    catch (loggerError) {
+        // eslint-disable-next-line no-console
+        console.warn(`${exports.SERVER_CAUSE_PREFIX} logger_failed ${tag}`, String(loggerError).slice(0, 120));
+    }
 }
 //# sourceMappingURL=swallowed_error.js.map

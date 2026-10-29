@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+spire-001	2026-10-15T11:12:25.607Z	timeout	90225	нет маркера+ждали_metro_26мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T11-10-49-539Z/spire-001.timeout.png	0

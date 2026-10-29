@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "taxi",
+  "candidatePrefix": "dialog_scene_taxi_option_",
+  "concepts": [
+    "compact taxi car with blank door badge",
+    "blank-face taximeter",
+    "car key with inset fob",
+    "steering wheel and selector",
+    "simple roof taxi lamp"
+  ],
+  "style": "S2 matte clay, graphite dark / derived warm ivory light, true alpha, separate white theme-accent",
+  "status": "Five dark/light options generated; all await per-mode technical and owner visual review. See taxi-preparation-dark.log and taxi-preparation-light.log."
+}

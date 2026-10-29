@@ -1,0 +1,14 @@
+{
+  "scenario": "conspiracy_seatmate",
+  "title": "Сосед в самолёте — конспиролог",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "airplane window and connected constellation nodes",
+    "blank boarding pass with globe and linked dots",
+    "aircraft wing with loose web of sculpted lines",
+    "seat-belt buckle with orbiting globe and nodes",
+    "round airplane window medallion with geometric three-point web"
+  ],
+  "constraints": ["true transparent RGBA", "no people, text or labeled maps", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

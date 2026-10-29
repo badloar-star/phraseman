@@ -1,0 +1,14 @@
+{
+  "scenario": "monday_catchup",
+  "title": "Как прошли выходные",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "blank two-day calendar tile and travel ticket",
+    "suitcase with sunrise medallion and chat bubble",
+    "camping lantern, folded map token and blank date tile",
+    "running shoe with blank memory-frame and chat cue",
+    "coffee cup with two blank event tokens"
+  ],
+  "constraints": ["true transparent RGBA", "no people, text, dates or logos", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

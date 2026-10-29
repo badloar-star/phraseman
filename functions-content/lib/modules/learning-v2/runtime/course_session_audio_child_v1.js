@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LEARNING_V2_COURSE_SESSION_AUDIO_FILE_MAX_BYTES_V1 = exports.LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_MAX_BYTES_V1 = exports.LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_SCHEMA_V1 = void 0;
+exports.learningV2CourseSessionAudioFileForVoiceIndexV1 = learningV2CourseSessionAudioFileForVoiceIndexV1;
 exports.materializeLearningV2CourseSessionAudioChildV1 = materializeLearningV2CourseSessionAudioChildV1;
+exports.materializePartialLearningV2CourseSessionAudioChildV1 = materializePartialLearningV2CourseSessionAudioChildV1;
 exports.parseLearningV2CourseSessionAudioChildV1 = parseLearningV2CourseSessionAudioChildV1;
 exports.encodeLearningV2CourseSessionAudioChildV1 = encodeLearningV2CourseSessionAudioChildV1;
 exports.isLearningV2CourseSessionAudioChildV1 = isLearningV2CourseSessionAudioChildV1;
@@ -13,7 +15,11 @@ const course_session_limits_v1_1 = require("./course_session_limits_v1");
 const course_session_client_children_v1_1 = require("./course_session_client_children_v1");
 exports.LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_SCHEMA_V1 = "learning-v2-course-session-audio-child.v1";
 exports.LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_MAX_BYTES_V1 = 4 * 1024 * 1024;
-exports.LEARNING_V2_COURSE_SESSION_AUDIO_FILE_MAX_BYTES_V1 = 64 * 1024;
+exports.LEARNING_V2_COURSE_SESSION_AUDIO_FILE_MAX_BYTES_V1 = 256 * 1024;
+/** Файл для выбранного индекса голоса: у реплики с назначенным голосом — всегда её единственный файл. */
+function learningV2CourseSessionAudioFileForVoiceIndexV1(files, voiceSelectionIndex) {
+    return files.length === 1 ? files[0] : files[voiceSelectionIndex];
+}
 const HASH_RE = /^[a-f0-9]{64}$/u;
 const ID_RE = /^[A-Za-z0-9][A-Za-z0-9._:-]{0,159}$/u;
 const GENERATION_RE = /^[1-9][0-9]{0,30}$/u;
@@ -64,8 +70,18 @@ const ROOT_KEYS = Object.freeze([
     "audioFingerprint",
 ]);
 const handles = new WeakSet();
-function fail() {
-    throw new Error("learning_v2_course_session_audio_child_invalid");
+const partialHandles = new WeakSet();
+// зачем (Ревизор 2.74): голый «audio_child_invalid» не говорил, какое задание и почему — отказ занятия не диагностировался.
+// Причина и задание дописываются в сообщение (префикс прежний — потребители ищут его подстрокой) и в журнал.
+function fail(reason, interactionId) {
+    const detail = [reason ? `reason=${reason}` : "", interactionId ? `interactionId=${interactionId}` : ""]
+        .filter(Boolean)
+        .join(" ");
+    if (detail)
+        console.warn(`[V2-AUDIO-CHILD] invalid ${detail}`);
+    throw new Error(detail
+        ? `learning_v2_course_session_audio_child_invalid ${detail}`
+        : "learning_v2_course_session_audio_child_invalid");
 }
 function record(value) {
     return (typeof value === "object" &&
@@ -111,20 +127,23 @@ function exactFile(value) {
         fail();
     return freeze({ ...file });
 }
-function exactFourFiles(value) {
-    if (!Array.isArray(value) || value.length !== voice_playback_policy_v1_1.V2_REQUIRED_VOICE_IDS.length)
-        fail();
+function exactVoiceFiles(value, interactionId) {
+    if (!Array.isArray(value) ||
+        (value.length !== voice_playback_policy_v1_1.V2_REQUIRED_VOICE_IDS.length && value.length !== 1))
+        fail(`voice_file_count_${Array.isArray(value) ? value.length : "not_array"}`, interactionId);
     const files = value.map(exactFile);
-    if (files.some((file, index) => file.voiceId !== voice_playback_policy_v1_1.V2_REQUIRED_VOICE_IDS[index]))
-        fail();
+    // Один файл — назначенный голос (exactFile уже проверил, что голос одобрен); четыре — строго по порядку.
+    if (files.length === voice_playback_policy_v1_1.V2_REQUIRED_VOICE_IDS.length &&
+        files.some((file, index) => file.voiceId !== voice_playback_policy_v1_1.V2_REQUIRED_VOICE_IDS[index]))
+        fail("four_voice_order", interactionId);
     return freeze(files);
 }
-function exactSelectable(value) {
+function exactSelectable(value, interactionId) {
     if (!record(value))
-        fail();
+        fail("selectable_not_record", interactionId);
     exactKeys(value, SELECTABLE_KEYS);
     const selectable = value;
-    const files = exactFourFiles(selectable.files);
+    const files = exactVoiceFiles(selectable.files, interactionId);
     if (!ID_RE.test(selectable.selectableId) ||
         RESERVED.has(selectable.selectableId) ||
         !HASH_RE.test(selectable.audioTargetId) ||
@@ -142,32 +161,43 @@ function exactSelectable(value) {
 }
 function exactInteraction(value) {
     if (!record(value))
-        fail();
+        fail("interaction_not_record");
     exactKeys(value, INTERACTION_KEYS);
     const interaction = value;
+    const id = String(interaction.interactionId);
     const fullPhraseFiles = interaction.fullPhraseFiles === null
         ? null
-        : exactFourFiles(interaction.fullPhraseFiles);
+        : exactVoiceFiles(interaction.fullPhraseFiles, id);
     if (!ID_RE.test(interaction.interactionId) ||
         !HASH_RE.test(interaction.taskVoiceGroupFingerprint) ||
         !Array.isArray(interaction.selectables) ||
         interaction.selectables.length > 32)
-        fail();
-    const selectables = freeze(interaction.selectables.map(exactSelectable));
+        fail("interaction_shape", id);
+    const selectables = freeze(interaction.selectables.map((entry) => exactSelectable(entry, id)));
     const selectableIds = new Set(selectables.map((entry) => entry.selectableId));
     const wordOrdinals = new Set(selectables.map((entry) => entry.wordOrdinal));
     if (selectableIds.size !== selectables.length ||
         wordOrdinals.size !== selectables.length ||
         selectables.some((entry, index) => entry.wordOrdinal !== index + 1) ||
         (fullPhraseFiles === null && selectables.length === 0))
-        fail();
+        fail("selectables_shape", id);
+    // Задание звучит одним голосом: все его реплики либо в четырёх голосах, либо все в одном и том же назначенном.
+    const voiceFileSets = [
+        ...(fullPhraseFiles ? [fullPhraseFiles] : []),
+        ...selectables.map((entry) => entry.files),
+    ];
+    const singleVoice = voiceFileSets[0]?.length === 1;
+    if (voiceFileSets.some((files) => (files.length === 1) !== singleVoice) ||
+        (singleVoice &&
+            new Set(voiceFileSets.map((files) => files[0].voiceId)).size !== 1))
+        fail("task_voice_mixed", id);
     const body = { ...interaction, fullPhraseFiles, selectables };
     if (interaction.interactionAudioFingerprint !==
         (0, decision_registry_1.hashCanonicalBody)(bodyWithoutFingerprint(body, "interactionAudioFingerprint")))
-        fail();
+        fail("interaction_fingerprint", id);
     return freeze(body);
 }
-function validate(value, learner) {
+function validate(value, learner, coverage = "complete") {
     if (!record(value))
         fail();
     exactKeys(value, ROOT_KEYS);
@@ -181,10 +211,15 @@ function validate(value, learner) {
         fail();
     const interactions = freeze(candidate.interactions.map(exactInteraction));
     const expected = learner.interactions.filter((entry) => entry.audioTargetIds.length > 0);
-    if (interactions.length !== expected.length ||
-        interactions.some((entry, index) => entry.interactionId !== expected[index]?.interactionId) ||
-        interactions.some((entry, index) => {
-            const learnerEntry = expected[index];
+    const expectedIndexByInteractionId = new Map(expected.map((entry, index) => [entry.interactionId, index]));
+    const representedExpectedIndexes = interactions.map((entry) => expectedIndexByInteractionId.get(entry.interactionId));
+    const coverageInvalid = coverage === "complete"
+        ? interactions.length !== expected.length || interactions.some((entry, index) => entry.interactionId !== expected[index]?.interactionId)
+        : representedExpectedIndexes.some((expectedIndex, index) => expectedIndex === undefined ||
+            (index > 0 && expectedIndex <= representedExpectedIndexes[index - 1]));
+    if (coverageInvalid ||
+        interactions.some((entry) => {
+            const learnerEntry = expected.find((candidate) => candidate.interactionId === entry.interactionId);
             if (!learnerEntry)
                 return true;
             const allowed = new Set(learnerEntry.responseOptions.map((option) => option.responseId));
@@ -214,6 +249,8 @@ function validate(value, learner) {
         fail();
     const result = freeze(body);
     handles.add(result);
+    if (coverage === "ordered_partial")
+        partialHandles.add(result);
     return result;
 }
 function withFileFingerprint(value) {
@@ -263,6 +300,55 @@ function materializeLearningV2CourseSessionAudioChildV1(input) {
     };
     return validate({ ...body, audioFingerprint: (0, decision_registry_1.hashCanonicalBody)(body) }, input.learner);
 }
+/**
+ * Local EN runtime projection containing only interactions with real recorded
+ * files. The learner child remains complete; absent interactions are spoken by
+ * on-device speech. This handle cannot be encoded as a published audio child.
+ */
+function materializePartialLearningV2CourseSessionAudioChildV1(input) {
+    if (!record(input) ||
+        Object.keys(input).sort().join("|") !== "interactions|learner")
+        fail();
+    const interactions = input.interactions.map((entry) => {
+        const selectables = entry.selectables.map((selectable) => {
+            const body = {
+                selectableId: selectable.selectableId,
+                audioTargetId: selectable.audioTargetId,
+                wordId: selectable.wordId,
+                wordOrdinal: selectable.wordOrdinal,
+                visibleTextHash: (0, decision_registry_1.hashCanonicalBody)(selectable.visibleText),
+                files: selectable.files.map(withFileFingerprint),
+            };
+            return { ...body, selectableFingerprint: (0, decision_registry_1.hashCanonicalBody)(body) };
+        });
+        const body = {
+            interactionId: entry.interactionId,
+            taskVoiceGroupFingerprint: entry.taskVoiceGroupFingerprint,
+            fullPhraseFiles: entry.fullPhraseFiles?.map(withFileFingerprint) ?? null,
+            selectables,
+        };
+        return { ...body, interactionAudioFingerprint: (0, decision_registry_1.hashCanonicalBody)(body) };
+    });
+    const body = {
+        schemaVersion: exports.LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_SCHEMA_V1,
+        courseSessionId: input.learner.courseSessionId,
+        learnerFingerprint: input.learner.learnerFingerprint,
+        interactions,
+        interactionCount: interactions.length,
+        voiceIds: voice_playback_policy_v1_1.V2_REQUIRED_VOICE_IDS,
+        variantsPerAudioCoordinate: 4,
+        selectionPolicy: "local_shuffled_round_robin",
+        taskVoiceScope: "one_voice_per_interaction_for_phrase_and_words",
+        serverRequestPerPlayback: false,
+        remoteTtsFallbackDuringSession: false,
+        answerPayload: "absent_by_exact_schema",
+        correctnessAuthority: "none",
+        audioByteAuthority: "none_active_release_readback_required",
+        runtimeAuthority: "none_active_release_join_required",
+        releaseAuthority: false,
+    };
+    return validate({ ...body, audioFingerprint: (0, decision_registry_1.hashCanonicalBody)(body) }, input.learner, "ordered_partial");
+}
 function parseLearningV2CourseSessionAudioChildV1(raw, learner) {
     if (typeof raw !== "string" ||
         raw.length > exports.LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_MAX_BYTES_V1 ||
@@ -280,7 +366,7 @@ function parseLearningV2CourseSessionAudioChildV1(raw, learner) {
     return validate(decoded, learner);
 }
 function encodeLearningV2CourseSessionAudioChildV1(child) {
-    if (!handles.has(child))
+    if (!handles.has(child) || partialHandles.has(child))
         fail();
     const raw = (0, decision_registry_1.canonicalJsonV1)(child);
     if ((0, decision_registry_1.utf8ByteLengthV1)(raw) > exports.LEARNING_V2_COURSE_SESSION_AUDIO_CHILD_MAX_BYTES_V1)
@@ -305,13 +391,21 @@ function selectLearningV2CourseSessionInteractionAudioV1(input) {
         fail();
     const selectableFiles = Object.fromEntries(interaction.selectables.map((entry) => [
         entry.selectableId,
-        entry.files[input.voiceSelectionIndex],
+        learningV2CourseSessionAudioFileForVoiceIndexV1(entry.files, input.voiceSelectionIndex),
     ]));
+    const fullPhraseFile = interaction.fullPhraseFiles
+        ? learningV2CourseSessionAudioFileForVoiceIndexV1(interaction.fullPhraseFiles, input.voiceSelectionIndex)
+        : null;
+    // Голос — того файла, что реально зазвучит: при четырёх голосах это голос по индексу (как раньше),
+    // при назначенном — он сам, индекс не влияет.
+    const voiceId = fullPhraseFile?.voiceId ??
+        Object.values(selectableFiles)[0]?.voiceId ??
+        voice_playback_policy_v1_1.V2_REQUIRED_VOICE_IDS[input.voiceSelectionIndex];
     return freeze({
         interactionId: interaction.interactionId,
-        voiceId: voice_playback_policy_v1_1.V2_REQUIRED_VOICE_IDS[input.voiceSelectionIndex],
+        voiceId,
         taskVoiceGroupFingerprint: interaction.taskVoiceGroupFingerprint,
-        fullPhraseFile: interaction.fullPhraseFiles?.[input.voiceSelectionIndex] ?? null,
+        fullPhraseFile,
         selectableFiles,
     });
 }

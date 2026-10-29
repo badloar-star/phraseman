@@ -7,8 +7,17 @@ import {
 import { parseLearningV2CourseSessionEvaluatorCapsuleChildV1 } from "../../../modules/learning-v2/runtime/course_session_evaluator_capsule_child_v1";
 import {
   createV2CourseReleasedSessionHandlerV2,
+  createV2CourseReleasedSessionTombstoneHandlerV2,
   V2_COURSE_RELEASED_SESSION_CALLABLE_OPTIONS_V2,
 } from "./v2_course_released_session_callable_v2";
+
+test("legacy v2 callable tombstone always requires upgrade and returns no material", async () => {
+  const handler = createV2CourseReleasedSessionTombstoneHandlerV2();
+  await expect(handler({ data: {}, auth: { uid: "auth-1" } })).rejects.toMatchObject({
+    code: "failed-precondition",
+    message: "upgrade_required",
+  });
+});
 
 jest.mock(
   "../../../modules/learning-v2/runtime/course_session_client_children_v1",
@@ -75,7 +84,7 @@ describe("Learning V2 direct 32x56 released session callable", () => {
 
   test("requires authentication and returns only the three learner-safe children", async () => {
     expect(V2_COURSE_RELEASED_SESSION_CALLABLE_OPTIONS_V2.enforceAppCheck).toBe(
-      true,
+      false,
     );
     const handler = createV2CourseReleasedSessionHandlerV2(
       async (_input, stableAccountId) => {

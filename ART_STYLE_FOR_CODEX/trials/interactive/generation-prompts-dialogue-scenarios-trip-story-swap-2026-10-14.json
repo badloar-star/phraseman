@@ -1,0 +1,14 @@
+{
+  "scenario": "trip_story_swap",
+  "title": "История из поездки",
+  "generatedAt": "2026-10-14",
+  "style": "S2 matte clay",
+  "variants": [
+    "blank postcard with sun-and-wave relief",
+    "camera, folded map and tiny speech tile",
+    "suitcase with blank travel medallion and chat cue",
+    "folded map token with shell and compass disc",
+    "overlapping blank landscape-memory tiles linked by a curve"
+  ],
+  "constraints": ["true transparent RGBA", "no people, text or map labels", "cyan internal marker for separate white accent extraction", "dark/light trial pairs", "trial location only"]
+}

@@ -64,6 +64,8 @@ export function packCategoryIonIcon(category: FlashcardPackCategory): string {
 }
 
 export type FlashcardMarketPack = {
+  /** Immutable first publication time, used to break ties in the monthly contest. */
+  firstPublishedAtMs?: number;
   id: string;
   /** Короткое кодове ім\'я для сітки хаба (одна-дві «клички», без обрізання довгого заголовка). */
   codeName: string;

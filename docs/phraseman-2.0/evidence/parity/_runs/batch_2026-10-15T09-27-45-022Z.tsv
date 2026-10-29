@@ -1,0 +1,2 @@
+id	time	result	ms	detail	file	ms_to_nonblank
+auth-gap-006	2026-10-15T09:28:35.472Z	error	14066	step_target_not_found:#account-link-row+ждали_metro_31мс	docs/phraseman-2.0/evidence/parity/_runs/2026-10-15T09-27-45-022Z/auth-gap-006.error.png	0

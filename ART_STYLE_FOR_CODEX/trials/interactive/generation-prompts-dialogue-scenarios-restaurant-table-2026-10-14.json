@@ -1,0 +1,14 @@
+{
+  "tool": "built-in image_gen; no project API key used",
+  "scenarioId": "lesson18_restaurant_table",
+  "candidatePrefix": "dialog_scene_lesson18_restaurant_table_option_",
+  "concepts": [
+    "round table with two empty chairs",
+    "blank reservation tent card",
+    "top-down two-place setting",
+    "chair beside a small table",
+    "blank menu folio on tabletop"
+  ],
+  "style": "S2 matte graphite / warm ivory clay, true alpha and separate white accent layer",
+  "status": "Five variants generated in dark/light; per-mode test results are in restaurant-table-preparation-dark.log and restaurant-table-preparation-light.log. Owner selection pending."
+}

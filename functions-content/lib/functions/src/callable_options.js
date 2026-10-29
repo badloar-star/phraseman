@@ -1,9 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HOT_CALLABLE_OPTIONS = exports.ADMIN_SENSITIVE_WRITE_OPTIONS = exports.ENFORCE_APP_CHECK_ADMIN = exports.ENFORCE_APP_CHECK_OPENAI = exports.ENFORCE_APP_CHECK_SENSITIVE = exports.ENFORCE_APP_CHECK = exports.APP_CHECK_SEALED_BY_OWNER_2026_08_17 = void 0;
+exports.HOT_CALLABLE_OPTIONS = exports.ADMIN_SENSITIVE_WRITE_OPTIONS = exports.ENFORCE_APP_CHECK_ADMIN = exports.ENFORCE_APP_CHECK_OPENAI = exports.ENFORCE_APP_CHECK_SENSITIVE = exports.ENFORCE_APP_CHECK = exports.APP_CHECK_SEALED_BY_OWNER_2026_08_17 = exports.AUTH_CALLABLE_REGIONS = void 0;
 exports.requireAdminAppCheck = requireAdminAppCheck;
 const https_1 = require("firebase-functions/v2/https");
 const REGION = 'us-central1';
+/**
+ * Регионы функций пути входа (authEnsureStableLink, authStampAnonOwnership, authMergeStableAccounts).
+ * зачем (владелец 18.10 «Да, перенести», разбор fc30ae94a): база в eur3, а us-central1 давал ≈ 120 мс на КАЖДОЕ обращение к
+ * базе — ~30 обращений подряд = 3,6–5,9 с на вход. europe-west1 рядом с eur3; us-central1 остаётся для старых сборок,
+ * которые зовут его по имени. Снимать US — только когда журнал запросов US покажет ноль (решение координатора).
+ */
+exports.AUTH_CALLABLE_REGIONS = ['us-central1', 'europe-west1'];
 /**
  * ⛔️⛔️⛔️ APP CHECK ЗАПЛОМБИРОВАН НАВСЕГДА. РЕШЕНИЕ ВЛАДЕЛЬЦА 2026-08-17. ⛔️⛔️⛔️
  *
@@ -119,5 +126,8 @@ exports.HOT_CALLABLE_OPTIONS = {
     timeoutSeconds: 15,
     memory: '256MiB',
     maxInstances: 80,
+    // зачем (владелец 17.10): вход, старт приложения, Пик и диалоги — полное ядро (белый список к setGlobalOptions cpu gcf_gen1):
+    // при доле ядра ответ замедлялся на 30–100 % (замер Cloud Monitoring 17.10), владелец заметил долгую загрузку Пика.
+    cpu: 1,
 };
 //# sourceMappingURL=callable_options.js.map

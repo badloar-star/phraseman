@@ -1515,6 +1515,8 @@ const RULES_BLOCKED_PROGRESS_KEYS: ReadonlySet<string> = new Set([
   'loyalty_gift_until_ms', 'loyalty_gift_granted_at_ms',
   'referral_vip_last_source', 'promo_vip_last_code',
   'lesson1_pass_live', 'lesson_progress_v2::fr::lesson1_pass_live',
+  // лесенка C (29.10): серверные дни итогов Learning V2 — пишет только сервер, правила режут клиенту
+  'lv2_srv_day1', 'lv2_srv_day2',
   'collectibles_owned_v1', 'collectibles_state_v1',
   'profile_card_level', 'shard_survey_last_at_ms',
   'achievement_access_plus_paid_v1', 'achievement_access_pro_paid_v1',

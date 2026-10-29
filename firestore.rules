@@ -491,6 +491,10 @@ service cloud.firestore {
         // бесплатный VIP, поэтому блокируем ВСЕГДА (как premium), а не только после миграции.
         'lesson1_pass_live',
         'lesson_progress_v2::fr::lesson1_pass_live',
+        // Лесенка C (29.10): серверные дни итогов Learning V2 — по ним друг засчитывается для Plus.
+        // Пишет только submitLearningV2CourseSessionCompletedV1; подделка клиентом дала бы бесплатный Plus.
+        'lv2_srv_day1',
+        'lv2_srv_day2',
         // Collectibles: server-only, always blocked regardless of migration flag.
         'collectibles_owned_v1',
         'collectibles_state_v1',

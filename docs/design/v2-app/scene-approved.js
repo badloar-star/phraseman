@@ -82,8 +82,9 @@
   function lightA(t, screen, W, H, opts) {
     const p = paletteA(t, 'light'); const old = oldScrim(screen, H, opts);
     const raw = { top: p.top, bot: p.bot, start: [0.22, 0], end: [0.78, 1], lights: [{ cx: 0.18, cy: 0, rx: 0.7, ry: 0.5, color: p.lightC, a: p.a1, fade: 0.7 }, { cx: 0.86, cy: 1.02, rx: 0.8, ry: 0.42, color: p.light2C, a: p.a2, fade: 0.7 }], scrim: old };
+    const ev = opts && opts.evening ? warmEdge(t, opts.warm) : null; if (ev) raw.lights.push({ cx: ev.cx, cy: ev.cy, rx: ev.rx, ry: ev.ry, color: ev.color, a: ev.a, fade: ev.fade }); // вечер: тот же тёплый край третьим светом, страж считает его
     const s = ensureContrast(raw, W, H);
-    return { version: VERSION, mode: 'light-A', name: 'А — тон темы ярче и глубже', screen, size: { W, H }, palette: p, spec: s,
+    return { version: VERSION, mode: ev ? 'light-A-evening' : 'light-A', name: ev ? 'А + тёплый край' : 'А — тон темы ярче и глубже', screen, size: { W, H }, palette: p, spec: s, warmEdge: ev,
       gradient: { start: [0.22, 0], end: [0.78, 1], top: col(s.top), bottom: col(s.bot) },
       lights: s.lights.map((l) => ({ cx: l.cx, cy: l.cy, rx: l.rx, ry: l.ry, color: col(l.color), a: +l.a.toFixed(2), fade: l.fade })),
       scrim: s.scrim ? { color: '#000000', a: s.scrim.a, h: Math.round(s.scrim.h), note: 'чёрный от 0 на высоте h от низа сцены до a у низа' } : null,
@@ -99,12 +100,20 @@
      4) звёзды: 70 штук, сид 3, белые; на каждую по порядку x = r()·W, y = r()·H·.4, радиус .8 + r()·1,8 px, альфа .18 + r()·.5;
      5) виньетка: радиальный чёрный от 45 % радиуса (0) до края (.22), эллипс 78 % W × 78 % H от центра;
      6) страж по нарисованным пикселям (guardSky). */
-  function darkSky(t, screen, W, H) {
+  /* ═════ 4а. Вечер (Главная после 20:00) — «Небо + тёплый край» (слово владельца 29.10 ~08:05 через координатора: небо остаётся, справа
+     внизу лёгкий тёплый отсвет как намёк на угрозу серии, БЕЗ красного и без углей; тёплый цвет — от оттенка темы, не отдельный красный).
+     Оттенок отсвета — opts.warm: 'warmer' (по умолчанию) — оттенок темы H, сдвинутый на ≤ 35° к янтарю (60°) по короткой дуге;
+     'theme' — сам оттенок темы, светлее; 'band' — тёплая полоса 40…80°, точка в ней — от оттенка темы (40 + (H mod 60) / 60 × 40).
+     Слой: эллиптический свет в (92 % W, 102 % H) радиусами 55 % W × 42 % H, альфа .5 → 0 на 85 % радиуса; кладётся после дымки, перед звёздами. */
+  const WARM = { theme: (H) => H, warmer: (H) => { const d = ((60 - H + 540) % 360) - 180; return norm(H + Math.sign(d) * Math.min(35, Math.abs(d))); }, band: (H) => 40 + ((H % 60) / 60) * 40 };
+  function warmEdge(t, mode) { const [, , H] = oklchOf(hx(t.accent)); const m = WARM[mode] ? mode : 'warmer'; const hue = WARM[m](H); const L = m === 'band' ? 0.78 : m === 'theme' ? 0.72 : 0.74; const C = m === 'band' ? 0.14 : m === 'theme' ? 0.12 : 0.13; const color = okRgb(L, C, hue); return { mode: m, hue: Math.round(hue * 10) / 10, cx: 0.92, cy: 1.02, rx: 0.55, ry: 0.42, color, hex: hex(color), a: 0.5, fade: 0.85, oklch: [L, C, Math.round(hue)] }; }
+  function darkSky(t, screen, W, H, opts) {
     const p = paletteA(t, 'dark'); const S = p.S; const C = p.C;
     const zenC = Math.min(0.17, C + 0.03); const midC = Math.min(0.15, C + 0.01); const horC = Math.min(0.13, C + 0.02); const gndC = Math.min(0.10, C); const botC = Math.min(0.08, C);
     const zen = okRgb(0.40, zenC, S); const mid = okRgb(0.47, midC, norm(S + 4)); const hor = okRgb(0.60, horC, norm(S + 12)); const gnd = okRgb(0.27, gndC, norm(S - 8)); const bottom = okRgb(0.22, botC, norm(S - 10)); const haze = okRgb(0.80, 0.08, p.Lh);
     const r = rng(3); const stars = []; for (let i = 0; i < 70; i += 1) { const x = r(); const y = r() * 0.4; const rad = 0.8 + r() * 1.8; const a = 0.18 + r() * 0.5; stars.push({ x, y, r: rad, a }); }
-    return { version: VERSION, mode: 'dark-sky', name: 'Глубокое небо', screen, size: { W, H }, palette: p,
+    const ev = opts && opts.evening ? warmEdge(t, opts.warm) : null;
+    return { version: VERSION, mode: ev ? 'dark-sky-evening' : 'dark-sky', name: ev ? 'Глубокое небо + тёплый край' : 'Глубокое небо', screen, size: { W, H }, palette: p, warmEdge: ev,
       gradient: { direction: 'vertical', stops: [{ at: 0, color: col(zen), oklch: [0.40, zenC, S] }, { at: 0.42, color: col(mid), oklch: [0.47, midC, norm(S + 4)] }, { at: 0.66, color: col(hor), oklch: [0.60, horC, norm(S + 12)] }, { at: 0.74, color: col(hor) }, { at: 0.80, color: col(gnd), oklch: [0.27, gndC, norm(S - 8)] }, { at: 1, color: col(bottom), oklch: [0.22, botC, norm(S - 10)] }] },
       sun: { cx: 0.18, cy: 0.02, rx: 0.62, ry: 0.46, color: col(p.lightC), a: 0.72, fade: 1 },
       haze: { y0: 0.62, y1: 0.76, color: col(haze), a: [0, 0.34, 0] },
@@ -112,7 +121,7 @@
       vignette: { scale: 0.78, inner: 0.45, a: 0.22 },
       guard: { textZone: [0.5, 0.96], minWhite: 4.6, statusRows: [4, 80], minStatus: 3.5 },
       raw: { zen, mid, hor, gnd, bottom, haze, lightC: p.lightC },
-      order: ['gradient', 'sun', 'haze', 'stars', 'vignette', 'guard'] };
+      order: ev ? ['gradient', 'sun', 'haze', 'warmEdge', 'stars', 'vignette', 'guard'] : ['gradient', 'sun', 'haze', 'stars', 'vignette', 'guard'] };
   }
   /* отрисовка «Глубокого неба» на 2D-канве (та же, что scene-styles.js) — для сверки с макетом и как образец для порта */
   const rgba = (c, a = 1) => `rgba(${c.map((v) => Math.round(v)).join(',')},${a})`;
@@ -121,6 +130,7 @@
     st.forEach((s, i) => gr.addColorStop(s.at, rgba(rawOf[i]))); g.fillStyle = gr; g.fillRect(0, 0, W, H);
     const l = d.sun; g.save(); g.translate(l.cx * W, l.cy * H); g.scale(l.rx * W, l.ry * H); const lg = g.createRadialGradient(0, 0, 0, 0, 0, 1); lg.addColorStop(0, rgba(raw.lightC, l.a)); lg.addColorStop(1, rgba(raw.lightC, 0)); g.fillStyle = lg; g.fillRect(-1, -1, 2, 2); g.restore();
     const h = d.haze; const bg = g.createLinearGradient(0, H * h.y0, 0, H * h.y1); bg.addColorStop(0, rgba(raw.haze, 0)); bg.addColorStop(0.5, rgba(raw.haze, h.a[1])); bg.addColorStop(1, rgba(raw.haze, 0)); g.fillStyle = bg; g.fillRect(0, H * h.y0, W, H * (h.y1 - h.y0));
+    if (d.warmEdge) { const e = d.warmEdge; g.save(); g.translate(e.cx * W, e.cy * H); g.scale(e.rx * W, e.ry * H); const eg = g.createRadialGradient(0, 0, 0, 0, 0, 1); eg.addColorStop(0, rgba(e.color, e.a)); eg.addColorStop(e.fade, rgba(e.color, 0)); eg.addColorStop(1, rgba(e.color, 0)); g.fillStyle = eg; g.fillRect(-1, -1, 2, 2); g.restore(); }
     d.stars.list.forEach((s) => { g.fillStyle = rgba([255, 255, 255], s.a); g.beginPath(); g.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2); g.fill(); });
     const v = d.vignette; g.save(); g.translate(W / 2, H / 2); g.scale(W * v.scale, H * v.scale); const vg = g.createRadialGradient(0, 0, v.inner, 0, 0, 1); vg.addColorStop(0, 'rgba(0,0,0,0)'); vg.addColorStop(1, `rgba(0,0,0,${v.a})`); g.fillStyle = vg; g.fillRect(-2, -2, 4, 4); g.restore();
     return guardSky(g, W, H);
@@ -142,9 +152,10 @@
 
   /* ═════ 5. Точка входа: спецификация утверждённого вида экрана ═════
      screen — 'home' | 'dialogs' | 'peak' | 'season'; W, H — px области сцены (на кадре 1080 × 2400: Главная/Диалоги 1082, Пик 1950, Сезон 1029);
+     opts.evening — Главная после 20:00: к небу (и к светлой А) добавляется тёплый край справа внизу, opts.warm — трактовка оттенка (§4а);
      opts.premium — true для шести премиум-тем (их Главная/Пик сейчас без затемнения низа — вход стража другой).
      Область сцены у каждого экрана своя, формула одна. Надписи: в тёмном — белые как сейчас; в светлом сцена становится тёмной, поэтому
      надписи/стекло на ней — белые, как на Главной (у светлых Диалогов сейчас тёмный текст на светлой сцене — Темам перевести в белый). */
-  function approved(tokens, appearance, screen, W, H, opts) { return appearance === 'dark' ? darkSky(tokens, screen, W, H) : lightA(tokens, screen, W, H, opts || {}); }
-  return { VERSION, DP, paletteA, painter, ensureContrast, lightA, darkSky, drawSky, guardSky, approved, OLD_SCRIM, color: { hx, hex, oklchOf, okRgb, whiteOn, ratioc, lumc, norm }, rng };
+  function approved(tokens, appearance, screen, W, H, opts) { return appearance === 'dark' ? darkSky(tokens, screen, W, H, opts || {}) : lightA(tokens, screen, W, H, opts || {}); }
+  return { VERSION, DP, paletteA, painter, ensureContrast, lightA, darkSky, drawSky, guardSky, approved, warmEdge, WARM, OLD_SCRIM, color: { hx, hex, oklchOf, okRgb, whiteOn, ratioc, lumc, norm }, rng };
 });

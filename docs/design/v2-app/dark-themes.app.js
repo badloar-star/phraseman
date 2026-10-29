@@ -19,6 +19,7 @@
   const q = new URLSearchParams(location.search);
   let AP = q.get('ap') === 'light' ? 'light' : 'dark';
   let THEME = THEMES[q.get('th')] ? q.get('th') : 'graphite'; // тема владельца — «Затмение» (координатор 28.10)
+  let WARM = ['theme', 'warmer', 'band'].includes(q.get('warm')) ? q.get('warm') : 'warmer'; // вечер: трактовка «тёплый цвет — оттенок темы» (владелец 29.10 ~08:05), чипы в разделе «Утверждено»
   let JOBS = {}; const STYLE_CACHE = new Map();
   const hasFrame = (id, ap) => (byTheme[id] || []).some((m) => m.ap === ap);
   const frameOf = (screen, state = 'day') => (byTheme[THEME] || []).find((m) => m.screen === screen && m.ap === AP && (m.state || 'day') === state) || null;
@@ -146,6 +147,14 @@
   const approvedVariant = (m) => (m.ap === 'dark'
     ? { key: 'sky', name: 'Утверждено 29.10 · Глубокое небо', why: SS.STYLES.sky.why, spec: styleSpec(THEME, m, 'sky'), approved: true }
     : { key: 'A', name: 'Утверждено 29.10 · А — тон темы ярче и глубже', why: SP.schemeLine(SP.scenePal(THEME, 'light', 'A')), spec: stratSpec(THEME, 'light', 'A', oldSpecFor(m), m.sceneH), approved: true });
+  /* вечер на «Глубоком небе» — «Небо + тёплый край» (владелец 29.10 ~08:05): картинку рисует сама функция спецификации (drawSky с warmEdge),
+     чтобы макет и формула были одним и тем же кодом; в светлом — формула А + третий свет (светлых вечерних кадров пока нет) */
+  const eveningVariant = (m) => {
+    const SA = window.SceneApproved; const t = THEMES[THEME][m.ap]; const a = SA.approved(t, m.ap, 'home', W, m.sceneH, { premium: !!THEMES[THEME].premium, evening: true, warm: WARM }); const e = a.warmEdge;
+    const why = `тёплый край: ${e.mode === 'warmer' ? 'тон темы, теплее' : e.mode === 'theme' ? 'тон темы' : 'тёплая полоса'} → ${e.hue}° · OKLCH ${e.oklch[0]} / ${e.oklch[1]} · ${e.hex} · альфа ${e.a} справа внизу`;
+    if (m.ap === 'dark') { const c = document.createElement('canvas'); c.width = W; c.height = m.sceneH; const g = c.getContext('2d', { willReadFrequently: true }); SA.drawSky(g, a, W, m.sceneH); return { key: 'sky_evening', name: 'Небо + тёплый край', why, spec: { image: g.getImageData(0, 0, W, m.sceneH) }, approved: true }; }
+    return { key: 'A_evening', name: 'А + тёплый край', why, spec: a.spec, approved: true };
+  };
   const sectionApproved = () => {
     const rows = SCREENS.map((s) => {
       const m = frameOf(s); if (!m) return missing(`${SCREEN_NAME[s]} · утверждено`, `scene_${s}_${THEME}_${AP}.png`);
@@ -153,8 +162,11 @@
       if (lightDialogs(m)) { const j = JOBS[`${m.file}#approved`]; j.ink = C.hx(THEMES[THEME][AP].text); j.cta = C.hx(THEMES[THEME][AP].cta); } // надписи → белые, кнопки → как в тёмном
       return html;
     }).join('');
+    const ev = frameOf('home', 'evening'); const evFile = `scene_home_evening_${THEME}_${AP}.png`;
+    const evRow = !ev ? missing('Главная · вечер (после 20:00) · небо + тёплый край', evFile) : row(`${ev.file}#approved`, ev, [eveningVariant(ev)], 'Главная · вечер (после 20:00) · небо + тёплый край');
+    const warmBar = `<div class="thm sp-bar" id="dtWarm"><span class="sp-lbl">Тёплый край — оттенок</span>${[['warmer', 'тон темы, теплее (≤ 35° к янтарю)'], ['theme', 'тон темы как есть, светлее'], ['band', 'тёплая полоса 40–80°, точка — от темы']].map(([k, n]) => `<span class="chp${WARM === k ? ' on' : ''}" data-dt-warm="${k}">${n}</span>`).join('')}</div>`;
     const inkNote = AP === 'light' ? ' Светлые Диалоги: сцена становится тёмной, тёмные надписи кадра переведены в белые приближённо (по доле краски) — цвета текста и кнопок на тёмной сцене решают Темы.' : '';
-    return `<section class="block" id="dt-approved"><h2>Утверждено владельцем 29.10 — тёмное: «Глубокое небо», светлое: «А — тон темы ярче и глубже»</h2><p class="sp-note">Слово владельца дословно: «Тёмная тема везде должна стать глубокое небо!!! а светлая — тон темы ярче и глубже! Это всех экранов касается». На каждом экране — ровно выбранный вариант; формулы для переноса в код — scene-approved.js и scene-approved-2026-10-29.md, эталонные кадры — assets/approved/scene/. Стили сцен, вечер и карточки не выбраны — ниже остаются как варианты.${inkNote}</p>${rows}</section>`;
+    return `<section class="block" id="dt-approved"><h2>Утверждено владельцем 29.10 — тёмное: «Глубокое небо», светлое: «А — тон темы ярче и глубже»</h2><p class="sp-note">Слово владельца дословно: «Тёмная тема везде должна стать глубокое небо!!! а светлая — тон темы ярче и глубже! Это всех экранов касается». На каждом экране — ровно выбранный вариант; формулы для переноса в код — scene-approved.js и scene-approved-2026-10-29.md, эталонные кадры — assets/approved/scene/. Стили сцен, вечер и карточки не выбраны — ниже остаются как варианты.${inkNote}</p>${rows}<p class="sp-note" style="margin-top:26px"><b>Вечер (после 20:00)</b> — слово владельца 29.10 ~08:05: «Небо + тёплый край» — небо остаётся, справа внизу лёгкий тёплый отсвет как намёк на угрозу серии, без красного и без углей; тёплый цвет — от оттенка темы, не отдельный красный. Как именно «от оттенка темы» — три трактовки, выбери чипом (подпись под телефоном — число и цвет). Светлых вечерних кадров пока нет — Сверка снимала вечер только в тёмном.</p>${warmBar}${evRow}</section>`;
   };
   /* сверка макета со спецификацией scene-approved.js: светлое — числа задания страницы после стража против чисел функции; тёмное — картинка
      «Глубокого неба» перерисована функцией спецификации и сравнена по пикселям с картинкой стиля (должно быть 0) */
@@ -174,6 +186,8 @@
         out.push({ screen: s, mode: 'dark-sky', maxDiff: mx, badPixels: bad, guard: { bottom: +gd.aBottom.toFixed(3), top: +gd.aTop.toFixed(3) } });
       }
     }
+    const ev = frameOf('home', 'evening'); const ej = ev && JOBS[`${ev.file}#approved`];
+    if (ej) { const a = SA.approved(THEMES[THEME][AP], AP, 'home', W, ev.sceneH, { premium, evening: true, warm: WARM }); let mx = 0; if (AP === 'dark') { const img = ej.strats[0].spec.image; const c = document.createElement('canvas'); c.width = W; c.height = ev.sceneH; const g = c.getContext('2d', { willReadFrequently: true }); SA.drawSky(g, a, W, ev.sceneH); const d = g.getImageData(0, 0, W, ev.sceneH).data; for (let i = 0; i < d.length; i += 4) { const e = Math.max(Math.abs(d[i] - img.data[i]), Math.abs(d[i + 1] - img.data[i + 1]), Math.abs(d[i + 2] - img.data[i + 2])); if (e > mx) mx = e; } } out.push({ screen: 'home_evening', mode: a.mode, warm: a.warmEdge.mode, hue: a.warmEdge.hue, hex: a.warmEdge.hex, maxDiff: mx }); }
     console.log('[DT-APPROVED] сверка', THEME, AP, JSON.stringify(out)); // guard-ok: одна строка на проверку
     return out;
   };
@@ -189,14 +203,15 @@
     const t0 = performance.now();
     root.innerHTML = sectionApproved() + sectionColors() + sectionLight() + sectionArt() + sectionEvening() + sectionCards();
     controls();
-    const u = new URL(location.href); u.searchParams.set('th', THEME); u.searchParams.set('ap', AP); history.replaceState(null, '', u);
+    const u = new URL(location.href); u.searchParams.set('th', THEME); u.searchParams.set('ap', AP); u.searchParams.set('warm', WARM); history.replaceState(null, '', u);
     console.log(LOG, 'render', JSON.stringify({ theme: THEME, ap: AP, frames: (byTheme[THEME] || []).filter((m) => m.ap === AP).map((m) => m.file), jobs: Object.keys(JOBS).length, ms: Math.round(performance.now() - t0) })); // guard-ok: одна строка на перерисовку
     window.SceneReal.buildAll(root, JOBS);
   };
   document.body.addEventListener('click', (e) => {
     const c = e.target.closest('.chp[data-dt-th]'); if (c) { THEME = c.dataset.dtTh; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
-    const a = e.target.closest('.chp[data-dt-ap]'); if (a) { AP = a.dataset.dtAp; render(); }
+    const a = e.target.closest('.chp[data-dt-ap]'); if (a) { AP = a.dataset.dtAp; render(); return; }
+    const w = e.target.closest('.chp[data-dt-warm]'); if (w) { WARM = w.dataset.dtWarm; render(); }
   });
   render();
-  window.__dt = { THEME_LIST, byTheme, paletteOf, homeOld, dialogsOld, bPlusSpec, ensureContrast, checkApproved, render, setTheme: (id, ap) => { THEME = id; if (ap) AP = ap; render(); }, jobs: () => JOBS };
+  window.__dt = { THEME_LIST, byTheme, paletteOf, homeOld, dialogsOld, bPlusSpec, ensureContrast, checkApproved, render, setTheme: (id, ap) => { THEME = id; if (ap) AP = ap; render(); }, setWarm: (w) => { WARM = w; render(); }, warm: () => WARM, jobs: () => JOBS };
 })();

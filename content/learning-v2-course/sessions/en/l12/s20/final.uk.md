@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, що помітили на вулиці вчора.
 
-**Що ви опануєте:** розповісти про те, що вже закінчилося: I noticed a cycle lane.
+**Що ви опануєте:** розповісти, що ви помітили дорогою: I noticed a cycle lane.
 **Нові слова:** cycle lane, speed limit, zebra crossing, parking meter
 
 ## Інтро 1

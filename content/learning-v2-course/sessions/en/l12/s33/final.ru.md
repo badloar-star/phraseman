@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, как вчера сходили в музей.
 
-**Что вы освоите:** рассказать о том, что уже закончилось: I checked the opening hours.
+**Что вы освоите:** рассказать о походе в музей: We visited the museum yesterday.
 **Новые слова:** opening hours, entrance ticket, audio guide, tour guide
 
 ## Интро 1

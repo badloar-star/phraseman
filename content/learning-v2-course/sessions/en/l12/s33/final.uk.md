@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, як учора сходили до музею.
 
-**Що ви опануєте:** розповісти про те, що вже закінчилося: I checked the opening hours.
+**Що ви опануєте:** розповісти про похід до музею: We visited the museum yesterday.
 **Нові слова:** opening hours, entrance ticket, audio guide, tour guide
 
 ## Інтро 1

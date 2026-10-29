@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про підготовку до вчорашнього свята.
 
-**Що ви опануєте:** розповісти про те, що вже закінчилося: We chose a birthday cake.
+**Що ви опануєте:** розповісти про день народження, що вже минув: We celebrated my birthday yesterday.
 **Нові слова:** birthday cake, party hat, birthday candle, wrapping paper
 
 ## Інтро 1

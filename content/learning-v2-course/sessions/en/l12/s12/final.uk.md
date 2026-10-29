@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, як почався ранок і що було на сніданок.
 
-**Що ви опануєте:** розповісти про минуле: I had breakfast cereal.
+**Що ви опануєте:** розповісти, що ви їли на сніданок: I had breakfast cereal.
 **Нові слова:** breakfast cereal, fruit yoghurt, boiled egg, soft cheese
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните дождь и солнце вчера.
 
-**Что вы освоите:** рассказать о прошлом: She watched the thunderstorm.
+**Что вы освоите:** рассказать, что вы наблюдали за окном: She watched the thunderstorm.
 **Новые слова:** thunderstorm, raindrop, drizzle, sunshine
 
 ## Интро 1

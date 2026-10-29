@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, что вчера приготовили для школы.
 
-**Что вы освоите:** повторить, как звучит -ed: I cleaned my schoolbag.
+**Что вы освоите:** рассказать о сборах в школу: I packed my pencil case.
 **Новые слова:** pencil case, schoolbag, exercise book, pencil sharpener
 
 ## Интро 1

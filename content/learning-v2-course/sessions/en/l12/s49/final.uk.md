@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, що вчора відклали й спакували.
 
-**Що ви опануєте:** повторити: I used a reusable bag.
+**Що ви опануєте:** розповісти, що ви робили з одягом: I packed the unwanted clothes.
 **Нові слова:** reusable, unwanted, brand-new, worn-out
 
 ## Інтро 1

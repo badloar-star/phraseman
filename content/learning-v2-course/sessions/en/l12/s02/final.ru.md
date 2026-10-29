@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о вчерашней дороге по городу.
 
-**Что вы освоите:** рассказать о вчерашнем: добавлять к действию -ed или -d: She cycled along the cycle path.
+**Что вы освоите:** рассказать, что вы делали вчера: I checked the road sign.
 **Новые слова:** cycle path, street corner, traffic jam, road sign
 
 ## Интро 1

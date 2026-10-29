@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о питомце и вещах для него.
 
-**Что вы освоите:** рассказать о прошлом: The cat escaped yesterday.
+**Что вы освоите:** рассказать, что случилось с котом: The cat escaped yesterday.
 **Новые слова:** escape, cat flap, pet carrier, dog collar
 
 ## Интро 1

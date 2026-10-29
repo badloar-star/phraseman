@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о подготовке ко вчерашнему празднику.
 
-**Что вы освоите:** рассказать о том, что уже закончилось: We chose a birthday cake.
+**Что вы освоите:** рассказать о дне рождения, который уже прошёл: We celebrated my birthday yesterday.
 **Новые слова:** birthday cake, party hat, birthday candle, wrapping paper
 
 ## Интро 1

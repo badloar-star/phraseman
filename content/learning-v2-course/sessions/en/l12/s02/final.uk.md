@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про вчорашню дорогу містом.
 
-**Що ви опануєте:** розповісти про вчорашнє: додавати до дії -ed або -d: She cycled along the cycle path.
+**Що ви опануєте:** розповісти, що ви робили вчора: I checked the road sign.
 **Нові слова:** cycle path, street corner, traffic jam, road sign
 
 ## Інтро 1

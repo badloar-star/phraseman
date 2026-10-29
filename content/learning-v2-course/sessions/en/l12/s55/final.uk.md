@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, куди вчора сходили й де зробили покупки.
 
-**Що ви опануєте:** повторити: I visited the town centre.
+**Що ви опануєте:** розповісти, де ви побували в місті: I visited the town centre.
 **Нові слова:** town centre, high street, town square, street market
 
 ## Інтро 1

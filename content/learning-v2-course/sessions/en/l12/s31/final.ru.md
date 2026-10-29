@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о вчерашней работе в саду.
 
-**Что вы освоите:** правильно произносить -ed: We watered the flowerbed.
+**Что вы освоите:** рассказать, что вы посадили: I planted a fruit tree.
 **Новые слова:** rose bush, flowerbed, tomato plant, fruit tree
 
 ## Интро 1

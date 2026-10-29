@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, куда вчера сходили и где сделали покупки.
 
-**Что вы освоите:** повторить: I visited the town centre.
+**Что вы освоите:** рассказать, где вы побывали в городе: I visited the town centre.
 **Новые слова:** town centre, high street, town square, street market
 
 ## Интро 1

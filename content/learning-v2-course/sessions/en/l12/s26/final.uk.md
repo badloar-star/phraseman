@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, що вчора приготували до школи.
 
-**Що ви опануєте:** повторити, як звучить -ed: I cleaned my schoolbag.
+**Що ви опануєте:** розповісти про збори до школи: I packed my pencil case.
 **Нові слова:** pencil case, schoolbag, exercise book, pencil sharpener
 
 ## Інтро 1

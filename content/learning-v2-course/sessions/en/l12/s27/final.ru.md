@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, как помогли на кухне вчера.
 
-**Что вы освоите:** правильно произносить -ed: I cleaned the chopping board.
+**Что вы освоите:** рассказать, что вы делали на кухне: She helped in the kitchen.
 **Новые слова:** mixing bowl, soup bowl, chopping board, baking tray
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, що вибрали на подарунок.
 
-**Що ви опануєте:** розповісти про вчорашнє словами, що змінюються повністю: I saw my friend yesterday.
+**Що ви опануєте:** розповісти, що ви вибрали в подарунок: I chose a birthday card.
 **Нові слова:** bunch of flowers, box of chocolates, birthday card, gift bag
 
 ## Інтро 1

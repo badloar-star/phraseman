@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте літні справи в саду.
 
-**Що ви опануєте:** розповісти про минуле: I used gardening gloves.
+**Що ви опануєте:** розповісти, що ви робили в саду: I used gardening gloves.
 **Нові слова:** vegetable patch, seed packet, gardening gloves, garden hose
 
 ## Інтро 1

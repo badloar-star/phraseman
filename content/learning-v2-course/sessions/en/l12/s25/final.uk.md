@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про прибирання ванної й прислухайтеся до закінчень.
 
-**Що ви опануєте:** правильно вимовляти -ed: I washed the shower head.
+**Що ви опануєте:** розповісти, що ви робили у ванній: I cleaned the soap dispenser.
 **Нові слова:** shower head, toilet seat, soap dispenser, toothbrush holder
 
 ## Інтро 1

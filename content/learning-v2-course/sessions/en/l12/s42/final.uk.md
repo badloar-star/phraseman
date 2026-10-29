@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте дощ і сонце вчора.
 
-**Що ви опануєте:** розповісти про минуле: She watched the thunderstorm.
+**Що ви опануєте:** розповісти, що ви спостерігали за вікном: She watched the thunderstorm.
 **Нові слова:** thunderstorm, raindrop, drizzle, sunshine
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, що вчора поправили, випрали й переставили.
 
-**Що ви опануєте:** повторити: I moved the footstool.
+**Що ви опануєте:** розповісти, що ви переставили в кімнаті: I moved the footstool.
 **Нові слова:** sofa cushion, cushion cover, footstool, rocking chair
 
 ## Інтро 1

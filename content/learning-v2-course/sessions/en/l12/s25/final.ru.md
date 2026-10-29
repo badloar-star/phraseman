@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите об уборке ванной и прислушайтесь к окончаниям.
 
-**Что вы освоите:** правильно произносить -ed: I washed the shower head.
+**Что вы освоите:** рассказать, что вы делали в ванной: I cleaned the soap dispenser.
 **Новые слова:** shower head, toilet seat, soap dispenser, toothbrush holder
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, що перевірили перед поїздкою.
 
-**Що ви опануєте:** розповісти про минуле: I used my railcard.
+**Що ви опануєте:** розповісти про поїздку потягом: I checked my train ticket.
 **Нові слова:** train ticket, platform number, rush hour, railcard
 
 ## Інтро 1

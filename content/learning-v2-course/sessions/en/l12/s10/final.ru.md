@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните летние дела в саду.
 
-**Что вы освоите:** рассказать о прошлом: I used gardening gloves.
+**Что вы освоите:** рассказать, что вы делали в саду: I used gardening gloves.
 **Новые слова:** vegetable patch, seed packet, gardening gloves, garden hose
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, как началось утро и что было на завтрак.
 
-**Что вы освоите:** рассказать о прошлом: I had breakfast cereal.
+**Что вы освоите:** рассказать, что вы ели на завтрак: I had breakfast cereal.
 **Новые слова:** breakfast cereal, fruit yoghurt, boiled egg, soft cheese
 
 ## Интро 1

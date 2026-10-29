@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, что помыли и проверили у машины.
 
-**Что вы освоите:** рассказать о прошлом: She washed the windscreen.
+**Что вы освоите:** рассказать, что вы сделали с машиной: She washed the windscreen.
 **Новые слова:** car boot, car bonnet, wing mirror, car door
 
 ## Интро 1

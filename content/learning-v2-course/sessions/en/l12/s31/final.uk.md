@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про вчорашню роботу в саду.
 
-**Що ви опануєте:** правильно вимовляти -ed: We watered the flowerbed.
+**Що ви опануєте:** розповісти, що ви посадили: I planted a fruit tree.
 **Нові слова:** rose bush, flowerbed, tomato plant, fruit tree
 
 ## Інтро 1

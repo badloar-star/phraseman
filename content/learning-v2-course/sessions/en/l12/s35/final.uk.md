@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, кого навідували вчора.
 
-**Що ви опануєте:** розповісти про минуле: I visited my mother-in-law.
+**Що ви опануєте:** розповісти, кого ви відвідали: I visited my mother-in-law.
 **Нові слова:** mother-in-law, father-in-law, great-grandmother, great-grandfather
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашню прогулянку.
 
-**Що ви опануєте:** розповісти про минуле: I crossed the main road.
+**Що ви опануєте:** розповісти про прогулянку містом: I crossed the main road.
 **Нові слова:** main road, side street, public park, pedestrian street
 
 ## Інтро 1

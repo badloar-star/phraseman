@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, як допомогли на кухні вчора.
 
-**Що ви опануєте:** правильно вимовляти -ed: I cleaned the chopping board.
+**Що ви опануєте:** розповісти, що ви робили на кухні: She helped in the kitchen.
 **Нові слова:** mixing bowl, soup bowl, chopping board, baking tray
 
 ## Інтро 1

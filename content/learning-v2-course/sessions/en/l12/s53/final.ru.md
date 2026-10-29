@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, как вчера подготовили вещи для ночёвки.
 
-**Что вы освоите:** повторить: I checked the airbed.
+**Что вы освоите:** рассказать о сборах в поход: I packed my sleeping bag.
 **Новые слова:** sleeping bag, airbed, tent peg, camping stove
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашній обід і напої.
 
-**Що ви опануєте:** розповісти про минуле: We had a milkshake.
+**Що ви опануєте:** розповісти, що ви пили: I had grape juice.
 **Нові слова:** salt shaker, milkshake, grape juice, coconut milk
 
 ## Інтро 1

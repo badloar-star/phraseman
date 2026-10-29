@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про вчорашню гру.
 
-**Що ви опануєте:** правильно вимовляти -ed: She kicked the ball.
+**Що ви опануєте:** розповісти про гру у футбол: She kicked the ball.
 **Нові слова:** kick, football boots, goalkeeper, goalpost
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Назовите обычные вещи и расскажите о вчерашней уборке.
 
-**Что вы освоите:** повторить: рассказать о прошлом: I cleaned the nail clippers.
+**Что вы освоите:** рассказать, что вы сделали с вещами: I cleaned the nail clippers.
 **Новые слова:** nail clippers, nail file, cotton bud, cotton wool
 
 ## Интро 1

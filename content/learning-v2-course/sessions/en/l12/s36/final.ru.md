@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашнюю прогулку.
 
-**Что вы освоите:** рассказать о прошлом: I crossed the main road.
+**Что вы освоите:** рассказать о прогулке по городу: I crossed the main road.
 **Новые слова:** main road, side street, public park, pedestrian street
 
 ## Интро 1

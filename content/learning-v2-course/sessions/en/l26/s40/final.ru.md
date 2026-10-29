@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы ищете продукты и кухонные вещи, делите дела и встречаете друзей за ужином.
 
-**Что вы освоите:** if, when, unless; already, just, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: If it rains, we’ll stay. I’ve already eaten.
 **Новые слова:** refrigerator, mixer, grater, peeler
 
 ## Интро 1

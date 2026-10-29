@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте поворот, знаходите відкритий прохід і зустрічаєтеся з подругою біля річки.
 
-**Що ви опануєте:** when, if, unless; just, already, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: When he comes, we’ll eat. I’ve just finished.
 **Нові слова:** crossroads, overpass, walkway, riverbank
 
 ## Інтро 1

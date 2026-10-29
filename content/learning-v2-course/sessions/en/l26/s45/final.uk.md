@@ -2,7 +2,7 @@
 
 **Ситуація.** Зустріч із другом, брудне взуття й прохання про іншу кімнату.
 
-**Що ви опануєте:** when, if, unless; just, already, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: When he comes, we’ll eat. I’ve just finished.
 **Нові слова:** smog, filthy, stinky, musty
 
 ## Інтро 1

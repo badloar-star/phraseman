@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви слухаєте друга, позначаєте особисті межі й миритеся після гри.
 
-**Що ви опануєте:** when, if, unless; already, just, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: When he comes, we’ll eat. I’ve already finished.
 **Нові слова:** boast, snoop, bully, pout
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы возвращаетесь домой, разговариваете с близкими и собираетесь спать.
 
-**Что вы освоите:** if, when, unless; just, already, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: If it rains, we’ll stay. I’ve just eaten.
 **Новые слова:** daydream, overhear, nightgown, robe
 
 ## Интро 1

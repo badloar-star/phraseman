@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви перете речі, вибираєте одяг для зустрічі й уточнюєте запис на стрижку.
 
-**Що ви опануєте:** when, if, unless; just, already, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: When he comes, we’ll eat. I’ve just finished.
 **Нові слова:** laundromat, sweatpants, blazer, barbershop
 
 ## Інтро 1

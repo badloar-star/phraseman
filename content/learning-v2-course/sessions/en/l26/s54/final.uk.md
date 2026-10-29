@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви куштуєте суп, згадуєте про хліб, ділите справи й вирішуєте, де поїсти.
 
-**Що ви опануєте:** when, if, unless; just, already, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: When he comes, we’ll eat. I’ve just finished.
 **Нові слова:** slightly, totally, meanwhile, besides
 
 ## Інтро 1

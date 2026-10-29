@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обедаете у друга, просите нужные вещи и делите домашние дела.
 
-**Что вы освоите:** when, if, unless; already, just, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: When he comes, we’ll eat. I’ve already finished.
 **Новые слова:** gobble, burp, sniffle, moan
 
 ## Интро 1

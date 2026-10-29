@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви шукаєте приладдя, використовуєте вільний аркуш і залишаєте записку другу.
 
-**Що ви опануєте:** if, when, unless; already, just, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: If it rains, we’ll stay. I’ve already eaten.
 **Нові слова:** stationery, paperclip, doodle, scribble
 
 ## Інтро 1

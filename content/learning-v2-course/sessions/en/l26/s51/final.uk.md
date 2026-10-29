@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви шукаєте іграшку, звільняєте диван і допомагаєте із сумками.
 
-**Що ви опануєте:** if, when, unless; already, just, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: If it rains, we’ll stay. I’ve already eaten.
 **Нові слова:** crouch, squat, sprawl, clutch
 
 ## Інтро 1

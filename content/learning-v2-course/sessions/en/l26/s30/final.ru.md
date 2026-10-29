@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы несёте угощение другу, ищете его дом и выбираете планы по погоде.
 
-**Что вы освоите:** if, when, unless; already, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: If it rains, we’ll stay. I’ve already eaten.
 **Новые слова:** apartment, crosswalk, cookie, candy
 
 ## Интро 1

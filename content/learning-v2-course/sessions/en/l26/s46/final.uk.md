@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обідаєте в друга, просите потрібні речі й ділите хатні справи.
 
-**Що ви опануєте:** when, if, unless; already, just, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: When he comes, we’ll eat. I’ve already finished.
 **Нові слова:** gobble, burp, sniffle, moan
 
 ## Інтро 1

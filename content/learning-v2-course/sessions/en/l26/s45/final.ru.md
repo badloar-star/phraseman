@@ -2,7 +2,7 @@
 
 **Ситуация.** Встреча с другом, грязная обувь и просьба о другой комнате.
 
-**Что вы освоите:** when, if, unless; just, already, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: When he comes, we’ll eat. I’ve just finished.
 **Новые слова:** smog, filthy, stinky, musty
 
 ## Интро 1

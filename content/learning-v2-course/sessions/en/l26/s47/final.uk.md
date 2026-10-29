@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви залишаєте взуття біля входу, допомагаєте із сумками й куштуєте овочі із саду.
 
-**Що ви опануєте:** if, when, unless; just, already, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: If it rains, we’ll stay. I’ve just eaten.
 **Нові слова:** entryway, stairway, banister, homegrown
 
 ## Інтро 1

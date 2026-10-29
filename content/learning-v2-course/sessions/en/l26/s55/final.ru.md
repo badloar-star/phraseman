@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы говорите о семье, поддерживаете подругу и спокойно обсуждаете разные мнения.
 
-**Что вы освоите:** when, if, unless; just, already, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: When he comes, we’ll eat. I’ve just finished.
 **Новые слова:** adore, console, soothe, disapprove
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы заканчиваете уборку, заходите в аптеку и покупаете овощи для ужина.
 
-**Что вы освоите:** if, when, unless; already, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: If it rains, we’ll stay. I’ve already eaten.
 **Новые слова:** trash, drugstore, zucchini, eggplant
 
 ## Интро 1

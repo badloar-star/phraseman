@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви шукаєте відділи магазину, обираєте розмір і домовляєтеся про зустріч після покупок.
 
-**Що ви опануєте:** if, when, unless; already, just, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: If it rains, we’ll stay. I’ve already eaten.
 **Нові слова:** swimwear, pullover, earmuffs, briefs
 
 ## Інтро 1

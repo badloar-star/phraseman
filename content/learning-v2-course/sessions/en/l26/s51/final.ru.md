@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы ищете игрушку, освобождаете диван и помогаете с сумками.
 
-**Что вы освоите:** if, when, unless; already, just, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: If it rains, we’ll stay. I’ve already eaten.
 **Новые слова:** crouch, squat, sprawl, clutch
 
 ## Интро 1

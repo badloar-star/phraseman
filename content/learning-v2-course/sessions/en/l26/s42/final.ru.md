@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы описываете утро, проверяете автобус и меняете время встречи.
 
-**Что вы освоите:** if, when, unless; already, just, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: If it rains, we’ll stay. I’ve already eaten.
 **Новые слова:** snowy, misty, snowfall, windshield
 
 ## Интро 1

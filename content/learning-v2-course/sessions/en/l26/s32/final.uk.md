@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви закінчуєте прибирання, заходите в аптеку й купуєте овочі до вечері.
 
-**Що ви опануєте:** if, when, unless; already, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: If it rains, we’ll stay. I’ve already eaten.
 **Нові слова:** trash, drugstore, zucchini, eggplant
 
 ## Інтро 1

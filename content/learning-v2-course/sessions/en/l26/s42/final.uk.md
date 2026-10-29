@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви описуєте ранок, перевіряєте автобус і змінюєте час зустрічі.
 
-**Що ви опануєте:** if, when, unless; already, just, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: If it rains, we’ll stay. I’ve already eaten.
 **Нові слова:** snowy, misty, snowfall, windshield
 
 ## Інтро 1

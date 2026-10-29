@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви йдете гуляти з другом і його собакою, помічаєте птаха й коня.
 
-**Що ви опануєте:** if, when, unless; already, just, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: If it rains, we’ll stay. I’ve already eaten.
 **Нові слова:** shaggy, snuggle, beak, mane
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вибираєте маршрут, просите про зупинку й повідомляєте близьким про поїздку.
 
-**Що ви опануєте:** if, when, unless; already, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: If it rains, we’ll stay. I’ve already eaten.
 **Нові слова:** freeway, gasoline, restroom, cellphone
 
 ## Інтро 1

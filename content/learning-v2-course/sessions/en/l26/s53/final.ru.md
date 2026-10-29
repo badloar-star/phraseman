@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете пожелания мастеру и обсуждаете фотографию с подругой.
 
-**Что вы освоите:** when, if, unless; just, already, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: When he comes, we’ll eat. I’ve just finished.
 **Новые слова:** bangs, frizzy, stubble, sideburns
 
 ## Интро 1

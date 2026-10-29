@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы стираете вещи, выбираете одежду для встречи и уточняете запись на стрижку.
 
-**Что вы освоите:** when, if, unless; just, already, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: When he comes, we’ll eat. I’ve just finished.
 **Новые слова:** laundromat, sweatpants, blazer, barbershop
 
 ## Интро 1

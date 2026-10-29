@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте проблему в майстерні, уточнюєте готовність машини й запитуєте про оплату дороги.
 
-**Що ви опануєте:** when, if, unless; already, just, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: When he comes, we’ll eat. I’ve already finished.
 **Нові слова:** bumper, taillight, handbrake, toll
 
 ## Інтро 1

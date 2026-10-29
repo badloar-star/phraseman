@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви говорите про родину, підтримуєте подругу й спокійно обговорюєте різні думки.
 
-**Що ви опануєте:** when, if, unless; just, already, yet; by the time
+**Що ви опануєте:** сказати, що буде, якщо чи коли…, і що вже зроблено до моменту: When he comes, we’ll eat. I’ve just finished.
 **Нові слова:** adore, console, soothe, disapprove
 
 ## Інтро 1

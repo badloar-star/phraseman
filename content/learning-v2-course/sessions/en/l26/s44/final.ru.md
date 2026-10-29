@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы ищете принадлежности, используете свободный лист и оставляете записку другу.
 
-**Что вы освоите:** if, when, unless; already, just, yet; by the time
+**Что вы освоите:** сказать, что будет, если или когда…, и что уже сделано к моменту: If it rains, we’ll stay. I’ve already eaten.
 **Новые слова:** stationery, paperclip, doodle, scribble
 
 ## Интро 1

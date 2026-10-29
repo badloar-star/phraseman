@@ -75,7 +75,7 @@ window.SceneReal = (() => {
     for (const s of job.strats) {
       const ph = phones.find((p) => p.dataset.strat === s.key); if (!ph) continue;
       const data = new Uint8ClampedArray(scene.data);
-      const st = job.cards ? window.SceneCards.restyle({ data, W, y0: ry0, cards: job.cards.rects, fill: job.cards.fill, bgRow, accent: job.cards.accent, dark: job.ap === 'dark', v: s.spec.v }) : SR.recolor({ data, W, H: job.sceneH, sceneH: job.sceneH, oldSpec: job.old, newSpec: s.spec, radius: job.radius, hero, ink: job.ink || null, swap, clear: job.clear || null, heroHide: !!job.heroMove });
+      const st = job.cards ? window.SceneCards.restyle({ data, W, y0: ry0, cards: job.cards.rects, fill: job.cards.fill, bgRow, accent: job.cards.accent, dark: job.ap === 'dark', v: s.spec.v }) : SR.recolor({ data, W, H: job.sceneH, sceneH: job.sceneH, oldSpec: job.old, newSpec: s.spec, radius: job.radius, hero, ink: job.ink || null, swap, clear: job.clear || null, keep: job.keep || null, heroHide: !!job.heroMove });
       // страж: если кадр не совпал с моделью сцены (много «цветных» пикселей вне героя — другое состояние или тема), говорим об этом на телефоне
       const total = job.cards ? 1 : st.bg + st.white + st.dark + st.keep + st.hero; const keepShare = job.cards ? 0 : (total ? st.keep / total : 0);
       const keepMax = job.keepMax || 0.12;

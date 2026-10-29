@@ -81,8 +81,7 @@
      цветом light2C, альфа .55 → 0 на 70 % радиуса; затемнение низа экрана «как сейчас» (OLD_SCRIM), затем страж ensureContrast. */
   function lightA(t, screen, W, H, opts) {
     const p = paletteA(t, 'light'); const old = oldScrim(screen, H, opts);
-    const raw = { top: p.top, bot: p.bot, start: [0.22, 0], end: [0.78, 1], lights: [{ cx: 0.18, cy: 0, rx: 0.7, ry: 0.5, color: p.lightC, a: p.a1, fade: 0.7 }, { cx: 0.86, cy: 1.02, rx: 0.8, ry: 0.42, color: p.light2C, a: p.a2, fade: 0.7 }], scrim: old };
-    const ev = opts && opts.evening ? warmEdge(t, opts.warm) : null; if (ev) raw.lights.push({ cx: ev.cx, cy: ev.cy, rx: ev.rx, ry: ev.ry, color: ev.color, a: ev.a, fade: ev.fade }); // вечер: тот же тёплый край третьим светом, страж считает его
+    const raw = { top: p.top, bot: p.bot, start: [0.22, 0], end: [0.78, 1], lights: [{ cx: 0.18, cy: 0, rx: 0.7, ry: 0.5, color: p.lightC, a: p.a1, fade: 0.7 }, { cx: 0.86, cy: 1.02, rx: 0.8, ry: 0.42, color: p.light2C, a: p.a2, fade: 0.7 }], scrim: old };    const ev = opts && opts.evening ? warmEdge(t, opts.warm, opts.warmStrength) : null; if (ev) raw.lights.push({ cx: ev.cx, cy: ev.cy, rx: ev.rx, ry: ev.ry, color: ev.color, a: ev.a, fade: ev.fade }); // вечер: тот же тёплый край третьим светом, страж считает его
     const s = ensureContrast(raw, W, H);
     return { version: VERSION, mode: ev ? 'light-A-evening' : 'light-A', name: ev ? 'А + тёплый край' : 'А — тон темы ярче и глубже', screen, size: { W, H }, palette: p, spec: s, warmEdge: ev,
       gradient: { start: [0.22, 0], end: [0.78, 1], top: col(s.top), bottom: col(s.bot) },
@@ -105,14 +104,17 @@
      Оттенок отсвета — opts.warm: 'warmer' (по умолчанию) — оттенок темы H, сдвинутый на ≤ 35° к янтарю (60°) по короткой дуге;
      'theme' — сам оттенок темы, светлее; 'band' — тёплая полоса 40…80°, точка в ней — от оттенка темы (40 + (H mod 60) / 60 × 40).
      Слой: эллиптический свет в (92 % W, 102 % H) радиусами 55 % W × 42 % H, альфа .5 → 0 на 85 % радиуса; кладётся после дымки, перед звёздами. */
-  const WARM = { theme: (H) => H, warmer: (H) => { const d = ((60 - H + 540) % 360) - 180; return norm(H + Math.sign(d) * Math.min(35, Math.abs(d))); }, band: (H) => 40 + ((H % 60) / 60) * 40 };
-  function warmEdge(t, mode) { const [, , H] = oklchOf(hx(t.accent)); const m = WARM[mode] ? mode : 'band'; /* по умолчанию «тёплый янтарь» (владелец 29.10 ~10:40: другие трактовки не показывать) */ const hue = WARM[m](H); const L = m === 'band' ? 0.78 : m === 'theme' ? 0.72 : 0.74; const C = m === 'band' ? 0.14 : m === 'theme' ? 0.12 : 0.13; const color = okRgb(L, C, hue); return { mode: m, hue: Math.round(hue * 10) / 10, cx: 0.92, cy: 1.02, rx: 0.55, ry: 0.42, color, hex: hex(color), a: 0.5, fade: 0.85, oklch: [L, C, Math.round(hue)] }; }
+  const WARM = { theme: (H) => H, warmer: (H) => { const d = ((60 - H + 540) % 360) - 180; return norm(H + Math.sign(d) * Math.min(35, Math.abs(d))); }, band: (H) => 40 + ((H % 60) / 60) * 40 };  /* сила янтарного края: `soft` — как утверждено 29.10 утром (умолчание; порт components/scene/scene_palette.ts совпадает с ним побайтно);
+     `bright` — координатор 29.10 ~12:30 «янтарный край еле виден, сделай заметнее, без красного, мягко»: альфа .5 → .72, эллипс 55 × 42 → 62 × 50 %,
+     полоса L/C .78/.14 → .80/.16; оттенок (полоса 40…80°, без красного) не меняется. Чистый макет показывает `bright` на утверждение владельца;
+     после «да» эти значения становятся умолчанием здесь и в порте одним коммитом (иначе тест scene_palette_parity красный) */
+  const WARM_EDGE = { soft: { a: 0.5, rx: 0.55, ry: 0.42, L: 0.78, C: 0.14 }, bright: { a: 0.72, rx: 0.62, ry: 0.5, L: 0.80, C: 0.16 } };
+  function warmEdge(t, mode, strength) { const [, , H] = oklchOf(hx(t.accent)); const m = WARM[mode] ? mode : 'band'; const e = WARM_EDGE[strength] || WARM_EDGE.soft; /* по умолчанию «тёплый янтарь» (владелец 29.10 ~10:40: другие трактовки не показывать) */ const hue = WARM[m](H); const L = m === 'band' ? e.L : m === 'theme' ? 0.72 : 0.74; const C = m === 'band' ? e.C : m === 'theme' ? 0.12 : 0.13; const color = okRgb(L, C, hue); return { mode: m, hue: Math.round(hue * 10) / 10, cx: 0.92, cy: 1.02, rx: e.rx, ry: e.ry, color, hex: hex(color), a: e.a, fade: 0.85, oklch: [L, C, Math.round(hue)] }; }
   function darkSky(t, screen, W, H, opts) {
     const p = paletteA(t, 'dark'); const S = p.S; const C = p.C;
     const zenC = Math.min(0.17, C + 0.03); const midC = Math.min(0.15, C + 0.01); const horC = Math.min(0.13, C + 0.02); const gndC = Math.min(0.10, C); const botC = Math.min(0.08, C);
     const zen = okRgb(0.40, zenC, S); const mid = okRgb(0.47, midC, norm(S + 4)); const hor = okRgb(0.60, horC, norm(S + 12)); const gnd = okRgb(0.27, gndC, norm(S - 8)); const bottom = okRgb(0.22, botC, norm(S - 10)); const haze = okRgb(0.80, 0.08, p.Lh);
-    const r = rng(3); const stars = []; for (let i = 0; i < 70; i += 1) { const x = r(); const y = r() * 0.4; const rad = 0.8 + r() * 1.8; const a = 0.18 + r() * 0.5; stars.push({ x, y, r: rad, a }); }
-    const ev = opts && opts.evening ? warmEdge(t, opts.warm) : null;
+    const r = rng(3); const stars = []; for (let i = 0; i < 70; i += 1) { const x = r(); const y = r() * 0.4; const rad = 0.8 + r() * 1.8; const a = 0.18 + r() * 0.5; stars.push({ x, y, r: rad, a }); }    const ev = opts && opts.evening ? warmEdge(t, opts.warm, opts.warmStrength) : null;
     return { version: VERSION, mode: ev ? 'dark-sky-evening' : 'dark-sky', name: ev ? 'Глубокое небо + тёплый край' : 'Глубокое небо', screen, size: { W, H }, palette: p, warmEdge: ev,
       gradient: { direction: 'vertical', stops: [{ at: 0, color: col(zen), oklch: [0.40, zenC, S] }, { at: 0.42, color: col(mid), oklch: [0.47, midC, norm(S + 4)] }, { at: 0.66, color: col(hor), oklch: [0.60, horC, norm(S + 12)] }, { at: 0.74, color: col(hor) }, { at: 0.80, color: col(gnd), oklch: [0.27, gndC, norm(S - 8)] }, { at: 1, color: col(bottom), oklch: [0.22, botC, norm(S - 10)] }] },
       sun: { cx: 0.18, cy: 0.02, rx: 0.62, ry: 0.46, color: col(p.lightC), a: 0.72, fade: 1 },
@@ -176,5 +178,5 @@
      Область сцены у каждого экрана своя, формула одна. Надписи: в тёмном — белые как сейчас; в светлом сцена становится тёмной, поэтому
      надписи/стекло на ней — белые, как на Главной (у светлых Диалогов сейчас тёмный текст на светлой сцене — Темам перевести в белый). */
   function approved(tokens, appearance, screen, W, H, opts) { return appearance === 'dark' ? darkSky(tokens, screen, W, H, opts || {}) : lightA(tokens, screen, W, H, opts || {}); }
-  return { VERSION, DP, paletteA, painter, ensureContrast, lightA, darkSky, drawSky, guardSky, approved, warmEdge, WARM, HERO_HOME, heroHome, OLD_SCRIM, color: { hx, hex, oklchOf, okRgb, whiteOn, ratioc, lumc, norm }, rng };
+  return { VERSION, DP, paletteA, painter, ensureContrast, lightA, darkSky, drawSky, guardSky, approved, warmEdge, WARM, WARM_EDGE, HERO_HOME, heroHome, OLD_SCRIM, color: { hx, hex, oklchOf, okRgb, whiteOn, ratioc, lumc, norm }, rng };
 });

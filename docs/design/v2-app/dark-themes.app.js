@@ -18,7 +18,7 @@
   const THEME_LIST = Object.keys(THEMES); // все активные темы: 23 обычные + 6 премиум; без кадра — плитка «кадр снимается»
   const q = new URLSearchParams(location.search);
   let AP = q.get('ap') === 'light' ? 'light' : 'dark';
-  let THEME = THEMES[q.get('th')] ? q.get('th') : 'graphite'; // тема владельца — «Затмение» (координатор 28.10)
+  let THEME = THEMES[q.get('th')] ? q.get('th') : 'graphite'; // тема владельца — «Затмение» (координатор 28.10)  let WARM_STRENGTH = q.get('amber') === 'bright' ? 'bright' : 'soft'; // сила янтаря: `soft` — умолчание функции, `bright` — показ в чистом макете на утверждение (координатор 29.10)
   let WARM = ['theme', 'warmer', 'band'].includes(q.get('warm')) ? q.get('warm') : 'band'; // по умолчанию «Тёплый янтарь» (координатор 29.10: рекомендуемый — первым) // вечер: трактовка «тёплый цвет — оттенок темы» (владелец 29.10 ~08:05), чипы в разделе «Утверждено»
   let JOBS = {}; const STYLE_CACHE = new Map();
   const hasFrame = (id, ap) => (byTheme[id] || []).some((m) => m.ap === ap);
@@ -150,7 +150,7 @@
   /* вечер на «Глубоком небе» — «Небо + тёплый край» (владелец 29.10 ~08:05): картинку рисует сама функция спецификации (drawSky с warmEdge),
      чтобы макет и формула были одним и тем же кодом; в светлом — формула А + третий свет (светлых вечерних кадров пока нет) */
   const eveningVariant = (m) => {
-    const SA = window.SceneApproved; const t = THEMES[THEME][m.ap]; const a = SA.approved(t, m.ap, 'home', W, m.sceneH, { premium: !!THEMES[THEME].premium, evening: true, warm: WARM }); const e = a.warmEdge;
+    const SA = window.SceneApproved; const t = THEMES[THEME][m.ap]; const a = SA.approved(t, m.ap, 'home', W, m.sceneH, { premium: !!THEMES[THEME].premium, evening: true, warm: WARM, warmStrength: WARM_STRENGTH }); const e = a.warmEdge;
     const why = `тёплый край: ${e.mode === 'warmer' ? 'тон темы теплее' : e.mode === 'theme' ? 'тон темы светлее' : 'тёплый янтарь'} → ${e.hue}° · OKLCH ${e.oklch[0]} / ${e.oklch[1]} · ${e.hex} · альфа ${e.a} справа внизу`;
     if (m.ap === 'dark') { const c = document.createElement('canvas'); c.width = W; c.height = m.sceneH; const g = c.getContext('2d', { willReadFrequently: true }); SA.drawSky(g, a, W, m.sceneH); return { key: 'sky_evening', name: 'Небо + тёплый край', why, spec: { image: g.getImageData(0, 0, W, m.sceneH) }, approved: true }; }
     return { key: 'A_evening', name: 'А + тёплый край', why, spec: a.spec, approved: true };
@@ -187,7 +187,7 @@
       }
     }
     const ev = frameOf('home', 'evening'); const ej = ev && JOBS[`${ev.file}#approved`];
-    if (ej) { const a = SA.approved(THEMES[THEME][AP], AP, 'home', W, ev.sceneH, { premium, evening: true, warm: WARM }); let mx = 0; if (AP === 'dark') { const img = ej.strats[0].spec.image; const c = document.createElement('canvas'); c.width = W; c.height = ev.sceneH; const g = c.getContext('2d', { willReadFrequently: true }); SA.drawSky(g, a, W, ev.sceneH); const d = g.getImageData(0, 0, W, ev.sceneH).data; for (let i = 0; i < d.length; i += 4) { const e = Math.max(Math.abs(d[i] - img.data[i]), Math.abs(d[i + 1] - img.data[i + 1]), Math.abs(d[i + 2] - img.data[i + 2])); if (e > mx) mx = e; } } out.push({ screen: 'home_evening', mode: a.mode, warm: a.warmEdge.mode, hue: a.warmEdge.hue, hex: a.warmEdge.hex, maxDiff: mx }); }
+    if (ej) { const a = SA.approved(THEMES[THEME][AP], AP, 'home', W, ev.sceneH, { premium, evening: true, warm: WARM, warmStrength: WARM_STRENGTH }); let mx = 0; if (AP === 'dark') { const img = ej.strats[0].spec.image; const c = document.createElement('canvas'); c.width = W; c.height = ev.sceneH; const g = c.getContext('2d', { willReadFrequently: true }); SA.drawSky(g, a, W, ev.sceneH); const d = g.getImageData(0, 0, W, ev.sceneH).data; for (let i = 0; i < d.length; i += 4) { const e = Math.max(Math.abs(d[i] - img.data[i]), Math.abs(d[i + 1] - img.data[i + 1]), Math.abs(d[i + 2] - img.data[i + 2])); if (e > mx) mx = e; } } out.push({ screen: 'home_evening', mode: a.mode, warm: a.warmEdge.mode, hue: a.warmEdge.hue, hex: a.warmEdge.hex, maxDiff: mx }); }
     console.log('[DT-APPROVED] сверка', THEME, AP, JSON.stringify(out)); // guard-ok: одна строка на проверку
     return out;
   };
@@ -213,5 +213,5 @@
     const w = e.target.closest('.chp[data-dt-warm]'); if (w) { WARM = w.dataset.dtWarm; render(); }
   });
   render();
-  window.__dt = { THEME_LIST, byTheme, paletteOf, homeOld, dialogsOld, bPlusSpec, ensureContrast, checkApproved, render, frameOf, oldSpecFor, stratSpec, styleSpec, approvedVariant, eveningVariant, screens: SCREENS, screenName: SCREEN_NAME, DPX, W, setTheme: (id, ap) => { THEME = id; if (ap) AP = ap; render(); }, setWarm: (w) => { WARM = w; render(); }, warm: () => WARM, jobs: () => JOBS };
+  window.__dt = { THEME_LIST, byTheme, paletteOf, homeOld, dialogsOld, bPlusSpec, ensureContrast, checkApproved, render, frameOf, oldSpecFor, stratSpec, styleSpec, approvedVariant, eveningVariant, screens: SCREENS, screenName: SCREEN_NAME, DPX, W, setTheme: (id, ap) => { THEME = id; if (ap) AP = ap; render(); }, setWarm: (w) => { WARM = w; render(); }, warm: () => WARM, setWarmStrength: (s) => { WARM_STRENGTH = s === 'bright' ? 'bright' : 'soft'; }, warmStrength: () => WARM_STRENGTH, jobs: () => JOBS };
 })();

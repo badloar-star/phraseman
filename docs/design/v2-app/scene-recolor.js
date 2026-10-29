@@ -45,16 +45,18 @@
    *  перерисует сам); heroHide: true — герой убирается с кадра (под ним новый фон), чтобы нарисовать его заново на другом месте;
    *  swap: [{ x0, y0, x1, y1, fill (rgb), mode: 'cta' | 'control' }] | null — кнопки кадра, которые рисуются как в тёмном оформлении:
    *  'cta' (тёмная плашка, белая надпись) → белая плашка, надпись цветом ink; 'control' (светлый круг, тёмный значок) → стекло 16 % белого
-   *  над новым фоном, значок белый. Внутренность скруглённой плашки — с отступом 4 px от края, край идёт обычной классификацией } */
+   *  над новым фоном, значок белый. Внутренность скруглённой плашки — с отступом 4 px от края, край идёт обычной классификацией;
+ *  keep: [{ cx, cy, r }] | null — круги кадра, которые не трогаем вовсе (аватар с кольцом в шапке Главной: медь по оттенку совпадает с
+ *  вечерней красной шапкой и иначе перекрашивается как фон — координатор 29.10: «аватар и кольцо не перекрашивать, только сцену») } */
   function recolor(o) {
     const data = o.data; const W = o.W; const sceneH = o.sceneH; const paintOld = painter(o.oldSpec, W, sceneH); const paintNew = painter(o.newSpec, W, sceneH);
-    const R = o.radius || 0; const hero = o.hero || null; const st = o.stats || {}; const swap = o.swap && o.swap.length ? o.swap : null; const ink = o.ink || null; const clear = o.clear && o.clear.length ? o.clear : null; const heroHide = !!o.heroHide;
+    const R = o.radius || 0; const hero = o.hero || null; const st = o.stats || {}; const swap = o.swap && o.swap.length ? o.swap : null; const ink = o.ink || null; const clear = o.clear && o.clear.length ? o.clear : null; const heroHide = !!o.heroHide; const keep = o.keep && o.keep.length ? o.keep : null;
     const inPill = (r, x, y) => { const m = 4; if (x < r.x0 + m || x >= r.x1 - m || y < r.y0 + m || y >= r.y1 - m) return false; const rad = Math.min(r.x1 - r.x0, r.y1 - r.y0) / 2; const cx = x < r.x0 + rad ? r.x0 + rad : x >= r.x1 - rad ? r.x1 - rad : x; const cy = y < r.y0 + rad ? r.y0 + rad : y >= r.y1 - rad ? r.y1 - rad : y; return Math.hypot(x - cx, y - cy) <= rad - m; }; st.bg = st.bg || 0; st.white = st.white || 0; st.dark = st.dark || 0; st.keep = st.keep || 0; st.hero = st.hero || 0; st.out = st.out || 0;
     for (let y = 0; y < sceneH; y += 1) {
       for (let x = 0; x < W; x += 1) {
         if (R > 0 && y > sceneH - R && (x < R || x >= W - R)) { // снаружи скруглённого угла сцены — фон страницы, не трогаем
           const cx = x < R ? R : W - R; const cy = sceneH - R; if (Math.hypot(x - cx, y - cy) > R) { st.out += 1; continue; }
-        }
+        }        if (keep) { let k = false; for (let j = 0; j < keep.length; j += 1) { const c = keep[j]; if (Math.hypot(x - c.cx, y - c.cy) <= c.r) { k = true; break; } } if (k) { st.kept = (st.kept || 0) + 1; continue; } } // как снято: аватар, кольцо, бейдж
         const i = (y * W + x) * 4; const pr = data[i]; const pg = data[i + 1]; const pb = data[i + 2];
         const oc = paintOld(x, y); const nc = paintNew(x, y);
         if (clear) { let inside = false; for (let k = 0; k < clear.length; k += 1) { const c = clear[k]; if (x >= c.x0 && x < c.x1 && y >= c.y0 && y < c.y1) { inside = true; break; } } if (inside) { data[i] = clamp(nc[0]); data[i + 1] = clamp(nc[1]); data[i + 2] = clamp(nc[2]); st.cleared = (st.cleared || 0) + 1; continue; } }

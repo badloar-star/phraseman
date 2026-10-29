@@ -317,6 +317,12 @@ const currentPath = currentNavigationHref() ?? navigationPathSignature ?? pathna
 
 `currentNavigationHref` добавь в импорт из `./navigation_back`. Описание: `docs/work/handover/navigation-back-global-2026-10-29.md`. Проверка: `npm run test:one -- tests/navigation_back_self_target_2026_10_29.test.ts tests/navigation_back.test.ts` и проверка типов.
 
+### 26. 🔴 Твои незакоммиченные правки в `content/learning-v2-course` держат пересборку курса для 2.0.4 (29.10, проверено Ревизором)
+
+Собранная копия курса, которую читает приложение (`content/learning-v2-course/release/en` и `modules/learning-v2/content/factory_native/generated_release/en`), последний раз пересобиралась в cf3e41b2b (26.10 14:15). После неё 65 коммитов поменяли 1582 файла `sessions/en/**/final.*.md`: заголовки, разборы без терминов, урок 6, урок 32 и др. Ничего из этого в приложение не попадёт без пересборки. Пересобирать нельзя, пока в `content/learning-v2-course` лежат твои незакоммиченные правки (543 путей, в том числе `pipeline/check.mjs`, испанский урок 7, файлы l09).
+
+**Что сделать:** закоммить свои правки в `content/learning-v2-course` (или скажи координатору, какие откатить), чтобы назначенная сессия пересобрала release/generated_release и индекс числа заданий и прогнала сторожа курса.
+
 ## Кнопка «Уроки» на Главной (жалоба владельца) — для сведения
 
 - Гипотеза про `tabs_hidden_route_redirect` для интерфейса ru/uk скорее неверна: перенаправление срабатывает, только если текущий маршрут —

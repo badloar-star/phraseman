@@ -39,7 +39,7 @@
 
 - ✅ **Los amigos son amables.** — *Несколько друзей: son amables.*
 - ❌ Los amigos es amables. — *Нужно son.*
-- ❌ Los amigos son amable. — *Нужно множественное amables.*
+- ❌ Los amigos son amable. — *Нужна форма для нескольких: amables.*
 
 ## Практика · 20 заданий
 

@@ -25,7 +25,7 @@
 
 **Представьте общих подруг: «Это наши подруги». Начните с Son.**
 
-- ✅ **Son nuestras amigas.** — *Женское множественное: nuestras amigas.*
+- ✅ **Son nuestras amigas.** — *Женский род, их несколько: nuestras amigas.*
 - ❌ Son nuestros amigas. — *Amigas женского рода: nuestras.*
 - ❌ Son nuestra amigas. — *Подруг несколько: nuestras.*
 
@@ -39,7 +39,7 @@
 
 - ✅ **Nuestras amigas son amables.** — *Несколько подруг: son amables.*
 - ❌ Nuestras amigas son amable. — *Подруг несколько: amables.*
-- ❌ Nuestras amigas es amables. — *Множественное amigas требует son.*
+- ❌ Nuestras amigas es amables. — *Amigas — их несколько, поэтому son.*
 
 ## Практика · 12 заданий
 

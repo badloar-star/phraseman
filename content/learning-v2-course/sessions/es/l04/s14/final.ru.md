@@ -37,7 +37,7 @@
 
 **Скажите подруге: «Твои сумки красные». Начните с Tus bolsas.**
 
-- ✅ **Tus bolsas son rojas.** — *Bolsas — женское множественное, поэтому rojas.*
+- ✅ **Tus bolsas son rojas.** — *Bolsas — женский род, их несколько, поэтому rojas.*
 - ❌ Tus bolsas son rojos. — *Rojos не подходит к женскому bolsas.*
 - ❌ Tus bolsas son roja. — *Сумок несколько: rojas.*
 

@@ -27,7 +27,7 @@
 
 - ✅ **No son mis libros.** — *Несколько вещей: son mis libros.*
 - ❌ No es mis libros. — *Для нескольких книг нужно son.*
-- ❌ No son mi libros. — *Перед множественным libros нужно mis.*
+- ❌ No son mi libros. — *Перед libros, когда их несколько, нужно mis.*
 
 ## Интро 3
 

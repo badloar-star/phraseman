@@ -26,7 +26,7 @@
 **Назовите несколько своих ключей, начав с Son.**
 
 - ✅ **Son mis llaves.** — *Несколько предметов: mis llaves.*
-- ❌ Son mi llaves. — *Перед множественным llaves нужно mis.*
+- ❌ Son mi llaves. — *Перед llaves, когда их несколько, нужно mis.*
 - ❌ Son las mis llaves. — *Перед mis здесь не ставим las.*
 
 ## Интро 3
@@ -37,7 +37,7 @@
 
 **Опишите свои маленькие ключи, начав с Mis llaves.**
 
-- ✅ **Mis llaves son pequeñas.** — *Женское множественное llaves: pequeñas.*
+- ✅ **Mis llaves son pequeñas.** — *У llaves женский род, их несколько: pequeñas.*
 - ❌ Mis llaves son pequeños. — *Llaves женского рода.*
 - ❌ Mis llaves son pequeña. — *Ключей несколько: pequeñas.*
 

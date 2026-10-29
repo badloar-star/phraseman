@@ -26,7 +26,7 @@
 **Речь об Ане и Педро. Скажите: «Это их ключи». Начните с Son.**
 
 - ✅ **Son sus llaves.** — *Несколько ключей: sus llaves.*
-- ❌ Son su llaves. — *Перед множественным llaves нужно sus.*
+- ❌ Son su llaves. — *Перед llaves, когда их несколько, нужно sus.*
 - ❌ Es sus llaves. — *Несколько ключей: son.*
 
 ## Интро 3
@@ -37,7 +37,7 @@
 
 **Речь об Ане и Педро. Скажите: «Их ключи новые». Начните с Sus llaves.**
 
-- ✅ **Sus llaves son nuevas.** — *Llaves — женское множественное: nuevas.*
+- ✅ **Sus llaves son nuevas.** — *Llaves — женский род, их несколько: nuevas.*
 - ❌ Sus llaves son nuevos. — *Испанское llaves женского рода.*
 - ❌ Sus llaves son nueva. — *Ключей несколько: nuevas.*
 
@@ -46,7 +46,7 @@
 **1 · Послушайте и выберите слово**
 🔊 *llaves*
 → **llaves** · llave
-- llave — *Звучит множественное llaves.*
+- llave — *Слышно, что их несколько: llaves.*
 
 **2 · Вставьте слово — один общий ключ Аны и Педро: это их ключ**
 `Es ___ llave.`

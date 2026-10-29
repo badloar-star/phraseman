@@ -25,7 +25,7 @@
 
 **Скажите о стульях рядом: «Эти стулья новые». Начните с Estas sillas.**
 
-- ✅ **Estas sillas son nuevas.** — *Женское множественное sillas: nuevas.*
+- ✅ **Estas sillas son nuevas.** — *У sillas женский род, их несколько: nuevas.*
 - ❌ Estas sillas son nuevos. — *Согласуйте признак с sillas: nuevas.*
 - ❌ Estas sillas son nueva. — *Стульев несколько: nuevas.*
 

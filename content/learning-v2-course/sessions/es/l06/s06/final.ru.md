@@ -14,7 +14,7 @@
 **Сообщите «Есть два стула». Начните с Hay, число поставьте перед предметом.**
 
 - ✅ **Hay dos sillas.** — *Hay + dos + sillas.*
-- ❌ Hay dos silla. — *После dos нужно множественное sillas.*
+- ❌ Hay dos silla. — *После dos нужна форма для нескольких: sillas.*
 - ❌ Hay una dos sillas. — *Перед dos здесь нет una.*
 
 ## Интро 2

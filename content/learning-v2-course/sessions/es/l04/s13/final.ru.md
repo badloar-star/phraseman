@@ -26,7 +26,7 @@
 **Скажите другу: «Это твои туфли». Начните с Son.**
 
 - ✅ **Son tus zapatos.** — *Несколько вещей: tus zapatos.*
-- ❌ Son tu zapatos. — *Перед множественным zapatos нужно tus.*
+- ❌ Son tu zapatos. — *Перед zapatos, когда их несколько, нужно tus.*
 - ❌ Es tus zapatos. — *Для нескольких предметов нужно son.*
 
 ## Интро 3
@@ -37,8 +37,8 @@
 
 **Скажите другу, что его туфли чёрные, начав с Tus zapatos.**
 
-- ✅ **Tus zapatos son negros.** — *Мужское множественное: zapatos — negros.*
-- ❌ Tus zapatos son negro. — *Нужно множественное negros.*
+- ✅ **Tus zapatos son negros.** — *Мужской род, их несколько: zapatos — negros.*
+- ❌ Tus zapatos son negro. — *Нужна форма для нескольких: negros.*
 - ❌ Tus zapatos son negras. — *Zapatos мужского рода.*
 
 ## Практика · 12 заданий

@@ -27,7 +27,7 @@
 
 - ✅ **Ana tiene treinta años.** — *Ana + tiene + treinta años.*
 - ❌ Ana es treinta años. — *Возраст выражаем через tiene.*
-- ❌ Ana tiene treinta año. — *После treinta нужно множественное años.*
+- ❌ Ana tiene treinta año. — *После treinta нужна форма для нескольких: años.*
 
 ## Интро 3
 

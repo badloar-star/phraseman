@@ -27,7 +27,7 @@
 
 - ✅ **Las mantas son cálidas.** — *Несколько женских mantas: cálidas.*
 - ❌ Las mantas son cálidos. — *Mantas женского рода: cálidas.*
-- ❌ Las mantas son cálida. — *Нужно множественное cálidas.*
+- ❌ Las mantas son cálida. — *Нужна форма для нескольких: cálidas.*
 
 ## Интро 3
 

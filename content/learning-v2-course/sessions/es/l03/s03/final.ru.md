@@ -14,7 +14,7 @@
 **Скажите, что книги большие.**
 
 - ✅ **Los libros son grandes.** — *Несколько книг: son grandes.*
-- ❌ Los libros son grande. — *Нужна множественная форма grandes.*
+- ❌ Los libros son grande. — *Нужна форма для нескольких: grandes.*
 - ❌ Los libros es grandes. — *С libros используйте son.*
 
 ## Интро 2

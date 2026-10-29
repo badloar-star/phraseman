@@ -25,7 +25,7 @@
 
 **Представьте общих друзей-мужчин: «Это наши друзья». Начните с Son.**
 
-- ✅ **Son nuestros amigos.** — *Мужское множественное: nuestros amigos.*
+- ✅ **Son nuestros amigos.** — *Мужской род, их несколько: nuestros amigos.*
 - ❌ Son nuestro amigos. — *Перед amigos нужно nuestros.*
 - ❌ Es nuestros amigos. — *Друзей несколько: son.*
 
@@ -39,7 +39,7 @@
 
 - ✅ **Nuestros amigos son amables.** — *Несколько друзей: son amables.*
 - ❌ Nuestros amigos son amable. — *Друзей несколько: amables.*
-- ❌ Nuestros amigos es amables. — *Множественное amigos требует son.*
+- ❌ Nuestros amigos es amables. — *Amigos — их несколько, поэтому son.*
 
 ## Практика · 12 заданий
 
@@ -65,7 +65,7 @@
 → **nuestros** · nuestro · su
 Полная фраза: **Son nuestros amigos.**
 - nuestro — *Друзей несколько: nuestros.*
-- su — *Нужно «наши» перед множественным amigos: nuestros.*
+- su — *Нужно «наши» перед amigos, когда их несколько: nuestros.*
 
 **5 · Соберите фразу — это наши друзья-мужчины**
 Плитки: `amigos` · `nuestros` · `son` · `nuestro`.

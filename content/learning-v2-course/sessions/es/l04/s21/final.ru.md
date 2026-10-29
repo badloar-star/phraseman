@@ -26,7 +26,7 @@
 **Речь об Ане. Скажите: «Это её книги». Начните с Son.**
 
 - ✅ **Son sus libros.** — *Несколько книг: son sus libros.*
-- ❌ Son su libros. — *Перед множественным libros нужно sus.*
+- ❌ Son su libros. — *Перед libros, когда их несколько, нужно sus.*
 - ❌ Es sus libros. — *Для нескольких книг нужно son.*
 
 ## Интро 3
@@ -37,7 +37,7 @@
 
 **Речь об Ане. Скажите: «Её книги новые». Начните с Sus libros.**
 
-- ✅ **Sus libros son nuevos.** — *Libros — мужское множественное: nuevos.*
+- ✅ **Sus libros son nuevos.** — *Libros — мужской род, их несколько: nuevos.*
 - ❌ Sus libros son nuevo. — *Книг несколько: nuevos.*
 - ❌ Sus libros son nuevas. — *Libros мужского рода.*
 

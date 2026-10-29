@@ -9,7 +9,7 @@
 
 ### Дорогая обувь
 
-Смотрите на пару обуви и замечаете: `Los zapatos son bastante caros` — «Туфли довольно дорогие». Соберите `los zapatos` + `son` + `bastante caros`. Caros согласуется с мужским множественным zapatos. Bastante перед прилагательным не получает -s: это оценка степени дороговизны.
+Смотрите на пару обуви и замечаете: `Los zapatos son bastante caros` — «Туфли довольно дорогие». Соберите `los zapatos` + `son` + `bastante caros`. Caros согласуется с zapatos: мужской род, их несколько. Bastante перед прилагательным не получает -s: это оценка степени дороговизны.
 
 **Опишите довольно дорогую обувь через bastante.**
 
@@ -37,7 +37,7 @@
 
 **Опишите довольно дорогие сумки словом bolsas, используя bastante.**
 
-- ✅ **Las bolsas son bastante caras.** — *Женское множественное caras, неизменное bastante.*
+- ✅ **Las bolsas son bastante caras.** — *Женский род, их несколько: caras; bastante неизменное.*
 - ❌ Las bolsas son bastantes caras. — *Перед прилагательным нужно bastante.*
 - ❌ Las bolsas son bastante caros. — *Bolsas женского рода: caras.*
 

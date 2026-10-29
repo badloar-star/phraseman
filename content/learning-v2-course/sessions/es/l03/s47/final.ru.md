@@ -81,7 +81,7 @@
 🔊 *Las salsas no son saladas.*
 Плитки: `saladas` · `son` · `no` · `salsas` · `las` · `salada`.
 → **Las salsas no son saladas.**
-*Плитка `salada` лишняя: звучит множественное saladas.*
+*Плитка `salada` лишняя: звучит форма для нескольких: saladas.*
 
 **8 · Вставьте слово — соусы не острые**
 `Las salsas no ___ picantes.`

@@ -25,7 +25,7 @@
 
 **Спросите, чьи оставленные книги. Начните с De quién.**
 
-- ✅ **¿De quién son los libros?** — *Мужское множественное libros: los libros.*
+- ✅ **¿De quién son los libros?** — *У libros мужской род, их несколько: los libros.*
 - ❌ ¿De quién son las libros? — *Libros мужского рода: los.*
 - ❌ ¿De quién es los libros? — *Книг несколько: son.*
 
@@ -37,7 +37,7 @@
 
 **Спросите, чьи оставленные сумки. Начните с De quién и используйте bolsas.**
 
-- ✅ **¿De quién son las bolsas?** — *Женское множественное bolsas: las.*
+- ✅ **¿De quién son las bolsas?** — *У bolsas женский род, их несколько: las.*
 - ❌ ¿De quién son los bolsas? — *Bolsas женского рода: las.*
 - ❌ ¿De quién son la bolsas? — *Сумок несколько: las.*
 

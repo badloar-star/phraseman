@@ -72,6 +72,12 @@ describe('кадр 7 «Пик · вершина недели» — башня в
     expect(screen.getByTestId('story-tpl-summit')).toBeTruthy();
   });
 
+  it('старые слайды (StorySlides, итог недели): башня тоже через SpireTowerDeferred — source story_league (координатор 29.10)', () => {
+    const src = read('components/stories/StorySlides.tsx');
+    expect(src).not.toContain('<SpireTowerSvg');
+    expect(src).toContain('<SpireTowerDeferred source="story_league"');
+  });
+
   it('в шаблонах историй башня больше не монтируется напрямую', () => {
     const src = read('components/stories/templates/frames_progress.tsx');
     expect(src).not.toContain('<SpireTowerSvg');

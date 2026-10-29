@@ -74,6 +74,8 @@ jest.mock('../modules/sound_v2/legacy_bridge', () => ({ tryPlayV2Event: (...args
 jest.mock('../components/spire/SpireRankCoin', () => ({ __esModule: true, default: 'SpireRankCoin' }));
 jest.mock('../components/spire/useSpireScene', () => ({ useSpireScene: () => ({ light: false }) }));
 jest.mock('../components/spire/SpireTowerSvg', () => ({ __esModule: true, default: 'SpireTowerSvg' }));
+// зачем (29.10, c2bc33c7b): итог недели в старых слайдах ставит башню через SpireTowerDeferred (рамка, потом башня) — здесь та же заглушка, что у башни
+jest.mock('../components/spire/SpireTowerDeferred', () => ({ __esModule: true, default: 'SpireTowerDeferred' }));
 jest.mock('../components/streak/moments/StreakMomentFlame', () => ({ __esModule: true, default: 'StreakMomentFlame' }));
 jest.mock('../components/AchievementArt', () => ({ __esModule: true, default: 'AchievementArt' }));
 jest.mock('../app/achievements', () => ({

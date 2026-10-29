@@ -19,7 +19,7 @@ import { achievementNameForLang, ALL_ACHIEVEMENTS } from '../../app/achievements
 import { coinRankRowForDisplay, isValidCoinRank } from '../../app/coin_rank_table_v1';
 import AchievementArt from '../AchievementArt';
 import SpireRankCoin from '../spire/SpireRankCoin';
-import SpireTowerSvg from '../spire/SpireTowerSvg';
+import SpireTowerDeferred from '../spire/SpireTowerDeferred';
 import { SPIRE_TOWER_GEOM, SPIRE_TW, spireMarkerXY } from '../spire/spire_tower_model';
 import { useSpirePalette } from '../spire/useSpirePalette';
 import { useSpireScene } from '../spire/useSpireScene';
@@ -75,7 +75,8 @@ function WeekSlide({ event, lang, coinRank }: StorySlideProps) {
   return (
     <>
       <View testID="story-week-tower" style={{ width: towerW, height: Math.round(SPIRE_TOWER_GEOM.height * k) }}>
-        <SpireTowerSvg lang={lang} myFloor={1} selected={0} onSelect={noopSelect} width={towerW} skin={skin} scene={scene} />
+        {/* зачем (Дизайн и координатор 29.10, c2bc33c7b): башня встаёт через два кадра — без всплеска сборок мусора; рамка того же размера */}
+        <SpireTowerDeferred source="story_league" lang={lang} myFloor={1} selected={0} onSelect={noopSelect} width={towerW} skin={skin} scene={scene} />
         <View style={[s.marker, { left: Math.round(mk.x * k - 17), top: Math.round(mk.y * k - 17) }]}>
           <View style={s.markerInner}><SpireRankCoin rank={coinRank} size={26} /></View>
         </View>

@@ -332,6 +332,10 @@ const currentPath = currentNavigationHref() ?? navigationPathSignature ?? pathna
 
 На пересборку 2.0.4 это не влияет: Learning V2 собирает из `git archive HEAD`, а неотслеживаемые файлы туда не попадают.
 
+### 28. В твоём `admin/v2/legacy.html` уже закоммичены чужие строки — не потеряй их (29.10)
+
+b28217fe7 (Пик, проба «призрак друга») закоммитил в legacy.html ровно 7 строк: переключатель «Пульта» `ghost_friend_ab` (строка «Пик: призрак друга (проба 50/50)») и строку реестра флагов `{ key: 'ghost_friend_ab', … def: false … }`. Твои остальные правки файла (≈6160 строк) остались незакоммиченными и не тронуты. Когда будешь коммитить legacy.html, не перезаписывай файл своей копией из другого места: эти 7 строк должны остаться. Проверка после коммита: `git grep -c ghost_friend_ab HEAD -- admin/v2/legacy.html` → 2.
+
 ## Кнопка «Уроки» на Главной (жалоба владельца) — для сведения
 
 - Гипотеза про `tabs_hidden_route_redirect` для интерфейса ru/uk скорее неверна: перенаправление срабатывает, только если текущий маршрут —
@@ -363,3 +367,10 @@ const currentPath = currentNavigationHref() ?? navigationPathSignature ?? pathna
 
 Владелец 29.10 утвердил: тёмное оформление — «Глубокое небо», светлое — тон темы ярче и глубже. Эталон — 4b3e5eea9, функция `components/scene/scene_palette.ts` (4dc58c8c3, parity 256/256).
 `components/spire/SpireScene.tsx` и `SpireScenePedestal.tsx` сейчас грязные у тебя. Их нужно поменять одной вставкой: `scenePalette` в backdrop-спеку и цвета пьедестала из approved. Готовый патч и описание: `docs/work/handover/scene-approved-peak-and-dialogs-geometry-2026-10-29.md`. Чистые `spire_scene_backdrop(_math).tsx` Темы делают сами.
+
+## 31. Башня Пика монтируется следующим кадром (Дизайн 29.10)
+
+В кадре объявления «peak» башня (~500 узлов SVG) монтируется вместе с самим кадром, и на появлении случается всплеск сборки мусора: GC первого тика 61, у соседних кадров 35–45.
+Патч для `components/stories/announcements_v2/frames_sections_a.tsx` (файл грязный у тебя) лежит в `docs/work/handover/spire-tower-deferred-mount-2026-10-29.patch`, описание рядом в `.md`.
+Применять ТОЛЬКО после коммита Дизайна с обёрткой `SpireTowerDeferred` (хэш будет в журнале). Внешне ничего не меняется. Критерий: GC первого тика кадра peak ≤ 40.
+`StorySlides.tsx:79` (тоже грязный у тебя) — та же замена описана в `.md`, решение за хозяином шаблонов историй (Моменты).

@@ -90,6 +90,8 @@ export async function loadLearningV2EpisodeResumeV1(input: Readonly<{
   childSetFingerprint: string;
   nowMs?: number;
   targetLanguage?: LearningV2CourseProgressTargetLanguageV1;
+  /** Запись отклонена (до её удаления): причина, отпечаток выпуска и время сохранения записи. Ошибка колбэка загрузку не ломает. */
+  onRejected?: (rejection: Readonly<{ reason: string; savedFingerprint: string | null; savedAtMs: number | null }>) => void;
 }>): Promise<LearningV2EpisodeResumeRecordV1 | null> {
   const targetLanguage = input.targetLanguage ?? "en";
   const key = learningV2EpisodeResumeKeyV1(input.owner, input.courseSessionId, targetLanguage);
@@ -118,6 +120,14 @@ export async function loadLearningV2EpisodeResumeV1(input: Readonly<{
   const nowMs = input.nowMs ?? Date.now();
   const reject = async (reason: string, extra: Record<string, unknown> = {}) => {
     console.log(`${LOG} load_rejected`, JSON.stringify({ courseSessionId: input.courseSessionId, reason, ...extra })); // guard-ok: ранний выход с причиной
+    // зачем (координатор 29.10, [V2-RESUME-RESET]): плееру нужна причина и старый отпечаток — после сброса новым выпуском старт бесплатный
+    const savedFingerprint = isRecord(parsed) && typeof parsed.childSetFingerprint === "string" ? parsed.childSetFingerprint : null;
+    const savedAtMs = isRecord(parsed) && typeof parsed.savedAtMs === "number" ? parsed.savedAtMs : null;
+    try {
+      input.onRejected?.({ reason, savedFingerprint, savedAtMs });
+    } catch (error) {
+      console.warn(`${LOG} on_rejected_failed`, JSON.stringify({ courseSessionId: input.courseSessionId, reason, error: error instanceof Error ? error.message : String(error) })); // guard-ok: catch с причиной
+    }
     await clearLearningV2EpisodeResumeV1({ owner: input.owner, courseSessionId: input.courseSessionId, reason, targetLanguage });
     return null;
   };

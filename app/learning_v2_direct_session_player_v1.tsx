@@ -91,6 +91,7 @@ import {
   loadLearningV2EpisodeResumeV1,
   saveLearningV2EpisodeResumeV1,
   LEARNING_V2_EPISODE_RESUME_SCHEMA_V1,
+  LEARNING_V2_EPISODE_RESUME_TTL_MS,
   type LearningV2EpisodeResumeRecordV1,
 } from "./learning_v2_episode_resume_v1";
 import LearningV2TheorySheet from "../components/learning-v2/LearningV2TheorySheet";
@@ -278,6 +279,7 @@ import {
 import { recordLearningV2LessonBankPhraseV1 } from "./learning_v2_lesson_phrase_bank_v1";
 import { DebugLogger } from './debug-logger';
 import { useV2TaskSwapTrace, v2StackEntering, v2StackExiting } from './learning_v2_task_swap_trace';
+import { claimLearningV2ReleaseResetFreeStartV1 } from './learning_v2_release_reset_free_start_v1';
 import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import type { LearningV2FactoryNativeNewWordEncounterV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
@@ -2742,7 +2744,35 @@ function LearningV2DirectSessionPlayerV1() {
     if (resumeCheckedRef.current || isAuthoringPreview || !resumeCourseSessionId || !resumeFingerprint) return;
     resumeCheckedRef.current = true;
     let alive = true;
-    void loadLearningV2EpisodeResumeV1({ owner: resumeOwner, courseSessionId: resumeCourseSessionId, childSetFingerprint: resumeFingerprint, targetLanguage: progressTargetLanguage })
+    // зачем (координатор 29.10, [V2-RESUME-RESET]): «продолжить» сброшено новым выпуском курса (release_changed) — человек не виноват,
+    // старт без энергии, один раз на занятие и выпуск. Решение нужно до показа первого задания: тогда плеер не шлёт сигнал «первое
+    // задание на экране» и гейт энергии не списывает. Задание уже на экране — энергия уже списана, это только пишем.
+    const onRejected = (rejection: Readonly<{ reason: string; savedFingerprint: string | null; savedAtMs: number | null }>) => {
+      if (rejection.reason !== "release_changed") return;
+      const base = { lesson: lessonOrdinal, session: sessionOrdinal, courseSessionId: resumeCourseSessionId, oldFingerprint: rejection.savedFingerprint, newFingerprint: resumeFingerprint };
+      const ageMs = rejection.savedAtMs === null ? null : Date.now() - rejection.savedAtMs;
+      if (ageMs === null || ageMs > LEARNING_V2_EPISODE_RESUME_TTL_MS) {
+        // зачем: запись и так истекла (старше срока «продолжить») — потерю принёс не выпуск, старт платный, как без него
+        console.log("[V2-RESUME-RESET]", JSON.stringify({ ...base, energy: "charged", reason: "resume_expired_anyway", ageMs })); // guard-ok: ранний выход с причиной
+        return;
+      }
+      if (sessionStageRef.current !== "intro") {
+        console.log("[V2-RESUME-RESET]", JSON.stringify({ ...base, energy: "charged", reason: `too_late:${sessionStageRef.current}` })); // guard-ok: ранний выход с причиной
+        return;
+      }
+      void claimLearningV2ReleaseResetFreeStartV1({ owner: resumeOwner, courseSessionId: resumeCourseSessionId, targetLanguage: progressTargetLanguage, newFingerprint: resumeFingerprint })
+        .then((claim) => {
+          if (!alive) {
+            console.log("[V2-RESUME-RESET]", JSON.stringify({ ...base, energy: "none", reason: `screen_closed:${claim.reason}` })); // guard-ok: ранний выход с причиной
+            return;
+          }
+          const inTime = sessionStageRef.current === "intro";
+          if (claim.free && inTime) resumedWithoutChargeRef.current = true;
+          const reason = claim.free && !inTime ? `too_late:${sessionStageRef.current}` : claim.reason;
+          console.log("[V2-RESUME-RESET]", JSON.stringify({ ...base, energy: claim.free && inTime ? "free" : "charged", reason })); // guard-ok: итог решения
+        });
+    };
+    void loadLearningV2EpisodeResumeV1({ owner: resumeOwner, courseSessionId: resumeCourseSessionId, childSetFingerprint: resumeFingerprint, targetLanguage: progressTargetLanguage, onRejected })
       .then((record) => {
         if (!alive) return;
         if (!record) return;
@@ -2754,7 +2784,7 @@ function LearningV2DirectSessionPlayerV1() {
         setResumeOffer(record);
       });
     return () => { alive = false; };
-  }, [isAuthoringPreview, progressTargetLanguage, resumeCourseSessionId, resumeFingerprint, resumeOwner]);
+  }, [isAuthoringPreview, lessonOrdinal, progressTargetLanguage, resumeCourseSessionId, resumeFingerprint, resumeOwner, sessionOrdinal]);
 
   // Сохранение после каждого шага (пока предложение продолжить не решено — не перезаписываем старое).
   useEffect(() => {

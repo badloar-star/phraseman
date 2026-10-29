@@ -16,7 +16,7 @@
 
 - ✅ **Your shoes are wet, aren't they?**
 - ❌ Your shoes are wet, isn't they? — *С are в основной части здесь нужно aren’t.*
-- ❌ Your shoes are wet, aren't it? — *Множественное shoes заменяем на they.*
+- ❌ Your shoes are wet, aren't it? — *Shoes (их несколько) заменяем на they.*
 
 ---
 
@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Our tickets were checked by Ben.**
-- ❌ Our tickets was checked by Ben. — *Множественное tickets требует were.*
+- ❌ Our tickets was checked by Ben. — *Tickets (их несколько) требуют were.*
 - ❌ Our tickets were check by Ben. — *После were нужна форма checked.*
 
 ---
@@ -63,7 +63,7 @@
 **3 · Обувь друга мокрая. Добавьте отрицательное уточнение.**
 <!-- interaction_id: en:lesson-31:session-14:i03; family: context_gap_grammar -->
 Your shoes are wet, ___ they? → **aren't** · isn't · doesn't
-- isn't — *Множественное shoes требует aren’t.*
+- isn't — *Shoes (их несколько) требуют aren’t.*
 - doesn't — *В основной части are, поэтому здесь aren’t.*
 
 **4 · Карточка слова — bus**
@@ -124,7 +124,7 @@ Our tickets were checked ___ Ben. → **by** · at · to
 <!-- interaction_id: en:lesson-31:session-14:i16; family: context_gap_grammar -->
 Do you know where ___? → **our tickets are** · are our tickets · our tickets is
 - are our tickets — *После where порядок our tickets are.*
-- our tickets is — *Множественное tickets требует are.*
+- our tickets is — *Tickets (их несколько) требуют are.*
 
 **17 · Бен открыл дверь. Начните с двери.**
 <!-- interaction_id: en:lesson-31:session-14:i17; family: scripted_repeat_compare -->

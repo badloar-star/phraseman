@@ -16,7 +16,7 @@
 
 - ✅ **The shoes I bought are too small.**
 - ❌ The shoes bought I are too small. — *В уточнении ставим I перед bought.*
-- ❌ The shoes I bought is too small. — *Множественное shoes требует are.*
+- ❌ The shoes I bought is too small. — *Shoes (их несколько) требуют are.*
 
 ---
 

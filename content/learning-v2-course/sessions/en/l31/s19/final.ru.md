@@ -30,7 +30,7 @@
 
 - ✅ **Could you tell me where the candles are?**
 - ❌ Could you tell me where are the candles? — *После where порядок the candles are.*
-- ❌ Could you tell me where the candles is? — *Множественное candles требует are.*
+- ❌ Could you tell me where the candles is? — *Candles (их несколько) требуют are.*
 
 ---
 

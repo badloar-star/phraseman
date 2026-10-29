@@ -82,7 +82,7 @@ I took the shoes back ___ they were too small. → **because** · because of · 
 <!-- interaction_id: en:lesson-31:session-28:i07; family: context_gap_grammar -->
 She said the shoes ___ too small. → **were** · are · was
 - are — *Are не выполняет заданный сдвиг.*
-- was — *Множественное shoes требует were.*
+- was — *Shoes (их несколько) требуют were.*
 
 **8 · Карточка слова — box**
 <!-- interaction_id: en:lesson-31:session-28:i08; family: word_card -->
@@ -142,7 +142,7 @@ Do you know if ___ open? → **the shop is** · is the shop · the shop are
 **20 · Обувь неудобная. Добавьте утвердительное уточнение о ней.**
 <!-- interaction_id: en:lesson-31:session-28:i20; family: context_gap_grammar -->
 The shoes aren't comfortable, ___ they? → **are** · is · do
-- is — *Множественное shoes требует are.*
+- is — *Shoes (их несколько) требуют are.*
 - do — *Берём are из aren’t.*
 
 **21 · Вы понимаете, почему Анна вернула обувь. Скажите об этом.**

@@ -30,7 +30,7 @@
 
 - ✅ **Do you know where the bowls are?**
 - ❌ Do you know where are the bowls? — *После where порядок the bowls are.*
-- ❌ Do you know where the bowls is? — *Множественное bowls требует are.*
+- ❌ Do you know where the bowls is? — *Bowls (их несколько) требуют are.*
 
 ---
 
@@ -142,7 +142,7 @@ The soup isn't cold, ___ it? → **is** · are · does
 **20 · Вежливо спросите, где ложки.**
 <!-- interaction_id: en:lesson-31:session-11:i20; family: context_gap_grammar -->
 Could you tell me where the spoons ___? → **are** · is · be
-- is — *Множественное spoons требует are.*
+- is — *Spoons (их несколько) требуют are.*
 - be — *Нужна форма are.*
 
 **21 · Вчера Анна сказала: «Мне нужна помощь». Перескажите со сдвигом need в прошлое.**

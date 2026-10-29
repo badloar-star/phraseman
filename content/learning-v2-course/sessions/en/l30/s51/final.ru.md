@@ -44,7 +44,7 @@
 
 - ✅ **The apples I bought are sweet.**
 - ❌ The apples bought I are sweet. — *В уточнении нужен порядок I bought.*
-- ❌ The apples I bought is sweet. — *Множественное apples требует are.*
+- ❌ The apples I bought is sweet. — *Apples (их несколько) требуют are.*
 
 ---
 

@@ -26,7 +26,9 @@ describe('верх экрана цельный (замок владельца 25
     // поэтому слоя нет вовсе: фон сцены (spire_scene_backdrop) рисуется от верха экрана под шапкой и часами, шапка лежит поверх прозрачной.
     const community = read('app/(tabs)/community.tsx');
     expect(community).not.toContain('<SpireSceneHeaderLayer');
-    expect(community).toContain("const overScene = SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null;");
+    // зачем (перепин 29.10): сводный коммит a82a3b220 добавил «Наборы» со своей сценой — условие «Наборы ИЛИ (Пик при флаге и готовой сцене)»; Пик не ослаблен
+    expect(community).toContain("const overScene = section === 'packs' || (SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null);");
+    expect(community).toContain("(SPIRE_SCENE_V2_ENABLED && section === 'spire' && sceneTint !== null)");
     expect(community).toContain("headerOver: { position: 'absolute', top: 0, left: 0, right: 0, zIndex: 2 },");
     expect(community).toContain('<View style={overScene ? s.bodyUnder : s.body}>');
     const scene = read('components/spire/scene/SpireScene.tsx');

@@ -288,7 +288,15 @@ describe('Сезон: обложка рисуется от верхнего кр
     for (const style of [hero, heroTall]) {
       expect(style).not.toMatch(/margin|padding|backgroundColor|top:/);
     }
-    expect(top).toContain("<LinearGradient colors={[heroArt.from, heroArt.to]} start={{ x: 0.33, y: 0 }} end={{ x: 0.67, y: 1 }} style={StyleSheet.absoluteFill} />");
+    // зачем (вердикт владельца 29.10, scenePalette; перепин после e12db00ac): обложка — утверждённая сцена из единой функции (SceneBackdropFill), а не градиенты heroArt. Строже прежнего: слой — прямой первый ребёнок обложки,
+    // сам занимает всю её область (absoluteFill), палитра берётся из scenePalette для экрана season, старых градиентов heroArt и затемнения SCRIM нет.
+    expect(top).toContain('<SceneBackdropFill screen="season" logName="lessons:season-cover" idPrefix="seasonHero" fallback={[heroSceneTop, heroSceneTop]} />');
+    expect(top).toMatch(new RegExp('testID="season-hero">' + String.fromCharCode(92) + 's*<SceneBackdropFill '));
+    expect(top).not.toContain('heroArt.from');
+    expect(top).not.toContain('colors={SCRIM}');
+    const fill = readSource('components/scene/SceneBackdropFill.tsx');
+    expect(fill).toContain('<View pointerEvents="none" style={StyleSheet.absoluteFill} onLayout={onLayout}>');
+    expect(fill).toContain('scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, screen,');
     expect(top).toContain('paddingTop: props.topPadding + 8 + HUD_ROW_HEIGHT + 12');
     // зачем (координатор 25.10): низ контента — не меньше отступа таб-бара (contentBottomPad); сверху по-прежнему ни отступа, ни сдвига
     expect(top).toContain('<ScrollView contentContainerStyle={{ paddingBottom: contentBottomPad }}');

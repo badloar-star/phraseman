@@ -17,7 +17,7 @@ import MaskedView from '@react-native-masked-view/masked-view';
 import { PixelRatio, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
 import SceneBackdrop from '../../../scene/SceneBackdrop';
 import { scenePaletteCached } from '../../../scene/scene_palette';
-import { logSceneEdge, logSceneTheme } from './scene_theme_log';
+import { logSceneEdge, logSceneLayers, logSceneTheme } from './scene_theme_log';
 import Animated, { Easing, FadeIn, FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
@@ -151,6 +151,13 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   useEffect(() => {
     logSceneEdge('home', { sceneH: Math.round(stageH), sceneW: Math.round(windowW), windowH: Math.round(windowH), shareOfWindow: Math.round((stageH / windowH) * 100), bottomRadius: 32, fadeToBg: false, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: scenePal.mode, source: 'scenePalette', evening });
   }, [stageH, windowW, windowH, liquidGlassThemeId, liquidGlassAppearance, scenePal.mode, evening]);
+  // зачем (слово владельца 29.10, [SCENE-LAYERS]): порядок слоёв сцены Главной снизу вверх — слои цвета лежат ПОД героем-иконкой, герой и текст рисуются последними
+  useEffect(() => {
+    logSceneLayers('home', [
+      { name: 'SceneBackdrop(' + scenePal.mode + ')', kind: 'paint', opacity: 1 }, { name: 'PremiumThemeMotion', kind: 'paint' }, { name: 'halo', kind: 'paint', opacity: HOME_SCENE_INK.haloOpacity },
+      { name: 'hero', kind: 'icon', opacity: artDim ? 0.6 : 1 }, { name: 'body', kind: 'text' },
+    ], { heroMasked: fade.masked ? 1 : 0, heroBounded: heroBounded ? 1 : 0, hasAccentLayer: artAccent ? 1 : 0, evening });
+  }, [scenePal.mode, artDim, fade.masked, heroBounded, artAccent, evening]);
   const heroMask = useMemo(() => <LinearGradient colors={['black', 'black', 'transparent']} locations={[0, fade.fadeFrom, fade.fadeTo]} style={StyleSheet.absoluteFill} />, [fade.fadeFrom, fade.fadeTo]);
   useEffect(() => { console.log(LOG, 'hero_fade', JSON.stringify({ why: fade.why, bounded: fade.bounded, masked: fade.masked, fadeFrom: Number(fade.fadeFrom.toFixed(2)), fadeTo: Number(fade.fadeTo.toFixed(2)), fontScale, spaceH: heroSpaceH })); }, [fade.why, fade.bounded, fade.masked, fade.fadeFrom, fade.fadeTo, fontScale, heroSpaceH]); // guard-ok: одна строка на смену геометрии героя
   // зачем (Сверка home7, [HOME-FIT]): заголовок «Продолжим с эпизода 1» на 390 переносился на 2 строки (+42 dp) и уводил «Фразу дня» под панель; длинный заголовок — кегль 26/32 (как long у обложки Сезона), первый кадр без измерения, без ужатия

@@ -203,7 +203,7 @@ async function main(): Promise<void> {
   // зачем (владелец 22.10: «ВОТ ЭТОТ ТЕКСТ УБИРАЙ», «ВОТ ТАК НЕ НАДО» про монету в круге, «убери НАД ОБЛАКАМИ и облака, звёзды по всей плоскости»)
   assert.ok(!scene.includes("p.copy.rewards.map(") && scene.includes("плашек «+10 за ступень / этаж» на сцене нет"), "на сцене Пика нет плашек «+10 за ступень / этаж»");
   assert.ok(!scene.includes("spireSceneHalo") && !scene.includes("HALO."), "за башней нет отдельного ореола — фон сцены единый");
-  assert.ok(scene.includes("{SCENE_STARS.map(([x, y, r, o], i) => <Circle") && scene.includes("cx={x * width} cy={y * frame.sceneH}"), "звёзды — по всей сцене до краёв");
+  assert.ok(scene.includes("SCENE_STARS.map(([x, y, r, o], i) => <Circle") && scene.includes("cx={x * width} cy={y * frame.sceneH}"), "звёзды — по всей сцене до краёв");
   assert.ok(scene.includes("const starColor = useMemo(() => lightShade(tokens.sceneGlow, 0.25), [tokens.sceneGlow]);"), "звёзды — оттенок свечения темы, не белые (Сверка 22.10)");
   // зачем (владелец 22.10: «башню перекрашиваем в оттенки темы»; «цвета строго оттенками текущей темы»)
   assert.ok(scene.includes("themeColors={themeColors}") && scene.includes("const themeColors = useMemo(() => ({ accent: sceneAccent, sceneTop: tokens.sceneTop, sceneBottom: tokens.sceneBottom })"), "сцена передаёт башне цвета темы: акцент «Максимума» и цвета сцены");

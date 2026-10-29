@@ -51,3 +51,19 @@ export function logSceneEdge(screen: string, info: Readonly<Record<string, strin
   lastEdgeByScreen.set(screen, body);
   console.log(SCENE_EDGE_LOG, screen, body); // guard-ok: одна строка на смену значений
 }
+
+export const SCENE_LAYERS_LOG = '[SCENE-LAYERS]';
+const lastLayersByScreen = new Map<string, string>();
+
+/**
+ * Журнал порядка слоёв сцены (слово владельца 29.10: «сцена не должна перекрашивать иконки — краска не ложится на иконки, иконки поверх»; закон «сперва логи»):
+ * слои перечислены снизу вверх в порядке рендера; `paint` — слои цвета сцены, `icon` — иконки/герой. Нарушение — любой `paint` ПОСЛЕ первого `icon`.
+ */
+export function logSceneLayers(screen: string, layers: ReadonlyArray<Readonly<{ name: string; kind: 'paint' | 'icon' | 'text' | 'other'; opacity?: number }>>, extra: Readonly<Record<string, string | number | boolean | null>> = {}): void {
+  const firstIcon = layers.findIndex((l) => l.kind === 'icon');
+  const paintAbove = firstIcon < 0 ? [] : layers.filter((l, i) => l.kind === 'paint' && i > firstIcon).map((l) => l.name);
+  const body = JSON.stringify({ order: layers.map((l, i) => `${i}:${l.kind}:${l.name}${l.opacity !== undefined ? `@${l.opacity}` : ''}`), paintAboveIcons: paintAbove, ...extra });
+  if (lastLayersByScreen.get(screen) === body) return;
+  lastLayersByScreen.set(screen, body);
+  console.log(SCENE_LAYERS_LOG, screen, body); // guard-ok: одна строка на смену порядка
+}

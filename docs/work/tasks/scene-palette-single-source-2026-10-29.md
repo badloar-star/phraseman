@@ -62,3 +62,24 @@ Governance-ID: TG-ADB191E4E3C3
 
 Outcome: общий слой components/scene/SceneBackdrop.tsx рисует утверждённую сцену (тёмное «Глубокое небо», светлое «А») по результату scenePalette; HomeSceneStage и DialogsSceneBackdrop рисуют фон им; цвета шапки/статус-бара Главной берут верх из той же палитры; палитра и 70 звёзд считаются один раз на (тема, оформление, экран, размер) — кэш модуля; вечер Главной = обычное «небо» (владелец выбрал «Небо + тёплый край», эталон придёт); светлые Диалоги — надписи и кнопки как в тёмном оформлении; лог [SCENE-THEME] с временем первого кадра.
 Scope: components/scene/*, HomeSceneStage.tsx, HomeScene.tsx, dialogs scene (DialogsSceneBackdrop, dialogs_scene_tokens, use_dialogs_scene_theme), тесты. Пик, Сезон, остальные — следующими шагами. Architecture/Security/Debt/Verification/Rollback — как выше.
+
+## Шаг 3: Сезон, обложки уроков, приветствие языка и aha берут цвет сцены из scenePalette
+
+Governance-ID: TG-4E9514E039CC
+
+Outcome: обложки Сезона/уроков, экран выбора языка и онбординг «aha» берут цвета фона только из scenePalette (тёмное «Глубокое небо», светлое «А»); по коммиту на экран; в каждом — лог [SCENE-THEME] с темой, оформлением, режимом и итоговыми цветами. Красный safe_top_one_canvas_contract (CommunityPackCheckScene, Codex) — в записку Codex, не чиню. Затем проект строки OWNER_LOCKS — координатору текстом.
+Scope: components/learning-v2/season/*, app/language_welcome*, components/onboarding_aha/*, тесты читателей. Architecture/Security/Debt/Verification/Rollback — как выше.
+
+## Шаг 3б: сторожа по замечанию Ревизора (холостой тест тёмного, белый ≥ 4,6 на зоне текста)
+
+Governance-ID: TG-8FBAAFBB274F
+
+Outcome: (1) tests/dialogs_scene_light_grad_glow.test.ts проверяет scenePalette «Глубокое небо» для всех grad_*, а не равенство bgGlow; (2) tests/scene_palette_parity.test.ts гарантирует «белый ≥ 4,6 на зоне текста Диалогов» на 29 темах × 2 оформления (мера — та же, что у стража: худшая строка зоны текста), для чего scene_palette.ts отдаёт sceneTextZoneWhiteContrast.
+Scope: components/scene/scene_palette.ts (новая функция), два теста. Architecture/Security/Debt/Verification/Rollback — как выше.
+
+## Шаг 3в: вкладка «Уроки» на scenePalette и лог положения иконок-героев Главной (слово владельца 29.10)
+
+Governance-ID: TG-190D92B77BE9
+
+Outcome: (1) сначала лог [SCENE-THEME] home:icons {x, y, size, sceneW, sceneH, источник} — выяснить, сдвинул ли иконки героя коммит 1e1613865 (фон SceneBackdrop против раскладки героя); отчёт координатору ДО правки; (2) вкладка «Уроки» берёт фон из scenePalette (после Сезона).
+Scope: HomeSceneStage.tsx (лог), далее по результату. Architecture/Security/Debt/Verification/Rollback — как выше.

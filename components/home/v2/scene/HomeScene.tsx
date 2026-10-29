@@ -28,7 +28,7 @@ import { homeSceneAllReleasedDone, homeSceneDaysAwayByVisits, homeSceneDaysSince
 import { useAppVisitGap } from '../../../../modules/welcome_back/use_app_visit_gap';
 import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from './home_scene_state';
 import { homeSceneTokensForTheme, relativeLuminance, type HomeSceneStageTokens } from './home_scene_tokens';
-import { scenePaletteCached } from '../../../scene/scene_palette';
+import { scenePaletteCached, sceneBottomHex, sceneTopHex } from '../../../scene/scene_palette';
 import { logSceneTheme } from './scene_theme_log';
 import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
@@ -265,8 +265,8 @@ export function useHomeSceneStageTokens(evening: boolean): HomeSceneStageTokens 
   const tokens = useMemo(() => {
     const base = homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening);
     const pal = scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'home', 1080, 1082, 2.625);
-    const sceneTop = pal.mode === 'dark-sky' ? pal.gradient.stops[0]!.color.hex : pal.gradient.top.hex;
-    const sceneBottom = pal.mode === 'dark-sky' ? pal.gradient.stops[5]!.color.hex : pal.gradient.bottom.hex;
+    const sceneTop = sceneTopHex(pal);
+    const sceneBottom = sceneBottomHex(pal);
     const lum = relativeLuminance(sceneTop);
     return { ...base, sceneTop, sceneBottom, whiteContrastTop: lum === null ? base.whiteContrastTop : 1.05 / (lum + 0.05) };
   }, [liquidGlassThemeId, liquidGlassAppearance, evening]);

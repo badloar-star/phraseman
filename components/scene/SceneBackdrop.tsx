@@ -11,7 +11,7 @@ import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import Svg, { Circle, Defs, G, LinearGradient, RadialGradient, Rect, Stop } from 'react-native-svg';
 
-import type { ScenePaletteResult } from './scene_palette';
+import { isSkyPalette, type ScenePaletteResult } from './scene_palette';
 
 type Props = Readonly<{ palette: ScenePaletteResult; idPrefix: string }>;
 
@@ -21,7 +21,7 @@ const GUARD_TOP_H = 110; // px эталонной канвы: затемнени
 function SceneBackdrop({ palette, idPrefix }: Props) {
   const { W, H } = palette.size;
   const id = (n: string): string => `${idPrefix}${n}`;
-  if (palette.mode === 'dark-sky') {
+  if (isSkyPalette(palette)) {
     const p = palette;
     const stops = p.gradient.stops;
     const raw = [p.raw.zen, p.raw.mid, p.raw.hor, p.raw.hor, p.raw.gnd, p.raw.bottom];
@@ -49,6 +49,13 @@ function SceneBackdrop({ palette, idPrefix }: Props) {
             <Stop offset={p.vignette.inner} stopColor="#000000" stopOpacity="0" />
             <Stop offset="1" stopColor="#000000" stopOpacity={p.vignette.a} />
           </RadialGradient>
+          {p.warmEdge ? (
+            <RadialGradient id={id('Warm')} gradientUnits="userSpaceOnUse" cx={p.warmEdge.cx * W} cy={p.warmEdge.cy * H} rx={p.warmEdge.rx * W} ry={p.warmEdge.ry * H} fx={p.warmEdge.cx * W} fy={p.warmEdge.cy * H}>
+              <Stop offset="0" stopColor={rgb(p.warmEdge.color)} stopOpacity={p.warmEdge.a} />
+              <Stop offset={p.warmEdge.fade} stopColor={rgb(p.warmEdge.color)} stopOpacity="0" />
+              <Stop offset="1" stopColor={rgb(p.warmEdge.color)} stopOpacity="0" />
+            </RadialGradient>
+          ) : null}
           <LinearGradient id={id('GuardB')} gradientUnits="userSpaceOnUse" x1="0" y1={H * 0.42} x2="0" y2={H * 0.62}>
             <Stop offset="0" stopColor="#000000" stopOpacity="0" />
             <Stop offset="1" stopColor="#000000" stopOpacity={aBottom} />
@@ -61,6 +68,7 @@ function SceneBackdrop({ palette, idPrefix }: Props) {
         <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Sky')})`} />
         <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Sun')})`} />
         <Rect x="0" y={H * p.haze.y0} width={W} height={H * (p.haze.y1 - p.haze.y0)} fill={`url(#${id('Haze')})`} />
+        {p.warmEdge ? <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Warm')})`} /> : null}
         <G>
           {p.stars.list.map((s, i) => <Circle key={i} cx={s.x * W} cy={s.y * H} r={s.r} fill="#FFFFFF" fillOpacity={s.a} />)}
         </G>

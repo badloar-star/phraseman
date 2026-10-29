@@ -11,7 +11,7 @@ import type { GlassTokens } from '../../../constants/liquidGlassThemePalette';
 import { logSceneTheme } from '../../home/v2/scene/scene_theme_log';
 import { useTheme } from '../../ThemeContext';
 import { mixHex } from '../../../constants/v2Style';
-import { scenePaletteCached } from '../../scene/scene_palette';
+import { isSkyPalette, sceneBottomHex, scenePaletteCached, sceneTopHex } from '../../scene/scene_palette';
 import { dialogsSceneColors, dialogsSceneTokensForTheme, type DialogsSceneColors } from './dialogs_scene_tokens';
 
 export type DialogsSceneTheme = Readonly<{
@@ -30,11 +30,11 @@ export function useDialogsSceneTheme(): DialogsSceneTheme {
     const base = dialogsSceneColors(textTokens);
     const pal = scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'dialogs', 1080, 1082, 2.625);
     const hex = (c: ReadonlyArray<number>): string => '#' + c.map((v) => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, '0')).join('').toUpperCase();
-    const top = pal.mode === 'dark-sky' ? pal.gradient.stops[0]!.color.hex : pal.gradient.top.hex;
-    const bottom = pal.mode === 'dark-sky' ? pal.gradient.stops[5]!.color.hex : pal.gradient.bottom.hex;
+    const top = sceneTopHex(pal);
+    const bottom = sceneBottomHex(pal);
     // зона текста: «горизонт» неба / низ «А» с затемнением, которое держит страж — белый на ней ≥ 4,6 (в журнале контраст считается по этому цвету)
-    const zoneBase = pal.mode === 'dark-sky' ? hex(pal.raw.hor) : pal.gradient.bottom.hex;
-    const shade = pal.mode === 'dark-sky' ? Math.min(0.7, pal.guard.aBottom + 0.04) : pal.scrim ? pal.scrim.a : 0;
+    const zoneBase = isSkyPalette(pal) ? hex(pal.raw.hor) : pal.gradient.bottom.hex;
+    const shade = isSkyPalette(pal) ? Math.min(0.7, pal.guard.aBottom + 0.04) : pal.scrim ? pal.scrim.a : 0;
     const textZone = shade > 0 ? mixHex(zoneBase, '#000000', shade) : zoneBase;
     const colors: DialogsSceneColors = Object.freeze({ ...base, top, bottom, textZone, scrim: null, glowBottom: null, isLight: false });
     return Object.freeze({ tokens, colors });

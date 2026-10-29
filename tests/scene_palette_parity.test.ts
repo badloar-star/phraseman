@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { liquidGlassTokens, LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
-import { approvedScene, scenePalette, type SceneAppearance, type SceneScreen } from '../components/scene/scene_palette';
+import { approvedScene, scenePalette, sceneTextZoneWhiteContrast, type SceneAppearance, type SceneScreen } from '../components/scene/scene_palette';
 
 const MOCK = path.join(__dirname, '..', 'docs', 'design', 'v2-app');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -88,5 +88,28 @@ describe('scenePalette = scene-approved.js эталона, разница 0', ()
       const fromPage = approvedScene(themes[id]![ap]!, ap, 'home', 1080, 1082) as unknown as Record<string, unknown>;
       expect(JSON.parse(JSON.stringify(fromApp))).toEqual(JSON.parse(JSON.stringify(fromPage)));
     }
+  });
+
+  // зачем (Ревизор к 1e1613865: «страж в коде есть, теста нет»): на зоне текста Диалогов белый ≥ 4,6 для всех 29 тем × 2 оформлений — иначе подписи сцены не читаются
+  it.each(IDS.flatMap((id) => (['dark', 'light'] as const).map((ap) => [id, ap] as const)))('белый на зоне текста Диалогов ≥ 4,6: %s %s', (id, ap) => {
+    const pal = scenePalette(id, ap, 'dialogs', 1080, 1082, { premium: PREMIUM.has(id) });
+    expect(sceneTextZoneWhiteContrast(pal)).toBeGreaterThanOrEqual(4.6);
+  });
+
+  // зачем (эталон cad933fd7: вечер Главной «Небо + тёплый край», владелец 29.10): тёплый край — отдельный слой после дымки; три трактовки оттенка, по умолчанию 'band'
+  it.each(IDS.flatMap((id) => (['dark', 'light'] as const).flatMap((ap) => (['band', 'warmer', 'theme'] as const).map((warm) => [id, ap, warm] as const))))('вечер: %s %s %s', (id, ap, warm) => {
+    const tokens = appTokens(id, ap as SceneAppearance);
+    const opts = { premium: PREMIUM.has(id), evening: true, warm };
+    const ref = REF.approved(tokens, ap, 'home', 1080, 1082, opts);
+    const ts = approvedScene(tokens, ap as SceneAppearance, 'home', 1080, 1082, opts) as unknown as Record<string, unknown>;
+    expect(ts.warmEdge).not.toBeNull();
+    if (ap === 'light') expect(JSON.parse(JSON.stringify(ts))).toEqual(JSON.parse(JSON.stringify(ref)));
+    else expect(withoutGuard(ts)).toEqual(withoutGuard(ref));
+  });
+
+  it('вечер по умолчанию — «тёплый янтарь» (band)', () => {
+    const tokens = appTokens('graphite', 'dark');
+    const ts = approvedScene(tokens, 'dark', 'home', 1080, 1082, { evening: true }) as unknown as { warmEdge: { mode: string } };
+    expect(ts.warmEdge.mode).toBe('band');
   });
 });

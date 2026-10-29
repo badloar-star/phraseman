@@ -140,6 +140,13 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const [heroSpaceH, setHeroSpaceH] = useState<number | null>(null);
   const fade = homeSceneHeroFade({ heroTop: HERO_TOP - TOP_SPACE, spaceH: heroSpaceH, heroH: HERO, fontBounded: fontScale > HERO_BOUND_FONT_SCALE });
   const heroBounded = fade.bounded;
+  // зачем (слово владельца 29.10: «иконки на сцене Главной маленькие, в самом верху, вкраю»; сперва логи): где и какого размера герой на сцене — один поиск [SCENE-THEME] home:icons
+  useEffect(() => {
+    logSceneTheme('home:icons', liquidGlassThemeId, liquidGlassAppearance, 'HomeSceneStage.styles.hero (HERO, right, top)', {
+      x: Math.round(windowW - HERO + 14), y: TOP_SPACE + (HERO_TOP - TOP_SPACE) + Math.round(topInset), size: HERO, sceneW: Math.round(windowW), sceneH: Math.round(stageH),
+      rightOffset: -14, heroSpaceH: heroSpaceH === null ? -1 : heroSpaceH, bounded: heroBounded ? 1 : 0, shareOfSceneW: Math.round((HERO / windowW) * 100), shareOfSceneH: Math.round((HERO / stageH) * 100),
+    });
+  }, [liquidGlassThemeId, liquidGlassAppearance, windowW, stageH, topInset, heroSpaceH, heroBounded]);
   const heroMask = useMemo(() => <LinearGradient colors={['black', 'black', 'transparent']} locations={[0, fade.fadeFrom, fade.fadeTo]} style={StyleSheet.absoluteFill} />, [fade.fadeFrom, fade.fadeTo]);
   useEffect(() => { console.log(LOG, 'hero_fade', JSON.stringify({ why: fade.why, bounded: fade.bounded, masked: fade.masked, fadeFrom: Number(fade.fadeFrom.toFixed(2)), fadeTo: Number(fade.fadeTo.toFixed(2)), fontScale, spaceH: heroSpaceH })); }, [fade.why, fade.bounded, fade.masked, fade.fadeFrom, fade.fadeTo, fontScale, heroSpaceH]); // guard-ok: одна строка на смену геометрии героя
   // зачем (Сверка home7, [HOME-FIT]): заголовок «Продолжим с эпизода 1» на 390 переносился на 2 строки (+42 dp) и уводил «Фразу дня» под панель; длинный заголовок — кегль 26/32 (как long у обложки Сезона), первый кадр без измерения, без ужатия

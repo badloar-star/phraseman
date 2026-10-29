@@ -5,6 +5,7 @@ import path from 'node:path';
 
 import { LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
 import { dialogsSceneColors, dialogsSceneTokensForTheme, isClearColor } from '../components/dialogs/scene/dialogs_scene_tokens';
+import { scenePalette } from '../components/scene/scene_palette';
 import { relativeLuminance } from '../components/home/v2/scene/home_scene_tokens';
 
 const GRAD_IDS = LIQUID_GLASS_THEME_IDS.filter((id) => id.startsWith('grad_'));
@@ -26,13 +27,21 @@ describe('светлые Диалоги × grad_*: нет слоёв из про
     expect(relativeLuminance(c.textZone) ?? 0).toBeGreaterThanOrEqual(MIN_LIGHT_BASE_LUMINANCE);
   });
 
-  // зачем (Ревизор к ac9573883): тёмное оформление grad_* не меняется молча — свет берётся из bgGlow как был, нижнего света нет
-  it.each(GRAD_IDS)('%s dark: свет сцены = bgGlow темы, нижнего света нет', (id) => {
-    const t = dialogsSceneTokensForTheme(id, 'dark');
-    const c = dialogsSceneColors(t);
-    expect(c.glowRight).toBe(t.bgGlow[0]);
-    expect(c.glowLeft).toBe(t.bgGlow[1]);
-    expect(c.glowBottom).toBeNull();
+  // зачем (Ревизор к 1e1613865: прежний тест «свет = bgGlow» стал холостым после перехода на scenePalette): у всех grad_* тёмное оформление — «Глубокое небо»
+  // с цветными слоями, без прозрачного чёрного, а светлое — «А» с двумя светами; сцена Диалогов этих тем не пустая и не чёрная.
+  it.each(GRAD_IDS)('%s: scenePalette даёт «Глубокое небо» (тёмное) и «А» (светлое) без прозрачных слоёв', (id) => {
+    const dark = scenePalette(id, 'dark', 'dialogs', 1080, 1082);
+    expect(dark.mode).toBe('dark-sky');
+    if (dark.mode !== 'dark-sky') return;
+    expect(dark.gradient.stops).toHaveLength(6);
+    expect(dark.stars.list).toHaveLength(70);
+    expect(dark.sun.a).toBeGreaterThan(0);
+    expect(dark.gradient.stops.every((st) => st.color.rgb.some((v) => v > 0))).toBe(true);
+    const light = scenePalette(id, 'light', 'dialogs', 1080, 1082);
+    expect(light.mode).toBe('light-A');
+    if (light.mode !== 'light-A') return;
+    expect(light.lights).toHaveLength(2);
+    expect(light.lights.every((l) => l.a > 0 && l.color.rgb.some((v) => v > 0))).toBe(true);
   });
 
   // зачем (29.10, scenePalette): подложка Диалогов больше не рисует свечения из bgGlow вовсе — фон строится общим слоем из scenePalette (слоёв из прозрачного цвета нет по построению)

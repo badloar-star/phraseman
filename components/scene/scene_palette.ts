@@ -202,9 +202,33 @@ const OLD_SCRIM: Record<SceneScreen, (H: number, dp: number) => Scrim> = {
   season: (_H, dp) => ({ a: 0.36, h: 320 * dp }),
 };
 /** Опции: premium — шесть премиум-тем (Главная/Пик без затемнения); dp — px на dp устройства (по умолчанию 2,625 кадра эмулятора, как в эталоне). */
-export type SceneOpts = { premium?: boolean; dp?: number };
+export type SceneWarm = 'theme' | 'warmer' | 'band';
+export type SceneOpts = { premium?: boolean; dp?: number; /** Главная после 20:00: «Небо + тёплый край» (владелец 29.10 ~08:05). */ evening?: boolean; warm?: SceneWarm };
 const oldScrim = (screen: SceneScreen, H: number, opts?: SceneOpts): Scrim =>
   opts && opts.premium && screen !== 'dialogs' && screen !== 'season' ? null : (OLD_SCRIM[screen] ?? OLD_SCRIM.home)(H, opts?.dp ?? SCENE_DP);
+
+/**
+ * Вечер (Главная после 20:00) — «Небо + тёплый край» (слово владельца 29.10 ~08:05: небо остаётся, справа внизу лёгкий тёплый отсвет как намёк на угрозу серии, без красного и углей;
+ * тёплый цвет — от оттенка темы). По умолчанию 'band' — «тёплый янтарь» (владелец 29.10 ~10:40). Дословный порт warmEdge эталона scene-approved.js.
+ */
+const WARM: Record<SceneWarm, (H: number) => number> = {
+  theme: (H) => H,
+  warmer: (H) => {
+    const d = ((60 - H + 540) % 360) - 180;
+    return norm(H + Math.sign(d) * Math.min(35, Math.abs(d)));
+  },
+  band: (H) => 40 + ((H % 60) / 60) * 40,
+};
+export function warmEdge(t: SceneTokens, mode?: SceneWarm) {
+  const [, , H] = oklchOf(hx(t.accent));
+  const m: SceneWarm = mode && WARM[mode] ? mode : 'band';
+  const hue = WARM[m](H);
+  const L = m === 'band' ? 0.78 : m === 'theme' ? 0.72 : 0.74;
+  const C = m === 'band' ? 0.14 : m === 'theme' ? 0.12 : 0.13;
+  const color = okRgb(L, C, hue);
+  return { mode: m, hue: Math.round(hue * 10) / 10, cx: 0.92, cy: 1.02, rx: 0.55, ry: 0.42, color, hex: hex(color), a: 0.5, fade: 0.85, oklch: [L, C, Math.round(hue)] as [number, number, number] };
+}
+export type SceneWarmEdge = ReturnType<typeof warmEdge>;
 
 /** 3. Светлое оформление — «А — тон темы ярче и глубже». */
 export function lightA(t: SceneTokens, screen: SceneScreen, W: number, H: number, opts?: SceneOpts) {
@@ -218,9 +242,11 @@ export function lightA(t: SceneTokens, screen: SceneScreen, W: number, H: number
     ],
     scrim: old,
   };
+  const ev = opts && opts.evening ? warmEdge(t, opts.warm) : null;
+  if (ev) raw.lights.push({ cx: ev.cx, cy: ev.cy, rx: ev.rx, ry: ev.ry, color: ev.color, a: ev.a, fade: ev.fade }); // вечер: тот же тёплый край третьим светом, страж считает его
   const s = ensureContrast(raw, W, H);
   return {
-    version: SCENE_APPROVED_VERSION, mode: 'light-A' as const, name: 'А — тон темы ярче и глубже', screen, size: { W, H }, palette: p, spec: s,
+    version: SCENE_APPROVED_VERSION, mode: (ev ? 'light-A-evening' : 'light-A') as 'light-A' | 'light-A-evening', name: ev ? 'А + тёплый край' : 'А — тон темы ярче и глубже', screen, size: { W, H }, palette: p, spec: s, warmEdge: ev,
     gradient: { start: [0.22, 0] as [number, number], end: [0.78, 1] as [number, number], top: col(s.top), bottom: col(s.bot) },
     lights: s.lights.map((l) => ({ cx: l.cx, cy: l.cy, rx: l.rx, ry: l.ry, color: col(l.color), a: +l.a.toFixed(2), fade: l.fade })),
     scrim: s.scrim ? { color: '#000000', a: s.scrim.a, h: Math.round(s.scrim.h), note: 'чёрный от 0 на высоте h от низа сцены до a у низа' } : null,
@@ -230,7 +256,7 @@ export function lightA(t: SceneTokens, screen: SceneScreen, W: number, H: number
 }
 
 /** Страж «Глубокого неба» по формуле (без канвы): средняя линейная яркость строк зоны текста; белый ≥ 4,6 — иначе затемнение низа. Возвращает альфы затемнения. */
-export function guardSkyAnalytic(raw: { zen: number[]; mid: number[]; hor: number[]; gnd: number[]; bottom: number[]; lightC: number[]; haze: number[] }, W: number, H: number, stars: ReadonlyArray<{ x: number; y: number; r: number; a: number }> = []): { aBottom: number; aTop: number } {
+export function guardSkyAnalytic(raw: { zen: number[]; mid: number[]; hor: number[]; gnd: number[]; bottom: number[]; lightC: number[]; haze: number[] }, W: number, H: number, stars: ReadonlyArray<{ x: number; y: number; r: number; a: number }> = [], probe?: { rowY?: (y: number) => number }, warm?: SceneWarmEdge | null): { aBottom: number; aTop: number } {
   const stops: Array<[number, number[]]> = [[0, raw.zen], [0.42, raw.mid], [0.66, raw.hor], [0.74, raw.hor], [0.8, raw.gnd], [1, raw.bottom]];
   const skyAt = (y: number): number[] => {
     const f = clamp(y / H, 0, 1);
@@ -264,6 +290,17 @@ export function guardSkyAnalytic(raw: { zen: number[]; mid: number[]; hor: numbe
       const base = c;
       c = q(base.map((v, j) => v + (raw.haze[j]! - v) * a));
     }
+    // вечер: тёплый край — эллиптический свет после дымки, до звёзд (порядок слоёв эталона)
+    if (warm) {
+      const wx = (x - warm.cx * W) / (warm.rx * W);
+      const wy = (y - warm.cy * H) / (warm.ry * H);
+      const wd = Math.sqrt(wx * wx + wy * wy);
+      if (wd < warm.fade) {
+        const a = warm.a * (1 - wd / warm.fade);
+        const base = c;
+        c = q(base.map((v, j) => v + (warm.color[j]! - v) * a));
+      }
+    }
     // звёзды: белые круги радиуса r (px) с альфой a в точке (x·W, y·H); край без сглаживания — на строках зоны текста звёзд нет (они выше 40 % H)
     for (const st of stars) {
       const sx = st.x * W - x;
@@ -290,6 +327,7 @@ export function guardSkyAnalytic(raw: { zen: number[]; mid: number[]; hor: numbe
     }
     return s / n;
   };
+  if (probe) probe.rowY = rowY;
   let worst = 0;
   for (let y = Math.round(H * 0.5); y < H * 0.96; y += 6) worst = Math.max(worst, rowY(y));
   let top = 0;
@@ -302,7 +340,7 @@ export function guardSkyAnalytic(raw: { zen: number[]; mid: number[]; hor: numbe
 }
 
 /** 4. Тёмное оформление — «Глубокое небо». */
-export function darkSky(t: SceneTokens, screen: SceneScreen, W: number, H: number) {
+export function darkSky(t: SceneTokens, screen: SceneScreen, W: number, H: number, opts?: SceneOpts) {
   const p = paletteA(t, 'dark');
   const S = p.S;
   const C = p.C;
@@ -326,9 +364,10 @@ export function darkSky(t: SceneTokens, screen: SceneScreen, W: number, H: numbe
     const a = 0.18 + r() * 0.5;
     stars.push({ x, y, r: rad, a });
   }
-  const guard = guardSkyAnalytic({ zen, mid, hor, gnd, bottom, lightC: p.lightC, haze }, W, H, stars);
+  const ev = opts && opts.evening ? warmEdge(t, opts.warm) : null;
+  const guard = guardSkyAnalytic({ zen, mid, hor, gnd, bottom, lightC: p.lightC, haze }, W, H, stars, undefined, ev);
   return {
-    version: SCENE_APPROVED_VERSION, mode: 'dark-sky' as const, name: 'Глубокое небо', screen, size: { W, H }, palette: p,
+    version: SCENE_APPROVED_VERSION, mode: (ev ? 'dark-sky-evening' : 'dark-sky') as 'dark-sky' | 'dark-sky-evening', name: ev ? 'Глубокое небо + тёплый край' : 'Глубокое небо', screen, size: { W, H }, palette: p, warmEdge: ev,
     gradient: {
       direction: 'vertical' as const,
       stops: [
@@ -346,15 +385,17 @@ export function darkSky(t: SceneTokens, screen: SceneScreen, W: number, H: numbe
     vignette: { scale: 0.78, inner: 0.45, a: 0.22 },
     guard,
     raw: { zen, mid, hor, gnd, bottom, haze, lightC: p.lightC },
-    order: ['gradient', 'sun', 'haze', 'stars', 'vignette', 'guard'] as const,
+    order: (ev ? ['gradient', 'sun', 'haze', 'warmEdge', 'stars', 'vignette', 'guard'] : ['gradient', 'sun', 'haze', 'stars', 'vignette', 'guard']) as readonly string[],
   };
 }
 
 export type ScenePaletteResult = ReturnType<typeof lightA> | ReturnType<typeof darkSky>;
+/** Палитра «Глубокое небо» (в том числе вечерняя «небо + тёплый край»). */
+export const isSkyPalette = (p: ScenePaletteResult): p is ReturnType<typeof darkSky> => p.mode === 'dark-sky' || p.mode === 'dark-sky-evening';
 
 /** Чистая часть: токены темы уровня «Максимум» → утверждённая сцена (как SceneApproved.approved эталона). */
 export function approvedScene(tokens: SceneTokens, appearance: SceneAppearance, screen: SceneScreen, W: number, H: number, opts?: SceneOpts): ScenePaletteResult {
-  return appearance === 'dark' ? darkSky(tokens, screen, W, H) : lightA(tokens, screen, W, H, opts);
+  return appearance === 'dark' ? darkSky(tokens, screen, W, H, opts) : lightA(tokens, screen, W, H, opts);
 }
 
 /** Единый вход экранов. Токены — всегда уровня «Максимум» (сцена не зависит от ползунка яркости). W, H — px области сцены экрана. */
@@ -379,4 +420,37 @@ export function scenePaletteCached(themeId: string, appearance: SceneAppearance,
   const value = scenePalette(themeId, appearance, screen, Math.round(W), Math.round(H), { premium: isPremiumSceneTheme(themeId), dp });
   cache.set(key, value);
   return value;
+}
+
+/** Верхний цвет сцены (#RRGGBB): тёмное — зенит «неба», светлое — верх «А» после стража. Для шапки, статус-бара, кнопки «назад». */
+export function sceneTopHex(p: ScenePaletteResult): string {
+  return isSkyPalette(p) ? p.gradient.stops[0]!.color.hex : p.gradient.top.hex;
+}
+/** Нижний цвет сцены (#RRGGBB): тёмное — низ «неба», светлое — низ «А». */
+export function sceneBottomHex(p: ScenePaletteResult): string {
+  return isSkyPalette(p) ? p.gradient.stops[5]!.color.hex : p.gradient.bottom.hex;
+}
+
+/**
+ * Контраст белого текста на зоне текста ПОСЛЕ стража (число для сторожа «белый ≥ 4,6»).
+ * Светлое — минимум по тем же точкам, что страж ensureContrast (x .06…94 × y .52…92). Тёмное — худшая средняя яркость строки зоны y .62…92 H (там затемнение стража уже полное),
+ * с учётом затемнения стража (чёрный, альфа aBottom + .04 с 42 до 62 % высоты; модель яркости эталона: Y × (1 − a)^2,2).
+ */
+export function sceneTextZoneWhiteContrast(p: ScenePaletteResult): number {
+  const { W, H } = p.size;
+  if (!isSkyPalette(p)) {
+    const paint = painter(p.spec, W, H);
+    let mn = 99;
+    for (const fy of [0.52, 0.6, 0.68, 0.76, 0.84, 0.92]) for (const fx of [0.06, 0.2, 0.35, 0.5, 0.65, 0.8, 0.94]) mn = Math.min(mn, whiteOn(paint(Math.round(fx * W), Math.round(fy * H))));
+    return mn;
+  }
+  const probe: { rowY?: (y: number) => number } = {};
+  guardSkyAnalytic(p.raw, W, H, p.stars.list, probe, p.warmEdge);
+  const aB = p.guard.aBottom > 0 ? Math.min(0.7, p.guard.aBottom + 0.04) : 0;
+  let mn = 99;
+  for (let y = Math.round(H * 0.62); y <= H * 0.92; y += 6) {
+    const yAfter = probe.rowY!(y) * Math.pow(1 - aB, 2.2);
+    mn = Math.min(mn, 1.05 / (yAfter + 0.05));
+  }
+  return mn;
 }

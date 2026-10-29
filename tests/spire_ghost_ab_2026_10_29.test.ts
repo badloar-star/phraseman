@@ -96,7 +96,12 @@ describe('проба «призрак друга» 29.10', () => {
     const flags = read('app/remote_flags.ts');
     expect(flags).toContain("  | 'ghost_friend_ab'\n");
     expect(flags).toContain('  ghost_friend_ab: false,');
-    expect(flags).toContain("'spire_streak_heart', 'ghost_friend_ab', 'spire_gold'");
+    // зачем (координатор 29.10): лесенка 4c2e4611d вставила referral_ladder_enabled между соседями; тест проверяет наличие ключа
+    // в списке серверных ключей allowedBools, а не порядок.
+    const allowedBoolsStart = flags.indexOf('const allowedBools = new Set<RemoteBoolKey>([');
+    expect(allowedBoolsStart).toBeGreaterThan(0);
+    const allowedBools = flags.slice(allowedBoolsStart, flags.indexOf(']);', allowedBoolsStart));
+    expect(allowedBools).toContain("'ghost_friend_ab'");
     const pult = read('admin/v2/legacy.html');
     expect(pult).toContain('id="cp-bool-ghost_friend_ab"');
     expect(pult).toContain("saveControlPanelBool('ghost_friend_ab', this.checked)");

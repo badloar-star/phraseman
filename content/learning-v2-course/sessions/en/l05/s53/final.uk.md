@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви з другом ідете грати в бадмінтон на відкритий корт. Там лежать сітка й волан, а на стіні висить табло. Треба зрозуміти, де що й чиє: whose, this чи that, yours, mine, theirs або ім’я з 's.
 
-**Що ви опануєте:** сказати, де що знаходиться: The court is near the school.
+**Що ви опануєте:** сказати, де що розташоване: The court is near the school.
 **Нові слова:** court, net, shuttlecock, scoreboard
 **Повертаються:** friend, cousin, school, bench, wall
 

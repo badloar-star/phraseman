@@ -18,11 +18,12 @@ import { __resetAccountGenerationForTests, beginAccountGeneration } from '../app
 let mockStore: Record<string, string> = {};
 let mockFlagOn = true;
 let mockWarns: string[] = [];
+let mockFailWrites = false;
 
 jest.mock('@react-native-async-storage/async-storage', () => ({
   __esModule: true,
   default: {
-    setItem: async (key: string, value: string) => { mockStore[key] = value; },
+    setItem: async (key: string, value: string) => { if (mockFailWrites) throw new Error('disk unavailable'); mockStore[key] = value; },
     removeItem: async (key: string) => { delete mockStore[key]; },
     getItem: async (key: string) => (key in mockStore ? mockStore[key] : null),
   },
@@ -35,10 +36,29 @@ jest.mock('../app/debug-logger', () => ({ DebugLogger: { info: jest.fn(), warn: 
 jest.mock('../app/events', () => ({ onAppEvent: () => ({ remove: () => undefined }), emitAppEvent: () => undefined }));
 
 describe('story_events_store', () => {
+  it('repairs a failed story write on duplicate retry without creating a second event', async () => {
+    mockFailWrites = true;
+    const payload = { achievementId: 'spire_summit_granite', stage: 'upgraded' };
+    const atMs = Date.now();
+    expect(await recordStoryEvent('achievement', payload, atMs)).toMatchObject({ reason: 'storage_failed' });
+    mockFailWrites = false;
+    expect(await recordStoryEvent('achievement', payload, atMs)).toMatchObject({ recorded: true });
+    __resetStoryEventsForTests();
+    await primeStoryEvents('restart');
+    expect(peekStoryEventsSnapshot().stories.filter(row => row.payload.achievementId === payload.achievementId)).toHaveLength(1);
+  });
+
+  it('does not attribute a fact to B when account changes during flag loading', async () => {
+    const pending = recordStoryEvent('achievement', { achievementId: 'spire_summit_granite' });
+    beginAccountGeneration('stable-b');
+    expect(await pending).toMatchObject({ reason: 'account_changed' });
+    expect(mockStore).toEqual({});
+  });
   beforeEach(() => {
     mockStore = {};
     mockFlagOn = true;
     mockWarns = [];
+    mockFailWrites = false;
     __resetStoryEventsForTests();
     __resetAccountGenerationForTests();
     beginAccountGeneration('stable-a');

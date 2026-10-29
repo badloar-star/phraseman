@@ -10,7 +10,7 @@
 // Лог: [STORY-EVENTS] — запись, отказ (повтор/срок/флаг/нет аккаунта), просмотр, загрузка, сбой хранилища.
 // ═══════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration } from '../../app/account_generation';
+import { captureAccountGeneration, isCurrentAccountGeneration, subscribeAccountGeneration, type AccountGenerationToken } from '../../app/account_generation';
 import { DebugLogger } from '../../app/debug-logger';
 import { onAppEvent } from '../../app/events';
 import { readRemoteConfigCacheRaw } from '../../app/remote_config_client';
@@ -54,6 +54,7 @@ let flagRemote = false;
 let flagPromise: Promise<void> | null = null;
 let flagSubscribed = false;
 const lists = new Map<string, StoryEventList>();
+const dirtyOwners = new Set<string>();
 const loads = new Map<string, Promise<StoryEventList>>();
 let writeChain: Promise<unknown> = Promise.resolve();
 let snapshot: StoryEventsSnapshot = OFF_SNAPSHOT;
@@ -221,9 +222,11 @@ function loadOwner(owner: string): Promise<StoryEventList> {
 async function persist(owner: string, list: StoryEventList, what: string): Promise<boolean> {
   try {
     await AsyncStorage.setItem(keyOf(owner), serializeStoryEvents(list));
+    dirtyOwners.delete(owner);
     return true;
   } catch (error) {
     // Память уже обновлена (кольцо отражает факт); на диск не легло — при перезапуске истории не будет. Логируем.
+    dirtyOwners.add(owner);
     warn(`persist: ${what} — запись на диск не удалась (${String(error)})`);
     return false;
   }
@@ -252,10 +255,16 @@ export async function recordStoryEvent(
   atMs: number = Date.now(),
   // зачем (координатор 14.10, D191+D192): факт уже показан в своём окне → история ложится сразу просмотренной (кольцо не горит),
   // а если запись успела раньше окна — помечается просмотренной в той же очереди записей (без гонки «пометили до записи»).
-  opts: Readonly<{ seen?: boolean }> = {},
+  opts: Readonly<{ seen?: boolean; accountToken?: AccountGenerationToken }> = {},
 ): Promise<StoryRecordResult> {
+  const sourceToken = opts.accountToken ?? captureAccountGeneration();
   try {
     await primeStoriesFlag();
+    if (!isCurrentAccountGeneration(sourceToken)) {
+      // зачем (Codex 28.10, доведено Моментами 29.10): аккаунт сменился, пока грузился флаг, — факт прежнего аккаунта новому не приписываем
+      info(`record: skip type=${type} reason=account_changed (сменился, пока грузился флаг; источник ${sourceToken.stableId ? 'с аккаунтом' : 'без аккаунта'}, фаза ${sourceToken.phase})`);
+      return { recorded: false, reason: 'account_changed' };
+    }
     // зачем (координатор 15.10, R21): при выключенном флаге раньше не писали ничего — 17.10 кольцо почти никто бы не увидел.
     // Теперь пишем всегда (только AsyncStorage, без Firestore); показ по-прежнему за флагом — снимок остаётся пустым.
     if (!isStoriesEnabled()) info(`record: type=${type} flag=off → пишем локально без показа`);
@@ -276,13 +285,17 @@ export async function recordStoryEvent(
         const id = storyEventKey(type, payload);
         const seen = markStorySeen(decision.list, id);
         info(`record: duplicate id=${id} → seen (shown elsewhere) changed=${String(seen.changed)}`);
-        if (!seen.changed) return { recorded: false, reason: 'duplicate' };
+        if (!seen.changed && !dirtyOwners.has(owner)) return { recorded: false, reason: 'duplicate' };
         lists.set(owner, seen.list);
         recompute(`record_seen_${type}`);
         const savedSeen = await persist(owner, seen.list, `seen-on-record ${id}`);
         return savedSeen ? { recorded: true, id } : { recorded: false, reason: 'storage_failed' };
       }
       if (!decision.added) {
+        if (decision.reason === 'duplicate' && dirtyOwners.has(owner)) {
+          const saved = await persist(owner, list, 'retry duplicate after storage failure');
+          return saved ? { recorded: true, id: storyEventKey(type, payload) } : { recorded: false, reason: 'storage_failed' };
+        }
         info(`record: skip type=${type} reason=${decision.reason} payload=${JSON.stringify(payload)}`);
         return { recorded: false, reason: decision.reason };
       }
@@ -370,6 +383,7 @@ export function __resetStoryEventsForTests(): void {
   flagRemote = false;
   flagPromise = null;
   lists.clear();
+  dirtyOwners.clear();
   loads.clear();
   writeChain = Promise.resolve();
   snapshot = OFF_SNAPSHOT;

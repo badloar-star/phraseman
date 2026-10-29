@@ -21,7 +21,7 @@ const place = (i) => `<span class="pl">${i}</span>`;
 const friendRow = (i, [name, rank, n], compact) => row(place(i) + ci(rank, compact ? 24 : 30), name, '', steps(n), `friend:${name}`, compact ? 'pfr-compact' : '');
 const meRow = (i, compact) => row(place(i) + ci(ME.rank, compact ? 24 : 30), 'Ты', '', steps(ME.steps), '', `me${compact ? ' pfr-compact' : ''}`);
 const table = (list, compact) => { const all = [['Ты', ME.rank, ME.steps]].concat(list).sort((a, b) => b[2] - a[2]); return all.map((f, i) => (f[0] === 'Ты' ? meRow(i + 1, compact) : friendRow(i + 1, f, compact))).join(''); };
-const inviteRow = (free) => row(`<span class="ic">${io('person-add-outline')}</span>`, 'Позвать ещё', '', `свободно ${free} ${plural(free, 'место', 'места', 'мест')}`, 'open:invite', 'ck-dim'); // короткий заголовок, число — во фразе справа (узкая панель, без обрезки)
+const inviteRow = (free) => row(`<span class="ic">${io('person-add-outline')}</span>`, 'Позвать ещё', '', `${free} ${plural(free, 'место', 'места', 'мест')}`, 'open:invite', 'ck-dim'); // короткий заголовок, справа «5 мест» — узкая панель, без обрезки
 const BODY = {
   empty: () => seg() + panel('', '', `<div class="ck-empty"><span class="ck-ic">${io('people-outline')}</span><b>Позови друзей в свою комнату</b>${btn('Позвать', 'glass sm', 'open:invite', 'person-add-outline')}</div>`, 'glass'),
   two: () => seg() + panel('', '', table(FRIENDS.slice(0, 2), false) + inviteRow(5), 'glass'),

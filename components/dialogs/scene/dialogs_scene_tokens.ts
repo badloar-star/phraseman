@@ -81,6 +81,22 @@ const LIGHT_SCRIM_MIX = 0.62;
 /** Минимальный видимый стык низа светлой сцены с карточками под ней. */
 const LIGHT_SEAM_MIN = 1.12;
 
+/**
+ * Цвет полностью прозрачен (альфа 0): #RRGGBB00 / #RGB0 / rgba(…,0) / transparent.
+ * зачем (находка Сверки 29.10: чёрные пятна в светлой сцене Диалогов у grad_*): у градиентных тем bgGlow = #00000000; слой свечения кладёт этот цвет с
+ * stopOpacity=1, и там, где альфа из hex8 теряется, получается чёрное пятно. Такой слой не рисуется вовсе.
+ */
+export function isClearColor(color: string | null | undefined): boolean {
+  if (!color) return true;
+  const c = color.trim().toLowerCase();
+  if (c === 'transparent') return true;
+  if (/^#[0-9a-f]{8}$/.test(c)) return c.slice(7) === '00';
+  if (/^#[0-9a-f]{4}$/.test(c)) return c.slice(4) === '0';
+  const m = /^rgba\(([^)]*)\)$/.exec(c);
+  if (m) return Number.parseFloat(m[1].split(',')[3] ?? '1') === 0;
+  return false;
+}
+
 /** Цвет затемнения s, при котором mix(base, s, k) = target (по каналам, с обрезкой в 0…255). */
 function scrimFor(base: string, target: string, k: number): string {
   const ch = (h: string, i: number): number => Number.parseInt(h.slice(1 + i * 2, 3 + i * 2), 16);
@@ -103,6 +119,12 @@ function legibleOn(color: string, text: string, under: string, min: number): str
   return out;
 }
 
+/** Слой света сцены i: токен bgGlow; в светлом оформлении прозрачный слой заменяется accentGlow темы (свет цвета темы). */
+function glowLayer(t: DialogsSceneThemeTokens, i: 0 | 1 | 2, dark: boolean): string {
+  const own = t.bgGlow[i];
+  return !dark && isClearColor(own) ? t.accentGlow : own;
+}
+
 export function dialogsSceneColors(t: DialogsSceneThemeTokens): DialogsSceneColors {
   const gradFirst = hex6(t.accentGradient[0] ?? t.accentText, t.accentText); // light-accent-ok: токен сцены (свой набор цветов сцены), не сырой glass.accentText
   const gradLast = hex6(t.accentGradient[t.accentGradient.length - 1] ?? t.accentText, t.accentText); // light-accent-ok: токен сцены (свой набор цветов сцены), не сырой glass.accentText
@@ -123,9 +145,10 @@ export function dialogsSceneColors(t: DialogsSceneThemeTokens): DialogsSceneColo
   return Object.freeze({
     top,
     bottom,
-    glowRight: t.bgGlow[0],
-    glowLeft: t.bgGlow[1],
-    glowBottom: dark ? null : t.bgGlow[2],
+    // зачем (находка Сверки 29.10): у светлых grad_* bgGlow прозрачный — свет строится из accentGlow темы тем же набором слоёв, что у обычных светлых
+    glowRight: glowLayer(t, 0, dark),
+    glowLeft: glowLayer(t, 1, dark),
+    glowBottom: dark ? null : glowLayer(t, 2, dark),
     // затемнение рисуется долей LIGHT_SCRIM_MIX поверх низа: если низ углублён ради стыка, цвет затемнения подбирается так, чтобы итог был ровно textZone
     scrim: dark ? null : textZone === baseZone ? bgBottom : scrimFor(bottom, textZone, LIGHT_SCRIM_MIX),
     halo: t.accentGlow,

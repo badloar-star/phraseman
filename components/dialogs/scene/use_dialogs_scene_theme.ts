@@ -26,7 +26,7 @@ export function useDialogsSceneTheme(): DialogsSceneTheme {
   }, [liquidGlassThemeId, liquidGlassAppearance]);
   // зачем (баг владельца 28.10, закон «сперва логи»): какими цветами и откуда нарисована сцена Диалогов — один поиск [SCENE-THEME]
   useEffect(() => {
-    logSceneTheme('dialogs', liquidGlassThemeId, liquidGlassAppearance, 'dialogsSceneTokensForTheme(max)', { top: scene.colors.top, bottom: scene.colors.bottom, halo: scene.colors.halo });
+    logSceneTheme('dialogs', liquidGlassThemeId, liquidGlassAppearance, 'dialogsSceneTokensForTheme(max)', { top: scene.colors.top, bottom: scene.colors.bottom, halo: scene.colors.halo, glowR: scene.colors.glowRight, glowL: scene.colors.glowLeft, glowB: scene.colors.glowBottom });
   }, [scene, liquidGlassThemeId, liquidGlassAppearance]);
   return scene;
 }

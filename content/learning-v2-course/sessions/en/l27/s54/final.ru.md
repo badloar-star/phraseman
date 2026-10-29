@@ -9,7 +9,7 @@
 
 ### Когда мы виделись?
 
-В кафе вы узнаёте бывшего одноклассника. Вы вспоминаете последнюю встречу: это было в прошлом году. We met last year — мы встречались в прошлом году. Соберите фразу: We — мы, затем met — прошедшая форма meet, в конце last year — когда. Указан законченный прошлый период, поэтому здесь Past Simple.
+В кафе вы узнаёте бывшего одноклассника. Вы вспоминаете последнюю встречу: это было в прошлом году. We met last year — мы встречались в прошлом году. Соберите фразу: We — мы, затем met — прошедшая форма meet, в конце last year — когда. Указан законченный прошлый период, поэтому здесь форма прошлого.
 
 **Выберите фразу для этой ситуации.**
 
@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-27:session-54:i04; family: context_gap_grammar -->
 We ___ at Anna’s wedding in May. → **met** · have met · meeting
 - have met — *Названа конкретная прошлая встреча: met.*
-- meeting — *Meeting здесь не заменяет сказуемое met.*
+- meeting — *Meeting здесь не заменяет met.*
 
 **5 · Спросите, помнит ли друг ваше прозвище.**
 <!-- interaction_id: en:lesson-27:session-54:i05; family: phrase_builder -->
@@ -98,8 +98,8 @@ We ___ at Anna’s wedding in May. → **met** · have met · meeting
 **11 · Друг уже оплатил заказ: важен результат сейчас, время не названо.**
 <!-- interaction_id: en:lesson-27:session-54:i11; family: context_gap_grammar -->
 He has already ___ for our drinks. → **paid** · pay · paying
-- pay — *После has нужна третья форма paid.*
-- paying — *Здесь Present Perfect: has paid.*
+- pay — *После has нужна форма paid.*
+- paying — *Здесь have / has + done: has paid.*
 
 **12 · Услышьте, где вас ждёт друг.**
 <!-- interaction_id: en:lesson-27:session-54:i12; family: listen_build_dictation -->

@@ -25,9 +25,9 @@
 
 ### Спросить о потерянной сумке
 
-Вы возвращаетесь в кафе и обращаетесь к сотруднику. Вам нужно узнать, не видел ли он вашу синюю сумку. Спросите: Have you seen a blue bag? — вы не видели синюю сумку? Важен ответ, который поможет найти её сейчас; конкретное прошлое время не названо. В вопросе Present Perfect have стоит перед you, а после подлежащего нужна третья форма see — seen.
+Вы возвращаетесь в кафе и обращаетесь к сотруднику. Вам нужно узнать, не видел ли он вашу синюю сумку. Спросите: Have you seen a blue bag? — вы не видели синюю сумку? Важен ответ, который поможет найти её сейчас; конкретное прошлое время не названо. В вопросе have / has + done have стоит перед you, а после того, кто действует, нужна форма see — seen.
 
-Собираем предложение: Have + you + seen + a blue bag? — have для вопроса → кто → третья форма глагола → что ищем.
+Собираем предложение: Have + you + seen + a blue bag? — have для вопроса → кто → форма после have (done, seen) → что ищем.
 
 **Выберите фразу для этой ситуации.**
 
@@ -109,7 +109,7 @@ I wish I ___ where it was. → **knew** · know · knowing
 <!-- interaction_id: en:lesson-27:session-53:i09; family: context_gap_grammar -->
 I ___ the café an hour ago. → **left** · have left · leaving
 - have left — *С an hour ago используем left.*
-- leaving — *Нужен Past Simple: left.*
+- leaving — Нужна форма прошлого: left.*
 
 **13 · Услышьте просьбу сотрудника.**
 <!-- interaction_id: en:lesson-27:session-53:i10; family: listen_build_dictation -->

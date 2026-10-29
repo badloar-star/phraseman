@@ -9,14 +9,14 @@
 
 ### Хліб уже куплений
 
-Ви збираєтеся на пікнік. Друг хоче купити хліб, але ви вже це зробили. Повідомте: I have already bought the bread — я вже купив хліб. Важливо, що хліб зараз є; час купівлі ви не називаєте. Тому використовуємо have bought. Bought — третя форма buy, а already ставимо між have і bought.
+Ви збираєтеся на пікнік. Друг хоче купити хліб, але ви вже це зробили. Повідомте: I have already bought the bread — я вже купив хліб. Важливо, що хліб зараз є; час купівлі ви не називаєте. Тому використовуємо have bought. Bought — форма buy після have, а already ставимо між have і bought.
 
-Складаємо речення: I + have + already + bought + the bread — хто → have → уже → третя форма дієслова → що купив.
+Складаємо речення: I + have + already + bought + the bread — хто → have → уже → форма після have (done, seen) → що купив.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have already bought the bread.**
-- ❌ I have already buy the bread. — *Після have потрібна третя форма bought.*
+- ❌ I have already buy the bread. — *Після have потрібна форма bought.*
 - ❌ I have already buying the bread. — *Тут have bought.*
 
 ---

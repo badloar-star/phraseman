@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I called her yesterday.**
-- ❌ I have called her yesterday. — *С законченным yesterday здесь past simple.*
+- ❌ I have called her yesterday. — *С законченным yesterday здесь форма прошлого.*
 - ❌ I call her yesterday. — *Для вчерашнего события нужно called.*
 
 ---
@@ -84,8 +84,8 @@ I would talk to him if I ___ his number. → **had** · would had · having
 **8 · Назовите конкретное законченное время: вчера.**
 <!-- interaction_id: en:lesson-27:session-02:i06; family: context_gap_grammar -->
 I ___ her yesterday. → **called** · have called · calling
-- have called — *С yesterday здесь past simple.*
-- calling — *Calling само по себе не образует сказуемое.*
+- have called — *С yesterday здесь форма прошлого.*
+- calling — *Calling само по себе здесь не подходит.*
 
 **9 · Карточка слова — softly**
 <!-- interaction_id: en:lesson-27:session-02:word:softly; family: word_card -->
@@ -108,7 +108,7 @@ I ___ her yesterday. → **called** · have called · calling
 **13 · Друг не слышит звонок. Он открыл бы дверь, если бы услышал его.**
 <!-- interaction_id: en:lesson-27:session-02:i10; family: context_gap_grammar -->
 He would open the door if he ___ the bell. → **heard** · would heard · hearing
-- would heard — *В условии past simple без would.*
+- would heard — *В условии форма прошлого без would.*
 - hearing — *Hearing здесь не заменяет личную форму heard.*
 
 **14 · Карточка слова — closely**

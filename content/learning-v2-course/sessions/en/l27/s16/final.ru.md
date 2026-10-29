@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I baked it yesterday.**
-- ❌ I have baked it yesterday. — *С yesterday здесь past simple.*
+- ❌ I have baked it yesterday. — *С yesterday здесь форма прошлого.*
 - ❌ I baking it yesterday. — *Для прошлого события нужна форма baked.*
 
 ---
@@ -102,7 +102,7 @@ If I were you, I would ___ the smaller one. → **order** · ordered · to order
 **12 · Вы испекли его вчера.**
 <!-- interaction_id: en:lesson-27:session-16:i09; family: context_gap_grammar -->
 I ___ it yesterday. → **baked** · have baked · baking
-- have baked — *С yesterday здесь past simple.*
+- have baked — *С yesterday здесь форма прошлого.*
 - baking — *Нужна личная форма baked.*
 
 **13 · Карточка слова — yolk**

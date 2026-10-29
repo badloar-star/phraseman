@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I heard them yesterday.**
-- ❌ I have heard them yesterday. — *Із yesterday тут past simple.*
+- ❌ I have heard them yesterday. — *Із yesterday тут форма минулого.*
 - ❌ I heared them yesterday. — *Минула форма hear — heard.*
 
 ---
@@ -102,7 +102,7 @@ If I were you, I would ___ early. → **book** · booked · to book
 **12 · Ви чули цей колектив учора.**
 <!-- interaction_id: en:lesson-27:session-13:i08; family: context_gap_grammar -->
 I ___ them yesterday. → **heard** · have heard · heared
-- have heard — *Із yesterday тут past simple.*
+- have heard — *Із yesterday тут форма минулого.*
 - heared — *Минула форма hear — heard.*
 
 **13 · Почуйте запрошення піти разом.**

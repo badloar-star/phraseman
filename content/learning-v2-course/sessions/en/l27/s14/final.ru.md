@@ -23,13 +23,13 @@
 
 ### Когда посмотрели первый фильм
 
-Друг спрашивает, когда вы посмотрели первую часть фильма. Ответьте: I saw it last year — я посмотрел её в прошлом году. It заменяет the first film. Saw — прошедшая форма see. Last year называет законченное время, поэтому нужен Past Simple без have. Собираем предложение: I + saw + it + last year — кто, действие в прошлом, какой фильм, когда.
+Друг спрашивает, когда вы посмотрели первую часть фильма. Ответьте: I saw it last year — я посмотрел её в прошлом году. It заменяет the first film. Saw — прошедшая форма see. Last year называет законченное время, поэтому нужна форма прошлого без have. Собираем предложение: I + saw + it + last year — кто, действие в прошлом, какой фильм, когда.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I saw it last year.**
-- ❌ I have seen it last year. — *С last year здесь past simple.*
-- ❌ I seen it last year. — *В past simple нужна форма saw.*
+- ❌ I have seen it last year. — *С last year здесь форма прошлого.*
+- ❌ I seen it last year. — *В прошлом нужна форма saw.*
 
 ---
 
@@ -94,8 +94,8 @@ If I were you, I would ___ a comedy. → **choose** · chose · choosing
 **10 · Вы посмотрели его в прошлом году.**
 <!-- interaction_id: en:lesson-27:session-14:i07; family: context_gap_grammar -->
 I ___ it last year. → **saw** · have seen · seen
-- have seen — *С last year здесь past simple.*
-- seen — *Для past simple нужна форма saw.*
+- have seen — *С last year здесь форма прошлого.*
+- seen — *В прошлом нужна форма saw.*
 
 **11 · Карточка слова — director**
 <!-- interaction_id: en:lesson-27:session-14:word:director; family: word_card -->

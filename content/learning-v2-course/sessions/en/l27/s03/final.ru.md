@@ -23,7 +23,7 @@
 
 ### Когда гуляли с собакой
 
-Сейчас вечер. Хозяин спрашивает, когда вы выводили собаку. Ответьте: I took him out this morning — я выводил его сегодня утром. Собираем: I + took + him + out + this morning — кто, took, кого, out, когда. Took out означает вывел на улицу; местоимение him ставим между took и out. Утро уже закончилось, поэтому используем past simple: took — прошедшую форму take.
+Сейчас вечер. Хозяин спрашивает, когда вы выводили собаку. Ответьте: I took him out this morning — я выводил его сегодня утром. Собираем: I + took + him + out + this morning — кто, took, кого, out, когда. Took out означает вывел на улицу; слово him ставим между took и out. Утро уже закончилось, поэтому используем форму прошлого: took — прошедшую форму take.
 
 **Выберите фразу для этой ситуации.**
 
@@ -102,8 +102,8 @@ I would keep him if I ___ more space. → **had** · would had · having
 **12 · Сейчас вечер. Расскажите о завершённой утренней прогулке.**
 <!-- interaction_id: en:lesson-27:session-03:i09; family: context_gap_grammar -->
 I ___ him out this morning. → **took** · have taken · taking
-- have taken — *Утро закончилось: здесь past simple.*
-- taking — *Taking само по себе не образует сказуемое.*
+- have taken — *Утро закончилось: здесь форма прошлого.*
+- taking — *Taking само по себе здесь не подходит.*
 
 **13 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-27:session-03:i10; family: listen_choose -->

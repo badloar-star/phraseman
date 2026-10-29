@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I baked it yesterday.**
-- ❌ I have baked it yesterday. — *Із yesterday тут past simple.*
+- ❌ I have baked it yesterday. — *Із yesterday тут форма минулого.*
 - ❌ I baking it yesterday. — *Для минулої події потрібна форма baked.*
 
 ---
@@ -102,7 +102,7 @@ If I were you, I would ___ the smaller one. → **order** · ordered · to order
 **12 · Ви спекли його вчора.**
 <!-- interaction_id: en:lesson-27:session-16:i09; family: context_gap_grammar -->
 I ___ it yesterday. → **baked** · have baked · baking
-- have baked — *Із yesterday тут past simple.*
+- have baked — *Із yesterday тут форма минулого.*
 - baking — *Потрібна особова форма baked.*
 
 **13 · Картка слова — yolk**

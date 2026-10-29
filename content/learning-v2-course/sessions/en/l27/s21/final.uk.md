@@ -130,7 +130,7 @@ I did not ___ to upset you. → **mean** · meant · meaning
 **18 · Ви зателефонували йому вчора ввечері.**
 <!-- interaction_id: en:lesson-27:session-21:i14; family: context_gap_grammar -->
 I ___ him last night. → **called** · have called · call
-- have called — *Із last night тут past simple.*
+- have called — *Із last night тут форма минулого.*
 - call — *Тут потрібна минула форма called.*
 
 **19 · Почніть із результату: If I had more time, I would help.**

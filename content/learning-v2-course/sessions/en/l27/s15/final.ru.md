@@ -23,12 +23,12 @@
 
 ### Когда играли вместе
 
-Друг спрашивает, когда вы в последний раз играли вместе. Ответьте: We played last Friday — мы играли в прошлую пятницу. Played — прошедшая форма play с окончанием -ed. Last Friday называет законченное время, поэтому have не нужен. Собираем предложение: We + played + last Friday — кто, действие в прошлом, когда. Playing без вспомогательного глагола здесь не подходит.
+Друг спрашивает, когда вы в последний раз играли вместе. Ответьте: We played last Friday — мы играли в прошлую пятницу. Played — прошедшая форма play с окончанием -ed. Last Friday называет законченное время, поэтому have не нужен. Собираем предложение: We + played + last Friday — кто, действие в прошлом, когда. Одной формы Playing здесь мало.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We played last Friday.**
-- ❌ We have played last Friday. — *С last Friday здесь past simple.*
+- ❌ We have played last Friday. — *С last Friday здесь форма прошлого.*
 - ❌ We playing last Friday. — *Для прошлого события нужна форма played.*
 
 ---
@@ -102,7 +102,7 @@ If I were you, I would ___ a lane. → **book** · booked · to book
 **12 · Вы играли в прошлую пятницу. Назовите законченное время.**
 <!-- interaction_id: en:lesson-27:session-15:i09; family: context_gap_grammar -->
 We ___ last Friday. → **played** · have played · playing
-- have played — *С last Friday здесь past simple.*
+- have played — *С last Friday здесь форма прошлого.*
 - playing — *Нужна личная форма played.*
 
 **13 · Услышьте, что сейчас ваша очередь.**

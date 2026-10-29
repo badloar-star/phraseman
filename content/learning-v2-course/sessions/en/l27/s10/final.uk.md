@@ -37,12 +37,12 @@
 
 ### Коли оплатили сніданок
 
-У готелі уточнюють, коли ви оплатили сніданок. Дайте відповідь: I paid yesterday — я заплатив учора. Складаємо: I + paid + yesterday — хто, дія в минулому, коли. Paid — минула форма pay у значенні платити; не payed. Yesterday називає завершений час, тому тут потрібен past simple: paid без have. Про сніданок уже запитали, тому в короткій відповіді його можна не повторювати.
+У готелі уточнюють, коли ви оплатили сніданок. Дайте відповідь: I paid yesterday — я заплатив учора. Складаємо: I + paid + yesterday — хто, дія в минулому, коли. Paid — минула форма pay у значенні платити; не payed. Yesterday називає завершений час, тому тут потрібна форма минулого: paid без have. Про сніданок уже запитали, тому в короткій відповіді його можна не повторювати.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I paid yesterday.**
-- ❌ I have paid yesterday. — *Із yesterday тут past simple.*
+- ❌ I have paid yesterday. — *Із yesterday тут форма минулого.*
 - ❌ I payed yesterday. — *Минула форма pay у цьому значенні — paid.*
 
 ---
@@ -126,7 +126,7 @@ If it were sunny, we would ___ outside. → **eat** · ate · eating
 **17 · Ви заплатили вчора. Назвіть завершений час.**
 <!-- interaction_id: en:lesson-27:session-10:i13; family: context_gap_grammar -->
 I ___ yesterday. → **paid** · have paid · payed
-- have paid — *Із yesterday тут past simple.*
+- have paid — *Із yesterday тут форма минулого.*
 - payed — *У цьому значенні минула форма pay — paid.*
 
 **18 · Почуйте прохання показати чек.**

@@ -9,12 +9,12 @@
 
 ### Покупку вже зроблено
 
-Перед вечерею сестра збирається до крамниці по хліб. Ви вже купили хліб, і він лежить на кухні. I have already bought some bread — я вже купив хліб. Складіть повідомлення про результат зараз: I + have + already + bought + some bread. Bought — третя форма buy; already стоїть між have та bought.
+Перед вечерею сестра збирається до крамниці по хліб. Ви вже купили хліб, і він лежить на кухні. I have already bought some bread — я вже купив хліб. Складіть повідомлення про результат зараз: I + have + already + bought + some bread. Bought — форма buy після have; already стоїть між have та bought.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have already bought some bread.**
-- ❌ I have already buy some bread. — *Після have потрібна третя форма bought.*
+- ❌ I have already buy some bread. — *Після have потрібна форма bought.*
 - ❌ I have already buying some bread. — *Тут have bought; buying не підходить.*
 
 ---
@@ -43,7 +43,7 @@
 
 - ✅ **I wish our kitchen were bigger.**
 - ❌ I wish our kitchen is bigger. — *Після wish про бажане становище зараз використовуємо were.*
-- ❌ I wish our kitchen being bigger. — *Being не утворює тут присудка; потрібна were.*
+- ❌ I wish our kitchen being bigger. — *Being тут не може стояти сама; потрібна were.*
 
 ---
 
@@ -94,7 +94,7 @@ I ___ the tomatoes yesterday. → **bought** · have bought · buying
 **10 · Ви ще не відкрили банку соусу: повідомте про становище зараз.**
 <!-- interaction_id: en:lesson-27:session-55:i10; family: context_gap_grammar -->
 I have not ___ the pesto yet. → **opened** · open · opening
-- open — *Після have not потрібна третя форма opened.*
+- open — *Після have not потрібна форма opened.*
 - opening — *Потрібна форма opened, не opening.*
 
 **11 · Попросіть трохи песто в окремій мисці.**

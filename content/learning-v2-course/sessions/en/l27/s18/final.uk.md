@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I paid yesterday.**
-- ❌ I have paid yesterday. — *Із yesterday тут past simple.*
+- ❌ I have paid yesterday. — *Із yesterday тут форма минулого.*
 - ❌ I payed yesterday. — *У цьому значенні минула форма pay — paid.*
 
 ---
@@ -90,7 +90,7 @@ I would find it if I ___ a clear address. → **had** · would had · having
 **9 · Ви заплатили вчора. Назвіть завершений час.**
 <!-- interaction_id: en:lesson-27:session-18:i07; family: context_gap_grammar -->
 I ___ yesterday. → **paid** · have paid · payed
-- have paid — *Із yesterday тут past simple.*
+- have paid — *Із yesterday тут форма минулого.*
 - payed — *У цьому значенні pay має форму paid.*
 
 **10 · Картка слова — unaware**

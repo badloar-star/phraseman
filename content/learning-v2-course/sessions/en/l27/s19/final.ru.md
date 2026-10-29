@@ -37,7 +37,7 @@
 
 ### Когда помыли посуду
 
-Друг спрашивает, когда вы помыли тарелки. Это было час назад. Ответьте: I washed them an hour ago — я помыл их час назад. Them заменяет dishes во множественном числе. Washed — прошедшая форма wash. An hour ago называет законченный момент; have не нужен. Собираем предложение: I + washed + them + an hour ago — кто, действие в прошлом, что помыл, когда.
+Друг спрашивает, когда вы помыли тарелки. Это было час назад. Ответьте: I washed them an hour ago — я помыл их час назад. Them заменяет dishes в форме для нескольких. Washed — прошедшая форма wash. An hour ago называет законченный момент; have не нужен. Собираем предложение: I + washed + them + an hour ago — кто, действие в прошлом, что помыл, когда.
 
 **Выберите фразу для этой ситуации.**
 
@@ -122,7 +122,7 @@ If I were you, I would ___ my phone off. → **turn** · turned · to turn
 **16 · Вы помыли посуду час назад. Назовите это время.**
 <!-- interaction_id: en:lesson-27:session-19:i12; family: context_gap_grammar -->
 I ___ them an hour ago. → **washed** · have washed · wash
-- have washed — *С an hour ago нужен past simple.*
+- have washed — *С an hour ago нужна форма прошлого.*
 - wash — *Здесь действие завершено в прошлом: washed.*
 
 **17 · Начните с результата: If we left now, we would arrive early.**

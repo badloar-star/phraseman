@@ -37,7 +37,7 @@
 
 ### Коли помили посуд
 
-Друг запитує, коли ви помили тарілки. Це було годину тому. Дайте відповідь: I washed them an hour ago — я помив їх годину тому. Them замінює dishes у множині. Washed — минула форма wash. An hour ago називає завершений момент; have не потрібне. Складаємо речення: I + washed + them + an hour ago — хто, дія в минулому, що помив, коли.
+Друг запитує, коли ви помили тарілки. Це було годину тому. Дайте відповідь: I washed them an hour ago — я помив їх годину тому. Them замінює dishes у формі для кількох. Washed — минула форма wash. An hour ago називає завершений момент; have не потрібне. Складаємо речення: I + washed + them + an hour ago — хто, дія в минулому, що помив, коли.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -122,7 +122,7 @@ If I were you, I would ___ my phone off. → **turn** · turned · to turn
 **16 · Ви помили посуд годину тому. Назвіть цей час.**
 <!-- interaction_id: en:lesson-27:session-19:i12; family: context_gap_grammar -->
 I ___ them an hour ago. → **washed** · have washed · wash
-- have washed — *Із an hour ago потрібен past simple.*
+- have washed — *Із an hour ago потрібна форма минулого.*
 - wash — *Тут дію завершено в минулому: washed.*
 
 **17 · Почніть із результату: If we left now, we would arrive early.**

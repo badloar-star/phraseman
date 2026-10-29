@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We built it yesterday.**
-- ❌ We have built it yesterday. — *Із завершеним yesterday тут past simple.*
+- ❌ We have built it yesterday. — *Із завершеним yesterday тут форма минулого.*
 - ❌ We builded it yesterday. — *Минула форма build — built.*
 
 ---
@@ -126,7 +126,7 @@ I would see them more often if I ___ nearby. → **worked** · would worked · w
 **17 · Розкажіть про вчорашнє складання ліжка.**
 <!-- interaction_id: en:lesson-27:session-04:i13; family: context_gap_grammar -->
 We ___ it yesterday. → **built** · have built · builded
-- have built — *Із yesterday тут past simple.*
+- have built — *Із yesterday тут форма минулого.*
 - builded — *У build неправильна форма built.*
 
 **18 · Почніть із результату: If we had more chairs, everyone would sit at the table.**

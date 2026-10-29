@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We bought it last week.**
-- ❌ We have bought it last week. — *Із last week тут past simple.*
+- ❌ We have bought it last week. — *Із last week тут форма минулого.*
 - ❌ We buyed it last week. — *Минула форма buy — bought.*
 
 ---
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — bookshelf**
 <!-- interaction_id: en:lesson-27:session-08:word:bookshelf; family: word_card -->
-> **bookshelf** — Книжкова полиця; множина bookshelves.
+> **bookshelf** — Книжкова полиця; форма для кількох bookshelves.
 
 **2 · Скажіть, що книжкова полиця заповнена.**
 <!-- interaction_id: en:lesson-27:session-08:i01; family: scripted_repeat_compare -->
@@ -98,7 +98,7 @@ I would move it if I ___ more room. → **had** · would had · having
 **11 · Розкажіть про покупку минулого тижня.**
 <!-- interaction_id: en:lesson-27:session-08:i08; family: context_gap_grammar -->
 We ___ it last week. → **bought** · have bought · buyed
-- have bought — *Із last week тут past simple.*
+- have bought — *Із last week тут форма минулого.*
 - buyed — *Минула форма buy — bought.*
 
 **12 · Повідомте, що ви вже зателефонували до магазину.**

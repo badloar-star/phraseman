@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I took this photo last summer.**
-- ❌ I have taken this photo last summer. — *С законченным last summer здесь past simple.*
+- ❌ I have taken this photo last summer. — *С законченным last summer здесь форма прошлого.*
 - ❌ I taked this photo last summer. — *Прошедшая форма take — took.*
 
 ---
@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I found it ten minutes ago.**
-- ❌ I have found it ten minutes ago. — *С ago здесь past simple.*
+- ❌ I have found it ten minutes ago. — *С ago здесь форма прошлого.*
 - ❌ I finding it ten minutes ago. — *Для прошлого события нужна личная форма found.*
 
 ---
@@ -74,7 +74,7 @@
 **6 · Фотографии пока нет. Вы узнали бы её, если бы увидели фото.**
 <!-- interaction_id: en:lesson-27:session-07:i04; family: context_gap_grammar -->
 I would recognize her if I ___ her photo. → **saw** · would saw · seeing
-- would saw — *В условии past simple: saw без would.*
+- would saw — *В условии форма прошлого: saw без would.*
 - seeing — *Seeing не заменяет личную форму saw.*
 
 **7 · Услышьте просьбу прислать фотографию.**
@@ -106,7 +106,7 @@ I would recognize her if I ___ her photo. → **saw** · would saw · seeing
 **13 · Назовите законченное время: прошлым летом.**
 <!-- interaction_id: en:lesson-27:session-07:i09; family: context_gap_grammar -->
 I ___ this photo last summer. → **took** · have taken · taked
-- have taken — *С last summer здесь past simple.*
+- have taken — *С last summer здесь форма прошлого.*
 - taked — *Прошедшая форма take — took.*
 
 **14 · Спросите, кто стоит рядом с братом.**
@@ -126,8 +126,8 @@ I ___ this photo last summer. → **took** · have taken · taked
 **17 · Вы нашли столик десять минут назад.**
 <!-- interaction_id: en:lesson-27:session-07:i13; family: context_gap_grammar -->
 I ___ it ten minutes ago. → **found** · have found · finding
-- have found — *С ago здесь past simple.*
-- finding — *Finding само по себе не образует сказуемое.*
+- have found — *С ago здесь форма прошлого.*
+- finding — *Finding само по себе здесь не подходит.*
 
 **18 · Начните с результата: If I knew her name, I would ask the waiter.**
 <!-- interaction_id: en:lesson-27:session-07:i14; family: phrase_builder -->

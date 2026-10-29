@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I heard them yesterday.**
-- ❌ I have heard them yesterday. — *С yesterday здесь past simple.*
+- ❌ I have heard them yesterday. — *С yesterday здесь форма прошлого.*
 - ❌ I heared them yesterday. — *Прошедшая форма hear — heard.*
 
 ---
@@ -102,7 +102,7 @@ If I were you, I would ___ early. → **book** · booked · to book
 **12 · Вы слышали этот коллектив вчера.**
 <!-- interaction_id: en:lesson-27:session-13:i08; family: context_gap_grammar -->
 I ___ them yesterday. → **heard** · have heard · heared
-- have heard — *С yesterday здесь past simple.*
+- have heard — *С yesterday здесь форма прошлого.*
 - heared — *Прошедшая форма hear — heard.*
 
 **13 · Услышьте приглашение пойти вместе.**

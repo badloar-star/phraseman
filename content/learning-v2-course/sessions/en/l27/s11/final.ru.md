@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I met her last year.**
-- ❌ I have met her last year. — *С last year здесь past simple.*
+- ❌ I have met her last year. — *С last year здесь форма прошлого.*
 - ❌ I meeted her last year. — *Прошедшая форма meet — met.*
 
 ---
@@ -110,7 +110,7 @@ If I were you, I would ___ her. → **call** · called · to call
 **14 · Вы познакомились с ней в прошлом году.**
 <!-- interaction_id: en:lesson-27:session-11:i10; family: context_gap_grammar -->
 I ___ her last year. → **met** · have met · meeted
-- have met — *С last year здесь past simple.*
+- have met — *С last year здесь форма прошлого.*
 - meeted — *Прошедшая форма meet — met.*
 
 **15 · Послушайте и выберите**

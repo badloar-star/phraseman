@@ -9,12 +9,12 @@
 
 ### Покупка уже сделана
 
-Перед ужином сестра собирается в магазин за хлебом. Вы уже купили хлеб, и он лежит на кухне. I have already bought some bread — я уже купил хлеб. Соберите сообщение о результате сейчас: I + have + already + bought + some bread. Bought — третья форма buy; already стоит между have и bought.
+Перед ужином сестра собирается в магазин за хлебом. Вы уже купили хлеб, и он лежит на кухне. I have already bought some bread — я уже купил хлеб. Соберите сообщение о результате сейчас: I + have + already + bought + some bread. Bought — форма buy после have; already стоит между have и bought.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have already bought some bread.**
-- ❌ I have already buy some bread. — *После have нужна третья форма bought.*
+- ❌ I have already buy some bread. — *После have нужна форма bought.*
 - ❌ I have already buying some bread. — *Здесь have bought; buying не подходит.*
 
 ---
@@ -43,7 +43,7 @@
 
 - ✅ **I wish our kitchen were bigger.**
 - ❌ I wish our kitchen is bigger. — *После wish о желаемом положении сейчас используем were.*
-- ❌ I wish our kitchen being bigger. — *Being не образует здесь сказуемое; нужна were.*
+- ❌ I wish our kitchen being bigger. — *Being здесь не может стоять один; нужна were.*
 
 ---
 
@@ -94,7 +94,7 @@ I ___ the tomatoes yesterday. → **bought** · have bought · buying
 **10 · Вы ещё не открыли банку соуса: сообщите о положении сейчас.**
 <!-- interaction_id: en:lesson-27:session-55:i10; family: context_gap_grammar -->
 I have not ___ the pesto yet. → **opened** · open · opening
-- open — *После have not нужна третья форма opened.*
+- open — *После have not нужна форма opened.*
 - opening — *Нужна форма opened, не opening.*
 
 **11 · Попросите немного песто в отдельной миске.**

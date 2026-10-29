@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I called her yesterday.**
-- ❌ I have called her yesterday. — *Із завершеним yesterday тут past simple.*
+- ❌ I have called her yesterday. — *Із завершеним yesterday тут форма минулого.*
 - ❌ I call her yesterday. — *Для вчорашньої події потрібно called.*
 
 ---
@@ -84,8 +84,8 @@ I would talk to him if I ___ his number. → **had** · would had · having
 **8 · Назвіть конкретний завершений час: учора.**
 <!-- interaction_id: en:lesson-27:session-02:i06; family: context_gap_grammar -->
 I ___ her yesterday. → **called** · have called · calling
-- have called — *Із yesterday тут past simple.*
-- calling — *Calling саме по собі не утворює присудок.*
+- have called — *Із yesterday тут форма минулого.*
+- calling — *Calling саме по собі тут не підходить.*
 
 **9 · Картка слова — softly**
 <!-- interaction_id: en:lesson-27:session-02:word:softly; family: word_card -->
@@ -108,7 +108,7 @@ I ___ her yesterday. → **called** · have called · calling
 **13 · Друг не чує дзвінка. Він відчинив би двері, якби почув його.**
 <!-- interaction_id: en:lesson-27:session-02:i10; family: context_gap_grammar -->
 He would open the door if he ___ the bell. → **heard** · would heard · hearing
-- would heard — *В умові past simple без would.*
+- would heard — *В умові форма минулого без would.*
 - hearing — *Hearing тут не замінює особову форму heard.*
 
 **14 · Картка слова — closely**

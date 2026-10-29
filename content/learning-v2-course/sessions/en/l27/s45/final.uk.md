@@ -11,12 +11,12 @@
 
 Друг неправильно прочитав час зустрічі в нечіткому повідомленні. Ви розумієте, чому він помилився. Скажіть: Your mistake is understandable — твою помилку можна зрозуміти. Understandable — зрозумілий, поясненний. Mistake — одна подія, тому потрібна зв’язка is. Порядок: назвати помилку, поставити is, потім описати її прикметником.
 
-Складаємо речення: Your mistake + is + understandable — що описуємо → is для однини → яке воно.
+Складаємо речення: Your mistake + is + understandable — що описуємо → is для одного → яке воно.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Your mistake is understandable.**
-- ❌ Your mistake are understandable. — *Mistake в однині: is.*
+- ❌ Your mistake are understandable. — *Ідеться про одне — Mistake: is.*
 - ❌ Your mistake understandable. — *Перед прикметником потрібна is.*
 
 ---
@@ -41,7 +41,7 @@
 
 ### Коли зателефонували другові
 
-Вас запитують, коли ви телефонували другові, на якого чекаєте. Це було десять хвилин тому. Дайте відповідь: I called him ten minutes ago — я зателефонував йому десять хвилин тому. Після call людину називаємо без to: called him. Called — минула форма call. Ten minutes ago потребує тут Past Simple, без have.
+Вас запитують, коли ви телефонували другові, на якого чекаєте. Це було десять хвилин тому. Дайте відповідь: I called him ten minutes ago — я зателефонував йому десять хвилин тому. Після call людину називаємо без to: called him. Called — минула форма call. Ten minutes ago потребує тут форми минулого, без have.
 
 Складаємо речення: I + called + him + ten minutes ago — хто → дія в минулому → кому → коли.
 
@@ -84,7 +84,7 @@
 **7 · Ви вже поговорили з ним.**
 <!-- interaction_id: en:lesson-27:session-45:i05; family: context_gap_grammar -->
 I have already ___ to him. → **spoken** · spoke · speaking
-- spoke — *Після have потрібна третя форма spoken.*
+- spoke — *Після have потрібна форма spoken.*
 - speaking — *Тут have spoken.*
 
 **8 · Запитайте, де друг зараз.**

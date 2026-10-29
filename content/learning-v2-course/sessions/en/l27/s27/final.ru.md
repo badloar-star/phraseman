@@ -83,7 +83,7 @@ I wish I ___ more help. → **had** · have · having
 
 **8 · Карточка слова — suds**
 <!-- interaction_id: en:lesson-27:session-27:word:suds; family: word_card -->
-> **suds** — Мыльная пена; слово во множественном числе.
+> **suds** — Мыльная пена; слово в форме для нескольких.
 
 **9 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-27:session-27:i06; family: listen_choose -->

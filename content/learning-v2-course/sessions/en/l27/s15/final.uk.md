@@ -23,12 +23,12 @@
 
 ### Коли грали разом
 
-Друг запитує, коли ви востаннє грали разом. Дайте відповідь: We played last Friday — ми грали минулої п’ятниці. Played — минула форма play із закінченням -ed. Last Friday називає завершений час, тому have не потрібне. Складаємо речення: We + played + last Friday — хто, дія в минулому, коли. Playing без допоміжного дієслова тут не підходить.
+Друг запитує, коли ви востаннє грали разом. Дайте відповідь: We played last Friday — ми грали минулої п’ятниці. Played — минула форма play із закінченням -ed. Last Friday називає завершений час, тому have не потрібне. Складаємо речення: We + played + last Friday — хто, дія в минулому, коли. Однієї форми Playing тут замало.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We played last Friday.**
-- ❌ We have played last Friday. — *Із last Friday тут past simple.*
+- ❌ We have played last Friday. — *Із last Friday тут форма минулого.*
 - ❌ We playing last Friday. — *Для минулої події потрібна форма played.*
 
 ---
@@ -102,7 +102,7 @@ If I were you, I would ___ a lane. → **book** · booked · to book
 **12 · Ви грали минулої п’ятниці. Назвіть завершений час.**
 <!-- interaction_id: en:lesson-27:session-15:i09; family: context_gap_grammar -->
 We ___ last Friday. → **played** · have played · playing
-- have played — *Із last Friday тут past simple.*
+- have played — *Із last Friday тут форма минулого.*
 - playing — *Потрібна особова форма played.*
 
 **13 · Почуйте, що зараз ваша черга.**

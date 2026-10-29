@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I booked it yesterday.**
-- ❌ I have booked it yesterday. — *Із завершеним yesterday тут past simple.*
+- ❌ I have booked it yesterday. — *Із завершеним yesterday тут форма минулого.*
 - ❌ I booking it yesterday. — *Для минулої події потрібна форма booked.*
 
 ---
@@ -126,8 +126,8 @@ I would ___ you if I had my phone. → **call** · called · to call
 **17 · Ви записалися вчора. Назвіть завершений час.**
 <!-- interaction_id: en:lesson-27:session-05:i13; family: context_gap_grammar -->
 I ___ it yesterday. → **booked** · have booked · booking
-- have booked — *Із yesterday тут past simple.*
-- booking — *Booking саме по собі не утворює присудок.*
+- have booked — *Із yesterday тут форма минулого.*
+- booking — *Booking саме по собі тут не підходить.*
 
 **18 · Почуйте пропозицію часу після обіду.**
 <!-- interaction_id: en:lesson-27:session-05:i14; family: listen_build_dictation -->

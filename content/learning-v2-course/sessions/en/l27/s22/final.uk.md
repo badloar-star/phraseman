@@ -126,7 +126,7 @@ Does this ___ caffeine? → **contain** · contains · containing
 **17 · Назвіть час: ви замовили десять хвилин тому.**
 <!-- interaction_id: en:lesson-27:session-22:i13; family: context_gap_grammar -->
 I ___ ten minutes ago. → **ordered** · have ordered · order
-- have ordered — *Із ten minutes ago тут past simple.*
+- have ordered — *Із ten minutes ago тут форма минулого.*
 - order — *Потрібна минула форма ordered.*
 
 **18 · Попросіть перевірити замовлення.**

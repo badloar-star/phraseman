@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I wrote them down yesterday.**
-- ❌ I have written them down yesterday. — *С yesterday здесь past simple.*
+- ❌ I have written them down yesterday. — *С yesterday здесь форма прошлого.*
 - ❌ I writed them down yesterday. — *Прошедшая форма write — wrote.*
 
 ---
@@ -98,7 +98,7 @@ I would come today if I ___ an appointment. → **had** · would had · having
 **11 · Вы записали их вчера. Назовите законченное время.**
 <!-- interaction_id: en:lesson-27:session-12:i08; family: context_gap_grammar -->
 I ___ them down yesterday. → **wrote** · have written · writed
-- have written — *С yesterday здесь past simple.*
+- have written — *С yesterday здесь форма прошлого.*
 - writed — *Прошедшая форма write — wrote.*
 
 **12 · Карточка слова — insomnia**

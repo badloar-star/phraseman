@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I made it yesterday.**
-- ❌ I have made it yesterday. — *Із yesterday тут past simple.*
+- ❌ I have made it yesterday. — *Із yesterday тут форма минулого.*
 - ❌ I maked it yesterday. — *Минула форма make — made.*
 
 ---
@@ -126,7 +126,7 @@ I would ___ some lemon if I had one. → **add** · adding · to add
 **17 · Ви приготували це вчора. Назвіть завершений час.**
 <!-- interaction_id: en:lesson-27:session-06:i13; family: context_gap_grammar -->
 I ___ it yesterday. → **made** · have made · maked
-- have made — *Із yesterday тут past simple.*
+- have made — *Із yesterday тут форма минулого.*
 - maked — *Минула форма make — made.*
 
 **18 · Почніть із результату: If I finished work earlier, I would help you.**

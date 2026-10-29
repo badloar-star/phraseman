@@ -23,13 +23,13 @@
 
 ### Коли подивилися перший фільм
 
-Друг запитує, коли ви подивилися першу частину фільму. Дайте відповідь: I saw it last year — я подивився її торік. It замінює the first film. Saw — минула форма see. Last year називає завершений час, тому потрібен Past Simple без have. Складаємо речення: I + saw + it + last year — хто, дія в минулому, який фільм, коли.
+Друг запитує, коли ви подивилися першу частину фільму. Дайте відповідь: I saw it last year — я подивився її торік. It замінює the first film. Saw — минула форма see. Last year називає завершений час, тому потрібна форма минулого без have. Складаємо речення: I + saw + it + last year — хто, дія в минулому, який фільм, коли.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I saw it last year.**
-- ❌ I have seen it last year. — *Із last year тут past simple.*
-- ❌ I seen it last year. — *У past simple потрібна форма saw.*
+- ❌ I have seen it last year. — *Із last year тут форма минулого.*
+- ❌ I seen it last year. — *У минулому потрібна форма saw.*
 
 ---
 
@@ -94,8 +94,8 @@ If I were you, I would ___ a comedy. → **choose** · chose · choosing
 **10 · Ви подивилися його минулого року.**
 <!-- interaction_id: en:lesson-27:session-14:i07; family: context_gap_grammar -->
 I ___ it last year. → **saw** · have seen · seen
-- have seen — *Із last year тут past simple.*
-- seen — *Для past simple потрібна форма saw.*
+- have seen — *Із last year тут форма минулого.*
+- seen — *У минулому потрібна форма saw.*
 
 **11 · Картка слова — director**
 <!-- interaction_id: en:lesson-27:session-14:word:director; family: word_card -->

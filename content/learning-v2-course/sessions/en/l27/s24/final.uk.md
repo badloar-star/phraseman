@@ -124,7 +124,7 @@ I would call the clinic if I ___ the number. → **had** · would had · having
 **17 · Уточніть, що телефонували вчора.**
 <!-- interaction_id: en:lesson-27:session-24:i13; family: context_gap_grammar -->
 I ___ yesterday. → **called** · have called · call
-- have called — *Із yesterday тут past simple.*
+- have called — *Із yesterday тут форма минулого.*
 - call — *Потрібна минула форма called.*
 
 **18 · Попросіть друга перенести зустріч на завтра.**

@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I booked it yesterday.**
-- ❌ I have booked it yesterday. — *С законченным yesterday здесь past simple.*
+- ❌ I have booked it yesterday. — *С законченным yesterday здесь форма прошлого.*
 - ❌ I booking it yesterday. — *Для прошлого события нужна форма booked.*
 
 ---
@@ -126,8 +126,8 @@ I would ___ you if I had my phone. → **call** · called · to call
 **17 · Вы записались вчера. Назовите законченное время.**
 <!-- interaction_id: en:lesson-27:session-05:i13; family: context_gap_grammar -->
 I ___ it yesterday. → **booked** · have booked · booking
-- have booked — *С yesterday здесь past simple.*
-- booking — *Booking само по себе не образует сказуемое.*
+- have booked — *С yesterday здесь форма прошлого.*
+- booking — *Booking само по себе здесь не подходит.*
 
 **18 · Услышьте предложение времени после обеда.**
 <!-- interaction_id: en:lesson-27:session-05:i14; family: listen_build_dictation -->

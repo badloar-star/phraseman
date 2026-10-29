@@ -9,7 +9,7 @@
 
 ### Коли ми бачилися?
 
-У кафе ви впізнаєте колишнього однокласника. Ви згадуєте останню зустріч: це було торік. We met last year — ми зустрічалися торік. Складіть фразу: We — ми, потім met — минула форма meet, наприкінці last year — коли. Названо завершений минулий період, тому тут Past Simple.
+У кафе ви впізнаєте колишнього однокласника. Ви згадуєте останню зустріч: це було торік. We met last year — ми зустрічалися торік. Складіть фразу: We — ми, потім met — минула форма meet, наприкінці last year — коли. Названо завершений минулий період, тому тут форма минулого.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-27:session-54:i04; family: context_gap_grammar -->
 We ___ at Anna’s wedding in May. → **met** · have met · meeting
 - have met — *Названо конкретну минулу зустріч: met.*
-- meeting — *Meeting тут не замінює присудок met.*
+- meeting — *Meeting тут не замінює met.*
 
 **5 · Запитайте, чи пам’ятає друг ваше прізвисько.**
 <!-- interaction_id: en:lesson-27:session-54:i05; family: phrase_builder -->
@@ -98,8 +98,8 @@ We ___ at Anna’s wedding in May. → **met** · have met · meeting
 **11 · Друг уже оплатив замовлення: важливий результат зараз, час не названо.**
 <!-- interaction_id: en:lesson-27:session-54:i11; family: context_gap_grammar -->
 He has already ___ for our drinks. → **paid** · pay · paying
-- pay — *Після has потрібна третя форма paid.*
-- paying — *Тут Present Perfect: has paid.*
+- pay — *Після has потрібна форма paid.*
+- paying — *Тут have / has + done: has paid.*
 
 **12 · Почуйте, де на вас чекає друг.**
 <!-- interaction_id: en:lesson-27:session-54:i12; family: listen_build_dictation -->

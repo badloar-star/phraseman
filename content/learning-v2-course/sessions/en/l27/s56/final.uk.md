@@ -9,12 +9,12 @@
 
 ### Квитки вже в сумці
 
-Перед поїздкою сестра питає про квитки. Ви вже поклали їх у сумку. I have put the tickets in my bag — я поклав квитки в сумку. Спочатку I + have + put: повідомляємо про результат зараз. У put третя форма теж put. Потім the tickets — що поклали, і in my bag — куди; my показує, що сумка ваша.
+Перед поїздкою сестра питає про квитки. Ви вже поклали їх у сумку. I have put the tickets in my bag — я поклав квитки в сумку. Спочатку I + have + put: повідомляємо про результат зараз. У put форма після have теж put. Потім the tickets — що поклали, і in my bag — куди; my показує, що сумка ваша.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have put the tickets in my bag.**
-- ❌ I have putting the tickets in my bag. — *Після have потрібна третя форма put, не putting.*
+- ❌ I have putting the tickets in my bag. — *Після have потрібна форма put, не putting.*
 - ❌ I has put the tickets in my bag. — *З I використовуємо have.*
 
 ---
@@ -132,7 +132,7 @@ I wish we ___ a longer holiday. → **had** · have · having
 **18 · Якщо дощ закінчиться, ви підете на пляж. Це можливий план на сьогодні.**
 <!-- interaction_id: en:lesson-27:session-56:i18; family: context_gap_grammar -->
 We will go to the beach if the rain ___. → **stops** · will stop · stopping
-- will stop — *У такій умові після if ставимо Present Simple: stops.*
+- will stop — *У такій умові після if ставимо форму work / works: stops.*
 - stopping — *З the rain потрібна особова форма stops.*
 
 **19 · У вас немає машини. Уявіть, що вона є. Почніть із результату: If we had a car, we would visit the harbour.**

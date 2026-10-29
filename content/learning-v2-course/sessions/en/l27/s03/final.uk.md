@@ -23,7 +23,7 @@
 
 ### Коли гуляли із собакою
 
-Зараз вечір. Господар запитує, коли ви виводили собаку. Дайте відповідь: I took him out this morning — я виводив його сьогодні вранці. Складаємо: I + took + him + out + this morning — хто, took, кого, out, коли. Took out означає вивів надвір; займенник him ставимо між took та out. Ранок уже закінчився, тому використовуємо past simple: took — минулу форму take.
+Зараз вечір. Господар запитує, коли ви виводили собаку. Дайте відповідь: I took him out this morning — я виводив його сьогодні вранці. Складаємо: I + took + him + out + this morning — хто, took, кого, out, коли. Took out означає вивів надвір; слово him ставимо між took та out. Ранок уже закінчився, тому використовуємо форму минулого: took — минулу форму take.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -102,8 +102,8 @@ I would keep him if I ___ more space. → **had** · would had · having
 **12 · Зараз вечір. Розкажіть про завершену ранкову прогулянку.**
 <!-- interaction_id: en:lesson-27:session-03:i09; family: context_gap_grammar -->
 I ___ him out this morning. → **took** · have taken · taking
-- have taken — *Ранок закінчився: тут past simple.*
-- taking — *Taking саме по собі не утворює присудок.*
+- have taken — *Ранок закінчився: тут форма минулого.*
+- taking — *Taking саме по собі тут не підходить.*
 
 **13 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-27:session-03:i10; family: listen_choose -->

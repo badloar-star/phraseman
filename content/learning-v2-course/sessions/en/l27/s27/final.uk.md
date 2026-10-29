@@ -83,7 +83,7 @@ I wish I ___ more help. → **had** · have · having
 
 **8 · Картка слова — suds**
 <!-- interaction_id: en:lesson-27:session-27:word:suds; family: word_card -->
-> **suds** — Мильна піна; слово у множині.
+> **suds** — Мильна піна; слово у формі для кількох.
 
 **9 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-27:session-27:i06; family: listen_choose -->

@@ -37,12 +37,12 @@
 
 ### Когда оплатили завтрак
 
-В гостинице уточняют, когда вы оплатили завтрак. Ответьте: I paid yesterday — я заплатил вчера. Собираем: I + paid + yesterday — кто, действие в прошлом, когда. Paid — прошедшая форма pay в значении платить; не payed. Yesterday называет законченное время, поэтому здесь нужен past simple: paid без have. О завтраке уже спросили, поэтому в коротком ответе его можно не повторять.
+В гостинице уточняют, когда вы оплатили завтрак. Ответьте: I paid yesterday — я заплатил вчера. Собираем: I + paid + yesterday — кто, действие в прошлом, когда. Paid — прошедшая форма pay в значении платить; не payed. Yesterday называет законченное время, поэтому здесь нужна форма прошлого: paid без have. О завтраке уже спросили, поэтому в коротком ответе его можно не повторять.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I paid yesterday.**
-- ❌ I have paid yesterday. — *С yesterday здесь past simple.*
+- ❌ I have paid yesterday. — *С yesterday здесь форма прошлого.*
 - ❌ I payed yesterday. — *Прошедшая форма pay в этом значении — paid.*
 
 ---
@@ -126,7 +126,7 @@ If it were sunny, we would ___ outside. → **eat** · ate · eating
 **17 · Вы заплатили вчера. Назовите законченное время.**
 <!-- interaction_id: en:lesson-27:session-10:i13; family: context_gap_grammar -->
 I ___ yesterday. → **paid** · have paid · payed
-- have paid — *С yesterday здесь past simple.*
+- have paid — *С yesterday здесь форма прошлого.*
 - payed — *В этом значении прошедшая форма pay — paid.*
 
 **18 · Услышьте просьбу показать чек.**

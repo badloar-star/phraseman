@@ -11,12 +11,12 @@
 
 Друг неверно прочитал время встречи в нечётком сообщении. Вы понимаете, почему он ошибся. Скажите: Your mistake is understandable — твою ошибку можно понять. Understandable — понятный, объяснимый. Mistake — одно событие, поэтому нужна связка is. Порядок: назвать ошибку, поставить is, затем описать её прилагательным.
 
-Собираем предложение: Your mistake + is + understandable — что описываем → is для единственного числа → какое оно.
+Собираем предложение: Your mistake + is + understandable — что описываем → is для одного → какое оно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Your mistake is understandable.**
-- ❌ Your mistake are understandable. — *Mistake в единственном числе: is.*
+- ❌ Your mistake are understandable. — *Речь об одном — Mistake: is.*
 - ❌ Your mistake understandable. — *Перед прилагательным нужна is.*
 
 ---
@@ -41,7 +41,7 @@
 
 ### Когда позвонили другу
 
-Вас спрашивают, когда вы звонили другу, которого ждёте. Это было десять минут назад. Ответьте: I called him ten minutes ago — я позвонил ему десять минут назад. После call человека называем без to: called him. Called — прошедшая форма call. Ten minutes ago требует здесь Past Simple, без have.
+Вас спрашивают, когда вы звонили другу, которого ждёте. Это было десять минут назад. Ответьте: I called him ten minutes ago — я позвонил ему десять минут назад. После call человека называем без to: called him. Called — прошедшая форма call. Ten minutes ago требует здесь формы прошлого, без have.
 
 Собираем предложение: I + called + him + ten minutes ago — кто → действие в прошлом → кому → когда.
 
@@ -84,7 +84,7 @@
 **7 · Вы уже поговорили с ним.**
 <!-- interaction_id: en:lesson-27:session-45:i05; family: context_gap_grammar -->
 I have already ___ to him. → **spoken** · spoke · speaking
-- spoke — *После have нужна третья форма spoken.*
+- spoke — *После have нужна форма spoken.*
 - speaking — *Здесь have spoken.*
 
 **8 · Спросите, где друг сейчас.**

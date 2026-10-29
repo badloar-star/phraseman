@@ -14,7 +14,7 @@ These days — останнім часом, зараз у житті людин�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I don't have to travel these days.**
-- ❌ I doesn't have to travel these days. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ I doesn't have to travel these days. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ I don't has to travel these days. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -28,7 +28,7 @@ These days — останнім часом, зараз у житті людин�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She doesn't have to wait anymore.**
-- ❌ She don't have to wait anymore. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ She don't have to wait anymore. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ She doesn't has to wait anymore. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -42,7 +42,7 @@ Anyway — у будь-якому разі. Друзі вибирають між
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He doesn't have to work anyway.**
-- ❌ He don't have to work anyway. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ He don't have to work anyway. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ He doesn't has to work anyway. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -66,7 +66,7 @@ Anyway — у будь-якому разі. Друзі вибирають між
 **4 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-45:i03; family: context_gap_grammar -->
 I ___ travel these days. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Узгодьте don’t або doesn’t з підметом.*
+- doesn't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - don't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **5 · Картка слова — anymore**
@@ -86,7 +86,7 @@ I ___ travel these days. → **don't have to** · doesn't have to · don't has t
 **8 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-45:i06; family: context_gap_grammar -->
 She ___ wait anymore. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Узгодьте don’t або doesn’t з підметом.*
+- don't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - doesn't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **9 · Картка слова — at all**
@@ -106,7 +106,7 @@ She ___ wait anymore. → **doesn't have to** · don't have to · doesn't has to
 **12 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-45:i09; family: context_gap_grammar -->
 We ___ pay at all. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Узгодьте don’t або doesn’t з підметом.*
+- doesn't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - don't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **13 · Картка слова — anyway**
@@ -126,7 +126,7 @@ We ___ pay at all. → **don't have to** · doesn't have to · don't has to
 **16 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-45:i12; family: context_gap_grammar -->
 He ___ work anyway. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Узгодьте don’t або doesn’t з підметом.*
+- don't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - doesn't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **17 · Поєднайте слова з перекладом**

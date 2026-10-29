@@ -14,7 +14,7 @@ Recite — розповідати напамʼять або декламуват
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I don't have to recite the poem.**
-- ❌ I doesn't have to recite the poem. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ I doesn't have to recite the poem. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ I don't has to recite the poem. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -28,7 +28,7 @@ Recite — розповідати напамʼять або декламуват
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She doesn't have to underline every word.**
-- ❌ She don't have to underline every word. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ She don't have to underline every word. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ She doesn't has to underline every word. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -42,7 +42,7 @@ Analyse — докладно розбирати, аналізувати. Зна�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He doesn't have to analyse every detail.**
-- ❌ He don't have to analyse every detail. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ He don't have to analyse every detail. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ He doesn't has to analyse every detail. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -66,7 +66,7 @@ Analyse — докладно розбирати, аналізувати. Зна�
 **4 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-43:i03; family: context_gap_grammar -->
 I ___ recite the poem. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Узгодьте don’t або doesn’t з підметом.*
+- doesn't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - don't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **5 · Картка слова — underline**
@@ -86,7 +86,7 @@ I ___ recite the poem. → **don't have to** · doesn't have to · don't has to
 **8 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-43:i06; family: context_gap_grammar -->
 She ___ underline every word. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Узгодьте don’t або doesn’t з підметом.*
+- don't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - doesn't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **9 · Картка слова — quote**
@@ -106,7 +106,7 @@ She ___ underline every word. → **doesn't have to** · don't have to · doesn'
 **12 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-43:i09; family: context_gap_grammar -->
 We ___ quote the whole text. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Узгодьте don’t або doesn’t з підметом.*
+- doesn't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - don't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **13 · Картка слова — analyse**
@@ -126,7 +126,7 @@ We ___ quote the whole text. → **don't have to** · doesn't have to · don't h
 **16 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-43:i12; family: context_gap_grammar -->
 He ___ analyse every detail. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Узгодьте don’t або doesn’t з підметом.*
+- don't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - doesn't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **17 · Поєднайте слова з перекладом**

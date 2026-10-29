@@ -14,7 +14,7 @@ Bring along — принести із собою. Господарі вже пр
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I don't have to bring along any food.**
-- ❌ I doesn't have to bring along any food. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ I doesn't have to bring along any food. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ I don't has to bring along any food. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -28,7 +28,7 @@ Bring along — принести із собою. Господарі вже пр
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She doesn't have to stay behind.**
-- ❌ She don't have to stay behind. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ She don't have to stay behind. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ She doesn't has to stay behind. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -42,7 +42,7 @@ Head back — вирушити назад. Друг думає, що час по
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He doesn't have to head back yet.**
-- ❌ He don't have to head back yet. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ He don't have to head back yet. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ He doesn't has to head back yet. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -66,7 +66,7 @@ Head back — вирушити назад. Друг думає, що час по
 **4 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-42:i03; family: context_gap_grammar -->
 I ___ bring along any food. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Узгодьте don’t або doesn’t з підметом.*
+- doesn't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - don't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **5 · Картка слова — stay behind**
@@ -86,7 +86,7 @@ I ___ bring along any food. → **don't have to** · doesn't have to · don't ha
 **8 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-42:i06; family: context_gap_grammar -->
 She ___ stay behind. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Узгодьте don’t або doesn’t з підметом.*
+- don't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - doesn't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **9 · Картка слова — stop by**
@@ -106,7 +106,7 @@ She ___ stay behind. → **doesn't have to** · don't have to · doesn't has to
 **12 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-42:i09; family: context_gap_grammar -->
 We ___ stop by. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Узгодьте don’t або doesn’t з підметом.*
+- doesn't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - don't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **13 · Картка слова — head back**
@@ -126,7 +126,7 @@ We ___ stop by. → **don't have to** · doesn't have to · don't has to
 **16 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-42:i12; family: context_gap_grammar -->
 He ___ head back yet. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Узгодьте don’t або doesn’t з підметом.*
+- don't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - doesn't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **17 · Поєднайте слова з перекладом**

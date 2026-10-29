@@ -14,7 +14,7 @@ Staff — персонал, сотрудники как группа. Измен
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have to inform the staff.**
-- ❌ I has to inform the staff. — *С этим подлежащим используйте have to.*
+- ❌ I has to inform the staff. — *С этим словом используйте have to.*
 - ❌ I have inform the staff. — *В конструкции нужно to перед глаголом.*
 
 ---
@@ -66,7 +66,7 @@ Self-employed — работающий на себя. Знакомому нуж�
 **4 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-15:i03; family: context_gap_grammar -->
 I ___ inform the staff. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **5 · Карточка слова — employee**
@@ -86,7 +86,7 @@ I ___ inform the staff. → **have to** · has to · have
 **8 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-15:i06; family: context_gap_grammar -->
 She ___ train a new employee. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **9 · Карточка слова — employer**
@@ -106,7 +106,7 @@ She ___ train a new employee. → **has to** · have to · has
 **12 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-15:i09; family: context_gap_grammar -->
 We ___ contact the employer. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **13 · Карточка слова — self-employed**
@@ -126,7 +126,7 @@ We ___ contact the employer. → **have to** · has to · have
 **16 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-15:i12; family: context_gap_grammar -->
 He ___ speak to a self-employed builder. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **17 · Соедините слова с переводом**

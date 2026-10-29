@@ -14,7 +14,7 @@ Unreasonable — неразумный, чрезмерный. Вас попрос
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have to refuse this unreasonable request.**
-- ❌ I has to refuse this unreasonable request. — *С этим подлежащим используйте have to.*
+- ❌ I has to refuse this unreasonable request. — *С этим словом используйте have to.*
 - ❌ I have refuse this unreasonable request. — *В конструкции нужно to перед глаголом.*
 
 ---
@@ -66,7 +66,7 @@ Unexpected — неожиданный, такой, которого не ожи�
 **4 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-16:i03; family: context_gap_grammar -->
 I ___ refuse this unreasonable request. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **5 · Карточка слова — unpleasant**
@@ -86,7 +86,7 @@ I ___ refuse this unreasonable request. → **have to** · has to · have
 **8 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-16:i06; family: context_gap_grammar -->
 She ___ deal with an unpleasant customer. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **9 · Карточка слова — uncertain**
@@ -106,7 +106,7 @@ She ___ deal with an unpleasant customer. → **has to** · have to · has
 **12 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-16:i09; family: context_gap_grammar -->
 We ___ plan for an uncertain future. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **13 · Карточка слова — unexpected**
@@ -126,7 +126,7 @@ We ___ plan for an uncertain future. → **have to** · has to · have
 **16 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-16:i12; family: context_gap_grammar -->
 He ___ solve an unexpected problem. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **17 · Соедините слова с переводом**

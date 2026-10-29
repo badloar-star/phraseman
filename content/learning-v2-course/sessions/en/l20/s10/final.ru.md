@@ -14,7 +14,7 @@ Occasionally — иногда, время от времени. На работе
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I occasionally have to work late.**
-- ❌ I occasionally has to work late. — *С этим подлежащим используйте have to.*
+- ❌ I occasionally has to work late. — *С этим словом используйте have to.*
 - ❌ I occasionally have work late. — *В конструкции нужно to перед глаголом.*
 
 ---
@@ -66,7 +66,7 @@ Overseas — за границу или за границей, часто о д�
 **4 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-10:i03; family: context_gap_grammar -->
 I occasionally ___ work late. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **5 · Карточка слова — rarely**
@@ -86,7 +86,7 @@ I occasionally ___ work late. → **have to** · has to · have
 **8 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-10:i06; family: context_gap_grammar -->
 She rarely ___ pay for parking. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **9 · Карточка слова — currently**
@@ -106,7 +106,7 @@ She rarely ___ pay for parking. → **has to** · have to · has
 **12 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-10:i09; family: context_gap_grammar -->
 We currently ___ use another entrance. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **13 · Карточка слова — overseas**
@@ -126,7 +126,7 @@ We currently ___ use another entrance. → **have to** · has to · have
 **16 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-10:i12; family: context_gap_grammar -->
 He ___ travel overseas. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **17 · Соедините слова с переводом**

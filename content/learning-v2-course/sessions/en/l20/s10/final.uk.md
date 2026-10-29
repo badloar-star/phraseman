@@ -14,7 +14,7 @@ Occasionally — іноді, час від часу. На роботі не що
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I occasionally have to work late.**
-- ❌ I occasionally has to work late. — *Із цим підметом використайте have to.*
+- ❌ I occasionally has to work late. — *Із цим словом використайте have to.*
 - ❌ I occasionally have work late. — *У конструкції потрібне to перед дієсловом.*
 
 ---
@@ -66,7 +66,7 @@ Overseas — за кордон або за кордоном, часто про �
 **4 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-10:i03; family: context_gap_grammar -->
 I occasionally ___ work late. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **5 · Картка слова — rarely**
@@ -86,7 +86,7 @@ I occasionally ___ work late. → **have to** · has to · have
 **8 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-10:i06; family: context_gap_grammar -->
 She rarely ___ pay for parking. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **9 · Картка слова — currently**
@@ -106,7 +106,7 @@ She rarely ___ pay for parking. → **has to** · have to · has
 **12 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-10:i09; family: context_gap_grammar -->
 We currently ___ use another entrance. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **13 · Картка слова — overseas**
@@ -126,7 +126,7 @@ We currently ___ use another entrance. → **have to** · has to · have
 **16 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-10:i12; family: context_gap_grammar -->
 He ___ travel overseas. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **17 · Поєднайте слова з перекладом**

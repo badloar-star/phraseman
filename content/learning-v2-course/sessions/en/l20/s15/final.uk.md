@@ -14,7 +14,7 @@ Staff — персонал, працівники як група. Змінивс
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have to inform the staff.**
-- ❌ I has to inform the staff. — *Із цим підметом використайте have to.*
+- ❌ I has to inform the staff. — *Із цим словом використайте have to.*
 - ❌ I have inform the staff. — *У конструкції потрібне to перед дієсловом.*
 
 ---
@@ -66,7 +66,7 @@ Self-employed — той, хто працює на себе. Знайомому 
 **4 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-15:i03; family: context_gap_grammar -->
 I ___ inform the staff. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **5 · Картка слова — employee**
@@ -86,7 +86,7 @@ I ___ inform the staff. → **have to** · has to · have
 **8 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-15:i06; family: context_gap_grammar -->
 She ___ train a new employee. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **9 · Картка слова — employer**
@@ -106,7 +106,7 @@ She ___ train a new employee. → **has to** · have to · has
 **12 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-15:i09; family: context_gap_grammar -->
 We ___ contact the employer. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **13 · Картка слова — self-employed**
@@ -126,7 +126,7 @@ We ___ contact the employer. → **have to** · has to · have
 **16 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-15:i12; family: context_gap_grammar -->
 He ___ speak to a self-employed builder. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **17 · Поєднайте слова з перекладом**

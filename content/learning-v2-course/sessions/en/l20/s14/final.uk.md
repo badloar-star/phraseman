@@ -14,7 +14,7 @@ Purchase — покупка. Магазин у нашій сцені попро�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have to show proof of purchase.**
-- ❌ I has to show proof of purchase. — *Із цим підметом використайте have to.*
+- ❌ I has to show proof of purchase. — *Із цим словом використайте have to.*
 - ❌ I have show proof of purchase. — *У конструкції потрібне to перед дієсловом.*
 
 ---
@@ -66,7 +66,7 @@ Guarantee — гарантія. Знайомий шукає інформацію
 **4 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-14:i03; family: context_gap_grammar -->
 I ___ show proof of purchase. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **5 · Картка слова — damaged**
@@ -86,7 +86,7 @@ I ___ show proof of purchase. → **have to** · has to · have
 **8 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-14:i06; family: context_gap_grammar -->
 She ___ replace the damaged box. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **9 · Картка слова — faulty**
@@ -106,7 +106,7 @@ She ___ replace the damaged box. → **has to** · have to · has
 **12 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-14:i09; family: context_gap_grammar -->
 We ___ return the faulty lamp. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **13 · Картка слова — guarantee**
@@ -126,7 +126,7 @@ We ___ return the faulty lamp. → **have to** · has to · have
 **16 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-14:i12; family: context_gap_grammar -->
 He ___ check the guarantee. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **17 · Поєднайте слова з перекладом**

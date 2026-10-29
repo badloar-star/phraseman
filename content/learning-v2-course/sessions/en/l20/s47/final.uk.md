@@ -14,7 +14,7 @@ Under pressure — під тиском обставин або очікуван�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I don't have to work under pressure.**
-- ❌ I doesn't have to work under pressure. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ I doesn't have to work under pressure. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ I don't has to work under pressure. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -28,7 +28,7 @@ Under pressure — під тиском обставин або очікуван�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She doesn't have to eat in a rush.**
-- ❌ She don't have to eat in a rush. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ She don't have to eat in a rush. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ She doesn't has to eat in a rush. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -42,7 +42,7 @@ All at once — усе одразу. Друг хоче розібрати всі
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He doesn't have to do it all at once.**
-- ❌ He don't have to do it all at once. — *Узгодьте don’t або doesn’t з підметом.*
+- ❌ He don't have to do it all at once. — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - ❌ He doesn't has to do it all at once. — *Після don’t і doesn’t потрібна форма have, не has.*
 
 ---
@@ -66,7 +66,7 @@ All at once — усе одразу. Друг хоче розібрати всі
 **4 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-47:i03; family: context_gap_grammar -->
 I ___ work under pressure. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Узгодьте don’t або doesn’t з підметом.*
+- doesn't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - don't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **5 · Картка слова — in a rush**
@@ -86,7 +86,7 @@ I ___ work under pressure. → **don't have to** · doesn't have to · don't has
 **8 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-47:i06; family: context_gap_grammar -->
 She ___ eat in a rush. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Узгодьте don’t або doesn’t з підметом.*
+- don't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - doesn't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **9 · Картка слова — without help**
@@ -106,7 +106,7 @@ She ___ eat in a rush. → **doesn't have to** · don't have to · doesn't has t
 **12 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-47:i09; family: context_gap_grammar -->
 We ___ do this without help. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Узгодьте don’t або doesn’t з підметом.*
+- doesn't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - don't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **13 · Картка слова — all at once**
@@ -126,7 +126,7 @@ We ___ do this without help. → **don't have to** · doesn't have to · don't h
 **16 · Скажіть, що це необовʼязково.**
 <!-- interaction_id: en:lesson-20:session-47:i12; family: context_gap_grammar -->
 He ___ do it all at once. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Узгодьте don’t або doesn’t з підметом.*
+- don't have to — *Узгодьте don’t або doesn’t з тим, хто діє.*
 - doesn't has to — *Після don’t і doesn’t потрібна форма have, не has.*
 
 **17 · Поєднайте слова з перекладом**

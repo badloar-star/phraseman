@@ -14,7 +14,7 @@ Lease — договір оренди житла або іншого майна.
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have to read the lease.**
-- ❌ I has to read the lease. — *Із цим підметом використайте have to.*
+- ❌ I has to read the lease. — *Із цим словом використайте have to.*
 - ❌ I have read the lease. — *I have read — уже прочитав; тут ідеться про необхідність: have to read.*
 
 ---
@@ -66,7 +66,7 @@ Resident — мешканець певного місця. Знайомий шу
 **4 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-11:i03; family: context_gap_grammar -->
 I ___ read the lease. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *I have read — уже прочитав; виберіть have to для необхідності.*
 
 **5 · Картка слова — owner**
@@ -86,7 +86,7 @@ I ___ read the lease. → **have to** · has to · have
 **8 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-11:i06; family: context_gap_grammar -->
 She ___ call the owner. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **9 · Картка слова — property**
@@ -106,7 +106,7 @@ She ___ call the owner. → **has to** · have to · has
 **12 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-11:i09; family: context_gap_grammar -->
 We ___ visit the property. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **13 · Картка слова — resident**
@@ -126,7 +126,7 @@ We ___ visit the property. → **have to** · has to · have
 **16 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-11:i12; family: context_gap_grammar -->
 He ___ ask a resident for directions. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **17 · Поєднайте слова з перекладом**

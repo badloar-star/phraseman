@@ -14,7 +14,7 @@ Under pressure — под давлением обстоятельств или �
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I don't have to work under pressure.**
-- ❌ I doesn't have to work under pressure. — *Согласуйте don’t или doesn’t с подлежащим.*
+- ❌ I doesn't have to work under pressure. — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - ❌ I don't has to work under pressure. — *После don’t и doesn’t нужна форма have, не has.*
 
 ---
@@ -28,7 +28,7 @@ Under pressure — под давлением обстоятельств или �
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She doesn't have to eat in a rush.**
-- ❌ She don't have to eat in a rush. — *Согласуйте don’t или doesn’t с подлежащим.*
+- ❌ She don't have to eat in a rush. — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - ❌ She doesn't has to eat in a rush. — *После don’t и doesn’t нужна форма have, не has.*
 
 ---
@@ -42,7 +42,7 @@ All at once — всё сразу. Друг хочет разобрать все
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He doesn't have to do it all at once.**
-- ❌ He don't have to do it all at once. — *Согласуйте don’t или doesn’t с подлежащим.*
+- ❌ He don't have to do it all at once. — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - ❌ He doesn't has to do it all at once. — *После don’t и doesn’t нужна форма have, не has.*
 
 ---
@@ -66,7 +66,7 @@ All at once — всё сразу. Друг хочет разобрать все
 **4 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-47:i03; family: context_gap_grammar -->
 I ___ work under pressure. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- doesn't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - don't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **5 · Карточка слова — in a rush**
@@ -86,7 +86,7 @@ I ___ work under pressure. → **don't have to** · doesn't have to · don't has
 **8 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-47:i06; family: context_gap_grammar -->
 She ___ eat in a rush. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- don't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - doesn't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **9 · Карточка слова — without help**
@@ -106,7 +106,7 @@ She ___ eat in a rush. → **doesn't have to** · don't have to · doesn't has t
 **12 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-47:i09; family: context_gap_grammar -->
 We ___ do this without help. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- doesn't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - don't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **13 · Карточка слова — all at once**
@@ -126,7 +126,7 @@ We ___ do this without help. → **don't have to** · doesn't have to · don't h
 **16 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-47:i12; family: context_gap_grammar -->
 He ___ do it all at once. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- don't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - doesn't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **17 · Соедините слова с переводом**

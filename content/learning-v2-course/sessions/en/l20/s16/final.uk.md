@@ -14,7 +14,7 @@ Unreasonable — нерозумний, надмірний. Вас попроси
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have to refuse this unreasonable request.**
-- ❌ I has to refuse this unreasonable request. — *Із цим підметом використайте have to.*
+- ❌ I has to refuse this unreasonable request. — *Із цим словом використайте have to.*
 - ❌ I have refuse this unreasonable request. — *У конструкції потрібне to перед дієсловом.*
 
 ---
@@ -66,7 +66,7 @@ Unexpected — несподіваний, такий, якого не очіку�
 **4 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-16:i03; family: context_gap_grammar -->
 I ___ refuse this unreasonable request. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **5 · Картка слова — unpleasant**
@@ -86,7 +86,7 @@ I ___ refuse this unreasonable request. → **have to** · has to · have
 **8 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-16:i06; family: context_gap_grammar -->
 She ___ deal with an unpleasant customer. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **9 · Картка слова — uncertain**
@@ -106,7 +106,7 @@ She ___ deal with an unpleasant customer. → **has to** · have to · has
 **12 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-16:i09; family: context_gap_grammar -->
 We ___ plan for an uncertain future. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **13 · Картка слова — unexpected**
@@ -126,7 +126,7 @@ We ___ plan for an uncertain future. → **have to** · has to · have
 **16 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-16:i12; family: context_gap_grammar -->
 He ___ solve an unexpected problem. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **17 · Поєднайте слова з перекладом**

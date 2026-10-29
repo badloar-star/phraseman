@@ -14,7 +14,7 @@ Lease — договор аренды жилья или другого имущ�
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have to read the lease.**
-- ❌ I has to read the lease. — *С этим подлежащим используйте have to.*
+- ❌ I has to read the lease. — *С этим словом используйте have to.*
 - ❌ I have read the lease. — *I have read — уже прочитал; здесь речь о необходимости: have to read.*
 
 ---
@@ -66,7 +66,7 @@ Resident — житель какого-то места. Знакомый ище�
 **4 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-11:i03; family: context_gap_grammar -->
 I ___ read the lease. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *I have read — уже прочитал; выберите have to для необходимости.*
 
 **5 · Карточка слова — owner**
@@ -86,7 +86,7 @@ I ___ read the lease. → **have to** · has to · have
 **8 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-11:i06; family: context_gap_grammar -->
 She ___ call the owner. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **9 · Карточка слова — property**
@@ -106,7 +106,7 @@ She ___ call the owner. → **has to** · have to · has
 **12 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-11:i09; family: context_gap_grammar -->
 We ___ visit the property. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **13 · Карточка слова — resident**
@@ -126,7 +126,7 @@ We ___ visit the property. → **have to** · has to · have
 **16 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-11:i12; family: context_gap_grammar -->
 He ___ ask a resident for directions. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **17 · Соедините слова с переводом**

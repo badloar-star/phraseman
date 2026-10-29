@@ -14,7 +14,7 @@ Contract — договір. У нашій сцені керівник попр�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have to read the contract.**
-- ❌ I has to read the contract. — *Із цим підметом використайте have to.*
+- ❌ I has to read the contract. — *Із цим словом використайте have to.*
 - ❌ I have read the contract. — *I have read означає «я вже прочитав». Для необхідності потрібно I have to read.*
 
 ---
@@ -42,7 +42,7 @@ Applicant — людина, яка подала заяву. Тут це прет
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have to call the applicant.**
-- ❌ We has to call the applicant. — *Із цим підметом використайте have to.*
+- ❌ We has to call the applicant. — *Із цим словом використайте have to.*
 - ❌ We have call the applicant. — *У конструкції потрібне to перед дієсловом.*
 
 ---
@@ -66,7 +66,7 @@ Applicant — людина, яка подала заяву. Тут це прет
 **4 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-09:i03; family: context_gap_grammar -->
 I ___ read the contract. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *I have read — уже прочитав; тут потрібно have to read — необхідно прочитати.*
 
 **5 · Картка слова — occupation**
@@ -86,7 +86,7 @@ I ___ read the contract. → **have to** · has to · have
 **8 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-09:i06; family: context_gap_grammar -->
 She ___ enter her occupation. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **9 · Картка слова — position**
@@ -106,7 +106,7 @@ She ___ enter her occupation. → **has to** · have to · has
 **12 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-09:i09; family: context_gap_grammar -->
 He ___ apply for this position. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **13 · Картка слова — applicant**
@@ -126,7 +126,7 @@ He ___ apply for this position. → **has to** · have to · has
 **16 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-09:i12; family: context_gap_grammar -->
 We ___ call the applicant. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **17 · Поєднайте слова з перекладом**

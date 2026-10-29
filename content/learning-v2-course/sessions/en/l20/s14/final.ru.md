@@ -14,7 +14,7 @@ Purchase — покупка. Магазин в нашей сцене попро�
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have to show proof of purchase.**
-- ❌ I has to show proof of purchase. — *С этим подлежащим используйте have to.*
+- ❌ I has to show proof of purchase. — *С этим словом используйте have to.*
 - ❌ I have show proof of purchase. — *В конструкции нужно to перед глаголом.*
 
 ---
@@ -66,7 +66,7 @@ Guarantee — гарантия. Знакомый ищет информацию �
 **4 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-14:i03; family: context_gap_grammar -->
 I ___ show proof of purchase. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **5 · Карточка слова — damaged**
@@ -86,7 +86,7 @@ I ___ show proof of purchase. → **have to** · has to · have
 **8 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-14:i06; family: context_gap_grammar -->
 She ___ replace the damaged box. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **9 · Карточка слова — faulty**
@@ -106,7 +106,7 @@ She ___ replace the damaged box. → **has to** · have to · has
 **12 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-14:i09; family: context_gap_grammar -->
 We ___ return the faulty lamp. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **13 · Карточка слова — guarantee**
@@ -126,7 +126,7 @@ We ___ return the faulty lamp. → **have to** · has to · have
 **16 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-14:i12; family: context_gap_grammar -->
 He ___ check the guarantee. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **17 · Соедините слова с переводом**

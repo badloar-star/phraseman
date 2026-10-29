@@ -14,7 +14,7 @@ Contract — договор. В нашей сцене руководитель �
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have to read the contract.**
-- ❌ I has to read the contract. — *С этим подлежащим используйте have to.*
+- ❌ I has to read the contract. — *С этим словом используйте have to.*
 - ❌ I have read the contract. — *I have read означает «я уже прочитал». Для необходимости нужно I have to read.*
 
 ---
@@ -42,7 +42,7 @@ Applicant — человек, подавший заявление. Здесь э
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have to call the applicant.**
-- ❌ We has to call the applicant. — *С этим подлежащим используйте have to.*
+- ❌ We has to call the applicant. — *С этим словом используйте have to.*
 - ❌ We have call the applicant. — *В конструкции нужно to перед глаголом.*
 
 ---
@@ -66,7 +66,7 @@ Applicant — человек, подавший заявление. Здесь э
 **4 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-09:i03; family: context_gap_grammar -->
 I ___ read the contract. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *I have read — уже прочитал; здесь нужно have to read — необходимо прочитать.*
 
 **5 · Карточка слова — occupation**
@@ -86,7 +86,7 @@ I ___ read the contract. → **have to** · has to · have
 **8 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-09:i06; family: context_gap_grammar -->
 She ___ enter her occupation. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **9 · Карточка слова — position**
@@ -106,7 +106,7 @@ She ___ enter her occupation. → **has to** · have to · has
 **12 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-09:i09; family: context_gap_grammar -->
 He ___ apply for this position. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **13 · Карточка слова — applicant**
@@ -126,7 +126,7 @@ He ___ apply for this position. → **has to** · have to · has
 **16 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-09:i12; family: context_gap_grammar -->
 We ___ call the applicant. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **17 · Соедините слова с переводом**

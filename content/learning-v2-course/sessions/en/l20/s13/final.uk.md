@@ -14,7 +14,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have to enter my nationality.**
-- ❌ I has to enter my nationality. — *Із цим підметом використайте have to.*
+- ❌ I has to enter my nationality. — *Із цим словом використайте have to.*
 - ❌ I have enter my nationality. — *У конструкції потрібне to перед дієсловом.*
 
 ---
@@ -66,7 +66,7 @@ Document — документ, наприклад довідка або дого
 **4 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-13:i03; family: context_gap_grammar -->
 I ___ enter my nationality. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **5 · Картка слова — marital status**
@@ -86,7 +86,7 @@ I ___ enter my nationality. → **have to** · has to · have
 **8 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-13:i06; family: context_gap_grammar -->
 She ___ enter her marital status. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **9 · Картка слова — initials**
@@ -106,7 +106,7 @@ She ___ enter her marital status. → **has to** · have to · has
 **12 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-13:i09; family: context_gap_grammar -->
 We ___ write our initials here. → **have to** · has to · have
-- has to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- has to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - have — *Перед дієсловом потрібне to.*
 
 **13 · Картка слова — document**
@@ -126,7 +126,7 @@ We ___ write our initials here. → **have to** · has to · have
 **16 · Доповніть фразу про необхідність.**
 <!-- interaction_id: en:lesson-20:session-13:i12; family: context_gap_grammar -->
 He ___ bring this document. → **has to** · have to · has
-- have to — *Виберіть форму за підметом: I/we — have to, she/he — has to.*
+- have to — *Виберіть форму за тим, хто діє: I/we — have to, she/he — has to.*
 - has — *Перед дієсловом потрібне to.*
 
 **17 · Поєднайте слова з перекладом**

@@ -14,7 +14,7 @@ Bring along — принести с собой. Хозяева уже приго
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I don't have to bring along any food.**
-- ❌ I doesn't have to bring along any food. — *Согласуйте don’t или doesn’t с подлежащим.*
+- ❌ I doesn't have to bring along any food. — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - ❌ I don't has to bring along any food. — *После don’t и doesn’t нужна форма have, не has.*
 
 ---
@@ -28,7 +28,7 @@ Bring along — принести с собой. Хозяева уже приго
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She doesn't have to stay behind.**
-- ❌ She don't have to stay behind. — *Согласуйте don’t или doesn’t с подлежащим.*
+- ❌ She don't have to stay behind. — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - ❌ She doesn't has to stay behind. — *После don’t и doesn’t нужна форма have, не has.*
 
 ---
@@ -42,7 +42,7 @@ Head back — отправиться обратно. Друг думает, чт
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He doesn't have to head back yet.**
-- ❌ He don't have to head back yet. — *Согласуйте don’t или doesn’t с подлежащим.*
+- ❌ He don't have to head back yet. — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - ❌ He doesn't has to head back yet. — *После don’t и doesn’t нужна форма have, не has.*
 
 ---
@@ -66,7 +66,7 @@ Head back — отправиться обратно. Друг думает, чт
 **4 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-42:i03; family: context_gap_grammar -->
 I ___ bring along any food. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- doesn't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - don't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **5 · Карточка слова — stay behind**
@@ -86,7 +86,7 @@ I ___ bring along any food. → **don't have to** · doesn't have to · don't ha
 **8 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-42:i06; family: context_gap_grammar -->
 She ___ stay behind. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- don't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - doesn't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **9 · Карточка слова — stop by**
@@ -106,7 +106,7 @@ She ___ stay behind. → **doesn't have to** · don't have to · doesn't has to
 **12 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-42:i09; family: context_gap_grammar -->
 We ___ stop by. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- doesn't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - don't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **13 · Карточка слова — head back**
@@ -126,7 +126,7 @@ We ___ stop by. → **don't have to** · doesn't have to · don't has to
 **16 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-42:i12; family: context_gap_grammar -->
 He ___ head back yet. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- don't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - doesn't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **17 · Соедините слова с переводом**

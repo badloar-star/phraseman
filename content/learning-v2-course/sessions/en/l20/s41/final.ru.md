@@ -9,12 +9,12 @@
 
 ### Материалы уже есть
 
-Supplies — необходимые материалы или принадлежности. На занятии по рисованию бумагу и краски выдаёт организатор. Вы сообщаете другу, что покупать их не нужно. В этом значении supplies употребляется во множественном числе. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.
+Supplies — необходимые материалы или принадлежности. На занятии по рисованию бумагу и краски выдаёт организатор. Вы сообщаете другу, что покупать их не нужно. В этом значении supplies употребляется в форме для нескольких. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I don't have to buy supplies.**
-- ❌ I doesn't have to buy supplies. — *Согласуйте don’t или doesn’t с подлежащим.*
+- ❌ I doesn't have to buy supplies. — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - ❌ I don't has to buy supplies. — *После don’t и doesn’t нужна форма have, не has.*
 
 ---
@@ -28,7 +28,7 @@ Supplies — необходимые материалы или принадлеж
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She doesn't have to bring a photocopy.**
-- ❌ She don't have to bring a photocopy. — *Согласуйте don’t или doesn’t с подлежащим.*
+- ❌ She don't have to bring a photocopy. — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - ❌ She doesn't has to bring a photocopy. — *После don’t и doesn’t нужна форма have, не has.*
 
 ---
@@ -42,7 +42,7 @@ Accompany — сопровождать, идти вместе с человек�
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He doesn't have to accompany me.**
-- ❌ He don't have to accompany me. — *Согласуйте don’t или doesn’t с подлежащим.*
+- ❌ He don't have to accompany me. — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - ❌ He doesn't has to accompany me. — *После don’t и doesn’t нужна форма have, не has.*
 
 ---
@@ -66,7 +66,7 @@ Accompany — сопровождать, идти вместе с человек�
 **4 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-41:i03; family: context_gap_grammar -->
 I ___ buy supplies. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- doesn't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - don't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **5 · Карточка слова — photocopy**
@@ -86,7 +86,7 @@ I ___ buy supplies. → **don't have to** · doesn't have to · don't has to
 **8 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-41:i06; family: context_gap_grammar -->
 She ___ bring a photocopy. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- don't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - doesn't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **9 · Карточка слова — enclose**
@@ -106,7 +106,7 @@ She ___ bring a photocopy. → **doesn't have to** · don't have to · doesn't h
 **12 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-41:i09; family: context_gap_grammar -->
 We ___ enclose a photo. → **don't have to** · doesn't have to · don't has to
-- doesn't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- doesn't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - don't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **13 · Карточка слова — accompany**
@@ -126,7 +126,7 @@ We ___ enclose a photo. → **don't have to** · doesn't have to · don't has to
 **16 · Скажите, что это необязательно.**
 <!-- interaction_id: en:lesson-20:session-41:i12; family: context_gap_grammar -->
 He ___ accompany me. → **doesn't have to** · don't have to · doesn't has to
-- don't have to — *Согласуйте don’t или doesn’t с подлежащим.*
+- don't have to — *Согласуйте don’t или doesn’t с тем, кто действует.*
 - doesn't has to — *После don’t и doesn’t нужна форма have, не has.*
 
 **17 · Соедините слова с переводом**

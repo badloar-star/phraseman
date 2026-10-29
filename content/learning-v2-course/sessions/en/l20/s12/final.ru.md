@@ -14,7 +14,7 @@ Announcement — объявление, в этой сцене сообщение
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have to listen to the announcement.**
-- ❌ I has to listen to the announcement. — *С этим подлежащим используйте have to.*
+- ❌ I has to listen to the announcement. — *С этим словом используйте have to.*
 - ❌ I have listen to the announcement. — *В конструкции нужно to перед глаголом.*
 
 ---
@@ -66,7 +66,7 @@ Announcement — объявление, в этой сцене сообщение
 **4 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-12:i03; family: context_gap_grammar -->
 I ___ listen to the announcement. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **5 · Карточка слова — connection**
@@ -86,7 +86,7 @@ I ___ listen to the announcement. → **have to** · has to · have
 **8 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-12:i06; family: context_gap_grammar -->
 She ___ check the connection. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **9 · Карточка слова — disruption**
@@ -106,7 +106,7 @@ She ___ check the connection. → **has to** · have to · has
 **12 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-12:i09; family: context_gap_grammar -->
 We ___ ask about the disruption. → **have to** · has to · have
-- has to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- has to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - have — *Перед глаголом нужно to.*
 
 **13 · Карточка слова — diversion**
@@ -126,7 +126,7 @@ We ___ ask about the disruption. → **have to** · has to · have
 **16 · Дополните фразу о необходимости.**
 <!-- interaction_id: en:lesson-20:session-12:i12; family: context_gap_grammar -->
 He ___ follow the diversion. → **has to** · have to · has
-- have to — *Выберите форму по подлежащему: I/we — have to, she/he — has to.*
+- have to — *Выберите форму по тому, кто действует: I/we — have to, she/he — has to.*
 - has — *Перед глаголом нужно to.*
 
 **17 · Соедините слова с переводом**

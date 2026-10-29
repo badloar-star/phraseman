@@ -3,6 +3,7 @@
 Governance-ID: TG-E816EF90E4BA
 Governance-ID: TG-547C719FC176
 Governance-ID: TG-12E5142F279C
+Governance-ID: TG-3A9594A2682D
 Status: In progress
 Owner: сессия «2 · ДИЗАЙН»
 Related epic/enabler: none

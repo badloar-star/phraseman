@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { devSpeechTranscriptFor, getDevSpeechMode, type DevSpeechMode } from '../app/dev_cards_state';
 import { DebugLogger } from '../app/debug-logger';
-import { speakingNoSpeechKindOf, speakingNoSpeechText, type SpeakingNoSpeechKind } from './speaking_no_speech_copy';
+import { isSpeakingTapHold, SPEAKING_TAP_MAX_HOLD_MS, speakingNoSpeechKindOf, speakingNoSpeechText, type SpeakingNoSpeechKind } from './speaking_no_speech_copy';
 import { useTheme } from './ThemeContext';
 import { liquidGlassTokens } from '../constants/liquidGlassThemePalette';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
@@ -94,7 +94,7 @@ import {
 } from '../app/speaking_score_stars';
 import { useSpeakingInlineMetrics } from './SpeakingInlineSlot';
 import { WordDrillCard } from './WordDrillCard';
-import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
+import { hapticError, hapticLightImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 import { useNoSpeechCue } from '../hooks/use-no-speech-cue';
 import { useAudio } from '../hooks/use-audio';
@@ -1740,8 +1740,18 @@ export function SpeakingPanel({
     if (!wavUri) {
       // Ничего не записалось (слишком коротко / сбой записи) — не 0%, а «не расслышал».
       setNoSpeechKind(reportHoldNoSpeech('no_wav', { holdMs, firstAudioMs: holdFirstAudioMsRef.current, platform: Platform.OS }));
-      setStatus('no_speech'); playNoSpeech();
-      hapticError();
+      // зачем (Ревизор → координатор 29.10): короткий тап по микрофону — не ошибка. Подсказка «Удерживайте, пока говорите» остаётся (kind 'short'),
+      // но без звука ошибки и без вибрации ошибки — лёгкий хаптик. Если держали долго, а записи нет — это настоящий сбой записи: прежний звук и хаптик, подпись «не успел разобрать».
+      const tapOnly = isSpeakingTapHold(holdMs);
+      console.log('[SPEAK-TAP]', JSON.stringify({ holdMs, tapMaxMs: SPEAKING_TAP_MAX_HOLD_MS, tapOnly, firstAudioMs: holdFirstAudioMsRef.current, decision: tapOnly ? 'soft_hint_light_haptic' : 'record_failure_error_cue' })); // guard-ok: одна строка на исход «ничего не записалось»
+      setStatus('no_speech');
+      if (tapOnly) {
+        void hapticLightImpact();
+      } else {
+        setNoSpeechKind('retry');
+        playNoSpeech();
+        hapticError();
+      }
       return;
     }
     const judgeAt = Date.now();

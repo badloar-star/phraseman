@@ -7,22 +7,31 @@ import { triLang, type Lang } from '../constants/i18n';
 
 export type SpeakingNoSpeechKind = 'short' | 'long' | 'retry' | 'loading' | 'empty';
 
+/** Удержание короче этого (мс) — тап, а не попытка говорить: исход «ничего не записалось» тогда не ошибка, а подсказка «удерживайте». */
+export const SPEAKING_TAP_MAX_HOLD_MS = 600;
+
+/** true — человек просто коснулся микрофона (удержание неизвестно или короче порога). */
+export function isSpeakingTapHold(holdMs: number | null): boolean {
+  return holdMs === null || holdMs < SPEAKING_TAP_MAX_HOLD_MS;
+}
+
 /** С какой длины (слов) фраза «длинная»: таймаут судьи на короткой фразе — это скорость телефона, а не длина. */
 export const SPEAKING_LONG_PHRASE_WORDS = 6;
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 
 const COPY: Readonly<Record<SpeakingNoSpeechKind, Nine>> = {
+  // зачем (Ревизор 29.10; владелец: занятия на «вы»): «short» — это короткий тап по микрофону, а не «отпусти позже»: подсказка говорит, что делать — держать, пока говоришь
   short: [
-    'Отпускай кнопку после последнего слова — я дослушаю',
-    'Відпускай кнопку після останнього слова — я дослухаю',
-    'Let go after your last word — I’ll hear you out',
-    'Suelta tras la última palabra: te escucho hasta el final',
-    'Solta o botão depois da última palavra — eu escuto até o fim',
-    'Thả nút sau từ cuối cùng — mình nghe hết cho',
-    'Lepas setelah kata terakhir — aku dengar sampai habis',
-    'Son kelimeden sonra bırak — sonuna kadar dinlerim',
-    'Puść przycisk po ostatnim słowie — wysłucham do końca',
+    'Удерживайте, пока говорите',
+    'Утримуйте, поки говорите',
+    'Hold while you speak',
+    'Mantén pulsado mientras hablas',
+    'Segure enquanto fala',
+    'Giữ nút trong khi nói',
+    'Tahan tombol selama berbicara',
+    'Konuşurken basılı tut',
+    'Trzymaj przycisk, gdy mówisz',
   ],
   long: [
     'Длинная фраза! Скажи чуть быстрее — я успею',

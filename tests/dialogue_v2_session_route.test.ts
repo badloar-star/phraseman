@@ -487,6 +487,56 @@ describe('Dialogue V2 session route', () => {
     expect(mockScreen.mock.calls.at(-1)[0].bottom).toBe('summary');
   });
 
+  // зачем (жалоба Надежды 29.10): собеседник закончил разговор, а человек закрыл итог через «Ещё → Завершить» (onComplete) —
+  // это прохождение: итог «bot», тема в хабе засчитана. Раньше уходило «manual», и счётчик темы оставался 0.
+  it('counts the scene as passed when the persona ended it and the learner closes via the menu', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const doneStore = require('../app/dialogue_v2_done_store') as typeof import('../app/dialogue_v2_done_store');
+    doneStore.resetDialogueV2DoneStoreForTests();
+    mockSendTurn.mockResolvedValueOnce({
+      kind: 'reply',
+      replies: [{ personaId: 'host', text: 'Tschüss!' }],
+      replayed: false,
+      preparedBotVoiceSelection: null,
+      quota: null,
+      coaching: {
+        replyTranslations: null, replyExplanations: null, betterPhrasing: null, hint: null,
+        mood: 'happy', activeObjectiveId: null, dialogueEnded: true,
+      },
+    });
+    await render(h(DialogueV2SessionRoute));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Danke!'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    await waitFor(() => expect(mockScreen.mock.calls.at(-1)[0].bottom).toBe('ended'));
+
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onComplete(); });
+    expect(mockReplace).not.toHaveBeenCalledWith(expect.objectContaining({ pathname: '/dialogue_v2_completion' }));
+    expect(mockPush).toHaveBeenCalledWith({
+      pathname: '/dialogue_v2_completion',
+      params: {
+        sessionId: `d2s_${'a'.repeat(32)}`, scenarioId: 'work_01', endedBy: 'bot', learnerTurns: '1', title: 'Согласовать время', mood: 'happy',
+      },
+    });
+    expect(doneStore.peekDialogueV2DoneIds('de').has('work_01')).toBe(true);
+  });
+
+  // зачем: остановка вручную ДО конца разговора по-прежнему не прохождение.
+  it('does not count a manual stop before the persona ended the scene', async () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const doneStore = require('../app/dialogue_v2_done_store') as typeof import('../app/dialogue_v2_done_store');
+    doneStore.resetDialogueV2DoneStoreForTests();
+    await render(h(DialogueV2SessionRoute));
+    await waitFor(() => expect(mockStartSession).toHaveBeenCalled()); await act(async () => {});
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onChangeDraft('Hallo'); });
+    await act(async () => { await mockScreen.mock.calls.at(-1)[0].onSend(); });
+    await act(async () => { mockScreen.mock.calls.at(-1)[0].onComplete(); });
+    expect(mockReplace).toHaveBeenCalledWith(expect.objectContaining({
+      pathname: '/dialogue_v2_completion', params: expect.objectContaining({ endedBy: 'manual' }),
+    }));
+    expect(doneStore.peekDialogueV2DoneIds('de').has('work_01')).toBe(false);
+  });
+
   // 18.10 (владелец: экранов-ошибок нигде): пауза сервиса — не экран «Диалоги на паузе», а тихий уход в хаб.
   it('returns to the dialogs hub when the server reports the dialogue section switched off', async () => {
     const { DialogueV2TurnFailureError } = jest.requireMock('../app/dialogue_v2_turn_coaching_client') as {

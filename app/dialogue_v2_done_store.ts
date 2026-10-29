@@ -79,6 +79,12 @@ async function readKeyIntoMemory(key: string, studyTarget: string): Promise<Read
   }
 }
 
+/** Для журнала [DIALOG-THEME-PROGRESS]: прочитан ли уже диск для этого языка на этом аккаунте (иначе счётчик — только память процесса). */
+export function isDialogueV2DoneHydrated(studyTarget: string): boolean {
+  const key = storageKey(studyTarget);
+  return key !== null && hydrated.has(key);
+}
+
 /** Для хаба: прочитать диск (один раз за процесс) и вернуть набор. */
 export async function hydrateDialogueV2DoneIds(studyTarget: string): Promise<ReadonlySet<string>> {
   const key = storageKey(studyTarget);

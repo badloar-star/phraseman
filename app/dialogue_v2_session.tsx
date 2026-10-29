@@ -31,6 +31,7 @@ import { dialogueV2SessionCoachingLabels } from './dialogue_v2_session_coaching_
 import { dialogueV2SayHintsForPartnerReply, lastPartnerReplyForHints } from './dialogue_v2_say_hints_pick';
 import { rememberDialogueV2SessionOutcome } from './dialogue_v2_session_outcome_store';
 import { markDialogueV2Done } from './dialogue_v2_done_store';
+import { noteDialogDoneDecision } from './dialog_theme_progress_diagnostics';
 import { markDialogueV2DoneToday } from './dialogue_v2_day_mark';
 import { createDialogueEnergySettler, type DialogueEnergySettler } from './dialogue_v2_energy_settle';
 import { formatDialogObjectiveLabel } from '../components/dialogs/dialog_objective_label';
@@ -736,11 +737,14 @@ function SessionContent() {
     void runPendingTurn(pending);
   };
 
-  const openSummary = (endedBy: 'bot' | 'manual' | 'limit') => {
+  const openSummary = (requestedEndedBy: 'bot' | 'manual' | 'limit') => {
     if (!serverSession || !scenarioId) {
       console.warn('[DIALOGUE-V2] summary:open → no session', { scenarioId });
       return;
     }
+    // зачем (жалоба Надежды 29.10, координатор: «чини сразу»): собеседник уже закончил разговор (coaching.ended), а человек закрыл итог
+    // через «Ещё → Завершить» — это прохождение, а не остановка. Иначе тема оставалась 0 при засчитанной серии и заданиях дня.
+    const endedBy: 'bot' | 'manual' | 'limit' = requestedEndedBy === 'manual' && coaching.ended === true ? 'bot' : requestedEndedBy;
     const learnerMessages = messages.filter((message) => message.author === 'learner' && !message.offLanguage);
     const learnerTurns = learnerMessages.length;
     if (learnerTurns === 0) refundEmptyDialogue('summary');
@@ -788,6 +792,24 @@ function SessionContent() {
     });
     // зачем (координатор 12.10, dialogs-003): «пройден» = диалог закончил собеседник (на экране итога это «Диалог пройден») и ученик сказал хотя бы одну реплику;
     // отметка мгновенная (память + хаб в тот же кадр), диск догоняет фоном. Остановка вручную или по лимиту прохождением не считается.
+    const countedAsDone = endedBy === 'bot' && learnerTurns > 0 && supportedTarget(studyTarget);
+    // зачем (жалоба Надежды 29.10, «сперва логи»): в релизе console.log вырезан — решение «засчитан / нет» и что его решило уходит в журнал
+    // обращений: путь закрытия, закончил ли разговор сервер (coaching.ended), реплики, текущая цель из скольких.
+    {
+      const summaryObjectives = model?.objectives ?? [];
+      const summaryActive = coaching.activeObjectiveId ? summaryObjectives.findIndex((objective) => objective.id === coaching.activeObjectiveId) : -1;
+      noteDialogDoneDecision({
+        scenarioId,
+        endedBy,
+        requestedEndedBy,
+        endedByServer: coaching.ended === true,
+        learnerTurns,
+        objectiveIndex: coaching.ended === true ? summaryObjectives.length : Math.max(0, summaryActive),
+        objectivesTotal: summaryObjectives.length,
+        counted: countedAsDone,
+      });
+    }
+    // зачем: условие отметки остаётся дословным — его сверяет tests/dialogue_v2_done_status.test.ts; countedAsDone выше только для журнала.
     if (endedBy === 'bot' && learnerTurns > 0 && supportedTarget(studyTarget)) {
       markDialogueV2Done(studyTarget, scenarioId);
       // зачем (координатор 22.10, «Сцена» Диалогов): день с засчитанным диалогом — состояние day_done; локальная дата, без сети

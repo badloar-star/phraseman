@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-05:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-12:intro3:r2": {
-          "ru": "Scissors имеет форму множественного числа, поэтому нужно are, а не is.",
-          "uk": "Scissors має форму множини, тому потрібно are, а не is."
+          "ru": "Scissors имеет форму для нескольких, поэтому нужно are, а не is.",
+          "uk": "Scissors має форму для кількох, тому потрібно are, а не is."
         },
         "en:lesson-05:session-12:intro3:r3": {
           "ru": "your — твои, а ножницы ваши: нужно my.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "d517b996d9f89d3b32e60e9ac3767cc48bfdea7b1340afa0ffd97f9ee45a02b7"
+  "auxiliaryFingerprint": "14030fd3e993aef97c77313fa5a831c7de1938b705916d9e44a5d07b11694da9"
 }

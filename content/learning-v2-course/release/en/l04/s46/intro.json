@@ -123,8 +123,8 @@
         "uk": "Порожня полиця"
       },
       "bodyByLocale": {
-        "ru": "Утром вы хотите завтрак, а на полке в кладовой пусто. Раньше там стояли небольшие картонные упаковки с хлопьями, а теперь нет ни одной. packet — «пачка, пакетик». There aren’t any packets on the shelf — «На полке нет пачек». Сначала ставим There aren’t any, затем packets во множественном числе и место — on the shelf. Aren’t означает are not; сообщаем, что пачек нет совсем.",
-        "uk": "Зранку ви хочете снідати, а на полиці в коморі порожньо. Раніше там стояли невеликі картонні упаковки з пластівцями, а тепер немає жодної. packet — «пачка, пакетик». There aren’t any packets on the shelf — «На полиці немає пачок». Спочатку ставимо There aren’t any, потім packets у множині й місце — on the shelf. Aren’t означає are not; повідомляємо, що пачок немає зовсім."
+        "ru": "Утром вы хотите завтрак, а на полке в кладовой пусто. Раньше там стояли небольшие картонные упаковки с хлопьями, а теперь нет ни одной. packet — «пачка, пакетик». There aren’t any packets on the shelf — «На полке нет пачек». Сначала ставим There aren’t any, затем packets в форме для нескольких и место — on the shelf. Aren’t означает are not; сообщаем, что пачек нет совсем.",
+        "uk": "Зранку ви хочете снідати, а на полиці в коморі порожньо. Раніше там стояли невеликі картонні упаковки з пластівцями, а тепер немає жодної. packet — «пачка, пакетик». There aren’t any packets on the shelf — «На полиці немає пачок». Спочатку ставимо There aren’t any, потім packets у формі для кількох й місце — on the shelf. Aren’t означає are not; повідомляємо, що пачок немає зовсім."
       },
       "question": {
         "interactionId": "en:lesson-04:session-46:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "88afb3eecbcc55c1a2e2bcc3d832a5176558e7ad3bc1a51c35ff1935a2e8fb01"
+  "introFingerprint": "b17c8684b17181d526510ccba562d4621da417145dbfb05c5d49ec3a9fdfb04b"
 }

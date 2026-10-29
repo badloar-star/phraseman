@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-13:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-13:intro2:r2": {
-          "ru": "С an airport в единственном числе нужно Is there.",
-          "uk": "З an airport в однині потрібне Is there."
+          "ru": "С an airport в форме для одного нужно Is there.",
+          "uk": "З an airport у формі для одного потрібне Is there."
         },
         "en:lesson-04:session-13:intro2:r3": {
           "ru": "Airport начинается с гласного звука, поэтому нужно an.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "0a6ba7515aa7cc54137fb2831a2946230cfe1224506a8d21fedb57af0cc7b78b"
+  "auxiliaryFingerprint": "f76991d3497c328045deb35a820c5558c2ca1cb0da29ef8d19aa66bc485207d2"
 }

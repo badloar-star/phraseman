@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-03:session-46:intro3:q",
       "responseFeedbackById": {
         "en:lesson-03:session-46:intro3:r2": {
-          "ru": "Слово stairs стоит во множественном числе, поэтому нужно are: The stairs are narrow.",
-          "uk": "Слово stairs стоїть у множині, тому потрібно are: The stairs are narrow."
+          "ru": "Слово stairs стоит в форме для нескольких, поэтому нужно are: The stairs are narrow.",
+          "uk": "Слово stairs стоїть у формі для кількох, тому потрібно are: The stairs are narrow."
         },
         "en:lesson-03:session-46:intro3:r3": {
           "ru": "Лестница в подъезде одна и понятна вам обеим, поэтому the, а не a: The stairs are narrow.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "48a2d8b9edbf49587eb1701d986463bb093976d47d353e71a8c98d6d5ac8e46b"
+  "auxiliaryFingerprint": "28cd08b583cf2d4b4250c91426b83161ab3631c86b4929074b4e9465a7b418b1"
 }

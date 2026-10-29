@@ -123,8 +123,8 @@
         "uk": "Шкарпетки на дальній полиці"
       },
       "bodyByLocale": {
-        "ru": "На дальней полке магазина лежат носки в горошек: на светлом фоне тёмные круглые пятна. Подруга мёрзнет и спрашивает, тёплые ли они. Носков несколько, и они далеко. spotted — «в горошек». Those spotted socks are warm — «Те носки в горошек тёплые». Сначала Those spotted socks: указание those, рисунок spotted, название socks во множественном числе. Затем are и признак warm.",
-        "uk": "На дальній полиці магазину лежать шкарпетки в горошок: на світлому тлі темні круглі плями. Подруга мерзне й питає, чи вони теплі. Шкарпеток кілька, і вони далеко. spotted — «у горошок». Those spotted socks are warm — «Ті шкарпетки в горошок теплі». Спочатку Those spotted socks: вказівка those, малюнок spotted, назва socks у множині. Потім are та ознака warm."
+        "ru": "На дальней полке магазина лежат носки в горошек: на светлом фоне тёмные круглые пятна. Подруга мёрзнет и спрашивает, тёплые ли они. Носков несколько, и они далеко. spotted — «в горошек». Those spotted socks are warm — «Те носки в горошек тёплые». Сначала Those spotted socks: указание those, рисунок spotted, название socks в форме для нескольких. Затем are и признак warm.",
+        "uk": "На дальній полиці магазину лежать шкарпетки в горошок: на світлому тлі темні круглі плями. Подруга мерзне й питає, чи вони теплі. Шкарпеток кілька, і вони далеко. spotted — «у горошок». Those spotted socks are warm — «Ті шкарпетки в горошок теплі». Спочатку Those spotted socks: вказівка those, малюнок spotted, назва socks у формі для кількох. Потім are та ознака warm."
       },
       "question": {
         "interactionId": "en:lesson-03:session-54:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ab2c20ef178cb057407d2cf557d5231389c486a2158b8dc0c5e834c9be47dfa5"
+  "introFingerprint": "70b4f5059145018325d05a478e0dbd0d8d86c7b0699706df48fbe90d83d01c83"
 }

@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-47:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-47:intro1:r2": {
-          "ru": "Leftovers имеет форму множественного числа, поэтому нужно There are.",
-          "uk": "Leftovers має форму множини, тому потрібне There are."
+          "ru": "Leftovers имеет форму для нескольких, поэтому нужно There are.",
+          "uk": "Leftovers має форму для кількох, тому потрібне There are."
         },
         "en:lesson-04:session-47:intro1:r3": {
           "ru": "Внутри холодильника говорят in the fridge, а не on.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "65d570090d889cea6d21801719603d2ef0102ae82a45311365c4b9dc334976e8"
+  "auxiliaryFingerprint": "c8cab30650c36b9f6a42113a3143f2bd38fadec029513a884857140a9ad06aef"
 }

@@ -69,8 +69,8 @@
         "uk": "Рядок про підвал"
       },
       "bodyByLocale": {
-        "ru": "Агент просит описать технику в подвале. Вы спускаетесь в подвал и видите там несколько машин, в которые загружают бельё и включают стирку. washing machine — «стиральная машина». There are some washing machines in the basement — «В подвале есть несколько стиральных машин». Сначала ставим There are, затем some washing machines и место — in the basement. С названием машин во множественном числе нужно are.",
-        "uk": "Агент просить описати техніку в підвалі. Ви спускаєтеся в підвал і бачите там кілька машин, у які завантажують білизну й вмикають прання. washing machine — «пральна машина». There are some washing machines in the basement — «У підвалі є кілька пральних машин». Спочатку ставимо There are, потім some washing machines і місце — in the basement. З назвою машин у множині потрібне are."
+        "ru": "Агент просит описать технику в подвале. Вы спускаетесь в подвал и видите там несколько машин, в которые загружают бельё и включают стирку. washing machine — «стиральная машина». There are some washing machines in the basement — «В подвале есть несколько стиральных машин». Сначала ставим There are, затем some washing machines и место — in the basement. С названием машин в форме для нескольких нужно are.",
+        "uk": "Агент просить описати техніку в підвалі. Ви спускаєтеся в підвал і бачите там кілька машин, у які завантажують білизну й вмикають прання. washing machine — «пральна машина». There are some washing machines in the basement — «У підвалі є кілька пральних машин». Спочатку ставимо There are, потім some washing machines і місце — in the basement. З назвою машин у формі для кількох потрібне are."
       },
       "question": {
         "interactionId": "en:lesson-04:session-45:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "01b55dd811b997cdecbab7ad60743d8cbaa5fac731998e3d9924bf677ae3d735"
+  "introFingerprint": "ec0415517a18bc20177e912349aeb8c4cbd613dca5b1502e26f11e7fca73398e"
 }

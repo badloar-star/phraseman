@@ -123,8 +123,8 @@
         "uk": "Після дощу"
       },
       "bodyByLocale": {
-        "ru": "Дождь только что кончился, и подруга боится промочить ноги. Вы смотрите на землю: ямок с водой, которые остаются на дороге после дождя, нигде не видно. puddle — «лужа». There aren’t any puddles on the footpath — «На тропе нет луж». Начинаем с There aren’t any, затем называем то, чего нет, во множественном числе — puddles — и место: on the footpath. Aren’t означает are not, а any в этом отрицании подчёркивает, что луж нет совсем.",
-        "uk": "Дощ щойно скінчився, і подруга боїться промочити ноги. Ви дивитеся на землю: ямок із водою, які залишаються на дорозі після дощу, ніде не видно. puddle — «калюжа». There aren’t any puddles on the footpath — «На стежці немає калюж». Починаємо з There aren’t any, потім називаємо те, чого немає, у множині — puddles — і місце: on the footpath. Aren’t означає are not, а any в цьому запереченні підкреслює, що калюж немає зовсім."
+        "ru": "Дождь только что кончился, и подруга боится промочить ноги. Вы смотрите на землю: ямок с водой, которые остаются на дороге после дождя, нигде не видно. puddle — «лужа». There aren’t any puddles on the footpath — «На тропе нет луж». Начинаем с There aren’t any, затем называем то, чего нет, в форме для нескольких — puddles — и место: on the footpath. Aren’t означает are not, а any в этом отрицании подчёркивает, что луж нет совсем.",
+        "uk": "Дощ щойно скінчився, і подруга боїться промочити ноги. Ви дивитеся на землю: ямок із водою, які залишаються на дорозі після дощу, ніде не видно. puddle — «калюжа». There aren’t any puddles on the footpath — «На стежці немає калюж». Починаємо з There aren’t any, потім називаємо те, чого немає, у формі для кількох — puddles — і місце: on the footpath. Aren’t означає are not, а any в цьому запереченні підкреслює, що калюж немає зовсім."
       },
       "question": {
         "interactionId": "en:lesson-04:session-55:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "360f89fb1dffad7271bbc1c7ec67ff5e9926b4533384e28ce655930378b5b146"
+  "introFingerprint": "3871de4d0e533857b10b06f1cec0b087139c5d84eea908b92a76de19cbb09109"
 }

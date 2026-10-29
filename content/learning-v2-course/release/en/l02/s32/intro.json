@@ -16,7 +16,7 @@
       },
       "bodyByLocale": {
         "ru": "Соседка принесла на ярмарку пироги. Она говорит, что испекла их дома. homemade — «домашний, сделанный дома». They are homemade — «Они домашние». Сначала They — о пирогах, затем are, затем homemade — их характеристика. С множественным they используем are.",
-        "uk": "Сусідка принесла на ярмарок пироги. Вона каже, що спекла їх удома. homemade — «домашній, зроблений удома». They are homemade — «Вони домашні». Спочатку They — про пироги, потім are, потім homemade — їхня характеристика. Із множинним they використовуємо are."
+        "uk": "Сусідка принесла на ярмарок пироги. Вона каже, що спекла їх удома. homemade — «домашній, зроблений удома». They are homemade — «Вони домашні». Спочатку They — про пироги, потім are, потім homemade — їхня характеристика. Із they (їх кілька) використовуємо are."
       },
       "question": {
         "interactionId": "en:lesson-02:session-32:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1cd1ddf057ad24eeff60f2fbfb018ae79f1d5f970df411387efb68883b32a8a8"
+  "introFingerprint": "863c5bd705a79bf0af9f9d5781d95c8c636e7a1b8a262b14892df6bb2b28599b"
 }

@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-39:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-39:intro1:r2": {
-          "ru": "С a boiler в единственном числе нужно isn’t.",
-          "uk": "З a boiler в однині потрібне isn’t."
+          "ru": "С a boiler в форме для одного нужно isn’t.",
+          "uk": "З a boiler у формі для одного потрібне isn’t."
         },
         "en:lesson-04:session-39:intro1:r3": {
           "ru": "is значит «есть», а бойлера нет: нужно isn’t.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "6904a56b1a7880c5341330e2db7d768f6b2b29fe8e8cb17a950ee5953e2e862d"
+  "auxiliaryFingerprint": "1abf2649f7ea4ea26cf7747c0e5fcff22d915dfe3d83afec6da97a91e64df4e8"
 }

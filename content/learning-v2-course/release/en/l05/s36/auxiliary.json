@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-05:session-36:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-36:intro1:r2": {
-          "ru": "binoculars — множественное число, поэтому нужно are these.",
-          "uk": "binoculars — множина, тому потрібно are these."
+          "ru": "binoculars — форма для нескольких, поэтому нужно are these.",
+          "uk": "binoculars — форма для кількох, тому потрібно are these."
         },
         "en:lesson-05:session-36:intro1:r3": {
           "ru": "Это «Где бинокль?». О хозяине спрашиваем с whose.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "7afc2dc99372824c0a476de4e7be64cbf13692c4bfa1a8b2a8ef258b9d81633f"
+  "auxiliaryFingerprint": "0eed621baeccd9667f117d6e03e6a08977264722a05ad3cc2b03074d1610bd39"
 }

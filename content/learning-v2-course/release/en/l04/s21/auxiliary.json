@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-21:intro2:r2": {
-          "ru": "Tea здесь неисчисляемое, поэтому нужно isn’t.",
-          "uk": "Tea тут незлічуване, тому потрібне isn’t."
+          "ru": "Tea здесь не считается поштучно, поэтому нужно isn’t.",
+          "uk": "Tea тут не рахується поштучно, тому потрібне isn’t."
         },
         "en:lesson-04:session-21:intro2:r3": {
           "ru": "Чтобы сказать «нет», нужно isn't: There isn't any tea.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "830d80af2a6c42ec93662b85d9ad6e32d215a1562a6adcdc6b10e269110552a5"
+  "auxiliaryFingerprint": "411c38f1194e4ebaa95e506c5222a10ff0824a422cef8e12eb861a7b348c4ec8"
 }

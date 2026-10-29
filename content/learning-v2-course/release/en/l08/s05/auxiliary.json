@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-08:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-05:intro3:r2": {
-          "ru": "Jumper — единственное число: нужно is this.",
-          "uk": "Jumper — однина: потрібно is this."
+          "ru": "Jumper — форма для одного: нужно is this.",
+          "uk": "Jumper — форма для одного: потрібно is this."
         },
         "en:lesson-08:session-05:intro3:r3": {
           "ru": "Сначала whose jumper, потом is this.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "6cb2f144f3608d66db60128472690a99b69ef50852322987bf59938c6ae62cd6"
+  "auxiliaryFingerprint": "5c3408dc0bdb00fb9e82d7247e3f50348abb95c8b71dd937c82a938aa566bc90"
 }

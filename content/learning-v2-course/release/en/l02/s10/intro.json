@@ -16,7 +16,7 @@
       },
       "bodyByLocale": {
         "ru": "Вы с Олегом несёте собранный шкаф в комнату. Он упирается в косяк: дверь чуть шире вас самих. narrow — «узкий». It's narrow — «Она узкая». Сначала It’s — сокращение It is, затем narrow — характеристика двери.",
-        "uk": "Ви з Олегом несете зібрану шафу в кімнату. Вона впирається в одвірок: двері трохи ширші за вас самих. narrow — «вузький». It's narrow — «Вони вузькі». Спочатку It’s — скорочення It is, потім narrow — характеристика дверей. Англійське door тут в однині, тому it."
+        "uk": "Ви з Олегом несете зібрану шафу в кімнату. Вона впирається в одвірок: двері трохи ширші за вас самих. narrow — «вузький». It's narrow — «Вони вузькі». Спочатку It’s — скорочення It is, потім narrow — характеристика дверей. Англійське door тут у формі для одного, тому it."
       },
       "question": {
         "interactionId": "en:lesson-02:session-10:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3044e22cc7ada42250102b153c4b750bbce65a64f126ddf36cb87c1e8b6fd1a0"
+  "introFingerprint": "d1aad14775e674dedd5e9e39ccd68df855de3db4c3b98215232f1e024427b623"
 }

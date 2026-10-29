@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-52:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-52:intro3:r2": {
-          "ru": "Swings стоит во множественном числе, поэтому нужно aren’t.",
-          "uk": "Swings стоїть у множині, тому потрібне aren’t."
+          "ru": "Swings стоит в форме для нескольких, поэтому нужно aren’t.",
+          "uk": "Swings стоїть у формі для кількох, тому потрібне aren’t."
         },
         "en:lesson-04:session-52:intro3:r3": {
-          "ru": "После aren’t any здесь нужна форма множественного числа swings.",
-          "uk": "Після aren’t any тут потрібна форма множини swings."
+          "ru": "После aren’t any здесь нужна форма для нескольких swings.",
+          "uk": "Після aren’t any тут потрібна форма для кількох swings."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "3f79bdaf28340feda1158cf4cab35a2c5dfff353a501dd8ee3afb52050f18bd0"
+  "auxiliaryFingerprint": "4eb209a0d2afb24896fdad247e077b2b9f0e16b59c90d36d47810fa5e03662af"
 }

@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-48:intro2:r2": {
-          "ru": "Aprons стоит во множественном числе, поэтому нужно aren’t.",
-          "uk": "Aprons стоїть у множині, тому потрібне aren’t."
+          "ru": "Aprons стоит в форме для нескольких, поэтому нужно aren’t.",
+          "uk": "Aprons стоїть у формі для кількох, тому потрібне aren’t."
         },
         "en:lesson-04:session-48:intro2:r3": {
-          "ru": "После aren’t any здесь нужна форма множественного числа aprons.",
-          "uk": "Після aren’t any тут потрібна форма множини aprons."
+          "ru": "После aren’t any здесь нужна форма для нескольких aprons.",
+          "uk": "Після aren’t any тут потрібна форма для кількох aprons."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "30972fef7fe410395879f2341dcd61ae8c2060006b66112ac03fa5cee73ec5b6"
+  "auxiliaryFingerprint": "656e094bffb29c8abc38c6f4e95251cf7183fce19a15a59d3956e9bd31f31fb7"
 }

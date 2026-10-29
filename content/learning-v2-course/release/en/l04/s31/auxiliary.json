@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-31:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-31:intro1:r2": {
-          "ru": "С a car park в единственном числе нужно There is.",
-          "uk": "З a car park в однині потрібне There is."
+          "ru": "С a car park в форме для одного нужно There is.",
+          "uk": "З a car park у формі для одного потрібне There is."
         },
         "en:lesson-04:session-31:intro1:r3": {
           "ru": "Стоянка одна и названа впервые, поэтому нужно a: a car park.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-04:session-31:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-31:intro3:r2": {
-          "ru": "Перед petrol station в единственном числе здесь нужно a.",
-          "uk": "Перед petrol station в однині тут потрібне a."
+          "ru": "Перед petrol station в форме для одного здесь нужно a.",
+          "uk": "Перед petrol station у формі для одного тут потрібне a."
         },
         "en:lesson-04:session-31:intro3:r3": {
           "ru": "Заправка одна, поэтому нужно is: There is a petrol station.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "291eae4f3673c0dd5edccfc6225882f56f22bd04d8948dc67edaaf5ffeed3599"
+  "auxiliaryFingerprint": "d5bca934b6cabcf6e9779864b0569534a9198121ea79b265aa45d12b54fe22dc"
 }

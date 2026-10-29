@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-05:session-32:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-32:intro3:r2": {
-          "ru": "Cutlery — неисчисляемое слово, поэтому вопрос начинаем с Is.",
-          "uk": "Cutlery — незлічуване слово, тому питання починаємо з Is."
+          "ru": "Cutlery — слово, которое не считают поштучно, поэтому вопрос начинаем с Is.",
+          "uk": "Cutlery — слово, яке не рахують поштучно, тому питання починаємо з Is."
         },
         "en:lesson-05:session-32:intro3:r3": {
           "ru": "Так получилось бы, что приборы — это сама сестра. Хозяйку называем через 's: your sister's.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "61cc7cb374a74ec4dc9897a59a48bd8bd69d6d4b7b9de03a3a2f9e9d5218df75"
+  "auxiliaryFingerprint": "f03afa1845b1cdda6ff28797c65d605235da2859d7ba8a6a4f7bb9f6e2041d08"
 }

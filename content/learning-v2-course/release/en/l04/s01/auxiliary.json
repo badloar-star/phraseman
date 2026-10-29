@@ -36,11 +36,11 @@
           "uk": "Перед назвою одного місця потрібно a: There is a bakery here."
         },
         "en:lesson-04:session-01:intro3:r3": {
-          "ru": "С a bakery в единственном числе нужно is.",
-          "uk": "З a bakery в однині потрібне is."
+          "ru": "С a bakery в форме для одного нужно is.",
+          "uk": "З a bakery у формі для одного потрібне is."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c3a563831abb213adac9bc8590fccef487fd7a3a9dde1b03dc468c7efe6901c9"
+  "auxiliaryFingerprint": "1b256b25dc78b60f1a6443847b400d362bf64892c73d4b809ee90ab708895566"
 }

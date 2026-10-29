@@ -123,8 +123,8 @@
         "uk": "Годинник на лаві"
       },
       "bodyByLocale": {
-        "ru": "Вы с соседкой присели на скамейку в парке и заметили рядом наручные часы. Хозяин, наверное, ушёл совсем недавно. wristwatch — «наручные часы». Вы спрашиваете у соседки: Whose wristwatch is this — «Чьи это часы?». Английское слово wristwatch — единственное число, поэтому здесь is this.",
-        "uk": "Ви із сусідкою присіли на лаву в парку й помітили поруч наручний годинник. Власник, мабуть, пішов зовсім недавно. wristwatch — «наручний годинник». Ви питаєте в сусідки: Whose wristwatch is this — «Чий це годинник?». Англійське слово wristwatch — однина, тому тут is this."
+        "ru": "Вы с соседкой присели на скамейку в парке и заметили рядом наручные часы. Хозяин, наверное, ушёл совсем недавно. wristwatch — «наручные часы». Вы спрашиваете у соседки: Whose wristwatch is this — «Чьи это часы?». Английское слово wristwatch — форма для одного, поэтому здесь is this.",
+        "uk": "Ви із сусідкою присіли на лаву в парку й помітили поруч наручний годинник. Власник, мабуть, пішов зовсім недавно. wristwatch — «наручний годинник». Ви питаєте в сусідки: Whose wristwatch is this — «Чий це годинник?». Англійське слово wristwatch — форма для одного, тому тут is this."
       },
       "question": {
         "interactionId": "en:lesson-08:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4d0479191aa51ee5cba838e67e2e4570a086263c3df7825a33a3d90ca46dea01"
+  "introFingerprint": "2e9a977020a9ecee743bd409b55e329fcaa4199d1288ee7e8853d8b37db6fb9f"
 }

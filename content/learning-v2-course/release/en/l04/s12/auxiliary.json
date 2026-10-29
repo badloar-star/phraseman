@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-12:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-12:intro2:r2": {
-          "ru": "Вопрос о timetables во множественном числе, поэтому в ответе нужно aren’t.",
-          "uk": "Запитання про timetables у множині, тому у відповіді потрібне aren’t."
+          "ru": "Вопрос о timetables в форме для нескольких, поэтому в ответе нужно aren’t.",
+          "uk": "Запитання про timetables у формі для кількох, тому у відповіді потрібне aren’t."
         },
         "en:lesson-04:session-12:intro2:r3": {
           "ru": "Вопрос начинался с Are there, поэтому и ответ с there: No, there aren't.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "95cb8a2788eed96e6c591e4d496a1c2e756b606dd1789e8570c2a60a0d8a6c12"
+  "auxiliaryFingerprint": "9cfe9fb6a3cdd616ce1baf32322009ff5ac9b9fe4f8d7468171a6ed12e3c8caa"
 }

@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-42:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-42:intro1:r2": {
-          "ru": "С a bus shelter в единственном числе нужно Is there.",
-          "uk": "З a bus shelter в однині потрібне Is there."
+          "ru": "С a bus shelter в форме для одного нужно Is there.",
+          "uk": "З a bus shelter у формі для одного потрібне Is there."
         },
         "en:lesson-04:session-42:intro1:r3": {
           "ru": "Павильон один, поэтому перед bus shelter нужно a.",
@@ -23,8 +23,8 @@
           "uk": "Автоматів кілька, тому запитання починають з Are there, а не з Is there."
         },
         "en:lesson-04:session-42:intro2:r3": {
-          "ru": "После Are there any здесь нужна форма множественного числа ticket machines.",
-          "uk": "Після Are there any тут потрібна форма множини ticket machines."
+          "ru": "После Are there any здесь нужна форма для нескольких ticket machines.",
+          "uk": "Після Are there any тут потрібна форма для кількох ticket machines."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "9613175c8ecb445597870840f4b07ad57c187b3bd0fb750690e0c94ab16cac76"
+  "auxiliaryFingerprint": "8d211dc9b48211e2e6bb6d062254e927d9994ac9e686090701586b69d7ee4076"
 }

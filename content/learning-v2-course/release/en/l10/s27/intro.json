@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-27",
   "learningOutcomeByLocale": {
-    "ru": "We are walking uphill; We are walking downhill; Go straight ahead; I go to work on foot",
-    "uk": "We are walking uphill; We are walking downhill; Go straight ahead; I go to work on foot"
+    "ru": "объяснить, куда и как идти: Go straight ahead",
+    "uk": "пояснити, куди і як іти: Go straight ahead"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Без автобуса й машини"
       },
       "bodyByLocale": {
-        "ru": "Ваша работа недалеко от дома, и вы ходите туда пешком. On foot — «пешком»: I go to work on foot — «Я хожу на работу пешком». Это обычный способ добираться: go. В выражении on foot нужен on; foot остаётся в единственном числе.",
-        "uk": "Ваша робота недалеко від дому, і ви ходите туди пішки. On foot — «пішки»: I go to work on foot — «Я ходжу на роботу пішки». Це звичайний спосіб діставатися: go. У вислові on foot потрібне on; foot залишається в однині."
+        "ru": "Ваша работа недалеко от дома, и вы ходите туда пешком. On foot — «пешком»: I go to work on foot — «Я хожу на работу пешком». Это обычный способ добираться: go. В выражении on foot нужен on; foot остаётся в форме для одного.",
+        "uk": "Ваша робота недалеко від дому, і ви ходите туди пішки. On foot — «пішки»: I go to work on foot — «Я ходжу на роботу пішки». Це звичайний спосіб діставатися: go. У вислові on foot потрібне on; foot залишається у формі для одного."
       },
       "question": {
         "interactionId": "en:lesson-10:session-27:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a7d5909b68996ff08f703c2ad49173ac2c0dd7d5733cb8e88d54d093804d0771"
+  "introFingerprint": "ddd8d960dc1b49561b8aa3df3b5f7d9a8e5cbc240c74c4b0fa29b184afba5124"
 }

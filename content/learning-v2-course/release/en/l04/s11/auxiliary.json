@@ -23,8 +23,8 @@
           "uk": "Місць кілька, і a перед ними не ставимо: seats."
         },
         "en:lesson-04:session-11:intro2:r3": {
-          "ru": "После Are there здесь нужна форма множественного числа seats.",
-          "uk": "Після Are there тут потрібна форма множини seats."
+          "ru": "После Are there здесь нужна форма для нескольких seats.",
+          "uk": "Після Are there тут потрібна форма для кількох seats."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "9727d8336862c4994f8ce4ab58c24f7149d2a06e5d49e29b1d33f1ed2036fddf"
+  "auxiliaryFingerprint": "82780c43e643eeeb47d881dcd5c067cc85b8058ef58c35e78b35f3e85bb1e423"
 }

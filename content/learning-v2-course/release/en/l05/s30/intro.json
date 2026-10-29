@@ -15,8 +15,8 @@
         "uk": "Рукавиці на стійці"
       },
       "bodyByLocale": {
-        "ru": "Подруга помогает туристу найти варежки, а вы видите их на стойке. Mittens — «варежки», форма множественного числа; одна варежка — mitten. Скажите подруге: The tourist's mittens are on the desk — «Варежки туриста на стойке». Сначала называем хозяина и вещи: the tourist's mittens, затем ставим are и указываем место: on the desk. Are согласуется с mittens, а не с tourist.",
-        "uk": "Подруга допомагає туристу знайти рукавиці, а ви бачите їх на стійці. Mittens — «рукавиці», форма множини; одна рукавиця — mitten. Скажіть подрузі: The tourist's mittens are on the desk — «Рукавиці туриста на стійці». Спочатку називаємо господаря й речі: the tourist's mittens, потім ставимо are і вказуємо місце: on the desk. Are узгоджується з mittens, а не з tourist."
+        "ru": "Подруга помогает туристу найти варежки, а вы видите их на стойке. Mittens — «варежки», форма для нескольких; одна варежка — mitten. Скажите подруге: The tourist's mittens are on the desk — «Варежки туриста на стойке». Сначала называем хозяина и вещи: the tourist's mittens, затем ставим are и указываем место: on the desk. Are согласуется с mittens, а не с tourist.",
+        "uk": "Подруга допомагає туристу знайти рукавиці, а ви бачите їх на стійці. Mittens — «рукавиці», форма для кількох; одна рукавиця — mitten. Скажіть подрузі: The tourist's mittens are on the desk — «Рукавиці туриста на стійці». Спочатку називаємо господаря й речі: the tourist's mittens, потім ставимо are і вказуємо місце: on the desk. Are узгоджується з mittens, а не з tourist."
       },
       "question": {
         "interactionId": "en:lesson-05:session-30:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Кросівки в спортзалі"
       },
       "bodyByLocale": {
-        "ru": "В спортзале гостиницы остались два кроссовка. Sneakers — «кроссовки»; один кроссовок — sneaker. Спросите инструктора: Are these the guest's sneakers? — «Это кроссовки гостя?» Перед these ставим are, потому что показываем несколько вещей. Затем называем предполагаемого хозяина с 's и вещь во множественном числе: the guest's sneakers.",
-        "uk": "У спортзалі готелю залишилися два кросівки. Sneakers — «кросівки»; один кросівок — sneaker. Спитайте інструктора: Are these the guest's sneakers? — «Це кросівки гостя?» Перед these ставимо are, бо показуємо кілька речей. Потім називаємо ймовірного господаря з 's і річ у множині: the guest's sneakers."
+        "ru": "В спортзале гостиницы остались два кроссовка. Sneakers — «кроссовки»; один кроссовок — sneaker. Спросите инструктора: Are these the guest's sneakers? — «Это кроссовки гостя?» Перед these ставим are, потому что показываем несколько вещей. Затем называем предполагаемого хозяина с 's и вещь в форме для нескольких: the guest's sneakers.",
+        "uk": "У спортзалі готелю залишилися два кросівки. Sneakers — «кросівки»; один кросівок — sneaker. Спитайте інструктора: Are these the guest's sneakers? — «Це кросівки гостя?» Перед these ставимо are, бо показуємо кілька речей. Потім називаємо ймовірного господаря з 's і річ у формі для кількох: the guest's sneakers."
       },
       "question": {
         "interactionId": "en:lesson-05:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b9598cac938a8afe54f39283cad9bbdca34cca18dd7f7705f078cffff52a7511"
+  "introFingerprint": "f8bcc50c10407d3eeeb56f0727bece58a7562b9d22c626576e7910b0d153119b"
 }

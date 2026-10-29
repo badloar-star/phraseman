@@ -69,8 +69,8 @@
         "uk": "Черга біля каси"
       },
       "bodyByLocale": {
-        "ru": "У кассы длинная очередь, а поезд скоро уйдёт. Вы хотите купить билет в автомате и уточняете у сотрудника, есть ли автоматы на платформе. Ticket machine — «автомат для билетов». Are there any ticket machines on the platform? — «На платформе есть автоматы для билетов?» Сначала ставим Are there, затем any ticket machines и место — on the platform. С ticket machines во множественном числе нужно are.",
-        "uk": "Біля каси довга черга, а потяг скоро відійде. Ви хочете купити квиток в автоматі й уточнюєте у працівника, чи є автомати на платформі. Ticket machine — «автомат для квитків». Are there any ticket machines on the platform? — «На платформі є автомати для квитків?» Спочатку ставимо Are there, потім any ticket machines і місце — on the platform. З ticket machines у множині потрібне are."
+        "ru": "У кассы длинная очередь, а поезд скоро уйдёт. Вы хотите купить билет в автомате и уточняете у сотрудника, есть ли автоматы на платформе. Ticket machine — «автомат для билетов». Are there any ticket machines on the platform? — «На платформе есть автоматы для билетов?» Сначала ставим Are there, затем any ticket machines и место — on the platform. С ticket machines в форме для нескольких нужно are.",
+        "uk": "Біля каси довга черга, а потяг скоро відійде. Ви хочете купити квиток в автоматі й уточнюєте у працівника, чи є автомати на платформі. Ticket machine — «автомат для квитків». Are there any ticket machines on the platform? — «На платформі є автомати для квитків?» Спочатку ставимо Are there, потім any ticket machines і місце — on the platform. З ticket machines у формі для кількох потрібне are."
       },
       "question": {
         "interactionId": "en:lesson-04:session-42:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cebf5ff517901e5d21a1ad560bf14ecd07bb9baa0a8af15d056c7671ae5c330d"
+  "introFingerprint": "1192c463a3636a15ff6ae12bf9bfe2efbe02c97323e9a8c70da4ea6edce62e96"
 }

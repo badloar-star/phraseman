@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-04:session-09:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-09:intro3:r2": {
-          "ru": "Перед toilet в единственном числе здесь нужно a.",
-          "uk": "Перед toilet в однині тут потрібне a."
+          "ru": "Перед toilet в форме для одного здесь нужно a.",
+          "uk": "Перед toilet у формі для одного тут потрібне a."
         },
         "en:lesson-04:session-09:intro3:r3": {
           "ru": "Туалет один, поэтому нужно Is, а не Are.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "3b03f67b4304af419d31c65990f46e32d190e1d6f2194ae6e32cf6f172c9c727"
+  "auxiliaryFingerprint": "79f3168cb8d0dae601d61212d48a83b34db4dc644dfaa64b47836b85e3715b2c"
 }

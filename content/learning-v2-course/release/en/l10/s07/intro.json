@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-07",
   "learningOutcomeByLocale": {
-    "ru": "I prefer tea; How much does it cost?; What does this word mean?; This bag belongs to me",
-    "uk": "I prefer tea; How much does it cost?; What does this word mean?; This bag belongs to me"
+    "ru": "сказать, что предпочитаете, спросить цену и значение слова",
+    "uk": "сказати, чому віддаєте перевагу, запитати ціну й значення слова"
   },
   "pages": [
     {
@@ -70,7 +70,7 @@
       },
       "bodyByLocale": {
         "ru": "Вы выбрали вещь в магазине, но на ней нет ценника. Спрашиваете продавца: How much does it cost? — «Сколько это стоит?» Cost означает «стоить». В начале How much — вопрос о цене, затем does, it — выбранная вещь, и cost. С it нужен помощник does; после него cost остаётся без -s. Так собираем вопрос о цене одного предмета.",
-        "uk": "Ви вибрали річ у магазині, але на ній немає цінника. Запитуєте продавця: How much does it cost? — «Скільки це коштує?» Cost означає «коштувати». На початку How much — запитання про ціну, потім does, it — вибрана річ, і cost. З it потрібне допоміжне дієслово does; після нього cost залишається без -s. Так складаємо запитання про ціну одного предмета."
+        "uk": "Ви вибрали річ у магазині, але на ній немає цінника. Запитуєте продавця: How much does it cost? — «Скільки це коштує?» Cost означає «коштувати». На початку How much — запитання про ціну, потім does, it — вибрана річ, і cost. З it потрібне does; після нього cost залишається без -s. Так складаємо запитання про ціну одного предмета."
       },
       "question": {
         "interactionId": "en:lesson-10:session-07:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0783d9efd3cfd676b375e95a79cd0c4b853c48e02a3ba8f13be651a82ed6d508"
+  "introFingerprint": "fffa0a8bd36e345857b292d0cf60d578a6534928b862c68211ae77c7dc73e5d2"
 }

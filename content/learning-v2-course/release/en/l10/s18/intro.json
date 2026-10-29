@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-18",
   "learningOutcomeByLocale": {
-    "ru": "I earn money; I cannot afford this coat; I do not waste food; We are winning",
-    "uk": "I earn money; I cannot afford this coat; I do not waste food; We are winning"
+    "ru": "говорить о деньгах: заработать, позволить себе, не тратить зря",
+    "uk": "говорити про гроші: заробити, дозволити собі, не марнувати"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Не давати їжі пропадати"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, зачем вы убираете оставшуюся еду в холодильник. Вы съедите её позже: I do not waste food — «Я не даю еде пропадать». Waste означает «тратить впустую, растрачивать». Здесь вы объясняете своё обычное правило. Для отрицания в Present Simple собираем I + do not + waste + food. С I нужна do, а после do not глагол waste остаётся без -s.",
-        "uk": "Друг запитує, навіщо ви прибираєте їжу, що залишилася, у холодильник. Ви з’їсте її пізніше: I do not waste food — «Я не марную їжу». Waste означає «марнувати, витрачати даремно». Тут ви пояснюєте своє звичайне правило. Для заперечення в Present Simple складаємо I + do not + waste + food. З I потрібне do, а після do not дієслово waste залишається без -s."
+        "ru": "Друг спрашивает, зачем вы убираете оставшуюся еду в холодильник. Вы съедите её позже: I do not waste food — «Я не даю еде пропадать». Waste означает «тратить впустую, растрачивать». Здесь вы объясняете своё обычное правило. Для отрицания в форме без -ing собираем I + do not + waste + food. С I нужна do, а после do not глагол waste остаётся без -s.",
+        "uk": "Друг запитує, навіщо ви прибираєте їжу, що залишилася, у холодильник. Ви з’їсте її пізніше: I do not waste food — «Я не марную їжу». Waste означає «марнувати, витрачати даремно». Тут ви пояснюєте своє звичайне правило. Для заперечення у формі без -ing складаємо I + do not + waste + food. З I потрібне do, а після do not дієслово waste залишається без -s."
       },
       "question": {
         "interactionId": "en:lesson-10:session-18:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "54859f7ad03bd47f6ee880c3f5d6a04bd5a751faadd996bbf7a92d8089cb9e0e"
+  "introFingerprint": "9cff4a3ac486a340853590001c0fbd4541d20237fa77b2e3bed4a2a021a88987"
 }

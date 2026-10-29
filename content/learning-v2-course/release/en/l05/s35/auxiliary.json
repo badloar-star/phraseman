@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-05:session-35:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-35:intro1:r2": {
-          "ru": "goggles — множественное число, поэтому нужно are.",
-          "uk": "goggles — множина, тому потрібно are."
+          "ru": "goggles — форма для нескольких, поэтому нужно are.",
+          "uk": "goggles — форма для кількох, тому потрібно are."
         },
         "en:lesson-05:session-35:intro1:r3": {
           "ru": "Без названия вещи нужно mine, а не my.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "cf58faf75ce0697c13fa84ea2c11873aaeeb10894bce933073357fab13cfa266"
+  "auxiliaryFingerprint": "e555e8bf93d7db900c0c63e41ae4f132ea94da360e1ebb7cd987d3dc9176720e"
 }

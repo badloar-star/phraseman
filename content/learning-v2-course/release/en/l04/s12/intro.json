@@ -123,8 +123,8 @@
         "uk": "Важка сумка"
       },
       "bodyByLocale": {
-        "ru": "Вы с мамой вошли на большой вокзал, а в руках у вас тяжёлая сумка. Подниматься на второй этаж по крутой лестнице тяжело. escalator — «эскалатор», лестница, которая едет сама. Рядом стоит охранник: Are there escalators near the door? — «Есть ли эскалаторы рядом с дверью?» Начинаем вопрос с Are there, затем ставим escalators во множественном числе и место — near the door.",
-        "uk": "Ви з мамою зайшли на великий вокзал, а в руках у вас важка сумка. Підніматися на другий поверх крутими сходами важко. escalator — «ескалатор», сходи, які їдуть самі. Поруч стоїть охоронець: Are there escalators near the door? — «Чи є ескалатори поруч із дверима?» Починаємо запитання з Are there, потім ставимо escalators у множині й місце — near the door."
+        "ru": "Вы с мамой вошли на большой вокзал, а в руках у вас тяжёлая сумка. Подниматься на второй этаж по крутой лестнице тяжело. escalator — «эскалатор», лестница, которая едет сама. Рядом стоит охранник: Are there escalators near the door? — «Есть ли эскалаторы рядом с дверью?» Начинаем вопрос с Are there, затем ставим escalators в форме для нескольких и место — near the door.",
+        "uk": "Ви з мамою зайшли на великий вокзал, а в руках у вас важка сумка. Підніматися на другий поверх крутими сходами важко. escalator — «ескалатор», сходи, які їдуть самі. Поруч стоїть охоронець: Are there escalators near the door? — «Чи є ескалатори поруч із дверима?» Починаємо запитання з Are there, потім ставимо escalators у формі для кількох й місце — near the door."
       },
       "question": {
         "interactionId": "en:lesson-04:session-12:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b786974f1845670a5718b079cb480894d129f60ac26d8296b6612ea8999d18e9"
+  "introFingerprint": "c3816ec05cc635a46c9b1da70392cf2f3deeb6002f13a4a05e8771bcbd04296b"
 }

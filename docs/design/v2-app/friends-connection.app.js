@@ -39,10 +39,10 @@ const sheet = (title, inner) => `<div class="fr-sheet"><div class="grab"></div><
 /* ═════ 1 · «Друг сделал» — та же стеклянная строка, что на Главной, на сцене каждого раздела ═════ */
 const EV = { season: ['Аня', 12, 'прошла урок 2', 'Твой ход: урок 2 · 15 мин'], peak: ['Марк', 9, 'на этаже 2', 'Догони: 3 ступени'], video: ['Аня', 12, 'посмотрела «Дело в контексте»', 'Посмотри и обсуди — 12 фраз'], cards: ['Лидия', 1, 'повторила 30 карточек', 'Повтори свои — 6 ждут'] };
 const evInsert = (key, y, strip) => { const [who, rank, did, mine] = EV[key]; return insOn(key, y, 150, evRow(who, rank, did, mine), strip); };
-const evOver = (key, y, x, w) => { const [who, rank, did, mine] = EV[key]; return over(y, 150, evRow(who, rank, did, mine), x, w); };
+const evOver = (key, y, x, w, h = 150) => { const [who, rank, did, mine] = EV[key]; return over(y, h, evRow(who, rank, did, mine), x, w); };
 const friendSheet = (who) => sheet(`${who}`, `<div class="fr-person">${ci(who === 'Марк' ? 9 : who === 'Лидия' ? 1 : 12, 56)}<div><b>${who}</b><small>Серия 7 дней · этаж 2 · сегодня онлайн</small></div></div><div class="fr-acts"><span class="fr-btn tonal t" data-act="five">${io('hand-left')}Дать пять</span><span class="fr-btn tonal t" data-act="call">${io('rocket-outline')}Позвать</span><span class="fr-btn solid t" data-act="duo">${io('people')}Вдвоём</span></div><p class="fr-note">Что видит друг: твою серию, этаж и что ты прошёл сегодня. Личные ответы — нет.</p>`);
 const s1 = () => [
-  col('Уроки · обложка', phone('season', { overlays: evOver('season', 950, 20, 390) })), // под строкой «Фотовыставка», внутри обложки
+  col('Уроки · обложка', phone('season', { overlays: evOver('season', 935, 20, 390, 130) })), // между «Фотовыставкой» и рядом «Все главы» — места мало, строка ниже
   col('Пик', phone('peak', { overlays: evOver('peak', 1440, 16, 218) })), // левая колонка под «Все участники», башня справа не тронута
   col('Видео', phone('video', { inserts: [evInsert('video', 470, 464)] })), // между «Professor Lingman» и вкладками
   col('Карточки', phone('cards', { inserts: [evInsert('cards', 500, 560)] })), // под подзаголовком «Слова и фразы», над большой карточкой

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете обогреватель, упаковку, замок и перчатки для работы с деревом.
 
-**Что вы освоите:** дать совет: You should sleep
+**Что вы освоите:** дать совет: You should choose an efficient heater.
 **Новые слова:** efficient, recyclable, secure, protective
 
 ## Интро 1

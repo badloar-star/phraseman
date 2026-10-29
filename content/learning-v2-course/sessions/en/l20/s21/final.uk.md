@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте обігрівач, паковання, замок і рукавички для роботи з деревом.
 
-**Що ви опануєте:** дати пораду: You should sleep
+**Що ви опануєте:** дати пораду: You should choose an efficient heater.
 **Нові слова:** efficient, recyclable, secure, protective
 
 ## Інтро 1

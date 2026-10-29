@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы советуете читать новости, сравнить рейсы и обратиться за подходящей помощью.
 
-**Что вы освоите:** дать мягкий совет: You ought to rest
+**Что вы освоите:** дать мягкий совет: We ought to compare international flights.
 **Новые слова:** national, international, professional, individual
 
 ## Интро 1

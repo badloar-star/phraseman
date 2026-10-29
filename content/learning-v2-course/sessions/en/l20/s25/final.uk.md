@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви радите читати новини, порівняти рейси й звернутися по відповідну допомогу.
 
-**Що ви опануєте:** дати м’яку пораду: You ought to rest
+**Що ви опануєте:** дати м’яку пораду: We ought to compare international flights.
 **Нові слова:** national, international, professional, individual
 
 ## Інтро 1

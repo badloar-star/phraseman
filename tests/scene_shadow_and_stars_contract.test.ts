@@ -6,13 +6,13 @@ import path from 'node:path';
 const read = (rel: string): string => fs.readFileSync(path.join(__dirname, '..', rel), 'utf8').split('\r\n').join('\n');
 
 describe('Сцена: резкий край, тень блока, мерцающие звёзды', () => {
-  it('рамка SceneBlockShadow несёт радиус 28 и заметную тень (iOS shadow + Android elevation + фон нижнего тона)', () => {
+  it('рамка SceneBlockShadow несёт радиус 28 и заметную тень (boxShadow на обеих платформах, без elevation, фон нижнего тона)', () => {
     const src = read('components/scene/SceneBlockShadow.tsx');
     expect(src).toContain('export const SCENE_BOTTOM_RADIUS = 28;');
-    expect(src).toMatch(/shadowRadius: \d+/);
-    expect(src).toMatch(/elevation: \d+/);
+    expect(src).toMatch(/blurRadius: [0-9]+/);
+    expect(src).not.toMatch(/elevation:/);
     expect(src).toContain('backgroundColor: tone');
-    expect(Number(/isDark \? ([\d.]+) : ([\d.]+)/.exec(src)![2])).toBeGreaterThanOrEqual(0.25);
+    expect(Number(/rgba[(]0,0,0,([0-9.]+)[)]' : 'rgba[(]0,0,0,([0-9.]+)[)]'/.exec(src)![2])).toBeGreaterThanOrEqual(0.25);
   });
 
   it.each([

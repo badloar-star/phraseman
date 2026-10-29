@@ -198,3 +198,15 @@ Security and privacy: данных не собирает, политика не 
 Technical debt: журнал dev-only (в релизе console вырезается); для устройства владельца понадобится запись через журнал обращений.
 Verification: синтаксис файла, тесты ThemedArtLayers.
 Rollback: git revert коммита.
+
+## Шаг 18: тень сцены без Android-elevation (замечание Ревизора: соседи сцены могут уйти под elevation 12)
+
+Governance-ID: TG-121CD46A4D81
+
+Outcome: тень блока сцены рисуется свойством boxShadow (одинаково на iOS и Android, как тени карточек V2), без elevation, поэтому порядок наложения соседей (шапка, «Назад», пилюли) не меняется.
+Scope: components/scene/SceneBlockShadow.tsx, сторож tests/scene_shadow_and_stars_contract.test.ts.
+Architecture: elevation и shadow* убраны, вместо них style.boxShadow с цветом чёрного и прозрачностью по теме.
+Security and privacy: данных не касается.
+Technical debt: сила тени подбирается по кадрам Сверки.
+Verification: тесты scene_shadow_and_stars_contract и scene_bottom_edge_contract, проверка синтаксиса, кадры Pixel от Сверки.
+Rollback: git revert коммита.

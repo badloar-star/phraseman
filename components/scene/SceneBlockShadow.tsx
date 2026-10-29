@@ -20,7 +20,7 @@ export default function SceneBlockShadow({ tone, children, style }: Props) {
   return (
     <View
       pointerEvents="box-none"
-      style={[s.frame, { backgroundColor: tone, shadowOpacity: isDark ? 0.7 : 0.32 }, style]}
+      style={[s.frame, { backgroundColor: tone, boxShadow: [{ offsetX: 0, offsetY: 9, blurRadius: 18, color: isDark ? 'rgba(0,0,0,0.7)' : 'rgba(0,0,0,0.32)' }] }, style]}
     >
       {children}
     </View>
@@ -31,9 +31,6 @@ const s = StyleSheet.create({
   frame: {
     borderBottomLeftRadius: SCENE_BOTTOM_RADIUS,
     borderBottomRightRadius: SCENE_BOTTOM_RADIUS,
-    shadowColor: '#000000', // theme-exempt: тень блока сцены — чёрная, тон задаёт прозрачность
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 9 },
-    elevation: 12,
+    // зачем (Ревизор 29.10): без Android-elevation — иначе блок поднимается над соседями (шапка, «Назад», пилюли) и закрывает их; boxShadow рисуется на обеих платформах и порядок слоёв не меняет
   },
 });

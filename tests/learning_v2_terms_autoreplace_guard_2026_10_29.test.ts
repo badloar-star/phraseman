@@ -77,7 +77,13 @@ describe('Learning V2: тексты без поломок автозамены �
 // пример — правильный ответ из этого же занятия (встречается в тексте занятия вне самой строки), строка ≤ 90 знаков, ru и uk —
 // один и тот же пример. Ловит формулы («Could I + base verb?»), придуманные примеры и один пример, скопированный во все занятия.
 const GOAL_LABEL = { ru: '**Что вы освоите:** ', uk: '**Що ви опануєте:** ' } as const;
-const GOAL_EXAMPLE = /(?:: | — )([A-Za-z][^:а-яёіїєґ]*?)$/i;
+// зачем: координатор 29.10 — те же правила целей для испанского курса; пример может начинаться с ¿ ¡ и буквы с ударением
+const COURSES = { en: SESSIONS, es: path.join(__dirname, '..', 'content/learning-v2-course/sessions/es') } as const;
+const GOAL_EXAMPLE = /(?:: | — )([¿¡A-Za-zÁÉÍÓÚÑ][^:а-яёіїєґ]*?)$/i;
+const WHOLE_EXAMPLE = /^[¿¡A-ZÁÉÍÓÚÑ].*[.?!]$/;
+// зачем: Learning V2 29.10 — es/l07/s17–s28 недописанные сироты из описи docs/work/handover/codex-orphans-2026-10-29.md,
+// их разбирает Learning V2; после разбора убрать отсюда (ниже тест краснеет, если сирота уже прошла проверку)
+const PENDING_ORPHANS = new Set(Array.from({ length: 12 }, (_, i) => `es/l07/s${17 + i}`));
 
 function goalLine(text: string, lang: 'ru' | 'uk'): string | null {
   const line = text.split('\n').find((l) => l.startsWith(GOAL_LABEL[lang]));
@@ -96,7 +102,7 @@ function goalProblems(where: string, texts: Readonly<{ ru: string; uk: string }>
     if (goal.length > 90) bad.push(`${where} ${lang}: ${goal.length} знаков > 90`);
     const ex = GOAL_EXAMPLE.exec(goal)?.[1] ?? null;
     examples[lang] = ex;
-    if (!ex) bad.push(`${where} ${lang}: нет английского примера`);
+    if (!ex) bad.push(`${where} ${lang}: нет примера`);
   }
   if (examples.ru !== examples.uk) bad.push(`${where}: пример ru «${examples.ru}» ≠ uk «${examples.uk}»`);
   const ex = examples.ru?.replace(/[.?!]+$/, '');
@@ -108,8 +114,8 @@ function goalProblems(where: string, texts: Readonly<{ ru: string; uk: string }>
   const full = examples.ru;
   if (full) {
     if (full.split(/\s+/).length > 8) bad.push(`${where}: пример «${full}» длиннее 8 слов`);
-    const whole = /^[A-Z].*[.?!]$/.test(full);
-    const phrases = [...body.matchAll(/(?:→|🎙[^*]*)\s*\*\*([A-Z][^*]{2,120}?[.?!])\*\*/g)].map((m) => m[1]!);
+    const whole = WHOLE_EXAMPLE.test(full);
+    const phrases = [...body.matchAll(/(?:→|✅|🎙[^*]*)\s*\*\*([¿¡A-ZÁÉÍÓÚÑ][^*]{2,120}?[.?!])\*\*/g)].map((m) => m[1]!);
     if (!whole && !phrases.some((p) => p.includes(ex!) && p.split(/\s+/).length > 8)) {
       bad.push(`${where}: обрывок «${full}» при наличии фразы до 8 слов`);
     }
@@ -118,17 +124,36 @@ function goalProblems(where: string, texts: Readonly<{ ru: string; uk: string }>
 }
 
 describe('Learning V2: «Что вы освоите» — простые слова и пример из занятия', () => {
-  const sessions = finalFiles(SESSIONS).filter((f) => f.endsWith('final.ru.md')).map((ru) => path.dirname(ru));
-
-  it('во всех занятиях: без формул, с примером из занятия, ≤ 90 знаков, ru = uk', () => {
+  it.each(Object.entries(COURSES))('курс %s: без формул, с примером из занятия, ≤ 90 знаков, ru = uk', (course, root) => {
+    const sessions = finalFiles(root).filter((f) => f.endsWith('final.ru.md')).map((ru) => path.dirname(ru));
+    expect(sessions.length).toBeGreaterThan(100);
     const bad: string[] = [];
     for (const dir of sessions) {
       const uk = path.join(dir, 'final.uk.md');
       if (!fs.existsSync(uk)) continue;
+      const where = `${course}/${path.relative(root, dir).replace(/\\/g, '/')}`;
       const texts = { ru: fs.readFileSync(path.join(dir, 'final.ru.md'), 'utf8'), uk: fs.readFileSync(uk, 'utf8') };
-      bad.push(...goalProblems(path.relative(SESSIONS, dir), texts));
+      const problems = goalProblems(where, texts);
+      if (!PENDING_ORPHANS.has(where)) bad.push(...problems);
+      else if (problems.length === 0) bad.push(`${where}: сирота уже в порядке — уберите её из PENDING_ORPHANS`);
     }
     expect(bad).toEqual([]);
+  });
+
+  // зачем: координатор 29.10 (решение владельца) — в испанском «род» и «артикль» остаются, а «множественное / единственное
+  // число», «местоимение» и подобные трудные слова заменены простыми («когда их несколько», «для одного», «без «они»»)
+  const ES_HARD_TERMS = /множествен\S* числ|единствен\S* числ|местоимени|спряж|инфинитив|подлежащ|множин|однин|займенник|дієвідмін|інфінітив|підмет/i;
+  it('испанский курс: в текстах занятий нет трудных грамматических слов', () => {
+    expect(ES_HARD_TERMS.test('Sillas во множественном числе: pocas.')).toBe(true);
+    const hits: string[] = [];
+    for (const f of finalFiles(COURSES.es)) {
+      const where = `es/${path.relative(COURSES.es, path.dirname(f)).replace(/\\/g, '/')}`;
+      if (PENDING_ORPHANS.has(where)) continue;
+      fs.readFileSync(f, 'utf8').split('\n').forEach((line, i) => {
+        if (ES_HARD_TERMS.test(line)) hits.push(`${where}/${path.basename(f)}:${i + 1}`);
+      });
+    }
+    expect(hits).toEqual([]);
   });
 
   // зачем: Ревизор 29.10 — каждое правило обязано падать на подложенной плохой строке
@@ -136,7 +161,7 @@ describe('Learning V2: «Что вы освоите» — простые сло�
   const planted = (ru: string, uk: string) => ({ ru: `**Что вы освоите:** ${ru}${body}`, uk: `**Що ви опануєте:** ${uk}${body}` });
   it.each([
     ['английская формула', planted('Could I + base verb?', 'Could I + base verb?'), 'без кириллицы'],
-    ['нет примера', planted('сказать, что вы готовы', 'сказати, що ви готові'), 'нет английского примера'],
+    ['нет примера', planted('сказать, что вы готовы', 'сказати, що ви готові'), 'нет примера'],
     ['длиннее 90', planted(`${'с'.repeat(80)}: I am ready.`, 'сказати: I am ready.'), '> 90'],
     ['ru ≠ uk', planted('сказать о себе: I am ready.', 'сказати про себе: I am late.'), '≠ uk'],
     ['пример не из занятия', planted('сказать о себе: I am late.', 'сказати про себе: I am late.'), 'не встречается'],

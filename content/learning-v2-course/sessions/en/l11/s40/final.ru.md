@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашний обед и назовите блюда.
 
-**Что вы освоите:** спросить о вчерашнем и сказать «не было»: Were you at home? I wasn’t
+**Что вы освоите:** сказать, что было на обед: The chicken soup was not cold.
 **Новые слова:** roast chicken, baked potato, chicken soup, green salad
 
 ## Интро 1

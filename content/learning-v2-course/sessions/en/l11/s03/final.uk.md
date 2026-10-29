@@ -2,7 +2,7 @@
 
 **Ситуація.** Після прибирання згадайте, де лежали засоби та приладдя.
 
-**Що ви опануєте:** was/were; yesterday і right now
+**Що ви опануєте:** сказати, якою була річ після прибирання: The cleaning cloth was wet.
 **Нові слова:** washing powder, washing-up liquid, cleaning cloth, rubber gloves
 
 ## Інтро 1

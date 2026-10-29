@@ -2,7 +2,7 @@
 
 **Ситуація.** Обговоріть із другом учорашнє прибирання ванної та місця речей.
 
-**Що ви опануєте:** was/were; yesterday і right now
+**Що ви опануєте:** сказати, де вчора була річ: The soap was on the shelf.
 **Нові слова:** soap, shower gel, toilet paper, washbasin
 
 ## Інтро 1

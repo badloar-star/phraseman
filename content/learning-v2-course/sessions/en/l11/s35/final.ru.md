@@ -2,7 +2,7 @@
 
 **Ситуация.** После перестановки расскажите, где стояли вещи в спальне.
 
-**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
+**Что вы освоите:** спросить, чистой ли была мебель: Was the dressing table clean?
 **Новые слова:** single bed, alarm clock, dressing table, chest of drawers
 
 ## Интро 1

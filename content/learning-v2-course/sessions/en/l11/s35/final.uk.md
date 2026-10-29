@@ -2,7 +2,7 @@
 
 **Ситуація.** Після перестановки розкажіть, де стояли речі у спальні.
 
-**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
+**Що ви опануєте:** запитати, чи були меблі чистими: Was the dressing table clean?
 **Нові слова:** single bed, alarm clock, dressing table, chest of drawers
 
 ## Інтро 1

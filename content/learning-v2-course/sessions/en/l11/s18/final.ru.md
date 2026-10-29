@@ -2,7 +2,7 @@
 
 **Ситуация.** Разбирая покупки, вспомните, что было в сумке и на кухне.
 
-**Что вы освоите:** рассказать, что где было: there was a cat, there were two cups
+**Что вы освоите:** сказать, какой была еда или напиток: The mineral water was cold.
 **Новые слова:** baked beans, brown rice, black pepper, mineral water
 
 ## Интро 1

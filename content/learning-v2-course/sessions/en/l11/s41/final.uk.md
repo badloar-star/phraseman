@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, якими були вчорашні бутерброди та напої.
 
-**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
+**Що ви опануєте:** сказати, що було на перекус: The ham sandwich was delicious.
 **Нові слова:** cheese sandwich, ham sandwich, hot chocolate, fruit juice
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашню поїздку та розкажіть, що було на станції.
 
-**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
+**Що ви опануєте:** сказати, що було поруч: The railway was near the village.
 **Нові слова:** train driver, ticket office, railway, departure board
 
 ## Інтро 1

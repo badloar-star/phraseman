@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, какими были вчерашние бутерброды и напитки.
 
-**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
+**Что вы освоите:** сказать, что было на перекусе: The ham sandwich was delicious.
 **Новые слова:** cheese sandwich, ham sandwich, hot chocolate, fruit juice
 
 ## Интро 1

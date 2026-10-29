@@ -2,7 +2,7 @@
 
 **Ситуація.** Нейтрально розкажіть про життя рідних і про те, що було раніше.
 
-**Що ви опануєте:** порівняти, як було торік і як зараз: Last year I was a student. Now I work.
+**Що ви опануєте:** порівняти, як було торік і як зараз: My sister was pregnant last year.
 **Нові слова:** pregnant, retired, unemployed, divorced
 
 ## Інтро 1

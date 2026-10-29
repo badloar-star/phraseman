@@ -2,7 +2,7 @@
 
 **Ситуація.** Знайдіть речі для прання, посуду й кухні.
 
-**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
+**Що ви опануєте:** запитати, чи був кошик порожнім: Was the laundry basket empty?
 **Нові слова:** laundry basket, clothes horse, washing-up brush, oven glove
 
 ## Інтро 1

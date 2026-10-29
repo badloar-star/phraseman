@@ -2,7 +2,7 @@
 
 **Ситуация.** После уборки вспомните, где лежали средства и принадлежности.
 
-**Что вы освоите:** was/were; yesterday и right now
+**Что вы освоите:** сказать, какой была вещь после уборки: The cleaning cloth was wet.
 **Новые слова:** washing powder, washing-up liquid, cleaning cloth, rubber gloves
 
 ## Интро 1

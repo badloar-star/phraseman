@@ -2,7 +2,7 @@
 
 **Ситуация.** Обсудите с другом вчерашнюю уборку ванной и места вещей.
 
-**Что вы освоите:** was/were; yesterday и right now
+**Что вы освоите:** сказать, где вчера была вещь: The soap was on the shelf.
 **Новые слова:** soap, shower gel, toilet paper, washbasin
 
 ## Интро 1

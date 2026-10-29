@@ -2,7 +2,7 @@
 
 **Ситуация.** Найдите вещи для стирки, посуды и кухни.
 
-**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
+**Что вы освоите:** спросить, была ли корзина пустой: Was the laundry basket empty?
 **Новые слова:** laundry basket, clothes horse, washing-up brush, oven glove
 
 ## Интро 1

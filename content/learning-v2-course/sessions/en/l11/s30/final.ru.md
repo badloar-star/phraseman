@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашнюю поездку и расскажите, что было на станции.
 
-**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
+**Что вы освоите:** сказать, что было рядом: The railway was near the village.
 **Новые слова:** train driver, ticket office, railway, departure board
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Зберіть речі для прогулянки та згадайте, де вони були вчора.
 
-**Що ви опануєте:** розповісти, що де було: there was a cat, there were two cups
+**Що ви опануєте:** сказати, що річ була порожньою: The lunch box was empty.
 **Нові слова:** lunch box, water bottle, shopping list, paper bag
 
 ## Інтро 1

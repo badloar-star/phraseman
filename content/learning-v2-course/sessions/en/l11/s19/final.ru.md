@@ -2,7 +2,7 @@
 
 **Ситуация.** Соберите вещи для прогулки и вспомните, где они были вчера.
 
-**Что вы освоите:** рассказать, что где было: there was a cat, there were two cups
+**Что вы освоите:** сказать, что вещь была пустой: The lunch box was empty.
 **Новые слова:** lunch box, water bottle, shopping list, paper bag
 
 ## Интро 1

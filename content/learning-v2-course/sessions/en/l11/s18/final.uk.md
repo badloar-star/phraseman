@@ -2,7 +2,7 @@
 
 **Ситуація.** Розбираючи покупки, згадайте, що було в сумці та на кухні.
 
-**Що ви опануєте:** розповісти, що де було: there was a cat, there were two cups
+**Що ви опануєте:** сказати, якою була їжа чи напій: The mineral water was cold.
 **Нові слова:** baked beans, brown rice, black pepper, mineral water
 
 ## Інтро 1

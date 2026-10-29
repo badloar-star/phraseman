@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть другу про вчорашню поїздку й людей, яких бачили.
 
-**Що ви опануєте:** розрізняти «вчора» і «зараз»: was / were та is / are
+**Що ви опануєте:** сказати, що місце було зачинене: The sports centre was closed.
 **Нові слова:** train station, shopping centre, sports centre, hairdresser
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Опишите рукава рубашки и найдите одежду для школы и прогулки.
 
-**Что вы освоите:** описать, каким что-то было вчера и какое сейчас: It was cold yesterday. Now it is warm.
+**Что вы освоите:** описать, какой была одежда: The shirt was long-sleeved.
 **Новые слова:** short-sleeved, long-sleeved, school uniform, walking shoes
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите другу о вчерашней поездке: кого и что можно было увидеть в городе.
 
-**Что вы освоите:** рассказать, что где было: there was a cat, there were two cups
+**Что вы освоите:** сказать, каким был человек вчера: The taxi driver was friendly.
 **Новые слова:** public toilet, bus driver, taxi driver, pedestrian crossing
 
 ## Интро 1

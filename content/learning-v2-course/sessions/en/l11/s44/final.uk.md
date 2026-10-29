@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, які продукти вчора були в сумці й де вони зараз.
 
-**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
+**Що ви опануєте:** запитати, чи були продукти свіжими: Was the loaf of bread fresh?
 **Нові слова:** loaf of bread, carton of milk, tin of tuna, bottle of water
 
 ## Інтро 1

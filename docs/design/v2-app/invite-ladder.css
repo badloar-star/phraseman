@@ -5,12 +5,11 @@
 .il-head { text-align: center; margin-bottom: 14px; }
 .il-ic { display: inline-flex; width: 52px; height: 52px; border-radius: 16px; align-items: center; justify-content: center; background: var(--ctl); font-size: 24px; margin-bottom: 12px; }
 .il-head b { display: block; font-size: 20px; font-weight: 700; line-height: 25px; }
-.il-head p { margin: 6px 0 0; font-size: 14px; line-height: 20px; color: var(--sec); }
 .il-step { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: var(--card); margin-top: 8px; }
 .il-step .num { width: 32px; height: 32px; border-radius: 16px; background: var(--ctl); display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--tx); flex: none; }
-.il-step.done .num { background: var(--acc); color: #0B0D10; font-size: 16px; }
+.il-step.done .num { background: var(--acc); color: var(--bg); font-size: 16px; } /* токен фона темы, не #0B0D10 */
 .il-step .tx { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-.il-step .tx b { font-size: 15px; font-weight: 600; line-height: 20px; }
+.il-step .tx b { font-size: 15px; font-weight: 600; line-height: 20px; white-space: normal; }
 .il-step .tx small { font-size: 12px; line-height: 16px; color: var(--sec); }
 .il-step .rt { font-size: 13px; font-weight: 700; color: var(--acc); flex: none; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
 .il-step .rt .io { font-size: 15px; }
@@ -18,5 +17,3 @@
 .il-bar { padding: 8px 14px 2px; }
 .il-wrap .ck-code { margin: 16px 0 4px; }
 .il-wrap .ck-btn.tonal { margin-top: 8px; }
-.il-n { align-items: center; margin-bottom: 8px; }
-.il-lbl { font-size: 13px; color: #8E8E96; margin-right: 4px; }

@@ -19,7 +19,7 @@
 /* сегмент внутри телефона (как вкладки «Пик · Друзья · Наборы», но плашкой) */
 .ck-seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 16px; background: rgba(255, 255, 255, .10); }
 .ck-seg span { height: 30px; padding: 0 10px; border-radius: 13px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, .78); cursor: pointer; white-space: nowrap; }
-.ck-seg span.on { background: rgba(255, 255, 255, .92); color: #0B0D10; }
+.ck-seg span.on { background: var(--solid); color: var(--on-solid); } /* токены cta/ctaInk темы, не белый */
 .ck-seg span small { font-weight: 600; opacity: .7; font-size: 12px; }
 /* панель и строки */
 .ck-panel { margin: 0 0 12px; padding: 12px 14px 8px; border-radius: 22px; background: var(--card); color: var(--tx); width: 100%; }
@@ -30,7 +30,7 @@
 .ck-panel.glass .hd span, .ck-panel.glass .ck-row .tx small, .ck-panel.glass .ck-row .rt { color: rgba(255, 255, 255, .72); }
 .ck-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
 .ck-row + .ck-row { border-top: 1px solid rgba(255, 255, 255, .07); }
-.ck-row.me { background: rgba(255, 255, 255, .08); margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 12px; border-top: 0; }
+.ck-row.me { background: rgba(255, 255, 255, .08); /* стекло как у плашек сцены приложения */ margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 12px; border-top: 0; }
 .ck-row.me + .ck-row { border-top: 0; }
 .ck-row .pl { width: 18px; font-size: 14px; font-weight: 700; color: var(--sec); text-align: center; flex: none; }
 .ck-row .ic { width: 30px; display: inline-flex; justify-content: center; font-size: 19px; color: var(--sec); flex: none; }
@@ -52,7 +52,6 @@
 .ck-bar { height: 8px; border-radius: 4px; background: rgba(255, 255, 255, .12); overflow: hidden; }
 .ck-bar i { display: block; height: 100%; width: 0; border-radius: 4px; background: var(--acc); transition: width .9s var(--ck-out); }
 .ck-bar.live i { width: var(--w); }
-.ck-bar.gold i { background: #F2C05A; }
 /* пустое состояние внутри панели */
 .ck-empty { text-align: center; padding: 8px 4px 6px; color: var(--tx); }
 .ck-empty .ck-ic { display: inline-flex; width: 44px; height: 44px; border-radius: 14px; align-items: center; justify-content: center; background: rgba(255, 255, 255, .12); font-size: 22px; margin-bottom: 10px; }
@@ -74,14 +73,7 @@
 .ck-sheet .ck-row .ic { color: var(--acc); }
 .ck-code { display: flex; align-items: center; justify-content: center; gap: 10px; height: 50px; border-radius: 25px; background: var(--ctl); color: var(--tx); font-weight: 700; font-size: 18px; letter-spacing: .06em; cursor: pointer; margin: 14px 0; }
 .ck-code .io { font-size: 18px; color: var(--sec); }
-/* подиум итога недели */
-.ck-podium { display: flex; align-items: flex-end; justify-content: center; gap: 10px; margin: 8px 0 14px; }
-.ck-podium div { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
-.ck-podium .st { width: 100%; border-radius: 12px 12px 0 0; background: var(--ctl); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; font-weight: 800; font-size: 18px; color: var(--tx); }
-.ck-podium .p1 .st { height: 74px; background: linear-gradient(180deg, rgba(242, 192, 90, .55), rgba(242, 192, 90, .18)); }
-.ck-podium .p2 .st { height: 56px; } .ck-podium .p3 .st { height: 44px; }
-.ck-podium b { font-size: 13px; font-weight: 700; }
-.ck-podium small { font-size: 12px; color: var(--sec); }
+/* подиума нет: итог недели — строками (владелец отверг плитки с крупными числами) */
 /* тост сверху — как ActionToast top_line */
 .ck-toast { position: absolute; left: 14px; right: 14px; top: 54px; z-index: 90; display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; border-radius: 19px; background: var(--card); color: var(--tx); font-size: 14px; font-weight: 600; box-shadow: 0 10px 24px rgba(0, 0, 0, .35); animation: ck-toast-in .3s var(--ck-out); }
 .ck-toast .tile { width: 41px; height: 41px; border-radius: 13px; display: inline-flex; align-items: center; justify-content: center; background: var(--ctl); font-size: 20px; color: var(--acc); }
@@ -101,3 +93,5 @@
 .ck-cost b { color: #D6D6D8; font-weight: 600; }
 .ck-warn { color: #D9A05B; }
 @media (prefers-reduced-motion: reduce) { .ck-sheet, .ck-ov .ck-scrim, .ck-bar i, .ck-fade, .pop, .ck-toast { transition: none !important; animation: none !important; } }
+/* строки в шторках и в списке друзей переносятся, не обрезаются многоточием (длинные фразы вместо подписей) */
+.ck-sheet .ck-row .tx b, .wg-list .ck-row .tx b { white-space: normal; }

@@ -1,7 +1,7 @@
 /* peak-friends-room.css — панель друзей в левой колонке Пика (см. peak-friends-room.app.js). Ширина блока 206 px телефона — как у
    панели комнаты на кадре; сегмент вместо заголовка «Комната недели 29» (кегль 15/600 как у заголовка кадра). */
 .pfr-seg { height: 42px; display: flex; align-items: center; margin: 0 0 6px 2px; }
-.pfr-seg .ck-seg span { height: 28px; padding: 0 9px; font-size: 12.5px; }
+.pfr-seg .ck-seg span { height: 28px; padding: 0 10px; font-size: 12.5px; }
 .ck-over .ck-panel { padding: 8px 10px 6px; }
 .ck-over .ck-row { padding: 6px 0; gap: 8px; }
 .ck-over .ck-row.pfr-compact { padding: 3px 0; }

@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви вирішили купити орегано для домашньої піци. Передайте намір через going to.",
+      "prompt": "Ви вирішили купити орегано для домашньої піци. Домовленості поки немає. Передайте намір через going to.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-37:i03:r1",
@@ -180,12 +180,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви вирішили купити орегано для домашньої піци. Передайте намір через going to.",
+      "accessibilityLabel": "Ви вирішили купити орегано для домашньої піци. Домовленості поки немає. Передайте намір через going to.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы решили купить орегано для домашней пиццы. Передайте намерение через going to.",
-          "uk": "Ви вирішили купити орегано для домашньої піци. Передайте намір через going to."
+          "ru": "Вы решили купить орегано для домашней пиццы. Договорённости пока нет. Передайте намерение через going to.",
+          "uk": "Ви вирішили купити орегано для домашньої піци. Домовленості поки немає. Передайте намір через going to."
         },
         "gappedTargetPhrase": "I ___ oregano.",
         "gapOptions": [
@@ -202,21 +202,21 @@
             "text": "buy"
           }
         ],
-        "testedDimension": "Ви вирішили купити орегано для домашньої піци. Передайте намір через going to.",
+        "testedDimension": "Ви вирішили купити орегано для домашньої піци. Домовленості поки немає. Передайте намір через going to.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-37:i03:r2",
             "correct": false,
-            "testedDimension": "Ви вирішили купити орегано для домашньої піци. Передайте намір через going to.",
+            "testedDimension": "Ви вирішили купити орегано для домашньої піци. Домовленості поки немає. Передайте намір через going to.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              "ru": "Am buying — так говорят об уже согласованном плане. Здесь пока только решение: am going to buy.",
+              "uk": "Am buying — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to buy."
             }
           },
           {
             "responseId": "en:lesson-15:session-37:i03:r3",
             "correct": false,
-            "testedDimension": "Ви вирішили купити орегано для домашньої піци. Передайте намір через going to.",
+            "testedDimension": "Ви вирішили купити орегано для домашньої піци. Домовленості поки немає. Передайте намір через going to.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: am going to buy.",
               "uk": "Потрібна повна форма: am going to buy."
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ваша мама вирішила купити шавлію для приготування їжі. Передайте намір через going to.",
+      "prompt": "Ваша мама вирішила купити шавлію для приготування їжі. Домовленості поки немає. Передайте намір через going to.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-37:i06:r1",
@@ -403,12 +403,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваша мама вирішила купити шавлію для приготування їжі. Передайте намір через going to.",
+      "accessibilityLabel": "Ваша мама вирішила купити шавлію для приготування їжі. Домовленості поки немає. Передайте намір через going to.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ваша мама решила купить шалфей для приготовления еды. Передайте намерение через going to.",
-          "uk": "Ваша мама вирішила купити шавлію для приготування їжі. Передайте намір через going to."
+          "ru": "Ваша мама решила купить шалфей для приготовления еды. Договорённости пока нет. Передайте намерение через going to.",
+          "uk": "Ваша мама вирішила купити шавлію для приготування їжі. Домовленості поки немає. Передайте намір через going to."
         },
         "gappedTargetPhrase": "She ___ sage.",
         "gapOptions": [
@@ -425,21 +425,21 @@
             "text": "buy"
           }
         ],
-        "testedDimension": "Ваша мама вирішила купити шавлію для приготування їжі. Передайте намір через going to.",
+        "testedDimension": "Ваша мама вирішила купити шавлію для приготування їжі. Домовленості поки немає. Передайте намір через going to.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-37:i06:r2",
             "correct": false,
-            "testedDimension": "Ваша мама вирішила купити шавлію для приготування їжі. Передайте намір через going to.",
+            "testedDimension": "Ваша мама вирішила купити шавлію для приготування їжі. Домовленості поки немає. Передайте намір через going to.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              "ru": "Is buying — так говорят об уже согласованном плане. Здесь пока только решение: is going to buy.",
+              "uk": "Is buying — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to buy."
             }
           },
           {
             "responseId": "en:lesson-15:session-37:i06:r3",
             "correct": false,
-            "testedDimension": "Ваша мама вирішила купити шавлію для приготування їжі. Передайте намір через going to.",
+            "testedDimension": "Ваша мама вирішила купити шавлію для приготування їжі. Домовленості поки немає. Передайте намір через going to.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: is going to buy.",
               "uk": "Потрібна повна форма: is going to buy."
@@ -498,17 +498,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Продавець підтвердив замовлення коріандру й час отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо коріандр завтра».",
+      "prompt": "Продавець підтвердив замовлення коріандру: забрати його можна завтра. Це вже вирішено. Скажіть: «Ми забираємо коріандр завтра».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Продавець підтвердив замовлення коріандру й час отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо коріандр завтра».",
+      "accessibilityLabel": "Продавець підтвердив замовлення коріандру: забрати його можна завтра. Це вже вирішено. Скажіть: «Ми забираємо коріандр завтра».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are collecting the coriander tomorrow.",
         "localizedMeaning": {
-          "ru": "Продавец подтвердил заказ кориандра и время получения на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем кориандр завтра».",
-          "uk": "Продавець підтвердив замовлення коріандру й час отримання на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо коріандр завтра»."
+          "ru": "Продавец подтвердил заказ кориандра: забрать его можно завтра. Это уже решено. Скажите: «Мы забираем кориандр завтра».",
+          "uk": "Продавець підтвердив замовлення коріандру: забрати його можна завтра. Це вже вирішено. Скажіть: «Ми забираємо коріандр завтра»."
         },
         "orderedTokens": [
           "We",
@@ -609,7 +609,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Продавець підтвердив замовлення коріандру й час отримання на завтра. Передайте домовленість через Present Continuous.",
+      "prompt": "Продавець підтвердив замовлення коріандру: забрати його можна завтра. Скажіть, що це вже вирішено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-37:i09:r1",
@@ -617,7 +617,7 @@
         },
         {
           "responseId": "en:lesson-15:session-37:i09:r2",
-          "text": "are going to collect"
+          "text": "are collect"
         },
         {
           "responseId": "en:lesson-15:session-37:i09:r3",
@@ -626,12 +626,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Продавець підтвердив замовлення коріандру й час отримання на завтра. Передайте домовленість через Present Continuous.",
+      "accessibilityLabel": "Продавець підтвердив замовлення коріандру: забрати його можна завтра. Скажіть, що це вже вирішено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Продавец подтвердил заказ кориандра и время получения на завтра. Передайте договорённость через Present Continuous.",
-          "uk": "Продавець підтвердив замовлення коріандру й час отримання на завтра. Передайте домовленість через Present Continuous."
+          "ru": "Продавец подтвердил заказ кориандра: забрать его можно завтра. Скажите, что это уже решено.",
+          "uk": "Продавець підтвердив замовлення коріандру: забрати його можна завтра. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ the coriander tomorrow.",
         "gapOptions": [
@@ -641,28 +641,28 @@
           },
           {
             "responseId": "en:lesson-15:session-37:i09:r2",
-            "text": "are going to collect"
+            "text": "are collect"
           },
           {
             "responseId": "en:lesson-15:session-37:i09:r3",
             "text": "collect"
           }
         ],
-        "testedDimension": "Продавець підтвердив замовлення коріандру й час отримання на завтра. Передайте домовленість через Present Continuous.",
+        "testedDimension": "Продавець підтвердив замовлення коріандру: забрати його можна завтра. Скажіть, що це вже вирішено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-37:i09:r2",
             "correct": false,
-            "testedDimension": "Продавець підтвердив замовлення коріандру й час отримання на завтра. Передайте домовленість через Present Continuous.",
+            "testedDimension": "Продавець підтвердив замовлення коріандру: забрати його можна завтра. Скажіть, що це вже вирішено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are collecting.",
+              "uk": "Після are потрібна форма з -ing: are collecting."
             }
           },
           {
             "responseId": "en:lesson-15:session-37:i09:r3",
             "correct": false,
-            "testedDimension": "Продавець підтвердив замовлення коріандру й час отримання на завтра. Передайте домовленість через Present Continuous.",
+            "testedDimension": "Продавець підтвердив замовлення коріандру: забрати його можна завтра. Скажіть, що це вже вирішено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: are collecting.",
               "uk": "Потрібна повна форма: are collecting."
@@ -721,17 +721,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають кумин у суботу».",
+      "prompt": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Це вже вирішено. Скажіть: «Вони забирають кумин у суботу».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають кумин у суботу».",
+      "accessibilityLabel": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Це вже вирішено. Скажіть: «Вони забирають кумин у суботу».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are collecting the cumin on Saturday.",
         "localizedMeaning": {
-          "ru": "Ваши родители заказали кумин в магазине приправ и договорились забрать его в субботу. Передайте договорённость через Present Continuous. Скажите: «Они забирают кумин в субботу».",
-          "uk": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають кумин у суботу»."
+          "ru": "Ваши родители заказали кумин в магазине приправ и договорились забрать его в субботу. Это уже решено. Скажите: «Они забирают кумин в субботу».",
+          "uk": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Це вже вирішено. Скажіть: «Вони забирають кумин у суботу»."
         },
         "orderedTokens": [
           "They",
@@ -833,7 +833,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Передайте домовленість через Present Continuous.",
+      "prompt": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Скажіть, що це вже вирішено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-37:i12:r1",
@@ -841,7 +841,7 @@
         },
         {
           "responseId": "en:lesson-15:session-37:i12:r2",
-          "text": "are going to collect"
+          "text": "are collect"
         },
         {
           "responseId": "en:lesson-15:session-37:i12:r3",
@@ -850,12 +850,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Передайте домовленість через Present Continuous.",
+      "accessibilityLabel": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Скажіть, що це вже вирішено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ваши родители заказали кумин в магазине приправ и договорились забрать его в субботу. Передайте договорённость через Present Continuous.",
-          "uk": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Передайте домовленість через Present Continuous."
+          "ru": "Ваши родители заказали кумин в магазине приправ и договорились забрать его в субботу. Скажите, что это уже решено.",
+          "uk": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "They ___ the cumin on Saturday.",
         "gapOptions": [
@@ -865,28 +865,28 @@
           },
           {
             "responseId": "en:lesson-15:session-37:i12:r2",
-            "text": "are going to collect"
+            "text": "are collect"
           },
           {
             "responseId": "en:lesson-15:session-37:i12:r3",
             "text": "collect"
           }
         ],
-        "testedDimension": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Передайте домовленість через Present Continuous.",
+        "testedDimension": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Скажіть, що це вже вирішено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-37:i12:r2",
             "correct": false,
-            "testedDimension": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Передайте домовленість через Present Continuous.",
+            "testedDimension": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Скажіть, що це вже вирішено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are collecting.",
+              "uk": "Після are потрібна форма з -ing: are collecting."
             }
           },
           {
             "responseId": "en:lesson-15:session-37:i12:r3",
             "correct": false,
-            "testedDimension": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Передайте домовленість через Present Continuous.",
+            "testedDimension": "Ваші батьки замовили кумин у магазині приправ і домовилися забрати його в суботу. Скажіть, що це вже вирішено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: are collecting.",
               "uk": "Потрібна повна форма: are collecting."
@@ -1052,13 +1052,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "prompt": "Тепер день уже узгоджено. Повторіть, що це вже вирішено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-15:session-37:i16:audio"
       ],
-      "accessibilityLabel": "Тепер день уже узгоджено. Повторіть домовленість через Present Continuous.",
+      "accessibilityLabel": "Тепер день уже узгоджено. Повторіть, що це вже вирішено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1119,5 +1119,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f93da4d21e1a2948c7406c7474e9f28d5bf881438ba770e6e88184c637b4c3fe"
+  "learnerFingerprint": "b2cf59decaafe63eddf59cbb67869d52b614df8ca6c26608a65a90e888fb109d"
 }

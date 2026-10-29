@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-15:session-49",
   "learningOutcomeByLocale": {
-    "ru": "going to / Present Continuous: intention and arrangement",
-    "uk": "going to / Present Continuous: intention and arrangement"
+    "ru": "описать место, куда собираетесь поехать: I am visiting a coastal town tomorrow.",
+    "uk": "описати місце, куди збираєтеся поїхати: I am visiting a coastal town tomorrow."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Розповісти про бронювання за містом"
       },
       "bodyByLocale": {
-        "ru": "Вы с семьёй забронировали дом в сельской местности на следующую неделю. Хозяин подтвердил бронь. We are staying in a rural area next week. — На следующей неделе мы будем жить в сельской местности. Для согласованного плана соберите we + are + staying, затем добавьте in a rural area — где — и next week — когда. В staying к stay добавляем -ing, сохраняя y. Здесь тренируем Present Continuous; going to также может описывать этот будущий план.",
-        "uk": "Ви з родиною забронювали будинок у сільській місцевості на наступний тиждень. Господар підтвердив бронювання. We are staying in a rural area next week. — Наступного тижня ми житимемо в сільській місцевості. Для узгодженого плану складіть we + are + staying, потім додайте in a rural area — де — і next week — коли. У staying до stay додаємо -ing, зберігаючи y. Тут тренуємо Present Continuous; going to також може описувати цей майбутній план."
+        "ru": "Вы с семьёй забронировали дом в сельской местности на следующую неделю. Хозяин подтвердил бронь. We are staying in a rural area next week. — На следующей неделе мы будем жить в сельской местности. Для согласованного плана соберите we + are + staying, затем добавьте in a rural area — где — и next week — когда. В staying к stay добавляем -ing, сохраняя y. Здесь тренируем am / is / are + -ing; going to также может описывать этот будущий план.",
+        "uk": "Ви з родиною забронювали будинок у сільській місцевості на наступний тиждень. Господар підтвердив бронювання. We are staying in a rural area next week. — Наступного тижня ми житимемо в сільській місцевості. Для узгодженого плану складіть we + are + staying, потім додайте in a rural area — де — і next week — коли. У staying до stay додаємо -ing, зберігаючи y. Тут тренуємо am / is / are + -ing; going to також може описувати цей майбутній план."
       },
       "question": {
         "interactionId": "en:lesson-15:session-49:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Розповісти про прогулянку друзів"
       },
       "bodyByLocale": {
-        "ru": "Друзья договорились завтра сходить в городской парк. They are visiting an urban park tomorrow. — Завтра они идут в городской парк. Назовите друзей словом they, затем поставьте are visiting: к visit добавляется -ing. Добавьте an urban park — куда идут — и tomorrow — когда. Порядок такой: they + are visiting + an urban park + tomorrow. Здесь используйте Present Continuous для договорённости; going to тоже возможно.",
-        "uk": "Друзі домовилися завтра сходити до міського парку. They are visiting an urban park tomorrow. — Завтра вони йдуть до міського парку. Назвіть друзів словом they, потім поставте are visiting: до visit додається -ing. Додайте an urban park — куди йдуть — і tomorrow — коли. Порядок такий: they + are visiting + an urban park + tomorrow. Тут використайте Present Continuous для домовленості; going to також можливе."
+        "ru": "Друзья договорились завтра сходить в городской парк. They are visiting an urban park tomorrow. — Завтра они идут в городской парк. Назовите друзей словом they, затем поставьте are visiting: к visit добавляется -ing. Добавьте an urban park — куда идут — и tomorrow — когда. Порядок такой: they + are visiting + an urban park + tomorrow. Здесь используйте am / is / are + -ing для договорённости; going to тоже возможно.",
+        "uk": "Друзі домовилися завтра сходити до міського парку. They are visiting an urban park tomorrow. — Завтра вони йдуть до міського парку. Назвіть друзів словом they, потім поставте are visiting: до visit додається -ing. Додайте an urban park — куди йдуть — і tomorrow — коли. Порядок такий: they + are visiting + an urban park + tomorrow. Тут використайте am / is / are + -ing для домовленості; going to також можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-49:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7edada204f63815ee852097f06605175b66afa3759fa085bd0d6bca6606be306"
+  "introFingerprint": "3bbaaf0a25562e81f81742d68c79e298c37465995df49d236e16e08dafbfd2f9"
 }

@@ -388,7 +388,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Передайте намерение через going to.",
+      "prompt": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Договорённости пока нет. Передайте намерение через going to.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-36:i06:r1",
@@ -405,12 +405,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Передайте намерение через going to.",
+      "accessibilityLabel": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Договорённости пока нет. Передайте намерение через going to.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Передайте намерение через going to.",
-          "uk": "Ваша сестра вирішила купити хурму на десерт; купівля ще попереду. Передайте намір через going to."
+          "ru": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Договорённости пока нет. Передайте намерение через going to.",
+          "uk": "Ваша сестра вирішила купити хурму на десерт; купівля ще попереду. Домовленості поки немає. Передайте намір через going to."
         },
         "gappedTargetPhrase": "She ___ a persimmon.",
         "gapOptions": [
@@ -427,21 +427,21 @@
             "text": "buy"
           }
         ],
-        "testedDimension": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Передайте намерение через going to.",
+        "testedDimension": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Договорённости пока нет. Передайте намерение через going to.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-36:i06:r2",
             "correct": false,
-            "testedDimension": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Передайте намерение через going to.",
+            "testedDimension": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Договорённости пока нет. Передайте намерение через going to.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              "ru": "Is buying — так говорят об уже согласованном плане. Здесь пока только решение: is going to buy.",
+              "uk": "Is buying — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to buy."
             }
           },
           {
             "responseId": "en:lesson-15:session-36:i06:r3",
             "correct": false,
-            "testedDimension": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Передайте намерение через going to.",
+            "testedDimension": "Ваша сестра решила купить хурму на десерт; покупка ещё впереди. Договорённости пока нет. Передайте намерение через going to.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: is going to buy.",
               "uk": "Потрібна повна форма: is going to buy."
@@ -500,17 +500,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Продавец отложил для вас айву; вы договорились забрать её завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем айву завтра».",
+      "prompt": "Продавец отложил для вас айву; вы договорились забрать её завтра. Это уже решено. Скажите: «Мы забираем айву завтра».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Продавец отложил для вас айву; вы договорились забрать её завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем айву завтра».",
+      "accessibilityLabel": "Продавец отложил для вас айву; вы договорились забрать её завтра. Это уже решено. Скажите: «Мы забираем айву завтра».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are collecting the quince tomorrow.",
         "localizedMeaning": {
-          "ru": "Продавец отложил для вас айву; вы договорились забрать её завтра. Передайте договорённость через Present Continuous. Скажите: «Мы забираем айву завтра».",
-          "uk": "Продавець відклав для вас айву; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми забираємо айву завтра»."
+          "ru": "Продавец отложил для вас айву; вы договорились забрать её завтра. Это уже решено. Скажите: «Мы забираем айву завтра».",
+          "uk": "Продавець відклав для вас айву; ви домовилися забрати її завтра. Це вже вирішено. Скажіть: «Ми забираємо айву завтра»."
         },
         "orderedTokens": [
           "We",
@@ -611,7 +611,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Продавец отложил для вас айву; вы договорились забрать её завтра. Передайте договорённость через Present Continuous.",
+      "prompt": "Продавец отложил для вас айву; вы договорились забрать её завтра. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-36:i09:r1",
@@ -619,7 +619,7 @@
         },
         {
           "responseId": "en:lesson-15:session-36:i09:r2",
-          "text": "are going to collect"
+          "text": "are collect"
         },
         {
           "responseId": "en:lesson-15:session-36:i09:r3",
@@ -628,12 +628,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Продавец отложил для вас айву; вы договорились забрать её завтра. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Продавец отложил для вас айву; вы договорились забрать её завтра. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Продавец отложил для вас айву; вы договорились забрать её завтра. Передайте договорённость через Present Continuous.",
-          "uk": "Продавець відклав для вас айву; ви домовилися забрати її завтра. Передайте домовленість через Present Continuous."
+          "ru": "Продавец отложил для вас айву; вы договорились забрать её завтра. Скажите, что это уже решено.",
+          "uk": "Продавець відклав для вас айву; ви домовилися забрати її завтра. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ the quince tomorrow.",
         "gapOptions": [
@@ -643,28 +643,28 @@
           },
           {
             "responseId": "en:lesson-15:session-36:i09:r2",
-            "text": "are going to collect"
+            "text": "are collect"
           },
           {
             "responseId": "en:lesson-15:session-36:i09:r3",
             "text": "collect"
           }
         ],
-        "testedDimension": "Продавец отложил для вас айву; вы договорились забрать её завтра. Передайте договорённость через Present Continuous.",
+        "testedDimension": "Продавец отложил для вас айву; вы договорились забрать её завтра. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-36:i09:r2",
             "correct": false,
-            "testedDimension": "Продавец отложил для вас айву; вы договорились забрать её завтра. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Продавец отложил для вас айву; вы договорились забрать её завтра. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are collecting.",
+              "uk": "Після are потрібна форма з -ing: are collecting."
             }
           },
           {
             "responseId": "en:lesson-15:session-36:i09:r3",
             "correct": false,
-            "testedDimension": "Продавец отложил для вас айву; вы договорились забрать её завтра. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Продавец отложил для вас айву; вы договорились забрать её завтра. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: are collecting.",
               "uk": "Потрібна повна форма: are collecting."
@@ -723,17 +723,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ваши родители заказали ревень для пирога и согласовали получение на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают ревень в пятницу».",
+      "prompt": "Ваши родители заказали ревень для пирога и заберут заказ в пятницу. Это уже решено. Скажите: «Они забирают ревень в пятницу».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваши родители заказали ревень для пирога и согласовали получение на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают ревень в пятницу».",
+      "accessibilityLabel": "Ваши родители заказали ревень для пирога и заберут заказ в пятницу. Это уже решено. Скажите: «Они забирают ревень в пятницу».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are collecting the rhubarb on Friday.",
         "localizedMeaning": {
-          "ru": "Ваши родители заказали ревень для пирога и согласовали получение на пятницу. Передайте договорённость через Present Continuous. Скажите: «Они забирают ревень в пятницу».",
-          "uk": "Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони забирають ревінь у п’ятницю»."
+          "ru": "Ваши родители заказали ревень для пирога и заберут заказ в пятницу. Это уже решено. Скажите: «Они забирают ревень в пятницу».",
+          "uk": "Ваші батьки замовили ревінь для пирога й заберуть замовлення в п’ятницю. Це вже вирішено. Скажіть: «Вони забирають ревінь у п’ятницю»."
         },
         "orderedTokens": [
           "They",
@@ -835,7 +835,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ваши родители заказали ревень для пирога и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
+      "prompt": "Ваши родители заказали ревень для пирога и заберут заказ в пятницу. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-36:i12:r1",
@@ -843,7 +843,7 @@
         },
         {
           "responseId": "en:lesson-15:session-36:i12:r2",
-          "text": "are going to collect"
+          "text": "are collect"
         },
         {
           "responseId": "en:lesson-15:session-36:i12:r3",
@@ -852,12 +852,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваши родители заказали ревень для пирога и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Ваши родители заказали ревень для пирога и заберут заказ в пятницу. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ваши родители заказали ревень для пирога и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
-          "uk": "Ваші батьки замовили ревінь для пирога й узгодили отримання на п’ятницю. Передайте домовленість через Present Continuous."
+          "ru": "Ваши родители заказали ревень для пирога и заберут заказ в пятницу. Скажите, что это уже решено.",
+          "uk": "Ваші батьки замовили ревінь для пирога й заберуть замовлення в п’ятницю. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "They ___ the rhubarb on Friday.",
         "gapOptions": [
@@ -867,28 +867,28 @@
           },
           {
             "responseId": "en:lesson-15:session-36:i12:r2",
-            "text": "are going to collect"
+            "text": "are collect"
           },
           {
             "responseId": "en:lesson-15:session-36:i12:r3",
             "text": "collect"
           }
         ],
-        "testedDimension": "Ваши родители заказали ревень для пирога и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
+        "testedDimension": "Ваши родители заказали ревень для пирога и заберут заказ в пятницу. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-36:i12:r2",
             "correct": false,
-            "testedDimension": "Ваши родители заказали ревень для пирога и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Ваши родители заказали ревень для пирога и заберут заказ в пятницу. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are collecting.",
+              "uk": "Після are потрібна форма з -ing: are collecting."
             }
           },
           {
             "responseId": "en:lesson-15:session-36:i12:r3",
             "correct": false,
-            "testedDimension": "Ваши родители заказали ревень для пирога и согласовали получение на пятницу. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Ваши родители заказали ревень для пирога и заберут заказ в пятницу. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: are collecting.",
               "uk": "Потрібна повна форма: are collecting."
@@ -1054,13 +1054,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "prompt": "Теперь день уже согласован. Повторите, что это уже решено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-15:session-36:i16:audio"
       ],
-      "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "accessibilityLabel": "Теперь день уже согласован. Повторите, что это уже решено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1121,5 +1121,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "19930e7e631a3cb6bde9ffe9e8e4c3bb0799a200c6283d5556b9661b3e8e7c0b"
+  "learnerFingerprint": "b384ceee02db367622acf7ce4416dee8e2e08da0175140bb5e9c92a26e9f0682"
 }

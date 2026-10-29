@@ -434,8 +434,8 @@
             "correct": false,
             "testedDimension": "Ваша сестра решила попробовать изготовление мыла на занятии; пока это намерение. Передайте намерение через going to.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте намерение через going to.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте намір через going to."
+              "ru": "Is trying — так говорят об уже согласованном плане. Здесь пока только решение: is going to try.",
+              "uk": "Is trying — так кажуть про вже узгоджений план. Тут поки лише рішення: is going to try."
             }
           },
           {
@@ -500,17 +500,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous. Скажите: «Мы пробуем изготовление моделей в субботу».",
+      "prompt": "Вы с другом записались на субботнее занятие по изготовлению моделей. Это уже решено. Скажите: «Мы пробуем изготовление моделей в субботу».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous. Скажите: «Мы пробуем изготовление моделей в субботу».",
+      "accessibilityLabel": "Вы с другом записались на субботнее занятие по изготовлению моделей. Это уже решено. Скажите: «Мы пробуем изготовление моделей в субботу».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are trying model making on Saturday.",
         "localizedMeaning": {
-          "ru": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous. Скажите: «Мы пробуем изготовление моделей в субботу».",
-          "uk": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous. Скажіть: «Ми пробуємо виготовлення моделей у суботу»."
+          "ru": "Вы с другом записались на субботнее занятие по изготовлению моделей. Это уже решено. Скажите: «Мы пробуем изготовление моделей в субботу».",
+          "uk": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Це вже вирішено. Скажіть: «Ми пробуємо виготовлення моделей у суботу»."
         },
         "orderedTokens": [
           "We",
@@ -612,7 +612,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+      "prompt": "Вы с другом записались на субботнее занятие по изготовлению моделей. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-40:i09:r1",
@@ -620,7 +620,7 @@
         },
         {
           "responseId": "en:lesson-15:session-40:i09:r2",
-          "text": "are going to try"
+          "text": "are try"
         },
         {
           "responseId": "en:lesson-15:session-40:i09:r3",
@@ -629,12 +629,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Вы с другом записались на субботнее занятие по изготовлению моделей. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
-          "uk": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Передайте домовленість через Present Continuous."
+          "ru": "Вы с другом записались на субботнее занятие по изготовлению моделей. Скажите, что это уже решено.",
+          "uk": "Ви з другом записалися на суботнє заняття з виготовлення моделей. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ model making on Saturday.",
         "gapOptions": [
@@ -644,28 +644,28 @@
           },
           {
             "responseId": "en:lesson-15:session-40:i09:r2",
-            "text": "are going to try"
+            "text": "are try"
           },
           {
             "responseId": "en:lesson-15:session-40:i09:r3",
             "text": "try"
           }
         ],
-        "testedDimension": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+        "testedDimension": "Вы с другом записались на субботнее занятие по изготовлению моделей. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-40:i09:r2",
             "correct": false,
-            "testedDimension": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Вы с другом записались на субботнее занятие по изготовлению моделей. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are trying.",
+              "uk": "Після are потрібна форма з -ing: are trying."
             }
           },
           {
             "responseId": "en:lesson-15:session-40:i09:r3",
             "correct": false,
-            "testedDimension": "Вы с другом записались на субботнее занятие по изготовлению моделей. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Вы с другом записались на субботнее занятие по изготовлению моделей. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: are trying.",
               "uk": "Потрібна повна форма: are trying."
@@ -724,17 +724,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous. Скажите: «Они пробуют ткачество завтра».",
+      "prompt": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Это уже решено. Скажите: «Они пробуют ткачество завтра».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous. Скажите: «Они пробуют ткачество завтра».",
+      "accessibilityLabel": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Это уже решено. Скажите: «Они пробуют ткачество завтра».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are trying weaving tomorrow.",
         "localizedMeaning": {
-          "ru": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous. Скажите: «Они пробуют ткачество завтра».",
-          "uk": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous. Скажіть: «Вони пробують ткацтво завтра»."
+          "ru": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Это уже решено. Скажите: «Они пробуют ткачество завтра».",
+          "uk": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Це вже вирішено. Скажіть: «Вони пробують ткацтво завтра»."
         },
         "orderedTokens": [
           "They",
@@ -834,7 +834,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+      "prompt": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-40:i12:r1",
@@ -842,7 +842,7 @@
         },
         {
           "responseId": "en:lesson-15:session-40:i12:r2",
-          "text": "are going to try"
+          "text": "are try"
         },
         {
           "responseId": "en:lesson-15:session-40:i12:r3",
@@ -851,12 +851,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
-          "uk": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Передайте домовленість через Present Continuous."
+          "ru": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Скажите, что это уже решено.",
+          "uk": "Ваші батьки записалися на завтрашнє вступне заняття з ткацтва. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "They ___ weaving tomorrow.",
         "gapOptions": [
@@ -866,28 +866,28 @@
           },
           {
             "responseId": "en:lesson-15:session-40:i12:r2",
-            "text": "are going to try"
+            "text": "are try"
           },
           {
             "responseId": "en:lesson-15:session-40:i12:r3",
             "text": "try"
           }
         ],
-        "testedDimension": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+        "testedDimension": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-40:i12:r2",
             "correct": false,
-            "testedDimension": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are trying.",
+              "uk": "Після are потрібна форма з -ing: are trying."
             }
           },
           {
             "responseId": "en:lesson-15:session-40:i12:r3",
             "correct": false,
-            "testedDimension": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Ваши родители записались на завтрашнее вводное занятие по ткачеству. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: are trying.",
               "uk": "Потрібна повна форма: are trying."
@@ -1054,13 +1054,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "prompt": "Теперь день уже согласован. Повторите, что это уже решено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-15:session-40:i16:audio"
       ],
-      "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "accessibilityLabel": "Теперь день уже согласован. Повторите, что это уже решено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1121,5 +1121,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2eb98c8689600ef2e303bc880f34b2fbaf00cc8829ea1d48e508dd0382808b81"
+  "learnerFingerprint": "27d669be5d1e5fb63683c2fe2770e38260cf2aae1835d1483872d18901cdd928"
 }

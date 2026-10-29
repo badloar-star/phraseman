@@ -210,7 +210,7 @@
             "correct": false,
             "testedDimension": "План уже принят. Выберите am, is или are",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна форма am.",
+              "ru": "С этим словом нужна форма am.",
               "uk": "З цим підметом потрібна форма am."
             }
           },
@@ -219,7 +219,7 @@
             "correct": false,
             "testedDimension": "План уже принят. Выберите am, is или are",
             "feedbackByLocale": {
-              "ru": "Для этого подлежащего нужна am.",
+              "ru": "Для этого слова нужна am.",
               "uk": "Для цього підмета потрібна am."
             }
           }
@@ -435,7 +435,7 @@
             "correct": false,
             "testedDimension": "План уже принят. Выберите am, is или are",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна форма are.",
+              "ru": "С этим словом нужна форма are.",
               "uk": "З цим підметом потрібна форма are."
             }
           },
@@ -444,7 +444,7 @@
             "correct": false,
             "testedDimension": "План уже принят. Выберите am, is или are",
             "feedbackByLocale": {
-              "ru": "Для этого подлежащего нужна are.",
+              "ru": "Для этого слова нужна are.",
               "uk": "Для цього підмета потрібна are."
             }
           }
@@ -660,7 +660,7 @@
             "correct": false,
             "testedDimension": "План уже принят. Выберите am, is или are",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна форма is.",
+              "ru": "С этим словом нужна форма is.",
               "uk": "З цим підметом потрібна форма is."
             }
           },
@@ -669,7 +669,7 @@
             "correct": false,
             "testedDimension": "План уже принят. Выберите am, is или are",
             "feedbackByLocale": {
-              "ru": "Для этого подлежащего нужна is.",
+              "ru": "Для этого слова нужна is.",
               "uk": "Для цього підмета потрібна is."
             }
           }
@@ -885,7 +885,7 @@
             "correct": false,
             "testedDimension": "План уже принят. Выберите am, is или are",
             "feedbackByLocale": {
-              "ru": "С этим подлежащим нужна форма are.",
+              "ru": "С этим словом нужна форма are.",
               "uk": "З цим підметом потрібна форма are."
             }
           },
@@ -894,7 +894,7 @@
             "correct": false,
             "testedDimension": "План уже принят. Выберите am, is или are",
             "feedbackByLocale": {
-              "ru": "Для этого подлежащего нужна are.",
+              "ru": "Для этого слова нужна are.",
               "uk": "Для цього підмета потрібна are."
             }
           }
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2ebbe1067f47a4da7d07e6919286928d6f5af71b4284965c6c355a86c0d98d41"
+  "learnerFingerprint": "ea872d9ace9c978e27e63b4396f5b3525af3588801dc2d9d847dc5d2c3a44e3c"
 }

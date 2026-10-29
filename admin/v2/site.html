@@ -153,7 +153,9 @@
 
     /* ── Цены ── */
     async function loadConfig() {
+      const revision=configRevision;
       const snap = await getDoc(doc(db, 'web_checkout', 'config'));
+      if(configDirty || configRevision!==revision)return;
       const data = snap.exists() ? snap.data() : {};
       const cents = { ...DEFAULT_PRICE_CENTS, ...(data.priceCents || {}) };
       $('price-monthly').value = (cents.monthly / 100).toFixed(2);
@@ -164,6 +166,7 @@
     }
 
     async function saveConfig() {
+      const revision=configRevision;
       const toCents = (id) => Math.round(parseFloat($(id).value) * 100);
       const priceCents = {
         monthly: toCents('price-monthly'),
@@ -186,6 +189,7 @@
           updatedAtIso: new Date().toISOString(),
           updatedBy: auth.currentUser?.email || '',
         }, { merge: true });
+        if(configRevision===revision)configDirty=false;
         $('config-msg').textContent = 'Сохранено ✓ — витрина пейвола подхватит в течение ~5 минут';
         setTimeout(() => { $('config-msg').textContent = ''; }, 6000);
       } catch (e) {
@@ -335,16 +339,26 @@
       });
     }
 
+    let configDirty=false, configRevision=0, readInFlight=null;
+    ['price-monthly','price-yearly','price-lifetime','price-currency','paypal-live'].forEach(id=>$(id).addEventListener('input',()=>{configDirty=true;configRevision++;}));
     async function loadAll() {
       clearError();
       try {
-        await Promise.all([loadConfig(), loadPromoFlag(), loadFunnel(), loadOrders(), loadTgOrders()]);
+        await Promise.all([...(configDirty?[]:[loadConfig()]), loadPromoFlag(), loadFunnel(), loadOrders(), loadTgOrders()]);
+        return {status:configDirty?'partial':'fresh',fetchedAt:Date.now(),message:configDirty?'Заказы обновлены; несохранённые цены сохранены в форме':'Данные сайта обновлены'};
       } catch (e) {
         showError('Ошибка загрузки (нет admin-доступа?): ' + (e.message || e));
+        return {status:'error',message:'Не удалось загрузить данные сайта'};
       }
     }
 
-    $('reload-btn').addEventListener('click', loadAll);
+    function refreshReadOnly(){if(!readInFlight)readInFlight=loadAll().finally(()=>{readInFlight=null;});return readInFlight;}
+    window.addEventListener('message',async event=>{
+      if(event.source!==parent||event.origin!==location.origin||event.data?.channel!=='pm-site-refresh'||typeof event.data.requestId!=='string')return;
+      const result=auth.currentUser?await refreshReadOnly():{status:'partial',message:'Ожидается вход во встроенный раздел'};
+      parent.postMessage({channel:'pm-site-result',requestId:event.data.requestId,result},location.origin);
+    });
+    $('reload-btn').addEventListener('click', refreshReadOnly);
     $('save-config-btn').addEventListener('click', saveConfig);
     $('promo-toggle-btn').addEventListener('click', togglePromoFlag);
     $('signin-btn').addEventListener('click', async () => {
@@ -354,7 +368,7 @@
 
     onAuthStateChanged(auth, (u) => {
       $('signin-btn').style.display = u ? 'none' : '';
-      if (u) void loadAll();
+      if (u) void refreshReadOnly();
       else showError('Сначала войдите (кнопка справа сверху или index.html → Войти через Google).');
     });
   </script>

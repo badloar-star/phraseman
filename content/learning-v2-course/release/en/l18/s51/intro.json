@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-51",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "выразить сильное впечатление: Your opinion is so useful.",
+    "uk": "висловити сильне враження: Your opinion is so useful."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Робота потребує уваги"
       },
       "bodyByLocale": {
-        "ru": "Вы собираете маленькую модель по схеме: детали легко перепутать, поэтому приходится внимательно сверять каждый шаг. Attention — внимание. This needs such careful attention. — Это требует такого пристального внимания. This указывает на сборку, needs — требует, затем such careful attention. Усиливаем сочетание careful с существительным attention, поэтому нужен such. Attention здесь неисчисляемое: a не добавляем.",
-        "uk": "Ви збираєте маленьку модель за схемою: деталі легко переплутати, тому доводиться уважно звіряти кожен крок. Attention — увага. This needs such careful attention. — Це потребує такої пильної уваги. This указує на збирання, needs — потребує, потім such careful attention. Підсилюємо сполучення careful з іменником attention, тому потрібне such. Attention тут незлічуване: a не додаємо."
+        "ru": "Вы собираете маленькую модель по схеме: детали легко перепутать, поэтому приходится внимательно сверять каждый шаг. Attention — внимание. This needs such careful attention. — Это требует такого пристального внимания. This указывает на сборку, needs — требует, затем such careful attention. Усиливаем сочетание careful с существительным attention, поэтому нужен such. Attention здесь не считается поштучно: a не добавляем.",
+        "uk": "Ви збираєте маленьку модель за схемою: деталі легко переплутати, тому доводиться уважно звіряти кожен крок. Attention — увага. This needs such careful attention. — Це потребує такої пильної уваги. This указує на збирання, needs — потребує, потім such careful attention. Підсилюємо сполучення careful з іменником attention, тому потрібне such. Attention тут не рахується поштучно: a не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-18:session-51:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "af155ed04ca1398680f93ed9699d1a4bcc58f90a39b7c67c4b8f781a3a8eda27"
+  "introFingerprint": "d1056e96a31d8802691bb364b19c0c8c9ee44f87a2342f02e5bf85749da82bd4"
 }

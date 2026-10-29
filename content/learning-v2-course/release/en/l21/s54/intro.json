@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-21:session-54",
   "learningOutcomeByLocale": {
-    "ru": "so / such: emphasis",
-    "uk": "so / such: emphasis"
+    "ru": "выразить сильную оценку: That is such good news.",
+    "uk": "висловити сильну оцінку: That is such good news."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Вдалий обід за свою ціну"
       },
       "bodyByLocale": {
-        "ru": "В кафе вам подали вкусный сытный обед за небольшую сумму. Вы говорите: This meal is such good value — «этот обед так хорош за свою цену». Сначала This meal is, затем such и сочетание good value. Such усиливает сочетание с существительным value. В выражении good value здесь не нужен артикль a; so непосредственно перед good value не ставим.",
-        "uk": "У кафе вам подали смачний ситний обід за невелику суму. Ви кажете: This meal is such good value — «цей обід такий вдалий за свою ціну». Спочатку This meal is, потім such і сполука good value. Such підсилює сполуку з іменником value. У виразі good value тут не потрібен артикль a; so безпосередньо перед good value не ставимо."
+        "ru": "В кафе вам подали вкусный сытный обед за небольшую сумму. Вы говорите: This meal is such good value — «этот обед так хорош за свою цену». Сначала This meal is, затем such и сочетание good value. Such усиливает сочетание с существительным value. В выражении good value здесь не нужен a; so непосредственно перед good value не ставим.",
+        "uk": "У кафе вам подали смачний ситний обід за невелику суму. Ви кажете: This meal is such good value — «цей обід такий вдалий за свою ціну». Спочатку This meal is, потім such і сполука good value. Such підсилює сполуку з іменником value. У виразі good value тут не потрібен a; so безпосередньо перед good value не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-21:session-54:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "436926e2de8b27fd521ceb55b16cfca1fc1a343817f5c399159d635728994486"
+  "introFingerprint": "9dc9515fd4f1e572a8234c8a248816ec8258d31bc8bed386abb36c96283319a5"
 }

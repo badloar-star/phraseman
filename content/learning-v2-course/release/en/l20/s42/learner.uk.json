@@ -211,7 +211,7 @@
             "correct": false,
             "testedDimension": "Скажіть, що це необовʼязково.",
             "feedbackByLocale": {
-              "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+              "ru": "Согласуйте don’t или doesn’t с тем, кто действует.",
               "uk": "Узгодьте don’t або doesn’t з підметом."
             }
           },
@@ -434,7 +434,7 @@
             "correct": false,
             "testedDimension": "Скажіть, що це необовʼязково.",
             "feedbackByLocale": {
-              "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+              "ru": "Согласуйте don’t или doesn’t с тем, кто действует.",
               "uk": "Узгодьте don’t або doesn’t з підметом."
             }
           },
@@ -657,7 +657,7 @@
             "correct": false,
             "testedDimension": "Скажіть, що це необовʼязково.",
             "feedbackByLocale": {
-              "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+              "ru": "Согласуйте don’t или doesn’t с тем, кто действует.",
               "uk": "Узгодьте don’t або doesn’t з підметом."
             }
           },
@@ -881,7 +881,7 @@
             "correct": false,
             "testedDimension": "Скажіть, що це необовʼязково.",
             "feedbackByLocale": {
-              "ru": "Согласуйте don’t или doesn’t с подлежащим.",
+              "ru": "Согласуйте don’t или doesn’t с тем, кто действует.",
               "uk": "Узгодьте don’t або doesn’t з підметом."
             }
           },
@@ -1118,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6d95ad68fbba2a0e3dcc4784fc45e14e53cfbaf94a787a8236659ee633e1ef72"
+  "learnerFingerprint": "11703684986ebcee6e5e6144bc8602a811e5403473621bf26fb524adc9ed3ee7"
 }

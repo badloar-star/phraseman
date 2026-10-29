@@ -665,7 +665,7 @@
             "correct": false,
             "testedDimension": "Выберите усиление.",
             "feedbackByLocale": {
-              "ru": "News здесь неисчисляемое: перед good news не ставим a.",
+              "ru": "News здесь не считается поштучно: перед good news не ставим a.",
               "uk": "News тут незлічуване: перед good news не ставимо a."
             }
           }
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "93156f152b3e5aaa2ddc776b1fc68d45eccc850da8c9dedf962fd2ea86e03842"
+  "learnerFingerprint": "ac5140dd403bbdf63c2e9a53132fc8c79fa0420571dc6f25c08e2091ab2cd780"
 }

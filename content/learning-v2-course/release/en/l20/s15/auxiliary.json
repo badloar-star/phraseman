@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-20:session-15:intro1:q",
       "responseFeedbackById": {
         "en:lesson-20:session-15:intro1:r2": {
-          "ru": "С этим подлежащим используйте have to.",
-          "uk": "Із цим підметом використайте have to."
+          "ru": "С этим словом используйте have to.",
+          "uk": "Із цим словом використайте have to."
         },
         "en:lesson-20:session-15:intro1:r3": {
           "ru": "В конструкции нужно to перед глаголом.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5def20a752ebe96e85194f73d74c5a6442c0b06a2c5b0fc781d2a94cd8921339"
+  "auxiliaryFingerprint": "6662683286bbb032c05e3fe15d06f0b54895f513e2eceb84c5e3072ce906cb6c"
 }

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви прийшли до бюро знахідок аеропорту: зникли окуляри, валіза й куртка. Нової граматики немає: ви самі вибираєте my чи mine, his чи hers, ’s, whose, has чи have та is чи are.
 
-**Що ви опануєте:** самому вибрати, як сказати про речі й людей: my чи mine, ’s, whose, has чи have
+**Що ви опануєте:** запитати, чиї це речі: Whose glasses are these?
 **Нові слова:** glasses, moustache, tattoo, freckles
 **Повертаються:** jacket, suitcase, umbrella, bag, beard, ring, friend
 

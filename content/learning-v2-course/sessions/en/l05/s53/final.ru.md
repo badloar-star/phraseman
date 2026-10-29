@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы с другом идёте играть в бадминтон на открытый корт. Там лежат сетка и волан, а на стене висит табло. Нужно понять, где что и чьё: whose, this или that, yours, mine, theirs или имя с 's.
 
-**Что вы освоите:** сказать, где корт, спросить о хозяине вещи и ответить: whose, that, yours, mine, theirs, 's
+**Что вы освоите:** сказать, где что находится: The court is near the school.
 **Новые слова:** court, net, shuttlecock, scoreboard
 **Возвращаются:** friend, cousin, school, bench, wall
 

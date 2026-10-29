@@ -2,7 +2,7 @@
 
 **Ситуация.** У киоска дети покупают комиксы, леденцы и шарики. Вы помогаете разобраться, что чьё: whose, короткие ответы Yes, it is и No, it isn't, а также mine, yours, hers или имя с 's.
 
-**Что вы освоите:** ответить на вопрос «Это твоё?» и спросить о хозяине: Yes, it is; No, it isn't; whose; mine, yours, hers, 's
+**Что вы освоите:** спросить, чей это леденец: Whose lollipop is that?
 **Новые слова:** kiosk, comic, lollipop, balloon
 **Возвращаются:** sister, brother, bench, bag, table
 

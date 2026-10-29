@@ -2,7 +2,7 @@
 
 **Ситуація.** Уся родина летить у відпустку, і перед вильотом ви перевіряєте речі в аеропорту. Нової граматики немає: ви самі вибираєте слово-власник, has чи have, is чи are й ставите питання про річ.
 
-**Що ви опануєте:** самому вибрати, як сказати про речі родини: my, your, his, her, our, their, has, is чи are
+**Що ви опануєте:** сказати, де лежать речі в дорогу: Our passports are in my bag.
 **Нові слова:** passport, sunglasses, sandals, camera
 **Повертаються:** bag, pocket, suitcase, backpack, ticket, boot, sock, brother, sister
 

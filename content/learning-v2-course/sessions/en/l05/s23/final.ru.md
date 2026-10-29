@@ -2,7 +2,7 @@
 
 **Ситуация.** Подруга пришла в гости и листает ваши семейные фотографии. Вы называете родственников, говорите, чьё что, и что у кого есть: grandfather’s, My nephew has, The twins have.
 
-**Что вы освоите:** сказать о родственниках, чьё что и что у кого есть: my grandfather’s, My nephew has, The twins have
+**Что вы освоите:** сказать, что у родственника есть вещь: My nephew has a puppy.
 **Новые слова:** grandfather, nephew, niece, twins
 **Возвращаются:** chair, puppy, dog, kite, ball, diary, guitar
 

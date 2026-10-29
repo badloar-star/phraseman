@@ -2,7 +2,7 @@
 
 **Ситуація.** Друзі розбили табір на березі озера. Речей багато, і треба зрозуміти, чий намет, чий ліхтарик, чий гамак і в кого що є.
 
-**Що ви опануєте:** спитати «чий» і відповісти з hers, mine чи 's; сказати, що в людини є річ
+**Що ви опануєте:** запитати, чия це річ у поході: Whose flashlight is this?
 **Нові слова:** tent, flashlight, hammock, penknife
 **Повертаються:** uncle, aunt, cousin, neighbour, friend, brother, sister, backpack, bag, bench, tree
 

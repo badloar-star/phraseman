@@ -2,7 +2,7 @@
 
 **Ситуация.** Вся семья летит в отпуск, и перед вылетом вы проверяете вещи в аэропорту. Новой грамматики нет: вы сами выбираете слово-владелец, has или have, is или are и задаёте вопрос о вещи.
 
-**Что вы освоите:** самому выбрать, как сказать о вещах семьи: my, your, his, her, our, their, has, is или are
+**Что вы освоите:** сказать, где лежат вещи в дорогу: Our passports are in my bag.
 **Новые слова:** passport, sunglasses, sandals, camera
 **Возвращаются:** bag, pocket, suitcase, backpack, ticket, boot, sock, brother, sister
 

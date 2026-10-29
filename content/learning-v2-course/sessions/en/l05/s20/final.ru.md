@@ -2,7 +2,7 @@
 
 **Ситуация.** Подруга на кухне, охранник в офисе и сосед во дворе хотят узнать, чья вещь. Хозяин — муж, жена, сын или дочь, и его называем с ’s: The mug is my husband’s.
 
-**Что вы освоите:** назвать хозяина вещи с ’s: my husband’s, his wife’s, my son’s
+**Что вы освоите:** назвать хозяина вещи с ’s: The umbrella is his wife’s.
 **Новые слова:** husband, wife, son, daughter
 **Возвращаются:** mug, football, umbrella, key, backpack, scarf, ball
 

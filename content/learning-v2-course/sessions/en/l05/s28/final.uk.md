@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви допомагаєте дядькові лагодити хвіртку в саду. Інструменти лежать у сараї й надворі, і треба на слух зрозуміти, чий інструмент потрібен.
 
-**Що ви опануєте:** розрізняти на слух, чий інструмент: my uncle's saw, my aunt's spade, і не плутати це з has
+**Що ви опануєте:** назвати, чий це інструмент: This is my aunt's screwdriver.
 **Нові слова:** screwdriver, toolbox, saw, spade
 **Повертаються:** uncle, aunt, grandmother, cousin, brother, friend, shed, garden, bench, gate, hammer, ladder, scissors, bag
 

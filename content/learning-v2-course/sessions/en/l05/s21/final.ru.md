@@ -2,7 +2,7 @@
 
 **Ситуация.** На лестнице, в аудитории и в офисе нужно сказать, чья вещь, когда хозяин — не «я» и не «ты», а сосед, студентка или руководитель. Роль называем с the и ’s: the neighbour’s.
 
-**Что вы освоите:** назвать хозяина вещи по роли: the neighbour’s, the student’s, the manager’s
+**Что вы освоите:** назвать хозяина вещи по роли: The dog is the neighbour’s.
 **Новые слова:** neighbour, student, manager, client
 **Возвращаются:** dog, notebook, desk, key, umbrella, pen, bag
 

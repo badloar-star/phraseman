@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы приехали к сестре помочь с маленьким ребёнком, и детские вещи лежат по квартире вперемешку. Нужно сказать, что чьё и где лежит.
 
-**Что вы освоите:** называть вещи малыша и сказать, где они: the baby's nappy, in my sister's bag
+**Что вы освоите:** называть вещи малыша и сказать, где они: Where is my sister's bag?
 **Новые слова:** nappy, rattle, bib, crib
 **Возвращаются:** sister, brother, grandmother, baby, bag, shelf, table, sofa, bed, floor, window, bottle, blanket, slippers
 

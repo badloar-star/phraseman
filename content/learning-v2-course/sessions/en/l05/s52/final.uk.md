@@ -2,7 +2,7 @@
 
 **Ситуація.** Родина відпочиває на березі. Ласти, нарукавники, рятувальне коло й шезлонг дістали із сумок, і треба розібратися, що чиє: whose, are these, ours, theirs, hers, mine або ім’я з 's.
 
-**Що ви опануєте:** спитати, чиї речі, і відповісти: whose, are these, ours, theirs, hers, mine, 's
+**Що ви опануєте:** запитати, чиї це ласти: Whose flippers are those?
 **Нові слова:** flippers, armbands, lifebelt, deckchair
 **Повертаються:** sister, brother, neighbour, bag, tree
 

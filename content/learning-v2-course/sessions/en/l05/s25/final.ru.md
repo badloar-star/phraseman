@@ -2,7 +2,7 @@
 
 **Ситуация.** Семья выбралась на пикник к озеру, и вещи лежат на траве вперемешку. Нужно понять, чьё что, и вернуть каждую вещь хозяину.
 
-**Что вы освоите:** сказать, чья вещь, добавив 's к названию человека: my sister's thermos
+**Что вы освоите:** сказать, чья вещь, назвав владельца: This is my brother's thermos.
 **Новые слова:** thermos, napkin, frisbee, sunscreen
 **Возвращаются:** sister, brother, uncle, aunt, grandmother, friend, bag, basket, bench, tree, plate, cup, sandals, umbrella, backpack, camera
 

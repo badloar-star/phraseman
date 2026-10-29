@@ -2,7 +2,7 @@
 
 **Ситуація.** Біля кіоску діти купують комікси, льодяники й кульки. Ви допомагаєте розібратися, що чиє: whose, короткі відповіді Yes, it is і No, it isn't, а також mine, yours, hers або ім’я з 's.
 
-**Що ви опануєте:** відповісти на питання «Це твоє?» і спитати про господаря: Yes, it is; No, it isn't; whose; mine, yours, hers, 's
+**Що ви опануєте:** запитати, чий це льодяник: Whose lollipop is that?
 **Нові слова:** kiosk, comic, lollipop, balloon
 **Повертаються:** sister, brother, bench, bag, table
 

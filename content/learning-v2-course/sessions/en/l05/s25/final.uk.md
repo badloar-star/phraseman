@@ -2,7 +2,7 @@
 
 **Ситуація.** Родина вибралася на пікнік до озера, і речі лежать на траві впереміш. Треба зрозуміти, що чиє, і повернути кожну річ господареві.
 
-**Що ви опануєте:** сказати, чия річ, додавши 's до назви людини: my sister's thermos
+**Що ви опануєте:** сказати, чия річ, назвавши власника: This is my brother's thermos.
 **Нові слова:** thermos, napkin, frisbee, sunscreen
 **Повертаються:** sister, brother, uncle, aunt, grandmother, friend, bag, basket, bench, tree, plate, cup, sandals, umbrella, backpack, camera
 

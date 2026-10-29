@@ -2,7 +2,7 @@
 
 **Ситуація.** У тітки сімейне свято: у вітальні стоять інструменти, а гості приходять по одному. Треба казати і чий інструмент, і хто вже прийшов.
 
-**Що ви опануєте:** розрізняти два значення 's: «чий» (my aunt's piano) і «є, перебуває» (my cousin's here)
+**Що ви опануєте:** сказати, чий інструмент і де він лежить: This is my cousin's drum.
 **Нові слова:** piano, drum, flute, trumpet
 **Повертаються:** aunt, uncle, cousin, friend, grandmother, sofa, hall, home, kitchen, here, tired, old, loud, phone
 

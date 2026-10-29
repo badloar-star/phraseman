@@ -2,7 +2,7 @@
 
 **Ситуация.** Во дворе рисуют большую картину на стене. Кисти, мольберт и альбом лежат вперемешку, и вы помогаете разобраться, что чьё: whose, ours, yours, hers, mine или имя с 's.
 
-**Что вы освоите:** сказать, где находится роспись, и спросить о хозяине вещи: whose, ours, yours, hers, mine, 's
+**Что вы освоите:** сказать, где находится роспись: The mural is under the window.
 **Новые слова:** mural, paintbrush, easel, sketchbook
 **Возвращаются:** teacher, sister, friend, wall, window, shelf
 

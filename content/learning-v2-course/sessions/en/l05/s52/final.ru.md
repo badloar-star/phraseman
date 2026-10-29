@@ -2,7 +2,7 @@
 
 **Ситуация.** Семья отдыхает на берегу. Ласты, нарукавники, спасательный круг и шезлонг достали из сумок, и нужно разобраться, что чьё: whose, are these, ours, theirs, hers, mine или имя с 's.
 
-**Что вы освоите:** спросить, чьи вещи, и ответить: whose, are these, ours, theirs, hers, mine, 's
+**Что вы освоите:** спросить, чьи это ласты: Whose flippers are those?
 **Новые слова:** flippers, armbands, lifebelt, deckchair
 **Возвращаются:** sister, brother, neighbour, bag, tree
 

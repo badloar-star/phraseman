@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы помогаете дяде чинить калитку в саду. Инструменты лежат в сарае и во дворе, и нужно на слух понять, чей инструмент нужен.
 
-**Что вы освоите:** различать на слух, чей инструмент: my uncle's saw, my aunt's spade, и не путать это с has
+**Что вы освоите:** назвать, чей это инструмент: This is my aunt's screwdriver.
 **Новые слова:** screwdriver, toolbox, saw, spade
 **Возвращаются:** uncle, aunt, grandmother, cousin, brother, friend, shed, garden, bench, gate, hammer, ladder, scissors, bag
 

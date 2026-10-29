@@ -2,7 +2,7 @@
 
 **Ситуація.** Подруга прийшла в гості й гортає ваші сімейні фотографії. Ви називаєте родичів, кажете, чиє що, і що в кого є: grandfather’s, My nephew has, The twins have.
 
-**Що ви опануєте:** сказати про родичів, чиє що і що в кого є: my grandfather’s, My nephew has, The twins have
+**Що ви опануєте:** сказати, що в родича є річ: My nephew has a puppy.
 **Нові слова:** grandfather, nephew, niece, twins
 **Повертаються:** chair, puppy, dog, kite, ball, diary, guitar
 

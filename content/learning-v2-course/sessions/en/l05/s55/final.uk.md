@@ -2,7 +2,7 @@
 
 **Ситуація.** У дворі малюють велику картину на стіні. Пензлі, мольберт і альбом лежать упереміш, і ви допомагаєте розібратися, що чиє: whose, ours, yours, hers, mine або ім’я з 's.
 
-**Що ви опануєте:** сказати, де є розпис, і спитати про господаря речі: whose, ours, yours, hers, mine, 's
+**Що ви опануєте:** сказати, де знаходиться розпис: The mural is under the window.
 **Нові слова:** mural, paintbrush, easel, sketchbook
 **Повертаються:** teacher, sister, friend, wall, window, shelf
 

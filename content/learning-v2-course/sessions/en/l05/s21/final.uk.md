@@ -2,7 +2,7 @@
 
 **Ситуація.** На сходах, в аудиторії й в офісі треба сказати, чия річ, коли власник — не «я» і не «ти», а сусід, студентка чи керівник. Роль називаємо з the і ’s: the neighbour’s.
 
-**Що ви опануєте:** назвати власника речі за роллю: the neighbour’s, the student’s, the manager’s
+**Що ви опануєте:** назвати власника речі за роллю: The dog is the neighbour’s.
 **Нові слова:** neighbour, student, manager, client
 **Повертаються:** dog, notebook, desk, key, umbrella, pen, bag
 

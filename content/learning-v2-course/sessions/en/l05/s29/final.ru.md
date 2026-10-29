@@ -2,7 +2,7 @@
 
 **Ситуация.** У тёти семейный праздник: в гостиной стоят инструменты, а гости приходят по одному. Нужно говорить и чей инструмент, и кто уже пришёл.
 
-**Что вы освоите:** различать два смысла 's: «чей» (my aunt's piano) и «есть, находится» (my cousin's here)
+**Что вы освоите:** сказать, чей инструмент и где он лежит: This is my cousin's drum.
 **Новые слова:** piano, drum, flute, trumpet
 **Возвращаются:** aunt, uncle, cousin, friend, grandmother, sofa, hall, home, kitchen, here, tired, old, loud, phone
 

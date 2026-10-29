@@ -84,7 +84,8 @@ describe('герой «Сцены»: копии 512 рядом с оригина
     const stage = readSource('components/home/v2/scene/HomeSceneStage.tsx');
     const hero = Number(/const HERO = (\d+);/.exec(stage)?.[1]);
     expect(hero).toBeGreaterThan(0);
-    expect(hero * 3).toBeLessThanOrEqual(512);
+    // зачем (выбор владельца на макете 29.10: герой 280 dp «громадный»): 280 × 3 = 840 px из копии 512 растягивается ≈1,6× — на экранах 3× картинка мягче; пересборка копий на 768/1024 — отдельным шагом (риск памяти [MEM-HOME])
+    expect(hero === 280 || hero * 3 <= 512).toBe(true);
   });
 
   it('сцена берёт копию 512 только для своего героя; флаг hero512 в журнале', () => {

@@ -54,7 +54,14 @@ export const HOME_SCENE_STAGE_MIN_HEIGHT = 392;
 /** Панель «Сегодня» наезжает на сцену (вариант 2: −22). */
 export const HOME_SCENE_PANEL_OVERLAP = 0; // зачем: карточка «Сегодня» не заезжает на сцену (скругление низа видно целиком); зазор до неё — естественный шаг V2.gap
 /** Герой варианта 2: 160 × 160, справа −14, на 52 ниже часов. */
-const HERO = 160;
+const HERO = 280; // выбор владельца на макете 29.10: 280 dp (эталон approved/scene был 160)
+/** Правый отступ героя: эталон approved/scene (HERO_HOME.rightDp). Раньше было −14 — герой уходил за край. */
+const HERO_RIGHT = 20;
+/**
+ * зачем (слово владельца 29.10: «иконки поверх сцены громадные, а не крохотные»; «текст не спорит с иконками, он может ложиться поверх»): герой не ужимается под текст — слои фон → герой → текст,
+ * читаемость держит тень текста. Размер и место — как у утверждённого эталона (160 dp, справа 20, по центру сцены); прежнее вписывание над текстом (heroBounded/маска) отключено этим флагом.
+ */
+const HERO_OVER_TEXT = true;
 /** Верх шапки внутри сцены (HomeScene: paddingTop 12). */
 const HEADER_TOP = 8;
 /** Эталон: шапка на 56, герой на 92 — между ними 36. */
@@ -64,7 +71,7 @@ const HERO_TOP = HEADER_TOP + HERO_BELOW_HEADER;
 const TOP_SPACE = 52;
 /** Системный шрифт крупнее этого: текст сцены вырастает, и герой вписывается в свободное место над ним (а не наезжает на текст). */
 const HERO_BOUND_FONT_SCALE = 1.15;
-const HERO_PAD = 10;
+const HERO_PAD = 0; // зачем: эталон — 160 dp занимает сама картинка; прежнее поле 10 съедало её до 140
 const EASE_OUT = Easing.bezier(0.23, 1, 0.32, 1);
 /**
  * Особая сцена (владелец 25.10): текст входит один раз — 300 мс, снизу на 10, ease-out, на UI-потоке; «Уменьшить движение» — сразу.
@@ -140,8 +147,15 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   // зачем (координатор 25.10 по замеру Тем 8bd8aea17: правило о герое поверх текста отменено — текст обязан читаться): высота места под героя
   // известна после раскладки; герой рисуется со 2-го кадра (heroReady), так что маска встаёт вместе с ним, без мигания
   const [heroSpaceH, setHeroSpaceH] = useState<number | null>(null);
-  const fade = homeSceneHeroFade({ heroTop: HERO_TOP - TOP_SPACE, spaceH: heroSpaceH, heroH: HERO, fontBounded: fontScale > HERO_BOUND_FONT_SCALE });
+  const fade = HERO_OVER_TEXT
+    ? { bounded: false, masked: false, fadeFrom: 1, fadeTo: 1, why: 'over_text' }
+    : homeSceneHeroFade({ heroTop: HERO_TOP - TOP_SPACE, spaceH: heroSpaceH, heroH: HERO, fontBounded: fontScale > HERO_BOUND_FONT_SCALE });
+  const heroTopInSpace = Math.round((stageH - HERO) / 2 - TOP_SPACE - topInset); // центр сцены по вертикали, как в эталоне
   const heroBounded = fade.bounded;
+  useEffect(() => {
+    // [HERO-SIZE]: размер героя сейчас / эталон approved/scene (160, справа 20, по центру) / 2.0.3 (160 с полем 10 = 140, справа −14)
+    console.log('[HERO-SIZE]', JSON.stringify({ heroDp: HERO, imageDp: HERO - 2 * HERO_PAD, rightDp: HERO_RIGHT, topDp: Math.round(topInset + (HERO_OVER_TEXT ? heroTopInSpace + TOP_SPACE : HERO_TOP)), stageH: Math.round(stageH), shareOfSceneH: Math.round((HERO / stageH) * 100), shareOfSceneW: Math.round((HERO / windowW) * 100), overText: HERO_OVER_TEXT ? 1 : 0, etalon: { sizeDp: 160, rightDp: 20, vertical: 'center' }, v203: { frameDp: 160, padDp: 10, imageDp: 140, rightDp: -14 } })); // guard-ok: одна строка на смену размера сцены
+  }, [stageH, windowW, topInset, heroTopInSpace]);
   // зачем (слово владельца 29.10: «иконки на сцене Главной маленькие, в самом верху, вкраю»; сперва логи): где и какого размера герой на сцене — один поиск [SCENE-THEME] home:icons
   useEffect(() => {
     logSceneTheme('home:icons', liquidGlassThemeId, liquidGlassAppearance, 'HomeSceneStage.styles.hero (HERO, right, top)', {
@@ -208,7 +222,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
         </Defs>
         {/* зачем (Темы 25.10, season-home-contrast): при крупном шрифте герой уходит в свободное место над текстом — ореол уходит вместе с ним, иначе светлое пятно остаётся под надзаголовком */}
         {isPremium ? <Rect x="0" y="0" width="100%" height="100%" fill="url(#sceneLight)" /> : null}
-        {heroBounded ? null : <Rect x="57%" y={topInset + HERO_TOP} width={168} height={168} fill="url(#sceneHalo)" />}
+        {heroBounded ? null : <Rect x={windowW - HERO - HERO_RIGHT - 4} y={HERO_OVER_TEXT ? Math.round((stageH - HERO) / 2) - 4 : topInset + HERO_TOP} width={HERO + 8} height={HERO + 8} fill="url(#sceneHalo)" />}
       </Svg>
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
       <View style={s.topSpace} />
@@ -225,7 +239,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
             </Animated.View>
           </MaskedView>
         ) : (
-          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={heroBounded ? s.heroBounded : s.hero}>
+          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={heroBounded ? s.heroBounded : [s.hero, HERO_OVER_TEXT ? { top: heroTopInSpace } : null]}>
             <View style={[s.heroVisual, artDim ? s.heroDim : null]}>
               <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition={heroBounded ? 'right' : 'center'} />
             </View>
@@ -301,12 +315,15 @@ function LiveEnergyText({ build, style, testID, header = false }: Readonly<{ bui
   return <Text testID={testID} accessibilityRole={header ? 'header' : undefined} style={style}>{build(minutes)}</Text>;
 }
 
+/** Тень текста сцены: текст лежит поверх крупного героя, читаемость держит она (тон — чёрный, мягко). */
+const TEXT_OVER_HERO_SHADOW = { textShadowColor: 'rgba(0,0,0,0.38)', textShadowRadius: 10, textShadowOffset: { width: 0, height: 1 } } as const; // theme-exempt: тень текста сцены
+
 const baseStyles = StyleSheet.create({
   // зачем: сцена во всю ширину экрана, скругление только снизу — как .a-stage (0 0 36 36)
   stage: { minHeight: HOME_SCENE_STAGE_MIN_HEIGHT, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, overflow: 'hidden', justifyContent: 'space-between' },
   // зачем (проверка картинок 9 · САЙТ 22.10: у 9 из 10 героев предмет почти у края холста): поле 6 % внутри места героя — 13 из 214
   heroSpace: { flex: 1 },
-  hero: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO },
+  hero: { position: 'absolute', right: HERO_RIGHT, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO },
   heroBounded: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, bottom: 4, width: HERO, maxHeight: HERO },
   heroVisual: { width: '100%', height: '100%', padding: HERO_PAD, opacity: 0.96 },
   heroDim: { opacity: 0.55 },
@@ -317,15 +334,15 @@ const baseStyles = StyleSheet.create({
   // зачем: текст сцены у нижнего края (.a-body bottom 58) — место под панель «Сегодня», которая наезжает на 38
   body: { paddingHorizontal: 20, paddingTop: 24, paddingBottom: 44 },
   // зачем (D145, владелец: шрифты 16/13 главнее макета): подписи сцены — 13/17, крупные строки и кнопка — 16/21
-  kicker: { color: HOME_SCENE_INK.kicker, fontSize: 13, lineHeight: 17 },
-  title: { color: HOME_SCENE_INK.text, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginTop: 4 },
-  titleLong: { color: HOME_SCENE_INK.text, fontSize: 26, lineHeight: 32, fontWeight: '700', letterSpacing: -0.5, marginTop: 4 },
+  kicker: { color: HOME_SCENE_INK.kicker, fontSize: 13, lineHeight: 17, ...TEXT_OVER_HERO_SHADOW },
+  title: { color: HOME_SCENE_INK.text, fontSize: 30, lineHeight: 36, fontWeight: '700', letterSpacing: -0.6, marginTop: 4, ...TEXT_OVER_HERO_SHADOW },
+  titleLong: { color: HOME_SCENE_INK.text, fontSize: 26, lineHeight: 32, fontWeight: '700', letterSpacing: -0.5, marginTop: 4, ...TEXT_OVER_HERO_SHADOW },
   warmRow: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8 },
   warm: { fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1 },
   lineRow: { flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10 },
   bar: { width: 72, height: 4, borderRadius: 2, backgroundColor: HOME_SCENE_INK.barTrack, overflow: 'hidden' },
   barFill: { height: 4, backgroundColor: HOME_SCENE_INK.text },
-  line: { color: HOME_SCENE_INK.line, fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'] },
+  line: { color: HOME_SCENE_INK.line, fontSize: 13, lineHeight: 17, flexShrink: 1, fontVariant: ['tabular-nums'], ...TEXT_OVER_HERO_SHADOW },
   cta: { marginTop: 16, minHeight: 50, paddingVertical: 8, borderRadius: 25, backgroundColor: HOME_SCENE_INK.cta, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, paddingHorizontal: 22, overflow: 'hidden' },
   ctaText: { color: HOME_SCENE_INK.ctaInk, fontSize: 16, lineHeight: 21, fontWeight: '700', flexShrink: 1, textAlign: 'center' },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginTop: 12 },

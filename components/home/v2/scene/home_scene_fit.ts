@@ -1,3 +1,5 @@
+import { SCENE_HERO_HEIGHT_DP } from '../../../scene/scene_hero_height';
+
 // ═══════════════════════════════════════════════════════════════════════════
 // home_scene_fit.ts — высота «Сцены» Главной так, чтобы ВСЯ Главная до «Фразы дня» включительно была видна над таб-баром без прокрутки.
 //
@@ -11,12 +13,6 @@
 export const HOME_SCENE_PANEL_OVERLAP_DP = 0;
 /** Зазор между нижним краем сцены и карточкой «Сегодня» (тот же шаг, что между карточками ниже). */
 export const HOME_SCENE_PANEL_GAP_DP = 12;
-/**
- * Сдвиг нижнего края сцены вверх (владелец 29.10: «сцена должна заканчиваться там, где заканчивалась раньше, как отдельный объёмный элемент»): раньше видимой границей был верх карточки
- * (сцена − 22 наезда); теперь граница — сам нижний край сцены, а карточка начинается на зазор ниже. Чтобы верх карточки и всё под ней остались на тех же местах:
- * сцена ниже на 22 (бывший наезд) + 12 (зазор) = 34 dp.
- */
-export const HOME_SCENE_EDGE_SHIFT_DP = 22 + HOME_SCENE_PANEL_GAP_DP;
 const TODAY_CARD = 14 + 30 + (52 + 52 + 55) + 6;
 const PHRASE_CARD = 80;
 const FEED_GAP = 12;
@@ -25,8 +21,6 @@ const TILE_HEIGHT = 6 + 58 + 17 + 10;
 export const HOME_SCENE_FIT_MIN = 320;
 /** Выше этого масштаба шрифта сцену не сжимаем: текст растёт, прокрутка допустима. */
 export const HOME_SCENE_FIT_MAX_FONT_SCALE = 1.15;
-/** Запас над верхом капсулы таб-бара. */
-const BREATHING = 8;
 
 /** Высота всего, что стоит под сценой (с учётом наезда карточки «Сегодня»). */
 export function homeBelowSceneHeight(_windowW: number): number {
@@ -34,9 +28,7 @@ export function homeBelowSceneHeight(_windowW: number): number {
 }
 
 /** Высота сцены: доля экрана (46 %), но не больше, чем остаётся над таб-баром после всего, что под сценой. */
-export function homeSceneStageHeight(input: Readonly<{ windowH: number; windowW: number; pillTop: number; fontScale: number; share: number }>): number {
-  const wanted = Math.round(input.windowH * input.share) - HOME_SCENE_EDGE_SHIFT_DP;
-  if (input.fontScale > HOME_SCENE_FIT_MAX_FONT_SCALE) return wanted;
-  const room = Math.floor(input.windowH - input.pillTop - BREATHING - homeBelowSceneHeight(input.windowW));
-  return Math.max(HOME_SCENE_FIT_MIN, Math.min(wanted, room));
+export function homeSceneStageHeight(_input: Readonly<{ windowH: number; windowW: number; pillTop: number; fontScale: number; share: number }>): number {
+  // зачем (слово владельца 29.10: «сцена на главной такая же высота как в разделе уроки»): высота сцены Главной = высота обложки «Уроков» на любом окне и шрифте; под неё не ужимаем — карточки уходят ниже, экран прокручивается
+  return SCENE_HERO_HEIGHT_DP;
 }

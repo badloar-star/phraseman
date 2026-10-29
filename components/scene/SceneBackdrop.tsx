@@ -17,6 +17,20 @@ import SceneStarTwinkle, { SCENE_TWINKLE_EVERY } from './SceneStarTwinkle';
 type Props = Readonly<{ palette: ScenePaletteResult; idPrefix: string }>;
 
 const rgb = (c: ReadonlyArray<number>): string => `rgb(${Math.round(c[0]!)},${Math.round(c[1]!)},${Math.round(c[2]!)})`;
+/**
+ * зачем (слово владельца 29.10: «на тёмной теме убери затемнение нижней части сцены», «вся сцена в тёмной теме как звёздное небо»): чёрный градиент стража у низа тёмного неба не рисуется.
+ * ВНИМАНИЕ: белый текст в нижней зоне без него хуже (замер: ≈3,0:1 вместо 5,0:1) — решение о возврате/замене за владельцем по макету.
+ */
+export const SCENE_DARK_BOTTOM_GUARD = false;
+/** Звёзды нижней части тёмного неба (статичные, в Svg): детерминированный сид, доли сцены; верхние 40 % уже заняты звёздами палитры. */
+const LOWER_STARS: ReadonlyArray<{ x: number; y: number; r: number; a: number }> = (() => {
+  let st = 0x9e3779b9;
+  const rnd = (): number => { st ^= st << 13; st >>>= 0; st ^= st >>> 17; st ^= st << 5; st >>>= 0; return st / 4294967296; };
+  const out: Array<{ x: number; y: number; r: number; a: number }> = [];
+  for (let i = 0; i < 102; i += 1) out.push({ x: rnd(), y: 0.4 + rnd() * 0.58, r: 0.9 + rnd() * 0.9, a: 0.3 + rnd() * 0.35 });
+  return out;
+})();
+const ALL_STARS = (top: ReadonlyArray<{ x: number; y: number; r: number; a: number }>): ReadonlyArray<{ x: number; y: number; r: number; a: number }> => [...top, ...LOWER_STARS];
 const GUARD_TOP_H = 110; // px эталонной канвы: затемнение верха стража
 
 function SceneBackdrop({ palette, idPrefix }: Props) {
@@ -73,13 +87,13 @@ function SceneBackdrop({ palette, idPrefix }: Props) {
         {p.warmEdge ? <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Warm')})`} /> : null}
         <G>
           {/* зачем (владелец 29.10): каждая 5-я звезда мерцает отдельным слоем SceneStarTwinkle (UI-тред), остальные статичны здесь */}
-          {p.stars.list.map((s, i) => (i % SCENE_TWINKLE_EVERY === 0 ? null : <Circle key={i} cx={s.x * W} cy={s.y * H} r={s.r} fill="#FFFFFF" fillOpacity={s.a} />))}
+          {ALL_STARS(p.stars.list).map((s, i) => (i % SCENE_TWINKLE_EVERY === 0 ? null : <Circle key={i} cx={s.x * W} cy={s.y * H} r={s.r} fill="#FFFFFF" fillOpacity={s.a} />))}
         </G>
         <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Vig')})`} />
-        {p.guard.aBottom > 0 ? <Rect x="0" y={H * 0.42} width={W} height={H * 0.58} fill={`url(#${id('GuardB')})`} /> : null}
+        {SCENE_DARK_BOTTOM_GUARD && p.guard.aBottom > 0 ? <Rect x="0" y={H * 0.42} width={W} height={H * 0.58} fill={`url(#${id('GuardB')})`} /> : null}
         {p.guard.aTop > 0 ? <Rect x="0" y="0" width={W} height={GUARD_TOP_H} fill={`url(#${id('GuardT')})`} /> : null}
       </Svg>
-      <SceneStarTwinkle stars={p.stars.list} />
+      <SceneStarTwinkle stars={ALL_STARS(p.stars.list)} />
       </>
     );
   }

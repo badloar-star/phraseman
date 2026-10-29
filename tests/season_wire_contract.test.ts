@@ -90,7 +90,7 @@ describe('Сезон: обложка 46 % от самого верха (влад
     expect(wire).toContain('topBleed={bleed}');
   });
   it('обложка: не менее 392 dp вместе с зоной часов (растёт, а не наезжает на HUD), заголовок 30/36, кнопка 50, низ 44', () => {
-    expect(view).toMatch(/heroTall: \{ minHeight: 392/);
+    expect(view).toContain('heroTall: { minHeight: SCENE_HERO_HEIGHT_DP,');
     expect(view).toContain('paddingTop: props.topPadding + 8 + HUD_ROW_HEIGHT + 12');
     // ЗАМОК ВЛАДЕЛЬЦА 22.10: «меньше шрифт и более компактно!» — было 30/36; кегль теперь из season_hero_title_metrics (сторож размеров: season_hero_title_fit_contract)
     expect(view).toMatch(/heroTitle: \{ fontWeight: '700', letterSpacing: -0\.3, color: WHITE \}/);

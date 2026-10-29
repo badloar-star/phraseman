@@ -29,6 +29,7 @@ import SeasonCardFace from './SeasonCardFace';
 import { hexChroma, hexHue, seasonThemedArt, type SeasonTheme } from './season_art';
 import SceneBackdropFill from '../../scene/SceneBackdropFill';
 import SceneBlockShadow from '../../scene/SceneBlockShadow';
+import { SCENE_HERO_HEIGHT_DP } from '../../scene/scene_hero_height';
 import { scenePaletteCached, sceneTopHex } from '../../scene/scene_palette';
 import { seasonStarTones } from './season_star_tones';
 import { seasonText, seasonEpisodeLabel } from './season_copy';
@@ -396,7 +397,7 @@ const styles = StyleSheet.create({
   // зачем (владелец 22.10: высота сцен 46 % для всех; scenes-compact.html «Обучение · Сезон», вариант 2): 392 dp вместе с зоной часов, фон от верха экрана
   heroBodyTall: { paddingBottom: 44 },
   hudPlate: { borderRadius: 22, paddingHorizontal: 6, paddingVertical: 2, flexDirection: 'row', alignItems: 'center' },
-  heroTall: { minHeight: 392, borderBottomLeftRadius: 28, borderBottomRightRadius: 28 },
+  heroTall: { minHeight: SCENE_HERO_HEIGHT_DP, borderBottomLeftRadius: 28, borderBottomRightRadius: 28 },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 320 },
   heroTop: { position: 'absolute', left: 20, right: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
   pill: { height: 40, paddingHorizontal: 14, borderRadius: 20, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: PILL },

@@ -34,12 +34,28 @@ describe('Сцена: резкий край, тень блока, мерцающ
 
   it('звёзды неба: каждая 5-я мерцает Reanimated-слоем, без setState в кадрах, статично при «Убрать анимации»', () => {
     const tw = read('components/scene/SceneStarTwinkle.tsx');
-    expect(tw).toContain('SCENE_TWINKLE_EVERY = 5');
+    expect(tw).toContain('SCENE_TWINKLE_EVERY = 8');
     expect(tw).toContain('useReduceMotion');
     expect(tw).toContain('withRepeat');
     expect(tw).not.toMatch(/useState|setInterval|requestAnimationFrame/);
     const bd = read('components/scene/SceneBackdrop.tsx');
-    expect(bd).toContain('<SceneStarTwinkle stars={p.stars.list} />');
+    expect(bd).toContain('<SceneStarTwinkle stars={ALL_STARS(p.stars.list)} />');
     expect(bd).toContain('i % SCENE_TWINKLE_EVERY === 0 ? null');
+  });
+
+  it('тёмное небо: звёзды по всей сцене (нижние добавлены), затемнение низа не рисуется', () => {
+    const bd = read('components/scene/SceneBackdrop.tsx');
+    expect(bd).toContain('SCENE_DARK_BOTTOM_GUARD = false');
+    expect(bd).toContain('SCENE_DARK_BOTTOM_GUARD && p.guard.aBottom > 0');
+    expect(bd).toContain('0.4 + rnd() * 0.58');
+    expect(bd).toContain('i < 102');
+  });
+
+  it('6 тем за награды: у Главной фон свой (premiumThemeVisualSpec), без общего неба, PremiumThemeMotion на месте', () => {
+    const stage = read('components/home/v2/scene/HomeSceneStage.tsx');
+    expect(stage).toContain('isPremium ? <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]}');
+    expect(stage).toContain(': <SceneBackdrop palette={scenePal} idPrefix="homeSc" />');
+    expect(stage).toContain('<PremiumThemeMotion themeId={liquidGlassThemeId}');
+    expect(read('components/home/v2/scene/HomeScene.tsx')).toContain('if (isPremiumSceneTheme(liquidGlassThemeId)) return base;');
   });
 });

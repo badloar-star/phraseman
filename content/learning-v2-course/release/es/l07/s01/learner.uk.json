@@ -217,8 +217,8 @@
             "correct": false,
             "testedDimension": "Зберіть фразу — запис «нуль книжок»; почніть з Cero, без hay та артикля",
             "feedbackByLocale": {
-              "ru": "здесь нужно множественное число libros.",
-              "uk": "тут потрібна множина libros."
+              "ru": "здесь нужна форма для нескольких — libros.",
+              "uk": "тут потрібна форма для кількох — libros."
             }
           }
         ],
@@ -281,8 +281,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — запис «нуль стільців»",
             "feedbackByLocale": {
-              "ru": "После cero здесь нужно множественное число sillas.",
-              "uk": "Після cero тут потрібна множина sillas."
+              "ru": "После cero здесь нужна форма для нескольких: sillas.",
+              "uk": "Після cero тут потрібна форма для кількох: sillas."
             }
           },
           {
@@ -342,8 +342,8 @@
             "correct": false,
             "testedDimension": "Зберіть фразу — запис «нуль стільців»; почніть з Cero, без hay та артикля",
             "feedbackByLocale": {
-              "ru": "здесь нужно множественное число sillas.",
-              "uk": "тут потрібна множина sillas."
+              "ru": "здесь нужна форма для нескольких — sillas.",
+              "uk": "тут потрібна форма для кількох — sillas."
             }
           }
         ],
@@ -692,5 +692,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bed7329512ab55cb8b17b4414fb517680143ac74cd1c95e4394c51de5d7bcc19"
+  "learnerFingerprint": "93ba51588779dc5ff461e7e688d04385584e4809301b3a2b04a63712602e396a"
 }

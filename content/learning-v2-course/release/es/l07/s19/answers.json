@@ -1,0 +1,92 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-19:i01",
+    "correctText": "veintiocho",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i02",
+    "correctText": "veintinueve",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i03",
+    "correctText": "veintiocho",
+    "correctResponseId": "es:lesson-07:session-19:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i04",
+    "correctText": "veintinueve",
+    "correctResponseId": "es:lesson-07:session-19:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i05",
+    "correctText": "treinta",
+    "correctResponseId": "es:lesson-07:session-19:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i06",
+    "correctText": "veintiocho",
+    "correctResponseId": "es:lesson-07:session-19:i06:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i07",
+    "correctText": "Hay veintiocho libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i08",
+    "correctText": "veintinueve",
+    "correctResponseId": "es:lesson-07:session-19:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i09",
+    "correctText": "Hay veintinueve libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i10",
+    "correctText": "treinta",
+    "correctResponseId": "es:lesson-07:session-19:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i11",
+    "correctText": "¿Hay treinta libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i12",
+    "correctText": "Hay veintiocho libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i13",
+    "correctText": "Veintiocho.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i14",
+    "correctText": "Veintinueve.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i15",
+    "correctText": "Treinta.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i16",
+    "correctText": "Hay veintiocho libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i17",
+    "correctText": "Hay veintinueve libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-19:i18",
+    "correctText": "¿Hay treinta libros?",
+    "correctResponseId": null
+  }
+]

@@ -793,8 +793,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — багато води?",
             "feedbackByLocale": {
-              "ru": "Agua здесь в единственном числе: mucha.",
-              "uk": "Agua тут в однині: mucha."
+              "ru": "Agua здесь в форме для одного: mucha.",
+              "uk": "Agua тут у формі для одного: mucha."
             }
           }
         ]
@@ -1141,5 +1141,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ad12cead5adbfc4ebfa54de6b654b064d4010ced530c1d0c3937fb1d3bc2e94a"
+  "learnerFingerprint": "2c95017beb8491572cd487bff383720d1058c8394297c881b3d53ba4c640da8b"
 }

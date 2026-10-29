@@ -32,8 +32,8 @@
       "interactionId": "es:lesson-07:session-08:intro3:q",
       "responseFeedbackById": {
         "es:lesson-07:session-08:intro3:r2": {
-          "ru": "С cero здесь нужно множественное число libros.",
-          "uk": "З cero тут потрібна множина libros."
+          "ru": "С cero здесь нужна форма для нескольких: libros.",
+          "uk": "З cero тут потрібна форма для кількох: libros."
         },
         "es:lesson-07:session-08:intro3:r3": {
           "ru": "Книг нет, поэтому ноль: cero.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "a14a30f20a567e221599902c7d6dde02dc4eb83dbfaf5d772957b3ca92157583"
+  "auxiliaryFingerprint": "18f2c7b3c69613c41594bbf5fdd8293538121ce0c411e2e36719334f67c42df0"
 }

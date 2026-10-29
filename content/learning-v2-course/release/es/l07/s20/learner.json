@@ -1,0 +1,809 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-07:session-20",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-07:session-20:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cuarenta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-20:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cuarenta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-20:i01:audio",
+          "transcript": "cuarenta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-20:i01:r1",
+            "targetText": "cuarenta",
+            "meaningByLocale": {
+              "ru": "сорок, 40; одно слово. 🔊 *cuarenta*",
+              "uk": "сорок, 40; одне слово. 🔊 *cuarenta*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cuarenta",
+          "definitionByLocale": {
+            "ru": "сорок, 40; одно слово. 🔊 *cuarenta*",
+            "uk": "сорок, 40; одне слово. 🔊 *cuarenta*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — cincuenta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-20:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — cincuenta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-20:i02:audio",
+          "transcript": "cincuenta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-20:i02:r1",
+            "targetText": "cincuenta",
+            "meaningByLocale": {
+              "ru": "пятьдесят, 50; одно слово. 🔊 *cincuenta*",
+              "uk": "п’ятдесят, 50; одне слово. 🔊 *cincuenta*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "cincuenta",
+          "definitionByLocale": {
+            "ru": "пятьдесят, 50; одно слово. 🔊 *cincuenta*",
+            "uk": "п’ятдесят, 50; одне слово. 🔊 *cincuenta*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-20:i03:r1",
+          "text": "cuarenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i03:r2",
+          "text": "cincuenta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-20:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-20:i03:audio",
+          "transcript": "cuarenta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-20:i03:r1",
+            "targetText": "cuarenta",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-20:i03:r2",
+            "targetText": "cincuenta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-20:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит cuarenta — сорок.",
+              "uk": "Звучить cuarenta — сорок."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-20:i04:r1",
+          "text": "cincuenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i04:r2",
+          "text": "cuarenta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-20:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-20:i04:audio",
+          "transcript": "cincuenta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-20:i04:r1",
+            "targetText": "cincuenta",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-20:i04:r2",
+            "targetText": "cuarenta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-20:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит cincuenta — пятьдесят.",
+              "uk": "Звучить cincuenta — п’ятдесят."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — есть сорок стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-20:i05:r1",
+          "text": "cuarenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i05:r2",
+          "text": "cincuenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i05:r3",
+          "text": "treinta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — есть сорок стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть сорок стульев",
+          "uk": "Вставте слово — є сорок стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-20:i05:r1",
+            "text": "cuarenta"
+          },
+          {
+            "responseId": "es:lesson-07:session-20:i05:r2",
+            "text": "cincuenta"
+          },
+          {
+            "responseId": "es:lesson-07:session-20:i05:r3",
+            "text": "treinta"
+          }
+        ],
+        "testedDimension": "Вставьте слово — есть сорок стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-20:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть сорок стульев",
+            "feedbackByLocale": {
+              "ru": "Нужно сорок: cuarenta.",
+              "uk": "Потрібно сорок: cuarenta."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-20:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть сорок стульев",
+            "feedbackByLocale": {
+              "ru": "Treinta — тридцать, а нужно cuarenta.",
+              "uk": "Treinta — тридцять, а потрібно cuarenta."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть сорок стульев; начните с Hay, число поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-20:i06:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i06:r2",
+          "text": "cuarenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i06:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i06:r4",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть сорок стульев; начните с Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay cuarenta sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть сорок стульев; начните с Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є сорок стільців; почніть з Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "Hay",
+          "cuarenta",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-20:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть сорок стульев; начните с Hay, число поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "стульев сорок, нужно sillas.",
+              "uk": "стільців сорок, потрібно sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — здесь есть пятьдесят стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-20:i07:r1",
+          "text": "cincuenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i07:r2",
+          "text": "cuarenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i07:r3",
+          "text": "treinta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — здесь есть пятьдесят стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть пятьдесят стульев",
+          "uk": "Вставте слово — тут є п’ятдесят стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-20:i07:r1",
+            "text": "cincuenta"
+          },
+          {
+            "responseId": "es:lesson-07:session-20:i07:r2",
+            "text": "cuarenta"
+          },
+          {
+            "responseId": "es:lesson-07:session-20:i07:r3",
+            "text": "treinta"
+          }
+        ],
+        "testedDimension": "Вставьте слово — здесь есть пятьдесят стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-20:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть пятьдесят стульев",
+            "feedbackByLocale": {
+              "ru": "Нужно пятьдесят: cincuenta.",
+              "uk": "Потрібно п’ятдесят: cincuenta."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-20:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть пятьдесят стульев",
+            "feedbackByLocale": {
+              "ru": "Treinta — тридцать, а нужно cincuenta.",
+              "uk": "Treinta — тридцять, а потрібно cincuenta."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь есть пятьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-20:i08:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i08:r2",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i08:r3",
+          "text": "cincuenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i08:r4",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i08:r5",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь есть пятьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay cincuenta sillas aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть пятьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+          "uk": "Зберіть фразу — тут є п’ятдесят стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "cincuenta",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-20:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь есть пятьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+            "feedbackByLocale": {
+              "ru": "после cincuenta нужно sillas.",
+              "uk": "після cincuenta потрібно sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть пятьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-20:i09:r1",
+          "text": "Плитки: sillas?"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i09:r2",
+          "text": "cincuenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i09:r3",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i09:r4",
+          "text": "cuarenta."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть пятьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay cincuenta sillas?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть пятьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є п’ятдесят стільців?; почніть з ¿Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "cincuenta",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "cuarenta"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-20:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть пятьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "нужно пятьдесят, cincuenta.",
+              "uk": "потрібно п’ятдесят, cincuenta."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-20:i10:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i10:r2",
+          "text": "cuarenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i10:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i10:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-20:i10:r5",
+          "text": "cincuenta."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-20:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-20:i10:audio",
+          "transcript": "Hay cuarenta sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay cuarenta sillas aquí.",
+        "orderedTokens": [
+          "Hay",
+          "cuarenta",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "cincuenta"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-20:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит cuarenta.",
+              "uk": "звучить cuarenta."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — число сорок одним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-20:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — число сорок одним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-20:i11:audio",
+          "transcript": "Cuarenta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Cuarenta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — число пятьдесят одним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-20:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — число пятьдесят одним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-20:i12:audio",
+          "transcript": "Cincuenta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Cincuenta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть сорок стульев; начните с Hay, число поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-20:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть сорок стульев; начните с Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-20:i13:audio",
+          "transcript": "Hay cuarenta sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay cuarenta sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь есть пятьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-20:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь есть пятьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-20:i14:audio",
+          "transcript": "Hay cincuenta sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay cincuenta sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть пятьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-20:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть пятьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-20:i15:audio",
+          "transcript": "¿Hay cincuenta sillas?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay cincuenta sillas?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-20:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь есть сорок стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-20:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь есть сорок стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-20:i16:audio",
+          "transcript": "Hay cuarenta sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay cuarenta sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "cc5a06d55b88d4e582df61e74f50b670f3e1964010d4c05b9eca8054f8e46cb9"
+}

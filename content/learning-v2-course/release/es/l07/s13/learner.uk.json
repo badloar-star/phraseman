@@ -551,8 +551,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — є двадцять книжок?",
             "feedbackByLocale": {
-              "ru": "После veinte нужно множественное число libros.",
-              "uk": "Після veinte потрібна множина libros."
+              "ru": "После veinte нужна форма для нескольких: libros.",
+              "uk": "Після veinte потрібна форма для кількох: libros."
             }
           },
           {
@@ -740,5 +740,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1fd9ce0455dbdd9293cc7f2e1769616288b5e70c9b42f5f053a8a4446dec0d88"
+  "learnerFingerprint": "3028fa0e0974352f456034bd0451fed795d373417bed870afd3712467525be49"
 }

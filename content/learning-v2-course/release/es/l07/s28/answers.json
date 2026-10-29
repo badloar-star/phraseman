@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-28:i01",
+    "correctText": "doscientos",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i02",
+    "correctText": "mil",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i03",
+    "correctText": "doscientos",
+    "correctResponseId": "es:lesson-07:session-28:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i04",
+    "correctText": "mil",
+    "correctResponseId": "es:lesson-07:session-28:i04:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i05",
+    "correctText": "doscientos",
+    "correctResponseId": "es:lesson-07:session-28:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i06",
+    "correctText": "Hay doscientos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i07",
+    "correctText": "mil",
+    "correctResponseId": "es:lesson-07:session-28:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i08",
+    "correctText": "Hay mil libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i09",
+    "correctText": "¿Hay mil libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i10",
+    "correctText": "Hay doscientos libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i11",
+    "correctText": "Doscientos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i12",
+    "correctText": "Mil.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i13",
+    "correctText": "Hay doscientos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i14",
+    "correctText": "Hay mil libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i15",
+    "correctText": "¿Hay mil libros?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-28:i16",
+    "correctText": "Hay doscientos libros aquí.",
+    "correctResponseId": null
+  }
+]

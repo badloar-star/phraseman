@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-07:session-05",
   "learningOutcomeByLocale": {
-    "ru": "называть шесть и семь предметов в сообщении и вопросе.",
-    "uk": "називати шість і сім предметів у повідомленні та запитанні."
+    "ru": "сказать, что есть шесть или семь предметов: Hay seis sillas.",
+    "uk": "сказати, що є шість або сім предметів: Hay seis sillas."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Шість місць"
       },
       "bodyByLocale": {
-        "ru": "Вы расставили шесть стульев. Сообщите `Hay seis sillas` — «Есть шесть стульев». Соберите `Hay` + `seis` + `sillas`. Seis — шесть; после числа используем множественное число sillas. Само seis не меняется из-за женского рода silla.",
-        "uk": "Ви розставили шість стільців. Повідомте `Hay seis sillas` — «Є шість стільців». Складіть `Hay` + `seis` + `sillas`. Seis — шість; після числа використовуємо множину sillas. Саме seis не змінюється через жіночий рід silla."
+        "ru": "Вы расставили шесть стульев. Сообщите `Hay seis sillas` — «Есть шесть стульев». Соберите `Hay` + `seis` + `sillas`. Seis — шесть; после числа используем форму для нескольких — sillas. Само seis не меняется из-за женского рода silla.",
+        "uk": "Ви розставили шість стільців. Повідомте `Hay seis sillas` — «Є шість стільців». Складіть `Hay` + `seis` + `sillas`. Seis — шість; після числа використовуємо форму для кількох — sillas. Саме seis не змінюється через жіночий рід silla."
       },
       "question": {
         "interactionId": "es:lesson-07:session-05:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "afe1ae5dadbe16cf89d77a283716fbe260dfd0da0a6e5d20019095bdf95bc1b3"
+  "introFingerprint": "63afae629f46b58a60864c97158f4d3b78aea0bf12eb2f563d9fe22474b666f0"
 }

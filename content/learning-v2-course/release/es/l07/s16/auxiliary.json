@@ -23,8 +23,8 @@
           "uk": "Перед libros потрібна veintiún."
         },
         "es:lesson-07:session-16:intro2:r3": {
-          "ru": "Нужно множественное число libros.",
-          "uk": "Потрібна множина libros."
+          "ru": "Нужна форма для нескольких: libros.",
+          "uk": "Потрібна форма для кількох: libros."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "9e6363aa998c3e4ead8d2cd1cc26ec29302bebc3b607dab6330bb6f4542f947e"
+  "auxiliaryFingerprint": "4c906ebb79c0ff95e8722c1e42963591ee904ab4e4282c4ac5cb4a20f45c6e0a"
 }

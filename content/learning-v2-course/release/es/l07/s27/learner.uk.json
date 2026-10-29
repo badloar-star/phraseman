@@ -1,0 +1,688 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-07:session-27",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-07:session-27:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є сто дві книжки",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-27:i01:r1",
+          "text": "ciento"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i01:r2",
+          "text": "cien"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i01:r3",
+          "text": "noventa"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є сто дві книжки",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть сто две книги",
+          "uk": "Вставте слово — є сто дві книжки"
+        },
+        "gappedTargetPhrase": "Hay ___ dos libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-27:i01:r1",
+            "text": "ciento"
+          },
+          {
+            "responseId": "es:lesson-07:session-27:i01:r2",
+            "text": "cien"
+          },
+          {
+            "responseId": "es:lesson-07:session-27:i01:r3",
+            "text": "noventa"
+          }
+        ],
+        "testedDimension": "Вставте слово — є сто дві книжки",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-27:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є сто дві книжки",
+            "feedbackByLocale": {
+              "ru": "Перед dos в числе 102 нужна форма ciento.",
+              "uk": "Перед dos у числі 102 потрібна форма ciento."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-27:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є сто дві книжки",
+            "feedbackByLocale": {
+              "ru": "Начинаем со ста: ciento.",
+              "uk": "Починаємо зі ста: ciento."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-27:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є сто дві книжки; почніть з Hay, число поставте перед libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-27:i02:r1",
+          "text": "Плитки: dos"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i02:r2",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i02:r3",
+          "text": "ciento"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i02:r4",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i02:r5",
+          "text": "y."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є сто дві книжки; почніть з Hay, число поставте перед libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay ciento dos libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть сто две книги; начните с Hay, число поставьте перед libros",
+          "uk": "Зберіть фразу — є сто дві книжки; почніть з Hay, число поставте перед libros"
+        },
+        "orderedTokens": [
+          "Hay",
+          "ciento",
+          "dos",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "y"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-27:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є сто дві книжки; почніть з Hay, число поставте перед libros",
+            "feedbackByLocale": {
+              "ru": "ciento dos пишем без y.",
+              "uk": "ciento dos пишемо без y."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-27:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут є сто двадцять книжок",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-27:i03:r1",
+          "text": "ciento"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i03:r2",
+          "text": "cien"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i03:r3",
+          "text": "treinta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут є сто двадцять книжок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть сто двадцать книг",
+          "uk": "Вставте слово — тут є сто двадцять книжок"
+        },
+        "gappedTargetPhrase": "Hay ___ veinte libros aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-27:i03:r1",
+            "text": "ciento"
+          },
+          {
+            "responseId": "es:lesson-07:session-27:i03:r2",
+            "text": "cien"
+          },
+          {
+            "responseId": "es:lesson-07:session-27:i03:r3",
+            "text": "treinta"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут є сто двадцять книжок",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-27:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є сто двадцять книжок",
+            "feedbackByLocale": {
+              "ru": "Перед veinte нужна форма ciento.",
+              "uk": "Перед veinte потрібна форма ciento."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-27:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є сто двадцять книжок",
+            "feedbackByLocale": {
+              "ru": "В числе 120 начинаем с ciento.",
+              "uk": "У числі 120 починаємо з ciento."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-27:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут є сто двадцять книжок; почніть з Hay, число поставте перед libros, місце — в кінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-27:i04:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i04:r2",
+          "text": "veinte"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i04:r3",
+          "text": "ciento"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i04:r4",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i04:r5",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i04:r6",
+          "text": "y."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут є сто двадцять книжок; почніть з Hay, число поставте перед libros, місце — в кінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay ciento veinte libros aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть сто двадцать книг; начните с Hay, число поставьте перед libros, место — в конце",
+          "uk": "Зберіть фразу — тут є сто двадцять книжок; почніть з Hay, число поставте перед libros, місце — в кінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "ciento",
+          "veinte",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "y"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-27:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут є сто двадцять книжок; почніть з Hay, число поставте перед libros, місце — в кінці",
+            "feedbackByLocale": {
+              "ru": "между ciento и veinte её нет.",
+              "uk": "між ciento та veinte її немає."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-27:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є сто двадцять дві книжки?",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-27:i05:r1",
+          "text": "ciento"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i05:r2",
+          "text": "cien"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i05:r3",
+          "text": "veinte"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є сто двадцять дві книжки?",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть сто двадцать две книги?",
+          "uk": "Вставте слово — є сто двадцять дві книжки?"
+        },
+        "gappedTargetPhrase": "¿Hay ___ veintidós libros?",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-27:i05:r1",
+            "text": "ciento"
+          },
+          {
+            "responseId": "es:lesson-07:session-27:i05:r2",
+            "text": "cien"
+          },
+          {
+            "responseId": "es:lesson-07:session-27:i05:r3",
+            "text": "veinte"
+          }
+        ],
+        "testedDimension": "Вставте слово — є сто двадцять дві книжки?",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-27:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є сто двадцять дві книжки?",
+            "feedbackByLocale": {
+              "ru": "Перед veintidós нужна форма ciento.",
+              "uk": "Перед veintidós потрібна форма ciento."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-27:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є сто двадцять дві книжки?",
+            "feedbackByLocale": {
+              "ru": "Число 122 начинается с ciento.",
+              "uk": "Число 122 починається з ciento."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-27:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є сто двадцять дві книжки?; почніть з ¿Hay, число поставте перед libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-27:i06:r1",
+          "text": "Плитки: libros?"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i06:r2",
+          "text": "veintidós"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i06:r3",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i06:r4",
+          "text": "ciento"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i06:r5",
+          "text": "y."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є сто двадцять дві книжки?; почніть з ¿Hay, число поставте перед libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay ciento veintidós libros?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть сто двадцать две книги?; начните с ¿Hay, число поставьте перед libros",
+          "uk": "Зберіть фразу — є сто двадцять дві книжки?; почніть з ¿Hay, число поставте перед libros"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "ciento",
+          "veintidós",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "y"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-27:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є сто двадцять дві книжки?; почніть з ¿Hay, число поставте перед libros",
+            "feedbackByLocale": {
+              "ru": "после ciento перед veintidós её не ставим.",
+              "uk": "після ciento перед veintidós її не ставимо."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-27:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-27:i07:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i07:r2",
+          "text": "dos"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i07:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i07:r4",
+          "text": "ciento"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i07:r5",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i07:r6",
+          "text": "cien."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-27:i07:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-27:i07:audio",
+          "transcript": "Hay ciento dos libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay ciento dos libros aquí.",
+        "orderedTokens": [
+          "Hay",
+          "ciento",
+          "dos",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "cien"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-27:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит ciento.",
+              "uk": "звучить ciento."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-27:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-27:i08:r1",
+          "text": "ciento"
+        },
+        {
+          "responseId": "es:lesson-07:session-27:i08:r2",
+          "text": "cien"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-27:i08:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-27:i08:audio",
+          "transcript": "ciento"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-27:i08:r1",
+            "targetText": "ciento",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-27:i08:r2",
+            "targetText": "cien",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-27:i08:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит полная форма ciento.",
+              "uk": "Звучить повна форма ciento."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-27:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — число 102 словами, без предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-27:i09:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — число 102 словами, без предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-27:i09:audio",
+          "transcript": "Ciento dos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Ciento dos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-27:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є сто дві книжки; почніть з Hay, число поставте перед libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-27:i10:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є сто дві книжки; почніть з Hay, число поставте перед libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-27:i10:audio",
+          "transcript": "Hay ciento dos libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay ciento dos libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-27:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є сто двадцять книжок; почніть з Hay, число поставте перед libros, місце — в кінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-27:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є сто двадцять книжок; почніть з Hay, число поставте перед libros, місце — в кінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-27:i11:audio",
+          "transcript": "Hay ciento veinte libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay ciento veinte libros aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-27:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є сто двадцять дві книжки?; почніть з ¿Hay, число поставте перед libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-27:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є сто двадцять дві книжки?; почніть з ¿Hay, число поставте перед libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-27:i12:audio",
+          "transcript": "¿Hay ciento veintidós libros?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay ciento veintidós libros?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "9a6cba5aa975ef6759b23e00fd293453c118c0be6363b3ee96821f1b5d9f498c"
+}

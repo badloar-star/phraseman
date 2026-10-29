@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-28",
+  "learningOutcomeByLocale": {
+    "ru": "назвать двести или тысячу предметов: Hay mil libros aquí.",
+    "uk": "назвати двісті або тисячу предметів: Hay mil libros aquí."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-28:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Двести книг",
+        "uk": "Двісті книжок"
+      },
+      "bodyByLocale": {
+        "ru": "В библиотеке вы пересчитали запас: двести книг. Сообщите `Hay doscientos libros` — «Есть двести книг». Соберите `Hay` + `doscientos` + `libros`. Doscientos — двести, одно слово. Сейчас используем его перед libros мужского рода; название предметов остаётся в форме для нескольких.",
+        "uk": "У бібліотеці ви перерахували запас: двісті книжок. Повідомте `Hay doscientos libros` — «Є двісті книжок». Складіть `Hay` + `doscientos` + `libros`. Doscientos — двісті, одне слово. Зараз використовуємо його перед libros чоловічого роду; назва предметів залишається у формі для кількох."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-28:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть двести книг». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є двісті книжок». Почніть з Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-28:intro1:r1",
+              "text": "Hay doscientos libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro1:r2",
+              "text": "Hay doscientos libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro1:r3",
+              "text": "Hay treinta libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-28:intro1:r1",
+              "text": "Hay doscientos libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro1:r2",
+              "text": "Hay doscientos libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro1:r3",
+              "text": "Hay treinta libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть двести книг». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є двісті книжок». Почніть з Hay, число поставте перед libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-28:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Тысяча здесь",
+        "uk": "Тисяча тут"
+      },
+      "bodyByLocale": {
+        "ru": "Вы стоите у другого запаса: здесь тысяча книг. Сообщите `Hay mil libros aquí` — «Здесь есть тысяча книг». Соберите `Hay` + `mil libros` + `aquí`. Mil — тысяча. Для ровно тысячи не ставим перед mil слово un. Место поставьте в конце.",
+        "uk": "Ви стоїте біля іншого запасу: тут тисяча книжок. Повідомте `Hay mil libros aquí` — «Тут є тисяча книжок». Складіть `Hay` + `mil libros` + `aquí`. Mil — тисяча. Для рівно тисячі не ставимо перед mil слово un. Місце поставте в кінці."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-28:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть тысяча книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є тисяча книжок». Почніть з Hay, число поставте перед libros, місце — наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-28:intro2:r1",
+              "text": "Hay mil libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro2:r2",
+              "text": "Hay mil libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro2:r3",
+              "text": "Hay doscientos libros aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-28:intro2:r1",
+              "text": "Hay mil libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro2:r2",
+              "text": "Hay mil libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro2:r3",
+              "text": "Hay doscientos libros aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть тысяча книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є тисяча книжок». Почніть з Hay, число поставте перед libros, місце — наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-28:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Уточнить большой запас",
+        "uk": "Уточнити великий запас"
+      },
+      "bodyByLocale": {
+        "ru": "Коллега ищет тысячу книг для большой группы. Уточните `¿Hay mil libros?` — «Есть тысяча книг?» Соберите `¿Hay` + `mil` + `libros?`. В вопросе mil по-прежнему стоит перед предметами и не получает окончания s.",
+        "uk": "Колега шукає тисячу книжок для великої групи. Уточніть `¿Hay mil libros?` — «Є тисяча книжок?» Складіть `¿Hay` + `mil` + `libros?`. У запитанні mil, як і раніше, стоїть перед предметами й не отримує закінчення s."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-28:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть тысяча книг?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є тисяча книжок?». Почніть з ¿Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-28:intro3:r1",
+              "text": "¿Hay mil libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro3:r2",
+              "text": "¿Hay mil libro?"
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro3:r3",
+              "text": "¿Hay doscientos libros?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-28:intro3:r1",
+              "text": "¿Hay mil libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro3:r2",
+              "text": "¿Hay mil libro?"
+            },
+            {
+              "responseId": "es:lesson-07:session-28:intro3:r3",
+              "text": "¿Hay doscientos libros?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть тысяча книг?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є тисяча книжок?». Почніть з ¿Hay, число поставте перед libros."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "6d8653188f4b394da36affc172383d72b1ba0cbca16a0caf7411ab9976cb9604"
+}

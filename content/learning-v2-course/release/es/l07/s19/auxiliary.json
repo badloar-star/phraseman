@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-19",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-19:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-19:intro1:r2": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книжок кілька: libros."
+        },
+        "es:lesson-07:session-19:intro1:r3": {
+          "ru": "Veinte — двадцать, а нужно двадцать восемь.",
+          "uk": "Veinte — двадцять, а потрібно двадцять вісім."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-19:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-19:intro2:r2": {
+          "ru": "После veintinueve нужно libros.",
+          "uk": "Після veintinueve потрібно libros."
+        },
+        "es:lesson-07:session-19:intro2:r3": {
+          "ru": "В этой группе двадцать девять: veintinueve.",
+          "uk": "У цій групі двадцять дев’ять: veintinueve."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-19:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-19:intro3:r2": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книжок кілька: libros."
+        },
+        "es:lesson-07:session-19:intro3:r3": {
+          "ru": "Нужно тридцать: treinta.",
+          "uk": "Потрібно тридцять: treinta."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "c2cd1c936eb02a89b59941ac28671e8e27a88e8d26f34ca90fc3d6f07048fb9a"
+}

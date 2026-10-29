@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-07:session-11",
   "learningOutcomeByLocale": {
-    "ru": "различать quince и dieciséis и называть количество предметов.",
-    "uk": "розрізняти quince та dieciséis і називати кількість предметів."
+    "ru": "сказать, что есть пятнадцать или шестнадцать предметов: Hay quince libros.",
+    "uk": "сказати, що є п'ятнадцять або шістнадцять предметів: Hay quince libros."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Знайоме п'ятнадцять"
       },
       "bodyByLocale": {
-        "ru": "Для первой группы готовы пятнадцать книг. Сообщите `Hay quince libros` — «Есть пятнадцать книг». Соберите `Hay` + `quince` + `libros`. Знакомое quince означает пятнадцать. Существительное после числа ставим во множественном числе.",
-        "uk": "Для першої групи готові п'ятнадцять книжок. Повідомте `Hay quince libros` — «Є п'ятнадцять книжок». Складіть `Hay` + `quince` + `libros`. Знайоме quince означає п'ятнадцять. Іменник після числа ставимо в множині."
+        "ru": "Для первой группы готовы пятнадцать книг. Сообщите `Hay quince libros` — «Есть пятнадцать книг». Соберите `Hay` + `quince` + `libros`. Знакомое quince означает пятнадцать. Существительное после числа ставим в форме для нескольких.",
+        "uk": "Для першої групи готові п'ятнадцять книжок. Повідомте `Hay quince libros` — «Є п'ятнадцять книжок». Складіть `Hay` + `quince` + `libros`. Знайоме quince означає п'ятнадцять. Іменник після числа ставимо у формі для кількох."
       },
       "question": {
         "interactionId": "es:lesson-07:session-11:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9fe7dc98f23b2a7ee363477e05f30875b709dbccdbca1bb6d5a08ffb3f13a581"
+  "introFingerprint": "30e65247319e9007384be6699ec92f252352f3c078d16611f8dfe78c11efc9dd"
 }

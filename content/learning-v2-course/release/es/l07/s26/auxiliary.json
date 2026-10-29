@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-26",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-26:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-26:intro1:r2": {
+          "ru": "Книг сто: нужно libros.",
+          "uk": "Книжок сто: потрібно libros."
+        },
+        "es:lesson-07:session-26:intro1:r3": {
+          "ru": "Noventa — девяносто, а нужно cien.",
+          "uk": "Noventa — дев’яносто, а потрібно cien."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-26:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-26:intro2:r2": {
+          "ru": "Стульев несколько: sillas.",
+          "uk": "Стільців кілька: sillas."
+        },
+        "es:lesson-07:session-26:intro2:r3": {
+          "ru": "Нужно сто: cien.",
+          "uk": "Потрібно сто: cien."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-26:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-26:intro3:r2": {
+          "ru": "Нужна форма для нескольких: libros.",
+          "uk": "Потрібна форма для кількох: libros."
+        },
+        "es:lesson-07:session-26:intro3:r3": {
+          "ru": "Уточняем сто, а не девяносто.",
+          "uk": "Уточнюємо сто, а не дев’яносто."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "92b0bf5cea6f26ede16920db2180eaf4b96605b843fa0604d6d9c493b5cc0d30"
+}

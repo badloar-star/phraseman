@@ -1,0 +1,82 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-23:i01",
+    "correctText": "y",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i02",
+    "correctText": "y",
+    "correctResponseId": "es:lesson-07:session-23:i02:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i03",
+    "correctText": "y",
+    "correctResponseId": "es:lesson-07:session-23:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i04",
+    "correctText": "Treinta y dos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i05",
+    "correctText": "y",
+    "correctResponseId": "es:lesson-07:session-23:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i06",
+    "correctText": "Hay cuarenta y cinco libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i07",
+    "correctText": "y",
+    "correctResponseId": "es:lesson-07:session-23:i07:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i08",
+    "correctText": "¿Hay sesenta y siete sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i09",
+    "correctText": "Hay treinta y dos libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i10",
+    "correctText": "cuarenta",
+    "correctResponseId": "es:lesson-07:session-23:i10:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i11",
+    "correctText": "Y.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i12",
+    "correctText": "Treinta y dos.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i13",
+    "correctText": "Cuarenta y cinco.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i14",
+    "correctText": "Hay cuarenta y cinco libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i15",
+    "correctText": "¿Hay sesenta y siete sillas?",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-23:i16",
+    "correctText": "Hay treinta y dos libros.",
+    "correctResponseId": null
+  }
+]

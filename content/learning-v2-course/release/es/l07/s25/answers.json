@@ -1,0 +1,62 @@
+[
+  {
+    "interactionId": "es:lesson-07:session-25:i01",
+    "correctText": "uno",
+    "correctResponseId": "es:lesson-07:session-25:i01:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-25:i02",
+    "correctText": "Treinta y uno.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-25:i03",
+    "correctText": "un",
+    "correctResponseId": "es:lesson-07:session-25:i03:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-25:i04",
+    "correctText": "Hay treinta y un libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-25:i05",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-07:session-25:i05:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-25:i06",
+    "correctText": "Hay treinta y una sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-25:i07",
+    "correctText": "Hay treinta y un libros aquí.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-25:i08",
+    "correctText": "una",
+    "correctResponseId": "es:lesson-07:session-25:i08:r1"
+  },
+  {
+    "interactionId": "es:lesson-07:session-25:i09",
+    "correctText": "Treinta y uno.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-25:i10",
+    "correctText": "Hay treinta y un libros.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-25:i11",
+    "correctText": "Hay treinta y una sillas.",
+    "correctResponseId": null
+  },
+  {
+    "interactionId": "es:lesson-07:session-25:i12",
+    "correctText": "Hay treinta y un libros aquí.",
+    "correctResponseId": null
+  }
+]

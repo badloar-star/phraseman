@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-07:session-07",
   "learningOutcomeByLocale": {
-    "ru": "использовать diez перед существительными и в вопросе.",
-    "uk": "використовувати diez перед іменниками й у запитанні."
+    "ru": "сказать, что есть десять предметов: Hay diez sillas.",
+    "uk": "сказати, що є десять предметів: Hay diez sillas."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Десять стільців"
       },
       "bodyByLocale": {
-        "ru": "Вы приготовили десять стульев для группы. Сообщите `Hay diez sillas` — «Есть десять стульев». Соберите `Hay` + `diez` + `sillas`. Diez — десять; sillas во множественном числе. Число не меняется из-за рода существительного.",
-        "uk": "Ви підготували десять стільців для групи. Повідомте `Hay diez sillas` — «Є десять стільців». Складіть `Hay` + `diez` + `sillas`. Diez — десять; sillas у множині. Число не змінюється через рід іменника."
+        "ru": "Вы приготовили десять стульев для группы. Сообщите `Hay diez sillas` — «Есть десять стульев». Соберите `Hay` + `diez` + `sillas`. Diez — десять; sillas — форма для нескольких. Число не меняется из-за рода существительного.",
+        "uk": "Ви підготували десять стільців для групи. Повідомте `Hay diez sillas` — «Є десять стільців». Складіть `Hay` + `diez` + `sillas`. Diez — десять; sillas — форма для кількох. Число не змінюється через рід іменника."
       },
       "question": {
         "interactionId": "es:lesson-07:session-07:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "291ef34323c57fc86449b74e50ae6d32547a8d364292e544cc5bae53638e0819"
+  "introFingerprint": "71a8ed9c39ad70b23c56457c8cc1d3981470e50eadb3b2a2054b549b75155dcf"
 }

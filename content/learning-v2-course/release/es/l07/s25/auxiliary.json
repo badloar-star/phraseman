@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-25",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-25:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-25:intro1:r2": {
+          "ru": "Un нужна перед существительным мужского рода, здесь называем само число.",
+          "uk": "Un потрібне перед іменником чоловічого роду, тут називаємо саме число."
+        },
+        "es:lesson-07:session-25:intro1:r3": {
+          "ru": "Между десятком и единицей нужно y.",
+          "uk": "Між десятком і одиницею потрібне y."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-25:intro2:r2": {
+          "ru": "Перед существительным мужского рода uno сокращается до un.",
+          "uk": "Перед іменником чоловічого роду uno скорочується до un."
+        },
+        "es:lesson-07:session-25:intro2:r3": {
+          "ru": "Libros мужского рода: нужно un.",
+          "uk": "Libros чоловічого роду: потрібне un."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-25:intro3:r2": {
+          "ru": "Sillas женского рода: una.",
+          "uk": "Sillas жіночого роду: una."
+        },
+        "es:lesson-07:session-25:intro3:r3": {
+          "ru": "Полное uno используем для самого числа; перед sillas нужно una.",
+          "uk": "Повне uno використовуємо для самого числа; перед sillas потрібне una."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "408dab0280b3891721d2c7ea839293ee7fc4e51ec25d90124b1dc05c8ac4e979"
+}

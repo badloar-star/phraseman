@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-07:session-13",
   "learningOutcomeByLocale": {
-    "ru": "называть девятнадцать и двадцать предметов.",
-    "uk": "називати дев'ятнадцять і двадцять предметів."
+    "ru": "сказать, что есть девятнадцать или двадцать предметов: Hay diecinueve libros.",
+    "uk": "сказати, що є дев'ятнадцять або двадцять предметів: Hay diecinueve libros."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Дев'ятнадцять книжок"
       },
       "bodyByLocale": {
-        "ru": "Вы насчитали девятнадцать книг для первой группы. Скажите `Hay diecinueve libros` — «Есть девятнадцать книг». Соберите `Hay` + `diecinueve` + `libros`. Diecinueve — девятнадцать, одно слово. Существительное остаётся во множественном числе.",
-        "uk": "Ви нарахували дев'ятнадцять книжок для першої групи. Скажіть `Hay diecinueve libros` — «Є дев'ятнадцять книжок». Складіть `Hay` + `diecinueve` + `libros`. Diecinueve — дев'ятнадцять, одне слово. Іменник залишається в множині."
+        "ru": "Вы насчитали девятнадцать книг для первой группы. Скажите `Hay diecinueve libros` — «Есть девятнадцать книг». Соберите `Hay` + `diecinueve` + `libros`. Diecinueve — девятнадцать, одно слово. Существительное остаётся в форме для нескольких.",
+        "uk": "Ви нарахували дев'ятнадцять книжок для першої групи. Скажіть `Hay diecinueve libros` — «Є дев'ятнадцять книжок». Складіть `Hay` + `diecinueve` + `libros`. Diecinueve — дев'ятнадцять, одне слово. Іменник залишається у формі для кількох."
       },
       "question": {
         "interactionId": "es:lesson-07:session-13:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e702f93c0434e0eabbb0e4fb4a47bd95ec97ea3f43c8a4ab2c58770baae1157a"
+  "introFingerprint": "be0bb5a6e9cbf8876a5ab8d9c16aac5c65a42dca8c03fdd4a8810633876a81fa"
 }

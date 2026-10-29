@@ -1,0 +1,809 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-07:session-21",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-07:session-21:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — sesenta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-21:i01:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — sesenta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-21:i01:audio",
+          "transcript": "sesenta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-21:i01:r1",
+            "targetText": "sesenta",
+            "meaningByLocale": {
+              "ru": "шестьдесят, 60; одно слово. 🔊 *sesenta*",
+              "uk": "шістдесят, 60; одне слово. 🔊 *sesenta*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "sesenta",
+          "definitionByLocale": {
+            "ru": "шестьдесят, 60; одно слово. 🔊 *sesenta*",
+            "uk": "шістдесят, 60; одне слово. 🔊 *sesenta*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Карточка слова — setenta",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-21:i02:audio"
+      ],
+      "accessibilityLabel": "Карточка слова — setenta",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-21:i02:audio",
+          "transcript": "setenta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-21:i02:r1",
+            "targetText": "setenta",
+            "meaningByLocale": {
+              "ru": "семьдесят, 70; одно слово. 🔊 *setenta*",
+              "uk": "сімдесят, 70; одне слово. 🔊 *setenta*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "setenta",
+          "definitionByLocale": {
+            "ru": "семьдесят, 70; одно слово. 🔊 *setenta*",
+            "uk": "сімдесят, 70; одне слово. 🔊 *setenta*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-21:i03:r1",
+          "text": "sesenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i03:r2",
+          "text": "setenta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-21:i03:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-21:i03:audio",
+          "transcript": "sesenta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-21:i03:r1",
+            "targetText": "sesenta",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-21:i03:r2",
+            "targetText": "setenta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-21:i03:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит sesenta — шестьдесят.",
+              "uk": "Звучить sesenta — шістдесят."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-21:i04:r1",
+          "text": "setenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i04:r2",
+          "text": "sesenta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-21:i04:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-21:i04:audio",
+          "transcript": "setenta"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-21:i04:r1",
+            "targetText": "setenta",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-21:i04:r2",
+            "targetText": "sesenta",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-21:i04:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит setenta — семьдесят.",
+              "uk": "Звучить setenta — сімдесят."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — есть шестьдесят стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-21:i05:r1",
+          "text": "sesenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i05:r2",
+          "text": "setenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i05:r3",
+          "text": "treinta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — есть шестьдесят стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть шестьдесят стульев",
+          "uk": "Вставте слово — є шістдесят стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-21:i05:r1",
+            "text": "sesenta"
+          },
+          {
+            "responseId": "es:lesson-07:session-21:i05:r2",
+            "text": "setenta"
+          },
+          {
+            "responseId": "es:lesson-07:session-21:i05:r3",
+            "text": "treinta"
+          }
+        ],
+        "testedDimension": "Вставьте слово — есть шестьдесят стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-21:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть шестьдесят стульев",
+            "feedbackByLocale": {
+              "ru": "Нужно шестьдесят: sesenta.",
+              "uk": "Потрібно шістдесят: sesenta."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-21:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть шестьдесят стульев",
+            "feedbackByLocale": {
+              "ru": "Treinta — тридцать, а нужно sesenta.",
+              "uk": "Treinta — тридцять, а потрібно sesenta."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть шестьдесят стульев; начните с Hay, число поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-21:i06:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i06:r2",
+          "text": "sesenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i06:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i06:r4",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть шестьдесят стульев; начните с Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay sesenta sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть шестьдесят стульев; начните с Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є шістдесят стільців; почніть з Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "Hay",
+          "sesenta",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-21:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть шестьдесят стульев; начните с Hay, число поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "стульев шестьдесят, нужно sillas.",
+              "uk": "стільців шістдесят, потрібно sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — здесь есть семьдесят стульев",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-21:i07:r1",
+          "text": "setenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i07:r2",
+          "text": "sesenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i07:r3",
+          "text": "treinta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — здесь есть семьдесят стульев",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть семьдесят стульев",
+          "uk": "Вставте слово — тут є сімдесят стільців"
+        },
+        "gappedTargetPhrase": "Hay ___ sillas aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-21:i07:r1",
+            "text": "setenta"
+          },
+          {
+            "responseId": "es:lesson-07:session-21:i07:r2",
+            "text": "sesenta"
+          },
+          {
+            "responseId": "es:lesson-07:session-21:i07:r3",
+            "text": "treinta"
+          }
+        ],
+        "testedDimension": "Вставьте слово — здесь есть семьдесят стульев",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-21:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть семьдесят стульев",
+            "feedbackByLocale": {
+              "ru": "Нужно семьдесят: setenta.",
+              "uk": "Потрібно сімдесят: setenta."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-21:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — здесь есть семьдесят стульев",
+            "feedbackByLocale": {
+              "ru": "Treinta — тридцать, а нужно setenta.",
+              "uk": "Treinta — тридцять, а потрібно setenta."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — здесь есть семьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-21:i08:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i08:r2",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i08:r3",
+          "text": "setenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i08:r4",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i08:r5",
+          "text": "silla."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — здесь есть семьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay setenta sillas aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть семьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+          "uk": "Зберіть фразу — тут є сімдесят стільців; почніть з Hay, число поставте перед sillas, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "setenta",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "silla"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-21:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — здесь есть семьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+            "feedbackByLocale": {
+              "ru": "после setenta нужно sillas.",
+              "uk": "після setenta потрібно sillas."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть семьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-21:i09:r1",
+          "text": "Плитки: sillas?"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i09:r2",
+          "text": "setenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i09:r3",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i09:r4",
+          "text": "sesenta."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть семьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay setenta sillas?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть семьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є сімдесят стільців?; почніть з ¿Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "setenta",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "sesenta"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-21:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть семьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "нужно семьдесят, setenta.",
+              "uk": "потрібно сімдесят, setenta."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-21:i10:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i10:r2",
+          "text": "sesenta"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i10:r3",
+          "text": "sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i10:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-21:i10:r5",
+          "text": "setenta."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-21:i10:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-21:i10:audio",
+          "transcript": "Hay sesenta sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay sesenta sillas aquí.",
+        "orderedTokens": [
+          "Hay",
+          "sesenta",
+          "sillas",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "setenta"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-21:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит sesenta.",
+              "uk": "звучить sesenta."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — число шестьдесят одним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-21:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — число шестьдесят одним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-21:i11:audio",
+          "transcript": "Sesenta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Sesenta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — число семьдесят одним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-21:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — число семьдесят одним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-21:i12:audio",
+          "transcript": "Setenta."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Setenta.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть шестьдесят стульев; начните с Hay, число поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-21:i13:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть шестьдесят стульев; начните с Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-21:i13:audio",
+          "transcript": "Hay sesenta sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay sesenta sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь есть семьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-21:i14:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь есть семьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-21:i14:audio",
+          "transcript": "Hay setenta sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay setenta sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть семьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-21:i15:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть семьдесят стульев?; начните с ¿Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-21:i15:audio",
+          "transcript": "¿Hay setenta sillas?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay setenta sillas?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-21:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь есть шестьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-21:i16:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь есть шестьдесят стульев; начните с Hay, число поставьте перед sillas, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-21:i16:audio",
+          "transcript": "Hay sesenta sillas aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay sesenta sillas aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "96052c062dd2014cd14b24eed54d3e3fb93eb69f712b851d62f6dfe8142bed23"
+}

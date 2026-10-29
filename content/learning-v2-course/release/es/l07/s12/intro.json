@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-07:session-12",
   "learningOutcomeByLocale": {
-    "ru": "называть семнадцать и восемнадцать предметов.",
-    "uk": "називати сімнадцять і вісімнадцять предметів."
+    "ru": "сказать, что есть семнадцать или восемнадцать предметов: Hay diecisiete sillas.",
+    "uk": "сказати, що є сімнадцять або вісімнадцять предметів: Hay diecisiete sillas."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Сімнадцять місць"
       },
       "bodyByLocale": {
-        "ru": "Вы пересчитали стулья: их семнадцать. Сообщите `Hay diecisiete sillas` — «Есть семнадцать стульев». Соберите `Hay` + `diecisiete` + `sillas`. Diecisiete — семнадцать, пишется одним словом. После него существительное во множественном числе.",
-        "uk": "Ви перерахували стільці: їх сімнадцять. Повідомте `Hay diecisiete sillas` — «Є сімнадцять стільців». Складіть `Hay` + `diecisiete` + `sillas`. Diecisiete — сімнадцять, пишеться одним словом. Після нього іменник у множині."
+        "ru": "Вы пересчитали стулья: их семнадцать. Сообщите `Hay diecisiete sillas` — «Есть семнадцать стульев». Соберите `Hay` + `diecisiete` + `sillas`. Diecisiete — семнадцать, пишется одним словом. После него существительное в форме для нескольких.",
+        "uk": "Ви перерахували стільці: їх сімнадцять. Повідомте `Hay diecisiete sillas` — «Є сімнадцять стільців». Складіть `Hay` + `diecisiete` + `sillas`. Diecisiete — сімнадцять, пишеться одним словом. Після нього іменник у формі для кількох."
       },
       "question": {
         "interactionId": "es:lesson-07:session-12:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "034d3cdf91542ddd9640e2f0f155c2e3a663b5a774d1c616f21ab02bc3ce2f80"
+  "introFingerprint": "a7fcdb8dfd868cf0ccff475249f2bf9db48cb0ffb9e40ee2d2dbb3363910b20e"
 }

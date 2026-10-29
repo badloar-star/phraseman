@@ -95,7 +95,7 @@ I am ___ the xylophone. → **playing** · play · plays
 
 **10 · Карточка слова — castanets**
 <!-- interaction_id: en:lesson-09:session-40:word:castanets; family: word_card -->
-> **castanets** — «кастаньеты». The castanets are here. — «Кастаньеты здесь». Название во множественном числе: castanets are. Небольшие парные пластинки, которыми щёлкают в ладонях.
+> **castanets** — «кастаньеты». The castanets are here. — «Кастаньеты здесь». Название в форме для нескольких: castanets are. Небольшие парные пластинки, которыми щёлкают в ладонях.
 
 **11 · Подруга ищет кастаньеты. Скажите, что они здесь**
 <!-- interaction_id: en:lesson-09:session-40:i08; family: phrase_builder -->
@@ -104,7 +104,7 @@ I am ___ the xylophone. → **playing** · play · plays
 **12 · Выберите форму для castanets**
 <!-- interaction_id: en:lesson-09:session-40:i09; family: context_gap_grammar -->
 The castanets ___ here. → **are** · is · am
-- is — *Castanets — множественное число, поэтому are.*
+- is — *Castanets — форма для нескольких, поэтому are.*
 - am — *Am подходит только к I.*
 
 **13 · Послушайте и выберите**

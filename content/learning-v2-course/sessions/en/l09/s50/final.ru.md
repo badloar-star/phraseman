@@ -37,7 +37,7 @@
 
 ### Рассмотреть своё отражение
 
-Перед изогнутым зеркалом вы рассматриваете своё вытянутое лицо. I am looking at my reflection — «Я смотрю на своё отражение». Reflection здесь — изображение в зеркале. Для действия сейчас ставим I + am + looking, затем at my reflection — на что смотрим. После look перед предметом взгляда нужен at. My означает «моё» и стоит перед reflection; артикль перед my не добавляем.
+Перед изогнутым зеркалом вы рассматриваете своё вытянутое лицо. I am looking at my reflection — «Я смотрю на своё отражение». Reflection здесь — изображение в зеркале. Для действия сейчас ставим I + am + looking, затем at my reflection — на что смотрим. После look перед предметом взгляда нужен at. My означает «моё» и стоит перед reflection; слово a / the перед my не добавляем.
 
 **Выберите фразу для этой ситуации.**
 
@@ -107,7 +107,7 @@ He is ___ at the hologram. → **staring** · stareing · stare
 <!-- interaction_id: en:lesson-09:session-50:i09; family: context_gap_grammar -->
 This is ___ illusion. → **an** · a · are
 - a — *Illusion начинается с гласного звука, нужен an.*
-- are — *Are не артикль; здесь нужен an.*
+- are — *Are не слово a / the; здесь нужен an.*
 
 **13 · Карточка слова — reflection**
 <!-- interaction_id: en:lesson-09:session-50:word:reflection; family: word_card -->

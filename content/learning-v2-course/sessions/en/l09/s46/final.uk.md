@@ -124,7 +124,7 @@ She is ___ in the courtyard. → **waiting** · wait · waits
 **16 · Виберіть is або are: кілька каменів**
 <!-- interaction_id: en:lesson-09:session-46:i12; family: context_gap_grammar -->
 The cobblestones ___ wet. → **are** · is · am
-- is — *Cobblestones у множині: are.*
+- is — *Cobblestones у формі для кількох: are.*
 - am — *Am використовуємо з I.*
 
 **17 · З’єднайте слова з їхніми значеннями**

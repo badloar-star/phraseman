@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Are you doing a headcount?**
-- ❌ Are you doing headcount? — *В выражении do a headcount нужен артикль a.*
+- ❌ Are you doing headcount? — *В выражении do a headcount нужен a.*
 - ❌ Are you do a headcount? — *После are нужна форма doing.*
 
 ---
@@ -66,7 +66,7 @@
 **4 · Выберите форму для обычной работы сотрудника: он помогает посетителям каждый день**
 <!-- interaction_id: en:lesson-09:session-56:i03; family: context_gap_grammar -->
 The steward ___ visitors every day. → **helps** · help · helping
-- help — *Для the steward в Present Simple нужна helps.*
+- help — *Для the steward в форме без -ing нужна helps.*
 - helping — *Helping без is не образует сказуемое.*
 
 **5 · Карточка слова — walkie-talkie**

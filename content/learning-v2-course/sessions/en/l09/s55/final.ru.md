@@ -24,7 +24,7 @@
 
 ### Кто записывает решения
 
-На встрече вы записываете, о чём договорилась команда. Коллега спрашивает, чем вы заняты: I am taking minutes — «Я веду протокол встречи». Minutes здесь — письменная запись обсуждения и решений. Для действия сейчас собираем I + am + taking, затем minutes. В take перед -ing убираем конечную e: taking. Выражение take minutes означает «вести протокол»; артикль перед minutes в нём не нужен.
+На встрече вы записываете, о чём договорилась команда. Коллега спрашивает, чем вы заняты: I am taking minutes — «Я веду протокол встречи». Minutes здесь — письменная запись обсуждения и решений. Для действия сейчас собираем I + am + taking, затем minutes. В take перед -ing убираем конечную e: taking. Выражение take minutes означает «вести протокол»; слово a / the перед minutes в нём не нужен.
 
 **Выберите фразу для этой ситуации.**
 
@@ -67,7 +67,7 @@
 **4 · Выберите is или are: agenda**
 <!-- interaction_id: en:lesson-09:session-55:i03; family: context_gap_grammar -->
 The agenda ___ on the table. → **is** · are · am
-- are — *Agenda здесь в единственном числе: is.*
+- are — *Agenda здесь в форме для одного: is.*
 - am — *Am употребляется с I.*
 
 **5 · Карточка слова — briefing**
@@ -140,7 +140,7 @@ agenda — повестка встречи · briefing — краткий инс
 <!-- interaction_id: en:lesson-09:session-55:i15; family: context_gap_grammar -->
 ___ attendee is nodding. → **An** · A · Are
 - A — *Первый звук гласный: an attendee.*
-- Are — *Are не артикль; здесь нужен an.*
+- Are — *Are не слово a / the; здесь нужен an.*
 
 **20 · Коллега думает, что вы ведёте протокол, но сегодня вы только слушаете. Скажите: «Я не веду протокол»**
 <!-- interaction_id: en:lesson-09:session-55:i16; family: phrase_builder -->

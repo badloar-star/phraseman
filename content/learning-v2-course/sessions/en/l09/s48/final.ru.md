@@ -9,7 +9,7 @@
 
 ### Цапля стоит в воде
 
-На прогулке вы видите цаплю, которая неподвижно стоит в воде. The heron is standing in the water — «Цапля стоит в воде». Heron означает «цапля». Сначала the heron — птица, которую вы видите, затем is standing — что она делает сейчас, и in the water — где. Для одной птицы нужна is, к stand добавляем -ing: standing. Present Continuous подходит и для положения тела сейчас: птице не обязательно двигаться с места.
+На прогулке вы видите цаплю, которая неподвижно стоит в воде. The heron is standing in the water — «Цапля стоит в воде». Heron означает «цапля». Сначала the heron — птица, которую вы видите, затем is standing — что она делает сейчас, и in the water — где. Для одной птицы нужна is, к stand добавляем -ing: standing. am / is / are + -ing подходит и для положения тела сейчас: птице не обязательно двигаться с места.
 
 **Выберите фразу для этой ситуации.**
 
@@ -87,7 +87,7 @@ The heron ___ standing in the water. → **is** · are · am
 <!-- interaction_id: en:lesson-09:session-48:i06; family: context_gap_grammar -->
 This is ___ marsh. → **a** · an · are
 - an — *Marsh начинается с согласного звука, нужен a.*
-- are — *Are не артикль; здесь нужен a.*
+- are — *Are не слово a / the; здесь нужен a.*
 
 **9 · Карточка слова — causeway**
 <!-- interaction_id: en:lesson-09:session-48:word:causeway; family: word_card -->

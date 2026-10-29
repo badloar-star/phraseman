@@ -69,7 +69,7 @@
 **4 · Выберите форму для вещества ice**
 <!-- interaction_id: en:lesson-09:session-29:i03; family: context_gap_grammar -->
 The ice ___ melting. → **is** · are · am
-- are — *Ice здесь не множественное число: is.*
+- are — *Ice здесь не про несколько предметов: is.*
 - am — *Am употребляем с I.*
 
 **5 · Соедините слова со значениями**

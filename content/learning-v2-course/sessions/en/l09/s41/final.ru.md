@@ -14,7 +14,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The leaves are whirling.**
-- ❌ The leaves is whirling. — *Leaves — множественное число, нужно are.*
+- ❌ The leaves is whirling. — *Leaves — форма для нескольких, нужно are.*
 - ❌ The leaves are whirl. — *После are для действия сейчас нужна форма whirling.*
 
 ---
@@ -123,7 +123,7 @@ I ___ near the carousel. → **am** · is · are
 <!-- interaction_id: en:lesson-09:session-41:i12; family: context_gap_grammar -->
 This is ___ eddy. → **an** · a · are
 - a — *Перед гласным звуком в eddy нужен an.*
-- are — *Are — глагол, не артикль перед eddy.*
+- are — *Are — глагол, не слово a / the перед eddy.*
 
 **17 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-09:session-41:i13; family: listen_choose -->

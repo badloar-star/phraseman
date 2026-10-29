@@ -37,7 +37,7 @@
 
 ### Роздивитися своє відображення
 
-Перед вигнутим дзеркалом ви розглядаєте своє видовжене обличчя. I am looking at my reflection — «Я дивлюся на своє відображення». Reflection тут — зображення в дзеркалі. Для дії зараз ставимо I + am + looking, потім at my reflection — на що дивимося. Після look перед предметом погляду потрібне at. My означає «моє» і стоїть перед reflection; артикль перед my не додаємо.
+Перед вигнутим дзеркалом ви розглядаєте своє видовжене обличчя. I am looking at my reflection — «Я дивлюся на своє відображення». Reflection тут — зображення в дзеркалі. Для дії зараз ставимо I + am + looking, потім at my reflection — на що дивимося. Після look перед предметом погляду потрібне at. My означає «моє» і стоїть перед reflection; слово a / the перед my не додаємо.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -107,7 +107,7 @@ He is ___ at the hologram. → **staring** · stareing · stare
 <!-- interaction_id: en:lesson-09:session-50:i09; family: context_gap_grammar -->
 This is ___ illusion. → **an** · a · are
 - a — *Illusion починається з голосного звука, потрібне an.*
-- are — *Are не артикль; тут потрібне an.*
+- are — *Are не слово a / the; тут потрібне an.*
 
 **13 · Картка слова — reflection**
 <!-- interaction_id: en:lesson-09:session-50:word:reflection; family: word_card -->

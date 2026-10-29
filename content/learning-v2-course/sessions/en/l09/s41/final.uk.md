@@ -9,12 +9,12 @@
 
 ### Листя під аркою
 
-У дворі порив вітру піднімає сухе листя під аркою. Друг дивиться в інший бік, і ви описуєте рух: The leaves are whirling — «Листя кружляє». Whirl — «кружляти, швидко рухатися по колу». Тут листя не закріплене на осі, як пропелер: вітер ганяє його по колу. Англійське leaves — множина, тому are; форма дії — whirling.
+У дворі порив вітру піднімає сухе листя під аркою. Друг дивиться в інший бік, і ви описуєте рух: The leaves are whirling — «Листя кружляє». Whirl — «кружляти, швидко рухатися по колу». Тут листя не закріплене на осі, як пропелер: вітер ганяє його по колу. Англійське leaves — форма для кількох, тому are; форма дії — whirling.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The leaves are whirling.**
-- ❌ The leaves is whirling. — *Leaves — множина, потрібне are.*
+- ❌ The leaves is whirling. — *Leaves — форма для кількох, потрібне are.*
 - ❌ The leaves are whirl. — *Після are для дії зараз потрібна форма whirling.*
 
 ---
@@ -123,7 +123,7 @@ I ___ near the carousel. → **am** · is · are
 <!-- interaction_id: en:lesson-09:session-41:i12; family: context_gap_grammar -->
 This is ___ eddy. → **an** · a · are
 - a — *Перед голосним звуком в eddy потрібне an.*
-- are — *Are — дієслово, не артикль перед eddy.*
+- are — *Are — дієслово, не слово a / the перед eddy.*
 
 **17 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-09:session-41:i13; family: listen_choose -->

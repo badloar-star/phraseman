@@ -69,7 +69,7 @@
 **4 · Виберіть форму для речовини ice**
 <!-- interaction_id: en:lesson-09:session-29:i03; family: context_gap_grammar -->
 The ice ___ melting. → **is** · are · am
-- are — *Ice тут не множина: is.*
+- are — *Ice тут не про кілька предметів: is.*
 - am — *Am уживаємо з I.*
 
 **5 · З’єднайте слова зі значеннями**

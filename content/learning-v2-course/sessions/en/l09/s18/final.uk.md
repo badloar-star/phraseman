@@ -89,7 +89,7 @@ frost — іній · shiver — тремтіти · grass — трава · col
 
 **9 · Картка слова — fleece**
 <!-- interaction_id: en:lesson-09:session-18:word:fleece; family: word_card -->
-> **fleece** — флісова кофта. I wear a fleece. — «Я ношу флісову кофту». З артиклем a тут предмет одягу; fleece без артикля також означає матеріал фліс.
+> **fleece** — флісова кофта. I wear a fleece. — «Я ношу флісову кофту». З a тут предмет одягу; fleece без a також означає матеріал фліс.
 
 **10 · Розкажіть про свій звичайний одяг: «Я ношу флісову кофту»**
 <!-- interaction_id: en:lesson-09:session-18:i07; family: scripted_repeat_compare -->

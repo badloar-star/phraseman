@@ -68,7 +68,7 @@
 <!-- interaction_id: en:lesson-09:session-47:i03; family: context_gap_grammar -->
 This is ___ swatch. → **a** · an · are
 - an — *Swatch начинается с согласного звука, нужен a.*
-- are — *Are не артикль; здесь нужен a.*
+- are — *Are не слово a / the; здесь нужен a.*
 
 **5 · Карточка слова — wallpaper**
 <!-- interaction_id: en:lesson-09:session-47:word:wallpaper; family: word_card -->
@@ -87,7 +87,7 @@ This is ___ swatch. → **a** · an · are
 **8 · Выберите is или are: wallpaper — это материал**
 <!-- interaction_id: en:lesson-09:session-47:i06; family: context_gap_grammar -->
 The wallpaper ___ wet. → **is** · are · am
-- are — *Wallpaper здесь неисчисляемое, используем is.*
+- are — *Wallpaper здесь не считается поштучно, используем is.*
 - am — *Am используем с I, не с wallpaper.*
 
 **9 · Карточка слова — catalogue**

@@ -89,7 +89,7 @@ frost — иней · shiver — дрожать · grass — трава · cold 
 
 **9 · Карточка слова — fleece**
 <!-- interaction_id: en:lesson-09:session-18:word:fleece; family: word_card -->
-> **fleece** — флисовая кофта. I wear a fleece. — «Я ношу флисовую кофту». С артиклем a здесь предмет одежды; fleece без артикля также означает материал флис.
+> **fleece** — флисовая кофта. I wear a fleece. — «Я ношу флисовую кофту». С a здесь предмет одежды; fleece без a также означает материал флис.
 
 **10 · Расскажите о своей обычной одежде: «Я ношу флисовую кофту»**
 <!-- interaction_id: en:lesson-09:session-18:i07; family: scripted_repeat_compare -->

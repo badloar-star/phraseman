@@ -89,7 +89,7 @@ beetle — жук · crawl — повзти · leaf — листок · garden �
 
 **9 · Картка слова — moss**
 <!-- interaction_id: en:lesson-09:session-22:word:moss; family: word_card -->
-> **moss** — мох. This is moss. — «Це мох». Тут без артикля a.
+> **moss** — мох. This is moss. — «Це мох». Тут без a.
 
 **10 · Покажіть зелений мох на камені: «Це мох»**
 <!-- interaction_id: en:lesson-09:session-22:i07; family: scripted_repeat_compare -->

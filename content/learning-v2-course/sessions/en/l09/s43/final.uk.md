@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-09:session-43:i03; family: context_gap_grammar -->
 This is ___ thumbnail. → **a** · an · are
 - an — *Thumbnail починається з приголосного звука, потрібне a.*
-- are — *Are — дієслово, не артикль перед thumbnail.*
+- are — *Are — дієслово, не слово a / the перед thumbnail.*
 
 **5 · Картка слова — preview**
 <!-- interaction_id: en:lesson-09:session-43:word:preview; family: word_card -->
@@ -104,7 +104,7 @@ This is ___ thumbnail. → **a** · an · are
 **12 · Виберіть is або are: resolution**
 <!-- interaction_id: en:lesson-09:session-43:i09; family: context_gap_grammar -->
 The resolution ___ low. → **is** · are · am
-- are — *Resolution тут в однині, потрібне is.*
+- are — *Resolution тут у формі для одного, потрібне is.*
 - am — *Am використовується з I, не з resolution.*
 
 **13 · Картка слова — crop**

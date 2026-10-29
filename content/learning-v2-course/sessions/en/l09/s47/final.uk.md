@@ -68,7 +68,7 @@
 <!-- interaction_id: en:lesson-09:session-47:i03; family: context_gap_grammar -->
 This is ___ swatch. → **a** · an · are
 - an — *Swatch починається з приголосного звука, потрібне a.*
-- are — *Are не артикль; тут потрібне a.*
+- are — *Are не слово a / the; тут потрібне a.*
 
 **5 · Картка слова — wallpaper**
 <!-- interaction_id: en:lesson-09:session-47:word:wallpaper; family: word_card -->
@@ -87,7 +87,7 @@ This is ___ swatch. → **a** · an · are
 **8 · Виберіть is або are: wallpaper — це матеріал**
 <!-- interaction_id: en:lesson-09:session-47:i06; family: context_gap_grammar -->
 The wallpaper ___ wet. → **is** · are · am
-- are — *Wallpaper тут незлічуване, використовуємо is.*
+- are — *Wallpaper тут не рахується поштучно, використовуємо is.*
 - am — *Am використовуємо з I, не з wallpaper.*
 
 **9 · Картка слова — catalogue**

@@ -9,7 +9,7 @@
 
 ### Чапля стоїть у воді
 
-На прогулянці ви бачите чаплю, яка нерухомо стоїть у воді. The heron is standing in the water — «Чапля стоїть у воді». Heron означає «чапля». Спочатку the heron — птах, якого ви бачите, потім is standing — що він робить зараз, і in the water — де. Для одного птаха потрібна is, до stand додаємо -ing: standing. Present Continuous підходить і для положення тіла зараз: птахові не обов’язково рухатися з місця.
+На прогулянці ви бачите чаплю, яка нерухомо стоїть у воді. The heron is standing in the water — «Чапля стоїть у воді». Heron означає «чапля». Спочатку the heron — птах, якого ви бачите, потім is standing — що він робить зараз, і in the water — де. Для одного птаха потрібна is, до stand додаємо -ing: standing. am / is / are + -ing підходить і для положення тіла зараз: птахові не обов’язково рухатися з місця.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -87,7 +87,7 @@ The heron ___ standing in the water. → **is** · are · am
 <!-- interaction_id: en:lesson-09:session-48:i06; family: context_gap_grammar -->
 This is ___ marsh. → **a** · an · are
 - an — *Marsh починається з приголосного звука, потрібне a.*
-- are — *Are не артикль; тут потрібне a.*
+- are — *Are не слово a / the; тут потрібне a.*
 
 **9 · Картка слова — causeway**
 <!-- interaction_id: en:lesson-09:session-48:word:causeway; family: word_card -->

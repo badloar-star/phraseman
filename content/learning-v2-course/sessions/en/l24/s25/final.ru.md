@@ -9,12 +9,12 @@
 
 ### Нашёл — и он у меня
 
-Dollar — доллар. I have found a dollar — я нашёл доллар: он теперь у меня, время находки не называем. I found a dollar yesterday — я нашёл доллар вчера. Yesterday помещает находку в законченное прошлое, поэтому используем Past Simple: found без have. Found — форма от знакомого find.
+Dollar — доллар. I have found a dollar — я нашёл доллар: он теперь у меня, время находки не называем. I found a dollar yesterday — я нашёл доллар вчера. Yesterday помещает находку в законченное прошлое, поэтому используем форму прошлого: found без have. Found — форма от знакомого find.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I found a dollar yesterday.**
-- ❌ I have found a dollar yesterday. — *С yesterday нужен Past Simple: found без have.*
+- ❌ I have found a dollar yesterday. — *С yesterday нужна форма прошлого: found без have.*
 - ❌ I find a dollar yesterday. — *Yesterday — прошлое, поэтому found, а не find.*
 
 ---
@@ -37,12 +37,12 @@ Pound здесь — британский фунт, деньги. She has spent 
 
 ### Монетка на прошлой неделе
 
-Вы вспоминаете, как друзья нашли монетку на прошлой неделе. They found a penny last week — они нашли пенни на прошлой неделе. После they ставим found, прошедшую форму find. Last week называет уже законченный период, поэтому выбираем Past Simple, без have. A penny обозначает одну монетку. Собираем they + found + a penny + last week.
+Вы вспоминаете, как друзья нашли монетку на прошлой неделе. They found a penny last week — они нашли пенни на прошлой неделе. После they ставим found, прошедшую форму find. Last week называет уже законченный период, поэтому выбираем форму прошлого, без have. A penny обозначает одну монетку. Собираем they + found + a penny + last week.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They found a penny last week.**
-- ❌ They have found a penny last week. — *Last week требует Past Simple: found без have.*
+- ❌ They have found a penny last week. — *Last week требует формы прошлого: found без have.*
 - ❌ They find a penny last week. — *Для прошлого нужна форма found.*
 
 ---
@@ -120,8 +120,8 @@ We ___ saved every cent. → **have** · has · are
 **15 · Дополните рассказ о деньгах.**
 <!-- interaction_id: en:lesson-24:session-25:i11; family: context_gap_grammar -->
 They ___ a penny last week. → **found** · have found · find
-- have found — *С last week нужен Past Simple: found без have.*
-- find — *С last week нужен Past Simple: found без have.*
+- have found — *С last week нужна форма прошлого: found без have.*
+- find — *С last week нужна форма прошлого: found без have.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-25:i12; family: listen_choose -->

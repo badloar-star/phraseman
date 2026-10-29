@@ -23,7 +23,7 @@ Asthma — астма. How long have you had asthma? — как давно у т
 
 ### Называем заболевание
 
-Diabetes — диабет. How long has he had diabetes? — как давно у него диабет? В этом слове конечная s не делает его множественным числом. В выражениях have asthma и have diabetes нет a. С he в вопросе ставим has перед he.
+Diabetes — диабет. How long has he had diabetes? — как давно у него диабет? В этом слове конечная s не значит, что болезней несколько. В выражениях have asthma и have diabetes нет a. С he в вопросе ставим has перед he.
 
 **Выберите фразу для этой ситуации.**
 
@@ -37,7 +37,7 @@ Diabetes — диабет. How long has he had diabetes? — как давно �
 
 ### Как долго длится приступ
 
-На приёме врач уточняет, как долго продолжается нынешний приступ мигрени. How long have you had this migraine? — как долго длится эта мигрень? Сначала how long спрашивает о длительности. Затем have ставим перед you, а после you — had, третью форму have. This migraine уточняет, что речь об этом приступе. Порядок — how long + have + you + had + this migraine?
+На приёме врач уточняет, как долго продолжается нынешний приступ мигрени. How long have you had this migraine? — как долго длится эта мигрень? Сначала how long спрашивает о длительности. Затем have ставим перед you, а после you — had, форму have. This migraine уточняет, что речь об этом приступе. Порядок — how long + have + you + had + this migraine?
 
 **Выберите фразу для этой ситуации.**
 

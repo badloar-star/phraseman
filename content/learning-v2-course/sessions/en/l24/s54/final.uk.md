@@ -43,7 +43,7 @@ Suppose — гадати, припускати. I suppose you are tired — га
 
 - ✅ **I do not want to injure my knee.**
 - ❌ I do not want to injures my knee. — *Після to потрібно injure.*
-- ❌ I do not want to injuring my knee. — *Тут потрібен інфінітив to injure.*
+- ❌ I do not want to injuring my knee. — *Тут потрібна початкова форма, як у словнику: to injure.*
 
 ---
 

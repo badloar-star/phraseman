@@ -9,7 +9,7 @@
 
 ### Що міститься в коробці
 
-Перед вами закрита коробка, і ви запитуєте, що в ній міститься. What does this box contain? — що міститься в цій коробці? Починаємо з what — того, що хочемо дізнатися. Потім ставимо does перед this box: box — однина. Після підмета потрібна початкова форма contain, без -s, тому що форму запитання вже задає does. Порядок — what + does + this box + contain?
+Перед вами закрита коробка, і ви запитуєте, що в ній міститься. What does this box contain? — що міститься в цій коробці? Починаємо з what — того, що хочемо дізнатися. Потім ставимо does перед this box: box — форма для одного. Після this box потрібна початкова форма contain, без -s, тому що форму запитання вже задає does. Порядок — what + does + this box + contain?
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -23,7 +23,7 @@
 
 ### Застава торік
 
-Ви розповідаєте про торішнє проживання в готелі: тоді він вимагав заставу. The hotel required a deposit last year — торік готель вимагав заставу. Після the hotel ставимо required: require закінчується на e, тому для Past Simple додаємо -d. A deposit називає, що вимагалося. Last year задає завершений період, тому has перед required не потрібен.
+Ви розповідаєте про торішнє проживання в готелі: тоді він вимагав заставу. The hotel required a deposit last year — торік готель вимагав заставу. Після the hotel ставимо required: require закінчується на e, тому для форми минулого додаємо -d. A deposit називає, що вимагалося. Last year задає завершений період, тому has перед required не потрібен.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -37,7 +37,7 @@
 
 ### Собака гнався за мною вчора
 
-Ви розповідаєте, як учора за вами погнався собака. The dog chased me yesterday — учора собака гнався за мною. Після the dog ставимо chased: до chase додаємо -d для Past Simple. Me називає того, за ким гналися; після chase не потрібен прийменник for. Yesterday указує на завершений день, тому has не додаємо. Порядок — the dog + chased + me + yesterday.
+Ви розповідаєте, як учора за вами погнався собака. The dog chased me yesterday — учора собака гнався за мною. Після the dog ставимо chased: до chase додаємо -d для форми минулого. Me називає того, за ким гналися; після chase не потрібен прийменник for. Yesterday указує на завершений день, тому has не додаємо. Порядок — the dog + chased + me + yesterday.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -120,8 +120,8 @@ I ___ often wondered about that. → **have** · has · am
 **15 · Доповніть розповідь про минуле.**
 <!-- interaction_id: en:lesson-24:session-26:i11; family: context_gap_grammar -->
 The dog ___ me yesterday. → **chased** · has chased · chase
-- has chased — *Із yesterday потрібен Past Simple: chased без has.*
-- chase — *Із yesterday потрібен Past Simple: chased без has.*
+- has chased — *Із yesterday потрібна форма минулого: chased без has.*
+- chase — *Із yesterday потрібна форма минулого: chased без has.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-26:i12; family: listen_choose -->

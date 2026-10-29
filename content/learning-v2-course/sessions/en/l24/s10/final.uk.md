@@ -14,7 +14,7 @@ Exist — існувати. How long has this shop existed? — як давно 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How long has this shop existed?**
-- ❌ How long have this shop existed? — *Тут однина: потрібне has.*
+- ❌ How long have this shop existed? — *Тут ідеться про одного: потрібне has.*
 - ❌ How many has this shop existed? — *Для тривалості потрібно How long.*
 
 ---
@@ -28,7 +28,7 @@ Remain — залишатися, не змінювати стан або міс�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How long has this door remained locked?**
-- ❌ How long have this door remained locked? — *Тут однина: потрібне has.*
+- ❌ How long have this door remained locked? — *Тут ідеться про одного: потрібне has.*
 - ❌ How many has this door remained locked? — *Для тривалості потрібно How long.*
 
 ---
@@ -37,12 +37,12 @@ Remain — залишатися, не змінювати стан або міс�
 
 ### Як давно вона здається засмученою
 
-Подруга має засмучений вигляд. Ви запитуєте того, хто був поруч, як давно це помітно. How long has she seemed upset? — як давно вона здається засмученою? Після how long ставимо has перед she, потім seemed — третю форму seem. Upset описує враження від її стану. Ми не стверджуємо, що знаємо її почуття. Порядок — how long + has + she + seemed + upset?
+Подруга має засмучений вигляд. Ви запитуєте того, хто був поруч, як давно це помітно. How long has she seemed upset? — як давно вона здається засмученою? Після how long ставимо has перед she, потім seemed — форму seem. Upset описує враження від її стану. Ми не стверджуємо, що знаємо її почуття. Порядок — how long + has + she + seemed + upset?
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How long has she seemed upset?**
-- ❌ How long have she seemed upset? — *Тут однина: потрібне has.*
+- ❌ How long have she seemed upset? — *Тут ідеться про одного: потрібне has.*
 - ❌ How many has she seemed upset? — *Для тривалості потрібно How long.*
 
 ---

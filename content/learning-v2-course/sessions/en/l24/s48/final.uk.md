@@ -9,7 +9,7 @@
 
 ### Малюка вже обійняли
 
-Малюк плакав, мама притиснула його до себе, і ви повідомляєте про це зараз. She has cuddled the baby — вона ніжно обійняла малюка. Після she вибираємо has, потім ставимо третю форму cuddled. У правильного дієслова cuddle вона утворюється додаванням -d. The baby називає, кого обійняли. Тут важливий результат на теперішній момент, а завершеної дати не названо: she + has + cuddled + the baby.
+Малюк плакав, мама притиснула його до себе, і ви повідомляєте про це зараз. She has cuddled the baby — вона ніжно обійняла малюка. Після she вибираємо has, потім ставимо форму cuddled. У правильного дієслова cuddle вона утворюється додаванням -d. The baby називає, кого обійняли. Тут важливий результат на теперішній момент, а завершеної дати не названо: she + has + cuddled + the baby.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -23,7 +23,7 @@
 
 ### Сльози після фільму
 
-Ви згадуєте, як друг учора розплакався після сумного фільму. He sobbed after the film yesterday — учора він ридав після фільму. Yesterday указує на завершений день, тому після he потрібен Past Simple: sobbed. У короткому дієслові sob перед -ed подвоюємо кінцеву b. After the film уточнює, після чого він плакав; yesterday — коли. Складаємо he + sobbed + after the film + yesterday.
+Ви згадуєте, як друг учора розплакався після сумного фільму. He sobbed after the film yesterday — учора він ридав після фільму. Yesterday указує на завершений день, тому після he потрібна форма минулого: sobbed. У короткому дієслові sob перед -ed подвоюємо кінцеву b. After the film уточнює, після чого він плакав; yesterday — коли. Складаємо he + sobbed + after the film + yesterday.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -80,8 +80,8 @@ She ___ cuddled the baby. → **has** · have · is
 **7 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-48:i05; family: context_gap_grammar -->
 He ___ after the film yesterday. → **sobbed** · sob · sobbing
-- sob — *Yesterday потребує Past Simple: sobbed.*
-- sobbing — *Yesterday потребує Past Simple: sobbed.*
+- sob — *Yesterday потребує форма минулого: sobbed.*
+- sobbing — *Yesterday потребує форма минулого: sobbed.*
 
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-48:i06; family: listen_choose -->
@@ -120,8 +120,8 @@ I ___ groaned with pain all morning. → **have** · has · am
 **15 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-48:i11; family: context_gap_grammar -->
 They ___ for help yesterday. → **yelled** · yell · yelling
-- yell — *Yesterday потребує Past Simple: yelled.*
-- yelling — *Yesterday потребує Past Simple: yelled.*
+- yell — *Yesterday потребує форма минулого: yelled.*
+- yelling — *Yesterday потребує форма минулого: yelled.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-48:i12; family: listen_choose -->

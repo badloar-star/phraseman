@@ -15,7 +15,7 @@ Disappointment — разочарование: вы ожидали чего-то
 
 - ✅ **He has hidden his disappointment for a week.**
 - ❌ He has hidden his disappointment since a week. — *Срок — for, начало — since.*
-- ❌ He have hidden his disappointment for a week. — *Здесь подлежащее в единственном числе: нужно has.*
+- ❌ He have hidden his disappointment for a week. — *Здесь речь об одном: нужно has.*
 
 ---
 
@@ -23,13 +23,13 @@ Disappointment — разочарование: вы ожидали чего-то
 
 ### Ждём встречи
 
-В понедельник вы договорились встретиться с друзьями и с каждым днём радуетесь встрече всё больше. My excitement has grown since Monday — моё радостное волнение усилилось с понедельника. Excitement означает «радостное волнение». Собираем предложение: my excitement + has + grown + since Monday. Волнение — одно чувство, поэтому ставим has; grown — третья форма grow. Since Monday указывает, с какого момента началось изменение, которое заметно сейчас.
+В понедельник вы договорились встретиться с друзьями и с каждым днём радуетесь встрече всё больше. My excitement has grown since Monday — моё радостное волнение усилилось с понедельника. Excitement означает «радостное волнение». Собираем предложение: my excitement + has + grown + since Monday. Волнение — одно чувство, поэтому ставим has; grown — форма grow после have. Since Monday указывает, с какого момента началось изменение, которое заметно сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **My excitement has grown since Monday.**
 - ❌ My excitement has grown for Monday. — *Срок — for, начало — since.*
-- ❌ My excitement have grown since Monday. — *Здесь подлежащее в единственном числе: нужно has.*
+- ❌ My excitement have grown since Monday. — *Здесь речь об одном: нужно has.*
 
 ---
 
@@ -43,7 +43,7 @@ Loneliness — одиночество, чувство нехватки обще�
 
 - ✅ **She has lived with loneliness since June.**
 - ❌ She has lived with loneliness for June. — *Срок — for, начало — since.*
-- ❌ She have lived with loneliness since June. — *Здесь подлежащее в единственном числе: нужно has.*
+- ❌ She have lived with loneliness since June. — *Здесь речь об одном: нужно has.*
 
 ---
 

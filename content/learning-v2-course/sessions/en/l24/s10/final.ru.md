@@ -14,7 +14,7 @@ Exist — существовать. How long has this shop existed? — как �
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How long has this shop existed?**
-- ❌ How long have this shop existed? — *Здесь единственное число: нужен has.*
+- ❌ How long have this shop existed? — *Здесь речь об одном: нужен has.*
 - ❌ How many has this shop existed? — *Для длительности нужно How long.*
 
 ---
@@ -28,7 +28,7 @@ Remain — оставаться, не менять состояние или м�
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How long has this door remained locked?**
-- ❌ How long have this door remained locked? — *Здесь единственное число: нужен has.*
+- ❌ How long have this door remained locked? — *Здесь речь об одном: нужен has.*
 - ❌ How many has this door remained locked? — *Для длительности нужно How long.*
 
 ---
@@ -37,12 +37,12 @@ Remain — оставаться, не менять состояние или м�
 
 ### Как давно она кажется расстроенной
 
-Подруга выглядит расстроенной. Вы спрашиваете того, кто был рядом, как давно это заметно. How long has she seemed upset? — как давно она кажется расстроенной? После how long ставим has перед she, затем seemed — третью форму seem. Upset описывает впечатление от её состояния. Мы не утверждаем, что знаем её чувства. Порядок — how long + has + she + seemed + upset?
+Подруга выглядит расстроенной. Вы спрашиваете того, кто был рядом, как давно это заметно. How long has she seemed upset? — как давно она кажется расстроенной? После how long ставим has перед she, затем seemed — форму seem. Upset описывает впечатление от её состояния. Мы не утверждаем, что знаем её чувства. Порядок — how long + has + she + seemed + upset?
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How long has she seemed upset?**
-- ❌ How long have she seemed upset? — *Здесь единственное число: нужен has.*
+- ❌ How long have she seemed upset? — *Здесь речь об одном: нужен has.*
 - ❌ How many has she seemed upset? — *Для длительности нужно How long.*
 
 ---

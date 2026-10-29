@@ -9,7 +9,7 @@
 
 ### Малыша уже обняли
 
-Малыш плакал, мама прижала его к себе, и вы сообщаете об этом сейчас. She has cuddled the baby — она ласково обняла малыша. После she выбираем has, затем ставим третью форму cuddled. У правильного глагола cuddle она образуется добавлением -d. The baby называет, кого обняли. Здесь важен результат к настоящему моменту, а законченная дата не названа: she + has + cuddled + the baby.
+Малыш плакал, мама прижала его к себе, и вы сообщаете об этом сейчас. She has cuddled the baby — она ласково обняла малыша. После she выбираем has, затем ставим форму cuddled. У правильного глагола cuddle она образуется добавлением -d. The baby называет, кого обняли. Здесь важен результат к настоящему моменту, а законченная дата не названа: she + has + cuddled + the baby.
 
 **Выберите фразу для этой ситуации.**
 
@@ -23,7 +23,7 @@
 
 ### Слёзы после фильма
 
-Вы вспоминаете, как друг вчера расплакался после грустного фильма. He sobbed after the film yesterday — вчера он рыдал после фильма. Yesterday указывает на законченный день, поэтому после he нужен Past Simple: sobbed. В коротком глаголе sob перед -ed удваиваем конечную b. After the film уточняет, после чего он плакал; yesterday — когда. Собираем he + sobbed + after the film + yesterday.
+Вы вспоминаете, как друг вчера расплакался после грустного фильма. He sobbed after the film yesterday — вчера он рыдал после фильма. Yesterday указывает на законченный день, поэтому после he нужна форма прошлого: sobbed. В коротком глаголе sob перед -ed удваиваем конечную b. After the film уточняет, после чего он плакал; yesterday — когда. Собираем he + sobbed + after the film + yesterday.
 
 **Выберите фразу для этой ситуации.**
 
@@ -80,8 +80,8 @@ She ___ cuddled the baby. → **has** · have · is
 **7 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-48:i05; family: context_gap_grammar -->
 He ___ after the film yesterday. → **sobbed** · sob · sobbing
-- sob — *Yesterday требует Past Simple: sobbed.*
-- sobbing — *Yesterday требует Past Simple: sobbed.*
+- sob — *Yesterday требует формы прошлого: sobbed.*
+- sobbing — *Yesterday требует формы прошлого: sobbed.*
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-48:i06; family: listen_choose -->
@@ -120,8 +120,8 @@ I ___ groaned with pain all morning. → **have** · has · am
 **15 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-48:i11; family: context_gap_grammar -->
 They ___ for help yesterday. → **yelled** · yell · yelling
-- yell — *Yesterday требует Past Simple: yelled.*
-- yelling — *Yesterday требует Past Simple: yelled.*
+- yell — *Yesterday требует формы прошлого: yelled.*
+- yelling — *Yesterday требует формы прошлого: yelled.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-48:i12; family: listen_choose -->

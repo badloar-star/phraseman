@@ -15,7 +15,7 @@ Guilt — почуття провини: вам здається, що ви зр
 
 - ✅ **I have felt guilt since yesterday.**
 - ❌ I has felt guilt since yesterday. — *З I потрібно have.*
-- ❌ I am felt guilt since yesterday. — *Перевірте форму присудка в цьому реченні.*
+- ❌ I am felt guilt since yesterday. — *Перевірте, як тут побудована дія: am felt не буває.*
 
 ---
 
@@ -23,13 +23,13 @@ Guilt — почуття провини: вам здається, що ви зр
 
 ### Не показала, що їй соромно
 
-Учора подрузі було соромно за свій учинок, але вона не показала цього іншим. She hid her shame yesterday — учора вона приховала свій сором. Починаємо з she, потім ставимо hid — минулу форму hide. Yesterday указує на завершений день, тому вибираємо Past Simple, без has. Her shame називає, що вона приховала; her пов’язує почуття з нею. Порядок частин: she + hid + her shame + yesterday.
+Учора подрузі було соромно за свій учинок, але вона не показала цього іншим. She hid her shame yesterday — учора вона приховала свій сором. Починаємо з she, потім ставимо hid — минулу форму hide. Yesterday указує на завершений день, тому вибираємо форму минулого, без has. Her shame називає, що вона приховала; her пов’язує почуття з нею. Порядок частин: she + hid + her shame + yesterday.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She hid her shame yesterday.**
 - ❌ She hides her shame yesterday. — *Із yesterday потрібна минула форма hid.*
-- ❌ She hiding her shame yesterday. — *Перевірте форму присудка в цьому реченні.*
+- ❌ She hiding her shame yesterday. — *Перевірте, як тут побудована дія: am felt не буває.*
 
 ---
 
@@ -43,7 +43,7 @@ Weakness — слабкість або слабке місце. We noticed a wea
 
 - ✅ **We noticed a weakness in the plan yesterday.**
 - ❌ We notice a weakness in the plan yesterday. — *Із yesterday потрібна минула форма noticed.*
-- ❌ We noticing a weakness in the plan yesterday. — *Перевірте форму присудка в цьому реченні.*
+- ❌ We noticing a weakness in the plan yesterday. — *Перевірте, як тут побудована дія: am felt не буває.*
 
 ---
 
@@ -80,8 +80,8 @@ I ___ felt guilt since yesterday. → **have** · has · am
 **7 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-47:i05; family: context_gap_grammar -->
 She ___ her shame yesterday. → **hid** · hides · hiding
-- hides — *Yesterday потребує Past Simple: hid.*
-- hiding — *Yesterday потребує Past Simple: hid.*
+- hides — *Yesterday потребує форма минулого: hid.*
+- hiding — *Yesterday потребує форма минулого: hid.*
 
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-47:i06; family: listen_choose -->
@@ -120,8 +120,8 @@ He ___ expressed a desire to learn. → **has** · have · is
 **15 · Доповніть розповідь.**
 <!-- interaction_id: en:lesson-24:session-47:i11; family: context_gap_grammar -->
 We ___ a weakness in the plan yesterday. → **noticed** · notice · noticing
-- notice — *Yesterday потребує Past Simple: noticed.*
-- noticing — *Yesterday потребує Past Simple: noticed.*
+- notice — *Yesterday потребує форма минулого: noticed.*
+- noticing — *Yesterday потребує форма минулого: noticed.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-24:session-47:i12; family: listen_choose -->

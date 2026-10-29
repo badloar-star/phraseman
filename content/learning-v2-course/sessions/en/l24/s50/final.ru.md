@@ -37,7 +37,7 @@ Lower — нижний. She opened the lower drawer yesterday — вчера о�
 
 ### Покрасил наружную дверь
 
-Вы показываете соседу наружную дверь и рассказываете, что брат покрасил её вчера. He painted the outer door yesterday — вчера он покрасил наружную дверь. После he ставим painted: вчерашний день закончился, поэтому нужен Past Simple, без has. The outer door называет, какую дверь покрасили; outer стоит перед door. Yesterday в конце добавляет время. Основа — he + painted + the outer door + yesterday.
+Вы показываете соседу наружную дверь и рассказываете, что брат покрасил её вчера. He painted the outer door yesterday — вчера он покрасил наружную дверь. После he ставим painted: вчерашний день закончился, поэтому нужна форма прошлого, без has. The outer door называет, какую дверь покрасили; outer стоит перед door. Yesterday в конце добавляет время. Основа — he + painted + the outer door + yesterday.
 
 **Выберите фразу для этой ситуации.**
 

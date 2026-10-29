@@ -9,7 +9,7 @@
 
 ### Что находится в коробке
 
-Перед вами закрытая коробка, и вы спрашиваете, что в ней находится. What does this box contain? — что находится в этой коробке? Начинаем с what — того, что хотим узнать. Затем ставим does перед this box: box — единственное число. После подлежащего нужна начальная форма contain, без -s, потому что форму вопроса уже задаёт does. Порядок — what + does + this box + contain?
+Перед вами закрытая коробка, и вы спрашиваете, что в ней находится. What does this box contain? — что находится в этой коробке? Начинаем с what — того, что хотим узнать. Затем ставим does перед this box: box — форма для одного. После this box нужна начальная форма contain, без -s, потому что форму вопроса уже задаёт does. Порядок — what + does + this box + contain?
 
 **Выберите фразу для этой ситуации.**
 
@@ -23,7 +23,7 @@
 
 ### Залог в прошлом году
 
-Вы рассказываете о прошлогоднем проживании в отеле: тогда он требовал залог. The hotel required a deposit last year — в прошлом году отель требовал залог. После the hotel ставим required: require заканчивается на e, поэтому для Past Simple добавляем -d. A deposit называет, что требовалось. Last year задаёт законченный период, поэтому has перед required не нужен.
+Вы рассказываете о прошлогоднем проживании в отеле: тогда он требовал залог. The hotel required a deposit last year — в прошлом году отель требовал залог. После the hotel ставим required: require заканчивается на e, поэтому для формы прошлого добавляем -d. A deposit называет, что требовалось. Last year задаёт законченный период, поэтому has перед required не нужен.
 
 **Выберите фразу для этой ситуации.**
 
@@ -37,7 +37,7 @@
 
 ### Собака гналась за мной вчера
 
-Вы рассказываете, как вчера за вами погналась собака. The dog chased me yesterday — вчера собака гналась за мной. После the dog ставим chased: к chase добавляем -d для Past Simple. Me называет того, за кем гнались; после chase не нужен предлог for. Yesterday указывает на законченный день, поэтому has не добавляем. Порядок — the dog + chased + me + yesterday.
+Вы рассказываете, как вчера за вами погналась собака. The dog chased me yesterday — вчера собака гналась за мной. После the dog ставим chased: к chase добавляем -d для формы прошлого. Me называет того, за кем гнались; после chase не нужен предлог for. Yesterday указывает на законченный день, поэтому has не добавляем. Порядок — the dog + chased + me + yesterday.
 
 **Выберите фразу для этой ситуации.**
 
@@ -120,8 +120,8 @@ I ___ often wondered about that. → **have** · has · am
 **15 · Дополните рассказ о прошлом.**
 <!-- interaction_id: en:lesson-24:session-26:i11; family: context_gap_grammar -->
 The dog ___ me yesterday. → **chased** · has chased · chase
-- has chased — *С yesterday нужен Past Simple: chased без has.*
-- chase — *С yesterday нужен Past Simple: chased без has.*
+- has chased — *С yesterday нужна форма прошлого: chased без has.*
+- chase — *С yesterday нужна форма прошлого: chased без has.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-26:i12; family: listen_choose -->

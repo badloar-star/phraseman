@@ -23,7 +23,7 @@ Asthma — астма. How long have you had asthma? — як давно в те
 
 ### Називаємо захворювання
 
-Diabetes — діабет. How long has he had diabetes? — як давно в нього діабет? У цьому слові кінцева s не робить його множиною. У виразах have asthma та have diabetes немає a. Із he в запитанні ставимо has перед he.
+Diabetes — діабет. How long has he had diabetes? — як давно в нього діабет? У цьому слові кінцева s не означає, що хвороб кілька. У виразах have asthma та have diabetes немає a. Із he в запитанні ставимо has перед he.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -37,7 +37,7 @@ Diabetes — діабет. How long has he had diabetes? — як давно в 
 
 ### Як довго триває напад
 
-На прийомі лікар уточнює, як довго триває нинішній напад мігрені. How long have you had this migraine? — як довго триває ця мігрень? Спочатку how long запитує про тривалість. Потім have ставимо перед you, а після you — had, третю форму have. This migraine уточнює, що йдеться про цей напад. Порядок — how long + have + you + had + this migraine?
+На прийомі лікар уточнює, як довго триває нинішній напад мігрені. How long have you had this migraine? — як довго триває ця мігрень? Спочатку how long запитує про тривалість. Потім have ставимо перед you, а після you — had, форму have. This migraine уточнює, що йдеться про цей напад. Порядок — how long + have + you + had + this migraine?
 
 **Виберіть фразу для цієї ситуації.**
 

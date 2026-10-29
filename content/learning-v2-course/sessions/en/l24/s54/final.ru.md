@@ -43,7 +43,7 @@ Suppose — полагать, предполагать. I suppose you are tired 
 
 - ✅ **I do not want to injure my knee.**
 - ❌ I do not want to injures my knee. — *После to нужно injure.*
-- ❌ I do not want to injuring my knee. — *Здесь нужен инфинитив to injure.*
+- ❌ I do not want to injuring my knee. — *Здесь нужна начальная форма, как в словаре: to injure.*
 
 ---
 

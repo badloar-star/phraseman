@@ -15,7 +15,7 @@ Guilt — чувство вины: вам кажется, что вы сдела
 
 - ✅ **I have felt guilt since yesterday.**
 - ❌ I has felt guilt since yesterday. — *С I нужно have.*
-- ❌ I am felt guilt since yesterday. — *Проверьте форму сказуемого в этом предложении.*
+- ❌ I am felt guilt since yesterday. — *Проверьте, как здесь построено действие: am felt не бывает.*
 
 ---
 
@@ -23,13 +23,13 @@ Guilt — чувство вины: вам кажется, что вы сдела
 
 ### Не показала, что ей стыдно
 
-Вчера подруге было стыдно за свой поступок, но она не показала этого окружающим. She hid her shame yesterday — вчера она скрыла свой стыд. Начинаем с she, затем ставим hid — прошедшую форму hide. Yesterday указывает на законченный день, поэтому выбираем Past Simple, без has. Her shame называет, что она скрыла; her связывает чувство с ней. Порядок частей: she + hid + her shame + yesterday.
+Вчера подруге было стыдно за свой поступок, но она не показала этого окружающим. She hid her shame yesterday — вчера она скрыла свой стыд. Начинаем с she, затем ставим hid — прошедшую форму hide. Yesterday указывает на законченный день, поэтому выбираем форму прошлого, без has. Her shame называет, что она скрыла; her связывает чувство с ней. Порядок частей: she + hid + her shame + yesterday.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She hid her shame yesterday.**
 - ❌ She hides her shame yesterday. — *С yesterday нужна прошедшая форма hid.*
-- ❌ She hiding her shame yesterday. — *Проверьте форму сказуемого в этом предложении.*
+- ❌ She hiding her shame yesterday. — *Проверьте, как здесь построено действие: am felt не бывает.*
 
 ---
 
@@ -43,7 +43,7 @@ Weakness — слабость или слабое место. We noticed a weakn
 
 - ✅ **We noticed a weakness in the plan yesterday.**
 - ❌ We notice a weakness in the plan yesterday. — *С yesterday нужна прошедшая форма noticed.*
-- ❌ We noticing a weakness in the plan yesterday. — *Проверьте форму сказуемого в этом предложении.*
+- ❌ We noticing a weakness in the plan yesterday. — *Проверьте, как здесь построено действие: am felt не бывает.*
 
 ---
 
@@ -80,8 +80,8 @@ I ___ felt guilt since yesterday. → **have** · has · am
 **7 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-47:i05; family: context_gap_grammar -->
 She ___ her shame yesterday. → **hid** · hides · hiding
-- hides — *Yesterday требует Past Simple: hid.*
-- hiding — *Yesterday требует Past Simple: hid.*
+- hides — *Yesterday требует формы прошлого: hid.*
+- hiding — *Yesterday требует формы прошлого: hid.*
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-47:i06; family: listen_choose -->
@@ -120,8 +120,8 @@ He ___ expressed a desire to learn. → **has** · have · is
 **15 · Дополните рассказ.**
 <!-- interaction_id: en:lesson-24:session-47:i11; family: context_gap_grammar -->
 We ___ a weakness in the plan yesterday. → **noticed** · notice · noticing
-- notice — *Yesterday требует Past Simple: noticed.*
-- noticing — *Yesterday требует Past Simple: noticed.*
+- notice — *Yesterday требует формы прошлого: noticed.*
+- noticing — *Yesterday требует формы прошлого: noticed.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-24:session-47:i12; family: listen_choose -->

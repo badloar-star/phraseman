@@ -15,7 +15,7 @@ Disappointment — розчарування: ви очікували чогос�
 
 - ✅ **He has hidden his disappointment for a week.**
 - ❌ He has hidden his disappointment since a week. — *Тривалість — for, початок — since.*
-- ❌ He have hidden his disappointment for a week. — *Тут підмет в однині: потрібне has.*
+- ❌ He have hidden his disappointment for a week. — *Тут ідеться про одного: потрібне has.*
 
 ---
 
@@ -23,13 +23,13 @@ Disappointment — розчарування: ви очікували чогос�
 
 ### Чекаємо зустрічі
 
-У понеділок ви домовилися зустрітися з друзями й з кожним днем радієте зустрічі дедалі більше. My excitement has grown since Monday — моє радісне хвилювання посилилося з понеділка. Excitement означає «радісне хвилювання». Складаємо речення: my excitement + has + grown + since Monday. Хвилювання — одне почуття, тому ставимо has; grown — третя форма grow. Since Monday указує, з якого моменту почалася зміна, помітна зараз.
+У понеділок ви домовилися зустрітися з друзями й з кожним днем радієте зустрічі дедалі більше. My excitement has grown since Monday — моє радісне хвилювання посилилося з понеділка. Excitement означає «радісне хвилювання». Складаємо речення: my excitement + has + grown + since Monday. Хвилювання — одне почуття, тому ставимо has; grown — форма grow після have. Since Monday указує, з якого моменту почалася зміна, помітна зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My excitement has grown since Monday.**
 - ❌ My excitement has grown for Monday. — *Тривалість — for, початок — since.*
-- ❌ My excitement have grown since Monday. — *Тут підмет в однині: потрібне has.*
+- ❌ My excitement have grown since Monday. — *Тут ідеться про одного: потрібне has.*
 
 ---
 
@@ -43,7 +43,7 @@ Loneliness — самотність, відчуття нестачі спілк�
 
 - ✅ **She has lived with loneliness since June.**
 - ❌ She has lived with loneliness for June. — *Тривалість — for, початок — since.*
-- ❌ She have lived with loneliness since June. — *Тут підмет в однині: потрібне has.*
+- ❌ She have lived with loneliness since June. — *Тут ідеться про одного: потрібне has.*
 
 ---
 

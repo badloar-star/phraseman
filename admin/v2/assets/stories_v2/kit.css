@@ -1,0 +1,239 @@
+/* PhraseMan 2.0 — набор стиля макетов. С НУЛЯ 24.09 после «всё мусор, сноси».
+   Единственный эталон — 7 скриншотов живого приложения (OWNER_FEEDBACK.md) и код стиля
+   components/v2/V2Kit.tsx + constants/v2Style.ts. Размеры = пиксели скриншота / 2 (экран 430 pt).
+   Шрифт ОДИН — Inter из assets/fonts приложения. Цвет — графит/белый/серый. Жёлтого нет. */
+
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Regular.ttf') format('truetype'); font-weight: 400 500; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-SemiBold.ttf') format('truetype'); font-weight: 600; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Bold.ttf') format('truetype'); font-weight: 700; }
+@font-face { font-family: 'Inter'; src: url('fonts/Inter-Black.ttf') format('truetype'); font-weight: 800 900; }
+
+:root {
+  color-scheme: dark;
+  --bg: #0C0C0D; --bg-top: #151516;
+  --card: #151517;          /* строки-карточки хаба «Карточки» */
+  --card-2: #1A1A1C;        /* карточки категорий «Диалоги» */
+  --tile: #242426;          /* квадратные плашки со значком */
+  --control: #262628;       /* пилюли-счётчики, бейджи */
+  --track: #2C2C2E;
+  --sheet: #1B1B1D;
+  --line: rgba(255,255,255,.09);    /* тонкая кромка карточек */
+  --line-2: rgba(255,255,255,.14);
+  --outline: rgba(255,255,255,.30); /* контур вариантов ответа */
+  --text: #FFFFFF; --sec: #A6A6A8; --muted: #6E6E72;
+  --cta: #F2F1F6; --cta-ink: #0B0C0E;
+  --good: #6FD08C; --bad: #F2766B;
+  /* зачем (владелец «всё строго в текущей теме», 14.10): роли, которые раньше были вписаны #hex в общих css окон и кнопок — теперь токены темы */
+  --scrim: rgba(0,0,0,.6);            /* затемнение под окном/шторкой */
+  --control-hi: #383A40;              /* кнопка на плашке (тост): светлее --control, чтобы не сливалась */
+  --btn2: #2C2C2F;                    /* поверхность вторичной текстовой кнопки */
+  --disabled: #1E1E20; --disabled-ink: #8E8E93;
+  --danger: #6A2A25; --danger-ink: #FFC2BB;
+  --pad: 20px;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; background: #050506; color: var(--text); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-decoration: none; }
+
+/* ---------- страница ---------- */
+.page { max-width: 1480px; margin: 0 auto; padding: 28px 16px 90px; }
+.page-h1 { font-size: 28px; font-weight: 800; letter-spacing: -.4px; margin: 0; }
+.page-lead { color: var(--sec); font-size: 15px; margin: 8px 0 0; max-width: 860px; line-height: 1.5; }
+.page-nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; }
+.page-nav a { font-size: 14px; padding: 8px 14px; border-radius: 999px; background: #161618; border: 1px solid var(--line); color: var(--sec); }
+.page-nav a.on { color: var(--text); border-color: var(--line-2); background: #222224; }
+.block { margin-top: 56px; }
+.block > h2 { font-size: 21px; font-weight: 700; margin: 0 0 4px; }
+.block > p { color: var(--sec); font-size: 14px; margin: 0 0 20px; line-height: 1.5; max-width: 900px; }
+.phones { display: flex; flex-wrap: wrap; gap: 34px 28px; }
+.col { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.col > .lbl { font-size: 14px; font-weight: 600; color: #D6D6D8; text-align: center; max-width: 430px; }
+
+/* ---------- телефон 430 × 932 ---------- */
+.ph { position: relative; width: 430px; height: 932px; border-radius: 58px; overflow: hidden; flex: none;
+  background: radial-gradient(120% 60% at 50% 0%, var(--bg-top), var(--bg) 60%);
+  box-shadow: 0 0 0 9px #161618, 0 0 0 10px #2A2A2C, 0 30px 80px rgba(0,0,0,.6); isolation: isolate; }
+.sb { position: absolute; top: 0; left: 0; right: 0; height: 50px; z-index: 30; display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 30px 0 44px; font-weight: 600; font-size: 17px; pointer-events: none;
+  /* зачем: прокрученный контент не должен налезать на время и значки («ничего не налезает») */
+  background: linear-gradient(#131314 62%, rgba(19,19,20,0)); }
+.sb .sys { display: flex; gap: 6px; align-items: center; }
+.sb .bat { width: 27px; height: 13px; border-radius: 4px; border: 1.5px solid rgba(255,255,255,.95); position: relative; }
+.sb .bat::after { content: ""; position: absolute; inset: 1.5px; right: 3px; background: #fff; border-radius: 2px; }
+.scr { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; z-index: 1; scrollbar-width: none; overscroll-behavior: contain; }
+.scr::-webkit-scrollbar { display: none; }
+.scr > .in { padding: 52px var(--pad) 60px; will-change: transform; }
+.hi { position: absolute; bottom: 9px; left: 50%; width: 140px; height: 5px; margin-left: -70px; border-radius: 3px; background: #fff; z-index: 80; pointer-events: none; }
+
+/* ---------- нажатие ---------- */
+.t { cursor: pointer; transition: transform 240ms cubic-bezier(.3,1.4,.5,1), opacity 160ms; user-select: none; }
+.t.down { transform: scale(.97); opacity: .86; transition-duration: 90ms; }
+
+/* ---------- значки ---------- */
+svg.i { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; display: block; }
+svg.i.f { fill: currentColor; stroke: none; }
+svg.i.s16 { width: 16px; height: 16px; } svg.i.s18 { width: 18px; height: 18px; } svg.i.s20 { width: 20px; height: 20px; }
+svg.i.s24 { width: 24px; height: 24px; } svg.i.s26 { width: 26px; height: 26px; } svg.i.s28 { width: 28px; height: 28px; }
+
+/* ---------- шапки ---------- */
+.topbar { display: flex; align-items: center; justify-content: space-between; height: 44px; margin-top: 0; }
+.rb { width: 42px; height: 42px; border-radius: 50%; background: #1C1C1E; border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; color: var(--text); flex: none; }
+.rb.l { width: 48px; height: 48px; }
+.rb.sq { border-radius: 12px; background: transparent; border-color: var(--line-2); width: 36px; height: 36px; }
+.rb.bare { background: transparent; border: none; width: 30px; justify-content: flex-start; }
+.rb.fill { background: var(--control); border-color: var(--line); width: 35px; height: 35px; }
+.lt { margin-top: 8px; }
+.lt .ti { font-size: 40px; line-height: 46px; font-weight: 700; letter-spacing: -.6px; }
+.lt .su { font-size: 16px; line-height: 22px; color: var(--sec); margin-top: 6px; letter-spacing: .15px; }
+.hdr { display: flex; align-items: center; gap: 14px; min-height: 48px; }
+.hdr .tx { flex: 1; min-width: 0; }
+.hdr .ti { font-size: 20px; line-height: 24px; font-weight: 700; }
+.hdr .ti.xl { font-size: 34px; line-height: 40px; letter-spacing: -.5px; }
+.hdr .su { font-size: 15px; line-height: 20px; color: var(--sec); margin-top: 2px; }
+
+/* ---------- секции ---------- */
+.sec { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 30px 2px 14px; }
+.sec .ti { font-size: 20px; line-height: 26px; font-weight: 700; }
+.sec .ti .n { color: var(--muted); font-weight: 600; margin-left: 10px; }
+.sec .ac { font-size: 14px; color: var(--sec); display: flex; align-items: center; gap: 4px; white-space: nowrap; }
+.divider { height: 1px; background: var(--line); margin: 22px 0; }
+.ov { font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--sec); }
+
+/* ---------- карточки и строки ---------- */
+.card { position: relative; background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.card.c2 { background: var(--card-2); border-radius: 22px; }
+.stack > * + * { margin-top: 9px; }
+.stack.g13 > * + * { margin-top: 13px; }
+.row { display: flex; align-items: center; gap: 16px; padding: 9px 16px 9px 18px; min-height: 63px; }
+.row .tx { flex: 1; min-width: 0; }
+.row .tt { font-size: 17px; line-height: 22px; font-weight: 700; }
+.row .tt.m { font-weight: 600; }
+.row .st { font-size: 15px; line-height: 19px; color: var(--sec); margin-top: 1px; }
+.row .ch { color: var(--sec); flex: none; }
+.tile { width: 41px; height: 41px; border-radius: 10px; background: var(--tile); display: flex; align-items: center; justify-content: center; flex: none; color: var(--text); }
+.tile.t46 { width: 46px; height: 46px; border-radius: 12px; }
+.tile.t55 { width: 55px; height: 55px; border-radius: 14px; }
+.tile.t57 { width: 57px; height: 57px; border-radius: 14px; }
+.tile.t61 { width: 61px; height: 61px; border-radius: 16px; background: var(--tile); }
+.meta { display: flex; gap: 18px; color: var(--sec); font-size: 14px; line-height: 18px; margin-top: 4px; align-items: center; }
+.meta span { display: inline-flex; align-items: center; gap: 6px; }
+.cntp { min-width: 33px; height: 24px; padding: 0 9px; border-radius: 12px; background: var(--control); display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; flex: none; }
+.lvl { min-width: 38px; height: 26px; padding: 0 9px; border-radius: 8px; background: var(--control); border: 1px solid var(--line); display: inline-flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: #DADADC; flex: none; }
+.frac { white-space: nowrap; font-variant-numeric: tabular-nums; flex: none; }
+.frac b { font-size: 28px; font-weight: 700; }
+.frac span { font-size: 16px; color: var(--sec); margin-left: 3px; }
+
+/* ---------- пилюли ресурсов ---------- */
+.pill { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 35px; padding: 0 17px; border-radius: 18px; background: var(--control); font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; flex: none; }
+.pill.ol { background: transparent; border: 1px solid var(--line-2); }
+.pill.s { height: 30px; padding: 0 13px; font-size: 15px; gap: 7px; }
+.pill.encap { height: 28px; min-width: 60px; padding: 0 12px; gap: 6px; font-size: 16px; line-height: 1; border-radius: 14px; }
+.pill .coin { width: 20px; height: 20px; border-radius: 50%; display: block; }
+.pill .num { display: inline-block; }
+.pill .num.dn { animation: numdn 650ms cubic-bezier(.3,1.4,.5,1); }
+.pill .num.up { animation: numup 650ms cubic-bezier(.3,1.4,.5,1); }
+@keyframes numdn { 0% { transform: none; } 35% { transform: translateY(5px) scale(.82); opacity: .5; } 100% { transform: none; } }
+@keyframes numup { 0% { transform: none; } 35% { transform: translateY(-5px) scale(1.22); } 100% { transform: none; } }
+
+/* ---------- прогресс ---------- */
+.trk { height: 7px; border-radius: 4px; background: var(--track); position: relative; }
+.trk > i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; background: #E9E9EB; min-width: 7px; transition: width 800ms cubic-bezier(.2,.8,.2,1); }
+.trk.dot > i { width: 8px; height: 8px; top: -.5px; border-radius: 50%; background: #fff; }
+
+/* ---------- кнопки ---------- */
+.cta { display: flex; align-items: center; justify-content: center; gap: 12px; height: 48px; border-radius: 24px; background: var(--cta); color: var(--cta-ink); font-size: 17px; font-weight: 700; width: 100%; position: relative; }
+.cta .ar { position: absolute; right: 22px; }
+.cta.sm { height: 42px; border-radius: 21px; width: auto; padding: 0 18px; font-size: 16px; font-weight: 600; gap: 10px; }
+.cta.gh { background: transparent; color: var(--text); border: 1px solid var(--outline); }
+.cta.dis { background: var(--disabled); color: var(--muted); }
+.foot-brand { display: flex; align-items: center; gap: 12px; color: #4E4E52; font-size: 13px; margin-top: 26px; }
+.foot-brand::before, .foot-brand::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+/* ---------- шторка ---------- */
+.dim { position: absolute; inset: 0; z-index: 40; background: rgba(0,0,0,.6); opacity: 0; pointer-events: none; transition: opacity 260ms; }
+.dim.on { opacity: 1; pointer-events: auto; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 50; border-radius: 28px 28px 0 0; padding: 12px 18px 40px; background: var(--sheet);
+  border: 1px solid var(--line); border-bottom: none; transform: translateY(105%); transition: transform 440ms cubic-bezier(.2,1,.3,1); max-height: 90%; overflow-y: auto; scrollbar-width: none; }
+.sheet::-webkit-scrollbar { display: none; }
+.sheet.on { transform: none; }
+.grab { width: 44px; height: 5px; border-radius: 3px; background: #4A4A4E; margin: 0 auto 26px; }
+
+/* ---------- занятия ---------- */
+.opt { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 58px; padding: 12px 22px; border-radius: 14px; border: 1px solid var(--outline); font-size: 16.5px; line-height: 21px; font-weight: 600; }
+.opt.ok { border-color: var(--good); background: rgba(111,208,140,.12); }
+.opt.no { border-color: var(--bad); background: rgba(242,118,107,.12); }
+.qc { border-radius: 16px; background: #131315; border: 1px solid var(--line); min-height: 160px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 22px 28px; text-align: center; }
+.qc .k { font-size: 16px; color: var(--sec); }
+.qc .q { font-size: 32px; line-height: 38px; font-weight: 700; margin-top: 22px; letter-spacing: -.3px; }
+
+/* ---------- утилиты ---------- */
+.flex { display: flex; align-items: center; gap: 10px; }
+.grow { flex: 1; min-width: 0; }
+.center { text-align: center; }
+
+/* =====================================================================
+   LIQUID GLASS в графите — владелец 26.09: «должен быть во ВСЕХ элементах».
+   Как Liquid Glass iOS 26, но в нашем тоне: блик по верхне-левой кромке,
+   мягкий перелив внутри, тёмная нижняя кромка (толщина стекла), лёгкое
+   размытие того, что под элементом. Слой ложится ПОД содержимое (z-index:-1
+   внутри isolation), поэтому ни один текст/значок не перекрывается.
+   В приложении: Android BlurView не размывает — там заливка ≥0.9 + тот же
+   блик/перелив (память «Стекло 2.0 = непрозрачное»).
+   ===================================================================== */
+:root {
+  --lg-sheen: linear-gradient(150deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.035) 26%, rgba(255,255,255,0) 52%, rgba(255,255,255,.02) 78%, rgba(255,255,255,.055) 100%);
+  --lg-rim: inset 1px 1.5px 0 -.2px rgba(255,255,255,.22), inset -1px -1.5px 0 -.2px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.055);
+  --lg-drop: 0 10px 28px -12px rgba(0,0,0,.7);
+}
+:where(.card, .rb, .pill, .cntp, .lvl, .tile, .opt, .qc, .cta.gh, .cta.dis, .field, .srch, .chipbtn, .lang, .chbtn, .note, .pack, .hero, .finfo, .panel, .week, .opt2, .seg3, .modal, .toast, .play, .fab, .bar3, .ptile .cv, .vthumb, .thumb, .mrow.me, .fr, .pd .blk, .sheet) {
+  position: relative; isolation: isolate;
+}
+:where(.card, .rb, .pill, .cntp, .lvl, .tile, .opt, .qc, .cta.gh, .cta.dis, .field, .srch, .chipbtn, .lang, .chbtn, .note, .pack, .hero, .finfo, .panel, .week, .opt2, .seg3, .modal, .toast, .play, .fab, .bar3, .ptile .cv, .mrow.me, .fr, .pd .blk, .sheet)::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: -1;
+  background: var(--lg-sheen); box-shadow: var(--lg-rim);
+}
+/* крупные поверхности — ещё и размытие фона под ними и мягкая тень */
+:where(.card, .qc, .modal, .toast, .sheet, .panel, .pack, .hero, .bar3, .fab, .week) {
+  -webkit-backdrop-filter: blur(22px) saturate(140%); backdrop-filter: blur(22px) saturate(140%);
+  box-shadow: var(--lg-drop);
+}
+/* шторка: блик только по верхней кромке */
+.sheet::after { box-shadow: inset 0 1.5px 0 -.2px rgba(255,255,255,.2), inset 0 0 0 1px rgba(255,255,255,.05); }
+/* главная белая кнопка — «жидкий» глянец: светлее сверху, блик по кромке, мягкая тень */
+.cta:not(.gh):not(.dis):not(.red) {
+  background-image: linear-gradient(180deg, #FFFFFF 0%, var(--cta) 48%, #E3E2E8 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,1), inset 0 -1.5px 0 rgba(0,0,0,.10), 0 10px 26px -10px rgba(0,0,0,.75);
+}
+/* фон телефона — графит с мягкими пятнами света, чтобы стекло было видно */
+.ph { background:
+  radial-gradient(60% 34% at 12% 22%, rgba(255,255,255,.05), transparent 70%),
+  radial-gradient(52% 30% at 92% 58%, rgba(255,255,255,.04), transparent 70%),
+  radial-gradient(70% 36% at 30% 96%, rgba(255,255,255,.035), transparent 70%),
+  radial-gradient(120% 60% at 50% 0%, var(--bg-top), var(--bg) 60%); }
+/* голые элементы без подложки (стрелка «‹» в наборе) — без стекла */
+.rb.bare::after { display: none; }
+
+/* ===================== ПРАВИЛО ВЛАДЕЛЬЦА 13.10: «НИКАКИЕ КНОПКИ НЕ СЛИВАЮТСЯ» (MOCKUP_REQUIREMENTS §3) =====================
+   зачем: у вторичной кнопки — своя заметная поверхность, текст ≥ 4,5:1, зазор между кнопками ≥ 12 px, отключённая отличима и читается.
+   Слой в конце kit.css перекрывает локальные стили страниц только по этим свойствам. Проверка — C:/Temp/claude/btn/audit.cjs. Код догоняют Темы (№35). */
+/* текстовые ссылки «Ещё раз» / «Назад» / «Пройти ещё раз» — пилюля-поверхность вместо голого текста */
+.ph .quiet.t, .ph .bot2 .quiet { display: flex !important; align-items: center; justify-content: center; width: max-content; min-width: 148px; max-width: 100%; height: 46px !important; margin: 12px auto 0 !important; padding: 0 22px; border-radius: 23px; background: var(--btn2) !important; color: var(--text) !important; box-shadow: inset 0 1px 0 rgba(255,255,255,.07); }
+/* отключённая главная: тёмная плита, текст #8E8E93 — 5,1:1 на #1E1E20 (было var(--muted) 3,3:1) */
+.ph .cta.dis { color: var(--disabled-ink) !important; }
+/* опасные действия («Удалить», «Убрать», «Очистить», «Сменить без сохранения»): кромку снимает nobord.js (стиль «Тень»), поэтому различимость —
+   заливкой: глубокий красный тон #6A2A25 (яркость выше шторки #28282E и карточки ≥ 1,25×), текст #FFC2BB — 6,5:1. Двойной класс — сильнее локальных !important страниц. */
+.ph .cta.cta.red, .ph .cta.cta.or-danger, .ph .cta.cta.dg-danger,
+.ph .cta[style*="#3A1E1C"], .ph .cta[style*="#43211F"] { background: var(--danger) !important; background-image: none !important; color: var(--danger-ink) !important; }
+/* «Войти через Apple» на тёмной теме — БЕЛАЯ кнопка с чёрным яблоком (Apple HIG; решение координатора 13.10 — чёрная на тёмной плите сливалась). Код — Авторизация (AuthProviderButtons.tsx). */
+.ph .ov-provider.dark { background: #FFFFFF !important; background-image: none !important; color: #000000 !important; }
+
+/* ===================== ТОСТ «МИНИМУМ ЭЛЕМЕНТОВ» (владелец 14.10; код Дизайна 54efc180a, components/ActionToast.tsx) =====================
+   зачем: тост = значок без плашки (24) + одна строка цветом заголовка; полоска-рейл, плашка значка и капс-тон убраны.
+   Одно правило на все копии тоста в образцах (overlay.css, dialogs-gaps, cards-v2, cards-gaps, settings-gaps, paywall-gaps). */
+.ph :is(.ov-action-toast, .dg-toast, .atoast, .gs-toast, .wtoast) :is(.rail, .ra, .gs-rail, .tk, .tone, .gs-tl) { display: none !important; }
+.ph .ov-action-toast .tile, .ph :is(.dg-toast, .atoast, .gs-toast, .wtoast) :is(.tb, .gs-tt44) { background: none !important; box-shadow: none !important; width: auto !important; height: auto !important; min-width: 0 !important; padding: 0 !important; }
+.ph .ov-action-toast .tile::after, .ph :is(.dg-toast, .atoast, .gs-toast, .wtoast) :is(.tb, .gs-tt44)::after { display: none !important; }
+.ph .ov-action-toast .tile svg, .ph :is(.dg-toast, .atoast, .gs-toast, .wtoast) :is(.tb, .gs-tt44) svg { width: 24px !important; height: 24px !important; }
+.ph :is(.dg-toast, .atoast, .gs-toast) :is(.tm, .gs-tm), .ph .ov-action-toast .message { color: var(--text) !important; margin-top: 0 !important; font-size: 15px; line-height: 20px; }
+.ph .wtoast .tm { margin-top: 0 !important; }

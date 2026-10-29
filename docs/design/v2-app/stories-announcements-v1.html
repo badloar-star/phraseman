@@ -130,10 +130,13 @@ html.settle .st-page .ph .story *, html.settle .st-page .ph .story *::before, ht
 .sl .chip { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 16px; background: color-mix(in srgb, var(--tx) 12%, transparent); font-size: 14px; font-weight: 700; margin-top: 14px; }
 .sl .chip .io { font-size: 15px; color: var(--acc); }
 .sl .coin { border-radius: 50%; display: block; }
-.sl .v2art { display: block; filter: drop-shadow(0 18px 30px color-mix(in srgb, var(--sh-tint) 55%, transparent)); }
+.sl .v2art { display: block; object-fit: contain; filter: drop-shadow(0 18px 30px color-mix(in srgb, var(--sh-tint) 55%, transparent)); }
 .sl .caret { display: inline-block; width: 3px; height: .9em; background: var(--acc-g); vertical-align: -.08em; margin-left: 3px; border-radius: 2px; animation: stCaret 900ms steps(1) infinite; }
 @keyframes stCaret { 50% { opacity: 0; } }
 .sl .onink, .sl .onink .ov, .sl .onink .p, .sl .onink .h1, .sl .onink .blk { color: var(--acc-ink); }
+/* зачем: содержимое на плоскости — колонка по центру (без этого слово «Скоро» и блок прижимались к левому краю при длинном заголовке) */
+.sl .onink { display: flex; flex-direction: column; align-items: center; }
+.sl.left .onink { align-items: flex-start; }
 .sl .onink .ov { opacity: .8; } .sl .onink .p { opacity: .82; }
 
 /* ── входы и жизнь ── */
@@ -298,7 +301,8 @@ html.settle .st-page .ph .story *, html.settle .st-page .ph .story *::before, ht
 /* ═══ 18 Ошибки — карточка выезжает с 3D-наклоном, ошибка зачёркивается, верный ответ всплывает; карточка покачивается ═══ */
 .tiltw { perspective: 800px; }
 .tiltlife { animation: stTiltLife 6s ease-in-out infinite alternate 1.6s; transform-style: preserve-3d; }
-@keyframes stTiltLife { from { transform: rotateY(-6deg) rotateX(3deg); } to { transform: rotateY(6deg) rotateX(-3deg); } }
+/* зачем: качание из покоя (0 → 6/−3 → 0), без рывка на 1,6 с */
+@keyframes stTiltLife { from { transform: none; } to { transform: rotateY(6deg) rotateX(-3deg); } }
 .tilt { width: 300px; border-radius: 24px; background: var(--card); box-shadow: 0 30px 60px -24px color-mix(in srgb, var(--sh-tint) 80%, transparent); padding: 18px 22px 20px; text-align: left; opacity: 0; animation: stTiltIn 1000ms cubic-bezier(.23, 1, .32, 1) forwards 150ms; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 @keyframes stTiltIn { from { transform: rotateX(28deg) rotateY(-18deg) translateY(30px); opacity: 0; } to { transform: none; opacity: 1; } }
 .tilt .hd { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; }
@@ -421,8 +425,9 @@ html.settle .st-page .ph .story *, html.settle .st-page .ph .story *::before, ht
 @keyframes stNoteIn { from { opacity: 0; transform: translate(var(--fx), var(--fy)) rotate(var(--r)); } to { opacity: 1; transform: translate(0, 0) rotate(var(--r)); } }
 /* ═══ 36 Совет — лампочка: лучи загораются по кругу, карточка совета выезжает снизу ═══ */
 .bulb { width: 150px; height: 170px; display: block; }
-.bulb .ray { stroke: var(--acc-g); stroke-width: 5; stroke-linecap: round; transform-box: fill-box; transform-origin: center; opacity: 0; animation: stRay 2.6s ease-in-out infinite; animation-delay: var(--d); }
-@keyframes stRay { 0%, 100% { opacity: 0; transform: scale(.5); } 50% { opacity: 1; transform: scale(1); } }
+.bulb .ray { stroke: var(--acc-g); stroke-width: 5; stroke-linecap: round; transform-box: fill-box; transform-origin: center; opacity: 0; animation: stRay 1.3s ease-in-out infinite alternate; animation-delay: var(--d); }
+/* зачем: туда-обратно, чтобы в конечном состоянии (settle, гейт) лучи горели — как в приложении и при «Уменьшить движение» */
+@keyframes stRay { 0% { opacity: 0; transform: scale(.5); } 100% { opacity: 1; transform: scale(1); } }
 .bulb .glass { fill: color-mix(in srgb, var(--acc-g) 30%, transparent); stroke: var(--acc-g); stroke-width: 4; }
 .bulb .base { fill: var(--sec); }
 .tipbox { width: 100%; max-width: 310px; padding: 18px 20px; border-radius: 22px; background: var(--card); box-shadow: 0 18px 44px -18px color-mix(in srgb, var(--sh-tint) 70%, transparent); text-align: left; margin-top: 18px; }
@@ -465,6 +470,13 @@ html.settle .st-page .ph .story *, html.settle .st-page .ph .story *::before, ht
 .bdisc { width: 230px; height: 230px; border-radius: 50%; background: linear-gradient(150deg, var(--grad-a), var(--grad-b)); display: flex; align-items: center; justify-content: center; box-shadow: 0 30px 60px -24px color-mix(in srgb, var(--sh-tint) 70%, transparent); }
 .bdisc .bnum { display: block; font-size: 150px; line-height: 150px; font-weight: 800; letter-spacing: -6px; color: var(--acc-ink); font-variant-numeric: tabular-nums; opacity: 0; animation: stBounceIn 800ms cubic-bezier(.34, 1.56, .64, 1) both 500ms; }
 
+/* ── предпросмотр редактора (?preview=1): только один телефон, без полей страницы ── */
+#preview { display: none; }
+body.preview { background: transparent; }
+body.preview .st-page { padding: 0; max-width: none; }
+body.preview .st-page > :not(#preview) { display: none !important; }
+body.preview #preview { display: block; }
+
 /* ── опись ── */
 .st-map-wrap { overflow-x: auto; margin-top: 12px; border-radius: 16px; background: #17181B; }
 .st-map { width: 100%; min-width: 1100px; border-collapse: collapse; font-size: 13px; line-height: 18px; }
@@ -488,7 +500,9 @@ html.settle .st-page .ph .story *, html.settle .st-page .ph .story *::before, ht
 </style>
 </head>
 <body>
+<script>if (/[?&]preview=1/.test(location.search)) document.body.classList.add('preview');</script>
 <div class="st-page">
+  <div id="preview"></div>
   <h1>Шаблоны объявлений v2 · 36 кадров</h1>
   <p class="st-lead">Объявление — история, которую владелец публикует всем из админки («Истории»). Владелец пишет <b>метку</b>, <b>заголовок</b> и до <b>4 блоков текста</b>, выбирает срок и длительность; шаблон даёт раскладку, арт и движение. У каждого из 36 кадров — своя композиция и своё движение входа и жизни. Каждый телефон — настоящий просмотр: полосы сверху, тап справа и слева, удержание — пауза, свайп вниз — закрыть. Переключатель <b>«Короткий / длинный заголовок»</b> показывает, что шаблон держит и 20, и 100 знаков. Арт — только из приложения; цвета — токены любой из 23 тем.</p>
   <div class="st-bar" id="bar">
@@ -528,7 +542,7 @@ const I = { flame: '', flash: '', trophy: '', sparkles: '', star: '�
   check: '', close: '', arrowR: '', chevron: '', time: '', share: '', mic: '', book: '', copy: '', trend: '', refresh: '', play: '', vol: '',
   calendar: '', ribbon: '', medal: '', school: '', snow: '', rocket: '', flag: '', layers: '', language: '', podium: '', palette: '', diamond: '',
   unlock: '', shield: '', hourglass: '', barChart: '', pulse: '', infinite: '', bookmark: '', add: '', link: '', send: '', bulb: '', timer: '',
-  repeat: '', list: '', gift: '', settings: '', notifications: '', mail: '', trash: '' };
+  repeat: '', list: '', gift: '', settings: '', notifications: '', mail: '', trash: '' };
 const io = (n, s = 22, extra = '') => `<span class="io" style="font-size:${s}px;${extra}">${I[n] || ''}</span>`;
 const sbHtml = (time = '9:41') => `<div class="sb"><span>${time}</span><span class="sys"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><path d="M8.5 2.2c2.4 0 4.6.9 6.3 2.5l1.2-1.3A10.8 10.8 0 008.5.5 10.8 10.8 0 001 3.4l1.2 1.3a9 9 0 016.3-2.5zm0 3.6c1.4 0 2.7.5 3.7 1.4l1.2-1.3a7.2 7.2 0 00-9.8 0l1.2 1.3c1-.9 2.3-1.4 3.7-1.4zm0 3.5c.5 0 1 .2 1.3.5L8.5 11.3 7.2 9.8c.3-.3.8-.5 1.3-.5z"/></svg><span class="bat"></span></span></div>`;
 const pad2 = (r) => String(Math.max(0, Math.min(19, r))).padStart(2, '0');
@@ -540,7 +554,7 @@ const fmt = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const INSTANT = { on: false };
 const DAYS = ['П', 'В', 'С', 'Ч', 'П', 'С', 'В'];
-const DARK = { good: '#6FD08C', bad: '#F2766B' }, LIGHT = { good: '#2B8A5E', bad: '#C4463C' };
+// зачем (замок владельца 22.10 «цвета строго оттенки темы»): «верно» — accentText, «ошибка» — secondary; своих зелёного и красного нет
 let uid = 0;
 // зачем: заголовок владельца любой длины — размер по числу знаков (40 ≤ 28 зн., 34 ≤ 60, иначе 28); в узкой колонке на ступень меньше
 const hcls = (t, narrow) => { const k = t.length <= 28 ? 0 : t.length <= 60 ? 1 : 2; return ['h40', 'h34', 'h28', 'h24'][Math.min(3, k + (narrow ? 1 : 0))]; };
@@ -559,11 +573,11 @@ const odometer = (n, d0 = 200) => { const s = fmt(n); const m = s.replace(/ /g,
 
 /* ── токены темы ── */
 const tokCss = (id, ap) => {
-  const t = THEMES[id][ap]; const g = t.accentGradient || [t.accent, t.accent]; const gl = t.bgGlow || [t.accentGlow, t.accentGlow, t.accentGlow]; const m = t.isLight ? LIGHT : DARK;
+  const t = THEMES[id][ap]; const g = t.accentGradient || [t.accent, t.accent]; const gl = t.bgGlow || [t.accentGlow, t.accentGlow, t.accentGlow];
   return [`--bg-top:${t.bgTop}`, `--bg-mid:${t.bg}`, `--bg-bot:${t.bgBottom}`, `--tx:${t.text}`, `--sec:${t.secondary}`, `--mu:${t.mutedText}`,
     `--acc:${t.accentText}`, `--acc-g:${t.accent}`, `--acc-b:${t.accentBright}`, `--acc-ink:${t.accentInk}`, `--acc-soft:${t.accentSoft}`, `--acc-glow:${t.accentGlow}`,
     `--g1:${gl[0]}`, `--g2:${gl[1] || gl[0]}`, `--g3:${gl[2] || gl[0]}`, `--card:${t.opaqueCard}`, `--ctl:${t.opaqueControl}`, `--cta:${t.cta}`, `--cta-ink:${t.ctaInk}`,
-    `--sel:${t.selected}`, `--grad-a:${g[0]}`, `--grad-b:${g[g.length - 1]}`, `--sh-tint:${t.shadowTint || '#000000'}`, `--good:${m.good}`, `--bad:${m.bad}`].join(';');
+    `--sel:${t.selected}`, `--grad-a:${g[0]}`, `--grad-b:${g[g.length - 1]}`, `--sh-tint:${t.shadowTint || '#000000'}`, `--good:${t.accentText}`, `--bad:${t.secondary}`].join(';');
 };
 const applyTheme = (ph, id, ap) => { ph.setAttribute('style', tokCss(id, ap)); ph.classList.toggle('lt', ap === 'light'); ph.classList.toggle('dk', ap !== 'light'); ph.dataset.theme = id; ph.dataset.ap = ap; };
 
@@ -592,7 +606,7 @@ const TPL = [
     s: { badge: 'До конца акции', short: 'Plus за полцены', long: 'Plus за полцены: годовая подписка со скидкой 50 % до конца воскресенья', blocks: [B('Включите в разделе Plus', 16)] },
     render: (ph, s, c) => { const segs = Array.from({ length: 7 }, (_, i) => `<circle class="seg ${i < 3 ? 'on' : ''}" cx="95" cy="95" r="80" stroke-dasharray="60 443" transform="rotate(${(i * 360 / 7).toFixed(2)} 95 95)" style="--d:${500 + i * 180}ms"/>`).join(''); return `<div class="ring7"><svg viewBox="0 0 190 190" data-bg>${segs}</svg><div class="c"><b class="pop" style="--d:300ms">3</b><span class="a" style="--d:600ms">дня осталось</span></div></div>${badge(s.badge, 1000)}${title(c.title, 1060)}${blocks(s.blocks, 1400)}`; } },
   { id: 'date', name: 'Дата', group: 'Срок', comp: '3D-лист календаря', fields: 'метка = дата · заголовок · 1 блок', ext: 'поле даты события', motion: 'лист откидывается вниз в 3D с отскоком, потом парит',
-    s: { badge: '12 ноября', short: 'Открываем французский', long: 'Открываем французский: первые 8 уроков, диалоги и фразы дня появятся у всех в один день', blocks: [B('Вторник, 10:00 по Москве', 14)] },
+    s: { badge: '10 ноября', short: 'Открываем французский', long: 'Открываем французский: первые 8 уроков, диалоги и фразы дня появятся у всех в один день', blocks: [B('Вторник, 10:00 по Москве', 14)] },
     render: (ph, s, c) => { const [d, m] = String(s.badge).split(' '); return `<div class="art leaf3"><div class="float"><div class="leaf"><div class="mo">${esc(m || '')}</div><div class="dn">${esc(d || '')}</div><div class="wd">вторник</div></div></div></div>${title(c.title, 700)}${blocks(s.blocks, 1100)}`; } },
   { id: 'schedule', name: 'Расписание', group: 'Срок', comp: 'горизонтальный таймлайн', fields: 'метка · заголовок · блоки «время · событие»', ext: '', motion: 'линия прочерчивается слева направо, остановки всплывают пружиной',
     s: { badge: 'Суббота', short: 'День дуэлей', long: 'День дуэлей: три раунда с друзьями и двойные монеты за каждую победу', blocks: [B('12:00 · Раунд 1', 16), B('15:00 · Раунд 2', 16), B('18:00 · Финал', 16)] },
@@ -685,14 +699,15 @@ const TPL = [
 /* ── плеер = просмотр сторис ── */
 let SPEED = 10000; let LONG = false;
 const players = [];
-const ctxFor = (tpl) => ({ title: LONG ? tpl.s.long : tpl.s.short, long: LONG });
+// зачем: в предпросмотре редактора заголовок приходит из формы (s.short = s.long), переключатель длины не действует
+const ctxFor = (tpl) => ({ title: tpl.preview ? tpl.s.short : LONG ? tpl.s.long : tpl.s.short, long: LONG });
 class Player {
-  constructor(ph, o) { this.ph = ph; this.i = o.start || 0; this.mode = o.mode || 'restart'; this.onIndex = o.onIndex || (() => {}); this.alive = true; this.visible = true; this.held = false; this.paused = false; this.closing = false;
+  constructor(ph, o) { this.ph = ph; this.list = o.list || TPL; this.i = o.start || 0; this.mode = o.mode || 'restart'; this.onIndex = o.onIndex || (() => {}); this.alive = true; this.visible = true; this.held = false; this.paused = false; this.closing = false;
     this.timer = 0; this.raf = 0; this.left = SPEED; this.t0 = 0; this.jobs = []; this.clock = { start: 0, pausedAt: null, lost: 0 }; this.mount(); }
   now() { const c = this.clock; return (c.pausedAt ?? performance.now()) - c.start - c.lost; }
   mount() {
     const st = document.createElement('div'); st.className = 'story'; st.innerHTML = `<div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div><div class="wash"></div>
-      <div class="sbars">${TPL.map(() => '<i><b></b></i>').join('')}</div>
+      <div class="sbars">${this.list.map(() => '<i><b></b></i>').join('')}</div>
       <div class="shead"><span class="pm">P</span><div><div class="nm">PhraseMan</div><div class="tm">объявление</div></div><span class="x" data-x>${io('close', 22)}</span></div>
       <div class="sl"></div><span class="stap l" data-prev></span><span class="stap r" data-next></span><div class="pz"><i></i><i></i></div>`;
     this.ph.appendChild(st); this.st = st; this.sl = st.querySelector('.sl'); this.bars = [...st.querySelectorAll('.sbars b')];
@@ -706,9 +721,9 @@ class Player {
     st.addEventListener('pointermove', (e) => { if (y0 == null || this.closing) return; const dy = e.clientY - y0; if (dy > 8) { this.wasHold = true; this.st.style.transform = `translateY(${Math.min(140, dy * .6)}px) scale(${1 - Math.min(.08, dy / 1400)})`; } });
     this.show(this.i);
   }
-  go(k) { if (this.closing) return; if (k < 0) k = 0; if (k >= TPL.length) { if (this.mode === 'advance') return this.close(); k = TPL.length - 1; } this.show(k); }
+  go(k) { if (this.closing) return; if (k < 0) k = 0; if (k >= this.list.length) { if (this.mode === 'advance') return this.close(); k = this.list.length - 1; } this.show(k); }
   show(k) {
-    this.i = k; const tpl = TPL[k]; this.onIndex(k, tpl);
+    this.i = k; this.frozen = false; const tpl = this.list[k]; this.onIndex(k, tpl);
     this.sl.className = 'sl' + (tpl.cta ? ' hascta' : '') + (tpl.left ? ' left' : ''); this.sl.innerHTML = tpl.render(this.ph, tpl.s, ctxFor(tpl)); this.fitFx();
     this.st.querySelector('.scta')?.remove();
     if (tpl.cta) { const b = document.createElement('div'); b.className = 'scta t'; b.innerHTML = `${io(tpl.cta.icon, 18)}<span>${tpl.cta.label}</span>`; b.addEventListener('click', (e) => e.stopPropagation()); this.st.appendChild(b); }
@@ -730,14 +745,17 @@ class Player {
     }
     if (busy) this.raf = requestAnimationFrame(() => this.tick());
   }
-  run(ms) { clearTimeout(this.timer); if (reduce || INSTANT.on) { this.bars[this.i].style.width = '100%'; return; } this.left = ms; this.t0 = performance.now(); const b = this.bars[this.i]; void b.offsetWidth; b.style.transition = `width ${ms}ms linear`; b.style.width = '100%';
+  run(ms) { clearTimeout(this.timer); if (this.frozen) return; if (reduce || INSTANT.on) { this.bars[this.i].style.width = '100%'; return; } this.left = ms; this.t0 = performance.now(); const b = this.bars[this.i]; void b.offsetWidth; b.style.transition = `width ${ms}ms linear`; b.style.width = '100%';
     this.timer = setTimeout(() => { if (this.mode === 'advance') this.go(this.i + 1); else this.show(this.i); }, ms); }
   setHeld(v) { if (this.held === v) return; this.held = v; this.syncPause(); }
   setVisible(v) { if (this.visible === v) return; this.visible = v; this.syncPause(); }
-  syncPause() { const should = this.held || !this.visible; if (should && !this.paused) { this.paused = true; this.st.classList.toggle('paused', this.held); clearTimeout(this.timer); const b = this.bars[this.i]; const w = getComputedStyle(b).width; b.style.transition = 'none'; b.style.width = w; this.left = Math.max(0, this.left - (performance.now() - this.t0)); this.clock.pausedAt = performance.now(); cancelAnimationFrame(this.raf); if (!this.visible) this.st.classList.add('offscreen'); }
+  syncPause() { if (this.frozen) return; const should = this.held || !this.visible; if (should && !this.paused) { this.paused = true; this.st.classList.toggle('paused', this.held); clearTimeout(this.timer); const b = this.bars[this.i]; const w = getComputedStyle(b).width; b.style.transition = 'none'; b.style.width = w; this.left = Math.max(0, this.left - (performance.now() - this.t0)); this.clock.pausedAt = performance.now(); cancelAnimationFrame(this.raf); if (!this.visible) this.st.classList.add('offscreen'); }
     else if (!should && this.paused) { this.paused = false; this.st.classList.remove('paused', 'offscreen'); this.clock.lost += performance.now() - this.clock.pausedAt; this.clock.pausedAt = null; this.tick(); this.run(this.left); } }
   close() { if (this.closing) return; this.closing = true; clearTimeout(this.timer); cancelAnimationFrame(this.raf); this.st.classList.add('closing'); setTimeout(() => { this.st.classList.remove('closing'); this.st.classList.add('enter'); setTimeout(() => this.st.classList.remove('enter'), 400); this.closing = false; this.show(this.mode === 'advance' ? 0 : this.i); }, 420); }
   restart() { if (this.closing) return; clearTimeout(this.timer); this.show(this.mode === 'advance' ? 0 : this.i); }
+  // зачем (гейт, Сверка 28.10): снимок приложения делается с замороженными часами кадра на 6-й секунде — макет замирает в той же точке:
+  // все CSS-анимации (входы, циклы, частицы) ставятся на currentTime = ms и на паузу, счётчики — на ту же отметку, полоса — на долю
+  freeze(ms) { clearTimeout(this.timer); cancelAnimationFrame(this.raf); this.clock = { start: performance.now() - ms, pausedAt: performance.now(), lost: 0 }; this.tick(); const b = this.bars[this.i]; b.style.transition = 'none'; b.style.width = `${Math.round((ms / SPEED) * 1000) / 10}%`; let n = 0; for (const a of this.st.getAnimations({ subtree: true })) { try { a.currentTime = ms; a.pause(); n += 1; } catch (e) { console.warn('[FREEZE] не заморожена', a.animationName, String(e)); } } this.frozen = true; return n; }
   setTheme(id, ap) { applyTheme(this.ph, id, ap); this.restart(); }
 }
 const vis = new IntersectionObserver((es) => { for (const e of es) { const p = e.target.__player; if (p) p.setVisible(e.isIntersecting); } }, { threshold: .1 });
@@ -769,9 +787,11 @@ document.querySelectorAll('[data-sp]').forEach((b) => b.addEventListener('click'
 document.getElementById('replay').addEventListener('click', () => players.forEach((p) => p.restart()));
 document.getElementById('mix').addEventListener('click', () => { players.forEach((p, k) => { if (k === 0) return; p.setTheme(IDS[(k - 1) % IDS.length], state.ap); }); hint.textContent = `галерея: ${IDS.length} тем по кругу · ${state.ap === 'dark' ? 'тёмное' : 'светлое'}`; });
 
-makePhone(document.getElementById('player'), { key: 'player', start: 0, mode: 'advance', player: true });
-const gal = document.getElementById('gallery');
-TPL.forEach((_, k) => makePhone(gal, { key: String(k), start: k, mode: 'restart' }));
+if (!document.body.classList.contains('preview')) {
+  makePhone(document.getElementById('player'), { key: 'player', start: 0, mode: 'advance', player: true });
+  const gal = document.getElementById('gallery');
+  TPL.forEach((_, k) => makePhone(gal, { key: String(k), start: k, mode: 'restart' }));
+}
 setHint();
 
 document.getElementById('map').innerHTML = `<tr><th>№</th><th>Шаблон</th><th>Группа</th><th>Композиция</th><th>Какие поля держит</th><th>Нужно в контракте</th><th>Что движется</th></tr>` +
@@ -813,8 +833,34 @@ const geo = (k) => {
   return out;
 };
 
-window.ST = { TPL, players, IDS, THEMES, geo, setTheme: (id, ap) => { state.theme = id; state.ap = ap; sel.value = id; document.querySelectorAll('[data-ap]').forEach((x) => x.classList.toggle('on', x.dataset.ap === ap)); applyAll(); },
-  phone: (k, id, ap) => { const p = players[k]; if (p) p.setTheme(id, ap); return !!p; }, setLong: (v) => { LONG = !!v; document.querySelectorAll('[data-len]').forEach((x) => x.classList.toggle('on', (x.dataset.len === 'long') === LONG)); players.forEach((p) => p.restart()); setHint(); },
+/* ── предпросмотр редактора админки (?preview=1): один телефон, содержимое из формы через postMessage ── */
+const PREVIEW = { ph: null, player: null };
+// зачем (владелец 28.10: «добавить в админку… точно так же, как на макете»): редактор показывает тот же движок, что и макет — те же CSS и render()
+const previewEntry = (content) => {
+  const base = TPL.find((t) => t.id === content.design) || TPL[0];
+  const blocks = (content.blocks || []).map((b) => ({ text: String(b.text || ''), size: [14, 16, 20].includes(Number(b.size)) ? Number(b.size) : 16, style: ['normal', 'accent', 'quote'].includes(b.style) ? b.style : 'normal' })).filter((b) => b.text);
+  const title = String(content.title || '');
+  const cta = base.cta && content.cta ? base.cta : null;
+  return { ...base, preview: true, cta, s: { badge: String(content.badge || ''), short: title, long: title, blocks }, render: (ph, s, c) => base.render(ph, s, c) };
+};
+const previewRender = (content, id, ap) => {
+  const root = document.getElementById('preview'); if (!root) return false;
+  if (!PREVIEW.ph) { const ph = document.createElement('div'); ph.className = 'ph dk'; ph.dataset.ph = 'preview'; ph.innerHTML = sbHtml('9:41') + '<div class="hi"></div>'; root.appendChild(ph); PREVIEW.ph = ph; }
+  const themeId = THEMES[id] ? id : 'ink'; const mode = ap === 'light' ? 'light' : 'dark';
+  applyTheme(PREVIEW.ph, themeId, mode);
+  const entry = previewEntry(content || {});
+  if (PREVIEW.player) { PREVIEW.player.alive = false; clearTimeout(PREVIEW.player.timer); cancelAnimationFrame(PREVIEW.player.raf); PREVIEW.player.st.remove(); }
+  PREVIEW.player = new Player(PREVIEW.ph, { start: 0, mode: 'restart', list: [entry] });
+  return true;
+};
+if (document.body.classList.contains('preview')) {
+  window.addEventListener('message', (e) => { const m = e.data; if (!m || m.channel !== 'pm-ann-preview') return; previewRender(m.content, m.theme, m.ap); });
+  previewRender({ design: 'manifest', ...TPL[0].s, title: TPL[0].s.short }, state.theme, state.ap);
+  window.parent.postMessage({ channel: 'pm-ann-preview-ready', designs: TPL.map((t) => ({ id: t.id, name: t.name, group: t.group, comp: t.comp, fields: t.fields, ext: t.ext, motion: t.motion, cta: !!t.cta, left: !!t.left })), themes: IDS.map((id) => ({ id, name: THEMES[id].name, gradient: !!THEMES[id].gradient })) }, '*');
+}
+
+window.ST = { TPL, players, IDS, THEMES, geo, preview: previewRender, setTheme: (id, ap) => { state.theme = id; state.ap = ap; sel.value = id; document.querySelectorAll('[data-ap]').forEach((x) => x.classList.toggle('on', x.dataset.ap === ap)); applyAll(); },
+  phone: (k, id, ap) => { const p = players[k]; if (p) p.setTheme(id, ap); return !!p; }, freeze: (k, ms = 6000) => { const p = players[k]; return p ? p.freeze(ms) : -1; }, setLong: (v) => { LONG = !!v; document.querySelectorAll('[data-len]').forEach((x) => x.classList.toggle('on', (x.dataset.len === 'long') === LONG)); players.forEach((p) => p.restart()); setHint(); },
   settle: (on) => { INSTANT.on = !!on; document.documentElement.classList.toggle('settle', !!on); players.forEach((p) => p.restart()); }, speed: (ms) => { SPEED = ms; }, ready: true };
 })();
 </script>

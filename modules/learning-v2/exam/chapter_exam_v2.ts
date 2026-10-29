@@ -57,6 +57,11 @@ export function normalizeChapterExamV2Answer(text: string): string {
   return s;
 }
 
+/** Ядро нормализованного ответа собеседнику: без «yes»/«no» в начале и «too»/«either» в конце. */
+export function chapterExamV2DialogueCore(normalized: string): string {
+  return normalized.replace(/^(?:yes|no) /, '').replace(/ (?:too|either)$/, '').trim();
+}
+
 function editDistanceAtMostOne(a: string, b: string): boolean {
   if (a === b) return true;
   if (Math.abs(a.length - b.length) > 1) return false;
@@ -80,6 +85,16 @@ export function checkChapterExamV2Answer(item: ChapterExamV2Item, answer: string
   for (const variant of item.accepted) {
     const target = normalizeChapterExamV2Answer(variant);
     if (given === target) return { correct: true, matched: variant, typo: false };
+  }
+  // зачем (Теория через координатора 29.10, после 9c34c1092): в ответе собеседнику живые «Yes, …» / «No, …» в начале и «… too» /
+  // «… either» в конце не делают ответ неверным. Срезаем их с обеих сторон и сравниваем ЯДРО — неверное ядро так верным не станет.
+  if (item.type === 'dialogue') {
+    const givenCore = chapterExamV2DialogueCore(given);
+    if (givenCore && givenCore !== wrong) {
+      for (const variant of item.accepted) {
+        if (chapterExamV2DialogueCore(normalizeChapterExamV2Answer(variant)) === givenCore) return { correct: true, matched: variant, typo: false };
+      }
+    }
   }
   const gw = given.split(' ');
   for (const variant of item.accepted) {

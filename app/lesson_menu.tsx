@@ -15,7 +15,8 @@ import {
   LessonMenuTip,
 } from '../components/lessons/LessonMenuGlass';
 import { V2 } from '../constants/v2Style';
-import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
+import { useRouter, useLocalSearchParams, useFocusEffect, useNavigation } from 'expo-router';
+import { lessonMenuBounceDecisionV1 } from './lesson_menu_bounce_route';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
@@ -346,6 +347,7 @@ function LessonMenu() {
   const lh = useLineScale();
   useEffect(() => { perfScreenMount('lesson_menu'); }, []);
   const router = useRouter();
+  const navigation = useNavigation();
   const { theme:t, f, themeMode, liquidGlassThemeId } = useTheme();
   const lessonMenuGlass = liquidGlassTokens(liquidGlassThemeId);
   const insets = useStableSafeAreaInsets();
@@ -490,6 +492,15 @@ function LessonMenu() {
   // путь сюда (deep link, continuation после покупки, устаревший кэш) обязан
   // приводить к модалу в списке, а не к тупиковому экрану.
   const lockedBackDispatchedRef = useRef(false);
+  // зачем (координатор 29.10, журнал Сверки 28.10): законный отскок — шагом назад к списку, если он прямо под меню; replace на вкладку
+  // (пересоздаёт вкладки: Главная, карта V2) — только без стека или когда под меню не список (петля lesson1 ↔ меню 15.10).
+  const bounceToLessonList = useCallback((kind: 'level' | 'threshold' | 'progress' | 'suppressed') => {
+    const decision = lessonMenuBounceDecisionV1(navigation.getState() as never, router.canGoBack());
+    console.warn('[LESSON-LOCK] menu:bounce_route', JSON.stringify({ lessonId, kind, ...decision })); // guard-ok: ветка отскока; warn — переживает прод-сборку
+    noteLessonMenuBounce(lessonId, kind, decision.method);
+    if (decision.method === 'back') safeRouterBack(router, '/(tabs)/lessons' as never); // зачем (Дизайн 29.10): общий шаг назад — navigation_back_underlay_contract, самоцель → родитель раздела
+    else router.replace('/(tabs)/lessons' as never);
+  }, [lessonId, navigation, router]);
   useEffect(() => {
     if (!lockStateLoaded || !isLessonLocked) return;
     if (lockReason === 'premium') return; // им занимается эффект выше (пейвол)
@@ -514,8 +525,7 @@ function LessonMenu() {
     if (lastBounceAt !== undefined && nowMs - lastBounceAt < LESSON_LOCK_BOUNCE_FUSE_MS) {
       // зачем (Ревизор 3bed5434c 🟡 (1)): подавленный bounce не должен оставлять человека на меню запертого урока — уходим на список в любом случае, только без тоста
       console.log('[LESSON-LOCK] menu:bounce_suppressed', JSON.stringify({ lessonId, sinceLastMs: nowMs - lastBounceAt, fuseMs: LESSON_LOCK_BOUNCE_FUSE_MS, action: 'replace_without_toast' })); // guard-ok: предохранитель цикла
-      noteLessonMenuBounce(lessonId, 'suppressed');
-      router.replace('/(tabs)/lessons' as never);
+      bounceToLessonList('suppressed');
       return;
     }
     lessonLockBounceAt.set(lessonId, nowMs);
@@ -525,9 +535,8 @@ function LessonMenu() {
     const toastKind: 'level' | 'threshold' | 'progress' = lockReason === 'level' ? 'level' : lockInfo?.requiredScore ? 'threshold' : 'progress';
     emitAppEvent('action_toast', actionToastTri('info', LESSON_LOCK_TOAST[toastKind]));
     console.log('[LESSON-LOCK] menu:bounce_replace', JSON.stringify({ lessonId, toastKind, to: '/(tabs)/lessons', canGoBack: router.canGoBack() })); // guard-ok: один replace на список
-    noteLessonMenuBounce(lessonId, toastKind);
-    router.replace('/(tabs)/lessons' as never);
-  }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, lockInfo, router]);
+    bounceToLessonList(toastKind);
+  }, [bounceToLessonList, lockStateLoaded, isLessonLocked, lockReason, lessonId, lockInfo, router]);
 
   // зачем (Ревизор 2.77): журнал расхождения был немым — охранник записывает решение только при «закрыто», а сверка шла лишь в ветке закрытия меню. Теперь и при ОТКРЫТОМ меню:
   // свежее (< 60 с) решение охранника «не available» против «меню открыто» → [LESSON-LOCK] disagree.
@@ -696,7 +705,7 @@ function LessonMenu() {
           if (!premiumUnlocked) noteLessonMenuLock('premium_course', lessonId, true, peekLessonGateDecision(lessonId)?.gate ?? null);
           // зачем (координатор 28.10, видео 2.0.3: тап по пройденному уроку уводил на Главную/карту V2): список только что открыл урок
           // по своим данным — меню не спорит с ним и не выкидывает (правило владельца: тап по уроку ВСЕГДА открывает его меню).
-          if (!premiumUnlocked && lessonListJustOpened(lessonId)) {
+          if (!premiumUnlocked && lessonListJustOpened(lessonId, studyTarget)) {
             noteLessonMenuTrustedList(lessonId, 'premium_course');
             gatedSetLocked(false);
             gatedSetReason('progress');
@@ -736,7 +745,7 @@ function LessonMenu() {
         console.log(`[LESSON-MENU] lock:resolved ${JSON.stringify({ lessonId, studyTarget, locked: !unlocked, by: 'earned_progress' })}`);
         if (!unlocked) noteLessonMenuLock('earned_progress', lessonId, false, peekLessonGateDecision(lessonId)?.gate ?? null);
         // зачем: то же правило, что в ветке Plus выше — свежее «открыт» от списка побеждает расхождение перепроверки по прогрессу
-        if (!unlocked && lessonListJustOpened(lessonId)) {
+        if (!unlocked && lessonListJustOpened(lessonId, studyTarget)) {
           noteLessonMenuTrustedList(lessonId, 'earned_progress');
           unlocked = true;
         }

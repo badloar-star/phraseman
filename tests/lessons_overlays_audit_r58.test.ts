@@ -68,7 +68,13 @@ describe('🔴 цикл lesson1 ↔ lesson_menu на запертом уроке
     const src = read('app/lesson_menu.tsx');
     const effect = src.slice(src.indexOf('const lockedBackDispatchedRef = useRef(false);'), src.indexOf('// Служебный флаг первого завершения'));
     expect(effect).toContain("router.replace('/(tabs)/lessons' as never);");
-    expect(effect).not.toContain('safeRouterBack(');
+    // перепин 29.10 (координатор): шаг назад разрешён ТОЛЬКО решением отскока, когда прямо под меню список; lesson1 под меню → replace,
+    // так петля 15.10 не возвращается (сторож решения — tests/lesson_menu_bounce_back_to_list_2026_10_29.test.ts)
+    expect(effect.split('safeRouterBack(').length - 1).toBe(1);
+    expect(effect).toContain("if (decision.method === 'back') safeRouterBack(router, '/(tabs)/lessons' as never);");
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { lessonMenuBounceDecisionV1 } = require('../app/lesson_menu_bounce_route') as typeof import('../app/lesson_menu_bounce_route');
+    expect(lessonMenuBounceDecisionV1({ index: 2, routes: [{ name: '(tabs)' }, { name: 'lesson1' }, { name: 'lesson_menu' }] }, true).method).toBe('replace');
     expect(effect).toContain('[LESSON-LOCK] menu:bounce_suppressed');
     expect(src).toContain('LESSON_LOCK_BOUNCE_FUSE_MS = 5000');
   });
@@ -90,7 +96,9 @@ describe('🟡 Ревизора 3bed5434c: тупик при подавлени�
     const src = read('app/lesson_menu.tsx');
     const effect = src.slice(src.indexOf('const lockedBackDispatchedRef = useRef(false);'), src.indexOf('// Служебный флаг первого завершения'));
     const suppressed = effect.slice(effect.indexOf('menu:bounce_suppressed'), effect.indexOf('lessonLockBounceAt.set(lessonId, nowMs);'));
-    expect(suppressed).toContain("router.replace('/(tabs)/lessons' as never);");
+    // перепин 29.10 (координатор): уход на список — через решение отскока (назад по стеку к списку, иначе replace на вкладку),
+    // сторож tests/lesson_menu_bounce_back_to_list_2026_10_29.test.ts
+    expect(suppressed).toContain("bounceToLessonList('suppressed');");
     expect(suppressed).not.toContain('action_toast');
   });
   it('тост выбирается по причине замка (прогресс / уровень / порог / Plus), 9 языков в каждом', () => {

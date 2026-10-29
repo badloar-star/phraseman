@@ -20,13 +20,15 @@ describe('list decision reaches the lesson menu', () => {
     const gate = require('../app/lesson_premium_gate') as typeof import('../app/lesson_premium_gate');
     let now = 1_000_000;
     Date.now = () => now;
-    gate.rememberLessonListDecision(4, 'available');
-    expect(gate.lessonListJustOpened(4)).toBe(true);
+    gate.rememberLessonListDecision(4, 'available', 'en');
+    expect(gate.lessonListJustOpened(4, 'en')).toBe(true);
+    // 🟡 Ревизора 29.10: решение английского курса не открывает урок испанского (смена en↔es в пределах 60 с)
+    expect(gate.lessonListJustOpened(4, 'es')).toBe(false);
     now += gate.LESSON_LIST_DECISION_TRUST_MS + 1;
-    expect(gate.lessonListJustOpened(4)).toBe(false);
-    gate.rememberLessonListDecision(5, 'premium_required');
-    expect(gate.lessonListJustOpened(5)).toBe(false);
-    expect(gate.lessonListJustOpened(6)).toBe(false);
+    expect(gate.lessonListJustOpened(4, 'en')).toBe(false);
+    gate.rememberLessonListDecision(5, 'premium_required', 'en');
+    expect(gate.lessonListJustOpened(5, 'en')).toBe(false);
+    expect(gate.lessonListJustOpened(6, 'en')).toBe(false);
   });
 });
 
@@ -38,13 +40,13 @@ describe('wiring', () => {
     const at = list.indexOf('const handleLegacyLessonPress = useCallback(');
     expect(at).toBeGreaterThan(-1);
     const body = list.slice(at, list.indexOf('router.push({ pathname: "/lesson_menu"', at));
-    expect(body).toContain('rememberLessonListDecision(num, access);');
+    expect(body).toContain('rememberLessonListDecision(num, access, studyTarget);');
     expect(body).toContain('noteClassicTap(num, access, isPremium);');
   });
 
   it('the menu trusts the list in both progress branches, but never in the error fail-closed branch', () => {
-    expect(menu).toContain("if (!premiumUnlocked && lessonListJustOpened(lessonId)) {");
-    expect(menu).toContain("if (!unlocked && lessonListJustOpened(lessonId)) {");
+    expect(menu).toContain("if (!premiumUnlocked && lessonListJustOpened(lessonId, studyTarget)) {");
+    expect(menu).toContain("if (!unlocked && lessonListJustOpened(lessonId, studyTarget)) {");
     const catchAt = menu.indexOf("by: 'error_fail_closed'");
     expect(catchAt).toBeGreaterThan(-1);
     const catchBody = menu.slice(catchAt, menu.indexOf('} finally {', catchAt));

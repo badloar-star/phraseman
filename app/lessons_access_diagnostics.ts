@@ -97,8 +97,8 @@ export function lessonMenuLockAction(by: LessonMenuLockBy, lessonId: number, isP
 }
 
 /** Меню урока выкинуло на список (bounce) — с тостом или подавленный предохранителем. */
-export function lessonMenuBounceAction(lessonId: number, kind: 'level' | 'threshold' | 'progress' | 'suppressed'): string {
-  return `lessonlock:bounce:${kind}:l${count(lessonId)}`;
+export function lessonMenuBounceAction(lessonId: number, kind: 'level' | 'threshold' | 'progress' | 'suppressed', method: 'back' | 'replace' = 'replace'): string {
+  return `lessonlock:bounce:${kind}:${method}:l${count(lessonId)}`;
 }
 
 // зачем (координатор 28.10, жалоба #3 uk Plus: /lessons → /lesson_menu → /hint → /lesson_menu → /lessons ×5, до /lesson1 ни разу): строки
@@ -109,8 +109,8 @@ export function noteLessonMenuLock(by: LessonMenuLockBy, lessonId: number, isPre
   void recordSupportDiagnostic({ event: 'feature_action', action, screen: '/lesson_menu', result: 'blocked', subject: 'app', atMs: nowMs });
 }
 
-export function noteLessonMenuBounce(lessonId: number, kind: 'level' | 'threshold' | 'progress' | 'suppressed', nowMs: number = Date.now()): void {
-  void recordSupportDiagnostic({ event: 'feature_action', action: lessonMenuBounceAction(lessonId, kind), screen: '/lesson_menu', result: 'blocked', subject: 'app', atMs: nowMs });
+export function noteLessonMenuBounce(lessonId: number, kind: 'level' | 'threshold' | 'progress' | 'suppressed', method: 'back' | 'replace' = 'replace', nowMs: number = Date.now()): void {
+  void recordSupportDiagnostic({ event: 'feature_action', action: lessonMenuBounceAction(lessonId, kind, method), screen: '/lesson_menu', result: 'blocked', subject: 'app', atMs: nowMs });
 }
 
 export function resetLessonsAccessDiagnosticsForTests(): void {

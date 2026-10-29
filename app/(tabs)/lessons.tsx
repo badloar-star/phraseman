@@ -4449,7 +4449,7 @@ export default function LessonsTab({
         cap: effectiveLegacyFreeLessonCap ?? null, levelLockedByExam: false,
       });
       // зачем (координатор 28.10, видео 2.0.3: тап по пройденному уроку не открывал меню): решение списка видит меню урока, тап — в журнале обращений
-      rememberLessonListDecision(num, access);
+      rememberLessonListDecision(num, access, studyTarget);
       noteClassicTap(num, access, isPremium);
       if (access === "available") {
         // зачем (аудит Optimistic UI Уроков, 13.10): два быстрых тапа по карточке открывали два меню урока — синхронный замок на ключ урока.

@@ -9,13 +9,13 @@
 
 ### Книжка про чуже життя
 
-Ви показуєте другу книжку про життя художника, написану іншою людиною. Назвіть її вид: This is a biography. Biography — одна книжка-біографія, злічуване слово. Складіть речення: This + is + a biography. This указує на книжку, is пов'язує її з назвою, а a стоїть перед biography, яке починається з приголосного звука.
+Ви показуєте другу книжку про життя художника, написану іншою людиною. Назвіть її вид: This is a biography. Biography — одна книжка-біографія, це рахують поштучно. Складіть речення: This + is + a biography. This указує на книжку, is пов'язує її з назвою, а a стоїть перед biography, яке починається з приголосного звука.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is a biography.**
 - ❌ This is an biography. — *Biography починається з приголосного звука: a biography.*
-- ❌ This is biography. — *Тут не можна залишати злічуваний іменник в однині без a.*
+- ❌ This is biography. — *Тут не можна залишати назву одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Дві автобіографії на полиці
 
-Друг шукає книжки, у яких автори розповідають про власне життя. Ви помічаєте дві на полиці. Autobiography — автобіографія; у множині y змінюємо на ies: autobiographies. Складіть фразу: There are + two autobiographies + on the shelf → There are two autobiographies on the shelf. Для двох книжок використовуємо are; після кількості називаємо книжки, потім місце.
+Друг шукає книжки, у яких автори розповідають про власне життя. Ви помічаєте дві на полиці. Autobiography — автобіографія; у формі для кількох y змінюємо на ies: autobiographies. Складіть фразу: There are + two autobiographies + on the shelf → There are two autobiographies on the shelf. Для двох книжок використовуємо are; після кількості називаємо книжки, потім місце.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There are two autobiographies on the shelf.**
-- ❌ There are two autobiography on the shelf. — *У autobiography у множині y змінюється на ies: autobiographies.*
+- ❌ There are two autobiography on the shelf. — *У autobiography у формі для кількох y змінюється на ies: autobiographies.*
 - ❌ There are a two autobiographies on the shelf. — *Не ставте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Цікава художня література
 
-Ви ділитеся з другом враженням від художньої літератури, яку зараз читаєте. Fiction тут позначає літературу як загальне поняття, а не окремі книжки. Скажіть: This fiction is interesting. Складіть фразу: This fiction + is + interesting. Із незлічуваним fiction використовуємо this та is, а interesting наприкінці передає враження. Тут не утворюємо множини fictions.
+Ви ділитеся з другом враженням від художньої літератури, яку зараз читаєте. Fiction тут позначає літературу як загальне поняття, а не окремі книжки. Скажіть: This fiction is interesting. Складіть фразу: This fiction + is + interesting. Із тим, що не рахують поштучно, fiction використовуємо this та is, а interesting наприкінці передає враження. Тут не утворюємо форми для кількох fictions.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This fiction is interesting.**
-- ❌ This fiction are interesting. — *Fiction як вид літератури — незлічуване слово: is.*
-- ❌ These fictions are interesting. — *У цьому значенні слово не має множинного -s.*
+- ❌ This fiction are interesting. — *Fiction як вид літератури — це не рахують поштучно: is.*
+- ❌ These fictions are interesting. — *У цьому значенні не має -s для кількох.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ biography. → **a** · an · the two
 **8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-03:i06; family: context_gap_grammar -->
 There are two ___ on the shelf. → **autobiographies** · autobiography · an autobiography
-- autobiography — *У autobiography у множині y змінюється на ies: autobiographies.*
-- an autobiography — *У autobiography у множині y змінюється на ies: autobiographies.*
+- autobiography — *У autobiography у формі для кількох y змінюється на ies: autobiographies.*
+- an autobiography — *У autobiography у формі для кількох y змінюється на ies: autobiographies.*
 
 **9 · Картка слова — fiction**
 <!-- interaction_id: en:lesson-17:session-03:word:fiction; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ on the shelf. → **autobiographies** · autobiography · an a
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-03:i09; family: context_gap_grammar -->
 This fiction ___ interesting. → **is** · are · am
-- are — *Fiction як вид літератури — незлічуване слово: is.*
-- am — *Fiction як вид літератури — незлічуване слово: is.*
+- are — *Fiction як вид літератури — це не рахують поштучно: is.*
+- am — *Fiction як вид літератури — це не рахують поштучно: is.*
 
 **13 · Картка слова — non-fiction**
 <!-- interaction_id: en:lesson-17:session-03:word:non-fiction; family: word_card -->
@@ -126,8 +126,8 @@ This fiction ___ interesting. → **is** · are · am
 **16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-03:i12; family: context_gap_grammar -->
 We need ___. → **non-fiction** · a non-fiction · non-fictions
-- a non-fiction — *Non-fiction як вид літератури — без a та без множинного -s.*
-- non-fictions — *Non-fiction як вид літератури — без a та без множинного -s.*
+- a non-fiction — *Non-fiction як вид літератури — без a та без -s для кількох.*
+- non-fictions — *Non-fiction як вид літератури — без a та без -s для кількох.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-03:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Кто ездит этим поездом
 
-Вы выбираете утренний поезд на работу и спрашиваете знакомого, сколько людей обычно ездит им на работу или учёбу. Commuter — такой постоянный пассажир. Людей можно посчитать: how many commuters. Добавьте use this train: How many commuters use this train? Здесь спрашиваем, кто совершает действие, поэтому how many commuters само занимает место подлежащего; do не добавляем. После множественного commuters ставим use без -s.
+Вы выбираете утренний поезд на работу и спрашиваете знакомого, сколько людей обычно ездит им на работу или учёбу. Commuter — такой постоянный пассажир. Людей можно посчитать: how many commuters. Добавьте use this train: How many commuters use this train? Здесь спрашиваем, кто совершает действие, поэтому how many commuters само стоит там, где обычно стоит тот, о ком речь; do не добавляем. После множественного commuters ставим use без -s.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How many commuters use this train?**
-- ❌ How much commuters use this train? — *commuter можно посчитать: many + commuters во множественном числе.*
-- ❌ How a many commuters use this train? — *Перед many/much здесь не ставим артикль a.*
+- ❌ How much commuters use this train? — *commuter можно посчитать: many + commuters в форме для нескольких.*
+- ❌ How a many commuters use this train? — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Насколько загружены дороги
 
-Перед поездкой на работу вы спрашиваете коллегу о загруженности дорог сегодня. Congestion — скопление транспорта, неисчисляемое слово. Соберите вопрос: How much congestion + is there + today? → How much congestion is there today? Much ставим перед congestion. В вопросе о наличии используем порядок is there, а today указывает время.
+Перед поездкой на работу вы спрашиваете коллегу о загруженности дорог сегодня. Congestion — скопление транспорта, слово, которое не считают поштучно. Соберите вопрос: How much congestion + is there + today? → How much congestion is there today? Much ставим перед congestion. В вопросе о наличии используем порядок is there, а today указывает время.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How much congestion is there today?**
-- ❌ How many congestion is there today? — *congestion в этом значении — неисчисляемое слово: much.*
-- ❌ How a much congestion is there today? — *Перед many/much здесь не ставим артикль a.*
+- ❌ How many congestion is there today? — *congestion в этом значении — это не считают поштучно: much.*
+- ❌ How a much congestion is there today? — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Воздух в новом районе
 
-Вы обсуждаете с другом район, где по данным местного отчёта загрязнение невелико, и хотите сообщить именно это. Pollution — загрязнение, неисчисляемое слово. Соберите фразу: There isn't + much pollution + here → There isn't much pollution here. There isn't сообщает об отсутствии большого количества, much относится к pollution, а here означает «здесь». Фраза не утверждает, что загрязнения нет совсем.
+Вы обсуждаете с другом район, где по данным местного отчёта загрязнение невелико, и хотите сообщить именно это. Pollution — загрязнение, слово, которое не считают поштучно. Соберите фразу: There isn't + much pollution + here → There isn't much pollution here. There isn't сообщает об отсутствии большого количества, much относится к pollution, а here означает «здесь». Фраза не утверждает, что загрязнения нет совсем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There isn't much pollution here.**
-- ❌ There isn't many pollution here. — *pollution в этом значении — неисчисляемое слово: much.*
-- ❌ There isn't a much pollution here. — *Перед many/much здесь не ставим артикль a.*
+- ❌ There isn't many pollution here. — *pollution в этом значении — это не считают поштучно: much.*
+- ❌ There isn't a much pollution here. — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-11:i03; family: context_gap_grammar -->
 How ___ commuters use this train? → **many** · much · a many
-- much — *commuter можно посчитать: many + commuters во множественном числе.*
+- much — *commuter можно посчитать: many + commuters в форме для нескольких.*
 - a many — *Перед many/much здесь не нужен a.*
 
 **5 · Карточка слова — motorist**
@@ -86,7 +86,7 @@ How ___ commuters use this train? → **many** · much · a many
 **8 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-11:i06; family: context_gap_grammar -->
 We don't see ___ motorists here. → **many** · much · a many
-- much — *motorist можно посчитать: many + motorists во множественном числе.*
+- much — *motorist можно посчитать: many + motorists в форме для нескольких.*
 - a many — *Перед many/much здесь не нужен a.*
 
 **9 · Карточка слова — congestion**
@@ -106,7 +106,7 @@ We don't see ___ motorists here. → **many** · much · a many
 **12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-11:i09; family: context_gap_grammar -->
 How ___ congestion is there today? → **much** · many · a much
-- many — *congestion в этом значении — неисчисляемое слово: much.*
+- many — *congestion в этом значении — это не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **13 · Карточка слова — pollution**
@@ -126,7 +126,7 @@ How ___ congestion is there today? → **much** · many · a much
 **16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-11:i12; family: context_gap_grammar -->
 There isn't ___ pollution here. → **much** · many · a much
-- many — *pollution в этом значении — неисчисляемое слово: much.*
+- many — *pollution в этом значении — это не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **17 · Соедините слова с переводом**

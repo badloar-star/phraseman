@@ -9,13 +9,13 @@
 
 ### Скільки завдань до заняття
 
-Ви пропустили кінець заняття й запитуєте одногрупника, скільки завдань вам дали. Assignment — окреме навчальне завдання, тому його можна порахувати. Складіть запитання: How many assignments + do + we + have? → How many assignments do we have? Після many ставимо множину assignments; далі йдуть do, we і have.
+Ви пропустили кінець заняття й запитуєте одногрупника, скільки завдань вам дали. Assignment — окреме навчальне завдання, тому його можна порахувати. Складіть запитання: How many assignments + do + we + have? → How many assignments do we have? Після many ставимо форму для кількох assignments; далі йдуть do, we і have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How many assignments do we have?**
-- ❌ How much assignments do we have? — *assignment можна порахувати: many + assignments у множині.*
-- ❌ How a many assignments do we have? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How much assignments do we have? — *assignment можна порахувати: many + assignments у формі для кількох.*
+- ❌ How a many assignments do we have? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Обсяг роботи на курсі
 
-Перед початком курсу ви з одногрупником уточнюєте у викладача загальний обсяг навчальної роботи. Coursework — роботи, які виконують протягом курсу; англійське слово незлічуване. Запитайте: How much coursework do we have? Спочатку ставимо How much coursework, потім do + we + have. Much стосується всього обсягу роботи; окремі завдання в цьому запитанні не рахуємо.
+Перед початком курсу ви з одногрупником уточнюєте у викладача загальний обсяг навчальної роботи. Coursework — роботи, які виконують протягом курсу; англійське слово не рахується поштучно. Запитайте: How much coursework do we have? Спочатку ставимо How much coursework, потім do + we + have. Much стосується всього обсягу роботи; окремі завдання в цьому запитанні не рахуємо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much coursework do we have?**
-- ❌ How many coursework do we have? — *coursework у цьому значенні — незлічуване слово: much.*
-- ❌ How a much coursework do we have? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How many coursework do we have? — *coursework у цьому значенні — це не рахують поштучно: much.*
+- ❌ How a much coursework do we have? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Матеріал уже знайомий
 
-Ви з другом добре пам'ятаєте матеріал перед перевіркою й хочете сказати, що повторювати доведеться небагато. Revision — повторення навчального матеріалу; тут це незлічуване слово. Складіть речення: We + don't + need + much revision → We don't need much revision. Don't ставимо перед need, а much перед revision. Це означає, що великого обсягу повторення не потрібно, а не що повторювати зовсім не треба.
+Ви з другом добре пам'ятаєте матеріал перед перевіркою й хочете сказати, що повторювати доведеться небагато. Revision — повторення навчального матеріалу; тут це слово, яке не рахують поштучно. Складіть речення: We + don't + need + much revision → We don't need much revision. Don't ставимо перед need, а much перед revision. Це означає, що великого обсягу повторення не потрібно, а не що повторювати зовсім не треба.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We don't need much revision.**
-- ❌ We don't need many revision. — *revision у цьому значенні — незлічуване слово: much.*
-- ❌ We don't need a much revision. — *Перед many/much тут не ставимо артикль a.*
+- ❌ We don't need many revision. — *revision у цьому значенні — це не рахують поштучно: much.*
+- ❌ We don't need a much revision. — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-10:i03; family: context_gap_grammar -->
 How ___ assignments do we have? → **many** · much · a many
-- much — *assignment можна порахувати: many + assignments у множині.*
+- much — *assignment можна порахувати: many + assignments у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **5 · Картка слова — worksheet**
@@ -86,7 +86,7 @@ How ___ assignments do we have? → **many** · much · a many
 **8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-10:i06; family: context_gap_grammar -->
 We don't have ___ worksheets. → **many** · much · a many
-- much — *worksheet можна порахувати: many + worksheets у множині.*
+- much — *worksheet можна порахувати: many + worksheets у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **9 · Картка слова — coursework**
@@ -106,7 +106,7 @@ We don't have ___ worksheets. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-10:i09; family: context_gap_grammar -->
 How ___ coursework do we have? → **much** · many · a much
-- many — *coursework у цьому значенні — незлічуване слово: much.*
+- many — *coursework у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — revision**
@@ -126,7 +126,7 @@ How ___ coursework do we have? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-10:i12; family: context_gap_grammar -->
 We don't need ___ revision. → **much** · many · a much
-- many — *revision у цьому значенні — незлічуване слово: much.*
+- many — *revision у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

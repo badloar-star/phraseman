@@ -9,13 +9,13 @@
 
 ### Немного всё же есть
 
-personal space — личное пространство. Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства. С неисчисляемыми a little подчёркивает наличие некоторого количества, а little — малое количество. A little не обязательно означает, что этого достаточно.
+personal space — личное пространство. Вы просите некоторое личное пространство. Подчеркните, что вам нужно немного пространства. С тем, что не считают поштучно, a little подчёркивает наличие некоторого количества, а little — малое количество. A little не обязательно означает, что этого достаточно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I need a little personal space.**
 - ❌ I need little personal space. — *Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- ❌ I need a few personal space. — *С неисчисляемым нужно little, не few.*
+- ❌ I need a few personal space. — *С тем, что не считают поштучно, нужно little, не few.*
 
 ---
 
@@ -23,13 +23,13 @@ personal space — личное пространство. Вы просите н
 
 ### Спокойствия почти нет
 
-Вы ждёте важного звонка и постоянно беспокоитесь. Хотите подчеркнуть, что душевного спокойствия почти нет: I have little peace of mind. Соберите фразу: I have + little + peace of mind. Peace of mind здесь неисчисляемое, поэтому используем little, не few. Little без a подчёркивает нехватку; a little в той же фразе означало бы, что некоторое спокойствие всё же есть.
+Вы ждёте важного звонка и постоянно беспокоитесь. Хотите подчеркнуть, что душевного спокойствия почти нет: I have little peace of mind. Соберите фразу: I have + little + peace of mind. Peace of mind здесь не считается поштучно, поэтому используем little, не few. Little без a подчёркивает нехватку; a little в той же фразе означало бы, что некоторое спокойствие всё же есть.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have little peace of mind.**
 - ❌ I have a little peace of mind. — *Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- ❌ I have a few peace of mind. — *С неисчисляемым нужно little, не few.*
+- ❌ I have a few peace of mind. — *С тем, что не считают поштучно, нужно little, не few.*
 
 ---
 
@@ -37,13 +37,13 @@ personal space — личное пространство. Вы просите н
 
 ### Смысл зависит от a
 
-work-life balance — баланс между работой и личной жизнью. Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса. С неисчисляемыми a little подчёркивает наличие некоторого количества, а little — малое количество. A little не обязательно означает, что этого достаточно.
+work-life balance — баланс между работой и личной жизнью. Работа почти не оставляет времени на личную жизнь. Подчеркните нехватку баланса. С тем, что не считают поштучно, a little подчёркивает наличие некоторого количества, а little — малое количество. A little не обязательно означает, что этого достаточно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There is little work-life balance here.**
 - ❌ There is a little work-life balance here. — *Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- ❌ There is a few work-life balance here. — *С неисчисляемым нужно little, не few.*
+- ❌ There is a few work-life balance here. — *С тем, что не считают поштучно, нужно little, не few.*
 
 ---
 
@@ -67,7 +67,7 @@ work-life balance — баланс между работой и личной ж�
 <!-- interaction_id: en:lesson-17:session-55:i03; family: context_gap_grammar -->
 I need ___ personal space. → **a little** · little · a few
 - little — *Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с исчисляемыми во множественном числе.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
 
 **5 · Карточка слова — peace of mind**
 <!-- interaction_id: en:lesson-17:session-55:word:peace-of-mind; family: word_card -->
@@ -87,7 +87,7 @@ I need ___ personal space. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-55:i06; family: context_gap_grammar -->
 I have ___ peace of mind. → **little** · a little · a few
 - a little — *Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с исчисляемыми во множественном числе.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
 
 **9 · Карточка слова — quality time**
 <!-- interaction_id: en:lesson-17:session-55:word:quality-time; family: word_card -->
@@ -107,7 +107,7 @@ I have ___ peace of mind. → **little** · a little · a few
 <!-- interaction_id: en:lesson-17:session-55:i09; family: context_gap_grammar -->
 We enjoy ___ quality time. → **a little** · little · a few
 - little — *Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с исчисляемыми во множественном числе.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
 
 **13 · Карточка слова — work-life balance**
 <!-- interaction_id: en:lesson-17:session-55:word:work-life-balance; family: word_card -->
@@ -127,7 +127,7 @@ We enjoy ___ quality time. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-55:i12; family: context_gap_grammar -->
 There is ___ work-life balance here. → **little** · a little · a few
 - a little — *Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с исчисляемыми во множественном числе.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-17:session-55:i13; family: speed_match -->

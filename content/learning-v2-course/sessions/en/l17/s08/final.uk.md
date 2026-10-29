@@ -9,13 +9,13 @@
 
 ### Назвати побутовий прилад
 
-Друг показує на незнайомий предмет у вашій кухні. Ви пояснюєте, що це побутовий прилад: This is an appliance. Складіть фразу: This + is + an appliance. Appliance — один злічуваний предмет, тому перед ним потрібен артикль. Слово починається з голосного звука, і ми обираємо an. This указує на предмет, а is пов'язує його з назвою.
+Друг показує на незнайомий предмет у вашій кухні. Ви пояснюєте, що це побутовий прилад: This is an appliance. Складіть фразу: This + is + an appliance. Appliance — один предмет, його рахують поштучно, тому перед ним потрібне a. Слово починається з голосного звука, і ми обираємо an. This указує на предмет, а is пов'язує його з назвою.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is an appliance.**
 - ❌ This is a appliance. — *Appliance починається з голосного звука: an appliance.*
-- ❌ This is appliance. — *Тут не можна залишати злічуваний іменник в однині без артикля.*
+- ❌ This is appliance. — *Тут не можна залишати назву одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Два розрахунки на столі
 
-Ви порівнюєте вартість ремонту: два попередні розрахунки лежать на столі. Estimate — один такий розрахунок; після two використовуємо множину estimates. Складіть речення: There are + two estimates + on the table → There are two estimates on the table. There are вводить кілька предметів, потім називаємо їхню кількість і наприкінці місце. Перед two артикль a не ставимо.
+Ви порівнюєте вартість ремонту: два попередні розрахунки лежать на столі. Estimate — один такий розрахунок; після two використовуємо форму для кількох estimates. Складіть речення: There are + two estimates + on the table → There are two estimates on the table. There are вводить кілька предметів, потім називаємо їхню кількість і наприкінці місце. Перед two a не ставимо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There are two estimates on the table.**
-- ❌ There are two estimate on the table. — *Після two потрібна множина estimates.*
+- ❌ There are two estimate on the table. — *Після two потрібна форма для кількох: estimates.*
 - ❌ There are a two estimates on the table. — *Не ставте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Мокре пакування
 
-Ви отримали коробку з приладом і показуєте другу промокле пакування. Packaging тут означає пакувальний матеріал загалом і не рахується за окремими предметами. Скажіть: This packaging is wet. Порядок: This packaging + is + wet. Використовуємо this та is із незлічуваним packaging; форми packagings для цього значення не утворюємо. Wet повідомляє, яким є пакування зараз.
+Ви отримали коробку з приладом і показуєте другу промокле пакування. Packaging тут означає пакувальний матеріал загалом і не рахується за окремими предметами. Скажіть: This packaging is wet. Порядок: This packaging + is + wet. Використовуємо this та is з packaging — його не рахують поштучно; форми packagings для цього значення не утворюємо. Wet повідомляє, яким є пакування зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This packaging is wet.**
-- ❌ This packaging are wet. — *Packaging як пакувальні матеріали — незлічуване слово: is.*
-- ❌ These packagings are wet. — *У цьому значенні слово не має множинного -s.*
+- ❌ This packaging are wet. — *Packaging як пакувальні матеріали — це не рахують поштучно: is.*
+- ❌ These packagings are wet. — *У цьому значенні не має -s для кількох.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ appliance. → **an** · a · the two
 **8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-08:i06; family: context_gap_grammar -->
 There are two ___ on the table. → **estimates** · estimate · an estimate
-- estimate — *Після two потрібна множина estimates.*
-- an estimate — *Після two потрібна множина estimates.*
+- estimate — *Після two потрібна форма для кількох: estimates.*
+- an estimate — *Після two потрібна форма для кількох: estimates.*
 
 **9 · Картка слова — packaging**
 <!-- interaction_id: en:lesson-17:session-08:word:packaging; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ on the table. → **estimates** · estimate · an estimate
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-08:i09; family: context_gap_grammar -->
 This packaging ___ wet. → **is** · are · am
-- are — *Packaging як пакувальні матеріали — незлічуване слово: is.*
-- am — *Packaging як пакувальні матеріали — незлічуване слово: is.*
+- are — *Packaging як пакувальні матеріали — це не рахують поштучно: is.*
+- am — *Packaging як пакувальні матеріали — це не рахують поштучно: is.*
 
 **13 · Картка слова — damage**
 <!-- interaction_id: en:lesson-17:session-08:word:damage; family: word_card -->
@@ -126,8 +126,8 @@ This packaging ___ wet. → **is** · are · am
 **16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-08:i12; family: context_gap_grammar -->
 We can see ___. → **damage** · a damage · damages
-- a damage — *Damage у значенні пошкодження речей — незлічуване: без a та без множинного -s.*
-- damages — *Damage у значенні пошкодження речей — незлічуване: без a та без множинного -s.*
+- a damage — *Damage у значенні пошкодження речей — не рахується поштучно: без a та без -s для кількох.*
+- damages — *Damage у значенні пошкодження речей — не рахується поштучно: без a та без -s для кількох.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-08:i13; family: speed_match -->

@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How many pecans do we need?**
-- ❌ How much pecans do we need? — *Pecan можно посчитать: many + pecans во множественном числе.*
-- ❌ How a many pecans do we need? — *Артикль a здесь не ставится перед many или much.*
+- ❌ How much pecans do we need? — *Pecan можно посчитать: many + pecans в форме для нескольких.*
+- ❌ How a many pecans do we need? — *Слово a здесь не ставится перед many или much.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Количество блюда на ужин
 
-Вы готовите ужин для гостей и уточняете у друга, сколько поленты понадобится. Polenta — каша из кукурузной крупы; здесь спрашиваем об общем количестве блюда, поэтому используем неисчисляемое polenta. Соберите вопрос: How much polenta + do + we + need? → How much polenta do we need? Much стоит перед polenta, затем идут do, we и need. Окончание -s к polenta здесь не добавляем.
+Вы готовите ужин для гостей и уточняете у друга, сколько поленты понадобится. Polenta — каша из кукурузной крупы; здесь спрашиваем об общем количестве блюда, поэтому используем polenta — её не считают поштучно. Соберите вопрос: How much polenta + do + we + need? → How much polenta do we need? Much стоит перед polenta, затем идут do, we и need. Окончание -s к polenta здесь не добавляем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How much polenta do we need?**
-- ❌ How many polenta do we need? — *Polenta как блюдо — неисчисляемое слово: much.*
-- ❌ How a much polenta do we need? — *Артикль a здесь не ставится перед many или much.*
+- ❌ How many polenta do we need? — *Polenta как блюдо — это не считают поштучно: much.*
+- ❌ How a much polenta do we need? — *Слово a здесь не ставится перед many или much.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Крупы осталось немного
 
-Вы открыли пакет манной крупы перед приготовлением каши и видите, что её осталось немного. Semolina — манная крупа, неисчисляемое слово. Сообщите об этом: We don't have much semolina. Порядок слов: We + don't + have + much semolina. Don't перед have образует отрицание, much относится к количеству крупы. Фраза означает «у нас не так много манной крупы», а не её полное отсутствие.
+Вы открыли пакет манной крупы перед приготовлением каши и видите, что её осталось немного. Semolina — манная крупа, слово, которое не считают поштучно. Сообщите об этом: We don't have much semolina. Порядок слов: We + don't + have + much semolina. Don't перед have образует отрицание, much относится к количеству крупы. Фраза означает «у нас не так много манной крупы», а не её полное отсутствие.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We don't have much semolina.**
-- ❌ We don't have many semolina. — *Semolina как крупа — неисчисляемое слово: much, не many.*
-- ❌ We don't have a much semolina. — *Артикль a здесь не ставится перед many или much.*
+- ❌ We don't have many semolina. — *Semolina как крупа — это не считают поштучно: much, не many.*
+- ❌ We don't have a much semolina. — *Слово a здесь не ставится перед many или much.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Выберите слово количества: то, что считают поштучно, или то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-09:i03; family: context_gap_grammar -->
 How ___ pecans do we need? → **many** · much · a many
-- much — *Pecan можно посчитать: many + pecans во множественном числе.*
+- much — *Pecan можно посчитать: many + pecans в форме для нескольких.*
 - a many — *Перед many/much здесь не нужен a.*
 
 **5 · Карточка слова — Brazil nut**
@@ -106,7 +106,7 @@ We don't have ___ Brazil nuts. → **many** · much · a many
 **12 · Выберите слово количества: то, что считают поштучно, или то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-09:i09; family: context_gap_grammar -->
 How ___ polenta do we need? → **much** · many · a much
-- many — *Polenta как блюдо — неисчисляемое слово: much.*
+- many — *Polenta как блюдо — это не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **13 · Карточка слова — semolina**
@@ -126,7 +126,7 @@ How ___ polenta do we need? → **much** · many · a much
 **16 · Выберите слово количества: то, что считают поштучно, или то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-09:i12; family: context_gap_grammar -->
 We don't have ___ semolina. → **much** · many · a much
-- many — *Semolina как крупа — неисчисляемое слово: much, не many.*
+- many — *Semolina как крупа — это не считают поштучно: much, не many.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **17 · Соедините слова с переводом**

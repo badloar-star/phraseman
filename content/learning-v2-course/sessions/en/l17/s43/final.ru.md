@@ -9,13 +9,13 @@
 
 ### Сообщить о наличии
 
-delivery address — адрес доставки. Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.
+delivery address — адрес доставки. Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses. Some ставим перед несколькими предметами или тем, что не считают поштучно, когда сообщаем о некотором количестве.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We saved some delivery addresses.**
 - ❌ We saved any delivery addresses. — *В утвердительном сообщении о некотором количестве используем some.*
-- ❌ We saved a delivery addresses. — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ We saved a delivery addresses. — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -23,13 +23,13 @@ delivery address — адрес доставки. Для заказов семь
 
 ### Нужных адресов нет
 
-Вы с коллегой проверяете список заказов: адреса для выставления счетов в нём совсем не указаны. We don't have any billing addresses — у нас нет адресов для выставления счетов. Соберите отрицание: We don't have + any + billing addresses. Address заканчивается на -ss, поэтому во множественном числе добавляем -es: addresses. Any после don't have означает, что нет ни одного такого адреса.
+Вы с коллегой проверяете список заказов: адреса для выставления счетов в нём совсем не указаны. We don't have any billing addresses — у нас нет адресов для выставления счетов. Соберите отрицание: We don't have + any + billing addresses. Address заканчивается на -ss, поэтому в форме для нескольких добавляем -es: addresses. Any после don't have означает, что нет ни одного такого адреса.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We don't have any billing addresses.**
 - ❌ We don't have some billing addresses. — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- ❌ We don't have a billing addresses. — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ We don't have a billing addresses. — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -37,13 +37,13 @@ delivery address — адрес доставки. Для заказов семь
 
 ### Узнать новые адреса
 
-На старый адрес пришли письма для нескольких переехавших жильцов. Вы спрашиваете соседа, есть ли у него адреса для пересылки: Do you have any forwarding addresses? Сначала Do you have, затем any forwarding addresses. Address во множественном числе становится addresses. Any подходит, потому что вы не знаете, сохранились ли адреса у соседа; some могло бы выражать ожидание, что они у него есть.
+На старый адрес пришли письма для нескольких переехавших жильцов. Вы спрашиваете соседа, есть ли у него адреса для пересылки: Do you have any forwarding addresses? Сначала Do you have, затем any forwarding addresses. Address в форме для нескольких становится addresses. Any подходит, потому что вы не знаете, сохранились ли адреса у соседа; some могло бы выражать ожидание, что они у него есть.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Do you have any forwarding addresses?**
 - ❌ Do you have some forwarding addresses? — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- ❌ Do you have a forwarding addresses? — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ Do you have a forwarding addresses? — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -67,7 +67,7 @@ delivery address — адрес доставки. Для заказов семь
 <!-- interaction_id: en:lesson-17:session-43:i03; family: context_gap_grammar -->
 We saved ___ delivery addresses. → **some** · any · a
 - any — *В утвердительном сообщении о некотором количестве используем some.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **5 · Карточка слова — billing address**
 <!-- interaction_id: en:lesson-17:session-43:word:billing-address; family: word_card -->
@@ -87,7 +87,7 @@ We saved ___ delivery addresses. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-43:i06; family: context_gap_grammar -->
 We don't have ___ billing addresses. → **any** · some · a
 - some — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **9 · Карточка слова — return address**
 <!-- interaction_id: en:lesson-17:session-43:word:return-address; family: word_card -->
@@ -107,7 +107,7 @@ We don't have ___ billing addresses. → **any** · some · a
 <!-- interaction_id: en:lesson-17:session-43:i09; family: context_gap_grammar -->
 We need ___ return addresses. → **some** · any · a
 - any — *В утвердительном сообщении о некотором количестве используем some.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **13 · Карточка слова — forwarding address**
 <!-- interaction_id: en:lesson-17:session-43:word:forwarding-address; family: word_card -->
@@ -127,7 +127,7 @@ We need ___ return addresses. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-43:i12; family: context_gap_grammar -->
 Do you have ___ forwarding addresses? → **any** · some · a
 - some — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-43:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Повідомити про наявність
 
-discount code — промокод на знижку. Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість.
+discount code — промокод на знижку. Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have some discount codes.**
 - ❌ We have any discount codes. — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- ❌ We have a discount codes. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ We have a discount codes. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -23,13 +23,13 @@ discount code — промокод на знижку. Кілька промок�
 
 ### Ціни не підвищилися
 
-Ви порівняли старий і новий список цін магазину: жодна ціна не стала вищою. There aren't any price increases — підвищень цін немає. Складіть заперечення: There aren't + any + price increases. Increase можна порахувати, тому використовуємо increases у множині й aren't. Any підкреслює, що підвищень немає зовсім, а не лише для частини товарів.
+Ви порівняли старий і новий список цін магазину: жодна ціна не стала вищою. There aren't any price increases — підвищень цін немає. Складіть заперечення: There aren't + any + price increases. Increase можна порахувати, тому використовуємо increases у формі для кількох й aren't. Any підкреслює, що підвищень немає зовсім, а не лише для частини товарів.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There aren't any price increases.**
 - ❌ There aren't some price increases. — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ There aren't a price increases. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ There aren't a price increases. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -43,7 +43,7 @@ discount code — промокод на знижку. Кілька промок�
 
 - ✅ **Do you offer any home delivery?**
 - ❌ Do you offer some home delivery? — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ Do you offer a home delivery? — *A не ставиться перед незлічуваним або множиною.*
+- ❌ Do you offer a home delivery? — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -67,7 +67,7 @@ discount code — промокод на знижку. Кілька промок�
 <!-- interaction_id: en:lesson-17:session-31:i03; family: context_gap_grammar -->
 We have ___ discount codes. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **5 · Картка слова — price increase**
 <!-- interaction_id: en:lesson-17:session-31:word:price-increase; family: word_card -->
@@ -87,7 +87,7 @@ We have ___ discount codes. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-31:i06; family: context_gap_grammar -->
 There aren't ___ price increases. → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **9 · Картка слова — store credit**
 <!-- interaction_id: en:lesson-17:session-31:word:store-credit; family: word_card -->
@@ -107,7 +107,7 @@ There aren't ___ price increases. → **any** · some · a
 <!-- interaction_id: en:lesson-17:session-31:i09; family: context_gap_grammar -->
 I have ___ store credit. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **13 · Картка слова — home delivery**
 <!-- interaction_id: en:lesson-17:session-31:word:home-delivery; family: word_card -->
@@ -127,7 +127,7 @@ I have ___ store credit. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-31:i12; family: context_gap_grammar -->
 Do you offer ___ home delivery? → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-31:i13; family: speed_match -->

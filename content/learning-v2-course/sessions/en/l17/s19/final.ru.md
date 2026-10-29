@@ -9,13 +9,13 @@
 
 ### Несколько есть
 
-camp bed — походная раскладушка. A few + исчисляемое слово во множественном числе сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что несколько раскладушек для гостей есть. Camp bed → camp beds.
+camp bed — походная раскладушка. A few + название нескольких предметов сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что несколько раскладушек для гостей есть. Camp bed → camp beds.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have a few camp beds.**
 - ❌ We have few camp beds. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ We have a little camp beds. — *С исчисляемым во множественном числе нужно few.*
+- ❌ We have a little camp beds. — *С несколькими предметами, которые можно посчитать, нужно few.*
 
 ---
 
@@ -23,13 +23,13 @@ camp bed — походная раскладушка. A few + исчисляем
 
 ### Место для вещей гостей
 
-Вы готовите дом к приезду гостей: на полке осталось немного места для их вещей. Storage space — место для хранения; здесь space неисчисляемое. Чтобы подчеркнуть, что немного места всё же есть, соберите фразу: We have + a little + storage space → We have a little storage space. A little ставим перед названием того, что есть в небольшом количестве. Little без a подчёркивало бы нехватку места.
+Вы готовите дом к приезду гостей: на полке осталось немного места для их вещей. Storage space — место для хранения; здесь space не считается поштучно. Чтобы подчеркнуть, что немного места всё же есть, соберите фразу: We have + a little + storage space → We have a little storage space. A little ставим перед названием того, что есть в небольшом количестве. Little без a подчёркивало бы нехватку места.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have a little storage space.**
 - ❌ We have little storage space. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ We have a few storage space. — *С неисчисляемым нужно little.*
+- ❌ We have a few storage space. — *С тем, что не считают поштучно, нужно little.*
 
 ---
 
@@ -37,13 +37,13 @@ camp bed — походная раскладушка. A few + исчисляем
 
 ### Подчеркнуть малое количество
 
-floor space — площадь пола, место в помещении. Little без a подчёркивает малое количество неисчисляемого. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Из-за мебели трудно поставить раскладушку. Подчеркните нехватку места.
+floor space — площадь пола, место в помещении. Little без a подчёркивает малое количество того, что не считают поштучно. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Из-за мебели трудно поставить раскладушку. Подчеркните нехватку места.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have little floor space.**
 - ❌ We have a little floor space. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ We have few floor space. — *С неисчисляемым нужно little.*
+- ❌ We have few floor space. — *С тем, что не считают поштучно, нужно little.*
 
 ---
 
@@ -67,7 +67,7 @@ floor space — площадь пола, место в помещении. Littl
 <!-- interaction_id: en:lesson-17:session-19:i03; family: context_gap_grammar -->
 We have ___ camp beds. → **a few** · few · a little
 - few — *Обе формы грамматически возможны, но ситуация требует акцента: a few.*
-- a little — *С исчисляемым во множественном числе используйте few.*
+- a little — *С несколькими предметами, которые можно посчитать, используйте few.*
 
 **5 · Карточка слова — guest room**
 <!-- interaction_id: en:lesson-17:session-19:word:guest-room; family: word_card -->
@@ -87,7 +87,7 @@ We have ___ camp beds. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-19:i06; family: context_gap_grammar -->
 We have ___ guest rooms. → **few** · a few · little
 - a few — *Обе формы грамматически возможны, но ситуация требует акцента: few.*
-- little — *С исчисляемым во множественном числе используйте few.*
+- little — *С несколькими предметами, которые можно посчитать, используйте few.*
 
 **9 · Карточка слова — storage space**
 <!-- interaction_id: en:lesson-17:session-19:word:storage-space; family: word_card -->
@@ -107,7 +107,7 @@ We have ___ guest rooms. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-19:i09; family: context_gap_grammar -->
 We have ___ storage space. → **a little** · little · a few
 - little — *Обе формы грамматически возможны, но ситуация требует акцента: a little.*
-- a few — *С неисчисляемым используйте little.*
+- a few — *С тем, что не считают поштучно, используйте little.*
 
 **13 · Карточка слова — floor space**
 <!-- interaction_id: en:lesson-17:session-19:word:floor-space; family: word_card -->
@@ -127,7 +127,7 @@ We have ___ storage space. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-19:i12; family: context_gap_grammar -->
 We have ___ floor space. → **little** · a little · few
 - a little — *Обе формы грамматически возможны, но ситуация требует акцента: little.*
-- few — *С неисчисляемым используйте little.*
+- few — *С тем, что не считают поштучно, используйте little.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-19:i13; family: speed_match -->

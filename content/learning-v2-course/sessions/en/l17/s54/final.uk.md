@@ -9,13 +9,13 @@
 
 ### Трохи все ж є
 
-fresh food — свіжі продукти. Підкресліть, що певна кількість свіжих продуктів є. Із незлічуваними a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо.
+fresh food — свіжі продукти. Підкресліть, що певна кількість свіжих продуктів є. Із тим, що не рахують поштучно, a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have a little fresh food.**
 - ❌ We have little fresh food. — *Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- ❌ We have a few fresh food. — *Із незлічуваним потрібне little, не few.*
+- ❌ We have a few fresh food. — *Із тим, що не рахують поштучно, потрібне little, не few.*
 
 ---
 
@@ -23,13 +23,13 @@ fresh food — свіжі продукти. Підкресліть, що пев�
 
 ### Після обіду майже нічого не залишилося
 
-Ви прибираєте зі столу після сімейного обіду й бачите, що майже всю їжу з'їли. We have little leftover food — у нас залишилося мало їжі. Почніть із We have, потім поставте little перед leftover food. Food тут незлічуване, тому потрібне little, не few. Без a слово little підкреслює, як мало залишилося; a little змістило б акцент на те, що трохи їжі все ж є.
+Ви прибираєте зі столу після сімейного обіду й бачите, що майже всю їжу з'їли. We have little leftover food — у нас залишилося мало їжі. Почніть із We have, потім поставте little перед leftover food. Food тут не рахується поштучно, тому потрібне little, не few. Без a слово little підкреслює, як мало залишилося; a little змістило б акцент на те, що трохи їжі все ж є.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have little leftover food.**
 - ❌ We have a little leftover food. — *Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- ❌ We have a few leftover food. — *Із незлічуваним потрібне little, не few.*
+- ❌ We have a few leftover food. — *Із тим, що не рахують поштучно, потрібне little, не few.*
 
 ---
 
@@ -37,13 +37,13 @@ fresh food — свіжі продукти. Підкресліть, що пев�
 
 ### Зміст залежить від a
 
-bottled water — вода у пляшках. Для групи запас води у пляшках малий. Підкресліть брак. Із незлічуваними a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо.
+bottled water — вода у пляшках. Для групи запас води у пляшках малий. Підкресліть брак. Із тим, що не рахують поштучно, a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have little bottled water.**
 - ❌ We have a little bottled water. — *Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- ❌ We have a few bottled water. — *Із незлічуваним потрібне little, не few.*
+- ❌ We have a few bottled water. — *Із тим, що не рахують поштучно, потрібне little, не few.*
 
 ---
 
@@ -67,7 +67,7 @@ bottled water — вода у пляшках. Для групи запас во�
 <!-- interaction_id: en:lesson-17:session-54:i03; family: context_gap_grammar -->
 We have ___ fresh food. → **a little** · little · a few
 - little — *Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- a few — *Few використовується зі злічуваними у множині.*
+- a few — *Few використовується з кількома предметами, які можна порахувати.*
 
 **5 · Картка слова — leftover food**
 <!-- interaction_id: en:lesson-17:session-54:word:leftover-food; family: word_card -->
@@ -87,7 +87,7 @@ We have ___ fresh food. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-54:i06; family: context_gap_grammar -->
 We have ___ leftover food. → **little** · a little · a few
 - a little — *Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- a few — *Few використовується зі злічуваними у множині.*
+- a few — *Few використовується з кількома предметами, які можна порахувати.*
 
 **9 · Картка слова — food waste**
 <!-- interaction_id: en:lesson-17:session-54:word:food-waste; family: word_card -->
@@ -107,7 +107,7 @@ We have ___ leftover food. → **little** · a little · a few
 <!-- interaction_id: en:lesson-17:session-54:i09; family: context_gap_grammar -->
 There is ___ food waste. → **a little** · little · a few
 - little — *Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- a few — *Few використовується зі злічуваними у множині.*
+- a few — *Few використовується з кількома предметами, які можна порахувати.*
 
 **13 · Картка слова — bottled water**
 <!-- interaction_id: en:lesson-17:session-54:word:bottled-water; family: word_card -->
@@ -127,7 +127,7 @@ There is ___ food waste. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-54:i12; family: context_gap_grammar -->
 We have ___ bottled water. → **little** · a little · a few
 - a little — *Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- a few — *Few використовується зі злічуваними у множині.*
+- a few — *Few використовується з кількома предметами, які можна порахувати.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-17:session-54:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Назвать луковицу
 
-Друг помогает готовить обед и спрашивает, что за маленькая луковица лежит перед ним. Shallot — лук-шалот; одну луковицу можно посчитать. Ответьте: This is a shallot. Сначала This указывает на предмет, затем is связывает его с названием a shallot. Перед названием одного исчисляемого предмета нужен артикль; выбираем a, поскольку shallot начинается с согласного звука.
+Друг помогает готовить обед и спрашивает, что за маленькая луковица лежит перед ним. Shallot — лук-шалот; одну луковицу можно посчитать. Ответьте: This is a shallot. Сначала This указывает на предмет, затем is связывает его с названием a shallot. Перед названием одного предмета нужно a; выбираем a, поскольку shallot начинается с согласного звука.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This is a shallot.**
 - ❌ This is an shallot. — *Shallot начинается с согласного звука: a shallot.*
-- ❌ This is shallot. — *Здесь нельзя оставлять исчисляемое существительное в единственном числе без a.*
+- ❌ This is shallot. — *Здесь нельзя оставлять название одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Перец в миске
 
-Вы проверяете миску со специями и говорите другу, что в ней две горошины перца. Peppercorn — одна горошина; после two добавляем -s: peppercorns. Соберите предложение: There are + two peppercorns + in the bowl → There are two peppercorns in the bowl. There are сообщает о нескольких предметах, а in the bowl в конце называет место. Перед two артикль a не нужен.
+Вы проверяете миску со специями и говорите другу, что в ней две горошины перца. Peppercorn — одна горошина; после two добавляем -s: peppercorns. Соберите предложение: There are + two peppercorns + in the bowl → There are two peppercorns in the bowl. There are сообщает о нескольких предметах, а in the bowl в конце называет место. Перед two a не нужен.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There are two peppercorns in the bowl.**
-- ❌ There are two peppercorn in the bowl. — *После two нужно множественное peppercorns.*
+- ❌ There are two peppercorn in the bowl. — *После two нужна форма для нескольких: peppercorns.*
 - ❌ There are a two peppercorns in the bowl. — *Не ставьте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Сухая крупа
 
-Вы показываете другу булгур перед приготовлением и уточняете, что крупа пока сухая. Bulgur — булгур, крупа из пшеницы; здесь это неисчисляемое название продукта. Скажите: This bulgur is dry. Порядок: This bulgur + is + dry. Для крупы в целом используем this и is, а dry описывает её состояние. Отдельные крупинки здесь не считаем и -s к bulgur не добавляем.
+Вы показываете другу булгур перед приготовлением и уточняете, что крупа пока сухая. Bulgur — булгур, крупа из пшеницы; здесь это название продукта — его не считают поштучно. Скажите: This bulgur is dry. Порядок: This bulgur + is + dry. Для крупы в целом используем this и is, а dry описывает её состояние. Отдельные крупинки здесь не считаем и -s к bulgur не добавляем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This bulgur is dry.**
-- ❌ This bulgur are dry. — *Bulgur как название крупы — неисчисляемое слово: is.*
-- ❌ These bulgurs are dry. — *В этом значении у слова нет множественного -s.*
+- ❌ This bulgur are dry. — *Bulgur как название крупы — это не считают поштучно: is.*
+- ❌ These bulgurs are dry. — *В этом значении нет -s для нескольких.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ shallot. → **a** · an · the two
 **8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-02:i06; family: context_gap_grammar -->
 There are two ___ in the bowl. → **peppercorns** · peppercorn · a peppercorn
-- peppercorn — *После two нужно множественное peppercorns.*
-- a peppercorn — *После two нужно множественное peppercorns.*
+- peppercorn — *После two нужна форма для нескольких: peppercorns.*
+- a peppercorn — *После two нужна форма для нескольких: peppercorns.*
 
 **9 · Карточка слова — bulgur**
 <!-- interaction_id: en:lesson-17:session-02:word:bulgur; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ in the bowl. → **peppercorns** · peppercorn · a peppercorn
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-02:i09; family: context_gap_grammar -->
 This bulgur ___ dry. → **is** · are · am
-- are — *Bulgur как название крупы — неисчисляемое слово: is.*
-- am — *Bulgur как название крупы — неисчисляемое слово: is.*
+- are — *Bulgur как название крупы — это не считают поштучно: is.*
+- am — *Bulgur как название крупы — это не считают поштучно: is.*
 
 **13 · Карточка слова — barley**
 <!-- interaction_id: en:lesson-17:session-02:word:barley; family: word_card -->
@@ -126,8 +126,8 @@ This bulgur ___ dry. → **is** · are · am
 **16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-02:i12; family: context_gap_grammar -->
 We need ___. → **barley** · a barley · barleys
-- a barley — *Barley как название зерна — без a и без множественного -s.*
-- barleys — *Barley как название зерна — без a и без множественного -s.*
+- a barley — *Barley как название зерна — без a и без -s для нескольких.*
+- barleys — *Barley как название зерна — без a и без -s для нескольких.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-02:i13; family: speed_match -->

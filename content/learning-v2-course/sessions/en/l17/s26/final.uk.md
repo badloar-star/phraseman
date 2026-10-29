@@ -9,13 +9,13 @@
 
 ### Повідомити про наявність
 
-delivery charge — плата за доставку. У замовленнях є кілька доплат за доставку. Підтвердьте їхню наявність. Delivery charge → delivery charges. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість.
+delivery charge — плата за доставку. У замовленнях є кілька доплат за доставку. Підтвердьте їхню наявність. Delivery charge → delivery charges. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There are some delivery charges.**
 - ❌ There are any delivery charges. — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- ❌ There are a delivery charges. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ There are a delivery charges. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -23,13 +23,13 @@ delivery charge — плата за доставку. У замовленнях 
 
 ### Доплат за обслуговування немає
 
-Ви переглядаєте підсумковий рахунок разом із другом: доплати за обслуговування не включені. There aren't any service charges — доплат за обслуговування немає. Складіть заперечення: There aren't + any service charges. Charge можна порахувати, тому використовуємо charges у множині й aren't. Any підкреслює, що таких доплат немає зовсім, а не лише деяких.
+Ви переглядаєте підсумковий рахунок разом із другом: доплати за обслуговування не включені. There aren't any service charges — доплат за обслуговування немає. Складіть заперечення: There aren't + any service charges. Charge можна порахувати, тому використовуємо charges у формі для кількох й aren't. Any підкреслює, що таких доплат немає зовсім, а не лише деяких.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There aren't any service charges.**
 - ❌ There aren't some service charges. — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ There aren't a service charges. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ There aren't a service charges. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -43,7 +43,7 @@ delivery charge — плата за доставку. У замовленнях 
 
 - ✅ **Is there any customer service here?**
 - ❌ Is there some customer service here? — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ Is there a customer service here? — *A не ставиться перед незлічуваним або множиною.*
+- ❌ Is there a customer service here? — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -67,7 +67,7 @@ delivery charge — плата за доставку. У замовленнях 
 <!-- interaction_id: en:lesson-17:session-26:i03; family: context_gap_grammar -->
 There are ___ delivery charges. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **5 · Картка слова — service charge**
 <!-- interaction_id: en:lesson-17:session-26:word:service-charge; family: word_card -->
@@ -87,7 +87,7 @@ There are ___ delivery charges. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-26:i06; family: context_gap_grammar -->
 There aren't ___ service charges. → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **9 · Картка слова — cashback**
 <!-- interaction_id: en:lesson-17:session-26:word:cashback; family: word_card -->
@@ -107,7 +107,7 @@ There aren't ___ service charges. → **any** · some · a
 <!-- interaction_id: en:lesson-17:session-26:i09; family: context_gap_grammar -->
 You can get ___ cashback. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **13 · Картка слова — customer service**
 <!-- interaction_id: en:lesson-17:session-26:word:customer-service; family: word_card -->
@@ -127,7 +127,7 @@ You can get ___ cashback. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-26:i12; family: context_gap_grammar -->
 Is there ___ customer service here? → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-26:i13; family: speed_match -->

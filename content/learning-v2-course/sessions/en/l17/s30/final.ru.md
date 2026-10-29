@@ -9,13 +9,13 @@
 
 ### Сообщить о наличии
 
-bank transfer — банковский перевод. Несколько переводов были сделаны. Подтвердите это. Bank transfer → bank transfers. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.
+bank transfer — банковский перевод. Несколько переводов были сделаны. Подтвердите это. Bank transfer → bank transfers. Some ставим перед несколькими предметами или тем, что не считают поштучно, когда сообщаем о некотором количестве.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We made some bank transfers.**
 - ❌ We made any bank transfers. — *В утвердительном сообщении о некотором количестве используем some.*
-- ❌ We made a bank transfers. — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ We made a bank transfers. — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -23,13 +23,13 @@ bank transfer — банковский перевод. Несколько пер
 
 ### Наличные не снимали
 
-Вы с родственником просматриваете выписку за прошлую неделю: за это время вы ни разу не снимали наличные. We didn't make any cash withdrawals — мы не снимали наличные. Соберите отрицание в прошлом: We + didn't make + any cash withdrawals. После didn't используем make, не made. Withdrawals — множественное число withdrawal; any подчёркивает, что не было ни одного снятия.
+Вы с родственником просматриваете выписку за прошлую неделю: за это время вы ни разу не снимали наличные. We didn't make any cash withdrawals — мы не снимали наличные. Соберите отрицание в прошлом: We + didn't make + any cash withdrawals. После didn't используем make, не made. Withdrawals — форма для нескольких от withdrawal; any подчёркивает, что не было ни одного снятия.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We didn't make any cash withdrawals.**
 - ❌ We didn't make some cash withdrawals. — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- ❌ We didn't make a cash withdrawals. — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ We didn't make a cash withdrawals. — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -37,13 +37,13 @@ bank transfer — банковский перевод. Несколько пер
 
 ### Узнать об услуге банка
 
-Вы рассматриваете незнакомый банк и пока не знаете, можно ли управлять счётом через интернет. Does this bank offer any online banking? — этот банк предлагает управление счётом через интернет? Начните с Does this bank, затем добавьте offer any online banking. Для одного банка используем does; после него offer остаётся без -s. Online banking здесь неисчисляемое название услуги. Any соответствует нейтральному вопросу, а some могло бы выражать ожидание ответа «да».
+Вы рассматриваете незнакомый банк и пока не знаете, можно ли управлять счётом через интернет. Does this bank offer any online banking? — этот банк предлагает управление счётом через интернет? Начните с Does this bank, затем добавьте offer any online banking. Для одного банка используем does; после него offer остаётся без -s. Online banking здесь название услуги — его не считают поштучно. Any соответствует нейтральному вопросу, а some могло бы выражать ожидание ответа «да».
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Does this bank offer any online banking?**
 - ❌ Does this bank offer some online banking? — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- ❌ Does this bank offer a online banking? — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ Does this bank offer a online banking? — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -67,7 +67,7 @@ bank transfer — банковский перевод. Несколько пер
 <!-- interaction_id: en:lesson-17:session-30:i03; family: context_gap_grammar -->
 We made ___ bank transfers. → **some** · any · a
 - any — *В утвердительном сообщении о некотором количестве используем some.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **5 · Карточка слова — cash withdrawal**
 <!-- interaction_id: en:lesson-17:session-30:word:cash-withdrawal; family: word_card -->
@@ -87,7 +87,7 @@ We made ___ bank transfers. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-30:i06; family: context_gap_grammar -->
 We didn't make ___ cash withdrawals. → **any** · some · a
 - some — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **9 · Карточка слова — financial support**
 <!-- interaction_id: en:lesson-17:session-30:word:financial-support; family: word_card -->
@@ -107,7 +107,7 @@ We didn't make ___ cash withdrawals. → **any** · some · a
 <!-- interaction_id: en:lesson-17:session-30:i09; family: context_gap_grammar -->
 We need ___ financial support. → **some** · any · a
 - any — *В утвердительном сообщении о некотором количестве используем some.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **13 · Карточка слова — online banking**
 <!-- interaction_id: en:lesson-17:session-30:word:online-banking; family: word_card -->
@@ -127,7 +127,7 @@ We need ___ financial support. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-30:i12; family: context_gap_grammar -->
 Does this bank offer ___ online banking? → **any** · some · a
 - some — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-30:i13; family: speed_match -->

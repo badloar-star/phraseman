@@ -9,13 +9,13 @@
 
 ### Повідомити про наявність
 
-bank transfer — банківський переказ. Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість.
+bank transfer — банківський переказ. Кілька переказів було зроблено. Підтвердьте це. Bank transfer → bank transfers. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We made some bank transfers.**
 - ❌ We made any bank transfers. — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- ❌ We made a bank transfers. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ We made a bank transfers. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -23,13 +23,13 @@ bank transfer — банківський переказ. Кілька перек
 
 ### Готівку не знімали
 
-Ви з родичем переглядаєте виписку за минулий тиждень: за цей час ви жодного разу не знімали готівку. We didn't make any cash withdrawals — ми не знімали готівку. Складіть заперечення в минулому: We + didn't make + any cash withdrawals. Після didn't використовуємо make, не made. Withdrawals — множина withdrawal; any підкреслює, що не було жодного зняття.
+Ви з родичем переглядаєте виписку за минулий тиждень: за цей час ви жодного разу не знімали готівку. We didn't make any cash withdrawals — ми не знімали готівку. Складіть заперечення в минулому: We + didn't make + any cash withdrawals. Після didn't використовуємо make, не made. Withdrawals — форма для кількох від withdrawal; any підкреслює, що не було жодного зняття.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We didn't make any cash withdrawals.**
 - ❌ We didn't make some cash withdrawals. — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ We didn't make a cash withdrawals. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ We didn't make a cash withdrawals. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -37,13 +37,13 @@ bank transfer — банківський переказ. Кілька перек
 
 ### Дізнатися про послугу банку
 
-Ви розглядаєте незнайомий банк і поки не знаєте, чи можна керувати рахунком через інтернет. Does this bank offer any online banking? — цей банк пропонує керування рахунком через інтернет? Почніть із Does this bank, потім додайте offer any online banking. Для одного банку використовуємо does; після нього offer залишається без -s. Online banking тут незлічувана назва послуги. Any відповідає нейтральному запитанню, а some могло б виражати очікування відповіді «так».
+Ви розглядаєте незнайомий банк і поки не знаєте, чи можна керувати рахунком через інтернет. Does this bank offer any online banking? — цей банк пропонує керування рахунком через інтернет? Почніть із Does this bank, потім додайте offer any online banking. Для одного банку використовуємо does; після нього offer залишається без -s. Online banking тут назва послуги — її не рахують поштучно. Any відповідає нейтральному запитанню, а some могло б виражати очікування відповіді «так».
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Does this bank offer any online banking?**
 - ❌ Does this bank offer some online banking? — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ Does this bank offer a online banking? — *A не ставиться перед незлічуваним або множиною.*
+- ❌ Does this bank offer a online banking? — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -67,7 +67,7 @@ bank transfer — банківський переказ. Кілька перек
 <!-- interaction_id: en:lesson-17:session-30:i03; family: context_gap_grammar -->
 We made ___ bank transfers. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **5 · Картка слова — cash withdrawal**
 <!-- interaction_id: en:lesson-17:session-30:word:cash-withdrawal; family: word_card -->
@@ -87,7 +87,7 @@ We made ___ bank transfers. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-30:i06; family: context_gap_grammar -->
 We didn't make ___ cash withdrawals. → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **9 · Картка слова — financial support**
 <!-- interaction_id: en:lesson-17:session-30:word:financial-support; family: word_card -->
@@ -107,7 +107,7 @@ We didn't make ___ cash withdrawals. → **any** · some · a
 <!-- interaction_id: en:lesson-17:session-30:i09; family: context_gap_grammar -->
 We need ___ financial support. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **13 · Картка слова — online banking**
 <!-- interaction_id: en:lesson-17:session-30:word:online-banking; family: word_card -->
@@ -127,7 +127,7 @@ We need ___ financial support. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-30:i12; family: context_gap_grammar -->
 Does this bank offer ___ online banking? → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-30:i13; family: speed_match -->

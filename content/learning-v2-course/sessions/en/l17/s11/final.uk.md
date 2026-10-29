@@ -9,13 +9,13 @@
 
 ### Хто їздить цим потягом
 
-Ви обираєте ранковий потяг на роботу й запитуєте знайомого, скільки людей зазвичай їздить ним на роботу або навчання. Commuter — такий постійний пасажир. Людей можна порахувати: how many commuters. Додайте use this train: How many commuters use this train? Тут запитуємо, хто виконує дію, тому how many commuters саме займає місце підмета; do не додаємо. Після множини commuters ставимо use без -s.
+Ви обираєте ранковий потяг на роботу й запитуєте знайомого, скільки людей зазвичай їздить ним на роботу або навчання. Commuter — такий постійний пасажир. Людей можна порахувати: how many commuters. Додайте use this train: How many commuters use this train? Тут запитуємо, хто виконує дію, тому how many commuters саме стоїть там, де зазвичай стоїть той, про кого йдеться; do не додаємо. Після форми для кількох commuters ставимо use без -s.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How many commuters use this train?**
-- ❌ How much commuters use this train? — *commuter можна порахувати: many + commuters у множині.*
-- ❌ How a many commuters use this train? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How much commuters use this train? — *commuter можна порахувати: many + commuters у формі для кількох.*
+- ❌ How a many commuters use this train? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Наскільки завантажені дороги
 
-Перед поїздкою на роботу ви запитуєте колегу про завантаженість доріг сьогодні. Congestion — скупчення транспорту, незлічуване слово. Складіть запитання: How much congestion + is there + today? → How much congestion is there today? Much ставимо перед congestion. У запитанні про наявність використовуємо порядок is there, а today вказує час.
+Перед поїздкою на роботу ви запитуєте колегу про завантаженість доріг сьогодні. Congestion — скупчення транспорту, слово, яке не рахують поштучно. Складіть запитання: How much congestion + is there + today? → How much congestion is there today? Much ставимо перед congestion. У запитанні про наявність використовуємо порядок is there, а today вказує час.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much congestion is there today?**
-- ❌ How many congestion is there today? — *congestion у цьому значенні — незлічуване слово: much.*
-- ❌ How a much congestion is there today? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How many congestion is there today? — *congestion у цьому значенні — це не рахують поштучно: much.*
+- ❌ How a much congestion is there today? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Повітря в новому районі
 
-Ви обговорюєте з другом район, де за даними місцевого звіту забруднення невелике, і хочете повідомити саме це. Pollution — забруднення, незлічуване слово. Складіть фразу: There isn't + much pollution + here → There isn't much pollution here. There isn't повідомляє про відсутність великої кількості, much стосується pollution, а here означає «тут». Фраза не стверджує, що забруднення немає зовсім.
+Ви обговорюєте з другом район, де за даними місцевого звіту забруднення невелике, і хочете повідомити саме це. Pollution — забруднення, слово, яке не рахують поштучно. Складіть фразу: There isn't + much pollution + here → There isn't much pollution here. There isn't повідомляє про відсутність великої кількості, much стосується pollution, а here означає «тут». Фраза не стверджує, що забруднення немає зовсім.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There isn't much pollution here.**
-- ❌ There isn't many pollution here. — *pollution у цьому значенні — незлічуване слово: much.*
-- ❌ There isn't a much pollution here. — *Перед many/much тут не ставимо артикль a.*
+- ❌ There isn't many pollution here. — *pollution у цьому значенні — це не рахують поштучно: much.*
+- ❌ There isn't a much pollution here. — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-11:i03; family: context_gap_grammar -->
 How ___ commuters use this train? → **many** · much · a many
-- much — *commuter можна порахувати: many + commuters у множині.*
+- much — *commuter можна порахувати: many + commuters у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **5 · Картка слова — motorist**
@@ -86,7 +86,7 @@ How ___ commuters use this train? → **many** · much · a many
 **8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-11:i06; family: context_gap_grammar -->
 We don't see ___ motorists here. → **many** · much · a many
-- much — *motorist можна порахувати: many + motorists у множині.*
+- much — *motorist можна порахувати: many + motorists у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **9 · Картка слова — congestion**
@@ -106,7 +106,7 @@ We don't see ___ motorists here. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-11:i09; family: context_gap_grammar -->
 How ___ congestion is there today? → **much** · many · a much
-- many — *congestion у цьому значенні — незлічуване слово: much.*
+- many — *congestion у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — pollution**
@@ -126,7 +126,7 @@ How ___ congestion is there today? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-11:i12; family: context_gap_grammar -->
 There isn't ___ pollution here. → **much** · many · a much
-- many — *pollution у цьому значенні — незлічуване слово: much.*
+- many — *pollution у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

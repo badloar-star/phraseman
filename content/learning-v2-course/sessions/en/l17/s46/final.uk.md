@@ -9,13 +9,13 @@
 
 ### Повідомити про наявність
 
-birth certificate — свідоцтво про народження. Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість.
+birth certificate — свідоцтво про народження. Кілька свідоцтв уже скопійовано. Підтвердьте це. Birth certificate → birth certificates. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We copied some birth certificates.**
 - ❌ We copied any birth certificates. — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- ❌ We copied a birth certificates. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ We copied a birth certificates. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -23,13 +23,13 @@ birth certificate — свідоцтво про народження. Кільк
 
 ### У папці немає свідоцтв
 
-Ви з родичем розбираєте сімейну папку й не знаходите жодного свідоцтва про шлюб. We don't have any marriage certificates — у нас немає свідоцтв про шлюб. Спочатку We don't have, потім any marriage certificates. Certificates — множина certificate. Any після don't have підкреслює, що таких документів немає зовсім; some обмежило б заперечення лише частиною документів.
+Ви з родичем розбираєте сімейну папку й не знаходите жодного свідоцтва про шлюб. We don't have any marriage certificates — у нас немає свідоцтв про шлюб. Спочатку We don't have, потім any marriage certificates. Certificates — форма для кількох від certificate. Any після don't have підкреслює, що таких документів немає зовсім; some обмежило б заперечення лише частиною документів.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We don't have any marriage certificates.**
 - ❌ We don't have some marriage certificates. — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ We don't have a marriage certificates. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ We don't have a marriage certificates. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -37,13 +37,13 @@ birth certificate — свідоцтво про народження. Кільк
 
 ### Дізнатися про бланки
 
-Ви підійшли до стійки запису на курси й не знаєте, чи є у працівника бланки реєстрації. Do you have any registration forms? — у вас є бланки реєстрації? Побудуйте запитання: Do + you + have + any registration forms. Після do використовуємо have без змін. Forms — множина form. Тут any виражає нейтральне запитання без припущення про наявність бланків; some могло б передавати очікування відповіді «так».
+Ви підійшли до стійки запису на курси й не знаєте, чи є у працівника бланки реєстрації. Do you have any registration forms? — у вас є бланки реєстрації? Побудуйте запитання: Do + you + have + any registration forms. Після do використовуємо have без змін. Forms — форма для кількох від form. Тут any виражає нейтральне запитання без припущення про наявність бланків; some могло б передавати очікування відповіді «так».
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Do you have any registration forms?**
 - ❌ Do you have some registration forms? — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ Do you have a registration forms? — *A не ставиться перед незлічуваним або множиною.*
+- ❌ Do you have a registration forms? — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -67,7 +67,7 @@ birth certificate — свідоцтво про народження. Кільк
 <!-- interaction_id: en:lesson-17:session-46:i03; family: context_gap_grammar -->
 We copied ___ birth certificates. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **5 · Картка слова — marriage certificate**
 <!-- interaction_id: en:lesson-17:session-46:word:marriage-certificate; family: word_card -->
@@ -87,7 +87,7 @@ We copied ___ birth certificates. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-46:i06; family: context_gap_grammar -->
 We don't have ___ marriage certificates. → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **9 · Картка слова — identity card**
 <!-- interaction_id: en:lesson-17:session-46:word:identity-card; family: word_card -->
@@ -107,7 +107,7 @@ We don't have ___ marriage certificates. → **any** · some · a
 <!-- interaction_id: en:lesson-17:session-46:i09; family: context_gap_grammar -->
 We checked ___ identity cards. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **13 · Картка слова — registration form**
 <!-- interaction_id: en:lesson-17:session-46:word:registration-form; family: word_card -->
@@ -127,7 +127,7 @@ We checked ___ identity cards. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-46:i12; family: context_gap_grammar -->
 Do you have ___ registration forms? → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-46:i13; family: speed_match -->

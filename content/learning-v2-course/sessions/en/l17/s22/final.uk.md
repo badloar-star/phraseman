@@ -9,13 +9,13 @@
 
 ### Кілька є
 
-fingerprint — відбиток пальця. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints.
+fingerprint — відбиток пальця. A few + назва кількох предметів повідомляє, що кілька є. Few без a підкреслює малу кількість. На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We found a few fingerprints.**
 - ❌ We found few fingerprints. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We found a little fingerprints. — *Із злічуваним у множині потрібне few.*
+- ❌ We found a little fingerprints. — *Із кількома предметами, які можна порахувати, потрібне few.*
 
 ---
 
@@ -23,13 +23,13 @@ fingerprint — відбиток пальця. A few + злічуване сло
 
 ### Після ремонту залишилися уламки
 
-Ви з другом оглядаєте кімнату після ремонту й помічаєте під вікном трохи дрібних уламків. We found a little debris — ми знайшли трохи уламків. Складіть речення: We found + a little + debris. В англійській debris незлічуване, хоча українською кажемо «уламки», тому використовуємо little, не few. A little підкреслює, що певну кількість усе ж знайшли. Little без a виділило б малу кількість.
+Ви з другом оглядаєте кімнату після ремонту й помічаєте під вікном трохи дрібних уламків. We found a little debris — ми знайшли трохи уламків. Складіть речення: We found + a little + debris. В англійській debris не рахується поштучно, хоча українською кажемо «уламки», тому використовуємо little, не few. A little підкреслює, що певну кількість усе ж знайшли. Little без a виділило б малу кількість.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We found a little debris.**
 - ❌ We found little debris. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We found a few debris. — *Із незлічуваним потрібне little.*
+- ❌ We found a few debris. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -37,13 +37,13 @@ fingerprint — відбиток пальця. A few + злічуване сло
 
 ### Підкреслити малу кількість
 
-grime — стійкий шар бруду. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало.
+grime — стійкий шар бруду. Little без a підкреслює малу кількість того, що не рахують поштучно. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There is little grime left.**
 - ❌ There is a little grime left. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ There is few grime left. — *Із незлічуваним потрібне little.*
+- ❌ There is few grime left. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -67,7 +67,7 @@ grime — стійкий шар бруду. Little без a підкреслює
 <!-- interaction_id: en:lesson-17:session-22:i03; family: context_gap_grammar -->
 We found ___ fingerprints. → **a few** · few · a little
 - few — *Обидві форми граматично можливі, але ситуація потребує акценту: a few.*
-- a little — *Із злічуваним у множині використовуйте few.*
+- a little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **5 · Картка слова — cobweb**
 <!-- interaction_id: en:lesson-17:session-22:word:cobweb; family: word_card -->
@@ -87,7 +87,7 @@ We found ___ fingerprints. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-22:i06; family: context_gap_grammar -->
 There are ___ cobwebs here. → **few** · a few · little
 - a few — *Обидві форми граматично можливі, але ситуація потребує акценту: few.*
-- little — *Із злічуваним у множині використовуйте few.*
+- little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **9 · Картка слова — debris**
 <!-- interaction_id: en:lesson-17:session-22:word:debris; family: word_card -->
@@ -107,7 +107,7 @@ There are ___ cobwebs here. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-22:i09; family: context_gap_grammar -->
 We found ___ debris. → **a little** · little · a few
 - little — *Обидві форми граматично можливі, але ситуація потребує акценту: a little.*
-- a few — *Із незлічуваним використовуйте little.*
+- a few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **13 · Картка слова — grime**
 <!-- interaction_id: en:lesson-17:session-22:word:grime; family: word_card -->
@@ -127,7 +127,7 @@ We found ___ debris. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-22:i12; family: context_gap_grammar -->
 There is ___ grime left. → **little** · a little · few
 - a little — *Обидві форми граматично можливі, але ситуація потребує акценту: little.*
-- few — *Із незлічуваним використовуйте little.*
+- few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-22:i13; family: speed_match -->

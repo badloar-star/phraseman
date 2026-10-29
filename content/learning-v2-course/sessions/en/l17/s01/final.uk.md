@@ -9,13 +9,13 @@
 
 ### Назвати предмет на полиці
 
-Ви розпаковуєте речі для дому. Друг показує на предмет, який утримує книжки на полиці, й запитує, що це. Bookend — упор для книжок; його можна порахувати. Назвіть один предмет: This is a bookend. Порядок: This + is + a bookend. Перед назвою одного злічуваного предмета тут потрібен артикль. A обираємо перед приголосним звуком, an — перед голосним; bookend починається з приголосного, тому a bookend.
+Ви розпаковуєте речі для дому. Друг показує на предмет, який утримує книжки на полиці, й запитує, що це. Bookend — упор для книжок; його можна порахувати. Назвіть один предмет: This is a bookend. Порядок: This + is + a bookend. Перед назвою одного предмета тут потрібен a. A обираємо перед приголосним звуком, an — перед голосним; bookend починається з приголосного, тому a bookend.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is a bookend.**
 - ❌ This is an bookend. — *Bookend починається з приголосного звука: a bookend.*
-- ❌ This is bookend. — *Перед злічуваним іменником в однині тут потрібен a.*
+- ❌ This is bookend. — *Перед назвою одного предмета тут потрібен a.*
 
 ---
 
@@ -23,7 +23,7 @@
 
 ### Два пуфи в кімнаті
 
-Друг запитує, де можна сісти, і ви повідомляєте, що в кімнаті два пуфи. Ottoman — пуф; один — an ottoman, два — two ottomans. Складіть речення: There are + two ottomans + in the room → There are two ottomans in the room. Для кількох предметів використовуємо are та множину ottomans із -s. Перед two артикль a не ставимо; місце називаємо наприкінці.
+Друг запитує, де можна сісти, і ви повідомляєте, що в кімнаті два пуфи. Ottoman — пуф; один — an ottoman, два — two ottomans. Складіть речення: There are + two ottomans + in the room → There are two ottomans in the room. Для кількох предметів використовуємо are та форму для кількох ottomans із -s. Перед two a не ставимо; місце називаємо наприкінці.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -37,13 +37,13 @@
 
 ### Новий посуд
 
-Ви показуєте другу щойно придбаний керамічний посуд. Crockery — посуд загалом: окремі тарілки можна порахувати, але загальна назва crockery незлічувана. Скажіть: This crockery is new. Складіть фразу: This crockery + is + new. Із цією загальною назвою використовуємо this та is, не додаємо a або закінчення множини -s. New наприкінці повідомляє, яким є посуд.
+Ви показуєте другу щойно придбаний керамічний посуд. Crockery — посуд загалом: окремі тарілки можна порахувати, але загальна назва crockery не рахується поштучно. Скажіть: This crockery is new. Складіть фразу: This crockery + is + new. Із цією загальною назвою використовуємо this та is, не додаємо a або закінчення форми для кількох -s. New наприкінці повідомляє, яким є посуд.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This crockery is new.**
-- ❌ This crockery are new. — *Незлічуване crockery узгоджується з is.*
-- ❌ These crockeries are new. — *У значенні «посуд» не робимо множину crockeries.*
+- ❌ This crockery are new. — *Crockery не рахують поштучно, тому is.*
+- ❌ These crockeries are new. — *У значенні «посуд» не робимо форму для кількох crockeries.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ bookend. → **a** · an · the two
 **8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-01:i06; family: context_gap_grammar -->
 There are two ___ in the room. → **ottomans** · ottoman · an ottoman
-- ottoman — *Після two потрібна множина: ottomans.*
-- an ottoman — *Після two потрібна множина: ottomans.*
+- ottoman — *Після two потрібна форма для кількох: ottomans.*
+- an ottoman — *Після two потрібна форма для кількох: ottomans.*
 
 **9 · Картка слова — crockery**
 <!-- interaction_id: en:lesson-17:session-01:word:crockery; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ in the room. → **ottomans** · ottoman · an ottoman
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-01:i09; family: context_gap_grammar -->
 This crockery ___ new. → **is** · are · am
-- are — *Crockery — незлічуване слово; узгоджуємо з is, не are.*
-- am — *Crockery — незлічуване слово; узгоджуємо з is, не are.*
+- are — *Crockery — це не рахують поштучно; узгоджуємо з is, не are.*
+- am — *Crockery — це не рахують поштучно; узгоджуємо з is, не are.*
 
 **13 · Картка слова — bedding**
 <!-- interaction_id: en:lesson-17:session-01:word:bedding; family: word_card -->
@@ -126,8 +126,8 @@ This crockery ___ new. → **is** · are · am
 **16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-01:i12; family: context_gap_grammar -->
 We need ___. → **bedding** · a bedding · beddings
-- a bedding — *Bedding — незлічуване слово: без a та без закінчення -s.*
-- beddings — *Bedding — незлічуване слово: без a та без закінчення -s.*
+- a bedding — *Bedding — це не рахують поштучно: без a та без закінчення -s.*
+- beddings — *Bedding — це не рахують поштучно: без a та без закінчення -s.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-01:i13; family: speed_match -->

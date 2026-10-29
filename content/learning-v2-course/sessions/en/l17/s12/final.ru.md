@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How many qualifications do you have?**
-- ❌ How much qualifications do you have? — *qualification можно посчитать: many + qualifications во множественном числе.*
-- ❌ How a many qualifications do you have? — *Перед many/much здесь не ставим артикль a.*
+- ❌ How much qualifications do you have? — *qualification можно посчитать: many + qualifications в форме для нескольких.*
+- ❌ How a many qualifications do you have? — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Знания перед началом курса
 
-Вы с другом собираетесь на курс и уточняете у преподавателя, сколько знаний нужно иметь заранее. Knowledge — знания; хотя по-русски это множественное число, английское слово неисчисляемое. Начните с How much knowledge, затем поставьте do + we + need: How much knowledge do we need? Much относится к объёму знаний, а we обозначает вас с другом.
+Вы с другом собираетесь на курс и уточняете у преподавателя, сколько знаний нужно иметь заранее. Knowledge — знания; хотя по-русски это форма для нескольких, английское слово не считается поштучно. Начните с How much knowledge, затем поставьте do + we + need: How much knowledge do we need? Much относится к объёму знаний, а we обозначает вас с другом.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How much knowledge do we need?**
-- ❌ How many knowledge do we need? — *knowledge в этом значении — неисчисляемое слово: much.*
-- ❌ How a much knowledge do we need? — *Перед many/much здесь не ставим артикль a.*
+- ❌ How many knowledge do we need? — *knowledge в этом значении — это не считают поштучно: much.*
+- ❌ How a much knowledge do we need? — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Нужно немного занятий
 
-Вы с другом уже освоили основы рисования и хотите лишь немного позаниматься с преподавателем. Tuition здесь — обучение у преподавателя, а не плата за него; это неисчисляемое слово. Скажите: We don't need much tuition. Порядок такой: We + don't + need + much tuition. Don't перед need делает фразу отрицательной, а much перед tuition показывает количество обучения: много занятий вам не требуется.
+Вы с другом уже освоили основы рисования и хотите лишь немного позаниматься с преподавателем. Tuition здесь — обучение у преподавателя, а не плата за него; это слово, которое не считают поштучно. Скажите: We don't need much tuition. Порядок такой: We + don't + need + much tuition. Don't перед need делает фразу отрицательной, а much перед tuition показывает количество обучения: много занятий вам не требуется.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We don't need much tuition.**
-- ❌ We don't need many tuition. — *tuition в этом значении — неисчисляемое слово: much.*
-- ❌ We don't need a much tuition. — *Перед many/much здесь не ставим артикль a.*
+- ❌ We don't need many tuition. — *tuition в этом значении — это не считают поштучно: much.*
+- ❌ We don't need a much tuition. — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-12:i03; family: context_gap_grammar -->
 How ___ qualifications do you have? → **many** · much · a many
-- much — *qualification можно посчитать: many + qualifications во множественном числе.*
+- much — *qualification можно посчитать: many + qualifications в форме для нескольких.*
 - a many — *Перед many/much здесь не нужен a.*
 
 **5 · Карточка слова — certificate**
@@ -86,7 +86,7 @@ How ___ qualifications do you have? → **many** · much · a many
 **8 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-12:i06; family: context_gap_grammar -->
 We don't have ___ certificates. → **many** · much · a many
-- much — *certificate можно посчитать: many + certificates во множественном числе.*
+- much — *certificate можно посчитать: many + certificates в форме для нескольких.*
 - a many — *Перед many/much здесь не нужен a.*
 
 **9 · Карточка слова — knowledge**
@@ -106,7 +106,7 @@ We don't have ___ certificates. → **many** · much · a many
 **12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-12:i09; family: context_gap_grammar -->
 How ___ knowledge do we need? → **much** · many · a much
-- many — *knowledge в этом значении — неисчисляемое слово: much.*
+- many — *knowledge в этом значении — это не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **13 · Карточка слова — tuition**
@@ -126,7 +126,7 @@ How ___ knowledge do we need? → **much** · many · a much
 **16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-12:i12; family: context_gap_grammar -->
 We don't need ___ tuition. → **much** · many · a much
-- many — *tuition в этом значении — неисчисляемое слово: much.*
+- many — *tuition в этом значении — это не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **17 · Соедините слова с переводом**

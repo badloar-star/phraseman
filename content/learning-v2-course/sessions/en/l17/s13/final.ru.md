@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How many participants do we have?**
-- ❌ How much participants do we have? — *participant можно посчитать: many + participants во множественном числе.*
-- ❌ How a many participants do we have? — *Перед many/much здесь не ставим артикль a.*
+- ❌ How much participants do we have? — *participant можно посчитать: many + participants в форме для нескольких.*
+- ❌ How a many participants do we have? — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Развлечения для праздника
 
-Вы готовите небольшой праздник во дворе и обсуждаете с соседом, сколько развлечений включить в программу. Entertainment — развлечения как программа в целом; в английском это неисчисляемое слово. Соберите вопрос: How much entertainment + do + we + need? → How much entertainment do we need? Much ставим перед entertainment, затем do, we и need. Отдельные игры здесь не считаем.
+Вы готовите небольшой праздник во дворе и обсуждаете с соседом, сколько развлечений включить в программу. Entertainment — развлечения как программа в целом; в английском это слово, которое не считают поштучно. Соберите вопрос: How much entertainment + do + we + need? → How much entertainment do we need? Much ставим перед entertainment, затем do, we и need. Отдельные игры здесь не считаем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How much entertainment do we need?**
-- ❌ How many entertainment do we need? — *entertainment в этом значении — неисчисляемое слово: much.*
-- ❌ How a much entertainment do we need? — *Перед many/much здесь не ставим артикль a.*
+- ❌ How many entertainment do we need? — *entertainment в этом значении — это не считают поштучно: much.*
+- ❌ How a much entertainment do we need? — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Денег на праздник немного
 
-На праздник во дворе выделили небольшую сумму, и вы объясняете, почему программа будет скромной. Funding — деньги, выделенные на дело; слово неисчисляемое. Соберите предложение: We + don't + have + much funding → We don't have much funding. После don't идёт have без изменений, а much стоит перед funding. Фраза сообщает, что денег немного, а не что их совсем нет.
+На праздник во дворе выделили небольшую сумму, и вы объясняете, почему программа будет скромной. Funding — деньги, выделенные на дело; слово не считается поштучно. Соберите предложение: We + don't + have + much funding → We don't have much funding. После don't идёт have без изменений, а much стоит перед funding. Фраза сообщает, что денег немного, а не что их совсем нет.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We don't have much funding.**
-- ❌ We don't have many funding. — *funding в этом значении — неисчисляемое слово: much.*
-- ❌ We don't have a much funding. — *Перед many/much здесь не ставим артикль a.*
+- ❌ We don't have many funding. — *funding в этом значении — это не считают поштучно: much.*
+- ❌ We don't have a much funding. — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-13:i03; family: context_gap_grammar -->
 How ___ participants do we have? → **many** · much · a many
-- much — *participant можно посчитать: many + participants во множественном числе.*
+- much — *participant можно посчитать: many + participants в форме для нескольких.*
 - a many — *Перед many/much здесь не нужен a.*
 
 **5 · Карточка слова — sponsor**
@@ -86,7 +86,7 @@ How ___ participants do we have? → **many** · much · a many
 **8 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-13:i06; family: context_gap_grammar -->
 We don't have ___ sponsors. → **many** · much · a many
-- much — *sponsor можно посчитать: many + sponsors во множественном числе.*
+- much — *sponsor можно посчитать: many + sponsors в форме для нескольких.*
 - a many — *Перед many/much здесь не нужен a.*
 
 **9 · Карточка слова — entertainment**
@@ -106,7 +106,7 @@ We don't have ___ sponsors. → **many** · much · a many
 **12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-13:i09; family: context_gap_grammar -->
 How ___ entertainment do we need? → **much** · many · a much
-- many — *entertainment в этом значении — неисчисляемое слово: much.*
+- many — *entertainment в этом значении — это не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **13 · Карточка слова — funding**
@@ -126,7 +126,7 @@ How ___ entertainment do we need? → **much** · many · a much
 **16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-13:i12; family: context_gap_grammar -->
 We don't have ___ funding. → **much** · many · a much
-- many — *funding в этом значении — неисчисляемое слово: much.*
+- many — *funding в этом значении — это не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **17 · Соедините слова с переводом**

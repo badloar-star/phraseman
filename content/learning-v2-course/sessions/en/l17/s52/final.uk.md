@@ -9,13 +9,13 @@
 
 ### Кілька все ж є
 
-departure time — час відправлення або вильоту. Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
+departure time — час відправлення або вильоту. Ви перевірили кілька варіантів відправлення. Підкресліть, що інформація є. Departure time → departure times. Із кількома предметами, які можна порахувати, a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We checked a few departure times.**
 - ❌ We checked few departure times. — *Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість.*
-- ❌ We checked a little departure times. — *Із злічуваним у множині потрібне few, не little.*
+- ❌ We checked a little departure times. — *Із кількома предметами, які можна порахувати, потрібне few, не little.*
 
 ---
 
@@ -23,13 +23,13 @@ departure time — час відправлення або вильоту. Ви �
 
 ### Відомостей про прибуття мало
 
-Ви зустрічаєте групу в аеропорту, але час прибуття відомий лише для двох із десяти рейсів. Треба підкреслити брак відомостей: We know few arrival times — ми знаємо час прибуття лише небагатьох рейсів. Складіть фразу: We know + few + arrival times. Окремі часи прибуття можна порахувати, тому times стоїть у множині, а перед ним — few. Без a підкреслюємо, як мало відомо; a few виділило б те, що певні відомості все ж є.
+Ви зустрічаєте групу в аеропорту, але час прибуття відомий лише для двох із десяти рейсів. Треба підкреслити брак відомостей: We know few arrival times — ми знаємо час прибуття лише небагатьох рейсів. Складіть фразу: We know + few + arrival times. Окремі часи прибуття можна порахувати, тому times стоїть у формі для кількох, а перед ним — few. Без a підкреслюємо, як мало відомо; a few виділило б те, що певні відомості все ж є.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We know few arrival times.**
 - ❌ We know a few arrival times. — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- ❌ We know a little arrival times. — *Із злічуваним у множині потрібне few, не little.*
+- ❌ We know a little arrival times. — *Із кількома предметами, які можна порахувати, потрібне few, не little.*
 
 ---
 
@@ -37,13 +37,13 @@ departure time — час відправлення або вильоту. Ви �
 
 ### Зміст залежить від a
 
-booking reference — номер або код бронювання. Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
+booking reference — номер або код бронювання. Потрібні дані всіх бронювань групи, але зібрано лише небагато. Підкресліть брак. Booking reference → booking references. Із кількома предметами, які можна порахувати, a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have few booking references.**
 - ❌ We have a few booking references. — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- ❌ We have a little booking references. — *Із злічуваним у множині потрібне few, не little.*
+- ❌ We have a little booking references. — *Із кількома предметами, які можна порахувати, потрібне few, не little.*
 
 ---
 
@@ -67,7 +67,7 @@ booking reference — номер або код бронювання. Потрі�
 <!-- interaction_id: en:lesson-17:session-52:i03; family: context_gap_grammar -->
 We checked ___ departure times. → **a few** · few · a little
 - few — *Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **5 · Картка слова — arrival time**
 <!-- interaction_id: en:lesson-17:session-52:word:arrival-time; family: word_card -->
@@ -87,7 +87,7 @@ We checked ___ departure times. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-52:i06; family: context_gap_grammar -->
 We know ___ arrival times. → **few** · a few · a little
 - a few — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **9 · Картка слова — flight number**
 <!-- interaction_id: en:lesson-17:session-52:word:flight-number; family: word_card -->
@@ -107,7 +107,7 @@ We know ___ arrival times. → **few** · a few · a little
 <!-- interaction_id: en:lesson-17:session-52:i09; family: context_gap_grammar -->
 We saved ___ flight numbers. → **a few** · few · a little
 - few — *Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **13 · Картка слова — booking reference**
 <!-- interaction_id: en:lesson-17:session-52:word:booking-reference; family: word_card -->
@@ -127,7 +127,7 @@ We saved ___ flight numbers. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-52:i12; family: context_gap_grammar -->
 We have ___ booking references. → **few** · a few · a little
 - a few — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-17:session-52:i13; family: speed_match -->

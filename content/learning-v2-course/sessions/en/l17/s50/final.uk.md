@@ -9,13 +9,13 @@
 
 ### Кілька все ж є
 
-voice message — голосове повідомлення. Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
+voice message — голосове повідомлення. Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages. Із кількома предметами, які можна порахувати, a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I received a few voice messages.**
 - ❌ I received few voice messages. — *Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість.*
-- ❌ I received a little voice messages. — *Із злічуваним у множині потрібне few, не little.*
+- ❌ I received a little voice messages. — *Із кількома предметами, які можна порахувати, потрібне few, не little.*
 
 ---
 
@@ -23,13 +23,13 @@ voice message — голосове повідомлення. Підкреслі�
 
 ### Залишилося мало номерів
 
-Ви загубили записник і змогли відновити лише два номери знайомих. Хочете підкреслити, що контактів бракує: I have few contact numbers — у мене мало телефонів для зв'язку. Складіть речення: I have + few + contact numbers. Number — злічуване слово; для кількох номерів використовуємо numbers і few, не little. Few без a підкреслює, що номерів мало. A few у цій самій фразі виділило б наявність кількох.
+Ви загубили записник і змогли відновити лише два номери знайомих. Хочете підкреслити, що контактів бракує: I have few contact numbers — у мене мало телефонів для зв'язку. Складіть речення: I have + few + contact numbers. Number — це рахують поштучно; для кількох номерів використовуємо numbers і few, не little. Few без a підкреслює, що номерів мало. A few у цій самій фразі виділило б наявність кількох.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have few contact numbers.**
 - ❌ I have a few contact numbers. — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- ❌ I have a little contact numbers. — *Із злічуваним у множині потрібне few, не little.*
+- ❌ I have a little contact numbers. — *Із кількома предметами, які можна порахувати, потрібне few, не little.*
 
 ---
 
@@ -37,13 +37,13 @@ voice message — голосове повідомлення. Підкреслі�
 
 ### Зміст залежить від a
 
-area code — телефонний код міста або регіону. Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
+area code — телефонний код міста або регіону. Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes. Із кількома предметами, які можна порахувати, a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I know few area codes.**
 - ❌ I know a few area codes. — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- ❌ I know a little area codes. — *Із злічуваним у множині потрібне few, не little.*
+- ❌ I know a little area codes. — *Із кількома предметами, які можна порахувати, потрібне few, не little.*
 
 ---
 
@@ -67,7 +67,7 @@ area code — телефонний код міста або регіону. Ви
 <!-- interaction_id: en:lesson-17:session-50:i03; family: context_gap_grammar -->
 I received ___ voice messages. → **a few** · few · a little
 - few — *Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **5 · Картка слова — contact number**
 <!-- interaction_id: en:lesson-17:session-50:word:contact-number; family: word_card -->
@@ -87,7 +87,7 @@ I received ___ voice messages. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-50:i06; family: context_gap_grammar -->
 I have ___ contact numbers. → **few** · a few · a little
 - a few — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **9 · Картка слова — emergency contact**
 <!-- interaction_id: en:lesson-17:session-50:word:emergency-contact; family: word_card -->
@@ -107,7 +107,7 @@ I have ___ contact numbers. → **few** · a few · a little
 <!-- interaction_id: en:lesson-17:session-50:i09; family: context_gap_grammar -->
 We have ___ emergency contacts. → **a few** · few · a little
 - few — *Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **13 · Картка слова — area code**
 <!-- interaction_id: en:lesson-17:session-50:word:area-code; family: word_card -->
@@ -127,7 +127,7 @@ We have ___ emergency contacts. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-50:i12; family: context_gap_grammar -->
 I know ___ area codes. → **few** · a few · a little
 - a few — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-17:session-50:i13; family: speed_match -->

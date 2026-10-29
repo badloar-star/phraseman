@@ -9,13 +9,13 @@
 
 ### Кілька є
 
-achievement — досягнення, результат зусиль. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що певні досягнення вже є. Achievement → achievements.
+achievement — досягнення, результат зусиль. A few + назва кількох предметів повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що певні досягнення вже є. Achievement → achievements.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have a few achievements.**
 - ❌ We have few achievements. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We have a little achievements. — *Із злічуваним у множині потрібне few.*
+- ❌ We have a little achievements. — *Із кількома предметами, які можна порахувати, потрібне few.*
 
 ---
 
@@ -23,13 +23,13 @@ achievement — досягнення, результат зусиль. A few + �
 
 ### Трохи сміливості все ж знайшлося
 
-Ви з другом боялися виступати перед групою, але все-таки наважилися вийти до слухачів. We found a little courage — ми знайшли в собі трохи сміливості. Складіть фразу: We found + a little + courage. Courage тут незлічуване, тому використовуємо little, не few. A little підкреслює, що трохи сміливості все ж знайшлося. Без a слово little змістило б акцент на те, як мало її було.
+Ви з другом боялися виступати перед групою, але все-таки наважилися вийти до слухачів. We found a little courage — ми знайшли в собі трохи сміливості. Складіть фразу: We found + a little + courage. Courage тут не рахується поштучно, тому використовуємо little, не few. A little підкреслює, що трохи сміливості все ж знайшлося. Без a слово little змістило б акцент на те, як мало її було.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We found a little courage.**
 - ❌ We found little courage. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We found a few courage. — *Із незлічуваним потрібне little.*
+- ❌ We found a few courage. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -37,13 +37,13 @@ achievement — досягнення, результат зусиль. A few + �
 
 ### Підкреслити малу кількість
 
-confidence — упевненість у собі або в успіху. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості.
+confidence — упевненість у собі або в успіху. Little без a підкреслює малу кількість того, що не рахують поштучно. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have little confidence.**
 - ❌ We have a little confidence. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We have few confidence. — *Із незлічуваним потрібне little.*
+- ❌ We have few confidence. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -67,7 +67,7 @@ confidence — упевненість у собі або в успіху. Little
 <!-- interaction_id: en:lesson-17:session-24:i03; family: context_gap_grammar -->
 We have ___ achievements. → **a few** · few · a little
 - few — *Обидві форми граматично можливі, але ситуація потребує акценту: a few.*
-- a little — *Із злічуваним у множині використовуйте few.*
+- a little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **5 · Картка слова — setback**
 <!-- interaction_id: en:lesson-17:session-24:word:setback; family: word_card -->
@@ -87,7 +87,7 @@ We have ___ achievements. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-24:i06; family: context_gap_grammar -->
 We had ___ setbacks. → **few** · a few · little
 - a few — *Обидві форми граматично можливі, але ситуація потребує акценту: few.*
-- little — *Із злічуваним у множині використовуйте few.*
+- little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **9 · Картка слова — courage**
 <!-- interaction_id: en:lesson-17:session-24:word:courage; family: word_card -->
@@ -107,7 +107,7 @@ We had ___ setbacks. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-24:i09; family: context_gap_grammar -->
 We found ___ courage. → **a little** · little · a few
 - little — *Обидві форми граматично можливі, але ситуація потребує акценту: a little.*
-- a few — *Із незлічуваним використовуйте little.*
+- a few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **13 · Картка слова — confidence**
 <!-- interaction_id: en:lesson-17:session-24:word:confidence; family: word_card -->
@@ -127,7 +127,7 @@ We found ___ courage. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-24:i12; family: context_gap_grammar -->
 We have ___ confidence. → **little** · a little · few
 - a little — *Обидві форми граматично можливі, але ситуація потребує акценту: little.*
-- few — *Із незлічуваним використовуйте little.*
+- few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-24:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Показати саджанець
 
-Ви розбираєте покупки для саду, і друг запитує про маленьке деревце. Назвіть його: This is a sapling. Sapling — саджанець дерева, один злічуваний предмет. Фразу складаємо так: This + is + a sapling. This указує на деревце, is пов'язує його з назвою, а a ставимо перед sapling, тому що слово починається з приголосного звука.
+Ви розбираєте покупки для саду, і друг запитує про маленьке деревце. Назвіть його: This is a sapling. Sapling — саджанець дерева, один предмет, його рахують поштучно. Фразу складаємо так: This + is + a sapling. This указує на деревце, is пов'язує його з назвою, а a ставимо перед sapling, тому що слово починається з приголосного звука.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is a sapling.**
 - ❌ This is an sapling. — *Sapling починається з приголосного звука: a sapling.*
-- ❌ This is sapling. — *Тут не можна залишати злічуваний іменник в однині без артикля.*
+- ❌ This is sapling. — *Тут не можна залишати назву одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Ящики біля дверей
 
-Друг шукає придбані контейнери для рослин. Скажіть, що два стоять біля дверей: There are two planters by the door. Planter — контейнер для рослин; після two додаємо -s: planters. Почніть із There are, потім назвіть two planters і місце by the door. Are використовуємо для кількох предметів, артикль a перед two не потрібен.
+Друг шукає придбані контейнери для рослин. Скажіть, що два стоять біля дверей: There are two planters by the door. Planter — контейнер для рослин; після two додаємо -s: planters. Почніть із There are, потім назвіть two planters і місце by the door. Are використовуємо для кількох предметів, a перед two не потрібен.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There are two planters by the door.**
-- ❌ There are two planter by the door. — *Після two потрібна множина planters.*
+- ❌ There are two planter by the door. — *Після two потрібна форма для кількох: planters.*
 - ❌ There are a two planters by the door. — *Не ставте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Чистий гравій для доріжки
 
-Ви показуєте другу гравій, який щойно промили для садової доріжки, і говорите, що він чистий. Gravel тут — матеріал загалом, незлічуване слово. Складіть фразу: This gravel + is + clean → This gravel is clean. Перед gravel ставимо this, після нього is, а наприкінці ознаку clean. Тут ми не рахуємо окремі камінці, тому не використовуємо множини.
+Ви показуєте другу гравій, який щойно промили для садової доріжки, і говорите, що він чистий. Gravel тут — матеріал загалом, слово, яке не рахують поштучно. Складіть фразу: This gravel + is + clean → This gravel is clean. Перед gravel ставимо this, після нього is, а наприкінці ознаку clean. Тут ми не рахуємо окремі камінці, тому не використовуємо форми для кількох.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This gravel is clean.**
-- ❌ This gravel are clean. — *Gravel як матеріал — незлічуване слово: is.*
-- ❌ These gravels are clean. — *У цьому значенні слово не має множинного -s.*
+- ❌ This gravel are clean. — *Gravel як матеріал — це не рахують поштучно: is.*
+- ❌ These gravels are clean. — *У цьому значенні не має -s для кількох.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ sapling. → **a** · an · the two
 **8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-07:i06; family: context_gap_grammar -->
 There are two ___ by the door. → **planters** · planter · a planter
-- planter — *Після two потрібна множина planters.*
-- a planter — *Після two потрібна множина planters.*
+- planter — *Після two потрібна форма для кількох: planters.*
+- a planter — *Після two потрібна форма для кількох: planters.*
 
 **9 · Картка слова — gravel**
 <!-- interaction_id: en:lesson-17:session-07:word:gravel; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ by the door. → **planters** · planter · a planter
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-07:i09; family: context_gap_grammar -->
 This gravel ___ clean. → **is** · are · am
-- are — *Gravel як матеріал — незлічуване слово: is.*
-- am — *Gravel як матеріал — незлічуване слово: is.*
+- are — *Gravel як матеріал — це не рахують поштучно: is.*
+- am — *Gravel як матеріал — це не рахують поштучно: is.*
 
 **13 · Картка слова — equipment**
 <!-- interaction_id: en:lesson-17:session-07:word:equipment; family: word_card -->
@@ -126,8 +126,8 @@ This gravel ___ clean. → **is** · are · am
 **16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-07:i12; family: context_gap_grammar -->
 We need ___. → **equipment** · an equipment · equipments
-- an equipment — *Equipment — незлічуване слово: без an та без множинного -s.*
-- equipments — *Equipment — незлічуване слово: без an та без множинного -s.*
+- an equipment — *Equipment — це не рахують поштучно: без an та без -s для кількох.*
+- equipments — *Equipment — це не рахують поштучно: без an та без -s для кількох.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-07:i13; family: speed_match -->

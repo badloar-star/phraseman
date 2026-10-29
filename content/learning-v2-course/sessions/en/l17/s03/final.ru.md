@@ -9,13 +9,13 @@
 
 ### Книга о чужой жизни
 
-Вы показываете другу книгу о жизни художника, написанную другим человеком. Назовите её вид: This is a biography. Biography — одна книга-биография, исчисляемое слово. Соберите предложение: This + is + a biography. This указывает на книгу, is связывает её с названием, а a стоит перед biography, которое начинается с согласного звука.
+Вы показываете другу книгу о жизни художника, написанную другим человеком. Назовите её вид: This is a biography. Biography — одна книга-биография, это считают поштучно. Соберите предложение: This + is + a biography. This указывает на книгу, is связывает её с названием, а a стоит перед biography, которое начинается с согласного звука.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This is a biography.**
 - ❌ This is an biography. — *Biography начинается с согласного звука: a biography.*
-- ❌ This is biography. — *Здесь нельзя оставлять исчисляемое существительное в единственном числе без a.*
+- ❌ This is biography. — *Здесь нельзя оставлять название одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Две автобиографии на полке
 
-Друг ищет книги, в которых авторы рассказывают о собственной жизни. Вы замечаете две на полке. Autobiography — автобиография; во множественном числе y меняем на ies: autobiographies. Соберите фразу: There are + two autobiographies + on the shelf → There are two autobiographies on the shelf. Для двух книг используем are; после количества называем книги, затем место.
+Друг ищет книги, в которых авторы рассказывают о собственной жизни. Вы замечаете две на полке. Autobiography — автобиография; в форме для нескольких y меняем на ies: autobiographies. Соберите фразу: There are + two autobiographies + on the shelf → There are two autobiographies on the shelf. Для двух книг используем are; после количества называем книги, затем место.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There are two autobiographies on the shelf.**
-- ❌ There are two autobiography on the shelf. — *У autobiography во множественном числе y меняется на ies: autobiographies.*
+- ❌ There are two autobiography on the shelf. — *У autobiography в форме для нескольких y меняется на ies: autobiographies.*
 - ❌ There are a two autobiographies on the shelf. — *Не ставьте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Интересная художественная литература
 
-Вы делитесь с другом впечатлением от художественной литературы, которую сейчас читаете. Fiction здесь обозначает литературу как общее понятие, а не отдельные книги. Скажите: This fiction is interesting. Соберите фразу: This fiction + is + interesting. С неисчисляемым fiction используем this и is, а interesting в конце передаёт впечатление. Здесь не образуем множественную форму fictions.
+Вы делитесь с другом впечатлением от художественной литературы, которую сейчас читаете. Fiction здесь обозначает литературу как общее понятие, а не отдельные книги. Скажите: This fiction is interesting. Соберите фразу: This fiction + is + interesting. С тем, что не считают поштучно, fiction используем this и is, а interesting в конце передаёт впечатление. Здесь не образуем множественную форму fictions.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This fiction is interesting.**
-- ❌ This fiction are interesting. — *Fiction как вид литературы — неисчисляемое слово: is.*
-- ❌ These fictions are interesting. — *В этом значении у слова нет множественного -s.*
+- ❌ This fiction are interesting. — *Fiction как вид литературы — это не считают поштучно: is.*
+- ❌ These fictions are interesting. — *В этом значении нет -s для нескольких.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ biography. → **a** · an · the two
 **8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-03:i06; family: context_gap_grammar -->
 There are two ___ on the shelf. → **autobiographies** · autobiography · an autobiography
-- autobiography — *У autobiography во множественном числе y меняется на ies: autobiographies.*
-- an autobiography — *У autobiography во множественном числе y меняется на ies: autobiographies.*
+- autobiography — *У autobiography в форме для нескольких y меняется на ies: autobiographies.*
+- an autobiography — *У autobiography в форме для нескольких y меняется на ies: autobiographies.*
 
 **9 · Карточка слова — fiction**
 <!-- interaction_id: en:lesson-17:session-03:word:fiction; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ on the shelf. → **autobiographies** · autobiography · an a
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-03:i09; family: context_gap_grammar -->
 This fiction ___ interesting. → **is** · are · am
-- are — *Fiction как вид литературы — неисчисляемое слово: is.*
-- am — *Fiction как вид литературы — неисчисляемое слово: is.*
+- are — *Fiction как вид литературы — это не считают поштучно: is.*
+- am — *Fiction как вид литературы — это не считают поштучно: is.*
 
 **13 · Карточка слова — non-fiction**
 <!-- interaction_id: en:lesson-17:session-03:word:non-fiction; family: word_card -->
@@ -126,8 +126,8 @@ This fiction ___ interesting. → **is** · are · am
 **16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-03:i12; family: context_gap_grammar -->
 We need ___. → **non-fiction** · a non-fiction · non-fictions
-- a non-fiction — *Non-fiction как вид литературы — без a и без множественного -s.*
-- non-fictions — *Non-fiction как вид литературы — без a и без множественного -s.*
+- a non-fiction — *Non-fiction как вид литературы — без a и без -s для нескольких.*
+- non-fictions — *Non-fiction как вид литературы — без a и без -s для нескольких.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-03:i13; family: speed_match -->

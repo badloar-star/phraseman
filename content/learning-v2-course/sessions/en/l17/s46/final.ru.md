@@ -9,13 +9,13 @@
 
 ### Сообщить о наличии
 
-birth certificate — свидетельство о рождении. Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.
+birth certificate — свидетельство о рождении. Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates. Some ставим перед несколькими предметами или тем, что не считают поштучно, когда сообщаем о некотором количестве.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We copied some birth certificates.**
 - ❌ We copied any birth certificates. — *В утвердительном сообщении о некотором количестве используем some.*
-- ❌ We copied a birth certificates. — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ We copied a birth certificates. — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -23,13 +23,13 @@ birth certificate — свидетельство о рождении. Неско
 
 ### В папке нет свидетельств
 
-Вы с родственником разбираете семейную папку и не находите ни одного свидетельства о браке. We don't have any marriage certificates — у нас нет свидетельств о браке. Сначала We don't have, затем any marriage certificates. Certificates — множественное число certificate. Any после don't have подчёркивает, что таких документов нет совсем; some ограничило бы отрицание лишь частью документов.
+Вы с родственником разбираете семейную папку и не находите ни одного свидетельства о браке. We don't have any marriage certificates — у нас нет свидетельств о браке. Сначала We don't have, затем any marriage certificates. Certificates — форма для нескольких от certificate. Any после don't have подчёркивает, что таких документов нет совсем; some ограничило бы отрицание лишь частью документов.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We don't have any marriage certificates.**
 - ❌ We don't have some marriage certificates. — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- ❌ We don't have a marriage certificates. — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ We don't have a marriage certificates. — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -37,13 +37,13 @@ birth certificate — свидетельство о рождении. Неско
 
 ### Попросить сведения о бланках
 
-Вы подошли к стойке записи на курсы и не знаете, есть ли у сотрудника бланки регистрации. Do you have any registration forms? — у вас есть бланки регистрации? Постройте вопрос: Do + you + have + any registration forms. После do используем have без изменений. Forms — множественное число form. Здесь any выражает нейтральный вопрос без предположения о наличии бланков; some могло бы передавать ожидание ответа «да».
+Вы подошли к стойке записи на курсы и не знаете, есть ли у сотрудника бланки регистрации. Do you have any registration forms? — у вас есть бланки регистрации? Постройте вопрос: Do + you + have + any registration forms. После do используем have без изменений. Forms — форма для нескольких от form. Здесь any выражает нейтральный вопрос без предположения о наличии бланков; some могло бы передавать ожидание ответа «да».
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Do you have any registration forms?**
 - ❌ Do you have some registration forms? — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- ❌ Do you have a registration forms? — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ Do you have a registration forms? — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -67,7 +67,7 @@ birth certificate — свидетельство о рождении. Неско
 <!-- interaction_id: en:lesson-17:session-46:i03; family: context_gap_grammar -->
 We copied ___ birth certificates. → **some** · any · a
 - any — *В утвердительном сообщении о некотором количестве используем some.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **5 · Карточка слова — marriage certificate**
 <!-- interaction_id: en:lesson-17:session-46:word:marriage-certificate; family: word_card -->
@@ -87,7 +87,7 @@ We copied ___ birth certificates. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-46:i06; family: context_gap_grammar -->
 We don't have ___ marriage certificates. → **any** · some · a
 - some — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **9 · Карточка слова — identity card**
 <!-- interaction_id: en:lesson-17:session-46:word:identity-card; family: word_card -->
@@ -107,7 +107,7 @@ We don't have ___ marriage certificates. → **any** · some · a
 <!-- interaction_id: en:lesson-17:session-46:i09; family: context_gap_grammar -->
 We checked ___ identity cards. → **some** · any · a
 - any — *В утвердительном сообщении о некотором количестве используем some.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **13 · Карточка слова — registration form**
 <!-- interaction_id: en:lesson-17:session-46:word:registration-form; family: word_card -->
@@ -127,7 +127,7 @@ We checked ___ identity cards. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-46:i12; family: context_gap_grammar -->
 Do you have ___ registration forms? → **any** · some · a
 - some — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-46:i13; family: speed_match -->

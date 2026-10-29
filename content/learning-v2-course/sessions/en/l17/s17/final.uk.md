@@ -9,7 +9,7 @@
 
 ### Кілька окремих людей
 
-housemate — людина, яка живе з вами в одному будинку. Із злічуваним словом у множині використовуємо a few або few. A few повідомляє, що кілька є. Few підкреслює малу кількість, часто меншу за бажану. Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates.
+housemate — людина, яка живе з вами в одному будинку. З назвою кількох предметів використовуємо a few або few. A few повідомляє, що кілька є. Few підкреслює малу кількість, часто меншу за бажану. Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -23,13 +23,13 @@ housemate — людина, яка живе з вами в одному буди
 
 ### Час для відпочинку знайшовся
 
-Ви закінчили домашні справи й можете трохи відпочити разом. Leisure time — вільний час; time тут незлічуване. Щоб повідомити, що трохи часу все ж є, складіть речення: We have + a little + leisure time → We have a little leisure time. A little перед leisure time підкреслює наявність невеликої кількості часу. Little без a означало б акцент на його нестачі.
+Ви закінчили домашні справи й можете трохи відпочити разом. Leisure time — вільний час; time тут не рахується поштучно. Щоб повідомити, що трохи часу все ж є, складіть речення: We have + a little + leisure time → We have a little leisure time. A little перед leisure time підкреслює наявність невеликої кількості часу. Little без a означало б акцент на його нестачі.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have a little leisure time.**
 - ❌ We have little leisure time. — *Ця форма граматично можлива, але змінює акцент. Дотримуйтеся змісту ситуації.*
-- ❌ We have a few leisure time. — *Для незлічуваного тут потрібне little, не few.*
+- ❌ We have a few leisure time. — *Для того, що не рахують поштучно, тут потрібне little, не few.*
 
 ---
 
@@ -37,13 +37,13 @@ housemate — людина, яка живе з вами в одному буди
 
 ### Підкреслити брак
 
-privacy — усамітнення, відсутність втручання в особисте життя. Little без a підкреслює малу кількість. Privacy — незлічуване слово. Тут ідеться про брак усамітнення. A little privacy теж граматично правильно, але наголошує, що хоч трохи усамітнення є. Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення.
+privacy — усамітнення, відсутність втручання в особисте життя. Little без a підкреслює малу кількість. Privacy — це не рахують поштучно. Тут ідеться про брак усамітнення. A little privacy теж граматично правильно, але наголошує, що хоч трохи усамітнення є. Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have little privacy.**
 - ❌ We have a little privacy. — *Ця форма граматично можлива, але змінює акцент. Дотримуйтеся змісту ситуації.*
-- ❌ We have few privacy. — *Для незлічуваного тут потрібне little, не few.*
+- ❌ We have few privacy. — *Для того, що не рахують поштучно, тут потрібне little, не few.*
 
 ---
 
@@ -67,7 +67,7 @@ privacy — усамітнення, відсутність втручання в
 <!-- interaction_id: en:lesson-17:session-17:i03; family: context_gap_grammar -->
 We have ___ housemates. → **a few** · few · a little
 - few — *Обидві форми граматично можливі; тут потрібен указаний акцент: a few.*
-- a little — *Із людьми у множині використовуйте few.*
+- a little — *Із людьми у формі для кількох використовуйте few.*
 
 **5 · Картка слова — acquaintance**
 <!-- interaction_id: en:lesson-17:session-17:word:acquaintance; family: word_card -->
@@ -87,7 +87,7 @@ We have ___ housemates. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-17:i06; family: context_gap_grammar -->
 We have ___ acquaintances here. → **few** · a few · little
 - a few — *Обидві форми граматично можливі; тут потрібен указаний акцент: few.*
-- little — *Із людьми у множині використовуйте few.*
+- little — *Із людьми у формі для кількох використовуйте few.*
 
 **9 · Картка слова — leisure**
 <!-- interaction_id: en:lesson-17:session-17:word:leisure; family: word_card -->
@@ -107,7 +107,7 @@ We have ___ acquaintances here. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-17:i09; family: context_gap_grammar -->
 We have ___ leisure time. → **a little** · little · a few
 - little — *Обидві форми граматично можливі; тут потрібен указаний акцент: a little.*
-- a few — *Із незлічуваним використовуйте little.*
+- a few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **13 · Картка слова — privacy**
 <!-- interaction_id: en:lesson-17:session-17:word:privacy; family: word_card -->
@@ -127,7 +127,7 @@ We have ___ leisure time. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-17:i12; family: context_gap_grammar -->
 We have ___ privacy. → **little** · a little · few
 - a little — *Обидві форми граматично можливі; тут потрібен указаний акцент: little.*
-- few — *Із незлічуваним використовуйте little.*
+- few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-17:i13; family: speed_match -->

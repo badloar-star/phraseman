@@ -14,7 +14,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We need two tubes of toothpaste.**
-- ❌ We need two tube of toothpaste. — *Після two потрібне tubes у множині.*
+- ❌ We need two tube of toothpaste. — *Після two потрібне tubes у формі для кількох.*
 - ❌ We need two tubes toothpaste. — *Між упаковкою та вмістом потрібне of.*
 
 ---
@@ -23,7 +23,7 @@
 
 ### Два шматки мила
 
-Ви купуєте мило для двох ванних кімнат: по одному шматку в кожну. We need two bars of soap — нам потрібні два шматки мила. Складіть фразу: We need + two bars + of soap. Мило тут незлічуване, тому рахуємо окремі шматки за допомогою bar. Після two використовуємо bars; soap залишається без -s. Of пов'язує одиницю з речовиною.
+Ви купуєте мило для двох ванних кімнат: по одному шматку в кожну. We need two bars of soap — нам потрібні два шматки мила. Складіть фразу: We need + two bars + of soap. Мило тут не рахується поштучно, тому рахуємо окремі шматки за допомогою bar. Після two використовуємо bars; soap залишається без -s. Of пов'язує одиницю з речовиною.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -37,7 +37,7 @@
 
 ### Коробки для сніданків
 
-Ви записали до списку покупок дві коробки пластівців для сімейних сніданків. We need two boxes of cereal — нам потрібні дві коробки пластівців. Після We need поставте two boxes, потім of cereal. Множина box — boxes: до слова на -x додаємо -es. Cereal тут називає вміст коробок, тому не змінюється. Of пов'язує коробки з пластівцями.
+Ви записали до списку покупок дві коробки пластівців для сімейних сніданків. We need two boxes of cereal — нам потрібні дві коробки пластівців. Після We need поставте two boxes, потім of cereal. Форма для кількох box — boxes: до слова на -x додаємо -es. Cereal тут називає вміст коробок, тому не змінюється. Of пов'язує коробки з пластівцями.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -66,8 +66,8 @@
 **4 · Виберіть форму одиниці після two.**
 <!-- interaction_id: en:lesson-17:session-33:i03; family: context_gap_grammar -->
 We need two ___ of toothpaste. → **tubes** · tube · a tube
-- tube — *Після two потрібна форма множини: tubes.*
-- a tube — *Після two не ставимо a; потрібна форма множини.*
+- tube — *Після two потрібна форма для кількох: tubes.*
+- a tube — *Після two не ставимо a; потрібна форма для кількох.*
 
 **5 · Картка слова — bar of soap**
 <!-- interaction_id: en:lesson-17:session-33:word:bar-of-soap; family: word_card -->
@@ -86,8 +86,8 @@ We need two ___ of toothpaste. → **tubes** · tube · a tube
 **8 · Виберіть форму одиниці після two.**
 <!-- interaction_id: en:lesson-17:session-33:i06; family: context_gap_grammar -->
 We need two ___ of soap. → **bars** · bar · a bar
-- bar — *Після two потрібна форма множини: bars.*
-- a bar — *Після two не ставимо a; потрібна форма множини.*
+- bar — *Після two потрібна форма для кількох: bars.*
+- a bar — *Після two не ставимо a; потрібна форма для кількох.*
 
 **9 · Картка слова — roll of toilet paper**
 <!-- interaction_id: en:lesson-17:session-33:word:roll-of-toilet-paper; family: word_card -->
@@ -106,8 +106,8 @@ We need two ___ of soap. → **bars** · bar · a bar
 **12 · Виберіть форму одиниці після two.**
 <!-- interaction_id: en:lesson-17:session-33:i09; family: context_gap_grammar -->
 We need two ___ of toilet paper. → **rolls** · roll · a roll
-- roll — *Після two потрібна форма множини: rolls.*
-- a roll — *Після two не ставимо a; потрібна форма множини.*
+- roll — *Після two потрібна форма для кількох: rolls.*
+- a roll — *Після two не ставимо a; потрібна форма для кількох.*
 
 **13 · Картка слова — box of cereal**
 <!-- interaction_id: en:lesson-17:session-33:word:box-of-cereal; family: word_card -->
@@ -126,8 +126,8 @@ We need two ___ of toilet paper. → **rolls** · roll · a roll
 **16 · Виберіть форму одиниці після two.**
 <!-- interaction_id: en:lesson-17:session-33:i12; family: context_gap_grammar -->
 We need two ___ of cereal. → **boxes** · box · a box
-- box — *Після two потрібна форма множини: boxes.*
-- a box — *Після two не ставимо a; потрібна форма множини.*
+- box — *Після two потрібна форма для кількох: boxes.*
+- a box — *Після two не ставимо a; потрібна форма для кількох.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-17:session-33:i13; family: speed_match -->

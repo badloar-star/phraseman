@@ -9,13 +9,13 @@
 
 ### Повідомити про наявність
 
-train platform — залізнична платформа, місце посадки в поїзд. Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість.
+train platform — залізнична платформа, місце посадки в поїзд. Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There are some train platforms outside.**
 - ❌ There are any train platforms outside. — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- ❌ There are a train platforms outside. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ There are a train platforms outside. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -29,7 +29,7 @@ train platform — залізнична платформа, місце поса�
 
 - ✅ **We don't know any train fares.**
 - ❌ We don't know some train fares. — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ We don't know a train fares. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ We don't know a train fares. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -37,13 +37,13 @@ train platform — залізнична платформа, місце поса�
 
 ### Дізнатися про квиток на тиждень
 
-Ви підійшли до каси й не знаєте, чи продають тут проїзні на тиждень. Do you sell any weekly tickets? — ви продаєте проїзні на тиждень? Почніть із Do you, потім додайте sell і any weekly tickets. Після do дієслово sell залишається в початковій формі. Tickets стоїть у множині. Any підходить для запитання без очікування певної відповіді; some можливе за очікування «так», якого тут немає.
+Ви підійшли до каси й не знаєте, чи продають тут проїзні на тиждень. Do you sell any weekly tickets? — ви продаєте проїзні на тиждень? Почніть із Do you, потім додайте sell і any weekly tickets. Після do дієслово sell залишається в початковій формі. Tickets стоїть у формі для кількох. Any підходить для запитання без очікування певної відповіді; some можливе за очікування «так», якого тут немає.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Do you sell any weekly tickets?**
 - ❌ Do you sell some weekly tickets? — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ Do you sell a weekly tickets? — *A не ставиться перед незлічуваним або множиною.*
+- ❌ Do you sell a weekly tickets? — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -67,7 +67,7 @@ train platform — залізнична платформа, місце поса�
 <!-- interaction_id: en:lesson-17:session-53:i03; family: context_gap_grammar -->
 There are ___ train platforms outside. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **5 · Картка слова — train fare**
 <!-- interaction_id: en:lesson-17:session-53:word:train-fare; family: word_card -->
@@ -87,7 +87,7 @@ There are ___ train platforms outside. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-53:i06; family: context_gap_grammar -->
 We don't know ___ train fares. → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **9 · Картка слова — day ticket**
 <!-- interaction_id: en:lesson-17:session-53:word:day-ticket; family: word_card -->
@@ -107,7 +107,7 @@ We don't know ___ train fares. → **any** · some · a
 <!-- interaction_id: en:lesson-17:session-53:i09; family: context_gap_grammar -->
 We bought ___ day tickets. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **13 · Картка слова — weekly ticket**
 <!-- interaction_id: en:lesson-17:session-53:word:weekly-ticket; family: word_card -->
@@ -127,7 +127,7 @@ We bought ___ day tickets. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-53:i12; family: context_gap_grammar -->
 Do you sell ___ weekly tickets? → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-53:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Кілька є
 
-camp bed — похідна розкладачка. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька розкладачок для гостей є. Camp bed → camp beds.
+camp bed — похідна розкладачка. A few + назва кількох предметів повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька розкладачок для гостей є. Camp bed → camp beds.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have a few camp beds.**
 - ❌ We have few camp beds. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We have a little camp beds. — *Із злічуваним у множині потрібне few.*
+- ❌ We have a little camp beds. — *Із кількома предметами, які можна порахувати, потрібне few.*
 
 ---
 
@@ -23,13 +23,13 @@ camp bed — похідна розкладачка. A few + злічуване �
 
 ### Місце для речей гостей
 
-Ви готуєте дім до приїзду гостей: на полиці залишилося трохи місця для їхніх речей. Storage space — місце для зберігання; тут space незлічуване. Щоб підкреслити, що трохи місця все ж є, складіть фразу: We have + a little + storage space → We have a little storage space. A little ставимо перед назвою того, що є в невеликій кількості. Little без a підкреслювало б нестачу місця.
+Ви готуєте дім до приїзду гостей: на полиці залишилося трохи місця для їхніх речей. Storage space — місце для зберігання; тут space не рахується поштучно. Щоб підкреслити, що трохи місця все ж є, складіть фразу: We have + a little + storage space → We have a little storage space. A little ставимо перед назвою того, що є в невеликій кількості. Little без a підкреслювало б нестачу місця.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have a little storage space.**
 - ❌ We have little storage space. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We have a few storage space. — *Із незлічуваним потрібне little.*
+- ❌ We have a few storage space. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -37,13 +37,13 @@ camp bed — похідна розкладачка. A few + злічуване �
 
 ### Підкреслити малу кількість
 
-floor space — площа підлоги, місце в приміщенні. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Через меблі важко поставити розкладачку. Підкресліть брак місця.
+floor space — площа підлоги, місце в приміщенні. Little без a підкреслює малу кількість того, що не рахують поштучно. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Через меблі важко поставити розкладачку. Підкресліть брак місця.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have little floor space.**
 - ❌ We have a little floor space. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We have few floor space. — *Із незлічуваним потрібне little.*
+- ❌ We have few floor space. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -67,7 +67,7 @@ floor space — площа підлоги, місце в приміщенні. L
 <!-- interaction_id: en:lesson-17:session-19:i03; family: context_gap_grammar -->
 We have ___ camp beds. → **a few** · few · a little
 - few — *Обидві форми граматично можливі, але ситуація потребує акценту: a few.*
-- a little — *Із злічуваним у множині використовуйте few.*
+- a little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **5 · Картка слова — guest room**
 <!-- interaction_id: en:lesson-17:session-19:word:guest-room; family: word_card -->
@@ -87,7 +87,7 @@ We have ___ camp beds. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-19:i06; family: context_gap_grammar -->
 We have ___ guest rooms. → **few** · a few · little
 - a few — *Обидві форми граматично можливі, але ситуація потребує акценту: few.*
-- little — *Із злічуваним у множині використовуйте few.*
+- little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **9 · Картка слова — storage space**
 <!-- interaction_id: en:lesson-17:session-19:word:storage-space; family: word_card -->
@@ -107,7 +107,7 @@ We have ___ guest rooms. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-19:i09; family: context_gap_grammar -->
 We have ___ storage space. → **a little** · little · a few
 - little — *Обидві форми граматично можливі, але ситуація потребує акценту: a little.*
-- a few — *Із незлічуваним використовуйте little.*
+- a few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **13 · Картка слова — floor space**
 <!-- interaction_id: en:lesson-17:session-19:word:floor-space; family: word_card -->
@@ -127,7 +127,7 @@ We have ___ storage space. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-19:i12; family: context_gap_grammar -->
 We have ___ floor space. → **little** · a little · few
 - a little — *Обидві форми граматично можливі, але ситуація потребує акценту: little.*
-- few — *Із незлічуваним використовуйте little.*
+- few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-19:i13; family: speed_match -->

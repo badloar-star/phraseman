@@ -9,13 +9,13 @@
 
 ### Порахувати учасників зустрічі
 
-Ви розставляєте стільці перед зустріччю й запитуєте колегу, скільки учасників записалося. Participant — учасник; окремих людей можна порахувати. Почніть із How many participants, потім додайте do + we + have: How many participants do we have? Після many використовуємо множину participants. Do стоїть перед we, а have залишається в початковій формі.
+Ви розставляєте стільці перед зустріччю й запитуєте колегу, скільки учасників записалося. Participant — учасник; окремих людей можна порахувати. Почніть із How many participants, потім додайте do + we + have: How many participants do we have? Після many використовуємо форму для кількох participants. Do стоїть перед we, а have залишається в початковій формі.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How many participants do we have?**
-- ❌ How much participants do we have? — *participant можна порахувати: many + participants у множині.*
-- ❌ How a many participants do we have? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How much participants do we have? — *participant можна порахувати: many + participants у формі для кількох.*
+- ❌ How a many participants do we have? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Розваги для свята
 
-Ви готуєте невелике свято у дворі й обговорюєте із сусідом, скільки розваг включити до програми. Entertainment — розваги як програма загалом; в англійській це незлічуване слово. Складіть запитання: How much entertainment + do + we + need? → How much entertainment do we need? Much ставимо перед entertainment, потім do, we і need. Окремі ігри тут не рахуємо.
+Ви готуєте невелике свято у дворі й обговорюєте із сусідом, скільки розваг включити до програми. Entertainment — розваги як програма загалом; в англійській це слово, яке не рахують поштучно. Складіть запитання: How much entertainment + do + we + need? → How much entertainment do we need? Much ставимо перед entertainment, потім do, we і need. Окремі ігри тут не рахуємо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much entertainment do we need?**
-- ❌ How many entertainment do we need? — *entertainment у цьому значенні — незлічуване слово: much.*
-- ❌ How a much entertainment do we need? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How many entertainment do we need? — *entertainment у цьому значенні — це не рахують поштучно: much.*
+- ❌ How a much entertainment do we need? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Грошей на свято небагато
 
-На свято у дворі виділили невелику суму, і ви пояснюєте, чому програма буде скромною. Funding — гроші, виділені на справу; слово незлічуване. Складіть речення: We + don't + have + much funding → We don't have much funding. Після don't іде have без змін, а much стоїть перед funding. Фраза повідомляє, що грошей небагато, а не що їх зовсім немає.
+На свято у дворі виділили невелику суму, і ви пояснюєте, чому програма буде скромною. Funding — гроші, виділені на справу; слово не рахується поштучно. Складіть речення: We + don't + have + much funding → We don't have much funding. Після don't іде have без змін, а much стоїть перед funding. Фраза повідомляє, що грошей небагато, а не що їх зовсім немає.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We don't have much funding.**
-- ❌ We don't have many funding. — *funding у цьому значенні — незлічуване слово: much.*
-- ❌ We don't have a much funding. — *Перед many/much тут не ставимо артикль a.*
+- ❌ We don't have many funding. — *funding у цьому значенні — це не рахують поштучно: much.*
+- ❌ We don't have a much funding. — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-13:i03; family: context_gap_grammar -->
 How ___ participants do we have? → **many** · much · a many
-- much — *participant можна порахувати: many + participants у множині.*
+- much — *participant можна порахувати: many + participants у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **5 · Картка слова — sponsor**
@@ -86,7 +86,7 @@ How ___ participants do we have? → **many** · much · a many
 **8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-13:i06; family: context_gap_grammar -->
 We don't have ___ sponsors. → **many** · much · a many
-- much — *sponsor можна порахувати: many + sponsors у множині.*
+- much — *sponsor можна порахувати: many + sponsors у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **9 · Картка слова — entertainment**
@@ -106,7 +106,7 @@ We don't have ___ sponsors. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-13:i09; family: context_gap_grammar -->
 How ___ entertainment do we need? → **much** · many · a much
-- many — *entertainment у цьому значенні — незлічуване слово: much.*
+- many — *entertainment у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — funding**
@@ -126,7 +126,7 @@ How ___ entertainment do we need? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-13:i12; family: context_gap_grammar -->
 We don't have ___ funding. → **much** · many · a much
-- many — *funding у цьому значенні — незлічуване слово: much.*
+- many — *funding у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

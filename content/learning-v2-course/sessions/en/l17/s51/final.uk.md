@@ -9,13 +9,13 @@
 
 ### Кілька все ж є
 
-meter reading — показання лічильника. Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
+meter reading — показання лічильника. Ви записали показання кількох лічильників. Підкресліть, що записи є. Meter reading → meter readings. Із кількома предметами, які можна порахувати, a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We recorded a few meter readings.**
 - ❌ We recorded few meter readings. — *Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість.*
-- ❌ We recorded a little meter readings. — *Із злічуваним у множині потрібне few, не little.*
+- ❌ We recorded a little meter readings. — *Із кількома предметами, які можна порахувати, потрібне few, не little.*
 
 ---
 
@@ -29,7 +29,7 @@ meter reading — показання лічильника. Ви записали
 
 - ✅ **We have few electricity bills.**
 - ❌ We have a few electricity bills. — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- ❌ We have a little electricity bills. — *Із злічуваним у множині потрібне few, не little.*
+- ❌ We have a little electricity bills. — *Із кількома предметами, які можна порахувати, потрібне few, не little.*
 
 ---
 
@@ -37,13 +37,13 @@ meter reading — показання лічильника. Ви записали
 
 ### Зміст залежить від a
 
-gas bill — рахунок за газ. Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills. Із злічуваними у множині a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
+gas bill — рахунок за газ. Більшу частину старих рахунків втрачено. Підкресліть, що їх мало. Gas bill → gas bills. Із кількома предметами, які можна порахувати, a few підкреслює наявність кількох, а few — малу кількість. A few не обов’язково означає, що їх достатньо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have few gas bills.**
 - ❌ We have a few gas bills. — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- ❌ We have a little gas bills. — *Із злічуваним у множині потрібне few, не little.*
+- ❌ We have a little gas bills. — *Із кількома предметами, які можна порахувати, потрібне few, не little.*
 
 ---
 
@@ -67,7 +67,7 @@ gas bill — рахунок за газ. Більшу частину стари�
 <!-- interaction_id: en:lesson-17:session-51:i03; family: context_gap_grammar -->
 We recorded ___ meter readings. → **a few** · few · a little
 - few — *Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **5 · Картка слова — electricity bill**
 <!-- interaction_id: en:lesson-17:session-51:word:electricity-bill; family: word_card -->
@@ -87,7 +87,7 @@ We recorded ___ meter readings. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-51:i06; family: context_gap_grammar -->
 We have ___ electricity bills. → **few** · a few · a little
 - a few — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **9 · Картка слова — water bill**
 <!-- interaction_id: en:lesson-17:session-51:word:water-bill; family: word_card -->
@@ -107,7 +107,7 @@ We have ___ electricity bills. → **few** · a few · a little
 <!-- interaction_id: en:lesson-17:session-51:i09; family: context_gap_grammar -->
 We found ___ water bills. → **a few** · few · a little
 - few — *Обидві форми граматично можливі. Ситуація потребує a few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **13 · Картка слова — gas bill**
 <!-- interaction_id: en:lesson-17:session-51:word:gas-bill; family: word_card -->
@@ -127,7 +127,7 @@ We found ___ water bills. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-51:i12; family: context_gap_grammar -->
 We have ___ gas bills. → **few** · a few · a little
 - a few — *Обидві форми граматично можливі. Ситуація потребує few: a few підкреслює наявність кількох, few — малу кількість.*
-- a little — *Little стосується незлічуваної кількості.*
+- a little — *Little стосується того, що не рахують поштучно.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-17:session-51:i13; family: speed_match -->

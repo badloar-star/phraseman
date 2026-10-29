@@ -9,13 +9,13 @@
 
 ### Назвать найденную обёртку
 
-Вы убираете двор и показываете другу обёртку от конфеты. Назовите предмет: This is a wrapper. Wrapper — одна обёртка, исчисляемое слово. Соберите фразу: This + is + a wrapper. Перед названием одного предмета ставим a: wrapper начинается с согласного звука, хотя первая буква w не произносится.
+Вы убираете двор и показываете другу обёртку от конфеты. Назовите предмет: This is a wrapper. Wrapper — одна обёртка, это считают поштучно. Соберите фразу: This + is + a wrapper. Перед названием одного предмета ставим a: wrapper начинается с согласного звука, хотя первая буква w не произносится.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This is a wrapper.**
 - ❌ This is an wrapper. — *Wrapper начинается с согласного звука: a wrapper; буква w не произносится.*
-- ❌ This is wrapper. — *Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля.*
+- ❌ This is wrapper. — *Здесь нельзя оставлять название одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Два окурка на земле
 
-Во время уборки двора вы замечаете два окурка и сообщаете другу, где они лежат. Cigarette end — окурок; два — two cigarette ends. Соберите предложение: There are + two cigarette ends + on the ground → There are two cigarette ends on the ground. Для двух предметов используем are, а окончание множественного числа добавляем к последнему слову: ends. В конце называем место.
+Во время уборки двора вы замечаете два окурка и сообщаете другу, где они лежат. Cigarette end — окурок; два — two cigarette ends. Соберите предложение: There are + two cigarette ends + on the ground → There are two cigarette ends on the ground. Для двух предметов используем are, а окончание формы для нескольких добавляем к последнему слову: ends. В конце называем место.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There are two cigarette ends on the ground.**
-- ❌ There are two cigarette end on the ground. — *После two нужно множественное cigarette ends.*
+- ❌ There are two cigarette end on the ground. — *После two нужна форма для нескольких: cigarette ends.*
 - ❌ There are a two cigarette ends on the ground. — *Не ставьте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Опасный мусор во дворе
 
-Во дворе лежит мусор с острыми осколками, и вы обращаете на него внимание друга. Litter — брошенный мусор в целом, неисчисляемое слово. Скажите: This litter is dangerous. Порядок: This litter + is + dangerous. This указывает на мусор, is связывает его с признаком dangerous. Мы говорим о мусоре в целом, поэтому используем is, а не are.
+Во дворе лежит мусор с острыми осколками, и вы обращаете на него внимание друга. Litter — брошенный мусор в целом, слово, которое не считают поштучно. Скажите: This litter is dangerous. Порядок: This litter + is + dangerous. This указывает на мусор, is связывает его с признаком dangerous. Мы говорим о мусоре в целом, поэтому используем is, а не are.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This litter is dangerous.**
-- ❌ This litter are dangerous. — *Litter в значении мусора — неисчисляемое слово: is.*
-- ❌ These litters are dangerous. — *В этом значении у слова нет множественного -s.*
+- ❌ This litter are dangerous. — *Litter в значении мусора — это не считают поштучно: is.*
+- ❌ These litters are dangerous. — *В этом значении нет -s для нескольких.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ wrapper. → **a** · an · the two
 **8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-05:i06; family: context_gap_grammar -->
 There are two ___ on the ground. → **cigarette ends** · cigarette end · a cigarette end
-- cigarette end — *После two нужно множественное cigarette ends.*
-- a cigarette end — *После two нужно множественное cigarette ends.*
+- cigarette end — *После two нужна форма для нескольких: cigarette ends.*
+- a cigarette end — *После two нужна форма для нескольких: cigarette ends.*
 
 **9 · Карточка слова — litter**
 <!-- interaction_id: en:lesson-17:session-05:word:litter; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ on the ground. → **cigarette ends** · cigarette end · a ci
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-05:i09; family: context_gap_grammar -->
 This litter ___ dangerous. → **is** · are · am
-- are — *Litter в значении мусора — неисчисляемое слово: is.*
-- am — *Litter в значении мусора — неисчисляемое слово: is.*
+- are — *Litter в значении мусора — это не считают поштучно: is.*
+- am — *Litter в значении мусора — это не считают поштучно: is.*
 
 **13 · Карточка слова — clutter**
 <!-- interaction_id: en:lesson-17:session-05:word:clutter; family: word_card -->
@@ -126,8 +126,8 @@ This litter ___ dangerous. → **is** · are · am
 **16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-05:i12; family: context_gap_grammar -->
 We are clearing ___. → **clutter** · a clutter · clutters
-- a clutter — *Clutter как скопление лишних вещей — без a и без множественного -s.*
-- clutters — *Clutter как скопление лишних вещей — без a и без множественного -s.*
+- a clutter — *Clutter как скопление лишних вещей — без a и без -s для нескольких.*
+- clutters — *Clutter как скопление лишних вещей — без a и без -s для нескольких.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-05:i13; family: speed_match -->

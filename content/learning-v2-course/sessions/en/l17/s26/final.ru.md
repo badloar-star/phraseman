@@ -9,13 +9,13 @@
 
 ### Сообщить о наличии
 
-delivery charge — плата за доставку. В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.
+delivery charge — плата за доставку. В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges. Some ставим перед несколькими предметами или тем, что не считают поштучно, когда сообщаем о некотором количестве.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There are some delivery charges.**
 - ❌ There are any delivery charges. — *В утвердительном сообщении о некотором количестве используем some.*
-- ❌ There are a delivery charges. — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ There are a delivery charges. — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -23,13 +23,13 @@ delivery charge — плата за доставку. В заказах есть
 
 ### Доплат за обслуживание нет
 
-Вы просматриваете итоговый счёт вместе с другом: доплаты за обслуживание не включены. There aren't any service charges — доплат за обслуживание нет. Составьте отрицание: There aren't + any service charges. Charge можно посчитать, поэтому используем charges во множественном числе и aren't. Any подчёркивает, что таких доплат нет совсем, а не только некоторых.
+Вы просматриваете итоговый счёт вместе с другом: доплаты за обслуживание не включены. There aren't any service charges — доплат за обслуживание нет. Составьте отрицание: There aren't + any service charges. Charge можно посчитать, поэтому используем charges в форме для нескольких и aren't. Any подчёркивает, что таких доплат нет совсем, а не только некоторых.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There aren't any service charges.**
 - ❌ There aren't some service charges. — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- ❌ There aren't a service charges. — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ There aren't a service charges. — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -43,7 +43,7 @@ delivery charge — плата за доставку. В заказах есть
 
 - ✅ **Is there any customer service here?**
 - ❌ Is there some customer service here? — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- ❌ Is there a customer service here? — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ Is there a customer service here? — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -67,7 +67,7 @@ delivery charge — плата за доставку. В заказах есть
 <!-- interaction_id: en:lesson-17:session-26:i03; family: context_gap_grammar -->
 There are ___ delivery charges. → **some** · any · a
 - any — *В утвердительном сообщении о некотором количестве используем some.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **5 · Карточка слова — service charge**
 <!-- interaction_id: en:lesson-17:session-26:word:service-charge; family: word_card -->
@@ -87,7 +87,7 @@ There are ___ delivery charges. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-26:i06; family: context_gap_grammar -->
 There aren't ___ service charges. → **any** · some · a
 - some — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **9 · Карточка слова — cashback**
 <!-- interaction_id: en:lesson-17:session-26:word:cashback; family: word_card -->
@@ -107,7 +107,7 @@ There aren't ___ service charges. → **any** · some · a
 <!-- interaction_id: en:lesson-17:session-26:i09; family: context_gap_grammar -->
 You can get ___ cashback. → **some** · any · a
 - any — *В утвердительном сообщении о некотором количестве используем some.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **13 · Карточка слова — customer service**
 <!-- interaction_id: en:lesson-17:session-26:word:customer-service; family: word_card -->
@@ -127,7 +127,7 @@ You can get ___ cashback. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-26:i12; family: context_gap_grammar -->
 Is there ___ customer service here? → **any** · some · a
 - some — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-26:i13; family: speed_match -->

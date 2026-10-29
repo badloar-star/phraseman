@@ -9,13 +9,13 @@
 
 ### Кілька є
 
-compliment — комплімент, приємні слова про людину або її роботу. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments.
+compliment — комплімент, приємні слова про людину або її роботу. A few + назва кількох предметів повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька компліментів усе ж отримали. Compliment → compliments.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We received a few compliments.**
 - ❌ We received few compliments. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We received a little compliments. — *Із злічуваним у множині потрібне few.*
+- ❌ We received a little compliments. — *Із кількома предметами, які можна порахувати, потрібне few.*
 
 ---
 
@@ -23,13 +23,13 @@ compliment — комплімент, приємні слова про людин
 
 ### Похвала за виступ
 
-Після вашого спільного виступу слухачі сказали кілька теплих слів. Ви хочете зазначити, що похвала все ж була. Praise — похвала, незлічуване слово. Складіть речення: We + received + a little praise → We received a little praise. Received повідомляє про те, що ви отримали в минулому, а a little перед praise підкреслює наявність невеликої кількості похвали. Little без a змістило б акцент на її нестачу.
+Після вашого спільного виступу слухачі сказали кілька теплих слів. Ви хочете зазначити, що похвала все ж була. Praise — похвала, слово, яке не рахують поштучно. Складіть речення: We + received + a little praise → We received a little praise. Received повідомляє про те, що ви отримали в минулому, а a little перед praise підкреслює наявність невеликої кількості похвали. Little без a змістило б акцент на її нестачу.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We received a little praise.**
 - ❌ We received little praise. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We received a few praise. — *Із незлічуваним потрібне little.*
+- ❌ We received a few praise. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -37,13 +37,13 @@ compliment — комплімент, приємні слова про людин
 
 ### Підкреслити малу кількість
 
-encouragement — підбадьорення, моральна підтримка. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Вам бракувало підбадьорення. Підкресліть, що підтримки було мало.
+encouragement — підбадьорення, моральна підтримка. Little без a підкреслює малу кількість того, що не рахують поштучно. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Вам бракувало підбадьорення. Підкресліть, що підтримки було мало.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We received little encouragement.**
 - ❌ We received a little encouragement. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We received few encouragement. — *Із незлічуваним потрібне little.*
+- ❌ We received few encouragement. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -67,7 +67,7 @@ encouragement — підбадьорення, моральна підтримк�
 <!-- interaction_id: en:lesson-17:session-18:i03; family: context_gap_grammar -->
 We received ___ compliments. → **a few** · few · a little
 - few — *Обидві форми граматично можливі, але ситуація потребує акценту: a few.*
-- a little — *Із злічуваним у множині використовуйте few.*
+- a little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **5 · Картка слова — suggestion**
 <!-- interaction_id: en:lesson-17:session-18:word:suggestion; family: word_card -->
@@ -87,7 +87,7 @@ We received ___ compliments. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-18:i06; family: context_gap_grammar -->
 We received ___ suggestions. → **few** · a few · little
 - a few — *Обидві форми граматично можливі, але ситуація потребує акценту: few.*
-- little — *Із злічуваним у множині використовуйте few.*
+- little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **9 · Картка слова — praise**
 <!-- interaction_id: en:lesson-17:session-18:word:praise; family: word_card -->
@@ -107,7 +107,7 @@ We received ___ suggestions. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-18:i09; family: context_gap_grammar -->
 We received ___ praise. → **a little** · little · a few
 - little — *Обидві форми граматично можливі, але ситуація потребує акценту: a little.*
-- a few — *Із незлічуваним використовуйте little.*
+- a few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **13 · Картка слова — encouragement**
 <!-- interaction_id: en:lesson-17:session-18:word:encouragement; family: word_card -->
@@ -127,7 +127,7 @@ We received ___ praise. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-18:i12; family: context_gap_grammar -->
 We received ___ encouragement. → **little** · a little · few
 - a little — *Обидві форми граматично можливі, але ситуація потребує акценту: little.*
-- few — *Із незлічуваним використовуйте little.*
+- few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-18:i13; family: speed_match -->

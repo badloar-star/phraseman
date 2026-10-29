@@ -9,13 +9,13 @@
 
 ### Назвати цибулину
 
-Друг допомагає готувати обід і запитує, що за маленька цибулина лежить перед ним. Shallot — цибуля-шалот; одну цибулину можна порахувати. Відповідайте: This is a shallot. Спочатку This указує на предмет, потім is пов'язує його з назвою a shallot. Перед назвою одного злічуваного предмета потрібен артикль; обираємо a, оскільки shallot починається з приголосного звука.
+Друг допомагає готувати обід і запитує, що за маленька цибулина лежить перед ним. Shallot — цибуля-шалот; одну цибулину можна порахувати. Відповідайте: This is a shallot. Спочатку This указує на предмет, потім is пов'язує його з назвою a shallot. Перед назвою одного предмета потрібне a; обираємо a, оскільки shallot починається з приголосного звука.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is a shallot.**
 - ❌ This is an shallot. — *Shallot починається з приголосного звука: a shallot.*
-- ❌ This is shallot. — *Тут не можна залишати злічуваний іменник в однині без a.*
+- ❌ This is shallot. — *Тут не можна залишати назву одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Перець у мисці
 
-Ви перевіряєте миску зі спеціями й говорите другу, що в ній дві горошини перцю. Peppercorn — одна горошина; після two додаємо -s: peppercorns. Складіть речення: There are + two peppercorns + in the bowl → There are two peppercorns in the bowl. There are повідомляє про кілька предметів, а in the bowl наприкінці називає місце. Перед two артикль a не потрібен.
+Ви перевіряєте миску зі спеціями й говорите другу, що в ній дві горошини перцю. Peppercorn — одна горошина; після two додаємо -s: peppercorns. Складіть речення: There are + two peppercorns + in the bowl → There are two peppercorns in the bowl. There are повідомляє про кілька предметів, а in the bowl наприкінці називає місце. Перед two a не потрібен.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There are two peppercorns in the bowl.**
-- ❌ There are two peppercorn in the bowl. — *Після two потрібна множина peppercorns.*
+- ❌ There are two peppercorn in the bowl. — *Після two потрібна форма для кількох: peppercorns.*
 - ❌ There are a two peppercorns in the bowl. — *Не ставте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Суха крупа
 
-Ви показуєте другу булгур перед приготуванням і уточнюєте, що крупа поки суха. Bulgur — булгур, крупа з пшениці; тут це незлічувана назва продукту. Скажіть: This bulgur is dry. Порядок: This bulgur + is + dry. Для крупи загалом використовуємо this та is, а dry описує її стан. Окремих крупинок тут не рахуємо й -s до bulgur не додаємо.
+Ви показуєте другу булгур перед приготуванням і уточнюєте, що крупа поки суха. Bulgur — булгур, крупа з пшениці; тут це назва продукту — її не рахують поштучно. Скажіть: This bulgur is dry. Порядок: This bulgur + is + dry. Для крупи загалом використовуємо this та is, а dry описує її стан. Окремих крупинок тут не рахуємо й -s до bulgur не додаємо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This bulgur is dry.**
-- ❌ This bulgur are dry. — *Bulgur як назва крупи — незлічуване слово: is.*
-- ❌ These bulgurs are dry. — *У цьому значенні слово не має множинного -s.*
+- ❌ This bulgur are dry. — *Bulgur як назва крупи — це не рахують поштучно: is.*
+- ❌ These bulgurs are dry. — *У цьому значенні не має -s для кількох.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ shallot. → **a** · an · the two
 **8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-02:i06; family: context_gap_grammar -->
 There are two ___ in the bowl. → **peppercorns** · peppercorn · a peppercorn
-- peppercorn — *Після two потрібна множина peppercorns.*
-- a peppercorn — *Після two потрібна множина peppercorns.*
+- peppercorn — *Після two потрібна форма для кількох: peppercorns.*
+- a peppercorn — *Після two потрібна форма для кількох: peppercorns.*
 
 **9 · Картка слова — bulgur**
 <!-- interaction_id: en:lesson-17:session-02:word:bulgur; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ in the bowl. → **peppercorns** · peppercorn · a peppercorn
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-02:i09; family: context_gap_grammar -->
 This bulgur ___ dry. → **is** · are · am
-- are — *Bulgur як назва крупи — незлічуване слово: is.*
-- am — *Bulgur як назва крупи — незлічуване слово: is.*
+- are — *Bulgur як назва крупи — це не рахують поштучно: is.*
+- am — *Bulgur як назва крупи — це не рахують поштучно: is.*
 
 **13 · Картка слова — barley**
 <!-- interaction_id: en:lesson-17:session-02:word:barley; family: word_card -->
@@ -126,8 +126,8 @@ This bulgur ___ dry. → **is** · are · am
 **16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-02:i12; family: context_gap_grammar -->
 We need ___. → **barley** · a barley · barleys
-- a barley — *Barley як назва зерна — без a та без множинного -s.*
-- barleys — *Barley як назва зерна — без a та без множинного -s.*
+- a barley — *Barley як назва зерна — без a та без -s для кількох.*
+- barleys — *Barley як назва зерна — без a та без -s для кількох.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-02:i13; family: speed_match -->

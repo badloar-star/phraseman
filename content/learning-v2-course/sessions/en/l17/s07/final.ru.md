@@ -9,13 +9,13 @@
 
 ### Показать саженец
 
-Вы разбираете покупки для сада, и друг спрашивает о маленьком деревце. Назовите его: This is a sapling. Sapling — саженец дерева, один исчисляемый предмет. Фразу собираем так: This + is + a sapling. This указывает на деревце, is связывает его с названием, а a ставим перед sapling, потому что слово начинается с согласного звука.
+Вы разбираете покупки для сада, и друг спрашивает о маленьком деревце. Назовите его: This is a sapling. Sapling — саженец дерева, один предмет, его считают поштучно. Фразу собираем так: This + is + a sapling. This указывает на деревце, is связывает его с названием, а a ставим перед sapling, потому что слово начинается с согласного звука.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This is a sapling.**
 - ❌ This is an sapling. — *Sapling начинается с согласного звука: a sapling.*
-- ❌ This is sapling. — *Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля.*
+- ❌ This is sapling. — *Здесь нельзя оставлять название одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Ящики у двери
 
-Друг ищет купленные контейнеры для растений. Скажите, что два стоят у двери: There are two planters by the door. Planter — контейнер для растений; после two добавляем -s: planters. Начните с There are, затем назовите two planters и место by the door. Are используем для нескольких предметов, артикль a перед two не нужен.
+Друг ищет купленные контейнеры для растений. Скажите, что два стоят у двери: There are two planters by the door. Planter — контейнер для растений; после two добавляем -s: planters. Начните с There are, затем назовите two planters и место by the door. Are используем для нескольких предметов, a перед two не нужен.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There are two planters by the door.**
-- ❌ There are two planter by the door. — *После two нужно множественное planters.*
+- ❌ There are two planter by the door. — *После two нужна форма для нескольких: planters.*
 - ❌ There are a two planters by the door. — *Не ставьте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Чистый гравий для дорожки
 
-Вы показываете другу гравий, который только что промыли для садовой дорожки, и говорите, что он чистый. Gravel здесь — материал в целом, неисчисляемое слово. Соберите фразу: This gravel + is + clean → This gravel is clean. Перед gravel ставим this, после него is, а в конце признак clean. Здесь мы не считаем отдельные камешки, поэтому не используем множественную форму.
+Вы показываете другу гравий, который только что промыли для садовой дорожки, и говорите, что он чистый. Gravel здесь — материал в целом, слово, которое не считают поштучно. Соберите фразу: This gravel + is + clean → This gravel is clean. Перед gravel ставим this, после него is, а в конце признак clean. Здесь мы не считаем отдельные камешки, поэтому не используем множественную форму.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This gravel is clean.**
-- ❌ This gravel are clean. — *Gravel как материал — неисчисляемое слово: is.*
-- ❌ These gravels are clean. — *В этом значении у слова нет множественного -s.*
+- ❌ This gravel are clean. — *Gravel как материал — это не считают поштучно: is.*
+- ❌ These gravels are clean. — *В этом значении нет -s для нескольких.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ sapling. → **a** · an · the two
 **8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-07:i06; family: context_gap_grammar -->
 There are two ___ by the door. → **planters** · planter · a planter
-- planter — *После two нужно множественное planters.*
-- a planter — *После two нужно множественное planters.*
+- planter — *После two нужна форма для нескольких: planters.*
+- a planter — *После two нужна форма для нескольких: planters.*
 
 **9 · Карточка слова — gravel**
 <!-- interaction_id: en:lesson-17:session-07:word:gravel; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ by the door. → **planters** · planter · a planter
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-07:i09; family: context_gap_grammar -->
 This gravel ___ clean. → **is** · are · am
-- are — *Gravel как материал — неисчисляемое слово: is.*
-- am — *Gravel как материал — неисчисляемое слово: is.*
+- are — *Gravel как материал — это не считают поштучно: is.*
+- am — *Gravel как материал — это не считают поштучно: is.*
 
 **13 · Карточка слова — equipment**
 <!-- interaction_id: en:lesson-17:session-07:word:equipment; family: word_card -->
@@ -126,8 +126,8 @@ This gravel ___ clean. → **is** · are · am
 **16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-07:i12; family: context_gap_grammar -->
 We need ___. → **equipment** · an equipment · equipments
-- an equipment — *Equipment — неисчисляемое слово: без an и без множественного -s.*
-- equipments — *Equipment — неисчисляемое слово: без an и без множественного -s.*
+- an equipment — *Equipment — это не считают поштучно: без an и без -s для нескольких.*
+- equipments — *Equipment — это не считают поштучно: без an и без -s для нескольких.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-07:i13; family: speed_match -->

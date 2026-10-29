@@ -9,13 +9,13 @@
 
 ### Трохи все ж є
 
-personal space — особистий простір. Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору. Із незлічуваними a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо.
+personal space — особистий простір. Ви просите певний особистий простір. Підкресліть, що вам потрібно трохи простору. Із тим, що не рахують поштучно, a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I need a little personal space.**
 - ❌ I need little personal space. — *Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- ❌ I need a few personal space. — *Із незлічуваним потрібне little, не few.*
+- ❌ I need a few personal space. — *Із тим, що не рахують поштучно, потрібне little, не few.*
 
 ---
 
@@ -23,13 +23,13 @@ personal space — особистий простір. Ви просите пев
 
 ### Спокою майже немає
 
-Ви чекаєте на важливий дзвінок і постійно хвилюєтеся. Хочете підкреслити, що душевного спокою майже немає: I have little peace of mind. Складіть фразу: I have + little + peace of mind. Peace of mind тут незлічуване, тому використовуємо little, не few. Little без a підкреслює брак; a little в тій самій фразі означало б, що певний спокій усе ж є.
+Ви чекаєте на важливий дзвінок і постійно хвилюєтеся. Хочете підкреслити, що душевного спокою майже немає: I have little peace of mind. Складіть фразу: I have + little + peace of mind. Peace of mind тут не рахується поштучно, тому використовуємо little, не few. Little без a підкреслює брак; a little в тій самій фразі означало б, що певний спокій усе ж є.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have little peace of mind.**
 - ❌ I have a little peace of mind. — *Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- ❌ I have a few peace of mind. — *Із незлічуваним потрібне little, не few.*
+- ❌ I have a few peace of mind. — *Із тим, що не рахують поштучно, потрібне little, не few.*
 
 ---
 
@@ -37,13 +37,13 @@ personal space — особистий простір. Ви просите пев
 
 ### Зміст залежить від a
 
-work-life balance — баланс між роботою й особистим життям. Робота майже не залишає часу на особисте життя. Підкресліть брак балансу. Із незлічуваними a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо.
+work-life balance — баланс між роботою й особистим життям. Робота майже не залишає часу на особисте життя. Підкресліть брак балансу. Із тим, що не рахують поштучно, a little підкреслює наявність певної кількості, а little — малу кількість. A little не обов’язково означає, що цього достатньо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There is little work-life balance here.**
 - ❌ There is a little work-life balance here. — *Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- ❌ There is a few work-life balance here. — *Із незлічуваним потрібне little, не few.*
+- ❌ There is a few work-life balance here. — *Із тим, що не рахують поштучно, потрібне little, не few.*
 
 ---
 
@@ -67,7 +67,7 @@ work-life balance — баланс між роботою й особистим �
 <!-- interaction_id: en:lesson-17:session-55:i03; family: context_gap_grammar -->
 I need ___ personal space. → **a little** · little · a few
 - little — *Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- a few — *Few використовується зі злічуваними у множині.*
+- a few — *Few використовується з кількома предметами, які можна порахувати.*
 
 **5 · Картка слова — peace of mind**
 <!-- interaction_id: en:lesson-17:session-55:word:peace-of-mind; family: word_card -->
@@ -87,7 +87,7 @@ I need ___ personal space. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-55:i06; family: context_gap_grammar -->
 I have ___ peace of mind. → **little** · a little · a few
 - a little — *Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- a few — *Few використовується зі злічуваними у множині.*
+- a few — *Few використовується з кількома предметами, які можна порахувати.*
 
 **9 · Картка слова — quality time**
 <!-- interaction_id: en:lesson-17:session-55:word:quality-time; family: word_card -->
@@ -107,7 +107,7 @@ I have ___ peace of mind. → **little** · a little · a few
 <!-- interaction_id: en:lesson-17:session-55:i09; family: context_gap_grammar -->
 We enjoy ___ quality time. → **a little** · little · a few
 - little — *Обидві форми граматично можливі. Ситуація потребує a little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- a few — *Few використовується зі злічуваними у множині.*
+- a few — *Few використовується з кількома предметами, які можна порахувати.*
 
 **13 · Картка слова — work-life balance**
 <!-- interaction_id: en:lesson-17:session-55:word:work-life-balance; family: word_card -->
@@ -127,7 +127,7 @@ We enjoy ___ quality time. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-55:i12; family: context_gap_grammar -->
 There is ___ work-life balance here. → **little** · a little · a few
 - a little — *Обидві форми граматично можливі. Ситуація потребує little: a little підкреслює наявність певної кількості, little — малу кількість.*
-- a few — *Few використовується зі злічуваними у множині.*
+- a few — *Few використовується з кількома предметами, які можна порахувати.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-17:session-55:i13; family: speed_match -->

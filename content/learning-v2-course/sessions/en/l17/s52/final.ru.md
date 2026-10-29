@@ -9,13 +9,13 @@
 
 ### Несколько всё же есть
 
-departure time — время отправления или вылета. Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
+departure time — время отправления или вылета. Вы проверили несколько вариантов отправления. Подчеркните, что информация есть. Departure time → departure times. С несколькими предметами, которые можно посчитать, a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We checked a few departure times.**
 - ❌ We checked few departure times. — *Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.*
-- ❌ We checked a little departure times. — *С исчисляемым во множественном числе нужно few, не little.*
+- ❌ We checked a little departure times. — *С несколькими предметами, которые можно посчитать, нужно few, не little.*
 
 ---
 
@@ -23,13 +23,13 @@ departure time — время отправления или вылета. Вы �
 
 ### Сведений о прибытии мало
 
-Вы встречаете группу в аэропорту, но время прибытия известно лишь для двух из десяти рейсов. Нужно подчеркнуть нехватку сведений: We know few arrival times — мы знаем время прибытия лишь немногих рейсов. Соберите фразу: We know + few + arrival times. Отдельные времена прибытия можно посчитать, поэтому times стоит во множественном числе, а перед ним — few. Без a подчёркиваем, как мало известно; a few выделило бы то, что некоторые сведения всё же есть.
+Вы встречаете группу в аэропорту, но время прибытия известно лишь для двух из десяти рейсов. Нужно подчеркнуть нехватку сведений: We know few arrival times — мы знаем время прибытия лишь немногих рейсов. Соберите фразу: We know + few + arrival times. Отдельные времена прибытия можно посчитать, поэтому times стоит в форме для нескольких, а перед ним — few. Без a подчёркиваем, как мало известно; a few выделило бы то, что некоторые сведения всё же есть.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We know few arrival times.**
 - ❌ We know a few arrival times. — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- ❌ We know a little arrival times. — *С исчисляемым во множественном числе нужно few, не little.*
+- ❌ We know a little arrival times. — *С несколькими предметами, которые можно посчитать, нужно few, не little.*
 
 ---
 
@@ -37,13 +37,13 @@ departure time — время отправления или вылета. Вы �
 
 ### Смысл зависит от a
 
-booking reference — номер или код бронирования. Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
+booking reference — номер или код бронирования. Нужны данные всех бронирований группы, но собраны лишь немногие. Подчеркните нехватку. Booking reference → booking references. С несколькими предметами, которые можно посчитать, a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have few booking references.**
 - ❌ We have a few booking references. — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- ❌ We have a little booking references. — *С исчисляемым во множественном числе нужно few, не little.*
+- ❌ We have a little booking references. — *С несколькими предметами, которые можно посчитать, нужно few, не little.*
 
 ---
 
@@ -67,7 +67,7 @@ booking reference — номер или код бронирования. Нуж�
 <!-- interaction_id: en:lesson-17:session-52:i03; family: context_gap_grammar -->
 We checked ___ departure times. → **a few** · few · a little
 - few — *Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **5 · Карточка слова — arrival time**
 <!-- interaction_id: en:lesson-17:session-52:word:arrival-time; family: word_card -->
@@ -87,7 +87,7 @@ We checked ___ departure times. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-52:i06; family: context_gap_grammar -->
 We know ___ arrival times. → **few** · a few · a little
 - a few — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **9 · Карточка слова — flight number**
 <!-- interaction_id: en:lesson-17:session-52:word:flight-number; family: word_card -->
@@ -107,7 +107,7 @@ We know ___ arrival times. → **few** · a few · a little
 <!-- interaction_id: en:lesson-17:session-52:i09; family: context_gap_grammar -->
 We saved ___ flight numbers. → **a few** · few · a little
 - few — *Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **13 · Карточка слова — booking reference**
 <!-- interaction_id: en:lesson-17:session-52:word:booking-reference; family: word_card -->
@@ -127,7 +127,7 @@ We saved ___ flight numbers. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-52:i12; family: context_gap_grammar -->
 We have ___ booking references. → **few** · a few · a little
 - a few — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-17:session-52:i13; family: speed_match -->

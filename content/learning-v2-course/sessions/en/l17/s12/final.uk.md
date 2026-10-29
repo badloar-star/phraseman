@@ -9,13 +9,13 @@
 
 ### Навчання в анкеті
 
-Ви допомагаєте другу заповнити анкету для роботи й запитуєте, скільки кваліфікацій він здобув після навчання або іспитів. Qualification тут означає окрему підтверджену кваліфікацію, тому її можна порахувати. Складіть запитання: How many qualifications + do + you + have? → How many qualifications do you have? Many вимагає множини qualifications; після цієї групи ставимо do, you і have.
+Ви допомагаєте другу заповнити анкету для роботи й запитуєте, скільки кваліфікацій він здобув після навчання або іспитів. Qualification тут означає окрему підтверджену кваліфікацію, тому її можна порахувати. Складіть запитання: How many qualifications + do + you + have? → How many qualifications do you have? Many вимагає форми для кількох qualifications; після цієї групи ставимо do, you і have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How many qualifications do you have?**
-- ❌ How much qualifications do you have? — *qualification можна порахувати: many + qualifications у множині.*
-- ❌ How a many qualifications do you have? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How much qualifications do you have? — *qualification можна порахувати: many + qualifications у формі для кількох.*
+- ❌ How a many qualifications do you have? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Знання перед початком курсу
 
-Ви з другом збираєтеся на курс і уточнюєте у викладача, скільки знань потрібно мати заздалегідь. Knowledge — знання; хоча українською тут уживаємо множину, англійське слово незлічуване. Почніть із How much knowledge, потім поставте do + we + need: How much knowledge do we need? Much стосується обсягу знань, а we позначає вас із другом.
+Ви з другом збираєтеся на курс і уточнюєте у викладача, скільки знань потрібно мати заздалегідь. Knowledge — знання; хоча українською тут уживаємо форму для кількох, англійське слово не рахується поштучно. Почніть із How much knowledge, потім поставте do + we + need: How much knowledge do we need? Much стосується обсягу знань, а we позначає вас із другом.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much knowledge do we need?**
-- ❌ How many knowledge do we need? — *knowledge у цьому значенні — незлічуване слово: much.*
-- ❌ How a much knowledge do we need? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How many knowledge do we need? — *knowledge у цьому значенні — це не рахують поштучно: much.*
+- ❌ How a much knowledge do we need? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Потрібно трохи занять
 
-Ви з другом уже опанували основи малювання й хочете лише трохи позайматися з викладачем. Tuition тут — навчання у викладача, а не плата за нього; це незлічуване слово. Скажіть: We don't need much tuition. Порядок такий: We + don't + need + much tuition. Don't перед need робить фразу заперечною, а much перед tuition показує кількість навчання: багато занять вам не потрібно.
+Ви з другом уже опанували основи малювання й хочете лише трохи позайматися з викладачем. Tuition тут — навчання у викладача, а не плата за нього; це слово, яке не рахують поштучно. Скажіть: We don't need much tuition. Порядок такий: We + don't + need + much tuition. Don't перед need робить фразу заперечною, а much перед tuition показує кількість навчання: багато занять вам не потрібно.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We don't need much tuition.**
-- ❌ We don't need many tuition. — *tuition у цьому значенні — незлічуване слово: much.*
-- ❌ We don't need a much tuition. — *Перед many/much тут не ставимо артикль a.*
+- ❌ We don't need many tuition. — *tuition у цьому значенні — це не рахують поштучно: much.*
+- ❌ We don't need a much tuition. — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-12:i03; family: context_gap_grammar -->
 How ___ qualifications do you have? → **many** · much · a many
-- much — *qualification можна порахувати: many + qualifications у множині.*
+- much — *qualification можна порахувати: many + qualifications у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **5 · Картка слова — certificate**
@@ -86,7 +86,7 @@ How ___ qualifications do you have? → **many** · much · a many
 **8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-12:i06; family: context_gap_grammar -->
 We don't have ___ certificates. → **many** · much · a many
-- much — *certificate можна порахувати: many + certificates у множині.*
+- much — *certificate можна порахувати: many + certificates у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **9 · Картка слова — knowledge**
@@ -106,7 +106,7 @@ We don't have ___ certificates. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-12:i09; family: context_gap_grammar -->
 How ___ knowledge do we need? → **much** · many · a much
-- many — *knowledge у цьому значенні — незлічуване слово: much.*
+- many — *knowledge у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — tuition**
@@ -126,7 +126,7 @@ How ___ knowledge do we need? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-12:i12; family: context_gap_grammar -->
 We don't need ___ tuition. → **much** · many · a much
-- many — *tuition у цьому значенні — незлічуване слово: much.*
+- many — *tuition у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

@@ -9,13 +9,13 @@
 
 ### Назвать бытовой прибор
 
-Друг показывает на незнакомый предмет в вашей кухне. Вы объясняете, что это бытовой прибор: This is an appliance. Соберите фразу: This + is + an appliance. Appliance — один исчисляемый предмет, поэтому перед ним нужен артикль. Слово начинается с гласного звука, и мы выбираем an. This указывает на предмет, а is связывает его с названием.
+Друг показывает на незнакомый предмет в вашей кухне. Вы объясняете, что это бытовой прибор: This is an appliance. Соберите фразу: This + is + an appliance. Appliance — один предмет, его считают поштучно, поэтому перед ним нужно a. Слово начинается с гласного звука, и мы выбираем an. This указывает на предмет, а is связывает его с названием.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This is an appliance.**
 - ❌ This is a appliance. — *Appliance начинается с гласного звука: an appliance.*
-- ❌ This is appliance. — *Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля.*
+- ❌ This is appliance. — *Здесь нельзя оставлять название одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Два расчёта на столе
 
-Вы сравниваете стоимость ремонта: два предварительных расчёта лежат на столе. Estimate — один такой расчёт; после two используем множественное estimates. Соберите предложение: There are + two estimates + on the table → There are two estimates on the table. There are вводит несколько предметов, затем называем их количество и в конце место. Перед two артикль a не ставим.
+Вы сравниваете стоимость ремонта: два предварительных расчёта лежат на столе. Estimate — один такой расчёт; после two используем множественное estimates. Соберите предложение: There are + two estimates + on the table → There are two estimates on the table. There are вводит несколько предметов, затем называем их количество и в конце место. Перед two a не ставим.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There are two estimates on the table.**
-- ❌ There are two estimate on the table. — *После two нужно множественное estimates.*
+- ❌ There are two estimate on the table. — *После two нужна форма для нескольких: estimates.*
 - ❌ There are a two estimates on the table. — *Не ставьте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Мокрая упаковка
 
-Вы получили коробку с прибором и показываете другу промокшую упаковку. Packaging здесь означает упаковочный материал в целом и не считается по отдельным предметам. Скажите: This packaging is wet. Порядок: This packaging + is + wet. Используем this и is с неисчисляемым packaging; форму packagings для этого значения не образуем. Wet сообщает, какая упаковка сейчас.
+Вы получили коробку с прибором и показываете другу промокшую упаковку. Packaging здесь означает упаковочный материал в целом и не считается по отдельным предметам. Скажите: This packaging is wet. Порядок: This packaging + is + wet. Используем this и is с packaging — его не считают поштучно; форму packagings для этого значения не образуем. Wet сообщает, какая упаковка сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This packaging is wet.**
-- ❌ This packaging are wet. — *Packaging как упаковочные материалы — неисчисляемое слово: is.*
-- ❌ These packagings are wet. — *В этом значении у слова нет множественного -s.*
+- ❌ This packaging are wet. — *Packaging как упаковочные материалы — это не считают поштучно: is.*
+- ❌ These packagings are wet. — *В этом значении нет -s для нескольких.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ appliance. → **an** · a · the two
 **8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-08:i06; family: context_gap_grammar -->
 There are two ___ on the table. → **estimates** · estimate · an estimate
-- estimate — *После two нужно множественное estimates.*
-- an estimate — *После two нужно множественное estimates.*
+- estimate — *После two нужна форма для нескольких: estimates.*
+- an estimate — *После two нужна форма для нескольких: estimates.*
 
 **9 · Карточка слова — packaging**
 <!-- interaction_id: en:lesson-17:session-08:word:packaging; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ on the table. → **estimates** · estimate · an estimate
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-08:i09; family: context_gap_grammar -->
 This packaging ___ wet. → **is** · are · am
-- are — *Packaging как упаковочные материалы — неисчисляемое слово: is.*
-- am — *Packaging как упаковочные материалы — неисчисляемое слово: is.*
+- are — *Packaging как упаковочные материалы — это не считают поштучно: is.*
+- am — *Packaging как упаковочные материалы — это не считают поштучно: is.*
 
 **13 · Карточка слова — damage**
 <!-- interaction_id: en:lesson-17:session-08:word:damage; family: word_card -->
@@ -126,8 +126,8 @@ This packaging ___ wet. → **is** · are · am
 **16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-08:i12; family: context_gap_grammar -->
 We can see ___. → **damage** · a damage · damages
-- a damage — *Damage в значении повреждения вещей — неисчисляемое: без a и без множественного -s.*
-- damages — *Damage в значении повреждения вещей — неисчисляемое: без a и без множественного -s.*
+- a damage — *Damage в значении повреждения вещей — не считается поштучно: без a и без -s для нескольких.*
+- damages — *Damage в значении повреждения вещей — не считается поштучно: без a и без -s для нескольких.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-08:i13; family: speed_match -->

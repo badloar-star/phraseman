@@ -9,13 +9,13 @@
 
 ### Несколько есть
 
-achievement — достижение, результат усилий. A few + исчисляемое слово во множественном числе сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что некоторые достижения уже есть. Achievement → achievements.
+achievement — достижение, результат усилий. A few + название нескольких предметов сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что некоторые достижения уже есть. Achievement → achievements.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have a few achievements.**
 - ❌ We have few achievements. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ We have a little achievements. — *С исчисляемым во множественном числе нужно few.*
+- ❌ We have a little achievements. — *С несколькими предметами, которые можно посчитать, нужно few.*
 
 ---
 
@@ -23,13 +23,13 @@ achievement — достижение, результат усилий. A few + �
 
 ### Немного смелости всё же нашлось
 
-Вы с другом боялись выступать перед группой, но всё-таки решились выйти к слушателям. We found a little courage — мы нашли в себе немного смелости. Соберите фразу: We found + a little + courage. Courage здесь неисчисляемое, поэтому используем little, не few. A little подчёркивает, что немного смелости всё же нашлось. Без a слово little сместило бы акцент на то, как мало её было.
+Вы с другом боялись выступать перед группой, но всё-таки решились выйти к слушателям. We found a little courage — мы нашли в себе немного смелости. Соберите фразу: We found + a little + courage. Courage здесь не считается поштучно, поэтому используем little, не few. A little подчёркивает, что немного смелости всё же нашлось. Без a слово little сместило бы акцент на то, как мало её было.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We found a little courage.**
 - ❌ We found little courage. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ We found a few courage. — *С неисчисляемым нужно little.*
+- ❌ We found a few courage. — *С тем, что не считают поштучно, нужно little.*
 
 ---
 
@@ -37,13 +37,13 @@ achievement — достижение, результат усилий. A few + �
 
 ### Подчеркнуть малое количество
 
-confidence — уверенность в себе или в успехе. Little без a подчёркивает малое количество неисчисляемого. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности.
+confidence — уверенность в себе или в успехе. Little без a подчёркивает малое количество того, что не считают поштучно. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Вы сомневаетесь в своих силах. Подчеркните нехватку уверенности.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have little confidence.**
 - ❌ We have a little confidence. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ We have few confidence. — *С неисчисляемым нужно little.*
+- ❌ We have few confidence. — *С тем, что не считают поштучно, нужно little.*
 
 ---
 
@@ -67,7 +67,7 @@ confidence — уверенность в себе или в успехе. Little
 <!-- interaction_id: en:lesson-17:session-24:i03; family: context_gap_grammar -->
 We have ___ achievements. → **a few** · few · a little
 - few — *Обе формы грамматически возможны, но ситуация требует акцента: a few.*
-- a little — *С исчисляемым во множественном числе используйте few.*
+- a little — *С несколькими предметами, которые можно посчитать, используйте few.*
 
 **5 · Карточка слова — setback**
 <!-- interaction_id: en:lesson-17:session-24:word:setback; family: word_card -->
@@ -87,7 +87,7 @@ We have ___ achievements. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-24:i06; family: context_gap_grammar -->
 We had ___ setbacks. → **few** · a few · little
 - a few — *Обе формы грамматически возможны, но ситуация требует акцента: few.*
-- little — *С исчисляемым во множественном числе используйте few.*
+- little — *С несколькими предметами, которые можно посчитать, используйте few.*
 
 **9 · Карточка слова — courage**
 <!-- interaction_id: en:lesson-17:session-24:word:courage; family: word_card -->
@@ -107,7 +107,7 @@ We had ___ setbacks. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-24:i09; family: context_gap_grammar -->
 We found ___ courage. → **a little** · little · a few
 - little — *Обе формы грамматически возможны, но ситуация требует акцента: a little.*
-- a few — *С неисчисляемым используйте little.*
+- a few — *С тем, что не считают поштучно, используйте little.*
 
 **13 · Карточка слова — confidence**
 <!-- interaction_id: en:lesson-17:session-24:word:confidence; family: word_card -->
@@ -127,7 +127,7 @@ We found ___ courage. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-24:i12; family: context_gap_grammar -->
 We have ___ confidence. → **little** · a little · few
 - a little — *Обе формы грамматически возможны, но ситуация требует акцента: little.*
-- few — *С неисчисляемым используйте little.*
+- few — *С тем, что не считают поштучно, используйте little.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-24:i13; family: speed_match -->

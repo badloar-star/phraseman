@@ -9,13 +9,13 @@
 
 ### Кілька є
 
-job offer — пропозиція роботи від роботодавця. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька пропозицій уже є. Job offer → job offers.
+job offer — пропозиція роботи від роботодавця. A few + назва кількох предметів повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька пропозицій уже є. Job offer → job offers.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have a few job offers.**
 - ❌ I have few job offers. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ I have a little job offers. — *Із злічуваним у множині потрібне few.*
+- ❌ I have a little job offers. — *Із кількома предметами, які можна порахувати, потрібне few.*
 
 ---
 
@@ -23,13 +23,13 @@ job offer — пропозиція роботи від роботодавця. A
 
 ### Досвід уже є
 
-На співбесіді вас запитують про попередню роботу. Ви працювали лише кілька місяців, але хочете підкреслити, що досвід уже є: I have a little work experience — у мене є невеликий досвід роботи. Складіть речення: I have + a little + work experience. Experience тут незлічуване, тому використовуємо little, не few. A little виділяє наявність досвіду, не стверджуючи, що його достатньо. Little без a підкреслювало б, що досвіду мало.
+На співбесіді вас запитують про попередню роботу. Ви працювали лише кілька місяців, але хочете підкреслити, що досвід уже є: I have a little work experience — у мене є невеликий досвід роботи. Складіть речення: I have + a little + work experience. Experience тут не рахується поштучно, тому використовуємо little, не few. A little виділяє наявність досвіду, не стверджуючи, що його достатньо. Little без a підкреслювало б, що досвіду мало.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have a little work experience.**
 - ❌ I have little work experience. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ I have a few work experience. — *Із незлічуваним потрібне little.*
+- ❌ I have a few work experience. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -37,13 +37,13 @@ job offer — пропозиція роботи від роботодавця. A
 
 ### Підкреслити малу кількість
 
-sick leave — лікарняний, час відсутності на роботі через хворобу. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. У цій ситуації працівник має обмежений запас днів лікарняного. Підкресліть, що залишилося мало.
+sick leave — лікарняний, час відсутності на роботі через хворобу. Little без a підкреслює малу кількість того, що не рахують поштучно. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. У цій ситуації працівник має обмежений запас днів лікарняного. Підкресліть, що залишилося мало.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have little sick leave left.**
 - ❌ I have a little sick leave left. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ I have few sick leave left. — *Із незлічуваним потрібне little.*
+- ❌ I have few sick leave left. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -67,7 +67,7 @@ sick leave — лікарняний, час відсутності на робо
 <!-- interaction_id: en:lesson-17:session-20:i03; family: context_gap_grammar -->
 I have ___ job offers. → **a few** · few · a little
 - few — *Обидві форми граматично можливі, але ситуація потребує акценту: a few.*
-- a little — *Із злічуваним у множині використовуйте few.*
+- a little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **5 · Картка слова — job interview**
 <!-- interaction_id: en:lesson-17:session-20:word:job-interview; family: word_card -->
@@ -87,7 +87,7 @@ I have ___ job offers. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-20:i06; family: context_gap_grammar -->
 I have ___ job interviews this month. → **few** · a few · little
 - a few — *Обидві форми граматично можливі, але ситуація потребує акценту: few.*
-- little — *Із злічуваним у множині використовуйте few.*
+- little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **9 · Картка слова — work experience**
 <!-- interaction_id: en:lesson-17:session-20:word:work-experience; family: word_card -->
@@ -107,7 +107,7 @@ I have ___ job interviews this month. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-20:i09; family: context_gap_grammar -->
 I have ___ work experience. → **a little** · little · a few
 - little — *Обидві форми граматично можливі, але ситуація потребує акценту: a little.*
-- a few — *Із незлічуваним використовуйте little.*
+- a few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **13 · Картка слова — sick leave**
 <!-- interaction_id: en:lesson-17:session-20:word:sick-leave; family: word_card -->
@@ -127,7 +127,7 @@ I have ___ work experience. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-20:i12; family: context_gap_grammar -->
 I have ___ sick leave left. → **little** · a little · few
 - a little — *Обидві форми граматично можливі, але ситуація потребує акценту: little.*
-- few — *Із незлічуваним використовуйте little.*
+- few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-20:i13; family: speed_match -->

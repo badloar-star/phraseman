@@ -9,13 +9,13 @@
 
 ### Сообщить о наличии
 
-discount code — промокод на скидку. Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.
+discount code — промокод на скидку. Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes. Some ставим перед несколькими предметами или тем, что не считают поштучно, когда сообщаем о некотором количестве.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have some discount codes.**
 - ❌ We have any discount codes. — *В утвердительном сообщении о некотором количестве используем some.*
-- ❌ We have a discount codes. — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ We have a discount codes. — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -23,13 +23,13 @@ discount code — промокод на скидку. Несколько про�
 
 ### Цены не повысились
 
-Вы сравнили старый и новый список цен магазина: ни одна цена не стала выше. There aren't any price increases — повышений цен нет. Соберите отрицание: There aren't + any + price increases. Increase можно посчитать, поэтому используем increases во множественном числе и aren't. Any подчёркивает, что повышений нет совсем, а не только у части товаров.
+Вы сравнили старый и новый список цен магазина: ни одна цена не стала выше. There aren't any price increases — повышений цен нет. Соберите отрицание: There aren't + any + price increases. Increase можно посчитать, поэтому используем increases в форме для нескольких и aren't. Any подчёркивает, что повышений нет совсем, а не только у части товаров.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There aren't any price increases.**
 - ❌ There aren't some price increases. — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- ❌ There aren't a price increases. — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ There aren't a price increases. — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -43,7 +43,7 @@ discount code — промокод на скидку. Несколько про�
 
 - ✅ **Do you offer any home delivery?**
 - ❌ Do you offer some home delivery? — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- ❌ Do you offer a home delivery? — *A не ставится перед неисчисляемым или множественным числом.*
+- ❌ Do you offer a home delivery? — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 ---
 
@@ -67,7 +67,7 @@ discount code — промокод на скидку. Несколько про�
 <!-- interaction_id: en:lesson-17:session-31:i03; family: context_gap_grammar -->
 We have ___ discount codes. → **some** · any · a
 - any — *В утвердительном сообщении о некотором количестве используем some.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **5 · Карточка слова — price increase**
 <!-- interaction_id: en:lesson-17:session-31:word:price-increase; family: word_card -->
@@ -87,7 +87,7 @@ We have ___ discount codes. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-31:i06; family: context_gap_grammar -->
 There aren't ___ price increases. → **any** · some · a
 - some — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **9 · Карточка слова — store credit**
 <!-- interaction_id: en:lesson-17:session-31:word:store-credit; family: word_card -->
@@ -107,7 +107,7 @@ There aren't ___ price increases. → **any** · some · a
 <!-- interaction_id: en:lesson-17:session-31:i09; family: context_gap_grammar -->
 I have ___ store credit. → **some** · any · a
 - any — *В утвердительном сообщении о некотором количестве используем some.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **13 · Карточка слова — home delivery**
 <!-- interaction_id: en:lesson-17:session-31:word:home-delivery; family: word_card -->
@@ -127,7 +127,7 @@ I have ___ store credit. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-31:i12; family: context_gap_grammar -->
 Do you offer ___ home delivery? → **any** · some · a
 - some — *Здесь требуется полное отрицание или нейтральный вопрос о наличии: any. Some в вопросе возможно при другом ожидании говорящего, но здесь этого смысла нет.*
-- a — *A не ставится перед неисчисляемым или множественным числом.*
+- a — *A не ставится, если это не считают поштучно или предметов несколько.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-31:i13; family: speed_match -->

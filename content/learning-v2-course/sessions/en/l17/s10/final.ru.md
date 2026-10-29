@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How many assignments do we have?**
-- ❌ How much assignments do we have? — *assignment можно посчитать: many + assignments во множественном числе.*
-- ❌ How a many assignments do we have? — *Перед many/much здесь не ставим артикль a.*
+- ❌ How much assignments do we have? — *assignment можно посчитать: many + assignments в форме для нескольких.*
+- ❌ How a many assignments do we have? — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Объём работы на курсе
 
-Перед началом курса вы с одногруппником уточняете у преподавателя общий объём учебной работы. Coursework — работы, выполняемые в течение курса; английское слово неисчисляемое. Спросите: How much coursework do we have? Сначала ставим How much coursework, затем do + we + have. Much относится ко всему объёму работы; отдельные задания в этом вопросе не считаем.
+Перед началом курса вы с одногруппником уточняете у преподавателя общий объём учебной работы. Coursework — работы, выполняемые в течение курса; английское слово не считается поштучно. Спросите: How much coursework do we have? Сначала ставим How much coursework, затем do + we + have. Much относится ко всему объёму работы; отдельные задания в этом вопросе не считаем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How much coursework do we have?**
-- ❌ How many coursework do we have? — *coursework в этом значении — неисчисляемое слово: much.*
-- ❌ How a much coursework do we have? — *Перед many/much здесь не ставим артикль a.*
+- ❌ How many coursework do we have? — *coursework в этом значении — это не считают поштучно: much.*
+- ❌ How a much coursework do we have? — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Материал уже знаком
 
-Вы с другом хорошо помните материал перед проверкой и хотите сказать, что повторять придётся немного. Revision — повторение учебного материала; здесь это неисчисляемое слово. Соберите предложение: We + don't + need + much revision → We don't need much revision. Don't ставим перед need, а much перед revision. Это означает, что большого объёма повторения не требуется, а не что повторять совсем не нужно.
+Вы с другом хорошо помните материал перед проверкой и хотите сказать, что повторять придётся немного. Revision — повторение учебного материала; здесь это слово, которое не считают поштучно. Соберите предложение: We + don't + need + much revision → We don't need much revision. Don't ставим перед need, а much перед revision. Это означает, что большого объёма повторения не требуется, а не что повторять совсем не нужно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We don't need much revision.**
-- ❌ We don't need many revision. — *revision в этом значении — неисчисляемое слово: much.*
-- ❌ We don't need a much revision. — *Перед many/much здесь не ставим артикль a.*
+- ❌ We don't need many revision. — *revision в этом значении — это не считают поштучно: much.*
+- ❌ We don't need a much revision. — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-10:i03; family: context_gap_grammar -->
 How ___ assignments do we have? → **many** · much · a many
-- much — *assignment можно посчитать: many + assignments во множественном числе.*
+- much — *assignment можно посчитать: many + assignments в форме для нескольких.*
 - a many — *Перед many/much здесь не нужен a.*
 
 **5 · Карточка слова — worksheet**
@@ -86,7 +86,7 @@ How ___ assignments do we have? → **many** · much · a many
 **8 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-10:i06; family: context_gap_grammar -->
 We don't have ___ worksheets. → **many** · much · a many
-- much — *worksheet можно посчитать: many + worksheets во множественном числе.*
+- much — *worksheet можно посчитать: many + worksheets в форме для нескольких.*
 - a many — *Перед many/much здесь не нужен a.*
 
 **9 · Карточка слова — coursework**
@@ -106,7 +106,7 @@ We don't have ___ worksheets. → **many** · much · a many
 **12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-10:i09; family: context_gap_grammar -->
 How ___ coursework do we have? → **much** · many · a much
-- many — *coursework в этом значении — неисчисляемое слово: much.*
+- many — *coursework в этом значении — это не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **13 · Карточка слова — revision**
@@ -126,7 +126,7 @@ How ___ coursework do we have? → **much** · many · a much
 **16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-10:i12; family: context_gap_grammar -->
 We don't need ___ revision. → **much** · many · a much
-- many — *revision в этом значении — неисчисляемое слово: much.*
+- many — *revision в этом значении — это не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **17 · Соедините слова с переводом**

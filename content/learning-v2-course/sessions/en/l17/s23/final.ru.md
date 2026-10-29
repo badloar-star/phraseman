@@ -9,13 +9,13 @@
 
 ### Несколько есть
 
-kind word — доброе, поддерживающее слово. A few + исчисляемое слово во множественном числе сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words.
+kind word — доброе, поддерживающее слово. A few + название нескольких предметов сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We heard a few kind words.**
 - ❌ We heard few kind words. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ We heard a little kind words. — *С исчисляемым во множественном числе нужно few.*
+- ❌ We heard a little kind words. — *С несколькими предметами, которые можно посчитать, нужно few.*
 
 ---
 
@@ -23,13 +23,13 @@ kind word — доброе, поддерживающее слово. A few + и�
 
 ### Немного доброты всё же было
 
-Новая соседка обычно держалась в стороне, но сегодня помогла вам донести сумку. Вы хотите отметить, что немного доброты она всё же проявила: She showed a little kindness. Соберите предложение: She showed + a little + kindness. Kindness здесь неисчисляемое, поэтому используем little, не few. A little подчёркивает наличие доброты в её поступке. Little без a сместило бы акцент на то, как мало доброты было.
+Новая соседка обычно держалась в стороне, но сегодня помогла вам донести сумку. Вы хотите отметить, что немного доброты она всё же проявила: She showed a little kindness. Соберите предложение: She showed + a little + kindness. Kindness здесь не считается поштучно, поэтому используем little, не few. A little подчёркивает наличие доброты в её поступке. Little без a сместило бы акцент на то, как мало доброты было.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She showed a little kindness.**
 - ❌ She showed little kindness. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ She showed a few kindness. — *С неисчисляемым нужно little.*
+- ❌ She showed a few kindness. — *С тем, что не считают поштучно, нужно little.*
 
 ---
 
@@ -37,13 +37,13 @@ kind word — доброе, поддерживающее слово. A few + и�
 
 ### Подчеркнуть малое количество
 
-patience — терпение. Little без a подчёркивает малое количество неисчисляемого. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Она быстро раздражалась. Подчеркните нехватку терпения.
+patience — терпение. Little без a подчёркивает малое количество того, что не считают поштучно. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Она быстро раздражалась. Подчеркните нехватку терпения.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She showed little patience.**
 - ❌ She showed a little patience. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ She showed few patience. — *С неисчисляемым нужно little.*
+- ❌ She showed few patience. — *С тем, что не считают поштучно, нужно little.*
 
 ---
 
@@ -67,7 +67,7 @@ patience — терпение. Little без a подчёркивает мало
 <!-- interaction_id: en:lesson-17:session-23:i03; family: context_gap_grammar -->
 We heard ___ kind words. → **a few** · few · a little
 - few — *Обе формы грамматически возможны, но ситуация требует акцента: a few.*
-- a little — *С исчисляемым во множественном числе используйте few.*
+- a little — *С несколькими предметами, которые можно посчитать, используйте few.*
 
 **5 · Карточка слова — thank-you note**
 <!-- interaction_id: en:lesson-17:session-23:word:thank-you-note; family: word_card -->
@@ -87,7 +87,7 @@ We heard ___ kind words. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-23:i06; family: context_gap_grammar -->
 We received ___ thank-you notes. → **few** · a few · little
 - a few — *Обе формы грамматически возможны, но ситуация требует акцента: few.*
-- little — *С исчисляемым во множественном числе используйте few.*
+- little — *С несколькими предметами, которые можно посчитать, используйте few.*
 
 **9 · Карточка слова — kindness**
 <!-- interaction_id: en:lesson-17:session-23:word:kindness; family: word_card -->
@@ -107,7 +107,7 @@ We received ___ thank-you notes. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-23:i09; family: context_gap_grammar -->
 She showed ___ kindness. → **a little** · little · a few
 - little — *Обе формы грамматически возможны, но ситуация требует акцента: a little.*
-- a few — *С неисчисляемым используйте little.*
+- a few — *С тем, что не считают поштучно, используйте little.*
 
 **13 · Карточка слова — patience**
 <!-- interaction_id: en:lesson-17:session-23:word:patience; family: word_card -->
@@ -127,7 +127,7 @@ She showed ___ kindness. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-23:i12; family: context_gap_grammar -->
 She showed ___ patience. → **little** · a little · few
 - a little — *Обе формы грамматически возможны, но ситуация требует акцента: little.*
-- few — *С неисчисляемым используйте little.*
+- few — *С тем, что не считают поштучно, используйте little.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-23:i13; family: speed_match -->

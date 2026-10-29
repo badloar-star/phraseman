@@ -9,13 +9,13 @@
 
 ### Забрать посылку
 
-Вы объясняете другу пункт своего списка: нужно сходить за посылкой. Это небольшое дело вне дома — an errand. Назовите такой пункт: This is an errand. Порядок: This + is + an errand. Errand — одно исчисляемое дело, поэтому перед ним нужен артикль. Выбираем an, потому что errand начинается с гласного звука.
+Вы объясняете другу пункт своего списка: нужно сходить за посылкой. Это небольшое дело вне дома — an errand. Назовите такой пункт: This is an errand. Порядок: This + is + an errand. Errand — одно дело, его считают поштучно, поэтому перед ним нужно a. Выбираем an, потому что errand начинается с гласного звука.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This is an errand.**
 - ❌ This is a errand. — *Errand начинается с гласного звука: an errand.*
-- ❌ This is errand. — *Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля.*
+- ❌ This is errand. — *Здесь нельзя оставлять название одного предмета без a.*
 
 ---
 
@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There are two replacements in the shop.**
-- ❌ There are two replacement in the shop. — *После two нужно множественное replacements.*
+- ❌ There are two replacement in the shop. — *После two нужна форма для нескольких: replacements.*
 - ❌ There are a two replacements in the shop. — *Не ставьте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Устать от домашних дел
 
-Вы долго убираете квартиру и говорите другу, что эта работа утомляет. Housework — работа по дому в целом, неисчисляемое слово. Скажите: This housework is tiring. Порядок: This housework + is + tiring. Используем this и is, хотя по-русски говорим «домашние дела». Английское housework не получает -s в этом значении; tiring описывает работу, которая утомляет.
+Вы долго убираете квартиру и говорите другу, что эта работа утомляет. Housework — работа по дому в целом, слово, которое не считают поштучно. Скажите: This housework is tiring. Порядок: This housework + is + tiring. Используем this и is, хотя по-русски говорим «домашние дела». Английское housework не получает -s в этом значении; tiring описывает работу, которая утомляет.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This housework is tiring.**
-- ❌ This housework are tiring. — *Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.*
-- ❌ These houseworks are tiring. — *В этом значении у слова нет множественного -s.*
+- ❌ This housework are tiring. — *Housework — это не считают поштучно: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет -s для нескольких.*
+- ❌ These houseworks are tiring. — *В этом значении нет -s для нескольких.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ errand. → **an** · a · the two
 **8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-06:i06; family: context_gap_grammar -->
 There are two ___ in the shop. → **replacements** · replacement · a replacement
-- replacement — *После two нужно множественное replacements.*
-- a replacement — *После two нужно множественное replacements.*
+- replacement — *После two нужна форма для нескольких: replacements.*
+- a replacement — *После two нужна форма для нескольких: replacements.*
 
 **9 · Карточка слова — housework**
 <!-- interaction_id: en:lesson-17:session-06:word:housework; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ in the shop. → **replacements** · replacement · a replacem
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-06:i09; family: context_gap_grammar -->
 This housework ___ tiring. → **is** · are · am
-- are — *Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.*
-- am — *Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.*
+- are — *Housework — это не считают поштучно: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет -s для нескольких.*
+- am — *Housework — это не считают поштучно: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет -s для нескольких.*
 
 **13 · Карточка слова — public transport**
 <!-- interaction_id: en:lesson-17:session-06:word:public-transport; family: word_card -->
@@ -126,8 +126,8 @@ This housework ___ tiring. → **is** · are · am
 **16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-06:i12; family: context_gap_grammar -->
 We use ___. → **public transport** · a public transport · public transports
-- a public transport — *Public transport — общее неисчисляемое название: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.*
-- public transports — *Public transport — общее неисчисляемое название: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.*
+- a public transport — *Public transport — общее название, его не считают поштучно: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.*
+- public transports — *Public transport — общее название, его не считают поштучно: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-06:i13; family: speed_match -->

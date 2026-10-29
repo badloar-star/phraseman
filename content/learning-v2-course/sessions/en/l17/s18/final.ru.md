@@ -9,13 +9,13 @@
 
 ### Несколько есть
 
-compliment — комплимент, приятные слова о человеке или его работе. A few + исчисляемое слово во множественном числе сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments.
+compliment — комплимент, приятные слова о человеке или его работе. A few + название нескольких предметов сообщает, что несколько есть. Few без a подчёркивает малое количество. Подчеркните, что несколько комплиментов всё же получили. Compliment → compliments.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We received a few compliments.**
 - ❌ We received few compliments. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ We received a little compliments. — *С исчисляемым во множественном числе нужно few.*
+- ❌ We received a little compliments. — *С несколькими предметами, которые можно посчитать, нужно few.*
 
 ---
 
@@ -23,13 +23,13 @@ compliment — комплимент, приятные слова о челове
 
 ### Похвала за выступление
 
-После вашего совместного выступления слушатели сказали несколько тёплых слов. Вы хотите отметить, что похвала всё же была. Praise — похвала, неисчисляемое слово. Соберите предложение: We + received + a little praise → We received a little praise. Received сообщает о том, что вы получили в прошлом, а a little перед praise подчёркивает наличие небольшого количества похвалы. Little без a сместило бы акцент на её нехватку.
+После вашего совместного выступления слушатели сказали несколько тёплых слов. Вы хотите отметить, что похвала всё же была. Praise — похвала, слово, которое не считают поштучно. Соберите предложение: We + received + a little praise → We received a little praise. Received сообщает о том, что вы получили в прошлом, а a little перед praise подчёркивает наличие небольшого количества похвалы. Little без a сместило бы акцент на её нехватку.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We received a little praise.**
 - ❌ We received little praise. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ We received a few praise. — *С неисчисляемым нужно little.*
+- ❌ We received a few praise. — *С тем, что не считают поштучно, нужно little.*
 
 ---
 
@@ -37,13 +37,13 @@ compliment — комплимент, приятные слова о челове
 
 ### Подчеркнуть малое количество
 
-encouragement — ободрение, моральная поддержка. Little без a подчёркивает малое количество неисчисляемого. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Вам не хватило ободрения. Подчеркните, что поддержки было мало.
+encouragement — ободрение, моральная поддержка. Little без a подчёркивает малое количество того, что не считают поштучно. Это может радовать или огорчать: оценка зависит от ситуации. A little тоже грамматически возможно, но подчёркивает, что некоторое количество есть. Вам не хватило ободрения. Подчеркните, что поддержки было мало.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We received little encouragement.**
 - ❌ We received a little encouragement. — *Форма грамматически возможна, но меняет акцент. Здесь нужен смысл из ситуации.*
-- ❌ We received few encouragement. — *С неисчисляемым нужно little.*
+- ❌ We received few encouragement. — *С тем, что не считают поштучно, нужно little.*
 
 ---
 
@@ -67,7 +67,7 @@ encouragement — ободрение, моральная поддержка. Lit
 <!-- interaction_id: en:lesson-17:session-18:i03; family: context_gap_grammar -->
 We received ___ compliments. → **a few** · few · a little
 - few — *Обе формы грамматически возможны, но ситуация требует акцента: a few.*
-- a little — *С исчисляемым во множественном числе используйте few.*
+- a little — *С несколькими предметами, которые можно посчитать, используйте few.*
 
 **5 · Карточка слова — suggestion**
 <!-- interaction_id: en:lesson-17:session-18:word:suggestion; family: word_card -->
@@ -87,7 +87,7 @@ We received ___ compliments. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-18:i06; family: context_gap_grammar -->
 We received ___ suggestions. → **few** · a few · little
 - a few — *Обе формы грамматически возможны, но ситуация требует акцента: few.*
-- little — *С исчисляемым во множественном числе используйте few.*
+- little — *С несколькими предметами, которые можно посчитать, используйте few.*
 
 **9 · Карточка слова — praise**
 <!-- interaction_id: en:lesson-17:session-18:word:praise; family: word_card -->
@@ -107,7 +107,7 @@ We received ___ suggestions. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-18:i09; family: context_gap_grammar -->
 We received ___ praise. → **a little** · little · a few
 - little — *Обе формы грамматически возможны, но ситуация требует акцента: a little.*
-- a few — *С неисчисляемым используйте little.*
+- a few — *С тем, что не считают поштучно, используйте little.*
 
 **13 · Карточка слова — encouragement**
 <!-- interaction_id: en:lesson-17:session-18:word:encouragement; family: word_card -->
@@ -127,7 +127,7 @@ We received ___ praise. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-18:i12; family: context_gap_grammar -->
 We received ___ encouragement. → **little** · a little · few
 - a little — *Обе формы грамматически возможны, но ситуация требует акцента: little.*
-- few — *С неисчисляемым используйте little.*
+- few — *С тем, что не считают поштучно, используйте little.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-18:i13; family: speed_match -->

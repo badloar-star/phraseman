@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How many lodgers do you have?**
-- ❌ How much lodgers do you have? — *lodger можно посчитать: many + lodgers во множественном числе.*
-- ❌ How a many lodgers do you have? — *Перед many/much здесь не ставим артикль a.*
+- ❌ How much lodgers do you have? — *lodger можно посчитать: many + lodgers в форме для нескольких.*
+- ❌ How a many lodgers do you have? — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Жильё для поездки
 
-Вы организуете общую поездку и уточняете у друга, сколько жилья нужно для всей группы. Accommodation — жильё, место для проживания; здесь слово неисчисляемое. Соберите вопрос: How much accommodation + do + we + need? → How much accommodation do we need? Much ставим перед accommodation; затем идут do, we и need. Здесь спрашиваем о необходимом объёме жилья, не называя число отдельных комнат.
+Вы организуете общую поездку и уточняете у друга, сколько жилья нужно для всей группы. Accommodation — жильё, место для проживания; здесь слово не считается поштучно. Соберите вопрос: How much accommodation + do + we + need? → How much accommodation do we need? Much ставим перед accommodation; затем идут do, we и need. Здесь спрашиваем о необходимом объёме жилья, не называя число отдельных комнат.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **How much accommodation do we need?**
-- ❌ How many accommodation do we need? — *accommodation в этом значении — неисчисляемое слово: much.*
-- ❌ How a much accommodation do we need? — *Перед many/much здесь не ставим артикль a.*
+- ❌ How many accommodation do we need? — *accommodation в этом значении — это не считают поштучно: much.*
+- ❌ How a much accommodation do we need? — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Уход за новым домом
 
-Вы рассказываете другу о недавно отремонтированном доме: большого ухода он пока не требует. Maintenance — обслуживание и уход; здесь слово неисчисляемое. Соберите фразу: The house + doesn't + need + much maintenance → The house doesn't need much maintenance. Для одного дома используем doesn't, а после него need без -s. Much перед maintenance вместе с отрицанием означает «не требует много ухода».
+Вы рассказываете другу о недавно отремонтированном доме: большого ухода он пока не требует. Maintenance — обслуживание и уход; здесь слово не считается поштучно. Соберите фразу: The house + doesn't + need + much maintenance → The house doesn't need much maintenance. Для одного дома используем doesn't, а после него need без -s. Much перед maintenance вместе с отрицанием означает «не требует много ухода».
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The house doesn't need much maintenance.**
-- ❌ The house doesn't need many maintenance. — *maintenance в этом значении — неисчисляемое слово: much.*
-- ❌ The house doesn't need a much maintenance. — *Перед many/much здесь не ставим артикль a.*
+- ❌ The house doesn't need many maintenance. — *maintenance в этом значении — это не считают поштучно: much.*
+- ❌ The house doesn't need a much maintenance. — *Перед many/much здесь не ставим a.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-14:i03; family: context_gap_grammar -->
 How ___ lodgers do you have? → **many** · much · a many
-- much — *lodger можно посчитать: many + lodgers во множественном числе.*
+- much — *lodger можно посчитать: many + lodgers в форме для нескольких.*
 - a many — *Перед many/much здесь не нужен a.*
 
 **5 · Карточка слова — landlady**
@@ -86,7 +86,7 @@ How ___ lodgers do you have? → **many** · much · a many
 **8 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-14:i06; family: context_gap_grammar -->
 We don't know ___ landladies. → **many** · much · a many
-- much — *landlady можно посчитать: many + landladies во множественном числе.*
+- much — *landlady можно посчитать: many + landladies в форме для нескольких.*
 - a many — *Перед many/much здесь не нужен a.*
 
 **9 · Карточка слова — accommodation**
@@ -106,7 +106,7 @@ We don't know ___ landladies. → **many** · much · a many
 **12 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-14:i09; family: context_gap_grammar -->
 How ___ accommodation do we need? → **much** · many · a much
-- many — *accommodation в этом значении — неисчисляемое слово: much.*
+- many — *accommodation в этом значении — это не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **13 · Карточка слова — maintenance**
@@ -126,7 +126,7 @@ How ___ accommodation do we need? → **much** · many · a much
 **16 · Выберите many — то, что считают поштучно, или much — то, что не считают.**
 <!-- interaction_id: en:lesson-17:session-14:i12; family: context_gap_grammar -->
 The house doesn't need ___ maintenance. → **much** · many · a much
-- many — *maintenance в этом значении — неисчисляемое слово: much.*
+- many — *maintenance в этом значении — это не считают поштучно: much.*
 - a much — *Перед many/much здесь не нужен a.*
 
 **17 · Соедините слова с переводом**

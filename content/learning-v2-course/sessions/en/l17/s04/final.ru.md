@@ -9,13 +9,13 @@
 
 ### Кто пришёл на собеседование
 
-Вы показываете коллеге женщину, которая пришла устраиваться на работу, и объясняете, кто она. Candidate — кандидат на место. Скажите: She is a candidate. Порядок: She + is + a candidate. She обозначает женщину, is связывает её с названием роли. Candidate — один исчисляемый человек; перед словом с согласным звуком ставим a.
+Вы показываете коллеге женщину, которая пришла устраиваться на работу, и объясняете, кто она. Candidate — кандидат на место. Скажите: She is a candidate. Порядок: She + is + a candidate. She обозначает женщину, is связывает её с названием роли. Candidate — один человек; перед словом с согласным звуком ставим a.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She is a candidate.**
 - ❌ She is an candidate. — *Candidate начинается с согласного звука: a candidate.*
-- ❌ She is candidate. — *Здесь нельзя оставлять исчисляемое существительное в единственном числе без a.*
+- ❌ She is candidate. — *Здесь нельзя оставлять название одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Свободные места в магазине
 
-Вы увидели объявление о двух свободных рабочих местах и рассказываете об этом другу. Vacancy — вакансия; во множественном числе y заменяем на ies: vacancies. Соберите фразу: There are + two vacancies + in this shop → There are two vacancies in this shop. There are сообщает о наличии нескольких мест, two vacancies называет их количество, а in this shop — где они есть.
+Вы увидели объявление о двух свободных рабочих местах и рассказываете об этом другу. Vacancy — вакансия; в форме для нескольких y заменяем на ies: vacancies. Соберите фразу: There are + two vacancies + in this shop → There are two vacancies in this shop. There are сообщает о наличии нескольких мест, two vacancies называет их количество, а in this shop — где они есть.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There are two vacancies in this shop.**
-- ❌ There are two vacancy in this shop. — *У vacancy во множественном числе y меняется на ies: vacancies.*
+- ❌ There are two vacancy in this shop. — *У vacancy в форме для нескольких y меняется на ies: vacancies.*
 - ❌ There are a two vacancies in this shop. — *Не ставьте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Важное оформление документов
 
-Перед выходом на новую работу вы заполняете обязательные документы и объясняете другу важность этой работы. Paperwork — оформление бумаг в целом, неисчисляемое слово. Соберите предложение: This paperwork + is + important → This paperwork is important. Используем this и is, хотя отдельных бумаг может быть несколько. Important в конце сообщает, какой является эта работа; множественную форму paperworks здесь не образуем.
+Перед выходом на новую работу вы заполняете обязательные документы и объясняете другу важность этой работы. Paperwork — оформление бумаг в целом, слово, которое не считают поштучно. Соберите предложение: This paperwork + is + important → This paperwork is important. Используем this и is, хотя отдельных бумаг может быть несколько. Important в конце сообщает, какой является эта работа; множественную форму paperworks здесь не образуем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This paperwork is important.**
-- ❌ This paperwork are important. — *Paperwork — неисчисляемое слово: is, не are.*
-- ❌ These paperworks are important. — *В этом значении у слова нет множественного -s.*
+- ❌ This paperwork are important. — *Paperwork — это не считают поштучно: is, не are.*
+- ❌ These paperworks are important. — *В этом значении нет -s для нескольких.*
 
 ---
 
@@ -86,8 +86,8 @@ She is ___ candidate. → **a** · an · the two
 **8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-04:i06; family: context_gap_grammar -->
 There are two ___ in this shop. → **vacancies** · vacancy · a vacancy
-- vacancy — *У vacancy во множественном числе y меняется на ies: vacancies.*
-- a vacancy — *У vacancy во множественном числе y меняется на ies: vacancies.*
+- vacancy — *У vacancy в форме для нескольких y меняется на ies: vacancies.*
+- a vacancy — *У vacancy в форме для нескольких y меняется на ies: vacancies.*
 
 **9 · Карточка слова — paperwork**
 <!-- interaction_id: en:lesson-17:session-04:word:paperwork; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ in this shop. → **vacancies** · vacancy · a vacancy
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-04:i09; family: context_gap_grammar -->
 This paperwork ___ important. → **is** · are · am
-- are — *Paperwork — неисчисляемое слово: is, не are.*
-- am — *Paperwork — неисчисляемое слово: is, не are.*
+- are — *Paperwork — это не считают поштучно: is, не are.*
+- am — *Paperwork — это не считают поштучно: is, не are.*
 
 **13 · Карточка слова — training**
 <!-- interaction_id: en:lesson-17:session-04:word:training; family: word_card -->
@@ -126,8 +126,8 @@ This paperwork ___ important. → **is** · are · am
 **16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-04:i12; family: context_gap_grammar -->
 We need ___. → **training** · a training · trainings
-- a training — *Training в значении обучения в целом — без a и без множественного -s.*
-- trainings — *Training в значении обучения в целом — без a и без множественного -s.*
+- a training — *Training в значении обучения в целом — без a и без -s для нескольких.*
+- trainings — *Training в значении обучения в целом — без a и без -s для нескольких.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-04:i13; family: speed_match -->

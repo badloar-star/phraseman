@@ -9,13 +9,13 @@
 
 ### Забрати посилку
 
-Ви пояснюєте другу пункт свого списку: потрібно сходити по посилку. Це невелика справа поза домом — an errand. Назвіть такий пункт: This is an errand. Порядок: This + is + an errand. Errand — одна злічувана справа, тому перед ним потрібен артикль. Обираємо an, тому що errand починається з голосного звука.
+Ви пояснюєте другу пункт свого списку: потрібно сходити по посилку. Це невелика справа поза домом — an errand. Назвіть такий пункт: This is an errand. Порядок: This + is + an errand. Errand — одна справа, її рахують поштучно, тому перед ним потрібне a. Обираємо an, тому що errand починається з голосного звука.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is an errand.**
 - ❌ This is a errand. — *Errand починається з голосного звука: an errand.*
-- ❌ This is errand. — *Тут не можна залишати злічуваний іменник в однині без артикля.*
+- ❌ This is errand. — *Тут не можна залишати назву одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Заміна зламаної речі
 
-Ви шукаєте заміну зламаній лампі й повідомляєте другу, що в магазині є дві придатні речі на заміну їй. Replacement — річ на заміну; дві — two replacements. Складіть речення: There are + two replacements + in the shop → There are two replacements in the shop. There are повідомляє про наявність кількох речей, після two ставимо множину replacements, а наприкінці називаємо місце.
+Ви шукаєте заміну зламаній лампі й повідомляєте другу, що в магазині є дві придатні речі на заміну їй. Replacement — річ на заміну; дві — two replacements. Складіть речення: There are + two replacements + in the shop → There are two replacements in the shop. There are повідомляє про наявність кількох речей, після two ставимо форму для кількох replacements, а наприкінці називаємо місце.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There are two replacements in the shop.**
-- ❌ There are two replacement in the shop. — *Після two потрібна множина replacements.*
+- ❌ There are two replacement in the shop. — *Після two потрібна форма для кількох: replacements.*
 - ❌ There are a two replacements in the shop. — *Не ставте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Утомитися від домашніх справ
 
-Ви довго прибираєте квартиру й говорите другу, що ця робота втомлює. Housework — робота по дому загалом, незлічуване слово. Скажіть: This housework is tiring. Порядок: This housework + is + tiring. Використовуємо this та is, хоча українською говоримо «домашні справи». Англійське housework не отримує -s у цьому значенні; tiring описує роботу, яка втомлює.
+Ви довго прибираєте квартиру й говорите другу, що ця робота втомлює. Housework — робота по дому загалом, слово, яке не рахують поштучно. Скажіть: This housework is tiring. Порядок: This housework + is + tiring. Використовуємо this та is, хоча українською говоримо «домашні справи». Англійське housework не отримує -s у цьому значенні; tiring описує роботу, яка втомлює.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This housework is tiring.**
-- ❌ This housework are tiring. — *Housework — незлічуване слово: is. Окремі хатні справи можна порахувати, але загальна назва housework не має множинного -s.*
-- ❌ These houseworks are tiring. — *У цьому значенні слово не має множинного -s.*
+- ❌ This housework are tiring. — *Housework — це не рахують поштучно: is. Окремі хатні справи можна порахувати, але загальна назва housework не має -s для кількох.*
+- ❌ These houseworks are tiring. — *У цьому значенні не має -s для кількох.*
 
 ---
 
@@ -86,8 +86,8 @@ This is ___ errand. → **an** · a · the two
 **8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-06:i06; family: context_gap_grammar -->
 There are two ___ in the shop. → **replacements** · replacement · a replacement
-- replacement — *Після two потрібна множина replacements.*
-- a replacement — *Після two потрібна множина replacements.*
+- replacement — *Після two потрібна форма для кількох: replacements.*
+- a replacement — *Після two потрібна форма для кількох: replacements.*
 
 **9 · Картка слова — housework**
 <!-- interaction_id: en:lesson-17:session-06:word:housework; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ in the shop. → **replacements** · replacement · a replacem
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-06:i09; family: context_gap_grammar -->
 This housework ___ tiring. → **is** · are · am
-- are — *Housework — незлічуване слово: is. Окремі хатні справи можна порахувати, але загальна назва housework не має множинного -s.*
-- am — *Housework — незлічуване слово: is. Окремі хатні справи можна порахувати, але загальна назва housework не має множинного -s.*
+- are — *Housework — це не рахують поштучно: is. Окремі хатні справи можна порахувати, але загальна назва housework не має -s для кількох.*
+- am — *Housework — це не рахують поштучно: is. Окремі хатні справи можна порахувати, але загальна назва housework не має -s для кількох.*
 
 **13 · Картка слова — public transport**
 <!-- interaction_id: en:lesson-17:session-06:word:public-transport; family: word_card -->
@@ -126,8 +126,8 @@ This housework ___ tiring. → **is** · are · am
 **16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-06:i12; family: context_gap_grammar -->
 We use ___. → **public transport** · a public transport · public transports
-- a public transport — *Public transport — загальна незлічувана назва: без a. Окремий автобус можна порахувати, транспорт загалом — ні.*
-- public transports — *Public transport — загальна незлічувана назва: без a. Окремий автобус можна порахувати, транспорт загалом — ні.*
+- a public transport — *Public transport — загальна назва, її не рахують поштучно: без a. Окремий автобус можна порахувати, транспорт загалом — ні.*
+- public transports — *Public transport — загальна назва, її не рахують поштучно: без a. Окремий автобус можна порахувати, транспорт загалом — ні.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-06:i13; family: speed_match -->

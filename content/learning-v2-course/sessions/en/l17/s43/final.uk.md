@@ -9,13 +9,13 @@
 
 ### Повідомити про наявність
 
-delivery address — адреса доставки. Для замовлень родини збережено кілька адрес. Підтвердьте це. Delivery address → delivery addresses. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість.
+delivery address — адреса доставки. Для замовлень родини збережено кілька адрес. Підтвердьте це. Delivery address → delivery addresses. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We saved some delivery addresses.**
 - ❌ We saved any delivery addresses. — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- ❌ We saved a delivery addresses. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ We saved a delivery addresses. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -23,13 +23,13 @@ delivery address — адреса доставки. Для замовлень р
 
 ### Потрібних адрес немає
 
-Ви з колегою перевіряєте список замовлень: адреси для виставлення рахунків у ньому зовсім не вказані. We don't have any billing addresses — у нас немає адрес для виставлення рахунків. Складіть заперечення: We don't have + any + billing addresses. Address закінчується на -ss, тому в множині додаємо -es: addresses. Any після don't have означає, що немає жодної такої адреси.
+Ви з колегою перевіряєте список замовлень: адреси для виставлення рахунків у ньому зовсім не вказані. We don't have any billing addresses — у нас немає адрес для виставлення рахунків. Складіть заперечення: We don't have + any + billing addresses. Address закінчується на -ss, тому у формі для кількох додаємо -es: addresses. Any після don't have означає, що немає жодної такої адреси.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We don't have any billing addresses.**
 - ❌ We don't have some billing addresses. — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ We don't have a billing addresses. — *A не ставиться перед незлічуваним або множиною.*
+- ❌ We don't have a billing addresses. — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -37,13 +37,13 @@ delivery address — адреса доставки. Для замовлень р
 
 ### Дізнатися нові адреси
 
-На стару адресу надійшли листи для кількох мешканців, які переїхали. Ви запитуєте сусіда, чи є в нього адреси для пересилання: Do you have any forwarding addresses? Спочатку Do you have, потім any forwarding addresses. Address у множині стає addresses. Any підходить, бо ви не знаєте, чи збереглися адреси в сусіда; some могло б виражати очікування, що вони в нього є.
+На стару адресу надійшли листи для кількох мешканців, які переїхали. Ви запитуєте сусіда, чи є в нього адреси для пересилання: Do you have any forwarding addresses? Спочатку Do you have, потім any forwarding addresses. Address у формі для кількох стає addresses. Any підходить, бо ви не знаєте, чи збереглися адреси в сусіда; some могло б виражати очікування, що вони в нього є.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Do you have any forwarding addresses?**
 - ❌ Do you have some forwarding addresses? — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- ❌ Do you have a forwarding addresses? — *A не ставиться перед незлічуваним або множиною.*
+- ❌ Do you have a forwarding addresses? — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 ---
 
@@ -67,7 +67,7 @@ delivery address — адреса доставки. Для замовлень р
 <!-- interaction_id: en:lesson-17:session-43:i03; family: context_gap_grammar -->
 We saved ___ delivery addresses. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **5 · Картка слова — billing address**
 <!-- interaction_id: en:lesson-17:session-43:word:billing-address; family: word_card -->
@@ -87,7 +87,7 @@ We saved ___ delivery addresses. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-43:i06; family: context_gap_grammar -->
 We don't have ___ billing addresses. → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **9 · Картка слова — return address**
 <!-- interaction_id: en:lesson-17:session-43:word:return-address; family: word_card -->
@@ -107,7 +107,7 @@ We don't have ___ billing addresses. → **any** · some · a
 <!-- interaction_id: en:lesson-17:session-43:i09; family: context_gap_grammar -->
 We need ___ return addresses. → **some** · any · a
 - any — *У стверджувальному повідомленні про певну кількість використовуємо some.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **13 · Картка слова — forwarding address**
 <!-- interaction_id: en:lesson-17:session-43:word:forwarding-address; family: word_card -->
@@ -127,7 +127,7 @@ We need ___ return addresses. → **some** · any · a
 <!-- interaction_id: en:lesson-17:session-43:i12; family: context_gap_grammar -->
 Do you have ___ forwarding addresses? → **any** · some · a
 - some — *Тут потрібне повне заперечення або нейтральне запитання про наявність: any. Some у запитанні можливе за іншого очікування мовця, але тут такого змісту немає.*
-- a — *A не ставиться перед незлічуваним або множиною.*
+- a — *A не ставиться, якщо це не рахують поштучно або предметів кілька.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-43:i13; family: speed_match -->

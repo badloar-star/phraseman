@@ -9,13 +9,13 @@
 
 ### Несколько всё же есть
 
-voice message — голосовое сообщение. Подчеркните, что несколько сообщений всё же пришли. Voice message → voice messages. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
+voice message — голосовое сообщение. Подчеркните, что несколько сообщений всё же пришли. Voice message → voice messages. С несколькими предметами, которые можно посчитать, a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I received a few voice messages.**
 - ❌ I received few voice messages. — *Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.*
-- ❌ I received a little voice messages. — *С исчисляемым во множественном числе нужно few, не little.*
+- ❌ I received a little voice messages. — *С несколькими предметами, которые можно посчитать, нужно few, не little.*
 
 ---
 
@@ -23,13 +23,13 @@ voice message — голосовое сообщение. Подчеркните,
 
 ### Осталось мало номеров
 
-Вы потеряли записную книжку и смогли восстановить только два номера знакомых. Хотите подчеркнуть, что контактов не хватает: I have few contact numbers — у меня мало телефонов для связи. Соберите предложение: I have + few + contact numbers. Number — исчисляемое слово; для нескольких номеров используем numbers и few, не little. Few без a подчёркивает, что номеров мало. A few в этой же фразе выделило бы наличие нескольких.
+Вы потеряли записную книжку и смогли восстановить только два номера знакомых. Хотите подчеркнуть, что контактов не хватает: I have few contact numbers — у меня мало телефонов для связи. Соберите предложение: I have + few + contact numbers. Number — это считают поштучно; для нескольких номеров используем numbers и few, не little. Few без a подчёркивает, что номеров мало. A few в этой же фразе выделило бы наличие нескольких.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have few contact numbers.**
 - ❌ I have a few contact numbers. — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- ❌ I have a little contact numbers. — *С исчисляемым во множественном числе нужно few, не little.*
+- ❌ I have a little contact numbers. — *С несколькими предметами, которые можно посчитать, нужно few, не little.*
 
 ---
 
@@ -37,13 +37,13 @@ voice message — голосовое сообщение. Подчеркните,
 
 ### Смысл зависит от a
 
-area code — телефонный код города или региона. Вы почти не знаете телефонных кодов других городов. Подчеркните малое количество. Area code → area codes. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
+area code — телефонный код города или региона. Вы почти не знаете телефонных кодов других городов. Подчеркните малое количество. Area code → area codes. С несколькими предметами, которые можно посчитать, a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I know few area codes.**
 - ❌ I know a few area codes. — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- ❌ I know a little area codes. — *С исчисляемым во множественном числе нужно few, не little.*
+- ❌ I know a little area codes. — *С несколькими предметами, которые можно посчитать, нужно few, не little.*
 
 ---
 
@@ -67,7 +67,7 @@ area code — телефонный код города или региона. В
 <!-- interaction_id: en:lesson-17:session-50:i03; family: context_gap_grammar -->
 I received ___ voice messages. → **a few** · few · a little
 - few — *Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **5 · Карточка слова — contact number**
 <!-- interaction_id: en:lesson-17:session-50:word:contact-number; family: word_card -->
@@ -87,7 +87,7 @@ I received ___ voice messages. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-50:i06; family: context_gap_grammar -->
 I have ___ contact numbers. → **few** · a few · a little
 - a few — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **9 · Карточка слова — emergency contact**
 <!-- interaction_id: en:lesson-17:session-50:word:emergency-contact; family: word_card -->
@@ -107,7 +107,7 @@ I have ___ contact numbers. → **few** · a few · a little
 <!-- interaction_id: en:lesson-17:session-50:i09; family: context_gap_grammar -->
 We have ___ emergency contacts. → **a few** · few · a little
 - few — *Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **13 · Карточка слова — area code**
 <!-- interaction_id: en:lesson-17:session-50:word:area-code; family: word_card -->
@@ -127,7 +127,7 @@ We have ___ emergency contacts. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-50:i12; family: context_gap_grammar -->
 I know ___ area codes. → **few** · a few · a little
 - a few — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-17:session-50:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Несколько всё же есть
 
-meter reading — показание счётчика. Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
+meter reading — показание счётчика. Вы записали показания нескольких счётчиков. Подчеркните, что записи есть. Meter reading → meter readings. С несколькими предметами, которые можно посчитать, a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We recorded a few meter readings.**
 - ❌ We recorded few meter readings. — *Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.*
-- ❌ We recorded a little meter readings. — *С исчисляемым во множественном числе нужно few, не little.*
+- ❌ We recorded a little meter readings. — *С несколькими предметами, которые можно посчитать, нужно few, не little.*
 
 ---
 
@@ -29,7 +29,7 @@ meter reading — показание счётчика. Вы записали п�
 
 - ✅ **We have few electricity bills.**
 - ❌ We have a few electricity bills. — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- ❌ We have a little electricity bills. — *С исчисляемым во множественном числе нужно few, не little.*
+- ❌ We have a little electricity bills. — *С несколькими предметами, которые можно посчитать, нужно few, не little.*
 
 ---
 
@@ -37,13 +37,13 @@ meter reading — показание счётчика. Вы записали п�
 
 ### Смысл зависит от a
 
-gas bill — счёт за газ. Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills. С исчисляемыми во множественном числе a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
+gas bill — счёт за газ. Большая часть старых счетов потеряна. Подчеркните, что их мало. Gas bill → gas bills. С несколькими предметами, которые можно посчитать, a few подчёркивает наличие нескольких, а few — малое количество. A few не обязательно означает, что их достаточно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have few gas bills.**
 - ❌ We have a few gas bills. — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- ❌ We have a little gas bills. — *С исчисляемым во множественном числе нужно few, не little.*
+- ❌ We have a little gas bills. — *С несколькими предметами, которые можно посчитать, нужно few, не little.*
 
 ---
 
@@ -67,7 +67,7 @@ gas bill — счёт за газ. Большая часть старых сче
 <!-- interaction_id: en:lesson-17:session-51:i03; family: context_gap_grammar -->
 We recorded ___ meter readings. → **a few** · few · a little
 - few — *Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **5 · Карточка слова — electricity bill**
 <!-- interaction_id: en:lesson-17:session-51:word:electricity-bill; family: word_card -->
@@ -87,7 +87,7 @@ We recorded ___ meter readings. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-51:i06; family: context_gap_grammar -->
 We have ___ electricity bills. → **few** · a few · a little
 - a few — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **9 · Карточка слова — water bill**
 <!-- interaction_id: en:lesson-17:session-51:word:water-bill; family: word_card -->
@@ -107,7 +107,7 @@ We have ___ electricity bills. → **few** · a few · a little
 <!-- interaction_id: en:lesson-17:session-51:i09; family: context_gap_grammar -->
 We found ___ water bills. → **a few** · few · a little
 - few — *Обе формы грамматически возможны. Ситуация требует a few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **13 · Карточка слова — gas bill**
 <!-- interaction_id: en:lesson-17:session-51:word:gas-bill; family: word_card -->
@@ -127,7 +127,7 @@ We found ___ water bills. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-51:i12; family: context_gap_grammar -->
 We have ___ gas bills. → **few** · a few · a little
 - a few — *Обе формы грамматически возможны. Ситуация требует few: a few подчёркивает наличие нескольких, few — малое количество.*
-- a little — *Little относится к неисчисляемому количеству.*
+- a little — *Little относится к тому, что не считают поштучно.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-17:session-51:i13; family: speed_match -->

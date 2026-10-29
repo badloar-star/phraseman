@@ -9,13 +9,13 @@
 
 ### Скільки стажерів прийде
 
-Ви готуєте перше заняття для стажерів і уточнюєте в колеги, скільки їх у вас. Trainee — стажер; людей можна порахувати, тому ставимо many перед множиною trainees. Складіть запитання: How many trainees + do + we + have? → How many trainees do we have? Починаємо з how many та назви людей, потім ставимо do, we і have.
+Ви готуєте перше заняття для стажерів і уточнюєте в колеги, скільки їх у вас. Trainee — стажер; людей можна порахувати, тому ставимо many перед trainees — їх кілька. Складіть запитання: How many trainees + do + we + have? → How many trainees do we have? Починаємо з how many та назви людей, потім ставимо do, we і have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How many trainees do we have?**
-- ❌ How much trainees do we have? — *trainee можна порахувати: many + trainees у множині.*
-- ❌ How a many trainees do we have? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How much trainees do we have? — *trainee можна порахувати: many + trainees у формі для кількох.*
+- ❌ How a many trainees do we have? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Який контроль їм потрібен
 
-Перед першим робочим днем стажерів ви запитуєте наставника, наскільки уважно за ними потрібно спостерігати. Supervision — нагляд і контроль; тут слово незлічуване. Складіть запитання: How much supervision + do + they + need? → How much supervision do they need? Much стосується supervision, а після do йдуть they та need без змін. They позначає стажерів.
+Перед першим робочим днем стажерів ви запитуєте наставника, наскільки уважно за ними потрібно спостерігати. Supervision — нагляд і контроль; тут слово не рахується поштучно. Складіть запитання: How much supervision + do + they + need? → How much supervision do they need? Much стосується supervision, а після do йдуть they та need без змін. They позначає стажерів.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much supervision do they need?**
-- ❌ How many supervision do they need? — *supervision у цьому значенні — незлічуване слово: much.*
-- ❌ How a much supervision do they need? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How many supervision do they need? — *supervision у цьому значенні — це не рахують поштучно: much.*
+- ❌ How a much supervision do they need? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Вони справляються майже самі
 
-Стажери вже опанували знайому роботу, і їм потрібно лише трохи підказок наставника. Guidance — допомога порадою, незлічуване слово. Скажіть, що їм не потрібно багато такої допомоги: They + don't + need + much guidance → They don't need much guidance. Після they використовуємо don't, потім need у початковій формі. Much ставимо перед guidance; заперечення означає невелику потребу в допомозі, а не її повну відсутність.
+Стажери вже опанували знайому роботу, і їм потрібно лише трохи підказок наставника. Guidance — допомога порадою, слово, яке не рахують поштучно. Скажіть, що їм не потрібно багато такої допомоги: They + don't + need + much guidance → They don't need much guidance. Після they використовуємо don't, потім need у початковій формі. Much ставимо перед guidance; заперечення означає невелику потребу в допомозі, а не її повну відсутність.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They don't need much guidance.**
-- ❌ They don't need many guidance. — *guidance у цьому значенні — незлічуване слово: much.*
-- ❌ They don't need a much guidance. — *Перед many/much тут не ставимо артикль a.*
+- ❌ They don't need many guidance. — *guidance у цьому значенні — це не рахують поштучно: much.*
+- ❌ They don't need a much guidance. — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-15:i03; family: context_gap_grammar -->
 How ___ trainees do we have? → **many** · much · a many
-- much — *trainee можна порахувати: many + trainees у множині.*
+- much — *trainee можна порахувати: many + trainees у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **5 · Картка слова — apprentice**
@@ -86,7 +86,7 @@ How ___ trainees do we have? → **many** · much · a many
 **8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-15:i06; family: context_gap_grammar -->
 We don't have ___ apprentices. → **many** · much · a many
-- much — *apprentice можна порахувати: many + apprentices у множині.*
+- much — *apprentice можна порахувати: many + apprentices у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **9 · Картка слова — supervision**
@@ -106,7 +106,7 @@ We don't have ___ apprentices. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-15:i09; family: context_gap_grammar -->
 How ___ supervision do they need? → **much** · many · a much
-- many — *supervision у цьому значенні — незлічуване слово: much.*
+- many — *supervision у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — guidance**
@@ -126,7 +126,7 @@ How ___ supervision do they need? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-15:i12; family: context_gap_grammar -->
 They don't need ___ guidance. → **much** · many · a much
-- many — *guidance у цьому значенні — незлічуване слово: much.*
+- many — *guidance у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

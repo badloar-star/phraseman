@@ -9,13 +9,13 @@
 
 ### Хто прийшов на співбесіду
 
-Ви показуєте колезі жінку, яка прийшла влаштовуватися на роботу, і пояснюєте, хто вона. Candidate — кандидат на місце. Скажіть: She is a candidate. Порядок: She + is + a candidate. She позначає жінку, is пов'язує її з назвою ролі. Candidate — одна злічувана людина; перед словом із приголосним звуком ставимо a.
+Ви показуєте колезі жінку, яка прийшла влаштовуватися на роботу, і пояснюєте, хто вона. Candidate — кандидат на місце. Скажіть: She is a candidate. Порядок: She + is + a candidate. She позначає жінку, is пов'язує її з назвою ролі. Candidate — одна людина; перед словом із приголосним звуком ставимо a.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She is a candidate.**
 - ❌ She is an candidate. — *Candidate починається з приголосного звука: a candidate.*
-- ❌ She is candidate. — *Тут не можна залишати злічуваний іменник в однині без a.*
+- ❌ She is candidate. — *Тут не можна залишати назву одного предмета без a.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Вільні місця в магазині
 
-Ви побачили оголошення про два вільні робочі місця й розповідаєте про це другу. Vacancy — вакансія; у множині y замінюємо на ies: vacancies. Складіть фразу: There are + two vacancies + in this shop → There are two vacancies in this shop. There are повідомляє про наявність кількох місць, two vacancies називає їхню кількість, а in this shop — де вони є.
+Ви побачили оголошення про два вільні робочі місця й розповідаєте про це другу. Vacancy — вакансія; у формі для кількох y замінюємо на ies: vacancies. Складіть фразу: There are + two vacancies + in this shop → There are two vacancies in this shop. There are повідомляє про наявність кількох місць, two vacancies називає їхню кількість, а in this shop — де вони є.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There are two vacancies in this shop.**
-- ❌ There are two vacancy in this shop. — *У vacancy у множині y змінюється на ies: vacancies.*
+- ❌ There are two vacancy in this shop. — *У vacancy у формі для кількох y змінюється на ies: vacancies.*
 - ❌ There are a two vacancies in this shop. — *Не ставте a перед two.*
 
 ---
@@ -37,13 +37,13 @@
 
 ### Важливе оформлення документів
 
-Перед виходом на нову роботу ви заповнюєте обов'язкові документи й пояснюєте другу важливість цієї роботи. Paperwork — оформлення паперів загалом, незлічуване слово. Складіть речення: This paperwork + is + important → This paperwork is important. Використовуємо this та is, хоча окремих паперів може бути кілька. Important наприкінці повідомляє, якою є ця робота; множини paperworks тут не утворюємо.
+Перед виходом на нову роботу ви заповнюєте обов'язкові документи й пояснюєте другу важливість цієї роботи. Paperwork — оформлення паперів загалом, слово, яке не рахують поштучно. Складіть речення: This paperwork + is + important → This paperwork is important. Використовуємо this та is, хоча окремих паперів може бути кілька. Important наприкінці повідомляє, якою є ця робота; форми для кількох paperworks тут не утворюємо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This paperwork is important.**
-- ❌ This paperwork are important. — *Paperwork — незлічуване слово: is, не are.*
-- ❌ These paperworks are important. — *У цьому значенні слово не має множинного -s.*
+- ❌ This paperwork are important. — *Paperwork — це не рахують поштучно: is, не are.*
+- ❌ These paperworks are important. — *У цьому значенні не має -s для кількох.*
 
 ---
 
@@ -86,8 +86,8 @@ She is ___ candidate. → **a** · an · the two
 **8 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-04:i06; family: context_gap_grammar -->
 There are two ___ in this shop. → **vacancies** · vacancy · a vacancy
-- vacancy — *У vacancy у множині y змінюється на ies: vacancies.*
-- a vacancy — *У vacancy у множині y змінюється на ies: vacancies.*
+- vacancy — *У vacancy у формі для кількох y змінюється на ies: vacancies.*
+- a vacancy — *У vacancy у формі для кількох y змінюється на ies: vacancies.*
 
 **9 · Картка слова — paperwork**
 <!-- interaction_id: en:lesson-17:session-04:word:paperwork; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ in this shop. → **vacancies** · vacancy · a vacancy
 **12 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-04:i09; family: context_gap_grammar -->
 This paperwork ___ important. → **is** · are · am
-- are — *Paperwork — незлічуване слово: is, не are.*
-- am — *Paperwork — незлічуване слово: is, не are.*
+- are — *Paperwork — це не рахують поштучно: is, не are.*
+- am — *Paperwork — це не рахують поштучно: is, не are.*
 
 **13 · Картка слова — training**
 <!-- interaction_id: en:lesson-17:session-04:word:training; family: word_card -->
@@ -126,8 +126,8 @@ This paperwork ___ important. → **is** · are · am
 **16 · Число назване чи мова загалом? Виберіть форму.**
 <!-- interaction_id: en:lesson-17:session-04:i12; family: context_gap_grammar -->
 We need ___. → **training** · a training · trainings
-- a training — *Training у значенні навчання загалом — без a та без множинного -s.*
-- trainings — *Training у значенні навчання загалом — без a та без множинного -s.*
+- a training — *Training у значенні навчання загалом — без a та без -s для кількох.*
+- trainings — *Training у значенні навчання загалом — без a та без -s для кількох.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-04:i13; family: speed_match -->

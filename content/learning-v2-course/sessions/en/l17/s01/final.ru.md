@@ -9,13 +9,13 @@
 
 ### Назвать предмет на полке
 
-Вы распаковываете вещи для дома. Друг показывает на предмет, который удерживает книги на полке, и спрашивает, что это. Bookend — книжный упор; его можно посчитать. Назовите один предмет: This is a bookend. Порядок: This + is + a bookend. Перед названием одного исчисляемого предмета здесь нужен артикль. A выбираем перед согласным звуком, an — перед гласным; bookend начинается с согласного, поэтому a bookend.
+Вы распаковываете вещи для дома. Друг показывает на предмет, который удерживает книги на полке, и спрашивает, что это. Bookend — книжный упор; его можно посчитать. Назовите один предмет: This is a bookend. Порядок: This + is + a bookend. Перед названием одного предмета здесь нужен a. A выбираем перед согласным звуком, an — перед гласным; bookend начинается с согласного, поэтому a bookend.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This is a bookend.**
 - ❌ This is an bookend. — *Bookend начинается с согласного звука: a bookend.*
-- ❌ This is bookend. — *Перед исчисляемым существительным в единственном числе здесь нужен a.*
+- ❌ This is bookend. — *Перед названием одного предмета здесь нужен a.*
 
 ---
 
@@ -23,7 +23,7 @@
 
 ### Два пуфа в комнате
 
-Друг спрашивает, где можно сесть, и вы сообщаете, что в комнате два пуфа. Ottoman — пуф; один — an ottoman, два — two ottomans. Соберите предложение: There are + two ottomans + in the room → There are two ottomans in the room. Для нескольких предметов используем are и множественное ottomans с -s. Перед two артикль a не ставим; место называем в конце.
+Друг спрашивает, где можно сесть, и вы сообщаете, что в комнате два пуфа. Ottoman — пуф; один — an ottoman, два — two ottomans. Соберите предложение: There are + two ottomans + in the room → There are two ottomans in the room. Для нескольких предметов используем are и форму для нескольких: ottomans с -s. Перед two a не ставим; место называем в конце.
 
 **Выберите фразу для этой ситуации.**
 
@@ -37,12 +37,12 @@
 
 ### Новая посуда
 
-Вы показываете другу только что купленную керамическую посуду. Crockery — посуда в целом: отдельные тарелки можно посчитать, но общее название crockery неисчисляемое. Скажите: This crockery is new. Соберите фразу: This crockery + is + new. С этим общим названием используем this и is, не добавляем a или множественное -s. New в конце сообщает, какая посуда.
+Вы показываете другу только что купленную керамическую посуду. Crockery — посуда в целом: отдельные тарелки можно посчитать, но общее название crockery не считается поштучно. Скажите: This crockery is new. Соберите фразу: This crockery + is + new. С этим общим названием используем this и is, не добавляем a или множественное -s. New в конце сообщает, какая посуда.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This crockery is new.**
-- ❌ This crockery are new. — *Неисчисляемое crockery согласуется с is.*
+- ❌ This crockery are new. — *Crockery не считают поштучно, поэтому is.*
 - ❌ These crockeries are new. — *В значении «посуда» не делаем множественное crockeries.*
 
 ---
@@ -86,8 +86,8 @@ This is ___ bookend. → **a** · an · the two
 **8 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-01:i06; family: context_gap_grammar -->
 There are two ___ in the room. → **ottomans** · ottoman · an ottoman
-- ottoman — *После two нужно множественное число: ottomans.*
-- an ottoman — *После two нужно множественное число: ottomans.*
+- ottoman — *После two нужна форма для нескольких: ottomans.*
+- an ottoman — *После two нужна форма для нескольких: ottomans.*
 
 **9 · Карточка слова — crockery**
 <!-- interaction_id: en:lesson-17:session-01:word:crockery; family: word_card -->
@@ -106,8 +106,8 @@ There are two ___ in the room. → **ottomans** · ottoman · an ottoman
 **12 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-01:i09; family: context_gap_grammar -->
 This crockery ___ new. → **is** · are · am
-- are — *Crockery — неисчисляемое слово; согласуем с is, не are.*
-- am — *Crockery — неисчисляемое слово; согласуем с is, не are.*
+- are — *Crockery — это не считают поштучно; согласуем с is, не are.*
+- am — *Crockery — это не считают поштучно; согласуем с is, не are.*
 
 **13 · Карточка слова — bedding**
 <!-- interaction_id: en:lesson-17:session-01:word:bedding; family: word_card -->
@@ -126,8 +126,8 @@ This crockery ___ new. → **is** · are · am
 **16 · Число названо или речь вообще? Выберите форму.**
 <!-- interaction_id: en:lesson-17:session-01:i12; family: context_gap_grammar -->
 We need ___. → **bedding** · a bedding · beddings
-- a bedding — *Bedding — неисчисляемое слово: без a и без окончания -s.*
-- beddings — *Bedding — неисчисляемое слово: без a и без окончания -s.*
+- a bedding — *Bedding — это не считают поштучно: без a и без окончания -s.*
+- beddings — *Bedding — это не считают поштучно: без a и без окончания -s.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-17:session-01:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Кілька є
 
-pretzel — крендель. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька кренделів є. Pretzel → pretzels.
+pretzel — крендель. A few + назва кількох предметів повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька кренделів є. Pretzel → pretzels.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have a few pretzels.**
 - ❌ We have few pretzels. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We have a little pretzels. — *Із злічуваним у множині потрібне few.*
+- ❌ We have a little pretzels. — *Із кількома предметами, які можна порахувати, потрібне few.*
 
 ---
 
@@ -23,13 +23,13 @@ pretzel — крендель. A few + злічуване слово у множ�
 
 ### Трохи крупи все ж є
 
-Ви перевіряєте кухонну шафу перед приготуванням гарніру й знаходите трохи кіноа в пакеті. Хочете повідомити, що запас усе ж є: We have a little quinoa — у нас є трохи кіноа. Складіть фразу: We have + a little + quinoa. Quinoa тут незлічуване, тому використовуємо little, не few. A little підкреслює наявність невеликої кількості, але не обіцяє, що її вистачить. Little без a виділило б нестачу.
+Ви перевіряєте кухонну шафу перед приготуванням гарніру й знаходите трохи кіноа в пакеті. Хочете повідомити, що запас усе ж є: We have a little quinoa — у нас є трохи кіноа. Складіть фразу: We have + a little + quinoa. Quinoa тут не рахується поштучно, тому використовуємо little, не few. A little підкреслює наявність невеликої кількості, але не обіцяє, що її вистачить. Little без a виділило б нестачу.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have a little quinoa.**
 - ❌ We have little quinoa. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We have a few quinoa. — *Із незлічуваним потрібне little.*
+- ❌ We have a few quinoa. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -37,13 +37,13 @@ pretzel — крендель. A few + злічуване слово у множ�
 
 ### Підкреслити малу кількість
 
-buckwheat — гречка, гречана крупа. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Гречки не вистачить на заплановану вечерю. Підкресліть брак.
+buckwheat — гречка, гречана крупа. Little без a підкреслює малу кількість того, що не рахують поштучно. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Гречки не вистачить на заплановану вечерю. Підкресліть брак.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have little buckwheat left.**
 - ❌ We have a little buckwheat left. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We have few buckwheat left. — *Із незлічуваним потрібне little.*
+- ❌ We have few buckwheat left. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -67,7 +67,7 @@ buckwheat — гречка, гречана крупа. Little без a підк�
 <!-- interaction_id: en:lesson-17:session-21:i03; family: context_gap_grammar -->
 We have ___ pretzels. → **a few** · few · a little
 - few — *Обидві форми граматично можливі, але ситуація потребує акценту: a few.*
-- a little — *Із злічуваним у множині використовуйте few.*
+- a little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **5 · Картка слова — crouton**
 <!-- interaction_id: en:lesson-17:session-21:word:crouton; family: word_card -->
@@ -87,7 +87,7 @@ We have ___ pretzels. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-21:i06; family: context_gap_grammar -->
 We have ___ croutons left. → **few** · a few · little
 - a few — *Обидві форми граматично можливі, але ситуація потребує акценту: few.*
-- little — *Із злічуваним у множині використовуйте few.*
+- little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **9 · Картка слова — quinoa**
 <!-- interaction_id: en:lesson-17:session-21:word:quinoa; family: word_card -->
@@ -107,7 +107,7 @@ We have ___ croutons left. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-21:i09; family: context_gap_grammar -->
 We have ___ quinoa. → **a little** · little · a few
 - little — *Обидві форми граматично можливі, але ситуація потребує акценту: a little.*
-- a few — *Із незлічуваним використовуйте little.*
+- a few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **13 · Картка слова — buckwheat**
 <!-- interaction_id: en:lesson-17:session-21:word:buckwheat; family: word_card -->
@@ -127,7 +127,7 @@ We have ___ quinoa. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-21:i12; family: context_gap_grammar -->
 We have ___ buckwheat left. → **little** · a little · few
 - a little — *Обидві форми граматично можливі, але ситуація потребує акценту: little.*
-- few — *Із незлічуваним використовуйте little.*
+- few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-21:i13; family: speed_match -->

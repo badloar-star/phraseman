@@ -9,13 +9,13 @@
 
 ### Кілька є
 
-kind word — добре, підтримувальне слово. A few + злічуване слово у множині повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька добрих слів усе ж почули. Kind word → kind words.
+kind word — добре, підтримувальне слово. A few + назва кількох предметів повідомляє, що кілька є. Few без a підкреслює малу кількість. Підкресліть, що кілька добрих слів усе ж почули. Kind word → kind words.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We heard a few kind words.**
 - ❌ We heard few kind words. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ We heard a little kind words. — *Із злічуваним у множині потрібне few.*
+- ❌ We heard a little kind words. — *Із кількома предметами, які можна порахувати, потрібне few.*
 
 ---
 
@@ -23,13 +23,13 @@ kind word — добре, підтримувальне слово. A few + зл�
 
 ### Трохи доброти все ж було
 
-Нова сусідка зазвичай трималася осторонь, але сьогодні допомогла вам донести сумку. Ви хочете відзначити, що трохи доброти вона все ж виявила: She showed a little kindness. Складіть речення: She showed + a little + kindness. Kindness тут незлічуване, тому використовуємо little, не few. A little підкреслює наявність доброти в її вчинку. Little без a змістило б акцент на те, як мало доброти було.
+Нова сусідка зазвичай трималася осторонь, але сьогодні допомогла вам донести сумку. Ви хочете відзначити, що трохи доброти вона все ж виявила: She showed a little kindness. Складіть речення: She showed + a little + kindness. Kindness тут не рахується поштучно, тому використовуємо little, не few. A little підкреслює наявність доброти в її вчинку. Little без a змістило б акцент на те, як мало доброти було.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She showed a little kindness.**
 - ❌ She showed little kindness. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ She showed a few kindness. — *Із незлічуваним потрібне little.*
+- ❌ She showed a few kindness. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -37,13 +37,13 @@ kind word — добре, підтримувальне слово. A few + зл�
 
 ### Підкреслити малу кількість
 
-patience — терпіння. Little без a підкреслює малу кількість незлічуваного. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Вона швидко дратувалася. Підкресліть брак терпіння.
+patience — терпіння. Little без a підкреслює малу кількість того, що не рахують поштучно. Це може тішити або засмучувати: оцінка залежить від ситуації. A little теж граматично можливе, але підкреслює, що певна кількість є. Вона швидко дратувалася. Підкресліть брак терпіння.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She showed little patience.**
 - ❌ She showed a little patience. — *Форма граматично можлива, але змінює акцент. Тут потрібен зміст із ситуації.*
-- ❌ She showed few patience. — *Із незлічуваним потрібне little.*
+- ❌ She showed few patience. — *Із тим, що не рахують поштучно, потрібне little.*
 
 ---
 
@@ -67,7 +67,7 @@ patience — терпіння. Little без a підкреслює малу к�
 <!-- interaction_id: en:lesson-17:session-23:i03; family: context_gap_grammar -->
 We heard ___ kind words. → **a few** · few · a little
 - few — *Обидві форми граматично можливі, але ситуація потребує акценту: a few.*
-- a little — *Із злічуваним у множині використовуйте few.*
+- a little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **5 · Картка слова — thank-you note**
 <!-- interaction_id: en:lesson-17:session-23:word:thank-you-note; family: word_card -->
@@ -87,7 +87,7 @@ We heard ___ kind words. → **a few** · few · a little
 <!-- interaction_id: en:lesson-17:session-23:i06; family: context_gap_grammar -->
 We received ___ thank-you notes. → **few** · a few · little
 - a few — *Обидві форми граматично можливі, але ситуація потребує акценту: few.*
-- little — *Із злічуваним у множині використовуйте few.*
+- little — *Із кількома предметами, які можна порахувати, використовуйте few.*
 
 **9 · Картка слова — kindness**
 <!-- interaction_id: en:lesson-17:session-23:word:kindness; family: word_card -->
@@ -107,7 +107,7 @@ We received ___ thank-you notes. → **few** · a few · little
 <!-- interaction_id: en:lesson-17:session-23:i09; family: context_gap_grammar -->
 She showed ___ kindness. → **a little** · little · a few
 - little — *Обидві форми граматично можливі, але ситуація потребує акценту: a little.*
-- a few — *Із незлічуваним використовуйте little.*
+- a few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **13 · Картка слова — patience**
 <!-- interaction_id: en:lesson-17:session-23:word:patience; family: word_card -->
@@ -127,7 +127,7 @@ She showed ___ kindness. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-23:i12; family: context_gap_grammar -->
 She showed ___ patience. → **little** · a little · few
 - a little — *Обидві форми граматично можливі, але ситуація потребує акценту: little.*
-- few — *Із незлічуваним використовуйте little.*
+- few — *Із тим, що не рахують поштучно, використовуйте little.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-17:session-23:i13; family: speed_match -->

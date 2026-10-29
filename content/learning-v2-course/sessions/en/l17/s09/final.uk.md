@@ -9,13 +9,13 @@
 
 ### Горіхи для прикрашання пирога
 
-Ви прикрашаєте пиріг і запитуєте друга, скільки горіхів потрібно відкласти. Pecan — горіх пекан; один горіх можна порахувати, тому запитуємо how many pecans. Складіть запитання: How many pecans + do + we + need? → How many pecans do we need? Після many ставимо множину pecans, потім do, we і need.
+Ви прикрашаєте пиріг і запитуєте друга, скільки горіхів потрібно відкласти. Pecan — горіх пекан; один горіх можна порахувати, тому запитуємо how many pecans. Складіть запитання: How many pecans + do + we + need? → How many pecans do we need? Після many ставимо форму для кількох pecans, потім do, we і need.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How many pecans do we need?**
-- ❌ How much pecans do we need? — *Pecan можна порахувати: many + pecans у множині.*
-- ❌ How a many pecans do we need? — *Артикль a тут не ставиться перед many або much.*
+- ❌ How much pecans do we need? — *Pecan можна порахувати: many + pecans у формі для кількох.*
+- ❌ How a many pecans do we need? — *Слово a тут не ставиться перед many або much.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Кількість страви на вечерю
 
-Ви готуєте вечерю для гостей і уточнюєте в друга, скільки поленти знадобиться. Polenta — каша з кукурудзяної крупи; тут запитуємо про загальну кількість страви, тому використовуємо незлічуване polenta. Складіть запитання: How much polenta + do + we + need? → How much polenta do we need? Much стоїть перед polenta, далі йдуть do, we і need. Закінчення -s до polenta тут не додаємо.
+Ви готуєте вечерю для гостей і уточнюєте в друга, скільки поленти знадобиться. Polenta — каша з кукурудзяної крупи; тут запитуємо про загальну кількість страви, тому використовуємо polenta — її не рахують поштучно. Складіть запитання: How much polenta + do + we + need? → How much polenta do we need? Much стоїть перед polenta, далі йдуть do, we і need. Закінчення -s до polenta тут не додаємо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much polenta do we need?**
-- ❌ How many polenta do we need? — *Polenta як страва — незлічуване слово: much.*
-- ❌ How a much polenta do we need? — *Артикль a тут не ставиться перед many або much.*
+- ❌ How many polenta do we need? — *Polenta як страва — це не рахують поштучно: much.*
+- ❌ How a much polenta do we need? — *Слово a тут не ставиться перед many або much.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Крупи залишилося небагато
 
-Ви відкрили пакет манної крупи перед приготуванням каші й бачите, що її залишилося небагато. Semolina — манна крупа, незлічуване слово. Повідомте про це: We don't have much semolina. Порядок слів: We + don't + have + much semolina. Don't перед have утворює заперечення, much стосується кількості крупи. Фраза означає «у нас не так багато манної крупи», а не її повну відсутність.
+Ви відкрили пакет манної крупи перед приготуванням каші й бачите, що її залишилося небагато. Semolina — манна крупа, слово, яке не рахують поштучно. Повідомте про це: We don't have much semolina. Порядок слів: We + don't + have + much semolina. Don't перед have утворює заперечення, much стосується кількості крупи. Фраза означає «у нас не так багато манної крупи», а не її повну відсутність.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We don't have much semolina.**
-- ❌ We don't have many semolina. — *Semolina як крупа — незлічуване слово: much, не many.*
-- ❌ We don't have a much semolina. — *Артикль a тут не ставиться перед many або much.*
+- ❌ We don't have many semolina. — *Semolina як крупа — це не рахують поштучно: much, не many.*
+- ❌ We don't have a much semolina. — *Слово a тут не ставиться перед many або much.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-09:i03; family: context_gap_grammar -->
 How ___ pecans do we need? → **many** · much · a many
-- much — *Pecan можна порахувати: many + pecans у множині.*
+- much — *Pecan можна порахувати: many + pecans у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **5 · Картка слова — Brazil nut**
@@ -106,7 +106,7 @@ We don't have ___ Brazil nuts. → **many** · much · a many
 **12 · Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-09:i09; family: context_gap_grammar -->
 How ___ polenta do we need? → **much** · many · a much
-- many — *Polenta як страва — незлічуване слово: much.*
+- many — *Polenta як страва — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — semolina**
@@ -126,7 +126,7 @@ How ___ polenta do we need? → **much** · many · a much
 **16 · Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-09:i12; family: context_gap_grammar -->
 We don't have ___ semolina. → **much** · many · a much
-- many — *Semolina як крупа — незлічуване слово: much, не many.*
+- many — *Semolina як крупа — це не рахують поштучно: much, не many.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

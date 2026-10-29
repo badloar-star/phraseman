@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How many poets do you know?**
-- ❌ How much poets do you know? — *poet можна порахувати: many + poets у множині.*
-- ❌ How a many poets do you know? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How much poets do you know? — *poet можна порахувати: many + poets у формі для кількох.*
+- ❌ How a many poets do you know? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Скільки поезії ви читаєте
 
-У розмові про читання ви хочете дізнатися, чи багато співрозмовник читає віршів. Poetry — поезія як вид літератури; тут це незлічуване слово. Складіть запитання: How much poetry + do + you + read? → How much poetry do you read? How much ставимо перед poetry, далі йдуть do, you та read. Ми запитуємо про обсяг читання, а не рахуємо окремі вірші.
+У розмові про читання ви хочете дізнатися, чи багато співрозмовник читає віршів. Poetry — поезія як вид літератури; тут це слово, яке не рахують поштучно. Складіть запитання: How much poetry + do + you + read? → How much poetry do you read? How much ставимо перед poetry, далі йдуть do, you та read. Ми запитуємо про обсяг читання, а не рахуємо окремі вірші.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **How much poetry do you read?**
-- ❌ How many poetry do you read? — *poetry у цьому значенні — незлічуване слово: much.*
-- ❌ How a much poetry do you read? — *Перед many/much тут не ставимо артикль a.*
+- ❌ How many poetry do you read? — *poetry у цьому значенні — це не рахують поштучно: much.*
+- ❌ How a much poetry do you read? — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Прози читаємо небагато
 
-Ви з другом переважно читаєте вірші й хочете сказати, що прози читаєте не так багато. Prose — проза; тут слово незлічуване. Складіть заперечення: We + don't + read + much prose → We don't read much prose. Після don't ставимо read без змін, а much перед prose позначає кількість. Don't read much означає «читаємо не так багато», а не повну відмову від читання.
+Ви з другом переважно читаєте вірші й хочете сказати, що прози читаєте не так багато. Prose — проза; тут слово не рахується поштучно. Складіть заперечення: We + don't + read + much prose → We don't read much prose. Після don't ставимо read без змін, а much перед prose позначає кількість. Don't read much означає «читаємо не так багато», а не повну відмову від читання.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We don't read much prose.**
-- ❌ We don't read many prose. — *prose у цьому значенні — незлічуване слово: much.*
-- ❌ We don't read a much prose. — *Перед many/much тут не ставимо артикль a.*
+- ❌ We don't read many prose. — *prose у цьому значенні — це не рахують поштучно: much.*
+- ❌ We don't read a much prose. — *Перед many/much тут не ставимо a.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-16:i03; family: context_gap_grammar -->
 How ___ poets do you know? → **many** · much · a many
-- much — *poet можна порахувати: many + poets у множині.*
+- much — *poet можна порахувати: many + poets у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **5 · Картка слова — novelist**
@@ -86,7 +86,7 @@ How ___ poets do you know? → **many** · much · a many
 **8 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-16:i06; family: context_gap_grammar -->
 We don't know ___ novelists. → **many** · much · a many
-- much — *novelist можна порахувати: many + novelists у множині.*
+- much — *novelist можна порахувати: many + novelists у формі для кількох.*
 - a many — *Перед many/much тут не потрібен a.*
 
 **9 · Картка слова — poetry**
@@ -106,7 +106,7 @@ We don't know ___ novelists. → **many** · much · a many
 **12 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-16:i09; family: context_gap_grammar -->
 How ___ poetry do you read? → **much** · many · a much
-- many — *poetry у цьому значенні — незлічуване слово: much.*
+- many — *poetry у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **13 · Картка слова — prose**
@@ -126,7 +126,7 @@ How ___ poetry do you read? → **much** · many · a much
 **16 · Виберіть many — те, що рахують поштучно, або much — те, що не рахують.**
 <!-- interaction_id: en:lesson-17:session-16:i12; family: context_gap_grammar -->
 We don't read ___ prose. → **much** · many · a much
-- many — *prose у цьому значенні — незлічуване слово: much.*
+- many — *prose у цьому значенні — це не рахують поштучно: much.*
 - a much — *Перед many/much тут не потрібен a.*
 
 **17 · Поєднайте слова з перекладом**

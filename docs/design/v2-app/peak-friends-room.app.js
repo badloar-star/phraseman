@@ -35,7 +35,7 @@ const BODY = {
   eight: () => head() + panel('', '', table(FRIENDS, true), 'glass'),
   result: () => head() + panel('', '', table(FRIENDS, true) + btn('Итог недели', 'glass sm', 'open:result', 'ribbon-outline'), 'glass'),
 };
-const will = (st) => phone(F, { overlays: overOn(F, BOX.x, BOX.y, BOX.w, BOX.h, BODY[st]()) + roundBtn(true) }).replace('data-ph="ck-ph"', `data-ph="ck-ph" data-state="${st}"${st === 'result' ? ' data-open="result"' : ''}`);
+const will = (st) => phone(F, { overlays: overOn(F, BOX.x, BOX.y, BOX.w, BOX.h, BODY[st](), 560) + roundBtn(true) }) /* подложка блока — столбец неба у правого края блока (x 560 кадра), чтобы кромка блока совпадала с кадром (координатор 29.10: светлая черта под панелью) */.replace('data-ph="ck-ph"', `data-ph="ck-ph" data-state="${st}"${st === 'result' ? ' data-open="result"' : ''}`);
 const CODE_TXT = 'PHRASE-7K2Q';
 const SHEETS = {
   invite: () => sheet('Комната друзей', `${row(`<span class="ic">${io('people-outline')}</span>`, 'От 2 до 8 человек', '', '')}${row(`<span class="ic">${io('footsteps-outline')}</span>`, 'Те же ступени недели, что в общей комнате', '', '')}${row(`<span class="ic">${io('trophy-outline')}</span>`, 'Места — только среди своих', '', '')}<div class="ck-code t" data-act="copy"><span>${CODE_TXT}</span>${io('copy-outline')}</div>${btn('Поделиться', 'solid', 'share', 'paper-plane-outline')}${btn('Выбрать из друзей', 'tonal', 'open:pick', 'people-outline')}`),

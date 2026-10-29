@@ -12,7 +12,12 @@ const LOG = '[WG]'; const K = window.CK; const { io, ci, phone, col, panel, row,
 const FR = 'now_friends_top_graphite_dark.png';
 /* геометрия кадра (px 1080 × 2400): вкладки «Пик · Друзья · Наборы» 193…265 (подчёркивание до 265), пустое состояние 930…1540 — вырезаем
    всё от 300 до 1540 и на это место ставим вкладку со списком; подложка вставки — градиент по цветам кадра на краях выреза */
-const FR_CUT = [300, 1540]; const BG = 'linear-gradient(180deg, rgb(27, 34, 42), rgb(7, 12, 17))';
+const FR_CUT = [300, 1540];
+/* подложка вставки — две полосы самого кадра (4 px у верхнего края выреза и 4 px у нижнего), растянутые на всю высоту вставки и
+   смешанные сверху вниз: у верхнего и нижнего края цвета совпадают с кадром по всей ширине (у плоского градиента были стыки под вкладками
+   и у нижнего края — координатор 29.10) */
+const band = (y0, y1, cls) => `<svg class="wf-bg${cls ? ' ' + cls : ''}" viewBox="0 ${y0} 1080 ${y1 - y0}" preserveAspectRatio="none" aria-hidden="true"><image href="${K.DIR + FR}" width="1080" height="2400"/></svg>`;
+const BG = () => band(FR_CUT[0] - 4, FR_CUT[0], '') + band(FR_CUT[1], FR_CUT[1] + 4, 'lo');
 /* друзья как в приложении: монета ранга, серия, что делал; pair — «Серия вдвоём» (огонь пары: on / dim / off, дни, подпись pairRowSubline);
    call — справа «Позвать» вместо шеврона (друг ещё не занимался или сегодня никто); rel — подпись без пары («N дней вместе») */
 const FRIENDS = [
@@ -79,7 +84,7 @@ const listHeader = () => `<div class="wf-sec"><div class="tl">${REQ === 'open' ?
 const rowsOf = () => (REQ === 'accepted' ? [{ n: REQUEST.n, r: REQUEST.r, pair: null, rel: 'Сегодня в друзьях' }, ...FRIENDS] : FRIENDS).map(friendRow).join('');
 /* вкладка целиком: лента, шапка, заявка, «Твои друзья», [карточка цели], строки; goal = null — как сейчас, без карточки */
 const tab = (goal) => `<div class="wf">${rail()}${listHeader()}${REQ === 'open' ? `${requestCard()}<div class="wf-title">Твои друзья</div>` : ''}${goal || ''}${rowsOf()}</div>`;
-const frPhone = (html) => phone(FR, { cut: FR_CUT, inserts: [{ y: FR_CUT[0], html: `<div class="wf-ins" style="background:${BG}">${html}</div>` }] });
+const frPhone = (html) => phone(FR, { cut: FR_CUT, inserts: [{ y: FR_CUT[0], html: `<div class="wf-ins">${BG()}${html}</div>` }] });
 const frNow = () => frPhone(tab(null));
 const frWill = (st) => frPhone(tab(card(st))); // карточка друга — только по тапу (координатор 29.10: не всплывать поверх тоста)
 const sectionOf = (ph) => ph.closest('section.block').id;
@@ -104,9 +109,8 @@ const onAct = (name, arg, node, ph) => {
   if (name === 'cancel') { const id = sectionOf(ph); K.setState(id, 'none'); const nph = rightPhone(id); if (nph) K.toast(nph, 'Предложение отменено', 'close'); return true; }
   if (name === 'friend') { ph.dataset.friend = arg; K.openSheet(ph, 'friend'); return true; }
   if (name === 'nudge') { K.closeSheet(ph); K.after(ph.querySelector('.ck-ov') ? 380 : 0, () => K.toast(ph, `Напомнил ${dat(FRIEND[0])}`, 'notifications-outline')); return true; }
-  if (name === 'claim') { K.once(node, 'pop'); node.innerHTML = `${io('checkmark')}Получено`; node.classList.remove('solid'); node.classList.add('tonal'); K.toast(ph, `100 монет — тебе и ${dat(FRIEND[0])}`, 'gift'); return true; }
-  if (name === 'call') { // как в приложении: «Позвать» → «Позвали» сразу, до ответа сервера (состояния кнопки, идея 1)
-    CALLED.add(arg); node.classList.add('done'); node.classList.remove('t'); node.removeAttribute('data-act'); node.innerHTML = `${io('checkmark')}Позвали`; K.once(node, 'pop'); K.toast(ph, `Позвали ${acc(arg)}`, 'notifications-outline'); return true;
+  if (name === 'claim') { K.once(node, 'pop'); node.innerHTML = `${io('checkmark')}Получено`; node.classList.remove('solid'); node.classList.add('tonal'); K.toast(ph, `100 монет — тебе и ${dat(FRIEND[0])}`, 'gift'); return true; }  if (name === 'call') { // как в приложении: «Позвать» → «Позвали» сразу, до ответа сервера (состояния кнопки, идея 1); лента и строка одного друга — одно состояние
+    CALLED.add(arg); ph.querySelectorAll(`[data-act="call:${arg}"]`).forEach((n) => { n.classList.add('done'); n.classList.remove('t'); n.removeAttribute('data-act'); n.innerHTML = `${io('checkmark')}Позвали`; }); K.once(node, 'pop'); K.toast(ph, `Позвали ${acc(arg)}`, 'notifications-outline'); return true;
   }
   if (name === 'hf') { HF.add(arg); node.classList.add('done'); node.classList.remove('t'); node.removeAttribute('data-act'); node.innerHTML = `${io('checkmark')}Пять отправлено`; K.once(node, 'pop'); K.toast(ph, 'Пятюня отправлена', 'hand-right'); return true; }
   if (name === 'req') { // заявка: принято/отклонено — экран меняется сразу (карточка уходит, Ирина в списке), запись догоняет
@@ -118,7 +122,7 @@ const SECTIONS = [
   { id: 'wg-friends', title: 'Вкладка «Друзья» с карточкой цели',
     lead: '', // зачем (координатор 29.10): пояснения и стоимость — служебный текст, владельцу не показываем
     states: [['none', 'Нет цели'], ['waiting', 'Ждём ответа'], ['invited', 'Приглашение от Ани'], ['active', 'Идёт · оба 4 из 7'], ['lag', 'Друг отстаёт · цель 5'], ['done', 'Выполнена'], ['expired', 'Погасло']],
-    body: (st) => [col('Сейчас · вкладка с друзьями (список по строкам приложения, кадр заказан Сверке)', frNow()), col({ none: 'Как будет · предложить цель другу', waiting: 'Как будет · ждём ответа друга', invited: 'Как будет · у друга: принять или не сейчас', active: 'Как будет · цель идёт (тап по другу — его карточка)', lag: 'Как будет · друг отстаёт — напомнить', done: 'Как будет · выполнена, награда обоим', expired: 'Как будет · без ответа три дня — погасло' }[st], frWill(st))] },
+    body: (st) => [col('Сейчас', frNow()), col('Как будет', frWill(st))] }, // координатор 29.10: подписи колонок — только «Сейчас» и «Как будет»
 ];
 K.mount({ sections: SECTIONS, sheets: SHEETS, onAct });
 console.log(LOG, 'готово', JSON.stringify({ friends: K.have(FR), rows: FRIENDS.length, week: WEEK.length })); // guard-ok: одна строка на страницу

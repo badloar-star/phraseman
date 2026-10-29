@@ -27,7 +27,10 @@
 .wg-acts { display: flex; gap: 8px; margin-top: 8px; }
 .wg-acts .ck-btn { flex: 1; margin: 0; }
 /* ——— вкладка «Друзья» со списком (владелец 29.10: показывать сразу с друзьями) ——— */
-.wf-ins { position: relative; }
+.wf-ins { position: relative; overflow: hidden; }
+.wf-bg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.wf-bg.lo { -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000); mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000); }
+.wf { position: relative; }
 .wf { padding: 12px 20px 24px; } /* боковое поле списка 20 dp, как PX вкладки */
 /* шапка секции: заголовок 19/24, счётчик 24/r12 тоном контрола, справа «пн · 9:00» или круглый «+» 44 */
 .wf-sec { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 44px; margin: 0 0 12px; }

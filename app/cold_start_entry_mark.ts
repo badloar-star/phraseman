@@ -16,7 +16,13 @@ const holder = globalThis as {
   __DEV__?: boolean;
   __SYSTRACE?: { beginEvent?: (name?: string) => void; endEvent?: () => void };
 };
-if (typeof holder.__phrasemanEntryEpochMs !== 'number') holder.__phrasemanEntryEpochMs = Date.now();
+if (typeof holder.__phrasemanEntryEpochMs !== 'number') {
+  holder.__phrasemanEntryEpochMs = Date.now();
+  // зачем (координатор 29.10, замер холодного старта 146 против HEAD при бандле 101 → 122 МБ): в релизе не было точки
+  // «JS начал исполняться». Отрезок «Start proc» (logcat) → эта строка = нативный старт + загрузка бандла,
+  // дальше → [HOME-PAINT] first_frame = инициализация JS и первый кадр. warn — переживает прод-сборку; одна строка на запуск.
+  console.warn(`[COLD-START] js_entry epochMs=${holder.__phrasemanEntryEpochMs}`); // guard-ok: одна строка на запуск
+}
 
 export function msSinceJsEntry(): number {
   const entry = holder.__phrasemanEntryEpochMs;

@@ -50,6 +50,8 @@ export type RemoteBoolKey =
   // — переключатель «Пульта», ВЫКЛ до выкладки сервера 713677ddd (без него «вернуть за 14 дней» для Google/Apple не работает).
   | 'account_delete_variant_b_ui_enabled'
   | 'spire_streak_heart'
+  // зачем (владелец 29.10 ~09:30, «Да, проба на 2 недели»): «призрак друга» на ступени Пика — проба 50/50 по стабильному хешу uid; переключатель «Пульта», по умолчанию ВЫКЛ (включает владелец кнопкой). Выкл → ступень как в 2.0.3 у всех.
+  | 'ghost_friend_ab'
   // зачем (владелец 25.10, координатор 25.10): «золотое задание» Пика ×2 монеты ступени — переключатель «Пульта», по умолчанию ВЫКЛ
   | 'spire_gold'
   // Онбординг: kill-switch кнопки «Пропустить» (владелец может выключить без
@@ -274,6 +276,7 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   dialogue_freeform_translate_enabled: true, // зачем: владелец 26.10 — ВКЛ в 2.0.3 (146); сервер выложен (36938fd46, dialogueV2FreeformTranslate)
   account_delete_variant_b_ui_enabled: true, // зачем: владелец 26.10 — ВКЛ в 2.0.3 (146); сервер выложен (36938fd46, accountDelete* вариант Б)
   spire_streak_heart: false,
+  ghost_friend_ab: false, // зачем: проба «призрака друга» 29.10 — ВЫКЛ, пока владелец не включит в «Пульте»; корзина — spireGhostBucket (components/spire/spire_ghost_flag.ts)
   spire_gold: true, // зачем: владелец 26.10 — ВКЛ в 2.0.3 (146); сервер выложен (36938fd46, spireReportSteps с goldRule)
   // Дефолт true = kill-switch семантика: фича едет с релизом, админка может
   // выключить её мгновенно (кнопка «Пропустить» бьёт по показам пейвола).
@@ -543,7 +546,7 @@ export function applyRemoteConfigSnapshot(snapshot: {
     'app_messages_feed_rev', 'global_broadcast_rev', 'home_survey_rev',
   ]);
   const allowedBools = new Set<RemoteBoolKey>([
-    'learning_cant_speak_enabled', 'account_delete_variant_b_ui_enabled', 'dialogue_freeform_translate_enabled', 'learning_chapter_exam_v2_enabled', 'spire_streak_heart', 'spire_gold', 'premium_theme_webgl_motion_enabled',
+    'learning_cant_speak_enabled', 'account_delete_variant_b_ui_enabled', 'dialogue_freeform_translate_enabled', 'learning_chapter_exam_v2_enabled', 'spire_streak_heart', 'ghost_friend_ab', 'spire_gold', 'premium_theme_webgl_motion_enabled',
     'phone_state_shadow_enabled', 'phone_state_sync_enabled', 'phone_state_emergency_stop',
     'force_update_enabled', 'manual_update_enabled', 'video_button_enabled', 'video_phrases_enabled',
     'energy_mistake_charge', 'speaking_strict_check_enabled',

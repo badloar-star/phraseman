@@ -133,7 +133,9 @@ describe('подключение и бюджет затрат', () => {
     expect(result).toContain('if (!spireGhostEnabled()) return null;');
     expect(result).toContain('peekSpireGhostFor(outcome.report.weekKey, outcome.floorBefore)');
     const hook = read('app/spire/use_spire_ghost.ts');
-    expect(hook).toContain('if (!spireGhostEnabled())');
+    // проба 29.10: хук берёт решение с причиной (флаг «Пульта» + корзина), итог ступени по-прежнему спрашивает spireGhostEnabled()
+    expect(hook).toContain('const decision = spireGhostDecision();');
+    expect(hook).toContain('if (!decision.shown) {');
     const screen = read('components/spire/SpireStepScreen.tsx');
     expect(screen).toContain('useSpireGhost(');
     expect(screen).toContain('SpireGhostLayer');

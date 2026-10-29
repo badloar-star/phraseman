@@ -8,7 +8,8 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { useState } from 'react';
 import { peekFriendsTabSwrWarm } from '../friends_tab_swr_warm';
-import { spireGhostEnabled } from '../../components/spire/spire_ghost_flag';
+import { spireGhostDecision } from '../../components/spire/spire_ghost_flag';
+import { noteSpireGhostExperiment } from './spire_ghost_ab_log';
 import {
   spireGhostLogLine,
   spireGhostMarkFrac,
@@ -53,7 +54,9 @@ export function spireBuildGhostView(input: Readonly<{ uid: string; ctx: SpireSte
 /** Призрак на ступень: считается один раз при открытии ступени (StepBody ключуется по runId), дальше не перерисовывается. */
 export function useSpireGhost(input: Readonly<{ uid: string; ctx: SpireStepContext; budgetMs: number }>): SpireGhostView | null {
   const [view] = useState<SpireGhostView | null>(() => {
-    if (!spireGhostEnabled()) {
+    const decision = spireGhostDecision();
+    noteSpireGhostExperiment(decision); // зачем (проба 29.10): корзина и решение — в журнал обращений (только когда проба идёт)
+    if (!decision.shown) {
       rememberSpireGhost(null, input.ctx); // зачем: флаг выключен — итог не должен взять призрака прошлой ступени из включённого dev-режима
       return null;
     }

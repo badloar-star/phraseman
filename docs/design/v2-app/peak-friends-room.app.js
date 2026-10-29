@@ -19,7 +19,10 @@ const acc = (name) => ({ 'Аня': 'Аню', 'Марк': 'Марка', 'Лиди
 /* заголовок панели друзей — той же строкой и кеглем, что «Комната недели 29» на кадре (блок поверх закрывает её, пока показаны друзья) */
 const head = () => `<div class="pfr-head">Друзья</div>`;
 /* круглая кнопка 44 dp у заголовка (x 505 px кадра — сразу после «29», свободное небо; y — по центру строки заголовка): показывает панель друзей, повторно — комнату */
-const ROUND = { x: 505, y: 614, size: 116 };
+/* зачем (координатор 29.10 по проверке v6, владелец ругался на наложение): кнопка заходила на панель друзей (~6 px по высоте, ~21 px по
+   ширине) — теперь строго в строке заголовка (замер кадра: строка 659…695, центр 677 → верх 619) и ПРАВЕЕ панели: левый край 582 =
+   правый край панели (558) + 24 px (9 dp ≥ 8 dp), правый 698 — до шпиля башни (≥ 737 на этих строках) ≥ 39 px (15 dp) */
+const ROUND = { x: 582, y: 619, size: 116 };
 const roundBtn = (on) => `<div class="pfr-round t${on ? ' on' : ''}" data-act="seg:${on ? 'room' : 'friends'}" style="left:${K.RF.px(ROUND.x)}px;top:${K.RF.px(ROUND.y)}px;width:${K.RF.px(ROUND.size)}px;height:${K.RF.px(ROUND.size)}px">${io(on ? 'people' : 'people-outline')}</div>`;
 const place = (i) => `<span class="pl">${i}</span>`;
 const friendRow = (i, [name, rank, n], compact) => row(place(i) + ci(rank, compact ? 24 : 30), name, '', steps(n), `friend:${name}`, compact ? 'pfr-compact' : '');

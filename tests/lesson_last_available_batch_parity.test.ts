@@ -73,9 +73,12 @@ describe('resolveLastAvailableLessonId — паритет с прежним ци
     expect(await resolveLastAvailableLessonId(11)).toBe(3);
   });
 
-  it('Plus спускается к ближайшему старту раздела', async () => {
-    expect(await resolveLastAvailableLessonId(28, undefined, true)).toBe(19);
-    expect(await resolveLastAvailableLessonId(32, undefined, true)).toBe(29);
+  // ЗАМОК ВЛАДЕЛЬЦА 28.10 ~21:05 («Plus открывает все 32»): у Plus «Продолжить» не спускается к старту раздела — запомненный урок остаётся как есть.
+  it('Plus не спускается: запомненный урок остаётся (все 32 открыты)', async () => {
+    expect(await resolveLastAvailableLessonId(28, undefined, true)).toBe(28);
+    expect(await resolveLastAvailableLessonId(32, undefined, true)).toBe(32);
+    // Free с тем же состоянием по-прежнему спускается к первому уроку
+    expect(await resolveLastAvailableLessonId(28, undefined, false)).toBe(1);
   });
 
   it('Plus удерживает урок, открытый 2★ предыдущего (D121: 60%)', async () => {
@@ -83,11 +86,13 @@ describe('resolveLastAvailableLessonId — паритет с прежним ци
     expect(await resolveLastAvailableLessonId(10, undefined, true)).toBe(10);
   });
 
-  it('D121: Plus не теряет урок, открытый по старому порогу и сохранённый в списке', async () => {
+  it('D121: Plus не теряет урок, открытый по старому порогу и сохранённый в списке (у Plus открыт и без списка — замок 28.10)', async () => {
     mockStore[lessonBestScoreKey(9)] = '2.5';
-    expect(await resolveLastAvailableLessonId(10, undefined, true)).toBe(9);
+    expect(await resolveLastAvailableLessonId(10, undefined, true)).toBe(10); // раньше спускалось на 9; теперь все 32 открыты
     mockStore[unlockedLessonsKey()] = JSON.stringify([10]);
     expect(await resolveLastAvailableLessonId(10, undefined, true)).toBe(10);
+    // Free тот же сценарий не открывает: 4+ закрыты правилом Free
+    expect(await resolveLastAvailableLessonId(10, undefined, false)).toBe(1);
   });
 
   it('совпадает с прежним циклом на наборе состояний', async () => {

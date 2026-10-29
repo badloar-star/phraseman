@@ -74,7 +74,8 @@ describe('monetization_policy: первые три урока free, осталь
     const plusScores = new Array(32).fill(0);
     plusScores[9] = 2;
     expect(buildPremiumLessonUnlocks({ scores: plusScores, persistedUnlocked: [11] })[10]).toBe(true);
-    expect(buildPremiumLessonUnlocks({ scores: plusScores })[10]).toBe(false);
+    // ЗАМОК ВЛАДЕЛЬЦА 28.10 ~21:05 («Plus открывает все 32»): у Plus урок 11 открыт и без сохранённого списка и без бронзы на 10-м
+    expect(buildPremiumLessonUnlocks({ scores: plusScores })[10]).toBe(true);
   });
 
   it('купленный за жемчужины урок 3 открывается без бронзы, но НЕ тянет соседей', () => {
@@ -83,29 +84,27 @@ describe('monetization_policy: первые три урока free, осталь
     ).toEqual([true, false, true, false]);
   });
 
-  // Владелец 2026-09-20: Plus снимает пейвол, но НЕ замок прогресса.
-  // Сразу открыты только урок 1 и первый урок каждого уровня (9/19/29).
-  it('Plus сразу открывает урок 1 и первый урок каждого раздела', () => {
+  // ЗАМОК ВЛАДЕЛЬЦА 28.10 ~21:05 («Plus открывает все 32») отменяет решение 2026-09-20 (Plus снимал пейвол, но не замок прогресса): Plus открывает все 32 сразу.
+  it('Plus сразу открывает все 32 урока', () => {
     const unlocked = buildPremiumLessonUnlocks({ scores: new Array(32).fill(0) });
-    expect(unlocked.flatMap((open, index) => open ? [index + 1] : [])).toEqual([1, 9, 19, 29]);
+    expect(unlocked.flatMap((open, index) => open ? [index + 1] : [])).toEqual(Array.from({ length: 32 }, (_v, i) => i + 1));
   });
 
-  it('у Plus уроки 2–3 тоже требуют бронзы', () => {
-    const scores = new Array(32).fill(0);
-    scores[0] = 3;
-    const unlocked = buildPremiumLessonUnlocks({ scores });
-    expect(unlocked[1]).toBe(true);  // урок 2 после 2★ на первом
-    expect(unlocked[2]).toBe(false); // урок 3 ещё рано
+  it('у Plus уроки 2–3 открыты и без бронзы (ЗАМОК ВЛАДЕЛЬЦА 28.10 ~21:05 («Plus открывает все 32»))', () => {
+    const unlocked = buildPremiumLessonUnlocks({ scores: new Array(32).fill(0) });
+    expect(unlocked[1]).toBe(true);
+    expect(unlocked[2]).toBe(true);
   });
 
-  it('Plus открывает остальные уроки только бронзой на предыдущем', () => {
+  it('Plus открывает остальные уроки без бронзы на предыдущем (ЗАМОК ВЛАДЕЛЬЦА 28.10 ~21:05 («Plus открывает все 32»))', () => {
     const scores = new Array(32).fill(0);
     scores[8] = 3;
     scores[18] = 2.9;
     const unlocked = buildPremiumLessonUnlocks({ scores });
-    expect(unlocked[9]).toBe(true); // урок 10 после бронзы на 9-м
-    expect(unlocked[19]).toBe(false); // урок 20 ещё рано
-    expect(unlocked[27]).toBe(false); // достигнутый уровень целиком не раскрывается
+    expect(unlocked[9]).toBe(true); // урок 10
+    expect(unlocked[19]).toBe(true); // урок 20 — бронза на 19-м не нужна
+    expect(unlocked[27]).toBe(true); // и дальше по курсу
+    expect(unlocked.every(Boolean)).toBe(true);
   });
 
   it('free-список держит замок на 2–3, закрывает старый прогресс и сохраняет купленные права', () => {

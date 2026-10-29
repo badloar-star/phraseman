@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете, что готовить и покупать.
 
-**Что вы освоите:** попросить ещё одну вещь или выбрать другие: another cup, other cups
+**Что вы освоите:** попросить ещё одну вещь или выбрать другие: I use another recipe book.
 **Новые слова:** recipe book, main ingredient, meal plan, shopping budget
 
 ## Интро 1

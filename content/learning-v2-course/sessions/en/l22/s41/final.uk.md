@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви телефонуєте до організації й залишаєте інформацію.
 
-**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I make an enquiry?
 **Нові слова:** make an enquiry, leave my number, pass on a message, take a message
 
 ## Інтро 1

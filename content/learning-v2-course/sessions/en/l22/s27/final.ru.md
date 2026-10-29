@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы читаете описания посуды, одежды и полотенец.
 
-**Что вы освоите:** не повторять название вещи: this one, the red ones
+**Что вы освоите:** не повторять название вещи: I want the dishwasher-safe ones.
 **Новые слова:** dishwasher-safe, microwave-safe, machine-washable, absorbent
 
 ## Интро 1

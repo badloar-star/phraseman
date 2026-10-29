@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете порядок действий перед вылетом.
 
-**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
+**Что вы освоите:** вежливо попросить разрешения: Could I check in online?
 **Новые слова:** check in online, drop off my bag, go through security, join the queue
 
 ## Интро 1

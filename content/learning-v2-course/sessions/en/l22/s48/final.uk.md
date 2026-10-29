@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте дії на кухні.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
+**Що ви опануєте:** сказати, навіщо ви щось робите: to bake a cake
 **Нові слова:** boil the water, chop the vegetables, fry an egg, bake a cake
 
 ## Інтро 1

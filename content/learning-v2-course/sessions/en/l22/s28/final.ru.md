@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете продукты в магазине.
 
-**Что вы освоите:** не повторять название вещи: this one, the red ones
+**Что вы освоите:** не повторять название вещи: I want the ready-to-eat one.
 **Новые слова:** ready-to-eat, freshly baked, pre-cooked, pre-sliced
 
 ## Интро 1

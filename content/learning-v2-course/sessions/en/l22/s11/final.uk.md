@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розбираєте речі й кажете, кому вони належать.
 
-**Що ви опануєте:** сказати, чия річ, не називаючи її: It’s mine
+**Що ви опануєте:** сказати, чия це річ: This electric razor is his.
 **Нові слова:** electric toothbrush, electric razor, hair straighteners, travel adapter
 
 ## Інтро 1

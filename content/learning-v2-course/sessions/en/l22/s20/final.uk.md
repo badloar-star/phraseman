@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви говорите про особистий вибір і спілкування з іншими.
 
-**Що ви опануєте:** сказати, що ви зробили щось самі або із собою: I hurt myself, she made it herself
+**Що ви опануєте:** сказати, що ви зробили щось самі або із собою: I can think for myself.
 **Нові слова:** be yourself, think for yourself, keep to yourself, speak for yourself
 
 ## Інтро 1

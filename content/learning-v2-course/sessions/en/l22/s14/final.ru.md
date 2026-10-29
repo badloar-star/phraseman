@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете условия покупки и оплаты.
 
-**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
+**Что вы освоите:** вежливо попросить разрешения: Could I pay separately?
 **Новые слова:** ask for a receipt, get a refund, try a sample, pay separately
 
 ## Интро 1

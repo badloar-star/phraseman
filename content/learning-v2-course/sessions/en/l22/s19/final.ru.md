@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете учёбу, подготовку и отношение к своим ошибкам.
 
-**Что вы освоите:** сказать, что вы сделали что-то сами или с собой: I hurt myself, she made it herself
+**Что вы освоите:** сказать, что вы сделали что-то сами или с собой: I need to prepare myself.
 **Новые слова:** teach yourself, prepare yourself, remind yourself, forgive yourself
 
 ## Интро 1

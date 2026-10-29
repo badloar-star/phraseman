@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте, як готуєтеся до дороги.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
+**Що ви опануєте:** сказати, навіщо ви щось робите: to reach the station
 **Нові слова:** check the platform, reach the station, avoid the traffic, find a parking space
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы спрашиваете, можно ли изменить что-то в комнате.
 
-**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
+**Что вы освоите:** вежливо попросить разрешения: Could I lock the door?
 **Новые слова:** lock the door, turn off the lights, close the curtains, open the window
 
 ## Интро 1

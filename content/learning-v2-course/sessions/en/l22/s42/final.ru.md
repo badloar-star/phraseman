@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете важные данные по телефону.
 
-**Что вы освоите:** вежливо попросить разрешения: Could I sit here?
+**Что вы освоите:** вежливо попросить разрешения: Could I check the address?
 **Новые слова:** check the address, repeat the number, confirm the time, spell my name
 
 ## Интро 1

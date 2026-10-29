@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы говорите о личном выборе и общении с другими.
 
-**Что вы освоите:** сказать, что вы сделали что-то сами или с собой: I hurt myself, she made it herself
+**Что вы освоите:** сказать, что вы сделали что-то сами или с собой: I can think for myself.
 **Новые слова:** be yourself, think for yourself, keep to yourself, speak for yourself
 
 ## Интро 1

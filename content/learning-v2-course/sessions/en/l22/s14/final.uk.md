@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте умови покупки й оплати.
 
-**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I pay separately?
 **Нові слова:** ask for a receipt, get a refund, try a sample, pay separately
 
 ## Інтро 1

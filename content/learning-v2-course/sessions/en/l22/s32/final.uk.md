@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обираєте час і підтверджуєте плани.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
+**Що ви опануєте:** сказати, навіщо ви щось робите: to pick a time
 **Нові слова:** pick a time, agree on a date, confirm a booking, send an invitation
 
 ## Інтро 1

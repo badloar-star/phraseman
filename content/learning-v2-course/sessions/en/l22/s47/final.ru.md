@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете, чем выполнить уборку.
 
-**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
+**Что вы освоите:** сказать, зачем вы что-то делаете: to sweep the floor
 **Новые слова:** sweep the floor, mop the floor, vacuum the carpet, dust the shelves
 
 ## Интро 1

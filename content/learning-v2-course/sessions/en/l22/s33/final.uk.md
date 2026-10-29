@@ -2,7 +2,7 @@
 
 **Ситуація.** Запропонований варіант вам не підходить.
 
-**Що ви опануєте:** попросити ще одну річ або вибрати інші: another cup, other cups
+**Що ви опануєте:** попросити ще одну річ або вибрати інші: I need another payment method.
 **Нові слова:** payment method, meeting place, delivery date, collection time
 
 ## Інтро 1

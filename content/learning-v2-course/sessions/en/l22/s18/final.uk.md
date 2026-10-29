@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте почуття, зусилля й особисті межі.
 
-**Що ви опануєте:** сказати, що ви зробили щось самі або із собою: I hurt myself, she made it herself
+**Що ви опануєте:** сказати, що ви зробили щось самі або із собою: I can express myself.
 **Нові слова:** express yourself, push yourself, treat yourself, defend yourself
 
 ## Інтро 1

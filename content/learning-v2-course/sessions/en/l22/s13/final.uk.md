@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви просите дозволу в гостях і на роботі.
 
-**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I leave early?
 **Нові слова:** make a suggestion, ask a favour, use the toilet, leave early
 
 ## Інтро 1

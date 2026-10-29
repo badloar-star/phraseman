@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте, навіщо змінюєте звичний план.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
+**Що ви опануєте:** сказати, навіщо ви щось робите: to make a fresh start
 **Нові слова:** make a fresh start, have a backup plan, try a different approach, get a change of scene
 
 ## Інтро 1

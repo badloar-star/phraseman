@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте, який квиток або послуга вам підходить.
 
-**Що ви опануєте:** ввічливо попросити дозволу: Could I sit here?
+**Що ви опануєте:** ввічливо попросити дозволу: Could I buy a refundable ticket?
 **Нові слова:** refundable, non-refundable, complimentary, reserved
 
 ## Інтро 1

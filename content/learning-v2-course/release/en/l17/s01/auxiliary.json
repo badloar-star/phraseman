@@ -10,8 +10,8 @@
           "uk": "Bookend починається з приголосного звука: a bookend."
         },
         "en:lesson-17:session-01:intro1:r3": {
-          "ru": "Перед исчисляемым существительным в единственном числе здесь нужен a.",
-          "uk": "Перед злічуваним іменником в однині тут потрібен a."
+          "ru": "Перед названием одного предмета здесь нужен a.",
+          "uk": "Перед назвою одного предмета тут потрібен a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-17:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-17:session-01:intro3:r2": {
-          "ru": "Неисчисляемое crockery согласуется с is.",
-          "uk": "Незлічуване crockery узгоджується з is."
+          "ru": "Crockery не считают поштучно, поэтому is.",
+          "uk": "Crockery не рахують поштучно, тому is."
         },
         "en:lesson-17:session-01:intro3:r3": {
           "ru": "В значении «посуда» не делаем множественное crockeries.",
-          "uk": "У значенні «посуд» не робимо множину crockeries."
+          "uk": "У значенні «посуд» не робимо форму для кількох crockeries."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c7d4d240ae52ac4d575c324e8aa0315b3be04a7862b39ec2046b9769dc899dc8"
+  "auxiliaryFingerprint": "8fde0da3cb32037d9029dbba43cdea56ee8b9c0de984894dbcd2588ac27c8690"
 }

@@ -173,7 +173,7 @@
         },
         {
           "responseId": "en:lesson-16:session-50:i03:r2",
-          "text": "is going to bring in"
+          "text": "is going bring in"
         },
         {
           "responseId": "en:lesson-16:session-50:i03:r3",
@@ -197,7 +197,7 @@
           },
           {
             "responseId": "en:lesson-16:session-50:i03:r2",
-            "text": "is going to bring in"
+            "text": "is going bring in"
           },
           {
             "responseId": "en:lesson-16:session-50:i03:r3",
@@ -211,8 +211,8 @@
             "correct": false,
             "testedDimension": "Вы предполагаете, что Анна занесёт бельё с улицы, но ещё не обсуждали это с ней. Передайте мнение-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will bring in.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will bring in."
             }
           },
           {
@@ -400,7 +400,7 @@
         },
         {
           "responseId": "en:lesson-16:session-50:i06:r2",
-          "text": "is going to keep out"
+          "text": "is going keep out"
         },
         {
           "responseId": "en:lesson-16:session-50:i06:r3",
@@ -424,7 +424,7 @@
           },
           {
             "responseId": "en:lesson-16:session-50:i06:r2",
-            "text": "is going to keep out"
+            "text": "is going keep out"
           },
           {
             "responseId": "en:lesson-16:session-50:i06:r3",
@@ -438,8 +438,8 @@
             "correct": false,
             "testedDimension": "Вы предполагаете, что собака останется за пределами кухни, пока вы готовите. Передайте мнение-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will keep out.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will keep out."
             }
           },
           {
@@ -617,7 +617,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+      "prompt": "Вы решили убрать игрушки и сообщаете о своём намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
       "responseOptions": [
         {
           "responseId": "en:lesson-16:session-50:i09:r1",
@@ -634,12 +634,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+      "accessibilityLabel": "Вы решили убрать игрушки и сообщаете о своём намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
-          "uk": "Ви вирішили прибрати іграшки й повідомляєте про свій намір. Передайте заздалегідь прийнятий намір через going to."
+          "ru": "Вы решили убрать игрушки и сообщаете о своём намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
+          "uk": "Ви вирішили прибрати іграшки й повідомляєте про свій намір. Домовленості поки немає. Передайте заздалегідь прийнятий намір через going to."
         },
         "gappedTargetPhrase": "I ___ the toys.",
         "gapOptions": [
@@ -656,21 +656,21 @@
             "text": "be"
           }
         ],
-        "testedDimension": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+        "testedDimension": "Вы решили убрать игрушки и сообщаете о своём намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-16:session-50:i09:r2",
             "correct": false,
-            "testedDimension": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+            "testedDimension": "Вы решили убрать игрушки и сообщаете о своём намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              "ru": "Am clearing up — так говорят об уже согласованном плане. Здесь пока только решение: am going to clear up.",
+              "uk": "Am clearing up — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to clear up."
             }
           },
           {
             "responseId": "en:lesson-16:session-50:i09:r3",
             "correct": false,
-            "testedDimension": "Вы решили убрать игрушки и сообщаете о своём намерении. Передайте заранее принятое намерение через going to.",
+            "testedDimension": "Вы решили убрать игрушки и сообщаете о своём намерении. Договорённости пока нет. Передайте заранее принятое намерение через going to.",
             "feedbackByLocale": {
               "ru": "Нужна правильно построенная полная форма: am going to clear up.",
               "uk": "Потрібна правильно побудована повна форма: am going to clear up."
@@ -729,17 +729,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».",
+      "prompt": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Это уже решено. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».",
+      "accessibilityLabel": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Это уже решено. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are cleaning out the garage on Saturday.",
         "localizedMeaning": {
-          "ru": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».",
-          "uk": "Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. Передайте підтверджену домовленість через Present Continuous. Скажіть: «У суботу ми вичищаємо гараж і прибираємо з нього все зайве»."
+          "ru": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Это уже решено. Скажите: «В субботу мы вычищаем гараж и убираем из него всё лишнее».",
+          "uk": "Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. Це вже вирішено. Скажіть: «У суботу ми вичищаємо гараж і прибираємо з нього все зайве»."
         },
         "orderedTokens": [
           "We",
@@ -842,7 +842,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
+      "prompt": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-16:session-50:i12:r1",
@@ -850,7 +850,7 @@
         },
         {
           "responseId": "en:lesson-16:session-50:i12:r2",
-          "text": "are going to clean out"
+          "text": "are clean out"
         },
         {
           "responseId": "en:lesson-16:session-50:i12:r3",
@@ -859,12 +859,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
+      "accessibilityLabel": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
-          "uk": "Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. Передайте підтверджену домовленість через Present Continuous."
+          "ru": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Скажите, что это уже решено.",
+          "uk": "Ви домовилися з родиною в суботу розібрати й вичистити гараж. У clean out форма з -ing — cleaning out. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ the garage on Saturday.",
         "gapOptions": [
@@ -874,28 +874,28 @@
           },
           {
             "responseId": "en:lesson-16:session-50:i12:r2",
-            "text": "are going to clean out"
+            "text": "are clean out"
           },
           {
             "responseId": "en:lesson-16:session-50:i12:r3",
             "text": "be"
           }
         ],
-        "testedDimension": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
+        "testedDimension": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-16:session-50:i12:r2",
             "correct": false,
-            "testedDimension": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
+            "testedDimension": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are cleaning out.",
+              "uk": "Після are потрібна форма з -ing: are cleaning out."
             }
           },
           {
             "responseId": "en:lesson-16:session-50:i12:r3",
             "correct": false,
-            "testedDimension": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Передайте подтверждённую договорённость через Present Continuous.",
+            "testedDimension": "Вы договорились с семьёй в субботу разобрать и вычистить гараж. У clean out форма с -ing — cleaning out. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна правильно построенная полная форма: are cleaning out.",
               "uk": "Потрібна правильно побудована повна форма: are cleaning out."
@@ -1064,13 +1064,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+      "prompt": "Скажите, что это уже решено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-16:session-50:i16:audio"
       ],
-      "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+      "accessibilityLabel": "Скажите, что это уже решено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1131,5 +1131,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9b2b432b3466358cda0e1fdf2647b3966b55acf00937ad55aa8b5a9cb4df1748"
+  "learnerFingerprint": "93eb647ef28c81c15122d263c21d1f3c661365602885438c7aba95d7c2f89d1f"
 }

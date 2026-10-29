@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-54",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить, какой тип у дома: I think the house will be semi-detached.",
+    "uk": "припустити, якого типу буде будинок: I think the house will be semi-detached."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Узгодити огляд будинку"
       },
       "bodyByLocale": {
-        "ru": "Вы договорились с владельцем завтра осмотреть дом с хозяйственной комнатой. Utility room — комната для стирки и других домашних дел. Скажите о договорённости: We are viewing a house with a utility room tomorrow. Начните с We + are viewing, добавьте дом a house with a utility room, затем время tomorrow. Are + viewing образует Present Continuous; согласованный план и время показывают его будущее значение.",
-        "uk": "Ви домовилися з власником завтра оглянути будинок із господарською кімнатою. Utility room — кімната для прання та інших домашніх справ. Скажіть про домовленість: We are viewing a house with a utility room tomorrow. Почніть із We + are viewing, додайте будинок a house with a utility room, потім час tomorrow. Are + viewing утворює Present Continuous; узгоджений план і час показують його майбутнє значення."
+        "ru": "Вы договорились с владельцем завтра осмотреть дом с хозяйственной комнатой. Utility room — комната для стирки и других домашних дел. Скажите о договорённости: We are viewing a house with a utility room tomorrow. Начните с We + are viewing, добавьте дом a house with a utility room, затем время tomorrow. Are + viewing образует am / is / are + -ing; согласованный план и время показывают его будущее значение.",
+        "uk": "Ви домовилися з власником завтра оглянути будинок із господарською кімнатою. Utility room — кімната для прання та інших домашніх справ. Скажіть про домовленість: We are viewing a house with a utility room tomorrow. Почніть із We + are viewing, додайте будинок a house with a utility room, потім час tomorrow. Are + viewing утворює am / is / are + -ing; узгоджений план і час показують його майбутнє значення."
       },
       "question": {
         "interactionId": "en:lesson-16:session-54:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e839767ab3cfbd73a50d60e1b38696fe58d8d5f21471fee4dceab53d2e837b4c"
+  "introFingerprint": "9affa9541eb23e89eb17fd50becfa7f4a5b5d79cfb2b589ad082033500456d41"
 }

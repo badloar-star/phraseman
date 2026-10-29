@@ -10,8 +10,8 @@
           "uk": "Shallot починається з приголосного звука: a shallot."
         },
         "en:lesson-17:session-02:intro1:r3": {
-          "ru": "Здесь нельзя оставлять исчисляемое существительное в единственном числе без a.",
-          "uk": "Тут не можна залишати злічуваний іменник в однині без a."
+          "ru": "Здесь нельзя оставлять название одного предмета без a.",
+          "uk": "Тут не можна залишати назву одного предмета без a."
         }
       }
     },
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-17:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-17:session-02:intro2:r2": {
-          "ru": "После two нужно множественное peppercorns.",
-          "uk": "Після two потрібна множина peppercorns."
+          "ru": "После two нужна форма для нескольких: peppercorns.",
+          "uk": "Після two потрібна форма для кількох: peppercorns."
         },
         "en:lesson-17:session-02:intro2:r3": {
           "ru": "Не ставьте a перед two.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-17:session-02:intro3:q",
       "responseFeedbackById": {
         "en:lesson-17:session-02:intro3:r2": {
-          "ru": "Bulgur как название крупы — неисчисляемое слово: is.",
-          "uk": "Bulgur як назва крупи — незлічуване слово: is."
+          "ru": "Bulgur как название крупы не считают поштучно: is.",
+          "uk": "Bulgur як назва крупи не рахують поштучно: is."
         },
         "en:lesson-17:session-02:intro3:r3": {
-          "ru": "В этом значении у слова нет множественного -s.",
-          "uk": "У цьому значенні слово не має множинного -s."
+          "ru": "В этом значении нет -s для нескольких.",
+          "uk": "У цьому значенні не має -s для кількох."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "130f76a74f1ba3c235b1f8e093f70e6bff5100c2ab596e357b0a1911d88d0396"
+  "auxiliaryFingerprint": "dd42529c0aaa239ff7ca1055e6831b2ce37391a90f4c2867095145e403a44f7b"
 }

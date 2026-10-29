@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово кількості: окремі предмети чи незлічувана назва.",
+      "prompt": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-09:i03:r1",
@@ -180,12 +180,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово кількості: окремі предмети чи незлічувана назва.",
+      "accessibilityLabel": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
-          "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
+          "uk": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують."
         },
         "gappedTargetPhrase": "How ___ pecans do we need?",
         "gapOptions": [
@@ -209,7 +209,7 @@
             "correct": false,
             "testedDimension": "Виберіть слово кількості: окремі предмети чи незлічувана назва.",
             "feedbackByLocale": {
-              "ru": "Pecan можно посчитать: many + pecans во множественном числе.",
+              "ru": "Pecan можно посчитать: many + pecans в форме для нескольких.",
               "uk": "Pecan можна порахувати: many + pecans у множині."
             }
           },
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово кількості: окремі предмети чи незлічувана назва.",
+      "prompt": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-09:i06:r1",
@@ -403,12 +403,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово кількості: окремі предмети чи незлічувана назва.",
+      "accessibilityLabel": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
-          "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
+          "uk": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують."
         },
         "gappedTargetPhrase": "We don't have ___ Brazil nuts.",
         "gapOptions": [
@@ -609,7 +609,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово кількості: окремі предмети чи незлічувана назва.",
+      "prompt": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-09:i09:r1",
@@ -626,12 +626,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово кількості: окремі предмети чи незлічувана назва.",
+      "accessibilityLabel": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
-          "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
+          "uk": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують."
         },
         "gappedTargetPhrase": "How ___ polenta do we need?",
         "gapOptions": [
@@ -655,7 +655,7 @@
             "correct": false,
             "testedDimension": "Виберіть слово кількості: окремі предмети чи незлічувана назва.",
             "feedbackByLocale": {
-              "ru": "Polenta как блюдо — неисчисляемое слово: much.",
+              "ru": "Polenta как блюдо не считают поштучно: much.",
               "uk": "Polenta як страва — незлічуване слово: much."
             }
           },
@@ -831,7 +831,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово кількості: окремі предмети чи незлічувана назва.",
+      "prompt": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-09:i12:r1",
@@ -848,12 +848,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово кількості: окремі предмети чи незлічувана назва.",
+      "accessibilityLabel": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
-          "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
+          "uk": "Виберіть слово кількості: те, що рахують поштучно, чи те, що не рахують."
         },
         "gappedTargetPhrase": "We don't have ___ semolina.",
         "gapOptions": [
@@ -877,7 +877,7 @@
             "correct": false,
             "testedDimension": "Виберіть слово кількості: окремі предмети чи незлічувана назва.",
             "feedbackByLocale": {
-              "ru": "Semolina как крупа — неисчисляемое слово: much, не many.",
+              "ru": "Semolina как крупа не считают поштучно: much, не many.",
               "uk": "Semolina як крупа — незлічуване слово: much, не many."
             }
           },
@@ -1116,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "59ba170b65a1352a513c83dba960b7cba061345aa8fdd24e33864d23841be583"
+  "learnerFingerprint": "81c222a90c38ba192488de2af424997fdf5f8bb5ad935aabd908d9812221d9f7"
 }

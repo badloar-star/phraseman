@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-17:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-17:session-16:intro1:r2": {
-          "ru": "poet можно посчитать: many + poets во множественном числе.",
-          "uk": "poet можна порахувати: many + poets у множині."
+          "ru": "poet можно посчитать: many + poets в форме для нескольких.",
+          "uk": "poet можна порахувати: many + poets у формі для кількох."
         },
         "en:lesson-17:session-16:intro1:r3": {
-          "ru": "Перед many/much здесь не ставим артикль a.",
-          "uk": "Перед many/much тут не ставимо артикль a."
+          "ru": "Перед many/much здесь не ставим a.",
+          "uk": "Перед many/much тут не ставимо a."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-17:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-17:session-16:intro2:r2": {
-          "ru": "poetry в этом значении — неисчисляемое слово: much.",
-          "uk": "poetry у цьому значенні — незлічуване слово: much."
+          "ru": "poetry в этом значении не считают поштучно: much.",
+          "uk": "poetry у цьому значенні не рахують поштучно: much."
         },
         "en:lesson-17:session-16:intro2:r3": {
-          "ru": "Перед many/much здесь не ставим артикль a.",
-          "uk": "Перед many/much тут не ставимо артикль a."
+          "ru": "Перед many/much здесь не ставим a.",
+          "uk": "Перед many/much тут не ставимо a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-17:session-16:intro3:q",
       "responseFeedbackById": {
         "en:lesson-17:session-16:intro3:r2": {
-          "ru": "prose в этом значении — неисчисляемое слово: much.",
-          "uk": "prose у цьому значенні — незлічуване слово: much."
+          "ru": "prose в этом значении не считают поштучно: much.",
+          "uk": "prose у цьому значенні не рахують поштучно: much."
         },
         "en:lesson-17:session-16:intro3:r3": {
-          "ru": "Перед many/much здесь не ставим артикль a.",
-          "uk": "Перед many/much тут не ставимо артикль a."
+          "ru": "Перед many/much здесь не ставим a.",
+          "uk": "Перед many/much тут не ставимо a."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "10d7739fec146844db9a5f432f8629bd983d0e829c88be01440ec7717c78f733"
+  "auxiliaryFingerprint": "04dd89643e44b0530d178185bfc454dbc6bc2af1c48f9564263272da020e158e"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-35",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "оценить, каким будет курс: I think the course will be demanding.",
+    "uk": "оцінити, яким буде курс: I think the course will be demanding."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Маршрут на завтра узгоджено"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом уже выбрали простой маршрут на завтра и согласовали время выезда. Straightforward — простой и понятный, без сложностей. Передайте договорённость: We are taking a straightforward route tomorrow. Порядок: We + are taking + a straightforward route + tomorrow. С we ставим are; перед -ing убираем e в take: taking. Tomorrow и согласованный выезд показывают будущее значение Present Continuous.",
-        "uk": "Ви з другом уже обрали простий маршрут на завтра й узгодили час виїзду. Straightforward — простий і зрозумілий, без складнощів. Передайте домовленість: We are taking a straightforward route tomorrow. Порядок: We + are taking + a straightforward route + tomorrow. З we ставимо are; перед -ing прибираємо e у take: taking. Tomorrow та узгоджений виїзд показують майбутнє значення Present Continuous."
+        "ru": "Вы с другом уже выбрали простой маршрут на завтра и согласовали время выезда. Straightforward — простой и понятный, без сложностей. Передайте договорённость: We are taking a straightforward route tomorrow. Порядок: We + are taking + a straightforward route + tomorrow. С we ставим are; перед -ing убираем e в take: taking. Tomorrow и согласованный выезд показывают будущее значение am / is / are + -ing.",
+        "uk": "Ви з другом уже обрали простий маршрут на завтра й узгодили час виїзду. Straightforward — простий і зрозумілий, без складнощів. Передайте домовленість: We are taking a straightforward route tomorrow. Порядок: We + are taking + a straightforward route + tomorrow. З we ставимо are; перед -ing прибираємо e у take: taking. Tomorrow та узгоджений виїзд показують майбутнє значення am / is / are + -ing."
       },
       "question": {
         "interactionId": "en:lesson-16:session-35:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d72dc8464a22b6842de7add2bc1d9a996cb3672522947d9abc43057a60704a7d"
+  "introFingerprint": "7025a74d270defb84230abe19f44277f19cf636bb9fb885c717887da733a5e2a"
 }

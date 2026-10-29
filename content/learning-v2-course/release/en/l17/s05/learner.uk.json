@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-05:i03:r1",
@@ -178,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "This is ___ wrapper.",
         "gapOptions": [
@@ -273,11 +273,11 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «На землі два недопалки». У cigarette end множина — cigarette ends.",
+      "prompt": "Скажіть: «На землі два недопалки». Якщо cigarette end кілька — cigarette ends.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «На землі два недопалки». У cigarette end множина — cigarette ends.",
+      "accessibilityLabel": "Скажіть: «На землі два недопалки». Якщо cigarette end кілька — cigarette ends.",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "There are two cigarette ends on the ground.",
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-05:i06:r1",
@@ -403,12 +403,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "There are two ___ on the ground.",
         "gapOptions": [
@@ -432,7 +432,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "После two нужно множественное cigarette ends.",
+              "ru": "После two нужна форма для нескольких: cigarette ends.",
               "uk": "Після two потрібна множина cigarette ends."
             }
           },
@@ -441,7 +441,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "После two нужно множественное cigarette ends.",
+              "ru": "После two нужна форма для нескольких: cigarette ends.",
               "uk": "Після two потрібна множина cigarette ends."
             }
           }
@@ -607,7 +607,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-05:i09:r1",
@@ -624,12 +624,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "This litter ___ dangerous.",
         "gapOptions": [
@@ -653,7 +653,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Litter в значении мусора — неисчисляемое слово: is.",
+              "ru": "Litter в значении мусора не считают поштучно: is.",
               "uk": "Litter у значенні сміття — незлічуване слово: is."
             }
           },
@@ -662,7 +662,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Litter в значении мусора — неисчисляемое слово: is.",
+              "ru": "Litter в значении мусора не считают поштучно: is.",
               "uk": "Litter у значенні сміття — незлічуване слово: is."
             }
           }
@@ -828,7 +828,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-05:i12:r1",
@@ -845,12 +845,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "We are clearing ___.",
         "gapOptions": [
@@ -874,7 +874,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Clutter как скопление лишних вещей — без a и без множественного -s.",
+              "ru": "Clutter как скопление лишних вещей — без a и без -s для нескольких.",
               "uk": "Clutter як скупчення зайвих речей — без a та без множинного -s."
             }
           },
@@ -883,7 +883,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Clutter как скопление лишних вещей — без a и без множественного -s.",
+              "ru": "Clutter как скопление лишних вещей — без a и без -s для нескольких.",
               "uk": "Clutter як скупчення зайвих речей — без a та без множинного -s."
             }
           }
@@ -970,13 +970,13 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть почуту фразу зі злічуваним словом",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-17:session-05:i14:audio"
       ],
-      "accessibilityLabel": "Складіть почуту фразу зі злічуваним словом",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -1042,13 +1042,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть фразу з незлічуваним словом",
+      "prompt": "Скажіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-17:session-05:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть фразу з незлічуваним словом",
+      "accessibilityLabel": "Скажіть фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "efbf0367766bd8653b794fef3a8cd106fb115c11cf91a297c82fe85ae659770f"
+  "learnerFingerprint": "a02672296386420cc9308357ddfa1cac1114e53a48bb62f45eaf50bf68d063c1"
 }

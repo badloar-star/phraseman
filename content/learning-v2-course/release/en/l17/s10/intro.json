@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-10",
   "learningOutcomeByLocale": {
-    "ru": "many + plural count noun / much + non-count noun",
-    "uk": "many + plural count noun / much + non-count noun"
+    "ru": "спросить, сколько чего-то есть: How much coursework do we have?",
+    "uk": "запитати, скільки чогось є: How much coursework do we have?"
   },
   "pages": [
     {
@@ -16,7 +16,7 @@
       },
       "bodyByLocale": {
         "ru": "Вы пропустили конец занятия и спрашиваете одногруппника, сколько заданий вам дали. Assignment — отдельное учебное задание, поэтому его можно посчитать. Соберите вопрос: How many assignments + do + we + have? → How many assignments do we have? После many ставим множественное assignments; затем идут do, we и have.",
-        "uk": "Ви пропустили кінець заняття й запитуєте одногрупника, скільки завдань вам дали. Assignment — окреме навчальне завдання, тому його можна порахувати. Складіть запитання: How many assignments + do + we + have? → How many assignments do we have? Після many ставимо множину assignments; далі йдуть do, we і have."
+        "uk": "Ви пропустили кінець заняття й запитуєте одногрупника, скільки завдань вам дали. Assignment — окреме навчальне завдання, тому його можна порахувати. Складіть запитання: How many assignments + do + we + have? → How many assignments do we have? Після many ставимо форму для кількох assignments; далі йдуть do, we і have."
       },
       "question": {
         "interactionId": "en:lesson-17:session-10:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Обсяг роботи на курсі"
       },
       "bodyByLocale": {
-        "ru": "Перед началом курса вы с одногруппником уточняете у преподавателя общий объём учебной работы. Coursework — работы, выполняемые в течение курса; английское слово неисчисляемое. Спросите: How much coursework do we have? Сначала ставим How much coursework, затем do + we + have. Much относится ко всему объёму работы; отдельные задания в этом вопросе не считаем.",
-        "uk": "Перед початком курсу ви з одногрупником уточнюєте у викладача загальний обсяг навчальної роботи. Coursework — роботи, які виконують протягом курсу; англійське слово незлічуване. Запитайте: How much coursework do we have? Спочатку ставимо How much coursework, потім do + we + have. Much стосується всього обсягу роботи; окремі завдання в цьому запитанні не рахуємо."
+        "ru": "Перед началом курса вы с одногруппником уточняете у преподавателя общий объём учебной работы. Coursework — работы, выполняемые в течение курса; английское слово не считается поштучно. Спросите: How much coursework do we have? Сначала ставим How much coursework, затем do + we + have. Much относится ко всему объёму работы; отдельные задания в этом вопросе не считаем.",
+        "uk": "Перед початком курсу ви з одногрупником уточнюєте у викладача загальний обсяг навчальної роботи. Coursework — роботи, які виконують протягом курсу; англійське слово не рахується поштучно. Запитайте: How much coursework do we have? Спочатку ставимо How much coursework, потім do + we + have. Much стосується всього обсягу роботи; окремі завдання в цьому запитанні не рахуємо."
       },
       "question": {
         "interactionId": "en:lesson-17:session-10:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Матеріал уже знайомий"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом хорошо помните материал перед проверкой и хотите сказать, что повторять придётся немного. Revision — повторение учебного материала; здесь это неисчисляемое слово. Соберите предложение: We + don't + need + much revision → We don't need much revision. Don't ставим перед need, а much перед revision. Это означает, что большого объёма повторения не требуется, а не что повторять совсем не нужно.",
-        "uk": "Ви з другом добре пам'ятаєте матеріал перед перевіркою й хочете сказати, що повторювати доведеться небагато. Revision — повторення навчального матеріалу; тут це незлічуване слово. Складіть речення: We + don't + need + much revision → We don't need much revision. Don't ставимо перед need, а much перед revision. Це означає, що великого обсягу повторення не потрібно, а не що повторювати зовсім не треба."
+        "ru": "Вы с другом хорошо помните материал перед проверкой и хотите сказать, что повторять придётся немного. Revision — повторение учебного материала; здесь это слово, которое не считают поштучно. Соберите предложение: We + don't + need + much revision → We don't need much revision. Don't ставим перед need, а much перед revision. Это означает, что большого объёма повторения не требуется, а не что повторять совсем не нужно.",
+        "uk": "Ви з другом добре пам'ятаєте матеріал перед перевіркою й хочете сказати, що повторювати доведеться небагато. Revision — повторення навчального матеріалу; тут це слово, яке не рахують поштучно. Складіть речення: We + don't + need + much revision → We don't need much revision. Don't ставимо перед need, а much перед revision. Це означає, що великого обсягу повторення не потрібно, а не що повторювати зовсім не треба."
       },
       "question": {
         "interactionId": "en:lesson-17:session-10:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e85abb3fcba4379062998fbad271441e36e21407904fc1165adc9683acb983d1"
+  "introFingerprint": "6c94295a47062554ab639805f72c6010638f003a584d5b697359013c2a84d030"
 }

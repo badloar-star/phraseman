@@ -172,7 +172,7 @@
         },
         {
           "responseId": "en:lesson-16:session-53:i03:r2",
-          "text": "is going to be"
+          "text": "is going be"
         },
         {
           "responseId": "en:lesson-16:session-53:i03:r3",
@@ -196,7 +196,7 @@
           },
           {
             "responseId": "en:lesson-16:session-53:i03:r2",
-            "text": "is going to be"
+            "text": "is going be"
           },
           {
             "responseId": "en:lesson-16:session-53:i03:r3",
@@ -210,8 +210,8 @@
             "correct": false,
             "testedDimension": "Вы ещё не видели квартиру и предполагаете, что мебель в ней уже есть. Передайте мнение-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will be.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will be."
             }
           },
           {
@@ -396,7 +396,7 @@
         },
         {
           "responseId": "en:lesson-16:session-53:i06:r2",
-          "text": "is going to be"
+          "text": "is going be"
         },
         {
           "responseId": "en:lesson-16:session-53:i06:r3",
@@ -420,7 +420,7 @@
           },
           {
             "responseId": "en:lesson-16:session-53:i06:r2",
-            "text": "is going to be"
+            "text": "is going be"
           },
           {
             "responseId": "en:lesson-16:session-53:i06:r3",
@@ -434,8 +434,8 @@
             "correct": false,
             "testedDimension": "Вы высказываете предположение о доме, который вам предложили снять. Передайте мнение-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will be.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will be."
             }
           },
           {
@@ -726,17 +726,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».",
+      "prompt": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Это уже решено. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».",
+      "accessibilityLabel": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Это уже решено. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are viewing a terraced house tomorrow.",
         "localizedMeaning": {
-          "ru": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».",
-          "uk": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Завтра ми оглядаємо будинок у ряду будинків зі спільними стінами»."
+          "ru": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Это уже решено. Скажите: «Завтра мы осматриваем дом в ряду домов с общими стенами».",
+          "uk": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Це вже вирішено. Скажіть: «Завтра ми оглядаємо будинок у ряду будинків зі спільними стінами»."
         },
         "orderedTokens": [
           "We",
@@ -838,7 +838,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+      "prompt": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-16:session-53:i12:r1",
@@ -846,7 +846,7 @@
         },
         {
           "responseId": "en:lesson-16:session-53:i12:r2",
-          "text": "are going to view"
+          "text": "are view"
         },
         {
           "responseId": "en:lesson-16:session-53:i12:r3",
@@ -855,12 +855,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+      "accessibilityLabel": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
-          "uk": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Передайте підтверджену домовленість через Present Continuous."
+          "ru": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Скажите, что это уже решено.",
+          "uk": "Ви домовилися з агентом завтра подивитися будинок у суцільному ряду будинків. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ a terraced house tomorrow.",
         "gapOptions": [
@@ -870,28 +870,28 @@
           },
           {
             "responseId": "en:lesson-16:session-53:i12:r2",
-            "text": "are going to view"
+            "text": "are view"
           },
           {
             "responseId": "en:lesson-16:session-53:i12:r3",
             "text": "be"
           }
         ],
-        "testedDimension": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+        "testedDimension": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-16:session-53:i12:r2",
             "correct": false,
-            "testedDimension": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+            "testedDimension": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are viewing.",
+              "uk": "Після are потрібна форма з -ing: are viewing."
             }
           },
           {
             "responseId": "en:lesson-16:session-53:i12:r3",
             "correct": false,
-            "testedDimension": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Передайте подтверждённую договорённость через Present Continuous.",
+            "testedDimension": "Вы договорились с агентом завтра посмотреть дом в сплошном ряду домов. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна правильно построенная полная форма: are viewing.",
               "uk": "Потрібна правильно побудована повна форма: are viewing."
@@ -1060,13 +1060,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Передайте подтверждённую договорённость через Present Continuous.",
+      "prompt": "Скажите, что это уже решено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-16:session-53:i16:audio"
       ],
-      "accessibilityLabel": "Передайте подтверждённую договорённость через Present Continuous.",
+      "accessibilityLabel": "Скажите, что это уже решено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "07a2c67b07359806fbdca0b3ac0254a5b480882642d84af8637d6a80ee2e193c"
+  "learnerFingerprint": "91831025800468f36d0c35cb6c62699cf10b5f6391052199fc07008a669aebf7"
 }

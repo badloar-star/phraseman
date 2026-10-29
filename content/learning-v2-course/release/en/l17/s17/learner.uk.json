@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Ви раді, що живете не самі. Підкресліть, що кілька сусідів є, а не те, що їх мало. Housemate → housemates.",
             "feedbackByLocale": {
-              "ru": "С людьми во множественном числе используйте few.",
+              "ru": "С людьми в форме для нескольких используйте few.",
               "uk": "Із людьми у множині використовуйте few."
             }
           }
@@ -439,7 +439,7 @@
             "correct": false,
             "testedDimension": "Ви нещодавно переїхали й відчуваєте брак спілкування. Підкресліть, що знайомих мало. Acquaintance → acquaintances.",
             "feedbackByLocale": {
-              "ru": "С людьми во множественном числе используйте few.",
+              "ru": "С людьми в форме для нескольких используйте few.",
               "uk": "Із людьми у множині використовуйте few."
             }
           }
@@ -662,7 +662,7 @@
             "correct": false,
             "testedDimension": "Ви знайшли час для відпочинку. Підкресліть, що трохи вільного часу є.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -883,7 +883,7 @@
             "correct": false,
             "testedDimension": "Ви живете в тісному будинку й незадоволені тим, що майже неможливо побути без сторонніх. Підкресліть брак усамітнення.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "75a2f3146281b21ce6dc68975f30f8420950c112ab9d33d130f9226efd3af43f"
+  "learnerFingerprint": "5c7ce95ccb482d26ffb9f845cb81ff64c8cd8890a95dcc9fcc6bc8a6fd72f076"
 }

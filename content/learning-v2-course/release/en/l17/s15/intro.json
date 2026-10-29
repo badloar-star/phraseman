@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-15",
   "learningOutcomeByLocale": {
-    "ru": "many + plural count noun / much + non-count noun",
-    "uk": "many + plural count noun / much + non-count noun"
+    "ru": "спросить, сколько стажёров: How many trainees do we have?",
+    "uk": "запитати, скільки стажистів: How many trainees do we have?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Скільки стажерів прийде"
       },
       "bodyByLocale": {
-        "ru": "Вы готовите первое занятие для стажёров и уточняете у коллеги, сколько их у вас. Trainee — стажёр; людей можно посчитать, поэтому ставим many перед множественным trainees. Соберите вопрос: How many trainees + do + we + have? → How many trainees do we have? Начинаем с how many и названия людей, затем ставим do, we и have.",
-        "uk": "Ви готуєте перше заняття для стажерів і уточнюєте в колеги, скільки їх у вас. Trainee — стажер; людей можна порахувати, тому ставимо many перед множиною trainees. Складіть запитання: How many trainees + do + we + have? → How many trainees do we have? Починаємо з how many та назви людей, потім ставимо do, we і have."
+        "ru": "Вы готовите первое занятие для стажёров и уточняете у коллеги, сколько их у вас. Trainee — стажёр; людей можно посчитать, поэтому ставим many перед trainees — их несколько. Соберите вопрос: How many trainees + do + we + have? → How many trainees do we have? Начинаем с how many и названия людей, затем ставим do, we и have.",
+        "uk": "Ви готуєте перше заняття для стажерів і уточнюєте в колеги, скільки їх у вас. Trainee — стажер; людей можна порахувати, тому ставимо many перед trainees — їх кілька. Складіть запитання: How many trainees + do + we + have? → How many trainees do we have? Починаємо з how many та назви людей, потім ставимо do, we і have."
       },
       "question": {
         "interactionId": "en:lesson-17:session-15:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Який контроль їм потрібен"
       },
       "bodyByLocale": {
-        "ru": "Перед первым рабочим днём стажёров вы спрашиваете наставника, насколько внимательно за ними нужно наблюдать. Supervision — наблюдение и контроль; здесь слово неисчисляемое. Соберите вопрос: How much supervision + do + they + need? → How much supervision do they need? Much относится к supervision, а после do идут they и need без изменений. They обозначает стажёров.",
-        "uk": "Перед першим робочим днем стажерів ви запитуєте наставника, наскільки уважно за ними потрібно спостерігати. Supervision — нагляд і контроль; тут слово незлічуване. Складіть запитання: How much supervision + do + they + need? → How much supervision do they need? Much стосується supervision, а після do йдуть they та need без змін. They позначає стажерів."
+        "ru": "Перед первым рабочим днём стажёров вы спрашиваете наставника, насколько внимательно за ними нужно наблюдать. Supervision — наблюдение и контроль; здесь слово не считается поштучно. Соберите вопрос: How much supervision + do + they + need? → How much supervision do they need? Much относится к supervision, а после do идут they и need без изменений. They обозначает стажёров.",
+        "uk": "Перед першим робочим днем стажерів ви запитуєте наставника, наскільки уважно за ними потрібно спостерігати. Supervision — нагляд і контроль; тут слово не рахується поштучно. Складіть запитання: How much supervision + do + they + need? → How much supervision do they need? Much стосується supervision, а після do йдуть they та need без змін. They позначає стажерів."
       },
       "question": {
         "interactionId": "en:lesson-17:session-15:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Вони справляються майже самі"
       },
       "bodyByLocale": {
-        "ru": "Стажёры уже освоили знакомую работу, и им требуется лишь немного подсказок наставника. Guidance — помощь советом, неисчисляемое слово. Скажите, что им не нужно много такой помощи: They + don't + need + much guidance → They don't need much guidance. После they используем don't, затем need в исходной форме. Much ставим перед guidance; отрицание означает небольшую потребность в помощи, а не её полное отсутствие.",
-        "uk": "Стажери вже опанували знайому роботу, і їм потрібно лише трохи підказок наставника. Guidance — допомога порадою, незлічуване слово. Скажіть, що їм не потрібно багато такої допомоги: They + don't + need + much guidance → They don't need much guidance. Після they використовуємо don't, потім need у початковій формі. Much ставимо перед guidance; заперечення означає невелику потребу в допомозі, а не її повну відсутність."
+        "ru": "Стажёры уже освоили знакомую работу, и им требуется лишь немного подсказок наставника. Guidance — помощь советом, слово, которое не считают поштучно. Скажите, что им не нужно много такой помощи: They + don't + need + much guidance → They don't need much guidance. После they используем don't, затем need в исходной форме. Much ставим перед guidance; отрицание означает небольшую потребность в помощи, а не её полное отсутствие.",
+        "uk": "Стажери вже опанували знайому роботу, і їм потрібно лише трохи підказок наставника. Guidance — допомога порадою, слово, яке не рахують поштучно. Скажіть, що їм не потрібно багато такої допомоги: They + don't + need + much guidance → They don't need much guidance. Після they використовуємо don't, потім need у початковій формі. Much ставимо перед guidance; заперечення означає невелику потребу в допомозі, а не її повну відсутність."
       },
       "question": {
         "interactionId": "en:lesson-17:session-15:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cc71d7fd4d43b2131fe920aaa6ee77bb9430a77dfa5c7a42e137038c645fc3af"
+  "introFingerprint": "82f657136fa0e259437f363bfd678fd2e67cefa858c835eaac29fe4ee9f08324"
 }

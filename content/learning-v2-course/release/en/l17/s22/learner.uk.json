@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "На склі є кілька слідів. Підкресліть, що ви їх знайшли. Fingerprint → fingerprints.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -439,7 +439,7 @@
             "correct": false,
             "testedDimension": "Ви очікували багато павутиння, але окремих павучих сіток мало. Підкресліть малу кількість. Cobweb → cobwebs.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -661,7 +661,7 @@
             "correct": false,
             "testedDimension": "Після ремонту залишилися невеликі уламки. Підкресліть, що певну кількість знайшли.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -883,7 +883,7 @@
             "correct": false,
             "testedDimension": "Після прибирання шару бруду майже немає. Підкресліть, що бруду залишилося мало.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "161d8222429ac34cc25523d42a8fafcbc8e77de2eb9fc7568317a8409d3e5a68"
+  "learnerFingerprint": "e0ef928a9593825db294200b345f5aa93448bea64d289a610af4ed6b0c9224c8"
 }

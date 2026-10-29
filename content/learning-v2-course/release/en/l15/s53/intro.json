@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-15:session-53",
   "learningOutcomeByLocale": {
-    "ru": "going to / Present Continuous: intention and arrangement",
-    "uk": "going to / Present Continuous: intention and arrangement"
+    "ru": "сказать, чего нет в продукте: I am buying gluten-free bread tomorrow.",
+    "uk": "сказати, чого немає в продукті: I am buying gluten-free bread tomorrow."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Домовитися забрати йогурт"
       },
       "bodyByLocale": {
-        "ru": "Вы с партнёром заказали йогурт без добавленных подсластителей. Магазин подтвердил получение на завтра. We are collecting the unsweetened yoghurt tomorrow. — Завтра мы забираем йогурт без добавленных подсластителей. Для договорённости соберите we + are + collecting. Collecting получается из collect добавлением -ing. Затем добавьте the unsweetened yoghurt — что забираете — и tomorrow — когда. Здесь используйте Present Continuous; going to также возможно, но отрабатываем согласованный план через are collecting.",
-        "uk": "Ви з партнером замовили йогурт без доданих підсолоджувачів. Магазин підтвердив отримання на завтра. We are collecting the unsweetened yoghurt tomorrow. — Завтра ми забираємо йогурт без доданих підсолоджувачів. Для домовленості складіть we + are + collecting. Collecting утворюється з collect додаванням -ing. Потім додайте the unsweetened yoghurt — що забираєте — і tomorrow — коли. Тут використайте Present Continuous; going to також можливе, але відпрацьовуємо узгоджений план через are collecting."
+        "ru": "Вы с партнёром заказали йогурт без добавленных подсластителей. Магазин подтвердил получение на завтра. We are collecting the unsweetened yoghurt tomorrow. — Завтра мы забираем йогурт без добавленных подсластителей. Для договорённости соберите we + are + collecting. Collecting получается из collect добавлением -ing. Затем добавьте the unsweetened yoghurt — что забираете — и tomorrow — когда. Здесь используйте am / is / are + -ing; going to также возможно, но отрабатываем согласованный план через are collecting.",
+        "uk": "Ви з партнером замовили йогурт без доданих підсолоджувачів. Магазин підтвердив отримання на завтра. We are collecting the unsweetened yoghurt tomorrow. — Завтра ми забираємо йогурт без доданих підсолоджувачів. Для домовленості складіть we + are + collecting. Collecting утворюється з collect додаванням -ing. Потім додайте the unsweetened yoghurt — що забираєте — і tomorrow — коли. Тут використайте am / is / are + -ing; going to також можливе, але відпрацьовуємо узгоджений план через are collecting."
       },
       "question": {
         "interactionId": "en:lesson-15:session-53:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Розповісти про замовлення батьків"
       },
       "bodyByLocale": {
-        "ru": "Родители заказали несолёное масло и согласовали получение на пятницу. They are collecting the unsalted butter on Friday. — В пятницу они забирают несолёное масло. Назовите родителей словом they, затем поставьте are collecting. Добавьте the unsalted butter — что забирают — и on Friday — когда. Порядок такой: they + are collecting + the unsalted butter + on Friday. С they нужен are. Здесь тренируем Present Continuous для договорённости; going to тоже возможно.",
-        "uk": "Батьки замовили несолоне масло й узгодили отримання на п'ятницю. They are collecting the unsalted butter on Friday. — У п'ятницю вони забирають несолоне масло. Назвіть батьків словом they, потім поставте are collecting. Додайте the unsalted butter — що забирають — і on Friday — коли. Порядок такий: they + are collecting + the unsalted butter + on Friday. З they потрібне are. Тут тренуємо Present Continuous для домовленості; going to також можливе."
+        "ru": "Родители заказали несолёное масло и согласовали получение на пятницу. They are collecting the unsalted butter on Friday. — В пятницу они забирают несолёное масло. Назовите родителей словом they, затем поставьте are collecting. Добавьте the unsalted butter — что забирают — и on Friday — когда. Порядок такой: they + are collecting + the unsalted butter + on Friday. С they нужен are. Здесь тренируем am / is / are + -ing для договорённости; going to тоже возможно.",
+        "uk": "Батьки замовили несолоне масло й узгодили отримання на п'ятницю. They are collecting the unsalted butter on Friday. — У п'ятницю вони забирають несолоне масло. Назвіть батьків словом they, потім поставте are collecting. Додайте the unsalted butter — що забирають — і on Friday — коли. Порядок такий: they + are collecting + the unsalted butter + on Friday. З they потрібне are. Тут тренуємо am / is / are + -ing для домовленості; going to також можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-53:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f2930cc34cefbb69f633e7aeeb8b47a5fd8a07741fee4b3c02d8ea8fcef1d09a"
+  "introFingerprint": "f5b9e6c4960363c607f26973c1c2e60ec0e3d24df0eda1921df9991a669584f3"
 }

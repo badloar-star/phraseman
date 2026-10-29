@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Подчеркните, что несколько кренделей есть. Pretzel → pretzels.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -439,7 +439,7 @@
             "correct": false,
             "testedDimension": "Для всех порций супа сухариков не хватает. Подчеркните, что осталось мало. Crouton → croutons.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -661,7 +661,7 @@
             "correct": false,
             "testedDimension": "Подчеркните, что немного киноа есть.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -883,7 +883,7 @@
             "correct": false,
             "testedDimension": "Гречки не хватит на задуманный ужин. Подчеркните нехватку.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2cba34c693a37a1cc744354e7e3ad6dddc466f4fae98d7c2151688c47cafe07c"
+  "learnerFingerprint": "dccfbbae9add9f7a83a9297e5445c06af00d8ea57cb7eda38f98e9d05329bc6e"
 }

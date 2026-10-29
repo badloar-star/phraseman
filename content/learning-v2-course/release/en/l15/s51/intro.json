@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-15:session-51",
   "learningOutcomeByLocale": {
-    "ru": "going to / Present Continuous: intention and arrangement",
-    "uk": "going to / Present Continuous: intention and arrangement"
+    "ru": "назвать рисунок на ткани: I am buying a paisley scarf tomorrow.",
+    "uk": "назвати малюнок на тканині: I am buying a paisley scarf tomorrow."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Домовитися забрати сукню"
       },
       "bodyByLocale": {
-        "ru": "Вы с подругой заказали платье в горошек и договорились с магазином забрать его завтра. We are collecting the dress with polka dots tomorrow. — Завтра мы забираем платье в горошек. Для договорённости поставьте we are collecting. Затем добавьте the dress with polka dots — какое платье — и tomorrow — когда. Соберите we + are collecting + the dress with polka dots + tomorrow. С we нужен are. Здесь тренируем Present Continuous; going to также возможно.",
-        "uk": "Ви з подругою замовили сукню в горошок і домовилися з магазином забрати її завтра. We are collecting the dress with polka dots tomorrow. — Завтра ми забираємо сукню в горошок. Для домовленості поставте we are collecting. Потім додайте the dress with polka dots — яку сукню — і tomorrow — коли. Складіть we + are collecting + the dress with polka dots + tomorrow. З we потрібне are. Тут тренуємо Present Continuous; going to також можливе."
+        "ru": "Вы с подругой заказали платье в горошек и договорились с магазином забрать его завтра. We are collecting the dress with polka dots tomorrow. — Завтра мы забираем платье в горошек. Для договорённости поставьте we are collecting. Затем добавьте the dress with polka dots — какое платье — и tomorrow — когда. Соберите we + are collecting + the dress with polka dots + tomorrow. С we нужен are. Здесь тренируем am / is / are + -ing; going to также возможно.",
+        "uk": "Ви з подругою замовили сукню в горошок і домовилися з магазином забрати її завтра. We are collecting the dress with polka dots tomorrow. — Завтра ми забираємо сукню в горошок. Для домовленості поставте we are collecting. Потім додайте the dress with polka dots — яку сукню — і tomorrow — коли. Складіть we + are collecting + the dress with polka dots + tomorrow. З we потрібне are. Тут тренуємо am / is / are + -ing; going to також можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-51:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Розповісти про замовлення пальта"
       },
       "bodyByLocale": {
-        "ru": "Родители заказали пальто с рисунком ёлочкой; магазин подтвердил получение на пятницу. They are collecting the herringbone coat on Friday. — В пятницу они забирают пальто с рисунком ёлочкой. Назовите родителей словом they, затем поставьте are collecting: collect получает -ing. Добавьте the herringbone coat и время on Friday. Порядок такой: they + are collecting + the herringbone coat + on Friday. Здесь используйте Present Continuous для договорённости; going to тоже возможно.",
-        "uk": "Батьки замовили пальто з візерунком ялинкою; магазин підтвердив отримання на п'ятницю. They are collecting the herringbone coat on Friday. — У п'ятницю вони забирають пальто з візерунком ялинкою. Назвіть батьків словом they, потім поставте are collecting: collect отримує -ing. Додайте the herringbone coat і час on Friday. Порядок такий: they + are collecting + the herringbone coat + on Friday. Тут використайте Present Continuous для домовленості; going to також можливе."
+        "ru": "Родители заказали пальто с рисунком ёлочкой; магазин подтвердил получение на пятницу. They are collecting the herringbone coat on Friday. — В пятницу они забирают пальто с рисунком ёлочкой. Назовите родителей словом they, затем поставьте are collecting: collect получает -ing. Добавьте the herringbone coat и время on Friday. Порядок такой: they + are collecting + the herringbone coat + on Friday. Здесь используйте am / is / are + -ing для договорённости; going to тоже возможно.",
+        "uk": "Батьки замовили пальто з візерунком ялинкою; магазин підтвердив отримання на п'ятницю. They are collecting the herringbone coat on Friday. — У п'ятницю вони забирають пальто з візерунком ялинкою. Назвіть батьків словом they, потім поставте are collecting: collect отримує -ing. Додайте the herringbone coat і час on Friday. Порядок такий: they + are collecting + the herringbone coat + on Friday. Тут використайте am / is / are + -ing для домовленості; going to також можливе."
       },
       "question": {
         "interactionId": "en:lesson-15:session-51:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f8e6df39edbb43129045f88f2e83856b4d290ba67490991a7215a6fed23b3425"
+  "introFingerprint": "103591a2c695a9a5a2244cdf3ae04eaf5df26ebe969f840424dfd482f26dac80"
 }

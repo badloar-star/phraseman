@@ -172,7 +172,7 @@
         },
         {
           "responseId": "en:lesson-16:session-44:i03:r2",
-          "text": "is going to be"
+          "text": "is going be"
         },
         {
           "responseId": "en:lesson-16:session-44:i03:r3",
@@ -196,7 +196,7 @@
           },
           {
             "responseId": "en:lesson-16:session-44:i03:r2",
-            "text": "is going to be"
+            "text": "is going be"
           },
           {
             "responseId": "en:lesson-16:session-44:i03:r3",
@@ -210,8 +210,8 @@
             "correct": false,
             "testedDimension": "Вам обіцяли подарувати переносну лампу; ви припускаєте, що вона буде з акумулятором. Передайте думку-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will be.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will be."
             }
           },
           {
@@ -397,7 +397,7 @@
         },
         {
           "responseId": "en:lesson-16:session-44:i06:r2",
-          "text": "is going to be"
+          "text": "is going be"
         },
         {
           "responseId": "en:lesson-16:session-44:i06:r3",
@@ -421,7 +421,7 @@
           },
           {
             "responseId": "en:lesson-16:session-44:i06:r2",
-            "text": "is going to be"
+            "text": "is going be"
           },
           {
             "responseId": "en:lesson-16:session-44:i06:r3",
@@ -435,8 +435,8 @@
             "correct": false,
             "testedDimension": "Ви очікуєте замовлення з милом і припускаєте, що пляшку можна буде використовувати знову. Передайте думку-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will be.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will be."
             }
           },
           {
@@ -660,8 +660,8 @@
             "correct": false,
             "testedDimension": "Ви вирішили купити куртку, яку можна носити будь-яким боком назовні; поки це намір. Передайте заздалегідь прийнятий намір через going to.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте заранее принятое намерение через going to.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте заздалегідь прийнятий намір через going to."
+              "ru": "Am buying — так говорят об уже согласованном плане. Здесь пока только решение: am going to buy.",
+              "uk": "Am buying — так кажуть про вже узгоджений план. Тут поки лише рішення: am going to buy."
             }
           },
           {
@@ -726,17 +726,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми встановлюємо замки із захистом від дітей завтра».",
+      "prompt": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Це вже вирішено. Скажіть: «Ми встановлюємо замки із захистом від дітей завтра».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми встановлюємо замки із захистом від дітей завтра».",
+      "accessibilityLabel": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Це вже вирішено. Скажіть: «Ми встановлюємо замки із захистом від дітей завтра».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are fitting childproof locks tomorrow.",
         "localizedMeaning": {
-          "ru": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous. Скажите: «Мы устанавливаем замки с защитой от детей завтра».",
-          "uk": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Ми встановлюємо замки із захистом від дітей завтра»."
+          "ru": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Это уже решено. Скажите: «Мы устанавливаем замки с защитой от детей завтра».",
+          "uk": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Це вже вирішено. Скажіть: «Ми встановлюємо замки із захистом від дітей завтра»."
         },
         "orderedTokens": [
           "We",
@@ -837,7 +837,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous.",
+      "prompt": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Скажіть, що це вже вирішено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-16:session-44:i12:r1",
@@ -845,7 +845,7 @@
         },
         {
           "responseId": "en:lesson-16:session-44:i12:r2",
-          "text": "are going to fit"
+          "text": "are fit"
         },
         {
           "responseId": "en:lesson-16:session-44:i12:r3",
@@ -854,12 +854,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous.",
+      "accessibilityLabel": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Скажіть, що це вже вирішено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Передайте подтверждённую договорённость через Present Continuous.",
-          "uk": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous."
+          "ru": "Вы договорились с мастером поставить замки на кухонные шкафчики завтра. Скажите, что это уже решено.",
+          "uk": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ childproof locks tomorrow.",
         "gapOptions": [
@@ -869,28 +869,28 @@
           },
           {
             "responseId": "en:lesson-16:session-44:i12:r2",
-            "text": "are going to fit"
+            "text": "are fit"
           },
           {
             "responseId": "en:lesson-16:session-44:i12:r3",
             "text": "be"
           }
         ],
-        "testedDimension": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous.",
+        "testedDimension": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Скажіть, що це вже вирішено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-16:session-44:i12:r2",
             "correct": false,
-            "testedDimension": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous.",
+            "testedDimension": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Скажіть, що це вже вирішено.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are fitting.",
+              "uk": "Після are потрібна форма з -ing: are fitting."
             }
           },
           {
             "responseId": "en:lesson-16:session-44:i12:r3",
             "correct": false,
-            "testedDimension": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Передайте підтверджену домовленість через Present Continuous.",
+            "testedDimension": "Ви домовилися з майстром поставити замки на кухонні шафки завтра. Скажіть, що це вже вирішено.",
             "feedbackByLocale": {
               "ru": "Нужна правильно построенная полная форма: are fitting.",
               "uk": "Потрібна правильно побудована повна форма: are fitting."
@@ -1058,13 +1058,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+      "prompt": "Скажіть, що це вже вирішено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-16:session-44:i16:audio"
       ],
-      "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+      "accessibilityLabel": "Скажіть, що це вже вирішено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1125,5 +1125,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9f53d45ec35de0ed16f5dcdd0501003599b9c6de23557d8155a2a9f1e629a905"
+  "learnerFingerprint": "33868fdd15a542969d269e93fdfb00457c7c4df4e9d20fa59295daaf2a2693af"
 }

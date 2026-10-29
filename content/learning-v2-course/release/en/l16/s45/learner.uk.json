@@ -171,7 +171,7 @@
         },
         {
           "responseId": "en:lesson-16:session-45:i03:r2",
-          "text": "is going to speak up"
+          "text": "is going speak up"
         },
         {
           "responseId": "en:lesson-16:session-45:i03:r3",
@@ -195,7 +195,7 @@
           },
           {
             "responseId": "en:lesson-16:session-45:i03:r2",
-            "text": "is going to speak up"
+            "text": "is going speak up"
           },
           {
             "responseId": "en:lesson-16:session-45:i03:r3",
@@ -209,8 +209,8 @@
             "correct": false,
             "testedDimension": "Ви припускаєте, що Анна почне говорити голосніше, щоб усім було чутно. Передайте думку-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will speak up.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will speak up."
             }
           },
           {
@@ -398,7 +398,7 @@
         },
         {
           "responseId": "en:lesson-16:session-45:i06:r2",
-          "text": "is going to hold still"
+          "text": "is going hold still"
         },
         {
           "responseId": "en:lesson-16:session-45:i06:r3",
@@ -422,7 +422,7 @@
           },
           {
             "responseId": "en:lesson-16:session-45:i06:r2",
-            "text": "is going to hold still"
+            "text": "is going hold still"
           },
           {
             "responseId": "en:lesson-16:session-45:i06:r3",
@@ -436,8 +436,8 @@
             "correct": false,
             "testedDimension": "Ви припускаєте, що дитина зможе не рухатися, поки ви фотографуєте. Передайте думку-прогноз через will.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте мнение-прогноз через will.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте думку-прогноз через will."
+              "ru": "Без to эта форма не строится. Для мнения-прогноза здесь — will hold still.",
+              "uk": "Без to ця форма не будується. Для думки-прогнозу тут — will hold still."
             }
           },
           {
@@ -729,17 +729,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Цими вихідними ми нікуди не їдемо».",
+      "prompt": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Це вже вирішено. Скажіть: «Цими вихідними ми нікуди не їдемо».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Цими вихідними ми нікуди не їдемо».",
+      "accessibilityLabel": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Це вже вирішено. Скажіть: «Цими вихідними ми нікуди не їдемо».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are staying put this weekend.",
         "localizedMeaning": {
-          "ru": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous. Скажите: «На этих выходных мы никуда не уезжаем».",
-          "uk": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous. Скажіть: «Цими вихідними ми нікуди не їдемо»."
+          "ru": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Это уже решено. Скажите: «На этих выходных мы никуда не уезжаем».",
+          "uk": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Це вже вирішено. Скажіть: «Цими вихідними ми нікуди не їдемо»."
         },
         "orderedTokens": [
           "We",
@@ -840,7 +840,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous.",
+      "prompt": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Скажіть, що це вже вирішено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-16:session-45:i12:r1",
@@ -848,7 +848,7 @@
         },
         {
           "responseId": "en:lesson-16:session-45:i12:r2",
-          "text": "are going to stay put"
+          "text": "are stay put"
         },
         {
           "responseId": "en:lesson-16:session-45:i12:r3",
@@ -857,12 +857,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous.",
+      "accessibilityLabel": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Скажіть, що це вже вирішено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Передайте подтверждённую договорённость через Present Continuous.",
-          "uk": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous."
+          "ru": "Вы с семьёй уже договорились провести выходные дома вместо поездки. У stay put форма с -ing — staying put. Скажите, что это уже решено.",
+          "uk": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ this weekend.",
         "gapOptions": [
@@ -872,28 +872,28 @@
           },
           {
             "responseId": "en:lesson-16:session-45:i12:r2",
-            "text": "are going to stay put"
+            "text": "are stay put"
           },
           {
             "responseId": "en:lesson-16:session-45:i12:r3",
             "text": "be"
           }
         ],
-        "testedDimension": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous.",
+        "testedDimension": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Скажіть, що це вже вирішено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-16:session-45:i12:r2",
             "correct": false,
-            "testedDimension": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous.",
+            "testedDimension": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Скажіть, що це вже вирішено.",
             "feedbackByLocale": {
-              "ru": "Форма возможна, но здесь нужна указанная. Передайте подтверждённую договорённость через Present Continuous.",
-              "uk": "Форма можлива, але тут потрібна вказана. Передайте підтверджену домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are staying put.",
+              "uk": "Після are потрібна форма з -ing: are staying put."
             }
           },
           {
             "responseId": "en:lesson-16:session-45:i12:r3",
             "correct": false,
-            "testedDimension": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Передайте підтверджену домовленість через Present Continuous.",
+            "testedDimension": "Ви з родиною вже домовилися провести вихідні вдома замість поїздки. У stay put форма з -ing — staying put. Скажіть, що це вже вирішено.",
             "feedbackByLocale": {
               "ru": "Нужна правильно построенная полная форма: are staying put.",
               "uk": "Потрібна правильно побудована повна форма: are staying put."
@@ -1062,13 +1062,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Передайте підтверджену домовленість через Present Continuous.",
+      "prompt": "Скажіть, що це вже вирішено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-16:session-45:i16:audio"
       ],
-      "accessibilityLabel": "Передайте підтверджену домовленість через Present Continuous.",
+      "accessibilityLabel": "Скажіть, що це вже вирішено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1129,5 +1129,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "82e762dc17fe1107f2598f145050d0ce2adf5002568eacacbc9f9fad9e855326"
+  "learnerFingerprint": "37763592f20147dddee8faf158ed353b35f10b24e3a42904900aaf9ce4290700"
 }

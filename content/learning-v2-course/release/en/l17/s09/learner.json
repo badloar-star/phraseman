@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "prompt": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-09:i03:r1",
@@ -180,11 +180,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "accessibilityLabel": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+          "ru": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
           "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
         },
         "gappedTargetPhrase": "How ___ pecans do we need?",
@@ -209,7 +209,7 @@
             "correct": false,
             "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
             "feedbackByLocale": {
-              "ru": "Pecan можно посчитать: many + pecans во множественном числе.",
+              "ru": "Pecan можно посчитать: many + pecans в форме для нескольких.",
               "uk": "Pecan можна порахувати: many + pecans у множині."
             }
           },
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "prompt": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-09:i06:r1",
@@ -403,11 +403,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "accessibilityLabel": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+          "ru": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
           "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
         },
         "gappedTargetPhrase": "We don't have ___ Brazil nuts.",
@@ -609,7 +609,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "prompt": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-09:i09:r1",
@@ -626,11 +626,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "accessibilityLabel": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+          "ru": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
           "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
         },
         "gappedTargetPhrase": "How ___ polenta do we need?",
@@ -655,7 +655,7 @@
             "correct": false,
             "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
             "feedbackByLocale": {
-              "ru": "Polenta как блюдо — неисчисляемое слово: much.",
+              "ru": "Polenta как блюдо не считают поштучно: much.",
               "uk": "Polenta як страва — незлічуване слово: much."
             }
           },
@@ -831,7 +831,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "prompt": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-09:i12:r1",
@@ -848,11 +848,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+      "accessibilityLabel": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
+          "ru": "Выберите слово количества: то, что считают поштучно, или то, что не считают.",
           "uk": "Виберіть слово кількості: окремі предмети чи незлічувана назва."
         },
         "gappedTargetPhrase": "We don't have ___ semolina.",
@@ -877,7 +877,7 @@
             "correct": false,
             "testedDimension": "Выберите слово количества: отдельные предметы или неисчисляемое название.",
             "feedbackByLocale": {
-              "ru": "Semolina как крупа — неисчисляемое слово: much, не many.",
+              "ru": "Semolina как крупа не считают поштучно: much, не many.",
               "uk": "Semolina як крупа — незлічуване слово: much, не many."
             }
           },
@@ -1116,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b3228a705bb6d9152a56f785aaa8b03ca2382ae9ebee6479bce918f36324d6f0"
+  "learnerFingerprint": "cb5c3c12f4d818b2806d750397f35bc4c7ac1376c148b286ace0c328112ef8a7"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-16",
   "learningOutcomeByLocale": {
-    "ru": "many + plural count noun / much + non-count noun",
-    "uk": "many + plural count noun / much + non-count noun"
+    "ru": "спросить, сколько поэтов знает собеседник: How many poets do you know?",
+    "uk": "запитати, скільки поетів знає співрозмовник: How many poets do you know?"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Скільки поезії ви читаєте"
       },
       "bodyByLocale": {
-        "ru": "В разговоре о чтении вы хотите узнать, много ли собеседник читает стихов. Poetry — поэзия как вид литературы; здесь это неисчисляемое слово. Соберите вопрос: How much poetry + do + you + read? → How much poetry do you read? How much ставим перед poetry, затем идут do, you и read. Мы спрашиваем об объёме чтения, а не считаем отдельные стихотворения.",
-        "uk": "У розмові про читання ви хочете дізнатися, чи багато співрозмовник читає віршів. Poetry — поезія як вид літератури; тут це незлічуване слово. Складіть запитання: How much poetry + do + you + read? → How much poetry do you read? How much ставимо перед poetry, далі йдуть do, you та read. Ми запитуємо про обсяг читання, а не рахуємо окремі вірші."
+        "ru": "В разговоре о чтении вы хотите узнать, много ли собеседник читает стихов. Poetry — поэзия как вид литературы; здесь это слово, которое не считают поштучно. Соберите вопрос: How much poetry + do + you + read? → How much poetry do you read? How much ставим перед poetry, затем идут do, you и read. Мы спрашиваем об объёме чтения, а не считаем отдельные стихотворения.",
+        "uk": "У розмові про читання ви хочете дізнатися, чи багато співрозмовник читає віршів. Poetry — поезія як вид літератури; тут це слово, яке не рахують поштучно. Складіть запитання: How much poetry + do + you + read? → How much poetry do you read? How much ставимо перед poetry, далі йдуть do, you та read. Ми запитуємо про обсяг читання, а не рахуємо окремі вірші."
       },
       "question": {
         "interactionId": "en:lesson-17:session-16:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Прози читаємо небагато"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом в основном читаете стихи и хотите сказать, что прозы читаете не так много. Prose — проза; здесь слово неисчисляемое. Соберите отрицание: We + don't + read + much prose → We don't read much prose. После don't ставим read без изменений, а much перед prose обозначает количество. Don't read much означает «читаем не так много», а не полный отказ от чтения.",
-        "uk": "Ви з другом переважно читаєте вірші й хочете сказати, що прози читаєте не так багато. Prose — проза; тут слово незлічуване. Складіть заперечення: We + don't + read + much prose → We don't read much prose. Після don't ставимо read без змін, а much перед prose позначає кількість. Don't read much означає «читаємо не так багато», а не повну відмову від читання."
+        "ru": "Вы с другом в основном читаете стихи и хотите сказать, что прозы читаете не так много. Prose — проза; здесь слово не считается поштучно. Соберите отрицание: We + don't + read + much prose → We don't read much prose. После don't ставим read без изменений, а much перед prose обозначает количество. Don't read much означает «читаем не так много», а не полный отказ от чтения.",
+        "uk": "Ви з другом переважно читаєте вірші й хочете сказати, що прози читаєте не так багато. Prose — проза; тут слово не рахується поштучно. Складіть заперечення: We + don't + read + much prose → We don't read much prose. Після don't ставимо read без змін, а much перед prose позначає кількість. Don't read much означає «читаємо не так багато», а не повну відмову від читання."
       },
       "question": {
         "interactionId": "en:lesson-17:session-16:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "13c72096be5fc6d27651177110d7806f73e0f265f84508496a42377458b9aab3"
+  "introFingerprint": "c68a5a2c8cb949551e7792885b468198c14dd3651d42dc6ea7c5194f9707e312"
 }

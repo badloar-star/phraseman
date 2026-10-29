@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-56",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить, куда выходят окна: I think the bedroom will be north-facing.",
+    "uk": "припустити, куди виходять вікна: I think the bedroom will be north-facing."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Огляд призначено на завтра"
       },
       "bodyByLocale": {
-        "ru": "Вы с агентом согласовали завтрашний просмотр квартиры у воды. Waterfront здесь означает расположенный у самой воды. Передайте договорённость через Present Continuous: We + are viewing + a waterfront flat + tomorrow → We are viewing a waterfront flat tomorrow. После we используем are, к view добавляем -ing. Tomorrow и согласованный просмотр показывают, что речь о будущем, а не о действии прямо сейчас.",
-        "uk": "Ви з агентом узгодили завтрашній огляд квартири біля води. Waterfront тут означає розташований біля самої води. Передайте домовленість через Present Continuous: We + are viewing + a waterfront flat + tomorrow → We are viewing a waterfront flat tomorrow. Після we використовуємо are, до view додаємо -ing. Tomorrow та узгоджений огляд показують, що йдеться про майбутнє, а не про дію просто зараз."
+        "ru": "Вы с агентом согласовали завтрашний просмотр квартиры у воды. Waterfront здесь означает расположенный у самой воды. Передайте договорённость через am / is / are + -ing: We + are viewing + a waterfront flat + tomorrow → We are viewing a waterfront flat tomorrow. После we используем are, к view добавляем -ing. Tomorrow и согласованный просмотр показывают, что речь о будущем, а не о действии прямо сейчас.",
+        "uk": "Ви з агентом узгодили завтрашній огляд квартири біля води. Waterfront тут означає розташований біля самої води. Передайте домовленість через am / is / are + -ing: We + are viewing + a waterfront flat + tomorrow → We are viewing a waterfront flat tomorrow. Після we використовуємо are, до view додаємо -ing. Tomorrow та узгоджений огляд показують, що йдеться про майбутнє, а не про дію просто зараз."
       },
       "question": {
         "interactionId": "en:lesson-16:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d373b9b3f177aedfae7c4129795203a8e6f2773457d77ec3d7b6a204446f7698"
+  "introFingerprint": "b89a668dc8f26d95241114453d5b7fd614408f74f76681550cd471a4015873d7"
 }

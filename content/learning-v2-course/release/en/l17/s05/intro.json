@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-05",
   "learningOutcomeByLocale": {
-    "ru": "count nouns / non-count nouns: a, an, plural forms",
-    "uk": "count nouns / non-count nouns: a, an, plural forms"
+    "ru": "назвать найденный мусор: This is a wrapper.",
+    "uk": "назвати знайдене сміття: This is a wrapper."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Назвати знайдену обгортку"
       },
       "bodyByLocale": {
-        "ru": "Вы убираете двор и показываете другу обёртку от конфеты. Назовите предмет: This is a wrapper. Wrapper — одна обёртка, исчисляемое слово. Соберите фразу: This + is + a wrapper. Перед названием одного предмета ставим a: wrapper начинается с согласного звука, хотя первая буква w не произносится.",
-        "uk": "Ви прибираєте двір і показуєте другу обгортку від цукерки. Назвіть предмет: This is a wrapper. Wrapper — одна обгортка, злічуване слово. Складіть фразу: This + is + a wrapper. Перед назвою одного предмета ставимо a: wrapper починається з приголосного звука, хоча перша літера w не вимовляється."
+        "ru": "Вы убираете двор и показываете другу обёртку от конфеты. Назовите предмет: This is a wrapper. Wrapper — одна обёртка, это считают поштучно. Соберите фразу: This + is + a wrapper. Перед названием одного предмета ставим a: wrapper начинается с согласного звука, хотя первая буква w не произносится.",
+        "uk": "Ви прибираєте двір і показуєте другу обгортку від цукерки. Назвіть предмет: This is a wrapper. Wrapper — одна обгортка, це рахують поштучно. Складіть фразу: This + is + a wrapper. Перед назвою одного предмета ставимо a: wrapper починається з приголосного звука, хоча перша літера w не вимовляється."
       },
       "question": {
         "interactionId": "en:lesson-17:session-05:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Два недопалки на землі"
       },
       "bodyByLocale": {
-        "ru": "Во время уборки двора вы замечаете два окурка и сообщаете другу, где они лежат. Cigarette end — окурок; два — two cigarette ends. Соберите предложение: There are + two cigarette ends + on the ground → There are two cigarette ends on the ground. Для двух предметов используем are, а окончание множественного числа добавляем к последнему слову: ends. В конце называем место.",
-        "uk": "Під час прибирання двору ви помічаєте два недопалки й повідомляєте другу, де вони лежать. Cigarette end — недопалок; два — two cigarette ends. Складіть речення: There are + two cigarette ends + on the ground → There are two cigarette ends on the ground. Для двох предметів використовуємо are, а закінчення множини додаємо до останнього слова: ends. Наприкінці називаємо місце."
+        "ru": "Во время уборки двора вы замечаете два окурка и сообщаете другу, где они лежат. Cigarette end — окурок; два — two cigarette ends. Соберите предложение: There are + two cigarette ends + on the ground → There are two cigarette ends on the ground. Для двух предметов используем are, а окончание формы для нескольких добавляем к последнему слову: ends. В конце называем место.",
+        "uk": "Під час прибирання двору ви помічаєте два недопалки й повідомляєте другу, де вони лежать. Cigarette end — недопалок; два — two cigarette ends. Складіть речення: There are + two cigarette ends + on the ground → There are two cigarette ends on the ground. Для двох предметів використовуємо are, а закінчення форми для кількох додаємо до останнього слова: ends. Наприкінці називаємо місце."
       },
       "question": {
         "interactionId": "en:lesson-17:session-05:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Небезпечне сміття у дворі"
       },
       "bodyByLocale": {
-        "ru": "Во дворе лежит мусор с острыми осколками, и вы обращаете на него внимание друга. Litter — брошенный мусор в целом, неисчисляемое слово. Скажите: This litter is dangerous. Порядок: This litter + is + dangerous. This указывает на мусор, is связывает его с признаком dangerous. Мы говорим о мусоре в целом, поэтому используем is, а не are.",
-        "uk": "У дворі лежить сміття з гострими уламками, і ви звертаєте на нього увагу друга. Litter — кинуте сміття загалом, незлічуване слово. Скажіть: This litter is dangerous. Порядок: This litter + is + dangerous. This указує на сміття, is пов'язує його з ознакою dangerous. Ми говоримо про сміття загалом, тому використовуємо is, а не are."
+        "ru": "Во дворе лежит мусор с острыми осколками, и вы обращаете на него внимание друга. Litter — брошенный мусор в целом, слово, которое не считают поштучно. Скажите: This litter is dangerous. Порядок: This litter + is + dangerous. This указывает на мусор, is связывает его с признаком dangerous. Мы говорим о мусоре в целом, поэтому используем is, а не are.",
+        "uk": "У дворі лежить сміття з гострими уламками, і ви звертаєте на нього увагу друга. Litter — кинуте сміття загалом, слово, яке не рахують поштучно. Скажіть: This litter is dangerous. Порядок: This litter + is + dangerous. This указує на сміття, is пов'язує його з ознакою dangerous. Ми говоримо про сміття загалом, тому використовуємо is, а не are."
       },
       "question": {
         "interactionId": "en:lesson-17:session-05:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8b4002e30efc73eb6cd8ec86de654a412b22e4b9e26c9cc9343c32bc5548e036"
+  "introFingerprint": "e1f54836c828f5232dc43c491d9e0fe8551f82e5b1dfc11e10c3099f63cee3fe"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-38",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить, какой окажется вещь в использовании: I think the bag will be durable.",
+    "uk": "припустити, якою виявиться річ у користуванні: I think the bag will be durable."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Купівлю стільців призначено"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом договорились завтра встретиться в магазине и купить переносные стулья. Portable — переносной. Передайте согласованный план: We are buying portable chairs tomorrow. Порядок: We + are buying + portable chairs + tomorrow. С we ставим are, к buy добавляем -ing, сохраняя y: buying. Tomorrow и договорённость с другом показывают будущее значение Present Continuous.",
-        "uk": "Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Portable — переносний. Передайте узгоджений план: We are buying portable chairs tomorrow. Порядок: We + are buying + portable chairs + tomorrow. З we ставимо are, до buy додаємо -ing, зберігаючи y: buying. Tomorrow та домовленість із другом показують майбутнє значення Present Continuous."
+        "ru": "Вы с другом договорились завтра встретиться в магазине и купить переносные стулья. Portable — переносной. Передайте согласованный план: We are buying portable chairs tomorrow. Порядок: We + are buying + portable chairs + tomorrow. С we ставим are, к buy добавляем -ing, сохраняя y: buying. Tomorrow и договорённость с другом показывают будущее значение am / is / are + -ing.",
+        "uk": "Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Portable — переносний. Передайте узгоджений план: We are buying portable chairs tomorrow. Порядок: We + are buying + portable chairs + tomorrow. З we ставимо are, до buy додаємо -ing, зберігаючи y: buying. Tomorrow та домовленість із другом показують майбутнє значення am / is / are + -ing."
       },
       "question": {
         "interactionId": "en:lesson-16:session-38:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a0238172f74d0eeeae3ac5eb8740f2a1ae731d78ca621f0e8d009e4581d2eb1f"
+  "introFingerprint": "00a3e5c1a7a1238973d8ea799ced24f9a0736e474849813da24420e79256109b"
 }

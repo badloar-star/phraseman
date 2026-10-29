@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-13:i03:r1",
@@ -180,12 +180,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
         },
         "gappedTargetPhrase": "How ___ participants do we have?",
         "gapOptions": [
@@ -209,7 +209,7 @@
             "correct": false,
             "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
             "feedbackByLocale": {
-              "ru": "participant можно посчитать: many + participants во множественном числе.",
+              "ru": "participant можно посчитать: many + participants в форме для нескольких.",
               "uk": "participant можна порахувати: many + participants у множині."
             }
           },
@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-13:i06:r1",
@@ -402,12 +402,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
         },
         "gappedTargetPhrase": "We don't have ___ sponsors.",
         "gapOptions": [
@@ -431,7 +431,7 @@
             "correct": false,
             "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
             "feedbackByLocale": {
-              "ru": "sponsor можно посчитать: many + sponsors во множественном числе.",
+              "ru": "sponsor можно посчитать: many + sponsors в форме для нескольких.",
               "uk": "sponsor можна порахувати: many + sponsors у множині."
             }
           },
@@ -608,7 +608,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-13:i09:r1",
@@ -625,12 +625,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
         },
         "gappedTargetPhrase": "How ___ entertainment do we need?",
         "gapOptions": [
@@ -654,7 +654,7 @@
             "correct": false,
             "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
             "feedbackByLocale": {
-              "ru": "entertainment в этом значении — неисчисляемое слово: much.",
+              "ru": "entertainment в этом значении не считают поштучно: much.",
               "uk": "entertainment у цьому значенні — незлічуване слово: much."
             }
           },
@@ -830,7 +830,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "prompt": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-13:i12:r1",
@@ -847,12 +847,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
+      "accessibilityLabel": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите many для отдельных предметов/людей или much для неисчисляемого.",
-          "uk": "Виберіть many для окремих предметів/людей або much для незлічуваного."
+          "uk": "Виберіть many — те, що рахують поштучно, або much — те, що не рахують."
         },
         "gappedTargetPhrase": "We don't have ___ funding.",
         "gapOptions": [
@@ -876,7 +876,7 @@
             "correct": false,
             "testedDimension": "Виберіть many для окремих предметів/людей або much для незлічуваного.",
             "feedbackByLocale": {
-              "ru": "funding в этом значении — неисчисляемое слово: much.",
+              "ru": "funding в этом значении не считают поштучно: much.",
               "uk": "funding у цьому значенні — незлічуване слово: much."
             }
           },
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a59c2cee3df84b787ac17e9d6848f7afcc317444090a0fbef02dde2cfd1adaf6"
+  "learnerFingerprint": "a078ae278d291a1264caad094209453c481ab1721969229c9875467dd5bfba93"
 }

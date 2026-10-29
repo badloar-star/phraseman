@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-06:i03:r1",
@@ -178,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "This is ___ errand.",
         "gapOptions": [
@@ -273,11 +273,11 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажіть: «У магазині є дві речі на заміну». У replacement множина — replacements.",
+      "prompt": "Скажіть: «У магазині є дві речі на заміну». Якщо replacement кілька — replacements.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажіть: «У магазині є дві речі на заміну». У replacement множина — replacements.",
+      "accessibilityLabel": "Скажіть: «У магазині є дві речі на заміну». Якщо replacement кілька — replacements.",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "There are two replacements in the shop.",
@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-06:i06:r1",
@@ -402,12 +402,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "There are two ___ in the shop.",
         "gapOptions": [
@@ -431,7 +431,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "После two нужно множественное replacements.",
+              "ru": "После two нужна форма для нескольких: replacements.",
               "uk": "Після two потрібна множина replacements."
             }
           },
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "После two нужно множественное replacements.",
+              "ru": "После two нужна форма для нескольких: replacements.",
               "uk": "Після two потрібна множина replacements."
             }
           }
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-06:i09:r1",
@@ -623,12 +623,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "This housework ___ tiring.",
         "gapOptions": [
@@ -652,7 +652,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.",
+              "ru": "Housework не считают поштучно: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет -s для нескольких.",
               "uk": "Housework — незлічуване слово: is. Окремі хатні справи можна порахувати, але загальна назва housework не має множинного -s."
             }
           },
@@ -661,7 +661,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Housework — неисчисляемое слово: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет множественного -s.",
+              "ru": "Housework не считают поштучно: is. Отдельные домашние дела можно посчитать, но у общего названия housework нет -s для нескольких.",
               "uk": "Housework — незлічуване слово: is. Окремі хатні справи можна порахувати, але загальна назва housework не має множинного -s."
             }
           }
@@ -827,7 +827,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть форму для вказаної кількості або загальної назви.",
+      "prompt": "Число назване чи мова загалом? Виберіть форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-06:i12:r1",
@@ -844,12 +844,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть форму для вказаної кількості або загальної назви.",
+      "accessibilityLabel": "Число назване чи мова загалом? Виберіть форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите форму для указанного количества или общего названия.",
-          "uk": "Виберіть форму для вказаної кількості або загальної назви."
+          "uk": "Число назване чи мова загалом? Виберіть форму."
         },
         "gappedTargetPhrase": "We use ___.",
         "gapOptions": [
@@ -873,7 +873,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Public transport — общее неисчисляемое название: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.",
+              "ru": "Public transport — общее название, его не считают поштучно: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.",
               "uk": "Public transport — загальна незлічувана назва: без a. Окремий автобус можна порахувати, транспорт загалом — ні."
             }
           },
@@ -882,7 +882,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для вказаної кількості або загальної назви.",
             "feedbackByLocale": {
-              "ru": "Public transport — общее неисчисляемое название: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.",
+              "ru": "Public transport — общее название, его не считают поштучно: без a. Отдельный автобус можно посчитать, транспорт в целом — нет.",
               "uk": "Public transport — загальна незлічувана назва: без a. Окремий автобус можна порахувати, транспорт загалом — ні."
             }
           }
@@ -969,13 +969,13 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Складіть почуту фразу зі злічуваним словом",
+      "prompt": "Складіть почуту фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-17:session-06:i14:audio"
       ],
-      "accessibilityLabel": "Складіть почуту фразу зі злічуваним словом",
+      "accessibilityLabel": "Складіть почуту фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -1041,13 +1041,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть фразу з незлічуваним словом",
+      "prompt": "Скажіть фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-17:session-06:i16:audio"
       ],
-      "accessibilityLabel": "Скажіть фразу з незлічуваним словом",
+      "accessibilityLabel": "Скажіть фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1108,5 +1108,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a29bab51ce2ccc7fe1f2b8b10b4789c0a798e65591356affea1d90bb6d29769e"
+  "learnerFingerprint": "701e6384103689e66eaed91b8432d81a431c6ebc5a949fcc11a21a1d72b91f4b"
 }

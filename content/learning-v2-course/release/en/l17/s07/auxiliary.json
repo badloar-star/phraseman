@@ -10,8 +10,8 @@
           "uk": "Sapling починається з приголосного звука: a sapling."
         },
         "en:lesson-17:session-07:intro1:r3": {
-          "ru": "Здесь нельзя оставлять исчисляемое существительное в единственном числе без артикля.",
-          "uk": "Тут не можна залишати злічуваний іменник в однині без артикля."
+          "ru": "Здесь нельзя оставлять название одного предмета без a.",
+          "uk": "Тут не можна залишати назву одного предмета без a."
         }
       }
     },
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-17:session-07:intro2:q",
       "responseFeedbackById": {
         "en:lesson-17:session-07:intro2:r2": {
-          "ru": "После two нужно множественное planters.",
-          "uk": "Після two потрібна множина planters."
+          "ru": "После two нужна форма для нескольких: planters.",
+          "uk": "Після two потрібна форма для кількох: planters."
         },
         "en:lesson-17:session-07:intro2:r3": {
           "ru": "Не ставьте a перед two.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-17:session-07:intro3:q",
       "responseFeedbackById": {
         "en:lesson-17:session-07:intro3:r2": {
-          "ru": "Gravel как материал — неисчисляемое слово: is.",
-          "uk": "Gravel як матеріал — незлічуване слово: is."
+          "ru": "Gravel как материал не считают поштучно: is.",
+          "uk": "Gravel як матеріал не рахують поштучно: is."
         },
         "en:lesson-17:session-07:intro3:r3": {
-          "ru": "В этом значении у слова нет множественного -s.",
-          "uk": "У цьому значенні слово не має множинного -s."
+          "ru": "В этом значении нет -s для нескольких.",
+          "uk": "У цьому значенні не має -s для кількох."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "71b519a731c6bb8421e0f02e966b28c1c7c22c8031631b787639fbe3e565b6a8"
+  "auxiliaryFingerprint": "73a9d186eb73e739aacf2573a79b2438689c7769accec20f4caefaebc45d4850"
 }

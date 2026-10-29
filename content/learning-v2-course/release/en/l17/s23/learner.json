@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Подчеркните, что несколько добрых слов всё же услышали. Kind word → kind words.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Вы ожидали больше благодарностей. Подчеркните, что записок мало. Thank-you note → thank-you notes.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -662,7 +662,7 @@
             "correct": false,
             "testedDimension": "Подчеркните, что она проявила хоть немного доброты.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -883,7 +883,7 @@
             "correct": false,
             "testedDimension": "Она быстро раздражалась. Подчеркните нехватку терпения.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "07f3f12932f5a0fb4e0853efcc5adc19f68c42c298c90f0dcc821ea4fb382b0d"
+  "learnerFingerprint": "497484057b5c6d9fe0b3b3515ffad28ddd9fb53b99c8f5643527e112b030e5a0"
 }

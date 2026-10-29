@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-17:session-14:intro1:q",
       "responseFeedbackById": {
         "en:lesson-17:session-14:intro1:r2": {
-          "ru": "lodger можно посчитать: many + lodgers во множественном числе.",
-          "uk": "lodger можна порахувати: many + lodgers у множині."
+          "ru": "lodger можно посчитать: many + lodgers в форме для нескольких.",
+          "uk": "lodger можна порахувати: many + lodgers у формі для кількох."
         },
         "en:lesson-17:session-14:intro1:r3": {
-          "ru": "Перед many/much здесь не ставим артикль a.",
-          "uk": "Перед many/much тут не ставимо артикль a."
+          "ru": "Перед many/much здесь не ставим a.",
+          "uk": "Перед many/much тут не ставимо a."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-17:session-14:intro2:q",
       "responseFeedbackById": {
         "en:lesson-17:session-14:intro2:r2": {
-          "ru": "accommodation в этом значении — неисчисляемое слово: much.",
-          "uk": "accommodation у цьому значенні — незлічуване слово: much."
+          "ru": "accommodation в этом значении не считают поштучно: much.",
+          "uk": "accommodation у цьому значенні не рахують поштучно: much."
         },
         "en:lesson-17:session-14:intro2:r3": {
-          "ru": "Перед many/much здесь не ставим артикль a.",
-          "uk": "Перед many/much тут не ставимо артикль a."
+          "ru": "Перед many/much здесь не ставим a.",
+          "uk": "Перед many/much тут не ставимо a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-17:session-14:intro3:q",
       "responseFeedbackById": {
         "en:lesson-17:session-14:intro3:r2": {
-          "ru": "maintenance в этом значении — неисчисляемое слово: much.",
-          "uk": "maintenance у цьому значенні — незлічуване слово: much."
+          "ru": "maintenance в этом значении не считают поштучно: much.",
+          "uk": "maintenance у цьому значенні не рахують поштучно: much."
         },
         "en:lesson-17:session-14:intro3:r3": {
-          "ru": "Перед many/much здесь не ставим артикль a.",
-          "uk": "Перед many/much тут не ставимо артикль a."
+          "ru": "Перед many/much здесь не ставим a.",
+          "uk": "Перед many/much тут не ставимо a."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "d496a54e297a0181e3f601db3ef807b772add22c3a970b87d9f59e31cec8a34c"
+  "auxiliaryFingerprint": "972021e13d1db808efc59dcb3a0f13a0f4bf41973b9239a10c6252e3a69ba69b"
 }

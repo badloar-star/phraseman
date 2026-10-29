@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-50",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "сказать, что собираетесь убрать дома: I am going to clear up the toys.",
+    "uk": "сказати, що збираєтеся прибрати вдома: I am going to clear up the toys."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Прибирання гаража в суботу"
       },
       "bodyByLocale": {
-        "ru": "Вы согласовали с семьёй уборку гаража на субботу. Clean out — вычистить изнутри, убрав лишнее. Передайте договорённость: We are cleaning out the garage on Saturday. Порядок: We + are cleaning out + the garage + on Saturday. С we ставим are, окончание -ing добавляем к clean, а out сохраняем. Согласованный день показывает, что Present Continuous описывает будущую уборку.",
-        "uk": "Ви узгодили із сім'єю прибирання гаража на суботу. Clean out — вичистити зсередини, прибравши зайве. Передайте домовленість: We are cleaning out the garage on Saturday. Порядок: We + are cleaning out + the garage + on Saturday. З we ставимо are, закінчення -ing додаємо до clean, а out зберігаємо. Узгоджений день показує, що Present Continuous описує майбутнє прибирання."
+        "ru": "Вы согласовали с семьёй уборку гаража на субботу. Clean out — вычистить изнутри, убрав лишнее. Передайте договорённость: We are cleaning out the garage on Saturday. Порядок: We + are cleaning out + the garage + on Saturday. С we ставим are, окончание -ing добавляем к clean, а out сохраняем. Согласованный день показывает, что am / is / are + -ing описывает будущую уборку.",
+        "uk": "Ви узгодили із сім'єю прибирання гаража на суботу. Clean out — вичистити зсередини, прибравши зайве. Передайте домовленість: We are cleaning out the garage on Saturday. Порядок: We + are cleaning out + the garage + on Saturday. З we ставимо are, закінчення -ing додаємо до clean, а out зберігаємо. Узгоджений день показує, що am / is / are + -ing описує майбутнє прибирання."
       },
       "question": {
         "interactionId": "en:lesson-16:session-50:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a085c31c86cb8b1d09888d37958ff0dda541a393fafc66507d7cd32b99847a7c"
+  "introFingerprint": "170d743497c797a71e7c7f7df71acc9dabf08c0e1401b05b2de5ae2a4edaf932"
 }

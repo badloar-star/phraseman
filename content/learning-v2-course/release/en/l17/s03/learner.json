@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-03:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "This is ___ biography.",
@@ -273,11 +273,11 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Скажите: «На полке две автобиографии». У autobiography множественное число — autobiographies.",
+      "prompt": "Скажите: «На полке две автобиографии». Если autobiography несколько — autobiographies.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Скажите: «На полке две автобиографии». У autobiography множественное число — autobiographies.",
+      "accessibilityLabel": "Скажите: «На полке две автобиографии». Если autobiography несколько — autobiographies.",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "There are two autobiographies on the shelf.",
@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-03:i06:r1",
@@ -402,11 +402,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "There are two ___ on the shelf.",
@@ -431,7 +431,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "У autobiography во множественном числе y меняется на ies: autobiographies.",
+              "ru": "У autobiography в форме для нескольких y меняется на ies: autobiographies.",
               "uk": "У autobiography у множині y змінюється на ies: autobiographies."
             }
           },
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "У autobiography во множественном числе y меняется на ies: autobiographies.",
+              "ru": "У autobiography в форме для нескольких y меняется на ies: autobiographies.",
               "uk": "У autobiography у множині y змінюється на ies: autobiographies."
             }
           }
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-03:i09:r1",
@@ -623,11 +623,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "This fiction ___ interesting.",
@@ -652,7 +652,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Fiction как вид литературы — неисчисляемое слово: is.",
+              "ru": "Fiction как вид литературы не считают поштучно: is.",
               "uk": "Fiction як вид літератури — незлічуване слово: is."
             }
           },
@@ -661,7 +661,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Fiction как вид литературы — неисчисляемое слово: is.",
+              "ru": "Fiction как вид литературы не считают поштучно: is.",
               "uk": "Fiction як вид літератури — незлічуване слово: is."
             }
           }
@@ -826,7 +826,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму для указанного количества или общего названия.",
+      "prompt": "Число названо или речь вообще? Выберите форму.",
       "responseOptions": [
         {
           "responseId": "en:lesson-17:session-03:i12:r1",
@@ -843,11 +843,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму для указанного количества или общего названия.",
+      "accessibilityLabel": "Число названо или речь вообще? Выберите форму.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму для указанного количества или общего названия.",
+          "ru": "Число названо или речь вообще? Выберите форму.",
           "uk": "Виберіть форму для вказаної кількості або загальної назви."
         },
         "gappedTargetPhrase": "We need ___.",
@@ -872,7 +872,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Non-fiction как вид литературы — без a и без множественного -s.",
+              "ru": "Non-fiction как вид литературы — без a и без -s для нескольких.",
               "uk": "Non-fiction як вид літератури — без a та без множинного -s."
             }
           },
@@ -881,7 +881,7 @@
             "correct": false,
             "testedDimension": "Выберите форму для указанного количества или общего названия.",
             "feedbackByLocale": {
-              "ru": "Non-fiction как вид литературы — без a и без множественного -s.",
+              "ru": "Non-fiction как вид литературы — без a и без -s для нескольких.",
               "uk": "Non-fiction як вид літератури — без a та без множинного -s."
             }
           }
@@ -968,13 +968,13 @@
       "purpose": "independent_check",
       "family": "listen_build_dictation",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите услышанную фразу с исчисляемым словом",
+      "prompt": "Соберите услышанную фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-17:session-03:i14:audio"
       ],
-      "accessibilityLabel": "Соберите услышанную фразу с исчисляемым словом",
+      "accessibilityLabel": "Соберите услышанную фразу",
       "modePayload": {
         "family": "listen_build_dictation",
         "referenceAudio": {
@@ -1040,13 +1040,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите фразу с неисчисляемым словом",
+      "prompt": "Скажите фразу",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-17:session-03:i16:audio"
       ],
-      "accessibilityLabel": "Скажите фразу с неисчисляемым словом",
+      "accessibilityLabel": "Скажите фразу",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1107,5 +1107,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "01e28e4e241723c0dc77dbb7d9ed7badb5540c2908075cd156215d03f3563454"
+  "learnerFingerprint": "c1d9de66002db939753807813bc107b29c73c09a3378619a5820d67b62987775"
 }

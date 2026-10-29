@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-41",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить вкус блюда: I think the cheese will be smoky.",
+    "uk": "припустити смак страви: I think the cheese will be smoky."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Завтра скуштувати соус"
       },
       "bodyByLocale": {
-        "ru": "Вы с подругой договорились завтра вместе попробовать её новый кисловатый соус. Tangy — с приятным кисловатым вкусом. Скажите о договорённости: We are tasting a tangy sauce tomorrow. Порядок: We + are tasting + a tangy sauce + tomorrow. С we используем are; перед -ing убираем конечную e в taste: tasting. Tomorrow и договорённость показывают будущее значение Present Continuous.",
-        "uk": "Ви з подругою домовилися завтра разом скуштувати її новий кислуватий соус. Tangy — із приємним кислуватим смаком. Скажіть про домовленість: We are tasting a tangy sauce tomorrow. Порядок: We + are tasting + a tangy sauce + tomorrow. З we використовуємо are; перед -ing прибираємо кінцеву e у taste: tasting. Tomorrow та домовленість показують майбутнє значення Present Continuous."
+        "ru": "Вы с подругой договорились завтра вместе попробовать её новый кисловатый соус. Tangy — с приятным кисловатым вкусом. Скажите о договорённости: We are tasting a tangy sauce tomorrow. Порядок: We + are tasting + a tangy sauce + tomorrow. С we используем are; перед -ing убираем конечную e в taste: tasting. Tomorrow и договорённость показывают будущее значение am / is / are + -ing.",
+        "uk": "Ви з подругою домовилися завтра разом скуштувати її новий кислуватий соус. Tangy — із приємним кислуватим смаком. Скажіть про домовленість: We are tasting a tangy sauce tomorrow. Порядок: We + are tasting + a tangy sauce + tomorrow. З we використовуємо are; перед -ing прибираємо кінцеву e у taste: tasting. Tomorrow та домовленість показують майбутнє значення am / is / are + -ing."
       },
       "question": {
         "interactionId": "en:lesson-16:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "922346f92f003a353ac9ffaa92b7bda49b931db951e332072ba70341f1a33fa6"
+  "introFingerprint": "407bca7245c6731e2f515e88deceadcddf6c3b0e1142b65f32f4ca9cd3e30e2c"
 }

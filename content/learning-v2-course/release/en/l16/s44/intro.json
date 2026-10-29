@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-16:session-44",
   "learningOutcomeByLocale": {
-    "ru": "will / going to / Present Continuous: future form contrast",
-    "uk": "will / going to / Present Continuous: future form contrast"
+    "ru": "предположить свойство вещи для дома: I think the lamp will be rechargeable.",
+    "uk": "припустити властивість речі для дому: I think the lamp will be rechargeable."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Установлення замків призначено"
       },
       "bodyByLocale": {
-        "ru": "Вы с напарником согласовали на завтра установку замков на кухонные шкафчики. Childproof здесь означает с защитой от открывания маленькими детьми. Передайте договорённость: We are fitting childproof locks tomorrow. Порядок: We + are fitting + childproof locks + tomorrow. С we ставим are; в fitting удваиваем t перед -ing. Согласованная установка и tomorrow показывают, что Present Continuous описывает будущее действие.",
-        "uk": "Ви з напарником узгодили на завтра встановлення замків на кухонні шафки. Childproof тут означає із захистом від відкривання маленькими дітьми. Передайте домовленість: We are fitting childproof locks tomorrow. Порядок: We + are fitting + childproof locks + tomorrow. З we ставимо are; у fitting подвоюємо t перед -ing. Узгоджене встановлення та tomorrow показують, що Present Continuous описує майбутню дію."
+        "ru": "Вы с напарником согласовали на завтра установку замков на кухонные шкафчики. Childproof здесь означает с защитой от открывания маленькими детьми. Передайте договорённость: We are fitting childproof locks tomorrow. Порядок: We + are fitting + childproof locks + tomorrow. С we ставим are; в fitting удваиваем t перед -ing. Согласованная установка и tomorrow показывают, что am / is / are + -ing описывает будущее действие.",
+        "uk": "Ви з напарником узгодили на завтра встановлення замків на кухонні шафки. Childproof тут означає із захистом від відкривання маленькими дітьми. Передайте домовленість: We are fitting childproof locks tomorrow. Порядок: We + are fitting + childproof locks + tomorrow. З we ставимо are; у fitting подвоюємо t перед -ing. Узгоджене встановлення та tomorrow показують, що am / is / are + -ing описує майбутню дію."
       },
       "question": {
         "interactionId": "en:lesson-16:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "47365b4b00b412bb8073f5e2ea713995ad17867dee0ad55505d4bdc1d2a494de"
+  "introFingerprint": "a54629ebe4b6aa3b55ad40f0976532293f85725f5c22d747dc3f607323880110"
 }

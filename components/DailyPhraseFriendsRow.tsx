@@ -36,7 +36,8 @@ export default function DailyPhraseFriendsRow({ phraseId, visible }: Props) {
   const friends = answeredPhraseFriends(pairs, getLocalDayKey(), phraseId);
   const label = triLang(lang, {
     ru: 'Уже ответили', uk: 'Вже відповіли', en: 'Already answered', es: 'Ya respondieron',
-    pt: 'Já responderam', vi: 'Đã trả lời', id: 'Sudah menjawab', tr: 'Yanıtlayanlar', pl: 'Już odpowiedzieli',
+    // зачем (Переводчик 29.10): ключ должен быть 'pt-BR' — с ключом `pt` triLang не находил перевод, и бразилец видел английский
+    'pt-BR': 'Já responderam', vi: 'Đã trả lời', id: 'Sudah menjawab', tr: 'Yanıtlayanlar', pl: 'Już odpowiedzieli',
   });
   if (!FRIENDS_TOGETHER_UI_ENABLED || !enabled) return null;
   return (

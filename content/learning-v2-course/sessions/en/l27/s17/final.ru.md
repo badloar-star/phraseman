@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете дорогу, время пересадки и короткую поездку с друзьями.
 
-**Что вы освоите:** if-clause without would; result with would
+**Что вы освоите:** сказать, что было бы, если бы…: If I had time, I would help
 **Новые слова:** aboard, layover, backpacker, getaway
 
 ## Интро 1

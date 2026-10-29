@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте дорогу, час пересадки й коротку поїздку з друзями.
 
-**Що ви опануєте:** if-clause without would; result with would
+**Що ви опануєте:** сказати, що було б, якби…: If I had time, I would help
 **Нові слова:** aboard, layover, backpacker, getaway
 
 ## Інтро 1

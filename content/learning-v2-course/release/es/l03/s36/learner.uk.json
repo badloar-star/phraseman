@@ -78,7 +78,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — вони спокійні за характером; обидві жінки, без займенника",
+      "prompt": "Зберіть фразу — вони спокійні за характером; обидві жінки, без «вони»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-36:i02:r1",
@@ -95,13 +95,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — вони спокійні за характером; обидві жінки, без займенника",
+      "accessibilityLabel": "Зберіть фразу — вони спокійні за характером; обидві жінки, без «вони»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son tranquilas.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они спокойные по характеру; обе женщины, без местоимения",
-          "uk": "Зберіть фразу — вони спокійні за характером; обидві жінки, без займенника"
+          "ru": "Соберите фразу — они спокойные по характеру; обе женщины, без «они»",
+          "uk": "Зберіть фразу — вони спокійні за характером; обидві жінки, без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -114,7 +114,7 @@
           {
             "responseId": "es:lesson-03:session-36:i02:tile:d1",
             "correct": false,
-            "testedDimension": "Зберіть фразу — вони спокійні за характером; обидві жінки, без займенника",
+            "testedDimension": "Зберіть фразу — вони спокійні за характером; обидві жінки, без «вони»",
             "feedbackByLocale": {
               "ru": "речь о женщинах.",
               "uk": "йдеться про жінок."
@@ -189,8 +189,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — обидві жінки веселі за характером",
             "feedbackByLocale": {
-              "ru": "Alegre сохраняет -e; множественное число — alegres.",
-              "uk": "Alegre зберігає -e; множина — alegres."
+              "ru": "Alegre сохраняет -e; форма для нескольких — alegres.",
+              "uk": "Alegre зберігає -e; форма для кількох — alegres."
             }
           }
         ]
@@ -203,7 +203,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — вони веселі за характером; без займенника",
+      "prompt": "Зберіть фразу — вони веселі за характером; без «вони»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-36:i04:r1",
@@ -220,13 +220,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — вони веселі за характером; без займенника",
+      "accessibilityLabel": "Зберіть фразу — вони веселі за характером; без «вони»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son alegres.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они весёлые по характеру; без местоимения",
-          "uk": "Зберіть фразу — вони веселі за характером; без займенника"
+          "ru": "Соберите фразу — они весёлые по характеру; без «они»",
+          "uk": "Зберіть фразу — вони веселі за характером; без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -239,7 +239,7 @@
           {
             "responseId": "es:lesson-03:session-36:i04:tile:d1",
             "correct": false,
-            "testedDimension": "Зберіть фразу — вони веселі за характером; без займенника",
+            "testedDimension": "Зберіть фразу — вони веселі за характером; без «вони»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -328,7 +328,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — вони дуже спокійні за характером; обидві жінки, без займенника",
+      "prompt": "Зберіть фразу — вони дуже спокійні за характером; обидві жінки, без «вони»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-36:i06:r1",
@@ -349,13 +349,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — вони дуже спокійні за характером; обидві жінки, без займенника",
+      "accessibilityLabel": "Зберіть фразу — вони дуже спокійні за характером; обидві жінки, без «вони»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son muy tranquilas.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они очень спокойные по характеру; обе женщины, без местоимения",
-          "uk": "Зберіть фразу — вони дуже спокійні за характером; обидві жінки, без займенника"
+          "ru": "Соберите фразу — они очень спокойные по характеру; обе женщины, без «они»",
+          "uk": "Зберіть фразу — вони дуже спокійні за характером; обидві жінки, без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -369,7 +369,7 @@
           {
             "responseId": "es:lesson-03:session-36:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Зберіть фразу — вони дуже спокійні за характером; обидві жінки, без займенника",
+            "testedDimension": "Зберіть фразу — вони дуже спокійні за характером; обидві жінки, без «вони»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -522,13 +522,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — обидві жінки спокійні за характером; без імен і займенника",
+      "prompt": "Скажіть уголос — обидві жінки спокійні за характером; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-36:i09:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — обидві жінки спокійні за характером; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — обидві жінки спокійні за характером; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -555,13 +555,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — обидві жінки веселі за характером; без імен і займенника",
+      "prompt": "Скажіть уголос — обидві жінки веселі за характером; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-36:i10:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — обидві жінки веселі за характером; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — обидві жінки веселі за характером; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -588,13 +588,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — обидві жінки дуже спокійні за характером; без імен і займенника",
+      "prompt": "Скажіть уголос — обидві жінки дуже спокійні за характером; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-36:i11:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — обидві жінки дуже спокійні за характером; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — обидві жінки дуже спокійні за характером; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -621,13 +621,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — обидві жінки дуже веселі за характером; без імен і займенника",
+      "prompt": "Скажіть уголос — обидві жінки дуже веселі за характером; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-36:i12:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — обидві жінки дуже веселі за характером; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — обидві жінки дуже веселі за характером; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -655,5 +655,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6c12e31f3a393629dab8527905508a4cadbadfeeafd252dc2a23e738449cec20"
+  "learnerFingerprint": "72b304ed22b84a4cd1b92b93d15f4b7420a623bd86aa7c69f90927371f562c14"
 }

@@ -29,7 +29,7 @@
             "targetText": "gato",
             "meaningByLocale": {
               "ru": "кот; множественное gatos — коты, кошки как группа. 🔊 *gato*",
-              "uk": "кіт; множина gatos — коти як група. 🔊 *gato*"
+              "uk": "кіт; для кількох — gatos, коти як група. 🔊 *gato*"
             }
           }
         ],
@@ -40,7 +40,7 @@
           "word": "gato",
           "definitionByLocale": {
             "ru": "кот; множественное gatos — коты, кошки как группа. 🔊 *gato*",
-            "uk": "кіт; множина gatos — коти як група. 🔊 *gato*"
+            "uk": "кіт; для кількох — gatos, коти як група. 🔊 *gato*"
           }
         }
       },
@@ -231,7 +231,7 @@
             "targetText": "perro",
             "meaningByLocale": {
               "ru": "собака. Мужской род: el perro; множественное perros. 🔊 *perro*",
-              "uk": "собака. Чоловічий рід: el perro; множина perros. 🔊 *perro*"
+              "uk": "собака. Чоловічий рід: el perro; для кількох perros. 🔊 *perro*"
             }
           }
         ],
@@ -242,7 +242,7 @@
           "word": "perro",
           "definitionByLocale": {
             "ru": "собака. Мужской род: el perro; множественное perros. 🔊 *perro*",
-            "uk": "собака. Чоловічий рід: el perro; множина perros. 🔊 *perro*"
+            "uk": "собака. Чоловічий рід: el perro; для кількох perros. 🔊 *perro*"
           }
         }
       },
@@ -488,8 +488,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — виберіть форму для кількох котів",
             "feedbackByLocale": {
-              "ru": "Un относится к одному, а gatos во множественном числе.",
-              "uk": "Un стосується одного, а gatos у множині."
+              "ru": "Un относится к одному, а gatos — о нескольких.",
+              "uk": "Un стосується одного, а gatos — для кількох."
             }
           },
           {
@@ -952,5 +952,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d2b9776d70bae954a6a2531e85296bc62f0274f85ac55e297d9e34e267bbb2cb"
+  "learnerFingerprint": "a260cf3f4f8cd5769b9cb80d5cec9cd4bbbf4aa697581a508a148796e863944d"
 }

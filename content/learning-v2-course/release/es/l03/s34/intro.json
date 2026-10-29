@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-34",
   "learningOutcomeByLocale": {
-    "ru": "описать человека словом joven и нескольких людей словом jóvenes.",
-    "uk": "описувати людину словом joven і кількох людей словом jóvenes."
+    "ru": "сказать, что человек молодой: Ana es joven.",
+    "uk": "сказати, що людина молода: Ana es joven."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Обоє молоді"
       },
       "bodyByLocale": {
-        "ru": "Теперь говорите об Ане и Луисе вместе. Их уже назвали, поэтому можно коротко сказать `Son jóvenes` — «Они молодые». Соберите `son` + `jóvenes`. К joven добавьте -es. Ударение остаётся на первом слоге; во множественном числе на письме появляется знак над ó: jóvenes.",
-        "uk": "Тепер говорите про Ану й Луїса разом. Їх уже назвали, тому можна коротко сказати `Son jóvenes` — «Вони молоді». Зберіть `son` + `jóvenes`. До joven додайте -es. Наголос залишається на першому складі; у множині на письмі з'являється знак над ó: jóvenes."
+        "ru": "Теперь говорите об Ане и Луисе вместе. Их уже назвали, поэтому можно коротко сказать `Son jóvenes` — «Они молодые». Соберите `son` + `jóvenes`. К joven добавьте -es. Ударение остаётся на первом слоге; когда их несколько, на письме появляется знак над ó: jóvenes.",
+        "uk": "Тепер говорите про Ану й Луїса разом. Їх уже назвали, тому можна коротко сказати `Son jóvenes` — «Вони молоді». Зберіть `son` + `jóvenes`. До joven додайте -es. Наголос залишається на першому складі; коли їх кілька, на письмі з'являється знак над ó: jóvenes."
       },
       "question": {
         "interactionId": "es:lesson-03:session-34:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c523e74467b9b286e3a6bb7221cc1274561cba879b6033846b869002430747c6"
+  "introFingerprint": "4436852fee2fc4dac265b9f7d45c448de359af018cb82864569cf897bf0d64e3"
 }

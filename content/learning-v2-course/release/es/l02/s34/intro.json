@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-02:session-34",
   "learningOutcomeByLocale": {
-    "ru": "согласовать знакомое описание с несколькими предметами женского рода.",
-    "uk": "узгодити знайомий опис із кількома предметами жіночого роду."
+    "ru": "сказать, что подушки удобные: Las almohadas son cómodas.",
+    "uk": "сказати, що подушки зручні: Las almohadas son cómodas."
   },
   "pages": [
     {
@@ -124,7 +124,7 @@
       },
       "bodyByLocale": {
         "ru": "Осталось разложить новые одеяла. `Manta` — «одеяло», слово женского рода: la manta; несколько — mantas. Скажите `Las mantas son nuevas` — «Одеяла новые». Соберите `las mantas` + `son` + `nuevas`. Из знакомого nuevo выберите женскую множественную форму nuevas: речь о нескольких mantas.",
-        "uk": "Залишилося розкласти нові ковдри. `Manta` — «ковдра», слово жіночого роду: la manta; кілька — mantas. Скажіть `Las mantas son nuevas` — «Ковдри нові». Зберіть `las mantas` + `son` + `nuevas`. Із знайомого nuevo виберіть жіночу множинну форму nuevas: йдеться про кілька mantas."
+        "uk": "Залишилося розкласти нові ковдри. `Manta` — «ковдра», слово жіночого роду: la manta; кілька — mantas. Скажіть `Las mantas son nuevas` — «Ковдри нові». Зберіть `las mantas` + `son` + `nuevas`. Із знайомого nuevo виберіть жіночу форму для кількох — nuevas: йдеться про кілька mantas."
       },
       "question": {
         "interactionId": "es:lesson-02:session-34:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "dcdfcdcf1646f7c07c840f3239eeb9e71ba8241ee3dafe44985b53b0b5e4c271"
+  "introFingerprint": "2d40e8079263c18f586be1c823076e977d24547826a5fa17ef1ec354fb2d8a0e"
 }

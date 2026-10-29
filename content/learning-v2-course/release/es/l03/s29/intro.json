@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-29",
   "learningOutcomeByLocale": {
-    "ru": "согласовать знакомые caro и barato с разными вещами.",
-    "uk": "узгоджувати знайомі caro і barato з різними речами."
+    "ru": "сказать, что вещь дорогая или дешёвая: El bolso es barato.",
+    "uk": "сказати, що річ дорога чи дешева: El bolso es barato."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Дорогі туфлі"
       },
       "bodyByLocale": {
-        "ru": "Смотрите на ценник туфель: цена высокая. Скажите `Los zapatos son caros` — «Туфли дорогие». Соберите `los zapatos` + `son` + `caros`. Испанское zapatos мужского рода и во множественном числе. Поэтому у caro окончание -os, даже если по-русски говорим «туфли».",
-        "uk": "Дивитеся на цінник туфель: ціна висока. Скажіть `Los zapatos son caros` — «Туфлі дорогі». Зберіть `los zapatos` + `son` + `caros`. Іспанське zapatos чоловічого роду й у множині. Тому caro має закінчення -os, навіть якщо українською кажемо «туфлі»."
+        "ru": "Смотрите на ценник туфель: цена высокая. Скажите `Los zapatos son caros` — «Туфли дорогие». Соберите `los zapatos` + `son` + `caros`. Испанское zapatos мужского рода, и их несколько. Поэтому у caro окончание -os, даже если по-русски говорим «туфли».",
+        "uk": "Дивитеся на цінник туфель: ціна висока. Скажіть `Los zapatos son caros` — «Туфлі дорогі». Зберіть `los zapatos` + `son` + `caros`. Іспанське zapatos чоловічого роду, і їх кілька. Тому caro має закінчення -os, навіть якщо українською кажемо «туфлі»."
       },
       "question": {
         "interactionId": "es:lesson-03:session-29:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Недорогі сумки"
       },
       "bodyByLocale": {
-        "ru": "На соседней полке сумки по низкой цене. Скажите `Las bolsas son baratas` — «Сумки недорогие». Соберите `las bolsas` + `son` + `baratas`. Bolsas женского рода и во множественном числе: женское barata получает -s. Здесь barato описывает цену, а не плохое качество.",
-        "uk": "На сусідній полиці сумки за низькою ціною. Скажіть `Las bolsas son baratas` — «Сумки недорогі». Зберіть `las bolsas` + `son` + `baratas`. Bolsas жіночого роду й у множині: жіноче barata отримує -s. Тут barato описує ціну, а не погану якість."
+        "ru": "На соседней полке сумки по низкой цене. Скажите `Las bolsas son baratas` — «Сумки недорогие». Соберите `las bolsas` + `son` + `baratas`. Bolsas женского рода, и их несколько: женское barata получает -s. Здесь barato описывает цену, а не плохое качество.",
+        "uk": "На сусідній полиці сумки за низькою ціною. Скажіть `Las bolsas son baratas` — «Сумки недорогі». Зберіть `las bolsas` + `son` + `baratas`. Bolsas жіночого роду, і їх кілька: жіноче barata отримує -s. Тут barato описує ціну, а не погану якість."
       },
       "question": {
         "interactionId": "es:lesson-03:session-29:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "10a726d710bd5de84762050536d6e681764dea28480933fb552f933da115b554"
+  "introFingerprint": "26551df7c4be1fd874bf9ec285612a010465a6abefd26397677b3f5fef767fd9"
 }

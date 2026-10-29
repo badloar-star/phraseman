@@ -78,7 +78,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — вони привітні; без займенника",
+      "prompt": "Зберіть фразу — вони привітні; без «вони»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-37:i02:r1",
@@ -95,13 +95,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — вони привітні; без займенника",
+      "accessibilityLabel": "Зберіть фразу — вони привітні; без «вони»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son amables.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они приветливые; без местоимения",
-          "uk": "Зберіть фразу — вони привітні; без займенника"
+          "ru": "Соберите фразу — они приветливые; без «они»",
+          "uk": "Зберіть фразу — вони привітні; без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -114,7 +114,7 @@
           {
             "responseId": "es:lesson-03:session-37:i02:tile:d1",
             "correct": false,
-            "testedDimension": "Зберіть фразу — вони привітні; без займенника",
+            "testedDimension": "Зберіть фразу — вони привітні; без «вони»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -203,7 +203,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — вони терплячі; без займенника",
+      "prompt": "Зберіть фразу — вони терплячі; без «вони»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-37:i04:r1",
@@ -220,13 +220,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — вони терплячі; без займенника",
+      "accessibilityLabel": "Зберіть фразу — вони терплячі; без «вони»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son pacientes.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они терпеливые; без местоимения",
-          "uk": "Зберіть фразу — вони терплячі; без займенника"
+          "ru": "Соберите фразу — они терпеливые; без «они»",
+          "uk": "Зберіть фразу — вони терплячі; без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -239,7 +239,7 @@
           {
             "responseId": "es:lesson-03:session-37:i04:tile:d1",
             "correct": false,
-            "testedDimension": "Зберіть фразу — вони терплячі; без займенника",
+            "testedDimension": "Зберіть фразу — вони терплячі; без «вони»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -328,7 +328,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Зберіть фразу — вони дуже терплячі; без займенника",
+      "prompt": "Зберіть фразу — вони дуже терплячі; без «вони»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-37:i06:r1",
@@ -349,13 +349,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Зберіть фразу — вони дуже терплячі; без займенника",
+      "accessibilityLabel": "Зберіть фразу — вони дуже терплячі; без «вони»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son muy pacientes.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они очень терпеливые; без местоимения",
-          "uk": "Зберіть фразу — вони дуже терплячі; без займенника"
+          "ru": "Соберите фразу — они очень терпеливые; без «они»",
+          "uk": "Зберіть фразу — вони дуже терплячі; без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -369,7 +369,7 @@
           {
             "responseId": "es:lesson-03:session-37:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Зберіть фразу — вони дуже терплячі; без займенника",
+            "testedDimension": "Зберіть фразу — вони дуже терплячі; без «вони»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -522,13 +522,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — вони привітні; без імен і займенника",
+      "prompt": "Скажіть уголос — вони привітні; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-37:i09:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — вони привітні; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — вони привітні; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -555,13 +555,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — вони терплячі; без імен і займенника",
+      "prompt": "Скажіть уголос — вони терплячі; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-37:i10:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — вони терплячі; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — вони терплячі; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -588,13 +588,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — вони дуже терплячі; без імен і займенника",
+      "prompt": "Скажіть уголос — вони дуже терплячі; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-37:i11:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — вони дуже терплячі; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — вони дуже терплячі; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -621,13 +621,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — вони дуже привітні; без імен і займенника",
+      "prompt": "Скажіть уголос — вони дуже привітні; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-37:i12:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — вони дуже привітні; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — вони дуже привітні; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -655,5 +655,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e08d06d0fa82257a8a309c7736cdc988a81dc1c8472f5e65f10875978dc1b9c5"
+  "learnerFingerprint": "64e585edfe160214410f56d16dc88a49520514a4bf1593ce1c802a69ad3f1020"
 }

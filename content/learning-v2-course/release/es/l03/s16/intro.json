@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-16",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно согласовать знакомые цвета с родом и числом вещей.",
-    "uk": "самостійно узгоджувати знайомі кольори з родом і числом речей."
+    "ru": "назвать цвет нужной вещи: La mochila es negra.",
+    "uk": "назвати колір потрібної речі: La mochila es negra."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Сині рушники"
       },
       "bodyByLocale": {
-        "ru": "Из другой сумки достали несколько синих полотенец. Скажите `Las toallas son azules` — «Полотенца синие». Соберите `las toallas` + `son` + `azules`. К azul добавляется -es, а не -s. Для женского toallas и мужского предмета во множественном числе форма одинакова: azules.",
-        "uk": "З іншої сумки дістали кілька синіх рушників. Скажіть `Las toallas son azules` — «Рушники сині». Зберіть `las toallas` + `son` + `azules`. До azul додається -es, а не -s. Для жіночого toallas і чоловічого предмета у множині форма однакова: azules."
+        "ru": "Из другой сумки достали несколько синих полотенец. Скажите `Las toallas son azules` — «Полотенца синие». Соберите `las toallas` + `son` + `azules`. К azul добавляется -es, а не -s. Для женского toallas и мужского предмета, когда их несколько, форма одинакова: azules.",
+        "uk": "З іншої сумки дістали кілька синіх рушників. Скажіть `Las toallas son azules` — «Рушники сині». Зберіть `las toallas` + `son` + `azules`. До azul додається -es, а не -s. Для жіночого toallas і чоловічого предмета, коли їх кілька, форма однакова: azules."
       },
       "question": {
         "interactionId": "es:lesson-03:session-16:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f575bb79c4075626fac19a77057bebef5eabf23457fe92aa1b29b939fe18f7d5"
+  "introFingerprint": "d0d946dc63817b8a5044b71c48b75838ac30f6f09460ce31cb5d9c9fe58d941f"
 }

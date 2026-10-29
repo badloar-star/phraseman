@@ -347,8 +347,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — несколько отдельных карандашей",
             "feedbackByLocale": {
-              "ru": "Нужно множественное число: lápices.",
-              "uk": "Потрібна множина: lápices."
+              "ru": "Нужна форма для нескольких: lápices.",
+              "uk": "Потрібна форма для кількох: lápices."
             }
           },
           {
@@ -692,5 +692,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4e4183e02c584744e1b3d5f3d2a8e97b65f2d8cdabf6f2dd0baa5857d21b789a"
+  "learnerFingerprint": "87735571a80b8f820bd7ca1933d72216775a7cb24433e2fd21f5e29abc0a7df8"
 }

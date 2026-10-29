@@ -32,8 +32,8 @@
       "interactionId": "es:lesson-03:session-47:intro3:q",
       "responseFeedbackById": {
         "es:lesson-03:session-47:intro3:r2": {
-          "ru": "Множественное число требует son.",
-          "uk": "Множина потребує son."
+          "ru": "Для нескольких нужно son.",
+          "uk": "Для кількох потрібне son."
         },
         "es:lesson-03:session-47:intro3:r3": {
           "ru": "Нужно согласованное picantes.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "707a52c283247d7b832e64f3cf45706aaa00f14209960297418c60bdb0227c89"
+  "auxiliaryFingerprint": "a4cc940728463a975e115e659ace602048eefb87ce162367c3f6ac8021dc37b7"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-02:session-05",
   "learningOutcomeByLocale": {
-    "ru": "отличить название предмета с una от узнавания конкретного предмета с la.",
-    "uk": "відрізнити називання предмета з una від упізнавання конкретного предмета з la."
+    "ru": "сказать, что это именно тот ключ: Es la llave.",
+    "uk": "сказати, що це саме той ключ: Es la llave."
   },
   "pages": [
     {
@@ -124,7 +124,7 @@
       },
       "bodyByLocale": {
         "ru": "В коридоре несколько дверей. Друг показывает на одну, и вы узнаёте ту, которую искали. `Puerta` — «дверь», слово женского рода: la puerta. Скажите `Es la puerta` — «Это та самая дверь». Соберите `es` + `la` + `puerta`. La выбираем, потому что узнаём конкретную дверь; для простого названия предмета было бы Es una puerta.",
-        "uk": "У коридорі кілька дверей. Друг показує на одні, і ви впізнаєте ті, які шукали. `Puerta` — «двері», іспанське слово жіночого роду в однині: la puerta. Скажіть `Es la puerta` — «Це саме ті двері». Складіть `es` + `la` + `puerta`. La вибираємо, бо впізнаємо конкретні двері; для простого називання предмета було б Es una puerta."
+        "uk": "У коридорі кілька дверей. Друг показує на одні, і ви впізнаєте ті, які шукали. `Puerta` — «двері», іспанське слово жіночого роду для одних дверей: la puerta. Скажіть `Es la puerta` — «Це саме ті двері». Складіть `es` + `la` + `puerta`. La вибираємо, бо впізнаємо конкретні двері; для простого називання предмета було б Es una puerta."
       },
       "question": {
         "interactionId": "es:lesson-02:session-05:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f5fb832415c22c9f70d94cd69a47f2070c1b5db2fe21b49ea3dedc45b84fc84b"
+  "introFingerprint": "6576c615fce5d1eb7d5f56060929e70a4745e270708981cb09942700c938c6dd"
 }

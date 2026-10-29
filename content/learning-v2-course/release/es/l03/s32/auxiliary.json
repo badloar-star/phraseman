@@ -32,8 +32,8 @@
       "interactionId": "es:lesson-03:session-32:intro3:q",
       "responseFeedbackById": {
         "es:lesson-03:session-32:intro3:r2": {
-          "ru": "Нужна форма множественного числа.",
-          "uk": "Потрібна форма множини."
+          "ru": "Нужна форма для нескольких.",
+          "uk": "Потрібна форма для кількох."
         },
         "es:lesson-03:session-32:intro3:r3": {
           "ru": "Frágiles одинаково для обоих родов.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "353a75ba13784590bb72097a28f10ff4bdf52249a32cc78fc8bfd27afecf7f15"
+  "auxiliaryFingerprint": "30a99f26c9a5f5b795fbf37c6386a42872935c6637696a2aa6c2d2651ca2667a"
 }

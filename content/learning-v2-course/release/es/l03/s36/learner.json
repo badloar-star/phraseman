@@ -78,7 +78,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — они спокойные по характеру; обе женщины, без местоимения",
+      "prompt": "Соберите фразу — они спокойные по характеру; обе женщины, без «они»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-36:i02:r1",
@@ -95,13 +95,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — они спокойные по характеру; обе женщины, без местоимения",
+      "accessibilityLabel": "Соберите фразу — они спокойные по характеру; обе женщины, без «они»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son tranquilas.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они спокойные по характеру; обе женщины, без местоимения",
-          "uk": "Зберіть фразу — вони спокійні за характером; обидві жінки, без займенника"
+          "ru": "Соберите фразу — они спокойные по характеру; обе женщины, без «они»",
+          "uk": "Зберіть фразу — вони спокійні за характером; обидві жінки, без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -114,7 +114,7 @@
           {
             "responseId": "es:lesson-03:session-36:i02:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — они спокойные по характеру; обе женщины, без местоимения",
+            "testedDimension": "Соберите фразу — они спокойные по характеру; обе женщины, без «они»",
             "feedbackByLocale": {
               "ru": "речь о женщинах.",
               "uk": "йдеться про жінок."
@@ -189,8 +189,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — обе женщины весёлые по характеру",
             "feedbackByLocale": {
-              "ru": "Alegre сохраняет -e; множественное число — alegres.",
-              "uk": "Alegre зберігає -e; множина — alegres."
+              "ru": "Alegre сохраняет -e; форма для нескольких — alegres.",
+              "uk": "Alegre зберігає -e; форма для кількох — alegres."
             }
           }
         ]
@@ -203,7 +203,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — они весёлые по характеру; без местоимения",
+      "prompt": "Соберите фразу — они весёлые по характеру; без «они»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-36:i04:r1",
@@ -220,13 +220,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — они весёлые по характеру; без местоимения",
+      "accessibilityLabel": "Соберите фразу — они весёлые по характеру; без «они»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son alegres.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они весёлые по характеру; без местоимения",
-          "uk": "Зберіть фразу — вони веселі за характером; без займенника"
+          "ru": "Соберите фразу — они весёлые по характеру; без «они»",
+          "uk": "Зберіть фразу — вони веселі за характером; без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -239,7 +239,7 @@
           {
             "responseId": "es:lesson-03:session-36:i04:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — они весёлые по характеру; без местоимения",
+            "testedDimension": "Соберите фразу — они весёлые по характеру; без «они»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -328,7 +328,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — они очень спокойные по характеру; обе женщины, без местоимения",
+      "prompt": "Соберите фразу — они очень спокойные по характеру; обе женщины, без «они»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-36:i06:r1",
@@ -349,13 +349,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — они очень спокойные по характеру; обе женщины, без местоимения",
+      "accessibilityLabel": "Соберите фразу — они очень спокойные по характеру; обе женщины, без «они»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son muy tranquilas.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они очень спокойные по характеру; обе женщины, без местоимения",
-          "uk": "Зберіть фразу — вони дуже спокійні за характером; обидві жінки, без займенника"
+          "ru": "Соберите фразу — они очень спокойные по характеру; обе женщины, без «они»",
+          "uk": "Зберіть фразу — вони дуже спокійні за характером; обидві жінки, без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -369,7 +369,7 @@
           {
             "responseId": "es:lesson-03:session-36:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — они очень спокойные по характеру; обе женщины, без местоимения",
+            "testedDimension": "Соберите фразу — они очень спокойные по характеру; обе женщины, без «они»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -522,13 +522,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — обе женщины спокойные по характеру; без имён и местоимения",
+      "prompt": "Скажите вслух — обе женщины спокойные по характеру; без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-36:i09:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — обе женщины спокойные по характеру; без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — обе женщины спокойные по характеру; без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -555,13 +555,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — обе женщины весёлые по характеру; без имён и местоимения",
+      "prompt": "Скажите вслух — обе женщины весёлые по характеру; без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-36:i10:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — обе женщины весёлые по характеру; без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — обе женщины весёлые по характеру; без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -588,13 +588,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — обе женщины очень спокойные по характеру; без имён и местоимения",
+      "prompt": "Скажите вслух — обе женщины очень спокойные по характеру; без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-36:i11:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — обе женщины очень спокойные по характеру; без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — обе женщины очень спокойные по характеру; без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -621,13 +621,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — обе женщины очень весёлые по характеру; без имён и местоимения",
+      "prompt": "Скажите вслух — обе женщины очень весёлые по характеру; без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-36:i12:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — обе женщины очень весёлые по характеру; без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — обе женщины очень весёлые по характеру; без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -655,5 +655,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8f0e35fb4572ba45dac522867626e7308e09b79782dcb0cbe1a1ffa39f0d5f50"
+  "learnerFingerprint": "c947b5148724cfe9d1ae7b21d0035dd43adb7e19e5501b5d6b8d8966076641b2"
 }

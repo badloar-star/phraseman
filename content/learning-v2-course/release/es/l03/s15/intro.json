@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-15",
   "learningOutcomeByLocale": {
-    "ru": "использовать gris и grises, сохраняя одну форму для обоих родов.",
-    "uk": "використовувати gris і grises, зберігаючи одну форму для обох родів."
+    "ru": "сказать, что вещь серая: El guante es gris.",
+    "uk": "сказати, що річ сіра: El guante es gris."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Обидві рукавички"
       },
       "bodyByLocale": {
-        "ru": "Нашлась вторая перчатка: теперь перед вами серые перчатки. Скажите `Los guantes son grises` — «Перчатки серые». Соберите `los guantes` + `son` + `grises`. В слове gris один слог и конечная согласная s; для множественного числа добавьте -es: gris → grises.",
-        "uk": "Знайшлася друга рукавичка: тепер перед вами сірі рукавички. Скажіть `Los guantes son grises` — «Рукавички сірі». Складіть `los guantes` + `son` + `grises`. У слові gris один склад і кінцева приголосна s; для множини додайте -es: gris → grises."
+        "ru": "Нашлась вторая перчатка: теперь перед вами серые перчатки. Скажите `Los guantes son grises` — «Перчатки серые». Соберите `los guantes` + `son` + `grises`. В слове gris один слог и конечная согласная s; для нескольких добавьте -es: gris → grises.",
+        "uk": "Знайшлася друга рукавичка: тепер перед вами сірі рукавички. Скажіть `Los guantes son grises` — «Рукавички сірі». Складіть `los guantes` + `son` + `grises`. У слові gris один склад і кінцева приголосна s; для кількох додайте -es: gris → grises."
       },
       "question": {
         "interactionId": "es:lesson-03:session-15:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "33fb27894a76f4f8496fe47727e03ac1f1acde896ba3543fd6c523edf325e14b"
+  "introFingerprint": "ebb20cfb4b6ff9d77dc5e3ecac8b739bed811a831719a7dab4b572dc7c166ab8"
 }

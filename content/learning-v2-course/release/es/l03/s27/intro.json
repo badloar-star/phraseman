@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-27",
   "learningOutcomeByLocale": {
-    "ru": "описать прочность вещи словом resistente в единственном и множественном числе.",
-    "uk": "описувати міцність речі словом resistente в однині й множині."
+    "ru": "сказать, что вещь прочная: La bolsa es resistente.",
+    "uk": "сказати, що річ міцна: La bolsa es resistente."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Дві сумки для сім'ї"
       },
       "bodyByLocale": {
-        "ru": "Выбираете несколько таких сумок. Скажите `Las bolsas son resistentes` — «Сумки прочные». Соберите `las bolsas` + `son` + `resistentes`. Для множественного числа к resistente добавьте -s. Род не меняет форму, а число меняет: resistente → resistentes.",
-        "uk": "Обираєте кілька таких сумок. Скажіть `Las bolsas son resistentes` — «Сумки міцні». Зберіть `las bolsas` + `son` + `resistentes`. Для множини до resistente додайте -s. Рід не змінює форму, а число змінює: resistente → resistentes."
+        "ru": "Выбираете несколько таких сумок. Скажите `Las bolsas son resistentes` — «Сумки прочные». Соберите `las bolsas` + `son` + `resistentes`. Чтобы сказать о нескольких, к resistente добавьте -s. Род не меняет форму, а число меняет: resistente → resistentes.",
+        "uk": "Обираєте кілька таких сумок. Скажіть `Las bolsas son resistentes` — «Сумки міцні». Зберіть `las bolsas` + `son` + `resistentes`. Щоб сказати про кількох, до resistente додайте -s. Рід не змінює форму, а число змінює: resistente → resistentes."
       },
       "question": {
         "interactionId": "es:lesson-03:session-27:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "31b60a1046b0e2679b8795fd7a883a4d3f687ed269ea5166a921c9506bba3aa2"
+  "introFingerprint": "b34f459e44fa68f2b29c802df6cf1de0295eb8815b7a9adb168b88c41794868d"
 }

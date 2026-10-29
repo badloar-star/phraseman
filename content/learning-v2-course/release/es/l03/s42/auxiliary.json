@@ -32,8 +32,8 @@
       "interactionId": "es:lesson-03:session-42:intro3:q",
       "responseFeedbackById": {
         "es:lesson-03:session-42:intro3:r2": {
-          "ru": "Нужно множественное число picantes.",
-          "uk": "Потрібна множина picantes."
+          "ru": "Нужна форма для нескольких picantes.",
+          "uk": "Потрібна форма для кількох picantes."
         },
         "es:lesson-03:session-42:intro3:r3": {
           "ru": "Не меняйте -e на -a: picantes.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "078890ae2dc8a5319b250db49e8949c65728a9b2fbd66181c21ed04340acbc6f"
+  "auxiliaryFingerprint": "d97e1764774a0e5d48826b9f94440692b6ae4d1b0d7dd94ad91986224932d133"
 }

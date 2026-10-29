@@ -28,8 +28,8 @@
             "responseId": "es:lesson-03:session-14:i01:r1",
             "targetText": "azul",
             "meaningByLocale": {
-              "ru": "синий, синяя, синее; azules — форма множественного числа. 🔊 *azul*",
-              "uk": "синій, синя, синє; azules — форма множини. 🔊 *azul*"
+              "ru": "синий, синяя, синее; azules — форма для нескольких. 🔊 *azul*",
+              "uk": "синій, синя, синє; azules — форма для кількох. 🔊 *azul*"
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "azul",
           "definitionByLocale": {
-            "ru": "синий, синяя, синее; azules — форма множественного числа. 🔊 *azul*",
-            "uk": "синій, синя, синє; azules — форма множини. 🔊 *azul*"
+            "ru": "синий, синяя, синее; azules — форма для нескольких. 🔊 *azul*",
+            "uk": "синій, синя, синє; azules — форма для кількох. 🔊 *azul*"
           }
         }
       },
@@ -684,5 +684,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6a242e7e93f9d185d9a1441a2765547df3e20ef06a454cb462e0965f2b3bfcff"
+  "learnerFingerprint": "e76039dea02dbcc0a6d73afed8bcb7fc17f5ae71b2df5e64e312a080b9c91d0a"
 }

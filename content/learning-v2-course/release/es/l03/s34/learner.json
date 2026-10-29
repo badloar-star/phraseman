@@ -556,13 +556,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — они молодые; без имён и местоимения",
+      "prompt": "Скажите вслух — они молодые; без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-34:i11:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — они молодые; без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — они молодые; без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -589,13 +589,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — они очень молодые; без имён и местоимения",
+      "prompt": "Скажите вслух — они очень молодые; без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-34:i12:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — они очень молодые; без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — они очень молодые; без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -623,5 +623,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ece7b53802166c3fa1618742840944bd966534ffb5d876d47126fb908a52d25e"
+  "learnerFingerprint": "9361d36e4e996e0e7112472f397bcfa3fc5108c7559ccd1522c61fa4e68b0907"
 }

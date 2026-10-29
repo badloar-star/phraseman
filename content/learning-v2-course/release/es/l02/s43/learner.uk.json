@@ -217,8 +217,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — кілька волоських горіхів",
             "feedbackByLocale": {
-              "ru": "Нужно множественное число: nueces.",
-              "uk": "Потрібна множина: nueces."
+              "ru": "Нужна форма для нескольких: nueces.",
+              "uk": "Потрібна форма для кількох: nueces."
             }
           },
           {
@@ -692,5 +692,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c2d6263288be1674308fce9abad4e61d138de2b6c1aa62d8bc79890456440b3a"
+  "learnerFingerprint": "dd1f3bc2da40a635ad8371070b158f3611118646799d86c656c75448dfd58e8c"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-02:session-12",
   "learningOutcomeByLocale": {
-    "ru": "заменить конечную z на ces во множественном числе.",
-    "uk": "замінити кінцеву z на ces у множині."
+    "ru": "назвать нескольких рыб: Son unos peces.",
+    "uk": "назвати кількох риб: Son unos peces."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Кілька олівців"
       },
       "bodyByLocale": {
-        "ru": "Теперь рядом с рисунком несколько карандашей. Для множественного числа у слова на z замените эту z на ces: lápiz → lápices. Скажите `Son unos lápices` — «Это несколько карандашей». Соберите `son` + `unos` + `lápices`. Не добавляйте -es к неизменённому lápiz: в этой форме пишется c. Ударение остаётся на lá, знак над á тоже остаётся.",
-        "uk": "Тепер поруч із малюнком кілька олівців. Для множини у слова на z замініть цю z на ces: lápiz → lápices. Скажіть `Son unos lápices` — «Це кілька олівців». Зберіть `son` + `unos` + `lápices`. Не додавайте -es до незміненого lápiz: у цій формі пишеться c. Наголос залишається на lá, знак над á теж залишається."
+        "ru": "Теперь рядом с рисунком несколько карандашей. Для нескольких у слова на z замените эту z на ces: lápiz → lápices. Скажите `Son unos lápices` — «Это несколько карандашей». Соберите `son` + `unos` + `lápices`. Не добавляйте -es к неизменённому lápiz: в этой форме пишется c. Ударение остаётся на lá, знак над á тоже остаётся.",
+        "uk": "Тепер поруч із малюнком кілька олівців. Для кількох у слова на z замініть цю z на ces: lápiz → lápices. Скажіть `Son unos lápices` — «Це кілька олівців». Зберіть `son` + `unos` + `lápices`. Не додавайте -es до незміненого lápiz: у цій формі пишеться c. Наголос залишається на lá, знак над á теж залишається."
       },
       "question": {
         "interactionId": "es:lesson-02:session-12:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "88f4c67add227357df7cce2e69ef095a235fabca70816cc30b586cbb970bb5fe"
+  "introFingerprint": "5db9c10195a88e5a9deb8fc6513eb208ecc190866df5a0d9e1fa293e95fae167"
 }

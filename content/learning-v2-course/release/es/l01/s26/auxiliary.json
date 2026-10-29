@@ -23,8 +23,8 @@
           "uk": "В умові лише жінки, тому serias."
         },
         "es:lesson-01:session-26:intro2:r3": {
-          "ru": "Нужно множественное число с s.",
-          "uk": "Потрібна множина із s."
+          "ru": "Для нескольких нужна форма с s.",
+          "uk": "Для кількох потрібна форма із s."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "a8a3569feb428d10a2fcf73c38832cda73b2ee0adfe879a3efcdb85861e03c41"
+  "auxiliaryFingerprint": "7ce2ff60e3b647a69881b1d68a497990a40f23133ef91be80312014633f3b910"
 }

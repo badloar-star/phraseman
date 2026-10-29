@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-01:session-52",
   "learningOutcomeByLocale": {
-    "ru": "спросить мнение с ¿Es…? и ¿Son…?.",
-    "uk": "запитати думку з ¿Es…? та ¿Son…?."
+    "ru": "спросить, достаточно ли света: ¿Es suficiente?",
+    "uk": "запитати, чи достатньо світла: ¿Es suficiente?"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Кілька джерел"
       },
       "bodyByLocale": {
-        "ru": "Друг показывает два источника света. По-испански в этом случае можно сказать `las luces` — «огни, источники света»: во множественном числе у luz буква z заменяется на c и добавляется -es. Спросите о них: `¿Son suficientes?` — «Их достаточно?» Соберите `son` + `suficientes` внутри ¿…?. Для нескольких источников нужны son и множественное suficientes вместо es suficiente.",
-        "uk": "Друг показує два джерела світла. Іспанською в цьому випадку можна сказати `las luces` — «вогні, джерела світла»: у множині в luz літера z замінюється на c і додається -es. Запитайте про них: `¿Son suficientes?` — «Їх достатньо?» Складіть `son` + `suficientes` всередині ¿…?. Для кількох джерел потрібні son і множина suficientes замість es suficiente."
+        "ru": "Друг показывает два источника света. По-испански в этом случае можно сказать `las luces` — «огни, источники света»: когда их несколько, у luz буква z заменяется на c и добавляется -es. Спросите о них: `¿Son suficientes?` — «Их достаточно?» Соберите `son` + `suficientes` внутри ¿…?. Для нескольких источников нужны son и форма для нескольких suficientes вместо es suficiente.",
+        "uk": "Друг показує два джерела світла. Іспанською в цьому випадку можна сказати `las luces` — «вогні, джерела світла»: коли їх кілька, в luz літера z замінюється на c і додається -es. Запитайте про них: `¿Son suficientes?` — «Їх достатньо?» Складіть `son` + `suficientes` всередині ¿…?. Для кількох джерел потрібні son і форма для кількох suficientes замість es suficiente."
       },
       "question": {
         "interactionId": "es:lesson-01:session-52:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6d538e8f7fc13022df6d3ce74c3d7493fbf18773d9a4a0a29689d582bb5754c6"
+  "introFingerprint": "e8ac3df63b079d164420320387a2742e1902f8a567f381948cbe08fffacf544a"
 }

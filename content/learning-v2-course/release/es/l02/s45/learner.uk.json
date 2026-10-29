@@ -347,8 +347,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — кілька окремих олівців",
             "feedbackByLocale": {
-              "ru": "Нужно множественное число: lápices.",
-              "uk": "Потрібна множина: lápices."
+              "ru": "Нужна форма для нескольких: lápices.",
+              "uk": "Потрібна форма для кількох: lápices."
             }
           },
           {
@@ -692,5 +692,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b0c5a28aec40713c6cb929c0a3f15e12d0a3296a500ec616c9966998fb4fc4f2"
+  "learnerFingerprint": "5634c05aed3b80abc0b576e65b3de4da7ac5282175e88e19583745858fca8fd3"
 }

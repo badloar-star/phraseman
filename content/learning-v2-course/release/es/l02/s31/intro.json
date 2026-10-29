@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-02:session-31",
   "learningOutcomeByLocale": {
-    "ru": "отдельно произнести вопрос о владельце и короткий ответ.",
-    "uk": "окремо вимовити запитання про власника й коротку відповідь."
+    "ru": "спросить, чей это ключ: ¿De quién es la llave?",
+    "uk": "запитати, чий це ключ: ¿De quién es la llave?"
   },
   "pages": [
     {

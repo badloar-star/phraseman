@@ -33,7 +33,7 @@
       "responseFeedbackById": {
         "es:lesson-02:session-42:intro3:r2": {
           "ru": "С единственным un pantalón нужно es.",
-          "uk": "З одниною un pantalón потрібне es."
+          "uk": "Для одного, un pantalón, потрібне es."
         },
         "es:lesson-02:session-42:intro3:r3": {
           "ru": "Pantalón мужского рода: un.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "c2d32dc49e50f308c56caf19fb354c23be6e2ae4b85c65736a76b47e06eb7446"
+  "auxiliaryFingerprint": "8ce2addf4fbf04ee234d8335207b826ce675de677c422707125c0cb15e34a4a7"
 }

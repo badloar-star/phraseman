@@ -475,7 +475,7 @@
             "testedDimension": "Послушайте и соберите фразу",
             "feedbackByLocale": {
               "ru": "звучит множественное saladas.",
-              "uk": "звучить множина saladas."
+              "uk": "звучить форма для кількох saladas."
             }
           }
         ],
@@ -694,5 +694,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "40f18d4b896ca2d23b4cf6797ffc8bc8db47c780ed133ca473443bbc490774a5"
+  "learnerFingerprint": "f3e63a512b1ee71ad3c31faa44d7c56636abade1bac548696587f645f77c0bd2"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-01:session-07",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно выбирать es, отрицание no и окончание слова в короткой оценке.",
-    "uk": "самостійно обирати es, заперечення no та закінчення слова в короткій оцінці."
+    "ru": "дать короткую оценку без подсказки: Es lenta.",
+    "uk": "дати коротку оцінку без підказки: Es lenta."
   },
   "pages": [
     {

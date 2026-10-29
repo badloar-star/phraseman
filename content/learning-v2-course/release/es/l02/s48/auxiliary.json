@@ -6,8 +6,8 @@
       "interactionId": "es:lesson-02:session-48:intro1:q",
       "responseFeedbackById": {
         "es:lesson-02:session-48:intro1:r2": {
-          "ru": "Слово в единственном числе — paraguas.",
-          "uk": "Слово в однині — paraguas."
+          "ru": "Для одного предмета слово — paraguas.",
+          "uk": "Для одного предмета слово — paraguas."
         },
         "es:lesson-02:session-48:intro1:r3": {
           "ru": "Один зонт требует es.",
@@ -19,8 +19,8 @@
       "interactionId": "es:lesson-02:session-48:intro2:q",
       "responseFeedbackById": {
         "es:lesson-02:session-48:intro2:r2": {
-          "ru": "Множественное число тоже paraguas.",
-          "uk": "Множина теж paraguas."
+          "ru": "Для нескольких тоже paraguas.",
+          "uk": "Для кількох теж paraguas."
         },
         "es:lesson-02:session-48:intro2:r3": {
           "ru": "Зонтов несколько: son.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "1a5da4395b4c1dc96f0255ef0badf0cf00c05ddfa0e14f9c7443c4f4e85cebb3"
+  "auxiliaryFingerprint": "40ed950a1937b39778a171195cdb62623956ea11997d52b8a0658e9e1e78548b"
 }

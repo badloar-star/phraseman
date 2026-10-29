@@ -731,8 +731,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — кілька лимонів",
             "feedbackByLocale": {
-              "ru": "Нужна форма множественного числа limones.",
-              "uk": "Потрібна форма множини limones."
+              "ru": "Нужна форма для нескольких limones.",
+              "uk": "Потрібна форма для кількох limones."
             }
           },
           {
@@ -887,5 +887,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e40be23959ce59e36076f262685ec6d7bb4b3b6a52216d702b8c5ffaf434c39d"
+  "learnerFingerprint": "a44c6d858cf5e92671026b6c99d0543a7549862f9497588d82b1ed5d1c27bb53"
 }

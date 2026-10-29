@@ -543,8 +543,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — одна чашка маленькая",
             "feedbackByLocale": {
-              "ru": "Нужна форма женского рода единственного числа: pequeña.",
-              "uk": "Потрібна форма жіночого роду однини: pequeña."
+              "ru": "Нужна форма женского рода для одного: pequeña.",
+              "uk": "Потрібна форма жіночого роду для одного: pequeña."
             }
           }
         ]
@@ -726,5 +726,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "42b840d2c4ea7744ac1b0afa72b035b7998d429cc3786da35c03ca709187cb2a"
+  "learnerFingerprint": "15ffb6aed942c7326d9c998814d29c7c01329827737a288b6ed1438641ed50b6"
 }

@@ -208,7 +208,7 @@
       "purpose": "supported_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — они разговорчивые; обе женщины, без местоимения",
+      "prompt": "Соберите фразу — они разговорчивые; обе женщины, без «они»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-38:i04:r1",
@@ -225,13 +225,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — они разговорчивые; обе женщины, без местоимения",
+      "accessibilityLabel": "Соберите фразу — они разговорчивые; обе женщины, без «они»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son habladoras.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они разговорчивые; обе женщины, без местоимения",
-          "uk": "Зберіть фразу — вони говіркі; обидві жінки, без займенника"
+          "ru": "Соберите фразу — они разговорчивые; обе женщины, без «они»",
+          "uk": "Зберіть фразу — вони говіркі; обидві жінки, без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -244,7 +244,7 @@
           {
             "responseId": "es:lesson-03:session-38:i04:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — они разговорчивые; обе женщины, без местоимения",
+            "testedDimension": "Соберите фразу — они разговорчивые; обе женщины, без «они»",
             "feedbackByLocale": {
               "ru": "речь о женщинах.",
               "uk": "йдеться про жінок."
@@ -333,7 +333,7 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Соберите фразу — они очень разговорчивые; обе женщины, без местоимения",
+      "prompt": "Соберите фразу — они очень разговорчивые; обе женщины, без «они»",
       "responseOptions": [
         {
           "responseId": "es:lesson-03:session-38:i06:r1",
@@ -354,13 +354,13 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Соберите фразу — они очень разговорчивые; обе женщины, без местоимения",
+      "accessibilityLabel": "Соберите фразу — они очень разговорчивые; обе женщины, без «они»",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "Son muy habladoras.",
         "localizedMeaning": {
-          "ru": "Соберите фразу — они очень разговорчивые; обе женщины, без местоимения",
-          "uk": "Зберіть фразу — вони дуже говіркі; обидві жінки, без займенника"
+          "ru": "Соберите фразу — они очень разговорчивые; обе женщины, без «они»",
+          "uk": "Зберіть фразу — вони дуже говіркі; обидві жінки, без «вони»"
         },
         "orderedTokens": [
           "Son",
@@ -374,7 +374,7 @@
           {
             "responseId": "es:lesson-03:session-38:i06:tile:d1",
             "correct": false,
-            "testedDimension": "Соберите фразу — они очень разговорчивые; обе женщины, без местоимения",
+            "testedDimension": "Соберите фразу — они очень разговорчивые; обе женщины, без «они»",
             "feedbackByLocale": {
               "ru": "людей несколько.",
               "uk": "людей кілька."
@@ -565,13 +565,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — обе женщины разговорчивые; без имён и местоимения",
+      "prompt": "Скажите вслух — обе женщины разговорчивые; без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-38:i10:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — обе женщины разговорчивые; без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — обе женщины разговорчивые; без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -598,13 +598,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажите вслух — обе женщины очень разговорчивые; без имён и местоимения",
+      "prompt": "Скажите вслух — обе женщины очень разговорчивые; без имён и без «они»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-38:i11:audio"
       ],
-      "accessibilityLabel": "Скажите вслух — обе женщины очень разговорчивые; без имён и местоимения",
+      "accessibilityLabel": "Скажите вслух — обе женщины очень разговорчивые; без имён и без «они»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -665,5 +665,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f03fe6741c7e5061deb9660e9bb45f38b35df87aece53b54ec975f9466c8fe93"
+  "learnerFingerprint": "4a117dcf9c15fa4dccf89d52d5b113a4b193abe945b45badb6781742398c7cec"
 }

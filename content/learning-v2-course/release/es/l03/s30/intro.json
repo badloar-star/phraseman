@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-30",
   "learningOutcomeByLocale": {
-    "ru": "описать удобство нескольких вещей женского рода.",
-    "uk": "описувати зручність кількох речей жіночого роду."
+    "ru": "сказать, удобная вещь или нет: Las sillas son incómodas.",
+    "uk": "сказати, зручна річ чи ні: Las sillas son incómodas."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Зручно сидіти"
       },
       "bodyByLocale": {
-        "ru": "Проверили несколько одинаковых стульев: сидеть удобно. Скажите `Las sillas son cómodas` — «Стулья удобные». Соберите `las sillas` + `son` + `cómodas`. Испанское sillas женского рода и во множественном числе: у признака окончание -as. Род русского слова «стул» здесь не влияет.",
-        "uk": "Перевірили кілька однакових стільців: сидіти зручно. Скажіть `Las sillas son cómodas` — «Стільці зручні». Зберіть `las sillas` + `son` + `cómodas`. Іспанське sillas жіночого роду й у множині: ознака має закінчення -as. Рід українського слова «стілець» тут не впливає."
+        "ru": "Проверили несколько одинаковых стульев: сидеть удобно. Скажите `Las sillas son cómodas` — «Стулья удобные». Соберите `las sillas` + `son` + `cómodas`. Испанское sillas женского рода, и их несколько: у признака окончание -as. Род русского слова «стул» здесь не влияет.",
+        "uk": "Перевірили кілька однакових стільців: сидіти зручно. Скажіть `Las sillas son cómodas` — «Стільці зручні». Зберіть `las sillas` + `son` + `cómodas`. Іспанське sillas жіночого роду, і їх кілька: ознака має закінчення -as. Рід українського слова «стілець» тут не впливає."
       },
       "question": {
         "interactionId": "es:lesson-03:session-30:intro1:q",
@@ -70,7 +70,7 @@
       },
       "bodyByLocale": {
         "ru": "Пробуете старые стулья: спинка мешает удобно устроиться. Скажите `Las sillas son incómodas` — «Стулья неудобные». Соберите `las sillas` + `son` + `incómodas`. Знакомое incómodo получает женское множественное -as. В этой фразе уже само слово означает «неудобные»; no добавлять не нужно.",
-        "uk": "Пробуєте старі стільці: спинка заважає зручно влаштуватися. Скажіть `Las sillas son incómodas` — «Стільці незручні». Зберіть `las sillas` + `son` + `incómodas`. Знайоме incómodo отримує жіноче множинне -as. У цій фразі вже саме слово означає «незручні»; no додавати не потрібно."
+        "uk": "Пробуєте старі стільці: спинка заважає зручно влаштуватися. Скажіть `Las sillas son incómodas` — «Стільці незручні». Зберіть `las sillas` + `son` + `incómodas`. Знайоме incómodo отримує жіноче закінчення -as для кількох. У цій фразі вже саме слово означає «незручні»; no додавати не потрібно."
       },
       "question": {
         "interactionId": "es:lesson-03:session-30:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4f7863eb51b5ad48939d0db842e35aa1f44f48fc1acf61991ec844b80d209392"
+  "introFingerprint": "49d02922c1bcfc6a5cd9a4d7680a8ccd4705c8dd62e85d83a60bb909aa3f183a"
 }

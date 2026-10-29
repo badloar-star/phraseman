@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-08",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно описать размер, длину и ширину с правильными окончаниями.",
-    "uk": "самостійно описати розмір, довжину й ширину з правильними закінченнями."
+    "ru": "описать размер вещей в поездке: La maleta es grande.",
+    "uk": "описати розмір речей у подорожі: La maleta es grande."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Короткі сорочки"
       },
       "bodyByLocale": {
-        "ru": "Вы положили рядом несколько коротких рубашек. Скажите `Las camisas son cortas` — «Рубашки короткие». Соберите `las camisas` + `son` + `cortas`. Camisas женского рода во множественном числе: cortas. Сначала определите род и количество вещей, затем выберите окончание.",
-        "uk": "Ви поклали поруч кілька коротких сорочок. Скажіть `Las camisas son cortas` — «Сорочки короткі». Складіть `las camisas` + `son` + `cortas`. Camisas жіночого роду в множині: cortas. Спочатку визначте рід і кількість речей, потім виберіть закінчення."
+        "ru": "Вы положили рядом несколько коротких рубашек. Скажите `Las camisas son cortas` — «Рубашки короткие». Соберите `las camisas` + `son` + `cortas`. Camisas женского рода, когда их несколько: cortas. Сначала определите род и количество вещей, затем выберите окончание.",
+        "uk": "Ви поклали поруч кілька коротких сорочок. Скажіть `Las camisas son cortas` — «Сорочки короткі». Складіть `las camisas` + `son` + `cortas`. Camisas жіночого роду, коли їх кілька: cortas. Спочатку визначте рід і кількість речей, потім виберіть закінчення."
       },
       "question": {
         "interactionId": "es:lesson-03:session-08:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d83ffb949e028f9c81ae0d3bf2923bccbaf91af9d63c5b0c8b2a606e5dbee658"
+  "introFingerprint": "4661ef0979e569cb983ea6e615fb39f2d7c6c06828eea22d1a48b8bb9403fa6a"
 }

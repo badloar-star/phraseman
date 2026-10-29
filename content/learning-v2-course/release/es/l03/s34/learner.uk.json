@@ -556,13 +556,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — вони молоді; без імен і займенника",
+      "prompt": "Скажіть уголос — вони молоді; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-34:i11:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — вони молоді; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — вони молоді; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -589,13 +589,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Скажіть уголос — вони дуже молоді; без імен і займенника",
+      "prompt": "Скажіть уголос — вони дуже молоді; без імен і без «вони»",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "es:lesson-03:session-34:i12:audio"
       ],
-      "accessibilityLabel": "Скажіть уголос — вони дуже молоді; без імен і займенника",
+      "accessibilityLabel": "Скажіть уголос — вони дуже молоді; без імен і без «вони»",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -623,5 +623,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "14c55c62f67f10ed563c5a244f59d3431ba14ba01e80e880e320f35f1a7cd2bf"
+  "learnerFingerprint": "62dff955fcb8be9a4a418791ade5edf4fbfa87886b12dbaac92e1459bf509089"
 }

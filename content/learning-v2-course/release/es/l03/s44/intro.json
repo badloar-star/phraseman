@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-44",
   "learningOutcomeByLocale": {
-    "ru": "назвать лимон и описать его кислый вкус.",
-    "uk": "назвати лимон і описати його кислий смак."
+    "ru": "сказать, что вкус кислый: El limón es ácido.",
+    "uk": "сказати, що смак кислий: El limón es ácido."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Лимони цього сорту"
       },
       "bodyByLocale": {
-        "ru": "На столе несколько лимонов одного сорта. Опишите их: `Los limones son ácidos` — «Лимоны кислые». Соберите `los limones` + `son` + `ácidos`. Limón оканчивается на согласную: во множественном числе добавьте -es — limones. В limones ударение остаётся на той же гласной o, но знак ударения исчезает. К ácido добавьте -s.",
-        "uk": "На столі кілька лимонів одного сорту. Опишіть їх: `Los limones son ácidos` — «Лимони кислі». Зберіть `los limones` + `son` + `ácidos`. Limón закінчується на приголосну: у множині додайте -es — limones. У limones наголос залишається на тій самій голосній o, але знак наголосу зникає. До ácido додайте -s."
+        "ru": "На столе несколько лимонов одного сорта. Опишите их: `Los limones son ácidos` — «Лимоны кислые». Соберите `los limones` + `son` + `ácidos`. Limón оканчивается на согласную: когда их несколько, добавьте -es — limones. В limones ударение остаётся на той же гласной o, но знак ударения исчезает. К ácido добавьте -s.",
+        "uk": "На столі кілька лимонів одного сорту. Опишіть їх: `Los limones son ácidos` — «Лимони кислі». Зберіть `los limones` + `son` + `ácidos`. Limón закінчується на приголосну: коли їх кілька, додайте -es — limones. У limones наголос залишається на тій самій голосній o, але знак наголосу зникає. До ácido додайте -s."
       },
       "question": {
         "interactionId": "es:lesson-03:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7c592ea54ffb5e8200f1433a3444e0d0cf5458b5c601c177971d308b4ff192f1"
+  "introFingerprint": "71211ca6110faf7f5c799bc388b33347ec66b5bcafb308546e42f2801d52ed2e"
 }

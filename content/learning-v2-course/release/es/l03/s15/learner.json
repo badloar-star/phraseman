@@ -28,8 +28,8 @@
             "responseId": "es:lesson-03:session-15:i01:r1",
             "targetText": "gris",
             "meaningByLocale": {
-              "ru": "серый, серая; grises — форма множественного числа. 🔊 *gris*",
-              "uk": "сірий, сіра; grises — форма множини. 🔊 *gris*"
+              "ru": "серый, серая; grises — форма для нескольких. 🔊 *gris*",
+              "uk": "сірий, сіра; grises — форма для кількох. 🔊 *gris*"
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "gris",
           "definitionByLocale": {
-            "ru": "серый, серая; grises — форма множественного числа. 🔊 *gris*",
-            "uk": "сірий, сіра; grises — форма множини. 🔊 *gris*"
+            "ru": "серый, серая; grises — форма для нескольких. 🔊 *gris*",
+            "uk": "сірий, сіра; grises — форма для кількох. 🔊 *gris*"
           }
         }
       },
@@ -684,5 +684,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6aa7df727c5f198e4ef9f22d2b3d364b57971c6239927bccca4f7885a96ee146"
+  "learnerFingerprint": "b83949d7e570c34cccf8f694eb637dc881aabfac651768d9bbfad9dfb5e87c45"
 }

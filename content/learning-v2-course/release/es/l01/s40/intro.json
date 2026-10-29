@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-01:session-40",
   "learningOutcomeByLocale": {
-    "ru": "оценить удобство одного стула, задать вопрос о нескольких и усилить оценку.",
-    "uk": "оцінити зручність одного стільця, запитати про кілька та підсилити оцінку."
+    "ru": "спросить, удобны ли стулья: ¿Son cómodas?",
+    "uk": "запитати, чи зручні стільці: ¿Son cómodas?"
   },
   "pages": [
     {

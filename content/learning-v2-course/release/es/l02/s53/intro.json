@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-02:session-53",
   "learningOutcomeByLocale": {
-    "ru": "спросить название вещи и назвать её отдельной репликой.",
-    "uk": "запитати назву речі та назвати її окремою реплікою."
+    "ru": "сказать, что перчатки новые: Los guantes son nuevos.",
+    "uk": "сказати, що рукавички нові: Los guantes son nuevos."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Ще один подарунок"
       },
       "bodyByLocale": {
-        "ru": "В следующем свёртке несколько перчаток. Назовите их: `Son unos guantes` — «Это перчатки». Соберите `son` + `unos` + `guantes`. Guantes мужского рода во множественном числе: unos. Когда эти перчатки уже известны собеседнику, говорите los guantes. Вопрос и ответ произносите по очереди, отдельными репликами.",
-        "uk": "У наступному згортку кілька рукавичок. Назвіть їх: `Son unos guantes` — «Це рукавички». Складіть `son` + `unos` + `guantes`. Іспанське guantes чоловічого роду в множині: unos. Коли ці рукавички вже відомі співрозмовнику, кажіть los guantes. Запитання та відповідь вимовляйте по черзі, окремими репліками."
+        "ru": "В следующем свёртке несколько перчаток. Назовите их: `Son unos guantes` — «Это перчатки». Соберите `son` + `unos` + `guantes`. Guantes мужского рода, и их несколько: unos. Когда эти перчатки уже известны собеседнику, говорите los guantes. Вопрос и ответ произносите по очереди, отдельными репликами.",
+        "uk": "У наступному згортку кілька рукавичок. Назвіть їх: `Son unos guantes` — «Це рукавички». Складіть `son` + `unos` + `guantes`. Іспанське guantes чоловічого роду, коли їх кілька: unos. Коли ці рукавички вже відомі співрозмовнику, кажіть los guantes. Запитання та відповідь вимовляйте по черзі, окремими репліками."
       },
       "question": {
         "interactionId": "es:lesson-02:session-53:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4f225dcc4a21a5a8bd97150e8bd602629234e5a7bd6f144afe6f4af0a752884f"
+  "introFingerprint": "5f936ecaa518e87f5211e787fafa4fd9b45a0f57fbb140502e1ab1f829a1c86d"
 }

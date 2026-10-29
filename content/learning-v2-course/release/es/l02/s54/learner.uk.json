@@ -251,8 +251,8 @@
             "correct": false,
             "testedDimension": "Зберіть фразу — це той самий настінний годинник, один предмет",
             "feedbackByLocale": {
-              "ru": "reloj в единственном числе.",
-              "uk": "reloj в однині."
+              "ru": "reloj — один предмет.",
+              "uk": "reloj — одна річ."
             }
           }
         ],
@@ -701,5 +701,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6034d8946b7bb0812e22c1656165250eaaebbb5e5712f5a0169f37706e72f3cc"
+  "learnerFingerprint": "1d3483c0a2f2d2ad8f720259962ce6e3d98669ecd82231d881492ab0b967589a"
 }

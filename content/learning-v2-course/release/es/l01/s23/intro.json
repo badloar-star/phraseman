@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-01:session-23",
   "learningOutcomeByLocale": {
-    "ru": "вслух оценить лекцию и задать вопрос о том, интересна ли она.",
-    "uk": "уголос оцінити лекцію й запитати, чи вона цікава."
+    "ru": "спросить, интересна ли лекция: ¿Es interesante?",
+    "uk": "запитати, чи цікава лекція: ¿Es interesante?"
   },
   "pages": [
     {

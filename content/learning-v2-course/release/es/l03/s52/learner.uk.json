@@ -189,8 +189,8 @@
             "correct": false,
             "testedDimension": "Зберіть фразу — туфлі досить дорогі, використайте bastante",
             "feedbackByLocale": {
-              "ru": "zapatos во множественном числе.",
-              "uk": "zapatos у множині."
+              "ru": "zapatos — их несколько.",
+              "uk": "zapatos — їх кілька."
             }
           }
         ],
@@ -684,5 +684,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d951d002b2cf6185d9d6d07637e0b085b43b86339496c84de3fcee2a3dcd8cde"
+  "learnerFingerprint": "7e6d60cc3656c9d6ee6889aa63a6fee62c600e1df0136db1a033a9464c47b405"
 }

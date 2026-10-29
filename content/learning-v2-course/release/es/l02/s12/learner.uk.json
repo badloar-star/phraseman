@@ -387,8 +387,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — кілька риб на малюнку",
             "feedbackByLocale": {
-              "ru": "Во множественном числе пишется c: peces.",
-              "uk": "У множині пишеться c: peces."
+              "ru": "Когда их несколько, пишется c: peces.",
+              "uk": "Коли їх кілька, пишеться c: peces."
             }
           },
           {
@@ -818,5 +818,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9cf679f727f285b6d2fd8e361d15d1638cc8b05e428854a0d026a85770b88a8c"
+  "learnerFingerprint": "29fa20148d57095765bc4fe8a3e15e54dbcb07677abe3c669b094f94f6a3d022"
 }

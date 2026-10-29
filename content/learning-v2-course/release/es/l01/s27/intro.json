@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-01:session-27",
   "learningOutcomeByLocale": {
-    "ru": "описать другую группу с son и не спутать её со своей группой с somos.",
-    "uk": "описати іншу групу із son і не сплутати її зі своєю групою із somos."
+    "ru": "рассказать о соседях: Ellos son respetuosos.",
+    "uk": "розповісти про сусідів: Ellos son respetuosos."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Сусідки не галасливі"
       },
       "bodyByLocale": {
-        "ru": "В соседней квартире живут две женщины, которые обычно ведут себя тихо. Скажите: `Ellas no son ruidosas` — «Они не шумные». `Ellas` — «они» для группы только из женщин. `Ruidoso` — «шумный», для женщин во множественном числе — `ruidosas`. Соберите `ellas` + `no` + `son` + `ruidosas`. Отрицание ставим перед son, как раньше перед es или soy.",
-        "uk": "У сусідній квартирі живуть дві жінки, які зазвичай поводяться тихо. Скажіть: `Ellas no son ruidosas` — «Вони не галасливі». `Ellas` — «вони» для групи лише з жінок. `Ruidoso` — «галасливий», для жінок у множині — `ruidosas`. Складіть `ellas` + `no` + `son` + `ruidosas`. Заперечення ставимо перед son, як раніше перед es або soy."
+        "ru": "В соседней квартире живут две женщины, которые обычно ведут себя тихо. Скажите: `Ellas no son ruidosas` — «Они не шумные». `Ellas` — «они» для группы только из женщин. `Ruidoso` — «шумный», для нескольких женщин — `ruidosas`. Соберите `ellas` + `no` + `son` + `ruidosas`. Отрицание ставим перед son, как раньше перед es или soy.",
+        "uk": "У сусідній квартирі живуть дві жінки, які зазвичай поводяться тихо. Скажіть: `Ellas no son ruidosas` — «Вони не галасливі». `Ellas` — «вони» для групи лише з жінок. `Ruidoso` — «галасливий», для кількох жінок — `ruidosas`. Складіть `ellas` + `no` + `son` + `ruidosas`. Заперечення ставимо перед son, як раніше перед es або soy."
       },
       "question": {
         "interactionId": "es:lesson-01:session-27:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "96f022d3b4c723e333431ed2821a8b2dd3e53171a9d274f68210f723f45c5571"
+  "introFingerprint": "ec3caf935aedd59a08663cd67e9c154e63b5b94cf662831a5f576c3674dc39cf"
 }

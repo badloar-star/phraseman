@@ -578,8 +578,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — це цукерки, з unos",
             "feedbackByLocale": {
-              "ru": "Нужно множественное число: dulces.",
-              "uk": "Потрібна множина: dulces."
+              "ru": "Нужна форма для нескольких: dulces.",
+              "uk": "Потрібна форма для кількох: dulces."
             }
           },
           {
@@ -793,5 +793,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7fbaee71404ac3ed97e14df50eab7a55fd73d0265fda19e21a8c2f8e0c6ca482"
+  "learnerFingerprint": "31a9dc30078584cbd2d689dee46a66d148a9c8f1449a24bf5a16adc2aff7371d"
 }

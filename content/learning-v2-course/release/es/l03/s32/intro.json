@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-32",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно описать вес, прочность и другие качества вещей.",
-    "uk": "самостійно описувати вагу, міцність та інші якості речей."
+    "ru": "описать вещи для дороги: Los zapatos son cómodos.",
+    "uk": "описати речі для дороги: Los zapatos son cómodos."
   },
   "pages": [
     {
@@ -124,7 +124,7 @@
       },
       "bodyByLocale": {
         "ru": "Везёте друзьям чашки. Напомните тому, кто помогает собираться: `Las tazas son frágiles` — «Чашки хрупкие». Соберите `las tazas` + `son` + `frágiles`. Чашек несколько, поэтому son и множественное frágiles. Женский род не меняет frágiles на форму с -as.",
-        "uk": "Везете друзям чашки. Нагадайте тому, хто допомагає збиратися: `Las tazas son frágiles` — «Чашки крихкі». Зберіть `las tazas` + `son` + `frágiles`. Чашок кілька, тому son і множинне frágiles. Жіночий рід не змінює frágiles на форму з -as."
+        "uk": "Везете друзям чашки. Нагадайте тому, хто допомагає збиратися: `Las tazas son frágiles` — «Чашки крихкі». Зберіть `las tazas` + `son` + `frágiles`. Чашок кілька, тому son і frágiles у формі для кількох. Жіночий рід не змінює frágiles на форму з -as."
       },
       "question": {
         "interactionId": "es:lesson-03:session-32:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "602d4a69245153cf2a832c6a3e2e78f61c3b71aea7cd540399e5fb4915d328b6"
+  "introFingerprint": "298e70c52c844315093d58ea7defc36e357a972c14439be70306f74e893ca0e3"
 }

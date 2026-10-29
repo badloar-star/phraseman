@@ -130,7 +130,7 @@
             "targetText": "puerta",
             "meaningByLocale": {
               "ru": "дверь. Женский род: la puerta, una puerta. 🔊 *puerta*",
-              "uk": "двері. В іспанській жіночий рід, однина: la puerta, una puerta. 🔊 *puerta*"
+              "uk": "двері. В іспанській жіночий рід, одні двері: la puerta, una puerta. 🔊 *puerta*"
             }
           }
         ],
@@ -141,7 +141,7 @@
           "word": "puerta",
           "definitionByLocale": {
             "ru": "дверь. Женский род: la puerta, una puerta. 🔊 *puerta*",
-            "uk": "двері. В іспанській жіночий рід, однина: la puerta, una puerta. 🔊 *puerta*"
+            "uk": "двері. В іспанській жіночий рід, одні двері: la puerta, una puerta. 🔊 *puerta*"
           }
         }
       },
@@ -782,5 +782,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c2d316aed99befc5dff8ef7da3c9d26bf06df7c5d306ebe05ac252590d195874"
+  "learnerFingerprint": "8cf1512bca749db5cbdc625b1b974b332599173022eaa8b1ef93abf18616bb72"
 }

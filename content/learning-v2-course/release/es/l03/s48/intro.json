@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-03:session-48",
   "learningOutcomeByLocale": {
-    "ru": "самостоятельно описать знакомую еду и вещи.",
-    "uk": "самостійно описати знайому їжу й речі."
+    "ru": "описать вкус угощений: Las galletas son muy dulces.",
+    "uk": "описати смак частувань: Las galletas son muy dulces."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Печиво до сиру"
       },
       "bodyByLocale": {
-        "ru": "Показываете гостю несладкие печенья к сыру. Вспомните `Las galletas son saladas` — «Печенья солёные». Соберите `las galletas` + `son` + `saladas`. У galletas женский род и множественное число, поэтому saladas. Описываем вкус выбранного вида по рецепту.",
-        "uk": "Показуєте гостю несолодке печиво до сиру. Згадайте `Las galletas son saladas` — «Ці штуки печива солоні». Зберіть `las galletas` + `son` + `saladas`. У galletas жіночий рід і множина, тому saladas. Описуємо смак вибраного виду за рецептом."
+        "ru": "Показываете гостю несладкие печенья к сыру. Вспомните `Las galletas son saladas` — «Печенья солёные». Соберите `las galletas` + `son` + `saladas`. У galletas женский род, и их несколько, поэтому saladas. Описываем вкус выбранного вида по рецепту.",
+        "uk": "Показуєте гостю несолодке печиво до сиру. Згадайте `Las galletas son saladas` — «Ці штуки печива солоні». Зберіть `las galletas` + `son` + `saladas`. У galletas жіночий рід, і їх кілька, тому saladas. Описуємо смак вибраного виду за рецептом."
       },
       "question": {
         "interactionId": "es:lesson-03:session-48:intro1:q",
@@ -124,7 +124,7 @@
       },
       "bodyByLocale": {
         "ru": "Когда гости выйдут на террасу, им пригодятся тёплые одеяла. Опишите их свойство: `Las mantas son cálidas` — «Одеяла тёплые». Соберите `las mantas` + `son` + `cálidas`. Несколько женских mantas требуют женского множественного cálidas. Речь о том, что одеяла хорошо согревают.",
-        "uk": "Коли гості вийдуть на терасу, їм знадобляться теплі ковдри. Опишіть їхню властивість: `Las mantas son cálidas` — «Ковдри теплі». Зберіть `las mantas` + `son` + `cálidas`. Кілька жіночих mantas потребують жіночої множини cálidas. Йдеться про те, що ковдри добре зігрівають."
+        "uk": "Коли гості вийдуть на терасу, їм знадобляться теплі ковдри. Опишіть їхню властивість: `Las mantas son cálidas` — «Ковдри теплі». Зберіть `las mantas` + `son` + `cálidas`. Кілька жіночих mantas потребують жіночої форми для кількох cálidas. Йдеться про те, що ковдри добре зігрівають."
       },
       "question": {
         "interactionId": "es:lesson-03:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e51b6486407c121940b6c063f2ba44fa705b1952245922764ef90de58ea89728"
+  "introFingerprint": "b5ea9d2972a7fbf85219b5e0b81fbeee9b6fc7cef4d293b7db555fe4b27769b1"
 }

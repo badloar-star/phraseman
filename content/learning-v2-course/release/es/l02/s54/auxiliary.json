@@ -19,8 +19,8 @@
       "interactionId": "es:lesson-02:session-54:intro2:q",
       "responseFeedbackById": {
         "es:lesson-02:session-54:intro2:r2": {
-          "ru": "Reloj в единственном числе: es.",
-          "uk": "Reloj в однині: es."
+          "ru": "Reloj — один предмет: es.",
+          "uk": "Reloj — одна річ: es."
         },
         "es:lesson-02:session-54:intro2:r3": {
           "ru": "Los relojes обозначает несколько отдельных часов.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5934d43d79339e3daac47285e41b64ef1c75485b50a1ed9f975f773e254eaea3"
+  "auxiliaryFingerprint": "78a4496092f63eb0bfe41e6cbe2677e23c6824820b7fb99adf7aac6b00a55350"
 }

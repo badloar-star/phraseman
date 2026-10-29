@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-02:session-41",
   "learningOutcomeByLocale": {
-    "ru": "выбрать es un или son unas по одному предмету и нескольким.",
-    "uk": "вибрати es un або son unas для одного предмета й кількох."
+    "ru": "назвать несколько юбок: Son unas faldas.",
+    "uk": "назвати кілька спідниць: Son unas faldas."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Кілька спідниць"
       },
       "bodyByLocale": {
-        "ru": "На дне пакета ещё несколько юбок. Назовите их с unas: `Son unas faldas` — «Это юбки». Соберите `son` + `unas` + `faldas`. Для нескольких вещей замените es на son, una на unas и добавьте -s к falda. Все три части показывают множественное число.",
-        "uk": "На дні пакета ще кілька спідниць. Назвіть їх з unas: `Son unas faldas` — «Це спідниці». Зберіть `son` + `unas` + `faldas`. Для кількох речей замініть es на son, una на unas і додайте -s до falda. Усі три частини показують множину."
+        "ru": "На дне пакета ещё несколько юбок. Назовите их с unas: `Son unas faldas` — «Это юбки». Соберите `son` + `unas` + `faldas`. Для нескольких вещей замените es на son, una на unas и добавьте -s к falda. Все три части показывают, что предметов несколько.",
+        "uk": "На дні пакета ще кілька спідниць. Назвіть їх з unas: `Son unas faldas` — «Це спідниці». Зберіть `son` + `unas` + `faldas`. Для кількох речей замініть es на son, una на unas і додайте -s до falda. Усі три частини показують, що предметів кілька."
       },
       "question": {
         "interactionId": "es:lesson-02:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e5f44b2d13d9f374ffe7dc52779c55e93a75fba8e56b2a65e76eccb30fa92e90"
+  "introFingerprint": "82044d1c71e4d3f455032575fb45087b68eb82794fed0d16dc261ba6c648b3fa"
 }

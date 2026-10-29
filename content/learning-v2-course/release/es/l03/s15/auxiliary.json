@@ -19,8 +19,8 @@
       "interactionId": "es:lesson-03:session-15:intro2:q",
       "responseFeedbackById": {
         "es:lesson-03:session-15:intro2:r2": {
-          "ru": "Нужна форма множественного числа grises.",
-          "uk": "Потрібна форма множини grises."
+          "ru": "Нужна форма для нескольких grises.",
+          "uk": "Потрібна форма для кількох grises."
         },
         "es:lesson-03:session-15:intro2:r3": {
           "ru": "Перчаток несколько: son.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "4a12506eb9f14060e1685b102c58196a27b1ff576c6c177a73e0eb4b0d580d14"
+  "auxiliaryFingerprint": "c9a855f3ffe2c30f7c4e851ae44e61aa6fc417f2677783e74a288f6187ea1060"
 }

@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как сказать «сам / себя».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-20:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как сказать «сам / себя».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как сказать «сам / себя».",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "You can be ___.",
@@ -383,7 +383,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как сказать «сам / себя».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-20:i06:r1",
@@ -400,11 +400,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как сказать «сам / себя».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как сказать «сам / себя».",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "You can think for ___.",
@@ -605,7 +605,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как сказать «сам / себя».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-20:i09:r1",
@@ -622,11 +622,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как сказать «сам / себя».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как сказать «сам / себя».",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "You can keep to ___.",
@@ -827,7 +827,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как сказать «сам / себя».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-20:i12:r1",
@@ -844,11 +844,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как сказать «сам / себя».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как сказать «сам / себя».",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "You can speak for ___.",
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "48f59859d1deebc638a92e37fd79b8e7344f1c719a05eb7fa1d09b1d1dd18b13"
+  "learnerFingerprint": "ae24de6b235cdb8f74fb9706cc2b1653dc1615fe1d7401e68d12ea0544f0857b"
 }

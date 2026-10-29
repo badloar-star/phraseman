@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-20",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, что вы уже делали с фруктами: I have cut an avocado.",
+    "uk": "розповісти, що ви вже робили з фруктами: I have cut an avocado."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Ваш досвід"
       },
       "bodyByLocale": {
-        "ru": "Avocado — авокадо. An avocado — один плод: an нужен перед гласным звуком. I have cut an avocado сообщает, что вы уже разрезали авокадо. У cut третья форма тоже cut, без -ed.",
-        "uk": "Avocado — авокадо. An avocado — один плід: an потрібен перед голосним звуком. I have cut an avocado повідомляє, що ви вже розрізали авокадо. У cut третя форма теж cut, без -ed."
+        "ru": "Avocado — авокадо. An avocado — один плод: an нужен перед гласным звуком. I have cut an avocado сообщает, что вы уже разрезали авокадо. У cut форма после have тоже cut, без -ed.",
+        "uk": "Avocado — авокадо. An avocado — один плід: an потрібен перед голосним звуком. I have cut an avocado повідомляє, що ви вже розрізали авокадо. У cut форма після have теж cut, без -ed."
       },
       "question": {
         "interactionId": "en:lesson-23:session-20:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Досвід вирощування салату"
       },
       "bodyByLocale": {
-        "ru": "Вы выбираете растения для огорода и рассказываете о подруге, которая уже выращивала листовой салат. She has grown lettuce — она выращивала салат. Lettuce здесь — растение. Собираем: she + has + grown + lettuce. С she используем has; grown — третья форма grow. Has grown сообщает об опыте выращивания, без указания года или сезона.",
-        "uk": "Ви вибираєте рослини для городу й розповідаєте про подругу, яка вже вирощувала листковий салат. She has grown lettuce — вона вирощувала салат. Lettuce тут — рослина. Складаємо: she + has + grown + lettuce. Із she використовуємо has; grown — третя форма grow. Has grown повідомляє про досвід вирощування, без зазначення року чи сезону."
+        "ru": "Вы выбираете растения для огорода и рассказываете о подруге, которая уже выращивала листовой салат. She has grown lettuce — она выращивала салат. Lettuce здесь — растение. Собираем: she + has + grown + lettuce. С she используем has; grown — форма grow после have. Has grown сообщает об опыте выращивания, без указания года или сезона.",
+        "uk": "Ви вибираєте рослини для городу й розповідаєте про подругу, яка вже вирощувала листковий салат. She has grown lettuce — вона вирощувала салат. Lettuce тут — рослина. Складаємо: she + has + grown + lettuce. Із she використовуємо has; grown — форма grow після have. Has grown повідомляє про досвід вирощування, без зазначення року чи сезону."
       },
       "question": {
         "interactionId": "en:lesson-23:session-20:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Що ви вже робили"
       },
       "bodyByLocale": {
-        "ru": "Lime — лайм, обычно зелёный цитрусовый плод. Squeeze a lime — выжать сок из лайма. He has squeezed a lime: он уже делал это. С he нужна форма has; squeezed — третья форма squeeze.",
-        "uk": "Lime — лайм, зазвичай зелений цитрусовий плід. Squeeze a lime — вичавити сік із лайма. He has squeezed a lime: він уже робив це. Із he потрібна форма has; squeezed — третя форма squeeze."
+        "ru": "Lime — лайм, обычно зелёный цитрусовый плод. Squeeze a lime — выжать сок из лайма. He has squeezed a lime: он уже делал это. С he нужна форма has; squeezed — форма squeeze после have.",
+        "uk": "Lime — лайм, зазвичай зелений цитрусовий плід. Squeeze a lime — вичавити сік із лайма. He has squeezed a lime: він уже робив це. Із he потрібна форма has; squeezed — форма squeeze після have."
       },
       "question": {
         "interactionId": "en:lesson-23:session-20:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "973bd0128ed941edc62f3c68abd82dacc08ecc28d21335f5f7444f07fc7a68ec"
+  "introFingerprint": "4db6a5f001055327fe9ca9611d983a13e7c53e317654cb2741adc16cdcc84084"
 }

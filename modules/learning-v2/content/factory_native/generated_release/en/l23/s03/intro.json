@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-03",
   "learningOutcomeByLocale": {
-    "ru": "subject + have|has + past participle",
-    "uk": "subject + have|has + past participle"
+    "ru": "сказать, что уже сделано и это видно сейчас: I have bleached the towels.",
+    "uk": "сказати, що вже зроблено й це видно зараз: I have bleached the towels."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Стіл уже оброблено"
       },
       "bodyByLocale": {
-        "ru": "Подруга закончила дезинфекцию стола и сообщает о выполненной работе. She has disinfected the table — она продезинфицировала стол. Disinfect означает «дезинфицировать». Собираем: she + has + disinfected + the table. С she ставим has, disinfected — третья форма disinfect с окончанием -ed. Has disinfected сообщает о завершённом действии: стол уже обработан.",
-        "uk": "Подруга завершила дезінфекцію столу й повідомляє про виконану роботу. She has disinfected the table — вона продезінфікувала стіл. Disinfect означає «дезінфікувати». Складаємо: she + has + disinfected + the table. Із she ставимо has, disinfected — третя форма disinfect із закінченням -ed. Has disinfected повідомляє про завершену дію: стіл уже оброблено."
+        "ru": "Подруга закончила дезинфекцию стола и сообщает о выполненной работе. She has disinfected the table — она продезинфицировала стол. Disinfect означает «дезинфицировать». Собираем: she + has + disinfected + the table. С she ставим has, disinfected — форма disinfect после have с окончанием -ed. Has disinfected сообщает о завершённом действии: стол уже обработан.",
+        "uk": "Подруга завершила дезінфекцію столу й повідомляє про виконану роботу. She has disinfected the table — вона продезінфікувала стіл. Disinfect означає «дезінфікувати». Складаємо: she + has + disinfected + the table. Із she ставимо has, disinfected — форма disinfect після have із закінченням -ed. Has disinfected повідомляє про завершену дію: стіл уже оброблено."
       },
       "question": {
         "interactionId": "en:lesson-23:session-03:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6f9a7dd884990d03ac0733df5fe8cc40688bf78fd6c8f7e5b46b9135e09dd13b"
+  "introFingerprint": "2b3b34e7348fa3cd2404f67aaa91c34b4fc6ef1b95c2262e1e086567e6ee41ab"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-23",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, какое мясо вы уже пробовали: I have tried bacon.",
+    "uk": "розповісти, яке м’ясо ви вже пробували: I have tried bacon."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Ваш досвід"
       },
       "bodyByLocale": {
-        "ru": "Bacon — бекон, который часто подают ломтиками. I have tried bacon — я пробовал бекон. Tried — третья форма try. Так можно рассказать о еде, которую вы уже пробовали; точную дату не называем.",
-        "uk": "Bacon — бекон, який часто подають скибочками. I have tried bacon — я куштував бекон. Tried — третя форма try. Так можна розповісти про їжу, яку ви вже куштували; точної дати не називаємо."
+        "ru": "Bacon — бекон, который часто подают ломтиками. I have tried bacon — я пробовал бекон. Tried — форма try после have. Так можно рассказать о еде, которую вы уже пробовали; точную дату не называем.",
+        "uk": "Bacon — бекон, який часто подають скибочками. I have tried bacon — я куштував бекон. Tried — форма try після have. Так можна розповісти про їжу, яку ви вже куштували; точної дати не називаємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-23:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Уже готувала яловичину"
       },
       "bodyByLocale": {
-        "ru": "Вы обсуждаете ужин и рассказываете о подруге, которая уже готовила говядину. She has cooked beef — она готовила говядину. Beef означает «говядина». Собираем: she + has + cooked + beef. С she ставим has, cooked — третья форма cook с окончанием -ed. Has cooked сообщает об опыте готовки. Beef здесь называет продукт, а не отдельный предмет, поэтому a не ставим.",
-        "uk": "Ви обговорюєте вечерю й розповідаєте про подругу, яка вже готувала яловичину. She has cooked beef — вона готувала яловичину. Beef означає «яловичина». Складаємо: she + has + cooked + beef. Із she ставимо has, cooked — третя форма cook із закінченням -ed. Has cooked повідомляє про досвід готування. Beef тут називає продукт, а не окремий предмет, тому a не ставимо."
+        "ru": "Вы обсуждаете ужин и рассказываете о подруге, которая уже готовила говядину. She has cooked beef — она готовила говядину. Beef означает «говядина». Собираем: she + has + cooked + beef. С she ставим has, cooked — форма cook после have с окончанием -ed. Has cooked сообщает об опыте готовки. Beef здесь называет продукт, а не отдельный предмет, поэтому a не ставим.",
+        "uk": "Ви обговорюєте вечерю й розповідаєте про подругу, яка вже готувала яловичину. She has cooked beef — вона готувала яловичину. Beef означає «яловичина». Складаємо: she + has + cooked + beef. Із she ставимо has, cooked — форма cook після have із закінченням -ed. Has cooked повідомляє про досвід готування. Beef тут називає продукт, а не окремий предмет, тому a не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-23:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Ще один приклад"
       },
       "bodyByLocale": {
-        "ru": "Salami — салями, вид колбасы. He has bought salami — он покупал салями. Bought — третья форма buy. Здесь salami — название продукта без артикля a. Если вы не едите мясо, эти слова помогут объяснить, какие продукты вам не подходят.",
-        "uk": "Salami — салямі, вид ковбаси. He has bought salami — він купував салямі. Bought — третя форма buy. Тут salami — назва продукту без артикля a. Якщо ви не їсте м’яса, ці слова допоможуть пояснити, які продукти вам не підходять."
+        "ru": "Salami — салями, вид колбасы. He has bought salami — он покупал салями. Bought — форма buy после have. Здесь salami — название продукта без a. Если вы не едите мясо, эти слова помогут объяснить, какие продукты вам не подходят.",
+        "uk": "Salami — салямі, вид ковбаси. He has bought salami — він купував салямі. Bought — форма buy після have. Тут salami — назва продукту без a. Якщо ви не їсте м’яса, ці слова допоможуть пояснити, які продукти вам не підходять."
       },
       "question": {
         "interactionId": "en:lesson-23:session-23:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7304a27603bda2fedf8bb6d7e133dd118b7989f94ba624a4160b0415ceef1df6"
+  "introFingerprint": "b484a8b6ad77fb81a553641884e1e24a08b326520df58dfd4bc327ccb5859553"
 }

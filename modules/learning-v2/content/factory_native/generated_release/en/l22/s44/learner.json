@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-44:i03:r1",
@@ -182,11 +182,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I go outside ___ hang out the washing.",
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-44:i06:r1",
@@ -407,11 +407,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I clear the bed ___ fold the clothes.",
@@ -616,7 +616,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-44:i09:r1",
@@ -633,11 +633,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I open the cupboard ___ put away the dishes.",
@@ -841,7 +841,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-44:i12:r1",
@@ -858,11 +858,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I use a cloth ___ wipe the table.",
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8393c11f5dd0196c3ebbeac14a32fb397b830e32e8b33612527607225eb270e6"
+  "learnerFingerprint": "37f138edd564e3a3c677e8f2e3bf8d88d7a91e73873bbd49b630a284555779f0"
 }

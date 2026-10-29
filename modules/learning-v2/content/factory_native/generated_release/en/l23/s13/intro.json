@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-13",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, каких больших животных вы видели: I have seen an elephant.",
+    "uk": "розповісти, яких великих тварин ви бачили: I have seen an elephant."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Бачили слона"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, доводилось ли вам видеть слона. I have seen an elephant — я видел слона. Elephant означает «слон». Собираем: I + have + seen + an elephant. После I ставим have, seen — третья форма see. Перед elephant выбираем an, потому что первый звук гласный. Have seen сообщает о таком опыте без даты.",
-        "uk": "Друг запитує, чи доводилося вам бачити слона. I have seen an elephant — я бачив слона. Elephant означає «слон». Складаємо: I + have + seen + an elephant. Після I ставимо have, seen — третя форма see. Перед elephant вибираємо an, тому що перший звук голосний. Have seen повідомляє про такий досвід без дати."
+        "ru": "Друг спрашивает, доводилось ли вам видеть слона. I have seen an elephant — я видел слона. Elephant означает «слон». Собираем: I + have + seen + an elephant. После I ставим have, seen — форма see после have. Перед elephant выбираем an, потому что первый звук гласный. Have seen сообщает о таком опыте без даты.",
+        "uk": "Друг запитує, чи доводилося вам бачити слона. I have seen an elephant — я бачив слона. Elephant означає «слон». Складаємо: I + have + seen + an elephant. Після I ставимо have, seen — форма see після have. Перед elephant вибираємо an, тому що перший звук голосний. Have seen повідомляє про такий досвід без дати."
       },
       "question": {
         "interactionId": "en:lesson-23:session-13:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Спостерігали за тигром"
       },
       "bodyByLocale": {
-        "ru": "В зоопарке вы с другом некоторое время наблюдали, как двигается тигр, и теперь рассказываете об этом. We have watched a tiger — мы наблюдали за тигром. Tiger означает «тигр». Собираем: we + have + watched + a tiger. После we ставим have, watched — третья форма watch. Watch здесь означает наблюдать некоторое время. Have watched сообщает о вашем опыте наблюдения.",
-        "uk": "У зоопарку ви з другом певний час спостерігали, як рухається тигр, і тепер розповідаєте про це. We have watched a tiger — ми спостерігали за тигром. Tiger означає «тигр». Складаємо: we + have + watched + a tiger. Після we ставимо have, watched — третя форма watch. Watch тут означає спостерігати певний час. Have watched повідомляє про ваш досвід спостереження."
+        "ru": "В зоопарке вы с другом некоторое время наблюдали, как двигается тигр, и теперь рассказываете об этом. We have watched a tiger — мы наблюдали за тигром. Tiger означает «тигр». Собираем: we + have + watched + a tiger. После we ставим have, watched — форма watch после have. Watch здесь означает наблюдать некоторое время. Have watched сообщает о вашем опыте наблюдения.",
+        "uk": "У зоопарку ви з другом певний час спостерігали, як рухається тигр, і тепер розповідаєте про це. We have watched a tiger — ми спостерігали за тигром. Tiger означає «тигр». Складаємо: we + have + watched + a tiger. Після we ставимо have, watched — форма watch після have. Watch тут означає спостерігати певний час. Have watched повідомляє про ваш досвід спостереження."
       },
       "question": {
         "interactionId": "en:lesson-23:session-13:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b4c3cf9b835d449dc6f50ef0780c20d4e5706258317eea28a6c8b721e3eb0bc6"
+  "introFingerprint": "e4246bf6c2702619fb6976fac80c9324c2a75635ba9ebac56262a5a3dfea9687"
 }

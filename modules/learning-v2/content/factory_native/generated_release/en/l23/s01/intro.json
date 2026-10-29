@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-01",
   "learningOutcomeByLocale": {
-    "ru": "subject + have|has + past participle",
-    "uk": "subject + have|has + past participle"
+    "ru": "сказать, что уже сделано и это видно сейчас: I have miscounted the tickets.",
+    "uk": "сказати, що вже зроблено й це видно зараз: I have miscounted the tickets."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Помилка в підрахунку помітна зараз"
       },
       "bodyByLocale": {
-        "ru": "Вы пересчитали билеты и обнаружили ошибку: I have miscounted the tickets — я ошибся при подсчёте билетов. Miscount означает «ошибиться при подсчёте». Present Perfect связывает сделанное с ситуацией сейчас. Собираем: I + have + miscounted + the tickets. Общая схема: I/you/we/they + have, he/she/it + has, затем третья форма глагола. У правильного miscount это miscounted с -ed. Have и has здесь помогают построить время и не означают «иметь».",
-        "uk": "Ви перерахували квитки й виявили помилку: I have miscounted the tickets — я помилився під час підрахунку квитків. Miscount означає «помилитися під час підрахунку». Present Perfect пов’язує зроблене із ситуацією зараз. Складаємо: I + have + miscounted + the tickets. Загальна схема: I/you/we/they + have, he/she/it + has, потім третя форма дієслова. У правильного miscount це miscounted із -ed. Have і has тут допомагають побудувати час і не означають «мати»."
+        "ru": "Вы пересчитали билеты и обнаружили ошибку: I have miscounted the tickets — я ошибся при подсчёте билетов. Miscount означает «ошибиться при подсчёте». Форма have / has + done связывает сделанное с ситуацией сейчас. Собираем: I + have + miscounted + the tickets. Общая схема: I/you/we/they + have, he/she/it + has, затем форма после have (done, seen). У правильного miscount это miscounted с -ed. Have и has здесь помогают построить время и не означают «иметь».",
+        "uk": "Ви перерахували квитки й виявили помилку: I have miscounted the tickets — я помилився під час підрахунку квитків. Miscount означає «помилитися під час підрахунку». Форма have / has + done пов’язує зроблене із ситуацією зараз. Складаємо: I + have + miscounted + the tickets. Загальна схема: I/you/we/they + have, he/she/it + has, потім форма після have (done, seen). У правильного miscount це miscounted із -ed. Have і has тут допомагають побудувати час і не означають «мати»."
       },
       "question": {
         "interactionId": "en:lesson-23:session-01:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "На лінії інша людина"
       },
       "bodyByLocale": {
-        "ru": "Подруга хотела позвонить знакомому, но ошиблась в номере. She has misdialled the number — она набрала неправильный номер. Misdial означает «набрать неправильный номер». Собираем: she + has + misdialled + the number. С she используем has, затем третью форму misdialled. Это британское написание; американское misdialed тоже правильно. Has misdialled связывает ошибку с результатом сейчас: на линии другой человек.",
-        "uk": "Подруга хотіла зателефонувати знайомому, але помилилася в номері. She has misdialled the number — вона набрала неправильний номер. Misdial означає «набрати неправильний номер». Складаємо: she + has + misdialled + the number. Із she використовуємо has, потім третю форму misdialled. Це британське написання; американське misdialed теж правильне. Has misdialled пов’язує помилку з результатом зараз: на лінії інша людина."
+        "ru": "Подруга хотела позвонить знакомому, но ошиблась в номере. She has misdialled the number — она набрала неправильный номер. Misdial означает «набрать неправильный номер». Собираем: she + has + misdialled + the number. С she используем has, затем форму misdialled. Это британское написание; американское misdialed тоже правильно. Has misdialled связывает ошибку с результатом сейчас: на линии другой человек.",
+        "uk": "Подруга хотіла зателефонувати знайомому, але помилилася в номері. She has misdialled the number — вона набрала неправильний номер. Misdial означає «набрати неправильний номер». Складаємо: she + has + misdialled + the number. Із she використовуємо has, потім форму misdialled. Це британське написання; американське misdialed теж правильне. Has misdialled пов’язує помилку з результатом зараз: на лінії інша людина."
       },
       "question": {
         "interactionId": "en:lesson-23:session-01:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Сумку склали заново"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом переложили вещи в сумке, чтобы всё поместилось. We have repacked the bag — мы перепаковали сумку. Repack означает «уложить вещи заново». Собираем: we + have + repacked + the bag. С we ставим have, repacked — третья форма repack с окончанием -ed. Have repacked сообщает о результате: сумка теперь собрана иначе.",
-        "uk": "Ви з другом переклали речі в сумці, щоб усе помістилося. We have repacked the bag — ми перепакували сумку. Repack означає «скласти речі заново». Складаємо: we + have + repacked + the bag. Із we ставимо have, repacked — третя форма repack із закінченням -ed. Have repacked повідомляє про результат: сумка тепер складена інакше."
+        "ru": "Вы с другом переложили вещи в сумке, чтобы всё поместилось. We have repacked the bag — мы перепаковали сумку. Repack означает «уложить вещи заново». Собираем: we + have + repacked + the bag. С we ставим have, repacked — форма repack после have с окончанием -ed. Have repacked сообщает о результате: сумка теперь собрана иначе.",
+        "uk": "Ви з другом переклали речі в сумці, щоб усе помістилося. We have repacked the bag — ми перепакували сумку. Repack означає «скласти речі заново». Складаємо: we + have + repacked + the bag. Із we ставимо have, repacked — форма repack після have із закінченням -ed. Have repacked повідомляє про результат: сумка тепер складена інакше."
       },
       "question": {
         "interactionId": "en:lesson-23:session-01:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8c0d053386d50ba1ad40718f7cda440c344aa3b330f9c48ae17762d5e52a35c8"
+  "introFingerprint": "9a3b296f7d11b1c9234808c37dde8fcac5562de92950dae7362b603033c5ce3e"
 }

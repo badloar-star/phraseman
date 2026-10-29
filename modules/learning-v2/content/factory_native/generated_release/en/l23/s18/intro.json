@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-18",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, какие фрукты вы уже пробовали: I have tried melon.",
+    "uk": "розповісти, які фрукти ви вже пробували: I have tried melon."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Смак дині знайомий"
       },
       "bodyByLocale": {
-        "ru": "Вам предлагают дыню, и вы говорите, что уже пробовали её. I have tried melon — я пробовал дыню. Melon означает «дыня». Собираем: I + have + tried + melon. После I ставим have; tried — третья форма try, где y меняется на i перед -ed. Have tried сообщает о вашем опыте. Melon здесь — еда, которую вы пробовали, а не один целый плод, поэтому a не ставим.",
-        "uk": "Вам пропонують диню, і ви кажете, що вже куштували її. I have tried melon — я куштував диню. Melon означає «диня». Складаємо: I + have + tried + melon. Після I ставимо have; tried — третя форма try, де y змінюється на i перед -ed. Have tried повідомляє про ваш досвід. Melon тут — їжа, яку ви куштували, а не один цілий плід, тому a не ставимо."
+        "ru": "Вам предлагают дыню, и вы говорите, что уже пробовали её. I have tried melon — я пробовал дыню. Melon означает «дыня». Собираем: I + have + tried + melon. После I ставим have; tried — форма try после have, где y меняется на i перед -ed. Have tried сообщает о вашем опыте. Melon здесь — еда, которую вы пробовали, а не один целый плод, поэтому a не ставим.",
+        "uk": "Вам пропонують диню, і ви кажете, що вже куштували її. I have tried melon — я куштував диню. Melon означає «диня». Складаємо: I + have + tried + melon. Після I ставимо have; tried — форма try після have, де y змінюється на i перед -ed. Have tried повідомляє про ваш досвід. Melon тут — їжа, яку ви куштували, а не один цілий плід, тому a не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-18:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Що ви вже робили"
       },
       "bodyByLocale": {
-        "ru": "Mango — манго. Peel a mango — очистить манго от кожуры. He has peeled a mango: он уже делал это, у него есть такой опыт. Английское mango исчисляемое, поэтому a mango, хотя русский перевод «манго» не меняется.",
-        "uk": "Mango — манго. Peel a mango — очистити манго від шкірки. He has peeled a mango: він уже робив це, має такий досвід. Англійське mango злічуване, тому a mango, хоча український переклад «манго» не змінюється."
+        "ru": "Mango — манго. Peel a mango — очистить манго от кожуры. He has peeled a mango: он уже делал это, у него есть такой опыт. Английское mango считается поштучно, поэтому a mango, хотя русский перевод «манго» не меняется.",
+        "uk": "Mango — манго. Peel a mango — очистити манго від шкірки. He has peeled a mango: він уже робив це, має такий досвід. Англійське mango рахується поштучно, тому a mango, хоча український переклад «манго» не змінюється."
       },
       "question": {
         "interactionId": "en:lesson-23:session-18:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f566271414ef3f8ce27fe3d32bcccf10bac6d5d334b2f9a048d745653701a774"
+  "introFingerprint": "e6091141e2c407ca514c3d9e51f5b53a5584e23808d69722e76e944fec7b20c4"
 }

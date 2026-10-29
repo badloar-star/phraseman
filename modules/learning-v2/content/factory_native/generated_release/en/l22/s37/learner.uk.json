@@ -167,7 +167,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-37:i03:r1",
@@ -184,12 +184,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I move to another town ___ make a fresh start.",
         "gapOptions": [
@@ -393,7 +393,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-37:i06:r1",
@@ -410,12 +410,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I check other routes ___ have a backup plan.",
         "gapOptions": [
@@ -619,7 +619,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-37:i09:r1",
@@ -636,12 +636,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I change my routine ___ try a different approach.",
         "gapOptions": [
@@ -846,7 +846,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-37:i12:r1",
@@ -863,12 +863,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I visit another town ___ get a change of scene.",
         "gapOptions": [
@@ -1131,5 +1131,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "92dd7743905279053447587184035ca8754aacda02a746e60b22639e750524c9"
+  "learnerFingerprint": "5b2a245b3d64fb2b45a4c56b539cf8908f3478237cb5abbeb8599b42e39503ad"
 }

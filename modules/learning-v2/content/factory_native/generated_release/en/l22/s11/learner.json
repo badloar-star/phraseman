@@ -162,7 +162,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как сказать «мой», не называя предмет.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-11:i03:r1",
@@ -179,11 +179,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как сказать «мой», не называя предмет.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как сказать «мой», не называя предмет.",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "This electric toothbrush is ___.",
@@ -384,7 +384,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как здесь сказать «его» — чей?",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-11:i06:r1",
@@ -401,11 +401,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как здесь сказать «его» — чей?",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как здесь сказать «его» — чей?",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "This electric razor is ___.",
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как сказать «её», не называя предмет.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-11:i09:r1",
@@ -623,11 +623,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как сказать «её», не называя предмет.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как сказать «её», не называя предмет.",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "These hair straighteners are ___.",
@@ -828,7 +828,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как сказать «наш», не называя предмет.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-11:i12:r1",
@@ -845,11 +845,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как сказать «наш», не называя предмет.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как сказать «наш», не называя предмет.",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "This travel adapter is ___.",
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "050a59a62eb362655656a422218f707a54b2c8bd99183be2131dbc18d276e73e"
+  "learnerFingerprint": "73209cb0dbb6d542352d278335f820e4388300eb825ccc94564dd1948387a971"
 }

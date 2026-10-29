@@ -166,7 +166,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-52:i03:r1",
@@ -183,11 +183,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I look at the board ___ check the platform.",
@@ -391,7 +391,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-52:i06:r1",
@@ -408,11 +408,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I take a taxi ___ reach the station.",
@@ -615,7 +615,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-52:i09:r1",
@@ -632,11 +632,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I leave early ___ avoid the traffic.",
@@ -843,7 +843,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-52:i12:r1",
@@ -860,11 +860,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I drive to the car park ___ find a parking space.",
@@ -1128,5 +1128,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4bda16e2b2443df5fea71e9f9ba4b4fb66771b70725cc757dabcd4bf1a404ab0"
+  "learnerFingerprint": "a70e2bc3e3c0ef8d9ba368c0cdc31db7ca2f78b1eb57c6d63df4f6ebbb186fc8"
 }

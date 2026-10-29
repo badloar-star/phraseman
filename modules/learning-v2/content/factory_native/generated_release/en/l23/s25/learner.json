@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-25:i03:r1",
@@ -180,11 +180,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "Have you ever ___ a palace?",
@@ -209,7 +209,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма visited.",
+              "ru": "После have или has нужна форма visited.",
               "uk": "Після have або has потрібна третя форма visited."
             }
           },
@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма visited.",
+              "ru": "После have или has нужна форма visited.",
               "uk": "Після have або has потрібна третя форма visited."
             }
           }
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-25:i06:r1",
@@ -403,11 +403,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "I have never ___ a cathedral.",
@@ -432,7 +432,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма visited.",
+              "ru": "После have или has нужна форма visited.",
               "uk": "Після have або has потрібна третя форма visited."
             }
           },
@@ -441,7 +441,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма visited.",
+              "ru": "После have или has нужна форма visited.",
               "uk": "Після have або has потрібна третя форма visited."
             }
           }
@@ -609,7 +609,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-25:i09:r1",
@@ -626,11 +626,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "Have you ever ___ a mosque?",
@@ -655,7 +655,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма visited.",
+              "ru": "После have или has нужна форма visited.",
               "uk": "Після have або has потрібна третя форма visited."
             }
           },
@@ -664,7 +664,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма visited.",
+              "ru": "После have или has нужна форма visited.",
               "uk": "Після have або has потрібна третя форма visited."
             }
           }
@@ -832,7 +832,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-25:i12:r1",
@@ -849,11 +849,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "She has never ___ a temple.",
@@ -878,7 +878,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма visited.",
+              "ru": "После have или has нужна форма visited.",
               "uk": "Після have або has потрібна третя форма visited."
             }
           },
@@ -887,7 +887,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма visited.",
+              "ru": "После have или has нужна форма visited.",
               "uk": "Після have або has потрібна третя форма visited."
             }
           }
@@ -1117,5 +1117,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c354dff11b07c1fd1ef85a80d9d2822329ea0518b3918949cac53c46b92c32a9"
+  "learnerFingerprint": "7a19bc1236c9404faae55e1fd20c17a985a9d2af10cbb13fa9afedb5a9593f07"
 }

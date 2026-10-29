@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму для результата сейчас.",
+      "prompt": "Выберите форму слова для результата сейчас.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-17:i01:r1",
@@ -69,11 +69,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму для результата сейчас.",
+      "accessibilityLabel": "Выберите форму слова для результата сейчас.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму для результата сейчас.",
+          "ru": "Выберите форму слова для результата сейчас.",
           "uk": "Виберіть третю форму для результату зараз."
         },
         "gappedTargetPhrase": "I have ___ my shirt.",
@@ -98,7 +98,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для результата сейчас.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -107,7 +107,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для результата сейчас.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -274,7 +274,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму для результата сейчас.",
+      "prompt": "Выберите форму слова для результата сейчас.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-17:i04:r1",
@@ -291,11 +291,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму для результата сейчас.",
+      "accessibilityLabel": "Выберите форму слова для результата сейчас.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму для результата сейчас.",
+          "ru": "Выберите форму слова для результата сейчас.",
           "uk": "Виберіть третю форму для результату зараз."
         },
         "gappedTargetPhrase": "The glass has ___.",
@@ -320,7 +320,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для результата сейчас.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -329,7 +329,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для результата сейчас.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -495,7 +495,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму для результата сейчас.",
+      "prompt": "Выберите форму слова для результата сейчас.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-17:i07:r1",
@@ -512,11 +512,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму для результата сейчас.",
+      "accessibilityLabel": "Выберите форму слова для результата сейчас.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму для результата сейчас.",
+          "ru": "Выберите форму слова для результата сейчас.",
           "uk": "Виберіть третю форму для результату зараз."
         },
         "gappedTargetPhrase": "The drain has ___.",
@@ -541,7 +541,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для результата сейчас.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -550,7 +550,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для результата сейчас.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -716,7 +716,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму для результата сейчас.",
+      "prompt": "Выберите форму слова для результата сейчас.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-17:i10:r1",
@@ -733,11 +733,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму для результата сейчас.",
+      "accessibilityLabel": "Выберите форму слова для результата сейчас.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму для результата сейчас.",
+          "ru": "Выберите форму слова для результата сейчас.",
           "uk": "Виберіть третю форму для результату зараз."
         },
         "gappedTargetPhrase": "The colour has ___.",
@@ -762,7 +762,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для результата сейчас.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -771,7 +771,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для результата сейчас.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -1108,5 +1108,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a62f07b947b9454ebc1dcd84e699bb9b9864990c5383cb2ec437c70a57bcb459"
+  "learnerFingerprint": "71a8b20836b481d73895795882a701a6f105c29d5c71eb6bbdaf34a6c11e6bfd"
 }

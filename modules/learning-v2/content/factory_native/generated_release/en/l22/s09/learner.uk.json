@@ -162,7 +162,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як сказати «мій», не називаючи предмет.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-09:i03:r1",
@@ -179,12 +179,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як сказати «мій», не називаючи предмет.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як сказати «мій», не називаючи предмет."
         },
         "gappedTargetPhrase": "This phone case is ___.",
         "gapOptions": [
@@ -384,7 +384,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як сказати «твій», не називаючи предмет.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-09:i06:r1",
@@ -401,12 +401,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як сказати «твій», не називаючи предмет.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як сказати «твій», не називаючи предмет."
         },
         "gappedTargetPhrase": "This travel mug is ___.",
         "gapOptions": [
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як сказати «її», не називаючи предмет.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-09:i09:r1",
@@ -623,12 +623,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як сказати «її», не називаючи предмет.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як сказати «її», не називаючи предмет."
         },
         "gappedTargetPhrase": "This woolly hat is ___.",
         "gapOptions": [
@@ -828,7 +828,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як сказати «наш», не називаючи предмет.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-09:i12:r1",
@@ -845,12 +845,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як сказати «наш», не називаючи предмет.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як сказати «наш», не називаючи предмет."
         },
         "gappedTargetPhrase": "This rain jacket is ___.",
         "gapOptions": [
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a80a120bfd7ec16d9d1a322805589a15c20125d6ccad8f620dd36d8161131b6d"
+  "learnerFingerprint": "2489f47dd26b0b1453e5703941090f22a8fc049ccf46fd17ea128dfd8f3a0aea"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-22:session-27",
   "learningOutcomeByLocale": {
-    "ru": "determiner|adjective + one|ones",
-    "uk": "determiner|adjective + one|ones"
+    "ru": "сказать, какую вещь вы выбираете: I want the dishwasher-safe ones.",
+    "uk": "сказати, яку річ ви обираєте: I want the dishwasher-safe ones."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Обрати тарілки"
       },
       "bodyByLocale": {
-        "ru": "Вы покупаете тарелки и указываете на те, которые можно мыть в посудомоечной машине. I want the dishwasher-safe ones — я хочу те, которые подходят для посудомойки. После I want ставим the, описание dishwasher-safe и ones. Ones заменяет plates во множественном числе. Описание перед ones уточняет, какие именно тарелки вам нужны.",
-        "uk": "Ви купуєте тарілки й указуєте на ті, які можна мити в посудомийній машині. I want the dishwasher-safe ones — я хочу ті, які підходять для посудомийки. Після I want ставимо the, опис dishwasher-safe і ones. Ones замінює plates у множині. Опис перед ones уточнює, які саме тарілки вам потрібні."
+        "ru": "Вы покупаете тарелки и указываете на те, которые можно мыть в посудомоечной машине. I want the dishwasher-safe ones — я хочу те, которые подходят для посудомойки. После I want ставим the, описание dishwasher-safe и ones. Ones заменяет plates в форме для нескольких. Описание перед ones уточняет, какие именно тарелки вам нужны.",
+        "uk": "Ви купуєте тарілки й указуєте на ті, які можна мити в посудомийній машині. I want the dishwasher-safe ones — я хочу ті, які підходять для посудомийки. Після I want ставимо the, опис dishwasher-safe і ones. Ones замінює plates у формі для кількох. Опис перед ones уточнює, які саме тарілки вам потрібні."
       },
       "question": {
         "interactionId": "en:lesson-22:session-27:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Обрати миску"
       },
       "bodyByLocale": {
-        "ru": "Продавец показывает вам две миски. Вы предпочитаете ту, у которой на упаковке указано, что она подходит для микроволновки. I prefer the microwave-safe one — я предпочитаю ту, которая подходит для микроволновки. Сначала I prefer, затем the microwave-safe one. One заменяет bowl в единственном числе; microwave-safe сохраняем перед one как описание выбранной миски.",
-        "uk": "Продавець показує вам дві миски. Ви віддаєте перевагу тій, на пакованні якої зазначено, що вона підходить для мікрохвильовки. I prefer the microwave-safe one — я віддаю перевагу тій, яка підходить для мікрохвильовки. Спочатку I prefer, потім the microwave-safe one. One замінює bowl в однині; microwave-safe зберігаємо перед one як опис обраної миски."
+        "ru": "Продавец показывает вам две миски. Вы предпочитаете ту, у которой на упаковке указано, что она подходит для микроволновки. I prefer the microwave-safe one — я предпочитаю ту, которая подходит для микроволновки. Сначала I prefer, затем the microwave-safe one. One заменяет bowl в форме для одного; microwave-safe сохраняем перед one как описание выбранной миски.",
+        "uk": "Продавець показує вам дві миски. Ви віддаєте перевагу тій, на пакованні якої зазначено, що вона підходить для мікрохвильовки. I prefer the microwave-safe one — я віддаю перевагу тій, яка підходить для мікрохвильовки. Спочатку I prefer, потім the microwave-safe one. One замінює bowl у формі для одного; microwave-safe зберігаємо перед one як опис обраної миски."
       },
       "question": {
         "interactionId": "en:lesson-22:session-27:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "81d7a5ad13255bc7645e0bea868353ea809723d14a99f3ac10a29f94447b99e5"
+  "introFingerprint": "32ded554a5a97508e1f969d13411ed7efc5779141bb7c1fa86bb1708edc801c7"
 }

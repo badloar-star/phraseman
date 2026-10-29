@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як сказати «сам / себе».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-19:i03:r1",
@@ -178,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як сказати «сам / себе».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як сказати «сам / себе»."
         },
         "gappedTargetPhrase": "You can teach ___.",
         "gapOptions": [
@@ -383,7 +383,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як сказати «сам / себе».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-19:i06:r1",
@@ -400,12 +400,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як сказати «сам / себе».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як сказати «сам / себе»."
         },
         "gappedTargetPhrase": "You need to prepare ___.",
         "gapOptions": [
@@ -604,7 +604,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як сказати «сам / себе».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-19:i09:r1",
@@ -621,12 +621,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як сказати «сам / себе».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як сказати «сам / себе»."
         },
         "gappedTargetPhrase": "You can remind ___.",
         "gapOptions": [
@@ -825,7 +825,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як сказати «сам / себе».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-19:i12:r1",
@@ -842,12 +842,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як сказати «сам / себе».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як сказати «сам / себе»."
         },
         "gappedTargetPhrase": "You can forgive ___.",
         "gapOptions": [
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a01f669442d8497f641547d9dd7587f8d4ea170cd0c661f602946e19c6733fe5"
+  "learnerFingerprint": "b787b99a0499f10134b8cc2299277805bc1bfe57003f08cf51ba8e1e47414f8f"
 }

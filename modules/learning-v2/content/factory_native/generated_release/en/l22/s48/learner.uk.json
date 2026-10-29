@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-48:i03:r1",
@@ -182,12 +182,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I fill the kettle ___ boil the water.",
         "gapOptions": [
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-48:i06:r1",
@@ -407,12 +407,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I use this knife ___ chop the vegetables.",
         "gapOptions": [
@@ -615,7 +615,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-48:i09:r1",
@@ -632,12 +632,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I heat the pan ___ fry an egg.",
         "gapOptions": [
@@ -841,7 +841,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-48:i12:r1",
@@ -858,12 +858,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I turn on the oven ___ bake a cake.",
         "gapOptions": [
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "06de62a64b28bc93328ed0bd9bd42961676f388fb0bdaf03eb0584ebecb9c058"
+  "learnerFingerprint": "1b9cf29c8eadce09437c62cd070740f54c4d5c8f19ed78c91e97d4e680db2381"
 }

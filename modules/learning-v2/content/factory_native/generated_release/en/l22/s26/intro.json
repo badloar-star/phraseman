@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-22:session-26",
   "learningOutcomeByLocale": {
-    "ru": "determiner|adjective + one|ones",
-    "uk": "determiner|adjective + one|ones"
+    "ru": "сказать, какую вещь вы выбираете: I want the thermal ones.",
+    "uk": "сказати, яку річ ви обираєте: I want the thermal ones."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Обрати теплі шкарпетки"
       },
       "bodyByLocale": {
-        "ru": "Вы покупаете носки для холодной погоды и указываете на те, которые сохраняют тепло. I want the thermal ones — я хочу те, которые сохраняют тепло. Сначала I want, затем the thermal ones. Ones заменяет socks во множественном числе. Thermal остаётся перед ones и уточняет, какие носки вы выбрали.",
-        "uk": "Ви купуєте шкарпетки для холодної погоди й указуєте на ті, які зберігають тепло. I want the thermal ones — я хочу ті, які зберігають тепло. Спочатку I want, потім the thermal ones. Ones замінює socks у множині. Thermal залишається перед ones і уточнює, які шкарпетки ви обрали."
+        "ru": "Вы покупаете носки для холодной погоды и указываете на те, которые сохраняют тепло. I want the thermal ones — я хочу те, которые сохраняют тепло. Сначала I want, затем the thermal ones. Ones заменяет socks в форме для нескольких. Thermal остаётся перед ones и уточняет, какие носки вы выбрали.",
+        "uk": "Ви купуєте шкарпетки для холодної погоди й указуєте на ті, які зберігають тепло. I want the thermal ones — я хочу ті, які зберігають тепло. Спочатку I want, потім the thermal ones. Ones замінює socks у формі для кількох. Thermal залишається перед ones і уточнює, які шкарпетки ви обрали."
       },
       "question": {
         "interactionId": "en:lesson-22:session-26:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Обрати взуття з м’якою устілкою"
       },
       "bodyByLocale": {
-        "ru": "Вы примеряете туфли и выбираете те, у которых мягкая стелька. I like the cushioned ones — мне нравятся те, что с мягкой стелькой. Сначала I like, затем the cushioned ones. Ones заменяет shoes во множественном числе. Cushioned описывает мягкий слой под стопой и остаётся перед ones.",
-        "uk": "Ви приміряєте туфлі й обираєте ті, у яких м’яка устілка. I like the cushioned ones — мені подобаються ті, що з м’якою устілкою. Спочатку I like, потім the cushioned ones. Ones замінює shoes у множині. Cushioned описує м’який шар під стопою й залишається перед ones."
+        "ru": "Вы примеряете туфли и выбираете те, у которых мягкая стелька. I like the cushioned ones — мне нравятся те, что с мягкой стелькой. Сначала I like, затем the cushioned ones. Ones заменяет shoes в форме для нескольких. Cushioned описывает мягкий слой под стопой и остаётся перед ones.",
+        "uk": "Ви приміряєте туфлі й обираєте ті, у яких м’яка устілка. I like the cushioned ones — мені подобаються ті, що з м’якою устілкою. Спочатку I like, потім the cushioned ones. Ones замінює shoes у формі для кількох. Cushioned описує м’який шар під стопою й залишається перед ones."
       },
       "question": {
         "interactionId": "en:lesson-22:session-26:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "348eb357ad05b328df2e4f366b6f3f4cd8afcd8a42f6441a4007f976034073f5"
+  "introFingerprint": "bcd8ea81271ddd387aefc4c2581851bbb32da4975b972e7f38ad02a6c52003d7"
 }

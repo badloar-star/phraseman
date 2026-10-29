@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-12",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, где вы уже бывали на представлениях: We have been to a circus.",
+    "uk": "розповісти, де ви вже бували на виставах: We have been to a circus."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "На сцені"
       },
       "bodyByLocale": {
-        "ru": "Opera — опера, спектакль, в котором роли исполняют певцы. I have seen an opera: я смотрел оперу, у меня есть такой опыт. Seen — третья форма see. Перед opera ставим an, потому что слово начинается с гласного звука.",
-        "uk": "Opera — опера, вистава, у якій ролі виконують співаки. I have seen an opera: я дивився оперу, маю такий досвід. Seen — третя форма see. Перед opera ставимо an, бо слово починається з голосного звука."
+        "ru": "Opera — опера, спектакль, в котором роли исполняют певцы. I have seen an opera: я смотрел оперу, у меня есть такой опыт. Seen — форма see после have. Перед opera ставим an, потому что слово начинается с гласного звука.",
+        "uk": "Opera — опера, вистава, у якій ролі виконують співаки. I have seen an opera: я дивився оперу, маю такий досвід. Seen — форма see після have. Перед opera ставимо an, бо слово починається з голосного звука."
       },
       "question": {
         "interactionId": "en:lesson-23:session-12:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Почути оркестр"
       },
       "bodyByLocale": {
-        "ru": "Orchestra — оркестр, группа музыкантов, играющих вместе на разных инструментах. She has heard an orchestra: она слышала, как играет оркестр. Heard — третья форма hear. Здесь тоже an: an orchestra.",
-        "uk": "Orchestra — оркестр, група музикантів, які грають разом на різних інструментах. She has heard an orchestra: вона чула, як грає оркестр. Heard — третя форма hear. Тут теж an: an orchestra."
+        "ru": "Orchestra — оркестр, группа музыкантов, играющих вместе на разных инструментах. She has heard an orchestra: она слышала, как играет оркестр. Heard — форма hear после have. Здесь тоже an: an orchestra.",
+        "uk": "Orchestra — оркестр, група музикантів, які грають разом на різних інструментах. She has heard an orchestra: вона чула, як грає оркестр. Heard — форма hear після have. Тут теж an: an orchestra."
       },
       "question": {
         "interactionId": "en:lesson-23:session-12:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Бували в цирку"
       },
       "bodyByLocale": {
-        "ru": "Друзья обсуждают цирк, и вы с сестрой говорите, что уже бывали там. We have been to a circus — мы бывали в цирке. Circus означает «цирк». Собираем: we + have + been + to a circus. С we ставим have; been — третья форма be. Сочетание have been to сообщает об опыте посещения: вы сходили и вернулись, а не находитесь там сейчас.",
-        "uk": "Друзі обговорюють цирк, і ви із сестрою кажете, що вже бували там. We have been to a circus — ми бували в цирку. Circus означає «цирк». Складаємо: we + have + been + to a circus. Із we ставимо have; been — третя форма be. Сполучення have been to повідомляє про досвід відвідування: ви сходили й повернулися, а не перебуваєте там зараз."
+        "ru": "Друзья обсуждают цирк, и вы с сестрой говорите, что уже бывали там. We have been to a circus — мы бывали в цирке. Circus означает «цирк». Собираем: we + have + been + to a circus. С we ставим have; been — форма be после have. Сочетание have been to сообщает об опыте посещения: вы сходили и вернулись, а не находитесь там сейчас.",
+        "uk": "Друзі обговорюють цирк, і ви із сестрою кажете, що вже бували там. We have been to a circus — ми бували в цирку. Circus означає «цирк». Складаємо: we + have + been + to a circus. Із we ставимо have; been — форма be після have. Сполучення have been to повідомляє про досвід відвідування: ви сходили й повернулися, а не перебуваєте там зараз."
       },
       "question": {
         "interactionId": "en:lesson-23:session-12:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "58d8c38226e48af3ed7316df6a4fd14d34086b590fea11d1d2a766c54092ff6b"
+  "introFingerprint": "95c6f8dfd27c6a9b69fbe25f25d2ae2594271cef92426a54ff0099b4887e9954"
 }

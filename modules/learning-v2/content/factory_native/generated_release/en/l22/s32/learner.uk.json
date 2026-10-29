@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-32:i03:r1",
@@ -182,12 +182,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I check my diary ___ pick a time.",
         "gapOptions": [
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-32:i06:r1",
@@ -407,12 +407,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I call Anna ___ agree on a date.",
         "gapOptions": [
@@ -615,7 +615,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-32:i09:r1",
@@ -632,12 +632,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I phone the hotel ___ confirm a booking.",
         "gapOptions": [
@@ -840,7 +840,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-32:i12:r1",
@@ -857,12 +857,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I use my phone ___ send an invitation.",
         "gapOptions": [
@@ -1125,5 +1125,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8f6c49d0ad8439048fb74e990b9db7ee6dda7b2c4d5557fbdf54072a176afa27"
+  "learnerFingerprint": "73947fcce9da2a55a5a13f4250a925bf25c42dbf9b28dbd8398a34dc94c7dca3"
 }

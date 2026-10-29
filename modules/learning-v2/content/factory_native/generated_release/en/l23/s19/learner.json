@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-19:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "I have ___ strawberries.",
@@ -207,7 +207,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -216,7 +216,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -382,7 +382,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-19:i06:r1",
@@ -399,11 +399,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "She has ___ raspberries.",
@@ -428,7 +428,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -437,7 +437,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -603,7 +603,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-19:i09:r1",
@@ -620,11 +620,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "We have ___ blueberries.",
@@ -649,7 +649,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -658,7 +658,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -825,7 +825,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-19:i12:r1",
@@ -842,11 +842,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "He has ___ a kiwi.",
@@ -871,7 +871,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -880,7 +880,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -1113,5 +1113,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ac3555cf0cbff55ecc620d53893c6925d621cee8bae4b37817310b890716fb09"
+  "learnerFingerprint": "e89476a656033c7ec135280c80220fae60d9b0319f8747b9dc1f52f94c46aa16"
 }

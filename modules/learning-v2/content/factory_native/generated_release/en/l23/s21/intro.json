@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-21",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, в какие игры вы уже играли: I have played volleyball.",
+    "uk": "розповісти, в які ігри ви вже грали: I have played volleyball."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Волейбол вам знайомий"
       },
       "bodyByLocale": {
-        "ru": "Друзья собирают команду и спрашивают, играли ли вы раньше в волейбол. I have played volleyball — я играл в волейбол. Volleyball означает «волейбол». Собираем: I + have + played + volleyball. После I ставим have, played — третья форма play. Название спорта ставим сразу после played, без предлога. Have played сообщает о вашем опыте игры.",
-        "uk": "Друзі збирають команду й запитують, чи грали ви раніше у волейбол. I have played volleyball — я грав у волейбол. Volleyball означає «волейбол». Складаємо: I + have + played + volleyball. Після I ставимо have, played — третя форма play. Назву спорту ставимо одразу після played, без прийменника. Have played повідомляє про ваш досвід гри."
+        "ru": "Друзья собирают команду и спрашивают, играли ли вы раньше в волейбол. I have played volleyball — я играл в волейбол. Volleyball означает «волейбол». Собираем: I + have + played + volleyball. После I ставим have, played — форма play после have. Название спорта ставим сразу после played, без предлога. Have played сообщает о вашем опыте игры.",
+        "uk": "Друзі збирають команду й запитують, чи грали ви раніше у волейбол. I have played volleyball — я грав у волейбол. Volleyball означає «волейбол». Складаємо: I + have + played + volleyball. Після I ставимо have, played — форма play після have. Назву спорту ставимо одразу після played, без прийменника. Have played повідомляє про ваш досвід гри."
       },
       "question": {
         "interactionId": "en:lesson-23:session-21:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Гра з м’ячем"
       },
       "bodyByLocale": {
-        "ru": "Basketball — баскетбол, игра, в которой мяч бросают в корзину. We have played basketball — мы играли в баскетбол. Это сообщает о нашем опыте, но не называет конкретный день игры. Played — третья форма play.",
-        "uk": "Basketball — баскетбол, гра, у якій м’яч кидають у кошик. We have played basketball — ми грали в баскетбол. Це повідомляє про наш досвід, але не називає конкретний день гри. Played — третя форма play."
+        "ru": "Basketball — баскетбол, игра, в которой мяч бросают в корзину. We have played basketball — мы играли в баскетбол. Это сообщает о нашем опыте, но не называет конкретный день игры. Played — форма play после have.",
+        "uk": "Basketball — баскетбол, гра, у якій м’яч кидають у кошик. We have played basketball — ми грали в баскетбол. Це повідомляє про наш досвід, але не називає конкретний день гри. Played — форма play після have."
       },
       "question": {
         "interactionId": "en:lesson-23:session-21:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Друг уже грав у хокей"
       },
       "bodyByLocale": {
-        "ru": "Вы собираете игроков для хоккея и вспоминаете друга с таким опытом. He has played hockey — он играл в хоккей. Hockey означает «хоккей». Собираем: he + has + played + hockey. С he ставим has, а played — третья форма play с окончанием -ed. Has played сообщает об опыте; конкретный матч в этой фразе не называем.",
-        "uk": "Ви збираєте гравців для хокею й згадуєте друга з таким досвідом. He has played hockey — він грав у хокей. Hockey означає «хокей». Складаємо: he + has + played + hockey. Із he ставимо has, а played — третя форма play із закінченням -ed. Has played повідомляє про досвід; конкретного матчу в цій фразі не називаємо."
+        "ru": "Вы собираете игроков для хоккея и вспоминаете друга с таким опытом. He has played hockey — он играл в хоккей. Hockey означает «хоккей». Собираем: he + has + played + hockey. С he ставим has, а played — форма play после have с окончанием -ed. Has played сообщает об опыте; конкретный матч в этой фразе не называем.",
+        "uk": "Ви збираєте гравців для хокею й згадуєте друга з таким досвідом. He has played hockey — він грав у хокей. Hockey означає «хокей». Складаємо: he + has + played + hockey. Із he ставимо has, а played — форма play після have із закінченням -ed. Has played повідомляє про досвід; конкретного матчу в цій фразі не називаємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-21:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b733a821fe39892d8aaddfbaf7c38c25430d4cffa465e3908b868cfc174e8fa1"
+  "introFingerprint": "c7d4ffb25f0f9881944744f6c8906b9097b65fc658ea334e88d4edc71f2ce412"
 }

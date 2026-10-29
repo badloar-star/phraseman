@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-15",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, каких диких животных вы видели: I have seen an eagle.",
+    "uk": "розповісти, яких диких тварин ви бачили: I have seen an eagle."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Бачили орла"
       },
       "bodyByLocale": {
-        "ru": "Вы обсуждаете птиц и рассказываете, что уже видели орла. I have seen an eagle — я видел орла. Eagle означает «орёл». Собираем: I + have + seen + an eagle. После I ставим have, seen — третья форма see. Перед eagle выбираем an: первый звук гласный. Have seen сообщает об опыте встречи с птицей.",
-        "uk": "Ви обговорюєте птахів і розповідаєте, що вже бачили орла. I have seen an eagle — я бачив орла. Eagle означає «орел». Складаємо: I + have + seen + an eagle. Після I ставимо have, seen — третя форма see. Перед eagle вибираємо an: перший звук голосний. Have seen повідомляє про досвід зустрічі з птахом."
+        "ru": "Вы обсуждаете птиц и рассказываете, что уже видели орла. I have seen an eagle — я видел орла. Eagle означает «орёл». Собираем: I + have + seen + an eagle. После I ставим have, seen — форма see после have. Перед eagle выбираем an: первый звук гласный. Have seen сообщает об опыте встречи с птицей.",
+        "uk": "Ви обговорюєте птахів і розповідаєте, що вже бачили орла. I have seen an eagle — я бачив орла. Eagle означає «орел». Складаємо: I + have + seen + an eagle. Після I ставимо have, seen — форма see після have. Перед eagle вибираємо an: перший звук голосний. Have seen повідомляє про досвід зустрічі з птахом."
       },
       "question": {
         "interactionId": "en:lesson-23:session-15:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Знімок змії"
       },
       "bodyByLocale": {
-        "ru": "Во время прогулки вы с другом сфотографировали змею и теперь показываете снимок. We have taken a photo of a snake — мы сфотографировали змею. Snake означает «змея». Собираем: we + have + taken + a photo + of a snake. После we используем have, taken — третья форма take. Of a snake уточняет, кто изображён на фотографии. Have taken сообщает, что снимок уже сделан.",
-        "uk": "Під час прогулянки ви з другом сфотографували змію й тепер показуєте знімок. We have taken a photo of a snake — ми сфотографували змію. Snake означає «змія». Складаємо: we + have + taken + a photo + of a snake. Після we використовуємо have, taken — третя форма take. Of a snake уточнює, хто зображений на фотографії. Have taken повідомляє, що знімок уже зроблено."
+        "ru": "Во время прогулки вы с другом сфотографировали змею и теперь показываете снимок. We have taken a photo of a snake — мы сфотографировали змею. Snake означает «змея». Собираем: we + have + taken + a photo + of a snake. После we используем have, taken — форма take после have. Of a snake уточняет, кто изображён на фотографии. Have taken сообщает, что снимок уже сделан.",
+        "uk": "Під час прогулянки ви з другом сфотографували змію й тепер показуєте знімок. We have taken a photo of a snake — ми сфотографували змію. Snake означає «змія». Складаємо: we + have + taken + a photo + of a snake. Після we використовуємо have, taken — форма take після have. Of a snake уточнює, хто зображений на фотографії. Have taken повідомляє, що знімок уже зроблено."
       },
       "question": {
         "interactionId": "en:lesson-23:session-15:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Розповісти про досвід"
       },
       "bodyByLocale": {
-        "ru": "He has drawn a lizard — он рисовал ящерицу. Не обязательно видеть животное вживую, чтобы нарисовать его: это опыт рисования. Третья форма draw — drawn; с he ставим has.",
-        "uk": "He has drawn a lizard — він малював ящірку. Не обов’язково бачити тварину наживо, щоб намалювати її: це досвід малювання. Третя форма draw — drawn; із he ставимо has."
+        "ru": "He has drawn a lizard — он рисовал ящерицу. Не обязательно видеть животное вживую, чтобы нарисовать его: это опыт рисования. Форма после have draw — drawn; с he ставим has.",
+        "uk": "He has drawn a lizard — він малював ящірку. Не обов’язково бачити тварину наживо, щоб намалювати її: це досвід малювання. Форма після have draw — drawn; із he ставимо has."
       },
       "question": {
         "interactionId": "en:lesson-23:session-15:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6fa3deefc69b43228557be9f47293d85c83a9747da23fc34354beb7b488e7675"
+  "introFingerprint": "a68bda869feb3eebed4b8b6ae8427541624be1470363d8525a12cfc87ce71e7b"
 }

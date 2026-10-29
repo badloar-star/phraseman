@@ -162,7 +162,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-24:i03:r1",
@@ -179,12 +179,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "I have ___ my wrist.",
         "gapOptions": [
@@ -208,7 +208,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: hurt.",
+              "ru": "Нужна форма после have: hurt.",
               "uk": "Потрібна третя форма: hurt."
             }
           },
@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: hurt.",
+              "ru": "Нужна форма после have: hurt.",
               "uk": "Потрібна третя форма: hurt."
             }
           }
@@ -384,7 +384,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-24:i06:r1",
@@ -401,12 +401,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "She has ___ her tongue.",
         "gapOptions": [
@@ -430,7 +430,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: burnt.",
+              "ru": "Нужна форма после have: burnt.",
               "uk": "Потрібна третя форма: burnt."
             }
           },
@@ -439,7 +439,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: burnt.",
+              "ru": "Нужна форма после have: burnt.",
               "uk": "Потрібна третя форма: burnt."
             }
           }
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-24:i09:r1",
@@ -623,12 +623,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "I have ___ my palm.",
         "gapOptions": [
@@ -652,7 +652,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: cut.",
+              "ru": "Нужна форма после have: cut.",
               "uk": "Потрібна третя форма: cut."
             }
           },
@@ -661,7 +661,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: cut.",
+              "ru": "Нужна форма после have: cut.",
               "uk": "Потрібна третя форма: cut."
             }
           }
@@ -828,7 +828,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-24:i12:r1",
@@ -845,12 +845,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "He has ___ his jaw.",
         "gapOptions": [
@@ -874,7 +874,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: hurt.",
+              "ru": "Нужна форма после have: hurt.",
               "uk": "Потрібна третя форма: hurt."
             }
           },
@@ -883,7 +883,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: hurt.",
+              "ru": "Нужна форма после have: hurt.",
               "uk": "Потрібна третя форма: hurt."
             }
           }
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1d3c5e7a5fae33ed1b586e968bbe856ca89fb5f411fc79ee6e43df4994f0b2f4"
+  "learnerFingerprint": "55045dd2379028ff7bc5313fd2cc887de1cbc6b73e5d45b3a79d7a613875521b"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-10",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, какой отдых вы уже пробовали: I have travelled in a canoe.",
+    "uk": "розповісти, який відпочинок ви вже пробували: I have travelled in a canoe."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Бувала на сафарі"
       },
       "bodyByLocale": {
-        "ru": "Подруга уже ездила наблюдать за дикими животными, и вы рассказываете об этом опыте. She has been on a safari — она бывала на сафари. Safari здесь — туристическая поездка для наблюдения за животными. Собираем: she + has + been + on a safari. После she ставим has, been — третья форма be. Сочетание on a safari называет поездку. Has been сообщает, что такой опыт уже был, а не что подруга сейчас там.",
-        "uk": "Подруга вже їздила спостерігати за дикими тваринами, і ви розповідаєте про цей досвід. She has been on a safari — вона бувала на сафарі. Safari тут — туристична поїздка для спостереження за тваринами. Складаємо: she + has + been + on a safari. Після she ставимо has, been — третя форма be. Сполучення on a safari називає поїздку. Has been повідомляє, що такий досвід уже був, а не що подруга зараз там."
+        "ru": "Подруга уже ездила наблюдать за дикими животными, и вы рассказываете об этом опыте. She has been on a safari — она бывала на сафари. Safari здесь — туристическая поездка для наблюдения за животными. Собираем: she + has + been + on a safari. После she ставим has, been — форма be после have. Сочетание on a safari называет поездку. Has been сообщает, что такой опыт уже был, а не что подруга сейчас там.",
+        "uk": "Подруга вже їздила спостерігати за дикими тваринами, і ви розповідаєте про цей досвід. She has been on a safari — вона бувала на сафарі. Safari тут — туристична поїздка для спостереження за тваринами. Складаємо: she + has + been + on a safari. Після she ставимо has, been — форма be після have. Сполучення on a safari називає поїздку. Has been повідомляє, що такий досвід уже був, а не що подруга зараз там."
       },
       "question": {
         "interactionId": "en:lesson-23:session-10:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Ночувати в кемпінгу"
       },
       "bodyByLocale": {
-        "ru": "Campsite — место для палаток или кемпинг. Stay at a campsite — остановиться в кемпинге. He has stayed at a campsite: у него есть такой опыт. Не добавляем yesterday или last summer: тогда рассказ был бы о конкретном законченном времени в Past Simple.",
-        "uk": "Campsite — місце для наметів або кемпінг. Stay at a campsite — зупинитися в кемпінгу. He has stayed at a campsite: він має такий досвід. Не додаємо yesterday або last summer: тоді розповідь була б про конкретний завершений час у Past Simple."
+        "ru": "Campsite — место для палаток или кемпинг. Stay at a campsite — остановиться в кемпинге. He has stayed at a campsite: у него есть такой опыт. Не добавляем yesterday или last summer: тогда рассказ был бы о конкретном законченном времени в форме прошлого.",
+        "uk": "Campsite — місце для наметів або кемпінг. Stay at a campsite — зупинитися в кемпінгу. He has stayed at a campsite: він має такий досвід. Не додаємо yesterday або last summer: тоді розповідь була б про конкретний завершений час у формі минулого."
       },
       "question": {
         "interactionId": "en:lesson-23:session-10:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6eb394a252078837badb6a24b25d66ff91f412e20889a5e249306f128129ba61"
+  "introFingerprint": "6b70a2052d97b3485a2b085fc8dd380c428232b9aeb8f02e951228e5ee0c042c"
 }

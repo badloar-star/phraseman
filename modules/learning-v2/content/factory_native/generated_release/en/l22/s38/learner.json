@@ -166,7 +166,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-38:i03:r1",
@@ -183,11 +183,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I call the shop ___ sort out a problem.",
@@ -391,7 +391,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-38:i06:r1",
@@ -408,11 +408,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I read the instructions ___ find a solution.",
@@ -617,7 +617,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-38:i09:r1",
@@ -634,11 +634,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I talk to my neighbour ___ reach an agreement.",
@@ -842,7 +842,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-38:i12:r1",
@@ -859,11 +859,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I compare the options ___ make a decision.",
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "905d54851947094179e526ed4be245e8505fd2c242199d76f4e41bfa994ec01d"
+  "learnerFingerprint": "1b39e6139a61c191001dc89e13470c08aab25b596095ed18eb3e761365a3355c"
 }

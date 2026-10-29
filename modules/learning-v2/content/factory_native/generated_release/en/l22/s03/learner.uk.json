@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як тут сказати «її / їй».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-03:i03:r1",
@@ -178,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як тут сказати «її / їй».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як тут сказати «її / їй»."
         },
         "gappedTargetPhrase": "I can convince ___.",
         "gapOptions": [
@@ -207,7 +207,7 @@
             "correct": false,
             "testedDimension": "Виберіть займенник для цієї фрази.",
             "feedbackByLocale": {
-              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "ru": "После этого глагола нужна форма вроде him, her, them.",
               "uk": "Після цього дієслова потрібна об’єктна форма займенника."
             }
           },
@@ -216,7 +216,7 @@
             "correct": false,
             "testedDimension": "Виберіть займенник для цієї фрази.",
             "feedbackByLocale": {
-              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "ru": "После этого глагола нужна форма вроде him, her, them.",
               "uk": "Після цього дієслова потрібна об’єктна форма займенника."
             }
           }
@@ -385,7 +385,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як тут сказати «його / йому».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-03:i06:r1",
@@ -402,12 +402,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як тут сказати «його / йому».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як тут сказати «його / йому»."
         },
         "gappedTargetPhrase": "I do not want to misunderstand ___.",
         "gapOptions": [
@@ -431,7 +431,7 @@
             "correct": false,
             "testedDimension": "Виберіть займенник для цієї фрази.",
             "feedbackByLocale": {
-              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "ru": "После этого глагола нужна форма вроде him, her, them.",
               "uk": "Після цього дієслова потрібна об’єктна форма займенника."
             }
           },
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Виберіть займенник для цієї фрази.",
             "feedbackByLocale": {
-              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "ru": "После этого глагола нужна форма вроде him, her, them.",
               "uk": "Після цього дієслова потрібна об’єктна форма займенника."
             }
           }
@@ -605,7 +605,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як тут сказати «його / її» про предмет.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-03:i09:r1",
@@ -622,12 +622,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як тут сказати «його / її» про предмет.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як тут сказати «його / її» про предмет."
         },
         "gappedTargetPhrase": "I dislike ___.",
         "gapOptions": [
@@ -651,7 +651,7 @@
             "correct": false,
             "testedDimension": "Виберіть займенник для цієї фрази.",
             "feedbackByLocale": {
-              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "ru": "После этого глагола нужна форма вроде him, her, them.",
               "uk": "Після цього дієслова потрібна об’єктна форма займенника."
             }
           },
@@ -660,7 +660,7 @@
             "correct": false,
             "testedDimension": "Виберіть займенник для цієї фрази.",
             "feedbackByLocale": {
-              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "ru": "После этого глагола нужна форма вроде him, her, them.",
               "uk": "Після цього дієслова потрібна об’єктна форма займенника."
             }
           }
@@ -825,7 +825,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть займенник для цієї фрази.",
+      "prompt": "Виберіть, як тут сказати «їх / їм».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-03:i12:r1",
@@ -842,12 +842,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть займенник для цієї фрази.",
+      "accessibilityLabel": "Виберіть, як тут сказати «їх / їм».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите местоимение для этой фразы.",
-          "uk": "Виберіть займенник для цієї фрази."
+          "uk": "Виберіть, як тут сказати «їх / їм»."
         },
         "gappedTargetPhrase": "I admire ___.",
         "gapOptions": [
@@ -871,7 +871,7 @@
             "correct": false,
             "testedDimension": "Виберіть займенник для цієї фрази.",
             "feedbackByLocale": {
-              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "ru": "После этого глагола нужна форма вроде him, her, them.",
               "uk": "Після цього дієслова потрібна об’єктна форма займенника."
             }
           },
@@ -880,7 +880,7 @@
             "correct": false,
             "testedDimension": "Виберіть займенник для цієї фрази.",
             "feedbackByLocale": {
-              "ru": "После этого глагола нужна объектная форма местоимения.",
+              "ru": "После этого глагола нужна форма вроде him, her, them.",
               "uk": "Після цього дієслова потрібна об’єктна форма займенника."
             }
           }
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0cdea8b99fd9f2bbb8c6abb975cf3bd63f8aace44647046da5c5074344fa0a52"
+  "learnerFingerprint": "f9b5c89cebd3b83df42f99388fb77021cdb2a8b59dae53e46e1a8c1bbe1ee94b"
 }

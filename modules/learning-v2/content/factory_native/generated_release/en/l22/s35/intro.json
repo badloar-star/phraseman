@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-22:session-35",
   "learningOutcomeByLocale": {
-    "ru": "another + singular noun; other + noun",
-    "uk": "another + singular noun; other + noun"
+    "ru": "сказать, что вам нужен другой вариант: I want another room type.",
+    "uk": "сказати, що вам потрібен інший варіант: I want another room type."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Обрати тип номера"
       },
       "bodyByLocale": {
-        "ru": "При бронировании вам предлагают одноместный номер, но вы ищете семейный. I want another room type — я хочу другой тип номера. Сначала I want, затем another и группа room type. Главным словом здесь является type: вы выбираете один другой тип, поэтому используем another и единственное число type.",
-        "uk": "Під час бронювання вам пропонують одномісний номер, але ви шукаєте сімейний. I want another room type — я хочу інший тип номера. Спочатку I want, потім another і група room type. Головним словом тут є type: ви обираєте один інший тип, тому використовуємо another та однину type."
+        "ru": "При бронировании вам предлагают одноместный номер, но вы ищете семейный. I want another room type — я хочу другой тип номера. Сначала I want, затем another и группа room type. Главным словом здесь является type: вы выбираете один другой тип, поэтому используем another и форма для одного type.",
+        "uk": "Під час бронювання вам пропонують одномісний номер, але ви шукаєте сімейний. I want another room type — я хочу інший тип номера. Спочатку I want, потім another і група room type. Головним словом тут є type: ви обираєте один інший тип, тому використовуємо another та форму для одного type."
       },
       "question": {
         "interactionId": "en:lesson-22:session-35:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Обрати розмір ліжка"
       },
       "bodyByLocale": {
-        "ru": "В форме бронирования выбран маленький размер кровати, и вы хотите заменить его другим. I need another bed size — мне нужен другой размер кровати. После I need ставим another bed size. Another относится к одному размеру — size. Слово bed уточняет, размер чего нужен; оно не делает size множественным числом.",
-        "uk": "У формі бронювання обрано малий розмір ліжка, і ви хочете замінити його іншим. I need another bed size — мені потрібен інший розмір ліжка. Після I need ставимо another bed size. Another стосується одного розміру — size. Слово bed уточнює, розмір чого потрібен; воно не робить size множиною."
+        "ru": "В форме бронирования выбран маленький размер кровати, и вы хотите заменить его другим. I need another bed size — мне нужен другой размер кровати. После I need ставим another bed size. Another относится к одному размеру — size. Слово bed уточняет, размер чего нужен; из-за него size не означает несколько размеров.",
+        "uk": "У формі бронювання обрано малий розмір ліжка, і ви хочете замінити його іншим. I need another bed size — мені потрібен інший розмір ліжка. Після I need ставимо another bed size. Another стосується одного розміру — size. Слово bed уточнює, розмір чого потрібен; через нього size не означає кілька розмірів."
       },
       "question": {
         "interactionId": "en:lesson-22:session-35:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "95669fb9586d051df8aec257821046233e3271a5b59a2d74708ed9b73b95ac49"
+  "introFingerprint": "d9240e190348cfed8f069a41e99e9fddeff4284dbc32d9ddc53ebb8c3a4879b1"
 }

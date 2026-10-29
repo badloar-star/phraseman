@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-22:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "I have ___ thunder.",
@@ -207,7 +207,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: heard.",
+              "ru": "Нужна форма после have: heard.",
               "uk": "Потрібна третя форма: heard."
             }
           },
@@ -216,7 +216,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: heard.",
+              "ru": "Нужна форма после have: heard.",
               "uk": "Потрібна третя форма: heard."
             }
           }
@@ -382,7 +382,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-22:i06:r1",
@@ -399,11 +399,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "She has ___ lightning.",
@@ -428,7 +428,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: seen.",
+              "ru": "Нужна форма после have: seen.",
               "uk": "Потрібна третя форма: seen."
             }
           },
@@ -437,7 +437,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: seen.",
+              "ru": "Нужна форма после have: seen.",
               "uk": "Потрібна третя форма: seen."
             }
           }
@@ -604,7 +604,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-22:i09:r1",
@@ -621,11 +621,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "We have ___ a flood.",
@@ -650,7 +650,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: seen.",
+              "ru": "Нужна форма после have: seen.",
               "uk": "Потрібна третя форма: seen."
             }
           },
@@ -659,7 +659,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: seen.",
+              "ru": "Нужна форма после have: seen.",
               "uk": "Потрібна третя форма: seen."
             }
           }
@@ -826,7 +826,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-22:i12:r1",
@@ -843,11 +843,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "He has ___ a breeze.",
@@ -872,7 +872,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: felt.",
+              "ru": "Нужна форма после have: felt.",
               "uk": "Потрібна третя форма: felt."
             }
           },
@@ -881,7 +881,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: felt.",
+              "ru": "Нужна форма после have: felt.",
               "uk": "Потрібна третя форма: felt."
             }
           }
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1af55d455c70ef277b06c86b3efdd176baa2f94d6059b00cd3d80f042d5c1e2f"
+  "learnerFingerprint": "df4fe3ca63433e23f35b7a240d1bd65df0e27f92f485c55ec7a9483933a78b88"
 }

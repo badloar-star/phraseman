@@ -162,7 +162,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-15:i03:r1",
@@ -179,12 +179,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "I have ___ an eagle.",
         "gapOptions": [
@@ -208,7 +208,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           },
@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           }
@@ -384,7 +384,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-15:i06:r1",
@@ -401,12 +401,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "She has ___ a wolf.",
         "gapOptions": [
@@ -430,7 +430,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           },
@@ -439,7 +439,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           }
@@ -609,7 +609,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-15:i09:r1",
@@ -626,12 +626,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "We have ___ a photo of a snake.",
         "gapOptions": [
@@ -655,7 +655,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           },
@@ -664,7 +664,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           }
@@ -831,7 +831,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму.",
+      "prompt": "Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-15:i12:r1",
@@ -848,12 +848,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму.",
+      "accessibilityLabel": "Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму.",
-          "uk": "Виберіть третю форму."
+          "uk": "Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "He has ___ a lizard.",
         "gapOptions": [
@@ -877,7 +877,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           },
@@ -886,7 +886,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           }
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1bd4fa86de078e9b5cba9510e59ea0ca08a9b5134d3ad85ed4894463870d256a"
+  "learnerFingerprint": "bdc9fdd74060bb91548f4003d427c1c122a0ce878fc7e0e669c236a750c2a45f"
 }

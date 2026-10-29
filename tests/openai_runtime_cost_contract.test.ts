@@ -268,7 +268,17 @@ describe("OpenAI runtime cost controls", () => {
     // Voice rows already contain the all-in estimate (Realtime audio/text plus
     // transcription); the dashboard must not recalculate them as chat tokens.
     expect(budgetFn).toContain("collectionName === 'voice_call_billing'");
-    expect(budgetFn).toContain("num(data.estCostUsd)");
+    // зачем (29.10): слияние релиза 13f66f310 (a82a3b220) заменило num(data.estCostUsd) на типизированный storedCost —
+    // отсутствующая оценка даёт null, а не 0. Смысл проверки тот же и строже: сохранённая оценка читается из строки,
+    // а голосовая ветка не пересчитывает стоимость chat-формулой costUsd(model, …).
+    expect(budgetFn).toContain("const storedCost=typeof data.estCostUsd==='number'");
+    const voiceBranch = budgetFn.slice(
+      budgetFn.indexOf("if (collectionName === 'voice_call_billing')"),
+      budgetFn.indexOf("if (collectionName === 'ai_operation_billing')"),
+    );
+    expect(voiceBranch.length).toBeGreaterThan(200);
+    expect(voiceBranch).toContain("costUsd: storedCost===null ? null : storedCost + legacyTextPriceCorrectionUsd");
+    expect(voiceBranch).not.toContain("costUsd(model");
     // График расхода по дням (series) отдаётся клиенту.
     expect(budgetFn).toContain("series");
   });

@@ -3,7 +3,9 @@ import path from 'node:path';
 import vm from 'node:vm';
 
 const ROOT = path.resolve(__dirname, '..');
-const html = fs.readFileSync(path.join(ROOT, 'admin/v2/legacy.html'), 'utf8');
+// зачем (координатор 29.10): окно «[\s\S]{0,300}» считает символы — в чекауте с CRLF каждый перевод строки добавлял \r,
+// и тест падал только в рабочей копии; считаем без \r, как в блобе репозитория.
+const html = fs.readFileSync(path.join(ROOT, 'admin/v2/legacy.html'), 'utf8').replace(/\r\n/g, '\n');
 const panelStart = html.indexOf('id="tab-arena-content"');
 const panelEndCandidate = html.indexOf('<div id="tab-', panelStart + 1);
 const panelEnd = panelEndCandidate >= 0 ? panelEndCandidate : html.length;

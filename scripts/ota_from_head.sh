@@ -83,7 +83,11 @@ set -a; . ./.env.ota.pulled; set +a
 wipe_env() { [ -f "$SNAP/.env.ota.pulled" ] && rm -f "$SNAP/.env.ota.pulled" && say "[OTA-HEAD] .env.ota.pulled стёрт ($1)"; return 0; }
 trap 'wipe_env exit' EXIT
 export EXPO_PUBLIC_STORE_RELEASE=1 EXPO_PUBLIC_AI_DIALOG_ENABLED=true EXPO_PUBLIC_EXPLAIN_ENABLED=true
-export NODE_OPTIONS=--max-old-space-size=8192 CI=1
+# зачем (29.10, EMFILE на 16,8 тыс. модулей): Metro читает кэш веером, Windows не даёт процессу больше ~8 тыс. открытых
+# файлов. Ограничитель держит очередь чтений/записей кэша (журнал [OTA-FS-LIMIT]); на бандл не влияет.
+OTA_FS_LIMIT_JS=$(cygpath -m "$REPO/scripts/ota_fs_limit.cjs")
+[ -f "$REPO/scripts/ota_fs_limit.cjs" ] || step_fail "нет scripts/ota_fs_limit.cjs"
+export NODE_OPTIONS="--max-old-space-size=8192 --require $OTA_FS_LIMIT_JS" CI=1
 mkdir -p /c/Temp/claude/ota_tmp && export TMP='C:\Temp\claude\ota_tmp' TEMP='C:\Temp\claude\ota_tmp'
 
 # 5) экспорт по платформам отдельно; 6) dev-строки каждой платформы (по карте)

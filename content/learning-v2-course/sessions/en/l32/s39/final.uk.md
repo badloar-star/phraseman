@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The knife I bought is sharp.**
-- ❌ The knife I bought it is sharp. — *Не повторюємо названий предмет займенником it.*
+- ❌ The knife I bought it is sharp. — *Не повторюємо названий предмет словом it.*
 - ❌ The knife I buying is sharp. — *Потрібна минула форма bought.*
 
 ---

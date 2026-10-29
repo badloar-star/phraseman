@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The bowl I washed is clean.**
-- ❌ The bowl I washed it is clean. — *Не повторяем названный предмет местоимением it.*
+- ❌ The bowl I washed it is clean. — *Не повторяем названный предмет словом it.*
 - ❌ The bowl I washing is clean. — *Нужна прошедшая форма washed.*
 
 ---

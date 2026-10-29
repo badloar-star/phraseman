@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The knife I bought is sharp.**
-- ❌ The knife I bought it is sharp. — *Не повторяем названный предмет местоимением it.*
+- ❌ The knife I bought it is sharp. — *Не повторяем названный предмет словом it.*
 - ❌ The knife I buying is sharp. — *Нужна прошедшая форма bought.*
 
 ---

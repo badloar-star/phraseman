@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The glue I bought is strong.**
-- ❌ The glue I bought it is strong. — *Не повторюємо названий предмет займенником it.*
+- ❌ The glue I bought it is strong. — *Не повторюємо названий предмет словом it.*
 - ❌ The glue I buying is strong. — *Потрібна минула форма bought.*
 
 ---

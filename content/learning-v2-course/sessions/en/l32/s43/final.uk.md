@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The ball I found is dirty.**
-- ❌ The ball I found it is dirty. — *Не повторюємо названий предмет займенником it.*
+- ❌ The ball I found it is dirty. — *Не повторюємо названий предмет словом it.*
 - ❌ The ball I finding is dirty. — *Потрібна минула форма found.*
 
 ---

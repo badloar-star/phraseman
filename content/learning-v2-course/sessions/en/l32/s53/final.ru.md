@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The sandwich I made is large.**
-- ❌ The sandwich I made it is large. — *Не повторяем названный предмет местоимением it.*
+- ❌ The sandwich I made it is large. — *Не повторяем названный предмет словом it.*
 - ❌ The sandwich I making is large. — *Нужна прошедшая форма made.*
 
 ---

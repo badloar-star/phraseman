@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The blanket I washed is dry.**
-- ❌ The blanket I washed it is dry. — *Не повторяем названный предмет местоимением it.*
+- ❌ The blanket I washed it is dry. — *Не повторяем названный предмет словом it.*
 - ❌ The blanket I washing is dry. — *Нужна прошедшая форма washed.*
 
 ---

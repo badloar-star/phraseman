@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The basket I bought is large.**
-- ❌ The basket I bought it is large. — *Не повторяем названный предмет местоимением it.*
+- ❌ The basket I bought it is large. — *Не повторяем названный предмет словом it.*
 - ❌ The basket I buying is large. — *Нужна прошедшая форма bought.*
 
 ---

@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The book I read is short.**
-- ❌ The book I read it is short. — *Не повторюємо названий предмет займенником it.*
+- ❌ The book I read it is short. — *Не повторюємо названий предмет словом it.*
 - ❌ The book I reading is short. — *Потрібна минула форма read.*
 
 ---

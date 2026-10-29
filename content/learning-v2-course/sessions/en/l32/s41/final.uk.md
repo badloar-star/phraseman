@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The ticket I bought is cheap.**
-- ❌ The ticket I bought it is cheap. — *Не повторюємо названий предмет займенником it.*
+- ❌ The ticket I bought it is cheap. — *Не повторюємо названий предмет словом it.*
 - ❌ The ticket I buying is cheap. — *Потрібна минула форма bought.*
 
 ---

@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The gift I brought is small.**
-- ❌ The gift I brought it is small. — *Не повторяем названный предмет местоимением it.*
+- ❌ The gift I brought it is small. — *Не повторяем названный предмет словом it.*
 - ❌ The gift I bringing is small. — *Нужна прошедшая форма brought.*
 
 ---

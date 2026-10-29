@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The cake I chose is sweet.**
-- ❌ The cake I chose it is sweet. — *Не повторяем названный предмет местоимением it.*
+- ❌ The cake I chose it is sweet. — *Не повторяем названный предмет словом it.*
 - ❌ The cake I choosing is sweet. — *Нужна прошедшая форма chose.*
 
 ---

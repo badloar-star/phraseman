@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The hat I bought is warm.**
-- ❌ The hat I bought it is warm. — *Не повторяем названный предмет местоимением it.*
+- ❌ The hat I bought it is warm. — *Не повторяем названный предмет словом it.*
 - ❌ The hat I buying is warm. — *Нужна прошедшая форма bought.*
 
 ---

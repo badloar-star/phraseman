@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The helmet I bought is new.**
-- ❌ The helmet I bought it is new. — *Не повторюємо названий предмет займенником it.*
+- ❌ The helmet I bought it is new. — *Не повторюємо названий предмет словом it.*
 - ❌ The helmet I buying is new. — *Потрібна минула форма bought.*
 
 ---

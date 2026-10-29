@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The plant I bought is small.**
-- ❌ The plant I bought it is small. — *Не повторюємо названий предмет займенником it.*
+- ❌ The plant I bought it is small. — *Не повторюємо названий предмет словом it.*
 - ❌ The plant I buying is small. — *Потрібна минула форма bought.*
 
 ---

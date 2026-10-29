@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The hat I bought is warm.**
-- ❌ The hat I bought it is warm. — *Не повторюємо названий предмет займенником it.*
+- ❌ The hat I bought it is warm. — *Не повторюємо названий предмет словом it.*
 - ❌ The hat I buying is warm. — *Потрібна минула форма bought.*
 
 ---

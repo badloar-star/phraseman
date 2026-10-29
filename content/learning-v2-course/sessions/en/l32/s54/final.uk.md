@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The gift I brought is small.**
-- ❌ The gift I brought it is small. — *Не повторюємо названий предмет займенником it.*
+- ❌ The gift I brought it is small. — *Не повторюємо названий предмет словом it.*
 - ❌ The gift I bringing is small. — *Потрібна минула форма brought.*
 
 ---

@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The apple I chose is green.**
-- ❌ The apple I chose it is green. — *Не повторяем названный предмет местоимением it.*
+- ❌ The apple I chose it is green. — *Не повторяем названный предмет словом it.*
 - ❌ The apple I choosing is green. — *Нужна прошедшая форма chose.*
 
 ---

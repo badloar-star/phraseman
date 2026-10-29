@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The cheese I bought is soft.**
-- ❌ The cheese I bought it is soft. — *Не повторяем названный предмет местоимением it.*
+- ❌ The cheese I bought it is soft. — *Не повторяем названный предмет словом it.*
 - ❌ The cheese I buying is soft. — *Нужна прошедшая форма bought.*
 
 ---

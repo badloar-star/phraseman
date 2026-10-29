@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The book I borrowed is short.**
-- ❌ The book I borrowed it is short. — *Не повторюємо названий предмет займенником it.*
+- ❌ The book I borrowed it is short. — *Не повторюємо названий предмет словом it.*
 - ❌ The book I borrowing is short. — *Потрібна минула форма borrowed.*
 
 ---

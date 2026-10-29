@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The toy I found is small.**
-- ❌ The toy I found it is small. — *Не повторяем названный предмет местоимением it.*
+- ❌ The toy I found it is small. — *Не повторяем названный предмет словом it.*
 - ❌ The toy I finding is small. — *Нужна прошедшая форма found.*
 
 ---

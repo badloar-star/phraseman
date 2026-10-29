@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The helmet I bought is new.**
-- ❌ The helmet I bought it is new. — *Не повторяем названный предмет местоимением it.*
+- ❌ The helmet I bought it is new. — *Не повторяем названный предмет словом it.*
 - ❌ The helmet I buying is new. — *Нужна прошедшая форма bought.*
 
 ---

@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The coat I washed is clean.**
-- ❌ The coat I washed it is clean. — *Не повторюємо coat займенником it.*
+- ❌ The coat I washed it is clean. — *Не повторюємо coat словом it.*
 - ❌ The coat I washing is clean. — *Потрібна минула форма washed.*
 
 ---

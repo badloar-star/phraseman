@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The bag I packed is small.**
-- ❌ The bag I packed it is small. — *Не повторяем названный предмет местоимением it.*
+- ❌ The bag I packed it is small. — *Не повторяем названный предмет словом it.*
 - ❌ The bag I packing is small. — *Нужна прошедшая форма packed.*
 
 ---

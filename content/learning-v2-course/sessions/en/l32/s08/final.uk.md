@@ -29,7 +29,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The bowl I washed is clean.**
-- ❌ The bowl I washed it is clean. — *Не повторюємо bowl займенником it.*
+- ❌ The bowl I washed it is clean. — *Не повторюємо bowl словом it.*
 - ❌ The bowl I washing is clean. — *Для завершеної дії потрібна форма washed.*
 
 ---
@@ -142,7 +142,7 @@ The bowl was empty, ___ I filled it. → **so** · because · although
 **20 · Уточніть рушник, яким скористалися.**
 <!-- interaction_id: en:lesson-32:session-08:i20; family: context_gap_grammar -->
 The towel I ___ is wet. → **used** · used it · using
-- used it — *Не повторюємо towel займенником it.*
+- used it — *Не повторюємо towel словом it.*
 - using — *Потрібна минула форма used.*
 
 **21 · Собака випила воду й заснула. Ви робите висновок: тепер їй спокійно та зручно.**

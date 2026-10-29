@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The plant I bought is small.**
-- ❌ The plant I bought it is small. — *Не повторяем названный предмет местоимением it.*
+- ❌ The plant I bought it is small. — *Не повторяем названный предмет словом it.*
 - ❌ The plant I buying is small. — *Нужна прошедшая форма bought.*
 
 ---

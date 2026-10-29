@@ -85,7 +85,7 @@ The bag might ___ at home. → **be** · is · to be
 **8 · Анна говорит о купленной ею сумке. Выберите форму без лишнего it.**
 <!-- interaction_id: en:lesson-32:session-10:i08; family: context_gap_grammar -->
 The bag I ___ is blue. → **bought** · bought it · buying
-- bought it — *Не повторяем bag местоимением it.*
+- bought it — *Не повторяем bag словом it.*
 - buying — *Нужна прошедшая форма bought.*
 
 **9 · Анна уточняет: сумка, которую она купила, синяя. Скажите от её лица без that.**

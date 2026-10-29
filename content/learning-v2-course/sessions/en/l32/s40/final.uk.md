@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The bag I packed is small.**
-- ❌ The bag I packed it is small. — *Не повторюємо названий предмет займенником it.*
+- ❌ The bag I packed it is small. — *Не повторюємо названий предмет словом it.*
 - ❌ The bag I packing is small. — *Потрібна минула форма packed.*
 
 ---

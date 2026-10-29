@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The book I borrowed is short.**
-- ❌ The book I borrowed it is short. — *Не повторяем названный предмет местоимением it.*
+- ❌ The book I borrowed it is short. — *Не повторяем названный предмет словом it.*
 - ❌ The book I borrowing is short. — *Нужна прошедшая форма borrowed.*
 
 ---

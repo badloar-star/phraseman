@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The bag I packed is heavy.**
-- ❌ The bag I packed it is heavy. — *Не повторяем названный предмет местоимением it.*
+- ❌ The bag I packed it is heavy. — *Не повторяем названный предмет словом it.*
 - ❌ The bag I packing is heavy. — *Нужна прошедшая форма packed.*
 
 ---

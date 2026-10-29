@@ -29,7 +29,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The bowl I washed is clean.**
-- ❌ The bowl I washed it is clean. — *Не повторяем bowl местоимением it.*
+- ❌ The bowl I washed it is clean. — *Не повторяем bowl словом it.*
 - ❌ The bowl I washing is clean. — *Для завершённого действия нужна форма washed.*
 
 ---
@@ -142,7 +142,7 @@ The bowl was empty, ___ I filled it. → **so** · because · although
 **20 · Уточните полотенце, которым воспользовались.**
 <!-- interaction_id: en:lesson-32:session-08:i20; family: context_gap_grammar -->
 The towel I ___ is wet. → **used** · used it · using
-- used it — *Не повторяем towel местоимением it.*
+- used it — *Не повторяем towel словом it.*
 - using — *Нужна прошедшая форма used.*
 
 **21 · Собака выпила воду и уснула. Вы делаете вывод: теперь ей спокойно и удобно.**

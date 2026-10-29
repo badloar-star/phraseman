@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The toy I found is small.**
-- ❌ The toy I found it is small. — *Не повторюємо названий предмет займенником it.*
+- ❌ The toy I found it is small. — *Не повторюємо названий предмет словом it.*
 - ❌ The toy I finding is small. — *Потрібна минула форма found.*
 
 ---

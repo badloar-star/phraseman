@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The basket I bought is large.**
-- ❌ The basket I bought it is large. — *Не повторюємо названий предмет займенником it.*
+- ❌ The basket I bought it is large. — *Не повторюємо названий предмет словом it.*
 - ❌ The basket I buying is large. — *Потрібна минула форма bought.*
 
 ---

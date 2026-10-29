@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The book I read is short.**
-- ❌ The book I read it is short. — *Не повторяем названный предмет местоимением it.*
+- ❌ The book I read it is short. — *Не повторяем названный предмет словом it.*
 - ❌ The book I reading is short. — *Нужна прошедшая форма read.*
 
 ---

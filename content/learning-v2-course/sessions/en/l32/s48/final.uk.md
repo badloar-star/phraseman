@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The cheese I bought is soft.**
-- ❌ The cheese I bought it is soft. — *Не повторюємо названий предмет займенником it.*
+- ❌ The cheese I bought it is soft. — *Не повторюємо названий предмет словом it.*
 - ❌ The cheese I buying is soft. — *Потрібна минула форма bought.*
 
 ---

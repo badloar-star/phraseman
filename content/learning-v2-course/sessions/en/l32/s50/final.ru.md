@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The ticket I bought is expensive.**
-- ❌ The ticket I bought it is expensive. — *Не повторяем названный предмет местоимением it.*
+- ❌ The ticket I bought it is expensive. — *Не повторяем названный предмет словом it.*
 - ❌ The ticket I buying is expensive. — *Нужна прошедшая форма bought.*
 
 ---

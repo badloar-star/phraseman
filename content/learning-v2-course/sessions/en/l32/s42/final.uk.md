@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The blanket I washed is dry.**
-- ❌ The blanket I washed it is dry. — *Не повторюємо названий предмет займенником it.*
+- ❌ The blanket I washed it is dry. — *Не повторюємо названий предмет словом it.*
 - ❌ The blanket I washing is dry. — *Потрібна минула форма washed.*
 
 ---

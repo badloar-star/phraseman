@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The ball I found is dirty.**
-- ❌ The ball I found it is dirty. — *Не повторяем названный предмет местоимением it.*
+- ❌ The ball I found it is dirty. — *Не повторяем названный предмет словом it.*
 - ❌ The ball I finding is dirty. — *Нужна прошедшая форма found.*
 
 ---

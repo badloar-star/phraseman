@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The coat I washed is clean.**
-- ❌ The coat I washed it is clean. — *Не повторяем coat местоимением it.*
+- ❌ The coat I washed it is clean. — *Не повторяем coat словом it.*
 - ❌ The coat I washing is clean. — *Нужна прошедшая форма washed.*
 
 ---

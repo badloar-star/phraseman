@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The sandwich I made is large.**
-- ❌ The sandwich I made it is large. — *Не повторюємо названий предмет займенником it.*
+- ❌ The sandwich I made it is large. — *Не повторюємо названий предмет словом it.*
 - ❌ The sandwich I making is large. — *Потрібна минула форма made.*
 
 ---

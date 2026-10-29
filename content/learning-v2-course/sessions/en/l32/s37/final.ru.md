@@ -43,7 +43,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The glue I bought is strong.**
-- ❌ The glue I bought it is strong. — *Не повторяем названный предмет местоимением it.*
+- ❌ The glue I bought it is strong. — *Не повторяем названный предмет словом it.*
 - ❌ The glue I buying is strong. — *Нужна прошедшая форма bought.*
 
 ---

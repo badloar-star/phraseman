@@ -38,12 +38,12 @@
 
 ### Гаряча миска — поставив на стіл
 
-Ви взяли гарячу миску й одразу поставили її: The bowl was hot, so I put it down — миска була гаряча, тому я її поставив. Складіть The bowl was hot + so + I put it down. Після so йде результат. У сполуці put it down займенник it стоїть між put і down.
+Ви взяли гарячу миску й одразу поставили її: The bowl was hot, so I put it down — миска була гаряча, тому я її поставив. Складіть The bowl was hot + so + I put it down. Після so йде результат. У сполуці put it down слово it стоїть між put і down.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The bowl was hot, so I put it down.**
-- ❌ The bowl was hot, so I put down it. — *Із займенником порядок put it down.*
+- ❌ The bowl was hot, so I put down it. — *Коли замість предмета it, порядок такий: put it down.*
 - ❌ The bowl was hot, so I putting it down. — *Для результату в минулому потрібна форма put.*
 
 ---

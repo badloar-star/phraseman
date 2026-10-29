@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The apple I chose is green.**
-- ❌ The apple I chose it is green. — *Не повторюємо названий предмет займенником it.*
+- ❌ The apple I chose it is green. — *Не повторюємо названий предмет словом it.*
 - ❌ The apple I choosing is green. — *Потрібна минула форма chose.*
 
 ---

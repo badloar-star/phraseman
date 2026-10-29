@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The cake I chose is sweet.**
-- ❌ The cake I chose it is sweet. — *Не повторюємо названий предмет займенником it.*
+- ❌ The cake I chose it is sweet. — *Не повторюємо названий предмет словом it.*
 - ❌ The cake I choosing is sweet. — *Потрібна минула форма chose.*
 
 ---

@@ -38,12 +38,12 @@
 
 ### Горячая миска — поставил на стол
 
-Вы взяли горячую миску и сразу поставили её: The bowl was hot, so I put it down — миска была горячей, поэтому я её поставил. Соберите The bowl was hot + so + I put it down. После so идёт результат. В сочетании put it down местоимение it стоит между put и down.
+Вы взяли горячую миску и сразу поставили её: The bowl was hot, so I put it down — миска была горячей, поэтому я её поставил. Соберите The bowl was hot + so + I put it down. После so идёт результат. В сочетании put it down слово it стоит между put и down.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The bowl was hot, so I put it down.**
-- ❌ The bowl was hot, so I put down it. — *С местоимением порядок put it down.*
+- ❌ The bowl was hot, so I put down it. — *Когда вместо предмета it, порядок такой: put it down.*
 - ❌ The bowl was hot, so I putting it down. — *Для результата в прошлом нужна форма put.*
 
 ---

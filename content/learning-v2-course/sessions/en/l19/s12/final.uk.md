@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви з друзями згадуєте свої звичайні вміння в дитинстві.
 
-**Що ви опануєте:** розповісти, що ви вміли раніше: could read an instruction
+**Що ви опануєте:** розповісти, що ви вміли раніше: At ten, I could read an instruction.
 **Нові слова:** translation, instruction, example, explanation
 
 ## Інтро 1

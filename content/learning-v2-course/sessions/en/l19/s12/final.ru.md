@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы с друзьями вспоминаете свои обычные умения в детстве.
 
-**Что вы освоите:** рассказать, что вы умели раньше: could read an instruction
+**Что вы освоите:** рассказать, что вы умели раньше: At ten, I could read an instruction.
 **Новые слова:** translation, instruction, example, explanation
 
 ## Интро 1

@@ -27,7 +27,7 @@ const realFrames = fs.existsSync(realJson) ? JSON.parse(fs.readFileSync(realJson
 Object.values(realFrames).forEach((r) => { delete r.mtime; });
 const realLine = `<script>window.__REAL = ${JSON.stringify(realFrames)};</script>`;
 // наличные кадры макета (HEAD от Сверки + реальные Титана): страница показывает «Кадры ещё не сняты» без запроса к отсутствующему файлу
-const SH_FRAMES = ['head_home_graphite_dark', 'head_home_graphite_light', 'head_lessons_graphite_dark', 'head_lessons_graphite_light', 'scene_home_grad_full_titanium_dark', 'scene_home_grad_full_titanium_light'].map((f) => `assets/real/${f}.png`);
+const SH_FRAMES = ['head_home_graphite_dark', 'head_home_graphite_light', 'head_lessons_graphite_dark', 'head_lessons_graphite_light', 'scene_home_grad_full_titanium_dark', 'scene_home_grad_full_titanium_light', 'scene_season_graphite_light'].map((f) => `assets/real/${f}.png`);
 const shFiles = SH_FRAMES.filter((f) => fs.existsSync(path.join(__dirname, f)));
 const shFilesLine = `<script>window.__SH_FILES = ${JSON.stringify(shFiles)};</script>`;
 const html = `<!doctype html>
@@ -48,7 +48,7 @@ ${engineCss}
 <body>
 <div class="page">
   <h1 class="page-h1">Сцена Главной — высота как у «Уроков»</h1>
-  <div class="thm sp-bar sf-bar"><span id="shView" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Оформление</span><span id="shAp" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Тема</span><span id="shTheme" style="display:inline-flex;gap:8px"></span><span id="shBottomWrap" style="display:inline-flex;align-items:center;gap:8px"><span class="sp-lbl">Низ неба</span><span id="shBottom" style="display:inline-flex;gap:8px"></span></span><span id="shHeroWrap" style="display:inline-flex;align-items:center;gap:8px"><span class="sp-lbl">Герой</span><span id="shHero" style="display:inline-flex;gap:8px"></span></span><span class="sp-lbl">Сравнение</span><span id="shRuler" style="display:inline-flex;gap:8px"></span></div>
+  <div class="thm sp-bar sf-bar"><span id="shView" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Высота</span><span id="shHeight" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Оформление</span><span id="shAp" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Тема</span><span id="shTheme" style="display:inline-flex;gap:8px"></span><span id="shBottomWrap" style="display:inline-flex;align-items:center;gap:8px"><span class="sp-lbl">Низ неба</span><span id="shBottom" style="display:inline-flex;gap:8px"></span></span><span id="shHeroWrap" style="display:inline-flex;align-items:center;gap:8px"><span class="sp-lbl">Герой</span><span id="shHero" style="display:inline-flex;gap:8px"></span></span><span class="sp-lbl">Сравнение</span><span id="shRuler" style="display:inline-flex;gap:8px"></span></div>
   <div id="sh"></div>
   <div id="spControls" style="display:none"><span id="apList"></span><span id="modeList"></span><span id="stratList"></span></div>
   <div id="thmList" style="display:none"></div>

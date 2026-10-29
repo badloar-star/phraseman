@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-13",
   "learningOutcomeByLocale": {
-    "ru": "отличить вопрос от сообщения по порядку слов: Is there a taxi? и There is a taxi.",
-    "uk": "відрізнити запитання від повідомлення за порядком слів: Is there a taxi? і There is a taxi."
+    "ru": "спросить, есть ли такси рядом: Is there a taxi here?",
+    "uk": "запитати, чи є поруч таксі: Is there a taxi here?"
   },
   "pages": [
     {

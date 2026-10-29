@@ -626,11 +626,11 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Утверждение или отрицание? Вы опоздали — признайте это",
+      "prompt": "«Да» или «не»? Вы опоздали — признайте это",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Утверждение или отрицание? Вы опоздали — признайте это",
+      "accessibilityLabel": "«Да» или «не»? Вы опоздали — признайте это",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am late.",
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "12a9717e5c220e367f5eac4156e02925bd16520ba594048dceb37f9a21d60c12"
+  "learnerFingerprint": "f9be7edc2683eed8148c29f46cb252c1242ec0dd299c147e077d97a838de67da"
 }

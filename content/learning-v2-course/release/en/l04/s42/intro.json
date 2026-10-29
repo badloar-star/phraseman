@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-42",
   "learningOutcomeByLocale": {
-    "ru": "спросить о наличии одного или нескольких предметов и отдельно ответить коротко",
-    "uk": "запитати про наявність одного чи кількох предметів і окремо відповісти коротко"
+    "ru": "спросить, есть ли что-то рядом: Is there an information desk here?",
+    "uk": "запитати, чи є щось поруч: Is there an information desk here?"
   },
   "pages": [
     {

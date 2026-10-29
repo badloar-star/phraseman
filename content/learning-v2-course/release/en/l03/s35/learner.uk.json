@@ -185,7 +185,7 @@
             "correct": false,
             "testedDimension": "Брат показує на годинник на стіні перед вами. Доповніть його фразу",
             "feedbackByLocale": {
-              "ru": "После This артикль a не ставим: This clock is old.",
+              "ru": "После This a не ставим: This clock is old.",
               "uk": "Після This артикль a не ставимо: This clock is old."
             }
           }
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5dc917a708b692a4767cc18978295d56107db394ae35326d5d4c7427cbaf1011"
+  "learnerFingerprint": "70ad9afe13788661318be488b526e0386a72e2f470971e16eaa3cd7ad3adc898"
 }

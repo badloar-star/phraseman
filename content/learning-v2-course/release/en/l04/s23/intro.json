@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-23",
   "learningOutcomeByLocale": {
-    "ru": "выбрать some или any: some в сообщении, any в вопросе и когда чего-то нет",
-    "uk": "вибрати some або any: some у повідомленні, any у запитанні й коли чогось немає"
+    "ru": "спросить, осталось ли что-то к чаю: Is there any honey here?",
+    "uk": "запитати, чи лишилось щось до чаю: Is there any honey here?"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Чай із медом"
       },
       "bodyByLocale": {
-        "ru": "Один из гостей любит чай с мёдом. Вы не знаете, остался ли мёд, и спрашиваете у брата, который закупал продукты. honey — «мёд». В вопросе, когда ответа мы не знаем, ставим any. Спросите брата: Is there any honey near the bowl? — «Рядом с миской есть мёд?» Начинаем вопрос с Is there, затем ставим any honey и место — near the bowl. Honey здесь неисчисляемое, поэтому нужно is.",
-        "uk": "Один із гостей любить чай із медом. Ви не знаєте, чи лишився мед, і питаєте в брата, який купував продукти. honey — «мед». У запитанні, коли відповіді ми не знаємо, ставимо any. Запитайте брата: Is there any honey near the bowl? — «Поруч із мискою є мед?» Починаємо запитання з Is there, потім ставимо any honey і місце — near the bowl. Honey тут незлічуване, тому потрібне is."
+        "ru": "Один из гостей любит чай с мёдом. Вы не знаете, остался ли мёд, и спрашиваете у брата, который закупал продукты. honey — «мёд». В вопросе, когда ответа мы не знаем, ставим any. Спросите брата: Is there any honey near the bowl? — «Рядом с миской есть мёд?» Начинаем вопрос с Is there, затем ставим any honey и место — near the bowl. Honey здесь не считается поштучно, поэтому нужно is.",
+        "uk": "Один із гостей любить чай із медом. Ви не знаєте, чи лишився мед, і питаєте в брата, який купував продукти. honey — «мед». У запитанні, коли відповіді ми не знаємо, ставимо any. Запитайте брата: Is there any honey near the bowl? — «Поруч із мискою є мед?» Починаємо запитання з Is there, потім ставимо any honey і місце — near the bowl. Honey тут не рахується поштучно, тому потрібне is."
       },
       "question": {
         "interactionId": "en:lesson-04:session-23:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f8ca29fcdae34fab7a4137320ec6eef0617404f6a65535db57d7d3b6e5c7cbd9"
+  "introFingerprint": "8db22da6e50eb219ec0748a00bc41530eb2e69e006f3db1ed82f8fa7d4b6a344"
 }

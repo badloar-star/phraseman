@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-01",
   "learningOutcomeByLocale": {
-    "ru": "сообщить, что рядом есть одно место: There is a pharmacy here",
-    "uk": "повідомити, що поруч є одне місце: There is a pharmacy here"
+    "ru": "сообщить, что рядом есть одно место: There is a pharmacy here.",
+    "uk": "повідомити, що поруч є одне місце: There is a pharmacy here."
   },
   "pages": [
     {

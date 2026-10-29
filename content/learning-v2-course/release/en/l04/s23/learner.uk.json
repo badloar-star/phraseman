@@ -653,7 +653,7 @@
           "bowl"
         ],
         "authoredDistractorTokens": [
-          "some"
+          "are"
         ],
         "slotFeedback": [
           {
@@ -661,8 +661,8 @@
             "correct": false,
             "testedDimension": "Подруга хоче пластівців на сніданок. Запитайте її повною фразою: поруч із мискою є пластівці?",
             "feedbackByLocale": {
-              "ru": "здесь нужно `any` — `Is there any cereal near the bowl?`",
-              "uk": "тут потрібно `any` — `Is there any cereal near the bowl?`"
+              "ru": "cereal не считают по штукам, поэтому `is` — `Is there any cereal near the bowl?`",
+              "uk": "cereal не рахують поштучно, тому `is` — `Is there any cereal near the bowl?`"
             }
           }
         ],
@@ -1144,5 +1144,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fc0474e412e07f89bc512b07e203ff04eeb830aaf6fe23e6682024b761130de2"
+  "learnerFingerprint": "873b0aa34bdcd99a8c029aeac83e8ea1aea4a7f7c887e2876fcafffbb72aac9e"
 }

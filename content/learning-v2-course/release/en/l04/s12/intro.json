@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-04:session-12",
   "learningOutcomeByLocale": {
-    "ru": "коротко ответить на вопрос о нескольких предметах: Yes, there are. и No, there aren't.",
-    "uk": "коротко відповісти на запитання про кілька предметів: Yes, there are. і No, there aren't."
+    "ru": "коротко подтвердить, что что-то есть: Yes, there are.",
+    "uk": "коротко підтвердити, що щось є: Yes, there are."
   },
   "pages": [
     {

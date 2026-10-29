@@ -185,7 +185,7 @@
             "correct": false,
             "testedDimension": "Брат показывает на часы на стене перед вами. Дополните его фразу",
             "feedbackByLocale": {
-              "ru": "После This артикль a не ставим: This clock is old.",
+              "ru": "После This a не ставим: This clock is old.",
               "uk": "Після This артикль a не ставимо: This clock is old."
             }
           }
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e3beeca865d5a3a08b9b10c5091f7107f035fb70ed7813015d03baa044887e04"
+  "learnerFingerprint": "96e949b47a08413fab8e6be49a3ff396e8a2e1b9a1b0f7c91ff89a5b05a5272b"
 }

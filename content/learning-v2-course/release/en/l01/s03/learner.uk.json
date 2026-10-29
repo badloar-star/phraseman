@@ -626,11 +626,11 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ствердження чи заперечення? Ви запізнилися — визнайте це",
+      "prompt": "«Так» чи «ні»? Ви запізнилися — визнайте це",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ствердження чи заперечення? Ви запізнилися — визнайте це",
+      "accessibilityLabel": "«Так» чи «ні»? Ви запізнилися — визнайте це",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am late.",
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "559b37075fb1ee6659e5fd84a56fab0efd70add70a7ed3e2e14c936ce12e3ea6"
+  "learnerFingerprint": "20c4e8792c2fe1ab8df6fe9bf0783b8d91366b8580dd2779ea2bccd4f8b81bb0"
 }

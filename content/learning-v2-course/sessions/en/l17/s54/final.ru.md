@@ -67,7 +67,7 @@ bottled water — вода в бутылках. Для группы запас �
 <!-- interaction_id: en:lesson-17:session-54:i03; family: context_gap_grammar -->
 We have ___ fresh food. → **a little** · little · a few
 - little — *Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать.*
 
 **5 · Карточка слова — leftover food**
 <!-- interaction_id: en:lesson-17:session-54:word:leftover-food; family: word_card -->
@@ -87,7 +87,7 @@ We have ___ fresh food. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-54:i06; family: context_gap_grammar -->
 We have ___ leftover food. → **little** · a little · a few
 - a little — *Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать.*
 
 **9 · Карточка слова — food waste**
 <!-- interaction_id: en:lesson-17:session-54:word:food-waste; family: word_card -->
@@ -107,7 +107,7 @@ We have ___ leftover food. → **little** · a little · a few
 <!-- interaction_id: en:lesson-17:session-54:i09; family: context_gap_grammar -->
 There is ___ food waste. → **a little** · little · a few
 - little — *Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать.*
 
 **13 · Карточка слова — bottled water**
 <!-- interaction_id: en:lesson-17:session-54:word:bottled-water; family: word_card -->
@@ -127,7 +127,7 @@ There is ___ food waste. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-54:i12; family: context_gap_grammar -->
 We have ___ bottled water. → **little** · a little · a few
 - a little — *Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-17:session-54:i13; family: speed_match -->

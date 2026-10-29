@@ -67,7 +67,7 @@ work-life balance — баланс между работой и личной ж�
 <!-- interaction_id: en:lesson-17:session-55:i03; family: context_gap_grammar -->
 I need ___ personal space. → **a little** · little · a few
 - little — *Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать.*
 
 **5 · Карточка слова — peace of mind**
 <!-- interaction_id: en:lesson-17:session-55:word:peace-of-mind; family: word_card -->
@@ -87,7 +87,7 @@ I need ___ personal space. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-55:i06; family: context_gap_grammar -->
 I have ___ peace of mind. → **little** · a little · a few
 - a little — *Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать.*
 
 **9 · Карточка слова — quality time**
 <!-- interaction_id: en:lesson-17:session-55:word:quality-time; family: word_card -->
@@ -107,7 +107,7 @@ I have ___ peace of mind. → **little** · a little · a few
 <!-- interaction_id: en:lesson-17:session-55:i09; family: context_gap_grammar -->
 We enjoy ___ quality time. → **a little** · little · a few
 - little — *Обе формы грамматически возможны. Ситуация требует a little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать.*
 
 **13 · Карточка слова — work-life balance**
 <!-- interaction_id: en:lesson-17:session-55:word:work-life-balance; family: word_card -->
@@ -127,7 +127,7 @@ We enjoy ___ quality time. → **a little** · little · a few
 <!-- interaction_id: en:lesson-17:session-55:i12; family: context_gap_grammar -->
 There is ___ work-life balance here. → **little** · a little · a few
 - a little — *Обе формы грамматически возможны. Ситуация требует little: a little подчёркивает наличие некоторого количества, little — малое количество.*
-- a few — *Few используется с несколькими предметами, которые можно посчитать,.*
+- a few — *Few используется с несколькими предметами, которые можно посчитать.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-17:session-55:i13; family: speed_match -->

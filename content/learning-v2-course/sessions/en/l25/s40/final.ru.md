@@ -14,8 +14,8 @@ Bang — издать громкий резкий хлопок или стук. 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The door had banged shut by the time I reached it.**
-- ❌ The door has banged shut by the time I reached it. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ The door was banged shut by the time I reached it. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ The door has banged shut by the time I reached it. — *Результат к моменту в прошлом: had + done.*
+- ❌ The door was banged shut by the time I reached it. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Bang — издать громкий резкий хлопок или стук. 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The plates had crashed to the floor by the time I caught the tray.**
-- ❌ The plates have crashed to the floor by the time I caught the tray. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ The plates were crashed to the floor by the time I caught the tray. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ The plates have crashed to the floor by the time I caught the tray. — *Результат к моменту в прошлом: had + done.*
+- ❌ The plates were crashed to the floor by the time I caught the tray. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Bang — издать громкий резкий хлопок или стук. 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The driver had honked by the time I saw the car.**
-- ❌ The driver has honked by the time I saw the car. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ The driver was honked by the time I saw the car. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ The driver has honked by the time I saw the car. — *Результат к моменту в прошлом: had + done.*
+- ❌ The driver was honked by the time I saw the car. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Bang — издать громкий резкий хлопок или стук. 
 
 **1 · Карточка слова — banged**
 <!-- interaction_id: en:lesson-25:session-40:word:banged; family: word_card -->
-> **banged** — Хлопнула. Bang — издать громкий резкий стук или хлопок; banged — третья форма.
+> **banged** — Хлопнула. Bang — издать громкий резкий стук или хлопок; banged — форма после have.
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-40:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Bang — издать громкий резкий хлопок или стук. 
 
 **4 · Карточка слова — crashed**
 <!-- interaction_id: en:lesson-25:session-40:word:crashed; family: word_card -->
-> **crashed** — С грохотом упали. Crash здесь — с грохотом упасть; crashed — третья форма.
+> **crashed** — С грохотом упали. Crash здесь — с грохотом упасть; crashed — форма после have.
 
 **5 · Расскажите, что упало: «Миски с грохотом упали на пол».**
 <!-- interaction_id: en:lesson-25:session-40:i03; family: phrase_builder -->
@@ -75,11 +75,11 @@ Bang — издать громкий резкий хлопок или стук. 
 <!-- interaction_id: en:lesson-25:session-40:i04; family: context_gap_grammar -->
 I ___ a plate yesterday. → **dropped** · have dropped · dropping
 - have dropped — *Yesterday — законченный момент, поэтому dropped.*
-- dropping — *Dropping без вспомогательного глагола здесь не подходит.*
+- dropping — *Одной формы Dropping здесь мало.*
 
 **7 · Карточка слова — beeped**
 <!-- interaction_id: en:lesson-25:session-40:word:beeped; family: word_card -->
-> **beeped** — Подал звуковой сигнал. Beep — издать короткий электронный писк; beeped — третья форма.
+> **beeped** — Подал звуковой сигнал. Beep — издать короткий электронный писк; beeped — форма после have.
 
 **8 · Услышьте, какой прибор подал сигнал.**
 <!-- interaction_id: en:lesson-25:session-40:i05; family: listen_build_dictation -->
@@ -93,7 +93,7 @@ I ___ a plate yesterday. → **dropped** · have dropped · dropping
 
 **10 · Карточка слова — honked**
 <!-- interaction_id: en:lesson-25:session-40:word:honked; family: word_card -->
-> **honked** — Посигналил. Honk — подать сигнал автомобильным гудком; honked — третья форма.
+> **honked** — Посигналил. Honk — подать сигнал автомобильным гудком; honked — форма после have.
 
 **11 · Водитель подал сигнал автомобильным гудком. Выберите honked.**
 <!-- interaction_id: en:lesson-25:session-40:i07; family: context_gap_grammar -->
@@ -128,7 +128,7 @@ I ___ turned the oven off by the time my friend arrived. → **had** · have · 
 **17 · Тарелка разбилась. Вы берёте ещё одну.**
 <!-- interaction_id: en:lesson-25:session-40:i13; family: context_gap_grammar -->
 I need ___ plate. → **another** · other · others
-- other — *Plate в единственном числе, поэтому another.*
+- other — *Речь об одном — Plate, поэтому another.*
 - others — *Others не употребляется перед plate.*
 
 **18 · Вы случайно разбудили друга. Извинитесь: «Прости, что разбудил тебя».**

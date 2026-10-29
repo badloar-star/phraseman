@@ -15,7 +15,7 @@ Confuse — запутать, сделать что-то непонятным д
 
 - ✅ **The instructions had confused me before I asked for help.**
 - ❌ The instructions have confused me before I asked for help. — *Для более раннего события в прошлом используем had.*
-- ❌ The instructions were confused me before I asked for help. — *Здесь нужно had + третья форма.*
+- ❌ The instructions were confused me before I asked for help. — *Здесь нужно had + done.*
 
 ---
 
@@ -29,7 +29,7 @@ Confuse — запутать, сделать что-то непонятным д
 
 - ✅ **The joke had embarrassed him before he left.**
 - ❌ The joke has embarrassed him before he left. — *Для более раннего события в прошлом используем had.*
-- ❌ The joke was embarrassed him before he left. — *Здесь нужно had + третья форма.*
+- ❌ The joke was embarrassed him before he left. — *Здесь нужно had + done.*
 
 ---
 
@@ -43,7 +43,7 @@ Satisfy — удовлетворить, оказаться достаточны�
 
 - ✅ **Her answer had satisfied me before I signed the form.**
 - ❌ Her answer has satisfied me before I signed the form. — *Для более раннего события в прошлом используем had.*
-- ❌ Her answer was satisfied me before I signed the form. — *Здесь нужно had + третья форма.*
+- ❌ Her answer was satisfied me before I signed the form. — *Здесь нужно had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Satisfy — удовлетворить, оказаться достаточны�
 
 **1 · Карточка слова — confused**
 <!-- interaction_id: en:lesson-25:session-19:word:confused; family: word_card -->
-> **confused** — запутал. Confuse — запутать; confused — третья форма.
+> **confused** — запутал. Confuse — запутать; confused — форма после have.
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-19:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Satisfy — удовлетворить, оказаться достаточны�
 
 **4 · Карточка слова — scared**
 <!-- interaction_id: en:lesson-25:session-19:word:scared; family: word_card -->
-> **scared** — напугал. Scare — напугать; scared — третья форма.
+> **scared** — напугал. Scare — напугать; scared — форма после have.
 
 **5 · Объясните, почему вы включили свет: «Шум напугал меня до того, как я включил свет».**
 <!-- interaction_id: en:lesson-25:session-19:i03; family: phrase_builder -->
@@ -85,7 +85,7 @@ The sudden bang had ___ me before I saw the cat. → **scared** · confused · h
 
 **8 · Карточка слова — embarrassed**
 <!-- interaction_id: en:lesson-25:session-19:word:embarrassed; family: word_card -->
-> **embarrassed** — поставил в неловкое положение. Embarrass — смутить; embarrassed — третья форма.
+> **embarrassed** — поставил в неловкое положение. Embarrass — смутить; embarrassed — форма после have.
 
 **9 · Услышьте причину извинения.**
 <!-- interaction_id: en:lesson-25:session-19:i06; family: listen_build_dictation -->
@@ -97,7 +97,7 @@ The sudden bang had ___ me before I saw the cat. → **scared** · confused · h
 
 **11 · Карточка слова — satisfied**
 <!-- interaction_id: en:lesson-25:session-19:word:satisfied; family: word_card -->
-> **satisfied** — удовлетворил. Satisfy — удовлетворить; satisfied — третья форма.
+> **satisfied** — удовлетворил. Satisfy — удовлетворить; satisfied — форма после have.
 
 **12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-19:i08; family: listen_choose -->
@@ -128,7 +128,7 @@ confused — запутали · embarrassed — поставила в нело�
 **17 · Вы спросили дорогу вчера. Это один завершённый случай.**
 <!-- interaction_id: en:lesson-25:session-19:i13; family: context_gap_grammar -->
 I ___ for directions yesterday. → **asked** · have asked · would ask
-- have asked — *Yesterday требует Past Simple asked.*
+- have asked — *Yesterday требует формы прошлого asked.*
 - would ask — *Would ask описывает прежнюю привычку, не один вчерашний случай.*
 
 **18 · Услышьте, как раньше помогал учитель.**

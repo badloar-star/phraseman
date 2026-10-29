@@ -15,7 +15,7 @@ Land — приземляться. Так можно сказать о птиц�
 
 - ✅ **The bird had landed on the roof before I opened the window.**
 - ❌ The bird has landed on the roof before I opened the window. — *Для более раннего события в прошлом используем had.*
-- ❌ The bird was landed on the roof before I opened the window. — *Здесь нужно had + третья форма.*
+- ❌ The bird was landed on the roof before I opened the window. — *Здесь нужно had + done.*
 
 ---
 
@@ -23,13 +23,13 @@ Land — приземляться. Так можно сказать о птиц�
 
 ### Мышь убежала до появления кошки
 
-Вы рассказываете, что заметили дома: мышь успела убежать до того, как в комнату вошла кошка. Скажите: The mouse had fled before the cat entered the room — мышь убежала до того, как кошка вошла в комнату. Собираем: The mouse + had fled + before the cat entered the room — кто, что сделал раньше, до какого события. После had нужна третья форма fled, а не flee. Had fled показывает завершённый побег, entered — более поздний вход кошки в комнату.
+Вы рассказываете, что заметили дома: мышь успела убежать до того, как в комнату вошла кошка. Скажите: The mouse had fled before the cat entered the room — мышь убежала до того, как кошка вошла в комнату. Собираем: The mouse + had fled + before the cat entered the room — кто, что сделал раньше, до какого события. После had нужна форма fled, а не flee. Had fled показывает завершённый побег, entered — более поздний вход кошки в комнату.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The mouse had fled before the cat entered the room.**
 - ❌ The mouse has fled before the cat entered the room. — *Для более раннего события в прошлом используем had.*
-- ❌ The mouse was fled before the cat entered the room. — *Здесь нужно had + третья форма.*
+- ❌ The mouse was fled before the cat entered the room. — *Здесь нужно had + done.*
 
 ---
 
@@ -37,13 +37,13 @@ Land — приземляться. Так можно сказать о птиц�
 
 ### Птица снова на свободе
 
-Release — выпускать на свободу. We had released the bird before the rain began — мы выпустили птицу до начала дождя. Например, птица залетела в дом, а мы помогли ей выбраться наружу. Сначала выпустили птицу, затем начался дождь. После had нужна форма released; после before здесь стоит began, Past Simple от begin.
+Release — выпускать на свободу. We had released the bird before the rain began — мы выпустили птицу до начала дождя. Например, птица залетела в дом, а мы помогли ей выбраться наружу. Сначала выпустили птицу, затем начался дождь. После had нужна форма released; после before здесь стоит began, форма прошлого от begin.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We had released the bird before the rain began.**
 - ❌ We have released the bird before the rain began. — *Для более раннего события в прошлом используем had.*
-- ❌ We were released the bird before the rain began. — *Здесь нужно had + третья форма.*
+- ❌ We were released the bird before the rain began. — *Здесь нужно had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Release — выпускать на свободу. We had released the bird bef
 
 **1 · Карточка слова — landed**
 <!-- interaction_id: en:lesson-25:session-23:word:landed; family: word_card -->
-> **landed** — Приземлилась. Land — приземляться; landed — третья форма.
+> **landed** — Приземлилась. Land — приземляться; landed — форма после have.
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-23:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Release — выпускать на свободу. We had released the bird bef
 
 **4 · Карточка слова — released**
 <!-- interaction_id: en:lesson-25:session-23:word:released; family: word_card -->
-> **released** — Выпустили. Release — выпускать на свободу; released — третья форма.
+> **released** — Выпустили. Release — выпускать на свободу; released — форма после have.
 
 **5 · Птица уже была на свободе: «Мы выпустили птицу до твоего прихода».**
 <!-- interaction_id: en:lesson-25:session-23:i03; family: phrase_builder -->
@@ -79,13 +79,13 @@ Release — выпускать на свободу. We had released the bird bef
 
 **7 · Карточка слова — fled**
 <!-- interaction_id: en:lesson-25:session-23:word:fled; family: word_card -->
-> **fled** — Убежала. Flee — убегать от опасности; fled — третья форма.
+> **fled** — Убежала. Flee — убегать от опасности; fled — форма после have.
 
 **8 · Кролик убежал раньше, чем вы открыли ворота. Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-25:session-23:i05; family: context_gap_grammar -->
 The rabbit had ___ before I opened the gate. → **fled** · flee · fleeing
-- flee — *После had нужна третья форма fled.*
-- fleeing — *Had fleeing не образует Past Perfect.*
+- flee — *После had нужна форма fled.*
+- fleeing — *Had fleeing не образует had + done.*
 
 **9 · Услышьте, что произошло ещё до появления собаки.**
 <!-- interaction_id: en:lesson-25:session-23:i06; family: listen_build_dictation -->
@@ -93,7 +93,7 @@ The rabbit had ___ before I opened the gate. → **fled** · flee · fleeing
 
 **10 · Карточка слова — hunted**
 <!-- interaction_id: en:lesson-25:session-23:word:hunted; family: word_card -->
-> **hunted** — Охотилась. Hunt — охотиться; hunted — третья форма.
+> **hunted** — Охотилась. Hunt — охотиться; hunted — форма после have.
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-23:i07; family: listen_choose -->
@@ -128,7 +128,7 @@ I ___ closed the gate before the dog came outside. → **had** · have · was
 **17 · Вчера вы увидели одну лису.**
 <!-- interaction_id: en:lesson-25:session-23:i13; family: context_gap_grammar -->
 I ___ a fox yesterday. → **saw** · have seen · would see
-- have seen — *Yesterday требует Past Simple saw.*
+- have seen — *Yesterday требует формы прошлого saw.*
 - would see — *Would see описывало бы повторяемость, здесь один вчерашний случай.*
 
 **18 · Вы хотите лучше рассмотреть птицу. Попросите: «Покажи мне другую фотографию».**

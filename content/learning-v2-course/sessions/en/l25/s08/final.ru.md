@@ -118,7 +118,7 @@ envy — завидовать · reward — награждать, поощрят
 **15 · Вчера вы извинились перед учителем. Выберите завершённое событие.**
 <!-- interaction_id: en:lesson-25:session-08:i11; family: context_gap_grammar -->
 I ___ to my teacher yesterday. → **apologised** · have apologised · used to apologise
-- have apologised — *Yesterday требует Past Simple, не Present Perfect.*
+- have apologised — *Yesterday требует формы прошлого, не have / has + done.*
 - used to apologise — *Used to описывает повторявшуюся привычку, а не один вчерашний случай.*
 
 **16 · Попросите ещё одну возможность: «Можно мне попробовать ещё раз?»**
@@ -132,8 +132,8 @@ I ___ to my teacher yesterday. → **apologised** · have apologised · used to 
 **18 · Объяснение уже получено, сейчас вы его понимаете. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-08:i14; family: context_gap_grammar -->
 She has ___ the rule to me. → **explained** · explain · explaining
-- explain — *После has нужна третья форма explained.*
-- explaining — *Has explaining не образует Present Perfect; нужно has explained.*
+- explain — *После has нужна форма explained.*
+- explaining — *Has explaining не образует have / has + done; нужно has explained.*
 
 **19 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-08:i15; family: listen_choose -->

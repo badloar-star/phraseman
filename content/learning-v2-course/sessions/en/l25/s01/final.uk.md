@@ -119,7 +119,7 @@ bungalow — одноповерховий будинок · estate — житл�
 <!-- interaction_id: en:lesson-25:session-01:i11; family: context_gap_grammar -->
 Yesterday we ___ the fairground. → **visited** · used to visit · used to visited
 - used to visit — *Used to visit описує колишні повторювані відвідування; yesterday тут позначає один похід.*
-- used to visited — *Після used to не можна ставити visited; до того ж тут потрібен Past Simple для однієї події.*
+- used to visited — *Після used to не можна ставити visited; до того ж тут потрібна форма минулого для однієї події.*
 
 **16 · Тепер тут порожнє приміщення. Скажіть: «Раніше тут був магазин».**
 <!-- interaction_id: en:lesson-25:session-01:i12; family: phrase_builder -->

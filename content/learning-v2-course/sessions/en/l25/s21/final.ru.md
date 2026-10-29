@@ -15,7 +15,7 @@ Curl — завивать, делать волосы волнистыми или
 
 - ✅ **She had curled her hair before the guests arrived.**
 - ❌ She has curled her hair before the guests arrived. — *Для более раннего события в прошлом используем had.*
-- ❌ She was curled her hair before the guests arrived. — *Здесь нужно had + третья форма.*
+- ❌ She was curled her hair before the guests arrived. — *Здесь нужно had + done.*
 
 ---
 
@@ -29,7 +29,7 @@ Curl — завивать, делать волосы волнистыми или
 
 - ✅ **My shirt had wrinkled before I reached the station.**
 - ❌ My shirt has wrinkled before I reached the station. — *Для более раннего события в прошлом используем had.*
-- ❌ My shirt was wrinkled before I reached the station. — *Здесь нужно had + третья форма.*
+- ❌ My shirt was wrinkled before I reached the station. — *Здесь нужно had + done.*
 
 ---
 
@@ -37,13 +37,13 @@ Curl — завивать, делать волосы волнистыми или
 
 ### Юбка стала длиннее
 
-Lengthen — удлинять, делать длиннее. She had lengthened the skirt before her daughter wore it — она удлинила юбку до того, как дочь её надела. Например, добавила снизу полосу ткани. Сначала изменила юбку, затем дочь её надела. Had lengthened показывает более раннее действие; wore — Past Simple от wear. It заменяет the skirt.
+Lengthen — удлинять, делать длиннее. She had lengthened the skirt before her daughter wore it — она удлинила юбку до того, как дочь её надела. Например, добавила снизу полосу ткани. Сначала изменила юбку, затем дочь её надела. Had lengthened показывает более раннее действие; wore — форма прошлого от wear. It заменяет the skirt.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She had lengthened the skirt before her daughter wore it.**
 - ❌ She has lengthened the skirt before her daughter wore it. — *Для более раннего события в прошлом используем had.*
-- ❌ She was lengthened the skirt before her daughter wore it. — *Здесь нужно had + третья форма.*
+- ❌ She was lengthened the skirt before her daughter wore it. — *Здесь нужно had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Lengthen — удлинять, делать длиннее. She had lengthened t
 
 **1 · Карточка слова — wrinkled**
 <!-- interaction_id: en:lesson-25:session-21:word:wrinkled; family: word_card -->
-> **wrinkled** — Помялась. Wrinkle — мяться; wrinkled — третья форма.
+> **wrinkled** — Помялась. Wrinkle — мяться; wrinkled — форма после have.
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-21:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Lengthen — удлинять, делать длиннее. She had lengthened t
 
 **4 · Карточка слова — shortened**
 <!-- interaction_id: en:lesson-25:session-21:word:shortened; family: word_card -->
-> **shortened** — Укоротил. Shorten — укорачивать; shortened — третья форма.
+> **shortened** — Укоротил. Shorten — укорачивать; shortened — форма после have.
 
 **5 · Рукава исправили до примерки: «Она укоротила рукава до того, как я примерил пальто».**
 <!-- interaction_id: en:lesson-25:session-21:i03; family: phrase_builder -->
@@ -73,7 +73,7 @@ Lengthen — удлинять, делать длиннее. She had lengthened t
 
 **6 · Карточка слова — lengthened**
 <!-- interaction_id: en:lesson-25:session-21:word:lengthened; family: word_card -->
-> **lengthened** — Удлинила. Lengthen — удлинять; lengthened — третья форма.
+> **lengthened** — Удлинила. Lengthen — удлинять; lengthened — форма после have.
 
 **7 · Брюки были слишком короткими. Их сделали длиннее до примерки.**
 <!-- interaction_id: en:lesson-25:session-21:i04; family: context_gap_grammar -->
@@ -93,7 +93,7 @@ She had ___ the trousers before I tried them on. → **lengthened** · shortened
 
 **10 · Карточка слова — curled**
 <!-- interaction_id: en:lesson-25:session-21:word:curled; family: word_card -->
-> **curled** — Завила. Curl — завивать; curled — третья форма.
+> **curled** — Завила. Curl — завивать; curled — форма после have.
 
 **11 · Вы готовились к встрече: «Я завила волосы до прихода друзей».**
 <!-- interaction_id: en:lesson-25:session-21:i07; family: phrase_builder -->
@@ -126,7 +126,7 @@ I ___ packed my bag before the taxi arrived. → **had** · have · was
 **17 · Вы купили одну конкретную рубашку вчера.**
 <!-- interaction_id: en:lesson-25:session-21:i13; family: context_gap_grammar -->
 I ___ this shirt yesterday. → **bought** · have bought · would buy
-- have bought — *Yesterday требует Past Simple bought.*
+- have bought — *Yesterday требует формы прошлого bought.*
 - would buy — *Would buy описывает повторяемость, а здесь одна вчерашняя покупка.*
 
 **18 · Этот размер не подошёл. Попросите: «Можно примерить другой размер?»**
@@ -146,6 +146,6 @@ I ___ this shirt yesterday. → **bought** · have bought · would buy
 **21 · Вы уже выбрали одежду. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-21:i17; family: context_gap_grammar -->
 I have already ___ my clothes. → **chosen** · chose · choose
-- chose — *После have нужна третья форма chosen.*
+- chose — *После have нужна форма chosen.*
 - choose — *Have choose неверно; нужно have chosen.*
 

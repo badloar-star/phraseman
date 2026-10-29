@@ -113,7 +113,7 @@ purr — мурлыкать · growl — рычать · hiss — шипеть �
 <!-- interaction_id: en:lesson-25:session-42:i10; family: context_gap_grammar -->
 I ___ the dog yesterday. → **walked** · have walked · walking
 - have walked — *Yesterday называет законченный день, поэтому walked.*
-- walking — *Walking без вспомогательного глагола здесь не подходит.*
+- walking — *Одной формы Walking здесь мало.*
 
 **15 · Объясните, когда вы заметили пропажу: «Я заметил открытую дверь после того, как кот ушёл».**
 <!-- interaction_id: en:lesson-25:session-42:i11; family: phrase_builder -->
@@ -142,7 +142,7 @@ The dog ___ fallen asleep by the time we got home. → **had** · has · is
 **20 · Первая миска занята кормом. Нужна ещё одна для воды.**
 <!-- interaction_id: en:lesson-25:session-42:i16; family: context_gap_grammar -->
 We need ___ bowl for water. → **another** · other · others
-- other — *Перед bowl в единственном числе нужно another.*
+- other — *Перед bowl (предмет один) нужно another.*
 - others — *Others не ставится перед существительным bowl.*
 
 **21 · Вспомните вечернюю привычку: «В детстве я каждый вечер играл с нашей собакой». Используйте would.**

@@ -123,7 +123,7 @@ As children we ___ play outside every evening. → **would** · had · were
 <!-- interaction_id: en:lesson-25:session-41:i12; family: context_gap_grammar -->
 We ___ our neighbours. → **have already met** · has already met · have already meet
 - has already met — *После we нужно have, не has.*
-- have already meet — *После have нужна третья форма met.*
+- have already meet — *После have нужна форма met.*
 
 **17 · Услышьте приглашение присоединиться к компании.**
 <!-- interaction_id: en:lesson-25:session-41:i13; family: listen_build_dictation -->
@@ -142,7 +142,7 @@ Everyone ___ left by the time my friend arrived. → **had** · has · is
 **20 · Первую попытку закончили. Предложите попробовать ещё раз.**
 <!-- interaction_id: en:lesson-25:session-41:i16; family: context_gap_grammar -->
 Let us have ___ try. → **another** · other · others
-- other — *Try здесь существительное в единственном числе, поэтому another.*
+- other — *Try здесь — одна попытка, поэтому another.*
 - others — *Others не ставится перед try.*
 
 **21 · Расскажите, когда стало легче: «Я почувствовал себя лучше после разговора с другом».**

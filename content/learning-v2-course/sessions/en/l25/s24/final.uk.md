@@ -15,7 +15,7 @@ Brighten — ставати світлішим. The sky had brightened before we
 
 - ✅ **The sky had brightened before we left the house.**
 - ❌ The sky has brightened before we left the house. — *Для ранішої події в минулому використовуємо had.*
-- ❌ The sky was brightened before we left the house. — *Тут потрібно had + третя форма.*
+- ❌ The sky was brightened before we left the house. — *Тут потрібно had + done.*
 
 ---
 
@@ -29,7 +29,7 @@ Brighten — ставати світлішим. The sky had brightened before we
 
 - ✅ **They had widened the road before we moved here.**
 - ❌ They have widened the road before we moved here. — *Для ранішої події в минулому використовуємо had.*
-- ❌ They were widened the road before we moved here. — *Тут потрібно had + третя форма.*
+- ❌ They were widened the road before we moved here. — *Тут потрібно had + done.*
 
 ---
 
@@ -37,13 +37,13 @@ Brighten — ставати світлішим. The sky had brightened before we
 
 ### Тісто піднялося
 
-Expand — збільшуватися в розмірі або об’ємі. The dough had expanded before she put it in the oven — тісто збільшилося в об’ємі до того, як вона поставила його в духовку. Спочатку тісто піднялося, потім вона поставила його випікатися. Had expanded — раніша подія. Put тут стоїть у Past Simple: написання цієї форми збігається з початковою.
+Expand — збільшуватися в розмірі або об’ємі. The dough had expanded before she put it in the oven — тісто збільшилося в об’ємі до того, як вона поставила його в духовку. Спочатку тісто піднялося, потім вона поставила його випікатися. Had expanded — раніша подія. Put тут стоїть у формі минулого: написання цієї форми збігається з початковою.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The dough had expanded before she put it in the oven.**
 - ❌ The dough has expanded before she put it in the oven. — *Для ранішої події в минулому використовуємо had.*
-- ❌ The dough was expanded before she put it in the oven. — *Тут потрібно had + третя форма.*
+- ❌ The dough was expanded before she put it in the oven. — *Тут потрібно had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Expand — збільшуватися в розмірі або об’ємі. Th
 
 **1 · Картка слова — brightened**
 <!-- interaction_id: en:lesson-25:session-24:word:brightened; family: word_card -->
-> **brightened** — Посвітлішало. Brighten — ставати світлішим; brightened — третя форма.
+> **brightened** — Посвітлішало. Brighten — ставати світлішим; brightened — форма після have.
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-24:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Expand — збільшуватися в розмірі або об’ємі. Th
 
 **4 · Картка слова — widened**
 <!-- interaction_id: en:lesson-25:session-24:word:widened; family: word_card -->
-> **widened** — Розширили. Widen — робити ширшим; widened — третя форма.
+> **widened** — Розширили. Widen — робити ширшим; widened — форма після have.
 
 **5 · Вузьку доріжку змінили до відкриття парку: «Вони розширили доріжку до відкриття парку».**
 <!-- interaction_id: en:lesson-25:session-24:i03; family: phrase_builder -->
@@ -73,7 +73,7 @@ Expand — збільшуватися в розмірі або об’ємі. Th
 
 **6 · Картка слова — deepened**
 <!-- interaction_id: en:lesson-25:session-24:word:deepened; family: word_card -->
-> **deepened** — Поглибив. Deepen — робити глибшим; deepened — третя форма.
+> **deepened** — Поглибив. Deepen — робити глибшим; deepened — форма після have.
 
 **7 · Ставок став глибшим, а не ширшим. Виберіть потрібну зміну.**
 <!-- interaction_id: en:lesson-25:session-24:i04; family: context_gap_grammar -->
@@ -93,7 +93,7 @@ They had ___ the pond before they added the fish. → **deepened** · widened ·
 
 **10 · Картка слова — expanded**
 <!-- interaction_id: en:lesson-25:session-24:word:expanded; family: word_card -->
-> **expanded** — Збільшилося в об’ємі. Expand — збільшуватися в розмірі або об’ємі; expanded — третя форма.
+> **expanded** — Збільшилося в об’ємі. Expand — збільшуватися в розмірі або об’ємі; expanded — форма після have.
 
 **11 · Опишіть тісто: «Тісто збільшилося в об’ємі до того, як я повернувся».**
 <!-- interaction_id: en:lesson-25:session-24:i07; family: phrase_builder -->
@@ -122,7 +122,7 @@ brightened — посвітлішало · widened — розширили · dee
 **16 · Ви відвідали парк один раз учора.**
 <!-- interaction_id: en:lesson-25:session-24:i12; family: context_gap_grammar -->
 We ___ the park yesterday. → **visited** · have visited · would visit
-- have visited — *Yesterday потребує Past Simple visited.*
+- have visited — *Yesterday потребує форми минулого visited.*
 - would visit — *Would visit описує повторюваність, не одну вчорашню прогулянку.*
 
 **17 · Почуйте, чому лавка виявилася сухою.**

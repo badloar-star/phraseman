@@ -104,7 +104,7 @@ There was ___ in the box. → **something** · someone · somewhere
 **12 · Ви зустріли ще одного старого друга. Після пропуску — одна людина.**
 <!-- interaction_id: en:lesson-25:session-03:i09; family: context_gap_grammar -->
 I met ___ old friend yesterday. → **another** · other · others
-- other — *Перед одним злічуваним friend потрібно another.*
+- other — *Перед friend (він один) потрібно another.*
 - others — *Others вживається без наступного іменника friend.*
 
 **13 · Картка слова — nowhere**
@@ -132,7 +132,7 @@ everybody — усі, кожен · anybody — хто завгодно · somet
 **18 · Йдеться про одну розмову минулого вечора. Виберіть форму для завершеної події.**
 <!-- interaction_id: en:lesson-25:session-03:i14; family: context_gap_grammar -->
 I ___ my old neighbour last night. → **called** · have called · used to call
-- have called — *Last night — завершений час: потрібен Past Simple called.*
+- have called — *Last night — завершений час: потрібна форма минулого called.*
 - used to call — *Used to call описує колишню звичку, а тут була одна розмова.*
 
 **19 · Послухайте й виберіть**

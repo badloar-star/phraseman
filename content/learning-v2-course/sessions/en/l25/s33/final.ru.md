@@ -9,13 +9,13 @@
 
 ### К тому моменту уже
 
-Insert — вставить внутрь. I had inserted the key by the time she reached the door — я уже вставил ключ к тому моменту, когда она подошла к двери. By the time означает «к тому моменту, когда». Мы называем момент в прошлом — she reached the door — и говорим, что к нему уже было сделано: had inserted. Для завершённого к тому моменту действия используем Past Perfect, для самого момента — Past Simple.
+Insert — вставить внутрь. I had inserted the key by the time she reached the door — я уже вставил ключ к тому моменту, когда она подошла к двери. By the time означает «к тому моменту, когда». Мы называем момент в прошлом — she reached the door — и говорим, что к нему уже было сделано: had inserted. Для завершённого к тому моменту действия используем had + done, для самого момента — форма прошлого.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I had inserted the key by the time she reached the door.**
-- ❌ I have inserted the key by the time she reached the door. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ I was inserted the key by the time she reached the door. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ I have inserted the key by the time she reached the door. — *Результат к моменту в прошлом: had + done.*
+- ❌ I was inserted the key by the time she reached the door. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -23,13 +23,13 @@ Insert — вставить внутрь. I had inserted the key by the time she
 
 ### Пуговицы расстегнули до ремонта
 
-Вы вспоминаете, как помогали подруге починить рубашку: пока вы искали иглу, она уже расстегнула пуговицы. Скажите: She had undone the buttons by the time I found the needle — она расстегнула пуговицы к тому времени, как я нашёл иглу. Собираем: She + had undone + the buttons + by the time I found the needle — кто, что сделал раньше, что расстегнул, к какому моменту. После had нужна третья форма undone, а не undo. Found обозначает более поздний момент, когда игла нашлась.
+Вы вспоминаете, как помогали подруге починить рубашку: пока вы искали иглу, она уже расстегнула пуговицы. Скажите: She had undone the buttons by the time I found the needle — она расстегнула пуговицы к тому времени, как я нашёл иглу. Собираем: She + had undone + the buttons + by the time I found the needle — кто, что сделал раньше, что расстегнул, к какому моменту. После had нужна форма undone, а не undo. Found обозначает более поздний момент, когда игла нашлась.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She had undone the buttons by the time I found the needle.**
-- ❌ She has undone the buttons by the time I found the needle. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ She was undone the buttons by the time I found the needle. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ She has undone the buttons by the time I found the needle. — *Результат к моменту в прошлом: had + done.*
+- ❌ She was undone the buttons by the time I found the needle. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Unhook — снять с крючка или отцепить. I had unhooked th
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I had unhooked the bag by the time he opened the door.**
-- ❌ I have unhooked the bag by the time he opened the door. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ I was unhooked the bag by the time he opened the door. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ I have unhooked the bag by the time he opened the door. — *Результат к моменту в прошлом: had + done.*
+- ❌ I was unhooked the bag by the time he opened the door. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Unhook — снять с крючка или отцепить. I had unhooked th
 
 **1 · Карточка слова — inserted**
 <!-- interaction_id: en:lesson-25:session-33:word:inserted; family: word_card -->
-> **inserted** — Вставил. Insert — вставить внутрь; inserted — третья форма.
+> **inserted** — Вставил. Insert — вставить внутрь; inserted — форма после have.
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-33:i01; family: listen_choose -->
@@ -67,7 +67,7 @@ I ___ finished by the time my friend arrived. → **had** · have · was
 
 **4 · Карточка слова — undone**
 <!-- interaction_id: en:lesson-25:session-33:word:undone; family: word_card -->
-> **undone** — Расстегнула. Undo — расстегнуть, развязать или отменить результат действия; undone — третья форма.
+> **undone** — Расстегнула. Undo — расстегнуть, развязать или отменить результат действия; undone — форма после have.
 
 **5 · Вы уже развязали шнурки, когда друг вернулся: «Я уже развязал шнурки к тому моменту, когда он вернулся».**
 <!-- interaction_id: en:lesson-25:session-33:i03; family: phrase_builder -->
@@ -79,7 +79,7 @@ I ___ finished by the time my friend arrived. → **had** · have · was
 
 **7 · Карточка слова — piled**
 <!-- interaction_id: en:lesson-25:session-33:word:piled; family: word_card -->
-> **piled** — Сложили в кучу. Pile — складывать в кучу; piled — третья форма.
+> **piled** — Сложили в кучу. Pile — складывать в кучу; piled — форма после have.
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-33:i05; family: listen_choose -->
@@ -90,12 +90,12 @@ I ___ finished by the time my friend arrived. → **had** · have · was
 **9 · Книги уже были собраны в кучу к приходу учителя. Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-25:session-33:i06; family: context_gap_grammar -->
 We had ___ the books by the time the teacher came. → **piled** · pile · piling
-- pile — *После had нужна третья форма piled.*
-- piling — *Had piling не образует Past Perfect.*
+- pile — *После had нужна форма piled.*
+- piling — *Had piling не образует had + done.*
 
 **10 · Карточка слова — unhooked**
 <!-- interaction_id: en:lesson-25:session-33:word:unhooked; family: word_card -->
-> **unhooked** — Снял с крючка. Unhook — снять с крючка или отцепить; unhooked — третья форма.
+> **unhooked** — Снял с крючка. Unhook — снять с крючка или отцепить; unhooked — форма после have.
 
 **11 · Услышьте, что уже сделали с сумкой.**
 <!-- interaction_id: en:lesson-25:session-33:i07; family: listen_build_dictation -->
@@ -118,7 +118,7 @@ inserted — вставил · undone — расстегнула · piled — с
 **15 · Встреча закончилась раньше вашего прихода. Дополните часть после by the time.**
 <!-- interaction_id: en:lesson-25:session-33:i11; family: context_gap_grammar -->
 The meeting had ended by the time I ___. → **arrived** · arrive · arriving
-- arrive — *Прошлый момент задаём Past Simple arrived.*
+- arrive — *Прошлый момент задаём формой прошлого arrived.*
 - arriving — *После I здесь нужна личная форма arrived, не arriving.*
 
 **16 · Такси пришло слишком поздно: «Мы уже ушли к тому моменту, когда приехало такси».**

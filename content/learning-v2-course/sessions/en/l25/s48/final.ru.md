@@ -79,7 +79,7 @@ The rabbit is ___. → **tame** · wild · empty
 
 **7 · Карточка слова — paws**
 <!-- interaction_id: en:lesson-25:session-48:word:paws; family: word_card -->
-> **paws** — Лапы. Paw — лапа животного, например кошки или собаки; paws — множественное число.
+> **paws** — Лапы. Paw — лапа животного, например кошки или собаки; paws — форма для нескольких.
 
 **8 · Услышьте, что нужно вытереть после прогулки.**
 <!-- interaction_id: en:lesson-25:session-48:i05; family: listen_build_dictation -->
@@ -91,7 +91,7 @@ The rabbit is ___. → **tame** · wild · empty
 
 **10 · Карточка слова — claws**
 <!-- interaction_id: en:lesson-25:session-48:word:claws; family: word_card -->
-> **claws** — Когти. Claw — коготь; claws — множественное число.
+> **claws** — Когти. Claw — коготь; claws — форма для нескольких.
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-48:i07; family: listen_choose -->
@@ -117,7 +117,7 @@ stray — бездомный · tame — ручной · paws — лапы · cl
 <!-- interaction_id: en:lesson-25:session-48:i11; family: context_gap_grammar -->
 We ___ the cat yesterday. → **found** · have found · finding
 - have found — *Yesterday называет законченный момент, поэтому found.*
-- finding — *Finding без вспомогательного глагола здесь не подходит.*
+- finding — *Одной формы Finding здесь мало.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-48:i12; family: listen_choose -->
@@ -142,7 +142,7 @@ The dog ___ eaten by the time its owner arrived. → **had** · has · was
 **20 · Первое полотенце мокрое. Попросите ещё одно.**
 <!-- interaction_id: en:lesson-25:session-48:i16; family: context_gap_grammar -->
 Can I have ___ towel? → **another** · other · others
-- other — *Towel в единственном числе, поэтому another.*
+- other — *Речь об одном — Towel, поэтому another.*
 - others — *Others не ставится перед towel.*
 
 **21 · Расскажите о порядке дел: «Мы вымыли руки после того, как покормили животных».**

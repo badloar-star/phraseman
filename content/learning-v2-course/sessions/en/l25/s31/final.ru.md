@@ -9,13 +9,13 @@
 
 ### Огонь погас
 
-Flame — пламя. The flame went out before we left — пламя погасло до того, как мы ушли. Went out здесь значит «погасло», а не «вышло из комнаты». Сначала пламя погасло, потом мы ушли: before показывает этот порядок. Went и left — формы Past Simple.
+Flame — пламя. The flame went out before we left — пламя погасло до того, как мы ушли. Went out здесь значит «погасло», а не «вышло из комнаты». Сначала пламя погасло, потом мы ушли: before показывает этот порядок. Went и left — формы прошлого.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The flame went out before we left.**
 - ❌ The flame go out before we left. — *Для рассказа о прошлом нужна форма went.*
-- ❌ The flame going out before we left. — *Здесь используем Past Simple: went.*
+- ❌ The flame going out before we left. — *Здесь используем форму прошлого: went.*
 
 ---
 
@@ -29,7 +29,7 @@ Flame — пламя. The flame went out before we left — пламя пога�
 
 - ✅ **The ash was cold before I cleaned the room.**
 - ❌ The ash is cold before I cleaned the room. — *Для рассказа о прошлом нужна форма was.*
-- ❌ The ash be cold before I cleaned the room. — *Здесь используем Past Simple: was.*
+- ❌ The ash be cold before I cleaned the room. — *Здесь используем форму прошлого: was.*
 
 ---
 
@@ -37,13 +37,13 @@ Flame — пламя. The flame went out before we left — пламя пога�
 
 ### У камина
 
-Fireplace — камин. We cleaned the fireplace after the fire went out — мы почистили камин после того, как огонь погас. The fireplace — сам камин, the fire — огонь в нём. Сначала огонь погас, затем мы почистили камин. After сообщает порядок событий; обе части здесь стоят в Past Simple.
+Fireplace — камин. We cleaned the fireplace after the fire went out — мы почистили камин после того, как огонь погас. The fireplace — сам камин, the fire — огонь в нём. Сначала огонь погас, затем мы почистили камин. After сообщает порядок событий; обе части здесь стоят в форме прошлого.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We cleaned the fireplace after the fire went out.**
 - ❌ We clean the fireplace after the fire went out. — *Для рассказа о прошлом нужна форма cleaned.*
-- ❌ We cleaning the fireplace after the fire went out. — *Здесь используем Past Simple: cleaned.*
+- ❌ We cleaning the fireplace after the fire went out. — *Здесь используем форму прошлого: cleaned.*
 
 ---
 
@@ -136,7 +136,7 @@ The guests ___ left before I returned. → **had** · have · were
 **19 · Вы остались у друзей на одну ночь вчера.**
 <!-- interaction_id: en:lesson-25:session-31:i15; family: context_gap_grammar -->
 We ___ here last night. → **stayed** · have stayed · would stay
-- have stayed — *Last night — законченное время; нужен Past Simple stayed.*
+- have stayed — *Last night — законченное время; нужна форма прошлого stayed.*
 - would stay — *Would stay описывает привычку, а здесь одна ночь.*
 
 **20 · Послушайте и выберите**

@@ -79,7 +79,7 @@ The rabbit is ___. → **tame** · wild · empty
 
 **7 · Картка слова — paws**
 <!-- interaction_id: en:lesson-25:session-48:word:paws; family: word_card -->
-> **paws** — Лапи. Paw — лапа тварини, наприклад кішки чи собаки; paws — множина.
+> **paws** — Лапи. Paw — лапа тварини, наприклад кішки чи собаки; paws — форма для кількох.
 
 **8 · Почуйте, що потрібно витерти після прогулянки.**
 <!-- interaction_id: en:lesson-25:session-48:i05; family: listen_build_dictation -->
@@ -91,7 +91,7 @@ The rabbit is ___. → **tame** · wild · empty
 
 **10 · Картка слова — claws**
 <!-- interaction_id: en:lesson-25:session-48:word:claws; family: word_card -->
-> **claws** — Кігті. Claw — кіготь; claws — множина.
+> **claws** — Кігті. Claw — кіготь; claws — форма для кількох.
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-48:i07; family: listen_choose -->
@@ -117,7 +117,7 @@ stray — безпритульний · tame — ручний · paws — лап
 <!-- interaction_id: en:lesson-25:session-48:i11; family: context_gap_grammar -->
 We ___ the cat yesterday. → **found** · have found · finding
 - have found — *Yesterday називає завершений момент, тому found.*
-- finding — *Finding без допоміжного дієслова тут не підходить.*
+- finding — *Однієї форми Finding тут замало.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-48:i12; family: listen_choose -->
@@ -142,7 +142,7 @@ The dog ___ eaten by the time its owner arrived. → **had** · has · was
 **20 · Перший рушник мокрий. Попросіть ще один.**
 <!-- interaction_id: en:lesson-25:session-48:i16; family: context_gap_grammar -->
 Can I have ___ towel? → **another** · other · others
-- other — *Towel в однині, тому another.*
+- other — *Ідеться про одне — Towel, тому another.*
 - others — *Others не ставиться перед towel.*
 
 **21 · Розкажіть про порядок справ: «Ми помили руки після того, як погодували тварин».**

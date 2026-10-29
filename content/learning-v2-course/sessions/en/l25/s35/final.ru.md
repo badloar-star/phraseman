@@ -14,8 +14,8 @@ Rumour — слух: люди передают сообщение, но пока
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The rumour had spread by the time I heard it.**
-- ❌ The rumour has spread by the time I heard it. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ The rumour was spread by the time I heard it. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ The rumour has spread by the time I heard it. — *Результат к моменту в прошлом: had + done.*
+- ❌ The rumour was spread by the time I heard it. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Rumour — слух: люди передают сообщение, но пока
 **Выберите фразу для этой ситуации.**
 
 - ✅ **They had planned the prank by the time I arrived.**
-- ❌ They have planned the prank by the time I arrived. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ They were planned the prank by the time I arrived. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ They have planned the prank by the time I arrived. — *Результат к моменту в прошлом: had + done.*
+- ❌ They were planned the prank by the time I arrived. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Incident — происшествие, отдельное событие, час
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He had described the incident by the time we got home.**
-- ❌ He has described the incident by the time we got home. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ He was described the incident by the time we got home. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ He has described the incident by the time we got home. — *Результат к моменту в прошлом: had + done.*
+- ❌ He was described the incident by the time we got home. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -89,7 +89,7 @@ It is only a ___. → **rumour** · receipt · promise
 <!-- interaction_id: en:lesson-25:session-35:i06; family: context_gap_grammar -->
 The repairman ___ the problem yesterday. → **found** · has found · finding
 - has found — *Yesterday требует рассказа о законченном событии: found.*
-- finding — *Finding без вспомогательного глагола здесь не подходит.*
+- finding — *Одной формы Finding здесь мало.*
 
 **10 · Карточка слова — incident**
 <!-- interaction_id: en:lesson-25:session-35:word:incident; family: word_card -->

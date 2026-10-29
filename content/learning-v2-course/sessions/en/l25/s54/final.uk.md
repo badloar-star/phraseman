@@ -9,13 +9,13 @@
 
 ### Підлива до приходу гостей
 
-Gravy — підлива, часто на основі м’ясного соку. We had made the gravy before the guests arrived — ми приготували підливу до приходу гостей. Спочатку вона була готова, потім прийшли гості. Had made показує ранішу дію; made — третя форма make. Gravy зазвичай незлічуване: тут the gravy — конкретна підлива до нашої вечері.
+Gravy — підлива, часто на основі м’ясного соку. We had made the gravy before the guests arrived — ми приготували підливу до приходу гостей. Спочатку вона була готова, потім прийшли гості. Had made показує ранішу дію; made — форма make після have. Gravy зазвичай не рахується поштучно: тут the gravy — конкретна підлива до нашої вечері.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We had made the gravy before the guests arrived.**
-- ❌ We have made the gravy before the guests arrived. — *Раніша дія: had + третя форма.*
-- ❌ We were made the gravy before the guests arrived. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ We have made the gravy before the guests arrived. — *Раніша дія: had + done.*
+- ❌ We were made the gravy before the guests arrived. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -23,13 +23,13 @@ Gravy — підлива, часто на основі м’ясного сок�
 
 ### Вибрати додаток до замовлення
 
-Ви згадуєте похід по морозиво: подруга визначилася з посипкою ще до вашого замовлення. Скажіть: She had chosen the topping before I ordered — вона вибрала додаток зверху до того, як я зробив замовлення. Складаємо: She + had chosen + the topping + before I ordered — хто, що зробив раніше, що вибрав, до якої події. Після had потрібна третя форма chosen, а не chose чи choose. Before I ordered задає пізніший момент у минулому.
+Ви згадуєте похід по морозиво: подруга визначилася з посипкою ще до вашого замовлення. Скажіть: She had chosen the topping before I ordered — вона вибрала додаток зверху до того, як я зробив замовлення. Складаємо: She + had chosen + the topping + before I ordered — хто, що зробив раніше, що вибрав, до якої події. Після had потрібна форма chosen, а не chose чи choose. Before I ordered задає пізніший момент у минулому.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She had chosen the topping before I ordered.**
-- ❌ She has chosen the topping before I ordered. — *Раніша дія: had + третя форма.*
-- ❌ She was chosen the topping before I ordered. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ She has chosen the topping before I ordered. — *Раніша дія: had + done.*
+- ❌ She was chosen the topping before I ordered. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Gravy — підлива, часто на основі м’ясного сок�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He had added the spices before I tasted the soup.**
-- ❌ He has added the spices before I tasted the soup. — *Раніша дія: had + третя форма.*
-- ❌ He was added the spices before I tasted the soup. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ He has added the spices before I tasted the soup. — *Раніша дія: had + done.*
+- ❌ He was added the spices before I tasted the soup. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -79,7 +79,7 @@ I chose chocolate as a ___. → **topping** · plate · spoon
 
 **7 · Картка слова — herbs**
 <!-- interaction_id: en:lesson-25:session-54:word:herbs; family: word_card -->
-> **herbs** — Пряні трави. Herb — ароматна трава, яку використовують у готуванні; herbs — множина.
+> **herbs** — Пряні трави. Herb — ароматна трава, яку використовують у готуванні; herbs — форма для кількох.
 
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-54:i05; family: listen_choose -->
@@ -93,7 +93,7 @@ I chose chocolate as a ___. → **topping** · plate · spoon
 
 **10 · Картка слова — spices**
 <!-- interaction_id: en:lesson-25:session-54:word:spices; family: word_card -->
-> **spices** — Спеції. Spice — пряність; spices — множина.
+> **spices** — Спеції. Spice — пряність; spices — форма для кількох.
 
 **11 · У рецепті перелічено корицю й перець. Як їх назвати разом?**
 <!-- interaction_id: en:lesson-25:session-54:i07; family: context_gap_grammar -->
@@ -142,7 +142,7 @@ I added salt ___ I tasted the soup. → **after** · before · while
 **20 · Перша ложка впала на підлогу. Попросіть іншу.**
 <!-- interaction_id: en:lesson-25:session-54:i16; family: context_gap_grammar -->
 Could I have ___ spoon? → **another** · other · others
-- other — *Spoon в однині, тому another.*
+- other — *Ідеться про одне — Spoon, тому another.*
 - others — *Others не ставиться перед spoon.*
 
 **21 · Згадайте колишній смак: «Раніше я не любив таку їжу». Використайте never used to.**

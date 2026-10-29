@@ -122,7 +122,7 @@ winner — переможець · loser — той, хто програв · at
 **16 · Учора був один конкретний матч.**
 <!-- interaction_id: en:lesson-25:session-10:i12; family: context_gap_grammar -->
 Our team ___ yesterday. → **won** · has won · would win
-- has won — *Yesterday потребує Past Simple won.*
+- has won — *Yesterday потребує форми минулого won.*
 - would win — *Would win не позначає тут одну конкретну вчорашню перемогу.*
 
 **17 · Почуйте колишній ритуал після тренування.**
@@ -142,7 +142,7 @@ Our team ___ yesterday. → **won** · has won · would win
 **20 · Один гравець уже готовий. Доповніть: «Інші гравці все ще чекають».**
 <!-- interaction_id: en:lesson-25:session-10:i16; family: context_gap_grammar -->
 The ___ players are still waiting. → **other** · another · others
-- another — *Another ставимо перед іменником в однині.*
+- another — *Another ставимо перед назвою одного предмета.*
 - others — *Перед players потрібна форма other, без -s.*
 
 **21 · Підтримайте друга після програшу: «Ти добре грав сьогодні».**

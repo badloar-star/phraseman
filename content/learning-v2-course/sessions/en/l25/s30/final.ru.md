@@ -15,7 +15,7 @@ Greeting — приветствие: слова или жест при встр�
 
 - ✅ **Her greeting was friendly when we arrived.**
 - ❌ Her greeting is friendly when we arrived. — *Для рассказа о прошлом нужна форма was.*
-- ❌ Her greeting be friendly when we arrived. — *Здесь используем Past Simple: was.*
+- ❌ Her greeting be friendly when we arrived. — *Здесь используем форму прошлого: was.*
 
 ---
 
@@ -23,13 +23,13 @@ Greeting — приветствие: слова или жест при встр�
 
 ### Рукопожатие перед уходом
 
-Вы вспоминаете прощание с другом: He gave me a handshake before he left — он пожал мне руку перед тем, как ушёл. Собираем: He + gave + me + a handshake + before he left — кто, что сделал, кому, что, перед каким событием. Gave — прошедшая форма give; me стоит сразу после gave и называет получателя. Before he left показывает: сначала рукопожатие, потом уход. В обеих частях past simple: gave и left.
+Вы вспоминаете прощание с другом: He gave me a handshake before he left — он пожал мне руку перед тем, как ушёл. Собираем: He + gave + me + a handshake + before he left — кто, что сделал, кому, что, перед каким событием. Gave — прошедшая форма give; me стоит сразу после gave и называет получателя. Before he left показывает: сначала рукопожатие, потом уход. В обеих частях форма прошлого: gave и left.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He gave me a handshake before he left.**
 - ❌ He give me a handshake before he left. — *Для рассказа о прошлом нужна форма gave.*
-- ❌ He giving me a handshake before he left. — *Здесь используем Past Simple: gave.*
+- ❌ He giving me a handshake before he left. — *Здесь используем форму прошлого: gave.*
 
 ---
 
@@ -37,13 +37,13 @@ Greeting — приветствие: слова или жест при встр�
 
 ### Встреча закончилась после еды
 
-Вы рассказываете о вчерашнем вечере с друзьями: The gathering ended after we ate — встреча закончилась после того, как мы поели. Собираем: The gathering + ended + after we ate — что, что произошло, после какого события. After связывает события: еда была раньше окончания встречи, хотя упомянута в конце фразы. В обеих частях past simple. У end добавляем -ed, а ate — прошедшая форма eat.
+Вы рассказываете о вчерашнем вечере с друзьями: The gathering ended after we ate — встреча закончилась после того, как мы поели. Собираем: The gathering + ended + after we ate — что, что произошло, после какого события. After связывает события: еда была раньше окончания встречи, хотя упомянута в конце фразы. В обеих частях форма прошлого. У end добавляем -ed, а ate — прошедшая форма eat.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The gathering ended after we ate.**
 - ❌ The gathering end after we ate. — *Для рассказа о прошлом нужна форма ended.*
-- ❌ The gathering ending after we ate. — *Здесь используем Past Simple: ended.*
+- ❌ The gathering ending after we ate. — *Здесь используем форму прошлого: ended.*
 
 ---
 
@@ -126,7 +126,7 @@ greeting — приветствие · handshake — рукопожатие · o
 **17 · Вы поговорили с тётей вчера, в законченное время.**
 <!-- interaction_id: en:lesson-25:session-30:i13; family: context_gap_grammar -->
 I ___ to my aunt yesterday. → **spoke** · have spoken · would speak
-- have spoken — *Yesterday требует Past Simple spoke.*
+- have spoken — *Yesterday требует формы прошлого spoke.*
 - would speak — *Would speak описывает прежнюю привычку; здесь один разговор.*
 
 **18 · Услышьте прежнюю традицию на встречах.**

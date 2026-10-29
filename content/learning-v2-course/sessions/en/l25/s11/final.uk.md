@@ -122,7 +122,7 @@ dolls — ляльки · puppets — театральні ляльки · scoot
 **16 · Ви згадуєте конкретний подарунок минулого тижня.**
 <!-- interaction_id: en:lesson-25:session-11:i12; family: context_gap_grammar -->
 My uncle ___ me a toy last week. → **gave** · has given · would give
-- has given — *Last week потребує Past Simple gave.*
+- has given — *Last week потребує форми минулого gave.*
 - would give — *Тут один подарунок у названий час, а не повторювана звичка.*
 
 **17 · Почуйте, що відбувалося після гри.**

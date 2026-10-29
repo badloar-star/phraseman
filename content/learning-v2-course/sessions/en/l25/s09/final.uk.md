@@ -119,7 +119,7 @@ wildlife — дикі тварини в природі · scenery — краєв
 <!-- interaction_id: en:lesson-25:session-09:i11; family: context_gap_grammar -->
 We ___ to the lake yesterday. → **walked** · have walked · would walk
 - have walked — *Yesterday — завершений час: вибираємо walked.*
-- would walk — *Для одного вчорашнього походу потрібен Past Simple; would walk тут не передає потрібну подію.*
+- would walk — *Для одного вчорашнього походу потрібна форма минулого; would walk тут не передає потрібну подію.*
 
 **16 · Запропонуйте відвідати ще один парк: «Давай відвідаємо ще один парк».**
 <!-- interaction_id: en:lesson-25:session-09:i12; family: scripted_repeat_compare -->
@@ -138,8 +138,8 @@ We ___ to the lake yesterday. → **walked** · have walked · would walk
 **19 · Ви говорите про досвід поїздок до сьогодні.**
 <!-- interaction_id: en:lesson-25:session-09:i15; family: context_gap_grammar -->
 I have ___ that lake twice. → **visited** · visit · visiting
-- visit — *Після have потрібна третя форма visited.*
-- visiting — *Have visiting не утворює Present Perfect.*
+- visit — *Після have потрібна форма visited.*
+- visiting — *Have visiting не утворює have / has + done.*
 
 **20 · На інших берегах залишалося сміття. Скажіть: «Інші пляжі теж потребували прибирання».**
 <!-- interaction_id: en:lesson-25:session-09:i16; family: phrase_builder -->

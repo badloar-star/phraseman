@@ -122,7 +122,7 @@ grab — схватить · tiptoe — идти на цыпочках · chuckl
 **16 · Смешной рассказ вы услышали один раз вчера.**
 <!-- interaction_id: en:lesson-25:session-13:i12; family: context_gap_grammar -->
 My friend ___ me that story yesterday. → **told** · has told · would tell
-- has told — *Yesterday требует Past Simple told.*
+- has told — *Yesterday требует формы прошлого told.*
 - would tell — *Здесь один рассказ вчера, а не прежний повторявшийся обычай.*
 
 **17 · Услышьте, где прежде встречались друзья.**
@@ -140,7 +140,7 @@ My friend ___ me that story yesterday. → **told** · has told · would tell
 **20 · Вы хотите услышать другие истории, несколько.**
 <!-- interaction_id: en:lesson-25:session-13:i16; family: context_gap_grammar -->
 Do you know any ___ stories? → **other** · another · others
-- another — *Another относится к одному предмету; stories — множественное число.*
+- another — *Another относится к одному предмету; stories — форма для нескольких.*
 - others — *Перед существительным stories используем other без -s.*
 
 **21 · Послушайте и выберите**

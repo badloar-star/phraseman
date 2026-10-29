@@ -15,7 +15,7 @@ Blend — змішувати до однорідності, наприклад �
 
 - ✅ **She had blended the fruit before I added the milk.**
 - ❌ She has blended the fruit before I added the milk. — *Для ранішої події в минулому використовуємо had.*
-- ❌ She was blended the fruit before I added the milk. — *Тут потрібно had + третя форма.*
+- ❌ She was blended the fruit before I added the milk. — *Тут потрібно had + done.*
 
 ---
 
@@ -29,7 +29,7 @@ Blend — змішувати до однорідності, наприклад �
 
 - ✅ **I had dissolved the sugar before she tasted the tea.**
 - ❌ I have dissolved the sugar before she tasted the tea. — *Для ранішої події в минулому використовуємо had.*
-- ❌ I was dissolved the sugar before she tasted the tea. — *Тут потрібно had + третя форма.*
+- ❌ I was dissolved the sugar before she tasted the tea. — *Тут потрібно had + done.*
 
 ---
 
@@ -43,7 +43,7 @@ Shred — нарізати або розірвати на тонкі смужк�
 
 - ✅ **We had shredded the cabbage before we made the salad.**
 - ❌ We have shredded the cabbage before we made the salad. — *Для ранішої події в минулому використовуємо had.*
-- ❌ We were shredded the cabbage before we made the salad. — *Тут потрібно had + третя форма.*
+- ❌ We were shredded the cabbage before we made the salad. — *Тут потрібно had + done.*
 
 ---
 
@@ -57,7 +57,7 @@ Shred — нарізати або розірвати на тонкі смужк�
 
 **2 · Картка слова — shredded**
 <!-- interaction_id: en:lesson-25:session-20:word:shredded; family: word_card -->
-> **shredded** — нашаткував. Shred — нарізати тонкими смужками; shredded — третя форма.
+> **shredded** — нашаткував. Shred — нарізати тонкими смужками; shredded — форма після have.
 
 **3 · Капуста вже була готова до вашого приходу: «Я нашаткував капусту до твого приходу».**
 <!-- interaction_id: en:lesson-25:session-20:i02; family: phrase_builder -->
@@ -69,7 +69,7 @@ Shred — нарізати або розірвати на тонкі смужк�
 
 **5 · Картка слова — blended**
 <!-- interaction_id: en:lesson-25:session-20:word:blended; family: word_card -->
-> **blended** — змішав до однорідності. Blend — змішувати; blended — третя форма.
+> **blended** — змішав до однорідності. Blend — змішувати; blended — форма після have.
 
 **6 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-20:i04; family: listen_choose -->
@@ -85,7 +85,7 @@ She had ___ the fruit before she poured it into glasses. → **blended** · shre
 
 **8 · Картка слова — dissolved**
 <!-- interaction_id: en:lesson-25:session-20:word:dissolved; family: word_card -->
-> **dissolved** — розчинив. Dissolve — розчиняти; dissolved — третя форма.
+> **dissolved** — розчинив. Dissolve — розчиняти; dissolved — форма після have.
 
 **9 · Почуйте, що сталося з цукром.**
 <!-- interaction_id: en:lesson-25:session-20:i06; family: listen_build_dictation -->
@@ -99,7 +99,7 @@ She had ___ the fruit before she poured it into glasses. → **blended** · shre
 
 **11 · Картка слова — thickened**
 <!-- interaction_id: en:lesson-25:session-20:word:thickened; family: word_card -->
-> **thickened** — загус. Thicken — густішати; thickened — третя форма.
+> **thickened** — загус. Thicken — густішати; thickened — форма після have.
 
 **12 · Поясніть, коли соус став густим: «Соус загус до того, як ми сіли».**
 <!-- interaction_id: en:lesson-25:session-20:i08; family: phrase_builder -->
@@ -132,7 +132,7 @@ blended — змішала до однорідності · dissolved — роз
 **18 · Учора ви приготували одну конкретну вечерю.**
 <!-- interaction_id: en:lesson-25:session-20:i14; family: context_gap_grammar -->
 I ___ dinner yesterday. → **cooked** · have cooked · would cook
-- have cooked — *Yesterday потребує Past Simple cooked.*
+- have cooked — *Yesterday потребує форми минулого cooked.*
 - would cook — *Would cook описує звичку; тут одна вчорашня вечеря.*
 
 **19 · Одну миску ви вже зайняли. Попросіть: «Мені потрібна ще одна миска».**
@@ -142,7 +142,7 @@ I ___ dinner yesterday. → **cooked** · have cooked · would cook
 **20 · Один ніж тут, решта — у шухляді.**
 <!-- interaction_id: en:lesson-25:session-20:i16; family: context_gap_grammar -->
 The ___ knives are in the drawer. → **other** · another · others
-- another — *Another вживається з одниною, не knives.*
+- another — *Another вживається з формою для одного, не knives.*
 - others — *Перед knives потрібно other без -s.*
 
 **21 · Ви вже прибрали кухню. Скажіть: «Я вже помив посуд».**

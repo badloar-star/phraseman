@@ -15,7 +15,7 @@ Land — приземлятися. Так можна сказати про пт�
 
 - ✅ **The bird had landed on the roof before I opened the window.**
 - ❌ The bird has landed on the roof before I opened the window. — *Для ранішої події в минулому використовуємо had.*
-- ❌ The bird was landed on the roof before I opened the window. — *Тут потрібно had + третя форма.*
+- ❌ The bird was landed on the roof before I opened the window. — *Тут потрібно had + done.*
 
 ---
 
@@ -23,13 +23,13 @@ Land — приземлятися. Так можна сказати про пт�
 
 ### Миша втекла до появи кішки
 
-Ви розповідаєте, що помітили вдома: миша встигла втекти до того, як до кімнати зайшла кішка. Скажіть: The mouse had fled before the cat entered the room — миша втекла до того, як кішка зайшла до кімнати. Складаємо: The mouse + had fled + before the cat entered the room — хто, що зробив раніше, до якої події. Після had потрібна третя форма fled, а не flee. Had fled показує завершену втечу, entered — пізніший вхід кішки до кімнати.
+Ви розповідаєте, що помітили вдома: миша встигла втекти до того, як до кімнати зайшла кішка. Скажіть: The mouse had fled before the cat entered the room — миша втекла до того, як кішка зайшла до кімнати. Складаємо: The mouse + had fled + before the cat entered the room — хто, що зробив раніше, до якої події. Після had потрібна форма fled, а не flee. Had fled показує завершену втечу, entered — пізніший вхід кішки до кімнати.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The mouse had fled before the cat entered the room.**
 - ❌ The mouse has fled before the cat entered the room. — *Для ранішої події в минулому використовуємо had.*
-- ❌ The mouse was fled before the cat entered the room. — *Тут потрібно had + третя форма.*
+- ❌ The mouse was fled before the cat entered the room. — *Тут потрібно had + done.*
 
 ---
 
@@ -37,13 +37,13 @@ Land — приземлятися. Так можна сказати про пт�
 
 ### Птах знову на волі
 
-Release — випускати на волю. We had released the bird before the rain began — ми випустили птаха до початку дощу. Наприклад, птах залетів у дім, а ми допомогли йому вибратися назовні. Спочатку випустили птаха, потім почався дощ. Після had потрібна форма released; після before тут стоїть began, Past Simple від begin.
+Release — випускати на волю. We had released the bird before the rain began — ми випустили птаха до початку дощу. Наприклад, птах залетів у дім, а ми допомогли йому вибратися назовні. Спочатку випустили птаха, потім почався дощ. Після had потрібна форма released; після before тут стоїть began, форма минулого від begin.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We had released the bird before the rain began.**
 - ❌ We have released the bird before the rain began. — *Для ранішої події в минулому використовуємо had.*
-- ❌ We were released the bird before the rain began. — *Тут потрібно had + третя форма.*
+- ❌ We were released the bird before the rain began. — *Тут потрібно had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Release — випускати на волю. We had released the bird before th
 
 **1 · Картка слова — landed**
 <!-- interaction_id: en:lesson-25:session-23:word:landed; family: word_card -->
-> **landed** — Приземлився. Land — приземлятися; landed — третя форма.
+> **landed** — Приземлився. Land — приземлятися; landed — форма після have.
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-23:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Release — випускати на волю. We had released the bird before th
 
 **4 · Картка слова — released**
 <!-- interaction_id: en:lesson-25:session-23:word:released; family: word_card -->
-> **released** — Випустили. Release — випускати на волю; released — третя форма.
+> **released** — Випустили. Release — випускати на волю; released — форма після have.
 
 **5 · Птах уже був на волі: «Ми випустили птаха до твого приходу».**
 <!-- interaction_id: en:lesson-25:session-23:i03; family: phrase_builder -->
@@ -79,13 +79,13 @@ Release — випускати на волю. We had released the bird before th
 
 **7 · Картка слова — fled**
 <!-- interaction_id: en:lesson-25:session-23:word:fled; family: word_card -->
-> **fled** — Втекла. Flee — тікати від небезпеки; fled — третя форма.
+> **fled** — Втекла. Flee — тікати від небезпеки; fled — форма після have.
 
 **8 · Кролик утік раніше, ніж ви відчинили ворота. Виберіть потрібну форму слова.**
 <!-- interaction_id: en:lesson-25:session-23:i05; family: context_gap_grammar -->
 The rabbit had ___ before I opened the gate. → **fled** · flee · fleeing
-- flee — *Після had потрібна третя форма fled.*
-- fleeing — *Had fleeing не утворює Past Perfect.*
+- flee — *Після had потрібна форма fled.*
+- fleeing — *Had fleeing не утворює had + done.*
 
 **9 · Почуйте, що сталося ще до появи собаки.**
 <!-- interaction_id: en:lesson-25:session-23:i06; family: listen_build_dictation -->
@@ -93,7 +93,7 @@ The rabbit had ___ before I opened the gate. → **fled** · flee · fleeing
 
 **10 · Картка слова — hunted**
 <!-- interaction_id: en:lesson-25:session-23:word:hunted; family: word_card -->
-> **hunted** — Полювала. Hunt — полювати; hunted — третя форма.
+> **hunted** — Полювала. Hunt — полювати; hunted — форма після have.
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-23:i07; family: listen_choose -->
@@ -128,7 +128,7 @@ I ___ closed the gate before the dog came outside. → **had** · have · was
 **17 · Учора ви побачили одну лисицю.**
 <!-- interaction_id: en:lesson-25:session-23:i13; family: context_gap_grammar -->
 I ___ a fox yesterday. → **saw** · have seen · would see
-- have seen — *Yesterday потребує Past Simple saw.*
+- have seen — *Yesterday потребує форми минулого saw.*
 - would see — *Would see описувало б повторюваність, тут один учорашній випадок.*
 
 **18 · Ви хочете краще роздивитися птаха. Попросіть: «Покажи мені іншу фотографію».**
@@ -142,7 +142,7 @@ I ___ a fox yesterday. → **saw** · have seen · would see
 **20 · Одні тварини на цій фотографії, решта — на наступній.**
 <!-- interaction_id: en:lesson-25:session-23:i16; family: context_gap_grammar -->
 The ___ animals are in the next photo. → **other** · another · others
-- another — *Another стосується однини; animals — множина.*
+- another — *Another стосується форми для одного; animals — форма для кількох.*
 - others — *Перед animals потрібно other без -s.*
 
 **21 · Ви вже нагодували улюбленця. Скажіть: «Я вже нагодував кішку».**

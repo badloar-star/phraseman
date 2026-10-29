@@ -15,7 +15,7 @@ Delighted — дуже радий, у захваті. I was delighted with the g
 
 - ✅ **I was delighted with the gift yesterday.**
 - ❌ I is delighted with the gift yesterday. — *Yesterday — завершений час у минулому: was.*
-- ❌ I been delighted with the gift yesterday. — *Для I чи she у Past Simple потрібна форма was.*
+- ❌ I been delighted with the gift yesterday. — *Для I чи she у формі минулого потрібна форма was.*
 
 ---
 
@@ -29,7 +29,7 @@ Delighted — дуже радий, у захваті. I was delighted with the g
 
 - ✅ **I was astonished by the price yesterday.**
 - ❌ I is astonished by the price yesterday. — *Yesterday — завершений час у минулому: was.*
-- ❌ I been astonished by the price yesterday. — *Для I чи she у Past Simple потрібна форма was.*
+- ❌ I been astonished by the price yesterday. — *Для I чи she у формі минулого потрібна форма was.*
 
 ---
 
@@ -43,7 +43,7 @@ Heartbroken — убитий горем, той, хто відчуває дуж�
 
 - ✅ **She was heartbroken after the news yesterday.**
 - ❌ She is heartbroken after the news yesterday. — *Yesterday — завершений час у минулому: was.*
-- ❌ She been heartbroken after the news yesterday. — *Для I чи she у Past Simple потрібна форма was.*
+- ❌ She been heartbroken after the news yesterday. — *Для I чи she у формі минулого потрібна форма was.*
 
 ---
 
@@ -142,7 +142,7 @@ I felt calmer ___ I called my friend. → **after** · before · while
 **20 · Друг просить трохи часу перед відповіддю. Доповніть прохання.**
 <!-- interaction_id: en:lesson-25:session-52:i16; family: context_gap_grammar -->
 Please give me ___ moment. → **another** · other · others
-- other — *Moment в однині, тому another.*
+- other — *Ідеться про одне — Moment, тому another.*
 - others — *Others не ставиться перед moment.*
 
 **21 · Запропонуйте другові прогулянку: «Давай вийдемо ненадовго».**

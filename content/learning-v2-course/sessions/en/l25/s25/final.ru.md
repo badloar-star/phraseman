@@ -9,13 +9,13 @@
 
 ### Остановиться после движения назад
 
-Вы рассказываете, как вчера парковались: сначала сдали назад, затем остановились. Скажите: I stopped after I reversed — я остановился после того, как сдал назад. Собираем: I + stopped + after I reversed — кто, что сделал, после какого события. After означает «после того как» и вводит целую часть с I и reversed. Обе части в past simple: stopped и reversed. Событие после after произошло раньше остановки, хотя названо в конце фразы. Можно поставить его первым: After I reversed, I stopped. Тогда после первой части нужна запятая.
+Вы рассказываете, как вчера парковались: сначала сдали назад, затем остановились. Скажите: I stopped after I reversed — я остановился после того, как сдал назад. Собираем: I + stopped + after I reversed — кто, что сделал, после какого события. After означает «после того как» и вводит целую часть с I и reversed. Обе части в форме прошлого: stopped и reversed. Событие после after произошло раньше остановки, хотя названо в конце фразы. Можно поставить его первым: After I reversed, I stopped. Тогда после первой части нужна запятая.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I stopped after I reversed.**
 - ❌ I stopped after I reverse. — *Рассказ о прошлом: нужна форма reversed.*
-- ❌ I stopped after I reversing. — *Здесь нужен Past Simple: reversed.*
+- ❌ I stopped after I reversing. — *Здесь нужна форма прошлого: reversed.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Посмотреть в зеркало до обгона
 
-Вы рассказываете о водителе: перед обгоном автобуса он посмотрел в зеркало. Скажите: He checked his mirror before he overtook the bus — он посмотрел в зеркало до того, как обогнал автобус. Собираем: He + checked + his mirror + before he overtook the bus — кто, что сделал, что проверил, до какого события. Before означает «до того как»: проверка зеркала была раньше обгона. В обеих частях past simple: checked с -ed и неправильная форма overtook. Можно начать с более позднего события: Before he overtook the bus, he checked his mirror. Порядок действий тот же, после первой части ставим запятую.
+Вы рассказываете о водителе: перед обгоном автобуса он посмотрел в зеркало. Скажите: He checked his mirror before he overtook the bus — он посмотрел в зеркало до того, как обогнал автобус. Собираем: He + checked + his mirror + before he overtook the bus — кто, что сделал, что проверил, до какого события. Before означает «до того как»: проверка зеркала была раньше обгона. В обеих частях форма прошлого: checked с -ed и неправильная форма overtook. Можно начать с более позднего события: Before he overtook the bus, he checked his mirror. Порядок действий тот же, после первой части ставим запятую.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He checked his mirror before he overtook the bus.**
 - ❌ He checked his mirror before he overtake the bus. — *Рассказ о прошлом: нужна форма overtook.*
-- ❌ He checked his mirror before he overtaking the bus. — *Здесь нужен Past Simple: overtook.*
+- ❌ He checked his mirror before he overtaking the bus. — *Здесь нужна форма прошлого: overtook.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Переставляем части
 
-Collide — сталкиваться. After the cars collided, we called for help — после того как машины столкнулись, мы позвали на помощь. Сначала произошло столкновение, затем мы позвали на помощь. Можно поменять местами части, сохранив порядок событий: We called for help after the cars collided. В таком порядке запятая обычно не нужна. Before и after помогают понять последовательность; Past Perfect здесь не обязателен.
+Collide — сталкиваться. After the cars collided, we called for help — после того как машины столкнулись, мы позвали на помощь. Сначала произошло столкновение, затем мы позвали на помощь. Можно поменять местами части, сохранив порядок событий: We called for help after the cars collided. В таком порядке запятая обычно не нужна. Before и after помогают понять последовательность; had + done здесь не обязателен.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We called for help after the cars collided.**
 - ❌ We called for help after the cars collide. — *Рассказ о прошлом: нужна форма collided.*
-- ❌ We called for help after the cars colliding. — *Здесь нужен Past Simple: collided.*
+- ❌ We called for help after the cars colliding. — *Здесь нужна форма прошлого: collided.*
 
 ---
 

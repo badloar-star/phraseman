@@ -118,8 +118,8 @@ former — колишній · frequent — частий · occasional — та�
 **15 · Ви розповідаєте про досвід без дати. Доповніть фразу з have / has.**
 <!-- interaction_id: en:lesson-25:session-04:i11; family: context_gap_grammar -->
 I have ___ my former teacher twice. → **met** · meet · meeting
-- meet — *Після have у Present Perfect потрібна форма met.*
-- meeting — *Meeting тут не утворює Present Perfect; потрібно met.*
+- meet — *Після have у have / has + done потрібна форма met.*
+- meeting — *Meeting тут не утворює have / has + done; потрібно met.*
 
 **16 · Один парк ви знаєте. Скажіть: «Ми хочемо відвідати інші парки».**
 <!-- interaction_id: en:lesson-25:session-04:i12; family: phrase_builder -->

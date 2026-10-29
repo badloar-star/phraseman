@@ -15,7 +15,7 @@ Blend — смешивать до однородности, например в 
 
 - ✅ **She had blended the fruit before I added the milk.**
 - ❌ She has blended the fruit before I added the milk. — *Для более раннего события в прошлом используем had.*
-- ❌ She was blended the fruit before I added the milk. — *Здесь нужно had + третья форма.*
+- ❌ She was blended the fruit before I added the milk. — *Здесь нужно had + done.*
 
 ---
 
@@ -29,7 +29,7 @@ Blend — смешивать до однородности, например в 
 
 - ✅ **I had dissolved the sugar before she tasted the tea.**
 - ❌ I have dissolved the sugar before she tasted the tea. — *Для более раннего события в прошлом используем had.*
-- ❌ I was dissolved the sugar before she tasted the tea. — *Здесь нужно had + третья форма.*
+- ❌ I was dissolved the sugar before she tasted the tea. — *Здесь нужно had + done.*
 
 ---
 
@@ -43,7 +43,7 @@ Shred — нарезать или разорвать на тонкие поло�
 
 - ✅ **We had shredded the cabbage before we made the salad.**
 - ❌ We have shredded the cabbage before we made the salad. — *Для более раннего события в прошлом используем had.*
-- ❌ We were shredded the cabbage before we made the salad. — *Здесь нужно had + третья форма.*
+- ❌ We were shredded the cabbage before we made the salad. — *Здесь нужно had + done.*
 
 ---
 
@@ -57,7 +57,7 @@ Shred — нарезать или разорвать на тонкие поло�
 
 **2 · Карточка слова — shredded**
 <!-- interaction_id: en:lesson-25:session-20:word:shredded; family: word_card -->
-> **shredded** — нашинковал. Shred — нарезать тонкими полосками; shredded — третья форма.
+> **shredded** — нашинковал. Shred — нарезать тонкими полосками; shredded — форма после have.
 
 **3 · Капуста уже была готова к вашему приходу: «Я нашинковал капусту до твоего прихода».**
 <!-- interaction_id: en:lesson-25:session-20:i02; family: phrase_builder -->
@@ -69,7 +69,7 @@ Shred — нарезать или разорвать на тонкие поло�
 
 **5 · Карточка слова — blended**
 <!-- interaction_id: en:lesson-25:session-20:word:blended; family: word_card -->
-> **blended** — смешал до однородности. Blend — смешивать; blended — третья форма.
+> **blended** — смешал до однородности. Blend — смешивать; blended — форма после have.
 
 **6 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-20:i04; family: listen_choose -->
@@ -85,7 +85,7 @@ She had ___ the fruit before she poured it into glasses. → **blended** · shre
 
 **8 · Карточка слова — dissolved**
 <!-- interaction_id: en:lesson-25:session-20:word:dissolved; family: word_card -->
-> **dissolved** — растворил. Dissolve — растворять; dissolved — третья форма.
+> **dissolved** — растворил. Dissolve — растворять; dissolved — форма после have.
 
 **9 · Услышьте, что произошло с сахаром.**
 <!-- interaction_id: en:lesson-25:session-20:i06; family: listen_build_dictation -->
@@ -99,7 +99,7 @@ She had ___ the fruit before she poured it into glasses. → **blended** · shre
 
 **11 · Карточка слова — thickened**
 <!-- interaction_id: en:lesson-25:session-20:word:thickened; family: word_card -->
-> **thickened** — загустел. Thicken — густеть; thickened — третья форма.
+> **thickened** — загустел. Thicken — густеть; thickened — форма после have.
 
 **12 · Объясните, когда соус стал густым: «Соус загустел до того, как мы сели».**
 <!-- interaction_id: en:lesson-25:session-20:i08; family: phrase_builder -->
@@ -132,7 +132,7 @@ blended — смешала до однородности · dissolved — рас
 **18 · Вчера вы приготовили один конкретный ужин.**
 <!-- interaction_id: en:lesson-25:session-20:i14; family: context_gap_grammar -->
 I ___ dinner yesterday. → **cooked** · have cooked · would cook
-- have cooked — *Yesterday требует Past Simple cooked.*
+- have cooked — *Yesterday требует формы прошлого cooked.*
 - would cook — *Would cook описывает привычку; здесь один вчерашний ужин.*
 
 **19 · Одну миску вы уже заняли. Попросите: «Мне нужна ещё одна миска».**

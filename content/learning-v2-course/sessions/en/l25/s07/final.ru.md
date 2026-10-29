@@ -128,7 +128,7 @@ hunger — голод · thirst — жажда · chores — домашние о
 **17 · Это произошло один раз вчера, а не было прежней привычкой.**
 <!-- interaction_id: en:lesson-25:session-07:i13; family: context_gap_grammar -->
 I ___ the parcel yesterday. → **collected** · have collected · used to collect
-- have collected — *Yesterday указывает на завершённое прошлое; нужен Past Simple.*
+- have collected — *Yesterday указывает на завершённое прошлое; нужна форма прошлого.*
 - used to collect — *Used to collect обозначает привычку, а здесь одно завершённое дело.*
 
 **18 · Сравните свою прежнюю привычку с нынешней: «Раньше я пропускал завтрак».**

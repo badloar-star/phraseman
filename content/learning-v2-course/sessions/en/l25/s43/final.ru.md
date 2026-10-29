@@ -142,7 +142,7 @@ I checked the map ___ I left. → **before** · after · while
 **20 · Этот путь перекрыт. Предложите попробовать другой.**
 <!-- interaction_id: en:lesson-25:session-43:i16; family: context_gap_grammar -->
 Let us try ___ way. → **another** · other · others
-- other — *Перед way в единственном числе используем another.*
+- other — *Перед way (предмет один) используем another.*
 - others — *Others не ставится перед существительным way.*
 
 **21 · Вспомните прежнюю прогулку: «В детстве мы каждое воскресенье ходили к реке». Используйте would.**

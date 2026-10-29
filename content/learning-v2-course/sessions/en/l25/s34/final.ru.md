@@ -14,8 +14,8 @@ Nostril — ноздря, одно из двух отверстий носа. My
 **Выберите фразу для этой ситуации.**
 
 - ✅ **My nostril had stopped bleeding by the time the nurse arrived.**
-- ❌ My nostril has stopped bleeding by the time the nurse arrived. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ My nostril was stopped bleeding by the time the nurse arrived. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ My nostril has stopped bleeding by the time the nurse arrived. — *Результат к моменту в прошлом: had + done.*
+- ❌ My nostril was stopped bleeding by the time the nurse arrived. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -23,13 +23,13 @@ Nostril — ноздря, одно из двух отверстий носа. My
 
 ### Палец опух до возвращения домой
 
-Вы рассказываете, как ударили палец на прогулке: ещё до возвращения домой костяшка уже опухла. Скажите: My knuckle had swollen by the time we got home — костяшка моего пальца опухла к тому времени, как мы добрались домой. Собираем: My knuckle + had swollen + by the time we got home — что, какое изменение произошло раньше, к какому моменту в прошлом. После had нужна третья форма swollen, а не swell. Had swollen подчёркивает уже произошедшее изменение; got home задаёт последующее возвращение.
+Вы рассказываете, как ударили палец на прогулке: ещё до возвращения домой костяшка уже опухла. Скажите: My knuckle had swollen by the time we got home — костяшка моего пальца опухла к тому времени, как мы добрались домой. Собираем: My knuckle + had swollen + by the time we got home — что, какое изменение произошло раньше, к какому моменту в прошлом. После had нужна форма swollen, а не swell. Had swollen подчёркивает уже произошедшее изменение; got home задаёт последующее возвращение.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **My knuckle had swollen by the time we got home.**
-- ❌ My knuckle has swollen by the time we got home. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ My knuckle was swollen by the time we got home. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ My knuckle has swollen by the time we got home. — *Результат к моменту в прошлом: had + done.*
+- ❌ My knuckle was swollen by the time we got home. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Toenails — ногти на ногах; fingernails — на руках. I had 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I had painted my toenails by the time she arrived.**
-- ❌ I have painted my toenails by the time she arrived. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ I was painted my toenails by the time she arrived. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ I have painted my toenails by the time she arrived. — *Результат к моменту в прошлом: had + done.*
+- ❌ I was painted my toenails by the time she arrived. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -88,8 +88,8 @@ My ___ hurts. → **knuckle** · nostril · tissue
 **9 · Вы подстригли ногти вчера. Выберите время для законченного события.**
 <!-- interaction_id: en:lesson-25:session-34:i06; family: context_gap_grammar -->
 I ___ my nails yesterday. → **cut** · have cut · had cutting
-- have cut — *Yesterday называет законченный момент; здесь нужен Past Simple cut.*
-- had cutting — *Had cutting не образует Past Perfect; для вчерашнего события достаточно cut.*
+- have cut — *Yesterday называет законченный момент; здесь нужна форма прошлого cut.*
+- had cutting — *Had cutting не образует had + done; для вчерашнего события достаточно cut.*
 
 **10 · Карточка слова — toenails**
 <!-- interaction_id: en:lesson-25:session-34:word:toenails; family: word_card -->

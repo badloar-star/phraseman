@@ -142,7 +142,7 @@ I ___ your sleeve yesterday. → **pulled** · have pulled · would pull
 **20 · Ви хочете спробувати ще раз. Потрібна одна додаткова спроба.**
 <!-- interaction_id: en:lesson-25:session-12:i16; family: context_gap_grammar -->
 Can I have ___ try? → **another** · other · others
-- other — *Перед одниною try без артикля використовуємо another.*
+- other — *Перед try (одна спроба) використовуємо another, без a.*
 - others — *Others уживається без наступного іменника.*
 
 **21 · Згадайте колишнє почуття: «Раніше я боявся темряви».**

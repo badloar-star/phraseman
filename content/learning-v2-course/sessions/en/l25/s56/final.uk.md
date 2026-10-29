@@ -15,7 +15,7 @@
 
 - ✅ **The seat was occupied when we arrived.**
 - ❌ The seat is occupied when we arrived. — *Стан у названий момент минулого: was.*
-- ❌ The seat been occupied when we arrived. — *Для однини в Past Simple потрібна форма was.*
+- ❌ The seat been occupied when we arrived. — *Коли йдеться про одне, у формі минулого потрібна форма was.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Номер був вільний після приїзду
 
-Ви розповідаєте про вчорашнє заселення: потрібний номер виявився вільним. Скажіть: The room was vacant when we arrived — номер був вільний, коли ми приїхали. Складаємо: The room + was + vacant + when we arrived — що, був, у якому стані, у який момент. The room — однина, тому в минулому потрібна was. Vacant описує стан номера. When we arrived указує момент у минулому, тому is тут не підходить.
+Ви розповідаєте про вчорашнє заселення: потрібний номер виявився вільним. Скажіть: The room was vacant when we arrived — номер був вільний, коли ми приїхали. Складаємо: The room + was + vacant + when we arrived — що, був, у якому стані, у який момент. The room — одна річ, тому в минулому потрібна was. Vacant описує стан номера. When we arrived указує момент у минулому, тому is тут не підходить.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The room was vacant when we arrived.**
 - ❌ The room is vacant when we arrived. — *Стан у названий момент минулого: was.*
-- ❌ The room been vacant when we arrived. — *Для однини в Past Simple потрібна форма was.*
+- ❌ The room been vacant when we arrived. — *Коли йдеться про одне, у формі минулого потрібна форма was.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Якою була кухня після приїзду
 
-Ви згадуєте вчорашній прихід до будинку: кухня була залита сонячним світлом. Скажіть: The kitchen was sunlit when we arrived — кухня була освітлена сонцем, коли ми прийшли. Складаємо: The kitchen + was + sunlit + when we arrived — що, була, якою, у який момент. The kitchen — однина, тому ставимо was. Sunlit описує стан кухні, а when we arrived задає минулий момент. Після підмета потрібна was; одне been її не замінює.
+Ви згадуєте вчорашній прихід до будинку: кухня була залита сонячним світлом. Скажіть: The kitchen was sunlit when we arrived — кухня була освітлена сонцем, коли ми прийшли. Складаємо: The kitchen + was + sunlit + when we arrived — що, була, якою, у який момент. The kitchen — одна річ, тому ставимо was. Sunlit описує стан кухні, а when we arrived задає минулий момент. Після підмета потрібна was; одне been її не замінює.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The kitchen was sunlit when we arrived.**
 - ❌ The kitchen is sunlit when we arrived. — *Стан у названий момент минулого: was.*
-- ❌ The kitchen been sunlit when we arrived. — *Для однини в Past Simple потрібна форма was.*
+- ❌ The kitchen been sunlit when we arrived. — *Коли йдеться про одне, у формі минулого потрібна форма was.*
 
 ---
 
@@ -142,7 +142,7 @@ We went for a walk ___ we left our bags. → **after** · before · while
 **20 · У номері лише один стілець, а вас двоє. Попросіть ще один.**
 <!-- interaction_id: en:lesson-25:session-56:i16; family: context_gap_grammar -->
 Could we have ___ chair? → **another** · other · others
-- other — *Chair в однині, тому another.*
+- other — *Ідеться про одне — Chair, тому another.*
 - others — *Others не ставиться перед chair.*
 
 **21 · Подякуйте працівникові за допомогу: «Дякуємо, це все, що нам потрібно».**

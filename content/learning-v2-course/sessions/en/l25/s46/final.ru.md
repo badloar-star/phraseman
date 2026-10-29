@@ -142,7 +142,7 @@ We ___ set the table by the time our guests arrived. → **had** · have · were
 **20 · Первый рассказ закончился. Дети просят ещё один.**
 <!-- interaction_id: en:lesson-25:session-46:i16; family: context_gap_grammar -->
 Please tell us ___ story. → **another** · other · others
-- other — *Story в единственном числе, поэтому another.*
+- other — *Речь об одном — Story, поэтому another.*
 - others — *Others не ставится перед story.*
 
 **21 · Вспомните порядок дел: «Мы убрали кухню после того, как гости ушли».**

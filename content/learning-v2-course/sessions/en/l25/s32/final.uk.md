@@ -9,13 +9,13 @@
 
 ### Дзвінок перед виходом
 
-Fiancé — наречений, чоловік, із яким людина заручена. My fiancé called before I left — мій наречений зателефонував до того, як я пішла. Спочатку був дзвінок, потім вихід. Fiancé називають людину й до дня весілля. Це не чоловік у шлюбі: про шлюб поки не сказано. Після my артикль не ставимо.
+Fiancé — наречений, чоловік, із яким людина заручена. My fiancé called before I left — мій наречений зателефонував до того, як я пішла. Спочатку був дзвінок, потім вихід. Fiancé називають людину й до дня весілля. Це не чоловік у шлюбі: про шлюб поки не сказано. Після my a / the не ставимо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My fiancé called before I left.**
 - ❌ My fiancé call before I left. — *Для розповіді про минуле потрібна форма called.*
-- ❌ My fiancé calling before I left. — *Тут використовуємо Past Simple: called.*
+- ❌ My fiancé calling before I left. — *Тут використовуємо форму минулого: called.*
 
 ---
 
@@ -23,13 +23,13 @@ Fiancé — наречений, чоловік, із яким людина за�
 
 ### Наречена приїхала після приготування вечері
 
-Ви розповідаєте про вчорашню вечерю: спочатку ви приготували їжу, а потім приїхала наречена. Скажіть: My fiancée arrived after I cooked dinner — моя наречена приїхала після того, як я приготував вечерю. Складаємо: My fiancée + arrived + after I cooked dinner — хто, що зробив, після якої події. After показує, що приготування вечері було раніше приїзду. В обох частинах past simple: до arrive додаємо -d, до cook — -ed.
+Ви розповідаєте про вчорашню вечерю: спочатку ви приготували їжу, а потім приїхала наречена. Скажіть: My fiancée arrived after I cooked dinner — моя наречена приїхала після того, як я приготував вечерю. Складаємо: My fiancée + arrived + after I cooked dinner — хто, що зробив, після якої події. After показує, що приготування вечері було раніше приїзду. В обох частинах форма минулого: до arrive додаємо -d, до cook — -ed.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My fiancée arrived after I cooked dinner.**
 - ❌ My fiancée arrive after I cooked dinner. — *Для розповіді про минуле потрібна форма arrived.*
-- ❌ My fiancée arriving after I cooked dinner. — *Тут використовуємо Past Simple: arrived.*
+- ❌ My fiancée arriving after I cooked dinner. — *Тут використовуємо форму минулого: arrived.*
 
 ---
 
@@ -43,7 +43,7 @@ Stepdaughter — падчерка, донька чоловіка чи дружи
 
 - ✅ **My stepdaughter helped after she finished her homework.**
 - ❌ My stepdaughter help after she finished her homework. — *Для розповіді про минуле потрібна форма helped.*
-- ❌ My stepdaughter helping after she finished her homework. — *Тут використовуємо Past Simple: helped.*
+- ❌ My stepdaughter helping after she finished her homework. — *Тут використовуємо форму минулого: helped.*
 
 ---
 
@@ -136,7 +136,7 @@ I ___ prepared the room before my family arrived. → **had** · have · was
 **19 · Учора ви один раз забрали дітей зі школи.**
 <!-- interaction_id: en:lesson-25:session-32:i15; family: context_gap_grammar -->
 I ___ the children from school yesterday. → **collected** · have collected · would collect
-- have collected — *Yesterday потребує Past Simple collected.*
+- have collected — *Yesterday потребує форми минулого collected.*
 - would collect — *Would collect описує колишню звичку, не один учорашній випадок.*
 
 **20 · Послухайте й виберіть**

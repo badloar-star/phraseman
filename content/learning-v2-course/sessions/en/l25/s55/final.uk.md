@@ -142,7 +142,7 @@ I tried the coat on ___ I paid. → **before** · after · while
 **20 · Ця сорочка не підходить. Ви хочете подивитися іншу.**
 <!-- interaction_id: en:lesson-25:session-55:i16; family: context_gap_grammar -->
 Can I see ___ shirt? → **another** · other · others
-- other — *Shirt в однині, тому another.*
+- other — *Ідеться про одне — Shirt, тому another.*
 - others — *Others не ставиться перед shirt.*
 
 **21 · Запитайте про місце примірки: «Де примірочна?»**

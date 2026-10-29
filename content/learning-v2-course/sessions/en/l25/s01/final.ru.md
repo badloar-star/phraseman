@@ -119,7 +119,7 @@ bungalow — одноэтажный дом · estate — жилой массив
 <!-- interaction_id: en:lesson-25:session-01:i11; family: context_gap_grammar -->
 Yesterday we ___ the fairground. → **visited** · used to visit · used to visited
 - used to visit — *Used to visit описывает прежние повторявшиеся посещения; yesterday здесь обозначает один поход.*
-- used to visited — *После used to нельзя ставить visited; кроме того, здесь нужен Past Simple для одного события.*
+- used to visited — *После used to нельзя ставить visited; кроме того, здесь нужна форма прошлого для одного события.*
 
 **16 · Теперь здесь пустое помещение. Скажите: «Раньше здесь был магазин».**
 <!-- interaction_id: en:lesson-25:session-01:i12; family: phrase_builder -->

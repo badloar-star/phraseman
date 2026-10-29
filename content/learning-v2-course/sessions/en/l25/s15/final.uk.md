@@ -122,7 +122,7 @@ gulp — пити великими ковтками · nibble — їсти ма�
 **16 · Ви вже поїли; зараз голоду немає. Доповніть фразу з have / has.**
 <!-- interaction_id: en:lesson-25:session-15:i12; family: context_gap_grammar -->
 I have already ___. → **eaten** · ate · eat
-- ate — *Після have потрібна третя форма eaten, а не ate.*
+- ate — *Після have потрібна форма eaten, а не ate.*
 - eat — *Have eat неправильно; використовуємо have eaten.*
 
 **17 · Почуйте один учорашній випадок.**

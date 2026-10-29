@@ -15,7 +15,7 @@ Accuse — обвинять. They had accused him of lying before he showed the 
 
 - ✅ **They had accused him of lying before he showed the letter.**
 - ❌ They have accused him of lying before he showed the letter. — *Для более раннего события в прошлом используем had.*
-- ❌ They were accused him of lying before he showed the letter. — *Здесь нужно had + третья форма.*
+- ❌ They were accused him of lying before he showed the letter. — *Здесь нужно had + done.*
 
 ---
 
@@ -23,13 +23,13 @@ Accuse — обвинять. They had accused him of lying before he showed the 
 
 ### Запрет уже действовал
 
-Вы вспоминаете вечер дома: мама запретила перекусы, а позже вы открыли шкаф с едой. Скажите: My mother had forbidden snacks before I opened the cupboard — мама запретила перекусы до того, как я открыл шкаф. Собираем: My mother + had forbidden + snacks + before I opened the cupboard — кто, что сделал раньше, что запретил, до какого события. После had нужна третья форма forbidden, а не forbid или forbade. Had forbidden отмечает более ранний запрет; opened — последующее открытие шкафа.
+Вы вспоминаете вечер дома: мама запретила перекусы, а позже вы открыли шкаф с едой. Скажите: My mother had forbidden snacks before I opened the cupboard — мама запретила перекусы до того, как я открыл шкаф. Собираем: My mother + had forbidden + snacks + before I opened the cupboard — кто, что сделал раньше, что запретил, до какого события. После had нужна форма forbidden, а не forbid или forbade. Had forbidden отмечает более ранний запрет; opened — последующее открытие шкафа.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **My mother had forbidden snacks before I opened the cupboard.**
 - ❌ My mother has forbidden snacks before I opened the cupboard. — *Для более раннего события в прошлом используем had.*
-- ❌ My mother was forbidden snacks before I opened the cupboard. — *Здесь нужно had + третья форма.*
+- ❌ My mother was forbidden snacks before I opened the cupboard. — *Здесь нужно had + done.*
 
 ---
 
@@ -43,7 +43,7 @@ Applaud — аплодировать, хлопать в знак одобрен�
 
 - ✅ **We had applauded the singer before the lights went out.**
 - ❌ We have applauded the singer before the lights went out. — *Для более раннего события в прошлом используем had.*
-- ❌ We were applauded the singer before the lights went out. — *Здесь нужно had + третья форма.*
+- ❌ We were applauded the singer before the lights went out. — *Здесь нужно had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Applaud — аплодировать, хлопать в знак одобрен�
 
 **1 · Карточка слова — applauded**
 <!-- interaction_id: en:lesson-25:session-22:word:applauded; family: word_card -->
-> **applauded** — Аплодировали. Applaud — аплодировать; applauded — третья форма.
+> **applauded** — Аплодировали. Applaud — аплодировать; applauded — форма после have.
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-22:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Applaud — аплодировать, хлопать в знак одобрен�
 
 **4 · Карточка слова — forbidden**
 <!-- interaction_id: en:lesson-25:session-22:word:forbidden; family: word_card -->
-> **forbidden** — Запретила. Forbid — запрещать; forbidden — третья форма.
+> **forbidden** — Запретила. Forbid — запрещать; forbidden — форма после have.
 
 **5 · В школе было правило: «Учитель запретил телефоны до начала урока».**
 <!-- interaction_id: en:lesson-25:session-22:i03; family: phrase_builder -->
@@ -74,7 +74,7 @@ Applaud — аплодировать, хлопать в знак одобрен�
 **6 · Учитель запретил фотографии до того, как вы вошли. Выберите нужную форму слова.**
 <!-- interaction_id: en:lesson-25:session-22:i04; family: context_gap_grammar -->
 The teacher had ___ photos before we came in. → **forbidden** · forbade · forbid
-- forbade — *Forbade — Past Simple; после had нужна форма forbidden.*
+- forbade — *Forbade — форма прошлого; после had нужна форма forbidden.*
 - forbid — *Forbid — базовая форма; после had нужна forbidden.*
 
 **7 · Послушайте и выберите**
@@ -85,7 +85,7 @@ The teacher had ___ photos before we came in. → **forbidden** · forbade · fo
 
 **8 · Карточка слова — begged**
 <!-- interaction_id: en:lesson-25:session-22:word:begged; family: word_card -->
-> **begged** — Умолял. Beg — умолять, очень настойчиво просить; begged — третья форма.
+> **begged** — Умолял. Beg — умолять, очень настойчиво просить; begged — форма после have.
 
 **9 · Услышьте рассказ о просьбе ребёнка.**
 <!-- interaction_id: en:lesson-25:session-22:i06; family: listen_build_dictation -->
@@ -97,7 +97,7 @@ The teacher had ___ photos before we came in. → **forbidden** · forbade · fo
 
 **11 · Карточка слова — accused**
 <!-- interaction_id: en:lesson-25:session-22:word:accused; family: word_card -->
-> **accused** — Обвинили. Accuse — обвинять; accused — третья форма.
+> **accused** — Обвинили. Accuse — обвинять; accused — форма после have.
 
 **12 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-22:i08; family: listen_choose -->
@@ -132,7 +132,7 @@ accused — обвинили · forbidden — запретила · begged — �
 **18 · Один концерт закончился вчера. Вы поаплодировали тогда.**
 <!-- interaction_id: en:lesson-25:session-22:i14; family: context_gap_grammar -->
 We ___ the singer yesterday. → **applauded** · have applauded · would applaud
-- have applauded — *Yesterday требует Past Simple applauded.*
+- have applauded — *Yesterday требует формы прошлого applauded.*
 - would applaud — *Would applaud описывает прежнюю привычку; здесь один концерт.*
 
 **19 · Услышьте, почему зритель опоздал.**
@@ -143,7 +143,7 @@ We ___ the singer yesterday. → **applauded** · have applauded · would applau
 <!-- interaction_id: en:lesson-25:session-22:i16; family: context_gap_grammar -->
 I have already ___ sorry. → **said** · say · saying
 - say — *После have нужна форма said.*
-- saying — *Have saying не образует Present Perfect.*
+- saying — *Have saying не образует have / has + done.*
 
 **21 · Укажите, где остальные дети: «Другие дети ждут у двери».**
 <!-- interaction_id: en:lesson-25:session-22:i17; family: phrase_builder -->

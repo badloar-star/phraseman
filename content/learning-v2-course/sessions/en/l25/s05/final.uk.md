@@ -126,8 +126,8 @@ deaf — глухий · disabled — з інвалідністю · homeless �
 **17 · Ви розповідаєте про досвід без дати. Доповніть фразу з have / has.**
 <!-- interaction_id: en:lesson-25:session-05:i13; family: context_gap_grammar -->
 I have ___ with deaf adults before. → **worked** · work · working
-- work — *Після have у Present Perfect потрібна форма worked.*
-- working — *Working тут не утворює Present Perfect; потрібно worked.*
+- work — *Після have у have / has + done потрібна форма worked.*
+- working — *Working тут не утворює have / has + done; потрібно worked.*
 
 **18 · Запропонуйте наступний крок: «Ми можемо запросити ще одного друга».**
 <!-- interaction_id: en:lesson-25:session-05:i14; family: scripted_repeat_compare -->
@@ -142,7 +142,7 @@ I have ___ with deaf adults before. → **worked** · work · working
 **20 · Йдеться про одну вечерю вчора. Виберіть форму для завершеної події.**
 <!-- interaction_id: en:lesson-25:session-05:i16; family: context_gap_grammar -->
 We ___ dinner together yesterday. → **cooked** · have cooked · used to cook
-- have cooked — *Yesterday потребує тут Past Simple: cooked.*
+- have cooked — *Yesterday потребує тут форми минулого: cooked.*
 - used to cook — *Used to cook описує колишню звичку, а тут була одна вечеря.*
 
 **21 · Розкажіть, як ви проводили вихідні раніше: «Раніше я навідував свого сусіда щонеділі».**

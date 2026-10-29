@@ -142,7 +142,7 @@ I washed the dishes ___ I ate. → **after** · before · while
 **20 · Друг просит немного подождать. Ему нужна ещё минута.**
 <!-- interaction_id: en:lesson-25:session-50:i16; family: context_gap_grammar -->
 Give me ___ minute, please. → **another** · other · others
-- other — *Minute в единственном числе, поэтому another.*
+- other — *Речь об одном — Minute, поэтому another.*
 - others — *Others не ставится перед minute.*
 
 **21 · Подтвердите, что успели: «Мы прибыли вовремя».**

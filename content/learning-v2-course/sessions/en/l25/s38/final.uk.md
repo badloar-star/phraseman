@@ -9,13 +9,13 @@
 
 ### Уже чув новини
 
-Listener — слухач. The listener had heard the news by the time I called — слухач уже почув новини до того моменту, коли я зателефонував. Наприклад, він слухав радіо. Listener називає людину, а heard — третя форма hear. Had heard показує, що до дзвінка новина вже була йому відома.
+Listener — слухач. The listener had heard the news by the time I called — слухач уже почув новини до того моменту, коли я зателефонував. Наприклад, він слухав радіо. Listener називає людину, а heard — форма hear після have. Had heard показує, що до дзвінка новина вже була йому відома.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The listener had heard the news by the time I called.**
-- ❌ The listener has heard the news by the time I called. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ The listener was heard the news by the time I called. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ The listener has heard the news by the time I called. — *Результат до моменту в минулому: had + done.*
+- ❌ The listener was heard the news by the time I called. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Listener — слухач. The listener had heard the news by the time I called 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The viewer had changed the channel by the time the film started.**
-- ❌ The viewer has changed the channel by the time the film started. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ The viewer was changed the channel by the time the film started. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ The viewer has changed the channel by the time the film started. — *Результат до моменту в минулому: had + done.*
+- ❌ The viewer was changed the channel by the time the film started. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Pensioner — пенсіонер, людина, яка отримує пенсі
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The pensioner had caught the bus by the time it started raining.**
-- ❌ The pensioner has caught the bus by the time it started raining. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ The pensioner was caught the bus by the time it started raining. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ The pensioner has caught the bus by the time it started raining. — *Результат до моменту в минулому: had + done.*
+- ❌ The pensioner was caught the bus by the time it started raining. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -102,7 +102,7 @@ The ___ changed the channel. → **viewer** · listener · driver
 **12 · Автобус поїхав раніше за ваш прихід. Виберіть форму слова після had.**
 <!-- interaction_id: en:lesson-25:session-38:i08; family: context_gap_grammar -->
 The bus had ___ by the time I reached the stop. → **gone** · went · go
-- went — *Went — Past Simple; після had потрібна третя форма gone.*
+- went — *Went — форма минулого; після had потрібна форма gone.*
 - go — *Go — початкова форма; тут потрібно had gone.*
 
 **13 · Зіставте слова з перекладом**
@@ -116,8 +116,8 @@ listener — слухач · viewer — глядач · learner — учень �
 **15 · Передача вже закінчилася, і зараз її більше не показують. Виберіть форму з have / has.**
 <!-- interaction_id: en:lesson-25:session-38:i11; family: context_gap_grammar -->
 The programme ___. → **has already ended** · have already ended · has already end
-- have already ended — *Programme в однині вимагає has.*
-- has already end — *Після has потрібна третя форма ended.*
+- have already ended — *Ідеться про одне — Programme, тому has.*
+- has already end — *Після has потрібна форма ended.*
 
 **16 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-38:i12; family: listen_choose -->
@@ -142,7 +142,7 @@ I went shopping ___ I had breakfast. → **after** · before · while
 **20 · Усі місця в цьому ряду зайняті. Ви пропонуєте пошукати ще один стілець.**
 <!-- interaction_id: en:lesson-25:session-38:i16; family: context_gap_grammar -->
 Let us find ___ chair. → **another** · other · others
-- other — *Chair в однині, тому another.*
+- other — *Ідеться про одне — Chair, тому another.*
 - others — *Others не ставиться перед chair.*
 
 **21 · Завершіть розмову подякою: «Дякую, що мене вислухав».**

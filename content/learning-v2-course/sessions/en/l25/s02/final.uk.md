@@ -62,7 +62,7 @@ Athletics — легка атлетика: біг, стрибки та інші 
 **3 · Йдеться про один урок учора, а не про колишню звичку.**
 <!-- interaction_id: en:lesson-25:session-02:i02; family: context_gap_grammar -->
 I ___ a photo in class yesterday. → **took** · have taken · used to take
-- have taken — *Yesterday — завершений час у минулому, тому потрібен Past Simple: took.*
+- have taken — *Yesterday — завершений час у минулому, тому потрібна форма минулого: took.*
 - used to take — *Used to take описує колишню звичку; тут ідеться про один знімок учора.*
 
 **4 · Тепер ви рідко користуєтеся камерою. Скажіть: «Раніше я носив камеру всюди».**
@@ -80,8 +80,8 @@ I ___ a photo in class yesterday. → **took** · have taken · used to take
 **7 · Ви говорите про свій досвід без дати. Доповніть фразу з have / has.**
 <!-- interaction_id: en:lesson-25:session-02:i05; family: context_gap_grammar -->
 I have ___ this sport twice. → **tried** · try · trying
-- try — *Після have у Present Perfect потрібна форма tried.*
-- trying — *Trying не утворює тут Present Perfect; потрібна форма tried.*
+- try — *Після have у have / has + done потрібна форма tried.*
+- trying — *Trying не утворює тут have / has + done; потрібна форма tried.*
 
 **8 · Розкажіть про дитинство: «Раніше я бігав після школи».**
 <!-- interaction_id: en:lesson-25:session-02:i06; family: scripted_repeat_compare -->
@@ -142,7 +142,7 @@ athletics — легка атлетика · archery — стрільба з л�
 **20 · Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — кілька предметів.**
 <!-- interaction_id: en:lesson-25:session-02:i16; family: context_gap_grammar -->
 What ___ sports do you enjoy? → **other** · another · others
-- another — *Another ставимо перед злічуваним іменником в однині, а sports — множина.*
+- another — *Another ставимо перед назвою одного предмета, а sports — форма для кількох.*
 - others — *Перед іменником sports потрібно other без -s.*
 
 **21 · Тепер ви любите спорт. Скажіть про минуле: «Раніше я боявся пробувати нові заняття».**

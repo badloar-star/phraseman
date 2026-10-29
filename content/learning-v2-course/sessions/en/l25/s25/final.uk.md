@@ -9,13 +9,13 @@
 
 ### Зупинитися після руху назад
 
-Ви розповідаєте, як учора паркувалися: спочатку здали назад, потім зупинилися. Скажіть: I stopped after I reversed — я зупинився після того, як здав назад. Складаємо: I + stopped + after I reversed — хто, що зробив, після якої події. After означає «після того як» і вводить цілу частину з I та reversed. Обидві частини в past simple: stopped і reversed. Подія після after відбулася раніше зупинки, хоча названа наприкінці фрази. Можна поставити її першою: After I reversed, I stopped. Тоді після першої частини потрібна кома.
+Ви розповідаєте, як учора паркувалися: спочатку здали назад, потім зупинилися. Скажіть: I stopped after I reversed — я зупинився після того, як здав назад. Складаємо: I + stopped + after I reversed — хто, що зробив, після якої події. After означає «після того як» і вводить цілу частину з I та reversed. Обидві частини в формі минулого: stopped і reversed. Подія після after відбулася раніше зупинки, хоча названа наприкінці фрази. Можна поставити її першою: After I reversed, I stopped. Тоді після першої частини потрібна кома.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I stopped after I reversed.**
 - ❌ I stopped after I reverse. — *Розповідь про минуле: потрібна форма reversed.*
-- ❌ I stopped after I reversing. — *Тут потрібен Past Simple: reversed.*
+- ❌ I stopped after I reversing. — *Тут потрібна форма минулого: reversed.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Подивитися в дзеркало до обгону
 
-Ви розповідаєте про водія: перед обгоном автобуса він подивився в дзеркало. Скажіть: He checked his mirror before he overtook the bus — він подивився в дзеркало до того, як обігнав автобус. Складаємо: He + checked + his mirror + before he overtook the bus — хто, що зробив, що перевірив, до якої події. Before означає «до того як»: перевірка дзеркала була раніше обгону. В обох частинах past simple: checked із -ed і неправильна форма overtook. Можна почати з пізнішої події: Before he overtook the bus, he checked his mirror. Порядок дій той самий, після першої частини ставимо кому.
+Ви розповідаєте про водія: перед обгоном автобуса він подивився в дзеркало. Скажіть: He checked his mirror before he overtook the bus — він подивився в дзеркало до того, як обігнав автобус. Складаємо: He + checked + his mirror + before he overtook the bus — хто, що зробив, що перевірив, до якої події. Before означає «до того як»: перевірка дзеркала була раніше обгону. В обох частинах форма минулого: checked із -ed і неправильна форма overtook. Можна почати з пізнішої події: Before he overtook the bus, he checked his mirror. Порядок дій той самий, після першої частини ставимо кому.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He checked his mirror before he overtook the bus.**
 - ❌ He checked his mirror before he overtake the bus. — *Розповідь про минуле: потрібна форма overtook.*
-- ❌ He checked his mirror before he overtaking the bus. — *Тут потрібен Past Simple: overtook.*
+- ❌ He checked his mirror before he overtaking the bus. — *Тут потрібна форма минулого: overtook.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Переставляємо частини
 
-Collide — стикатися. After the cars collided, we called for help — після того як машини зіткнулися, ми покликали на допомогу. Спочатку сталося зіткнення, потім ми покликали на допомогу. Можна поміняти частини місцями, зберігши порядок подій: We called for help after the cars collided. У такому порядку кома зазвичай не потрібна. Before та after допомагають зрозуміти послідовність; Past Perfect тут не обов’язковий.
+Collide — стикатися. After the cars collided, we called for help — після того як машини зіткнулися, ми покликали на допомогу. Спочатку сталося зіткнення, потім ми покликали на допомогу. Можна поміняти частини місцями, зберігши порядок подій: We called for help after the cars collided. У такому порядку кома зазвичай не потрібна. Before та after допомагають зрозуміти послідовність; had + done тут не обов’язковий.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We called for help after the cars collided.**
 - ❌ We called for help after the cars collide. — *Розповідь про минуле: потрібна форма collided.*
-- ❌ We called for help after the cars colliding. — *Тут потрібен Past Simple: collided.*
+- ❌ We called for help after the cars colliding. — *Тут потрібна форма минулого: collided.*
 
 ---
 

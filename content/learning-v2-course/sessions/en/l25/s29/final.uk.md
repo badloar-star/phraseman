@@ -15,7 +15,7 @@ Sincere — щирий. His apology was sincere after we argued — після �
 
 - ✅ **His apology was sincere after we argued.**
 - ❌ His apology is sincere after we argued. — *Для розповіді про минуле потрібна форма was.*
-- ❌ His apology be sincere after we argued. — *Тут використовуємо Past Simple: was.*
+- ❌ His apology be sincere after we argued. — *Тут використовуємо форму минулого: was.*
 
 ---
 
@@ -29,7 +29,7 @@ Sincere — щирий. His apology was sincere after we argued — після �
 
 - ✅ **I was impolite before I apologised.**
 - ❌ I am impolite before I apologised. — *Для розповіді про минуле потрібна форма was.*
-- ❌ I be impolite before I apologised. — *Тут використовуємо Past Simple: was.*
+- ❌ I be impolite before I apologised. — *Тут використовуємо форму минулого: was.*
 
 ---
 
@@ -37,13 +37,13 @@ Sincere — щирий. His apology was sincere after we argued — після �
 
 ### Як я почувався
 
-Coward — боягуз. I felt like a coward after I ran away — я почувався боягузом після того, як утік. Це оцінка власного вчинку, а не просто повідомлення «мені було страшно». Coward — іменник про людину: a coward. У felt like a coward слово like означає «як». Felt і ran — форми Past Simple; після after названо подію, яка сталася раніше.
+Coward — боягуз. I felt like a coward after I ran away — я почувався боягузом після того, як утік. Це оцінка власного вчинку, а не просто повідомлення «мені було страшно». Coward — іменник про людину: a coward. У felt like a coward слово like означає «як». Felt і ran — форми минулого; після after названо подію, яка сталася раніше.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I felt like a coward after I ran away.**
 - ❌ I feel like a coward after I ran away. — *Для розповіді про минуле потрібна форма felt.*
-- ❌ I feeling like a coward after I ran away. — *Тут використовуємо Past Simple: felt.*
+- ❌ I feeling like a coward after I ran away. — *Тут використовуємо форму минулого: felt.*
 
 ---
 
@@ -142,7 +142,7 @@ We ___ finished talking before the teacher arrived. → **had** · have · were
 **20 · Ви побачили друга вчора й вибачилися тоді.**
 <!-- interaction_id: en:lesson-25:session-29:i16; family: context_gap_grammar -->
 I ___ yesterday. → **apologised** · have apologised · would apologise
-- have apologised — *Yesterday потребує Past Simple apologised.*
+- have apologised — *Yesterday потребує форми минулого apologised.*
 - would apologise — *Тут один учорашній випадок, а не повторювана звичка.*
 
 **21 · Запропонуйте вислухати інших: «Давай послухаємо інших людей».**

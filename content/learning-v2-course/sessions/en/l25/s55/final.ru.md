@@ -142,7 +142,7 @@ I tried the coat on ___ I paid. → **before** · after · while
 **20 · Эта рубашка не подходит. Вы хотите посмотреть другую.**
 <!-- interaction_id: en:lesson-25:session-55:i16; family: context_gap_grammar -->
 Can I see ___ shirt? → **another** · other · others
-- other — *Shirt в единственном числе, поэтому another.*
+- other — *Речь об одном — Shirt, поэтому another.*
 - others — *Others не ставится перед shirt.*
 
 **21 · Спросите о месте примерки: «Где примерочная?»**

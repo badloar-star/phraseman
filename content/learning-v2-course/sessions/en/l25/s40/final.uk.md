@@ -14,8 +14,8 @@ Bang — видати гучний різкий стукіт чи грюкіт. 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The door had banged shut by the time I reached it.**
-- ❌ The door has banged shut by the time I reached it. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ The door was banged shut by the time I reached it. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ The door has banged shut by the time I reached it. — *Результат до моменту в минулому: had + done.*
+- ❌ The door was banged shut by the time I reached it. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Bang — видати гучний різкий стукіт чи грюкіт. 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The plates had crashed to the floor by the time I caught the tray.**
-- ❌ The plates have crashed to the floor by the time I caught the tray. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ The plates were crashed to the floor by the time I caught the tray. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ The plates have crashed to the floor by the time I caught the tray. — *Результат до моменту в минулому: had + done.*
+- ❌ The plates were crashed to the floor by the time I caught the tray. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Bang — видати гучний різкий стукіт чи грюкіт. 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The driver had honked by the time I saw the car.**
-- ❌ The driver has honked by the time I saw the car. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ The driver was honked by the time I saw the car. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ The driver has honked by the time I saw the car. — *Результат до моменту в минулому: had + done.*
+- ❌ The driver was honked by the time I saw the car. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Bang — видати гучний різкий стукіт чи грюкіт. 
 
 **1 · Картка слова — banged**
 <!-- interaction_id: en:lesson-25:session-40:word:banged; family: word_card -->
-> **banged** — Грюкнула. Bang — видати гучний різкий стукіт чи грюкіт; banged — третя форма.
+> **banged** — Грюкнула. Bang — видати гучний різкий стукіт чи грюкіт; banged — форма після have.
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-40:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Bang — видати гучний різкий стукіт чи грюкіт. 
 
 **4 · Картка слова — crashed**
 <!-- interaction_id: en:lesson-25:session-40:word:crashed; family: word_card -->
-> **crashed** — З гуркотом упали. Crash тут — з гуркотом упасти; crashed — третя форма.
+> **crashed** — З гуркотом упали. Crash тут — з гуркотом упасти; crashed — форма після have.
 
 **5 · Розкажіть, що впало: «Миски з гуркотом упали на підлогу».**
 <!-- interaction_id: en:lesson-25:session-40:i03; family: phrase_builder -->
@@ -75,11 +75,11 @@ Bang — видати гучний різкий стукіт чи грюкіт. 
 <!-- interaction_id: en:lesson-25:session-40:i04; family: context_gap_grammar -->
 I ___ a plate yesterday. → **dropped** · have dropped · dropping
 - have dropped — *Yesterday — завершений момент, тому dropped.*
-- dropping — *Dropping без допоміжного дієслова тут не підходить.*
+- dropping — *Однієї форми Dropping тут замало.*
 
 **7 · Картка слова — beeped**
 <!-- interaction_id: en:lesson-25:session-40:word:beeped; family: word_card -->
-> **beeped** — Подав звуковий сигнал. Beep — видати короткий електронний писк; beeped — третя форма.
+> **beeped** — Подав звуковий сигнал. Beep — видати короткий електронний писк; beeped — форма після have.
 
 **8 · Почуйте, який прилад подав сигнал.**
 <!-- interaction_id: en:lesson-25:session-40:i05; family: listen_build_dictation -->
@@ -93,7 +93,7 @@ I ___ a plate yesterday. → **dropped** · have dropped · dropping
 
 **10 · Картка слова — honked**
 <!-- interaction_id: en:lesson-25:session-40:word:honked; family: word_card -->
-> **honked** — Посигналив. Honk — подати сигнал автомобільним гудком; honked — третя форма.
+> **honked** — Посигналив. Honk — подати сигнал автомобільним гудком; honked — форма після have.
 
 **11 · Водій подав сигнал автомобільним гудком. Виберіть honked.**
 <!-- interaction_id: en:lesson-25:session-40:i07; family: context_gap_grammar -->
@@ -128,7 +128,7 @@ I ___ turned the oven off by the time my friend arrived. → **had** · have · 
 **17 · Тарілка розбилася. Ви берете ще одну.**
 <!-- interaction_id: en:lesson-25:session-40:i13; family: context_gap_grammar -->
 I need ___ plate. → **another** · other · others
-- other — *Plate в однині, тому another.*
+- other — *Ідеться про одне — Plate, тому another.*
 - others — *Others не вживається перед plate.*
 
 **18 · Ви випадково розбудили друга. Вибачтеся: «Вибач, що розбудив тебе».**

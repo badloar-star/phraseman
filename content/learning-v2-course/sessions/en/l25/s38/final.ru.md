@@ -9,13 +9,13 @@
 
 ### Уже слышал новости
 
-Listener — слушатель. The listener had heard the news by the time I called — слушатель уже услышал новости к тому моменту, когда я позвонил. Например, он слушал радио. Listener называет человека, а heard — третья форма hear. Had heard показывает, что к звонку новость уже была ему известна.
+Listener — слушатель. The listener had heard the news by the time I called — слушатель уже услышал новости к тому моменту, когда я позвонил. Например, он слушал радио. Listener называет человека, а heard — форма hear после have. Had heard показывает, что к звонку новость уже была ему известна.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The listener had heard the news by the time I called.**
-- ❌ The listener has heard the news by the time I called. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ The listener was heard the news by the time I called. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ The listener has heard the news by the time I called. — *Результат к моменту в прошлом: had + done.*
+- ❌ The listener was heard the news by the time I called. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Listener — слушатель. The listener had heard the news by the time I c
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The viewer had changed the channel by the time the film started.**
-- ❌ The viewer has changed the channel by the time the film started. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ The viewer was changed the channel by the time the film started. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ The viewer has changed the channel by the time the film started. — *Результат к моменту в прошлом: had + done.*
+- ❌ The viewer was changed the channel by the time the film started. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Pensioner — пенсионер, человек, который получае�
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The pensioner had caught the bus by the time it started raining.**
-- ❌ The pensioner has caught the bus by the time it started raining. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ The pensioner was caught the bus by the time it started raining. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ The pensioner has caught the bus by the time it started raining. — *Результат к моменту в прошлом: had + done.*
+- ❌ The pensioner was caught the bus by the time it started raining. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -102,7 +102,7 @@ The ___ changed the channel. → **viewer** · listener · driver
 **12 · Автобус ушёл раньше вашего прихода. Выберите форму слова после had.**
 <!-- interaction_id: en:lesson-25:session-38:i08; family: context_gap_grammar -->
 The bus had ___ by the time I reached the stop. → **gone** · went · go
-- went — *Went — Past Simple; после had нужна третья форма gone.*
+- went — *Went — форма прошлого; после had нужна форма gone.*
 - go — *Go — начальная форма; здесь нужно had gone.*
 
 **13 · Соотнесите слова с переводом**
@@ -116,8 +116,8 @@ listener — слушатель · viewer — зритель · learner — уч
 **15 · Передача уже закончилась, и сейчас её больше не показывают. Выберите форму с have / has.**
 <!-- interaction_id: en:lesson-25:session-38:i11; family: context_gap_grammar -->
 The programme ___. → **has already ended** · have already ended · has already end
-- have already ended — *Programme в единственном числе требует has.*
-- has already end — *После has нужна третья форма ended.*
+- have already ended — *Речь об одном — Programme, поэтому has.*
+- has already end — *После has нужна форма ended.*
 
 **16 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-38:i12; family: listen_choose -->
@@ -142,7 +142,7 @@ I went shopping ___ I had breakfast. → **after** · before · while
 **20 · Все места в этом ряду заняты. Вы предлагаете поискать ещё один стул.**
 <!-- interaction_id: en:lesson-25:session-38:i16; family: context_gap_grammar -->
 Let us find ___ chair. → **another** · other · others
-- other — *Chair в единственном числе, поэтому another.*
+- other — *Речь об одном — Chair, поэтому another.*
 - others — *Others не ставится перед chair.*
 
 **21 · Завершите разговор благодарностью: «Спасибо, что меня выслушал».**

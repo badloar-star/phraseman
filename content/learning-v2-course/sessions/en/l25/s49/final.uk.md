@@ -14,8 +14,8 @@ Humid — вологий, коли йдеться про повітря. We had 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We had left the city before it became humid.**
-- ❌ We have left the city before it became humid. — *Раніше завершена дія: had + третя форма.*
-- ❌ We were left the city before it became humid. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ We have left the city before it became humid. — *Раніше завершена дія: had + done.*
+- ❌ We were left the city before it became humid. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Humid — вологий, коли йдеться про повітря. We had 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We had reached home before it became frosty.**
-- ❌ We have reached home before it became frosty. — *Раніше завершена дія: had + третя форма.*
-- ❌ We were reached home before it became frosty. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ We have reached home before it became frosty. — *Раніше завершена дія: had + done.*
+- ❌ We were reached home before it became frosty. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -37,13 +37,13 @@ Humid — вологий, коли йдеться про повітря. We had 
 
 ### Небо в серпанку
 
-Hazy — оповитий серпанком, не зовсім ясний. The sky had become hazy by the time we reached the beach — небо вже затягло серпанком до того моменту, коли ми дісталися пляжу. Had become описує зміну, яка вже сталася до нашого приходу. Become — третя форма дієслова become; після had не ставимо became. By the time we reached the beach задає пізніший момент.
+Hazy — оповитий серпанком, не зовсім ясний. The sky had become hazy by the time we reached the beach — небо вже затягло серпанком до того моменту, коли ми дісталися пляжу. Had become описує зміну, яка вже сталася до нашого приходу. Become — форма після have від become; після had не ставимо became. By the time we reached the beach задає пізніший момент.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The sky had become hazy by the time we reached the beach.**
-- ❌ The sky has become hazy by the time we reached the beach. — *Раніше завершена дія: had + третя форма.*
-- ❌ The sky was become hazy by the time we reached the beach. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ The sky has become hazy by the time we reached the beach. — *Раніше завершена дія: had + done.*
+- ❌ The sky was become hazy by the time we reached the beach. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -142,7 +142,7 @@ I put my coat on ___ I went outside. → **before** · after · while
 **20 · Чай допоміг зігрітися. Ви просите ще чашку.**
 <!-- interaction_id: en:lesson-25:session-49:i16; family: context_gap_grammar -->
 Could I have ___ cup of tea? → **another** · other · others
-- other — *Cup в однині, тому another.*
+- other — *Ідеться про одне — Cup, тому another.*
 - others — *Others не ставиться перед cup.*
 
 **21 · Розкажіть, що зробили після прогулянки: «Ми зігрілися біля вогню».**

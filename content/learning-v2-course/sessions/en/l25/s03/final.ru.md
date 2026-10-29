@@ -104,7 +104,7 @@ There was ___ in the box. → **something** · someone · somewhere
 **12 · Вы встретили ещё одного старого друга. После пропуска — один человек.**
 <!-- interaction_id: en:lesson-25:session-03:i09; family: context_gap_grammar -->
 I met ___ old friend yesterday. → **another** · other · others
-- other — *Перед одним исчисляемым friend нужно another.*
+- other — *Перед friend (он один) нужно another.*
 - others — *Others употребляется без следующего существительного friend.*
 
 **13 · Карточка слова — nowhere**
@@ -132,7 +132,7 @@ everybody — все, каждый · anybody — кто угодно · somethi
 **18 · Речь об одном разговоре прошлым вечером. Выберите форму для законченного события.**
 <!-- interaction_id: en:lesson-25:session-03:i14; family: context_gap_grammar -->
 I ___ my old neighbour last night. → **called** · have called · used to call
-- have called — *Last night — законченное время: нужен Past Simple called.*
+- have called — *Last night — законченное время: нужна форма прошлого called.*
 - used to call — *Used to call описывает прежнюю привычку, а здесь был один разговор.*
 
 **19 · Послушайте и выберите**

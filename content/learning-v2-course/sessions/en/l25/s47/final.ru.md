@@ -142,7 +142,7 @@ I explained my view ___ I listened to my neighbour. → **after** · before · w
 **20 · Первая попытка договориться не удалась. Вы просите ещё один шанс.**
 <!-- interaction_id: en:lesson-25:session-47:i16; family: context_gap_grammar -->
 Please give me ___ chance. → **another** · other · others
-- other — *Chance в единственном числе, поэтому another.*
+- other — *Речь об одном — Chance, поэтому another.*
 - others — *Others не ставится перед chance.*
 
 **21 · Вспомните прежнее поведение: «Я раньше сердился очень быстро».**

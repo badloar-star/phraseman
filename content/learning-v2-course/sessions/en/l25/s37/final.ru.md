@@ -14,8 +14,8 @@ Traveller — путешественник, человек в поездке. Th
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The traveller had packed by the time the taxi arrived.**
-- ❌ The traveller has packed by the time the taxi arrived. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ The traveller was packed by the time the taxi arrived. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ The traveller has packed by the time the taxi arrived. — *Результат к моменту в прошлом: had + done.*
+- ❌ The traveller was packed by the time the taxi arrived. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -23,13 +23,13 @@ Traveller — путешественник, человек в поездке. Th
 
 ### Покупатель уже заплатил
 
-Вы вспоминаете очередь в магазине: когда вы дошли до кассы, покупатель перед вами уже расплатился. Скажите: The shopper had paid by the time I reached the till — покупатель заплатил к тому времени, как я подошёл к кассе. Собираем: The shopper + had paid + by the time I reached the till — кто, что сделал раньше, к какому моменту в прошлом. После had нужна третья форма paid, а не pay. Had paid отмечает завершённую оплату; reached обозначает ваш последующий подход к кассе.
+Вы вспоминаете очередь в магазине: когда вы дошли до кассы, покупатель перед вами уже расплатился. Скажите: The shopper had paid by the time I reached the till — покупатель заплатил к тому времени, как я подошёл к кассе. Собираем: The shopper + had paid + by the time I reached the till — кто, что сделал раньше, к какому моменту в прошлом. После had нужна форма paid, а не pay. Had paid отмечает завершённую оплату; reached обозначает ваш последующий подход к кассе.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The shopper had paid by the time I reached the till.**
-- ❌ The shopper has paid by the time I reached the till. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ The shopper was paid by the time I reached the till. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ The shopper has paid by the time I reached the till. — *Результат к моменту в прошлом: had + done.*
+- ❌ The shopper was paid by the time I reached the till. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -37,13 +37,13 @@ Traveller — путешественник, человек в поездке. Th
 
 ### Кто оставил сообщение
 
-Caller здесь — звонящий, человек, который звонит по телефону. The caller had left a message by the time I found my phone — звонящий уже оставил сообщение к тому моменту, когда я нашёл телефон. Сначала он оставил сообщение, потом я нашёл телефон. Left a message значит «оставил сообщение»; left здесь третья форма leave. Не нужно знать имя человека, чтобы назвать его the caller.
+Caller здесь — звонящий, человек, который звонит по телефону. The caller had left a message by the time I found my phone — звонящий уже оставил сообщение к тому моменту, когда я нашёл телефон. Сначала он оставил сообщение, потом я нашёл телефон. Left a message значит «оставил сообщение»; left здесь форма leave. Не нужно знать имя человека, чтобы назвать его the caller.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The caller had left a message by the time I found my phone.**
-- ❌ The caller has left a message by the time I found my phone. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ The caller was left a message by the time I found my phone. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ The caller has left a message by the time I found my phone. — *Результат к моменту в прошлом: had + done.*
+- ❌ The caller was left a message by the time I found my phone. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -122,7 +122,7 @@ The train ___ left by the time I arrived. → **had** · has · is
 **16 · Первую книгу прочитали. Попросите другую книгу.**
 <!-- interaction_id: en:lesson-25:session-37:i12; family: context_gap_grammar -->
 Can I borrow ___ book? → **another** · other · others
-- other — *Перед book в единственном числе нужно another.*
+- other — *Перед book (предмет один) нужно another.*
 - others — *Others заменяет существительное; здесь уже стоит book.*
 
 **17 · Расскажите о прежней привычке: «Я раньше читал в автобусе».**

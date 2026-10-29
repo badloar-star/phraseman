@@ -14,8 +14,8 @@ Rumour — чутка: люди передають повідомлення, а�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The rumour had spread by the time I heard it.**
-- ❌ The rumour has spread by the time I heard it. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ The rumour was spread by the time I heard it. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ The rumour has spread by the time I heard it. — *Результат до моменту в минулому: had + done.*
+- ❌ The rumour was spread by the time I heard it. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Rumour — чутка: люди передають повідомлення, а�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They had planned the prank by the time I arrived.**
-- ❌ They have planned the prank by the time I arrived. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ They were planned the prank by the time I arrived. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ They have planned the prank by the time I arrived. — *Результат до моменту в минулому: had + done.*
+- ❌ They were planned the prank by the time I arrived. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Incident — пригода, окрема подія, часто неприєм�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He had described the incident by the time we got home.**
-- ❌ He has described the incident by the time we got home. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ He was described the incident by the time we got home. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ He has described the incident by the time we got home. — *Результат до моменту в минулому: had + done.*
+- ❌ He was described the incident by the time we got home. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -89,7 +89,7 @@ It is only a ___. → **rumour** · receipt · promise
 <!-- interaction_id: en:lesson-25:session-35:i06; family: context_gap_grammar -->
 The repairman ___ the problem yesterday. → **found** · has found · finding
 - has found — *Yesterday вимагає розповіді про завершену подію: found.*
-- finding — *Finding без допоміжного дієслова тут не підходить.*
+- finding — *Однієї форми Finding тут замало.*
 
 **10 · Картка слова — incident**
 <!-- interaction_id: en:lesson-25:session-35:word:incident; family: word_card -->
@@ -138,7 +138,7 @@ I understood the joke ___ I heard the explanation. → **after** · before · wh
 **19 · Перший приклад незрозумілий. Попросіть ще один.**
 <!-- interaction_id: en:lesson-25:session-35:i15; family: context_gap_grammar -->
 Can you give me ___ example? → **another** · other · others
-- other — *Перед одниною example вживаємо another.*
+- other — *Перед example (предмет один) вживаємо another.*
 - others — *Others замінює іменник, але example тут уже є.*
 
 **20 · Почуйте, де залишили повідомлення.**

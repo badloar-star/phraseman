@@ -14,8 +14,8 @@ Traveller — мандрівник, людина в поїздці. The travelle
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The traveller had packed by the time the taxi arrived.**
-- ❌ The traveller has packed by the time the taxi arrived. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ The traveller was packed by the time the taxi arrived. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ The traveller has packed by the time the taxi arrived. — *Результат до моменту в минулому: had + done.*
+- ❌ The traveller was packed by the time the taxi arrived. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -23,13 +23,13 @@ Traveller — мандрівник, людина в поїздці. The travelle
 
 ### Покупець уже заплатив
 
-Ви згадуєте чергу в магазині: коли ви дійшли до каси, покупець перед вами вже розрахувався. Скажіть: The shopper had paid by the time I reached the till — покупець заплатив до того часу, як я підійшов до каси. Складаємо: The shopper + had paid + by the time I reached the till — хто, що зробив раніше, до якого моменту в минулому. Після had потрібна третя форма paid, а не pay. Had paid позначає завершену оплату; reached позначає ваш пізніший підхід до каси.
+Ви згадуєте чергу в магазині: коли ви дійшли до каси, покупець перед вами вже розрахувався. Скажіть: The shopper had paid by the time I reached the till — покупець заплатив до того часу, як я підійшов до каси. Складаємо: The shopper + had paid + by the time I reached the till — хто, що зробив раніше, до якого моменту в минулому. Після had потрібна форма paid, а не pay. Had paid позначає завершену оплату; reached позначає ваш пізніший підхід до каси.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The shopper had paid by the time I reached the till.**
-- ❌ The shopper has paid by the time I reached the till. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ The shopper was paid by the time I reached the till. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ The shopper has paid by the time I reached the till. — *Результат до моменту в минулому: had + done.*
+- ❌ The shopper was paid by the time I reached the till. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -37,13 +37,13 @@ Traveller — мандрівник, людина в поїздці. The travelle
 
 ### Хто залишив повідомлення
 
-Caller тут — людина, яка телефонує. The caller had left a message by the time I found my phone — той, хто телефонував, уже залишив повідомлення до того моменту, коли я знайшов телефон. Спочатку він залишив повідомлення, потім я знайшов телефон. Left a message означає «залишив повідомлення»; left тут третя форма leave. Не потрібно знати ім’я людини, щоб назвати її the caller.
+Caller тут — людина, яка телефонує. The caller had left a message by the time I found my phone — той, хто телефонував, уже залишив повідомлення до того моменту, коли я знайшов телефон. Спочатку він залишив повідомлення, потім я знайшов телефон. Left a message означає «залишив повідомлення»; left тут форма leave. Не потрібно знати ім’я людини, щоб назвати її the caller.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The caller had left a message by the time I found my phone.**
-- ❌ The caller has left a message by the time I found my phone. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ The caller was left a message by the time I found my phone. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ The caller has left a message by the time I found my phone. — *Результат до моменту в минулому: had + done.*
+- ❌ The caller was left a message by the time I found my phone. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -122,7 +122,7 @@ The train ___ left by the time I arrived. → **had** · has · is
 **16 · Першу книжку прочитали. Попросіть іншу книжку.**
 <!-- interaction_id: en:lesson-25:session-37:i12; family: context_gap_grammar -->
 Can I borrow ___ book? → **another** · other · others
-- other — *Перед book в однині потрібно another.*
+- other — *Перед book (предмет один) потрібно another.*
 - others — *Others замінює іменник; тут уже стоїть book.*
 
 **17 · Розкажіть про колишню звичку: «Я раніше читав в автобусі».**

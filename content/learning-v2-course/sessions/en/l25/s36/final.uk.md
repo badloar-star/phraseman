@@ -14,8 +14,8 @@ Entertain — розважати. He had entertained the children by the time di
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He had entertained the children by the time dinner was ready.**
-- ❌ He has entertained the children by the time dinner was ready. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ He was entertained the children by the time dinner was ready. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ He has entertained the children by the time dinner was ready. — *Результат до моменту в минулому: had + done.*
+- ❌ He was entertained the children by the time dinner was ready. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Entertain — розважати. He had entertained the children by the time di
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Her story had amazed me by the time we got home.**
-- ❌ Her story has amazed me by the time we got home. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ Her story was amazed me by the time we got home. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ Her story has amazed me by the time we got home. — *Результат до моменту в минулому: had + done.*
+- ❌ Her story was amazed me by the time we got home. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Flatter — лестити: часто хвалити людину більше 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He had flattered me before he asked for money.**
-- ❌ He has flattered me before he asked for money. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ He was flattered me before he asked for money. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ He has flattered me before he asked for money. — *Результат до моменту в минулому: had + done.*
+- ❌ He was flattered me before he asked for money. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Flatter — лестити: часто хвалити людину більше 
 
 **1 · Картка слова — entertained**
 <!-- interaction_id: en:lesson-25:session-36:word:entertained; family: word_card -->
-> **entertained** — Розважив. Entertain — розважати; entertained — третя форма.
+> **entertained** — Розважив. Entertain — розважати; entertained — форма після have.
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-36:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Flatter — лестити: часто хвалити людину більше 
 
 **4 · Картка слова — amazed**
 <!-- interaction_id: en:lesson-25:session-36:word:amazed; family: word_card -->
-> **amazed** — Вразив. Amaze — сильно здивувати; amazed — третя форма.
+> **amazed** — Вразив. Amaze — сильно здивувати; amazed — форма після have.
 
 **5 · Результат був несподіваним і дуже вас здивував. Виберіть amazed.**
 <!-- interaction_id: en:lesson-25:session-36:i03; family: context_gap_grammar -->
@@ -79,7 +79,7 @@ The result ___ me. → **amazed** · entertained · invited
 
 **7 · Картка слова — irritated**
 <!-- interaction_id: en:lesson-25:session-36:word:irritated; family: word_card -->
-> **irritated** — Спричинив подразнення. Irritate — дратувати людину або подразнювати частину тіла; irritated — третя форма.
+> **irritated** — Спричинив подразнення. Irritate — дратувати людину або подразнювати частину тіла; irritated — форма після have.
 
 **8 · Почуйте, що спричинило подразнення шкіри.**
 <!-- interaction_id: en:lesson-25:session-36:i05; family: listen_build_dictation -->
@@ -93,7 +93,7 @@ I stopped using the soap ___ my skin became red. → **after** · before · unti
 
 **10 · Картка слова — flattered**
 <!-- interaction_id: en:lesson-25:session-36:word:flattered; family: word_card -->
-> **flattered** — Полестив. Flatter — лестити, часто хвалити більше заслуженого задля прихильності; flattered — третя форма.
+> **flattered** — Полестив. Flatter — лестити, часто хвалити більше заслуженого задля прихильності; flattered — форма після have.
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-36:i07; family: listen_choose -->
@@ -116,7 +116,7 @@ entertained — розважив · amazed — вразив · irritated — с�
 **15 · Діти заснули до кінця розповіді. Виберіть форму слова після had.**
 <!-- interaction_id: en:lesson-25:session-36:i11; family: context_gap_grammar -->
 The children had ___ asleep by the time I finished the story. → **fallen** · fell · fall
-- fell — *Fell — Past Simple; після had потрібна третя форма fallen.*
+- fell — *Fell — форма минулого; після had потрібна форма fallen.*
 - fall — *Fall — початкова форма; після had потрібна fallen.*
 
 **16 · Послухайте й виберіть**
@@ -132,7 +132,7 @@ The children had ___ asleep by the time I finished the story. → **fallen** · 
 **18 · Першу пісню вже заспівали. Діти просять ще одну.**
 <!-- interaction_id: en:lesson-25:session-36:i14; family: context_gap_grammar -->
 Please sing ___ song. → **another** · other · others
-- other — *Song в однині, тому another.*
+- other — *Ідеться про одне — Song, тому another.*
 - others — *Others не ставиться перед іменником song.*
 
 **19 · Після веселого вечора подякуйте: «Дякую за чудовий вечір».**
@@ -143,7 +143,7 @@ Please sing ___ song. → **another** · other · others
 <!-- interaction_id: en:lesson-25:session-36:i16; family: context_gap_grammar -->
 I ___ him the news. → **have already told** · already telling · have already tell
 - already telling — *Для завершеної дії тут потрібно have already told.*
-- have already tell — *Після have потрібна третя форма told, не tell.*
+- have already tell — *Після have потрібна форма told, не tell.*
 
 **21 · Висловіть бажання знову побачити друзів: «Сподіваюся скоро побачити вас знову».**
 <!-- interaction_id: en:lesson-25:session-36:i17; family: phrase_builder -->

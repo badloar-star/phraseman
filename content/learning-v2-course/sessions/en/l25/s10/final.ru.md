@@ -122,7 +122,7 @@ winner — победитель · loser — проигравший · athlete �
 **16 · Вчера был один конкретный матч.**
 <!-- interaction_id: en:lesson-25:session-10:i12; family: context_gap_grammar -->
 Our team ___ yesterday. → **won** · has won · would win
-- has won — *Yesterday требует Past Simple won.*
+- has won — *Yesterday требует формы прошлого won.*
 - would win — *Would win не обозначает здесь одну конкретную вчерашнюю победу.*
 
 **17 · Услышьте прежний ритуал после тренировки.**
@@ -142,7 +142,7 @@ Our team ___ yesterday. → **won** · has won · would win
 **20 · Один игрок уже готов. Дополните: «Другие игроки всё ещё ждут».**
 <!-- interaction_id: en:lesson-25:session-10:i16; family: context_gap_grammar -->
 The ___ players are still waiting. → **other** · another · others
-- another — *Another ставим перед существительным в единственном числе.*
+- another — *Another ставим перед названием одного предмета.*
 - others — *Перед players нужна форма other, без -s.*
 
 **21 · Поддержите друга после проигрыша: «Ты хорошо играл сегодня».**

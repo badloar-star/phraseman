@@ -14,8 +14,8 @@ Request — прохання або звернення з проханням. We
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We had sent the request before the lesson began.**
-- ❌ We have sent the request before the lesson began. — *Раніше завершена дія: had + третя форма.*
-- ❌ We were sent the request before the lesson began. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ We have sent the request before the lesson began. — *Раніше завершена дія: had + done.*
+- ❌ We were sent the request before the lesson began. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Request — прохання або звернення з проханням. We
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I had checked my grade by the time she called.**
-- ❌ I have checked my grade by the time she called. — *Раніше завершена дія: had + третя форма.*
-- ❌ I was checked my grade by the time she called. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ I have checked my grade by the time she called. — *Раніше завершена дія: had + done.*
+- ❌ I was checked my grade by the time she called. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Introduction тут — вступ до тексту, його початков�
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She had finished the introduction by the time I arrived.**
-- ❌ She has finished the introduction by the time I arrived. — *Раніше завершена дія: had + третя форма.*
-- ❌ She was finished the introduction by the time I arrived. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ She has finished the introduction by the time I arrived. — *Раніше завершена дія: had + done.*
+- ❌ She was finished the introduction by the time I arrived. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -74,8 +74,8 @@ Introduction тут — вступ до тексту, його початков�
 **6 · Результат контрольної вже відомий. Виберіть форму з have / has.**
 <!-- interaction_id: en:lesson-25:session-44:i04; family: context_gap_grammar -->
 The teacher ___ our tests. → **has already marked** · have already marked · has already mark
-- have already marked — *Teacher в однині вимагає has.*
-- has already mark — *Після has потрібна третя форма marked.*
+- have already marked — *Ідеться про одне — Teacher, тому has.*
+- has already mark — *Після has потрібна форма marked.*
 
 **7 · Картка слова — definition**
 <!-- interaction_id: en:lesson-25:session-44:word:definition; family: word_card -->
@@ -142,7 +142,7 @@ I read the question ___ I answered. → **before** · after · while
 **20 · Учитель дозволив поставити ще одне запитання. Попросіть про це.**
 <!-- interaction_id: en:lesson-25:session-44:i16; family: context_gap_grammar -->
 Can I ask ___ question? → **another** · other · others
-- other — *Перед question в однині потрібно another.*
+- other — *Перед question (предмет один) потрібно another.*
 - others — *Others замінює іменник, а тут уже є question.*
 
 **21 · Після зрозумілого пояснення скажіть: «Тепер я можу зробити це сам».**

@@ -15,7 +15,7 @@
 
 - ✅ **The seat was occupied when we arrived.**
 - ❌ The seat is occupied when we arrived. — *Состояние в названный момент прошлого: was.*
-- ❌ The seat been occupied when we arrived. — *Для единственного числа в Past Simple нужна форма was.*
+- ❌ The seat been occupied when we arrived. — *Когда речь об одном, в форме прошлого нужна форма was.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Номер был свободен по приезде
 
-Вы рассказываете о заселении вчера: нужный номер оказался свободен. Скажите: The room was vacant when we arrived — номер был свободен, когда мы приехали. Собираем: The room + was + vacant + when we arrived — что, был, в каком состоянии, в какой момент. The room — единственное число, поэтому в прошлом нужна was. Vacant описывает состояние номера. When we arrived указывает момент в прошлом, поэтому is здесь не подходит.
+Вы рассказываете о заселении вчера: нужный номер оказался свободен. Скажите: The room was vacant when we arrived — номер был свободен, когда мы приехали. Собираем: The room + was + vacant + when we arrived — что, был, в каком состоянии, в какой момент. The room — одна вещь, поэтому в прошлом нужна was. Vacant описывает состояние номера. When we arrived указывает момент в прошлом, поэтому is здесь не подходит.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The room was vacant when we arrived.**
 - ❌ The room is vacant when we arrived. — *Состояние в названный момент прошлого: was.*
-- ❌ The room been vacant when we arrived. — *Для единственного числа в Past Simple нужна форма was.*
+- ❌ The room been vacant when we arrived. — *Когда речь об одном, в форме прошлого нужна форма was.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Какой была кухня по приезде
 
-Вы вспоминаете вчерашний приход в дом: кухня была залита солнечным светом. Скажите: The kitchen was sunlit when we arrived — кухня была освещена солнцем, когда мы пришли. Собираем: The kitchen + was + sunlit + when we arrived — что, была, какой, в какой момент. The kitchen — единственное число, поэтому ставим was. Sunlit описывает состояние кухни, а when we arrived задаёт прошлый момент. После подлежащего нужна was; одно been её не заменяет.
+Вы вспоминаете вчерашний приход в дом: кухня была залита солнечным светом. Скажите: The kitchen was sunlit when we arrived — кухня была освещена солнцем, когда мы пришли. Собираем: The kitchen + was + sunlit + when we arrived — что, была, какой, в какой момент. The kitchen — одна вещь, поэтому ставим was. Sunlit описывает состояние кухни, а when we arrived задаёт прошлый момент. После подлежащего нужна was; одно been её не заменяет.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The kitchen was sunlit when we arrived.**
 - ❌ The kitchen is sunlit when we arrived. — *Состояние в названный момент прошлого: was.*
-- ❌ The kitchen been sunlit when we arrived. — *Для единственного числа в Past Simple нужна форма was.*
+- ❌ The kitchen been sunlit when we arrived. — *Когда речь об одном, в форме прошлого нужна форма was.*
 
 ---
 
@@ -142,7 +142,7 @@ We went for a walk ___ we left our bags. → **after** · before · while
 **20 · В номере только один стул, а вас двое. Попросите ещё один.**
 <!-- interaction_id: en:lesson-25:session-56:i16; family: context_gap_grammar -->
 Could we have ___ chair? → **another** · other · others
-- other — *Chair в единственном числе, поэтому another.*
+- other — *Речь об одном — Chair, поэтому another.*
 - others — *Others не ставится перед chair.*
 
 **21 · Поблагодарите сотрудника за помощь: «Спасибо, это всё, что нам нужно».**

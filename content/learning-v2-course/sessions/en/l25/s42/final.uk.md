@@ -113,7 +113,7 @@ purr — муркотіти · growl — гарчати · hiss — шипіти
 <!-- interaction_id: en:lesson-25:session-42:i10; family: context_gap_grammar -->
 I ___ the dog yesterday. → **walked** · have walked · walking
 - have walked — *Yesterday називає завершений день, тому walked.*
-- walking — *Walking без допоміжного дієслова тут не підходить.*
+- walking — *Однієї форми Walking тут замало.*
 
 **15 · Поясніть, коли ви помітили зникнення: «Я помітив відчинені двері після того, як кіт пішов».**
 <!-- interaction_id: en:lesson-25:session-42:i11; family: phrase_builder -->
@@ -142,7 +142,7 @@ The dog ___ fallen asleep by the time we got home. → **had** · has · is
 **20 · Перша миска зайнята кормом. Потрібна ще одна для води.**
 <!-- interaction_id: en:lesson-25:session-42:i16; family: context_gap_grammar -->
 We need ___ bowl for water. → **another** · other · others
-- other — *Перед bowl в однині потрібно another.*
+- other — *Перед bowl (предмет один) потрібно another.*
 - others — *Others не ставиться перед іменником bowl.*
 
 **21 · Згадайте вечірню звичку: «У дитинстві я щовечора грався з нашим собакою». Використайте would.**

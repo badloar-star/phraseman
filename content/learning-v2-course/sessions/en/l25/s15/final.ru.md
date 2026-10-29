@@ -122,7 +122,7 @@ gulp — пить большими глотками · nibble — есть ма�
 **16 · Вы уже поели; сейчас голода нет. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-15:i12; family: context_gap_grammar -->
 I have already ___. → **eaten** · ate · eat
-- ate — *После have нужна третья форма eaten, а не ate.*
+- ate — *После have нужна форма eaten, а не ate.*
 - eat — *Have eat неверно; используем have eaten.*
 
 **17 · Услышьте один вчерашний случай.**

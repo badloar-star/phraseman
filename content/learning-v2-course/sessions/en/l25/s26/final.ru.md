@@ -9,13 +9,13 @@
 
 ### Недовольство после счёта
 
-Grumble — ворчать, недовольно жаловаться. He grumbled after he saw the bill — он ворчал после того, как увидел счёт. Сначала он увидел счёт, потом стал выражать недовольство. After связывает события в таком порядке. Grumbled и saw — формы Past Simple: это рассказ о прошлом, а не привычка.
+Grumble — ворчать, недовольно жаловаться. He grumbled after he saw the bill — он ворчал после того, как увидел счёт. Сначала он увидел счёт, потом стал выражать недовольство. After связывает события в таком порядке. Grumbled и saw — формы прошлого: это рассказ о прошлом, а не привычка.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He grumbled after he saw the bill.**
 - ❌ He grumble after he saw the bill. — *Для события в прошлом нужна форма grumbled.*
-- ❌ He grumbling after he saw the bill. — *Здесь используем Past Simple: grumbled.*
+- ❌ He grumbling after he saw the bill. — *Здесь используем форму прошлого: grumbled.*
 
 ---
 
@@ -23,13 +23,13 @@ Grumble — ворчать, недовольно жаловаться. He grumbl
 
 ### Повторные просьбы до уборки
 
-Вы вспоминаете, как мама несколько раз настойчиво просила убрать комнату, прежде чем вы её убрали. Скажите: She nagged me before I cleaned my room — она пилила меня до того, как я убрал свою комнату. Собираем: She + nagged + me + before I cleaned my room — кто, что делал, кому надоедал, до какого события. Nagged — прошедшая форма nag с удвоенной g перед -ed. Me идёт сразу после nagged без предлога. Before связывает повторные просьбы с последующей уборкой; cleaned тоже стоит в past simple.
+Вы вспоминаете, как мама несколько раз настойчиво просила убрать комнату, прежде чем вы её убрали. Скажите: She nagged me before I cleaned my room — она пилила меня до того, как я убрал свою комнату. Собираем: She + nagged + me + before I cleaned my room — кто, что делал, кому надоедал, до какого события. Nagged — прошедшая форма nag с удвоенной g перед -ed. Me идёт сразу после nagged без предлога. Before связывает повторные просьбы с последующей уборкой; cleaned тоже стоит в форме прошлого.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She nagged me before I cleaned my room.**
 - ❌ She nag me before I cleaned my room. — *Для события в прошлом нужна форма nagged.*
-- ❌ She nagging me before I cleaned my room. — *Здесь используем Past Simple: nagged.*
+- ❌ She nagging me before I cleaned my room. — *Здесь используем форму прошлого: nagged.*
 
 ---
 
@@ -37,13 +37,13 @@ Grumble — ворчать, недовольно жаловаться. He grumbl
 
 ### Жалобный голос
 
-Whine — ныть, жаловаться плаксивым голосом. The child whined after we left the park — ребёнок ныл после того, как мы ушли из парка. Сначала ушли, затем ребёнок стал ныть. Grumble передаёт недовольное ворчание, а whine подчёркивает жалобный тон. Whine не означает просто «плакать». Здесь after уже показывает последовательность, поэтому обычного Past Simple достаточно.
+Whine — ныть, жаловаться плаксивым голосом. The child whined after we left the park — ребёнок ныл после того, как мы ушли из парка. Сначала ушли, затем ребёнок стал ныть. Grumble передаёт недовольное ворчание, а whine подчёркивает жалобный тон. Whine не означает просто «плакать». Здесь after уже показывает последовательность, поэтому обычной формы прошлого достаточно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The child whined after we left the park.**
 - ❌ The child whine after we left the park. — *Для события в прошлом нужна форма whined.*
-- ❌ The child whining after we left the park. — *Здесь используем Past Simple: whined.*
+- ❌ The child whining after we left the park. — *Здесь используем форму прошлого: whined.*
 
 ---
 
@@ -136,7 +136,7 @@ I ___ cleaned my room before my mother came home. → **had** · have · was
 **19 · Вы поговорили об этом один раз вчера.**
 <!-- interaction_id: en:lesson-25:session-26:i15; family: context_gap_grammar -->
 We ___ about it yesterday. → **talked** · have talked · would talk
-- have talked — *Yesterday требует Past Simple talked.*
+- have talked — *Yesterday требует формы прошлого talked.*
 - would talk — *Would talk описывает прежнюю привычку, не один вчерашний разговор.*
 
 **20 · Послушайте и выберите**

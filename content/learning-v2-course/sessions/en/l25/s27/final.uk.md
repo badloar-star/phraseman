@@ -15,7 +15,7 @@ Rotten — гнилий. The apple was rotten before I cut it — яблуко �
 
 - ✅ **The apple was rotten before I cut it.**
 - ❌ The apple is rotten before I cut it. — *Для розповіді про минуле потрібна форма was.*
-- ❌ The apple be rotten before I cut it. — *Тут використовуємо Past Simple: was.*
+- ❌ The apple be rotten before I cut it. — *Тут використовуємо форму минулого: was.*
 
 ---
 
@@ -29,7 +29,7 @@ Rotten — гнилий. The apple was rotten before I cut it — яблуко �
 
 - ✅ **The bread was mouldy before I opened the bag.**
 - ❌ The bread is mouldy before I opened the bag. — *Для розповіді про минуле потрібна форма was.*
-- ❌ The bread be mouldy before I opened the bag. — *Тут використовуємо Past Simple: was.*
+- ❌ The bread be mouldy before I opened the bag. — *Тут використовуємо форму минулого: was.*
 
 ---
 
@@ -43,7 +43,7 @@ Stink — сильно й неприємно пахнути, «смердіти�
 
 - ✅ **The kitchen stank after we opened the bin.**
 - ❌ The kitchen stink after we opened the bin. — *Для розповіді про минуле потрібна форма stank.*
-- ❌ The kitchen stinking after we opened the bin. — *Тут використовуємо Past Simple: stank.*
+- ❌ The kitchen stinking after we opened the bin. — *Тут використовуємо форму минулого: stank.*
 
 ---
 
@@ -143,7 +143,7 @@ I ___ cleaned the fridge before my family returned. → **had** · have · was
 <!-- interaction_id: en:lesson-25:session-27:i16; family: context_gap_grammar -->
 I have already ___ everything. → **checked** · check · checking
 - check — *Після have потрібна форма checked.*
-- checking — *Have checking не утворює Present Perfect.*
+- checking — *Have checking не утворює have / has + done.*
 
 **21 · Уточніть, коли продукти доставили: «О котрій приїхала доставка?»**
 <!-- interaction_id: en:lesson-25:session-27:i17; family: scripted_repeat_compare -->

@@ -142,7 +142,7 @@ We ___ set the table by the time our guests arrived. → **had** · have · were
 **20 · Перша розповідь закінчилася. Діти просять ще одну.**
 <!-- interaction_id: en:lesson-25:session-46:i16; family: context_gap_grammar -->
 Please tell us ___ story. → **another** · other · others
-- other — *Story в однині, тому another.*
+- other — *Ідеться про одне — Story, тому another.*
 - others — *Others не ставиться перед story.*
 
 **21 · Згадайте порядок справ: «Ми прибрали кухню після того, як гості пішли».**

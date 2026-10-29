@@ -15,7 +15,7 @@ Greeting — привітання: слова або жест під час зу
 
 - ✅ **Her greeting was friendly when we arrived.**
 - ❌ Her greeting is friendly when we arrived. — *Для розповіді про минуле потрібна форма was.*
-- ❌ Her greeting be friendly when we arrived. — *Тут використовуємо Past Simple: was.*
+- ❌ Her greeting be friendly when we arrived. — *Тут використовуємо форму минулого: was.*
 
 ---
 
@@ -23,13 +23,13 @@ Greeting — привітання: слова або жест під час зу
 
 ### Рукостискання перед відходом
 
-Ви згадуєте прощання з другом: He gave me a handshake before he left — він потиснув мені руку перед тим, як пішов. Складаємо: He + gave + me + a handshake + before he left — хто, що зробив, кому, що, перед якою подією. Gave — минула форма give; me стоїть одразу після gave та називає отримувача. Before he left показує: спочатку рукостискання, потім відхід. В обох частинах past simple: gave і left.
+Ви згадуєте прощання з другом: He gave me a handshake before he left — він потиснув мені руку перед тим, як пішов. Складаємо: He + gave + me + a handshake + before he left — хто, що зробив, кому, що, перед якою подією. Gave — минула форма give; me стоїть одразу після gave та називає отримувача. Before he left показує: спочатку рукостискання, потім відхід. В обох частинах форма минулого: gave і left.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He gave me a handshake before he left.**
 - ❌ He give me a handshake before he left. — *Для розповіді про минуле потрібна форма gave.*
-- ❌ He giving me a handshake before he left. — *Тут використовуємо Past Simple: gave.*
+- ❌ He giving me a handshake before he left. — *Тут використовуємо форму минулого: gave.*
 
 ---
 
@@ -37,13 +37,13 @@ Greeting — привітання: слова або жест під час зу
 
 ### Зустріч закінчилася після їжі
 
-Ви розповідаєте про вчорашній вечір із друзями: The gathering ended after we ate — зустріч закінчилася після того, як ми поїли. Складаємо: The gathering + ended + after we ate — що, що відбулося, після якої події. After пов’язує події: їжа була раніше закінчення зустрічі, хоча згадана наприкінці фрази. В обох частинах past simple. До end додаємо -ed, а ate — минула форма eat.
+Ви розповідаєте про вчорашній вечір із друзями: The gathering ended after we ate — зустріч закінчилася після того, як ми поїли. Складаємо: The gathering + ended + after we ate — що, що відбулося, після якої події. After пов’язує події: їжа була раніше закінчення зустрічі, хоча згадана наприкінці фрази. В обох частинах форма минулого. До end додаємо -ed, а ate — минула форма eat.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The gathering ended after we ate.**
 - ❌ The gathering end after we ate. — *Для розповіді про минуле потрібна форма ended.*
-- ❌ The gathering ending after we ate. — *Тут використовуємо Past Simple: ended.*
+- ❌ The gathering ending after we ate. — *Тут використовуємо форму минулого: ended.*
 
 ---
 
@@ -126,7 +126,7 @@ greeting — привітання · handshake — рукостискання ·
 **17 · Ви поговорили з тіткою вчора, у завершений час.**
 <!-- interaction_id: en:lesson-25:session-30:i13; family: context_gap_grammar -->
 I ___ to my aunt yesterday. → **spoke** · have spoken · would speak
-- have spoken — *Yesterday потребує Past Simple spoke.*
+- have spoken — *Yesterday потребує форми минулого spoke.*
 - would speak — *Would speak описує колишню звичку; тут одна розмова.*
 
 **18 · Почуйте колишню традицію на зустрічах.**
@@ -142,7 +142,7 @@ I ___ to my aunt yesterday. → **spoke** · have spoken · would speak
 **20 · Одні гості прийшли, решта ще в дорозі.**
 <!-- interaction_id: en:lesson-25:session-30:i16; family: context_gap_grammar -->
 The ___ guests are on their way. → **other** · another · others
-- another — *Another стосується однини, не guests.*
+- another — *Another стосується форми для одного, не guests.*
 - others — *Перед guests потрібно other без -s.*
 
 **21 · Подякуйте господарям перед відходом: «Дякую, що запросили мене».**

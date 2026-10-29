@@ -128,7 +128,7 @@ hunger — голод · thirst — спрага · chores — домашні о
 **17 · Це сталося один раз учора, а не було колишньою звичкою.**
 <!-- interaction_id: en:lesson-25:session-07:i13; family: context_gap_grammar -->
 I ___ the parcel yesterday. → **collected** · have collected · used to collect
-- have collected — *Yesterday вказує на завершене минуле; потрібен Past Simple.*
+- have collected — *Yesterday вказує на завершене минуле; потрібна форма минулого.*
 - used to collect — *Used to collect позначає звичку, а тут одна завершена справа.*
 
 **18 · Порівняйте свою колишню звичку з теперішньою: «Раніше я пропускав сніданок».**

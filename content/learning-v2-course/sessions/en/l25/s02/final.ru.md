@@ -62,7 +62,7 @@ Athletics — лёгкая атлетика: бег, прыжки и други�
 **3 · Речь об одном уроке вчера, а не о прежней привычке.**
 <!-- interaction_id: en:lesson-25:session-02:i02; family: context_gap_grammar -->
 I ___ a photo in class yesterday. → **took** · have taken · used to take
-- have taken — *Yesterday — законченное время в прошлом, поэтому нужен Past Simple: took.*
+- have taken — *Yesterday — законченное время в прошлом, поэтому нужна форма прошлого: took.*
 - used to take — *Used to take описывает прежнюю привычку; здесь речь об одном снимке вчера.*
 
 **4 · Теперь вы редко пользуетесь камерой. Скажите: «Раньше я носил камеру повсюду».**
@@ -80,8 +80,8 @@ I ___ a photo in class yesterday. → **took** · have taken · used to take
 **7 · Вы говорите о своём опыте без даты. Дополните фразу с have / has.**
 <!-- interaction_id: en:lesson-25:session-02:i05; family: context_gap_grammar -->
 I have ___ this sport twice. → **tried** · try · trying
-- try — *После have в Present Perfect нужна форма tried.*
-- trying — *Trying не образует здесь Present Perfect; нужна форма tried.*
+- try — *После have в have / has + done нужна форма tried.*
+- trying — *Trying не образует здесь have / has + done; нужна форма tried.*
 
 **8 · Расскажите о детстве: «Раньше я бегал после школы».**
 <!-- interaction_id: en:lesson-25:session-02:i06; family: scripted_repeat_compare -->
@@ -142,7 +142,7 @@ athletics — лёгкая атлетика · archery — стрельба из
 **20 · Вы знаете один вид спорта и спрашиваете о других. После пропуска — несколько предметов.**
 <!-- interaction_id: en:lesson-25:session-02:i16; family: context_gap_grammar -->
 What ___ sports do you enjoy? → **other** · another · others
-- another — *Another ставим перед исчисляемым существительным в единственном числе, а sports — множественное.*
+- another — *Another ставим перед названием одного предмета, а sports — множественное.*
 - others — *Перед существительным sports нужно other без -s.*
 
 **21 · Теперь вы любите спорт. Скажите о прошлом: «Раньше я боялся пробовать новые занятия».**

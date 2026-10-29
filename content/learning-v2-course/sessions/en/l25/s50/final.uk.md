@@ -142,7 +142,7 @@ I washed the dishes ___ I ate. → **after** · before · while
 **20 · Друг просить трохи зачекати. Йому потрібна ще хвилина.**
 <!-- interaction_id: en:lesson-25:session-50:i16; family: context_gap_grammar -->
 Give me ___ minute, please. → **another** · other · others
-- other — *Minute в однині, тому another.*
+- other — *Ідеться про одне — Minute, тому another.*
 - others — *Others не ставиться перед minute.*
 
 **21 · Підтвердьте, що встигли: «Ми прибули вчасно».**

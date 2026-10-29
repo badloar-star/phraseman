@@ -14,8 +14,8 @@ Request — просьба или обращение с просьбой. We had
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We had sent the request before the lesson began.**
-- ❌ We have sent the request before the lesson began. — *Ранее завершённое действие: had + третья форма.*
-- ❌ We were sent the request before the lesson began. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ We have sent the request before the lesson began. — *Ранее завершённое действие: had + done.*
+- ❌ We were sent the request before the lesson began. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Request — просьба или обращение с просьбой. We had
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I had checked my grade by the time she called.**
-- ❌ I have checked my grade by the time she called. — *Ранее завершённое действие: had + третья форма.*
-- ❌ I was checked my grade by the time she called. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ I have checked my grade by the time she called. — *Ранее завершённое действие: had + done.*
+- ❌ I was checked my grade by the time she called. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Introduction здесь — введение к тексту, его начал�
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She had finished the introduction by the time I arrived.**
-- ❌ She has finished the introduction by the time I arrived. — *Ранее завершённое действие: had + третья форма.*
-- ❌ She was finished the introduction by the time I arrived. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ She has finished the introduction by the time I arrived. — *Ранее завершённое действие: had + done.*
+- ❌ She was finished the introduction by the time I arrived. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -74,8 +74,8 @@ Introduction здесь — введение к тексту, его начал�
 **6 · Результат контрольной уже известен. Выберите форму с have / has.**
 <!-- interaction_id: en:lesson-25:session-44:i04; family: context_gap_grammar -->
 The teacher ___ our tests. → **has already marked** · have already marked · has already mark
-- have already marked — *Teacher в единственном числе требует has.*
-- has already mark — *После has нужна третья форма marked.*
+- have already marked — *Речь об одном — Teacher, поэтому has.*
+- has already mark — *После has нужна форма marked.*
 
 **7 · Карточка слова — definition**
 <!-- interaction_id: en:lesson-25:session-44:word:definition; family: word_card -->
@@ -142,7 +142,7 @@ I read the question ___ I answered. → **before** · after · while
 **20 · Учитель разрешил задать ещё один вопрос. Попросите об этом.**
 <!-- interaction_id: en:lesson-25:session-44:i16; family: context_gap_grammar -->
 Can I ask ___ question? → **another** · other · others
-- other — *Перед question в единственном числе нужно another.*
+- other — *Перед question (предмет один) нужно another.*
 - others — *Others заменяет существительное, а здесь уже есть question.*
 
 **21 · После понятного объяснения скажите: «Теперь я могу сделать это сам».**

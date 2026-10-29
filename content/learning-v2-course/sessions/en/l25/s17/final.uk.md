@@ -9,12 +9,12 @@
 
 ### Спочатку вправа, потім урок
 
-Redo — переробити; третя форма — redone. She had redone the exercise before the lesson began — вона переробила вправу до початку уроку. Тут дві події в минулому: спочатку переробила вправу, потім почався урок. Для ранішої дії використовуємо Past Perfect: had + третя форма дієслова. Для пізнішої — began, Past Simple. Had однакове для I, she, we та решти осіб.
+Redo — переробити; форма після have — redone. She had redone the exercise before the lesson began — вона переробила вправу до початку уроку. Тут дві події в минулому: спочатку переробила вправу, потім почався урок. Для ранішої дії використовуємо had + done. Для пізнішої — began, форма минулого. Had однакове для I, she, we та решти осіб.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She had redone the exercise before the lesson began.**
-- ❌ She has redone the exercise before the lesson began. — *Раніша дія в минулому: had + третя форма.*
+- ❌ She has redone the exercise before the lesson began. — *Раніша дія в минулому: had + done.*
 - ❌ She was redone the exercise before the lesson began. — *Тут потрібно had, а не was.*
 
 ---
@@ -23,12 +23,12 @@ Redo — переробити; третя форма — redone. She had redone 
 
 ### Стіна до нашого приїзду
 
-Ви приїхали до знайомих і побачили вже відновлену стіну. They had rebuilt the wall before we arrived — вони збудували стіну наново до нашого приїзду. Спочатку називаємо виконавців they, потім ставимо had + rebuilt: had і третя форма rebuild показують, що робота закінчилася раніше за іншу подію в минулому. The wall називає, що відновили. Після before додаємо we + arrived — хто приїхав і що сталося пізніше. Так порядок had rebuilt … before … arrived передає послідовність подій у цій ситуації.
+Ви приїхали до знайомих і побачили вже відновлену стіну. They had rebuilt the wall before we arrived — вони збудували стіну наново до нашого приїзду. Спочатку називаємо виконавців they, потім ставимо had + rebuilt: had і форма rebuild показують, що робота закінчилася раніше за іншу подію в минулому. The wall називає, що відновили. Після before додаємо we + arrived — хто приїхав і що сталося пізніше. Так порядок had rebuilt … before … arrived передає послідовність подій у цій ситуації.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **They had rebuilt the wall before we arrived.**
-- ❌ They have rebuilt the wall before we arrived. — *Раніша дія в минулому: had + третя форма.*
+- ❌ They have rebuilt the wall before we arrived. — *Раніша дія в минулому: had + done.*
 - ❌ They were rebuilt the wall before we arrived. — *Тут потрібно had, а не were.*
 
 ---
@@ -37,12 +37,12 @@ Redo — переробити; третя форма — redone. She had redone 
 
 ### Перед надсиланням
 
-Reread — перечитати. Написання третьої форми теж reread, але її закінчення звучить як red, не reed. He had reread the letter before he sent it — він перечитав лист до того, як надіслав його. Перечитав раніше, надіслав пізніше. Для першої дії — had reread, для другої — sent. Past Perfect пов’язує дію з іншим моментом у минулому; це не просто заміна будь-якого Past Simple.
+Reread — перечитати. Написання форми після have теж reread, але її закінчення звучить як red, не reed. He had reread the letter before he sent it — він перечитав лист до того, як надіслав його. Перечитав раніше, надіслав пізніше. Для першої дії — had reread, для другої — sent. Форма had + done пов’язує дію з іншим моментом у минулому; це не просто заміна будь-якої форми минулого.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He had reread the letter before he sent it.**
-- ❌ He has reread the letter before he sent it. — *Раніша дія в минулому: had + третя форма.*
+- ❌ He has reread the letter before he sent it. — *Раніша дія в минулому: had + done.*
 - ❌ He was reread the letter before he sent it. — *Тут потрібно had, а не was.*
 
 ---
@@ -51,7 +51,7 @@ Reread — перечитати. Написання третьої форми т
 
 **1 · Картка слова — redone**
 <!-- interaction_id: en:lesson-25:session-17:word:redone; family: word_card -->
-> **redone** — переробив. Redo — переробити; redone — третя форма.
+> **redone** — переробив. Redo — переробити; redone — форма після have.
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-17:i01; family: listen_choose -->
@@ -67,7 +67,7 @@ I ___ finished when my friend called. → **had** · have · was
 
 **4 · Картка слова — rebuilt**
 <!-- interaction_id: en:lesson-25:session-17:word:rebuilt; family: word_card -->
-> **rebuilt** — збудував наново. Rebuild — збудувати наново; rebuilt — третя форма.
+> **rebuilt** — збудував наново. Rebuild — збудувати наново; rebuilt — форма після have.
 
 **5 · Коли ви повернулися, міст уже відновили: «Вони збудували міст наново до нашого повернення».**
 <!-- interaction_id: en:lesson-25:session-17:i03; family: phrase_builder -->
@@ -81,7 +81,7 @@ I ___ finished when my friend called. → **had** · have · was
 
 **7 · Картка слова — reread**
 <!-- interaction_id: en:lesson-25:session-17:word:reread; family: word_card -->
-> **reread** — перечитав. Reread — перечитати; третя форма пишеться так само.
+> **reread** — перечитав. Reread — перечитати; форма після have пишеться так само.
 
 **8 · Почуйте, що було зроблено до уроку.**
 <!-- interaction_id: en:lesson-25:session-17:i05; family: listen_build_dictation -->
@@ -90,12 +90,12 @@ I ___ finished when my friend called. → **had** · have · was
 **9 · Перечитування було раніше за надсилання листа. Доповніть потрібну форму слова.**
 <!-- interaction_id: en:lesson-25:session-17:i06; family: context_gap_grammar -->
 I had ___ the letter before I sent it. → **reread** · rereading · rereads
-- rereading — *Після had потрібна третя форма reread.*
-- rereads — *Rereads — теперішній час із -s; тут потрібна третя форма reread.*
+- rereading — *Після had потрібна форма reread.*
+- rereads — *Rereads — теперішній час із -s; тут потрібна форма reread.*
 
 **10 · Картка слова — rewashed**
 <!-- interaction_id: en:lesson-25:session-17:word:rewashed; family: word_card -->
-> **rewashed** — виправ заново. Rewash — випрати заново; rewashed — третя форма.
+> **rewashed** — виправ заново. Rewash — випрати заново; rewashed — форма після have.
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-17:i07; family: listen_choose -->
@@ -139,7 +139,7 @@ The train ___ left when we arrived. → **had** · has · is
 <!-- interaction_id: en:lesson-25:session-17:i15; family: context_gap_grammar -->
 The film had ___ when we arrived. → **ended** · end · ending
 - end — *Після had потрібна форма ended.*
-- ending — *Had ending не утворює Past Perfect.*
+- ending — *Had ending не утворює had + done.*
 
 **20 · Спочатку ви знайшли ключі, потім вийшли: «Я знайшов ключі до того, як вийшов».**
 <!-- interaction_id: en:lesson-25:session-17:i16; family: phrase_builder -->

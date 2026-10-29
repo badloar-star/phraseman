@@ -122,7 +122,7 @@ grab — схопити · tiptoe — іти навшпиньки · chuckle —
 **16 · Кумедну розповідь ви почули один раз учора.**
 <!-- interaction_id: en:lesson-25:session-13:i12; family: context_gap_grammar -->
 My friend ___ me that story yesterday. → **told** · has told · would tell
-- has told — *Yesterday потребує Past Simple told.*
+- has told — *Yesterday потребує форми минулого told.*
 - would tell — *Тут одна розповідь учора, а не колишній повторюваний звичай.*
 
 **17 · Почуйте, де раніше зустрічалися друзі.**
@@ -140,7 +140,7 @@ My friend ___ me that story yesterday. → **told** · has told · would tell
 **20 · Ви хочете почути інші історії, кілька.**
 <!-- interaction_id: en:lesson-25:session-13:i16; family: context_gap_grammar -->
 Do you know any ___ stories? → **other** · another · others
-- another — *Another стосується одного предмета; stories — множина.*
+- another — *Another стосується одного предмета; stories — форма для кількох.*
 - others — *Перед іменником stories використовуємо other без -s.*
 
 **21 · Послухайте й виберіть**

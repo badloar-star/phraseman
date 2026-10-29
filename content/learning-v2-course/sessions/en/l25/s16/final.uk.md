@@ -122,7 +122,7 @@ squint — мружитися · limp — кульгати · stutter — заї
 **16 · Учора ви поговорили з учителем один раз.**
 <!-- interaction_id: en:lesson-25:session-16:i12; family: context_gap_grammar -->
 I ___ to my teacher yesterday. → **spoke** · have spoken · would speak
-- have spoken — *Yesterday потребує Past Simple spoke.*
+- have spoken — *Yesterday потребує форми минулого spoke.*
 - would speak — *Тут одна вчорашня подія, не дія, що повторювалася.*
 
 **17 · Вам потрібно більше часу. Скажіть: «Мені потрібна ще одна хвилина».**

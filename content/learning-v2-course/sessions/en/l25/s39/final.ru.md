@@ -14,8 +14,8 @@ Version здесь — версия рассказа о событии. I had he
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I had heard her version by the time we met.**
-- ❌ I have heard her version by the time we met. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ I was heard her version by the time we met. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ I have heard her version by the time we met. — *Результат к моменту в прошлом: had + done.*
+- ❌ I was heard her version by the time we met. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Version здесь — версия рассказа о событии. I had he
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She had explained her preference by the time we ordered.**
-- ❌ She has explained her preference by the time we ordered. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ She was explained her preference by the time we ordered. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ She has explained her preference by the time we ordered. — *Результат к моменту в прошлом: had + done.*
+- ❌ She was explained her preference by the time we ordered. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Obstacle — препятствие. We had removed the obstacle by the time the
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We had removed the obstacle by the time the bus arrived.**
-- ❌ We have removed the obstacle by the time the bus arrived. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ We were removed the obstacle by the time the bus arrived. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ We have removed the obstacle by the time the bus arrived. — *Результат к моменту в прошлом: had + done.*
+- ❌ We were removed the obstacle by the time the bus arrived. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -142,7 +142,7 @@ I understood the problem ___ I heard both stories. → **after** · before · wh
 **20 · Одного стула не хватает. Попросите ещё один.**
 <!-- interaction_id: en:lesson-25:session-39:i16; family: context_gap_grammar -->
 We need ___ chair. → **another** · other · others
-- other — *Chair в единственном числе, поэтому another.*
+- other — *Речь об одном — Chair, поэтому another.*
 - others — *Others не употребляется перед существительным chair.*
 
 **21 · Сообщите, когда вы вернулись: «Мы добрались домой до темноты».**

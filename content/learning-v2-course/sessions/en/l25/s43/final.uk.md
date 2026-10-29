@@ -142,7 +142,7 @@ I checked the map ___ I left. → **before** · after · while
 **20 · Цей шлях перекрито. Запропонуйте спробувати інший.**
 <!-- interaction_id: en:lesson-25:session-43:i16; family: context_gap_grammar -->
 Let us try ___ way. → **another** · other · others
-- other — *Перед way в однині вживаємо another.*
+- other — *Перед way (предмет один) вживаємо another.*
 - others — *Others не ставиться перед іменником way.*
 
 **21 · Згадайте колишню прогулянку: «У дитинстві ми щонеділі ходили до річки». Використайте would.**

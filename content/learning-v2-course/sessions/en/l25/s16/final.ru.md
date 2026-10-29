@@ -122,7 +122,7 @@ squint — щуриться · limp — хромать · stutter — заика
 **16 · Вчера вы поговорили с учителем один раз.**
 <!-- interaction_id: en:lesson-25:session-16:i12; family: context_gap_grammar -->
 I ___ to my teacher yesterday. → **spoke** · have spoken · would speak
-- have spoken — *Yesterday требует Past Simple spoke.*
+- have spoken — *Yesterday требует формы прошлого spoke.*
 - would speak — *Здесь одно вчерашнее событие, не повторявшееся действие.*
 
 **17 · Вам нужно больше времени. Скажите: «Мне нужна ещё одна минута».**

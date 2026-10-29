@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He had recalled her name before she spoke.**
-- ❌ He has recalled her name before she spoke. — *Раніша дія: had + третя форма.*
-- ❌ He was recalled her name before she spoke. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ He has recalled her name before she spoke. — *Раніша дія: had + done.*
+- ❌ He was recalled her name before she spoke. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She had predicted rain before we left.**
-- ❌ She has predicted rain before we left. — *Раніша дія: had + третя форма.*
-- ❌ She was predicted rain before we left. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ She has predicted rain before we left. — *Раніша дія: had + done.*
+- ❌ She was predicted rain before we left. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Друг наполіг
 
-Insist — наполягати. Ви хотіли йти пішки, але друг наполіг на таксі: He had insisted on a taxi before we left — він наполіг на таксі до того, як ми пішли. Запам’ятайте поєднання insist on + предмет або варіант: insist on a taxi. Це сильніше, ніж просто запропонувати таксі. Insisted — третя форма; після had вона однакова для всіх осіб.
+Insist — наполягати. Ви хотіли йти пішки, але друг наполіг на таксі: He had insisted on a taxi before we left — він наполіг на таксі до того, як ми пішли. Запам’ятайте поєднання insist on + предмет або варіант: insist on a taxi. Це сильніше, ніж просто запропонувати таксі. Insisted — форма після have; після had вона однакова для всіх осіб.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He had insisted on a taxi before we left.**
-- ❌ He has insisted on a taxi before we left. — *Раніша дія: had + третя форма.*
-- ❌ He was insisted on a taxi before we left. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ He has insisted on a taxi before we left. — *Раніша дія: had + done.*
+- ❌ He was insisted on a taxi before we left. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Insist — наполягати. Ви хотіли йти пішки, але д�
 
 **1 · Картка слова — recalled**
 <!-- interaction_id: en:lesson-25:session-45:word:recalled; family: word_card -->
-> **recalled** — Згадав. Recall — згадати; recalled — минула й третя форма.
+> **recalled** — Згадав. Recall — згадати; recalled — форма минулого й форма після have.
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-45:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Insist — наполягати. Ви хотіли йти пішки, але д�
 
 **4 · Картка слова — predicted**
 <!-- interaction_id: en:lesson-25:session-45:word:predicted; family: word_card -->
-> **predicted** — Передбачив. Predict — передбачити; predicted — минула й третя форма.
+> **predicted** — Передбачив. Predict — передбачити; predicted — форма минулого й форма після have.
 
 **5 · У прогнозі заздалегідь повідомили, що піде сніг. Виберіть predicted.**
 <!-- interaction_id: en:lesson-25:session-45:i03; family: context_gap_grammar -->
@@ -79,7 +79,7 @@ The forecast ___ snow. → **predicted** · recalled · forgot
 
 **7 · Картка слова — examined**
 <!-- interaction_id: en:lesson-25:session-45:word:examined; family: word_card -->
-> **examined** — Оглянув. Examine — уважно оглянути; examined — минула й третя форма.
+> **examined** — Оглянув. Examine — уважно оглянути; examined — форма минулого й форма після have.
 
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-45:i05; family: listen_choose -->
@@ -93,7 +93,7 @@ The forecast ___ snow. → **predicted** · recalled · forgot
 
 **10 · Картка слова — insisted**
 <!-- interaction_id: en:lesson-25:session-45:word:insisted; family: word_card -->
-> **insisted** — Наполіг. Insist — наполягати; insisted — минула й третя форма.
+> **insisted** — Наполіг. Insist — наполягати; insisted — форма минулого й форма після have.
 
 **11 · Розкажіть про рішення подруги: «Вона наполягла на оплаті вечері».**
 <!-- interaction_id: en:lesson-25:session-45:i07; family: phrase_builder -->
@@ -142,7 +142,7 @@ I went home ___ I spoke to the doctor. → **after** · before · while
 **20 · Парасольку зламано. Потрібно взяти іншу.**
 <!-- interaction_id: en:lesson-25:session-45:i16; family: context_gap_grammar -->
 I need ___ umbrella. → **another** · other · others
-- other — *Umbrella в однині, тому another.*
+- other — *Ідеться про одне — Umbrella, тому another.*
 - others — *Others не ставиться перед umbrella.*
 
 **21 · Повідомте друга про готовність: «Я вже замовив таксі».**

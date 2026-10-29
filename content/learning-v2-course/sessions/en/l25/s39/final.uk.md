@@ -14,8 +14,8 @@ Version тут — версія розповіді про подію. I had hear
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I had heard her version by the time we met.**
-- ❌ I have heard her version by the time we met. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ I was heard her version by the time we met. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ I have heard her version by the time we met. — *Результат до моменту в минулому: had + done.*
+- ❌ I was heard her version by the time we met. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Version тут — версія розповіді про подію. I had hear
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She had explained her preference by the time we ordered.**
-- ❌ She has explained her preference by the time we ordered. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ She was explained her preference by the time we ordered. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ She has explained her preference by the time we ordered. — *Результат до моменту в минулому: had + done.*
+- ❌ She was explained her preference by the time we ordered. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Obstacle — перешкода. We had removed the obstacle by the time the bus
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We had removed the obstacle by the time the bus arrived.**
-- ❌ We have removed the obstacle by the time the bus arrived. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ We were removed the obstacle by the time the bus arrived. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ We have removed the obstacle by the time the bus arrived. — *Результат до моменту в минулому: had + done.*
+- ❌ We were removed the obstacle by the time the bus arrived. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -142,7 +142,7 @@ I understood the problem ___ I heard both stories. → **after** · before · wh
 **20 · Одного стільця бракує. Попросіть ще один.**
 <!-- interaction_id: en:lesson-25:session-39:i16; family: context_gap_grammar -->
 We need ___ chair. → **another** · other · others
-- other — *Chair в однині, тому another.*
+- other — *Ідеться про одне — Chair, тому another.*
 - others — *Others не вживається перед іменником chair.*
 
 **21 · Повідомте, коли ви повернулися: «Ми дісталися додому до темряви».**

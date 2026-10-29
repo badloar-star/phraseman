@@ -15,7 +15,7 @@ Sincere — искренний. His apology was sincere after we argued — по
 
 - ✅ **His apology was sincere after we argued.**
 - ❌ His apology is sincere after we argued. — *Для рассказа о прошлом нужна форма was.*
-- ❌ His apology be sincere after we argued. — *Здесь используем Past Simple: was.*
+- ❌ His apology be sincere after we argued. — *Здесь используем форму прошлого: was.*
 
 ---
 
@@ -29,7 +29,7 @@ Sincere — искренний. His apology was sincere after we argued — по
 
 - ✅ **I was impolite before I apologised.**
 - ❌ I am impolite before I apologised. — *Для рассказа о прошлом нужна форма was.*
-- ❌ I be impolite before I apologised. — *Здесь используем Past Simple: was.*
+- ❌ I be impolite before I apologised. — *Здесь используем форму прошлого: was.*
 
 ---
 
@@ -37,13 +37,13 @@ Sincere — искренний. His apology was sincere after we argued — по
 
 ### Как я себя чувствовал
 
-Coward — трус. I felt like a coward after I ran away — я чувствовал себя трусом после того, как убежал. Это оценка собственного поступка, а не просто сообщение «мне было страшно». Coward — существительное о человеке: a coward. В felt like a coward слово like значит «как». Felt и ran — формы Past Simple; после after названо событие, которое случилось раньше.
+Coward — трус. I felt like a coward after I ran away — я чувствовал себя трусом после того, как убежал. Это оценка собственного поступка, а не просто сообщение «мне было страшно». Coward — существительное о человеке: a coward. В felt like a coward слово like значит «как». Felt и ran — формы прошлого; после after названо событие, которое случилось раньше.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I felt like a coward after I ran away.**
 - ❌ I feel like a coward after I ran away. — *Для рассказа о прошлом нужна форма felt.*
-- ❌ I feeling like a coward after I ran away. — *Здесь используем Past Simple: felt.*
+- ❌ I feeling like a coward after I ran away. — *Здесь используем форму прошлого: felt.*
 
 ---
 
@@ -142,7 +142,7 @@ We ___ finished talking before the teacher arrived. → **had** · have · were
 **20 · Вы увидели друга вчера и извинились тогда.**
 <!-- interaction_id: en:lesson-25:session-29:i16; family: context_gap_grammar -->
 I ___ yesterday. → **apologised** · have apologised · would apologise
-- have apologised — *Yesterday требует Past Simple apologised.*
+- have apologised — *Yesterday требует формы прошлого apologised.*
 - would apologise — *Здесь один вчерашний случай, а не повторявшаяся привычка.*
 
 **21 · Предложите выслушать других: «Давай послушаем других людей».**

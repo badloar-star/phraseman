@@ -119,7 +119,7 @@ gargle — полоскати горло · massage — масажувати · 
 <!-- interaction_id: en:lesson-25:session-14:i11; family: context_gap_grammar -->
 I have already ___ my hair. → **washed** · wash · washing
 - wash — *Після have потрібна форма washed.*
-- washing — *Have washing не утворює Present Perfect.*
+- washing — *Have washing не утворює have / has + done.*
 
 **16 · Перший рушник мокрий. Попросіть: «Можна мені ще один рушник?»**
 <!-- interaction_id: en:lesson-25:session-14:i12; family: scripted_repeat_compare -->
@@ -138,7 +138,7 @@ I have already ___ my hair. → **washed** · wash · washing
 **19 · Учора ви сходили до перукарні один раз.**
 <!-- interaction_id: en:lesson-25:session-14:i15; family: context_gap_grammar -->
 I ___ to the hairdresser yesterday. → **went** · have gone · would go
-- have gone — *Yesterday потребує Past Simple went.*
+- have gone — *Yesterday потребує форми минулого went.*
 - would go — *Тут одна вчорашня поїздка, а не повторюваний звичай.*
 
 **20 · Знайома змінила зачіску. Скажіть: «Мені подобається твоя нова зачіска».**

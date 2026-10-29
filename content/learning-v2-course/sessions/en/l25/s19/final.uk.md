@@ -15,7 +15,7 @@ Confuse — заплутати, зробити щось незрозумілим
 
 - ✅ **The instructions had confused me before I asked for help.**
 - ❌ The instructions have confused me before I asked for help. — *Для ранішої події в минулому використовуємо had.*
-- ❌ The instructions were confused me before I asked for help. — *Тут потрібно had + третя форма.*
+- ❌ The instructions were confused me before I asked for help. — *Тут потрібно had + done.*
 
 ---
 
@@ -29,7 +29,7 @@ Confuse — заплутати, зробити щось незрозумілим
 
 - ✅ **The joke had embarrassed him before he left.**
 - ❌ The joke has embarrassed him before he left. — *Для ранішої події в минулому використовуємо had.*
-- ❌ The joke was embarrassed him before he left. — *Тут потрібно had + третя форма.*
+- ❌ The joke was embarrassed him before he left. — *Тут потрібно had + done.*
 
 ---
 
@@ -43,7 +43,7 @@ Satisfy — задовольнити, виявитися достатнім дл
 
 - ✅ **Her answer had satisfied me before I signed the form.**
 - ❌ Her answer has satisfied me before I signed the form. — *Для ранішої події в минулому використовуємо had.*
-- ❌ Her answer was satisfied me before I signed the form. — *Тут потрібно had + третя форма.*
+- ❌ Her answer was satisfied me before I signed the form. — *Тут потрібно had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Satisfy — задовольнити, виявитися достатнім дл
 
 **1 · Картка слова — confused**
 <!-- interaction_id: en:lesson-25:session-19:word:confused; family: word_card -->
-> **confused** — заплутав. Confuse — заплутати; confused — третя форма.
+> **confused** — заплутав. Confuse — заплутати; confused — форма після have.
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-19:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Satisfy — задовольнити, виявитися достатнім дл
 
 **4 · Картка слова — scared**
 <!-- interaction_id: en:lesson-25:session-19:word:scared; family: word_card -->
-> **scared** — налякав. Scare — налякати; scared — третя форма.
+> **scared** — налякав. Scare — налякати; scared — форма після have.
 
 **5 · Поясніть, чому ви ввімкнули світло: «Шум налякав мене до того, як я ввімкнув світло».**
 <!-- interaction_id: en:lesson-25:session-19:i03; family: phrase_builder -->
@@ -85,7 +85,7 @@ The sudden bang had ___ me before I saw the cat. → **scared** · confused · h
 
 **8 · Картка слова — embarrassed**
 <!-- interaction_id: en:lesson-25:session-19:word:embarrassed; family: word_card -->
-> **embarrassed** — поставив у незручне становище. Embarrass — збентежити; embarrassed — третя форма.
+> **embarrassed** — поставив у незручне становище. Embarrass — збентежити; embarrassed — форма після have.
 
 **9 · Почуйте причину вибачення.**
 <!-- interaction_id: en:lesson-25:session-19:i06; family: listen_build_dictation -->
@@ -97,7 +97,7 @@ The sudden bang had ___ me before I saw the cat. → **scared** · confused · h
 
 **11 · Картка слова — satisfied**
 <!-- interaction_id: en:lesson-25:session-19:word:satisfied; family: word_card -->
-> **satisfied** — задовольнив. Satisfy — задовольнити; satisfied — третя форма.
+> **satisfied** — задовольнив. Satisfy — задовольнити; satisfied — форма після have.
 
 **12 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-19:i08; family: listen_choose -->
@@ -128,7 +128,7 @@ confused — заплутали · embarrassed — поставив у незр�
 **17 · Ви запитали дорогу вчора. Це один завершений випадок.**
 <!-- interaction_id: en:lesson-25:session-19:i13; family: context_gap_grammar -->
 I ___ for directions yesterday. → **asked** · have asked · would ask
-- have asked — *Yesterday потребує Past Simple asked.*
+- have asked — *Yesterday потребує форми минулого asked.*
 - would ask — *Would ask описує колишню звичку, не один учорашній випадок.*
 
 **18 · Почуйте, як раніше допомагав учитель.**
@@ -142,7 +142,7 @@ I ___ for directions yesterday. → **asked** · have asked · would ask
 **20 · Одне запитання вже розібрали, решта ще залишилася.**
 <!-- interaction_id: en:lesson-25:session-19:i16; family: context_gap_grammar -->
 I still have ___ questions. → **other** · another · others
-- another — *Another використовується з одниною, а questions — множина.*
+- another — *Another використовується з формою для одного, а questions — форма для кількох.*
 - others — *Перед іменником questions потрібно other без -s.*
 
 **21 · Ви вже попросили допомоги. Повідомте: «Я вже поговорив з учителем».**

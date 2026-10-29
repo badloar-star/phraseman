@@ -9,13 +9,13 @@
 
 ### Невдоволення після рахунку
 
-Grumble — бурчати, невдоволено скаржитися. He grumbled after he saw the bill — він бурчав після того, як побачив рахунок. Спочатку він побачив рахунок, потім став висловлювати невдоволення. After пов’язує події в такому порядку. Grumbled і saw — форми Past Simple: це розповідь про минуле, а не звичка.
+Grumble — бурчати, невдоволено скаржитися. He grumbled after he saw the bill — він бурчав після того, як побачив рахунок. Спочатку він побачив рахунок, потім став висловлювати невдоволення. After пов’язує події в такому порядку. Grumbled і saw — форми минулого: це розповідь про минуле, а не звичка.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He grumbled after he saw the bill.**
 - ❌ He grumble after he saw the bill. — *Для події в минулому потрібна форма grumbled.*
-- ❌ He grumbling after he saw the bill. — *Тут використовуємо Past Simple: grumbled.*
+- ❌ He grumbling after he saw the bill. — *Тут використовуємо форму минулого: grumbled.*
 
 ---
 
@@ -23,13 +23,13 @@ Grumble — бурчати, невдоволено скаржитися. He grum
 
 ### Повторні прохання до прибирання
 
-Ви згадуєте, як мама кілька разів наполегливо просила прибрати кімнату, перш ніж ви її прибрали. Скажіть: She nagged me before I cleaned my room — вона надокучала мені до того, як я прибрав свою кімнату. Складаємо: She + nagged + me + before I cleaned my room — хто, що робив, кому надокучав, до якої події. Nagged — минула форма nag із подвоєною g перед -ed. Me йде одразу після nagged без прийменника. Before пов’язує повторні прохання з пізнішим прибиранням; cleaned теж стоїть у past simple.
+Ви згадуєте, як мама кілька разів наполегливо просила прибрати кімнату, перш ніж ви її прибрали. Скажіть: She nagged me before I cleaned my room — вона надокучала мені до того, як я прибрав свою кімнату. Складаємо: She + nagged + me + before I cleaned my room — хто, що робив, кому надокучав, до якої події. Nagged — минула форма nag із подвоєною g перед -ed. Me йде одразу після nagged без прийменника. Before пов’язує повторні прохання з пізнішим прибиранням; cleaned теж стоїть у формі минулого.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She nagged me before I cleaned my room.**
 - ❌ She nag me before I cleaned my room. — *Для події в минулому потрібна форма nagged.*
-- ❌ She nagging me before I cleaned my room. — *Тут використовуємо Past Simple: nagged.*
+- ❌ She nagging me before I cleaned my room. — *Тут використовуємо форму минулого: nagged.*
 
 ---
 
@@ -37,13 +37,13 @@ Grumble — бурчати, невдоволено скаржитися. He grum
 
 ### Жалібний голос
 
-Whine — скиглити, скаржитися плаксивим голосом. The child whined after we left the park — дитина скиглила після того, як ми пішли з парку. Спочатку пішли, потім дитина почала скиглити. Grumble передає невдоволене бурчання, а whine підкреслює жалібний тон. Whine не означає просто «плакати». Тут after уже показує послідовність, тому звичайного Past Simple достатньо.
+Whine — скиглити, скаржитися плаксивим голосом. The child whined after we left the park — дитина скиглила після того, як ми пішли з парку. Спочатку пішли, потім дитина почала скиглити. Grumble передає невдоволене бурчання, а whine підкреслює жалібний тон. Whine не означає просто «плакати». Тут after уже показує послідовність, тому звичайної форми минулого достатньо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The child whined after we left the park.**
 - ❌ The child whine after we left the park. — *Для події в минулому потрібна форма whined.*
-- ❌ The child whining after we left the park. — *Тут використовуємо Past Simple: whined.*
+- ❌ The child whining after we left the park. — *Тут використовуємо форму минулого: whined.*
 
 ---
 
@@ -136,7 +136,7 @@ I ___ cleaned my room before my mother came home. → **had** · have · was
 **19 · Ви поговорили про це один раз учора.**
 <!-- interaction_id: en:lesson-25:session-26:i15; family: context_gap_grammar -->
 We ___ about it yesterday. → **talked** · have talked · would talk
-- have talked — *Yesterday потребує Past Simple talked.*
+- have talked — *Yesterday потребує форми минулого talked.*
 - would talk — *Would talk описує колишню звичку, не одну вчорашню розмову.*
 
 **20 · Послухайте й виберіть**

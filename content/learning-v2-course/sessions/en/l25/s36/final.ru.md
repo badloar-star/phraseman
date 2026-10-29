@@ -14,8 +14,8 @@ Entertain — развлекать. He had entertained the children by the time 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He had entertained the children by the time dinner was ready.**
-- ❌ He has entertained the children by the time dinner was ready. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ He was entertained the children by the time dinner was ready. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ He has entertained the children by the time dinner was ready. — *Результат к моменту в прошлом: had + done.*
+- ❌ He was entertained the children by the time dinner was ready. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@ Entertain — развлекать. He had entertained the children by the time 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Her story had amazed me by the time we got home.**
-- ❌ Her story has amazed me by the time we got home. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ Her story was amazed me by the time we got home. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ Her story has amazed me by the time we got home. — *Результат к моменту в прошлом: had + done.*
+- ❌ Her story was amazed me by the time we got home. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Flatter — льстить: часто хвалить человека боль�
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He had flattered me before he asked for money.**
-- ❌ He has flattered me before he asked for money. — *Результат к моменту в прошлом: had + третья форма.*
-- ❌ He was flattered me before he asked for money. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ He has flattered me before he asked for money. — *Результат к моменту в прошлом: had + done.*
+- ❌ He was flattered me before he asked for money. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Flatter — льстить: часто хвалить человека боль�
 
 **1 · Карточка слова — entertained**
 <!-- interaction_id: en:lesson-25:session-36:word:entertained; family: word_card -->
-> **entertained** — Развлёк. Entertain — развлекать; entertained — третья форма.
+> **entertained** — Развлёк. Entertain — развлекать; entertained — форма после have.
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-36:i01; family: listen_choose -->
@@ -65,7 +65,7 @@ Flatter — льстить: часто хвалить человека боль�
 
 **4 · Карточка слова — amazed**
 <!-- interaction_id: en:lesson-25:session-36:word:amazed; family: word_card -->
-> **amazed** — Поразил. Amaze — сильно удивить; amazed — третья форма.
+> **amazed** — Поразил. Amaze — сильно удивить; amazed — форма после have.
 
 **5 · Результат был неожиданным и очень вас удивил. Выберите amazed.**
 <!-- interaction_id: en:lesson-25:session-36:i03; family: context_gap_grammar -->
@@ -79,7 +79,7 @@ The result ___ me. → **amazed** · entertained · invited
 
 **7 · Карточка слова — irritated**
 <!-- interaction_id: en:lesson-25:session-36:word:irritated; family: word_card -->
-> **irritated** — Вызвал раздражение. Irritate — раздражать человека или часть тела; irritated — третья форма.
+> **irritated** — Вызвал раздражение. Irritate — раздражать человека или часть тела; irritated — форма после have.
 
 **8 · Услышьте, что вызвало раздражение кожи.**
 <!-- interaction_id: en:lesson-25:session-36:i05; family: listen_build_dictation -->
@@ -93,7 +93,7 @@ I stopped using the soap ___ my skin became red. → **after** · before · unti
 
 **10 · Карточка слова — flattered**
 <!-- interaction_id: en:lesson-25:session-36:word:flattered; family: word_card -->
-> **flattered** — Польстил. Flatter — льстить, часто хвалить больше заслуженного ради расположения; flattered — третья форма.
+> **flattered** — Польстил. Flatter — льстить, часто хвалить больше заслуженного ради расположения; flattered — форма после have.
 
 **11 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-36:i07; family: listen_choose -->
@@ -116,7 +116,7 @@ entertained — развлёк · amazed — поразил · irritated — в�
 **15 · Дети уснули до конца рассказа. Выберите форму слова после had.**
 <!-- interaction_id: en:lesson-25:session-36:i11; family: context_gap_grammar -->
 The children had ___ asleep by the time I finished the story. → **fallen** · fell · fall
-- fell — *Fell — Past Simple; после had нужна третья форма fallen.*
+- fell — *Fell — форма прошлого; после had нужна форма fallen.*
 - fall — *Fall — начальная форма; после had нужна fallen.*
 
 **16 · Послушайте и выберите**
@@ -132,7 +132,7 @@ The children had ___ asleep by the time I finished the story. → **fallen** · 
 **18 · Первую песню уже спели. Дети просят ещё одну.**
 <!-- interaction_id: en:lesson-25:session-36:i14; family: context_gap_grammar -->
 Please sing ___ song. → **another** · other · others
-- other — *Song в единственном числе, поэтому another.*
+- other — *Речь об одном — Song, поэтому another.*
 - others — *Others не ставится перед существительным song.*
 
 **19 · После весёлого вечера поблагодарите: «Спасибо за чудесный вечер».**
@@ -143,7 +143,7 @@ Please sing ___ song. → **another** · other · others
 <!-- interaction_id: en:lesson-25:session-36:i16; family: context_gap_grammar -->
 I ___ him the news. → **have already told** · already telling · have already tell
 - already telling — *Для завершённого действия здесь нужно have already told.*
-- have already tell — *После have нужна третья форма told, не tell.*
+- have already tell — *После have нужна форма told, не tell.*
 
 **21 · Выразите желание снова увидеть друзей: «Надеюсь скоро увидеть вас снова».**
 <!-- interaction_id: en:lesson-25:session-36:i17; family: phrase_builder -->

@@ -14,8 +14,8 @@ Nostril — ніздря, один із двох отворів носа. My nos
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My nostril had stopped bleeding by the time the nurse arrived.**
-- ❌ My nostril has stopped bleeding by the time the nurse arrived. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ My nostril was stopped bleeding by the time the nurse arrived. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ My nostril has stopped bleeding by the time the nurse arrived. — *Результат до моменту в минулому: had + done.*
+- ❌ My nostril was stopped bleeding by the time the nurse arrived. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -23,13 +23,13 @@ Nostril — ніздря, один із двох отворів носа. My nos
 
 ### Палець набряк до повернення додому
 
-Ви розповідаєте, як ударили палець на прогулянці: ще до повернення додому кісточка вже набрякла. Скажіть: My knuckle had swollen by the time we got home — кісточка мого пальця набрякла до того часу, як ми дісталися додому. Складаємо: My knuckle + had swollen + by the time we got home — що, яка зміна відбулася раніше, до якого моменту в минулому. Після had потрібна третя форма swollen, а не swell. Had swollen підкреслює зміну, що вже відбулася; got home задає пізніше повернення.
+Ви розповідаєте, як ударили палець на прогулянці: ще до повернення додому кісточка вже набрякла. Скажіть: My knuckle had swollen by the time we got home — кісточка мого пальця набрякла до того часу, як ми дісталися додому. Складаємо: My knuckle + had swollen + by the time we got home — що, яка зміна відбулася раніше, до якого моменту в минулому. Після had потрібна форма swollen, а не swell. Had swollen підкреслює зміну, що вже відбулася; got home задає пізніше повернення.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My knuckle had swollen by the time we got home.**
-- ❌ My knuckle has swollen by the time we got home. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ My knuckle was swollen by the time we got home. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ My knuckle has swollen by the time we got home. — *Результат до моменту в минулому: had + done.*
+- ❌ My knuckle was swollen by the time we got home. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -42,8 +42,8 @@ Toenails — нігті на ногах; fingernails — на руках. I had 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I had painted my toenails by the time she arrived.**
-- ❌ I have painted my toenails by the time she arrived. — *Результат до моменту в минулому: had + третя форма.*
-- ❌ I was painted my toenails by the time she arrived. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ I have painted my toenails by the time she arrived. — *Результат до моменту в минулому: had + done.*
+- ❌ I was painted my toenails by the time she arrived. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -88,8 +88,8 @@ My ___ hurts. → **knuckle** · nostril · tissue
 **9 · Ви підстригли нігті вчора. Виберіть час для завершеної події.**
 <!-- interaction_id: en:lesson-25:session-34:i06; family: context_gap_grammar -->
 I ___ my nails yesterday. → **cut** · have cut · had cutting
-- have cut — *Yesterday називає завершений момент; тут потрібен Past Simple cut.*
-- had cutting — *Had cutting не утворює Past Perfect; для вчорашньої події досить cut.*
+- have cut — *Yesterday називає завершений момент; тут потрібна форма минулого cut.*
+- had cutting — *Had cutting не утворює had + done; для вчорашньої події досить cut.*
 
 **10 · Картка слова — toenails**
 <!-- interaction_id: en:lesson-25:session-34:word:toenails; family: word_card -->
@@ -108,7 +108,7 @@ nostril — ніздря · knuckle — кісточка пальця · fingern
 **13 · Одну серветку вже використали. Попросіть ще одну.**
 <!-- interaction_id: en:lesson-25:session-34:i09; family: context_gap_grammar -->
 Can I have ___ tissue? → **another** · other · others
-- other — *Перед одниною tissue потрібно another.*
+- other — *Перед tissue (предмет один) потрібно another.*
 - others — *Others замінює іменник, а тут після пропуску стоїть tissue.*
 
 **14 · На прийомі уточніть: «Біль почався сьогодні вранці».**

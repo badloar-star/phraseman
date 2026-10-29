@@ -9,13 +9,13 @@
 
 ### Перед отправкой приглашения
 
-Rewrite — переписать, написать заново. She had rewritten the invitation before she posted it — она переписала приглашение до того, как отправила его по почте. Сначала переписала, затем отправила. Had rewritten — Past Perfect; rewritten — третья форма rewrite. Posted здесь означает «отправила по почте»: приглашение было бумажным.
+Rewrite — переписать, написать заново. She had rewritten the invitation before she posted it — она переписала приглашение до того, как отправила его по почте. Сначала переписала, затем отправила. Had rewritten — had + done; rewritten — форма rewrite после have. Posted здесь означает «отправила по почте»: приглашение было бумажным.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She had rewritten the invitation before she posted it.**
 - ❌ She has rewritten the invitation before she posted it. — *Для более раннего действия в прошлом нужно had.*
-- ❌ She was rewritten the invitation before she posted it. — *Здесь нужно had + третья форма.*
+- ❌ She was rewritten the invitation before she posted it. — *Здесь нужно had + done.*
 
 ---
 
@@ -23,13 +23,13 @@ Rewrite — переписать, написать заново. She had rewritt
 
 ### Историю пересказали до сна
 
-Вы вспоминаете вчерашний вечер: отец пересказал детям историю, прежде чем они легли спать. Скажите: He had retold the story before the children went to bed — он пересказал историю до того, как дети легли спать. Собираем: He + had retold + the story + before the children went to bed — кто, что сделал раньше, что пересказал, до какого события. После had нужна третья форма retold, а не retell. Had retold показывает законченный пересказ, went to bed — последующий отход ко сну.
+Вы вспоминаете вчерашний вечер: отец пересказал детям историю, прежде чем они легли спать. Скажите: He had retold the story before the children went to bed — он пересказал историю до того, как дети легли спать. Собираем: He + had retold + the story + before the children went to bed — кто, что сделал раньше, что пересказал, до какого события. После had нужна форма retold, а не retell. Had retold показывает законченный пересказ, went to bed — последующий отход ко сну.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He had retold the story before the children went to bed.**
 - ❌ He has retold the story before the children went to bed. — *Для более раннего действия в прошлом нужно had.*
-- ❌ He was retold the story before the children went to bed. — *Здесь нужно had + третья форма.*
+- ❌ He was retold the story before the children went to bed. — *Здесь нужно had + done.*
 
 ---
 
@@ -43,7 +43,7 @@ Reunite — снова собраться вместе после разлуки
 
 - ✅ **The family had reunited before the holiday began.**
 - ❌ The family has reunited before the holiday began. — *Для более раннего действия в прошлом нужно had.*
-- ❌ The family was reunited before the holiday began. — *Здесь нужно had + третья форма.*
+- ❌ The family was reunited before the holiday began. — *Здесь нужно had + done.*
 
 ---
 
@@ -51,7 +51,7 @@ Reunite — снова собраться вместе после разлуки
 
 **1 · Карточка слова — rewritten**
 <!-- interaction_id: en:lesson-25:session-18:word:rewritten; family: word_card -->
-> **rewritten** — переписал. Rewrite — переписать; rewritten — третья форма.
+> **rewritten** — переписал. Rewrite — переписать; rewritten — форма после have.
 
 **2 · Объясните, почему записка стала понятнее: «Я переписал записку до того, как оставил её».**
 <!-- interaction_id: en:lesson-25:session-18:i01; family: phrase_builder -->
@@ -81,7 +81,7 @@ Our family had ___ before the celebration began. → **reunited** · rewritten �
 
 **7 · Карточка слова — retold**
 <!-- interaction_id: en:lesson-25:session-18:word:retold; family: word_card -->
-> **retold** — пересказал. Retell — пересказать; retold — третья форма.
+> **retold** — пересказал. Retell — пересказать; retold — форма после have.
 
 **8 · Услышьте подготовку к уроку.**
 <!-- interaction_id: en:lesson-25:session-18:i05; family: listen_build_dictation -->
@@ -93,7 +93,7 @@ Our family had ___ before the celebration began. → **reunited** · rewritten �
 
 **10 · Карточка слова — revisited**
 <!-- interaction_id: en:lesson-25:session-18:word:revisited; family: word_card -->
-> **revisited** — снова посетил. Revisit — снова посетить; revisited — третья форма.
+> **revisited** — снова посетил. Revisit — снова посетить; revisited — форма после have.
 
 **11 · Вы успели снова увидеть прежний дом: «Мы снова посетили прежний дом до переезда».**
 <!-- interaction_id: en:lesson-25:session-18:i07; family: phrase_builder -->
@@ -122,7 +122,7 @@ rewritten — переписала · retold — пересказал · revisit
 **16 · Вчера вы увиделись с двоюродным братом один раз.**
 <!-- interaction_id: en:lesson-25:session-18:i12; family: context_gap_grammar -->
 I ___ my cousin yesterday. → **met** · have met · would meet
-- have met — *Yesterday требует Past Simple met.*
+- have met — *Yesterday требует формы прошлого met.*
 - would meet — *Это одна встреча вчера; would meet описывало бы привычку.*
 
 **17 · Услышьте, почему не хватило места.**
@@ -143,7 +143,7 @@ I ___ my cousin yesterday. → **met** · have met · would meet
 <!-- interaction_id: en:lesson-25:session-18:i16; family: context_gap_grammar -->
 I have already ___ to the invitation. → **replied** · reply · replying
 - reply — *После have нужна форма replied.*
-- replying — *Have replying не образует Present Perfect.*
+- replying — *Have replying не образует have / has + done.*
 
 **21 · Объясните, почему гость не успел попробовать пирог: «Мы съели пирог до твоего прихода».**
 <!-- interaction_id: en:lesson-25:session-18:i17; family: scripted_repeat_compare -->

@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I had regained my strength before I went back to work.**
-- ❌ I have regained my strength before I went back to work. — *Более раннее действие: had + третья форма.*
-- ❌ I was regained my strength before I went back to work. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ I have regained my strength before I went back to work. — *Более раннее действие: had + done.*
+- ❌ I was regained my strength before I went back to work. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She had reconsidered her plan before she called.**
-- ❌ She has reconsidered her plan before she called. — *Более раннее действие: had + третья форма.*
-- ❌ She was reconsidered her plan before she called. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ She has reconsidered her plan before she called. — *Более раннее действие: had + done.*
+- ❌ She was reconsidered her plan before she called. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Ключи за диваном
 
-Ключи упали за диван, и перед выходом вы их достали. Retrieve — забрать или достать что-то обратно. He had retrieved his keys before he left — он достал свои ключи до того, как ушёл. В этом контексте retrieve означает именно вернуть себе ключи из труднодоступного места. Had retrieved — более раннее действие, left — последующий уход. После had нужна третья форма retrieved.
+Ключи упали за диван, и перед выходом вы их достали. Retrieve — забрать или достать что-то обратно. He had retrieved his keys before he left — он достал свои ключи до того, как ушёл. В этом контексте retrieve означает именно вернуть себе ключи из труднодоступного места. Had retrieved — более раннее действие, left — последующий уход. После had нужна форма retrieved.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **He had retrieved his keys before he left.**
-- ❌ He has retrieved his keys before he left. — *Более раннее действие: had + третья форма.*
-- ❌ He was retrieved his keys before he left. — *Здесь нужен Past Perfect: had + третья форма.*
+- ❌ He has retrieved his keys before he left. — *Более раннее действие: had + done.*
+- ❌ He was retrieved his keys before he left. — *Здесь нужна форма had + done.*
 
 ---
 
@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — regained**
 <!-- interaction_id: en:lesson-25:session-51:word:regained; family: word_card -->
-> **regained** — Восстановил. Regain — вернуть утраченное, например силы или уверенность; regained — третья форма.
+> **regained** — Восстановил. Regain — вернуть утраченное, например силы или уверенность; regained — форма после have.
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-51:i01; family: listen_choose -->
@@ -65,7 +65,7 @@
 
 **4 · Карточка слова — reconsidered**
 <!-- interaction_id: en:lesson-25:session-51:word:reconsidered; family: word_card -->
-> **reconsidered** — Пересмотрел. Reconsider — ещё раз обдумать решение; reconsidered — третья форма.
+> **reconsidered** — Пересмотрел. Reconsider — ещё раз обдумать решение; reconsidered — форма после have.
 
 **5 · Вы снова обдумали прежнее решение. Выберите reconsidered.**
 <!-- interaction_id: en:lesson-25:session-51:i03; family: context_gap_grammar -->
@@ -79,7 +79,7 @@ I ___ my decision. → **reconsidered** · regained · carried
 
 **7 · Карточка слова — endured**
 <!-- interaction_id: en:lesson-25:session-51:word:endured; family: word_card -->
-> **endured** — Вытерпел. Endure — выдержать что-то тяжёлое или неприятное; endured — третья форма.
+> **endured** — Вытерпел. Endure — выдержать что-то тяжёлое или неприятное; endured — форма после have.
 
 **8 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-25:session-51:i05; family: listen_choose -->
@@ -93,7 +93,7 @@ I ___ my decision. → **reconsidered** · regained · carried
 
 **10 · Карточка слова — retrieved**
 <!-- interaction_id: en:lesson-25:session-51:word:retrieved; family: word_card -->
-> **retrieved** — Достал, вернул. Retrieve — забрать или достать то, что было оставлено, потеряно либо оказалось вне досягаемости; retrieved — третья форма.
+> **retrieved** — Достал, вернул. Retrieve — забрать или достать то, что было оставлено, потеряно либо оказалось вне досягаемости; retrieved — форма после have.
 
 **11 · Услышьте, откуда достали мяч.**
 <!-- interaction_id: en:lesson-25:session-51:i07; family: listen_build_dictation -->
@@ -142,7 +142,7 @@ I read the timetable ___ I bought the ticket. → **before** · after · while
 **20 · Первый поезд ушёл. Вы решаете сесть на другой.**
 <!-- interaction_id: en:lesson-25:session-51:i16; family: context_gap_grammar -->
 We can take ___ train. → **another** · other · others
-- other — *Train в единственном числе, поэтому another.*
+- other — *Речь об одном — Train, поэтому another.*
 - others — *Others не ставится перед train.*
 
 **21 · Вспомните прежнюю привычку: «Я раньше всё делал в спешке».**

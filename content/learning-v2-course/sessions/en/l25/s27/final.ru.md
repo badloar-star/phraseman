@@ -15,7 +15,7 @@ Rotten — гнилой. The apple was rotten before I cut it — яблоко �
 
 - ✅ **The apple was rotten before I cut it.**
 - ❌ The apple is rotten before I cut it. — *Для рассказа о прошлом нужна форма was.*
-- ❌ The apple be rotten before I cut it. — *Здесь используем Past Simple: was.*
+- ❌ The apple be rotten before I cut it. — *Здесь используем форму прошлого: was.*
 
 ---
 
@@ -29,7 +29,7 @@ Rotten — гнилой. The apple was rotten before I cut it — яблоко �
 
 - ✅ **The bread was mouldy before I opened the bag.**
 - ❌ The bread is mouldy before I opened the bag. — *Для рассказа о прошлом нужна форма was.*
-- ❌ The bread be mouldy before I opened the bag. — *Здесь используем Past Simple: was.*
+- ❌ The bread be mouldy before I opened the bag. — *Здесь используем форму прошлого: was.*
 
 ---
 
@@ -43,7 +43,7 @@ Stink — сильно и неприятно пахнуть, «вонять». �
 
 - ✅ **The kitchen stank after we opened the bin.**
 - ❌ The kitchen stink after we opened the bin. — *Для рассказа о прошлом нужна форма stank.*
-- ❌ The kitchen stinking after we opened the bin. — *Здесь используем Past Simple: stank.*
+- ❌ The kitchen stinking after we opened the bin. — *Здесь используем форму прошлого: stank.*
 
 ---
 
@@ -143,7 +143,7 @@ I ___ cleaned the fridge before my family returned. → **had** · have · was
 <!-- interaction_id: en:lesson-25:session-27:i16; family: context_gap_grammar -->
 I have already ___ everything. → **checked** · check · checking
 - check — *После have нужна форма checked.*
-- checking — *Have checking не образует Present Perfect.*
+- checking — *Have checking не образует have / has + done.*
 
 **21 · Уточните, когда продукты доставили: «Во сколько приехала доставка?»**
 <!-- interaction_id: en:lesson-25:session-27:i17; family: scripted_repeat_compare -->

@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I had regained my strength before I went back to work.**
-- ❌ I have regained my strength before I went back to work. — *Раніша дія: had + третя форма.*
-- ❌ I was regained my strength before I went back to work. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ I have regained my strength before I went back to work. — *Раніша дія: had + done.*
+- ❌ I was regained my strength before I went back to work. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **She had reconsidered her plan before she called.**
-- ❌ She has reconsidered her plan before she called. — *Раніша дія: had + третя форма.*
-- ❌ She was reconsidered her plan before she called. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ She has reconsidered her plan before she called. — *Раніша дія: had + done.*
+- ❌ She was reconsidered her plan before she called. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Ключі за диваном
 
-Ключі впали за диван, і перед виходом ви їх дістали. Retrieve — забрати чи дістати щось назад. He had retrieved his keys before he left — він дістав свої ключі до того, як пішов. У цьому контексті retrieve означає саме повернути собі ключі з важкодоступного місця. Had retrieved — раніша дія, left — подальший вихід. Після had потрібна третя форма retrieved.
+Ключі впали за диван, і перед виходом ви їх дістали. Retrieve — забрати чи дістати щось назад. He had retrieved his keys before he left — він дістав свої ключі до того, як пішов. У цьому контексті retrieve означає саме повернути собі ключі з важкодоступного місця. Had retrieved — раніша дія, left — подальший вихід. Після had потрібна форма retrieved.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **He had retrieved his keys before he left.**
-- ❌ He has retrieved his keys before he left. — *Раніша дія: had + третя форма.*
-- ❌ He was retrieved his keys before he left. — *Тут потрібен Past Perfect: had + третя форма.*
+- ❌ He has retrieved his keys before he left. — *Раніша дія: had + done.*
+- ❌ He was retrieved his keys before he left. — *Тут потрібна форма had + done.*
 
 ---
 
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — regained**
 <!-- interaction_id: en:lesson-25:session-51:word:regained; family: word_card -->
-> **regained** — Відновив. Regain — повернути втрачене, наприклад сили чи впевненість; regained — третя форма.
+> **regained** — Відновив. Regain — повернути втрачене, наприклад сили чи впевненість; regained — форма після have.
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-51:i01; family: listen_choose -->
@@ -65,7 +65,7 @@
 
 **4 · Картка слова — reconsidered**
 <!-- interaction_id: en:lesson-25:session-51:word:reconsidered; family: word_card -->
-> **reconsidered** — Переглянув. Reconsider — ще раз обміркувати рішення; reconsidered — третя форма.
+> **reconsidered** — Переглянув. Reconsider — ще раз обміркувати рішення; reconsidered — форма після have.
 
 **5 · Ви знову обміркували попереднє рішення. Виберіть reconsidered.**
 <!-- interaction_id: en:lesson-25:session-51:i03; family: context_gap_grammar -->
@@ -79,7 +79,7 @@ I ___ my decision. → **reconsidered** · regained · carried
 
 **7 · Картка слова — endured**
 <!-- interaction_id: en:lesson-25:session-51:word:endured; family: word_card -->
-> **endured** — Витримав. Endure — витримати щось важке чи неприємне; endured — третя форма.
+> **endured** — Витримав. Endure — витримати щось важке чи неприємне; endured — форма після have.
 
 **8 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-25:session-51:i05; family: listen_choose -->
@@ -93,7 +93,7 @@ I ___ my decision. → **reconsidered** · regained · carried
 
 **10 · Картка слова — retrieved**
 <!-- interaction_id: en:lesson-25:session-51:word:retrieved; family: word_card -->
-> **retrieved** — Дістав, повернув. Retrieve — забрати чи дістати те, що залишили, загубили або що опинилося поза досяжністю; retrieved — третя форма.
+> **retrieved** — Дістав, повернув. Retrieve — забрати чи дістати те, що залишили, загубили або що опинилося поза досяжністю; retrieved — форма після have.
 
 **11 · Почуйте, звідки дістали м’яч.**
 <!-- interaction_id: en:lesson-25:session-51:i07; family: listen_build_dictation -->
@@ -142,7 +142,7 @@ I read the timetable ___ I bought the ticket. → **before** · after · while
 **20 · Перший поїзд поїхав. Ви вирішуєте сісти на інший.**
 <!-- interaction_id: en:lesson-25:session-51:i16; family: context_gap_grammar -->
 We can take ___ train. → **another** · other · others
-- other — *Train в однині, тому another.*
+- other — *Ідеться про одне — Train, тому another.*
 - others — *Others не ставиться перед train.*
 
 **21 · Згадайте колишню звичку: «Я раніше все робив поспіхом».**

@@ -99,7 +99,7 @@ I ___ shy at school. → **used to be** · am · am being
 <!-- interaction_id: en:lesson-25:session-06:i08; family: context_gap_grammar -->
 My life has ___ a lot. → **changed** · change · changing
 - change — *Після has потрібна форма changed.*
-- changing — *Changing тут не утворює Present Perfect; потрібно changed.*
+- changing — *Changing тут не утворює have / has + done; потрібно changed.*
 
 **12 · Картка слова — attitude**
 <!-- interaction_id: en:lesson-25:session-06:word:attitude; family: word_card -->
@@ -138,7 +138,7 @@ I like his ___ to work. → **attitude** · personality · adulthood
 **19 · Ви говорите про один вечір минулого тижня.**
 <!-- interaction_id: en:lesson-25:session-06:i15; family: context_gap_grammar -->
 We ___ about our school days last week. → **talked** · have talked · used to talk
-- have talked — *Last week — завершений час: потрібен Past Simple talked.*
+- have talked — *Last week — завершений час: потрібна форма минулого talked.*
 - used to talk — *Used to talk описує колишню звичку; тут була одна розмова.*
 
 **20 · Тепер ви любите зустрічі. Скажіть про минуле: «Раніше я волів бути сам».**

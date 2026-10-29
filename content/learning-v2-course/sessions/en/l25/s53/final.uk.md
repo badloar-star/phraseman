@@ -142,7 +142,7 @@ We continued walking ___ we rested. → **after** · before · while
 **20 · Тут гамірно. Запропонуйте пошукати інше місце.**
 <!-- interaction_id: en:lesson-25:session-53:i16; family: context_gap_grammar -->
 Let us find ___ place. → **another** · other · others
-- other — *Place в однині, тому another.*
+- other — *Ідеться про одне — Place, тому another.*
 - others — *Others не ставиться перед place.*
 
 **21 · Згадайте літні вечори: «У дитинстві ми щовечора сиділи біля річки». Використайте would.**

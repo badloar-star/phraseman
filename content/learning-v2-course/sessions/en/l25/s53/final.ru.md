@@ -142,7 +142,7 @@ We continued walking ___ we rested. → **after** · before · while
 **20 · Здесь шумно. Предложите поискать другое место.**
 <!-- interaction_id: en:lesson-25:session-53:i16; family: context_gap_grammar -->
 Let us find ___ place. → **another** · other · others
-- other — *Place в единственном числе, поэтому another.*
+- other — *Речь об одном — Place, поэтому another.*
 - others — *Others не ставится перед place.*
 
 **21 · Вспомните летние вечера: «В детстве мы каждый вечер сидели у реки». Используйте would.**

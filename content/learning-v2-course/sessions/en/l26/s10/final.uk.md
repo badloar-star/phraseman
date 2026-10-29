@@ -89,7 +89,7 @@ That is ___. → **nonsense** · advice · permission
 <!-- interaction_id: en:lesson-26:session-10:i06; family: context_gap_grammar -->
 If I hear a strange story, I ___ it. → **check** · checks · checking
 - checks — *З I потрібно check без -s.*
-- checking — *Checking без do / does не може стояти сама.*
+- checking — *Checking без do / does не може стояти окремо.*
 
 **10 · Картка слова — pity**
 <!-- interaction_id: en:lesson-26:session-10:word:pity; family: word_card -->

@@ -91,7 +91,7 @@ If my shoes hurt, I ___ them. → **change** · changes · changing
 
 **10 · Картка слова — gums**
 <!-- interaction_id: en:lesson-26:session-11:word:gums; family: word_card -->
-> **gums** — Ясна. Gums — форма для кількох від gum; my gums hurt — у мене болять ясна.
+> **gums** — Ясна. Gums — gum у формі для кількох; my gums hurt — у мене болять ясна.
 
 **11 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-26:session-11:i07; family: listen_choose -->

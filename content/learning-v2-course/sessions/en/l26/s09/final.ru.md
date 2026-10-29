@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-26:session-09:i02; family: context_gap_grammar -->
 I will get a cloth if I ___ the juice. → **spill** · will spill · spilling
 - will spill — *Будущее условие после if выражаем через форма work / works: spill.*
-- spilling — *Здесь нужен личный глагол spill; spilling не может стоять один.*
+- spilling — *Здесь нужен личный глагол spill; spilling не может стоять отдельно.*
 
 **4 · Карточка слова — mess**
 <!-- interaction_id: en:lesson-26:session-09:word:mess; family: word_card -->

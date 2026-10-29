@@ -103,7 +103,7 @@ If I make oatmeal, I ___ raisins. → **add** · adds · adding
 <!-- interaction_id: en:lesson-26:session-13:i08; family: context_gap_grammar -->
 I will buy some marmalade if the shop ___ open. → **is** · will be · being
 - will be — *Після if у цій умові потрібна форма work / works: is.*
-- being — *Being тут не може стояти сама.*
+- being — *Being тут не може стояти окремо.*
 
 **13 · Подруга запитує, чи закінчено пакування їжі. Дайте відповідь: «Я вже спакував обід».**
 <!-- interaction_id: en:lesson-26:session-13:i09; family: scripted_repeat_compare -->

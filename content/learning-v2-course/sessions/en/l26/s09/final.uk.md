@@ -61,7 +61,7 @@
 <!-- interaction_id: en:lesson-26:session-09:i02; family: context_gap_grammar -->
 I will get a cloth if I ___ the juice. → **spill** · will spill · spilling
 - will spill — *Майбутню умову після if виражаємо через форма work / works: spill.*
-- spilling — *Тут потрібне дієслово spill; spilling не може стояти сама.*
+- spilling — *Тут потрібне дієслово spill; spilling не може стояти окремо.*
 
 **4 · Картка слова — mess**
 <!-- interaction_id: en:lesson-26:session-09:word:mess; family: word_card -->

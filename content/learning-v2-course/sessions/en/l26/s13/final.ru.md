@@ -103,7 +103,7 @@ If I make oatmeal, I ___ raisins. → **add** · adds · adding
 <!-- interaction_id: en:lesson-26:session-13:i08; family: context_gap_grammar -->
 I will buy some marmalade if the shop ___ open. → **is** · will be · being
 - will be — *После if в этом условии нужна форма work / works: is.*
-- being — *Being здесь не может стоять один.*
+- being — *Being здесь не может стоять отдельно.*
 
 **13 · Подруга спрашивает, закончена ли упаковка еды. Ответьте: «Я уже упаковал обед».**
 <!-- interaction_id: en:lesson-26:session-13:i09; family: scripted_repeat_compare -->

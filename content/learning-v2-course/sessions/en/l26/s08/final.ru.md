@@ -147,5 +147,5 @@ I use powdered milk when I ___ have fresh milk. → **do not** · does not · am
 <!-- interaction_id: en:lesson-26:session-08:i17; family: context_gap_grammar -->
 I add salt if the soup ___ flavour. → **lacks** · lack · lacking
 - lack — *После the soup нужна форма lacks с -s.*
-- lacking — *Нужна личная форма lacks; lacking здесь не может стоять один.*
+- lacking — *Нужна личная форма lacks; lacking здесь не может стоять отдельно.*
 

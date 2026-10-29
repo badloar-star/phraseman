@@ -91,7 +91,7 @@ I choose another box if this one ___ dry. → **is not** · are not · not be
 <!-- interaction_id: en:lesson-26:session-07:i06; family: context_gap_grammar -->
 Brittle plastic ___ if you bend it. → **breaks** · break · breaking
 - break — *Plastic не рахують поштучно; потрібна форма breaks, як з it.*
-- breaking — *Для властивості у формі work / works потрібно breaks; breaking не може стояти сама.*
+- breaking — *Для властивості у формі work / works потрібно breaks; breaking не може стояти окремо.*
 
 **10 · Поясніть звичку: «Я прошу допомоги, коли коробка заважка».**
 <!-- interaction_id: en:lesson-26:session-07:i07; family: scripted_repeat_compare -->

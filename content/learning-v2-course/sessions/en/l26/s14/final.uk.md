@@ -89,7 +89,7 @@ If I ___ cold, I put on my bathrobe. → **feel** · feels · feeling
 <!-- interaction_id: en:lesson-26:session-14:i06; family: context_gap_grammar -->
 I will wear an undershirt if it ___ cold. → **gets** · will get · getting
 - will get — *В умові після if потрібна форма work / works: gets.*
-- getting — *Getting тут не може стояти сама.*
+- getting — *Getting тут не може стояти окремо.*
 
 **10 · Картка слова — diaper**
 <!-- interaction_id: en:lesson-26:session-14:word:diaper; family: word_card -->

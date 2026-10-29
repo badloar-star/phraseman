@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбрали материалы для покраски комнаты и обсуждаете планы.
 
-**Что вы освоите:** review: going to for decided intentions
+**Что вы освоите:** повторить: сказать, что вы уже решили сделать — I’m going to rest
 **Новые слова:** paint roller, paint tray, dust sheet, undercoat
 
 ## Интро 1

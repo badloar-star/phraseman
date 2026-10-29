@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви оглядаєте будинок перед дощем і помічаєте, що може статися.
 
-**Що ви опануєте:** review: going to predictions from present evidence
+**Що ви опануєте:** повторити: сказати, що ось-ось станеться, бо це видно — It’s going to rain
 **Нові слова:** skylight, veranda, conservatory, doorstop
 
 ## Інтро 1

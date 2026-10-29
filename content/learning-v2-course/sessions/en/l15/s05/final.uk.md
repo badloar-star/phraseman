@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорили зручності й вирішили, який номер забронюєте.
 
-**Що ви опануєте:** review: going to for decided intentions
+**Що ви опануєте:** повторити: сказати, що ви вже вирішили зробити — I’m going to rest
 **Нові слова:** en-suite, all-inclusive, connecting room, walk-in shower
 
 ## Інтро 1

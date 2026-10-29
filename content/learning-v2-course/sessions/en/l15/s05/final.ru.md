@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсудили удобства и решили, какой номер забронируете.
 
-**Что вы освоите:** review: going to for decided intentions
+**Что вы освоите:** повторить: сказать, что вы уже решили сделать — I’m going to rest
 **Новые слова:** en-suite, all-inclusive, connecting room, walk-in shower
 
 ## Интро 1

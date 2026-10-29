@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы осматриваете дом перед дождём и замечаете, что может произойти.
 
-**Что вы освоите:** review: going to predictions from present evidence
+**Что вы освоите:** повторить: сказать, что вот-вот случится, потому что это видно — It’s going to rain
 **Новые слова:** skylight, veranda, conservatory, doorstop
 
 ## Интро 1

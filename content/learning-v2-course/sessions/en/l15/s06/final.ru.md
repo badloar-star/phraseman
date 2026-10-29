@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы решили, где будете спать и что возьмёте для поездки за город.
 
-**Что вы освоите:** review: going to for decided intentions
+**Что вы освоите:** повторить: сказать, что вы уже решили сделать — I’m going to rest
 **Новые слова:** bunk bed, sleeping mat, groundsheet, cool box
 
 ## Интро 1

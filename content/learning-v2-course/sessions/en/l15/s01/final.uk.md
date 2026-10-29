@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вже вирішили, які домашні справи зробите на вихідних.
 
-**Що ви опануєте:** be going to + base verb: an intention already decided
+**Що ви опануєте:** сказати, що ви вже вирішили зробити: I’m going to rest
 **Нові слова:** descale, declutter, repaint, alter
 
 ## Інтро 1

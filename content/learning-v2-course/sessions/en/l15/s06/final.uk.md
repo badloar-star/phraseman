@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вирішили, де спатимете і що візьмете для поїздки за місто.
 
-**Що ви опануєте:** review: going to for decided intentions
+**Що ви опануєте:** повторити: сказати, що ви вже вирішили зробити — I’m going to rest
 **Нові слова:** bunk bed, sleeping mat, groundsheet, cool box
 
 ## Інтро 1

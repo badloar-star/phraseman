@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы распределили дела перед праздником и рассказываете о своих планах.
 
-**Что вы освоите:** review: going to for decided intentions
+**Что вы освоите:** повторить: сказать, что вы уже решили сделать — I’m going to rest
 **Новые слова:** bunting, balloon pump, gift tag, party popper
 
 ## Интро 1

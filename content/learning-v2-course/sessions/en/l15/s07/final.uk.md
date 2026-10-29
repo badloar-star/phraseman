@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розподілили справи перед святом і розповідаєте про свої плани.
 
-**Що ви опануєте:** review: going to for decided intentions
+**Що ви опануєте:** повторити: сказати, що ви вже вирішили зробити — I’m going to rest
 **Нові слова:** bunting, balloon pump, gift tag, party popper
 
 ## Інтро 1

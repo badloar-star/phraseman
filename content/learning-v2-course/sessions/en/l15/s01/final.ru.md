@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уже решили, какие домашние дела сделаете на выходных.
 
-**Что вы освоите:** be going to + base verb: an intention already decided
+**Что вы освоите:** сказать, что вы уже решили сделать: I’m going to rest
 **Новые слова:** descale, declutter, repaint, alter
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вибрали матеріали для фарбування кімнати й обговорюєте плани.
 
-**Що ви опануєте:** review: going to for decided intentions
+**Що ви опануєте:** повторити: сказати, що ви вже вирішили зробити — I’m going to rest
 **Нові слова:** paint roller, paint tray, dust sheet, undercoat
 
 ## Інтро 1

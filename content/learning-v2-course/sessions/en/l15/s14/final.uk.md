@@ -2,7 +2,7 @@
 
 **Ситуація.** На прогулянці ви помічаєте сонце, вологу й рух дерев.
 
-**Що ви опануєте:** review: going to predictions from present evidence
+**Що ви опануєте:** повторити: сказати, що ось-ось станеться, бо це видно — It’s going to rain
 **Нові слова:** dew, rainbow, sunbeam, treetop
 
 ## Інтро 1

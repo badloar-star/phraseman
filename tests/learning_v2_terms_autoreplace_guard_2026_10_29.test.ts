@@ -20,7 +20,27 @@ const BROKEN: readonly (readonly [string, RegExp])[] = [
   ['«форма формы для нескольких»', /форм[аую] форм[ыиа] для (нескольких|кількох)/],
   // зачем: Ревизор 29.10 — «Множественное seats требует are» остался термином; простое слово — «Seats (их несколько) требуют are»
   ['«Множественное / Единственное X» в разборе', /(Множественное|Единственное|Множинне|Однинне) [a-z]/],
+  // зачем: Ревизор 29.10 — английская грамматическая формула внутри русского текста («Could I + base verb?», «have + past participle»)
+  ['английская грамматическая формула', /\b(base verb|past participle|to-infinitive|gerund|noun phrase|count noun|non-count noun|plural noun|verb-ing|reflexive pronoun|object pronoun)\b/i],
+  // зачем: Learning V2 29.10 — замена съела открывающую «*» разбора, и сборщик потерял разбор варианта (l27/s53)
+  ['разбор варианта без открывающей «*»', /^- [^*]+ — [^*].*\*$/],
 ];
+
+// зачем: Ревизор 29.10 — сторож обязан падать на подложенной строке; иначе регулярка могла «ослепнуть» после правки
+const PLANTED: Readonly<Record<string, string>> = {
+  '«X — это не считают поштучно»': '- ❌ It is crockery. — *Crockery — это не считают поштучно; согласуем с is.*',
+  '«Здесь это не считают поштучно: X»': '- a — *Здесь это не считают поштучно: rice без a.*',
+  '«such не считают поштучно»': '- so — *such здесь не считают поштучно, поэтому без a.*',
+  '«считается поштучно» перед английским словом': '- ❌ There is smudge. — *Перед считается поштучно smudge нужно a.*',
+  '«одним считается поштучно …» на месте прилагательного': 'Перед одним считается поштучно предметом нужен a.',
+  '«слово a / the» с глаголом не того рода': 'После my слово a / the не нужен.',
+  '«с словом a / the»': 'Назовите вещь с словом a / the.',
+  '«слова a / the a»': 'Здесь слова a / the a и the не добавляем.',
+  '«форма формы для нескольких»': 'В английском eggs имеет форму формы для нескольких.',
+  '«Множественное / Единственное X» в разборе': '- is — *Множественное seats требует are.*',
+  'английская грамматическая формула': '**Что вы освоите:** вежливо попросить: Could I + base verb?',
+  'разбор варианта без открывающей «*»': '- leaving — Нужна форма прошлого: left.*',
+};
 
 function finalFiles(dir: string): string[] {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
@@ -35,6 +55,11 @@ describe('Learning V2: тексты без поломок автозамены �
 
   it('файлы занятий найдены', () => {
     expect(files.length).toBeGreaterThan(1000);
+  });
+
+  it.each(BROKEN.map(([name, re]) => [name, re] as const))('сторож ловит подложенную строку: %s', (name, re) => {
+    expect(PLANTED[name]).toBeDefined();
+    expect(re.test(PLANTED[name]!)).toBe(true);
   });
 
   it.each(BROKEN.map(([name, re]) => [name, re] as const))('нет шаблона %s', (_name, re) => {
@@ -59,6 +84,39 @@ function goalLine(text: string, lang: 'ru' | 'uk'): string | null {
   return line ? line.slice(GOAL_LABEL[lang].length).trim() : null;
 }
 
+// Все замечания к строке «Что вы освоите» одного занятия (ru + uk); пустой список — строка в порядке.
+function goalProblems(where: string, texts: Readonly<{ ru: string; uk: string }>): string[] {
+  const bad: string[] = [];
+  const goals = { ru: goalLine(texts.ru, 'ru'), uk: goalLine(texts.uk, 'uk') };
+  if (!goals.ru || !goals.uk) return bad;
+  const examples: Record<string, string | null> = {};
+  for (const lang of ['ru', 'uk'] as const) {
+    const goal = goals[lang]!;
+    if (!/[а-яёіїєґ]/i.test(goal)) bad.push(`${where} ${lang}: строка без кириллицы — английская формула`);
+    if (goal.length > 90) bad.push(`${where} ${lang}: ${goal.length} знаков > 90`);
+    const ex = GOAL_EXAMPLE.exec(goal)?.[1] ?? null;
+    examples[lang] = ex;
+    if (!ex) bad.push(`${where} ${lang}: нет английского примера`);
+  }
+  if (examples.ru !== examples.uk) bad.push(`${where}: пример ru «${examples.ru}» ≠ uk «${examples.uk}»`);
+  const ex = examples.ru?.replace(/[.?!]+$/, '');
+  const body = texts.ru.replace(`${GOAL_LABEL.ru}${goals.ru}`, '');
+  // зачем: пример должен жить в самом занятии — иначе он придуман или скопирован из другого занятия
+  if (ex && !body.includes(ex)) bad.push(`${where}: пример «${ex}» не встречается в тексте занятия`);
+  // зачем: координатор 29.10 — пример целой фразой до 8 слов (с заглавной и точкой); обрывок допустим, только если
+  // вырезан из фразы занятия длиннее 8 слов (короче целой фразы, показывающей навык, нет)
+  const full = examples.ru;
+  if (full) {
+    if (full.split(/\s+/).length > 8) bad.push(`${where}: пример «${full}» длиннее 8 слов`);
+    const whole = /^[A-Z].*[.?!]$/.test(full);
+    const phrases = [...body.matchAll(/(?:→|🎙[^*]*)\s*\*\*([A-Z][^*]{2,120}?[.?!])\*\*/g)].map((m) => m[1]!);
+    if (!whole && !phrases.some((p) => p.includes(ex!) && p.split(/\s+/).length > 8)) {
+      bad.push(`${where}: обрывок «${full}» при наличии фразы до 8 слов`);
+    }
+  }
+  return bad;
+}
+
 describe('Learning V2: «Что вы освоите» — простые слова и пример из занятия', () => {
   const sessions = finalFiles(SESSIONS).filter((f) => f.endsWith('final.ru.md')).map((ru) => path.dirname(ru));
 
@@ -68,24 +126,27 @@ describe('Learning V2: «Что вы освоите» — простые сло�
       const uk = path.join(dir, 'final.uk.md');
       if (!fs.existsSync(uk)) continue;
       const texts = { ru: fs.readFileSync(path.join(dir, 'final.ru.md'), 'utf8'), uk: fs.readFileSync(uk, 'utf8') };
-      const goals = { ru: goalLine(texts.ru, 'ru'), uk: goalLine(texts.uk, 'uk') };
-      if (!goals.ru || !goals.uk) continue;
-      const where = path.relative(SESSIONS, dir);
-      const examples: Record<string, string | null> = {};
-      for (const lang of ['ru', 'uk'] as const) {
-        const goal = goals[lang]!;
-        if (!/[а-яёіїєґ]/i.test(goal)) bad.push(`${where} ${lang}: строка без кириллицы — английская формула`);
-        if (goal.length > 90) bad.push(`${where} ${lang}: ${goal.length} знаков > 90`);
-        const ex = GOAL_EXAMPLE.exec(goal)?.[1] ?? null;
-        examples[lang] = ex;
-        if (!ex) bad.push(`${where} ${lang}: нет английского примера`);
-      }
-      if (examples.ru !== examples.uk) bad.push(`${where}: пример ru «${examples.ru}» ≠ uk «${examples.uk}»`);
-      const ex = examples.ru?.replace(/[.?!]+$/, '');
-      const body = texts.ru.replace(`${GOAL_LABEL.ru}${goals.ru}`, '');
-      // зачем: пример должен жить в самом занятии — иначе он придуман или скопирован из другого занятия
-      if (ex && !body.includes(ex)) bad.push(`${where}: пример «${ex}» не встречается в тексте занятия`);
+      bad.push(...goalProblems(path.relative(SESSIONS, dir), texts));
     }
     expect(bad).toEqual([]);
+  });
+
+  // зачем: Ревизор 29.10 — каждое правило обязано падать на подложенной плохой строке
+  const body = '\n- ✅ **I am ready.**\n🎙 Скажите: **The gift was wrapped by the shop assistant in red paper.**\n';
+  const planted = (ru: string, uk: string) => ({ ru: `**Что вы освоите:** ${ru}${body}`, uk: `**Що ви опануєте:** ${uk}${body}` });
+  it.each([
+    ['английская формула', planted('Could I + base verb?', 'Could I + base verb?'), 'без кириллицы'],
+    ['нет примера', planted('сказать, что вы готовы', 'сказати, що ви готові'), 'нет английского примера'],
+    ['длиннее 90', planted(`${'с'.repeat(80)}: I am ready.`, 'сказати: I am ready.'), '> 90'],
+    ['ru ≠ uk', planted('сказать о себе: I am ready.', 'сказати про себе: I am late.'), '≠ uk'],
+    ['пример не из занятия', planted('сказать о себе: I am late.', 'сказати про себе: I am late.'), 'не встречается'],
+    ['обрывок при целой фразе', planted('сказать о себе: am ready', 'сказати про себе: am ready'), 'обрывок'],
+  ] as const)('ловит подложенную строку: %s', (_name, texts, expected) => {
+    expect(goalProblems('planted', texts).some((p) => p.includes(expected))).toBe(true);
+  });
+
+  it('пропускает правильную строку и законный обрывок из длинной фразы', () => {
+    expect(goalProblems('planted', planted('сказать о себе: I am ready.', 'сказати про себе: I am ready.'))).toEqual([]);
+    expect(goalProblems('planted', planted('сказать, кто упаковал: gift was wrapped by the shop assistant', 'сказати, хто запакував: gift was wrapped by the shop assistant'))).toEqual([]);
   });
 });

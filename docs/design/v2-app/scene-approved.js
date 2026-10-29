@@ -106,7 +106,7 @@
      'theme' — сам оттенок темы, светлее; 'band' — тёплая полоса 40…80°, точка в ней — от оттенка темы (40 + (H mod 60) / 60 × 40).
      Слой: эллиптический свет в (92 % W, 102 % H) радиусами 55 % W × 42 % H, альфа .5 → 0 на 85 % радиуса; кладётся после дымки, перед звёздами. */
   const WARM = { theme: (H) => H, warmer: (H) => { const d = ((60 - H + 540) % 360) - 180; return norm(H + Math.sign(d) * Math.min(35, Math.abs(d))); }, band: (H) => 40 + ((H % 60) / 60) * 40 };
-  function warmEdge(t, mode) { const [, , H] = oklchOf(hx(t.accent)); const m = WARM[mode] ? mode : 'warmer'; const hue = WARM[m](H); const L = m === 'band' ? 0.78 : m === 'theme' ? 0.72 : 0.74; const C = m === 'band' ? 0.14 : m === 'theme' ? 0.12 : 0.13; const color = okRgb(L, C, hue); return { mode: m, hue: Math.round(hue * 10) / 10, cx: 0.92, cy: 1.02, rx: 0.55, ry: 0.42, color, hex: hex(color), a: 0.5, fade: 0.85, oklch: [L, C, Math.round(hue)] }; }
+  function warmEdge(t, mode) { const [, , H] = oklchOf(hx(t.accent)); const m = WARM[mode] ? mode : 'band'; /* по умолчанию «тёплый янтарь» (владелец 29.10 ~10:40: другие трактовки не показывать) */ const hue = WARM[m](H); const L = m === 'band' ? 0.78 : m === 'theme' ? 0.72 : 0.74; const C = m === 'band' ? 0.14 : m === 'theme' ? 0.12 : 0.13; const color = okRgb(L, C, hue); return { mode: m, hue: Math.round(hue * 10) / 10, cx: 0.92, cy: 1.02, rx: 0.55, ry: 0.42, color, hex: hex(color), a: 0.5, fade: 0.85, oklch: [L, C, Math.round(hue)] }; }
   function darkSky(t, screen, W, H, opts) {
     const p = paletteA(t, 'dark'); const S = p.S; const C = p.C;
     const zenC = Math.min(0.17, C + 0.03); const midC = Math.min(0.15, C + 0.01); const horC = Math.min(0.13, C + 0.02); const gndC = Math.min(0.10, C); const botC = Math.min(0.08, C);
@@ -150,6 +150,12 @@
     return { aBottom, aTop };
   }
 
+  /* ═════ 4б. Герой сцены Главной (владелец 29.10 ~10:40: «иконки книжка и другие … должны быть большие и не под самый верх, а посредине справа») ═════
+     Картинка героя (home_scene_continue / streak_risk …) — 144 dp (сейчас 84 dp), правый отступ 20 dp, по вертикали по центру области сцены;
+     текст под героя не лезет: ширина блока текста (подпись, заголовок, строка под ним) ≤ 53 % ширины экрана, заголовок до двух строк (как у Диалогов); W − 2·20 dp − 144 dp − 24 dp зазора = 53 %. В px кадра 1080 × 2400:
+     размер 378, x = 1080 − 378 − 52 = 650, y = (sceneH − 378) / 2 (сцена 1082 → 352). Непрозрачность героя — как сейчас (.96). */
+  const HERO_HOME = { sizeDp: 144, rightDp: 20, vertical: 'center', opacity: 0.96, gapDp: 24, titleMaxWidth: 0.53, titleMaxLines: 2 };
+  const heroHome = (W, H, dp) => { const d = dp || DP; const size = Math.round(HERO_HOME.sizeDp * d); return { size, x: W - size - Math.round(HERO_HOME.rightDp * d), y: Math.round((H - size) / 2), opacity: HERO_HOME.opacity }; };
   /* ═════ 5. Точка входа: спецификация утверждённого вида экрана ═════
      screen — 'home' | 'dialogs' | 'peak' | 'season'; W, H — px области сцены (на кадре 1080 × 2400: Главная/Диалоги 1082, Пик 1950, Сезон 1029);
      opts.evening — Главная после 20:00: к небу (и к светлой А) добавляется тёплый край справа внизу, opts.warm — трактовка оттенка (§4а);
@@ -157,5 +163,5 @@
      Область сцены у каждого экрана своя, формула одна. Надписи: в тёмном — белые как сейчас; в светлом сцена становится тёмной, поэтому
      надписи/стекло на ней — белые, как на Главной (у светлых Диалогов сейчас тёмный текст на светлой сцене — Темам перевести в белый). */
   function approved(tokens, appearance, screen, W, H, opts) { return appearance === 'dark' ? darkSky(tokens, screen, W, H, opts || {}) : lightA(tokens, screen, W, H, opts || {}); }
-  return { VERSION, DP, paletteA, painter, ensureContrast, lightA, darkSky, drawSky, guardSky, approved, warmEdge, WARM, OLD_SCRIM, color: { hx, hex, oklchOf, okRgb, whiteOn, ratioc, lumc, norm }, rng };
+  return { VERSION, DP, paletteA, painter, ensureContrast, lightA, darkSky, drawSky, guardSky, approved, warmEdge, WARM, HERO_HOME, heroHome, OLD_SCRIM, color: { hx, hex, oklchOf, okRgb, whiteOn, ratioc, lumc, norm }, rng };
 });

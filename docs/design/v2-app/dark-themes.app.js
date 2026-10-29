@@ -213,5 +213,5 @@
     const w = e.target.closest('.chp[data-dt-warm]'); if (w) { WARM = w.dataset.dtWarm; render(); }
   });
   render();
-  window.__dt = { THEME_LIST, byTheme, paletteOf, homeOld, dialogsOld, bPlusSpec, ensureContrast, checkApproved, render, setTheme: (id, ap) => { THEME = id; if (ap) AP = ap; render(); }, setWarm: (w) => { WARM = w; render(); }, warm: () => WARM, jobs: () => JOBS };
+  window.__dt = { THEME_LIST, byTheme, paletteOf, homeOld, dialogsOld, bPlusSpec, ensureContrast, checkApproved, render, frameOf, oldSpecFor, stratSpec, styleSpec, approvedVariant, eveningVariant, screens: SCREENS, screenName: SCREEN_NAME, DPX, W, setTheme: (id, ap) => { THEME = id; if (ap) AP = ap; render(); }, setWarm: (w) => { WARM = w; render(); }, warm: () => WARM, jobs: () => JOBS };
 })();

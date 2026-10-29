@@ -1,0 +1,18 @@
+/* scene-final.css — чистый макет «только утверждённое» (см. scene-final.app.js): полоса переключателей сверху, ряды экранов
+   «Сейчас · Как будет», перерисованный заголовок урока над сценой Главной. Чипы и ряды — стили scene-palettes.css. */
+#sf .sp-real-row h3 { font-size: 20px; margin: 0 0 12px; }
+#sf .sp-real-row { margin-top: 44px; }
+#sf .col > .lbl { font-size: 14px; color: #D6D6D8; }
+/* служебных надписей в телефоне нет — даже если движок попробует поставить бейдж */
+#sf .sp-rf-badge { display: none !important; }
+/* заголовок урока на сцене Главной — как на кадре (Inter 24/29 dp, 700, белый), но шириной ≤ 53 % в две строки, чтобы не лезть под героя */
+.sf-title { position: absolute; left: 21px; width: 228px; z-index: 25; font-family: Inter, sans-serif; font-weight: 700; font-size: 25px; line-height: 30px; letter-spacing: -.2px; color: #fff; text-wrap: balance; pointer-events: none; }
+.sf-empty { color: #8E8E96; font-size: 15px; margin: 40px 0; }
+.sf-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0 8px; }
+/* перерисованная колонка вечернего кадра: подпись 13 dp, заголовок 24/29 dp в две строки, строка 14 dp со значком серии; ширина ≤ 53 % */
+.sf-copy { position: absolute; left: 21px; width: 228px; z-index: 25; color: #fff; pointer-events: none; display: flex; flex-direction: column; gap: 4px; }
+.sf-copy small { font-size: 13.6px; line-height: 17px; color: rgba(255, 255, 255, .72); }
+.sf-copy b { font-weight: 700; font-size: 25px; line-height: 30px; letter-spacing: -.2px; text-wrap: balance; }
+.sf-copy span { font-size: 14.7px; line-height: 19px; font-weight: 600; display: flex; align-items: flex-start; gap: 6px; }
+.sf-io { font-family: IoniconsApp; font-style: normal; font-size: 15px; line-height: 19px; flex: none; }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }

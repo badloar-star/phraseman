@@ -190,7 +190,9 @@ let suppressNextRemember = false;
  * с только что открытого экрана не блокируется.
  */
 const BACK_DOUBLE_TAP_WINDOW_MS = 1000;
-let pendingBack: Readonly<{ at: number; from: string | null; chosen: string }> | null = null;
+let pendingBack: Readonly<{ at: number; from: string | null; chosen: string; chosenKey: string }> | null = null;
+/** Сколько «назад», приведшее на экран, считается свежим для признака «уже стоим здесь» (трекер мог не получить новый путь). */
+const SELF_TARGET_FRESH_MS = 5 * 60 * 1000;
 let replaceTopOnNextRemember = false;
 let paywallDismissShouldReplace = false;
 const PAYWALL_DISMISS_LATCH_MS = 900;
@@ -200,6 +202,16 @@ function pathnameOf(path: string): string {
   const end = path.search(/[?#]/);
   const pathname = (end >= 0 ? path.slice(0, end) : path).replace(/\/$/, '');
   return pathname || '/';
+}
+
+/** Вкладка и её псевдоним без группы: '/(tabs)/lessons' и '/lessons' — один и тот же экран. */
+function tabNormalized(href: string): string {
+  return href.replace(/^\/\(tabs\)(?=\/|\?|$)/, '') || '/';
+}
+
+/** Текущий экран по трекеру навигации в момент вызова (а не из замыкания обработчика); null — трекер пуст. */
+export function currentNavigationHref(): string | null {
+  return currentEntry()?.href ?? null;
 }
 
 function hrefForTarget(target: unknown): string | null {
@@ -515,8 +527,26 @@ export function safeRouterBack(
   }
   const leaving = currentEntry();
   const candidate = popBackCandidate(leaving);
-  const chosen = safeTarget(candidate, fallback);
-  pendingBack = { at: now, from: leaving ? pathnameOf(leaving.href) : null, chosen: pathnameOf(chosen.path) };
+  let chosen = safeTarget(candidate, fallback);
+  // Цель «назад» = экран, на котором человек уже стоит → no-op (находка 29.10: устаревший путь в замыкании корневого обработчика). Идём на запасной путь раздела.
+  const chosenIdentity = tabNormalized(basePath(chosen.path));
+  const leavingIsChosen = leaving !== null && tabNormalized(leaving.key) === chosenIdentity;
+  const alreadyThere = pendingBack !== null && now - pendingBack.at < SELF_TARGET_FRESH_MS && tabNormalized(pendingBack.chosenKey) === chosenIdentity;
+  if (leavingIsChosen || alreadyThere) {
+    const parent = navigationFallbackForPath(chosen.path);
+    const replacement = tabNormalized(basePath(parent)) === chosenIdentity ? HOME_BACK_FALLBACK : parent;
+    const replacementIsSelf = tabNormalized(basePath(replacement)) === chosenIdentity;
+    console.warn('[NAV-BACK] self_target', JSON.stringify({
+      reason: leavingIsChosen ? 'leaving_is_chosen' : 'already_there',
+      leaving: leaving ? pathnameOf(leaving.href) : null,
+      chosen: pathnameOf(chosen.path),
+      pendingChosen: pendingBack ? pendingBack.chosen : null,
+      replacement: pathnameOf(replacement),
+      kept: replacementIsSelf,
+    })); // guard-ok: ранний выход навигации называет причину и значения
+    if (!replacementIsSelf) chosen = { target: replacement, path: replacement };
+  }
+  pendingBack = { at: now, from: leaving ? pathnameOf(leaving.href) : null, chosen: pathnameOf(chosen.path), chosenKey: basePath(chosen.path) };
   // зачем (Сверка 06:10): каждое решение «назад» — откуда, кандидат из истории, что выбрано и каким способом.
   const logBack = (method: string): void => {
     console.warn('[NAV-BACK] decision', JSON.stringify({

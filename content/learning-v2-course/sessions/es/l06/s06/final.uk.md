@@ -14,7 +14,7 @@
 **Повідомте «Є два стільці». Почніть з Hay, число поставте перед предметом.**
 
 - ✅ **Hay dos sillas.** — *Hay + dos + sillas.*
-- ❌ Hay dos silla. — *Після dos потрібна множина sillas.*
+- ❌ Hay dos silla. — *Після dos потрібна форма для кількох: sillas.*
 - ❌ Hay una dos sillas. — *Перед dos тут немає una.*
 
 ## Інтро 2

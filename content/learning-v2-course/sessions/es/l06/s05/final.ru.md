@@ -39,7 +39,7 @@
 
 - ✅ **Hay mesas aquí.** — *Hay + mesas + aquí.*
 - ❌ Hay mesa aquí. — *Нужно несколько столов: mesas.*
-- ❌ Hay una mesas aquí. — *Una не сочетается с mesas во множественном числе.*
+- ❌ Hay una mesas aquí. — *Una не сочетается с mesas, когда их несколько.*
 
 ## Практика · 12 заданий
 

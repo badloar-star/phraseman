@@ -88,7 +88,7 @@
 → **la** · el · los
 Повна фраза: **¿Hay dos camas en la habitación?**
 - el — *Habitación жіночого роду: la.*
-- los — *Habitación — однина, жіночий рід: la.*
+- los — *Habitación — одна річ, жіночий рід: la.*
 
 **9 · Скажіть уголос — є два ліжка; почніть з Hay, число поставте перед предметом**
 🎙 **Hay dos camas.**

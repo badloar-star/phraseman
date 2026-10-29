@@ -53,7 +53,7 @@
 → **una** · un · unos
 Повна фраза: **¿Hay una habitación aquí?**
 - un — *Habitación жіночого роду: una.*
-- unos — *Habitación в однині, жіночого роду: una.*
+- unos — *Habitación — одна річ, жіночого роду: una.*
 
 **3 · Зберіть фразу — тут є кімната?; почніть з ¿Hay, використайте una habitación, місце поставте наприкінці**
 Плитки: `habitación` · `aquí?` · `¿Hay` · `una` · `un`.

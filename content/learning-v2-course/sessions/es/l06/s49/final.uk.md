@@ -57,7 +57,7 @@
 → **una** · un · unos
 Повна фраза: **Hay una tienda aquí.**
 - un — *Tienda жіночого роду: una.*
-- unos — *Tienda — однина, жіночий рід: una.*
+- unos — *Tienda — одна річ, жіночий рід: una.*
 
 **4 · Зберіть фразу — тут є магазин; почніть з Hay, використайте una tienda, місце поставте наприкінці**
 Плитки: `aquí` · `tienda` · `Hay` · `una` · `un`.

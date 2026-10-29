@@ -15,7 +15,7 @@
 
 - ✅ **¿Hay muchas sillas?** — *¿Hay + muchas + sillas?*
 - ❌ ¿Hay muchos sillas? — *Silla жіночого роду: muchas.*
-- ❌ ¿Hay mucha sillas? — *Sillas у множині: muchas.*
+- ❌ ¿Hay mucha sillas? — *Sillas — це кілька: muchas.*
 
 ## Інтро 2
 
@@ -33,7 +33,7 @@
 
 ### Уточнити, що стільців мало
 
-Вам сказали, що в обраній кімнаті невеликий запас стільців. Перепитайте `¿Hay pocas sillas?` — «Мало стільців?» Складіть `¿Hay` + `pocas sillas?`. Змінюємо лише кількість: pocas замість muchas. Жіночий рід і множина зберігаються.
+Вам сказали, що в обраній кімнаті невеликий запас стільців. Перепитайте `¿Hay pocas sillas?` — «Мало стільців?» Складіть `¿Hay` + `pocas sillas?`. Змінюємо лише кількість: pocas замість muchas. Жіночий рід зберігається, і стільців, як і раніше, кілька.
 
 **Перепитайте «Мало стільців?». Почніть з ¿Hay, кількість поставте перед sillas.**
 
@@ -53,7 +53,7 @@
 → **muchas** · muchos · mucha
 Повна фраза: **¿Hay muchas sillas?**
 - muchos — *Silla жіночого роду: muchas.*
-- mucha — *Sillas у множині: muchas.*
+- mucha — *Sillas — це кілька: muchas.*
 
 **3 · Зберіть фразу — багато стільців?; почніть з ¿Hay, кількість поставте перед sillas**
 Плитки: `sillas?` · `muchas` · `¿Hay` · `muchos`.

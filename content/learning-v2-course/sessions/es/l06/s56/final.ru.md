@@ -39,7 +39,7 @@
 
 - ✅ **¿Hay mucha agua?** — *¿Hay + mucha + agua?*
 - ❌ ¿Hay mucho agua? — *Agua женского рода: mucha.*
-- ❌ ¿Hay muchas agua? — *Agua здесь не во множественном числе: mucha.*
+- ❌ ¿Hay muchas agua? — *Agua здесь не в форме для нескольких: mucha.*
 
 ## Практика · 20 заданий
 
@@ -114,7 +114,7 @@
 → **mucha** · mucho · muchas
 Полная фраза: **¿Hay mucha agua?**
 - mucho — *Agua женского рода: mucha.*
-- muchas — *Agua здесь в единственном числе: mucha.*
+- muchas — *Agua здесь в форме для одного: mucha.*
 
 **13 · Соберите фразу — здесь мало стульев; начните с Hay, количество поставьте перед sillas, место — в конце**
 Плитки: `sillas` · `pocas` · `Hay` · `aquí` · `pocos`.

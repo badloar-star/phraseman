@@ -15,7 +15,7 @@
 
 - ✅ **Hay pocos libros.** — *Hay + pocos + libros.*
 - ❌ Hay pocas libros. — *Libro мужского рода: pocos libros.*
-- ❌ Hay poco libros. — *Libros во множественном числе: pocos.*
+- ❌ Hay poco libros. — *Libros — это несколько: pocos.*
 
 ## Интро 2
 
@@ -53,7 +53,7 @@
 → **pocos** · pocas · poco
 Полная фраза: **Hay pocos libros.**
 - pocas — *Libro мужского рода: pocos.*
-- poco — *Libros во множественном числе: pocos.*
+- poco — *Libros — это несколько: pocos.*
 
 **3 · Соберите фразу — мало книг; начните с Hay, количество поставьте перед libros**
 Плитки: `libros` · `Hay` · `pocos` · `pocas`.
@@ -70,7 +70,7 @@
 **5 · Соберите фразу — здесь мало книг; начните с Hay, количество поставьте перед libros, место — в конце**
 Плитки: `aquí` · `libros` · `Hay` · `pocos` · `poco`.
 → **Hay pocos libros aquí.**
-*Плитка `poco` лишняя: libros требует множественного числа pocos.*
+*Плитка `poco` лишняя: libros требует формы для нескольких pocos.*
 
 **6 · Соберите фразу — там мало книг?; начните с ¿Hay, количество поставьте перед libros, место — в конце**
 Плитки: `libros` · `allí?` · `¿Hay` · `pocos` · `pocas`.

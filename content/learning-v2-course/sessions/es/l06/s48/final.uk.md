@@ -15,13 +15,13 @@
 
 - ✅ **Hay mucha agua.** — *Hay + mucha + agua.*
 - ❌ Hay mucho agua. — *Agua жіночого роду: mucha.*
-- ❌ Hay muchas agua. — *Тут agua не в множині: mucha.*
+- ❌ Hay muchas agua. — *Тут agua не у формі для кількох: mucha.*
 
 ## Інтро 2
 
 ### Книжок небагато
 
-У кімнаті є книжки для гостей, але вибір невеликий. Скажіть `Hay pocos libros` — «Мало книжок». Складіть `Hay` + `pocos` + `libros`. Libro чоловічого роду, libros у множині: обираємо pocos. Книжки є, просто їх мало; no hay libros повідомило б, що їх немає.
+У кімнаті є книжки для гостей, але вибір невеликий. Скажіть `Hay pocos libros` — «Мало книжок». Складіть `Hay` + `pocos` + `libros`. Libro чоловічого роду, libros — коли їх кілька: обираємо pocos. Книжки є, просто їх мало; no hay libros повідомило б, що їх немає.
 
 **Повідомте «Мало книжок». Почніть з Hay, кількість поставте перед libros.**
 
@@ -53,7 +53,7 @@
 → **mucha** · mucho · muchas
 Повна фраза: **Hay mucha agua.**
 - mucho — *Agua жіночого роду: mucha.*
-- muchas — *Agua тут не в множині.*
+- muchas — *Agua тут не у формі для кількох.*
 
 **3 · Зберіть фразу — багато води; почніть з Hay, кількість поставте перед agua**
 Плитки: `agua` · `Hay` · `mucha` · `mucho`.
@@ -65,7 +65,7 @@
 → **poca** · poco · pocas
 Повна фраза: **Hay poca agua.**
 - poco — *Agua жіночого роду: poca.*
-- pocas — *Потрібна форма однини poca.*
+- pocas — *Потрібна форма для одного poca.*
 
 **5 · Зберіть фразу — тут мало води; почніть з Hay, кількість поставте перед agua, місце — наприкінці**
 Плитки: `aquí` · `poca` · `Hay` · `agua` · `poco`.
@@ -77,7 +77,7 @@
 → **muchos** · muchas · mucho
 Повна фраза: **Hay muchos libros.**
 - muchas — *Libro чоловічого роду: muchos.*
-- mucho — *Libros у множині: muchos.*
+- mucho — *Libros — це кілька: muchos.*
 
 **7 · Зберіть фразу — мало книжок; почніть з Hay, кількість поставте перед libros**
 Плитки: `libros` · `pocos` · `Hay` · `pocas`.
@@ -95,14 +95,14 @@
 → **muchas** · muchos · mucha
 Повна фраза: **Hay muchas sillas.**
 - muchos — *Silla жіночого роду: muchas.*
-- mucha — *Sillas у множині: muchas.*
+- mucha — *Sillas — це кілька: muchas.*
 
 **10 · Вставте слово — мало стільців**
 `Hay ___ sillas.`
 → **pocas** · pocos · poca
 Повна фраза: **Hay pocas sillas.**
 - pocos — *Silla жіночого роду: pocas.*
-- poca — *Sillas у множині: pocas.*
+- poca — *Sillas — це кілька: pocas.*
 
 **11 · Зберіть фразу — там багато стільців?; почніть з ¿Hay, кількість поставте перед sillas, місце — наприкінці**
 Плитки: `sillas` · `¿Hay` · `allí?` · `muchas` · `muchos`.

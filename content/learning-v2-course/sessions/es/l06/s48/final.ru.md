@@ -15,13 +15,13 @@
 
 - ✅ **Hay mucha agua.** — *Hay + mucha + agua.*
 - ❌ Hay mucho agua. — *Agua женского рода: mucha.*
-- ❌ Hay muchas agua. — *Здесь agua не во множественном числе: mucha.*
+- ❌ Hay muchas agua. — *Здесь agua не в форме для нескольких: mucha.*
 
 ## Интро 2
 
 ### Книг немного
 
-В комнате есть книги для гостей, но выбор небольшой. Скажите `Hay pocos libros` — «Мало книг». Соберите `Hay` + `pocos` + `libros`. Libro мужского рода, libros во множественном числе: выбираем pocos. Книги есть, просто их мало; no hay libros сообщило бы, что их нет.
+В комнате есть книги для гостей, но выбор небольшой. Скажите `Hay pocos libros` — «Мало книг». Соберите `Hay` + `pocos` + `libros`. Libro мужского рода, libros — когда их несколько: выбираем pocos. Книги есть, просто их мало; no hay libros сообщило бы, что их нет.
 
 **Сообщите «Мало книг». Начните с Hay, количество поставьте перед libros.**
 
@@ -53,7 +53,7 @@
 → **mucha** · mucho · muchas
 Полная фраза: **Hay mucha agua.**
 - mucho — *Agua женского рода: mucha.*
-- muchas — *Agua здесь не во множественном числе.*
+- muchas — *Agua здесь не в форме для нескольких.*
 
 **3 · Соберите фразу — много воды; начните с Hay, количество поставьте перед agua**
 Плитки: `agua` · `Hay` · `mucha` · `mucho`.
@@ -65,7 +65,7 @@
 → **poca** · poco · pocas
 Полная фраза: **Hay poca agua.**
 - poco — *Agua женского рода: poca.*
-- pocas — *Нужна форма единственного числа poca.*
+- pocas — *Нужна форма для одного poca.*
 
 **5 · Соберите фразу — здесь мало воды; начните с Hay, количество поставьте перед agua, место — в конце**
 Плитки: `aquí` · `poca` · `Hay` · `agua` · `poco`.
@@ -77,7 +77,7 @@
 → **muchos** · muchas · mucho
 Полная фраза: **Hay muchos libros.**
 - muchas — *Libro мужского рода: muchos.*
-- mucho — *Libros во множественном числе: muchos.*
+- mucho — *Libros — это несколько: muchos.*
 
 **7 · Соберите фразу — мало книг; начните с Hay, количество поставьте перед libros**
 Плитки: `libros` · `pocos` · `Hay` · `pocas`.
@@ -95,14 +95,14 @@
 → **muchas** · muchos · mucha
 Полная фраза: **Hay muchas sillas.**
 - muchos — *Silla женского рода: muchas.*
-- mucha — *Sillas во множественном числе: muchas.*
+- mucha — *Sillas — это несколько: muchas.*
 
 **10 · Вставьте слово — мало стульев**
 `Hay ___ sillas.`
 → **pocas** · pocos · poca
 Полная фраза: **Hay pocas sillas.**
 - pocos — *Silla женского рода: pocas.*
-- poca — *Sillas во множественном числе: pocas.*
+- poca — *Sillas — это несколько: pocas.*
 
 **11 · Соберите фразу — там много стульев?; начните с ¿Hay, количество поставьте перед sillas, место — в конце**
 Плитки: `sillas` · `¿Hay` · `allí?` · `muchas` · `muchos`.

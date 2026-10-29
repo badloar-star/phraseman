@@ -53,7 +53,7 @@
 → **una** · un · unos
 Полная фраза: **¿Hay una habitación aquí?**
 - un — *Habitación женского рода: una.*
-- unos — *Habitación единственного числа, женского рода: una.*
+- unos — *Habitación — один предмет, женского рода: una.*
 
 **3 · Соберите фразу — здесь есть комната?; начните с ¿Hay, используйте una habitación, место поставьте в конце**
 Плитки: `habitación` · `aquí?` · `¿Hay` · `una` · `un`.

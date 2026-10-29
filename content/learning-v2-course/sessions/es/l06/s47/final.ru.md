@@ -15,7 +15,7 @@
 
 - ✅ **Hay pocas sillas.** — *Hay + pocas + sillas.*
 - ❌ Hay pocos sillas. — *Silla женского рода: pocas.*
-- ❌ Hay poca sillas. — *Sillas во множественном числе: pocas.*
+- ❌ Hay poca sillas. — *Sillas — это несколько: pocas.*
 
 ## Интро 2
 
@@ -53,7 +53,7 @@
 → **pocas** · pocos · poca
 Полная фраза: **Hay pocas sillas.**
 - pocos — *Silla женского рода: pocas.*
-- poca — *Sillas во множественном числе: pocas.*
+- poca — *Sillas — это несколько: pocas.*
 
 **3 · Соберите фразу — мало стульев; начните с Hay, количество поставьте перед sillas**
 Плитки: `sillas` · `Hay` · `pocas` · `pocos`.

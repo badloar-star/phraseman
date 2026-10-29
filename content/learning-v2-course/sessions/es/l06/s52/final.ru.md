@@ -88,7 +88,7 @@
 → **poca** · poco · pocas
 Полная фраза: **Hay poca agua.**
 - poco — *Agua женского рода: poca.*
-- pocas — *Agua здесь в единственном числе: poca.*
+- pocas — *Agua здесь в форме для одного: poca.*
 
 **9 · Скажите вслух — воды нет; начните с No hay, используйте agua без артикля**
 🎙 **No hay agua.**

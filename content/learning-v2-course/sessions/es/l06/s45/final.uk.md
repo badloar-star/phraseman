@@ -53,7 +53,7 @@
 → **poca** · poco · pocas
 Повна фраза: **Hay poca agua.**
 - poco — *Agua жіночого роду: poca.*
-- pocas — *Agua тут не в множині: poca.*
+- pocas — *Agua тут не у формі для кількох: poca.*
 
 **3 · Зберіть фразу — мало води; почніть з Hay, кількість поставте перед agua**
 Плитки: `agua` · `Hay` · `poca` · `poco`.

@@ -65,7 +65,7 @@
 → **la** · el · los
 Полная фраза: **El libro está en la habitación.**
 - el — *Habitación женского рода: la.*
-- los — *Habitación — единственное число, женский род: la.*
+- los — *Habitación — один предмет, женский род: la.*
 
 **5 · Соберите фразу — книга в комнате; начните с El libro, место поставьте в конце**
 Плитки: `habitación` · `El` · `libro` · `está` · `en` · `la` · `un`.

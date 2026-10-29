@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The bowl was hot, so I put it down.**
-- ❌ The bowl was hot, so I put down it. — *Коли замість предмета it, порядок такий: put it down.*
+- ❌ The bowl was hot, so I put down it. — *Коли замість предмета стоїть it, порядок такий: put it down.*
 - ❌ The bowl was hot, so I putting it down. — *Для результату в минулому потрібна форма put.*
 
 ---

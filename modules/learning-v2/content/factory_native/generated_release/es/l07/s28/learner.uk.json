@@ -1,0 +1,809 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-07:session-28",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-07:session-28:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — doscientos",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-28:i01:audio"
+      ],
+      "accessibilityLabel": "Картка слова — doscientos",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-28:i01:audio",
+          "transcript": "doscientos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-28:i01:r1",
+            "targetText": "doscientos",
+            "meaningByLocale": {
+              "ru": "двести, 200; одно слово. 🔊 *doscientos*",
+              "uk": "двісті, 200; одне слово. 🔊 *doscientos*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "doscientos",
+          "definitionByLocale": {
+            "ru": "двести, 200; одно слово. 🔊 *doscientos*",
+            "uk": "двісті, 200; одне слово. 🔊 *doscientos*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Картка слова — mil",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-28:i02:audio"
+      ],
+      "accessibilityLabel": "Картка слова — mil",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-28:i02:audio",
+          "transcript": "mil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-28:i02:r1",
+            "targetText": "mil",
+            "meaningByLocale": {
+              "ru": "тысяча, 1000; одно слово. 🔊 *mil*",
+              "uk": "тисяча, 1000; одне слово. 🔊 *mil*"
+            }
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [],
+        "isWordCard": true,
+        "wordCard": {
+          "word": "mil",
+          "definitionByLocale": {
+            "ru": "тысяча, 1000; одно слово. 🔊 *mil*",
+            "uk": "тисяча, 1000; одне слово. 🔊 *mil*"
+          }
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-28:i03:r1",
+          "text": "doscientos"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i03:r2",
+          "text": "mil"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-28:i03:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-28:i03:audio",
+          "transcript": "doscientos"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-28:i03:r1",
+            "targetText": "doscientos",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-28:i03:r2",
+            "targetText": "mil",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-28:i03:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит doscientos — двести.",
+              "uk": "Звучить doscientos — двісті."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послухайте й виберіть слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-28:i04:r1",
+          "text": "mil"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i04:r2",
+          "text": "doscientos"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-28:i04:audio"
+      ],
+      "accessibilityLabel": "Послухайте й виберіть слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-28:i04:audio",
+          "transcript": "mil"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-28:i04:r1",
+            "targetText": "mil",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-28:i04:r2",
+            "targetText": "doscientos",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-28:i04:r2",
+            "correct": false,
+            "testedDimension": "Послухайте й виберіть слово",
+            "feedbackByLocale": {
+              "ru": "Звучит mil — тысяча.",
+              "uk": "Звучить mil — тисяча."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i05",
+      "ordinal": 8,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — є двісті книжок",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-28:i05:r1",
+          "text": "doscientos"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i05:r2",
+          "text": "mil"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i05:r3",
+          "text": "treinta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — є двісті книжок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть двести книг",
+          "uk": "Вставте слово — є двісті книжок"
+        },
+        "gappedTargetPhrase": "Hay ___ libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-28:i05:r1",
+            "text": "doscientos"
+          },
+          {
+            "responseId": "es:lesson-07:session-28:i05:r2",
+            "text": "mil"
+          },
+          {
+            "responseId": "es:lesson-07:session-28:i05:r3",
+            "text": "treinta"
+          }
+        ],
+        "testedDimension": "Вставте слово — є двісті книжок",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-28:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — є двісті книжок",
+            "feedbackByLocale": {
+              "ru": "Нужно двести: doscientos.",
+              "uk": "Потрібно двісті: doscientos."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-28:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — є двісті книжок",
+            "feedbackByLocale": {
+              "ru": "Treinta — тридцать, а нужно doscientos.",
+              "uk": "Treinta — тридцять, а потрібно doscientos."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є двісті книжок; почніть з Hay, число поставте перед libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-28:i06:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i06:r2",
+          "text": "doscientos"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i06:r3",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i06:r4",
+          "text": "libro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є двісті книжок; почніть з Hay, число поставте перед libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay doscientos libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть двести книг; начните с Hay, число поставьте перед libros",
+          "uk": "Зберіть фразу — є двісті книжок; почніть з Hay, число поставте перед libros"
+        },
+        "orderedTokens": [
+          "Hay",
+          "doscientos",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "libro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-28:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є двісті книжок; почніть з Hay, число поставте перед libros",
+            "feedbackByLocale": {
+              "ru": "книг двести, нужно libros.",
+              "uk": "книжок двісті, потрібно libros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставте слово — тут є тисяча книжок",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-28:i07:r1",
+          "text": "mil"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i07:r2",
+          "text": "doscientos"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i07:r3",
+          "text": "treinta"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставте слово — тут є тисяча книжок",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — здесь есть тысяча книг",
+          "uk": "Вставте слово — тут є тисяча книжок"
+        },
+        "gappedTargetPhrase": "Hay ___ libros aquí.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-28:i07:r1",
+            "text": "mil"
+          },
+          {
+            "responseId": "es:lesson-07:session-28:i07:r2",
+            "text": "doscientos"
+          },
+          {
+            "responseId": "es:lesson-07:session-28:i07:r3",
+            "text": "treinta"
+          }
+        ],
+        "testedDimension": "Вставте слово — тут є тисяча книжок",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-28:i07:r2",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є тисяча книжок",
+            "feedbackByLocale": {
+              "ru": "Нужно число 1000: mil.",
+              "uk": "Потрібне число 1000: mil."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-28:i07:r3",
+            "correct": false,
+            "testedDimension": "Вставте слово — тут є тисяча книжок",
+            "feedbackByLocale": {
+              "ru": "Treinta — тридцать, а нужно mil.",
+              "uk": "Treinta — тридцять, а потрібно mil."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — тут є тисяча книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-28:i08:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i08:r2",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i08:r3",
+          "text": "mil"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i08:r4",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i08:r5",
+          "text": "libro."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — тут є тисяча книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay mil libros aquí.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — здесь есть тысяча книг; начните с Hay, число поставьте перед libros, место — в конце",
+          "uk": "Зберіть фразу — тут є тисяча книжок; почніть з Hay, число поставте перед libros, місце — наприкінці"
+        },
+        "orderedTokens": [
+          "Hay",
+          "mil",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "libro"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-28:i08:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — тут є тисяча книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+            "feedbackByLocale": {
+              "ru": "после mil нужно libros.",
+              "uk": "після mil потрібно libros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Зберіть фразу — є тисяча книжок?; почніть з ¿Hay, число поставте перед libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-28:i09:r1",
+          "text": "Плитки: libros?"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i09:r2",
+          "text": "mil"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i09:r3",
+          "text": "¿Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i09:r4",
+          "text": "doscientos."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Зберіть фразу — є тисяча книжок?; почніть з ¿Hay, число поставте перед libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "¿Hay mil libros?",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть тысяча книг?; начните с ¿Hay, число поставьте перед libros",
+          "uk": "Зберіть фразу — є тисяча книжок?; почніть з ¿Hay, число поставте перед libros"
+        },
+        "orderedTokens": [
+          "¿Hay",
+          "mil",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "doscientos"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-28:i09:tile:d1",
+            "correct": false,
+            "testedDimension": "Зберіть фразу — є тисяча книжок?; почніть з ¿Hay, число поставте перед libros",
+            "feedbackByLocale": {
+              "ru": "нужно число 1000, mil.",
+              "uk": "потрібне число 1000, mil."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послухайте й зберіть фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-28:i10:r1",
+          "text": "Плитки: Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i10:r2",
+          "text": "doscientos"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i10:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i10:r4",
+          "text": "aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-28:i10:r5",
+          "text": "mil."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-28:i10:audio"
+      ],
+      "accessibilityLabel": "Послухайте й зберіть фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-28:i10:audio",
+          "transcript": "Hay doscientos libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay doscientos libros aquí.",
+        "orderedTokens": [
+          "Hay",
+          "doscientos",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "mil"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-28:i10:tile:d1",
+            "correct": false,
+            "testedDimension": "Послухайте й зберіть фразу",
+            "feedbackByLocale": {
+              "ru": "звучит doscientos.",
+              "uk": "звучить doscientos."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — число двісті одним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-28:i11:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — число двісті одним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-28:i11:audio",
+          "transcript": "Doscientos."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Doscientos.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — число тисяча одним словом",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-28:i12:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — число тисяча одним словом",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-28:i12:audio",
+          "transcript": "Mil."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Mil.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i13",
+      "ordinal": 16,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є двісті книжок; почніть з Hay, число поставте перед libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-28:i13:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є двісті книжок; почніть з Hay, число поставте перед libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-28:i13:audio",
+          "transcript": "Hay doscientos libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay doscientos libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i14",
+      "ordinal": 17,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є тисяча книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-28:i14:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є тисяча книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-28:i14:audio",
+          "transcript": "Hay mil libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay mil libros aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i15",
+      "ordinal": 18,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — є тисяча книжок?; почніть з ¿Hay, число поставте перед libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-28:i15:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — є тисяча книжок?; почніть з ¿Hay, число поставте перед libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-28:i15:audio",
+          "transcript": "¿Hay mil libros?"
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "¿Hay mil libros?",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-28:i16",
+      "ordinal": 19,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажіть уголос — тут є двісті книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-28:i16:audio"
+      ],
+      "accessibilityLabel": "Скажіть уголос — тут є двісті книжок; почніть з Hay, число поставте перед libros, місце — наприкінці",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-28:i16:audio",
+          "transcript": "Hay doscientos libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay doscientos libros aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 16,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "5b7be140292a98227c876f55c86f8851317dfaa3eda6f9a164eb901f6830ce52"
+}

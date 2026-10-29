@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-07:session-06",
   "learningOutcomeByLocale": {
-    "ru": "называть восемь и девять предметов и уточнять количество.",
-    "uk": "називати вісім і дев'ять предметів та уточнювати кількість."
+    "ru": "сказать, что есть восемь или девять предметов: Hay ocho libros.",
+    "uk": "сказати, що є вісім або дев'ять предметів: Hay ocho libros."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Вісім книжок"
       },
       "bodyByLocale": {
-        "ru": "На столе лежат восемь книг для участников. Скажите `Hay ocho libros` — «Есть восемь книг». Соберите `Hay` + `ocho` + `libros`. Ocho — восемь. После числа используем libros во множественном числе, без артикля между числом и предметами.",
-        "uk": "На столі лежать вісім книжок для учасників. Скажіть `Hay ocho libros` — «Є вісім книжок». Складіть `Hay` + `ocho` + `libros`. Ocho — вісім. Після числа використовуємо libros у множині, без артикля між числом і предметами."
+        "ru": "На столе лежат восемь книг для участников. Скажите `Hay ocho libros` — «Есть восемь книг». Соберите `Hay` + `ocho` + `libros`. Ocho — восемь. После числа используем libros в форме для нескольких, без артикля между числом и предметами.",
+        "uk": "На столі лежать вісім книжок для учасників. Скажіть `Hay ocho libros` — «Є вісім книжок». Складіть `Hay` + `ocho` + `libros`. Ocho — вісім. Після числа використовуємо libros у формі для кількох, без артикля між числом і предметами."
       },
       "question": {
         "interactionId": "es:lesson-07:session-06:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4f032f31efc5e59b11180e77058adc0b4aae411542c7ed1b11177caa10dc9820"
+  "introFingerprint": "6d1d343b744646fd146c041b7515eaa1fdb91c662f386ffd89205de55b1e44e1"
 }

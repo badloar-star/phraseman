@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-07:session-04",
   "learningOutcomeByLocale": {
-    "ru": "ставить знакомые числа перед существительным во множественном числе.",
-    "uk": "ставити знайомі числа перед іменником у множині."
+    "ru": "сказать, сколько предметов, от двух до пяти: Hay cuatro sillas.",
+    "uk": "сказати, скільки предметів, від двох до п'яти: Hay cuatro sillas."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Дві книжки"
       },
       "bodyByLocale": {
-        "ru": "Вы положили две книги для гостей. Сообщите `Hay dos libros` — «Есть две книги». Соберите `Hay` + `dos` + `libros`. После dos существительное во множественном числе. В отличие от uno/una число dos не меняется по роду: две книги — dos libros, два стула — dos sillas.",
-        "uk": "Ви поклали дві книжки для гостей. Повідомте `Hay dos libros` — «Є дві книжки». Складіть `Hay` + `dos` + `libros`. Після dos іменник у множині. На відміну від uno/una число dos не змінюється за родом: дві книжки — dos libros, два стільці — dos sillas."
+        "ru": "Вы положили две книги для гостей. Сообщите `Hay dos libros` — «Есть две книги». Соберите `Hay` + `dos` + `libros`. После dos существительное стоит в форме для нескольких. В отличие от uno/una число dos не меняется по роду: две книги — dos libros, два стула — dos sillas.",
+        "uk": "Ви поклали дві книжки для гостей. Повідомте `Hay dos libros` — «Є дві книжки». Складіть `Hay` + `dos` + `libros`. Після dos іменник стоїть у формі для кількох. На відміну від uno/una число dos не змінюється за родом: дві книжки — dos libros, два стільці — dos sillas."
       },
       "question": {
         "interactionId": "es:lesson-07:session-04:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "П'ять книжок тут"
       },
       "bodyByLocale": {
-        "ru": "В другом месте вы нашли пять книг и показываете их другу. Скажите `Hay cinco libros aquí` — «Здесь есть пять книг». Соберите `Hay` + `cinco libros` + `aquí`. Число перед предметами, место в конце. Libros остаётся во множественном числе.",
-        "uk": "В іншому місці ви знайшли п'ять книжок і показуєте їх другу. Скажіть `Hay cinco libros aquí` — «Тут є п'ять книжок». Складіть `Hay` + `cinco libros` + `aquí`. Число перед предметами, місце наприкінці. Libros залишається в множині."
+        "ru": "В другом месте вы нашли пять книг и показываете их другу. Скажите `Hay cinco libros aquí` — «Здесь есть пять книг». Соберите `Hay` + `cinco libros` + `aquí`. Число перед предметами, место в конце. Libros остаётся в форме для нескольких.",
+        "uk": "В іншому місці ви знайшли п'ять книжок і показуєте їх другу. Скажіть `Hay cinco libros aquí` — «Тут є п'ять книжок». Складіть `Hay` + `cinco libros` + `aquí`. Число перед предметами, місце наприкінці. Libros залишається у формі для кількох."
       },
       "question": {
         "interactionId": "es:lesson-07:session-04:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "dcb6cdedace224e232b24286dd50fa9b3445acaa868075aa3e618fd7b9c32d9e"
+  "introFingerprint": "7896eb0db58054f72c3d618fdc502e5cca31fa6372005ddbcbaea85825be55b4"
 }

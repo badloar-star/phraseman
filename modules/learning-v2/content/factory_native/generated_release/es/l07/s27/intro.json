@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-27",
+  "learningOutcomeByLocale": {
+    "ru": "назвать число больше ста: Hay ciento veinte libros aquí.",
+    "uk": "назвати число більше за сто: Hay ciento veinte libros aquí."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-27:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Сто две книги",
+        "uk": "Сто дві книжки"
+      },
+      "bodyByLocale": {
+        "ru": "В запасе сто две книги. Сообщите `Hay ciento dos libros` — «Есть сто две книги». Соберите `Hay` + `ciento dos` + `libros`. Ровно сто — cien, но в числе 102 перед dos используем форму ciento. Между ciento и dos нет y: пишем два слова ciento dos.",
+        "uk": "У запасі сто дві книжки. Повідомте `Hay ciento dos libros` — «Є сто дві книжки». Складіть `Hay` + `ciento dos` + `libros`. Рівно сто — cien, але в числі 102 перед dos використовуємо форму ciento. Між ciento та dos немає y: пишемо два слова ciento dos."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-27:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть сто две книги». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є сто дві книжки». Почніть з Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-27:intro1:r1",
+              "text": "Hay ciento dos libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro1:r2",
+              "text": "Hay cien dos libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro1:r3",
+              "text": "Hay ciento y dos libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-27:intro1:r1",
+              "text": "Hay ciento dos libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro1:r2",
+              "text": "Hay cien dos libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro1:r3",
+              "text": "Hay ciento y dos libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть сто две книги». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є сто дві книжки». Почніть з Hay, число поставте перед libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-27:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Сто двадцать здесь",
+        "uk": "Сто двадцять тут"
+      },
+      "bodyByLocale": {
+        "ru": "Для другой группы здесь подготовлены сто двадцать книг. Сообщите `Hay ciento veinte libros aquí` — «Здесь есть сто двадцать книг». Соберите `Hay` + `ciento veinte` + `libros` + `aquí`. Перед десятком тоже нужна форма ciento. Между ciento и veinte нет y; место поставьте в конце.",
+        "uk": "Для іншої групи тут підготовлено сто двадцять книжок. Повідомте `Hay ciento veinte libros aquí` — «Тут є сто двадцять книжок». Складіть `Hay` + `ciento veinte` + `libros` + `aquí`. Перед десятком теж потрібна форма ciento. Між ciento та veinte немає y; місце поставте в кінці."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-27:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть сто двадцать книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є сто двадцять книжок». Почніть з Hay, число поставте перед libros, місце — в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-27:intro2:r1",
+              "text": "Hay ciento veinte libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro2:r2",
+              "text": "Hay cien veinte libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro2:r3",
+              "text": "Hay ciento y veinte libros aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-27:intro2:r1",
+              "text": "Hay ciento veinte libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro2:r2",
+              "text": "Hay cien veinte libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro2:r3",
+              "text": "Hay ciento y veinte libros aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть сто двадцать книг». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є сто двадцять книжок». Почніть з Hay, число поставте перед libros, місце — в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-27:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Сто двадцать две книги",
+        "uk": "Сто двадцять дві книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Для следующей группы нужны сто двадцать две книги. Уточните `¿Hay ciento veintidós libros?` — «Есть сто двадцать две книги?» Соберите `¿Hay` + `ciento veintidós` + `libros?`. После ciento ставим уже знакомое veintidós без изменений: это одно слово со знаком ó. Между сотней и остатком числа y не добавляем.",
+        "uk": "Для наступної групи потрібні сто двадцять дві книжки. Уточніть `¿Hay ciento veintidós libros?` — «Є сто двадцять дві книжки?» Складіть `¿Hay` + `ciento veintidós` + `libros?`. Після ciento ставимо вже знайоме veintidós без змін: це одне слово зі знаком ó. Між сотнею та рештою числа y не додаємо."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-27:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть сто двадцать две книги?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є сто двадцять дві книжки?». Почніть з ¿Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-27:intro3:r1",
+              "text": "¿Hay ciento veintidós libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro3:r2",
+              "text": "¿Hay cien veintidós libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro3:r3",
+              "text": "¿Hay ciento y veintidós libros?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-27:intro3:r1",
+              "text": "¿Hay ciento veintidós libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro3:r2",
+              "text": "¿Hay cien veintidós libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-27:intro3:r3",
+              "text": "¿Hay ciento y veintidós libros?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть сто двадцать две книги?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є сто двадцять дві книжки?». Почніть з ¿Hay, число поставте перед libros."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "20248e27be0495c0e813cbc65ecffc0b48acf79f4393594b1c04e37660963847"
+}

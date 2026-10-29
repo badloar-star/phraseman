@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-07:session-15",
   "learningOutcomeByLocale": {
-    "ru": "использовать veintiuna перед sillas.",
-    "uk": "використовувати veintiuna перед sillas."
+    "ru": "назвать двадцать один предмет женского рода: Veintiuna sillas.",
+    "uk": "назвати двадцять один предмет жіночого роду: Veintiuna sillas."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Число перед жіночим родом"
       },
       "bodyByLocale": {
-        "ru": "Вы насчитали двадцать один стул. Назовите количество с предметом: `Veintiuna sillas` — «Двадцать один стул». Соберите `Veintiuna` + `sillas`. Silla женского рода, поэтому veintiuna с a в конце. Sillas во множественном числе: предметов больше одного. Ориентируемся на испанское silla, а не на русский «стул».",
-        "uk": "Ви нарахували двадцять один стілець. Назвіть кількість із предметом: `Veintiuna sillas` — «Двадцять один стілець». Складіть `Veintiuna` + `sillas`. Silla жіночого роду, тому veintiuna з a наприкінці. Sillas у множині: предметів більше одного. Орієнтуємося на іспанське silla, а не на українське «стілець»."
+        "ru": "Вы насчитали двадцать один стул. Назовите количество с предметом: `Veintiuna sillas` — «Двадцать один стул». Соберите `Veintiuna` + `sillas`. Silla женского рода, поэтому veintiuna с a в конце. Sillas в форме для нескольких: предметов больше одного. Ориентируемся на испанское silla, а не на русский «стул».",
+        "uk": "Ви нарахували двадцять один стілець. Назвіть кількість із предметом: `Veintiuna sillas` — «Двадцять один стілець». Складіть `Veintiuna` + `sillas`. Silla жіночого роду, тому veintiuna з a наприкінці. Sillas у формі для кількох: предметів більше одного. Орієнтуємося на іспанське silla, а не на українське «стілець»."
       },
       "question": {
         "interactionId": "es:lesson-07:session-15:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3beb816ff0f9bb7f432b8dc0dfee1957b8d86d9ee1796fcb04d7899195fa27f0"
+  "introFingerprint": "e61afe7132890213d3b787e1e660f1e3434e425df36b69d6da7623d0d105f183"
 }

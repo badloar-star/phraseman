@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-21",
+  "learningOutcomeByLocale": {
+    "ru": "назвать шестьдесят или семьдесят предметов: Hay sesenta sillas aquí.",
+    "uk": "назвати шістдесят або сімдесят предметів: Hay sesenta sillas aquí."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-21:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Шестьдесят мест",
+        "uk": "Шістдесят місць"
+      },
+      "bodyByLocale": {
+        "ru": "Перед встречей вы проверяете зал: подготовлено шестьдесят стульев. Сообщите `Hay sesenta sillas` — «Есть шестьдесят стульев». Соберите `Hay` + `sesenta` + `sillas`. Sesenta — шестьдесят, одно слово. Запомните начало sese-, чтобы отличать от setenta — семьдесят. После него существительное в форме для нескольких.",
+        "uk": "Перед зустріччю ви перевіряєте зал: підготовлено шістдесят стільців. Повідомте `Hay sesenta sillas` — «Є шістдесят стільців». Складіть `Hay` + `sesenta` + `sillas`. Sesenta — шістдесят, одне слово. Запам’ятайте початок sese-, щоб відрізняти від setenta — сімдесят. Після нього іменник у формі для кількох."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-21:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть шестьдесят стульев». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є шістдесят стільців». Почніть з Hay, число поставте перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-21:intro1:r1",
+              "text": "Hay sesenta sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro1:r2",
+              "text": "Hay sesenta silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro1:r3",
+              "text": "Hay treinta sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-21:intro1:r1",
+              "text": "Hay sesenta sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro1:r2",
+              "text": "Hay sesenta silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro1:r3",
+              "text": "Hay treinta sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть шестьдесят стульев». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є шістдесят стільців». Почніть з Hay, число поставте перед sillas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-21:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Семьдесят после подготовки",
+        "uk": "Сімдесят після підготовки"
+      },
+      "bodyByLocale": {
+        "ru": "Для второй встречи подготовили семьдесят стульев. Вы стоите рядом с ними и сообщаете `Hay setenta sillas aquí` — «Здесь есть семьдесят стульев». Соберите `Hay` + `setenta sillas` + `aquí`. Setenta — семьдесят; в середине t, а в sesenta — s. Это ровно семь десятков: после setenta не добавляем другое число.",
+        "uk": "Для другої зустрічі підготували сімдесят стільців. Ви стоїте поруч із ними і повідомляєте `Hay setenta sillas aquí` — «Тут є сімдесят стільців». Складіть `Hay` + `setenta sillas` + `aquí`. Setenta — сімдесят; усередині t, а в sesenta — s. Це рівно сім десятків: після setenta не додаємо іншого числа."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-21:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть семьдесят стульев». Начните с Hay, число поставьте перед sillas, место — в конце.",
+          "uk": "Повідомте «Тут є сімдесят стільців». Почніть з Hay, число поставте перед sillas, місце — наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-21:intro2:r1",
+              "text": "Hay setenta sillas aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro2:r2",
+              "text": "Hay setenta silla aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro2:r3",
+              "text": "Hay sesenta sillas aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-21:intro2:r1",
+              "text": "Hay setenta sillas aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro2:r2",
+              "text": "Hay setenta silla aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro2:r3",
+              "text": "Hay sesenta sillas aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть семьдесят стульев». Начните с Hay, число поставьте перед sillas, место — в конце.",
+          "uk": "Повідомте «Тут є сімдесят стільців». Почніть з Hay, число поставте перед sillas, місце — наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-21:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Переспросить количество",
+        "uk": "Перепитати кількість"
+      },
+      "bodyByLocale": {
+        "ru": "Организатор готовит места для семидесяти человек. Уточните `¿Hay setenta sillas?` — «Есть семьдесят стульев?» Соберите `¿Hay` + `setenta` + `sillas?`. В вопросе число остаётся перед существительным. Вопрос помогает понять, хватит ли всем мест.",
+        "uk": "Організатор готує місця для сімдесяти людей. Уточніть `¿Hay setenta sillas?` — «Є сімдесят стільців?» Складіть `¿Hay` + `setenta` + `sillas?`. У запитанні число залишається перед іменником. Запитання допомагає зрозуміти, чи всім вистачить місць."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-21:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть семьдесят стульев?». Начните с ¿Hay, число поставьте перед sillas.",
+          "uk": "Запитайте «Є сімдесят стільців?». Почніть з ¿Hay, число поставте перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-21:intro3:r1",
+              "text": "¿Hay setenta sillas?"
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro3:r2",
+              "text": "¿Hay setenta silla?"
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro3:r3",
+              "text": "¿Hay sesenta sillas?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-21:intro3:r1",
+              "text": "¿Hay setenta sillas?"
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro3:r2",
+              "text": "¿Hay setenta silla?"
+            },
+            {
+              "responseId": "es:lesson-07:session-21:intro3:r3",
+              "text": "¿Hay sesenta sillas?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть семьдесят стульев?». Начните с ¿Hay, число поставьте перед sillas.",
+          "uk": "Запитайте «Є сімдесят стільців?». Почніть з ¿Hay, число поставте перед sillas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "3caa8a139fcfc44d4c0a25144789e0ed0b91140dd8229bf1d493ff864581f27d"
+}

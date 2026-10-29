@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-17",
+  "learningOutcomeByLocale": {
+    "ru": "назвать число от 22 до 24 одним словом: Hay veintitrés libros aquí.",
+    "uk": "назвати число від 22 до 24 одним словом: Hay veintitrés libros aquí."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-17:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Двадцать две книги",
+        "uk": "Двадцять дві книжки"
+      },
+      "bodyByLocale": {
+        "ru": "Для первой группы вы насчитали двадцать две книги. Сообщите `Hay veintidós libros` — «Есть двадцать две книги». Соберите `Hay` + `veintidós` + `libros`. Veintidós — двадцать два: одно слово, знак ó отмечает ударение на последнем слоге. Libros остаётся в форме для нескольких.",
+        "uk": "Для першої групи ви нарахували двадцять дві книжки. Повідомте `Hay veintidós libros` — «Є двадцять дві книжки». Складіть `Hay` + `veintidós` + `libros`. Veintidós — двадцять два: одне слово, знак ó позначає наголос на останньому складі. Libros залишається у формі для кількох."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-17:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть двадцать две книги». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є двадцять дві книжки». Почніть з Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-17:intro1:r1",
+              "text": "Hay veintidós libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro1:r2",
+              "text": "Hay veintidós libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro1:r3",
+              "text": "Hay veinte libros."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-17:intro1:r1",
+              "text": "Hay veintidós libros."
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro1:r2",
+              "text": "Hay veintidós libro."
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro1:r3",
+              "text": "Hay veinte libros."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть двадцать две книги». Начните с Hay, число поставьте перед libros.",
+          "uk": "Повідомте «Є двадцять дві книжки». Почніть з Hay, число поставте перед libros."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-17:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Двадцать три здесь",
+        "uk": "Двадцять три тут"
+      },
+      "bodyByLocale": {
+        "ru": "В другой группе подготовлены двадцать три книги. Вы показываете их и говорите `Hay veintitrés libros aquí` — «Здесь есть двадцать три книги». Соберите `Hay` + `veintitrés libros` + `aquí`. Veintitrés тоже одно слово; нужен знак é на последнем слоге. Место ставим в конце.",
+        "uk": "Для іншої групи підготовлено двадцять три книжки. Ви показуєте їх і кажете `Hay veintitrés libros aquí` — «Тут є двадцять три книжки». Складіть `Hay` + `veintitrés libros` + `aquí`. Veintitrés теж одне слово; потрібен знак é на останньому складі. Місце ставимо в кінці."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-17:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть двадцать три книги». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є двадцять три книжки». Почніть з Hay, число поставте перед libros, місце — в кінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-17:intro2:r1",
+              "text": "Hay veintitrés libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro2:r2",
+              "text": "Hay veintitrés libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro2:r3",
+              "text": "Hay veintidós libros aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-17:intro2:r1",
+              "text": "Hay veintitrés libros aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro2:r2",
+              "text": "Hay veintitrés libro aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro2:r3",
+              "text": "Hay veintidós libros aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть двадцать три книги». Начните с Hay, число поставьте перед libros, место — в конце.",
+          "uk": "Повідомте «Тут є двадцять три книжки». Почніть з Hay, число поставте перед libros, місце — в кінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-17:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Двадцать четыре для встречи",
+        "uk": "Двадцять чотири для зустрічі"
+      },
+      "bodyByLocale": {
+        "ru": "В следующей группе двадцать четыре участника. Уточните `¿Hay veinticuatro libros?` — «Есть двадцать четыре книги?» Соберите `¿Hay` + `veinticuatro` + `libros?`. Veinticuatro — одно слово без знака ударения. Число по-прежнему стоит перед предметами. Лучше пересчитать книги до раздачи, чем делить последнюю пополам.",
+        "uk": "У наступній групі двадцять чотири учасники. Уточніть `¿Hay veinticuatro libros?` — «Є двадцять чотири книжки?» Складіть `¿Hay` + `veinticuatro` + `libros?`. Veinticuatro — одне слово без знака наголосу. Число, як і раніше, стоїть перед предметами. Краще перерахувати книжки до роздачі, ніж ділити останню навпіл."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-17:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть двадцать четыре книги?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є двадцять чотири книжки?». Почніть з ¿Hay, число поставте перед libros."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-17:intro3:r1",
+              "text": "¿Hay veinticuatro libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro3:r2",
+              "text": "¿Hay veinticuatro libro?"
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro3:r3",
+              "text": "¿Hay veintitrés libros?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-17:intro3:r1",
+              "text": "¿Hay veinticuatro libros?"
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro3:r2",
+              "text": "¿Hay veinticuatro libro?"
+            },
+            {
+              "responseId": "es:lesson-07:session-17:intro3:r3",
+              "text": "¿Hay veintitrés libros?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть двадцать четыре книги?». Начните с ¿Hay, число поставьте перед libros.",
+          "uk": "Запитайте «Є двадцять чотири книжки?». Почніть з ¿Hay, число поставте перед libros."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "7463c99cf45119d69f6d5d299f7cc0a2079bdf08b1499f435229f2cf511953e2"
+}

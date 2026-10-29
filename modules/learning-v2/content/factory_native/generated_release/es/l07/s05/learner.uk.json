@@ -508,8 +508,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — є сім стільців?",
             "feedbackByLocale": {
-              "ru": "Семь стульев: sillas во множественном числе.",
-              "uk": "Сім стільців: sillas у множині."
+              "ru": "Семь стульев: sillas — форма для нескольких.",
+              "uk": "Сім стільців: sillas — форма для кількох."
             }
           },
           {
@@ -664,5 +664,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "97134be37271414eb4462f3e48868089186fb98364794365c5cb97754ad7365c"
+  "learnerFingerprint": "02fa0b143052b881538705a56b471b369d5c31200ab1009033314725b4bac31d"
 }

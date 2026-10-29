@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-07:session-10",
   "learningOutcomeByLocale": {
-    "ru": "называть тринадцать и четырнадцать предметов.",
-    "uk": "називати тринадцять і чотирнадцять предметів."
+    "ru": "сказать, что есть тринадцать или четырнадцать предметов: Hay trece sillas.",
+    "uk": "сказати, що є тринадцять або чотирнадцять предметів: Hay trece sillas."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Тринадцять місць"
       },
       "bodyByLocale": {
-        "ru": "В первой комнате вы насчитали тринадцать стульев. Сообщите `Hay trece sillas` — «Есть тринадцать стульев». Соберите `Hay` + `trece` + `sillas`. Trece — тринадцать, одно слово. После него используем sillas во множественном числе.",
-        "uk": "У першій кімнаті ви нарахували тринадцять стільців. Повідомте `Hay trece sillas` — «Є тринадцять стільців». Складіть `Hay` + `trece` + `sillas`. Trece — тринадцять, одне слово. Після нього використовуємо sillas у множині."
+        "ru": "В первой комнате вы насчитали тринадцать стульев. Сообщите `Hay trece sillas` — «Есть тринадцать стульев». Соберите `Hay` + `trece` + `sillas`. Trece — тринадцать, одно слово. После него используем sillas в форме для нескольких.",
+        "uk": "У першій кімнаті ви нарахували тринадцять стільців. Повідомте `Hay trece sillas` — «Є тринадцять стільців». Складіть `Hay` + `trece` + `sillas`. Trece — тринадцять, одне слово. Після нього використовуємо sillas у формі для кількох."
       },
       "question": {
         "interactionId": "es:lesson-07:session-10:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0303f78b44c6fdb755e270ac13a11205e88496927fa338d568f22cc2d7dc9506"
+  "introFingerprint": "d8cc7819c07cad572768c290f2cd3e0cbe3643052c28619ef6a9bda83f2f427c"
 }

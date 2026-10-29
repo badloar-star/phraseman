@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-07:session-09",
   "learningOutcomeByLocale": {
-    "ru": "называть одиннадцать и двенадцать предметов.",
-    "uk": "називати одинадцять і дванадцять предметів."
+    "ru": "сказать, что есть одиннадцать или двенадцать предметов: Hay once libros.",
+    "uk": "сказати, що є одинадцять або дванадцять предметів: Hay once libros."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Одинадцять книжок"
       },
       "bodyByLocale": {
-        "ru": "Вы пересчитали книги: их одиннадцать. Скажите `Hay once libros` — «Есть одиннадцать книг». Соберите `Hay` + `once` + `libros`. Once — одиннадцать, это одно слово. Libros остаётся во множественном числе, как после знакомого diez.",
-        "uk": "Ви перерахували книжки: їх одинадцять. Скажіть `Hay once libros` — «Є одинадцять книжок». Складіть `Hay` + `once` + `libros`. Once — одинадцять, це одне слово. Libros залишається в множині, як після знайомого diez."
+        "ru": "Вы пересчитали книги: их одиннадцать. Скажите `Hay once libros` — «Есть одиннадцать книг». Соберите `Hay` + `once` + `libros`. Once — одиннадцать, это одно слово. Libros остаётся в форме для нескольких, как после знакомого diez.",
+        "uk": "Ви перерахували книжки: їх одинадцять. Скажіть `Hay once libros` — «Є одинадцять книжок». Складіть `Hay` + `once` + `libros`. Once — одинадцять, це одне слово. Libros залишається у формі для кількох, як після знайомого diez."
       },
       "question": {
         "interactionId": "es:lesson-07:session-09:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d72eff1226e1d1ae0afeb5e574736c1d01ab914e93ce2e55ff80eaef296eb4e6"
+  "introFingerprint": "ced00f2451c5f56c6da621deb170004253dd2526ee5a5c1f4604dd70b5347d46"
 }

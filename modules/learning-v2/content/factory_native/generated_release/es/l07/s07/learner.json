@@ -243,8 +243,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — есть десять книг?",
             "feedbackByLocale": {
-              "ru": "После diez нужно множественное число libros.",
-              "uk": "Після diez потрібна множина libros."
+              "ru": "После diez нужна форма для нескольких: libros.",
+              "uk": "Після diez потрібна форма для кількох: libros."
             }
           },
           {
@@ -664,5 +664,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a640ae24444e7b1b6c92d38f27de0378b07b3fbce2cd43222a3ab733955664bd"
+  "learnerFingerprint": "a0120d1c8fbfa51c87816f5c4fc133813690a172078844ce2cbbbf01f5799166"
 }

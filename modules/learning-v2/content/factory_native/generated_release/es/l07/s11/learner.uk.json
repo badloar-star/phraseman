@@ -551,8 +551,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — є шістнадцять книжок?",
             "feedbackByLocale": {
-              "ru": "После dieciséis нужно множественное число libros.",
-              "uk": "Після dieciséis потрібна множина libros."
+              "ru": "После dieciséis нужна форма для нескольких: libros.",
+              "uk": "Після dieciséis потрібна форма для кількох: libros."
             }
           },
           {
@@ -740,5 +740,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5d6b1bcd939ed18e09339b056f8df43d85a1dc89dbb3975a8291745f62fd4afc"
+  "learnerFingerprint": "9b8a98add8ec12eb31f311afb0ad57df8748b684550e72069a89a1b1f8a8658e"
 }

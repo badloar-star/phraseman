@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "learning_v2_course_session_intro_child_v1",
+  "courseSessionId": "es:lesson-07:session-22",
+  "learningOutcomeByLocale": {
+    "ru": "назвать восемьдесят или девяносто предметов: Hay noventa sillas aquí.",
+    "uk": "назвати вісімдесят або дев’яносто предметів: Hay noventa sillas aquí."
+  },
+  "pages": [
+    {
+      "pageOrdinal": 1,
+      "pageId": "es:lesson-07:session-22:intro1",
+      "kind": "concept",
+      "titleByLocale": {
+        "ru": "Восемьдесят мест",
+        "uk": "Вісімдесят місць"
+      },
+      "bodyByLocale": {
+        "ru": "В первом зале вы насчитали восемьдесят стульев. Сообщите `Hay ochenta sillas` — «Есть восемьдесят стульев». Соберите `Hay` + `ochenta` + `sillas`. Ochenta — восемьдесят, пишется одним словом. Запомните ch, как в знакомом ocho. После него существительное в форме для нескольких.",
+        "uk": "У першому залі ви нарахували вісімдесят стільців. Повідомте `Hay ochenta sillas` — «Є вісімдесят стільців». Складіть `Hay` + `ochenta` + `sillas`. Ochenta — вісімдесят, пишеться одним словом. Запам’ятайте ch, як у знайомому ocho. Після нього іменник у формі для кількох."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-22:intro1:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Есть восемьдесят стульев». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є вісімдесят стільців». Почніть з Hay, число поставте перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-22:intro1:r1",
+              "text": "Hay ochenta sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro1:r2",
+              "text": "Hay ochenta silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro1:r3",
+              "text": "Hay treinta sillas."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-22:intro1:r1",
+              "text": "Hay ochenta sillas."
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro1:r2",
+              "text": "Hay ochenta silla."
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro1:r3",
+              "text": "Hay treinta sillas."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Есть восемьдесят стульев». Начните с Hay, число поставьте перед sillas.",
+          "uk": "Повідомте «Є вісімдесят стільців». Почніть з Hay, число поставте перед sillas."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 2,
+      "pageId": "es:lesson-07:session-22:intro2",
+      "kind": "formula",
+      "titleByLocale": {
+        "ru": "Девяносто после подготовки",
+        "uk": "Дев’яносто після підготовки"
+      },
+      "bodyByLocale": {
+        "ru": "В другой комнате уже подготовили девяносто стульев. Вы стоите в ней и сообщаете `Hay noventa sillas aquí` — «Здесь есть девяносто стульев». Соберите `Hay` + `noventa sillas` + `aquí`. Noventa — девяносто; это тоже одно слово. В начале no-, хотя девять — nueve. Это ровно девять десятков: после noventa не добавляем другое число.",
+        "uk": "В іншій кімнаті вже підготували дев’яносто стільців. Ви стоїте в ній і повідомляєте `Hay noventa sillas aquí` — «Тут є дев’яносто стільців». Складіть `Hay` + `noventa sillas` + `aquí`. Noventa — дев’яносто; це теж одне слово. На початку no-, хоча дев’ять — nueve. Це рівно дев’ять десятків: після noventa не додаємо іншого числа."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-22:intro2:q",
+        "promptByLocale": {
+          "ru": "Сообщите «Здесь есть девяносто стульев». Начните с Hay, число поставьте перед sillas, место — в конце.",
+          "uk": "Повідомте «Тут є дев’яносто стільців». Почніть з Hay, число поставте перед sillas, місце — наприкінці."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-22:intro2:r1",
+              "text": "Hay noventa sillas aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro2:r2",
+              "text": "Hay noventa silla aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro2:r3",
+              "text": "Hay ochenta sillas aquí."
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-22:intro2:r1",
+              "text": "Hay noventa sillas aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro2:r2",
+              "text": "Hay noventa silla aquí."
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro2:r3",
+              "text": "Hay ochenta sillas aquí."
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Сообщите «Здесь есть девяносто стульев». Начните с Hay, число поставьте перед sillas, место — в конце.",
+          "uk": "Повідомте «Тут є дев’яносто стільців». Почніть з Hay, число поставте перед sillas, місце — наприкінці."
+        }
+      }
+    },
+    {
+      "pageOrdinal": 3,
+      "pageId": "es:lesson-07:session-22:intro3",
+      "kind": "trap",
+      "titleByLocale": {
+        "ru": "Переспросить количество",
+        "uk": "Перепитати кількість"
+      },
+      "bodyByLocale": {
+        "ru": "Организатор готовит места для девяноста человек. Уточните `¿Hay noventa sillas?` — «Есть девяносто стульев?» Соберите `¿Hay` + `noventa` + `sillas?`. В вопросе число остаётся перед существительным. Вопрос помогает понять, хватит ли всем мест.",
+        "uk": "Організатор готує місця для дев’яноста людей. Уточніть `¿Hay noventa sillas?` — «Є дев’яносто стільців?» Складіть `¿Hay` + `noventa` + `sillas?`. У запитанні число залишається перед іменником. Запитання допомагає зрозуміти, чи всім вистачить місць."
+      },
+      "question": {
+        "interactionId": "es:lesson-07:session-22:intro3:q",
+        "promptByLocale": {
+          "ru": "Спросите «Есть девяносто стульев?». Начните с ¿Hay, число поставьте перед sillas.",
+          "uk": "Запитайте «Є дев’яносто стільців?». Почніть з ¿Hay, число поставте перед sillas."
+        },
+        "choicesByLocale": {
+          "ru": [
+            {
+              "responseId": "es:lesson-07:session-22:intro3:r1",
+              "text": "¿Hay noventa sillas?"
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro3:r2",
+              "text": "¿Hay noventa silla?"
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro3:r3",
+              "text": "¿Hay ochenta sillas?"
+            }
+          ],
+          "uk": [
+            {
+              "responseId": "es:lesson-07:session-22:intro3:r1",
+              "text": "¿Hay noventa sillas?"
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro3:r2",
+              "text": "¿Hay noventa silla?"
+            },
+            {
+              "responseId": "es:lesson-07:session-22:intro3:r3",
+              "text": "¿Hay ochenta sillas?"
+            }
+          ]
+        },
+        "accessibilityLabelByLocale": {
+          "ru": "Спросите «Есть девяносто стульев?». Начните с ¿Hay, число поставьте перед sillas.",
+          "uk": "Запитайте «Є дев’яносто стільців?». Почніть з ¿Hay, число поставте перед sillas."
+        }
+      }
+    }
+  ],
+  "pageCount": 3,
+  "embeddedQuestionCount": 3,
+  "practiceStartOrdinal": 4,
+  "questionPolicy": "one_question_at_bottom_of_each_intro_page_no_post_intro_duplicate",
+  "answerDataPolicy": "none_server_evaluator_child_only",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "introFingerprint": "9789dc91afa9335f041e2761aa30b847d17725ce5b9853447ae8514c0021d90a"
+}

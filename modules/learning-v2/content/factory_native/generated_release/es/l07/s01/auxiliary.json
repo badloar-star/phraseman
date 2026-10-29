@@ -19,8 +19,8 @@
       "interactionId": "es:lesson-07:session-01:intro2:q",
       "responseFeedbackById": {
         "es:lesson-07:session-01:intro2:r2": {
-          "ru": "После cero здесь нужно множественное число libros.",
-          "uk": "Після cero тут потрібна множина libros."
+          "ru": "После cero здесь нужна форма для нескольких: libros.",
+          "uk": "Після cero тут потрібна форма для кількох: libros."
         },
         "es:lesson-07:session-01:intro2:r3": {
           "ru": "В записи ноль, поэтому cero.",
@@ -36,11 +36,11 @@
           "uk": "Без no вийде, що книжки є."
         },
         "es:lesson-07:session-01:intro3:r3": {
-          "ru": "По условию используем множественное число libros.",
-          "uk": "За умовою використовуємо множину libros."
+          "ru": "По условию используем форму для нескольких: libros.",
+          "uk": "За умовою використовуємо форму для кількох: libros."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "62e75165f178040b160f08726425da425f6f90b5e09c826e4eb16c59423fdb0a"
+  "auxiliaryFingerprint": "b38c81a67b696b287476dfe5bb15ef8681d850230257ef62cac6e1f1bdd852bb"
 }

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-22",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-22:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-22:intro1:r2": {
+          "ru": "Стульев восемьдесят: sillas.",
+          "uk": "Стільців вісімдесят: sillas."
+        },
+        "es:lesson-07:session-22:intro1:r3": {
+          "ru": "Treinta — тридцать, а нужно ochenta.",
+          "uk": "Treinta — тридцять, а потрібно ochenta."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-22:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-22:intro2:r2": {
+          "ru": "После noventa нужно sillas.",
+          "uk": "Після noventa потрібно sillas."
+        },
+        "es:lesson-07:session-22:intro2:r3": {
+          "ru": "В этой комнате девяносто: noventa.",
+          "uk": "У цій кімнаті дев’яносто: noventa."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-22:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-22:intro3:r2": {
+          "ru": "Стульев несколько: sillas.",
+          "uk": "Стільців кілька: sillas."
+        },
+        "es:lesson-07:session-22:intro3:r3": {
+          "ru": "Уточняем девяносто: noventa.",
+          "uk": "Уточнюємо дев’яносто: noventa."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "55a5d1dadec521dc4bd85b01dafe076fc422115d24d8c5a1f47033f66b1c80a2"
+}

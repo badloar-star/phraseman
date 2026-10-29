@@ -1,0 +1,693 @@
+{
+  "schemaVersion": "learning_v2_course_session_learner_child_v1",
+  "courseSessionId": "es:lesson-07:session-25",
+  "targetLanguage": "es",
+  "interactions": [
+    {
+      "interactionId": "es:lesson-07:session-25:i01",
+      "ordinal": 4,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — число 31, без предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-25:i01:r1",
+          "text": "uno"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i01:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i01:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — число 31, без предмета",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — число 31, без предмета",
+          "uk": "Вставте слово — число 31, без предмета"
+        },
+        "gappedTargetPhrase": "Treinta y ___.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-25:i01:r1",
+            "text": "uno"
+          },
+          {
+            "responseId": "es:lesson-07:session-25:i01:r2",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-07:session-25:i01:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — число 31, без предмета",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-25:i01:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — число 31, без предмета",
+            "feedbackByLocale": {
+              "ru": "Называем само число: uno.",
+              "uk": "Називаємо саме число: uno."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-25:i01:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — число 31, без предмета",
+            "feedbackByLocale": {
+              "ru": "Предмета женского рода здесь нет: называем само число с uno.",
+              "uk": "Предмета жіночого роду тут немає: називаємо саме число з uno."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:i02",
+      "ordinal": 5,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — число 31 словами, без предмета",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-25:i02:r1",
+          "text": "Плитки: uno"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i02:r2",
+          "text": "Treinta"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i02:r3",
+          "text": "y"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i02:r4",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — число 31 словами, без предмета",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Treinta y uno.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — число 31 словами, без предмета",
+          "uk": "Зберіть фразу — число 31 словами, без предмета"
+        },
+        "orderedTokens": [
+          "Treinta",
+          "y",
+          "uno"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-25:i02:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — число 31 словами, без предмета",
+            "feedbackByLocale": {
+              "ru": "без существительного нужно uno.",
+              "uk": "без іменника потрібне uno."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:i03",
+      "ordinal": 6,
+      "purpose": "supported_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — есть тридцать одна книга",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-25:i03:r1",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i03:r2",
+          "text": "uno"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i03:r3",
+          "text": "una"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — есть тридцать одна книга",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть тридцать одна книга",
+          "uk": "Вставте слово — є тридцять одна книжка"
+        },
+        "gappedTargetPhrase": "Hay treinta y ___ libros.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-25:i03:r1",
+            "text": "un"
+          },
+          {
+            "responseId": "es:lesson-07:session-25:i03:r2",
+            "text": "uno"
+          },
+          {
+            "responseId": "es:lesson-07:session-25:i03:r3",
+            "text": "una"
+          }
+        ],
+        "testedDimension": "Вставьте слово — есть тридцать одна книга",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-25:i03:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть тридцать одна книга",
+            "feedbackByLocale": {
+              "ru": "Перед libros нужно сокращённое un.",
+              "uk": "Перед libros потрібне скорочене un."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-25:i03:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть тридцать одна книга",
+            "feedbackByLocale": {
+              "ru": "Libros мужского рода: un.",
+              "uk": "Libros чоловічого роду: un."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:i04",
+      "ordinal": 7,
+      "purpose": "supported_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть тридцать одна книга; начните с Hay, число поставьте перед libros",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-25:i04:r1",
+          "text": "Плитки: libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i04:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i04:r3",
+          "text": "y"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i04:r4",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i04:r5",
+          "text": "treinta"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i04:r6",
+          "text": "uno."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть тридцать одна книга; начните с Hay, число поставьте перед libros",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay treinta y un libros.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть тридцать одна книга; начните с Hay, число поставьте перед libros",
+          "uk": "Зберіть фразу — є тридцять одна книжка; почніть з Hay, число поставте перед libros"
+        },
+        "orderedTokens": [
+          "Hay",
+          "treinta",
+          "y",
+          "un",
+          "libros"
+        ],
+        "authoredDistractorTokens": [
+          "uno"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-25:i04:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть тридцать одна книга; начните с Hay, число поставьте перед libros",
+            "feedbackByLocale": {
+              "ru": "перед libros нужно un.",
+              "uk": "перед libros потрібне un."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:i05",
+      "ordinal": 8,
+      "purpose": "guided_practice",
+      "family": "context_gap_grammar",
+      "inputMode": "single_choice",
+      "prompt": "Вставьте слово — есть тридцать один стул",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-25:i05:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i05:r2",
+          "text": "uno"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i05:r3",
+          "text": "un"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Вставьте слово — есть тридцать один стул",
+      "modePayload": {
+        "family": "context_gap_grammar",
+        "localizedScene": {
+          "ru": "Вставьте слово — есть тридцать один стул",
+          "uk": "Вставте слово — є тридцять один стілець"
+        },
+        "gappedTargetPhrase": "Hay treinta y ___ sillas.",
+        "gapOptions": [
+          {
+            "responseId": "es:lesson-07:session-25:i05:r1",
+            "text": "una"
+          },
+          {
+            "responseId": "es:lesson-07:session-25:i05:r2",
+            "text": "uno"
+          },
+          {
+            "responseId": "es:lesson-07:session-25:i05:r3",
+            "text": "un"
+          }
+        ],
+        "testedDimension": "Вставьте слово — есть тридцать один стул",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-25:i05:r2",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть тридцать один стул",
+            "feedbackByLocale": {
+              "ru": "Перед sillas нужно una.",
+              "uk": "Перед sillas потрібне una."
+            }
+          },
+          {
+            "responseId": "es:lesson-07:session-25:i05:r3",
+            "correct": false,
+            "testedDimension": "Вставьте слово — есть тридцать один стул",
+            "feedbackByLocale": {
+              "ru": "Sillas женского рода: una.",
+              "uk": "Sillas жіночого роду: una."
+            }
+          }
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:i06",
+      "ordinal": 9,
+      "purpose": "guided_practice",
+      "family": "phrase_builder",
+      "inputMode": "ordered_tokens",
+      "prompt": "Соберите фразу — есть тридцать один стул; начните с Hay, число поставьте перед sillas",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-25:i06:r1",
+          "text": "Плитки: sillas"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i06:r2",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i06:r3",
+          "text": "treinta"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i06:r4",
+          "text": "y"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i06:r5",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i06:r6",
+          "text": "un."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [],
+      "accessibilityLabel": "Соберите фразу — есть тридцать один стул; начните с Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "phrase_builder",
+        "targetPhrase": "Hay treinta y una sillas.",
+        "localizedMeaning": {
+          "ru": "Соберите фразу — есть тридцать один стул; начните с Hay, число поставьте перед sillas",
+          "uk": "Зберіть фразу — є тридцять один стілець; почніть з Hay, число поставте перед sillas"
+        },
+        "orderedTokens": [
+          "Hay",
+          "treinta",
+          "y",
+          "una",
+          "sillas"
+        ],
+        "authoredDistractorTokens": [
+          "un"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-25:i06:tile:d1",
+            "correct": false,
+            "testedDimension": "Соберите фразу — есть тридцать один стул; начните с Hay, число поставьте перед sillas",
+            "feedbackByLocale": {
+              "ru": "перед sillas нужно una.",
+              "uk": "перед sillas потрібне una."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:i07",
+      "ordinal": 10,
+      "purpose": "guided_practice",
+      "family": "listen_build_dictation",
+      "inputMode": "ordered_tokens",
+      "prompt": "Послушайте и соберите фразу",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-25:i07:r1",
+          "text": "Плитки: aquí"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i07:r2",
+          "text": "un"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i07:r3",
+          "text": "libros"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i07:r4",
+          "text": "Hay"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i07:r5",
+          "text": "treinta"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i07:r6",
+          "text": "y"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i07:r7",
+          "text": "uno."
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-25:i07:audio"
+      ],
+      "accessibilityLabel": "Послушайте и соберите фразу",
+      "modePayload": {
+        "family": "listen_build_dictation",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-25:i07:audio",
+          "transcript": "Hay treinta y un libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "hiddenTargetPhrase": "Hay treinta y un libros aquí.",
+        "orderedTokens": [
+          "Hay",
+          "treinta",
+          "y",
+          "un",
+          "libros",
+          "aquí"
+        ],
+        "authoredDistractorTokens": [
+          "uno"
+        ],
+        "slotFeedback": [
+          {
+            "responseId": "es:lesson-07:session-25:i07:tile:d1",
+            "correct": false,
+            "testedDimension": "Послушайте и соберите фразу",
+            "feedbackByLocale": {
+              "ru": "звучит un перед libros.",
+              "uk": "звучить un перед libros."
+            }
+          }
+        ],
+        "completionFeedbackByLocale": {
+          "ru": "",
+          "uk": ""
+        }
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:i08",
+      "ordinal": 11,
+      "purpose": "guided_practice",
+      "family": "listen_choose",
+      "inputMode": "single_choice",
+      "prompt": "Послушайте и выберите слово",
+      "responseOptions": [
+        {
+          "responseId": "es:lesson-07:session-25:i08:r1",
+          "text": "una"
+        },
+        {
+          "responseId": "es:lesson-07:session-25:i08:r2",
+          "text": "uno"
+        }
+      ],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-25:i08:audio"
+      ],
+      "accessibilityLabel": "Послушайте и выберите слово",
+      "modePayload": {
+        "family": "listen_choose",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-25:i08:audio",
+          "transcript": "una"
+        },
+        "slowReferenceAudio": null,
+        "localizedMeaningChoices": [
+          {
+            "responseId": "es:lesson-07:session-25:i08:r1",
+            "targetText": "una",
+            "meaningByLocale": null
+          },
+          {
+            "responseId": "es:lesson-07:session-25:i08:r2",
+            "targetText": "uno",
+            "meaningByLocale": null
+          }
+        ],
+        "transcriptRevealPolicy": "after_first_attempt",
+        "choiceFeedback": [
+          {
+            "responseId": "es:lesson-07:session-25:i08:r2",
+            "correct": false,
+            "testedDimension": "Послушайте и выберите слово",
+            "feedbackByLocale": {
+              "ru": "Звучит una, с a в конце.",
+              "uk": "Звучить una, з a в кінці."
+            }
+          }
+        ],
+        "isWordCard": false,
+        "wordCard": null
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:i09",
+      "ordinal": 12,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — число 31 словами, без предмета",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-25:i09:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — число 31 словами, без предмета",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-25:i09:audio",
+          "transcript": "Treinta y uno."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Treinta y uno.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:i10",
+      "ordinal": 13,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть тридцать одна книга; начните с Hay, число поставьте перед libros",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-25:i10:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть тридцать одна книга; начните с Hay, число поставьте перед libros",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-25:i10:audio",
+          "transcript": "Hay treinta y un libros."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay treinta y un libros.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:i11",
+      "ordinal": 14,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — есть тридцать один стул; начните с Hay, число поставьте перед sillas",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-25:i11:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — есть тридцать один стул; начните с Hay, число поставьте перед sillas",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-25:i11:audio",
+          "transcript": "Hay treinta y una sillas."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay treinta y una sillas.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    },
+    {
+      "interactionId": "es:lesson-07:session-25:i12",
+      "ordinal": 15,
+      "purpose": "guided_practice",
+      "family": "scripted_repeat_compare",
+      "inputMode": "tap_record_compare",
+      "prompt": "Скажите вслух — здесь есть тридцать одна книга; начните с Hay, число поставьте перед libros, место — в конце",
+      "responseOptions": [],
+      "mediaIds": [],
+      "audioTargetIds": [
+        "es:lesson-07:session-25:i12:audio"
+      ],
+      "accessibilityLabel": "Скажите вслух — здесь есть тридцать одна книга; начните с Hay, число поставьте перед libros, место — в конце",
+      "modePayload": {
+        "family": "scripted_repeat_compare",
+        "referenceAudio": {
+          "audioTargetId": "es:lesson-07:session-25:i12:audio",
+          "transcript": "Hay treinta y un libros aquí."
+        },
+        "slowReferenceAudio": null,
+        "targetPhrase": "Hay treinta y un libros aquí.",
+        "recordControlPolicy": "hold_press_release_with_accessible_toggle",
+        "modelPlayback": "reference_and_slow",
+        "learnerPlayback": "available_after_capture",
+        "honestOutcomeStates": [
+          "PASS_CONFIDENT",
+          "NEEDS_WORK_CONFIDENT",
+          "UNCERTAIN",
+          "INVALID_AUDIO_OR_SYSTEM"
+        ]
+      },
+      "scriptedAlternate": null
+    }
+  ],
+  "practiceInteractionCount": 12,
+  "firstPracticeOrdinal": 4,
+  "evaluatorPayload": "absent_by_exact_schema",
+  "acceptedAnswerPayload": "absent_by_exact_schema",
+  "runtimeAuthority": "none_active_release_join_required",
+  "releaseAuthority": false,
+  "learnerFingerprint": "ec20c500fa69cd568e407aa5d2178f2e4acedbc521ce9e7e15792a4e68a7245c"
+}

@@ -508,8 +508,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — є дев'ять книжок?",
             "feedbackByLocale": {
-              "ru": "После nueve нужно множественное число libros.",
-              "uk": "Після nueve потрібна множина libros."
+              "ru": "После nueve нужна форма для нескольких: libros.",
+              "uk": "Після nueve потрібна форма для кількох: libros."
             }
           },
           {
@@ -664,5 +664,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0c7780d54df6d067d8448af920c8a979e84268c0cad9423b9345d8e2f0b70633"
+  "learnerFingerprint": "147407c8b07f9388046daf19d112703992d1e71a05098150bf74c0e8d4acad65"
 }

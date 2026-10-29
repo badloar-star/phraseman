@@ -6,8 +6,8 @@
       "interactionId": "es:lesson-07:session-05:intro1:q",
       "responseFeedbackById": {
         "es:lesson-07:session-05:intro1:r2": {
-          "ru": "Стульев шесть: sillas во множественном числе.",
-          "uk": "Стільців шість: sillas у множині."
+          "ru": "Стульев шесть: sillas — форма для нескольких.",
+          "uk": "Стільців шість: sillas — форма для кількох."
         },
         "es:lesson-07:session-05:intro1:r3": {
           "ru": "Siete — семь, а здесь шесть: seis.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "d360c99d8cc00b269a441ece7fe644857d55115b993b6809cefd62b9761cd9ce"
+  "auxiliaryFingerprint": "b3f0dcabcdf2ba73099d2f6e1a9599177a3728be2457eb9e640def5704db976e"
 }

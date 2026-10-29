@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-23",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-23:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-23:intro1:r2": {
+          "ru": "Между десятком и единицей нужно y.",
+          "uk": "Між десятком і одиницею потрібне y."
+        },
+        "es:lesson-07:session-23:intro1:r3": {
+          "ru": "Это двадцать два, а нужно тридцать два.",
+          "uk": "Це двадцять два, а потрібно тридцять два."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-23:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-23:intro2:r2": {
+          "ru": "В числе 45 между cuarenta и cinco нужно y.",
+          "uk": "У числі 45 між cuarenta та cinco потрібне y."
+        },
+        "es:lesson-07:session-23:intro2:r3": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книжок кілька: libros."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-23:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-23:intro3:r2": {
+          "ru": "В числе 67 нужно y между десятком и единицей.",
+          "uk": "У числі 67 потрібне y між десятком і одиницею."
+        },
+        "es:lesson-07:session-23:intro3:r3": {
+          "ru": "Стульев несколько: sillas.",
+          "uk": "Стільців кілька: sillas."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "4ccdc78648bcd00f7eb61e7c985ca5c459ba1cf6a89ac9fd70ccfea3d3db5acb"
+}

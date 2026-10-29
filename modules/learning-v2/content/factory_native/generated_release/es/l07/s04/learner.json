@@ -243,8 +243,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — есть три стула",
             "feedbackByLocale": {
-              "ru": "Три стула: sillas во множественном числе.",
-              "uk": "Три стільці: sillas у множині."
+              "ru": "Три стула: sillas — форма для нескольких.",
+              "uk": "Три стільці: sillas — форма для кількох."
             }
           },
           {
@@ -664,5 +664,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "02e2eb6c21ad0fc0444d3f8ecc89daeb5e302f59ba7b17b2b0da8576f81aa2f9"
+  "learnerFingerprint": "b71acd397f42e7d8b04d3054a797d4afd73ed6b23f9fdafe3d53bb2ee85d15e6"
 }

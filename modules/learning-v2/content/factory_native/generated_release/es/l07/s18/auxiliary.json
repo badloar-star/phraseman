@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "learning_v2_release_auxiliary_projection_v1",
+  "courseSessionId": "es:lesson-07:session-18",
+  "entries": [
+    {
+      "interactionId": "es:lesson-07:session-18:intro1:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-18:intro1:r2": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книжок кілька: libros."
+        },
+        "es:lesson-07:session-18:intro1:r3": {
+          "ru": "Veinte — двадцать, а нужно двадцать пять.",
+          "uk": "Veinte — двадцять, а потрібно двадцять п’ять."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-18:intro2:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-18:intro2:r2": {
+          "ru": "После veintiséis нужно libros.",
+          "uk": "Після veintiséis потрібно libros."
+        },
+        "es:lesson-07:session-18:intro2:r3": {
+          "ru": "В этой группе двадцать шесть: veintiséis.",
+          "uk": "У цій групі двадцять шість: veintiséis."
+        }
+      }
+    },
+    {
+      "interactionId": "es:lesson-07:session-18:intro3:q",
+      "responseFeedbackById": {
+        "es:lesson-07:session-18:intro3:r2": {
+          "ru": "Книг несколько: libros.",
+          "uk": "Книжок кілька: libros."
+        },
+        "es:lesson-07:session-18:intro3:r3": {
+          "ru": "Нужно двадцать семь: veintisiete.",
+          "uk": "Потрібно двадцять сім: veintisiete."
+        }
+      }
+    }
+  ],
+  "auxiliaryFingerprint": "9301e3409c5549eb13d66de8021e02d095f167484745f08e8abf2146fb14f872"
+}

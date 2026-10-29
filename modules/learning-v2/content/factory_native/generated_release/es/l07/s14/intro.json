@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-07:session-14",
   "learningOutcomeByLocale": {
-    "ru": "использовать veintiuno отдельно и veintiún перед libros.",
-    "uk": "використовувати veintiuno окремо та veintiún перед libros."
+    "ru": "назвать двадцать один предмет мужского рода: Veintiún libros.",
+    "uk": "назвати двадцять один предмет чоловічого роду: Veintiún libros."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Додати предмет"
       },
       "bodyByLocale": {
-        "ru": "Теперь укажите, что речь о книгах: `Veintiún libros` — «Двадцать одна книга». Соберите `Veintiún` + `libros`. Перед существительным мужского рода veintiuno сокращается до veintiún; в письме нужен знак ú. Libros при этом во множественном числе: книг больше одной. Русское окончание «одна книга» не переносим в испанскую фразу.",
-        "uk": "Тепер укажіть, що йдеться про книжки: `Veintiún libros` — «Двадцять одна книжка». Складіть `Veintiún` + `libros`. Перед іменником чоловічого роду veintiuno скорочується до veintiún; на письмі потрібен знак ú. Libros при цьому в множині: книжок більше однієї. Українське закінчення «одна книжка» не переносимо в іспанську фразу."
+        "ru": "Теперь укажите, что речь о книгах: `Veintiún libros` — «Двадцать одна книга». Соберите `Veintiún` + `libros`. Перед существительным мужского рода veintiuno сокращается до veintiún; в письме нужен знак ú. Libros при этом в форме для нескольких: книг больше одной. Русское окончание «одна книга» не переносим в испанскую фразу.",
+        "uk": "Тепер укажіть, що йдеться про книжки: `Veintiún libros` — «Двадцять одна книжка». Складіть `Veintiún` + `libros`. Перед іменником чоловічого роду veintiuno скорочується до veintiún; на письмі потрібен знак ú. Libros при цьому у формі для кількох: книжок більше однієї. Українське закінчення «одна книжка» не переносимо в іспанську фразу."
       },
       "question": {
         "interactionId": "es:lesson-07:session-14:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fa44cd86ca4485ee206dea610c138b131ccf7aac71688f264d298f005fa32211"
+  "introFingerprint": "490b992b7a8760770073bf9ee52e52ac808ab1ebf7c60fd040d6e8256357c287"
 }

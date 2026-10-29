@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви перевіряєте адреси кількох замовлень і листів родини після переїзду.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** delivery address, billing address, return address, forwarding address
 
 ## Інтро 1

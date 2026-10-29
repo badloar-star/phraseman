@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте людей на дорозі та дорожні умови.
 
-**Що ви опануєте:** many + plural count noun / much + non-count noun
+**Що ви опануєте:** запитати й сказати, скільки чогось: many cups, much milk
 **Нові слова:** commuter, motorist, congestion, pollution
 
 ## Інтро 1

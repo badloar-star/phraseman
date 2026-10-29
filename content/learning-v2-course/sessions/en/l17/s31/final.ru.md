@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете скидки, изменения цен, средства для покупок в магазине и доставку домой.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** discount code, price increase, store credit, home delivery
 
 ## Интро 1

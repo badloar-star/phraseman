@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете нужное количество покупок или порций.
 
-**Что вы освоите:** number + unit + of + non-count noun
+**Что вы освоите:** назвать количество: two bottles of water, a kilo of rice
 **Новые слова:** bowl of rice, bowl of pasta, bowl of cereal, bowl of porridge
 
 ## Интро 1

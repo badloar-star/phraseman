@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте учасників, підтримку й програму заходу.
 
-**Що ви опануєте:** many + plural count noun / much + non-count noun
+**Що ви опануєте:** запитати й сказати, скільки чогось: many cups, much milk
 **Нові слова:** participant, sponsor, entertainment, funding
 
 ## Інтро 1

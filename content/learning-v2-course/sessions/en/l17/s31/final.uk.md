@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте знижки, зміни цін, кошти для покупок у магазині й доставку додому.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** discount code, price increase, store credit, home delivery
 
 ## Інтро 1

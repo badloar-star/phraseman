@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте завдання й підготовку до занять.
 
-**Що ви опануєте:** many + plural count noun / much + non-count noun
+**Що ви опануєте:** запитати й сказати, скільки чогось: many cups, much milk
 **Нові слова:** assignment, worksheet, coursework, revision
 
 ## Інтро 1

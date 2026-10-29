@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете отклики на вакансии и условия будущей работы.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** reference, cover letter, job security, flexible working
 
 ## Интро 1

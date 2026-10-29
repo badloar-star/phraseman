@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете нужное количество покупок или порций.
 
-**Что вы освоите:** number + unit + of + non-count noun
+**Что вы освоите:** назвать количество: two bottles of water, a kilo of rice
 **Новые слова:** bottle of shampoo, bottle of conditioner, bottle of shower gel, tube of cream
 
 ## Интро 1

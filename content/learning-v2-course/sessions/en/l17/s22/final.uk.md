@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви помічаєте сліди й залишки сміття в кімнаті.
 
-**Що ви опануєте:** a few / few + plural count noun; a little / little + non-count noun
+**Що ви опануєте:** сказати, що чогось є трохи або майже немає: a few cups, little milk
 **Нові слова:** fingerprint, cobweb, debris, grime
 
 ## Інтро 1

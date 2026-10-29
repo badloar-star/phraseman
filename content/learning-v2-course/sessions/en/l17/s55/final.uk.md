@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте особистий простір, спокій і час для близьких.
 
-**Що ви опануєте:** a little / little + non-count noun
+**Що ви опануєте:** сказати, що чогось трохи або майже немає: a little milk, little time
 **Нові слова:** personal space, peace of mind, quality time, work-life balance
 
 ## Інтро 1

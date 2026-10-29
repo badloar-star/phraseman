@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы разбираете покупки и принадлежности для сада.
 
-**Что вы освоите:** count nouns / non-count nouns: a, an, plural forms
+**Что вы освоите:** различать то, что считают поштучно, и то, что нет: a cup, two cups, some milk
 **Новые слова:** sapling, planter, gravel, equipment
 
 ## Интро 1

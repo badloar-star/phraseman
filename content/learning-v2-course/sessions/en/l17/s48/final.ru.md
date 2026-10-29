@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете условия магазинов, документы доставки и курсы валют перед покупкой за границей.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** refund policy, return label, exchange rate, delivery note
 
 ## Интро 1

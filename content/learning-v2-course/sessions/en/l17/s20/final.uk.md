@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте пропозиції роботи, співбесіди та свій досвід.
 
-**Що ви опануєте:** a few / few + plural count noun; a little / little + non-count noun
+**Що ви опануєте:** сказати, що чогось є трохи або майже немає: a few cups, little milk
 **Нові слова:** job offer, job interview, work experience, sick leave
 
 ## Інтро 1

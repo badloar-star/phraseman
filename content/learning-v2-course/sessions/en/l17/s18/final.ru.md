@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете реакцию людей на вашу работу.
 
-**Что вы освоите:** a few / few + plural count noun; a little / little + non-count noun
+**Что вы освоите:** сказать, что чего-то есть немного или почти нет: a few cups, little milk
 **Новые слова:** compliment, suggestion, praise, encouragement
 
 ## Интро 1

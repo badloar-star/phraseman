@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы проверяете адреса нескольких заказов и писем семьи после переезда.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** delivery address, billing address, return address, forwarding address
 
 ## Интро 1

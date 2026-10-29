@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте документи про освіту, знання й навчання.
 
-**Що ви опануєте:** many + plural count noun / much + non-count noun
+**Що ви опануєте:** запитати й сказати, скільки чогось: many cups, much milk
 **Нові слова:** qualification, certificate, knowledge, tuition
 
 ## Інтро 1

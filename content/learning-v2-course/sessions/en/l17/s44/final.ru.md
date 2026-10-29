@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете часы работы нескольких мест и обсуждаете свой график.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** opening time, closing time, weekend work, shift work
 
 ## Интро 1

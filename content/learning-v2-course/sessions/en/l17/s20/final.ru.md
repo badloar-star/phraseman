@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете предложения работы, собеседования и свой опыт.
 
-**Что вы освоите:** a few / few + plural count noun; a little / little + non-count noun
+**Что вы освоите:** сказать, что чего-то есть немного или почти нет: a few cups, little milk
 **Новые слова:** job offer, job interview, work experience, sick leave
 
 ## Интро 1

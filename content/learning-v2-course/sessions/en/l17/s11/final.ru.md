@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете людей на дороге и дорожные условия.
 
-**Что вы освоите:** many + plural count noun / much + non-count noun
+**Что вы освоите:** спросить и сказать, сколько чего-то: many cups, much milk
 **Новые слова:** commuter, motorist, congestion, pollution
 
 ## Интро 1

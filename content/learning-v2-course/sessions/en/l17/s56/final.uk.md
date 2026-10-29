@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте коротку розмову, дрібні гроші, звички й наявність питної води.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** small talk, spare change, daily routine, drinking water
 
 ## Інтро 1

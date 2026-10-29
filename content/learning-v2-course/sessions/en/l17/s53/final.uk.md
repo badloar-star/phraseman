@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви оглядаєте вокзал і уточнюєте вартість та види квитків.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** train platform, train fare, day ticket, weekly ticket
 
 ## Інтро 1

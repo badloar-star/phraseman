@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете документы об образовании, знания и обучение.
 
-**Что вы освоите:** many + plural count noun / much + non-count noun
+**Что вы освоите:** спросить и сказать, сколько чего-то: many cups, much milk
 **Новые слова:** qualification, certificate, knowledge, tuition
 
 ## Интро 1

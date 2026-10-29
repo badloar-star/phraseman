@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте місця, плату за бронювання, гроші й страхування для поїздки.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** seat reservation, booking fee, foreign currency, travel insurance
 
 ## Інтро 1

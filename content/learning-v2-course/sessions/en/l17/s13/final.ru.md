@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете участников, поддержку и программу мероприятия.
 
-**Что вы освоите:** many + plural count noun / much + non-count noun
+**Что вы освоите:** спросить и сказать, сколько чего-то: many cups, much milk
 **Новые слова:** participant, sponsor, entertainment, funding
 
 ## Интро 1

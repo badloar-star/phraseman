@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте досягнення, труднощі й упевненість у собі.
 
-**Що ви опануєте:** a few / few + plural count noun; a little / little + non-count noun
+**Що ви опануєте:** сказати, що чогось є трохи або майже немає: a few cups, little milk
 **Нові слова:** achievement, setback, courage, confidence
 
 ## Інтро 1

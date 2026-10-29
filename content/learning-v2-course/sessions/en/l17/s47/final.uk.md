@@ -2,7 +2,7 @@
 
 **Ситуація.** Перед записом на заняття або відвідуванням заходів ви з’ясовуєте можливі платежі.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** entry fee, membership fee, monthly payment, cancellation fee
 
 ## Інтро 1

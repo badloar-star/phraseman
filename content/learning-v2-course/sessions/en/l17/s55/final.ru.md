@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете личное пространство, спокойствие и время для близких.
 
-**Что вы освоите:** a little / little + non-count noun
+**Что вы освоите:** сказать, что чего-то немного или почти нет: a little milk, little time
 **Новые слова:** personal space, peace of mind, quality time, work-life balance
 
 ## Интро 1

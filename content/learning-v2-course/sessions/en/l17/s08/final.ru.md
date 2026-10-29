@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете бытовой прибор, расчёт стоимости и повреждения.
 
-**Что вы освоите:** count nouns / non-count nouns: a, an, plural forms
+**Что вы освоите:** различать то, что считают поштучно, и то, что нет: a cup, two cups, some milk
 **Новые слова:** appliance, estimate, packaging, damage
 
 ## Интро 1

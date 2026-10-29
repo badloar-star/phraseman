@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте потрібну кількість покупок або порцій.
 
-**Що ви опануєте:** number + unit + of + non-count noun
+**Що ви опануєте:** назвати кількість: two bottles of water, a kilo of rice
 **Нові слова:** bottle of shampoo, bottle of conditioner, bottle of shower gel, tube of cream
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы проверяете, сколько еды и воды осталось.
 
-**Что вы освоите:** a little / little + non-count noun
+**Что вы освоите:** сказать, что чего-то немного или почти нет: a little milk, little time
 **Новые слова:** fresh food, leftover food, food waste, bottled water
 
 ## Интро 1

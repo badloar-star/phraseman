@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте оплату житла, ремонт, воду й страхування оселі.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** rent payment, repair bill, running water, home insurance
 
 ## Інтро 1

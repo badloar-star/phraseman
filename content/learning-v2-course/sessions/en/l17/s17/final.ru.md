@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете совместную жизнь, знакомых и время для себя.
 
-**Что вы освоите:** a few / few + plural count noun; a little / little + non-count noun
+**Что вы освоите:** сказать, что чего-то есть немного или почти нет: a few cups, little milk
 **Новые слова:** housemate, acquaintance, leisure, privacy
 
 ## Интро 1

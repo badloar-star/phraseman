@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви повідомляєте про свою ситуацію й уточнюєте, чи потрібна консультація.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** food allergy, sick note, pain relief, medical advice
 
 ## Інтро 1

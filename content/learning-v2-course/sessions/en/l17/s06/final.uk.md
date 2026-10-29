@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви плануєте домашні справи й поїздку по заміну зламаної речі.
 
-**Що ви опануєте:** count nouns / non-count nouns: a, an, plural forms
+**Що ви опануєте:** розрізняти те, що рахують поштучно, і те, що ні: a cup, two cups, some milk
 **Нові слова:** errand, replacement, housework, public transport
 
 ## Інтро 1

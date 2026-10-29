@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте години роботи кількох місць і обговорюєте свій графік.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** opening time, closing time, weekend work, shift work
 
 ## Інтро 1

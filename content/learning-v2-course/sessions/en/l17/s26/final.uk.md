@@ -2,7 +2,7 @@
 
 **Ситуація.** Перед купівлею ви з’ясовуєте доплати, повернення частини вартості й можливість отримати допомогу.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** delivery charge, service charge, cashback, customer service
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте пошук роботи, зв’язок із роботодавцем і допомогу родині.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** job application, contact details, paid leave, childcare
 
 ## Інтро 1

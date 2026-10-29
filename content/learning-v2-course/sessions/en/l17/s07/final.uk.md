@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розбираєте покупки й приладдя для саду.
 
-**Що ви опануєте:** count nouns / non-count nouns: a, an, plural forms
+**Що ви опануєте:** розрізняти те, що рахують поштучно, і те, що ні: a cup, two cups, some milk
 **Нові слова:** sapling, planter, gravel, equipment
 
 ## Інтро 1

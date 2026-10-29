@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте побутовий прилад, розрахунок вартості й пошкодження.
 
-**Що ви опануєте:** count nouns / non-count nouns: a, an, plural forms
+**Що ви опануєте:** розрізняти те, що рахують поштучно, і те, що ні: a cup, two cups, some milk
 **Нові слова:** appliance, estimate, packaging, damage
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете новичков, обучение и помощь наставника.
 
-**Что вы освоите:** many + plural count noun / much + non-count noun
+**Что вы освоите:** спросить и сказать, сколько чего-то: many cups, much milk
 **Новые слова:** trainee, apprentice, supervision, guidance
 
 ## Интро 1

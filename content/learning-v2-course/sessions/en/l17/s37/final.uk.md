@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви називаєте об’єм і вагу потрібних покупок.
 
-**Що ви опануєте:** number + unit + of + non-count noun
+**Що ви опануєте:** назвати кількість: two bottles of water, a kilo of rice
 **Нові слова:** litre of milk, litre of petrol, kilo of rice, kilo of meat
 
 ## Інтро 1

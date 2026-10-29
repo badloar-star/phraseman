@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете оплату жилья, ремонт, воду и страхование дома.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** rent payment, repair bill, running water, home insurance
 
 ## Интро 1

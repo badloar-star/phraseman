@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы проверяете запасы и уточняете количество продуктов.
 
-**Что вы освоите:** many + plural count noun / much + non-count noun
+**Что вы освоите:** спросить и сказать, сколько чего-то: many cups, much milk
 **Новые слова:** pecan, Brazil nut, polenta, semolina
 
 ## Интро 1

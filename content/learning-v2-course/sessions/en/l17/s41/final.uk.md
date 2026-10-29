@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте відгуки на вакансії й умови майбутньої роботи.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** reference, cover letter, job security, flexible working
 
 ## Інтро 1

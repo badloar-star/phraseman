@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розбираєте сімейні документи й бланки для реєстрації.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** birth certificate, marriage certificate, identity card, registration form
 
 ## Інтро 1

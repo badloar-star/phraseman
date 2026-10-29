@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы разбираете семейные документы и бланки для регистрации.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** birth certificate, marriage certificate, identity card, registration form
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте, скільки порад, частин інформації та речей вам потрібно.
 
-**Що ви опануєте:** number + unit + of + non-count noun
+**Що ви опануєте:** назвати кількість: two bottles of water, a kilo of rice
 **Нові слова:** piece of advice, piece of information, piece of furniture, item of clothing
 
 ## Інтро 1

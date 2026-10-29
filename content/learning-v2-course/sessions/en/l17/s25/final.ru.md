@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете поиск работы, связь с работодателем и помощь семье.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** job application, contact details, paid leave, childcare
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви перевіряєте запаси й уточнюєте кількість продуктів.
 
-**Що ви опануєте:** many + plural count noun / much + non-count noun
+**Що ви опануєте:** запитати й сказати, скільки чогось: many cups, much milk
 **Нові слова:** pecan, Brazil nut, polenta, semolina
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете короткий разговор, мелочь, привычки и наличие питьевой воды.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** small talk, spare change, daily routine, drinking water
 
 ## Интро 1

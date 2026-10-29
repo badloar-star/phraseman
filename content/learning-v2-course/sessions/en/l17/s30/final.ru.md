@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете переводы, снятие наличных, помощь и услуги банка.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** bank transfer, cash withdrawal, financial support, online banking
 
 ## Интро 1

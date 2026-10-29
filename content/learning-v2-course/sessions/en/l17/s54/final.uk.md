@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви перевіряєте, скільки їжі та води залишилося.
 
-**Що ви опануєте:** a little / little + non-count noun
+**Що ви опануєте:** сказати, що чогось трохи або майже немає: a little milk, little time
 **Нові слова:** fresh food, leftover food, food waste, bottled water
 
 ## Інтро 1

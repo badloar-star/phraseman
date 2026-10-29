@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви перевіряєте документи в папці й запитуєте про підтвердження адреси та особи.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** work permit, residence permit, proof of address, photo ID
 
 ## Інтро 1

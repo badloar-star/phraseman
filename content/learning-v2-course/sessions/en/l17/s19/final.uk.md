@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте спальні місця й простір у будинку.
 
-**Що ви опануєте:** a few / few + plural count noun; a little / little + non-count noun
+**Що ви опануєте:** сказати, що чогось є трохи або майже немає: a few cups, little milk
 **Нові слова:** camp bed, guest room, storage space, floor space
 
 ## Інтро 1

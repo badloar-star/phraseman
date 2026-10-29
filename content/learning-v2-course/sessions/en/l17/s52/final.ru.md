@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете, какие сведения есть и каких не хватает.
 
-**Что вы освоите:** a few / few + plural count noun
+**Что вы освоите:** сказать, что вещей или людей немного или почти нет: a few friends, few cars
 **Новые слова:** departure time, arrival time, flight number, booking reference
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы осматриваете вокзал и уточняете стоимость и виды билетов.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** train platform, train fare, day ticket, weekly ticket
 
 ## Интро 1

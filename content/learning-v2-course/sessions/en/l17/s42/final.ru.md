@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете варианты оплаты, выписки и регулярные переводы.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** payment plan, late fee, bank statement, standing order
 
 ## Интро 1

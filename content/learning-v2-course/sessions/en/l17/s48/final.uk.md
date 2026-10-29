@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте умови магазинів, документи доставки й курси валют перед купівлею за кордоном.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** refund policy, return label, exchange rate, delivery note
 
 ## Інтро 1

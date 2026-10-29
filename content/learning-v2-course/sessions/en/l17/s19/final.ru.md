@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете спальные места и пространство в доме.
 
-**Что вы освоите:** a few / few + plural count noun; a little / little + non-count noun
+**Что вы освоите:** сказать, что чего-то есть немного или почти нет: a few cups, little milk
 **Новые слова:** camp bed, guest room, storage space, floor space
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы замечаете следы и остатки мусора в комнате.
 
-**Что вы освоите:** a few / few + plural count noun; a little / little + non-count noun
+**Что вы освоите:** сказать, что чего-то есть немного или почти нет: a few cups, little milk
 **Новые слова:** fingerprint, cobweb, debris, grime
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете места, плату за бронирование, деньги и страховку для поездки.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** seat reservation, booking fee, foreign currency, travel insurance
 
 ## Интро 1

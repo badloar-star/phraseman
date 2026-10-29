@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сообщаете о своей ситуации и уточняете, нужна ли консультация.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** food allergy, sick note, pain relief, medical advice
 
 ## Интро 1

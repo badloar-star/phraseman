@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете парковку, перекрытые дороги и освещение улиц.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** parking ticket, road closure, street lighting, public parking
 
 ## Интро 1

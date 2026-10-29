@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви перевіряєте, які продукти залишилися вдома.
 
-**Що ви опануєте:** a few / few + plural count noun; a little / little + non-count noun
+**Що ви опануєте:** сказати, що чогось є трохи або майже немає: a few cups, little milk
 **Нові слова:** pretzel, crouton, quinoa, buckwheat
 
 ## Інтро 1

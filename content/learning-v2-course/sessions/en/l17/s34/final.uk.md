@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви складаєте список покупок і називаєте кількість упаковок.
 
-**Що ви опануєте:** number + unit + of + non-count noun
+**Що ви опануєте:** назвати кількість: two bottles of water, a kilo of rice
 **Нові слова:** bag of rice, bag of sugar, bag of flour, jar of jam
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте паркування, перекриті дороги й освітлення вулиць.
 
-**Що ви опануєте:** some / any + plural count noun or non-count noun
+**Що ви опануєте:** сказати «трохи» або спитати, чи є: some apples, any milk?
 **Нові слова:** parking ticket, road closure, street lighting, public parking
 
 ## Інтро 1

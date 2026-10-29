@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы составляете список покупок и называете нужное количество упаковок.
 
-**Что вы освоите:** number + unit + of + non-count noun
+**Что вы освоите:** назвать количество: two bottles of water, a kilo of rice
 **Новые слова:** tube of toothpaste, bar of soap, roll of toilet paper, box of cereal
 
 ## Интро 1

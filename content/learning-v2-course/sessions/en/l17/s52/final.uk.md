@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте, які відомості є і яких бракує.
 
-**Що ви опануєте:** a few / few + plural count noun
+**Що ви опануєте:** сказати, що речей чи людей трохи або майже немає: a few friends, few cars
 **Нові слова:** departure time, arrival time, flight number, booking reference
 
 ## Інтро 1

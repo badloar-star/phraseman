@@ -2,7 +2,7 @@
 
 **Ситуация.** Перед записью на занятия или посещением мероприятий вы выясняете возможные платежи.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** entry fee, membership fee, monthly payment, cancellation fee
 
 ## Интро 1

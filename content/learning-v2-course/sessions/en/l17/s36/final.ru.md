@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете, сколько советов, сведений и вещей вам нужно.
 
-**Что вы освоите:** number + unit + of + non-count noun
+**Что вы освоите:** назвать количество: two bottles of water, a kilo of rice
 **Новые слова:** piece of advice, piece of information, piece of furniture, item of clothing
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы проверяете документы в папке и спрашиваете о подтверждении адреса и личности.
 
-**Что вы освоите:** some / any + plural count noun or non-count noun
+**Что вы освоите:** сказать «немного» или спросить, есть ли: some apples, any milk?
 **Новые слова:** work permit, residence permit, proof of address, photo ID
 
 ## Интро 1

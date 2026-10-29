@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете книги и обсуждаете виды литературы.
 
-**Что вы освоите:** count nouns / non-count nouns: a, an, plural forms
+**Что вы освоите:** различать то, что считают поштучно, и то, что нет: a cup, two cups, some milk
 **Новые слова:** biography, autobiography, fiction, non-fiction
 
 ## Интро 1

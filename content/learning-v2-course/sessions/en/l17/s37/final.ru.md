@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы называете объём и вес нужных покупок.
 
-**Что вы освоите:** number + unit + of + non-count noun
+**Что вы освоите:** назвать количество: two bottles of water, a kilo of rice
 **Новые слова:** litre of milk, litre of petrol, kilo of rice, kilo of meat
 
 ## Интро 1

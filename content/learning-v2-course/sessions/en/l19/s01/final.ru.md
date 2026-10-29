@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **She can suggest a restaurant.**
-- ❌ She cans suggest a restaurant. — *Can одинаково с I, she и любым другим словом в начале.*
+- ❌ She cans suggest a restaurant. — *Can не меняется: одинаково с I, she и любым другим словом в начале.*
 - ❌ She can suggests a restaurant. — *После can — suggest без -s.*
 
 ---

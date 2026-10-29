@@ -1,0 +1,2600 @@
+{
+  "project": "phraseman-ea0b3",
+  "snapshotAt": "2026-10-29T10:47:14.492Z",
+  "source": "gcloud functions list --format=json (read-only); codebase = label firebase-functions-codebase, default when absent",
+  "total": 432,
+  "functions": [
+    {
+      "name": "adminConfirmV2OwnerEpisode",
+      "codebase": "content",
+      "region": "us-central1",
+      "updateTime": "2026-08-27T12:46:30.988034768Z"
+    },
+    {
+      "name": "adminGetV2OwnerGeneratorSetupCatalog",
+      "codebase": "content",
+      "region": "us-central1",
+      "updateTime": "2026-08-27T12:46:32.470560827Z"
+    },
+    {
+      "name": "adminImportV2OwnerEpisodeStage",
+      "codebase": "content",
+      "region": "us-central1",
+      "updateTime": "2026-08-27T12:46:29.583750343Z"
+    },
+    {
+      "name": "adminPublishAuthoredLearningV2Course",
+      "codebase": "content",
+      "region": "us-central1",
+      "updateTime": "2026-08-27T12:46:33.809662616Z"
+    },
+    {
+      "name": "learningV2ActivityAuxiliarySessionGetV1",
+      "codebase": "content",
+      "region": "us-central1",
+      "updateTime": "2026-08-27T12:46:29.327998211Z"
+    },
+    {
+      "name": "learningV2ActivityReleasedSessionGetV1",
+      "codebase": "content",
+      "region": "us-central1",
+      "updateTime": "2026-08-27T12:46:27.872817792Z"
+    },
+    {
+      "name": "learningV2CourseActiveCatalogGetV1",
+      "codebase": "content",
+      "region": "us-central1",
+      "updateTime": "2026-08-27T12:46:28.577849432Z"
+    },
+    {
+      "name": "learningV2CourseReleasedSessionGetV2",
+      "codebase": "content",
+      "region": "us-central1",
+      "updateTime": "2026-08-27T12:46:27.084670591Z"
+    },
+    {
+      "name": "learningV2CourseReleasedSessionGetV3",
+      "codebase": "content",
+      "region": "us-central1",
+      "updateTime": "2026-08-27T12:46:28.097497947Z"
+    },
+    {
+      "name": "accountDeleteCredentialStatus",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T05:59:36.800324573Z"
+    },
+    {
+      "name": "accountDeleteEnqueue",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T05:59:32.503306122Z"
+    },
+    {
+      "name": "accountDeleteMine",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T18:17:28.165863859Z"
+    },
+    {
+      "name": "accountDeleteRestoreMine",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T05:59:32.336048049Z"
+    },
+    {
+      "name": "accountDeleteRetryCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T18:17:28.664732483Z"
+    },
+    {
+      "name": "accountDeleteStatusMine",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T05:59:28.746963580Z"
+    },
+    {
+      "name": "accountDeleteWorker",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T05:59:36.645521913Z"
+    },
+    {
+      "name": "accountMergeOutboxRetryCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:39.536303116Z"
+    },
+    {
+      "name": "accountMergeOutboxWorker",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:39.808438355Z"
+    },
+    {
+      "name": "activationEmailRetryCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T10:35:42.941620972Z"
+    },
+    {
+      "name": "adminActivateCourseRelease",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:10.650111936Z"
+    },
+    {
+      "name": "adminActivateTelegramPremiumOrder",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:41.873442743Z"
+    },
+    {
+      "name": "adminAlertDailyDigestsCron",
+      "codebase": "default",
+      "region": "europe-west1",
+      "updateTime": "2026-10-21T20:26:16.001694353Z"
+    },
+    {
+      "name": "adminAlertDispatchOnCreate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T06:58:18.655266989Z"
+    },
+    {
+      "name": "adminAlertOnAdminAuditCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:58:24.343912155Z"
+    },
+    {
+      "name": "adminAlertOnAppMessageWritten",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:58:25.233945163Z"
+    },
+    {
+      "name": "adminAlertOnAuthFailureSpike",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T21:06:08.668266780Z"
+    },
+    {
+      "name": "adminAlertOnBanWrite",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:59:17.636604214Z"
+    },
+    {
+      "name": "adminAlertOnCancelReasonCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:59:08.122497653Z"
+    },
+    {
+      "name": "adminAlertOnCancelSurvey",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T21:06:03.927734427Z"
+    },
+    {
+      "name": "adminAlertOnCommunityPackPurchaseWritten",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T21:06:09.228314943Z"
+    },
+    {
+      "name": "adminAlertOnCommunityPackReportCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:59:22.992405100Z"
+    },
+    {
+      "name": "adminAlertOnCommunitySubmissionCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T21:06:08.175905477Z"
+    },
+    {
+      "name": "adminAlertOnComplianceControlWritten",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:58:26.707254337Z"
+    },
+    {
+      "name": "adminAlertOnConfigWritten",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:58:08.009544122Z"
+    },
+    {
+      "name": "adminAlertOnContentReport",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T21:06:05.204892611Z"
+    },
+    {
+      "name": "adminAlertOnCriticalError",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:21:04.984489858Z"
+    },
+    {
+      "name": "adminAlertOnCronHeartbeat",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T21:06:08.835867688Z"
+    },
+    {
+      "name": "adminAlertOnExplanationReportCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T20:16:21.563379604Z"
+    },
+    {
+      "name": "adminAlertOnFeedbackCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T20:16:04.520390282Z"
+    },
+    {
+      "name": "adminAlertOnGiftCertificateCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:58:30.977103043Z"
+    },
+    {
+      "name": "adminAlertOnPromoRedemptionCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:58:29.557429028Z"
+    },
+    {
+      "name": "adminAlertOnPushJobWritten",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:58:27.194589509Z"
+    },
+    {
+      "name": "adminAlertOnReferralAttributionWrite",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:58:28.223479647Z"
+    },
+    {
+      "name": "adminAlertOnRevenueCatReceipt",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-13T13:51:07.042485417Z"
+    },
+    {
+      "name": "adminAlertOnSupportEmailCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:59:11.366139914Z"
+    },
+    {
+      "name": "adminAlertOnTelegramPremiumOrderWritten",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T21:06:02.874114136Z"
+    },
+    {
+      "name": "adminAlertOnUgcRefund",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T21:06:04.337420534Z"
+    },
+    {
+      "name": "adminAlertOnUserIdeaCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:58:25.485975644Z"
+    },
+    {
+      "name": "adminAlertOnUserIdeaReport",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T21:06:08.910467249Z"
+    },
+    {
+      "name": "adminAlertOnUserReport",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T21:06:09.056400318Z"
+    },
+    {
+      "name": "adminAlertOnWebPremiumOrderWritten",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T21:06:03.296651945Z"
+    },
+    {
+      "name": "adminAlertOnWebsiteContactCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:59:08.766525313Z"
+    },
+    {
+      "name": "adminAlertRecoveryCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T06:58:17.879356134Z"
+    },
+    {
+      "name": "adminAlignVideoPhraseTranscript",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:42:08.024218117Z"
+    },
+    {
+      "name": "adminApproveLearningV2CourseWave",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:22.292098821Z"
+    },
+    {
+      "name": "adminArenaConfigGet",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:11.585736479Z"
+    },
+    {
+      "name": "adminArenaConfigSet",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:18.478282867Z"
+    },
+    {
+      "name": "adminArenaContentStatus",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-24T17:01:24.026995550Z"
+    },
+    {
+      "name": "adminArenaContentValidate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-26T12:13:17.893703631Z"
+    },
+    {
+      "name": "adminAuditAccountDeleteCoverage",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-04T10:39:25.131685080Z"
+    },
+    {
+      "name": "adminBackfillVideoPacks",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-18T15:18:59.305073945Z"
+    },
+    {
+      "name": "adminCancelGiftCertificateBatchOperation",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:35.831709586Z"
+    },
+    {
+      "name": "adminCancelStripeSubscriptionRenewal",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:43:49.825625036Z"
+    },
+    {
+      "name": "adminCardTtsRequeuePack",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:42:05.884061576Z"
+    },
+    {
+      "name": "adminCleanupExpiredAppMessages",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:54.137303477Z"
+    },
+    {
+      "name": "adminCommunityPackApplyQaFixes",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-21T14:34:04.982884044Z"
+    },
+    {
+      "name": "adminCommunityPackApplyQaFixesToPublished",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-21T14:38:29.968102790Z"
+    },
+    {
+      "name": "adminCommunityPackQaReview",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:28.147042822Z"
+    },
+    {
+      "name": "adminCommunityPackTranslateLocales",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:28.206391539Z"
+    },
+    {
+      "name": "adminControlContentStage",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:40.429867094Z"
+    },
+    {
+      "name": "adminCreateAppMessage",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-13T06:46:28.098262380Z"
+    },
+    {
+      "name": "adminCreateContentGenerationJob",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:46.306138559Z"
+    },
+    {
+      "name": "adminCreateContentStage",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:40.476157001Z"
+    },
+    {
+      "name": "adminCreateContentStageBulkPlan",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:22.369184451Z"
+    },
+    {
+      "name": "adminCreateGiftCertificateBatch",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:45.697803798Z"
+    },
+    {
+      "name": "adminCreateV2GenerationPlan",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:16.316684492Z"
+    },
+    {
+      "name": "adminDeactivateGlobalBroadcast",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-03T10:32:36.666422071Z"
+    },
+    {
+      "name": "adminDeactivateVipSurveyCampaign",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:01.112431835Z"
+    },
+    {
+      "name": "adminDecideUserIdea",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T20:56:38.043952835Z"
+    },
+    {
+      "name": "adminDeleteAppMessage",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:48.973574645Z"
+    },
+    {
+      "name": "adminDeleteDuplicateUser",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:22.560124413Z"
+    },
+    {
+      "name": "adminDeleteGiftCertificate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:35.622399470Z"
+    },
+    {
+      "name": "adminDeleteUserIdea",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T20:56:48.793311925Z"
+    },
+    {
+      "name": "adminDraftIdeaDecision",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T20:56:39.396272284Z"
+    },
+    {
+      "name": "adminDraftReportReply",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:32.036465555Z"
+    },
+    {
+      "name": "adminEditContentStageArtifact",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:33.350661291Z"
+    },
+    {
+      "name": "adminEmailBroadcast",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-22T08:17:27.489206153Z"
+    },
+    {
+      "name": "adminEmailContactsBackfill",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-22T08:17:22.179678523Z"
+    },
+    {
+      "name": "adminGenerateDailyDigest",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:12.452391980Z"
+    },
+    {
+      "name": "adminGetAdminConfigWorkspace",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:58:04.667718269Z"
+    },
+    {
+      "name": "adminGetAlertDiagnostics",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:21:09.290194566Z"
+    },
+    {
+      "name": "adminGetAnalyticsSnapshot",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T17:15:55.217849684Z"
+    },
+    {
+      "name": "adminGetAnalyticsTrends",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-21T20:01:54.888000261Z"
+    },
+    {
+      "name": "adminGetComplianceOverview",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-24T08:53:35.064671437Z"
+    },
+    {
+      "name": "adminGetContentFactoryJobDetail",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:31.110065683Z"
+    },
+    {
+      "name": "adminGetContentFactoryRolloutMetrics",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:39.521632579Z"
+    },
+    {
+      "name": "adminGetContentFactoryUnitPreview",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:46.704303729Z"
+    },
+    {
+      "name": "adminGetContentFactoryWorkspace",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:41.346312034Z"
+    },
+    {
+      "name": "adminGetContentStageCapabilities",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:39.358422732Z"
+    },
+    {
+      "name": "adminGetDiagnosticsOverview",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-24T18:50:26.083919818Z"
+    },
+    {
+      "name": "adminGetFeedbackStats",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T13:08:33.434789054Z"
+    },
+    {
+      "name": "adminGetGiftCertificateBatchOperation",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:41.013379321Z"
+    },
+    {
+      "name": "adminGetGiftCertificateDownload",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:41.144492309Z"
+    },
+    {
+      "name": "adminGetHomeHintsCatalog",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-17T18:56:49.741118465Z"
+    },
+    {
+      "name": "adminGetLearningV2CourseWorkspaceProjection",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:33.674037154Z"
+    },
+    {
+      "name": "adminGetOnboardingFunnel",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T06:58:25.667526861Z"
+    },
+    {
+      "name": "adminGetPaywallAbWorkspace",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:41.898633291Z"
+    },
+    {
+      "name": "adminGetPaywallVariantStats",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:20.856777516Z"
+    },
+    {
+      "name": "adminGetProductCharter",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:54.018026908Z"
+    },
+    {
+      "name": "adminGetProductStatistics",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T19:23:39.413784146Z"
+    },
+    {
+      "name": "adminGetReferralDashboard",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:57.711486554Z"
+    },
+    {
+      "name": "adminGetRemoteConfigWorkspace",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:46.925799474Z"
+    },
+    {
+      "name": "adminGetRevenueCatOverviewMetrics",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:48.573016603Z"
+    },
+    {
+      "name": "adminGetUserProfile",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:48.486152670Z"
+    },
+    {
+      "name": "adminGetV2OwnerGeneratorWorkspace",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:34.189522828Z"
+    },
+    {
+      "name": "adminGetVideoPhraseWorkspace",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T17:53:49.296171573Z"
+    },
+    {
+      "name": "adminGetVideoStudioWorkspace",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T18:19:21.362174457Z"
+    },
+    {
+      "name": "adminGetYoutubeCatalogWorkspace",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:55.952862916Z"
+    },
+    {
+      "name": "adminGrantAccess",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:45.731335417Z"
+    },
+    {
+      "name": "adminGrantReward",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:32.824544349Z"
+    },
+    {
+      "name": "adminGrantVoiceMinutes",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:22.677983476Z"
+    },
+    {
+      "name": "adminInspectTelegramPromoCode",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:47.339083407Z"
+    },
+    {
+      "name": "adminLaunchVipSurveyCampaign",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-13T06:46:30.450077674Z"
+    },
+    {
+      "name": "adminListContentFactoryJobs",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:36.169592310Z"
+    },
+    {
+      "name": "adminListContentStageDependencies",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:46.760131139Z"
+    },
+    {
+      "name": "adminListContentStages",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:44.365657964Z"
+    },
+    {
+      "name": "adminListFeedbackEntries",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T13:08:32.429442090Z"
+    },
+    {
+      "name": "adminListGiftCertificates",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:14.422973001Z"
+    },
+    {
+      "name": "adminListGlobalBroadcasts",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-03T10:32:42.793980480Z"
+    },
+    {
+      "name": "adminListMistakeExplanationCache",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-20T06:54:39.839663215Z"
+    },
+    {
+      "name": "adminListOpsLog",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-24T15:58:56.369770672Z"
+    },
+    {
+      "name": "adminListPromoCodes",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:42.258353071Z"
+    },
+    {
+      "name": "adminListQuests",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:09:05.982926101Z"
+    },
+    {
+      "name": "adminListSafetyFlags",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-24T08:53:35.608634429Z"
+    },
+    {
+      "name": "adminListShardRefunds",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:55.606971342Z"
+    },
+    {
+      "name": "adminMarkSafetyFlagsHandled",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:47.317530625Z"
+    },
+    {
+      "name": "adminMigrateLegacyAdminPremium",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:42.297771841Z"
+    },
+    {
+      "name": "adminMonthlyDecisionPack",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:47.505152572Z"
+    },
+    {
+      "name": "adminOpenDailyDigest",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:11.769404741Z"
+    },
+    {
+      "name": "adminParseVideoPhraseDocument",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T19:40:08.385351143Z"
+    },
+    {
+      "name": "adminPrepareV2OwnerEpisodeDraft",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:10.724114823Z"
+    },
+    {
+      "name": "adminPreviewContentStage",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:23.047391410Z"
+    },
+    {
+      "name": "adminPreviewLearningV2CourseWave",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:51.934758040Z"
+    },
+    {
+      "name": "adminProductAnalytics",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T07:29:21.930321415Z"
+    },
+    {
+      "name": "adminPublishAlertsConfig",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:59:09.931657767Z"
+    },
+    {
+      "name": "adminPublishGlobalBroadcast",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-03T10:32:35.890463551Z"
+    },
+    {
+      "name": "adminPublishHomeHints",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-17T19:00:10.290148332Z"
+    },
+    {
+      "name": "adminPublishNavLayout",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:41.572649264Z"
+    },
+    {
+      "name": "adminPublishPaywallAb",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:57.819479471Z"
+    },
+    {
+      "name": "adminPublishRemoteConfig",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:56.803180318Z"
+    },
+    {
+      "name": "adminPublishVideoPhrases",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-18T15:18:56.027236151Z"
+    },
+    {
+      "name": "adminPublishYoutubeCatalogConfig",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:58.555176513Z"
+    },
+    {
+      "name": "adminPushJobCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:09.992711771Z"
+    },
+    {
+      "name": "adminPushJobsCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:12.000324212Z"
+    },
+    {
+      "name": "adminQueueAccountDeletion",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-01T14:55:58.257759701Z"
+    },
+    {
+      "name": "adminQueueV2GenerationPlan",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:11.598382047Z"
+    },
+    {
+      "name": "adminReferralHealth",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:41.416314964Z"
+    },
+    {
+      "name": "adminRefreshYoutubeCatalog",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:29:19.819531367Z"
+    },
+    {
+      "name": "adminRejectLearningV2CourseWave",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:40.281013234Z"
+    },
+    {
+      "name": "adminRelinkProvider",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:22.866323849Z"
+    },
+    {
+      "name": "adminRepairAuthLink",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:58.212186023Z"
+    },
+    {
+      "name": "adminRepairPendingReferralPurchase",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:23.504169479Z"
+    },
+    {
+      "name": "adminReplaceSyntheticGiftCertificate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:32.618007661Z"
+    },
+    {
+      "name": "adminReplyToReport",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T11:31:08.622715457Z"
+    },
+    {
+      "name": "adminRequestUserMerge",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:44.842938924Z"
+    },
+    {
+      "name": "adminResetUserProgress",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:56.118574145Z"
+    },
+    {
+      "name": "adminResolveUserReport",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:21.003740106Z"
+    },
+    {
+      "name": "adminRestoreUserIdea",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T20:56:37.942074962Z"
+    },
+    {
+      "name": "adminResumePendingReferralPurchaseRepair",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:27.762243717Z"
+    },
+    {
+      "name": "adminReviewContentStage",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:27.906794107Z"
+    },
+    {
+      "name": "adminReviewCourseGeneration",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:43.458792738Z"
+    },
+    {
+      "name": "adminRevokeReferralAttribution",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:13.520370712Z"
+    },
+    {
+      "name": "adminRollbackCourseRelease",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:43.442980755Z"
+    },
+    {
+      "name": "adminRunContentGenerationUnit",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:47.844133304Z"
+    },
+    {
+      "name": "adminRunContentStage",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:47.396504389Z"
+    },
+    {
+      "name": "adminRunV2E1Compilation",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:35.772079207Z"
+    },
+    {
+      "name": "adminSaveProductCharter",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:55.707907342Z"
+    },
+    {
+      "name": "adminSaveV2EpisodeDraft",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:32.439072252Z"
+    },
+    {
+      "name": "adminSaveV2SeasonDraft",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:21.834886635Z"
+    },
+    {
+      "name": "adminSaveVideoPhraseDraft",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T17:53:49.273309502Z"
+    },
+    {
+      "name": "adminScrubGlobalBroadcastMetadata",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-03T10:32:40.563596383Z"
+    },
+    {
+      "name": "adminSealCourseRelease",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:23.184656210Z"
+    },
+    {
+      "name": "adminSearchUsers",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:37.212555952Z"
+    },
+    {
+      "name": "adminSeedV2E1DemoSource",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:06.358555010Z"
+    },
+    {
+      "name": "adminSendPersonalAppMessage",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T11:31:17.593794258Z"
+    },
+    {
+      "name": "adminSendPreparedGiftCertificate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:30.162364782Z"
+    },
+    {
+      "name": "adminSetAppMessageActive",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:47.526601910Z"
+    },
+    {
+      "name": "adminSetIdeaSubmissionRestriction",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T20:56:31.868452454Z"
+    },
+    {
+      "name": "adminSetReferralRouletteEmergencyStop",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:07.591878542Z"
+    },
+    {
+      "name": "adminSetReferralRouletteEnabled",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:28.533748965Z"
+    },
+    {
+      "name": "adminSetSpinWeights",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:11.148703721Z"
+    },
+    {
+      "name": "adminSetUserBan",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T06:50:43.897498641Z"
+    },
+    {
+      "name": "adminSetUserIdeaStatus",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T20:56:39.771067307Z"
+    },
+    {
+      "name": "adminSpireConfigGet",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:37:17.351507441Z"
+    },
+    {
+      "name": "adminSpireConfigSet",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:37:24.022307767Z"
+    },
+    {
+      "name": "adminSpirePackBuild",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:37:40.046864534Z"
+    },
+    {
+      "name": "adminSpireTaskFlagAdd",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:37:40.302185368Z"
+    },
+    {
+      "name": "adminSpireTaskFlagList",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:37:39.884224520Z"
+    },
+    {
+      "name": "adminSpireTaskFlagRemove",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:37:44.877017634Z"
+    },
+    {
+      "name": "adminSpireTaskIncidentSetState",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:37:16.168823085Z"
+    },
+    {
+      "name": "adminSpireTaskIncidentStates",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:37:18.643007992Z"
+    },
+    {
+      "name": "adminSpireTaskReportList",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:37:16.808955577Z"
+    },
+    {
+      "name": "adminStaffIsolatedSession",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T13:43:14.476120006Z"
+    },
+    {
+      "name": "adminStoryAnnouncementCommand",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-29T07:21:40.909463432Z"
+    },
+    {
+      "name": "adminStoryAnnouncementsList",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:42.783804960Z"
+    },
+    {
+      "name": "adminSubscriptionAnalytics",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:59.064128381Z"
+    },
+    {
+      "name": "adminSummarizeFeedback",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:01:23.069272181Z"
+    },
+    {
+      "name": "adminSupportArchiveMessages",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:46.122805803Z"
+    },
+    {
+      "name": "adminSupportCancelReply",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:47.208197212Z"
+    },
+    {
+      "name": "adminSupportCancelReplyBatch",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:52.664368986Z"
+    },
+    {
+      "name": "adminSupportConversation",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:51.145634983Z"
+    },
+    {
+      "name": "adminSupportDispatchReply",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:17:02.258286868Z"
+    },
+    {
+      "name": "adminSupportDispatchReplyBatch",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:45.141799767Z"
+    },
+    {
+      "name": "adminSupportGenerateReply",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:59.118471046Z"
+    },
+    {
+      "name": "adminSupportList",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:50.892127983Z"
+    },
+    {
+      "name": "adminSupportPrepareReply",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:59.503075887Z"
+    },
+    {
+      "name": "adminSupportPrepareReplyBatch",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:56.645664206Z"
+    },
+    {
+      "name": "adminSupportPull",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:17:00.840945106Z"
+    },
+    {
+      "name": "adminSupportResolveReplyDelivery",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:59.947192214Z"
+    },
+    {
+      "name": "adminSupportSaveAutomation",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:51.457136203Z"
+    },
+    {
+      "name": "adminSupportSaveDraft",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:48.887946717Z"
+    },
+    {
+      "name": "adminSupportSaveInstructions",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:53.484344197Z"
+    },
+    {
+      "name": "adminSupportSaveSignature",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:48.067155679Z"
+    },
+    {
+      "name": "adminSupportSendReply",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:45.169986476Z"
+    },
+    {
+      "name": "adminSupportSetStatus",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:16:57.599391285Z"
+    },
+    {
+      "name": "adminTestAlerts",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:58:09.247466441Z"
+    },
+    {
+      "name": "adminTranslateMessage",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-13T06:46:34.098417357Z"
+    },
+    {
+      "name": "adminUpdateAppMessage",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-13T06:46:32.046749431Z"
+    },
+    {
+      "name": "adminUpdateGiftCertificatePersonalization",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:46.123413454Z"
+    },
+    {
+      "name": "adminUpdateGiftCertificateRecipient",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:32.894414076Z"
+    },
+    {
+      "name": "adminUpdateUserProfileField",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:42.147720539Z"
+    },
+    {
+      "name": "adminUserBriefs",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:04.598484105Z"
+    },
+    {
+      "name": "adminVerifyGlobalBroadcastPrivacyReadiness",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-03T11:02:07.761606196Z"
+    },
+    {
+      "name": "adminWarmInstanceGauge",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:01:55.104694099Z"
+    },
+    {
+      "name": "adminWarnUser",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:56.998730826Z"
+    },
+    {
+      "name": "adminWriteShardSurvey",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T18:02:31.344724255Z"
+    },
+    {
+      "name": "aiDialogBuyExtraReplies",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-17T19:17:44.955489122Z"
+    },
+    {
+      "name": "aiDialogSyncPurchase",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-17T19:17:41.575411836Z"
+    },
+    {
+      "name": "authAppleLinkByVerifiedEmail",
+      "codebase": "default",
+      "region": "europe-west1",
+      "updateTime": "2026-10-18T12:48:31.918449426Z"
+    },
+    {
+      "name": "authAppleLinkByVerifiedEmail",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-18T12:48:18.422586344Z"
+    },
+    {
+      "name": "authCleanInstallRecoveryDeliveryWorker",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:12.889852014Z"
+    },
+    {
+      "name": "authCompleteRecoveryHandoff",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:00:12.996678517Z"
+    },
+    {
+      "name": "authConfirmCleanInstallRecoveryCode",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:00:08.520534093Z"
+    },
+    {
+      "name": "authConfirmRecoveryCode",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:08:59.405554039Z"
+    },
+    {
+      "name": "authEnsureStableLink",
+      "codebase": "default",
+      "region": "europe-west1",
+      "updateTime": "2026-10-18T11:09:03.057103844Z"
+    },
+    {
+      "name": "authEnsureStableLink",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-18T11:08:53.844747295Z"
+    },
+    {
+      "name": "authIssueRecoveryHandoffToken",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:01:49.319221770Z"
+    },
+    {
+      "name": "authMergeStableAccounts",
+      "codebase": "default",
+      "region": "europe-west1",
+      "updateTime": "2026-10-26T16:51:51.557176955Z"
+    },
+    {
+      "name": "authMergeStableAccounts",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:35.428070146Z"
+    },
+    {
+      "name": "authorizeLearningV2CourseUnlock",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:00:29.863157550Z"
+    },
+    {
+      "name": "authRecoveryHint",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:00:38.639961538Z"
+    },
+    {
+      "name": "authRequestCleanInstallRecoveryCode",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T06:59:58.653950324Z"
+    },
+    {
+      "name": "authRequestRecoveryCode",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:09:07.123977656Z"
+    },
+    {
+      "name": "authStampAnonOwnership",
+      "codebase": "default",
+      "region": "europe-west1",
+      "updateTime": "2026-10-18T11:09:03.295290539Z"
+    },
+    {
+      "name": "authStampAnonOwnership",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-18T11:08:54.520677969Z"
+    },
+    {
+      "name": "cardTtsPackWorker",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:42:12.224882479Z"
+    },
+    {
+      "name": "claimReportReward",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:30.364325216Z"
+    },
+    {
+      "name": "cleanupExpiredAppMessagesCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:12.838232389Z"
+    },
+    {
+      "name": "coinReconcileV1",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-03T18:29:00.905866599Z"
+    },
+    {
+      "name": "collectiblesClaimDrop",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:05:13.163163680Z"
+    },
+    {
+      "name": "communityAdminModeratePack",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T14:41:12.503687908Z"
+    },
+    {
+      "name": "communityAuthorRemoveCard",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-18T06:52:52.808135435Z"
+    },
+    {
+      "name": "communityAuthorRemovePack",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-17T19:23:48.942940580Z"
+    },
+    {
+      "name": "communityFetchPackCardsIfAccessible",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-17T19:23:49.181892587Z"
+    },
+    {
+      "name": "communityListSellerInbox",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:03:16.845648004Z"
+    },
+    {
+      "name": "communityMarkSellerInboxSeen",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:12.686585612Z"
+    },
+    {
+      "name": "communityModerateSubmission",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T14:41:13.850950631Z"
+    },
+    {
+      "name": "communityMonthClaimReward",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:08:11.775664170Z"
+    },
+    {
+      "name": "communityMonthFinalize",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:08:22.214816990Z"
+    },
+    {
+      "name": "communityMonthGetRanking",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:08:31.852368544Z"
+    },
+    {
+      "name": "communityMonthGetRewards",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:08:30.378251940Z"
+    },
+    {
+      "name": "communityRedeemPackGiftVoucher",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:11.861807364Z"
+    },
+    {
+      "name": "communitySubmitPackForReview",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T14:41:12.773438841Z"
+    },
+    {
+      "name": "communitySyncPackRuneSale",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T05:59:32.061694362Z"
+    },
+    {
+      "name": "cosmeticAssetCatalogGet",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:13:22.059838453Z"
+    },
+    {
+      "name": "customCardMilestoneNotify",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:42:08.575847272Z"
+    },
+    {
+      "name": "dailyPhraseSetSaved",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T05:59:30.780274662Z"
+    },
+    {
+      "name": "dailyPollVote",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:42:08.216459648Z"
+    },
+    {
+      "name": "devRunesGrant",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-19T12:35:57.178039256Z"
+    },
+    {
+      "name": "devShardsGrant",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:00:14.933437937Z"
+    },
+    {
+      "name": "dialogueV2Catalogue",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:33:09.461850411Z"
+    },
+    {
+      "name": "dialogueV2FreeformPreparedBotVoiceResolve",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:41:58.425756075Z"
+    },
+    {
+      "name": "dialogueV2FreeformSessionStart",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:41:59.425419435Z"
+    },
+    {
+      "name": "dialogueV2FreeformSessionTurn",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-28T18:29:15.986804764Z"
+    },
+    {
+      "name": "dialogueV2FreeformTranslate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:00.234145955Z"
+    },
+    {
+      "name": "dialogueV2MemoryClear",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:11.464486260Z"
+    },
+    {
+      "name": "dialogueV2MemoryResume",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:02.710362520Z"
+    },
+    {
+      "name": "dialogueV2MemoryView",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:18.690876822Z"
+    },
+    {
+      "name": "dialogueV2SessionComplete",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:41:54.714496442Z"
+    },
+    {
+      "name": "dialogueV2SessionStart",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:41:56.931554093Z"
+    },
+    {
+      "name": "dialogueV2TextTurn",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-28T18:29:18.787013907Z"
+    },
+    {
+      "name": "emailUnsubscribe",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-22T08:02:59.708530739Z"
+    },
+    {
+      "name": "explainChoice",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:00.309236319Z"
+    },
+    {
+      "name": "explainMistake",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:04.835354050Z"
+    },
+    {
+      "name": "explainPhrase",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:15.292037950Z"
+    },
+    {
+      "name": "finalizeLearningV2AccessPurchase",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:39.495866008Z"
+    },
+    {
+      "name": "finalizeLearningV2DelayedCandidate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T06:59:33.005000645Z"
+    },
+    {
+      "name": "flashcardPackGiftGrantGlobalBroadcast",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-18T06:47:20.278991422Z"
+    },
+    {
+      "name": "flashcardPackGiftRedeem",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:12.856052084Z"
+    },
+    {
+      "name": "flashcardPackGiftSyncState",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-18T06:47:20.278799725Z"
+    },
+    {
+      "name": "friendBlockUser",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-01T14:17:04.105250984Z"
+    },
+    {
+      "name": "friendEnsureMyCode",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:16.343630266Z"
+    },
+    {
+      "name": "friendLikeActivity",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:36.273404328Z"
+    },
+    {
+      "name": "friendLookupUser",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:01:51.636257146Z"
+    },
+    {
+      "name": "friendsDuelChallenge",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:28.754191640Z"
+    },
+    {
+      "name": "friendsDuelDecline",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:44.955213511Z"
+    },
+    {
+      "name": "friendsDuelMove",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:42.626669275Z"
+    },
+    {
+      "name": "friendsGetProfiles",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:38.926728069Z"
+    },
+    {
+      "name": "friendsLessonInvite",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:41.276492244Z"
+    },
+    {
+      "name": "friendsLessonTogetherMark",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:28.540698411Z"
+    },
+    {
+      "name": "friendsNudge",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T06:50:40.746350243Z"
+    },
+    {
+      "name": "friendUnblockUser",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-01T14:16:56.211208235Z"
+    },
+    {
+      "name": "friendUnlikeActivity",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:35.797475507Z"
+    },
+    {
+      "name": "getActiveShardSurvey",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:14:42.519032298Z"
+    },
+    {
+      "name": "getLearningV2AccountBinding",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:00:27.357343590Z"
+    },
+    {
+      "name": "getPublicUserIdea",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T20:56:34.406052980Z"
+    },
+    {
+      "name": "giftCancel",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T07:35:24.399079163Z"
+    },
+    {
+      "name": "giftLinkInfo",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T07:35:15.691431180Z"
+    },
+    {
+      "name": "giftsToCoinsMigrationReport",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:42:14.251545792Z"
+    },
+    {
+      "name": "globalBroadcastClaim",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:48.051936368Z"
+    },
+    {
+      "name": "globalBroadcastListActive",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:16:43.585657204Z"
+    },
+    {
+      "name": "grantMistakeCorrectionReward",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:00:28.425202457Z"
+    },
+    {
+      "name": "homePollV2Vote",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-18T15:18:53.775501776Z"
+    },
+    {
+      "name": "introFullAccessClaim",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:12:36.721557337Z"
+    },
+    {
+      "name": "leagueActivateGroupBoost",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T18:59:14.584315737Z"
+    },
+    {
+      "name": "learningV2LocalizedCourseShardBackgroundWorker",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-08-29T18:42:30.762532089Z"
+    },
+    {
+      "name": "legacyBonusConvertMine",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-18T06:52:50.936228976Z"
+    },
+    {
+      "name": "levelSpinStarGrant",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T18:17:24.570614222Z"
+    },
+    {
+      "name": "likeUserIdea",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T20:56:36.039845995Z"
+    },
+    {
+      "name": "listPublicUserIdeas",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T20:56:34.769052184Z"
+    },
+    {
+      "name": "mistakeHubAdvice",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:08:17.387396121Z"
+    },
+    {
+      "name": "mistakePracticeSyncEvents",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T11:58:44.295867632Z"
+    },
+    {
+      "name": "nameCheckAvailability",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:01:14.313437308Z"
+    },
+    {
+      "name": "nameGenerateAndReserve",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:01:13.533799373Z"
+    },
+    {
+      "name": "nameReleaseMine",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:00:10.099995138Z"
+    },
+    {
+      "name": "nameReserve",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T06:59:56.285689491Z"
+    },
+    {
+      "name": "notifyOnFriendAccepted",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:44.621241238Z"
+    },
+    {
+      "name": "notifyOnFriendRequestCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:31.140957902Z"
+    },
+    {
+      "name": "notifyOnPackCommentCreated",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-17T19:21:00.027835831Z"
+    },
+    {
+      "name": "onAppMessagePollVoteWritten",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:00.343534526Z"
+    },
+    {
+      "name": "onAppMessageReactionWritten",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:30.885821347Z"
+    },
+    {
+      "name": "onAppMessageStateWritten",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:47.327973013Z"
+    },
+    {
+      "name": "onboardingLevelRecord",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-18T06:52:51.932419558Z"
+    },
+    {
+      "name": "openAiBudgetDashboard",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-24T17:01:26.832715195Z"
+    },
+    {
+      "name": "openAiDialogModelConfig",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:22.926194764Z"
+    },
+    {
+      "name": "openAiDialogQuotaConfig",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:22.583252098Z"
+    },
+    {
+      "name": "openAiJobsConfig",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:46:22.952794877Z"
+    },
+    {
+      "name": "paypalOrderCapture",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T07:35:15.444372198Z"
+    },
+    {
+      "name": "paypalOrderCreate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T07:35:22.585558231Z"
+    },
+    {
+      "name": "practiceRuneGrant",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:03:19.420293874Z"
+    },
+    {
+      "name": "premiumDialogReview",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-28T18:29:21.113801947Z"
+    },
+    {
+      "name": "premiumDialogSend",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:01.924616511Z"
+    },
+    {
+      "name": "premiumDialogStream",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:14.507885130Z"
+    },
+    {
+      "name": "premiumDialogTranslate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:08.863471765Z"
+    },
+    {
+      "name": "premiumExpiryCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:31:42.432804585Z"
+    },
+    {
+      "name": "premiumExpiryReminderCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:41:57.457391430Z"
+    },
+    {
+      "name": "premiumThemeConditionClaim",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:41.905011719Z"
+    },
+    {
+      "name": "premiumThemeEntitlementsGet",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:37.976045038Z"
+    },
+    {
+      "name": "premiumThemeVideoWatchReport",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T08:22:36.017224893Z"
+    },
+    {
+      "name": "profileCardBioSetMine",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:42:14.529304030Z"
+    },
+    {
+      "name": "progressMigrateSnapshot",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-02T01:22:45.646063526Z"
+    },
+    {
+      "name": "progressReseedMissing",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-02T03:36:41.360792748Z"
+    },
+    {
+      "name": "progressSubmitEvent",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-04T05:10:20.373135781Z"
+    },
+    {
+      "name": "promoCodeBatchUpsert",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:44:47.793478229Z"
+    },
+    {
+      "name": "promoCodeDelete",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:05.250437547Z"
+    },
+    {
+      "name": "promoCodeRedeem",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:46.721564873Z"
+    },
+    {
+      "name": "promoCodeUpsert",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:19.377508103Z"
+    },
+    {
+      "name": "publicProfileProjectMine",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:13.473984960Z"
+    },
+    {
+      "name": "questGetActive",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:09:05.804442013Z"
+    },
+    {
+      "name": "recalcCoinExchangeRate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:44.785759593Z"
+    },
+    {
+      "name": "recordAgeConsentSnapshot",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T06:58:50.203228688Z"
+    },
+    {
+      "name": "recordAiDialogConsent",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T06:58:25.059409228Z"
+    },
+    {
+      "name": "recordAiExplainConsent",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T06:58:42.328002858Z"
+    },
+    {
+      "name": "recordAiVoiceConsent",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T06:59:35.521616961Z"
+    },
+    {
+      "name": "recordOnboardingFunnelEvent",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T06:58:25.411126358Z"
+    },
+    {
+      "name": "recordVipSurveyReviewClick",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:01:55.557718696Z"
+    },
+    {
+      "name": "reEngagePushCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T06:50:35.033013955Z"
+    },
+    {
+      "name": "referralApply",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-21T19:01:38.802668698Z"
+    },
+    {
+      "name": "referralClaimSpin",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T05:59:30.214637326Z"
+    },
+    {
+      "name": "referralClaimVipReward",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:49.048170973Z"
+    },
+    {
+      "name": "referralDevGrantSpin",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:25.911053939Z"
+    },
+    {
+      "name": "referralEnsureMyCode",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:25.462561090Z"
+    },
+    {
+      "name": "referralListMyInvites",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:29.834897564Z"
+    },
+    {
+      "name": "referralSpin",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:36.837150381Z"
+    },
+    {
+      "name": "refreshVideoSaveCounts",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-01T14:55:29.589309147Z"
+    },
+    {
+      "name": "resendKeyHealthCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T10:35:40.906945812Z"
+    },
+    {
+      "name": "resolveLearningV2CourseUnlockReceipt",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:00:28.576698554Z"
+    },
+    {
+      "name": "resolveLearningV2WalletRewardReceipt",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:00:24.318802722Z"
+    },
+    {
+      "name": "revenueCatPremiumReconcileMine",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:31:31.309826991Z"
+    },
+    {
+      "name": "revenueCatShardsWebhook",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:13.650918418Z"
+    },
+    {
+      "name": "shardsApplyDelta",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T07:00:10.321043183Z"
+    },
+    {
+      "name": "siteStatsTrack",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:09:52.325079886Z"
+    },
+    {
+      "name": "soc2ReadinessCollectorCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T18:25:19.290384280Z"
+    },
+    {
+      "name": "spireFinalizeCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T05:59:38.135754545Z"
+    },
+    {
+      "name": "spireJoinRoom",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:35.845832730Z"
+    },
+    {
+      "name": "spirePackWeeklyCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-11T09:37:22.063306288Z"
+    },
+    {
+      "name": "spireReportSteps",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:48.338935417Z"
+    },
+    {
+      "name": "spireZoneWarningCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T07:12:48.887264496Z"
+    },
+    {
+      "name": "storyAnnouncementsGet",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-29T07:21:29.864760827Z"
+    },
+    {
+      "name": "storyPollVote",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-29T07:21:36.690542046Z"
+    },
+    {
+      "name": "stripeWebhook",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:47.178748745Z"
+    },
+    {
+      "name": "submitClientReport",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-13T06:53:14.977067275Z"
+    },
+    {
+      "name": "submitExplainReport",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T20:16:03.207801415Z"
+    },
+    {
+      "name": "submitFeedbackEntry",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-18T06:40:13.087049225Z"
+    },
+    {
+      "name": "submitLearningV2ActivityReleasedCompletionV1",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:48:15.466524356Z"
+    },
+    {
+      "name": "submitLearningV2CourseSessionCompletedV1",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-21T18:08:56.567135414Z"
+    },
+    {
+      "name": "submitLearningV2RequiredSessionCompletion",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T06:59:56.670235023Z"
+    },
+    {
+      "name": "submitSettingsPollVote",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:45:47.312054654Z"
+    },
+    {
+      "name": "submitShardSurvey",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T18:02:37.169238662Z"
+    },
+    {
+      "name": "submitUserIdea",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T21:05:40.635825802Z"
+    },
+    {
+      "name": "submitVipSurvey",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:53.277817037Z"
+    },
+    {
+      "name": "submitWebsiteContact",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T09:12:42.257615340Z"
+    },
+    {
+      "name": "supportInboxOnNewMail",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:17:00.445296990Z"
+    },
+    {
+      "name": "supportOpsCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:04:29.828023388Z"
+    },
+    {
+      "name": "supportTelegramReplyJobOnCreate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-25T12:17:02.259195612Z"
+    },
+    {
+      "name": "telegramPremiumActivationNotifier",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:41:55.964622918Z"
+    },
+    {
+      "name": "telegramPremiumWebhook",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:42:17.237825125Z"
+    },
+    {
+      "name": "unlikeUserIdea",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-11T20:56:34.939237711Z"
+    },
+    {
+      "name": "userNotificationsCleanupCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-04T15:47:38.806644251Z"
+    },
+    {
+      "name": "usersWriteRouter",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-12T17:59:09.234991011Z"
+    },
+    {
+      "name": "videoWatchRunesClaim",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:02:53.856009740Z"
+    },
+    {
+      "name": "vipRevokeMine",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-26T16:51:33.435735545Z"
+    },
+    {
+      "name": "voiceMinuteWalletMine",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-02T06:58:33.847841403Z"
+    },
+    {
+      "name": "webCheckoutCreate",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T07:35:18.114084811Z"
+    },
+    {
+      "name": "webLeadCapture",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-22T08:17:20.692660552Z"
+    },
+    {
+      "name": "webLeadNudgeCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-09-22T08:17:21.556283370Z"
+    },
+    {
+      "name": "webOrderStatus",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T07:35:40.043978218Z"
+    },
+    {
+      "name": "webPrices",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-22T07:35:17.079739813Z"
+    },
+    {
+      "name": "youtubeCatalogSyncCron",
+      "codebase": "default",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:06:55.791538163Z"
+    },
+    {
+      "name": "englishTestApi",
+      "codebase": "english-test",
+      "region": "us-central1",
+      "updateTime": "2026-10-17T18:13:50.382756131Z"
+    },
+    {
+      "name": "adminYoutubeComments",
+      "codebase": "youtube-admin",
+      "region": "us-central1",
+      "updateTime": "2026-10-28T20:02:42.716447737Z"
+    },
+    {
+      "name": "youtubeOAuthCallback",
+      "codebase": "youtube-admin",
+      "region": "us-central1",
+      "updateTime": "2026-10-28T10:12:20.130650836Z"
+    }
+  ]
+}

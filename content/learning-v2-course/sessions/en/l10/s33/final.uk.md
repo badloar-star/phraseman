@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My lips are dry.**
-- ❌ My lips is dry. — *Lips — множина, тому are.*
+- ❌ My lips is dry. — *Lips — форма для кількох, тому are.*
 - ❌ My lips am dry. — *З lips потрібна are.*
 
 ---

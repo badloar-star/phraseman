@@ -107,7 +107,7 @@ I am ___ a sleeveless shirt. → **wearing** · wear · wears
 **12 · Виберіть форму be: черевики: їх кілька**
 <!-- interaction_id: en:lesson-10:session-55:i09; family: context_gap_grammar -->
 These boots ___ uncomfortable. → **are** · is · am
-- is — *Множина: are.*
+- is — *Форма для кількох: are.*
 - am — *Am уживається з I.*
 
 **13 · Картка слова — yet**

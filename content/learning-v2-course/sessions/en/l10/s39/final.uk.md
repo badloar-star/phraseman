@@ -9,13 +9,13 @@
 
 ### Два вільні стільці
 
-Ви з другом знайшли столик із двома вільними стільцями. Both — «обидва»: Both chairs are free — «Обидва стільці вільні». Both стосується двох предметів. Chairs — множина, тому are.
+Ви з другом знайшли столик із двома вільними стільцями. Both — «обидва»: Both chairs are free — «Обидва стільці вільні». Both стосується двох предметів. Chairs — форма для кількох, тому are.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Both chairs are free.**
 - ❌ Both chairs is free. — *Два стільці: are, не is.*
-- ❌ Both chair are free. — *Після both тут потрібна chairs у множині.*
+- ❌ Both chair are free. — *Після both тут потрібна chairs у формі для кількох.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Чашка для кожного
 
-До вас приєдналися друзі. Ви розставили чашки й перевіряєте: Each person has a cup — «У кожної людини є чашка». Each — «кожний»: ми розглядаємо людей по одному. Тому person в однині й has, а не have.
+До вас приєдналися друзі. Ви розставили чашки й перевіряєте: Each person has a cup — «У кожної людини є чашка». Each — «кожний»: ми розглядаємо людей по одному. Тому person у формі для одного й has, а не have.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Each person has a cup.**
 - ❌ Each person have a cup. — *З each person потрібна has.*
-- ❌ Each people has a cup. — *Після each тут потрібна person в однині.*
+- ❌ Each people has a cup. — *Після each тут потрібна person у формі для одного.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Виберіть is або are: два стільці**
 <!-- interaction_id: en:lesson-10:session-39:i03; family: context_gap_grammar -->
 Both chairs ___ free. → **are** · is · am
-- is — *Множина: are.*
+- is — *Форма для кількох: are.*
 - am — *Am уживається з I.*
 
 **5 · Картка слова — each**
@@ -86,7 +86,7 @@ Both chairs ___ free. → **are** · is · am
 **8 · Виберіть форму have після each person**
 <!-- interaction_id: en:lesson-10:session-39:i06; family: context_gap_grammar -->
 Each person ___ a cup. → **has** · have · having
-- have — *Each person: однина, потрібна has.*
+- have — *Each person: форма для одного, потрібна has.*
 - having — *Тут говоримо про наявність чашки: has.*
 
 **9 · Картка слова — other**

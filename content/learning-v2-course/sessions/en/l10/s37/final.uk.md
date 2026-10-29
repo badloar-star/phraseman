@@ -14,7 +14,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The keys are underneath the chair.**
-- ❌ The keys is underneath the chair. — *Keys у множині: are.*
+- ❌ The keys is underneath the chair. — *Keys у формі для кількох: are.*
 - ❌ The keys underneath the chair. — *Перед underneath потрібна зв’язка are.*
 
 ---
@@ -66,7 +66,7 @@
 **4 · Виберіть форму be: ключі: їх кілька**
 <!-- interaction_id: en:lesson-10:session-37:i03; family: context_gap_grammar -->
 The keys ___ underneath the chair. → **are** · is · am
-- is — *Keys у множині: are.*
+- is — *Keys у формі для кількох: are.*
 - am — *Am уживається з I.*
 
 **5 · Картка слова — against**

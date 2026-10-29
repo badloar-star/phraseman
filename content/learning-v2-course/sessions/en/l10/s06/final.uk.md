@@ -37,7 +37,7 @@
 
 ### Попросити газовану воду
 
-У гостях вас запитують, яку воду налити. Ви ввічливо просите газовану: I would like some sparkling water — «Я хотів би трохи газованої води». Sparkling water — «газована вода». Починаємо з I would like, після would ставимо like без -s і без -ing. Потім називаємо напій: some sparkling water. Water тут незлічуване; some позначає певну кількість води, тому артикль a не потрібний. Sparkling стоїть перед water й уточнює вид води.
+У гостях вас запитують, яку воду налити. Ви ввічливо просите газовану: I would like some sparkling water — «Я хотів би трохи газованої води». Sparkling water — «газована вода». Починаємо з I would like, після would ставимо like без -s і без -ing. Потім називаємо напій: some sparkling water. Water тут не рахується поштучно; some позначає певну кількість води, тому a не потрібний. Sparkling стоїть перед water й уточнює вид води.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -127,7 +127,7 @@ I would ___ some sparkling water. → **like** · likes · liking
 <!-- interaction_id: en:lesson-10:session-06:i12; family: context_gap_grammar -->
 I need ___ teaspoon. → **a** · an · some
 - an — *Teaspoon починається з приголосного звука: a.*
-- some — *Одна злічувана ложка: a teaspoon.*
+- some — *Одна рахується поштучно ложка: a teaspoon.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-10:session-06:i13; family: speed_match -->

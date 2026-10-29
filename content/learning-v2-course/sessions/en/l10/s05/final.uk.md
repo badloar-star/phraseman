@@ -37,12 +37,12 @@
 
 ### Знайти коробки на горищі
 
-Після переїзду друг шукає коробки. Ви пояснюєте: The boxes are in the attic — «Коробки на горищі». Attic означає «горище», приміщення під дахом. Спочатку the boxes — відомі вам коробки, потім are і місце in the attic. Boxes у множині, тому потрібна are. Прийменник in показує, що коробки всередині приміщення. Тут повідомляємо, де вони розташовані; окремого дієслова дії не потрібно.
+Після переїзду друг шукає коробки. Ви пояснюєте: The boxes are in the attic — «Коробки на горищі». Attic означає «горище», приміщення під дахом. Спочатку the boxes — відомі вам коробки, потім are і місце in the attic. Boxes у формі для кількох, тому потрібна are. Прийменник in показує, що коробки всередині приміщення. Тут повідомляємо, де вони розташовані; окремого дієслова дії не потрібно.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The boxes are in the attic.**
-- ❌ The boxes is in the attic. — *Boxes у множині: are.*
+- ❌ The boxes is in the attic. — *Boxes у формі для кількох: are.*
 - ❌ The boxes in the attic. — *Перед in потрібна зв’язка are.*
 
 ---
@@ -106,7 +106,7 @@ We are ___ on the patio. → **eating** · eat · eats
 **12 · Виберіть форму be: кілька коробок**
 <!-- interaction_id: en:lesson-10:session-05:i09; family: context_gap_grammar -->
 The boxes ___ in the attic. → **are** · is · am
-- is — *Boxes у множині: are.*
+- is — *Boxes у формі для кількох: are.*
 - am — *Am уживається з I.*
 
 **13 · Картка слова — cellar**
@@ -126,7 +126,7 @@ The boxes ___ in the attic. → **are** · is · am
 **16 · Виберіть форму be: кілька пляшок**
 <!-- interaction_id: en:lesson-10:session-05:i12; family: context_gap_grammar -->
 The bottles ___ in the cellar. → **are** · is · am
-- is — *Bottles у множині: are.*
+- is — *Bottles у формі для кількох: are.*
 - am — *Am уживається з I.*
 
 **17 · Поєднайте назви з перекладом**

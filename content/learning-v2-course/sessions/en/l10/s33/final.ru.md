@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **My lips are dry.**
-- ❌ My lips is dry. — *Lips — множественное число, поэтому are.*
+- ❌ My lips is dry. — *Lips — форма для нескольких, поэтому are.*
 - ❌ My lips am dry. — *С lips нужна are.*
 
 ---

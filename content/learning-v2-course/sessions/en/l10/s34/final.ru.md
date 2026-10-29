@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **One adult ticket, please.**
-- ❌ One adult tickets, please. — *После one нужен ticket в единственном числе.*
+- ❌ One adult tickets, please. — *После one нужен ticket в форме для одного.*
 - ❌ One adults ticket, please. — *Перед ticket здесь adult без s.*
 
 ---

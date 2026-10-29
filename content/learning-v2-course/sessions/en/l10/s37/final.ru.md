@@ -14,7 +14,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The keys are underneath the chair.**
-- ❌ The keys is underneath the chair. — *Keys во множественном числе: are.*
+- ❌ The keys is underneath the chair. — *Keys в форме для нескольких: are.*
 - ❌ The keys underneath the chair. — *Перед underneath нужна связка are.*
 
 ---
@@ -66,7 +66,7 @@
 **4 · Выберите форму be: ключи: их несколько**
 <!-- interaction_id: en:lesson-10:session-37:i03; family: context_gap_grammar -->
 The keys ___ underneath the chair. → **are** · is · am
-- is — *Keys во множественном числе: are.*
+- is — *Keys в форме для нескольких: are.*
 - am — *Am используется с I.*
 
 **5 · Карточка слова — against**

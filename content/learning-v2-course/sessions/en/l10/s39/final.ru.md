@@ -9,13 +9,13 @@
 
 ### Два свободных стула
 
-Вы с другом нашли столик с двумя свободными стульями. Both — «оба»: Both chairs are free — «Оба стула свободны». Both относится к двум предметам. Chairs — множественное число, поэтому are.
+Вы с другом нашли столик с двумя свободными стульями. Both — «оба»: Both chairs are free — «Оба стула свободны». Both относится к двум предметам. Chairs — форма для нескольких, поэтому are.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Both chairs are free.**
 - ❌ Both chairs is free. — *Два стула: are, не is.*
-- ❌ Both chair are free. — *После both здесь нужна chairs во множественном числе.*
+- ❌ Both chair are free. — *После both здесь нужна chairs в форме для нескольких.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Чашка для каждого
 
-К вам присоединились друзья. Вы расставили чашки и проверяете: Each person has a cup — «У каждого человека есть чашка». Each — «каждый»: мы рассматриваем людей по одному. Поэтому person в единственном числе и has, а не have.
+К вам присоединились друзья. Вы расставили чашки и проверяете: Each person has a cup — «У каждого человека есть чашка». Each — «каждый»: мы рассматриваем людей по одному. Поэтому person в форме для одного и has, а не have.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Each person has a cup.**
 - ❌ Each person have a cup. — *С each person нужна has.*
-- ❌ Each people has a cup. — *После each здесь нужна person в единственном числе.*
+- ❌ Each people has a cup. — *После each здесь нужна person в форме для одного.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Выберите is или are: два стула**
 <!-- interaction_id: en:lesson-10:session-39:i03; family: context_gap_grammar -->
 Both chairs ___ free. → **are** · is · am
-- is — *Множественное число: are.*
+- is — *Форма для нескольких: are.*
 - am — *Am используется с I.*
 
 **5 · Карточка слова — each**
@@ -86,7 +86,7 @@ Both chairs ___ free. → **are** · is · am
 **8 · Выберите форму have после each person**
 <!-- interaction_id: en:lesson-10:session-39:i06; family: context_gap_grammar -->
 Each person ___ a cup. → **has** · have · having
-- have — *Each person: единственное число, нужна has.*
+- have — *Each person: форма для одного, нужна has.*
 - having — *Здесь говорим о наличии чашки: has.*
 
 **9 · Карточка слова — other**

@@ -37,12 +37,12 @@
 
 ### Найти коробки на чердаке
 
-После переезда друг ищет коробки. Вы объясняете: The boxes are in the attic — «Коробки на чердаке». Attic означает «чердак», помещение под крышей. Сначала the boxes — известные вам коробки, затем are и место in the attic. Boxes во множественном числе, поэтому нужна are. Предлог in показывает, что коробки внутри помещения. Здесь сообщаем, где они находятся; отдельного глагола действия не нужно.
+После переезда друг ищет коробки. Вы объясняете: The boxes are in the attic — «Коробки на чердаке». Attic означает «чердак», помещение под крышей. Сначала the boxes — известные вам коробки, затем are и место in the attic. Boxes в форме для нескольких, поэтому нужна are. Предлог in показывает, что коробки внутри помещения. Здесь сообщаем, где они находятся; отдельного глагола действия не нужно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The boxes are in the attic.**
-- ❌ The boxes is in the attic. — *Boxes во множественном числе: are.*
+- ❌ The boxes is in the attic. — *Boxes в форме для нескольких: are.*
 - ❌ The boxes in the attic. — *Перед in нужна связка are.*
 
 ---
@@ -106,7 +106,7 @@ We are ___ on the patio. → **eating** · eat · eats
 **12 · Выберите форму be: несколько коробок**
 <!-- interaction_id: en:lesson-10:session-05:i09; family: context_gap_grammar -->
 The boxes ___ in the attic. → **are** · is · am
-- is — *Boxes во множественном числе: are.*
+- is — *Boxes в форме для нескольких: are.*
 - am — *Am используется с I.*
 
 **13 · Карточка слова — cellar**
@@ -126,7 +126,7 @@ The boxes ___ in the attic. → **are** · is · am
 **16 · Выберите форму be: несколько бутылок**
 <!-- interaction_id: en:lesson-10:session-05:i12; family: context_gap_grammar -->
 The bottles ___ in the cellar. → **are** · is · am
-- is — *Bottles во множественном числе: are.*
+- is — *Bottles в форме для нескольких: are.*
 - am — *Am используется с I.*
 
 **17 · Соедините названия с переводом**

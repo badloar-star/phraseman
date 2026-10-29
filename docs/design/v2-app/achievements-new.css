@@ -20,6 +20,7 @@
 .an-dots { display: flex; gap: 6px; }
 .an-dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .22); display: block; }
 .an-dots i.on { background: var(--tx); width: 16px; }
+.an-cnt { font-size: 13px; font-weight: 800; color: var(--sec); font-variant-numeric: tabular-nums; }
 /* плашка под витриной: градиент карточки, маркер 42 r14, имя 20/23 900, кнопка «открыть» 44 r14, условие 15/21, дата 13 */
 .an-plaque { margin-top: 16px; min-height: 148px; border-radius: 20px; padding: 17px 18px; background: linear-gradient(135deg, var(--card), var(--ctl)); box-shadow: 0 7px 14px rgba(0, 0, 0, .12); display: flex; flex-direction: column; gap: 12px; color: var(--tx); }
 .an-plaque .hd { display: flex; align-items: flex-start; gap: 11px; }
@@ -56,4 +57,5 @@
 .an-gal h4 { margin: 0 0 10px; font-size: 16px; color: #fff; }
 .an-gal h4 span { color: #8E8E96; font-weight: 500; margin-left: 6px; }
 .an-tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 10px; }
-.an-tile { border-radius: 16px; padding: 12px 8px; background: #171C22; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; color: #F7FAFE; font-size: 12px; line-height: 15px; font-weight: 600; }
+.an-tile { border-radius: 16px; padding: 12px 8px; background: #171C22; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; color: #F7FAFE; font-size: 12px; line-height: 15px; font-weight: 600; }
+.an-tile small { font-size: 11px; line-height: 14px; font-weight: 400; color: #A3A8AD; }

@@ -35,14 +35,14 @@ const art = (a, st, size) => {
   const h = Math.round(size * 0.88); // щит BadgeShield: тело 88 % высоты, значок 42 % — контур встроенным SVG (без внешнего файла)
   return `<span class="an-art an-shield" style="width:${size}px;height:${size}px"><svg class="an-mask" viewBox="0 0 100 100" width="${size}" height="${h}" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><path d="M50 3 L90 17 V50 C90 72 73 90 50 97 C27 90 10 72 10 50 V17 Z" fill="${tint}"/></svg><span class="an-ic" style="color:${ink};font-size:${Math.round(size * 0.42)}px">${io(icon)}</span></span>`;
 };
-const dots = (n, i) => `<div class="an-dots">${Array.from({ length: Math.min(n, 9) }, (_, k) => `<i${k === i ? ' class="on"' : ''}></i>`).join('')}</div>`;
+const dots = (n, i) => n <= 9 ? `<div class="an-dots">${Array.from({ length: n }, (_, k) => `<i${k === i ? ' class="on"' : ''}></i>`).join('')}</div>` : `<div class="an-cnt">${i + 1} / ${n}</div>`; // achievementShelfIndicator: точки до 9, дальше счёт
 /* витрина: карточка 306 dp r24 — награда по центру (ширина элемента 44 % окна ≈ 171 dp, сосед приглушён), отражение, точки */
 const shelf = (a, st, list) => { const i = Math.max(0, list.indexOf(a)); const prev = list[i - 1]; const next = list[i + 1];
   return `<div class="an-shelf"><div class="an-row">${prev ? `<div class="an-item nb">${art(prev, 'unlocked', 96)}</div>` : '<div class="an-item nb"></div>'}<div class="an-item on">${art(a, st, 150)}<i class="an-stage"></i></div>${next ? `<div class="an-item nb">${art(next, 'unlocked', 96)}</div>` : '<div class="an-item nb"></div>'}</div>${dots(list.length, i)}</div>`; };
 /* плашка под витриной (renderShelfDetail): маркер 42 r14 со значком, имя h3 900, кнопка «открыть» 44 r14, условие, дата */
 const plaque = (a, st) => `<div class="an-plaque t" data-act="open:dossier"><div class="hd"><span class="mk">${io(a.art ? 'diamond' : VARIANT === 'icons' ? a.ion : CAT_ICON)}</span><b>${a.name}</b><span class="op">${io('open-outline')}</span></div><div class="cond">${a.cond}</div>${st === 'unlocked' || st === 'upgraded' ? `<div class="date">${st === 'upgraded' ? `Статуэтка улучшена · ${DATE}` : `Получено · ${DATE}`}</div>` : ''}</div>`;
 /* капсула дока категорий внизу: выбранная категория «Особые» + число наград в ней */
-const dockCapsule = (count) => `<div class="an-dock"><span class="ic">${io('rocket')}</span><b>Особые</b><span class="cnt">${count}</span>${io('chevron-up')}</div>`;
+const dockCapsule = () => `<div class="an-dock"><span class="ic">${io('rocket')}</span><b>Особые</b>${io('chevron-up')}</div>`; // капсула дока: значок + название категории + шеврон, без счётчика (как AchievementCategoryDock)
 /* досье (AchievementModal): окно r26 p21, герой 178 r20 тоном контрола, крестик 44, чип «Получено · дата», заголовок 25/31, текст 16/22,
    плашка «Как получить» 13/19, полоса прогресса 8 и «n из m», «Поделиться» — тёмная капсула 48/r24 */
 const dossier = (a, st) => { const got = st === 'unlocked' || st === 'upgraded'; const [p, m] = progOf(a);
@@ -55,19 +55,19 @@ const pickRow = (id, list) => `<div class="an-pick">${chips(`pick:${id}`, list.m
 const actPickList = () => [byId.video_hours_10, byId.video_hours_200, byId.today_complete_streak_7, byId.today_complete_streak_200, byId.reports_sent_10, byId.legacy_course_complete, byId.course_v2_en_lesson_1, byId.course_v2_es_lesson_32];
 const spireList = () => GROUPS.find((g) => g.id === 'spire').items;
 /* телефон «как будет»: кадр + витрина с выбранной наградой + плашка + капсула дока */
-const will = (id, a, st, list) => phone(F.top, { overlays: overOn(F.top, RF.px(GEO.shelf.x), GEO.shelf.y, RF.px(GEO.shelf.w), GEO.shelf.h + GEO.plaque.h + 60, `${shelf(a, st, list)}${plaque(a, st)}`) + `<div class="an-dockwrap">${dockCapsule(131)}</div>` });
+const will = (id, a, st, list) => phone(F.top, { overlays: overOn(F.top, RF.px(GEO.shelf.x), GEO.shelf.y, RF.px(GEO.shelf.w), GEO.shelf.h + GEO.plaque.h + 60, `${shelf(a, st, list)}${plaque(a, st)}`) + `<div class="an-dockwrap">${dockCapsule()}</div>` });
 const willCard = (a, st) => phone(F.card, { overlays: `<div class="an-ov">${dossier(a, st)}</div>` });
 /* галерея на странице (вне телефона): все 90 по группам — имя, значок/статуэтка, условие по наведению */
-const gallery = () => `<div class="an-gal">${GROUPS.map((g) => `<div class="an-gal-g"><h4>${g.name} <span>${g.items.length}</span></h4><div class="an-tiles">${g.items.map((a) => `<div class="an-tile" title="${a.cond.replace(/"/g, '&quot;')}">${art(a, 'unlocked', 56)}<span>${a.group.startsWith('v2') ? `Урок ${a.lesson}` : a.name}</span></div>`).join('')}</div></div>`).join('')}</div>`;
+const gallery = () => `<div class="an-gal">${GROUPS.map((g) => `<div class="an-gal-g"><h4>${g.name} <span>${g.items.length}</span></h4><div class="an-tiles">${g.items.map((a) => `<div class="an-tile">${art(a, 'unlocked', 56)}<span>${a.group.startsWith('v2') ? `Урок ${a.lesson}` : a.name}</span>${a.group.startsWith('v2') ? '' : `<small>${a.cond}</small>`}</div>`).join('')}</div></div>`).join('')}</div>`;
 const SECTIONS = [
   { id: 'an-spire', title: 'Вершины Пика — статуэтки на витрине',
     lead: '', states: SPIRE_STATES,
     extra: () => pickRow('an-spire', spireList()),
-    body: (st) => { const a = byId[SEL['an-spire']]; return [col('Сейчас · экран достижений, кадр приложения', phone(F.top)), col({ locked: 'Как будет · вершина не взята', progress: 'Как будет · башня идёт, этаж 11 из 15', unlocked: 'Как будет · вершина взята, статуэтка на витрине', upgraded: 'Как будет · подтверждённое повышение — статуэтка улучшена' }[st], will('an-spire', a, st, spireList()))]; } },
+    body: (st) => { const a = byId[SEL['an-spire']]; return [col('Сейчас · экран достижений, кадр приложения', phone(F.top)), col({ locked: 'Как будет · закрыта (в приложении на витрине не показывается — так выглядит в DEV «показать всё»)', progress: 'Как будет · в процессе, этаж 11 из 15 (на витрине не показывается — вид DEV)', unlocked: 'Как будет · вершина взята, статуэтка на витрине', upgraded: 'Как будет · подтверждённое повышение — статуэтка улучшена' }[st], will('an-spire', a, st, spireList()))]; } },
   { id: 'an-act', title: 'Серия за активность — видео, задания, репорты, курсы',
     lead: '', states: STATES,
     extra: () => `${pickRow('an-act', actPickList())}<div class="an-pick">${chips('variant', [['code', 'Как в коде: щит категории'], ['icons', 'Значок по группе']], VARIANT)}</div>`,
-    body: (st) => { const a = byId[SEL['an-act']]; const list = groupOf(a).items; return [col('Сейчас · экран достижений, кадр приложения', phone(F.top)), col({ locked: 'Как будет · награда закрыта', progress: 'Как будет · в процессе', unlocked: 'Как будет · получена, на витрине' }[st], will('an-act', a, st, list))]; } },
+    body: (st) => { const a = byId[SEL['an-act']]; const list = groupOf(a).items; return [col('Сейчас · экран достижений, кадр приложения', phone(F.top)), col({ locked: 'Как будет · закрыта (на витрине не показывается — вид DEV)', progress: 'Как будет · в процессе (на витрине не показывается — вид DEV)', unlocked: 'Как будет · получена, на витрине' }[st], will('an-act', a, st, list))]; } },
   { id: 'an-card', title: 'Досье награды',
     lead: '', states: SPIRE_STATES,
     extra: () => pickRow('an-card', [byId.spire_summit_granite, byId.spire_summit_diamond, byId.video_hours_50, byId.today_complete_streak_30, byId.reports_sent_100, byId.legacy_course_complete, byId.course_v2_en_lesson_12]),

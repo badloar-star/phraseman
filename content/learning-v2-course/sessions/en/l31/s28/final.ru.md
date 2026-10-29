@@ -10,7 +10,7 @@
 
 ### Почему вернули обувь
 
-Вы вернули обувь в магазин: она оказалась слишком маленькой. Объясните другу: I took the shoes back because they were too small — я вернул обувь, потому что она была слишком маленькой. Соберите I took the shoes back + because + they were too small. После because даём целую причину. Английское shoes — множественное число, поэтому дальше they were.
+Вы вернули обувь в магазин: она оказалась слишком маленькой. Объясните другу: I took the shoes back because they were too small — я вернул обувь, потому что она была слишком маленькой. Соберите I took the shoes back + because + they were too small. После because даём целую причину. Английское shoes — форма для нескольких, поэтому дальше they were.
 
 **Выберите фразу для этой ситуации.**
 

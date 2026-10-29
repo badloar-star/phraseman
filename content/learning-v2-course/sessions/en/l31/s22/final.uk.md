@@ -142,7 +142,7 @@ Do you know if ___ ready? → **the tea is** · is the tea · the tea are
 **20 · Чашки не брудні. Додайте стверджувальне уточнення про них.**
 <!-- interaction_id: en:lesson-31:session-22:i20; family: context_gap_grammar -->
 The cups aren't dirty, ___ they? → **are** · is · do
-- is — *Множина cups потребує are.*
+- is — *Cups (їх кілька) потребують are.*
 - do — *Беремо are із aren’t.*
 
 **21 · Ви знаєте, що Анна готова. Скажіть це другові.**

@@ -16,7 +16,7 @@
 
 - ✅ **Your shoes are wet, aren't they?**
 - ❌ Your shoes are wet, isn't they? — *З are в основній частині тут потрібно aren’t.*
-- ❌ Your shoes are wet, aren't it? — *Множину shoes замінюємо на they.*
+- ❌ Your shoes are wet, aren't it? — *Shoes (їх кілька) замінюємо на they.*
 
 ---
 
@@ -43,7 +43,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Our tickets were checked by Ben.**
-- ❌ Our tickets was checked by Ben. — *Множина tickets потребує were.*
+- ❌ Our tickets was checked by Ben. — *Tickets (їх кілька) потребують were.*
 - ❌ Our tickets were check by Ben. — *Після were потрібна форма checked.*
 
 ---
@@ -63,7 +63,7 @@
 **3 · Взуття друга мокре. Додайте заперечне уточнення.**
 <!-- interaction_id: en:lesson-31:session-14:i03; family: context_gap_grammar -->
 Your shoes are wet, ___ they? → **aren't** · isn't · doesn't
-- isn't — *Множина shoes потребує aren’t.*
+- isn't — *Shoes (їх кілька) потребують aren’t.*
 - doesn't — *В основній частині are, тому тут aren’t.*
 
 **4 · Картка слова — bus**
@@ -124,7 +124,7 @@ Our tickets were checked ___ Ben. → **by** · at · to
 <!-- interaction_id: en:lesson-31:session-14:i16; family: context_gap_grammar -->
 Do you know where ___? → **our tickets are** · are our tickets · our tickets is
 - are our tickets — *Після where порядок our tickets are.*
-- our tickets is — *Множина tickets потребує are.*
+- our tickets is — *Tickets (їх кілька) потребують are.*
 
 **17 · Бен відчинив двері. Почніть із дверей.**
 <!-- interaction_id: en:lesson-31:session-14:i17; family: scripted_repeat_compare -->

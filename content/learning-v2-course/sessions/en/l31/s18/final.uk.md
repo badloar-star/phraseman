@@ -30,7 +30,7 @@
 
 - ✅ **Your gloves are warm, aren't they?**
 - ❌ Your gloves are warm, isn't they? — *Gloves потребує aren’t у цьому уточненні.*
-- ❌ Your gloves are warm, aren't it? — *Множину gloves замінюємо на they.*
+- ❌ Your gloves are warm, aren't it? — *Gloves (їх кілька) замінюємо на they.*
 
 ---
 

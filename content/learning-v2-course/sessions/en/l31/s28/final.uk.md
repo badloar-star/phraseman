@@ -10,7 +10,7 @@
 
 ### Чому повернули взуття
 
-Ви повернули взуття до крамниці: воно виявилося замалим. Поясніть другові: I took the shoes back because they were too small — я повернув взуття, бо воно було замалим. Складіть I took the shoes back + because + they were too small. Після because даємо цілу причину. Англійське shoes — множина, тому далі they were.
+Ви повернули взуття до крамниці: воно виявилося замалим. Поясніть другові: I took the shoes back because they were too small — я повернув взуття, бо воно було замалим. Складіть I took the shoes back + because + they were too small. Після because даємо цілу причину. Англійське shoes — форма для кількох, тому далі they were.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -82,7 +82,7 @@ I took the shoes back ___ they were too small. → **because** · because of · 
 <!-- interaction_id: en:lesson-31:session-28:i07; family: context_gap_grammar -->
 She said the shoes ___ too small. → **were** · are · was
 - are — *Are не виконує заданий зсув.*
-- was — *Множина shoes потребує were.*
+- was — *Shoes (їх кілька) потребують were.*
 
 **8 · Картка слова — box**
 <!-- interaction_id: en:lesson-31:session-28:i08; family: word_card -->
@@ -142,7 +142,7 @@ Do you know if ___ open? → **the shop is** · is the shop · the shop are
 **20 · Взуття незручне. Додайте стверджувальне уточнення про нього.**
 <!-- interaction_id: en:lesson-31:session-28:i20; family: context_gap_grammar -->
 The shoes aren't comfortable, ___ they? → **are** · is · do
-- is — *Множина shoes потребує are.*
+- is — *Shoes (їх кілька) потребують are.*
 - do — *Беремо are із aren’t.*
 
 **21 · Ви розумієте, чому Анна повернула взуття. Скажіть про це.**

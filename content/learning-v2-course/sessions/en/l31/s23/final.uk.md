@@ -44,7 +44,7 @@
 
 - ✅ **The door is closed, isn't it?**
 - ❌ The door is closed, aren't it? — *З is тут потрібне isn’t.*
-- ❌ The door is closed, isn't they? — *Англійське door в однині замінюємо на it.*
+- ❌ The door is closed, isn't they? — *Англійське door (одне) замінюємо на it.*
 
 ---
 

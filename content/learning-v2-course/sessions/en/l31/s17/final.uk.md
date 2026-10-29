@@ -30,7 +30,7 @@
 
 - ✅ **I know where the keys are.**
 - ❌ I know where are the keys. — *Після where порядок the keys are.*
-- ❌ I know where the keys is. — *Множина keys потребує are.*
+- ❌ I know where the keys is. — *Keys (їх кілька) потребують are.*
 
 ---
 
@@ -82,7 +82,7 @@ I know that ___ busy. → **she is** · is she · she are
 <!-- interaction_id: en:lesson-31:session-17:i07; family: context_gap_grammar -->
 I know where ___. → **the keys are** · are the keys · the keys is
 - are the keys — *Після where тут порядок the keys are.*
-- the keys is — *Множина keys потребує are.*
+- the keys is — *Keys (їх кілька) потребують are.*
 
 **8 · Картка слова — bag**
 <!-- interaction_id: en:lesson-31:session-17:i08; family: word_card -->

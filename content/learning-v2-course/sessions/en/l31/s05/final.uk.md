@@ -30,7 +30,7 @@
 
 - ✅ **Do you know where our seats are?**
 - ❌ Do you know where are our seats? — *Після where потрібен порядок our seats are.*
-- ❌ Do you know where our seats is? — *Множина seats потребує are.*
+- ❌ Do you know where our seats is? — *Seats (їх кілька) потребують are.*
 
 ---
 
@@ -44,7 +44,7 @@
 
 - ✅ **The tickets were checked by Tom.**
 - ❌ The tickets were check by Tom. — *Після were для дії потрібна форма checked.*
-- ❌ The tickets was checked by Tom. — *Множина tickets потребує were.*
+- ❌ The tickets was checked by Tom. — *Tickets (їх кілька) потребують were.*
 
 ---
 
@@ -124,7 +124,7 @@ The tickets were checked ___ Tom. → **by** · at · to
 <!-- interaction_id: en:lesson-31:session-05:i16; family: context_gap_grammar -->
 Do you know where ___? → **my tickets are** · are my tickets · my tickets is
 - are my tickets — *Після where потрібен порядок my tickets are.*
-- my tickets is — *Множина tickets потребує are.*
+- my tickets is — *Tickets (їх кілька) потребують are.*
 
 **17 · Том відчинив двері. Скажіть це, починаючи з дверей.**
 <!-- interaction_id: en:lesson-31:session-05:i17; family: scripted_repeat_compare -->

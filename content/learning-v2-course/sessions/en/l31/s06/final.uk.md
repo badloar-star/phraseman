@@ -44,7 +44,7 @@
 
 - ✅ **The books were brought by Anna.**
 - ❌ The books were bring by Anna. — *Після were потрібна форма brought.*
-- ❌ The books was brought by Anna. — *Множина books потребує were.*
+- ❌ The books was brought by Anna. — *Books (їх кілька) потребують were.*
 
 ---
 
@@ -120,7 +120,7 @@ The books were brought ___ Anna. → **by** · at · to
 <!-- interaction_id: en:lesson-31:session-06:i15; family: context_gap_grammar -->
 She said the books ___ here. → **were** · are · was
 - are — *Are не виконує заданий зсув.*
-- was — *Множина books потребує were.*
+- was — *Books (їх кілька) потребують were.*
 
 **16 · Запитайте працівницю, чи знає вона, чи відкрита читальна зала.**
 <!-- interaction_id: en:lesson-31:session-06:i16; family: scripted_repeat_compare -->

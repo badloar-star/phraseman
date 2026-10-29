@@ -30,7 +30,7 @@
 
 - ✅ **The eggs are fresh, aren't they?**
 - ❌ The eggs are fresh, isn't they? — *З are тут потрібно aren’t.*
-- ❌ The eggs are fresh, aren't it? — *Множину eggs замінюємо на they.*
+- ❌ The eggs are fresh, aren't it? — *Eggs (їх кілька) замінюємо на they.*
 
 ---
 

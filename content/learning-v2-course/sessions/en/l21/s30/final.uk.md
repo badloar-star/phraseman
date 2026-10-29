@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте транспорт, бронювання та вартість житла.
 
-**Що ви опануєте:** so + adjective; adjective after is
+**Що ви опануєте:** описати щось і сказати «так»: It is so cold
 **Нові слова:** unreliable, unavailable, avoidable, unaffordable
 
 ## Інтро 1

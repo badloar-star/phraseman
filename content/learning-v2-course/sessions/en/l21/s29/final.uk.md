@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте співрозмовнику, якої дії від нього очікуєте.
 
-**Що ви опануєте:** verb + object + to-infinitive
+**Що ви опануєте:** попросити чи сказати, щоб хтось щось зробив: I asked him to wait
 **Нові слова:** pay attention, keep quiet, ask permission, stand aside
 
 ## Інтро 1

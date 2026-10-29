@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете рабочий график с коллегой.
 
-**Что вы освоите:** want / need + to-infinitive
+**Что вы освоите:** сказать, что вам хочется или нужно сделать: I need to go
 **Новые слова:** take a day off, work overtime, call in sick, swap shifts
 
 ## Интро 1

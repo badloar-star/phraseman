@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете транспорт, бронирование и стоимость жилья.
 
-**Что вы освоите:** so + adjective; adjective after is
+**Что вы освоите:** описать что-то и сказать «так»: It is so cold
 **Новые слова:** unreliable, unavailable, avoidable, unaffordable
 
 ## Интро 1

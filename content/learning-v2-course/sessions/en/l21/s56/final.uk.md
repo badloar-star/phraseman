@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви хочете розвеселити друзів і привітати Анну.
 
-**Що ви опануєте:** want + to-infinitive; want + person + to-infinitive
+**Що ви опануєте:** сказати, що хочете зробити ви і що — інший: I want to go, I want you to go
 **Нові слова:** tell a joke, make you laugh, enjoy yourself, raise a glass
 
 ## Інтро 1

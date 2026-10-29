@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете, как организуете дела и зачем делаете записи.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** take notes, set a reminder, keep a record, plan ahead
 
 ## Интро 1

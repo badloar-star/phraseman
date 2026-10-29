@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете, приготовить еду или заказать её.
 
-**Что вы освоите:** want / need + to-infinitive
+**Что вы освоите:** сказать, что вам хочется или нужно сделать: I need to go
 **Новые слова:** cook from scratch, order a takeaway, have a snack, skip breakfast
 
 ## Интро 1

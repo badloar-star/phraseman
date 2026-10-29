@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы говорите о домашних делах до и после еды.
 
-**Что вы освоите:** want / need + to-infinitive
+**Что вы освоите:** сказать, что вам хочется или нужно сделать: I need to go
 **Новые слова:** set the table, do the washing-up, take out the rubbish, put the kettle on
 
 ## Интро 1

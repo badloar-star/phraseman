@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте, навіщо заздалегідь продумуєте дорогу та квитки.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** save time, save money, avoid queues, beat the traffic
 
 ## Інтро 1

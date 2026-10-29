@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви шукаєте шлях у незнайомому місці та дорогу назад.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** ask for directions, read a map, follow the signs, find my way back
 
 ## Інтро 1

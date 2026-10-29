@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вибираєте послуги й пояснюєте мету бронювання.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** compare prices, read reviews, check availability, make a booking
 
 ## Інтро 1

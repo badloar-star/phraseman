@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете свои действия на улице в разных ситуациях.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** take shelter, keep warm, keep cool, stay safe
 
 ## Интро 1

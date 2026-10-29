@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте, що потрібно зробити під час поїздки.
 
-**Що ви опануєте:** want / need + to-infinitive
+**Що ви опануєте:** сказати, що вам хочеться чи треба зробити: I need to go
 **Нові слова:** catch the bus, change trains, miss my stop, check the timetable
 
 ## Інтро 1

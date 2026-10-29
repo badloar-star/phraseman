@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте англійською мету свого візиту.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** make an appointment, eye test, hearing test, collect a prescription
 
 ## Інтро 1

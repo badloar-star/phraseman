@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте, як організовуєте справи й навіщо робите записи.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** take notes, set a reminder, keep a record, plan ahead
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы собираетесь закончить дело к определённому сроку.
 
-**Что вы освоите:** want / need + to-infinitive
+**Что вы освоите:** сказать, что вам хочется или нужно сделать: I need to go
 **Новые слова:** make a start, run out of time, meet a deadline, get it over with
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете, что нужно сделать во время поездки.
 
-**Что вы освоите:** want / need + to-infinitive
+**Что вы освоите:** сказать, что вам хочется или нужно сделать: I need to go
 **Новые слова:** catch the bus, change trains, miss my stop, check the timetable
 
 ## Интро 1

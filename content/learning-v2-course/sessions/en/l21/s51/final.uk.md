@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви збираєтеся завершити справу до певного терміну.
 
-**Що ви опануєте:** want / need + to-infinitive
+**Що ви опануєте:** сказати, що вам хочеться чи треба зробити: I need to go
 **Нові слова:** make a start, run out of time, meet a deadline, get it over with
 
 ## Інтро 1

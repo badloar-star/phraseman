@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте, чого хочете й що потрібно зробити під час пошуку роботи.
 
-**Що ви опануєте:** want/need + to-infinitive; like/prefer + learned complement
+**Що ви опануєте:** сказати, чого вам хочеться, що треба або що більше подобається: I want to rest, I prefer tea
 **Нові слова:** internship, job search, probation, career change
 
 ## Інтро 1

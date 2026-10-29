@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте робочий графік із колегою.
 
-**Що ви опануєте:** want / need + to-infinitive
+**Що ви опануєте:** сказати, що вам хочеться чи треба зробити: I need to go
 **Нові слова:** take a day off, work overtime, call in sick, swap shifts
 
 ## Інтро 1

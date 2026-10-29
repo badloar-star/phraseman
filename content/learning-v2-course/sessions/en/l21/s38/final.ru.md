@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы готовите встречу и возобновляете общение с друзьями.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** barbecue, guest list, party game, reconnect
 
 ## Интро 1

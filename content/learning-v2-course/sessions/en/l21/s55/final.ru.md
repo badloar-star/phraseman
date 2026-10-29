@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете, как хотите вести непростой разговор.
 
-**Что вы освоите:** want / need + to-infinitive
+**Что вы освоите:** сказать, что вам хочется или нужно сделать: I need to go
 **Новые слова:** lose my temper, raise my voice, keep my voice down, change the subject
 
 ## Интро 1

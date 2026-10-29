@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви говорите про домашні справи до та після їжі.
 
-**Що ви опануєте:** want / need + to-infinitive
+**Що ви опануєте:** сказати, що вам хочеться чи треба зробити: I need to go
 **Нові слова:** set the table, do the washing-up, take out the rubbish, put the kettle on
 
 ## Інтро 1

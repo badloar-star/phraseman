@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте, як хочете вести непросту розмову.
 
-**Що ви опануєте:** want / need + to-infinitive
+**Що ви опануєте:** сказати, що вам хочеться чи треба зробити: I need to go
 **Нові слова:** lose my temper, raise my voice, keep my voice down, change the subject
 
 ## Інтро 1

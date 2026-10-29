@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете о своих занятиях и целях.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** fitness class, exercise mat, walking group, running club
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы читаете поля анкеты и проверяете сведения перед отправкой.
 
-**Что вы освоите:** main action + to-infinitive of purpose
+**Что вы освоите:** сказать, зачем вы что-то делаете: I went out to buy bread
 **Новые слова:** full name, home address, place of birth, block capitals
 
 ## Интро 1

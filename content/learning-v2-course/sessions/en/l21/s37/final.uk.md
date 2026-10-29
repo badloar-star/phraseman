@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте свої дії надворі в різних ситуаціях.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** take shelter, keep warm, keep cool, stay safe
 
 ## Інтро 1

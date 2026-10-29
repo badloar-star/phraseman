@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви чекаєте своєї черги та пропускаєте інших людей.
 
-**Що ви опануєте:** want + person + to-infinitive; infinitive of purpose
+**Що ви опануєте:** сказати, чого ви хочете від іншого й навіщо щось робите: I want you to stay
 **Нові слова:** take a number, wait your turn, hold the door, let someone past
 
 ## Інтро 1

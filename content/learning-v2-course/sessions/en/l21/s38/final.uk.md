@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви готуєте зустріч і відновлюєте спілкування з друзями.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** barbecue, guest list, party game, reconnect
 
 ## Інтро 1

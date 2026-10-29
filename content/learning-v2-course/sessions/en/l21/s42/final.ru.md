@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы ждёте своей очереди и пропускаете других людей.
 
-**Что вы освоите:** want + person + to-infinitive; infinitive of purpose
+**Что вы освоите:** сказать, чего вы хотите от другого и зачем что-то делаете: I want you to stay
 **Новые слова:** take a number, wait your turn, hold the door, let someone past
 
 ## Интро 1

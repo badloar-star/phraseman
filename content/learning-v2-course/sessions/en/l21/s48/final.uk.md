@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте, приготувати їжу чи замовити її.
 
-**Що ви опануєте:** want / need + to-infinitive
+**Що ви опануєте:** сказати, що вам хочеться чи треба зробити: I need to go
 **Нові слова:** cook from scratch, order a takeaway, have a snack, skip breakfast
 
 ## Інтро 1

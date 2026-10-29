@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы хотите развеселить друзей и поздравить Анну.
 
-**Что вы освоите:** want + to-infinitive; want + person + to-infinitive
+**Что вы освоите:** сказать, что хотите сделать вы и что — другой: I want to go, I want you to go
 **Новые слова:** tell a joke, make you laugh, enjoy yourself, raise a glass
 
 ## Интро 1

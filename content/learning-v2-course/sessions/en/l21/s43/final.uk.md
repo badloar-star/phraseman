@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви читаєте поля анкети й перевіряєте відомості перед надсиланням.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** full name, home address, place of birth, block capitals
 
 ## Інтро 1

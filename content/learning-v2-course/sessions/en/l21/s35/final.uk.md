@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви впорядковуєте речі й пояснюєте мету своїх дій.
 
-**Що ви опануєте:** main action + to-infinitive of purpose
+**Що ви опануєте:** сказати, навіщо ви щось робите: I went out to buy bread
 **Нові слова:** label, stack, store, donate
 
 ## Інтро 1

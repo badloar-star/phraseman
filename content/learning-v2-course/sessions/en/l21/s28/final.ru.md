@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете честность и обещания, обращаясь к другу.
 
-**Что вы освоите:** verb + object + to-infinitive
+**Что вы освоите:** попросить или сказать, чтобы кто-то что-то сделал: I asked him to wait
 **Новые слова:** tell the truth, tell a lie, break a promise, make a promise
 
 ## Интро 1

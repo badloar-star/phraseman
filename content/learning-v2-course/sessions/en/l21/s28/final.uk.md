@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте чесність та обіцянки, звертаючись до друга.
 
-**Що ви опануєте:** verb + object + to-infinitive
+**Що ви опануєте:** попросити чи сказати, щоб хтось щось зробив: I asked him to wait
 **Нові слова:** tell the truth, tell a lie, break a promise, make a promise
 
 ## Інтро 1

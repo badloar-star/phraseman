@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете, чего хотите и что нужно сделать при поиске работы.
 
-**Что вы освоите:** want/need + to-infinitive; like/prefer + learned complement
+**Что вы освоите:** сказать, что вам хочется, нужно или больше нравится: I want to rest, I prefer tea
 **Новые слова:** internship, job search, probation, career change
 
 ## Интро 1

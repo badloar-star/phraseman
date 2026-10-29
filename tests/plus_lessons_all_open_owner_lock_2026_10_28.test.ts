@@ -33,6 +33,8 @@ import { buildPremiumLessonUnlocks, buildSequentialFreeLessonUnlocks } from '../
 import { isLessonUnlockedByPremiumCourse, resolveLastAvailableLessonId } from '../app/lesson_lock_system';
 import { resolveLessonRuntimeGate } from '../app/lesson_premium_gate';
 import { PLUS_OPENS_ALL_LESSONS, plusOpensLesson } from '../app/plus_lessons_rule';
+import { legacyFreeLessonCapKey, lessonBestScoreKey } from '../app/target_storage_keys';
+import { purchasedLessonsKey } from '../app/lessons_pearl_unlock_storage';
 import { plusLessonsAction, resetPlusLessonsDiagnosticsForTests } from '../app/plus_lessons_diagnostics';
 import { sanitizeSupportDiagnosticEvent } from '../app/support_diagnostic_schema';
 import * as premiumGuard from '../app/premium_guard';
@@ -93,6 +95,32 @@ describe('ЗАМОК ВЛАДЕЛЬЦА 28.10: Plus открывает все 32
     await resolveLastAvailableLessonId(32, undefined, true);
     expect([...(await AsyncStorage.getAllKeys())].sort()).toEqual(before);
     expect(await AsyncStorage.getItem('seed_progress')).toBe('42');
+  });
+
+  // РЕШЕНИЕ ВЛАДЕЛЬЦА 29.10 («Как у бесплатных»): после окончания Plus — правило Free, прогресс и звёзды целы; «пройденные остаются открытыми» НЕ вводим.
+  it('Plus снят: уроки 4+ снова закрыты правилом Free, 1–3 по прогрессу, прогресс и звёзды целы', async () => {
+    for (let id = 1; id <= 12; id++) await AsyncStorage.setItem(lessonBestScoreKey(id), '4.5');
+    const before = [...(await AsyncStorage.getAllKeys())].sort();
+    const stars = await Promise.all([1, 5, 12].map((id) => AsyncStorage.getItem(lessonBestScoreKey(id))));
+    for (let id = 1; id <= 32; id++) expect(await resolveLessonRuntimeGate(id)).toBe('available'); // Plus: все 32
+    (premiumGuard.getVerifiedPremiumStatus as jest.Mock).mockResolvedValue(false); // Plus закончился
+    expect(await resolveLessonRuntimeGate(1)).toBe('available');
+    expect(await resolveLessonRuntimeGate(2)).toBe('available'); // 2★ на первом есть — правило Free
+    expect(await resolveLessonRuntimeGate(3)).toBe('available');
+    for (const id of [4, 5, 9, 12, 20, 32]) expect(await resolveLessonRuntimeGate(id)).toBe('premium_required');
+    expect(await resolveLastAvailableLessonId(12, undefined, false)).toBe(3);
+    expect([...(await AsyncStorage.getAllKeys())].sort()).toEqual(before);
+    expect(await Promise.all([1, 5, 12].map((id) => AsyncStorage.getItem(lessonBestScoreKey(id))))).toEqual(stars);
+  });
+
+  it('Plus снят: жемчужные покупки и legacy cap живут по правилам Free', async () => {
+    await AsyncStorage.setItem(purchasedLessonsKey(), JSON.stringify([15]));
+    await AsyncStorage.setItem(legacyFreeLessonCapKey(), '6');
+    (premiumGuard.getVerifiedPremiumStatus as jest.Mock).mockResolvedValue(false);
+    expect(await resolveLessonRuntimeGate(15)).toBe('available'); // куплен за жемчуг
+    expect(await resolveLessonRuntimeGate(6)).toBe('available'); // до legacy cap 6
+    expect(await resolveLessonRuntimeGate(7)).toBe('premium_required');
+    expect(await resolveLessonRuntimeGate(16)).toBe('premium_required');
   });
 
   it('журнал [PLUS-LESSONS]: действие проходит белый список сервера и не длиннее 80 знаков; решение уходит в журнал обращений', async () => {

@@ -20,6 +20,8 @@ import { packSocialLive } from '../../app/community_packs/packSocialLive';
 import { callCommunityMonthGetRanking } from '../../app/community_packs/functionsClient';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../../app/account_generation';
 import { DebugLogger } from '../../app/debug-logger';
+// зачем (координатор 29.10, Переводчик): LP раньше отдавал украинцу и испанцу английский — теперь 9 языков по словарю
+import { communitySceneText } from './community_scene_strings';
 
 export type CommunitySceneAuthor = Readonly<{ name: string; coinRank: number; isPremium: boolean }>;
 export const communityScenePanelStyle = StyleSheet.create({ panel: {
@@ -107,7 +109,7 @@ export function CommunitySceneTile({ pack, lang, likes, onOpen, onLongPress, aut
     <LinearGradient colors={[c.sceneTop, c.sceneBottom]} style={StyleSheet.absoluteFill} />
     <LinearGradient colors={[g.accentGlow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: .3, y: .8 }} style={StyleSheet.absoluteFill} />
     <View style={s.tileCount}><Ionicons name="copy-outline" size={13} color={WHITE} /><Text style={s.count}>{pack.cardCount}</Text></View>
-    {place > 0 ? <View testID={`community-month-place-${pack.id}`} accessible accessibilityLabel={triLang(lang, { ru: `${place} место в конкурсе месяца`, uk: `${place} місце в конкурсі місяця`, es: `Puesto ${place} en el concurso del mes`, en: `Place ${place} in the monthly contest` })} style={s.tileRank}><Text style={s.tileRankText}>{place}</Text></View> : null}
+    {place > 0 ? <View testID={`community-month-place-${pack.id}`} accessible accessibilityLabel={triLang(lang, { ru: `${place} место в конкурсе месяца`, uk: `${place} місце в конкурсі місяця`, es: `Puesto ${place} en el concurso del mes`, en: `Place ${place} in the monthly contest`, 'pt-BR': `${place}º lugar no concurso do mês`, vi: `Hạng ${place} trong cuộc thi tháng`, id: `Peringkat ${place} di kontes bulanan`, tr: `Aylık yarışmada ${place}. sıra`, pl: `${place}. miejsce w konkursie miesiąca` })} style={s.tileRank}><Text style={s.tileRankText}>{place}</Text></View> : null}
     <Text style={s.tileTitle}>{packTitleForInterface(pack, lang)}</Text>
     <View style={s.author}><AuthorCoin pack={pack} lang={lang} authorOverride={authorOverride} /><Text style={s.authorName}>{author.name}</Text>{heart ?? <><Ionicons name="heart-outline" size={14} color={WHITE} /><Text style={s.count}>{likes}</Text></>}</View>
   </KitTouchable>;
@@ -116,7 +118,7 @@ export function CommunitySceneTile({ pack, lang, likes, onOpen, onLongPress, aut
 export function CommunityContestRules({ visible, lang, onClose }: Readonly<{ visible: boolean; lang: Lang; onClose: () => void }>): React.JSX.Element {
   const { liquidGlassThemeId } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
-  const LP = (ru: string, en: string): string => triLang(lang, { ru, uk: en, es: en, en });
+  const LP = (ru: string, en: string): string => communitySceneText(lang, ru, en);
   const rows = [
     ['albums-outline', LP('Создавай и делись', 'Create and share'), LP('Опубликованные наборы доступны другим участникам: они могут добавлять их себе и учиться по твоим карточкам. Участвовать можно каждый месяц, пока набор не занял призовое место.', 'Published packs can be added and studied by other members. Packs can enter each month until they win any prize.')],
     ['heart', LP('Лучшие выбирают участники', 'Members choose the best'), LP('Понравился набор? Поставь ему сердечко. Место в конкурсе зависит только от новых сердечек за текущий месяц. Один участник может поставить набору одно сердечко.', 'Like a pack? Give it a heart. Only new hearts received this month count for the contest. Each member can give a pack one heart.')],
@@ -128,7 +130,7 @@ export function CommunityContestRules({ visible, lang, onClose }: Readonly<{ vis
         <View style={[s.grab, { backgroundColor: g.secondary }]} /><Text style={[s.sheetTitle, { color: g.text }]}>{LP('Как участвовать', 'How to take part')}</Text>
         <Text style={[s.body, { color: g.secondary }]}>{LP('Делись наборами, учись с другими и получай награды.', 'Share packs, learn together and earn rewards.')}</Text>
         {rows.map(([icon, title, body]) => <View key={icon} style={s.ruleRow}><View style={[s.ruleIcon, { backgroundColor: g.opaqueControl }]}><Ionicons name={icon} size={18} color={g.text} /></View><View style={s.ruleText}><Text style={[s.ruleTitle, { color: g.text }]}>{title}</Text><Text style={[s.ruleBody, { color: g.secondary }]}>{body}</Text></View></View>)}
-        <View style={[s.prizes, { backgroundColor: g.opaqueControl }]}>{[LP('Plus на 3 месяца', '3 months of Plus'), LP('2000 монет', '2000 coins'), LP('1000 монет', '1000 coins')].map((prize, i) => <View key={prize} style={s.prizeRow}><Text style={[s.ruleTitle, { color: g.text }]}>{LP(`${i + 1} место`, `Place ${i + 1}`)}</Text><Text style={{ color: g.text }}>{prize}</Text></View>)}</View>
+        <View style={[s.prizes, { backgroundColor: g.opaqueControl }]}>{[LP('Plus на 3 месяца', '3 months of Plus'), LP('Plus на 2 месяца', '2 months of Plus'), LP('Plus на 1 месяц', '1 month of Plus')].map((prize, i) => <View key={prize} style={s.prizeRow}><Text style={[s.ruleTitle, { color: g.text }]}>{LP(`${i + 1} место`, `Place ${i + 1}`)}</Text><Text style={{ color: g.text }}>{prize}</Text></View>)}</View>
         <Text style={[s.ruleBody, { color: g.secondary, marginTop: 16 }]}>{LP('Первый конкурс — с 1 ноября 2026 года. Далее — каждый календарный месяц по UTC. Старые сердечки не переносятся в рейтинг нового месяца. Набор может участвовать снова, пока ни разу не занял 1, 2 или 3 место. После любого призового места он больше не участвует. Чужому набору можно поставить сердечко сразу, без добавления себе; сердечко можно убрать. Собственный набор поддержать нельзя.', 'The first contest starts on 1 November 2026, followed by each calendar month in UTC. Older hearts do not carry into a new month. A pack may enter again until it has placed first, second or third. Any prize place permanently ends its eligibility. Give another member’s pack a heart without adding it first; you can remove your heart. You cannot support your own pack.')}</Text>
         <Text style={[s.ruleBody, { color: g.secondary }]}>{LP('Итоги фиксируются после окончания месяца. При равном числе сердечек выше набор, опубликованный раньше. Снятые с публикации наборы и наборы без сердечек призов не получают. Если подходящих наборов меньше трёх, награждаются только они. Приз каждого набора можно получить один раз; при сбое сети он сохраняется.', 'Results are finalized after the month ends. Ties favour earlier publication. Unpublished packs and packs without hearts do not win. If fewer than three packs qualify, only those packs receive prizes. Each pack’s prize can be claimed once and remains available after a connection failure.')}</Text>
         <KitTouchable onPress={onClose} accessibilityRole="button" style={[s.button, { backgroundColor: g.cta }]}><Text style={[s.buttonText, { color: g.ctaInk }]}>{LP('Понятно', 'Got it')}</Text></KitTouchable>
@@ -182,7 +184,7 @@ export function CommunityContestStage({ packs, lang, onOpen, authorId, topInset 
     } }));
   })();
   const mine = ranked.findIndex(row => row.pack.authorStableId === authorId);
-  const LP = (ru: string, en: string): string => triLang(lang, { ru, uk: en, es: en, en });
+  const LP = (ru: string, en: string): string => communitySceneText(lang, ru, en);
   return <View style={[s.stage, { paddingTop: topInset }]}><CommunitySceneBackdrop /><CommunitySceneFan />
     <View style={s.stageCopy}><Text style={s.kicker}>{schedule.phase === 'upcoming' ? LP('До начала конкурса', 'Contest starts in') : LP('До конца конкурса', 'Contest ends in')}</Text><Text style={s.stageTitle}>{LP(`${schedule.days} ${schedule.days % 10 === 1 && schedule.days % 100 !== 11 ? 'день' : schedule.days % 10 >= 2 && schedule.days % 10 <= 4 && (schedule.days % 100 < 12 || schedule.days % 100 > 14) ? 'дня' : 'дней'}`, `${schedule.days} ${schedule.days === 1 ? 'day' : 'days'}`)}</Text>
       <KitTouchable onPress={() => setRules(true)} accessibilityRole="button" style={s.rulesButton}><Text style={s.ruleLabel}>{LP('Условия участия', 'How to take part')}</Text><Ionicons name="chevron-forward" size={14} color={WHITE} /></KitTouchable>

@@ -86,8 +86,8 @@ export default function HorizonMistakeReview({
 
   const shownTotal = Math.max(items.length, totalCount);
   const title = triLang(lang, {
-    ru: shownTotal === 1 ? "Споткнулся на одной" : `Споткнулся на ${shownTotal}`,
-    uk: shownTotal === 1 ? "Спіткнувся на одній" : `Спіткнувся на ${shownTotal}`,
+    ru: shownTotal === 1 ? "Вы споткнулись на одной" : `Вы споткнулись на ${shownTotal}`,
+    uk: shownTotal === 1 ? "Ви спіткнулися на одній" : `Ви спіткнулися на ${shownTotal}`,
     en: shownTotal === 1 ? "One slip" : `${shownTotal} slips`,
     es: shownTotal === 1 ? "Un tropiezo" : `${shownTotal} tropiezos`,
     "pt-BR": shownTotal === 1 ? "Um tropeço" : `${shownTotal} tropeços`,

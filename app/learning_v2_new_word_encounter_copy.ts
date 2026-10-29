@@ -42,7 +42,7 @@ const COPY: Readonly<Record<LearningV2InterfaceLocale, StaticCopy>> = {
     label: "Нове слово",
     continue: "Зрозуміло",
     saving: "Зберігаємо…",
-    saveFailed: "Не збереглося. Спробуй ще раз.",
+    saveFailed: "Не збереглося. Можна спробувати ще раз.",
     unavailable: "Озвучення поки недоступне",
     counter: (position, total) => `${position} із ${total}`,
     save: (word) => `Зберегти ${word} у картки`,

@@ -110,8 +110,8 @@ const stringsFor = (lang: Lang) => ({
     pl: "Zacznij ćwiczenie",
   }),
   answerFirst: triLang(lang, {
-    ru: "Проверь себя",
-    uk: "Перевір себе",
+    ru: "Проверьте себя",
+    uk: "Перевірте себе",
     en: "Test yourself",
     es: "Compruébalo",
     "pt-BR": "Confira",

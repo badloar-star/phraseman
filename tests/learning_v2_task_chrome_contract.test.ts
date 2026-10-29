@@ -18,7 +18,7 @@ async function main(): Promise<void> {
   }
   assert.deepEqual(
     LEARNING_V2_TASK_TITLES.listen_choose[0] + "|" + LEARNING_V2_TASK_TITLES.listen_build[0] + "|" + LEARNING_V2_TASK_TITLES.build_phrase[0] + "|" + LEARNING_V2_TASK_TITLES.fill_gap[0] + "|" + LEARNING_V2_TASK_TITLES.match_pairs[0] + "|" + LEARNING_V2_TASK_TITLES.speak[0],
-    "Послушай и выбери|Послушай и собери|Собери фразу|Вставь слово|Найди пары|Скажи вслух",
+    "Послушайте и выберите|Послушайте и соберите|Соберите фразу|Вставьте слово|Найдите пары|Скажите вслух",
   );
   assert.deepEqual(
     [LEARNING_V2_TASK_TITLE_ICONS.listen_choose, LEARNING_V2_TASK_TITLE_ICONS.listen_build, LEARNING_V2_TASK_TITLE_ICONS.build_phrase, LEARNING_V2_TASK_TITLE_ICONS.fill_gap, LEARNING_V2_TASK_TITLE_ICONS.match_pairs, LEARNING_V2_TASK_TITLE_ICONS.speak],

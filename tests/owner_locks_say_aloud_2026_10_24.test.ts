@@ -9,10 +9,11 @@ describe('Замок: задание «Скажи вслух» — подпис�
   const player = read('app/learning_v2_direct_session_player_v1.tsx');
   const modeCopy = read('modules/learning-v2/modes/mode_copy_v1.ts');
 
-  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «макет 1:1» — под микрофоном «Удерживай и говори» (`.micl`), а не «Устно»
-  it('под микрофоном стоит «Удерживай и говори» на девяти языках, «Устно» там нет', () => {
+  // ЗАМОК ВЛАДЕЛЬЦА 22.10: «макет 1:1» — под микрофоном подпись (`.micl`), а не «Устно».
+  // зачем: владелец 29.10, кнопка «Удерживайте и говорите», решение «Занятия целиком на «вы»» (uk — на «ви»)
+  it('под микрофоном стоит «Удерживайте и говорите» на девяти языках, «Устно» там нет', () => {
     const block = /const holdToSpeakLabel = triLang\(lang, \{([\s\S]*?)\}\);/u.exec(player)?.[1] ?? '';
-    for (const text of ['Удерживай и говори', 'Утримуй і говори', 'Hold and speak', 'Mantén pulsado y habla', 'Segure e fale', 'Giữ và nói', 'Tahan dan bicara', 'Basılı tut ve konuş', 'Przytrzymaj i mów']) {
+    for (const text of ['Удерживайте и говорите', 'Утримуйте й говоріть', 'Hold and speak', 'Mantén pulsado y habla', 'Segure e fale', 'Giữ và nói', 'Tahan dan bicara', 'Basılı tut ve konuş', 'Przytrzymaj i mów']) {
       expect(block).toContain(`"${text}"`);
     }
     expect(player).toContain(': holdToSpeakLabel}');

@@ -68,7 +68,7 @@ describe('Тест «Не хочу с начала»: модель вида', ()
     }
     // ЗАМОК ВЛАДЕЛЬЦА 25.10 (открыт только первый эпизод): итог — «Начнём с урока N», строки уроков — «знаешь»
     expect(placementCopy('ru', 'resultTitle', { n: 4 })).toBe('Начнём с урока 4');
-    expect(placementCopy('ru', 'opened')).toBe('знаешь');
-    expect(placementCopy('ru', 'resultBody', { range: '1–3' })).toBe('Темы уроков 1–3 ты уже знаешь.');
+    expect(placementCopy('ru', 'opened')).toBe('знаете');
+    expect(placementCopy('ru', 'resultBody', { range: '1–3' })).toBe('Темы уроков 1–3 вы уже знаете.');
   });
 });

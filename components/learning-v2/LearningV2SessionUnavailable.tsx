@@ -17,8 +17,8 @@ import { useLv2Glass } from './LearningV2Glass';
 
 export function learningV2SessionUnavailableDefaultHint(lang: Lang): string {
   return triLang(lang, {
-    ru: 'Материал занятия не собрался. Вернись на карту и попробуй ещё раз.',
-    uk: 'Матеріал заняття не зібрався. Повернись на карту й спробуй ще раз.',
+    ru: 'Материал занятия не собрался. Вернитесь на карту и попробуйте ещё раз.',
+    uk: 'Матеріал заняття не зібрався. Поверніться на карту й спробуйте ще раз.',
     en: 'The session material did not load. Go back to the map and try again.',
     es: 'El material de la sesión no se cargó. Vuelve al mapa e inténtalo de nuevo.',
     'pt-BR': 'O material da sessão não carregou. Volte ao mapa e tente de novo.',

@@ -131,7 +131,7 @@ export function horizonResultGlassCopy(lang: Lang): HorizonResultGlassCopy {
       "pt-BR": "Deu para entender tudo?", vi: "Mọi thứ có dễ hiểu không?", id: "Semuanya jelas?", tr: "Her şey anlaşıldı mı?", pl: "Wszystko było jasne?",
     }),
     feedbackPlaceholder: triLang(lang, {
-      ru: "Где застрял? Что объяснить иначе?", uk: "Де застряг? Що пояснити інакше?", en: "Where did you get stuck? What should we explain better?", es: "¿Dónde te atascaste? ¿Qué explicar mejor?",
+      ru: "Где вы застряли? Что объяснить иначе?", uk: "Де ви застрягли? Що пояснити інакше?", en: "Where did you get stuck? What should we explain better?", es: "¿Dónde te atascaste? ¿Qué explicar mejor?",
       "pt-BR": "Onde travou? O que explicar melhor?", vi: "Bạn mắc ở đâu? Cần giải thích lại điều gì?", id: "Di mana kamu tersendat? Apa yang perlu dijelaskan ulang?", tr: "Nerede takıldın? Ne daha iyi anlatılmalı?", pl: "Gdzie utknąłeś? Co wyjaśnić inaczej?",
     }),
     feedbackSend: triLang(lang, {

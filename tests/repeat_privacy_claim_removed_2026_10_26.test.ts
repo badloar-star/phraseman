@@ -17,7 +17,7 @@ describe('режим повтора: без обещания «голос не �
   });
 
   it('ru — текст координатора', () => {
-    expect(learningV2SessionCopy('ru').repeatPrivacy).toBe('Просто повтори вслух');
-    expect(learningV2SessionCopy('uk').repeatPrivacy).toBe('Просто повтори вголос');
+    expect(learningV2SessionCopy('ru').repeatPrivacy).toBe('Просто повторите вслух');
+    expect(learningV2SessionCopy('uk').repeatPrivacy).toBe('Просто повторіть уголос');
   });
 });

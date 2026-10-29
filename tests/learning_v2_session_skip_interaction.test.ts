@@ -536,9 +536,9 @@ describe("Learning V2 real session skip interaction", () => {
     const view = await renderPracticeSession();
     fireEvent.press(view.getByLabelText("Пропустить это задание"));
     await waitFor(() =>
-      expect(view.getByText("Различай звучание")).toBeTruthy(),
+      expect(view.getByText("Различайте звучание")).toBeTruthy(),
     );
-    expect(view.getByText("Различай звучание")).toBeTruthy();
+    expect(view.getByText("Различайте звучание")).toBeTruthy();
     expect(
       view.getByLabelText("Послушать фразу"),
     ).toBeTruthy();

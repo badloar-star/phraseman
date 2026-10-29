@@ -19,7 +19,7 @@ const COPY = {
   reviewOne: { ru: "Разбор ошибки · {k}", uk: "Розбір помилки · {k}", en: "Review mistake · {k}", es: "Repasar error · {k}", "pt-BR": "Revisar erro · {k}", vi: "Xem lại lỗi · {k}", id: "Tinjau kesalahan · {k}", tr: "Hatayı incele · {k}", pl: "Przejrzyj błąd · {k}" },
   questionLabel: { ru: "Вопрос {i}", uk: "Питання {i}", en: "Question {i}", es: "Pregunta {i}", "pt-BR": "Pergunta {i}", vi: "Câu {i}", id: "Soal {i}", tr: "Soru {i}", pl: "Pytanie {i}" },
   // зачем: в макете «Ты ответил:» — с родом; нейтральная форма на всех языках (Переводчик 22.10)
-  yourAnswer: { ru: "Твой ответ:", uk: "Твоя відповідь:", en: "Your answer:", es: "Tu respuesta:", "pt-BR": "Sua resposta:", vi: "Bạn trả lời:", id: "Jawabanmu:", tr: "Cevabın:", pl: "Twoja odpowiedź:" },
+  yourAnswer: { ru: "Ваш ответ:", uk: "Ваша відповідь:", en: "Your answer:", es: "Tu respuesta:", "pt-BR": "Sua resposta:", vi: "Bạn trả lời:", id: "Jawabanmu:", tr: "Cevabın:", pl: "Twoja odpowiedź:" },
   repeatEpisode: { ru: "Повторить эпизод {n}", uk: "Повторити епізод {n}", en: "Replay episode {n}", es: "Repetir el episodio {n}", "pt-BR": "Repetir o episódio {n}", vi: "Học lại tập {n}", id: "Ulangi episode {n}", tr: "{n}. bölümü tekrarla", pl: "Powtórz odcinek {n}" },
   // зачем (Ревизор 22.10): прямой вход в экзамен во время паузы после провала; ru — макет «Пересдать через 59 мин», остальное — черновик для Переводчика
   retryIn: { ru: "Пересдать через {m} мин", uk: "Перескласти за {m} хв", en: "Retake in {m} min", es: "Repetir en {m} min", "pt-BR": "Refazer em {m} min", vi: "Thi lại sau {m} phút", id: "Ulang dalam {m} menit", tr: "{m} dk sonra yeniden gir", pl: "Ponownie za {m} min" },

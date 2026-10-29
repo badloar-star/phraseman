@@ -29,8 +29,8 @@ type AudioCopy = Readonly<{
 }>;
 
 const AUDIO_COPY: Readonly<Record<LearningV2InterfaceLocale, AudioCopy>> = Object.freeze({
-  ru: { slow: "Прослушать медленнее", unavailable: "Звук пока не загрузился", loading: "Загружаем звук…", playing: "Звучит…", replay: "Прослушать ещё раз", play: "Нажми, чтобы послушать" },
-  uk: { slow: "Прослухати повільніше", unavailable: "Звук поки не завантажився", loading: "Завантажуємо звук…", playing: "Відтворюється…", replay: "Прослухати ще раз", play: "Натисни, щоб прослухати" },
+  ru: { slow: "Прослушать медленнее", unavailable: "Звук пока не загрузился", loading: "Загружаем звук…", playing: "Звучит…", replay: "Прослушать ещё раз", play: "Нажмите, чтобы послушать" },
+  uk: { slow: "Прослухати повільніше", unavailable: "Звук поки не завантажився", loading: "Завантажуємо звук…", playing: "Відтворюється…", replay: "Прослухати ще раз", play: "Натисніть, щоб прослухати" },
   es: { slow: "Escuchar más despacio", unavailable: "El audio no está disponible", loading: "Reproduciendo…", playing: "Reproduciendo…", replay: "Escuchar de nuevo", play: "Pulsa para escuchar" },
   "pt-BR": { slow: "Ouvir mais devagar", unavailable: "O áudio está indisponível", loading: "Reproduzindo…", playing: "Reproduzindo…", replay: "Ouvir novamente", play: "Toque para ouvir" },
   vi: { slow: "Nghe chậm hơn", unavailable: "Âm thanh chưa khả dụng", loading: "Đang phát…", playing: "Đang phát…", replay: "Nghe lại", play: "Chạm để nghe" },
@@ -53,8 +53,8 @@ type SpeedMatchCopy = Readonly<{
 }>;
 
 const SPEED_MATCH_COPY: Readonly<Record<LearningV2InterfaceLocale, SpeedMatchCopy>> = Object.freeze({
-  ru: { title: "Найди пару быстро", timeout: "Время вышло!", again: "Ещё раунд", withoutTimer: "Продолжить без таймера", secondsSuffix: "с" },
-  uk: { title: "Швидко знайди пару", timeout: "Час вийшов!", again: "Ще раунд", withoutTimer: "Продовжити без таймера", secondsSuffix: "с" },
+  ru: { title: "Найдите пару быстро", timeout: "Время вышло!", again: "Ещё раунд", withoutTimer: "Продолжить без таймера", secondsSuffix: "с" },
+  uk: { title: "Швидко знайдіть пару", timeout: "Час вийшов!", again: "Ще раунд", withoutTimer: "Продовжити без таймера", secondsSuffix: "с" },
   es: { title: "Encuentra la pareja", timeout: "Se acabó el tiempo", again: "Otra ronda", withoutTimer: "Continuar sin tiempo", secondsSuffix: "s" },
   "pt-BR": { title: "Encontre o par", timeout: "O tempo acabou", again: "Outra rodada", withoutTimer: "Continuar sem cronômetro", secondsSuffix: "s" },
   vi: { title: "Tìm cặp thật nhanh", timeout: "Hết giờ", again: "Chơi lại", withoutTimer: "Tiếp tục không tính giờ", secondsSuffix: "giây" },
@@ -69,8 +69,8 @@ export function learningV2ModeSpeedMatchCopyV1(locale: LearningV2InterfaceLocale
 }
 
 const NEW_WORD_FLIP_HINT: Readonly<Record<LearningV2InterfaceLocale, string>> = Object.freeze({
-  ru: "Нажми на карточку — она перевернётся",
-  uk: "Натисни на картку — вона перевернеться",
+  ru: "Нажмите на карточку — она перевернётся",
+  uk: "Натисніть на картку — вона перевернеться",
   es: "Toca la tarjeta para darle la vuelta",
   "pt-BR": "Toque no cartão para virar",
   vi: "Chạm vào thẻ để lật",
@@ -86,8 +86,8 @@ export function learningV2NewWordFlipHintV1(locale: LearningV2InterfaceLocale): 
 
 type ContextGapCopy = Readonly<{ title: string; playPhrase: string }>;
 const CONTEXT_GAP_COPY: Readonly<Record<LearningV2InterfaceLocale, ContextGapCopy>> = Object.freeze({
-  ru: { title: "Заполни пропуск", playPhrase: "Прослушать фразу" },
-  uk: { title: "Заповни пропуск", playPhrase: "Прослухати фразу" },
+  ru: { title: "Заполните пропуск", playPhrase: "Прослушать фразу" },
+  uk: { title: "Заповніть пропуск", playPhrase: "Прослухати фразу" },
   es: { title: "Completa el espacio", playPhrase: "Escuchar la frase" },
   "pt-BR": { title: "Complete a lacuna", playPhrase: "Ouvir a frase" },
   vi: { title: "Điền vào chỗ trống", playPhrase: "Nghe câu" },

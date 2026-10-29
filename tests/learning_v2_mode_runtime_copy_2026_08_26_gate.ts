@@ -23,10 +23,10 @@ for (const locale of LEARNING_V2_INTERFACE_LOCALES) {
     assert.ok(value.trim(), `${locale}:${key}:copy missing`);
   }
   if (locale !== "ru") {
-    assert.notEqual(audio.play, "Нажми, чтобы послушать", `${locale}:Russian audio copy leaked`);
-    assert.notEqual(speed.title, "Найди пару быстро", `${locale}:Russian speed copy leaked`);
+    assert.notEqual(audio.play, "Нажмите, чтобы послушать", `${locale}:Russian audio copy leaked`);
+    assert.notEqual(speed.title, "Найдите пару быстро", `${locale}:Russian speed copy leaked`);
     assert.notEqual(flipHint, "Нажмите на карточку, чтобы перевернуть", `${locale}:Russian flip copy leaked`);
-    assert.notEqual(contextGap.title, "Заполни пропуск", `${locale}:Russian context-gap copy leaked`);
+    assert.notEqual(contextGap.title, "Заполните пропуск", `${locale}:Russian context-gap copy leaked`);
     assert.notEqual(repeat.recording, "Идёт запись", `${locale}:Russian repeat copy leaked`);
     assert.notEqual(runeLabel, "3 рун", `${locale}:Russian rune label leaked`);
   }

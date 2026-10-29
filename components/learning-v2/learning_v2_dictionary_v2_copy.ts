@@ -45,8 +45,8 @@ const S = {
   savedTag: { ru: "в карточках", uk: "у картках", en: "in cards", es: "en tarjetas", "pt-BR": "nos cartões", vi: "trong thẻ", id: "di kartu", tr: "kartlarda", pl: "w kartach" },
   emptyTitle: { ru: "Здесь появятся слова", uk: "Тут з'являться слова", en: "Your words will appear here", es: "Aquí aparecerán las palabras", "pt-BR": "As palavras vão aparecer aqui", vi: "Từ sẽ xuất hiện ở đây", id: "Kata-kata akan muncul di sini", tr: "Kelimeler burada görünecek", pl: "Tu pojawią się słowa" },
   emptyBody: {
-    ru: "Каждый эпизод добавляет 4–5 новых слов. Пройди первый, и их можно будет слушать, тренировать и сохранять в «Карточки».",
-    uk: "Кожен епізод додає 4–5 нових слів. Пройди перший, і їх можна буде слухати, тренувати й зберігати в «Картки».",
+    ru: "Каждый эпизод добавляет 4–5 новых слов. Пройдите первый, и их можно будет слушать, тренировать и сохранять в «Карточки».",
+    uk: "Кожен епізод додає 4–5 нових слів. Пройдіть перший, і їх можна буде слухати, тренувати й зберігати в «Картки».",
     en: "Each episode adds 4–5 new words. Finish the first one to listen to them, train them and save them to Cards.",
     es: "Cada episodio añade 4–5 palabras nuevas. Completa el primero para escucharlas, entrenarlas y guardarlas en Tarjetas.",
     "pt-BR": "Cada episódio traz 4–5 palavras novas. Conclua o primeiro para ouvir, treinar e salvar nos Cartões.",
@@ -65,7 +65,7 @@ const S = {
     pl: "Słowa i trening działają, zapisy wyślemy później.",
   },
   close: { ru: "Закрыть", uk: "Закрити", en: "Close", es: "Cerrar", "pt-BR": "Fechar", vi: "Đóng", id: "Tutup", tr: "Kapat", pl: "Zamknij" },
-  saveFailed: { ru: "Не удалось сохранить. Попробуй ещё раз.", uk: "Не вдалося зберегти. Спробуй ще раз.", en: "Couldn't save. Try again.", es: "No se pudo guardar. Inténtalo de nuevo.", "pt-BR": "Não foi possível salvar. Tente de novo.", vi: "Không lưu được. Hãy thử lại.", id: "Gagal menyimpan. Coba lagi.", tr: "Kaydedilemedi. Tekrar dene.", pl: "Nie udało się zapisać. Spróbuj ponownie." },
+  saveFailed: { ru: "Не удалось сохранить. Попробуйте ещё раз.", uk: "Не вдалося зберегти. Спробуйте ще раз.", en: "Couldn't save. Try again.", es: "No se pudo guardar. Inténtalo de nuevo.", "pt-BR": "Não foi possível salvar. Tente de novo.", vi: "Không lưu được. Hãy thử lại.", id: "Gagal menyimpan. Coba lagi.", tr: "Kaydedilemedi. Tekrar dene.", pl: "Nie udało się zapisać. Spróbuj ponownie." },
 } as const satisfies Readonly<Record<string, Nine<string>>>;
 
 const pick = <T,>(table: Nine<T>, lang: Lang): T => (table as Record<string, T>)[lang] ?? table.en;

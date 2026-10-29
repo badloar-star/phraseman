@@ -197,7 +197,7 @@ test.each([
     orderedResponseIds: ["tile-is", "tile-late"],
   })).toEqual({
     tone: "wrong",
-    text: "Не то. Попробуй ещё раз",
+    text: "Не то. Попробуйте ещё раз",
     authored: false,
     responseId: null,
     analysis: null,
@@ -360,7 +360,7 @@ test("ambiguous duplicate feedback rows fail closed to generic wrong feedback", 
     orderedResponseIds: [],
   })).toEqual({
     tone: "wrong",
-    text: "Не то. Попробуй ещё раз",
+    text: "Не то. Попробуйте ещё раз",
     authored: false,
     responseId: null,
     analysis: null,

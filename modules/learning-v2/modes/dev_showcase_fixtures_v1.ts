@@ -93,7 +93,7 @@ export const LEARNING_V2_MODE_SHOWCASE_FIXTURES_V1: Readonly<
     family: "sound_contrast",
     title: "Пары звуков",
     mockupSource: "docs/v2/mockups/04-sound-contrast.html",
-    prompt: "Различи короткий /ɪ/ и длинный /iː/",
+    prompt: "Различите короткий /ɪ/ и длинный /iː/",
     options: [
       { responseId: "ship", text: "ship  /ʃɪp/" },
       { responseId: "sheep", text: "sheep  /ʃiːp/" },
@@ -143,7 +143,7 @@ export const LEARNING_V2_MODE_SHOWCASE_FIXTURES_V1: Readonly<
     family: "speed_match",
     title: "Пары на скорость",
     mockupSource: "docs/v2/mockups/07-speed-match.html",
-    prompt: "Выбери грамматически верный вариант",
+    prompt: "Выберите грамматически верный вариант",
     options: [
       { responseId: "are-you-tired", text: "Are you tired?" },
       { responseId: "is-you-tired", text: "Is you tired?" },
@@ -172,7 +172,7 @@ export const LEARNING_V2_MODE_SHOWCASE_VOICE_FIXTURE_V1 = Object.freeze({
     honestOutcomeStates: ["PASS_CONFIDENT", "NEEDS_WORK_CONFIDENT", "UNCERTAIN", "INVALID_AUDIO_OR_SYSTEM"],
     explanationV1: { phrase: { meaningByLocale: { ru: "Я здесь." } } },
   }) as unknown as LearningV2ModeNativePayloadV1,
-  instruction: "Удерживай и говори",
+  instruction: "Удерживайте и говорите",
 });
 
 export function isLearningV2ModeShowcaseTextFamilyV1(

@@ -12,7 +12,7 @@ describe('Сезон: подпись экзамена по эталону', () =
       title: 'Экзамен главы',
       action: { kind: 'open', label: 'Сдать экзамен', icon: 'trophy', chapter: null },
       // координатор 25.10: «· 12 вопросов, сдать от 10» — кухня, убрано
-      note: 'Сдашь — откроется глава 3',
+      note: 'Сдадите — откроется глава 3',
     });
     expect(seasonExamCaption({ ...base, canStart: false }).action).toBeNull();
     expect(seasonExamCaption({ ...base, chapterOrdinal: 7 }).note).toBeNull();

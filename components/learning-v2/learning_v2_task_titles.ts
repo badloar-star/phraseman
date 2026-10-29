@@ -14,12 +14,12 @@ export type LearningV2TaskTitleKind = 'listen_choose' | 'listen_build' | 'build_
 export type LearningV2TaskTitleIcon = 'ear-outline' | 'headset-outline' | 'extension-puzzle-outline' | 'create-outline' | 'swap-horizontal-outline' | 'mic';
 
 const TITLES: Readonly<Record<LearningV2TaskTitleKind, Nine>> = {
-  listen_choose: ['Послушай и выбери', 'Послухай і обери', 'Listen and choose', 'Escucha y elige', 'Ouça e escolha', 'Nghe và chọn', 'Dengarkan dan pilih', 'Dinle ve seç', 'Posłuchaj i wybierz'],
-  listen_build: ['Послушай и собери', 'Послухай і склади', 'Listen and build', 'Escucha y arma', 'Ouça e monte', 'Nghe và ghép', 'Dengarkan dan susun', 'Dinle ve oluştur', 'Posłuchaj i ułóż'],
-  build_phrase: ['Собери фразу', 'Склади фразу', 'Build the phrase', 'Arma la frase', 'Monte a frase', 'Ghép câu', 'Susun frasa', 'Cümleyi oluştur', 'Ułóż frazę'],
-  fill_gap: ['Вставь слово', 'Встав слово', 'Fill in the word', 'Completa la palabra', 'Complete a palavra', 'Điền từ', 'Isi kata', 'Kelimeyi yerleştir', 'Wstaw słowo'],
-  match_pairs: ['Найди пары', 'Знайди пари', 'Match the pairs', 'Une las parejas', 'Ligue os pares', 'Nối các cặp', 'Cari pasangan', 'Eşleri bul', 'Połącz pary'],
-  speak: ['Скажи вслух', 'Скажи вголос', 'Say it out loud', 'Dilo en voz alta', 'Diga em voz alta', 'Nói thành tiếng', 'Ucapkan dengan lantang', 'Sesli söyle', 'Powiedz na głos'],
+  listen_choose: ['Послушайте и выберите', 'Послухайте й виберіть', 'Listen and choose', 'Escucha y elige', 'Ouça e escolha', 'Nghe và chọn', 'Dengarkan dan pilih', 'Dinle ve seç', 'Posłuchaj i wybierz'],
+  listen_build: ['Послушайте и соберите', 'Послухайте й складіть', 'Listen and build', 'Escucha y arma', 'Ouça e monte', 'Nghe và ghép', 'Dengarkan dan susun', 'Dinle ve oluştur', 'Posłuchaj i ułóż'],
+  build_phrase: ['Соберите фразу', 'Складіть фразу', 'Build the phrase', 'Arma la frase', 'Monte a frase', 'Ghép câu', 'Susun frasa', 'Cümleyi oluştur', 'Ułóż frazę'],
+  fill_gap: ['Вставьте слово', 'Вставте слово', 'Fill in the word', 'Completa la palabra', 'Complete a palavra', 'Điền từ', 'Isi kata', 'Kelimeyi yerleştir', 'Wstaw słowo'],
+  match_pairs: ['Найдите пары', 'Знайдіть пари', 'Match the pairs', 'Une las parejas', 'Ligue os pares', 'Nối các cặp', 'Cari pasangan', 'Eşleri bul', 'Połącz pary'],
+  speak: ['Скажите вслух', 'Скажіть уголос', 'Say it out loud', 'Dilo en voz alta', 'Diga em voz alta', 'Nói thành tiếng', 'Ucapkan dengan lantang', 'Sesli söyle', 'Powiedz na głos'],
 };
 
 /** Значки макета (`IC`: ear f2c0, headset f368, puzzle f2e4, create f293, swap f5b1, mic f454) — имена Ionicons; в макете они контурные (Сверка 22.10, №23). */

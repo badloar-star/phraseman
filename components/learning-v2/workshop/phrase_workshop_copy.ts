@@ -15,8 +15,8 @@ const S = {
   /** Тост на тап по приглушённой кнопке: банк ещё накапливается. Без чисел и порогов. */
   accumulating: [
     // зачем (голос PhraseMan, VOICE.md 25.10): живой образ вместо «откроется позже»; «session» → слово урока, как во всём приложении
-    'Мастерская ещё разогревается — повтори пару занятий урока',
-    'Майстерня ще розігрівається — повтори кілька занять уроку',
+    'Мастерская ещё разогревается — повторите пару занятий урока',
+    'Майстерня ще розігрівається — повторіть кілька занять уроку',
     'The workshop is still warming up — redo a couple of practice rounds',
     'El taller aún se está calentando: repite un par de prácticas de la lección',
     'A oficina ainda está esquentando — refaça algumas práticas da lição',

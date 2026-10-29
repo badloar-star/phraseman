@@ -45,8 +45,8 @@ const CORRECT_VERDICT_BY_LOCALE: Readonly<Record<LearningV2InterfaceLocale, stri
 const WRONG_VERDICT_BY_LOCALE: Readonly<Record<LearningV2InterfaceLocale, string>> = Object.freeze({
   // зачем (координатор 15.10): приложение на «ты» — было «Попробуйте…» / «Спробуйте…» / «Tekrar deneyin.»
   // зачем (Переводчик 4a04ededa): «Не то» сразу говорит, что ответ неверный, «попробуй ещё раз» — что делать дальше
-  ru: "Не то. Попробуй ещё раз",
-  uk: "Не те. Спробуй ще раз",
+  ru: "Не то. Попробуйте ещё раз",
+  uk: "Не те. Спробуйте ще раз",
   en: "Not that one. Try again",
   es: "No es eso. Inténtalo otra vez",
   "pt-BR": "Não é isso. Tente de novo",

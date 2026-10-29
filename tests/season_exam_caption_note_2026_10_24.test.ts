@@ -6,7 +6,7 @@ import { readSource } from './helpers/read_source';
 describe('Сезон: подпись под каруселью у карты экзамена', () => {
   it('тексты на 9 языках, ru — как в эталоне', () => {
     // координатор 25.10: в подписи только «Сдашь — откроется глава N», без «· 12 вопросов, сдать от 10»
-    expect(seasonCardText('ru', 'examOpens', { n: 3 })).toBe('Сдашь — откроется глава 3');
+    expect(seasonCardText('ru', 'examOpens', { n: 3 })).toBe('Сдадите — откроется глава 3');
     for (const lang of ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'] as const) {
       expect(seasonCardText(lang, 'examOpens', { n: 3 })).toContain('3');
       expect(seasonCardText(lang, 'examFacts', { q: 12, p: 10 })).toMatch(/12.*10/);

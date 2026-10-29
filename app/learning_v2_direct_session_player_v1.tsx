@@ -1505,9 +1505,9 @@ function LearningV2DirectSessionPlayerV1() {
     ru: "Назад", uk: "Назад", en: "Back", es: "Atrás",
     "pt-BR": "Voltar", vi: "Xem lại", id: "Kembali", tr: "Geri", pl: "Wstecz",
   });
-  // зачем (макет learning-v2-tasks-review.html «Скажи вслух», `.micl`; замок владельца 22.10 «макет 1:1»): под микрофоном подпись «Удерживай и говори», а не «Устно» — тот же текст, что в «Моих ошибках»
+  // зачем (макет learning-v2-tasks-review.html «Скажи вслух», `.micl`; замок владельца 22.10 «макет 1:1»): под микрофоном подпись «Удерживайте и говорите», а не «Устно»; владелец 29.10, кнопка «Удерживайте и говорите», решение «Занятия целиком на «вы»» («Мои ошибки» вне занятий — на «ты»)
   const holdToSpeakLabel = triLang(lang, {
-    ru: "Удерживай и говори", uk: "Утримуй і говори", en: "Hold and speak", es: "Mantén pulsado y habla",
+    ru: "Удерживайте и говорите", uk: "Утримуйте й говоріть", en: "Hold and speak", es: "Mantén pulsado y habla",
     "pt-BR": "Segure e fale", vi: "Giữ và nói", id: "Tahan dan bicara", tr: "Basılı tut ve konuş", pl: "Przytrzymaj i mów",
   });
   const footerTheoryLabel = triLang(lang, { ru: "Теория", uk: "Теорія", en: "Theory", es: "Teoría", "pt-BR": "Teoria", vi: "Lý thuyết", id: "Teori", tr: "Teori", pl: "Teoria" });
@@ -2218,13 +2218,13 @@ function LearningV2DirectSessionPlayerV1() {
               "pt-BR": "aprovado", vi: "đã đạt", id: "lulus", tr: "geçti", pl: "zaliczone",
             })
           : triLang(lang, {
-              ru: "попробуй ещё раз", uk: "спробуй ще раз", en: "try again", es: "inténtalo de nuevo",
+              ru: "попробуйте ещё раз", uk: "спробуйте ще раз", en: "try again", es: "inténtalo de nuevo",
               "pt-BR": "tente novamente", vi: "thử lại", id: "coba lagi", tr: "tekrar dene", pl: "spróbuj ponownie",
             });
         return triLang(lang, {
           // зачем (Переводчик bd52242c7): «Ты сказал(а)» угадывал род — «Твой ответ» нейтрален
-          ru: `${stars} из 3 звёзд, ${verdict}. Твой ответ: ${voiceAttemptResult.transcript}`,
-          uk: `${stars} з 3 зірок, ${verdict}. Твоя відповідь: ${voiceAttemptResult.transcript}`,
+          ru: `${stars} из 3 звёзд, ${verdict}. Ваш ответ: ${voiceAttemptResult.transcript}`,
+          uk: `${stars} з 3 зірок, ${verdict}. Ваша відповідь: ${voiceAttemptResult.transcript}`,
           en: `${stars} of 3 stars, ${verdict}. Your answer: ${voiceAttemptResult.transcript}`,
           es: `${stars} de 3 estrellas, ${verdict}. Tu respuesta: ${voiceAttemptResult.transcript}`,
           "pt-BR": `${stars} de 3 estrelas, ${verdict}. Sua resposta: ${voiceAttemptResult.transcript}`,
@@ -2574,8 +2574,8 @@ function LearningV2DirectSessionPlayerV1() {
       if (!starsCounted) {
         console.warn("[V2-FINISH] stars_not_counted", JSON.stringify({ reason: error instanceof Error ? error.message : String(error) })); // guard-ok: причина в журнале
         emitAppEvent("action_toast", actionToastTri("error", {
-          ru: "Не получилось подсчитать звёзды. Пройди занятие ещё раз",
-          uk: "Не вдалося порахувати зірки. Пройди заняття ще раз",
+          ru: "Не получилось подсчитать звёзды. Пройдите занятие ещё раз",
+          uk: "Не вдалося порахувати зірки. Пройдіть заняття ще раз",
           en: "We couldn't count your stars. Please take the session again",
           es: "No pudimos contar tus estrellas. Haz la sesión otra vez",
           "pt-BR": "Não conseguimos contar suas estrelas. Faça a sessão de novo",
@@ -2593,8 +2593,8 @@ function LearningV2DirectSessionPlayerV1() {
         const networkFailure = /network|offline|timeout|timed out|unavailable|fetch|internet|connection/i.test(`${code} ${reason}`);
         console.warn("[V2-FINISH] save_failed_after_stars", JSON.stringify({ reason, code: code || null, networkFailure })); // guard-ok: причина в журнале
         emitAppEvent("action_toast", actionToastTri("error", networkFailure ? {
-          ru: "Не получилось сохранить. Проверь интернет",
-          uk: "Не вдалося зберегти. Перевір інтернет",
+          ru: "Не получилось сохранить. Проверьте интернет",
+          uk: "Не вдалося зберегти. Перевірте інтернет",
           en: "We couldn't save. Check your connection",
           es: "No pudimos guardar. Revisa tu conexión",
           "pt-BR": "Não conseguimos salvar. Verifique sua conexão",
@@ -4109,7 +4109,7 @@ function LearningV2DirectSessionPlayerV1() {
                   />
                   <Text style={[styles.voiceHeardLabel, { color: g.secondary }]}>
                     {triLang(lang, {
-                      ru: "Твой ответ", uk: "Твоя відповідь", en: "Your answer", es: "Tu respuesta",
+                      ru: "Ваш ответ", uk: "Ваша відповідь", en: "Your answer", es: "Tu respuesta",
                       "pt-BR": "Sua resposta", vi: "Câu trả lời của bạn", id: "Jawabanmu", tr: "Cevabın", pl: "Twoja odpowiedź",
                     })}
                   </Text>

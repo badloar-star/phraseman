@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте швидкість, частоту й характер звичайних дій.
 
-**Що ви опануєте:** сказати, що зазвичай відбувається, коли…: doors close when you leave
+**Що ви опануєте:** запитати, що буває з людиною при хвилюванні: Do you speak faster when you are nervous?
 **Нові слова:** automatically, rapidly, constantly, instinctively
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете скорость, частоту и характер обычных действий.
 
-**Что вы освоите:** сказать, что обычно происходит, когда…: doors close when you leave
+**Что вы освоите:** спросить, что бывает с человеком при волнении: Do you speak faster when you are nervous?
 **Новые слова:** automatically, rapidly, constantly, instinctively
 
 ## Интро 1

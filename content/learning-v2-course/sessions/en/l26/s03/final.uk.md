@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви описуєте рухи знайомих речей удома й надворі.
 
-**Що ви опануєте:** сказати, що зазвичай відбувається, коли…: washing machine vibrates when it spins
+**Що ви опануєте:** сказати, що робить річ, коли вона працює: My washing machine vibrates when it spins.
 **Нові слова:** vibrate, rotate, sway, flutter
 
 ## Інтро 1

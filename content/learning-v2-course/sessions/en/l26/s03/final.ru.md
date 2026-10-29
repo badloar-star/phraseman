@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы описываете движения знакомых вещей дома и на улице.
 
-**Что вы освоите:** сказать, что обычно происходит, когда…: washing machine vibrates when it spins
+**Что вы освоите:** сказать, что делает вещь, когда она работает: My washing machine vibrates when it spins.
 **Новые слова:** vibrate, rotate, sway, flutter
 
 ## Интро 1

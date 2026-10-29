@@ -25,6 +25,7 @@ import { Grow } from './story_template_parts';
 import { mix, useStoryTemplatePalette } from './story_template_palette';
 import type { StoryFrameProps } from './story_template_registry';
 import { tplNumber, tplText } from './story_template_strings';
+import { themeSphereColors } from './story_theme_sphere';
 
 // ── 15 · твоя неделя ─────────────────────────────────────────────────────────────────────────────────────────────────
 
@@ -121,15 +122,17 @@ export const RankFrame = memo(function RankFrame({ tpl, lang }: StoryFrameProps<
 
 export const ThemeFrame = memo(function ThemeFrame({ tpl, lang }: StoryFrameProps<'theme'>) {
   const pal = useStoryTemplatePalette();
-  // зачем (правило «цвета — только токены»): круг показывает саму открытую тему — её акцент и свечение из каталога тем (в макете — иллюстративные #DDE1E8 / #5E6570)
+  // зачем (координатор 29.10, вариант «а»): круг — «материал» открытой темы из каталогов (у титана серебро #E0E3E5 → #5D636B, как #DDE1E8 → #5E6570
+  // макета); не особая тема — прежние акцент и свечение темы. Цвета только из каталогов тем.
   const def = liquidGlassGradientTheme(tpl.themeId);
+  const sphere = themeSphereColors(tpl.themeId) ?? { a: def?.accent ?? pal.accB, b: def?.glowA ?? pal.accG };
   const name = themeDisplayName(tpl.themeId, lang);
   const requirement = isPremiumThemeId(tpl.themeId) ? premiumThemeRequirement(tpl.themeId, lang) : '';
   const opened = tpl.opened !== null && tpl.total !== null ? tplText(lang, 'themesOpened', { opened: tpl.opened, total: tpl.total }) : '';
   const sub = [requirement, opened].filter(Boolean).join(' · ');
   return (
     <FrameRoot testID="story-tpl-theme">
-      <Art><Enter kind="pop" d={120}><ThemeSwatch colorA={def?.accent ?? pal.accB} colorB={def?.glowA ?? pal.accG} /></Enter></Art>
+      <Art><Enter kind="pop" d={120}><ThemeSwatch colorA={sphere.a} colorB={sphere.b} /></Enter></Art>
       <Ov text={storyText(lang, 'themeOverline')} d={500} />
       {name ? <H1 text={tplText(lang, 'themeUnlockedTitle', { theme: name })} d0={560} /> : null}
       {sub ? <P text={sub} d={780} /> : null}

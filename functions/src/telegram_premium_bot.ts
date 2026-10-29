@@ -35,6 +35,20 @@ import { activationRewardForPlan, generateActivationCode } from './web_checkout'
 import { writeAccessProjectionFromPatch } from './access_projection';
 import { enqueueAdminAlert } from './admin_alert_outbox';
 import { swallowed } from './swallowed_error';
+import {
+  buildTelegramInvoicePayloadV2,
+  hashTelegramUserId,
+  invoiceNicknamesToDrop,
+  newTelegramInvoiceId,
+  parseTelegramInvoicePayload,
+  sanitizeTelegramNickname,
+  webhookUrlHost,
+  type ParsedTelegramInvoicePayload,
+} from './telegram_premium_invoice_payload';
+
+// зачем (жалоба №9, владелец 29.10 «Да, чинить + логи»): единый префикс журнала платёжного пути бота — одна выборка по [TG-PAY]
+// показывает весь путь человека (хэш id вместо id, токен не пишется никогда).
+const TG_PAY = '[TG-PAY]';
 
 const TELEGRAM_API = 'https://api.telegram.org';
 const REGION = 'us-central1';
@@ -93,6 +107,8 @@ type TelegramUpdate = {
 type BotSession = {
   step?: 'idle' | 'awaiting_nickname' | 'choosing_plan';
   appNickname?: string;
+  /** Ник на момент выставления счёта по номеру счёта (данные счёта v2 ника не несут — лимит 128 байт). */
+  invoiceNicknames?: Record<string, { n?: string; at?: number; plan?: string }>;
   updatedAt?: number;
 };
 
@@ -220,9 +236,7 @@ function starsForPlan(plan: PremiumPlan): number {
   return plan === 'yearly' ? yearlyStars() : monthlyStars();
 }
 
-function sanitizeNickname(value: unknown): string {
-  return String(value || '').replace(/\s+/g, ' ').trim().slice(0, 32);
-}
+const sanitizeNickname = sanitizeTelegramNickname;
 
 function commandName(text: string): string {
   const match = /^\/([A-Za-z0-9_]+)(?:@[A-Za-z0-9_]+)?(?:\s|$)/.exec(String(text || '').trim());
@@ -233,33 +247,54 @@ function assertPlan(plan: unknown): asserts plan is PremiumPlan {
   if (plan !== 'monthly' && plan !== 'yearly') throw new Error('unknown plan');
 }
 
-function buildInvoicePayload(input: InvoicePayload): string {
-  assertPlan(input.plan);
-  const payload = {
-    v: 1,
-    p: input.plan === 'yearly' ? 'y' : 'm',
-    u: input.userId,
-    c: input.chatId,
-    n: sanitizeNickname(input.appNickname),
-    t: Math.floor(Date.now() / 1000),
-  };
-  const encoded = Buffer.from(JSON.stringify(payload), 'utf8').toString('base64url');
-  if (Buffer.byteLength(encoded, 'utf8') > 128) throw new Error('invoice payload too long');
-  return encoded;
+function parseInvoicePayload(payload: string | undefined): ParsedTelegramInvoicePayload {
+  return parseTelegramInvoicePayload(payload);
 }
 
-function parseInvoicePayload(payload: string | undefined): InvoicePayload {
-  const parsed = JSON.parse(Buffer.from(String(payload || ''), 'base64url').toString('utf8')) as Record<string, unknown>;
-  const plan = parsed.plan || (parsed.p === 'y' ? 'yearly' : 'monthly');
-  assertPlan(plan);
-  return {
-    v: Number(parsed.v || 1),
-    plan,
-    userId: (parsed.userId || parsed.u) as number | string,
-    chatId: (parsed.chatId || parsed.c) as number | string,
-    appNickname: sanitizeNickname(parsed.appNickname || parsed.n),
-    issuedAt: Number(parsed.issuedAt || parsed.t || 0),
-  };
+/**
+ * Данные счёта v2 (без ника) + ник в сессии по номеру счёта.
+ * зачем (жалоба №9): ник в данных счёта ломал оплату при длинном кириллическом нике («invoice payload too long», лимит 128 байт).
+ */
+async function prepareInvoicePayload(input: InvoicePayload, kind: 'invoice' | 'link'): Promise<string> {
+  const invoiceId = newTelegramInvoiceId();
+  const appNickname = sanitizeNickname(input.appNickname);
+  // зачем (координатор 29.10): в сессии — не больше 5 последних счетов; старые удаляются в той же записи
+  const existing = (await readSession(input.userId)).invoiceNicknames;
+  const dropped = invoiceNicknamesToDrop(existing);
+  const nicknamesPatch: Record<string, unknown> = { [invoiceId]: { n: appNickname, at: Date.now(), plan: input.plan } };
+  for (const id of dropped) nicknamesPatch[id] = admin.firestore.FieldValue.delete();
+  await sessionRef(input.userId).set({
+    invoiceNicknames: nicknamesPatch,
+    updatedAt: Date.now(),
+  }, { merge: true });
+  const payload = buildTelegramInvoicePayloadV2({
+    plan: input.plan, userId: input.userId, chatId: input.chatId, invoiceId, issuedAtSec: Date.now() / 1000,
+  });
+  console.info(TG_PAY, 'invoice:prepared', JSON.stringify({
+    kind, plan: input.plan, user: hashTelegramUserId(input.userId), payloadBytes: Buffer.byteLength(payload, 'utf8'),
+    nickChars: [...appNickname].length, nickBytes: Buffer.byteLength(appNickname, 'utf8'),
+  }));
+  return payload;
+}
+
+/** Ник для заказа: v1 — из данных счёта, v2 — из сессии по номеру счёта, запас — последний введённый ник. Источник — в журнал. */
+async function resolveOrderNickname(userId: number | string, payload: ParsedTelegramInvoicePayload): Promise<string> {
+  if (payload.appNickname !== null) {
+    console.info(TG_PAY, 'order:nickname', JSON.stringify({ user: hashTelegramUserId(userId), from: 'payload_v1' }));
+    return payload.appNickname;
+  }
+  try {
+    const session = await readSession(userId);
+    const byInvoice = payload.invoiceId ? sanitizeNickname(session.invoiceNicknames?.[payload.invoiceId]?.n) : '';
+    const fallback = sanitizeNickname(session.appNickname);
+    const from = byInvoice ? 'session_invoice' : fallback ? 'session_last_nickname' : 'missing';
+    console.info(TG_PAY, 'order:nickname', JSON.stringify({ user: hashTelegramUserId(userId), from, hasInvoiceId: payload.invoiceId !== null }));
+    return byInvoice || fallback;
+  } catch (error) {
+    // оплата уже прошла: без ника заявка всё равно пишется (активация по коду), причина — в журнал
+    console.error(TG_PAY, 'order:nickname чтение сессии упало — заявка без ника', error instanceof Error ? error.message : String(error));
+    return '';
+  }
 }
 
 const PAY_BUTTON_TEXT_RU = 'Оплатить Premium';
@@ -358,14 +393,14 @@ function answerPreCheckoutQuery(token: string, preCheckoutQueryId: string, optio
   });
 }
 
-function sendInvoice(token: string, chatId: number | string, input: InvoicePayload) {
+async function sendInvoice(token: string, chatId: number | string, input: InvoicePayload) {
   const plan = input.plan;
   const planInfo = PLANS[plan];
   const invoice: Record<string, unknown> = {
     chat_id: chatId,
     title: 'Phraseman Premium',
     description: planDescription(plan),
-    payload: buildInvoicePayload(input),
+    payload: await prepareInvoicePayload(input, 'invoice'),
     currency: 'XTR',
     prices: [{ label: planInfo.label, amount: starsForPlan(plan) }],
     start_parameter: `phraseman-premium-${plan}`,
@@ -373,13 +408,13 @@ function sendInvoice(token: string, chatId: number | string, input: InvoicePaylo
   return telegramRequest(token, 'sendInvoice', invoice);
 }
 
-function buildInvoiceLinkPayload(input: InvoicePayload): Record<string, unknown> {
+function buildInvoiceLinkPayload(input: InvoicePayload, payload: string): Record<string, unknown> {
   const plan = input.plan;
   const planInfo = PLANS[plan];
   const invoice: Record<string, unknown> = {
     title: 'Phraseman Premium',
     description: planDescription(plan),
-    payload: buildInvoicePayload(input),
+    payload,
     currency: 'XTR',
     prices: [{ label: planInfo.label, amount: starsForPlan(plan) }],
     start_parameter: `phraseman-premium-${plan}`,
@@ -391,7 +426,7 @@ function buildInvoiceLinkPayload(input: InvoicePayload): Record<string, unknown>
 }
 
 async function createInvoiceLink(token: string, input: InvoicePayload): Promise<string> {
-  const invoice = buildInvoiceLinkPayload(input);
+  const invoice = buildInvoiceLinkPayload(input, await prepareInvoicePayload(input, 'link'));
   const result = await telegramRequest(token, 'createInvoiceLink', invoice);
   return String(result || '');
 }
@@ -403,7 +438,8 @@ async function sendPremiumWelcome(token: string, chatId: number | string): Promi
       caption,
       reply_markup: startReplyKeyboard(),
     });
-  } catch {
+  } catch (error) {
+    console.warn(TG_PAY, 'welcome: картинка не ушла — шлём текстом', error instanceof Error ? error.message : String(error));
     await sendMessage(token, chatId, caption, {
       reply_markup: startReplyKeyboard(),
     });
@@ -787,7 +823,9 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
   if (message.successful_payment) {
     const payment = message.successful_payment;
     const payload = parseInvoicePayload(payment.invoice_payload);
+    const orderNickname = await resolveOrderNickname(userId, payload);
     console.info('telegramPremium successful_payment received', {
+      payloadVersion: payload.v,
       plan: payload.plan,
       currency: payment.currency,
       totalAmount: payment.total_amount,
@@ -804,7 +842,7 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
       paidAtIso: new Date().toISOString(),
       plan: payload.plan,
       planDuration: PLANS[payload.plan].durationLabel,
-      appNickname: payload.appNickname,
+      appNickname: orderNickname,
       telegramUserId: userId,
       currency: payment.currency,
       totalAmount: payment.total_amount,
@@ -840,7 +878,7 @@ async function handleMessage(token: string, message: TelegramMessage): Promise<v
         : [
           MANUAL_ACTIVATION_MESSAGE_RU,
           '',
-          `Ник: ${payload.appNickname}`,
+          `Ник: ${orderNickname || '-'}`,
           `Вариант: ${PLANS[payload.plan].durationLabel}`,
         ].join('\n');
     await sendMessage(token, chatId, userText, {
@@ -989,14 +1027,39 @@ async function handleCallbackQuery(token: string, callbackQuery: TelegramCallbac
       }
       await sendInvoice(token, chatId, { plan, userId, chatId, appNickname });
     } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      const reason = /payload too long/.test(message) ? 'payload_too_long' : /^Telegram /.test(message) ? 'telegram_api' : 'other';
+      console.error(TG_PAY, 'invoice:failed', JSON.stringify({ plan, user: hashTelegramUserId(userId), reason, message: message.slice(0, 200) }));
       console.error('telegramPremiumInvoice failed', error);
       await sendMessage(token, chatId, 'Не удалось открыть оплату. Попробуйте выбрать вариант еще раз.');
     }
   }
 }
 
-async function handlePreCheckoutQuery(token: string, query: TelegramPreCheckoutQuery): Promise<void> {
-  if (!query.id) return;
+async function answerPreCheckoutLogged(
+  token: string,
+  query: TelegramPreCheckoutQuery,
+  options: { ok: boolean; error_message?: string },
+  reason: string,
+  receivedAtMs: number,
+): Promise<void> {
+  const user = hashTelegramUserId(query.from?.id);
+  try {
+    await answerPreCheckoutQuery(token, String(query.id), options);
+    console.info(TG_PAY, 'pre_checkout:answered', JSON.stringify({ user, ok: options.ok, reason, ms: Date.now() - receivedAtMs }));
+  } catch (error) {
+    // Telegram ждёт ответ 10 с; не ушёл — у человека оплата отвалится на стороне Telegram
+    const message = (error instanceof Error ? error.message : String(error)).slice(0, 200);
+    console.error(TG_PAY, 'pre_checkout:answer_failed', JSON.stringify({ user, ok: options.ok, reason, ms: Date.now() - receivedAtMs, message }));
+    throw error;
+  }
+}
+
+async function handlePreCheckoutQuery(token: string, query: TelegramPreCheckoutQuery, receivedAtMs: number = Date.now()): Promise<void> {
+  if (!query.id) {
+    console.warn(TG_PAY, 'pre_checkout: нет id запроса — ответить нечем');
+    return;
+  }
   try {
     const payload = parseInvoicePayload(query.invoice_payload);
     console.info('telegramPremium pre_checkout_query received', {
@@ -1006,32 +1069,72 @@ async function handlePreCheckoutQuery(token: string, query: TelegramPreCheckoutQ
       expectedAmount: starsForPlan(payload.plan),
     });
     if (query.currency !== 'XTR') {
-      await answerPreCheckoutQuery(token, query.id, {
+      await answerPreCheckoutLogged(token, query, {
         ok: false,
         error_message: 'Оплата Premium принимается только в Telegram Stars.',
-      });
+      }, `wrong_currency:${String(query.currency).slice(0, 8)}`, receivedAtMs);
       return;
     }
     if (query.total_amount !== starsForPlan(payload.plan)) {
-      await answerPreCheckoutQuery(token, query.id, {
+      await answerPreCheckoutLogged(token, query, {
         ok: false,
         error_message: 'Сумма оплаты не совпадает с выбранным тарифом. Попробуйте создать счет заново.',
-      });
+      }, 'amount_mismatch', receivedAtMs);
       return;
     }
-    await answerPreCheckoutQuery(token, query.id, { ok: true });
-  } catch {
-    await answerPreCheckoutQuery(token, query.id, {
+    await answerPreCheckoutLogged(token, query, { ok: true }, `ok:v${payload.v}`, receivedAtMs);
+  } catch (error) {
+    // зачем: раньше здесь был немой catch {} — сбой разбора заказа не оставлял следа
+    const message = (error instanceof Error ? error.message : String(error)).slice(0, 200);
+    console.error(TG_PAY, 'pre_checkout: проверка заказа упала — отказ', JSON.stringify({ user: hashTelegramUserId(query.from?.id), message }));
+    await answerPreCheckoutLogged(token, query, {
       ok: false,
       error_message: 'Не удалось проверить заказ. Попробуйте начать оплату заново.',
-    });
+    }, 'check_failed', receivedAtMs);
   }
 }
 
-async function handleUpdate(token: string, update: TelegramUpdate): Promise<void> {
+function updateKind(update: TelegramUpdate): string {
+  if (update.message?.successful_payment) return 'successful_payment';
+  if (update.message) return 'message';
+  if (update.callback_query) return 'callback';
+  if (update.pre_checkout_query) return 'pre_checkout';
+  return 'other';
+}
+
+function updateUserId(update: TelegramUpdate): unknown {
+  return update.message?.from?.id ?? update.callback_query?.from?.id ?? update.pre_checkout_query?.from?.id;
+}
+
+async function handleUpdate(token: string, update: TelegramUpdate, receivedAtMs: number = Date.now()): Promise<void> {
+  console.info(TG_PAY, 'update', JSON.stringify({ kind: updateKind(update), user: hashTelegramUserId(updateUserId(update)) }));
   if (update.message) await handleMessage(token, update.message);
   else if (update.callback_query) await handleCallbackQuery(token, update.callback_query);
-  else if (update.pre_checkout_query) await handlePreCheckoutQuery(token, update.pre_checkout_query);
+  else if (update.pre_checkout_query) await handlePreCheckoutQuery(token, update.pre_checkout_query, receivedAtMs);
+  else console.warn(TG_PAY, 'update: тип не обрабатывается — пропуск');
+}
+
+// зачем (жалоба №9: с 22.10 в журнале бота пусто — не доходят апдейты или просто тихо): один раз на инстанс спросить Telegram о
+// вебхуке. Пишем только хост адреса, число ждущих апдейтов и последнюю ошибку доставки — без токена и без пути адреса.
+let webhookInfoChecked = false;
+async function logWebhookInfoOnce(token: string): Promise<void> {
+  if (webhookInfoChecked) return;
+  webhookInfoChecked = true;
+  try {
+    const info = await telegramRequest(token, 'getWebhookInfo', {}) as {
+      url?: string; pending_update_count?: number; last_error_date?: number; last_error_message?: string;
+    } | null;
+    console.info(TG_PAY, 'webhook_info', JSON.stringify({
+      host: webhookUrlHost(info?.url),
+      pendingUpdateCount: info?.pending_update_count ?? null,
+      lastErrorDate: info?.last_error_date ? new Date(info.last_error_date * 1000).toISOString() : null,
+      lastErrorMessage: info?.last_error_message ? String(info.last_error_message).slice(0, 200) : null,
+    }));
+  } catch (error) {
+    // текст ошибки telegramRequest не содержит адреса с токеном (только метод и описание), но на всякий случай режем «bot<...>»
+    const message = (error instanceof Error ? error.message : String(error)).replace(/bot[^/s]+/g, 'bot***').slice(0, 200);
+    console.warn(TG_PAY, 'webhook_info: запрос не удался', message);
+  }
 }
 
 export const telegramPremiumWebhook = onRequest({
@@ -1057,10 +1160,15 @@ export const telegramPremiumWebhook = onRequest({
     return;
   }
   const update = (req.body || {}) as TelegramUpdate;
+  const receivedAtMs = Date.now();
+  void logWebhookInfoOnce(PHRASEMAN_PREMIUM_BOT_TOKEN.value());
   try {
-    await handleUpdate(PHRASEMAN_PREMIUM_BOT_TOKEN.value(), update);
+    await handleUpdate(PHRASEMAN_PREMIUM_BOT_TOKEN.value(), update, receivedAtMs);
+    console.info(TG_PAY, 'webhook:response', JSON.stringify({ code: 200, kind: updateKind(update), ms: Date.now() - receivedAtMs }));
     res.status(200).send('ok');
   } catch (error) {
+    const code = update.message?.successful_payment ? 500 : 200;
+    console.error(TG_PAY, 'webhook:response', JSON.stringify({ code, kind: updateKind(update), ms: Date.now() - receivedAtMs, failed: true }));
     console.error('telegramPremiumWebhook failed', error);
     // Сохраняем сырой апдейт, чтобы факт оплаты не пропал (см. STRICT POLICY п.3).
     await writeDeadLetter('webhook_handler_failed', update, error);

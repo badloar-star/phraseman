@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы замечаете, что близкому нужна помощь, и предлагаете сделать часть работы.
 
-**Что вы освоите:** предложить помощь: I’ll help, Shall I open the window?
+**Что вы освоите:** предложить помощь: Shall I hold the bottle upright?
 **Новые слова:** upside down, inside out, upright, lengthways
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы предлагаете помочь с напитками и едой.
 
-**Что вы освоите:** предложить помощь: I’ll help, Shall I open the window?
+**Что вы освоите:** предложить помощь: Shall I cool down the soup?
 **Новые слова:** top up, heat up, cool down, slice up
 
 ## Интро 1

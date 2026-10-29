@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви помічаєте, що близькій людині потрібна допомога, і пропонуєте зробити частину роботи.
 
-**Що ви опануєте:** запропонувати допомогу: I’ll help, Shall I open the window?
+**Що ви опануєте:** запропонувати допомогу: Shall I bring a binder clip?
 **Нові слова:** staple remover, correction tape, binder clip, ring binder
 
 ## Інтро 1

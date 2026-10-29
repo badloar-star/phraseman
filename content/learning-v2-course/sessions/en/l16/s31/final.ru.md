@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы замечаете, что близкому нужна помощь, и предлагаете сделать часть работы.
 
-**Что вы освоите:** предложить помощь: I’ll help, Shall I open the window?
+**Что вы освоите:** предложить помощь: Shall I bring a binder clip?
 **Новые слова:** staple remover, correction tape, binder clip, ring binder
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы с друзьями вспоминаете свои умения и возможности в двадцать лет.
 
-**Что вы освоите:** could + base verb for general past ability
+**Что вы освоите:** рассказать, что вы умели раньше: I could swim at five
 **Новые слова:** neatly, correctly, smoothly, comfortably
 
 ## Интро 1

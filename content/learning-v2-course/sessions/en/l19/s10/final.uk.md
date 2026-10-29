@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви з друзями згадуєте свої звичайні вміння в дитинстві.
 
-**Що ви опануєте:** could + base verb for general past ability
+**Що ви опануєте:** розповісти, що ви вміли раніше: I could swim at five
 **Нові слова:** alphabet, rhyme, cartoon, poem
 
 ## Інтро 1

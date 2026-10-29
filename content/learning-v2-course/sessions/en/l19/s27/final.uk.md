@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте непорозуміння й можливість залагодити проблему.
 
-**Що ви опануєте:** be able to + base verb; will be able to
+**Що ви опануєте:** сказати, що ви можете чи зможете: I will be able to help
 **Нові слова:** misunderstanding, forgive, resolve, overcome
 
 ## Інтро 1

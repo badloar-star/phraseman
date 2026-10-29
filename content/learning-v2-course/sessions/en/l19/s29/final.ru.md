@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы готовите блюдо и обсуждаете, что можно найти, смешать или заменить.
 
-**Что вы освоите:** be able to + base verb; will be able to
+**Что вы освоите:** сказать, что вы можете или сможете: I will be able to help
 **Новые слова:** ingredient, mixture, texture, substitute
 
 ## Интро 1

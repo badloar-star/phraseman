@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете оплату работы, повышение и планы на будущее.
 
-**Что вы освоите:** be able to + base verb; will be able to
+**Что вы освоите:** сказать, что вы можете или сможете: I will be able to help
 **Новые слова:** wages, bonus, promotion, retirement
 
 ## Интро 1

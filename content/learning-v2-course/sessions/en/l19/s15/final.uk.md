@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви з друзями згадуєте свої вміння й можливості у двадцять років.
 
-**Що ви опануєте:** could + base verb for general past ability
+**Що ви опануєте:** розповісти, що ви вміли раніше: I could swim at five
 **Нові слова:** neatly, correctly, smoothly, comfortably
 
 ## Інтро 1

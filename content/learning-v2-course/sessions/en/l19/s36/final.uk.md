@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте регулярні заняття, розмову в тихому місці й успішне завершення роботи.
 
-**Що ви опануєте:** be able to + base verb; will be able to
+**Що ви опануєте:** сказати, що ви можете чи зможете: I will be able to help
 **Нові слова:** regularly, normally, perfectly, successfully
 
 ## Інтро 1

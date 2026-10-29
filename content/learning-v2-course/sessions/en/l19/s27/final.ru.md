@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете недоразумение и возможность уладить возникшую проблему.
 
-**Что вы освоите:** be able to + base verb; will be able to
+**Что вы освоите:** сказать, что вы можете или сможете: I will be able to help
 **Новые слова:** misunderstanding, forgive, resolve, overcome
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви готуєте страву й обговорюєте, що можна знайти, змішати або замінити.
 
-**Що ви опануєте:** be able to + base verb; will be able to
+**Що ви опануєте:** сказати, що ви можете чи зможете: I will be able to help
 **Нові слова:** ingredient, mixture, texture, substitute
 
 ## Інтро 1

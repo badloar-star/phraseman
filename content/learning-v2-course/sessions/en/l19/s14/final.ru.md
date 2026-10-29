@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы с друзьями вспоминаете свои обычные умения в детстве.
 
-**Что вы освоите:** could + base verb for general past ability
+**Что вы освоите:** рассказать, что вы умели раньше: I could swim at five
 **Новые слова:** distance, weight, direction, volume
 
 ## Интро 1

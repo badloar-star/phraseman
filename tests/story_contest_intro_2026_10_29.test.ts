@@ -35,7 +35,8 @@ describe('анонс «Набор месяца» — реестр', () => {
     expect(STORY_TEMPLATE_IDS).toHaveLength(23);
     expect(STORY_CONTEST_TEMPLATE_IDS).toEqual(['contest_start', 'contest_vote', 'contest_prizes', 'contest_invite']);
     expect(STORY_ALL_TEMPLATE_IDS.slice(0, 23)).toEqual([...STORY_TEMPLATE_IDS]);
-    expect(STORY_ALL_TEMPLATE_IDS.slice(23)).toEqual([...STORY_CONTEST_TEMPLATE_IDS]);
+    // зачем (29.10): за анонсом — история победителю (кадр 28, свой тест story_contest_winner_2026_10_29)
+    expect(STORY_ALL_TEMPLATE_IDS.slice(23, 27)).toEqual([...STORY_CONTEST_TEMPLATE_IDS]);
     for (const id of STORY_CONTEST_TEMPLATE_IDS) expect(STORY_TEMPLATE_SAMPLES[id].id).toBe(id);
     expect(studioStartIndex('24')).toBe(23);
     expect(studioStartIndex('contest_invite')).toBe(26);

@@ -119,7 +119,7 @@ const S = {
   dialogStats: ['{turns} {turns_w} · {minutes} {minutes_w}', '{turns} {turns_w} · {minutes} {minutes_w}', '{turns} {turns_w} · {minutes} {minutes_w}', '{turns} {turns_w} · {minutes} {minutes_w}', '{turns} {turns_w} · {minutes} {minutes_w}', '{turns} {turns_w} · {minutes} {minutes_w}', '{turns} {turns_w} · {minutes} {minutes_w}', '{turns} {turns_w} · {minutes} {minutes_w}', '{turns} {turns_w} · {minutes} {minutes_w}'],
   dialogNoHints: ['без подсказок', 'без підказок', 'no hints', 'sin pistas', 'sem dicas', 'không dùng gợi ý', 'tanpa petunjuk', 'ipucusuz', 'bez podpowiedzi'],
   // ── анонс конкурса «Набор месяца» (владелец 29.10, макет claude.ai/artifact/GukYuSACfWas4P9toiG7sS v2) ──
-  // зачем: ru — тексты макета, утверждённого владельцем; остальные 8 языков — черновик Моментов, Переводчик выверяет после коммита
+  // зачем: ru — тексты макета, утверждённого владельцем; остальные 8 языков выверил Переводчик 29.10 — без правок
   ctaOpenPacks: ['Открыть наборы', 'Відкрити набори', 'Open packs', 'Abrir packs', 'Abrir pacotes', 'Mở các bộ thẻ', 'Buka paket', 'Paketleri aç', 'Otwórz zestawy'],
   contestSponsors: ['Apple и Google не спонсоры конкурса.', 'Apple і Google не є спонсорами конкурсу.', 'Apple and Google are not sponsors of this contest.', 'Apple y Google no patrocinan este concurso.', 'Apple e Google não patrocinam este concurso.', 'Apple và Google không tài trợ cuộc thi này.', 'Apple dan Google bukan sponsor kontes ini.', 'Apple ve Google bu yarışmanın sponsoru değildir.', 'Apple i Google nie są sponsorami konkursu.'],
   contestOverline: ['Набор месяца', 'Набір місяця', 'Pack of the month', 'Pack del mes', 'Pacote do mês', 'Bộ thẻ của tháng', 'Paket bulan ini', 'Ayın paketi', 'Zestaw miesiąca'],
@@ -148,6 +148,15 @@ const S = {
   // зачем (координатор 29.10): Plus за друзей — тоже только когда каждый прошёл урок; подпись плитки говорит это прямо
   contestInviteThree: ['{friends_w} прошли урок', '{friends_w} пройшли урок', '{friends_w} did a lesson', '{friends_w} hicieron una lección', '{friends_w} fizeram uma lição', '{friends_w} đã học một bài', '{friends_w} selesai satu pelajaran', '{friends_w} ders bitirdi', '{friends_w} zrobiło lekcję'],
   contestInviteThreeReward: ['Plus на {plusDays} {plusDays_w}', 'Plus на {plusDays} {plusDays_w}', 'Plus for {plusDays} {plusDays_w}', 'Plus por {plusDays} {plusDays_w}', 'Plus por {plusDays} {plusDays_w}', 'Plus {plusDays} {plusDays_w}', 'Plus {plusDays} {plusDays_w}', '{plusDays} {plusDays_w} Plus', 'Plus na {plusDays} {plusDays_w}'],
+  // ── история победителю «Набор месяца» (владелец 29.10, макет v4: «Твой набор — 1 место за ноябрь») ──
+  // зачем: ru — слово в слово из макета; 8 языков выверил Переводчик 29.10 (en «#1 in November», vi — порядок слов). {monthIn} — месяц вместе
+  // с предлогом (таблица MONTH_IN ниже: в pl и tr предлог/окончание меняются от месяца к месяцу), {pack} — название набора, как его написал автор.
+  contestWinTitle: ['Твой набор — {place} место {monthIn}', 'Твій набір — {place} місце {monthIn}', 'Your pack — #{place} {monthIn}', 'Tu pack — puesto {place} {monthIn}', 'Seu pacote — {place}º lugar {monthIn}', 'Bộ thẻ của bạn — hạng {place} {monthIn}', 'Paketmu — peringkat {place} {monthIn}', 'Paketin {monthIn} {place}. sırada', 'Twój zestaw — {place}. miejsce {monthIn}'],
+  contestWinPlaceWord: ['место', 'місце', 'place', 'puesto', 'lugar', 'hạng', 'peringkat', 'sıra', 'miejsce'],
+  contestWinText: ['Plus на {months} {months_w} уже включён.', 'Plus на {months} {months_w} вже увімкнено.', 'Plus for {months} {months_w} is already on.', 'Plus por {months} {months_w} ya está activado.', 'Plus por {months} {months_w} já está ativado.', 'Đã bật Plus {months} {months_w}.', 'Plus {months} {months_w} sudah aktif.', '{months} {months_w} Plus zaten açık.', 'Plus na {months} {months_w} jest już włączony.'],
+  contestWinPack: ['«{pack}»', '«{pack}»', '“{pack}”', '«{pack}»', '“{pack}”', '“{pack}”', '“{pack}”', '“{pack}”', '„{pack}”'],
+  // подпись строки набора для чтения с экрана: «42 голоса» (♥ экранный диктор не читает как «голос»)
+  contestWinVotes: ['{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}', '{votes} {votes_w}'],
 } as const satisfies Readonly<Record<string, Nine>>;
 
 export type StoryTemplateStringKey = keyof typeof S;
@@ -168,7 +177,7 @@ const WORDS = {
   card: { ru: f3('карточка', 'карточки', 'карточек'), uk: f3('картка', 'картки', 'карток'), pl: f3('karta', 'karty', 'kart'), en: f2('card', 'cards'), es: f2('tarjeta', 'tarjetas'), 'pt-BR': f2('cartão', 'cartões'), vi: f1('thẻ'), id: f1('kartu'), tr: f1('kart') },
   turn: { ru: f3('реплика', 'реплики', 'реплик'), uk: f3('репліка', 'репліки', 'реплік'), pl: f3('kwestia', 'kwestie', 'kwestii'), en: f2('line', 'lines'), es: f2('frase', 'frases'), 'pt-BR': f2('fala', 'falas'), vi: f1('lượt nói'), id: f1('giliran'), tr: f1('replik') },
   exam: { ru: f3('экзамен', 'экзамена', 'экзаменов'), uk: f3('іспит', 'іспити', 'іспитів'), pl: f3('egzamin', 'egzaminy', 'egzaminów'), en: f2('exam', 'exams'), es: f2('examen', 'exámenes'), 'pt-BR': f2('exame', 'exames'), vi: f1('bài thi'), id: f1('ujian'), tr: f1('sınav') },
-  // анонс конкурса (29.10) — ru по макету владельца; остальные языки — черновик, Переводчик выверяет
+  // анонс конкурса (29.10) — ru по макету владельца; остальные языки выверил Переводчик 29.10 — без правок
   month: { ru: f3('месяц', 'месяца', 'месяцев'), uk: f3('місяць', 'місяці', 'місяців'), pl: f3('miesiąc', 'miesiące', 'miesięcy'), en: f2('month', 'months'), es: f2('mes', 'meses'), 'pt-BR': f2('mês', 'meses'), vi: f1('tháng'), id: f1('bulan'), tr: f1('ay') },
   friend: { ru: f3('друг', 'друга', 'друзей'), uk: f3('друг', 'друзі', 'друзів'), pl: f3('znajomy', 'znajomych', 'znajomych'), en: f2('friend', 'friends'), es: f2('amigo', 'amigos'), 'pt-BR': f2('amigo', 'amigos'), vi: f1('bạn'), id: f1('teman'), tr: f1('arkadaş') },
   vote: { ru: f3('голос', 'голоса', 'голосов'), uk: f3('голос', 'голоси', 'голосів'), pl: f3('głos', 'głosy', 'głosów'), en: f2('vote', 'votes'), es: f2('voto', 'votos'), 'pt-BR': f2('voto', 'votos'), vi: f1('phiếu'), id: f1('suara'), tr: f1('oy') },
@@ -218,4 +227,27 @@ export function tplText(lang: Lang, key: StoryTemplateStringKey, vars: Readonly<
   if (coins !== null) filled.cw = momentCoinWord(lang, coins);
   // зачем (координатор 18.10, длинные языки): число не отрывается от слова при переносе — неразрывный пробел на подстановке
   return glueNumbers(raw.replace(/\{(\w+)\}/g, (whole, name: string) => filled[name] ?? whole));
+}
+
+// ── месяц с предлогом для истории победителю: «за ноябрь», «in November», «we wrześniu» ─────────────────────────────────
+// зачем (координатор 29.10: «склонения месяцев на 9 языков через Переводчика»): предлог и форма месяца меняются от месяца к месяцу (pl, tr),
+// поэтому в таблице вся связка целиком. Не Intl: Hermes на Android без данных языка отдаёт номер месяца вместо названия («1 место за 11»).
+// ru — по макету владельца («за ноябрь»); 8 языков выверил Переводчик 29.10 (vi «trong tháng 11»: без «trong» заголовок читается как дата).
+type Twelve = readonly [string, string, string, string, string, string, string, string, string, string, string, string];
+const MONTH_IN: Readonly<Record<Lang, Twelve>> = {
+  ru: ['за январь', 'за февраль', 'за март', 'за апрель', 'за май', 'за июнь', 'за июль', 'за август', 'за сентябрь', 'за октябрь', 'за ноябрь', 'за декабрь'],
+  uk: ['за січень', 'за лютий', 'за березень', 'за квітень', 'за травень', 'за червень', 'за липень', 'за серпень', 'за вересень', 'за жовтень', 'за листопад', 'за грудень'],
+  en: ['in January', 'in February', 'in March', 'in April', 'in May', 'in June', 'in July', 'in August', 'in September', 'in October', 'in November', 'in December'],
+  es: ['en enero', 'en febrero', 'en marzo', 'en abril', 'en mayo', 'en junio', 'en julio', 'en agosto', 'en septiembre', 'en octubre', 'en noviembre', 'en diciembre'],
+  'pt-BR': ['em janeiro', 'em fevereiro', 'em março', 'em abril', 'em maio', 'em junho', 'em julho', 'em agosto', 'em setembro', 'em outubro', 'em novembro', 'em dezembro'],
+  vi: ['trong tháng 1', 'trong tháng 2', 'trong tháng 3', 'trong tháng 4', 'trong tháng 5', 'trong tháng 6', 'trong tháng 7', 'trong tháng 8', 'trong tháng 9', 'trong tháng 10', 'trong tháng 11', 'trong tháng 12'],
+  id: ['bulan Januari', 'bulan Februari', 'bulan Maret', 'bulan April', 'bulan Mei', 'bulan Juni', 'bulan Juli', 'bulan Agustus', 'bulan September', 'bulan Oktober', 'bulan November', 'bulan Desember'],
+  tr: ['Ocak ayında', 'Şubat ayında', 'Mart ayında', 'Nisan ayında', 'Mayıs ayında', 'Haziran ayında', 'Temmuz ayında', 'Ağustos ayında', 'Eylül ayında', 'Ekim ayında', 'Kasım ayında', 'Aralık ayında'],
+  pl: ['za styczeń', 'za luty', 'za marzec', 'za kwiecień', 'za maj', 'za czerwiec', 'za lipiec', 'za sierpień', 'za wrzesień', 'za październik', 'za listopad', 'za grudzień'],
+};
+
+/** Месяц с предлогом для заголовка истории победителю; month — 1…12 (из monthId «yyyy-mm»). Вне 1…12 — пустая строка. */
+export function tplMonthIn(lang: Lang, month: number): string {
+  const row = MONTH_IN[lang] ?? MONTH_IN.en;
+  return Number.isInteger(month) && month >= 1 && month <= 12 ? row[month - 1]! : '';
 }

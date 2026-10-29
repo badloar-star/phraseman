@@ -12,7 +12,7 @@ import { ExamFrame, LessonFrame, PeakWeekFrame, SummitFrame } from './frames_pro
 import { DuelFrame, FriendFrame, InviteFrame, OvertakenFrame } from './frames_social';
 import { DialogFrame, MistakesFrame, PackFrame, PackPopFrame, PhraseFrame } from './frames_cards';
 import { CoinsFrame, HolidayFrame, MonthFrame, RankFrame, ThemeFrame, WeekFrame } from './frames_recap';
-import { ContestInviteFrame, ContestPrizesFrame, ContestStartFrame, ContestVoteFrame } from './frames_contest';
+import { ContestInviteFrame, ContestPrizesFrame, ContestStartFrame, ContestVoteFrame, ContestWinnerFrame } from './frames_contest';
 import type { StoryTemplate } from './story_template_registry';
 
 const LOG = '[STORY-TPL]';
@@ -60,6 +60,7 @@ function StoryTemplateSlide({ tpl, lang, myRank }: Props) {
     case 'contest_vote': return <ContestVoteFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'contest_prizes': return <ContestPrizesFrame tpl={tpl} lang={lang} myRank={myRank} />;
     case 'contest_invite': return <ContestInviteFrame tpl={tpl} lang={lang} myRank={myRank} />;
+    case 'contest_winner': return <ContestWinnerFrame tpl={tpl} lang={lang} myRank={myRank} />;
     default: {
       const never: never = tpl;
       DebugLogger.info(LOG, `неизвестный шаблон ${String((never as { id?: unknown }).id)} — кадра нет`);

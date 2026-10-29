@@ -22,8 +22,14 @@ export const STORY_TEMPLATE_IDS = [
  * кадры конкурса идут после них — в фотостудии это 24–27.
  */
 export const STORY_CONTEST_TEMPLATE_IDS = ['contest_start', 'contest_vote', 'contest_prizes', 'contest_invite'] as const;
-/** Все шаблоны: 23 кадра макета + кадры конкурса. */
-export const STORY_ALL_TEMPLATE_IDS = [...STORY_TEMPLATE_IDS, ...STORY_CONTEST_TEMPLATE_IDS] as const;
+/**
+ * История победителю «Набор месяца» — 1 кадр (владелец 29.10, макет v4): медаль с местом, месяц, Plus и набор с ♥.
+ * зачем отдельно от анонса: анонс — 4 кадра для всех подряд, а эта история личная — приходит одному человеку после итогов месяца
+ * (поле contest_last_win, форма Ядра 29.10). В фотостудии — кадр 28.
+ */
+export const STORY_CONTEST_WINNER_TEMPLATE_IDS = ['contest_winner'] as const;
+/** Все шаблоны: 23 кадра макета + анонс конкурса + история победителю. */
+export const STORY_ALL_TEMPLATE_IDS = [...STORY_TEMPLATE_IDS, ...STORY_CONTEST_TEMPLATE_IDS, ...STORY_CONTEST_WINNER_TEMPLATE_IDS] as const;
 export type StoryTemplateId = (typeof STORY_ALL_TEMPLATE_IDS)[number];
 
 export function isStoryTemplateId(value: unknown): value is StoryTemplateId {
@@ -85,7 +91,9 @@ export type StoryTemplate =
   | T<'contest_start', { startMs: number }>
   | T<'contest_vote', { minDays: number; minLessons: number; votesPerMonth: number }>
   | T<'contest_prizes', { plusMonths: readonly [number, number, number] }>
-  | T<'contest_invite', { coins: number; friends: number; plusDays: number }>;
+  | T<'contest_invite', { coins: number; friends: number; plusDays: number }>
+  // ── история победителю: month — 1…12 из monthId; plusMonths 0 — бессрочный Plus (строки про Plus нет); packTitle '' — без строки набора ──
+  | T<'contest_winner', { place: 1 | 2 | 3; month: number; plusMonths: number; packTitle: string; hearts: number }>;
 
 /**
  * Правила конкурса для анонса (владелец 29.10): голосовать — через 3 дня и после 1 урока, до 10 голосов в месяц; призы — Plus на 3, 2 и 1 месяц
@@ -152,11 +160,13 @@ export const STORY_TEMPLATE_SAMPLES: Readonly<{ [I in StoryTemplateId]: StoryTem
   contest_vote: { id: 'contest_vote', minDays: STORY_CONTEST_RULES.minDays, minLessons: STORY_CONTEST_RULES.minLessons, votesPerMonth: STORY_CONTEST_RULES.votesPerMonth },
   contest_prizes: { id: 'contest_prizes', plusMonths: STORY_CONTEST_RULES.plusMonths },
   contest_invite: { id: 'contest_invite', coins: STORY_CONTEST_RULES.inviteCoins, friends: STORY_CONTEST_RULES.inviteFriends, plusDays: STORY_CONTEST_RULES.invitePlusDays },
+  // макет v4: «Твой набор — 1 место за ноябрь», Plus на 3 месяца, «B2 глаголы» и ♥ 42
+  contest_winner: { id: 'contest_winner', place: 1, month: 11, plusMonths: STORY_CONTEST_RULES.plusMonths[0], packTitle: 'B2 глаголы', hearts: 42 },
 };
 
 // ── фотостудия (dev-маршрут) ─────────────────────────────────────────────────────────────────────────────────────────
 
-/** Номер кадра из параметра фотостудии: id шаблона («duel») или номер 1…27 (24–27 — анонс конкурса); иначе — первый кадр. */
+/** Номер кадра из параметра фотостудии: id шаблона («duel») или номер 1…28 (24–27 — анонс конкурса, 28 — история победителю); иначе — первый кадр. */
 export function studioStartIndex(raw: string | undefined): number {
   if (isStoryTemplateId(raw)) return (STORY_ALL_TEMPLATE_IDS as readonly string[]).indexOf(raw);
   const n = Math.trunc(Number(raw));

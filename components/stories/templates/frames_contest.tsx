@@ -1,5 +1,6 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// frames_contest.tsx — анонс конкурса «Набор месяца», 4 кадра: старт, как голосовать, призы за места, награды за приглашения.
+// frames_contest.tsx — анонс конкурса «Набор месяца», 4 кадра: старт, как голосовать, призы за места, награды за приглашения;
+// и история победителю (кадр 28): медаль с местом, месяц, Plus и набор с ♥ (владелец 29.10, макет v4).
 //
 // зачем (владелец 29.10: «Да, делать в коде», макет claude.ai/artifact/GukYuSACfWas4P9toiG7sS v2): кадры — как в утверждённом макете, в той же
 // системе, что 23 шаблона историй (тот же каркас кадра, классы .ov / .h1 / .p, часы кадра, «Уменьшить движение» — сразу конечный вид).
@@ -9,15 +10,18 @@
 import React, { memo } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import Animated, { useAnimatedStyle } from 'react-native-reanimated';
+import Svg, { Circle, ClipPath, Defs, G, Path, RadialGradient, Stop } from 'react-native-svg';
 import type { Lang } from '../../../constants/i18n';
+import { mixHex } from '../../../constants/v2Style';
 import { LinearGradient } from '../../SafeLinearGradient';
 import { EASE_OUT, frameMs, phase, useStoryFrameClock } from './story_frame_clock';
 import { dayMonth } from './story_template_dates';
 import { Art, FrameRoot, H1, Ov, P } from './story_template_kit';
+import { splitAlpha } from './story_template_layout';
 import { Enter } from './story_template_motion';
 import { mix, useStoryTemplatePalette } from './story_template_palette';
 import type { StoryFrameProps } from './story_template_registry';
-import { tplText } from './story_template_strings';
+import { tplMonthIn, tplNumber, tplText } from './story_template_strings';
 
 // ── 24 · старт: веер из трёх наборов с ♥ ─────────────────────────────────────────────────────────────────────────────
 
@@ -153,6 +157,87 @@ export const ContestInviteFrame = memo(function ContestInviteFrame({ tpl, lang }
   );
 });
 
+// ── 28 · история победителю: медаль с местом, месяц, Plus, набор и ♥ ────────────────────────────────────────────────────
+
+/** Медаль макета (.medal): диск 168; ореол выходит за диск на 26 со всех сторон (.halo { inset: -26px }) — коробка 220. */
+const MEDAL = 168;
+const MEDAL_R = MEDAL / 2;
+const MEDAL_HALO = 26;
+const MEDAL_BOX = MEDAL + MEDAL_HALO * 2;
+/** radial-gradient(circle at 35% 28%) диска: центр (58,8; 47,04), радиус — до дальнего угла (farthest-corner, как в CSS) ≈ 163. */
+const DISC_CX = MEDAL * 0.35;
+const DISC_CY = MEDAL * 0.28;
+const DISC_R = Math.hypot(MEDAL - DISC_CX, MEDAL - DISC_CY);
+/** radial-gradient(circle, accGlow 0 %, transparent 70 %) ореола: радиус до угла коробки 110·√2, прозрачно с 70 % (≈ 109 — её край). */
+const HALO_R = (MEDAL_BOX / 2) * Math.SQRT2;
+/** Блик «inset 0 2px 0»: круг диска минус тот же круг на 2 dp ниже (чётно-нечётная заливка, обрезано диском) — как у круга темы. */
+const MEDAL_HIGHLIGHT = [MEDAL_R, MEDAL_R + 2].map((y) => `M0,${y} a${MEDAL_R},${MEDAL_R} 0 1,0 ${MEDAL},0 a${MEDAL_R},${MEDAL_R} 0 1,0 -${MEDAL},0 Z`).join(' ');
+
+/** Медаль всплывает пружиной (.pop через 120 мс), ореол проявляется сам (fade 900 мс через 300 мс) — всё от часов кадра. */
+const Medal = memo(function Medal({ place, lang }: Readonly<{ place: 1 | 2 | 3; lang: Lang }>) {
+  const pal = useStoryTemplatePalette();
+  const glow = splitAlpha(pal.accGlow);
+  return (
+    <Enter kind="pop" d={120} style={s.medal}>
+      <Enter kind="fade" d={300} dur={900} style={s.halo}>
+        <Svg width={MEDAL_BOX} height={MEDAL_BOX}>
+          <Defs>
+            <RadialGradient id="tplMedalHalo" cx={MEDAL_BOX / 2} cy={MEDAL_BOX / 2} r={HALO_R} gradientUnits="userSpaceOnUse">
+              <Stop offset="0" stopColor={glow.solid} stopOpacity={glow.alpha} />
+              <Stop offset="0.7" stopColor={glow.solid} stopOpacity={0} />
+            </RadialGradient>
+          </Defs>
+          <Circle cx={MEDAL_BOX / 2} cy={MEDAL_BOX / 2} r={MEDAL_BOX / 2} fill="url(#tplMedalHalo)" />
+        </Svg>
+      </Enter>
+      <View style={[s.disc, { boxShadow: `0 20px 50px -20px ${mix(pal.shTint, 0.6)}` }]} accessible accessibilityLabel={tplText(lang, 'contestPlace', { place })}>
+        <Svg width={MEDAL} height={MEDAL} style={StyleSheet.absoluteFill}>
+          <Defs>
+            <RadialGradient id="tplMedalDisc" cx={DISC_CX} cy={DISC_CY} fx={DISC_CX} fy={DISC_CY} r={DISC_R} gradientUnits="userSpaceOnUse">
+              <Stop offset="0" stopColor={pal.accB} />
+              <Stop offset="0.58" stopColor={pal.accG} />
+              {/* color-mix(in srgb, acc-g 55 %, bg-mid) — край диска уходит в тон фона */}
+              <Stop offset="1" stopColor={mixHex(pal.accG, pal.bgMid, 0.45)} />
+            </RadialGradient>
+            <ClipPath id="tplMedalClip"><Circle cx={MEDAL_R} cy={MEDAL_R} r={MEDAL_R} /></ClipPath>
+          </Defs>
+          <Circle cx={MEDAL_R} cy={MEDAL_R} r={MEDAL_R} fill="url(#tplMedalDisc)" />
+          <G clipPath="url(#tplMedalClip)">
+            <Path d={MEDAL_HIGHLIGHT} fill={mix(pal.tx, 0.35)} fillRule="evenodd" />
+          </G>
+        </Svg>
+        <Text style={[s.medalPlace, { color: pal.accInk }]}>{place}</Text>
+        {/* зачем (Переводчик 29.10): заглавные — по правилам языка интерфейса (tr «sıra» → «SIRA»), а не языка телефона, как у textTransform */}
+        <Text style={[s.medalWord, { color: pal.accInk }]}>{tplText(lang, 'contestWinPlaceWord').toLocaleUpperCase(lang)}</Text>
+      </View>
+    </Enter>
+  );
+});
+
+export const ContestWinnerFrame = memo(function ContestWinnerFrame({ tpl, lang }: StoryFrameProps<'contest_winner'>) {
+  const pal = useStoryTemplatePalette();
+  const pack = tpl.packTitle ? tplText(lang, 'contestWinPack', { pack: tpl.packTitle }) : '';
+  return (
+    <FrameRoot testID="story-tpl-contest_winner">
+      <Art>
+        <Medal place={tpl.place} lang={lang} />
+      </Art>
+      <Ov text={tplText(lang, 'contestOverline')} d={360} />
+      <H1 text={tplText(lang, 'contestWinTitle', { place: tpl.place, monthIn: tplMonthIn(lang, tpl.month) })} d0={440} />
+      {/* зачем (Ядро 29.10): plusMonths 0 — бессрочный Plus, продлевать нечего, и строка «Plus на N месяцев уже включён» была бы неправдой */}
+      {tpl.plusMonths > 0 ? <P text={tplText(lang, 'contestWinText', { months: tpl.plusMonths })} d={620} /> : null}
+      {pack ? (
+        <Enter d={820} style={s.packWrap}>
+          <View style={[s.packRow, { backgroundColor: mix(pal.tx, 0.07) }]} accessible accessibilityLabel={`${pack}, ${tplText(lang, 'contestWinVotes', { votes: tpl.hearts })}`}>
+            <Text style={[s.packTitle, { color: pal.tx }]}>{pack}</Text>
+            <Text style={[s.packHearts, { color: pal.acc }]}>♥ {tplNumber(tpl.hearts)}</Text>
+          </View>
+        </Enter>
+      ) : null}
+    </FrameRoot>
+  );
+});
+
 const s = StyleSheet.create({
   // веер 240 × 170: плитки 118 × 150, радиус 22, крайние повёрнуты на ∓9° и сдвинуты на ∓66
   fan: { width: 240, height: 170, marginBottom: 4 },
@@ -179,4 +264,15 @@ const s = StyleSheet.create({
   stepPlace: { fontSize: 13, lineHeight: 17, fontWeight: '700', letterSpacing: 0.4, textAlign: 'center' },
   stepPrize: { fontSize: 17, lineHeight: 21, fontWeight: '800' },
   stepMonths: { marginTop: -4, fontSize: 13, lineHeight: 17, fontWeight: '600', textAlign: 'center' },
+  // медаль 168 (+4 к отступу арта 18 = 22 макета), ореол 220 по центру, место 76/76 800 −2, слово 14/18 700 +1 заглавными, прозрачность ,8
+  medal: { width: MEDAL, height: MEDAL, marginBottom: 4 },
+  halo: { position: 'absolute', left: -MEDAL_HALO, top: -MEDAL_HALO, width: MEDAL_BOX, height: MEDAL_BOX },
+  disc: { ...StyleSheet.absoluteFillObject, borderRadius: MEDAL_R, alignItems: 'center', justifyContent: 'center' },
+  medalPlace: { fontSize: 76, lineHeight: 76, fontWeight: '800', letterSpacing: -2, fontVariant: ['tabular-nums'] },
+  medalWord: { fontSize: 14, lineHeight: 18, fontWeight: '700', letterSpacing: 1, opacity: 0.8 },
+  // строка набора (.packrow): отступ 14, поля 10 × 14, радиус 16, зазор 10, 15/19; длинное название переносится, ♥ остаётся справа
+  packWrap: { marginTop: 14, alignSelf: 'center', maxWidth: '100%' },
+  packRow: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 10, paddingHorizontal: 14, borderRadius: 16 },
+  packTitle: { flexShrink: 1, fontSize: 15, lineHeight: 19, fontWeight: '700' },
+  packHearts: { fontSize: 15, lineHeight: 19, fontWeight: '700', fontVariant: ['tabular-nums'] },
 });

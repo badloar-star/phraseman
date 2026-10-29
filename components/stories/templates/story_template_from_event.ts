@@ -144,6 +144,8 @@ export function storyTemplateFromEvent(event: StoryEventLike, studio = false): S
       return str(p.title) ? { id: 'dialog', title: str(p.title), goalsDone: int(p.goalsDone), goalsTotal: int(p.goalsTotal), turns: int(p.turns), minutes: int(p.minutes), noHints: flag(p.noHints), bubbles: bubblesOf(p.bubbles) } : null;
     case 'contest_intro':
       return contestIntroOf(p, event.atMs);
+    case 'contest_winner':
+      return contestWinnerOf(p);
     default:
       return null;
   }
@@ -168,4 +170,22 @@ export function contestIntroOf(p: Readonly<Record<string, unknown>>, atMs: numbe
     case 'invite': return { id: 'contest_invite', coins: pos(p.coins, r.inviteCoins), friends: pos(p.friends, r.inviteFriends), plusDays: pos(p.plusDays, r.invitePlusDays) };
     default: return null;
   }
+}
+
+const CONTEST_PLACES = [1, 2, 3] as const;
+const CONTEST_MONTH_ID = /^\d{4}-(0[1-9]|1[0-2])$/;
+
+/**
+ * История победителю «Набор месяца» (владелец 29.10, макет v4). Форма — Ядра (ContestWinStory v1, functions/src/community_month_tally.ts):
+ * monthId «yyyy-mm», place 1–3, plusMonths, packTitle, hearts. Без места 1–3 или без месяца — кадра нет (null): победу не выдумываем.
+ * plusMonths 0 — бессрочный Plus, продлевать нечего (Ядро 29.10) → кадр без строки про Plus; числа нет — месяцы по правилам за это место.
+ */
+export function contestWinnerOf(p: Readonly<Record<string, unknown>>): StoryTemplate | null {
+  const givenPlace = int(p.place);
+  const place = CONTEST_PLACES.find((n) => n === givenPlace);
+  const month = CONTEST_MONTH_ID.exec(str(p.monthId));
+  if (place === undefined || !month) return null;
+  const givenMonths = num(p.plusMonths);
+  const plusMonths = givenMonths !== null && givenMonths >= 0 ? Math.trunc(givenMonths) : STORY_CONTEST_RULES.plusMonths[place - 1] ?? 0;
+  return { id: 'contest_winner', place, month: Number(month[1]), plusMonths, packTitle: str(p.packTitle), hearts: Math.max(0, int(p.hearts)) };
 }

@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I want the ready-to-eat one.**
-- ❌ I want the ready-to-eat ones. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I want the ready-to-eat it. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I want the ready-to-eat ones. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I want the ready-to-eat it. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Обрати свіжі булочки
 
-У пекарні ви порівнюєте вчорашні булочки зі щойно спеченими й кажете, які вам подобаються. I like the freshly baked ones — мені подобаються щойно спечені. Спочатку I like, потім the freshly baked ones. Ones замінює buns у множині. Freshly baked зберігаємо перед ones, щоб указати саме на свіжі булочки.
+У пекарні ви порівнюєте вчорашні булочки зі щойно спеченими й кажете, які вам подобаються. I like the freshly baked ones — мені подобаються щойно спечені. Спочатку I like, потім the freshly baked ones. Ones замінює buns у формі для кількох. Freshly baked зберігаємо перед ones, щоб указати саме на свіжі булочки.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I like the freshly baked ones.**
-- ❌ I like the freshly baked one. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I like the freshly baked them. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I like the freshly baked one. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I like the freshly baked them. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Обрати нарізану хлібину
 
-У магазині вам показують цілу й уже нарізану хлібину. Ви хочете нарізану. I want the pre-sliced one — я хочу ту, яка вже нарізана. Після I want ставимо the pre-sliced one. One замінює злічуване loaf — одну хлібину, а pre-sliced описує її. Тут ми замінюємо слово loaf, а не незлічуване bread.
+У магазині вам показують цілу й уже нарізану хлібину. Ви хочете нарізану. I want the pre-sliced one — я хочу ту, яка вже нарізана. Після I want ставимо the pre-sliced one. One замінює рахується поштучно loaf — одну хлібину, а pre-sliced описує її. Тут ми замінюємо слово loaf, а не не рахується поштучно bread.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I want the pre-sliced one.**
-- ❌ I want the pre-sliced ones. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I want the pre-sliced it. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I want the pre-sliced ones. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I want the pre-sliced it. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Ви обираєте один салат, який уже можна їсти.**
 <!-- interaction_id: en:lesson-22:session-28:i03; family: context_gap_grammar -->
 I want the ready-to-eat ___. → **one** · ones · it
-- ones — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- it — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ones — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- it — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **5 · Картка слова — freshly baked**
 <!-- interaction_id: en:lesson-22:session-28:word:freshly-baked; family: word_card -->
@@ -86,8 +86,8 @@ I want the ready-to-eat ___. → **one** · ones · it
 **8 · Ви обираєте кілька булочок зі свіжої випічки.**
 <!-- interaction_id: en:lesson-22:session-28:i06; family: context_gap_grammar -->
 I like the freshly baked ___. → **ones** · one · them
-- one — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- them — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- one — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- them — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **9 · Картка слова — pre-cooked**
 <!-- interaction_id: en:lesson-22:session-28:word:pre-cooked; family: word_card -->
@@ -106,8 +106,8 @@ I like the freshly baked ___. → **ones** · one · them
 **12 · Ви обираєте сосиски, які вже приготував виробник.**
 <!-- interaction_id: en:lesson-22:session-28:i09; family: context_gap_grammar -->
 I prefer the pre-cooked ___. → **ones** · one · them
-- one — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- them — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- one — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- them — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **13 · Картка слова — pre-sliced**
 <!-- interaction_id: en:lesson-22:session-28:word:pre-sliced; family: word_card -->
@@ -126,8 +126,8 @@ I prefer the pre-cooked ___. → **ones** · one · them
 **16 · Ви обираєте одну хлібину, уже нарізану скибками.**
 <!-- interaction_id: en:lesson-22:session-28:i12; family: context_gap_grammar -->
 I want the pre-sliced ___. → **one** · ones · it
-- ones — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- it — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ones — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- it — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-22:session-28:i13; family: speed_match -->

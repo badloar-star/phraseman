@@ -9,7 +9,7 @@
 
 ### Представиться
 
-Introduce yourself — представиться, назвать себя новому знакомому. Introduce Anna — представить Анну, а introduce yourself — представить самого себя. Здесь you обращено к одному человеку. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.
+Introduce yourself — представиться, назвать себя новому знакомому. Introduce Anna — представить Анну, а introduce yourself — представить самого себя. Здесь you обращено к одному человеку. Когда действие относится к тому же человеку, который его выполняет, используем возвратное слово: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.
 
 **Выберите фразу для этой ситуации.**
 

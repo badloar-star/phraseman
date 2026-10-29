@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I can convince her.**
-- ❌ I can convince she. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ I can convince hers. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ I can convince she. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ I can convince hers. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I do not want to misunderstand him.**
-- ❌ I do not want to misunderstand he. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ I do not want to misunderstand his. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ I do not want to misunderstand he. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ I do not want to misunderstand his. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I admire them.**
-- ❌ I admire they. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ I admire their. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ I admire they. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ I admire their. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Виберіть, як тут сказати «її / їй».**
 <!-- interaction_id: en:lesson-22:session-03:i03; family: context_gap_grammar -->
 I can convince ___. → **her** · she · hers
-- she — *Після цього дієслова потрібна об’єктна форма займенника.*
-- hers — *Після цього дієслова потрібна об’єктна форма займенника.*
+- she — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- hers — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **5 · Картка слова — misunderstand**
 <!-- interaction_id: en:lesson-22:session-03:word:misunderstand; family: word_card -->
@@ -86,8 +86,8 @@ I can convince ___. → **her** · she · hers
 **8 · Виберіть, як тут сказати «його / йому».**
 <!-- interaction_id: en:lesson-22:session-03:i06; family: context_gap_grammar -->
 I do not want to misunderstand ___. → **him** · he · his
-- he — *Після цього дієслова потрібна об’єктна форма займенника.*
-- his — *Після цього дієслова потрібна об’єктна форма займенника.*
+- he — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- his — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **9 · Картка слова — dislike**
 <!-- interaction_id: en:lesson-22:session-03:word:dislike; family: word_card -->
@@ -106,8 +106,8 @@ I do not want to misunderstand ___. → **him** · he · his
 **12 · Виберіть, як тут сказати «його / її» про предмет.**
 <!-- interaction_id: en:lesson-22:session-03:i09; family: context_gap_grammar -->
 I dislike ___. → **it** · its · it's
-- its — *Після цього дієслова потрібна об’єктна форма займенника.*
-- it's — *Після цього дієслова потрібна об’єктна форма займенника.*
+- its — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- it's — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **13 · Картка слова — admire**
 <!-- interaction_id: en:lesson-22:session-03:word:admire; family: word_card -->
@@ -126,8 +126,8 @@ I dislike ___. → **it** · its · it's
 **16 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-03:i12; family: context_gap_grammar -->
 I admire ___. → **them** · they · their
-- they — *Після цього дієслова потрібна об’єктна форма займенника.*
-- their — *Після цього дієслова потрібна об’єктна форма займенника.*
+- they — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- their — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-22:session-03:i13; family: speed_match -->

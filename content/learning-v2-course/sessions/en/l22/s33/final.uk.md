@@ -9,13 +9,13 @@
 
 ### Інший спосіб оплати
 
-На сайті не проходить оплата вашою карткою, і ви шукаєте інший спосіб. I need another payment method — мені потрібен інший спосіб оплати. Після I need ставимо another payment method: another означає один інший або ще один варіант, а method залишається в однині. Якщо йдеться про кілька способів, кажемо other payment methods: other + множина. Тут потрібен один варіант, тому обираємо another.
+На сайті не проходить оплата вашою карткою, і ви шукаєте інший спосіб. I need another payment method — мені потрібен інший спосіб оплати. Після I need ставимо another payment method: another означає один інший або ще один варіант, а method залишається у формі для одного. Якщо йдеться про кілька способів, кажемо other payment methods: other + форма для кількох. Тут потрібен один варіант, тому обираємо another.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I need another payment method.**
-- ❌ I need other payment method. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ I need others payment method. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ I need other payment method. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ I need others payment method. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I need another meeting place.**
-- ❌ I need other meeting place. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ I need others meeting place. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ I need other meeting place. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ I need others meeting place. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I need another collection time.**
-- ❌ I need other collection time. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ I need others collection time. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ I need other collection time. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ I need others collection time. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Попросіть ще один варіант.**
 <!-- interaction_id: en:lesson-22:session-33:i03; family: context_gap_grammar -->
 I need ___ payment method. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **5 · Картка слова — meeting place**
 <!-- interaction_id: en:lesson-22:session-33:word:meeting-place; family: word_card -->
@@ -86,8 +86,8 @@ I need ___ payment method. → **another** · other · others
 **8 · Попросіть ще один варіант.**
 <!-- interaction_id: en:lesson-22:session-33:i06; family: context_gap_grammar -->
 I need ___ meeting place. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **9 · Картка слова — delivery date**
 <!-- interaction_id: en:lesson-22:session-33:word:delivery-date; family: word_card -->
@@ -106,8 +106,8 @@ I need ___ meeting place. → **another** · other · others
 **12 · Попросіть ще один варіант.**
 <!-- interaction_id: en:lesson-22:session-33:i09; family: context_gap_grammar -->
 I need ___ delivery date. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **13 · Картка слова — collection time**
 <!-- interaction_id: en:lesson-22:session-33:word:collection-time; family: word_card -->
@@ -126,8 +126,8 @@ I need ___ delivery date. → **another** · other · others
 **16 · Попросіть ще один варіант.**
 <!-- interaction_id: en:lesson-22:session-33:i12; family: context_gap_grammar -->
 I need ___ collection time. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **17 · Поєднайте вислови з перекладом**
 <!-- interaction_id: en:lesson-22:session-33:i13; family: speed_match -->

@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I want to comfort her.**
-- ❌ I want to comfort she. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ I want to comfort hers. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ I want to comfort she. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ I want to comfort hers. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This story can amuse them.**
-- ❌ This story can amuse they. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ This story can amuse their. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ This story can amuse they. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ This story can amuse their. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I do not want to upset you.**
-- ❌ I do not want to upset your. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ I do not want to upset yours. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ I do not want to upset your. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ I do not want to upset yours. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Виберіть, як тут сказати «її / їй».**
 <!-- interaction_id: en:lesson-22:session-02:i03; family: context_gap_grammar -->
 I want to comfort ___. → **her** · she · hers
-- she — *Після цього дієслова потрібна об’єктна форма займенника.*
-- hers — *Після цього дієслова потрібна об’єктна форма займенника.*
+- she — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- hers — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **5 · Картка слова — amuse**
 <!-- interaction_id: en:lesson-22:session-02:word:amuse; family: word_card -->
@@ -86,8 +86,8 @@ I want to comfort ___. → **her** · she · hers
 **8 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-02:i06; family: context_gap_grammar -->
 This story can amuse ___. → **them** · they · their
-- they — *Після цього дієслова потрібна об’єктна форма займенника.*
-- their — *Після цього дієслова потрібна об’єктна форма займенника.*
+- they — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- their — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **9 · Картка слова — impress**
 <!-- interaction_id: en:lesson-22:session-02:word:impress; family: word_card -->
@@ -106,8 +106,8 @@ This story can amuse ___. → **them** · they · their
 **12 · Виберіть, як тут сказати «його / йому».**
 <!-- interaction_id: en:lesson-22:session-02:i09; family: context_gap_grammar -->
 I want to impress ___. → **him** · he · his
-- he — *Після цього дієслова потрібна об’єктна форма займенника.*
-- his — *Після цього дієслова потрібна об’єктна форма займенника.*
+- he — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- his — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **13 · Картка слова — upset**
 <!-- interaction_id: en:lesson-22:session-02:word:upset; family: word_card -->
@@ -126,8 +126,8 @@ I want to impress ___. → **him** · he · his
 **16 · Виберіть, як тут сказати «тебе / тобі».**
 <!-- interaction_id: en:lesson-22:session-02:i12; family: context_gap_grammar -->
 I do not want to upset ___. → **you** · your · yours
-- your — *Після цього дієслова потрібна об’єктна форма займенника.*
-- yours — *Після цього дієслова потрібна об’єктна форма займенника.*
+- your — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- yours — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-22:session-02:i13; family: speed_match -->

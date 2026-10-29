@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I can advise him.**
-- ❌ I can advise he. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I can advise his. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I can advise he. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I can advise his. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I want to congratulate her.**
-- ❌ I want to congratulate she. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I want to congratulate hers. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I want to congratulate she. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I want to congratulate hers. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I do not want to disappoint you.**
-- ❌ I do not want to disappoint your. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I do not want to disappoint yours. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I do not want to disappoint your. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I do not want to disappoint yours. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Выберите, как здесь сказать «его / ему».**
 <!-- interaction_id: en:lesson-22:session-01:i03; family: context_gap_grammar -->
 I can advise ___. → **him** · he · his
-- he — *После этого глагола нужна объектная форма местоимения.*
-- his — *После этого глагола нужна объектная форма местоимения.*
+- he — *После этого глагола нужна форма вроде him, her, them.*
+- his — *После этого глагола нужна форма вроде him, her, them.*
 
 **5 · Карточка слова — congratulate**
 <!-- interaction_id: en:lesson-22:session-01:word:congratulate; family: word_card -->
@@ -86,8 +86,8 @@ I can advise ___. → **him** · he · his
 **8 · Выберите, как здесь сказать «её / ей».**
 <!-- interaction_id: en:lesson-22:session-01:i06; family: context_gap_grammar -->
 I want to congratulate ___. → **her** · she · hers
-- she — *После этого глагола нужна объектная форма местоимения.*
-- hers — *После этого глагола нужна объектная форма местоимения.*
+- she — *После этого глагола нужна форма вроде him, her, them.*
+- hers — *После этого глагола нужна форма вроде him, her, them.*
 
 **9 · Карточка слова — annoy**
 <!-- interaction_id: en:lesson-22:session-01:word:annoy; family: word_card -->
@@ -106,8 +106,8 @@ I want to congratulate ___. → **her** · she · hers
 **12 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-01:i09; family: context_gap_grammar -->
 I do not want to annoy ___. → **them** · they · their
-- they — *После этого глагола нужна объектная форма местоимения.*
-- their — *После этого глагола нужна объектная форма местоимения.*
+- they — *После этого глагола нужна форма вроде him, her, them.*
+- their — *После этого глагола нужна форма вроде him, her, them.*
 
 **13 · Карточка слова — disappoint**
 <!-- interaction_id: en:lesson-22:session-01:word:disappoint; family: word_card -->
@@ -126,8 +126,8 @@ I do not want to annoy ___. → **them** · they · their
 **16 · Выберите, как здесь сказать «тебя / тебе».**
 <!-- interaction_id: en:lesson-22:session-01:i12; family: context_gap_grammar -->
 I do not want to disappoint ___. → **you** · your · yours
-- your — *После этого глагола нужна объектная форма местоимения.*
-- yours — *После этого глагола нужна объектная форма местоимения.*
+- your — *После этого глагола нужна форма вроде him, her, them.*
+- yours — *После этого глагола нужна форма вроде him, her, them.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-22:session-01:i13; family: speed_match -->

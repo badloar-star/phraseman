@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I can convince her.**
-- ❌ I can convince she. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I can convince hers. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I can convince she. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I can convince hers. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I do not want to misunderstand him.**
-- ❌ I do not want to misunderstand he. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I do not want to misunderstand his. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I do not want to misunderstand he. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I do not want to misunderstand his. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I admire them.**
-- ❌ I admire they. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I admire their. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I admire they. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I admire their. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Выберите, как здесь сказать «её / ей».**
 <!-- interaction_id: en:lesson-22:session-03:i03; family: context_gap_grammar -->
 I can convince ___. → **her** · she · hers
-- she — *После этого глагола нужна объектная форма местоимения.*
-- hers — *После этого глагола нужна объектная форма местоимения.*
+- she — *После этого глагола нужна форма вроде him, her, them.*
+- hers — *После этого глагола нужна форма вроде him, her, them.*
 
 **5 · Карточка слова — misunderstand**
 <!-- interaction_id: en:lesson-22:session-03:word:misunderstand; family: word_card -->
@@ -86,8 +86,8 @@ I can convince ___. → **her** · she · hers
 **8 · Выберите, как здесь сказать «его / ему».**
 <!-- interaction_id: en:lesson-22:session-03:i06; family: context_gap_grammar -->
 I do not want to misunderstand ___. → **him** · he · his
-- he — *После этого глагола нужна объектная форма местоимения.*
-- his — *После этого глагола нужна объектная форма местоимения.*
+- he — *После этого глагола нужна форма вроде him, her, them.*
+- his — *После этого глагола нужна форма вроде him, her, them.*
 
 **9 · Карточка слова — dislike**
 <!-- interaction_id: en:lesson-22:session-03:word:dislike; family: word_card -->
@@ -106,8 +106,8 @@ I do not want to misunderstand ___. → **him** · he · his
 **12 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-03:i09; family: context_gap_grammar -->
 I dislike ___. → **it** · its · it's
-- its — *После этого глагола нужна объектная форма местоимения.*
-- it's — *После этого глагола нужна объектная форма местоимения.*
+- its — *После этого глагола нужна форма вроде him, her, them.*
+- it's — *После этого глагола нужна форма вроде him, her, them.*
 
 **13 · Карточка слова — admire**
 <!-- interaction_id: en:lesson-22:session-03:word:admire; family: word_card -->
@@ -126,8 +126,8 @@ I dislike ___. → **it** · its · it's
 **16 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-03:i12; family: context_gap_grammar -->
 I admire ___. → **them** · they · their
-- they — *После этого глагола нужна объектная форма местоимения.*
-- their — *После этого глагола нужна объектная форма местоимения.*
+- they — *После этого глагола нужна форма вроде him, her, them.*
+- their — *После этого глагола нужна форма вроде him, her, them.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-22:session-03:i13; family: speed_match -->

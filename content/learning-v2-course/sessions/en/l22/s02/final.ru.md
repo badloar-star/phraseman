@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I want to comfort her.**
-- ❌ I want to comfort she. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I want to comfort hers. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I want to comfort she. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I want to comfort hers. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This story can amuse them.**
-- ❌ This story can amuse they. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ This story can amuse their. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ This story can amuse they. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ This story can amuse their. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I do not want to upset you.**
-- ❌ I do not want to upset your. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I do not want to upset yours. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I do not want to upset your. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I do not want to upset yours. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Выберите, как здесь сказать «её / ей».**
 <!-- interaction_id: en:lesson-22:session-02:i03; family: context_gap_grammar -->
 I want to comfort ___. → **her** · she · hers
-- she — *После этого глагола нужна объектная форма местоимения.*
-- hers — *После этого глагола нужна объектная форма местоимения.*
+- she — *После этого глагола нужна форма вроде him, her, them.*
+- hers — *После этого глагола нужна форма вроде him, her, them.*
 
 **5 · Карточка слова — amuse**
 <!-- interaction_id: en:lesson-22:session-02:word:amuse; family: word_card -->
@@ -86,8 +86,8 @@ I want to comfort ___. → **her** · she · hers
 **8 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-02:i06; family: context_gap_grammar -->
 This story can amuse ___. → **them** · they · their
-- they — *После этого глагола нужна объектная форма местоимения.*
-- their — *После этого глагола нужна объектная форма местоимения.*
+- they — *После этого глагола нужна форма вроде him, her, them.*
+- their — *После этого глагола нужна форма вроде him, her, them.*
 
 **9 · Карточка слова — impress**
 <!-- interaction_id: en:lesson-22:session-02:word:impress; family: word_card -->
@@ -106,8 +106,8 @@ This story can amuse ___. → **them** · they · their
 **12 · Выберите, как здесь сказать «его / ему».**
 <!-- interaction_id: en:lesson-22:session-02:i09; family: context_gap_grammar -->
 I want to impress ___. → **him** · he · his
-- he — *После этого глагола нужна объектная форма местоимения.*
-- his — *После этого глагола нужна объектная форма местоимения.*
+- he — *После этого глагола нужна форма вроде him, her, them.*
+- his — *После этого глагола нужна форма вроде him, her, them.*
 
 **13 · Карточка слова — upset**
 <!-- interaction_id: en:lesson-22:session-02:word:upset; family: word_card -->
@@ -126,8 +126,8 @@ I want to impress ___. → **him** · he · his
 **16 · Выберите, как здесь сказать «тебя / тебе».**
 <!-- interaction_id: en:lesson-22:session-02:i12; family: context_gap_grammar -->
 I do not want to upset ___. → **you** · your · yours
-- your — *После этого глагола нужна объектная форма местоимения.*
-- yours — *После этого глагола нужна объектная форма местоимения.*
+- your — *После этого глагола нужна форма вроде him, her, them.*
+- yours — *После этого глагола нужна форма вроде him, her, them.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-22:session-02:i13; family: speed_match -->

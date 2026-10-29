@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I want to support her.**
-- ❌ I want to support she. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ I want to support hers. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ I want to support she. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ I want to support hers. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I want to praise him.**
-- ❌ I want to praise he. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ I want to praise his. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ I want to praise he. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ I want to praise his. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I appreciate them.**
-- ❌ I appreciate they. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ I appreciate their. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ I appreciate they. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ I appreciate their. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Виберіть, як тут сказати «її / їй».**
 <!-- interaction_id: en:lesson-22:session-04:i03; family: context_gap_grammar -->
 I want to support ___. → **her** · she · hers
-- she — *Після цього дієслова потрібна об’єктна форма займенника.*
-- hers — *Після цього дієслова потрібна об’єктна форма займенника.*
+- she — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- hers — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **5 · Картка слова — praise**
 <!-- interaction_id: en:lesson-22:session-04:word:praise; family: word_card -->
@@ -86,8 +86,8 @@ I want to support ___. → **her** · she · hers
 **8 · Виберіть, як тут сказати «його / йому».**
 <!-- interaction_id: en:lesson-22:session-04:i06; family: context_gap_grammar -->
 I want to praise ___. → **him** · he · his
-- he — *Після цього дієслова потрібна об’єктна форма займенника.*
-- his — *Після цього дієслова потрібна об’єктна форма займенника.*
+- he — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- his — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **9 · Картка слова — compliment**
 <!-- interaction_id: en:lesson-22:session-04:word:compliment; family: word_card -->
@@ -106,8 +106,8 @@ I want to praise ___. → **him** · he · his
 **12 · Виберіть, як тут сказати «тебе / тобі».**
 <!-- interaction_id: en:lesson-22:session-04:i09; family: context_gap_grammar -->
 I want to compliment ___. → **you** · your · yours
-- your — *Після цього дієслова потрібна об’єктна форма займенника.*
-- yours — *Після цього дієслова потрібна об’єктна форма займенника.*
+- your — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- yours — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **13 · Картка слова — appreciate**
 <!-- interaction_id: en:lesson-22:session-04:word:appreciate; family: word_card -->
@@ -126,8 +126,8 @@ I want to compliment ___. → **you** · your · yours
 **16 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-04:i12; family: context_gap_grammar -->
 I appreciate ___. → **them** · they · their
-- they — *Після цього дієслова потрібна об’єктна форма займенника.*
-- their — *Після цього дієслова потрібна об’єктна форма займенника.*
+- they — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- their — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-22:session-04:i13; family: speed_match -->

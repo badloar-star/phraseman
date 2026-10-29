@@ -9,13 +9,13 @@
 
 ### Соскрести тесто
 
-На миске засохло тесто, и вы спрашиваете, можно ли его соскрести. Could I scrape it off? — Можно мне его соскрести? Начинаем с Could I, затем ставим scrape, it и off. It заменяет уже названное тесто. В выражении scrape off местоимение ставим между scrape и off; после could глагол scrape остаётся в начальной форме.
+На миске засохло тесто, и вы спрашиваете, можно ли его соскрести. Could I scrape it off? — Можно мне его соскрести? Начинаем с Could I, затем ставим scrape, it и off. It заменяет уже названное тесто. В выражении scrape off слово ставим между scrape и off; после could глагол scrape остаётся в начальной форме.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Could I scrape it off?**
-- ❌ Could I scrape its off? — *После этого глагола нужна объектная форма местоимения.*
-- ❌ Could I scrape it's off? — *После этого глагола нужна объектная форма местоимения.*
+- ❌ Could I scrape its off? — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ Could I scrape it's off? — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Could I strain it?**
-- ❌ Could I strain its? — *После этого глагола нужна объектная форма местоимения.*
-- ❌ Could I strain it's? — *После этого глагола нужна объектная форма местоимения.*
+- ❌ Could I strain its? — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ Could I strain it's? — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Слить воду с картофеля
 
-Картофель сварился, и вы спрашиваете, можно ли слить с него воду. Could I drain them? — Можно мне слить с них воду? Сначала Could I, затем начальная форма drain и them. Them заменяет английское potatoes во множественном числе, а не воду. После глагола нужна объектная форма them, а не they.
+Картофель сварился, и вы спрашиваете, можно ли слить с него воду. Could I drain them? — Можно мне слить с них воду? Сначала Could I, затем начальная форма drain и them. Them заменяет английское potatoes в форме для нескольких, а не воду. После глагола нужна объектная форма them, а не they.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Could I drain them?**
-- ❌ Could I drain they? — *После этого глагола нужна объектная форма местоимения.*
-- ❌ Could I drain their? — *После этого глагола нужна объектная форма местоимения.*
+- ❌ Could I drain they? — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ Could I drain their? — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-07:i03; family: context_gap_grammar -->
 Could I scrape ___ off? → **it** · its · it's
-- its — *После этого глагола нужна объектная форма местоимения.*
-- it's — *После этого глагола нужна объектная форма местоимения.*
+- its — *После этого глагола нужна форма вроде him, her, them.*
+- it's — *После этого глагола нужна форма вроде him, her, them.*
 
 **5 · Карточка слова — strain**
 <!-- interaction_id: en:lesson-22:session-07:word:strain; family: word_card -->
@@ -86,8 +86,8 @@ Could I scrape ___ off? → **it** · its · it's
 **8 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-07:i06; family: context_gap_grammar -->
 Could I strain ___? → **it** · its · it's
-- its — *После этого глагола нужна объектная форма местоимения.*
-- it's — *После этого глагола нужна объектная форма местоимения.*
+- its — *После этого глагола нужна форма вроде him, her, them.*
+- it's — *После этого глагола нужна форма вроде him, her, them.*
 
 **9 · Карточка слова — chill**
 <!-- interaction_id: en:lesson-22:session-07:word:chill; family: word_card -->
@@ -106,8 +106,8 @@ Could I strain ___? → **it** · its · it's
 **12 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-07:i09; family: context_gap_grammar -->
 Could I chill ___? → **them** · they · their
-- they — *После этого глагола нужна объектная форма местоимения.*
-- their — *После этого глагола нужна объектная форма местоимения.*
+- they — *После этого глагола нужна форма вроде him, her, them.*
+- their — *После этого глагола нужна форма вроде him, her, them.*
 
 **13 · Карточка слова — drain**
 <!-- interaction_id: en:lesson-22:session-07:word:drain; family: word_card -->
@@ -126,8 +126,8 @@ Could I chill ___? → **them** · they · their
 **16 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-07:i12; family: context_gap_grammar -->
 Could I drain ___? → **them** · they · their
-- they — *После этого глагола нужна объектная форма местоимения.*
-- their — *После этого глагола нужна объектная форма местоимения.*
+- they — *После этого глагола нужна форма вроде him, her, them.*
+- their — *После этого глагола нужна форма вроде him, her, them.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-22:session-07:i13; family: speed_match -->

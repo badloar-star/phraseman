@@ -9,13 +9,13 @@
 
 ### Выбрать другую книгу
 
-В первой книге нет подходящего рецепта, поэтому вы берёте другую. I use another recipe book — я пользуюсь другой книгой рецептов. После I use ставим another recipe book. Another относится ко всей группе recipe book: речь об одной другой книге. Book оставляем в единственном числе. Дополнительный артикль a перед another не нужен.
+В первой книге нет подходящего рецепта, поэтому вы берёте другую. I use another recipe book — я пользуюсь другой книгой рецептов. После I use ставим another recipe book. Another относится ко всей группе recipe book: речь об одной другой книге. Book оставляем в форме для одного. Дополнительный a перед another не нужен.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I use another recipe book.**
-- ❌ I use other recipe book. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ I use others recipe book. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ I use other recipe book. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ I use others recipe book. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We use another main ingredient.**
-- ❌ We use other main ingredient. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ We use others main ingredient. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ We use other main ingredient. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ We use others main ingredient. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Согласовать сумму на покупки
 
-Вы с партнёром пересматриваете сумму на продукты и договариваетесь о другом бюджете. We agree on another shopping budget — мы согласовываем другой бюджет на покупки. После We agree сохраняем on, затем ставим another shopping budget. Another относится к одному новому бюджету, поэтому budget в единственном числе. Shopping уточняет, для каких расходов этот бюджет.
+Вы с партнёром пересматриваете сумму на продукты и договариваетесь о другом бюджете. We agree on another shopping budget — мы согласовываем другой бюджет на покупки. После We agree сохраняем on, затем ставим another shopping budget. Another относится к одному новому бюджету, поэтому budget в форме для одного. Shopping уточняет, для каких расходов этот бюджет.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We agree on another shopping budget.**
-- ❌ We agree on other shopping budget. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ We agree on others shopping budget. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ We agree on other shopping budget. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ We agree on others shopping budget. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-36:i03; family: context_gap_grammar -->
 I use ___ recipe book. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **5 · Карточка слова — main ingredient**
 <!-- interaction_id: en:lesson-22:session-36:word:main-ingredient; family: word_card -->
@@ -86,8 +86,8 @@ I use ___ recipe book. → **another** · other · others
 **8 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-36:i06; family: context_gap_grammar -->
 We use ___ main ingredient. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **9 · Карточка слова — meal plan**
 <!-- interaction_id: en:lesson-22:session-36:word:meal-plan; family: word_card -->
@@ -106,8 +106,8 @@ We use ___ main ingredient. → **another** · other · others
 **12 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-36:i09; family: context_gap_grammar -->
 I need ___ meal plan. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **13 · Карточка слова — shopping budget**
 <!-- interaction_id: en:lesson-22:session-36:word:shopping-budget; family: word_card -->
@@ -126,8 +126,8 @@ I need ___ meal plan. → **another** · other · others
 **16 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-36:i12; family: context_gap_grammar -->
 We agree on ___ shopping budget. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-22:session-36:i13; family: speed_match -->

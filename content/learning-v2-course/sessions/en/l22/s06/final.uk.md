@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Could I separate them?**
-- ❌ Could I separate they? — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ Could I separate their? — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ Could I separate they? — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ Could I separate their? — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Could I divide it?**
-- ❌ Could I divide its? — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ Could I divide it's? — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ Could I divide its? — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ Could I divide it's? — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Скласти порожні коробки
 
-Після розпакування залишилося кілька порожніх коробок, і ви пропонуєте скласти їх пласко. Could I flatten them? — Можна мені їх сплющити? Після Could I ставимо початкову форму flatten, потім them замість boxes. Коробок кілька, тому обираємо them. Займенник стоїть після дієслова й називає предмети дії.
+Після розпакування залишилося кілька порожніх коробок, і ви пропонуєте скласти їх пласко. Could I flatten them? — Можна мені їх сплющити? Після Could I ставимо початкову форму flatten, потім them замість boxes. Коробок кілька, тому обираємо them. Слово стоїть після дієслова й називає предмети дії.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Could I flatten them?**
-- ❌ Could I flatten they? — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ Could I flatten their? — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ Could I flatten they? — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ Could I flatten their? — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-06:i03; family: context_gap_grammar -->
 Could I separate ___? → **them** · they · their
-- they — *Після цього дієслова потрібна об’єктна форма займенника.*
-- their — *Після цього дієслова потрібна об’єктна форма займенника.*
+- they — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- their — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **5 · Картка слова — divide**
 <!-- interaction_id: en:lesson-22:session-06:word:divide; family: word_card -->
@@ -86,8 +86,8 @@ Could I separate ___? → **them** · they · their
 **8 · Виберіть, як тут сказати «його / її» про предмет.**
 <!-- interaction_id: en:lesson-22:session-06:i06; family: context_gap_grammar -->
 Could I divide ___? → **it** · its · it's
-- its — *Після цього дієслова потрібна об’єктна форма займенника.*
-- it's — *Після цього дієслова потрібна об’єктна форма займенника.*
+- its — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- it's — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **9 · Картка слова — organise**
 <!-- interaction_id: en:lesson-22:session-06:word:organise; family: word_card -->
@@ -106,8 +106,8 @@ Could I divide ___? → **it** · its · it's
 **12 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-06:i09; family: context_gap_grammar -->
 Could I organise ___? → **them** · they · their
-- they — *Після цього дієслова потрібна об’єктна форма займенника.*
-- their — *Після цього дієслова потрібна об’єктна форма займенника.*
+- they — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- their — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **13 · Картка слова — flatten**
 <!-- interaction_id: en:lesson-22:session-06:word:flatten; family: word_card -->
@@ -126,8 +126,8 @@ Could I organise ___? → **them** · they · their
 **16 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-06:i12; family: context_gap_grammar -->
 Could I flatten ___? → **them** · they · their
-- they — *Після цього дієслова потрібна об’єктна форма займенника.*
-- their — *Після цього дієслова потрібна об’єктна форма займенника.*
+- they — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- their — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-22:session-06:i13; family: speed_match -->

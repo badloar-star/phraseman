@@ -9,13 +9,13 @@
 
 ### Обрати теплі шкарпетки
 
-Ви купуєте шкарпетки для холодної погоди й указуєте на ті, які зберігають тепло. I want the thermal ones — я хочу ті, які зберігають тепло. Спочатку I want, потім the thermal ones. Ones замінює socks у множині. Thermal залишається перед ones і уточнює, які шкарпетки ви обрали.
+Ви купуєте шкарпетки для холодної погоди й указуєте на ті, які зберігають тепло. I want the thermal ones — я хочу ті, які зберігають тепло. Спочатку I want, потім the thermal ones. Ones замінює socks у формі для кількох. Thermal залишається перед ones і уточнює, які шкарпетки ви обрали.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I want the thermal ones.**
-- ❌ I want the thermal one. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I want the thermal them. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I want the thermal one. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I want the thermal them. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I prefer the padded one.**
-- ❌ I prefer the padded ones. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I prefer the padded it. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I prefer the padded ones. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I prefer the padded it. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Обрати взуття з м’якою устілкою
 
-Ви приміряєте туфлі й обираєте ті, у яких м’яка устілка. I like the cushioned ones — мені подобаються ті, що з м’якою устілкою. Спочатку I like, потім the cushioned ones. Ones замінює shoes у множині. Cushioned описує м’який шар під стопою й залишається перед ones.
+Ви приміряєте туфлі й обираєте ті, у яких м’яка устілка. I like the cushioned ones — мені подобаються ті, що з м’якою устілкою. Спочатку I like, потім the cushioned ones. Ones замінює shoes у формі для кількох. Cushioned описує м’який шар під стопою й залишається перед ones.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I like the cushioned ones.**
-- ❌ I like the cushioned one. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I like the cushioned them. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I like the cushioned one. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I like the cushioned them. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Ви обираєте шкарпетки для холоду.**
 <!-- interaction_id: en:lesson-22:session-26:i03; family: context_gap_grammar -->
 I want the thermal ___. → **ones** · one · them
-- one — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- them — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- one — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- them — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **5 · Картка слова — padded**
 <!-- interaction_id: en:lesson-22:session-26:word:padded; family: word_card -->
@@ -86,8 +86,8 @@ I want the thermal ___. → **ones** · one · them
 **8 · Ви обираєте одну куртку з утеплювальною набивкою.**
 <!-- interaction_id: en:lesson-22:session-26:i06; family: context_gap_grammar -->
 I prefer the padded ___. → **one** · ones · it
-- ones — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- it — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ones — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- it — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **9 · Картка слова — non-slip**
 <!-- interaction_id: en:lesson-22:session-26:word:non-slip; family: word_card -->
@@ -106,8 +106,8 @@ I prefer the padded ___. → **one** · ones · it
 **12 · Ви обираєте один килимок для ванної.**
 <!-- interaction_id: en:lesson-22:session-26:i09; family: context_gap_grammar -->
 I want the non-slip ___. → **one** · ones · it
-- ones — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- it — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ones — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- it — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **13 · Картка слова — cushioned**
 <!-- interaction_id: en:lesson-22:session-26:word:cushioned; family: word_card -->
@@ -126,8 +126,8 @@ I want the non-slip ___. → **one** · ones · it
 **16 · Ви обираєте туфлі з м’якою внутрішньою підкладкою.**
 <!-- interaction_id: en:lesson-22:session-26:i12; family: context_gap_grammar -->
 I like the cushioned ___. → **ones** · one · them
-- one — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- them — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- one — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- them — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-22:session-26:i13; family: speed_match -->

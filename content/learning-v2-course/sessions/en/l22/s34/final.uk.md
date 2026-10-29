@@ -9,13 +9,13 @@
 
 ### Обрати інший потяг
 
-Ваш потяг скасували, і ви з другом шукаєте інший рейс у розкладі. We need another train service — нам потрібен інший залізничний рейс. Після We need ставимо another train service. Another вказує на один інший варіант, тому service в однині. Train уточнює, що рейс залізничний.
+Ваш потяг скасували, і ви з другом шукаєте інший рейс у розкладі. We need another train service — нам потрібен інший залізничний рейс. Після We need ставимо another train service. Another вказує на один інший варіант, тому service у формі для одного. Train уточнює, що рейс залізничний.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We need another train service.**
-- ❌ We need other train service. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ We need others train service. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ We need other train service. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ We need others train service. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Змінити вихід на посадку
 
-В аеропорту змінили вихід на посадку для вашого рейсу. Ви пояснюєте супутнику, чому йдете до іншого виходу. We use another departure gate — ми користуємося іншим виходом на посадку. Після We use іде another departure gate. Another стосується одного виходу — gate; departure уточнює його призначення. Додатковий артикль a перед another не ставимо.
+В аеропорту змінили вихід на посадку для вашого рейсу. Ви пояснюєте супутнику, чому йдете до іншого виходу. We use another departure gate — ми користуємося іншим виходом на посадку. Після We use іде another departure gate. Another стосується одного виходу — gate; departure уточнює його призначення. Додатковий a перед another не ставимо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We use another departure gate.**
-- ❌ We use other departure gate. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ We use others departure gate. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ We use other departure gate. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ We use others departure gate. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I have another seat number.**
-- ❌ I have other seat number. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ I have others seat number. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ I have other seat number. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ I have others seat number. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-34:i03; family: context_gap_grammar -->
 We need ___ train service. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **5 · Картка слова — departure gate**
 <!-- interaction_id: en:lesson-22:session-34:word:departure-gate; family: word_card -->
@@ -86,8 +86,8 @@ We need ___ train service. → **another** · other · others
 **8 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-34:i06; family: context_gap_grammar -->
 We use ___ departure gate. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **9 · Картка слова — travel date**
 <!-- interaction_id: en:lesson-22:session-34:word:travel-date; family: word_card -->
@@ -106,8 +106,8 @@ We use ___ departure gate. → **another** · other · others
 **12 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-34:i09; family: context_gap_grammar -->
 I need ___ travel date. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **13 · Картка слова — seat number**
 <!-- interaction_id: en:lesson-22:session-34:word:seat-number; family: word_card -->
@@ -126,8 +126,8 @@ I need ___ travel date. → **another** · other · others
 **16 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-34:i12; family: context_gap_grammar -->
 I have ___ seat number. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **17 · Поєднайте вислови з перекладом**
 <!-- interaction_id: en:lesson-22:session-34:i13; family: speed_match -->

@@ -9,7 +9,7 @@
 
 ### Відрекомендуватися
 
-Introduce yourself — відрекомендуватися, назвати себе новому знайомому. Introduce Anna — відрекомендувати Анну, а introduce yourself — відрекомендувати самого себе. Тут you звернене до однієї особи. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself.
+Introduce yourself — відрекомендуватися, назвати себе новому знайомому. Introduce Anna — відрекомендувати Анну, а introduce yourself — відрекомендувати самого себе. Тут you звернене до однієї особи. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний слово: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself.
 
 **Виберіть фразу для цієї ситуації.**
 

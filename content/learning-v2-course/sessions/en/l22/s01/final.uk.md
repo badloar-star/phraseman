@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I can advise him.**
-- ❌ I can advise he. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ I can advise his. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ I can advise he. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ I can advise his. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I want to congratulate her.**
-- ❌ I want to congratulate she. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ I want to congratulate hers. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ I want to congratulate she. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ I want to congratulate hers. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I do not want to disappoint you.**
-- ❌ I do not want to disappoint your. — *Після цього дієслова потрібна об’єктна форма займенника.*
-- ❌ I do not want to disappoint yours. — *Після цього дієслова потрібна об’єктна форма займенника.*
+- ❌ I do not want to disappoint your. — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- ❌ I do not want to disappoint yours. — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Виберіть, як тут сказати «його / йому».**
 <!-- interaction_id: en:lesson-22:session-01:i03; family: context_gap_grammar -->
 I can advise ___. → **him** · he · his
-- he — *Після цього дієслова потрібна об’єктна форма займенника.*
-- his — *Після цього дієслова потрібна об’єктна форма займенника.*
+- he — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- his — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **5 · Картка слова — congratulate**
 <!-- interaction_id: en:lesson-22:session-01:word:congratulate; family: word_card -->
@@ -86,8 +86,8 @@ I can advise ___. → **him** · he · his
 **8 · Виберіть, як тут сказати «її / їй».**
 <!-- interaction_id: en:lesson-22:session-01:i06; family: context_gap_grammar -->
 I want to congratulate ___. → **her** · she · hers
-- she — *Після цього дієслова потрібна об’єктна форма займенника.*
-- hers — *Після цього дієслова потрібна об’єктна форма займенника.*
+- she — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- hers — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **9 · Картка слова — annoy**
 <!-- interaction_id: en:lesson-22:session-01:word:annoy; family: word_card -->
@@ -106,8 +106,8 @@ I want to congratulate ___. → **her** · she · hers
 **12 · Виберіть, як тут сказати «їх / їм».**
 <!-- interaction_id: en:lesson-22:session-01:i09; family: context_gap_grammar -->
 I do not want to annoy ___. → **them** · they · their
-- they — *Після цього дієслова потрібна об’єктна форма займенника.*
-- their — *Після цього дієслова потрібна об’єктна форма займенника.*
+- they — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- their — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **13 · Картка слова — disappoint**
 <!-- interaction_id: en:lesson-22:session-01:word:disappoint; family: word_card -->
@@ -126,8 +126,8 @@ I do not want to annoy ___. → **them** · they · their
 **16 · Виберіть, як тут сказати «тебе / тобі».**
 <!-- interaction_id: en:lesson-22:session-01:i12; family: context_gap_grammar -->
 I do not want to disappoint ___. → **you** · your · yours
-- your — *Після цього дієслова потрібна об’єктна форма займенника.*
-- yours — *Після цього дієслова потрібна об’єктна форма займенника.*
+- your — *Після цього дієслова потрібна форма на зразок him, her, them.*
+- yours — *Після цього дієслова потрібна форма на зразок him, her, them.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-22:session-01:i13; family: speed_match -->

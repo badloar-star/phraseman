@@ -9,13 +9,13 @@
 
 ### Обрати іншу книгу
 
-У першій книзі немає потрібного рецепта, тому ви берете іншу. I use another recipe book — я користуюся іншою книгою рецептів. Після I use ставимо another recipe book. Another стосується всієї групи recipe book: ідеться про одну іншу книгу. Book залишаємо в однині. Додатковий артикль a перед another не потрібен.
+У першій книзі немає потрібного рецепта, тому ви берете іншу. I use another recipe book — я користуюся іншою книгою рецептів. Після I use ставимо another recipe book. Another стосується всієї групи recipe book: ідеться про одну іншу книгу. Book залишаємо у формі для одного. Додатковий a перед another не потрібен.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I use another recipe book.**
-- ❌ I use other recipe book. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ I use others recipe book. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ I use other recipe book. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ I use others recipe book. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We use another main ingredient.**
-- ❌ We use other main ingredient. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ We use others main ingredient. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ We use other main ingredient. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ We use others main ingredient. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Узгодити суму на покупки
 
-Ви з партнером переглядаєте суму на продукти й домовляєтеся про інший бюджет. We agree on another shopping budget — ми узгоджуємо інший бюджет на покупки. Після We agree зберігаємо on, потім ставимо another shopping budget. Another стосується одного нового бюджету, тому budget в однині. Shopping уточнює, для яких витрат цей бюджет.
+Ви з партнером переглядаєте суму на продукти й домовляєтеся про інший бюджет. We agree on another shopping budget — ми узгоджуємо інший бюджет на покупки. Після We agree зберігаємо on, потім ставимо another shopping budget. Another стосується одного нового бюджету, тому budget у формі для одного. Shopping уточнює, для яких витрат цей бюджет.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We agree on another shopping budget.**
-- ❌ We agree on other shopping budget. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ We agree on others shopping budget. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ We agree on other shopping budget. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ We agree on others shopping budget. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-36:i03; family: context_gap_grammar -->
 I use ___ recipe book. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **5 · Картка слова — main ingredient**
 <!-- interaction_id: en:lesson-22:session-36:word:main-ingredient; family: word_card -->
@@ -86,8 +86,8 @@ I use ___ recipe book. → **another** · other · others
 **8 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-36:i06; family: context_gap_grammar -->
 We use ___ main ingredient. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **9 · Картка слова — meal plan**
 <!-- interaction_id: en:lesson-22:session-36:word:meal-plan; family: word_card -->
@@ -106,8 +106,8 @@ We use ___ main ingredient. → **another** · other · others
 **12 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-36:i09; family: context_gap_grammar -->
 I need ___ meal plan. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **13 · Картка слова — shopping budget**
 <!-- interaction_id: en:lesson-22:session-36:word:shopping-budget; family: word_card -->
@@ -126,8 +126,8 @@ I need ___ meal plan. → **another** · other · others
 **16 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-36:i12; family: context_gap_grammar -->
 We agree on ___ shopping budget. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **17 · Поєднайте вислови з перекладом**
 <!-- interaction_id: en:lesson-22:session-36:i13; family: speed_match -->

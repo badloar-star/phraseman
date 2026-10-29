@@ -9,13 +9,13 @@
 
 ### Другой способ оплаты
 
-На сайте не проходит оплата вашей картой, и вы ищете другой способ. I need another payment method — мне нужен другой способ оплаты. После I need ставим another payment method: another означает один другой или ещё один вариант, а method остаётся в единственном числе. Если речь о нескольких способах, говорим other payment methods: other + множественное число. Здесь нужен один вариант, поэтому выбираем another.
+На сайте не проходит оплата вашей картой, и вы ищете другой способ. I need another payment method — мне нужен другой способ оплаты. После I need ставим another payment method: another означает один другой или ещё один вариант, а method остаётся в форме для одного. Если речь о нескольких способах, говорим other payment methods: other + форма для нескольких. Здесь нужен один вариант, поэтому выбираем another.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I need another payment method.**
-- ❌ I need other payment method. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ I need others payment method. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ I need other payment method. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ I need others payment method. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I need another meeting place.**
-- ❌ I need other meeting place. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ I need others meeting place. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ I need other meeting place. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ I need others meeting place. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I need another collection time.**
-- ❌ I need other collection time. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ I need others collection time. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ I need other collection time. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ I need others collection time. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Попросите ещё один вариант.**
 <!-- interaction_id: en:lesson-22:session-33:i03; family: context_gap_grammar -->
 I need ___ payment method. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **5 · Карточка слова — meeting place**
 <!-- interaction_id: en:lesson-22:session-33:word:meeting-place; family: word_card -->
@@ -86,8 +86,8 @@ I need ___ payment method. → **another** · other · others
 **8 · Попросите ещё один вариант.**
 <!-- interaction_id: en:lesson-22:session-33:i06; family: context_gap_grammar -->
 I need ___ meeting place. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **9 · Карточка слова — delivery date**
 <!-- interaction_id: en:lesson-22:session-33:word:delivery-date; family: word_card -->
@@ -106,8 +106,8 @@ I need ___ meeting place. → **another** · other · others
 **12 · Попросите ещё один вариант.**
 <!-- interaction_id: en:lesson-22:session-33:i09; family: context_gap_grammar -->
 I need ___ delivery date. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **13 · Карточка слова — collection time**
 <!-- interaction_id: en:lesson-22:session-33:word:collection-time; family: word_card -->
@@ -126,8 +126,8 @@ I need ___ delivery date. → **another** · other · others
 **16 · Попросите ещё один вариант.**
 <!-- interaction_id: en:lesson-22:session-33:i12; family: context_gap_grammar -->
 I need ___ collection time. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-22:session-33:i13; family: speed_match -->

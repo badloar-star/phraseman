@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I can calculate it.**
-- ❌ I can calculate its. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I can calculate it's. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I can calculate its. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I can calculate it's. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I can estimate it.**
-- ❌ I can estimate its. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I can estimate it's. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I can estimate its. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I can estimate it's. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Округлить число вниз
 
-В расчёте получилось 8,7, и вы предлагаете округлить это число вниз до целого — до 8. I can round it down — я могу округлить его вниз. После I can ставим round, затем it и down. It заменяет названное число. В выражении round down местоимение обязательно вставляем между round и down.
+В расчёте получилось 8,7, и вы предлагаете округлить это число вниз до целого — до 8. I can round it down — я могу округлить его вниз. После I can ставим round, затем it и down. It заменяет названное число. В выражении round down слово обязательно вставляем между round и down.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I can round it down.**
-- ❌ I can round its down. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I can round it's down. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I can round its down. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I can round it's down. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-08:i03; family: context_gap_grammar -->
 I can calculate ___. → **it** · its · it's
-- its — *После этого глагола нужна объектная форма местоимения.*
-- it's — *После этого глагола нужна объектная форма местоимения.*
+- its — *После этого глагола нужна форма вроде him, her, them.*
+- it's — *После этого глагола нужна форма вроде him, her, them.*
 
 **5 · Карточка слова — estimate**
 <!-- interaction_id: en:lesson-22:session-08:word:estimate; family: word_card -->
@@ -86,8 +86,8 @@ I can calculate ___. → **it** · its · it's
 **8 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-08:i06; family: context_gap_grammar -->
 I can estimate ___. → **it** · its · it's
-- its — *После этого глагола нужна объектная форма местоимения.*
-- it's — *После этого глагола нужна объектная форма местоимения.*
+- its — *После этого глагола нужна форма вроде him, her, them.*
+- it's — *После этого глагола нужна форма вроде him, her, them.*
 
 **9 · Карточка слова — add up**
 <!-- interaction_id: en:lesson-22:session-08:word:add-up; family: word_card -->
@@ -106,8 +106,8 @@ I can estimate ___. → **it** · its · it's
 **12 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-08:i09; family: context_gap_grammar -->
 I can add ___ up. → **them** · they · their
-- they — *После этого глагола нужна объектная форма местоимения.*
-- their — *После этого глагола нужна объектная форма местоимения.*
+- they — *После этого глагола нужна форма вроде him, her, them.*
+- their — *После этого глагола нужна форма вроде him, her, them.*
 
 **13 · Карточка слова — round down**
 <!-- interaction_id: en:lesson-22:session-08:word:round-down; family: word_card -->
@@ -126,8 +126,8 @@ I can add ___ up. → **them** · they · their
 **16 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-08:i12; family: context_gap_grammar -->
 I can round ___ down. → **it** · its · it's
-- its — *После этого глагола нужна объектная форма местоимения.*
-- it's — *После этого глагола нужна объектная форма местоимения.*
+- its — *После этого глагола нужна форма вроде him, her, them.*
+- it's — *После этого глагола нужна форма вроде him, her, them.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-22:session-08:i13; family: speed_match -->

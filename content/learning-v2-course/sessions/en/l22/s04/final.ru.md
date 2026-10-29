@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I want to support her.**
-- ❌ I want to support she. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I want to support hers. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I want to support she. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I want to support hers. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I want to praise him.**
-- ❌ I want to praise he. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I want to praise his. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I want to praise he. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I want to praise his. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I appreciate them.**
-- ❌ I appreciate they. — *После этого глагола нужна объектная форма местоимения.*
-- ❌ I appreciate their. — *После этого глагола нужна объектная форма местоимения.*
+- ❌ I appreciate they. — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ I appreciate their. — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Выберите, как здесь сказать «её / ей».**
 <!-- interaction_id: en:lesson-22:session-04:i03; family: context_gap_grammar -->
 I want to support ___. → **her** · she · hers
-- she — *После этого глагола нужна объектная форма местоимения.*
-- hers — *После этого глагола нужна объектная форма местоимения.*
+- she — *После этого глагола нужна форма вроде him, her, them.*
+- hers — *После этого глагола нужна форма вроде him, her, them.*
 
 **5 · Карточка слова — praise**
 <!-- interaction_id: en:lesson-22:session-04:word:praise; family: word_card -->
@@ -86,8 +86,8 @@ I want to support ___. → **her** · she · hers
 **8 · Выберите, как здесь сказать «его / ему».**
 <!-- interaction_id: en:lesson-22:session-04:i06; family: context_gap_grammar -->
 I want to praise ___. → **him** · he · his
-- he — *После этого глагола нужна объектная форма местоимения.*
-- his — *После этого глагола нужна объектная форма местоимения.*
+- he — *После этого глагола нужна форма вроде him, her, them.*
+- his — *После этого глагола нужна форма вроде him, her, them.*
 
 **9 · Карточка слова — compliment**
 <!-- interaction_id: en:lesson-22:session-04:word:compliment; family: word_card -->
@@ -106,8 +106,8 @@ I want to praise ___. → **him** · he · his
 **12 · Выберите, как здесь сказать «тебя / тебе».**
 <!-- interaction_id: en:lesson-22:session-04:i09; family: context_gap_grammar -->
 I want to compliment ___. → **you** · your · yours
-- your — *После этого глагола нужна объектная форма местоимения.*
-- yours — *После этого глагола нужна объектная форма местоимения.*
+- your — *После этого глагола нужна форма вроде him, her, them.*
+- yours — *После этого глагола нужна форма вроде him, her, them.*
 
 **13 · Карточка слова — appreciate**
 <!-- interaction_id: en:lesson-22:session-04:word:appreciate; family: word_card -->
@@ -126,8 +126,8 @@ I want to compliment ___. → **you** · your · yours
 **16 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-04:i12; family: context_gap_grammar -->
 I appreciate ___. → **them** · they · their
-- they — *После этого глагола нужна объектная форма местоимения.*
-- their — *После этого глагола нужна объектная форма местоимения.*
+- they — *После этого глагола нужна форма вроде him, her, them.*
+- their — *После этого глагола нужна форма вроде him, her, them.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-22:session-04:i13; family: speed_match -->

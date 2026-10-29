@@ -9,13 +9,13 @@
 
 ### Обрати тип номера
 
-Під час бронювання вам пропонують одномісний номер, але ви шукаєте сімейний. I want another room type — я хочу інший тип номера. Спочатку I want, потім another і група room type. Головним словом тут є type: ви обираєте один інший тип, тому використовуємо another та однину type.
+Під час бронювання вам пропонують одномісний номер, але ви шукаєте сімейний. I want another room type — я хочу інший тип номера. Спочатку I want, потім another і група room type. Головним словом тут є type: ви обираєте один інший тип, тому використовуємо another та форму для одного type.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I want another room type.**
-- ❌ I want other room type. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ I want others room type. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ I want other room type. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ I want others room type. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Обрати розмір ліжка
 
-У формі бронювання обрано малий розмір ліжка, і ви хочете замінити його іншим. I need another bed size — мені потрібен інший розмір ліжка. Після I need ставимо another bed size. Another стосується одного розміру — size. Слово bed уточнює, розмір чого потрібен; воно не робить size множиною.
+У формі бронювання обрано малий розмір ліжка, і ви хочете замінити його іншим. I need another bed size — мені потрібен інший розмір ліжка. Після I need ставимо another bed size. Another стосується одного розміру — size. Слово bed уточнює, розмір чого потрібен; через нього size не означає кілька розмірів.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I need another bed size.**
-- ❌ I need other bed size. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ I need others bed size. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ I need other bed size. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ I need others bed size. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have another breakfast time.**
-- ❌ We have other breakfast time. — *Тут один новий варіант: another + іменник в однині.*
-- ❌ We have others breakfast time. — *Тут один новий варіант: another + іменник в однині.*
+- ❌ We have other breakfast time. — *Тут один новий варіант: another + назва одного предмета.*
+- ❌ We have others breakfast time. — *Тут один новий варіант: another + назва одного предмета.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-35:i03; family: context_gap_grammar -->
 I want ___ room type. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **5 · Картка слова — bed size**
 <!-- interaction_id: en:lesson-22:session-35:word:bed-size; family: word_card -->
@@ -86,8 +86,8 @@ I want ___ room type. → **another** · other · others
 **8 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-35:i06; family: context_gap_grammar -->
 I need ___ bed size. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **9 · Картка слова — room rate**
 <!-- interaction_id: en:lesson-22:session-35:word:room-rate; family: word_card -->
@@ -106,8 +106,8 @@ I need ___ bed size. → **another** · other · others
 **12 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-35:i09; family: context_gap_grammar -->
 They offer ___ room rate. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **13 · Картка слова — breakfast time**
 <!-- interaction_id: en:lesson-22:session-35:word:breakfast-time; family: word_card -->
@@ -126,8 +126,8 @@ They offer ___ room rate. → **another** · other · others
 **16 · Ідеться ще про один варіант.**
 <!-- interaction_id: en:lesson-22:session-35:i12; family: context_gap_grammar -->
 We have ___ breakfast time. → **another** · other · others
-- other — *Тут один новий варіант: another + іменник в однині.*
-- others — *Тут один новий варіант: another + іменник в однині.*
+- other — *Тут один новий варіант: another + назва одного предмета.*
+- others — *Тут один новий варіант: another + назва одного предмета.*
 
 **17 · Поєднайте вислови з перекладом**
 <!-- interaction_id: en:lesson-22:session-35:i13; family: speed_match -->

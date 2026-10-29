@@ -9,13 +9,13 @@
 
 ### Обрати тарілки
 
-Ви купуєте тарілки й указуєте на ті, які можна мити в посудомийній машині. I want the dishwasher-safe ones — я хочу ті, які підходять для посудомийки. Після I want ставимо the, опис dishwasher-safe і ones. Ones замінює plates у множині. Опис перед ones уточнює, які саме тарілки вам потрібні.
+Ви купуєте тарілки й указуєте на ті, які можна мити в посудомийній машині. I want the dishwasher-safe ones — я хочу ті, які підходять для посудомийки. Після I want ставимо the, опис dishwasher-safe і ones. Ones замінює plates у формі для кількох. Опис перед ones уточнює, які саме тарілки вам потрібні.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I want the dishwasher-safe ones.**
-- ❌ I want the dishwasher-safe one. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I want the dishwasher-safe them. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I want the dishwasher-safe one. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I want the dishwasher-safe them. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Обрати миску
 
-Продавець показує вам дві миски. Ви віддаєте перевагу тій, на пакованні якої зазначено, що вона підходить для мікрохвильовки. I prefer the microwave-safe one — я віддаю перевагу тій, яка підходить для мікрохвильовки. Спочатку I prefer, потім the microwave-safe one. One замінює bowl в однині; microwave-safe зберігаємо перед one як опис обраної миски.
+Продавець показує вам дві миски. Ви віддаєте перевагу тій, на пакованні якої зазначено, що вона підходить для мікрохвильовки. I prefer the microwave-safe one — я віддаю перевагу тій, яка підходить для мікрохвильовки. Спочатку I prefer, потім the microwave-safe one. One замінює bowl у формі для одного; microwave-safe зберігаємо перед one як опис обраної миски.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I prefer the microwave-safe one.**
-- ❌ I prefer the microwave-safe ones. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I prefer the microwave-safe it. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I prefer the microwave-safe ones. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I prefer the microwave-safe it. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I like the absorbent ones.**
-- ❌ I like the absorbent one. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I like the absorbent them. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I like the absorbent one. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I like the absorbent them. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Ви обираєте тарілки для посудомийної машини.**
 <!-- interaction_id: en:lesson-22:session-27:i03; family: context_gap_grammar -->
 I want the dishwasher-safe ___. → **ones** · one · them
-- one — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- them — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- one — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- them — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **5 · Картка слова — microwave-safe**
 <!-- interaction_id: en:lesson-22:session-27:word:microwave-safe; family: word_card -->
@@ -86,8 +86,8 @@ I want the dishwasher-safe ___. → **ones** · one · them
 **8 · Ви обираєте одну миску для мікрохвильової печі.**
 <!-- interaction_id: en:lesson-22:session-27:i06; family: context_gap_grammar -->
 I prefer the microwave-safe ___. → **one** · ones · it
-- ones — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- it — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ones — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- it — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **9 · Картка слова — machine-washable**
 <!-- interaction_id: en:lesson-22:session-27:word:machine-washable; family: word_card -->
@@ -106,8 +106,8 @@ I prefer the microwave-safe ___. → **one** · ones · it
 **12 · Ви обираєте один светр для машинного прання.**
 <!-- interaction_id: en:lesson-22:session-27:i09; family: context_gap_grammar -->
 I want the machine-washable ___. → **one** · ones · it
-- ones — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- it — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ones — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- it — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **13 · Картка слова — absorbent**
 <!-- interaction_id: en:lesson-22:session-27:word:absorbent; family: word_card -->
@@ -126,8 +126,8 @@ I want the machine-washable ___. → **one** · ones · it
 **16 · Ви обираєте рушники, які добре вбирають вологу.**
 <!-- interaction_id: en:lesson-22:session-27:i12; family: context_gap_grammar -->
 I like the absorbent ___. → **ones** · one · them
-- one — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- them — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- one — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- them — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-22:session-27:i13; family: speed_match -->

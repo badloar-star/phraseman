@@ -9,13 +9,13 @@
 
 ### Обрати куртку з капюшоном
 
-Продавець показує куртки, і ви обираєте одну з капюшоном. I want the hooded one — я хочу ту, що з капюшоном. Після I want ставимо the, опис hooded і one замість jacket. One замінює вже названу річ в однині; якби обирали кілька курток, jackets замінили б на ones. Опис залишається перед one або ones. Тут one допомагає не повторювати слово jacket.
+Продавець показує куртки, і ви обираєте одну з капюшоном. I want the hooded one — я хочу ту, що з капюшоном. Після I want ставимо the, опис hooded і one замість jacket. One замінює вже названу річ у формі для одного; якби обирали кілька курток, jackets замінили б на ones. Опис залишається перед one або ones. Тут one допомагає не повторювати слово jacket.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I want the hooded one.**
-- ❌ I want the hooded ones. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I want the hooded it. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I want the hooded ones. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I want the hooded it. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Обрати штори з візерунком
 
-Ви порівнюєте однотонні штори зі шторами з візерунком і вказуєте на другі. I like the patterned ones — мені подобаються ті, що з візерунком. Спочатку I like, потім the patterned ones. Ones замінює curtains у множині. Patterned зберігаємо перед ones: це опис обраних штор.
+Ви порівнюєте однотонні штори зі шторами з візерунком і вказуєте на другі. I like the patterned ones — мені подобаються ті, що з візерунком. Спочатку I like, потім the patterned ones. Ones замінює curtains у формі для кількох. Patterned зберігаємо перед ones: це опис обраних штор.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I like the patterned ones.**
-- ❌ I like the patterned one. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I like the patterned them. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I like the patterned one. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I like the patterned them. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Відмовитися від обтислих джинсів
 
-Продавець пропонує обтислі джинси, але вам не подобається такий крій. I do not want the tight-fitting ones — я не хочу ті, що облягають фігуру. Спочатку I do not want — відмова, потім the tight-fitting ones. Ones замінює jeans: в англійській це слово у множині навіть для однієї пари. Опис tight-fitting ставимо перед ones.
+Продавець пропонує обтислі джинси, але вам не подобається такий крій. I do not want the tight-fitting ones — я не хочу ті, що облягають фігуру. Спочатку I do not want — відмова, потім the tight-fitting ones. Ones замінює jeans: в англійській це слово у формі для кількох навіть для однієї пари. Опис tight-fitting ставимо перед ones.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **I do not want the tight-fitting ones.**
-- ❌ I do not want the tight-fitting one. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- ❌ I do not want the tight-fitting them. — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ❌ I do not want the tight-fitting one. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- ❌ I do not want the tight-fitting them. — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Ви обираєте одну куртку з кількох.**
 <!-- interaction_id: en:lesson-22:session-25:i03; family: context_gap_grammar -->
 I want the hooded ___. → **one** · ones · it
-- ones — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- it — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ones — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- it — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **5 · Картка слова — patterned**
 <!-- interaction_id: en:lesson-22:session-25:word:patterned; family: word_card -->
@@ -86,8 +86,8 @@ I want the hooded ___. → **one** · ones · it
 **8 · Ви обираєте штори.**
 <!-- interaction_id: en:lesson-22:session-25:i06; family: context_gap_grammar -->
 I like the patterned ___. → **ones** · one · them
-- one — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- them — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- one — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- them — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **9 · Картка слова — loose-fitting**
 <!-- interaction_id: en:lesson-22:session-25:word:loose-fitting; family: word_card -->
@@ -106,8 +106,8 @@ I like the patterned ___. → **ones** · one · them
 **12 · Ви порівнюєте сорочки й обираєте одну.**
 <!-- interaction_id: en:lesson-22:session-25:i09; family: context_gap_grammar -->
 I prefer the loose-fitting ___. → **one** · ones · it
-- ones — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- it — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- ones — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- it — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **13 · Картка слова — tight-fitting**
 <!-- interaction_id: en:lesson-22:session-25:word:tight-fitting; family: word_card -->
@@ -126,8 +126,8 @@ I prefer the loose-fitting ___. → **one** · ones · it
 **16 · Ви порівнюєте джинси.**
 <!-- interaction_id: en:lesson-22:session-25:i12; family: context_gap_grammar -->
 I do not want the tight-fitting ___. → **ones** · one · them
-- one — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
-- them — *У цій ситуації назву речі замінюємо one для однини або ones для множини.*
+- one — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
+- them — *У цій ситуації назву речі замінюємо one для однієї речі або ones для кількох.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-22:session-25:i13; family: speed_match -->

@@ -9,13 +9,13 @@
 
 ### Выбрать другой поезд
 
-Ваш поезд отменили, и вы с другом ищете другой рейс в расписании. We need another train service — нам нужен другой железнодорожный рейс. После We need ставим another train service. Another указывает на один другой вариант, поэтому service в единственном числе. Train уточняет, что рейс железнодорожный.
+Ваш поезд отменили, и вы с другом ищете другой рейс в расписании. We need another train service — нам нужен другой железнодорожный рейс. После We need ставим another train service. Another указывает на один другой вариант, поэтому service в форме для одного. Train уточняет, что рейс железнодорожный.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We need another train service.**
-- ❌ We need other train service. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ We need others train service. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ We need other train service. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ We need others train service. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Изменить выход на посадку
 
-В аэропорту поменяли выход на посадку для вашего рейса. Вы объясняете спутнику, почему идёте к другому выходу. We use another departure gate — мы пользуемся другим выходом на посадку. После We use идёт another departure gate. Another относится к одному выходу — gate; departure уточняет его назначение. Дополнительный артикль a перед another не ставим.
+В аэропорту поменяли выход на посадку для вашего рейса. Вы объясняете спутнику, почему идёте к другому выходу. We use another departure gate — мы пользуемся другим выходом на посадку. После We use идёт another departure gate. Another относится к одному выходу — gate; departure уточняет его назначение. Дополнительный a перед another не ставим.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We use another departure gate.**
-- ❌ We use other departure gate. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ We use others departure gate. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ We use other departure gate. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ We use others departure gate. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I have another seat number.**
-- ❌ I have other seat number. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ I have others seat number. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ I have other seat number. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ I have others seat number. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-34:i03; family: context_gap_grammar -->
 We need ___ train service. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **5 · Карточка слова — departure gate**
 <!-- interaction_id: en:lesson-22:session-34:word:departure-gate; family: word_card -->
@@ -86,8 +86,8 @@ We need ___ train service. → **another** · other · others
 **8 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-34:i06; family: context_gap_grammar -->
 We use ___ departure gate. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **9 · Карточка слова — travel date**
 <!-- interaction_id: en:lesson-22:session-34:word:travel-date; family: word_card -->
@@ -106,8 +106,8 @@ We use ___ departure gate. → **another** · other · others
 **12 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-34:i09; family: context_gap_grammar -->
 I need ___ travel date. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **13 · Карточка слова — seat number**
 <!-- interaction_id: en:lesson-22:session-34:word:seat-number; family: word_card -->
@@ -126,8 +126,8 @@ I need ___ travel date. → **another** · other · others
 **16 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-34:i12; family: context_gap_grammar -->
 I have ___ seat number. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-22:session-34:i13; family: speed_match -->

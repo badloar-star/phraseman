@@ -9,13 +9,13 @@
 
 ### Выбрать тип номера
 
-При бронировании вам предлагают одноместный номер, но вы ищете семейный. I want another room type — я хочу другой тип номера. Сначала I want, затем another и группа room type. Главным словом здесь является type: вы выбираете один другой тип, поэтому используем another и единственное число type.
+При бронировании вам предлагают одноместный номер, но вы ищете семейный. I want another room type — я хочу другой тип номера. Сначала I want, затем another и группа room type. Главным словом здесь является type: вы выбираете один другой тип, поэтому используем another и форма для одного type.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I want another room type.**
-- ❌ I want other room type. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ I want others room type. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ I want other room type. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ I want others room type. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Выбрать размер кровати
 
-В форме бронирования выбран маленький размер кровати, и вы хотите заменить его другим. I need another bed size — мне нужен другой размер кровати. После I need ставим another bed size. Another относится к одному размеру — size. Слово bed уточняет, размер чего нужен; оно не делает size множественным числом.
+В форме бронирования выбран маленький размер кровати, и вы хотите заменить его другим. I need another bed size — мне нужен другой размер кровати. После I need ставим another bed size. Another относится к одному размеру — size. Слово bed уточняет, размер чего нужен; из-за него size не означает несколько размеров.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **I need another bed size.**
-- ❌ I need other bed size. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ I need others bed size. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ I need other bed size. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ I need others bed size. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -42,8 +42,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We have another breakfast time.**
-- ❌ We have other breakfast time. — *Здесь один новый вариант: another + существительное в единственном числе.*
-- ❌ We have others breakfast time. — *Здесь один новый вариант: another + существительное в единственном числе.*
+- ❌ We have other breakfast time. — *Здесь один новый вариант: another + название одного предмета.*
+- ❌ We have others breakfast time. — *Здесь один новый вариант: another + название одного предмета.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-35:i03; family: context_gap_grammar -->
 I want ___ room type. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **5 · Карточка слова — bed size**
 <!-- interaction_id: en:lesson-22:session-35:word:bed-size; family: word_card -->
@@ -86,8 +86,8 @@ I want ___ room type. → **another** · other · others
 **8 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-35:i06; family: context_gap_grammar -->
 I need ___ bed size. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **9 · Карточка слова — room rate**
 <!-- interaction_id: en:lesson-22:session-35:word:room-rate; family: word_card -->
@@ -106,8 +106,8 @@ I need ___ bed size. → **another** · other · others
 **12 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-35:i09; family: context_gap_grammar -->
 They offer ___ room rate. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **13 · Карточка слова — breakfast time**
 <!-- interaction_id: en:lesson-22:session-35:word:breakfast-time; family: word_card -->
@@ -126,8 +126,8 @@ They offer ___ room rate. → **another** · other · others
 **16 · Речь ещё об одном варианте.**
 <!-- interaction_id: en:lesson-22:session-35:i12; family: context_gap_grammar -->
 We have ___ breakfast time. → **another** · other · others
-- other — *Здесь один новый вариант: another + существительное в единственном числе.*
-- others — *Здесь один новый вариант: another + существительное в единственном числе.*
+- other — *Здесь один новый вариант: another + название одного предмета.*
+- others — *Здесь один новый вариант: another + название одного предмета.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-22:session-35:i13; family: speed_match -->

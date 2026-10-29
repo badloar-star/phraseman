@@ -14,8 +14,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Could I separate them?**
-- ❌ Could I separate they? — *После этого глагола нужна объектная форма местоимения.*
-- ❌ Could I separate their? — *После этого глагола нужна объектная форма местоимения.*
+- ❌ Could I separate they? — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ Could I separate their? — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -28,8 +28,8 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Could I divide it?**
-- ❌ Could I divide its? — *После этого глагола нужна объектная форма местоимения.*
-- ❌ Could I divide it's? — *После этого глагола нужна объектная форма местоимения.*
+- ❌ Could I divide its? — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ Could I divide it's? — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -37,13 +37,13 @@
 
 ### Сложить пустые коробки
 
-После распаковки осталось несколько пустых коробок, и вы предлагаете сложить их плоско. Could I flatten them? — Можно мне их сплющить? После Could I ставим начальную форму flatten, затем them вместо boxes. Коробок несколько, поэтому выбираем them. Местоимение стоит после глагола и называет предметы действия.
+После распаковки осталось несколько пустых коробок, и вы предлагаете сложить их плоско. Could I flatten them? — Можно мне их сплющить? После Could I ставим начальную форму flatten, затем them вместо boxes. Коробок несколько, поэтому выбираем them. Слово стоит после глагола и называет предметы действия.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Could I flatten them?**
-- ❌ Could I flatten they? — *После этого глагола нужна объектная форма местоимения.*
-- ❌ Could I flatten their? — *После этого глагола нужна объектная форма местоимения.*
+- ❌ Could I flatten they? — *После этого глагола нужна форма вроде him, her, them.*
+- ❌ Could I flatten their? — *После этого глагола нужна форма вроде him, her, them.*
 
 ---
 
@@ -66,8 +66,8 @@
 **4 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-06:i03; family: context_gap_grammar -->
 Could I separate ___? → **them** · they · their
-- they — *После этого глагола нужна объектная форма местоимения.*
-- their — *После этого глагола нужна объектная форма местоимения.*
+- they — *После этого глагола нужна форма вроде him, her, them.*
+- their — *После этого глагола нужна форма вроде him, her, them.*
 
 **5 · Карточка слова — divide**
 <!-- interaction_id: en:lesson-22:session-06:word:divide; family: word_card -->
@@ -86,8 +86,8 @@ Could I separate ___? → **them** · they · their
 **8 · Выберите, как здесь сказать «его / её» о предмете.**
 <!-- interaction_id: en:lesson-22:session-06:i06; family: context_gap_grammar -->
 Could I divide ___? → **it** · its · it's
-- its — *После этого глагола нужна объектная форма местоимения.*
-- it's — *После этого глагола нужна объектная форма местоимения.*
+- its — *После этого глагола нужна форма вроде him, her, them.*
+- it's — *После этого глагола нужна форма вроде him, her, them.*
 
 **9 · Карточка слова — organise**
 <!-- interaction_id: en:lesson-22:session-06:word:organise; family: word_card -->
@@ -106,8 +106,8 @@ Could I divide ___? → **it** · its · it's
 **12 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-06:i09; family: context_gap_grammar -->
 Could I organise ___? → **them** · they · their
-- they — *После этого глагола нужна объектная форма местоимения.*
-- their — *После этого глагола нужна объектная форма местоимения.*
+- they — *После этого глагола нужна форма вроде him, her, them.*
+- their — *После этого глагола нужна форма вроде him, her, them.*
 
 **13 · Карточка слова — flatten**
 <!-- interaction_id: en:lesson-22:session-06:word:flatten; family: word_card -->
@@ -126,8 +126,8 @@ Could I organise ___? → **them** · they · their
 **16 · Выберите, как здесь сказать «их / им».**
 <!-- interaction_id: en:lesson-22:session-06:i12; family: context_gap_grammar -->
 Could I flatten ___? → **them** · they · their
-- they — *После этого глагола нужна объектная форма местоимения.*
-- their — *После этого глагола нужна объектная форма местоимения.*
+- they — *После этого глагола нужна форма вроде him, her, them.*
+- their — *После этого глагола нужна форма вроде him, her, them.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-22:session-06:i13; family: speed_match -->

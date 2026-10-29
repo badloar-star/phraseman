@@ -17,23 +17,28 @@ const RECHECK_SURFACE = 'paywall_cloud_unconfirmed';
 /** Ожидание облака окном на неподтверждённом устройстве: дольше обычных 1,5 с, но меньше потолка облака в premium_guard (5 с). */
 export const PAYWALL_CLOUD_UNCONFIRMED_WAIT_MS = 3_000;
 
-/** Потолок ожидания окна: на неподтверждённом устройстве при снимке «free» ждём облако дольше. */
-export function paywallEntryWaitCeilingMs(cloudConfirmed: boolean | null, cached: 'free' | 'premium' | 'unknown'): number {
-  return cloudConfirmed !== true && cached === 'free' ? PAYWALL_CLOUD_UNCONFIRMED_WAIT_MS : PAYWALL_ENTRY_WAIT_CEILING_MS;
+/**
+ * Потолок ожидания окна: на неподтверждённом устройстве (false / null — отметку ещё читают) при снимке «free» ждём облако дольше.
+ * undefined — отметки нет (нет аккаунта): обычный потолок, как было до отметки.
+ */
+export function paywallEntryWaitCeilingMs(cloudConfirmed: boolean | null | undefined, cached: 'free' | 'premium' | 'unknown'): number {
+  const unconfirmed = cloudConfirmed === false || cloudConfirmed === null;
+  return unconfirmed && cached === 'free' ? PAYWALL_CLOUD_UNCONFIRMED_WAIT_MS : PAYWALL_ENTRY_WAIT_CEILING_MS;
 }
 
 /**
  * Отметка облака для текущего аккаунта. null — ещё читается с диска. После потолка ожидания окна (ceilingPassed)
  * «не прочитано» становится false: окно решает без отметки, а не ждёт вечно. Перечитывается, когда меняется доступ
  * (premium_guard мог поставить отметку во время проверки).
+ * undefined — аккаунта нет: отметку не передаём вовсе, окно решает как до неё (Ревизор по 5781370d8: не true — «подтверждено» тут неправда).
  */
-export function usePlusCloudConfirmedOnDevice(accessKey: string, ceilingPassed: boolean): boolean | null {
+export function usePlusCloudConfirmedOnDevice(accessKey: string, ceilingPassed: boolean): boolean | null | undefined {
   const stableId = captureAccountGeneration().stableId;
   const [confirmed, setConfirmed] = useState<boolean | null>(() => peekPlusCloudConfirmed(stableId));
   useEffect(() => {
     let alive = true;
     if (!stableId) {
-      console.log(`${LOG} аккаунта нет — облако ждать нечего, окно решает как раньше`); // guard-ok: ранний выход
+      console.log(`${LOG} аккаунта нет — отметка не передаётся (undefined), окно сразу и обычное, без ожидания облака`); // guard-ok: ранний выход
       return () => { alive = false; };
     }
     const peeked = peekPlusCloudConfirmed(stableId);
@@ -52,7 +57,7 @@ export function usePlusCloudConfirmedOnDevice(accessKey: string, ceilingPassed: 
     return () => { alive = false; };
   }, [stableId, accessKey]);
   // зачем: без аккаунта Plus «только в облаке» не бывает — ждать облако и менять вариант окна незачем (прежнее поведение)
-  if (!stableId) return true;
+  if (!stableId) return undefined;
   return confirmed === null && ceilingPassed ? false : confirmed;
 }
 

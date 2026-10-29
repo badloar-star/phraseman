@@ -1,6 +1,7 @@
 # Task packet: окно покупки не открывается раньше облака на новом устройстве (Plus только в облаке)
 
 Governance-ID: TG-FBD17ADB130A
+Governance-ID: TG-4A2E7985726A
 Status: В работе
 Owner: «5 · ВХОД»
 
@@ -49,3 +50,9 @@ premium_modal_entitlement_behavior, premium_guard*, plus_source_diagnostics. Т�
 ## Rollback
 
 Удалить отметку и вход `cloudConfirmedOnDevice` (без него решение = прежнее).
+
+## Дополнение (Ревизор по 5781370d8, 29.10)
+
+Без аккаунта (stableId нет) хук отдаёт undefined = «отметка не передана», прежнее поведение (а не true = «подтверждено», чтобы не
+путать). Потолок ожидания для undefined — обычные 1,5 с (3 с только при false/null). Тест хука без аккаунта: обычное окно сразу, без
+ожидания; лог совпадает с реальной веткой.

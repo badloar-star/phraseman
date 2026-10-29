@@ -6,13 +6,14 @@ import {
   type AccountGenerationToken,
 } from './account_generation';
 
-/** A single local calendar-month allowance shared by every card training mode for Free users. */
-export const MONTHLY_TRAINING_SESSION_LIMIT = 30;
+/** Retired monthly cap. Compatibility API preserves account guards; old storage is neither read nor erased. */
+// Owner 2026-10-28: 0 means no monthly cap. Energy remains the training gate.
+export const MONTHLY_TRAINING_SESSION_LIMIT: number = 0;
 export const MONTHLY_TRAINING_SESSION_STORAGE_PREFIX = 'training_sessions:v1:';
 
 export type MonthlyTrainingSessionMode = 'swipe' | 'blitz' | 'recall' | 'speaking';
 export type MonthlyTrainingSessionStatus = 'waiting' | 'allowed' | 'exhausted' | 'unavailable' | 'stale_account';
-export type MonthlyTrainingSessionBypass = 'idempotent' | 'local_storage' | null;
+export type MonthlyTrainingSessionBypass = 'idempotent' | 'local_storage' | 'unlimited' | null;
 
 export type MonthlyTrainingSessionQuotaResult = Readonly<{
   status: MonthlyTrainingSessionStatus;
@@ -164,6 +165,7 @@ export function createMonthlyTrainingSessionAccess(deps: Dependencies) {
         blitzLimitTrace('preview:stale_account', { phase: input.token.phase });
         return result('stale_account');
       }
+      if (MONTHLY_TRAINING_SESSION_LIMIT === 0) return result('allowed', 0, undefined, 'unlimited');
       let window: MonthlyWindow;
       try {
         window = resolveMonthlyTrainingSessionWindow(deps.now(), deps.timeZone());
@@ -181,6 +183,7 @@ export function createMonthlyTrainingSessionAccess(deps: Dependencies) {
 
     async consume(input: ConsumeInput): Promise<MonthlyTrainingSessionQuotaResult> {
       if (!input.receiptId.trim() || !validToken(deps, input.token)) return result('stale_account');
+      if (MONTHLY_TRAINING_SESSION_LIMIT === 0) return result('allowed', 0, undefined, 'unlimited');
       // Modes share the same allowance by product decision; the field documents the caller.
       void input.mode;
       const key = storageKey(input.token.stableId);

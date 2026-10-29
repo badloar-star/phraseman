@@ -107,7 +107,7 @@ describe('energy state v2', () => {
   // PM-083 (BIBLE «+1 за 10 минут»; D06): ленивый пересчёт по времени
   // последнего сохранения. Граница 599/600 секунд, остаток интервала,
   // полный запас без «копилки», перевод часов назад и долгий офлайн.
-  describe('PM-083 time-based recovery at +1 per 10 minutes', () => {
+  describe('PM-083 time-based recovery at +1 per 30 minutes', () => {
     const at = (current: number, credit = 0) => ({
       schemaVersion: 2 as const,
       current,
@@ -123,17 +123,17 @@ describe('energy state v2', () => {
       bonusExpiresAt: 0,
     }).state;
 
-    it('uses a 10-minute unit', () => {
-      expect(ENERGY_PASSIVE_UNIT_MS).toBe(600_000);
+    it('uses a 30-minute unit', () => {
+      expect(ENERGY_PASSIVE_UNIT_MS).toBe(1_800_000);
     });
 
-    it('adds nothing at 599 seconds and exactly +1 at 600 seconds', () => {
-      expect(settle(at(0), 599_000).current).toBe(0);
-      expect(settle(at(0), 600_000).current).toBe(1);
+    it('adds nothing at 1799 seconds and exactly +1 at 1800 seconds', () => {
+      expect(settle(at(0), 1_799_000).current).toBe(0);
+      expect(settle(at(0), 1_800_000).current).toBe(1);
     });
 
     it('keeps the remainder of the interval instead of rounding it away', () => {
-      const after = settle(at(1), 15 * 60_000);
+      const after = settle(at(1), 45 * 60_000);
       expect(after.current).toBe(2);
       expect(after.recoveryCreditMicrounits).toBe(500_000);
       expect(timeUntilEnergyAtLeast({
@@ -142,12 +142,12 @@ describe('energy state v2', () => {
         unitMs: ENERGY_PASSIVE_UNIT_MS,
         recoveryCreditMicrounits: after.recoveryCreditMicrounits,
         recoveryDivisionRemainder: after.recoveryDivisionRemainder,
-      })).toBe(5 * 60_000);
+      })).toBe(15 * 60_000);
     });
 
-    it('goes from 0 to 5 in 50 minutes and does not bank credit while full', () => {
-      expect(settle(at(0), 49 * 60_000).current).toBe(4);
-      const full = settle(at(0), 50 * 60_000);
+    it('goes from 0 to 5 in 150 minutes and does not bank credit while full', () => {
+      expect(settle(at(0), 149 * 60_000).current).toBe(4);
+      const full = settle(at(0), 150 * 60_000);
       expect(full.current).toBe(5);
       const later = settle(at(0), 8 * 60 * 60_000);
       expect(later).toMatchObject({ current: 5, recoveryCreditMicrounits: 0, recoveryDivisionRemainder: 0 });

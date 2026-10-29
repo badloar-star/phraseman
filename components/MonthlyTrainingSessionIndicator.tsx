@@ -61,6 +61,7 @@ export default function MonthlyTrainingSessionIndicator({
     });
   }, [lang, quota.limit, quota.status, quota.used]);
 
+  if (quota.limit <= 0) return null;
   return (
     <View testID={testID} accessibilityLiveRegion="polite" style={[styles.wrap, style]}>
       <Text style={textMetrics

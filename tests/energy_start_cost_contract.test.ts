@@ -16,7 +16,7 @@ describe('numeric energy v2 contract', () => {
     expect(contract).toContain('ENERGY_BONUS_CAPACITY_LIMIT = 0');
     expect(contract).toContain('ENERGY_ACTIVE_CAPACITY_LIMIT = ENERGY_PERMANENT_CAPACITY_LIMIT');
     // PM-083 (BIBLE «+1 за 10 минут»): прежние 6 минут отменены.
-    expect(contract).toContain('ENERGY_PASSIVE_UNIT_MS = 10 * 60 * 1000');
+    expect(contract).toContain('ENERGY_PASSIVE_UNIT_MS = 30 * 60 * 1000');
     expect(contract).toContain('ENERGY_VIDEO_UNIT_MS = 36 * 1000');
     expect(contract).toContain('flashcards: ENERGY_SESSION_COST');
     expect(contract).toContain('classic_lesson: ENERGY_SESSION_COST');

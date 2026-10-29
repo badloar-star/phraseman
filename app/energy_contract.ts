@@ -8,8 +8,8 @@
 
 export const ENERGY_SCHEMA_VERSION = 2 as const;
 /**
- * зачем (PM-081, BIBLE «Энергия: 5, −1 за начавшееся учебное занятие, +1 за
- * 10 минут, Plus не расходует»; решения D06/D07 — OWNER_FINAL): запас энергии
+ * Замок владельца 28.10: «Энергия: 5, −1 за начавшееся учебное занятие, +1 за
+ * 30 минут, Plus не расходует». Запас энергии
  * ровно 5 у всех. Бонусов cap/rate от оформления или видео нет. Потолок — одно
  * число, без формул и удалённой настройки.
  */
@@ -17,23 +17,22 @@ export const ENERGY_BASE_CAPACITY = 5 as const;
 /**
  * Максимальный ярус карточки профиля. Остался здесь только как граница яруса
  * (его читает profile_card_system) — к запасу энергии ярус больше НИЧЕГО не
- * добавляет (PM-081, D07).
+ * добавляет (замок владельца 28.10).
  */
 export const PROFILE_CARD_MAX_LEVEL = 5 as const;
-/** Постоянный потолок = базовый запас: прибавок сверху больше нет (PM-081). */
+/** Постоянный потолок = базовый запас: прибавок сверху больше нет (замок владельца 28.10). */
 export const ENERGY_PERMANENT_CAPACITY_LIMIT: number = ENERGY_BASE_CAPACITY;
 /** Retired energy gifts/boosters cannot add capacity or refill units. */
 export const ENERGY_BONUS_CAPACITY_LIMIT = 0 as const;
 export const ENERGY_ACTIVE_CAPACITY_LIMIT = ENERGY_PERMANENT_CAPACITY_LIMIT;
 /**
- * +1 энергия за каждые 10 минут; от нуля до полного запаса 5 — 50 минут.
+ * +1 энергия за каждые 30 минут; от нуля до полного запаса 5 — 150 минут.
  *
- * зачем (PM-083, BIBLE «+1 за 10 минут»; D06): прежние «6 минут» (под запас
- * 100) и «час» из ранних заметок — отменённые версии. Пересчёт ленивый: по
+ * Замок владельца 28.10 заменяет прежние интервалы. Пересчёт ленивый: по
  * времени последнего сохранения (energy_state_v2.settleEnergyState), без
  * таймеров и серверного крона на каждого пользователя.
  */
-export const ENERGY_PASSIVE_UNIT_MS = 10 * 60 * 1000;
+export const ENERGY_PASSIVE_UNIT_MS = 30 * 60 * 1000;
 export const ENERGY_VIDEO_UNIT_MS = 36 * 1000;
 export const ENERGY_MICRO_UNITS_PER_UNIT = 1_000_000 as const;
 

@@ -22,7 +22,7 @@ export type EnergyState = EnergyStateV2;
 
 export const ENERGY_STORAGE_KEY = 'energy_state'; // зачем: экспорт нужен dev-инструментам Dev Hub (app/dev_energy_tools.ts) — один ключ, без копии строки
 /** Локальный интервал восстановления: серверный конфиг больше не управляет энергией. */
-// PM-083 (BIBLE «+1 за 10 минут»): 0→5 занимает 50 минут.
+// Замок владельца 28.10: +1 за 30 минут, поэтому 0→5 занимает 150 минут.
 export const ENERGY_RECOVERY_INTERVAL_MS = ENERGY_PASSIVE_UNIT_MS;
 
 /** Fixed local max-energy value; remote/admin changes are not consulted. */
@@ -31,7 +31,7 @@ function MAX_ENERGY_VALUE(): number { return permanentEnergyCapacity({ base: 5 }
 /**
  * Постоянный потолок энергии — тот же, что в EnergyContext.
  *
- * зачем (PM-081, D06/D07): потолок ровно 5; оформление профиля его больше
+ * зачем (замок владельца 28.10: запас 5): потолок ровно 5; оформление профиля его больше
  * не меняет, поэтому чтение `profile_card_level` с диска убрано —
  * на каждом пересчёте энергии на одно обращение к хранилищу меньше.
  * Функция осталась async, чтобы не трогать сигнатуры вызывающих.

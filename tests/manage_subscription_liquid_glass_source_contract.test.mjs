@@ -404,7 +404,9 @@ test('keeps real renewal dates and lifetime notes hidden while store data is loa
   assert.match(textOf(byId(tree, 'manage-subscription-status-card')), /Разовая покупка/);
 });
 
-test('actual monthly quota engine gives exhausted Plus all four training modes without writes and keeps controls', async () => {
+// ЗАМОК ВЛАДЕЛЬЦА 28.10 (OWNER_LOCKS; tests/owner_locks_energy_30min_no_month_cap_2026_10_28.test.ts): месячного лимита тренировок нет
+// (LIMIT = 0). Старая запись «месяц исчерпан» больше никого не блокирует; без записей; чужой аккаунт по-прежнему отклоняется.
+test('actual monthly quota engine: no monthly cap for Free or Plus in all four modes, without writes, stale account still rejected', async () => {
   const quotaPath = 'app/monthly_training_sessions.ts';
   const quotaSource = fs.readFileSync(quotaPath, 'utf8');
   const quotaOutput = ts.transpileModule(quotaSource, { fileName: quotaPath, compilerOptions: { esModuleInterop: true, module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2020 } }).outputText;
@@ -429,12 +431,15 @@ test('actual monthly quota engine gives exhausted Plus all four training modes w
     now: () => now, timeZone: () => 'UTC', isCurrentAccount: () => current,
     storage: { getItem: async () => stored, setItem: async (_key, value) => { writes.push(value); stored = value; } },
   });
-  assert.equal((await access.preview({ token, accessResolved: true, hasPremiumAccess: false })).status, 'exhausted');
+  const freePreview = await access.preview({ token, accessResolved: true, hasPremiumAccess: false });
+  assert.deepEqual([freePreview.status, freePreview.used, freePreview.bypass], ['allowed', 0, 'unlimited']);
   const plusPreview = await access.preview({ token, accessResolved: true, hasPremiumAccess: true });
-  assert.deepEqual([plusPreview.status, plusPreview.used, plusPreview.bypass], ['allowed', 30, 'idempotent']);
-  for (const mode of ['swipe', 'blitz', 'recall', 'speaking']) {
-    const outcome = await access.consume({ token, accessResolved: true, hasPremiumAccess: true, receiptId: `plus-${mode}`, mode });
-    assert.deepEqual([outcome.status, outcome.used, outcome.bypass], ['allowed', 30, 'idempotent']);
+  assert.deepEqual([plusPreview.status, plusPreview.used, plusPreview.bypass], ['allowed', 0, 'unlimited']);
+  for (const hasPremiumAccess of [false, true]) {
+    for (const mode of ['swipe', 'blitz', 'recall', 'speaking']) {
+      const outcome = await access.consume({ token, accessResolved: true, hasPremiumAccess, receiptId: `${hasPremiumAccess ? 'plus' : 'free'}-${mode}`, mode });
+      assert.deepEqual([outcome.status, outcome.used, outcome.bypass], ['allowed', 0, 'unlimited']);
+    }
   }
   assert.equal(stored, original);
   assert.deepEqual(writes, []);

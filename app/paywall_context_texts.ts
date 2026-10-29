@@ -12,7 +12,7 @@
  */
 import type { PremiumContext } from './premium_context';
 import { REVENUE_DAILY_LIMITS, REVENUE_MONTHLY_LIMITS } from './revenue_daily_limits';
-import { MONTHLY_TRAINING_SESSION_LIMIT } from './monthly_training_sessions';
+
 import { FREE_SAVED_CARD_LIMIT } from './flashcards/free_limit';
 import { FREE_AI_MISTAKE_EXPLAINS_PER_DAY_DEFAULT } from './ai_mistake_explain_flags';
 
@@ -31,7 +31,7 @@ export type PaywallEntryFacts = Readonly<{ lessonNumber?: number | null; streakD
 const L = Object.freeze({
   mistakes: REVENUE_DAILY_LIMITS.mistake_practice_starts,
   cards: FREE_SAVED_CARD_LIMIT,
-  training: MONTHLY_TRAINING_SESSION_LIMIT,
+
   dialog: REVENUE_MONTHLY_LIMITS.ai_dialog_replies,
   voice: REVENUE_DAILY_LIMITS.speaking_attempts,
   speaking: REVENUE_DAILY_LIMITS.speaking_attempts,
@@ -83,8 +83,6 @@ const SESSION_COUNT: Forms = { ru: ['подход', 'подхода', 'подх�
 const SESSION_OF: Forms = { ru: ['подхода', 'подходов'], uk: ['підходу', 'підходів'], en: ['session', 'sessions'], es: ['sesión', 'sesiones'], 'pt-BR': ['sessão', 'sessões'], vi: ['lượt'], id: ['sesi'], tr: ['seans'], pl: ['podejścia', 'podejść'] };
 const PHRASE_COUNT: Forms = { ru: ['фраза', 'фразы', 'фраз'], uk: ['вислів', 'вислови', 'висловів'], en: ['phrase', 'phrases'], es: ['frase', 'frases'], 'pt-BR': ['frase', 'frases'], vi: ['cụm từ'], id: ['frasa'], tr: ['ifade'], pl: ['fraza', 'frazy', 'fraz'] };
 const PHRASE_OF: Forms = { ru: ['фразы', 'фраз'], uk: ['вислову', 'висловів'], en: ['phrase', 'phrases'], es: ['frase', 'frases'], 'pt-BR': ['frase', 'frases'], vi: ['cụm từ'], id: ['frasa'], tr: ['ifade'], pl: ['frazy', 'fraz'] };
-const TRAINING_COUNT: Forms = { ru: ['тренировка', 'тренировки', 'тренировок'], uk: ['тренування', 'тренування', 'тренувань'], en: ['practice session', 'practice sessions'], es: ['entrenamiento', 'entrenamientos'], 'pt-BR': ['treino', 'treinos'], vi: ['buổi luyện tập'], id: ['sesi latihan'], tr: ['antrenman'], pl: ['trening', 'treningi', 'treningów'] };
-const TRAINING_OF: Forms = { ru: ['тренировки', 'тренировок'], uk: ['тренування', 'тренувань'], en: ['practice session', 'practice sessions'], es: ['entrenamiento', 'entrenamientos'], 'pt-BR': ['treino', 'treinos'], vi: ['buổi luyện tập'], id: ['sesi latihan'], tr: ['antrenman'], pl: ['treningu', 'treningów'] };
 const REPLY_COUNT: Forms = { ru: ['ответ', 'ответа', 'ответов'], uk: ['відповідь', 'відповіді', 'відповідей'], en: ['reply', 'replies'], es: ['respuesta', 'respuestas'], 'pt-BR': ['resposta', 'respostas'], vi: ['câu trả lời'], id: ['balasan'], tr: ['yanıt'], pl: ['odpowiedź', 'odpowiedzi', 'odpowiedzi'] };
 const REPLY_OF: Forms = { ru: ['ответа', 'ответов'], uk: ['відповіді', 'відповідей'], en: ['reply', 'replies'], es: ['respuesta', 'respuestas'], 'pt-BR': ['resposta', 'respostas'], vi: ['câu trả lời'], id: ['balasan'], tr: ['yanıt'], pl: ['odpowiedzi', 'odpowiedzi'] };
 const VOICE_COUNT: Forms = { ru: ['реплика', 'реплики', 'реплик'], uk: ['репліка', 'репліки', 'реплік'], en: ['voice reply', 'voice replies'], es: ['respuesta por voz', 'respuestas por voz'], 'pt-BR': ['resposta por voz', 'respostas por voz'], vi: ['câu trả lời bằng giọng nói'], id: ['balasan suara'], tr: ['sesli yanıt'], pl: ['wypowiedź', 'wypowiedzi', 'wypowiedzi'] };
@@ -203,15 +201,15 @@ function buildTexts(): Readonly<Record<PaywallTextContext, Texts>> {
       pl: t('Skończyło się miejsce na karty', `Za darmo — ${n('pl', L.cards, PHRASE_COUNT)}. Z Plus zapisuj, ile chcesz.`, 'Własna baza kart bez limitu'),
     },
     flashcard_training: {
-      ru: t('Тренировки на месяц закончились', `Бесплатно — ${n('ru', L.training, TRAINING_COUNT)} в месяц. С Plus счётчика нет.`, 'Игровая тренировка сохранённых фраз'),
-      uk: t('Тренування на місяць закінчилися', `Безкоштовно — ${n('uk', L.training, TRAINING_COUNT)} на місяць. З Plus лічильника немає.`, 'Ігрове тренування збережених висловів'),
-      en: t('This month’s practice is used up', `Free: ${n('en', L.training, TRAINING_COUNT)} a month. With Plus there’s no counter.`, 'Game-style practice of saved phrases'),
-      es: t('Se acabaron los entrenamientos del mes', `Gratis: ${n('es', L.training, TRAINING_COUNT)} al mes. Con Plus no hay contador.`, 'Práctica en forma de juego con tus frases'),
-      'pt-BR': t('Os treinos do mês acabaram', `Grátis: ${n('pt-BR', L.training, TRAINING_COUNT)} por mês. Com o Plus não há contador.`, 'Treino em forma de jogo com suas frases'),
-      vi: t('Hết lượt luyện tập tháng này', `Miễn phí: ${n('vi', L.training, TRAINING_COUNT)} mỗi tháng. Với Plus không giới hạn.`, 'Luyện cụm từ đã lưu như chơi game'),
-      id: t('Latihan bulan ini sudah habis', `Gratis: ${n('id', L.training, TRAINING_COUNT)} per bulan. Dengan Plus tanpa batas.`, 'Latihan frasa tersimpan ala permainan'),
-      tr: t('Bu ayın antrenmanları bitti', `Ücretsiz: ayda ${n('tr', L.training, TRAINING_COUNT)}. Plus ile sayaç yok.`, 'Kaydedilen ifadelerle oyun gibi antrenman'),
-      pl: t('Treningi na ten miesiąc się skończyły', `Za darmo — ${n('pl', L.training, TRAINING_COUNT)} miesięcznie. Z Plus nie ma licznika.`, 'Trening zapisanych zwrotów w formie gry'),
+      'ru': t("Тренируйся без пауз", "Тренировки без месячного лимита. Без Plus нужна энергия; с Plus она не расходуется.", 'Игровая тренировка сохранённых фраз'),
+      'uk': t("Тренуйся без пауз", "Тренування без місячного ліміту. На звичайному акаунті потрібна енергія; з Plus вона не витрачається.", 'Ігрове тренування збережених висловів'),
+      'es': t("Entrena sin pausas", "Entrenamientos sin límite mensual. La cuenta gratuita usa energía; con Plus no se gasta.", 'Práctica en forma de juego con tus frases'),
+      'en': t("Practice without pauses", "No monthly training limit. Free accounts use energy; Plus does not.", 'Game-style practice of saved phrases'),
+      'pt-BR': t("Treine sem pausas", "Treinos sem limite mensal. A conta gratuita usa energia; com Plus ela não é gasta.", 'Treino em forma de jogo com suas frases'),
+      'vi': t("Luyện tập không gián đoạn", "Luyện tập không giới hạn theo tháng. Tài khoản miễn phí dùng năng lượng; Plus không tiêu hao năng lượng.", 'Luyện cụm từ đã lưu như chơi game'),
+      'id': t("Berlatih tanpa jeda", "Latihan tanpa batas bulanan. Akun gratis menggunakan energi; Plus tidak.", 'Latihan frasa tersimpan ala permainan'),
+      'tr': t("Ara vermeden çalış", "Antrenmanlarda aylık sınır yok. Ücretsiz hesaplar enerji kullanır; Plus kullanmaz.", 'Kaydedilen ifadelerle oyun gibi antrenman'),
+      'pl': t("Ćwicz bez przerw", "Treningi bez limitu miesięcznego. Darmowe konta zużywają energię; Plus jej nie zużywa.", 'Trening zapisanych zwrotów w formie gry'),
     },
     flashcard_create: {
       ru: t('Добавь свою фразу', 'Услышал в сериале или на работе — сохрани, и приложение будет её тренировать.', 'Свои фразы с переводом и озвучкой'),
@@ -561,7 +559,7 @@ export function paywallContextPill(ctx: PaywallTextContext, lang: PaywallTextLan
     case 'flashcard_limit':
       return usedOf(lang, L.cards, PHRASE_OF);
     case 'flashcard_training':
-      return usedOf(lang, L.training, TRAINING_OF);
+      return ''; // No monthly training counter (owner 2026-10-28).
     case 'streak':
       return streak
         ? pick({ ru: `Серия ${n('ru', streak, DAY_COUNT)}`, uk: `Серія ${n('uk', streak, DAY_COUNT)}`, en: `${n('en', streak, DAY_COUNT)} streak`, es: `Racha de ${n('es', streak, DAY_COUNT)}`, 'pt-BR': `Sequência de ${n('pt-BR', streak, DAY_COUNT)}`, vi: `Chuỗi ${n('vi', streak, DAY_COUNT)}`, id: `Rangkaian ${n('id', streak, DAY_COUNT)}`, tr: `${n('tr', streak, DAY_COUNT)} seri`, pl: `Seria ${n('pl', streak, DAY_COUNT)}` })

@@ -88,9 +88,13 @@ describe('контракт контекста окна Plus (утверждён�
     expect(paywallContextHeadline('streak', 'en' as never, paywallEntryFactsFromParams({ streak: '1' })).pill).toBe('1 day streak');
   });
 
+  it('retired monthly training limit has no exhausted pill', () => {
+    expect(paywallContextHeadline('flashcard_training', 'ru' as never).pill || '').toBe('');
+  });
+
   it('входы-лимиты имеют пилюлю на всех 9 языках', () => {
     const limitContexts = ['no_energy', 'ai_explain', 'course_after_lesson3', 'mistake_practice', 'flashcard_limit',
-      'flashcard_training', 'streak', 'dialog_limit', 'ai_voice_input', 'speaking', 'free_lessons_complete',
+      'streak', 'dialog_limit', 'ai_voice_input', 'speaking', 'free_lessons_complete',
       'intro_ended', 'premium_expired', 'vip_expired', 'referral_ended', 'language_add', 'dialog_locked_level', 'lesson_b1'];
     const missing: string[] = [];
     for (const ctx of limitContexts) {

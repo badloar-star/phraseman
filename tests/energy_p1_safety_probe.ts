@@ -55,8 +55,16 @@ assert.ok(context.includes('buildEnergyRecoveryRateSegments'), 'recovery segment
 const refillStart = context.indexOf('const refillToMax =');
 const refillEnd = context.indexOf('const formattedTime =', refillStart);
 const refillBlock = context.slice(refillStart, refillEnd);
-assert.ok(refillBlock.indexOf('readBonusEnergyForMutation') > refillBlock.indexOf('withStorageLock'), 'Premium refill reads bonus before storage lock');
-assert.ok(refillBlock.indexOf('AsyncStorage.multiSet') > refillBlock.indexOf('readBonusEnergyForMutation'), 'Premium refill write is not atomic with bonus read');
+// зачем (координатор 12.10 → проба 29.10): запись пополнения Plus вынесена в app/energy_premium_refill.ts (persistPremiumEnergyRefill,
+// lease держателя замка аккаунта). Порядок проверяем там, где он реально живёт: замок аккаунта → замок хранилища → чтение бонуса → запись.
+assert.ok(refillBlock.includes('persistPremiumEnergyRefill('), 'refillToMax must delegate the write to persistPremiumEnergyRefill');
+const premiumRefill = read('app/energy_premium_refill.ts');
+const refillFnStart = premiumRefill.indexOf('export async function persistPremiumEnergyRefill');
+const refillFn = premiumRefill.slice(refillFnStart);
+assert.ok(refillFnStart >= 0, 'persistPremiumEnergyRefill missing');
+assert.ok(refillFn.indexOf('withStorageLock') > refillFn.indexOf('withAccountTransitionLock'), 'Premium refill takes the storage lock outside the account lock');
+assert.ok(refillFn.indexOf('readBonusEnergyForMutation') > refillFn.indexOf('withStorageLock'), 'Premium refill reads bonus before storage lock');
+assert.ok(refillFn.indexOf('AsyncStorage.multiSet') > refillFn.indexOf('readBonusEnergyForMutation'), 'Premium refill write is not atomic with bonus read');
 for (const marker of [
   'lastRecoveryRef.current = state.lastSettledAt;',
   'recoveryCreditMicrounitsRef.current = 0;',

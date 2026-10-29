@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import { CONTEXT_BENEFITS, getHeroPlannedCopy, getPaywallCopy } from '../app/paywall_copy';
 import { REVENUE_DAILY_LIMITS } from '../app/revenue_daily_limits';
-import { MONTHLY_TRAINING_SESSION_LIMIT } from '../app/monthly_training_sessions';
+
 import type { Lang } from '../constants/i18n';
 import { ONBOARDING_COPY_SOURCE } from './helpers/onboarding_copy_source';
 
@@ -47,7 +47,7 @@ describe('дневные лимиты обычного аккаунта — пр
     // dialog_limit — МЕСЯЧНЫЙ лимит (D111), сторожится ai_dialog_paywall_truth_contract.
     ['speaking', REVENUE_DAILY_LIMITS.speaking_attempts, 'в день'],
     ['ai_voice_input', REVENUE_DAILY_LIMITS.speaking_attempts, 'в день'],
-    ['flashcard_training', MONTHLY_TRAINING_SESSION_LIMIT, 'в месяц'],
+
   ] as const)('%s называет реальный лимит (%d) во всех 9 локалях', (context, limit, periodRu) => {
     const copy = getPaywallCopy(context);
     const planned = getHeroPlannedCopy(context, 0);
@@ -66,7 +66,7 @@ describe('дневные лимиты обычного аккаунта — пр
 
   test('числа лимитов в тексте совпадают с гейтами (один источник)', () => {
     // зачем (D152): лимит тренировок — месячный счётчик monthly_training_sessions; текст берёт число оттуда.
-    expect(read('app/paywall_copy.ts')).toContain("import { MONTHLY_TRAINING_SESSION_LIMIT } from './monthly_training_sessions';");
+    expect(getPaywallCopy('flashcard_training').subtitleRu).toContain('без месячного лимита');
     // зачем (D111): лимит ответов в диалогах — месячный; сервер держит его в DIALOG_FREE_MONTHLY_REPLIES_DEFAULT.
     expect(read('functions/src/openai_dialog_model_config.ts')).toContain(`DIALOG_FREE_MONTHLY_REPLIES_DEFAULT = ${REVENUE_DAILY_LIMITS.ai_dialog_replies}`);
     expect(read('app/paywall_copy.ts')).toContain("from './revenue_daily_limits'");

@@ -22,7 +22,7 @@ new Function('require', 'module', 'exports', outputText)((id) => {
   if (!(id in stubs)) throw new Error(`unexpected import ${id}`);
   return stubs[id];
 }, mod, mod.exports);
-const { createMonthlyTrainingSessionAccess, MONTHLY_TRAINING_SESSION_LIMIT } = mod.exports;
+const { createMonthlyTrainingSessionAccess } = mod.exports;
 
 function memoryStorage() {
   const map = new Map();
@@ -41,21 +41,21 @@ const deps = (storage) => ({
   storage,
 });
 
-test('Free is capped at the monthly limit', async () => {
+test('Free has no monthly cap', async () => {
   const storage = memoryStorage();
   const access = createMonthlyTrainingSessionAccess(deps(storage));
-  for (let i = 0; i < MONTHLY_TRAINING_SESSION_LIMIT; i += 1) {
+  for (let i = 0; i < 100; i += 1) {
     const r = await access.consume({ token, receiptId: `free-${i}`, mode: 'swipe' });
     assert.equal(r.status, 'allowed');
   }
   const over = await access.consume({ token, receiptId: 'free-over', mode: 'swipe' });
-  assert.equal(over.status, 'exhausted');
+  assert.equal(over.status, 'allowed');
 });
 
 test('Plus is never exhausted and does not spend the shared monthly allowance', async () => {
   const storage = memoryStorage();
   const access = createMonthlyTrainingSessionAccess(deps(storage));
-  for (let i = 0; i < MONTHLY_TRAINING_SESSION_LIMIT + 20; i += 1) {
+  for (let i = 0; i < 120; i += 1) {
     const r = await access.consume({ token, receiptId: `plus-${i}`, mode: 'blitz', hasPremiumAccess: true });
     assert.equal(r.status, 'allowed', `Plus start #${i + 1}`);
   }
@@ -64,13 +64,13 @@ test('Plus is never exhausted and does not spend the shared monthly allowance', 
   assert.equal(preview.status, 'allowed');
 });
 
-test('Plus preview stays allowed even when the Free allowance is already used up', async () => {
+test('Free and Plus remain allowed after repeated training starts', async () => {
   const storage = memoryStorage();
   const access = createMonthlyTrainingSessionAccess(deps(storage));
-  for (let i = 0; i < MONTHLY_TRAINING_SESSION_LIMIT; i += 1) {
+  for (let i = 0; i < 100; i += 1) {
     await access.consume({ token, receiptId: `mixed-${i}`, mode: 'recall' });
   }
-  assert.equal((await access.preview({ token })).status, 'exhausted');
+  assert.equal((await access.preview({ token })).status, 'allowed');
   assert.equal((await access.preview({ token, hasPremiumAccess: true })).status, 'allowed');
   assert.equal((await access.consume({ token, receiptId: 'mixed-plus', mode: 'recall', hasPremiumAccess: true })).status, 'allowed');
 });

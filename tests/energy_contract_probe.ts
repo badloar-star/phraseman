@@ -14,7 +14,7 @@ import {
 assert.equal(ENERGY_BASE_CAPACITY, 5);
 assert.equal(ENERGY_BONUS_CAPACITY_LIMIT, 0);
 assert.equal(ENERGY_ACTIVE_CAPACITY_LIMIT, 5);
-assert.equal(ENERGY_PASSIVE_UNIT_MS, 600_000);
+assert.equal(ENERGY_PASSIVE_UNIT_MS, 1_800_000);
 assert.equal(ENERGY_VIDEO_UNIT_MS, 36_000);
 assert.equal(ENERGY_MICRO_UNITS_PER_UNIT, 1_000_000);
 

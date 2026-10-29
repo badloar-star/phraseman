@@ -16,7 +16,7 @@ describe('Высота сцены Главной = высота сцены «У�
   it('«Уроки» (Сезон, страница вкладки) держат ту же константу как minHeight обложки', () => {
     const season = readSource('components/learning-v2/season/SeasonCourseView.tsx');
     expect(season).toContain('heroTall: { minHeight: SCENE_HERO_HEIGHT_DP,');
-    expect(SCENE_HERO_HEIGHT_DP).toBe(412); // зачем: два кандидата для макета (392 как «Уроки» / 412 как эталон approved/scene), выбор владельца
+    expect(SCENE_HERO_HEIGHT_DP).toBe(448); // 404 (прежнее место карточки) + 44 (её заголовок) // зачем: два кандидата для макета (392 как «Уроки» / 412 как эталон approved/scene), выбор владельца
   });
 
   it('Главная берёт высоту только из homeSceneStageHeight, без вычитаний и ужатия под карточки', () => {
@@ -25,10 +25,11 @@ describe('Высота сцены Главной = высота сцены «У�
     expect(readSource('components/home/v2/scene/home_scene_fit.ts')).not.toMatch(/Math\.min\(wanted|EDGE_SHIFT/);
   });
 
-  it('герой Главной 280 dp, справа 20, по центру, текст поверх (выбор владельца 29.10)', () => {
+  it('герой Главной 200 dp на прежнем месте 2.0.3 (справа −14), текст поверх (слово владельца 29.10)', () => {
     const stage = readSource('components/home/v2/scene/HomeSceneStage.tsx');
-    expect(stage).toContain('const HERO = 280;');
-    expect(stage).toContain('const HERO_RIGHT = 20;');
+    expect(stage).toContain('const HERO = 200;');
+    expect(stage).toContain('const HERO_RIGHT = -14;');
+    expect(stage).toContain('const HERO_CENTERED = false;');
     expect(stage).toContain('const HERO_OVER_TEXT = true;');
     expect(stage).toContain('const HERO_PAD = 0;');
   });

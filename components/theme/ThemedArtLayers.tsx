@@ -21,9 +21,11 @@ type Props = Readonly<{
   style?: StyleProp<ViewStyle>;
   contentFit?: 'contain' | 'cover';
   contentPosition?: 'center' | 'right';
+  /** false — слой accent рисуется своими цветами арта, без окраски цветом темы (герой Главной, слово владельца 29.10). */
+  tintAccent?: boolean;
 }>;
 
-function ThemedArtLayersImpl({ source, accent = null, style, contentFit = 'contain', contentPosition = 'center' }: Props) {
+function ThemedArtLayersImpl({ source, accent = null, style, contentFit = 'contain', contentPosition = 'center', tintAccent = true }: Props) {
   const { liquidGlassThemeId, liquidGlassAppearance, liquidGlassIntensity } = useTheme();
   // Палитра уже кэширована по теме+оформлению+шагу ползунка — тот же объект, без расчётов.
   const tint = artAccentTint(liquidGlassTokens(liquidGlassThemeId, { level: 'calm', appearance: liquidGlassAppearance, intensity: liquidGlassIntensity }), liquidGlassAppearance); // зачем (координатор 15.10, предложение А): см. art_tint.ts
@@ -42,7 +44,7 @@ function ThemedArtLayersImpl({ source, accent = null, style, contentFit = 'conta
   return (
     <View style={style} pointerEvents="none">
       <Image source={source} style={StyleSheet.absoluteFill} contentFit={contentFit} contentPosition={contentPosition} transition={0} accessible={false} />
-      {accent ? <Image source={accent} style={StyleSheet.absoluteFill} contentFit={contentFit} contentPosition={contentPosition} transition={0} tintColor={tint} accessible={false} /> : null}
+      {accent ? <Image source={accent} style={StyleSheet.absoluteFill} contentFit={contentFit} contentPosition={contentPosition} transition={0} tintColor={tintAccent ? tint : undefined} accessible={false} /> : null}
     </View>
   );
 }

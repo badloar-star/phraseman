@@ -7,6 +7,7 @@
 // тоже из scenePalette). idPrefix разводит id градиентов, когда две подложки на экране. Касаний не ловит, заполняет родителя (absoluteFill).
 // ═══════════════════════════════════════════════════════════════════════════
 import { LinearGradient } from 'expo-linear-gradient';
+import { mixPremiumHex } from '../../../constants/premiumThemeVisualSpecs'; // зачем: тон середины для низа без затемнения
 import React, { memo, useCallback, useState } from 'react';
 import { PixelRatio, StyleSheet, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import { logSceneEdge } from '../../home/v2/scene/scene_theme_log';
@@ -37,7 +38,7 @@ function DialogsSceneBackdrop({ colors: c, idPrefix }: Props) {
       {palette ? (
         <SceneBackdrop palette={palette} idPrefix={idPrefix} />
       ) : (
-        <LinearGradient pointerEvents="none" colors={[c.top, c.bottom]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill} />
+        <LinearGradient pointerEvents="none" colors={[c.top, mixPremiumHex(c.top, c.bottom, 0.5), mixPremiumHex(c.top, c.bottom, 0.5)]} locations={[0, 0.5, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill} />
       )}
     </View>
   );

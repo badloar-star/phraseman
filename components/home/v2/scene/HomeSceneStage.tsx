@@ -52,11 +52,13 @@ const TITLE_LONG_CHARS = 18;
 /** Высота сцены варианта 2 на экране 844; на крупном шрифте сцена растёт, а не режет текст. */
 export const HOME_SCENE_STAGE_MIN_HEIGHT = 392;
 /** Панель «Сегодня» наезжает на сцену (вариант 2: −22). */
-export const HOME_SCENE_PANEL_OVERLAP = 0; // зачем: карточка «Сегодня» не заезжает на сцену (скругление низа видно целиком); зазор до неё — естественный шаг V2.gap
+export const HOME_SCENE_PANEL_OVERLAP = 44; // зачем (слово владельца 29.10): край сцены заходит под карточку «Сегодня», под её заголовок (карточка поверх сцены)
 /** Герой варианта 2: 160 × 160, справа −14, на 52 ниже часов. */
-const HERO = 280; // выбор владельца на макете 29.10: 280 dp (эталон approved/scene был 160)
+const HERO = 200; // слово владельца 29.10 (после макета): 200 dp на прежнем месте, как на 2.0.3 (не 280, не мелко в углу)
 /** Правый отступ героя: эталон approved/scene (HERO_HOME.rightDp). Раньше было −14 — герой уходил за край. */
-const HERO_RIGHT = 20;
+const HERO_RIGHT = -14;
+/** Герой на месте 2.0.3 (под шапкой, справа −14), а не по центру сцены. */
+const HERO_CENTERED = false;
 /**
  * зачем (слово владельца 29.10: «иконки поверх сцены громадные, а не крохотные»; «текст не спорит с иконками, он может ложиться поверх»): герой не ужимается под текст — слои фон → герой → текст,
  * читаемость держит тень текста. Размер и место — как у утверждённого эталона (160 dp, справа 20, по центру сцены); прежнее вписывание над текстом (heroBounded/маска) отключено этим флагом.
@@ -154,7 +156,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const heroBounded = fade.bounded;
   useEffect(() => {
     // [HERO-SIZE]: размер героя сейчас / эталон approved/scene (160, справа 20, по центру) / 2.0.3 (160 с полем 10 = 140, справа −14)
-    console.log('[HERO-SIZE]', JSON.stringify({ heroDp: HERO, imageDp: HERO - 2 * HERO_PAD, rightDp: HERO_RIGHT, topDp: Math.round(topInset + (HERO_OVER_TEXT ? heroTopInSpace + TOP_SPACE : HERO_TOP)), stageH: Math.round(stageH), shareOfSceneH: Math.round((HERO / stageH) * 100), shareOfSceneW: Math.round((HERO / windowW) * 100), overText: HERO_OVER_TEXT ? 1 : 0, etalon: { sizeDp: 160, rightDp: 20, vertical: 'center' }, v203: { frameDp: 160, padDp: 10, imageDp: 140, rightDp: -14 } })); // guard-ok: одна строка на смену размера сцены
+    console.log('[HERO-SIZE]', JSON.stringify({ heroDp: HERO, imageDp: HERO - 2 * HERO_PAD, rightDp: HERO_RIGHT, topDp: Math.round(topInset + (HERO_CENTERED ? heroTopInSpace + TOP_SPACE : HERO_TOP)), stageH: Math.round(stageH), shareOfSceneH: Math.round((HERO / stageH) * 100), shareOfSceneW: Math.round((HERO / windowW) * 100), overText: HERO_OVER_TEXT ? 1 : 0, etalon: { sizeDp: 160, rightDp: 20, vertical: 'center' }, v203: { frameDp: 160, padDp: 10, imageDp: 140, rightDp: -14 } })); // guard-ok: одна строка на смену размера сцены
   }, [stageH, windowW, topInset, heroTopInSpace]);
   // зачем (слово владельца 29.10: «иконки на сцене Главной маленькие, в самом верху, вкраю»; сперва логи): где и какого размера герой на сцене — один поиск [SCENE-THEME] home:icons
   useEffect(() => {
@@ -172,7 +174,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   // зачем (слово владельца 29.10, [SCENE-LAYERS]): порядок слоёв сцены Главной снизу вверх — слои цвета лежат ПОД героем-иконкой, герой и текст рисуются последними
   useEffect(() => {
     logSceneLayers('home', [
-      { name: 'SceneBackdrop(' + scenePal.mode + ')', kind: 'paint', opacity: 1 }, { name: 'PremiumThemeMotion', kind: 'paint' }, { name: 'halo', kind: 'paint', opacity: HOME_SCENE_INK.haloOpacity },
+      { name: 'SceneBackdrop(' + scenePal.mode + ')', kind: 'paint', opacity: 1 }, { name: 'PremiumThemeMotion', kind: 'paint' },
       { name: 'hero', kind: 'icon', opacity: artDim ? 0.6 : 1 }, { name: 'body', kind: 'text' },
     ], { heroMasked: fade.masked ? 1 : 0, heroBounded: heroBounded ? 1 : 0, hasAccentLayer: artAccent ? 1 : 0, evening });
   }, [scenePal.mode, artDim, fade.masked, heroBounded, artAccent, evening]);
@@ -215,14 +217,10 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
               <Stop offset="1" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="0" />
             </RadialGradient>
           ) : null}
-          <RadialGradient id="sceneHalo" cx="50%" cy="50%" r="50%">
-            <Stop offset="0" stopColor={HOME_SCENE_INK.halo} stopOpacity={HOME_SCENE_INK.haloOpacity} />
-            <Stop offset="1" stopColor={HOME_SCENE_INK.halo} stopOpacity="0" />
-          </RadialGradient>
+          {/* слово владельца 29.10: «убрать какие-то свечения вокруг иконки» — ореола вокруг героя нет */}
         </Defs>
         {/* зачем (Темы 25.10, season-home-contrast): при крупном шрифте герой уходит в свободное место над текстом — ореол уходит вместе с ним, иначе светлое пятно остаётся под надзаголовком */}
         {isPremium ? <Rect x="0" y="0" width="100%" height="100%" fill="url(#sceneLight)" /> : null}
-        {heroBounded ? null : <Rect x={windowW - HERO - HERO_RIGHT - 4} y={HERO_OVER_TEXT ? Math.round((stageH - HERO) / 2) - 4 : topInset + HERO_TOP} width={HERO + 8} height={HERO + 8} fill="url(#sceneHalo)" />}
       </Svg>
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
       <View style={s.topSpace} />
@@ -234,14 +232,14 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
           <MaskedView pointerEvents="none" style={s.hero} maskElement={heroMask}>
             <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={StyleSheet.absoluteFill}>
               <View style={[s.heroVisual, artDim ? s.heroDim : null]}>
-                <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition="center" />
+                <ThemedArtLayers source={art} accent={artAccent} tintAccent={false} style={s.heroImage} contentFit="contain" contentPosition="center" />
               </View>
             </Animated.View>
           </MaskedView>
         ) : (
-          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={heroBounded ? s.heroBounded : [s.hero, HERO_OVER_TEXT ? { top: heroTopInSpace } : null]}>
+          <Animated.View key={state} pointerEvents="none" entering={reduceMotion ? undefined : FadeIn.duration(280).easing(EASE_OUT)} style={heroBounded ? s.heroBounded : [s.hero, HERO_CENTERED ? { top: heroTopInSpace } : null]}>
             <View style={[s.heroVisual, artDim ? s.heroDim : null]}>
-              <ThemedArtLayers source={art} accent={artAccent} style={s.heroImage} contentFit="contain" contentPosition={heroBounded ? 'right' : 'center'} />
+              <ThemedArtLayers source={art} accent={artAccent} tintAccent={false} style={s.heroImage} contentFit="contain" contentPosition={heroBounded ? 'right' : 'center'} />
             </View>
           </Animated.View>
         )) : null}
@@ -328,7 +326,6 @@ const baseStyles = StyleSheet.create({
   heroVisual: { width: '100%', height: '100%', padding: HERO_PAD, opacity: 0.96 },
   heroDim: { opacity: 0.55 },
   heroImage: { width: '100%', height: '100%' },
-  scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
   // зачем: место под шапку — сама шапка лежит поверх сцены из контейнера HomeScene
   topSpace: { height: TOP_SPACE },
   // зачем: текст сцены у нижнего края (.a-body bottom 58) — место под панель «Сегодня», которая наезжает на 38

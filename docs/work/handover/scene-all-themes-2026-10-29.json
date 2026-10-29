@@ -1,0 +1,1199 @@
+{
+  "generated": "2026-10-29",
+  "note": "Тёмная сцена: весь фон = skyTone (ровный), перелив белым до 7% слева сверху, звёзды белые 70+102, мерцает каждая 8-я. Светлая «А»: градиент от top до skyTone на половине, дальше ровно; звёзд нет. Для 6 наград-тем Главной — блок premiumHome.",
+  "themes": {
+    "graphite": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#516582",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#A0C1E6",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#326290",
+        "skyTone": "#19476B",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "polar": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#2C679F",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#7EC5FF",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#08649B",
+        "skyTone": "#05486E",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "slate": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#3962A9",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#91C1FE",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#2959B5",
+        "skyTone": "#154085",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "ink": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#625A97",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#B3B6FE",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#554DB3",
+        "skyTone": "#38358A",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "lavender": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#81469C",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#D5A7FE",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#7441A4",
+        "skyTone": "#522A7F",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "iris": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#874D77",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#ECA0E0",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#96378C",
+        "skyTone": "#6C1F6A",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "rose": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#8F5048",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#FCA29F",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#A9353A",
+        "skyTone": "#7E1B29",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "terracotta": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#A14221",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#FEA28E",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#AD321D",
+        "skyTone": "#811913",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "taupe": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#8A571D",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#F8A96A",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#8C4C05",
+        "skyTone": "#683303",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "olive": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#7F5E01",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#F3B031",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#855100",
+        "skyTone": "#623800",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "sage": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#097657",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#4EDB9B",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#006C38",
+        "skyTone": "#005020",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "eucalyptus": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#087371",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#1DDACA",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#05685E",
+        "skyTone": "#034D43",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "marine": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#076F8A",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#0ED3F8",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#0D6983",
+        "skyTone": "#074C5E",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "grad_aurora": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#077560",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#2BDDAC",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#0A6A51",
+        "skyTone": "#054E37",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "grad_iris": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#635B93",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#B4B5FF",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#57549A",
+        "skyTone": "#3A3C76",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "grad_magma": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#915303",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#FEA664",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#8E4A02",
+        "skyTone": "#6A3201",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "grad_midnight": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#3465A4",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#8AC3FE",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#0260A8",
+        "skyTone": "#014677",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "grad_champagne": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#7A6015",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#E4B65F",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#7A5802",
+        "skyTone": "#5A3E01",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "grad_jade": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#03746C",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#1DDBC1",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#02695B",
+        "skyTone": "#024D41",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "grad_orchid": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#8B4192",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#E69CFD",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#893D9E",
+        "skyTone": "#622679",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "grad_ice": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#416987",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#8EC6E9",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#2C6585",
+        "skyTone": "#164962",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "grad_coral": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#974B33",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#FEA28F",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#9F3726",
+        "skyTone": "#781E19",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "grad_lilac": {
+      "premium": false,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#6D578F",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#C2B0FE",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#645097",
+        "skyTone": "#453874",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2
+      }
+    },
+    "grad_full_olive": {
+      "premium": true,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#5C6D0C",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#BDC844",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        },
+        "premiumHome": {
+          "sceneTop": "#5A6610",
+          "sceneBottom": "#151E10",
+          "glow": "#bac57325",
+          "edge": "#bac573",
+          "specSceneTop": "#778624",
+          "specSceneBottom": "#151e10",
+          "accent": "#dbe591",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#54680E",
+        "skyTone": "#3E4A07",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2,
+        "premiumHome": {
+          "sceneTop": "#5A6610",
+          "sceneBottom": "#151E10",
+          "glow": "#bac57325",
+          "edge": "#bac573",
+          "specSceneTop": "#778624",
+          "specSceneBottom": "#151e10",
+          "accent": "#dbe591",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      }
+    },
+    "grad_full_ref_signal_lime": {
+      "premium": true,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#477211",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#A4CF5A",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        },
+        "premiumHome": {
+          "sceneTop": "#101406",
+          "sceneBottom": "#020406",
+          "glow": "#c2ff4625",
+          "edge": "#c2ff46",
+          "specSceneTop": "#101406",
+          "specSceneBottom": "#020406",
+          "accent": "#c2ff46",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#4E6A00",
+        "skyTone": "#3A4B01",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2,
+        "premiumHome": {
+          "sceneTop": "#101406",
+          "sceneBottom": "#020406",
+          "glow": "#c2ff4625",
+          "edge": "#c2ff46",
+          "specSceneTop": "#101406",
+          "specSceneBottom": "#020406",
+          "accent": "#c2ff46",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      }
+    },
+    "grad_full_ref_storm_violet": {
+      "premium": true,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#84449A",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#DAA4FE",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        },
+        "premiumHome": {
+          "sceneTop": "#110C14",
+          "sceneBottom": "#020406",
+          "glow": "#d697ff25",
+          "edge": "#d697ff",
+          "specSceneTop": "#110c14",
+          "specSceneBottom": "#020406",
+          "accent": "#d697ff",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#714E86",
+        "skyTone": "#513666",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2,
+        "premiumHome": {
+          "sceneTop": "#110C14",
+          "sceneBottom": "#020406",
+          "glow": "#d697ff25",
+          "edge": "#d697ff",
+          "specSceneTop": "#110c14",
+          "specSceneBottom": "#020406",
+          "accent": "#d697ff",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      }
+    },
+    "grad_full_titanium": {
+      "premium": true,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#A63B27",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#FEA196",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        },
+        "premiumHome": {
+          "sceneTop": "#34383D",
+          "sceneBottom": "#0A0C0F",
+          "glow": "#c9d1d825",
+          "edge": "#c9d1d8",
+          "specSceneTop": "#34383d",
+          "specSceneBottom": "#0a0c0f",
+          "accent": "#ff8c80",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#AD3029",
+        "skyTone": "#80191C",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2,
+        "premiumHome": {
+          "sceneTop": "#34383D",
+          "sceneBottom": "#0A0C0F",
+          "glow": "#c9d1d825",
+          "edge": "#c9d1d8",
+          "specSceneTop": "#34383d",
+          "specSceneBottom": "#0a0c0f",
+          "accent": "#ff8c80",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      }
+    },
+    "grad_full_horizon": {
+      "premium": true,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#845B0E",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#F1AF5D",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        },
+        "premiumHome": {
+          "sceneTop": "#12385A",
+          "sceneBottom": "#060E1A",
+          "glow": "#8dafc425",
+          "edge": "#8dafc4",
+          "specSceneTop": "#12385a",
+          "specSceneBottom": "#060e1a",
+          "accent": "#ffd09a",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#894E07",
+        "skyTone": "#663503",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2,
+        "premiumHome": {
+          "sceneTop": "#12385A",
+          "sceneBottom": "#060E1A",
+          "glow": "#8dafc425",
+          "edge": "#8dafc4",
+          "specSceneTop": "#12385a",
+          "specSceneBottom": "#060e1a",
+          "accent": "#ffd09a",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      }
+    },
+    "grad_full_ref_gravity_blue": {
+      "premium": true,
+      "dark": {
+        "kind": "sky",
+        "skyTone": "#0A6E90",
+        "diagonal": {
+          "from": "#FFFFFF",
+          "alphaLeftTop": 0.07,
+          "alphaRightBottom": 0,
+          "end": "x=W, y=0.7H"
+        },
+        "stars": {
+          "color": "#FFFFFF",
+          "paletteCount": 70,
+          "lowerCount": 102,
+          "twinkleEvery": 8,
+          "alphaRange": [
+            0.3,
+            0.65
+          ]
+        },
+        "sun": {
+          "color": "#33D0FF",
+          "alpha": 0.72,
+          "cx": 0.18,
+          "cy": 0.02
+        },
+        "premiumHome": {
+          "sceneTop": "#0B1214",
+          "sceneBottom": "#020406",
+          "glow": "#86dfff25",
+          "edge": "#86dfff",
+          "specSceneTop": "#0b1214",
+          "specSceneBottom": "#020406",
+          "accent": "#86dfff",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      },
+      "light": {
+        "kind": "light",
+        "top": "#306779",
+        "skyTone": "#184B58",
+        "flatFromHalf": true,
+        "stars": null,
+        "lights": 2,
+        "premiumHome": {
+          "sceneTop": "#0B1214",
+          "sceneBottom": "#020406",
+          "glow": "#86dfff25",
+          "edge": "#86dfff",
+          "specSceneTop": "#0b1214",
+          "specSceneBottom": "#020406",
+          "accent": "#86dfff",
+          "note": "на Главной у этих тем свой градиент sceneTop→sceneBottom (диагональ 0.22,0→0.78,1) + свет края, без общих звёзд; поверх их PremiumThemeMotion"
+        }
+      }
+    }
+  }
+}

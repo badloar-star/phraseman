@@ -15,7 +15,6 @@ import { StyleSheet, Text, useWindowDimensions, View, type ImageSourcePropType }
 import Animated, { Easing, FadeIn, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
-import { alphaHex } from '../../../constants/v2Style';
 import SceneBlockShadow from '../../scene/SceneBlockShadow';
 import { ThemedArtLayers } from '../../theme/ThemedArtLayers';
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
@@ -94,7 +93,7 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
         </Defs>
         <Rect x="57%" y={p.topInset + HERO_BELOW_TOP} width={Math.round(HERO * 1.05)} height={Math.round(HERO * 1.05)} fill="url(#dlgHalo)" opacity={p.artDim ? 0.45 : 1} />
       </Svg>
-      {c.scrim ? <LinearGradient pointerEvents="none" colors={[alphaHex(c.scrim, 0), alphaHex(c.scrim, 0.34)]} style={s.scrim} /> : null}
+      {/* слово владельца 29.10: затемнения низа сцены нет — слой scrim убран */}
       <View style={[s.top, { paddingTop: p.topInset }]}>
         {p.topStart ?? null}
         {copy.quota ? (
@@ -172,7 +171,6 @@ const baseStyles = StyleSheet.create({
   // зачем (вариант 2 scenes-compact.html): сцена во всю ширину, скругление только снизу — `.sc` 0 0 32 32; minHeight (46 % экрана задаёт Stage), а не height — крупный шрифт растит сцену
   stage: { minHeight: DIALOGS_SCENE_MIN_HEIGHT, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, overflow: 'hidden' },
   flex: { flex: 1 },
-  scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: '60%' },
   heroSpace: { flex: 1 },
   hero: { position: 'absolute', right: -14, width: HERO, height: HERO, opacity: 0.96 },
   heroDim: { opacity: 0.55 },

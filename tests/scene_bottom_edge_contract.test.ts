@@ -10,11 +10,12 @@ const BOTTOM_RADIUS = 28;
 
 describe('Нижний край сцены: скруглён и не закрыт карточкой', () => {
   it('Главная: карточка «Сегодня» не заезжает на сцену, зазор > 0, расчёт высоты его учитывает', () => {
-    expect(HOME_SCENE_PANEL_OVERLAP_DP).toBe(0);
-    expect(HOME_SCENE_PANEL_GAP_DP).toBeGreaterThan(0);
-    expect(homeBelowSceneHeight(390)).toBeGreaterThanOrEqual(HOME_SCENE_PANEL_GAP_DP + 80);
+    // слово владельца 29.10 (после макета): край сцены заходит под карточку «Сегодня» (под её заголовок), карточка поверх сцены
+    expect(HOME_SCENE_PANEL_OVERLAP_DP).toBe(44);
+    expect(HOME_SCENE_PANEL_GAP_DP).toBe(0);
+    expect(homeBelowSceneHeight(390)).toBeGreaterThan(80);
     const stage = read('components/home/v2/scene/HomeSceneStage.tsx');
-    expect(stage).toMatch(/export const HOME_SCENE_PANEL_OVERLAP = 0;/);
+    expect(stage).toMatch(/export const HOME_SCENE_PANEL_OVERLAP = 44;/);
     expect(read('components/home/v2/scene/HomeScene.tsx')).toContain('marginBottom: -HOME_SCENE_PANEL_OVERLAP }');
   });
 

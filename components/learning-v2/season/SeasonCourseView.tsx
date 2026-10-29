@@ -398,7 +398,6 @@ const styles = StyleSheet.create({
   heroBodyTall: { paddingBottom: 44 },
   hudPlate: { borderRadius: 22, paddingHorizontal: 6, paddingVertical: 2, flexDirection: 'row', alignItems: 'center' },
   heroTall: { minHeight: SCENE_HERO_HEIGHT_DP, borderBottomLeftRadius: 28, borderBottomRightRadius: 28 },
-  scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 320 },
   heroTop: { position: 'absolute', left: 20, right: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
   pill: { height: 40, paddingHorizontal: 14, borderRadius: 20, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: PILL },
   pillText: { fontSize: 16, lineHeight: 21, fontWeight: '700', color: WHITE },

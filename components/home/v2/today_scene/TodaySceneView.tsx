@@ -29,6 +29,7 @@ import type { TodayTask, TodayTaskKind } from '../home_v2_types';
 import { liquidGlassTokens } from '../../../../constants/liquidGlassThemePalette';
 import { useTheme } from '../../../ThemeContext';
 import SceneBlockShadow from '../../../scene/SceneBlockShadow';
+import { mixPremiumHex } from '../../../../constants/premiumThemeVisualSpecs';
 import { homeSceneTokensForTheme } from '../scene/home_scene_tokens';
 import { homeSceneWarmTone } from '../scene/home_scene_warm_tone';
 import type { TodaySceneCopy } from './today_scene_copy';
@@ -107,7 +108,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
     <ScrollView decelerationRate="fast" testID="today-scene" style={[s.root, { backgroundColor: p.bg }]} contentContainerStyle={s.content} showsVerticalScrollIndicator={false} bounces={false} onScroll={onSceneScroll} scrollEventThrottle={32}>
       <SceneBlockShadow tone={tokens.sceneBottom}>
       <View testID="today-scene-stage" style={[s.stage, { minHeight: stageH }]}>
-        <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
+        <LinearGradient colors={[tokens.sceneTop, mixPremiumHex(tokens.sceneTop, tokens.sceneBottom, 0.5), mixPremiumHex(tokens.sceneTop, tokens.sceneBottom, 0.5)]} locations={[0, 0.5, 1]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
         <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
           <Defs>
             <RadialGradient id="todayLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">
@@ -136,7 +137,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
           </View>
         )}
         {/* зачем (эталон): у тёмной сцены затемнения низа нет — иначе стык с панелью сливается */}
-        {tokens.scrim ? <LinearGradient pointerEvents="none" colors={[HOME_SCENE_INK.scrimFrom, HOME_SCENE_INK.scrimTo]} style={s.scrim} /> : null}
+        {/* слово владельца 29.10: затемнения низа сцены нет — слой scrim убран */}
         <View style={[s.top, { paddingTop: insets.top + 8 }]}>
           {/* зачем (координатор 22.10, 4 · ТЕМЫ 7d5dceb94: «назад на сценах не сливается»): круг и значок — по яркости верха сцены */}
           <BackButton testID="today-scene-back" screen="today_tasks" onPress={onBack} accessibilityLabel={backLabel} sceneTop={tokens.sceneTop} />
@@ -236,7 +237,6 @@ const baseStyles = StyleSheet.create({
   hero: { position: 'absolute', right: 8, top: 96, width: HERO_SIZE, height: HERO_SIZE, alignItems: 'center', justifyContent: 'center' },
   heroSlot: { flex: 1, minHeight: 0, alignItems: 'flex-end', paddingRight: 8 },
   heroBoundedBox: { width: HERO_SIZE, height: HERO_SIZE, alignItems: 'center', justifyContent: 'center', transformOrigin: 'right top' },
-  scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 300 },
   top: { paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center', gap: 12 },
   heading: { flex: 1, color: HOME_SCENE_INK.text, fontSize: 28, lineHeight: 34, fontWeight: '700', letterSpacing: -0.4 },
   history: { marginTop: 12 },

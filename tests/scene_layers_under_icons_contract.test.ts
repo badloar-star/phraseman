@@ -14,11 +14,10 @@ describe('Сцена: слои цвета лежат под иконками, и
   it('Главная: SceneBackdrop → свет-ореол → герой → текст; после текста нет заливок на весь блок', () => {
     const src = read('components/home/v2/scene/HomeSceneStage.tsx');
     const backdrop = at(src, '<SceneBackdrop palette={scenePal}');
-    const halo = at(src, 'id="sceneHalo"');
+    expect(src).not.toContain('sceneHalo'); // слово владельца 29.10: вокруг героя нет свечения
     const hero = at(src, '<View style={s.heroSpace}');
     const body = at(src, '<View style={s.body}>');
-    expect(backdrop).toBeLessThan(halo);
-    expect(halo).toBeLessThan(hero);
+    expect(backdrop).toBeLessThan(hero);
     expect(hero).toBeLessThan(body);
     // после начала слоя героя в JSX сцены нет StyleSheet.absoluteFill вне его маски (маска героя лежит внутри блока героя до тела)
     expect(src.slice(body)).not.toMatch(/StyleSheet\.absoluteFill\b/);

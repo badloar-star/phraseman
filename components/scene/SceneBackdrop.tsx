@@ -11,7 +11,7 @@ import React, { memo } from 'react';
 import { StyleSheet } from 'react-native';
 import Svg, { Circle, Defs, G, LinearGradient, RadialGradient, Rect, Stop } from 'react-native-svg';
 
-import { isSkyPalette, type ScenePaletteResult } from './scene_palette';
+import { isSkyPalette, SCENE_SKY_TONE_MIX, type ScenePaletteResult } from './scene_palette';
 import SceneStarTwinkle, { SCENE_TWINKLE_EVERY } from './SceneStarTwinkle';
 
 type Props = Readonly<{ palette: ScenePaletteResult; idPrefix: string }>;
@@ -22,6 +22,12 @@ const rgb = (c: ReadonlyArray<number>): string => `rgb(${Math.round(c[0]!)},${Ma
  * ВНИМАНИЕ: белый текст в нижней зоне без него хуже (замер: ≈3,0:1 вместо 5,0:1) — решение о возврате/замене за владельцем по макету.
  */
 export const SCENE_DARK_BOTTOM_GUARD = false;
+/** Виньетка (тёмные края, в том числе снизу) не рисуется: низ сцены не темнее середины ни в каком виде. */
+export const SCENE_VIGNETTE = false;
+/** Солнечный свет сверху не рисуется: владелец одобрил макет (v8) «ровный тон + лёгкий перелив + звёзды» без солнца (29.10). */
+export const SCENE_SKY_SUN = false;
+/** Полоса дымки у горизонта не рисуется: весь фон — один тон. */
+export const SCENE_HAZE_BAND = false;
 /** Звёзды нижней части тёмного неба (статичные, в Svg): детерминированный сид, доли сцены; верхние 40 % уже заняты звёздами палитры. */
 const LOWER_STARS: ReadonlyArray<{ x: number; y: number; r: number; a: number }> = (() => {
   let st = 0x9e3779b9;
@@ -39,7 +45,11 @@ function SceneBackdrop({ palette, idPrefix }: Props) {
   if (isSkyPalette(palette)) {
     const p = palette;
     const stops = p.gradient.stops;
-    const raw = [p.raw.zen, p.raw.mid, p.raw.hor, p.raw.hor, p.raw.gnd, p.raw.bottom];
+    // зачем (слово владельца 29.10: «горизонт глубже», без полосы/затемнения снизу): низ неба темнее в самих цветах остановок — без чёрного градиента сверху
+    // ИТОГ (слово владельца 29.10: «вся сцена без затемнения внизу, эти 20 % убрать немедленно»): низ неба того же тона, что и середина — остановки ниже горизонта равны тону между серединой и горизонтом
+    // ещё жёстче (слово владельца 29.10: «ВСЯ СЦЕНА ВОТ ТАКОГО ЦВЕТА ЦЕЛИКОМ», сине-серый тон верха): все остановки неба — один тон T между серединой и горизонтом своей темы; вертикального потемнения нет совсем
+    const tone = p.raw.mid.map((v, i) => v + (p.raw.hor[i]! - v) * SCENE_SKY_TONE_MIX);
+    const raw = [tone, tone, tone, tone, tone, tone];
     const aBottom = Math.min(0.7, p.guard.aBottom + 0.04);
     const aTop = Math.min(0.7, p.guard.aTop + 0.04);
     const sunColor = rgb(p.raw.lightC);
@@ -55,6 +65,10 @@ function SceneBackdrop({ palette, idPrefix }: Props) {
             <Stop offset="0" stopColor={sunColor} stopOpacity={p.sun.a} />
             <Stop offset="1" stopColor={sunColor} stopOpacity="0" />
           </RadialGradient>
+          <LinearGradient id={id('Diag')} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2={W} y2={H * 0.7}>
+            <Stop offset="0" stopColor="#FFFFFF" stopOpacity="0.07" />
+            <Stop offset="1" stopColor="#FFFFFF" stopOpacity="0" />
+          </LinearGradient>
           <LinearGradient id={id('Haze')} x1="0" y1="0" x2="0" y2="1">
             <Stop offset="0" stopColor={hazeColor} stopOpacity={p.haze.a[0]} />
             <Stop offset="0.5" stopColor={hazeColor} stopOpacity={p.haze.a[1]} />
@@ -82,14 +96,16 @@ function SceneBackdrop({ palette, idPrefix }: Props) {
           </LinearGradient>
         </Defs>
         <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Sky')})`} />
-        <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Sun')})`} />
-        <Rect x="0" y={H * p.haze.y0} width={W} height={H * (p.haze.y1 - p.haze.y0)} fill={`url(#${id('Haze')})`} />
+        {SCENE_SKY_SUN ? <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Sun')})`} /> : null}
+        {SCENE_HAZE_BAND ? <Rect x="0" y={H * p.haze.y0} width={W} height={H * (p.haze.y1 - p.haze.y0)} fill={`url(#${id('Haze')})`} /> : null}
+        {/* лёгкий диагональный перелив (светлее слева сверху), только осветляет */}
+        <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Diag')})`} />
         {p.warmEdge ? <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Warm')})`} /> : null}
         <G>
           {/* зачем (владелец 29.10): каждая 5-я звезда мерцает отдельным слоем SceneStarTwinkle (UI-тред), остальные статичны здесь */}
           {ALL_STARS(p.stars.list).map((s, i) => (i % SCENE_TWINKLE_EVERY === 0 ? null : <Circle key={i} cx={s.x * W} cy={s.y * H} r={s.r} fill="#FFFFFF" fillOpacity={s.a} />))}
         </G>
-        <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Vig')})`} />
+        {SCENE_VIGNETTE ? <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Vig')})`} /> : null}
         {SCENE_DARK_BOTTOM_GUARD && p.guard.aBottom > 0 ? <Rect x="0" y={H * 0.42} width={W} height={H * 0.58} fill={`url(#${id('GuardB')})`} /> : null}
         {p.guard.aTop > 0 ? <Rect x="0" y="0" width={W} height={GUARD_TOP_H} fill={`url(#${id('GuardT')})`} /> : null}
       </Svg>
@@ -103,13 +119,15 @@ function SceneBackdrop({ palette, idPrefix }: Props) {
   const y1 = g.start[1] * H;
   const x2 = g.end[0] * W;
   const y2 = g.end[1] * H;
-  const scrim = g.scrim;
+  // зачем (слово владельца 29.10): светлая сцена без затемнения низа — scrim не рисуется, градиент уходит в тон середины на половине пути и дальше не темнеет
+  const midTone = g.top.map((v, i) => (v + g.bot[i]!) / 2);
   return (
     <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none">
       <Defs>
         <LinearGradient id={id('Base')} gradientUnits="userSpaceOnUse" x1={x1} y1={y1} x2={x2} y2={y2}>
           <Stop offset="0" stopColor={rgb(g.top)} stopOpacity="1" />
-          <Stop offset="1" stopColor={rgb(g.bot)} stopOpacity="1" />
+          <Stop offset="0.5" stopColor={rgb(midTone)} stopOpacity="1" />
+          <Stop offset="1" stopColor={rgb(midTone)} stopOpacity="1" />
         </LinearGradient>
         {g.lights.map((l, i) => (
           <RadialGradient key={i} id={id(`Light${i}`)} gradientUnits="userSpaceOnUse" cx={l.cx * W} cy={l.cy * H} rx={l.rx * W} ry={l.ry * H} fx={l.cx * W} fy={l.cy * H}>
@@ -118,16 +136,9 @@ function SceneBackdrop({ palette, idPrefix }: Props) {
             <Stop offset="1" stopColor={rgb(l.color)} stopOpacity="0" />
           </RadialGradient>
         ))}
-        {scrim ? (
-          <LinearGradient id={id('Scrim')} gradientUnits="userSpaceOnUse" x1="0" y1={H - scrim.h} x2="0" y2={H}>
-            <Stop offset="0" stopColor="#000000" stopOpacity="0" />
-            <Stop offset="1" stopColor="#000000" stopOpacity={scrim.a} />
-          </LinearGradient>
-        ) : null}
       </Defs>
       <Rect x="0" y="0" width={W} height={H} fill={`url(#${id('Base')})`} />
       {g.lights.map((l, i) => <Rect key={i} x="0" y="0" width={W} height={H} fill={`url(#${id(`Light${i}`)})`} />)}
-      {scrim ? <Rect x="0" y={H - scrim.h} width={W} height={scrim.h} fill={`url(#${id('Scrim')})`} /> : null}
     </Svg>
   );
 }

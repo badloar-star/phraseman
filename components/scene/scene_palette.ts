@@ -422,13 +422,21 @@ export function scenePaletteCached(themeId: string, appearance: SceneAppearance,
   return value;
 }
 
+/**
+ * Доля горизонта в едином тоне тёмного неба (0 — середина, 1 — горизонт); 0,25 у графита даёт ≈ #516583 (слово владельца 29.10: «вся сцена такого цвета целиком»).
+ */
+export const SCENE_SKY_TONE_MIX = 0.25;
+/** Единый тон тёмного неба (#RRGGBB): и верх, и низ сцены, шапка, статус-бар и рамка с тенью берут его — цвета на краях не расходятся. */
+export function skyToneHex(p: Extract<ScenePaletteResult, { raw: unknown }>): string {
+  return hex(p.raw.mid.map((v, i) => v + (p.raw.hor[i]! - v) * SCENE_SKY_TONE_MIX));
+}
 /** Верхний цвет сцены (#RRGGBB): тёмное — зенит «неба», светлое — верх «А» после стража. Для шапки, статус-бара, кнопки «назад». */
 export function sceneTopHex(p: ScenePaletteResult): string {
-  return isSkyPalette(p) ? p.gradient.stops[0]!.color.hex : p.gradient.top.hex;
+  return isSkyPalette(p) ? skyToneHex(p) : p.gradient.top.hex;
 }
 /** Нижний цвет сцены (#RRGGBB): тёмное — низ «неба», светлое — низ «А». */
 export function sceneBottomHex(p: ScenePaletteResult): string {
-  return isSkyPalette(p) ? p.gradient.stops[5]!.color.hex : p.gradient.bottom.hex;
+  return isSkyPalette(p) ? skyToneHex(p) : p.gradient.bottom.hex;
 }
 
 /**

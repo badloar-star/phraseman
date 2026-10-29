@@ -2,7 +2,7 @@
 
 **Ситуація.** У вихідний двір і парк поруч із будинком повні людей. Ви розповідаєте, хто що робить і де: підмет, дієслово без am і are, потім місце.
 
-**Що ви опануєте:** сказати, що ви робите і де: We play football in the yard, They run in the park, I ride a bicycle
+**Що ви опануєте:** сказати, що ви робите і де: We play football in the yard.
 **Нові слова:** play, run, ride, whistle
 **Повертаються:** football, ball, yard, park, bicycle, bus, pool, bag, box
 

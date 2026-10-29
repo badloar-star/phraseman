@@ -2,7 +2,7 @@
 
 **Ситуація.** Ваша сестра працює в навчальному центрі, а брат готується до іспиту. Про одну людину ми кажемо he або she і додаємо s, а до слів на ch — es: teaches, catches.
 
-**Що ви опануєте:** розповісти, що робить одна людина (She teaches, She catches), і пам’ятати закінчення es після ch
+**Що ви опануєте:** розповісти, чого людина навчає інших: She teaches English.
 **Нові слова:** teach, catch, exam, answer
 **Повертаються:** learn, bus, train, centre, teacher, difficult, easy, boring
 

@@ -2,7 +2,7 @@
 
 **Ситуация.** В выходной двор и парк рядом с домом полны людей. Вы рассказываете, кто что делает и где: подлежащее, глагол без am и are, потом место.
 
-**Что вы освоите:** сказать, что вы делаете и где: We play football in the yard, They run in the park, I ride a bicycle
+**Что вы освоите:** сказать, что вы делаете и где: We play football in the yard.
 **Новые слова:** play, run, ride, whistle
 **Возвращаются:** football, ball, yard, park, bicycle, bus, pool, bag, box
 

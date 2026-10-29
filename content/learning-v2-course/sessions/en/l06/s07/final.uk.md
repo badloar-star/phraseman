@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви допомагаєте на кухні маленького кафе. Одна справа йде за іншою, тому в розповіді дві дії через and, і підмет повторюється: I chop onions and I stir the soup.
 
-**Що ви опануєте:** розповісти про дві дії поспіль: I chop onions and I stir the soup
+**Що ви опануєте:** розповісти, що ви робите на кухні: I chop onions.
 **Нові слова:** chop, stir, serve, spatula
 **Повертаються:** onion, soup, salad, bowl, drawer, ladle
 

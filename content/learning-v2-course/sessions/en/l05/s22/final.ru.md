@@ -32,7 +32,7 @@
 
 - ✅ **Whose gloves are these?**
 - ❌ Whose gloves is this? — *Перчаток две, поэтому нужно are these, а не is this.*
-- ❌ Whose glove are these? — *Вы показываете две перчатки: нужно форма для нескольких gloves.*
+- ❌ Whose glove are these? — *Вы показываете две перчатки: нужно форму для нескольких gloves.*
 
 ---
 

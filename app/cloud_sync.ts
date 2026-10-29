@@ -1501,6 +1501,9 @@ export const SERVER_OWNED_PROGRESS_KEYS = new Set([
  * поэтому здесь он полный, включая ключи, которых нет в клиентских фильтрах.
  */
 const RULES_BLOCKED_PROGRESS_KEYS: ReadonlySet<string> = new Set([
+  // зачем (29.10): Plus победителю конкурса пишет только сервер, правила режут этот ключ клиенту. Без фильтра
+  // устаревшее значение из облака уходило бы обратно, и правила отклоняли бы ВСЮ запись прогресса (класс бага 02.09).
+  'community_plus_until_ms',
   'premium_plan', 'premium_expiry', 'premium_rc_product_id', 'premium_rc_period_type',
   'premium_rc_store', 'premium_rc_environment', 'premium_rc_event_type',
   'premium_rc_updated_at', 'premium_rc_expiry_ms', 'premium_rc_purchased_at_ms',

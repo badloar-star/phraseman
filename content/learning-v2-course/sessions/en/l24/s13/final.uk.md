@@ -37,7 +37,7 @@ Nature — природа. How long has she been interested in nature? — як 
 
 ### Вік планети
 
-У музеї ви дивитеся на зображення планети й запитуєте, як довго вона існує. How long has this planet existed? — як довго існує ця планета? Починаємо з how long, потім ставимо has перед this planet: planet — форма для одного. Після назви планети потрібна форма existed від exist. have / has + done пов’язує початок існування з теперішнім. Порядок — how long + has + this planet + existed?
+У музеї ви дивитеся на зображення планети й запитуєте, як довго вона існує. How long has this planet existed? — як довго існує ця планета? Починаємо з how long, потім ставимо has перед this planet: planet — форма для одного. Після this planet потрібна форма existed від exist. Форма have / has + done пов’язує початок існування з теперішнім. Порядок — how long + has + this planet + existed?
 
 **Виберіть фразу для цієї ситуації.**
 

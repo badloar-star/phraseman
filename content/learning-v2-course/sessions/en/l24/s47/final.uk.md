@@ -29,7 +29,7 @@ Guilt — почуття провини: вам здається, що ви зр
 
 - ✅ **She hid her shame yesterday.**
 - ❌ She hides her shame yesterday. — *Із yesterday потрібна минула форма hid.*
-- ❌ She hiding her shame yesterday. — *Перевірте, як тут побудована дія: am felt не буває.*
+- ❌ She hiding her shame yesterday. — *Про вчора потрібна форма минулого: hid.*
 
 ---
 
@@ -43,7 +43,7 @@ Weakness — слабкість або слабке місце. We noticed a wea
 
 - ✅ **We noticed a weakness in the plan yesterday.**
 - ❌ We notice a weakness in the plan yesterday. — *Із yesterday потрібна минула форма noticed.*
-- ❌ We noticing a weakness in the plan yesterday. — *Перевірте, як тут побудована дія: am felt не буває.*
+- ❌ We noticing a weakness in the plan yesterday. — *Про вчора потрібна форма минулого: noticed.*
 
 ---
 

@@ -29,7 +29,7 @@ Guilt — чувство вины: вам кажется, что вы сдела
 
 - ✅ **She hid her shame yesterday.**
 - ❌ She hides her shame yesterday. — *С yesterday нужна прошедшая форма hid.*
-- ❌ She hiding her shame yesterday. — *Проверьте, как здесь построено действие: am felt не бывает.*
+- ❌ She hiding her shame yesterday. — *Про вчера нужна форма прошлого: hid.*
 
 ---
 
@@ -43,7 +43,7 @@ Weakness — слабость или слабое место. We noticed a weakn
 
 - ✅ **We noticed a weakness in the plan yesterday.**
 - ❌ We notice a weakness in the plan yesterday. — *С yesterday нужна прошедшая форма noticed.*
-- ❌ We noticing a weakness in the plan yesterday. — *Проверьте, как здесь построено действие: am felt не бывает.*
+- ❌ We noticing a weakness in the plan yesterday. — *Про вчера нужна форма прошлого: noticed.*
 
 ---
 

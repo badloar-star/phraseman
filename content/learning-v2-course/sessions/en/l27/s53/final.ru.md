@@ -109,7 +109,7 @@ I wish I ___ where it was. → **knew** · know · knowing
 <!-- interaction_id: en:lesson-27:session-53:i09; family: context_gap_grammar -->
 I ___ the café an hour ago. → **left** · have left · leaving
 - have left — *С an hour ago используем left.*
-- leaving — Нужна форма прошлого: left.*
+- leaving — *Нужна форма прошлого: left.*
 
 **13 · Услышьте просьбу сотрудника.**
 <!-- interaction_id: en:lesson-27:session-53:i10; family: listen_build_dictation -->

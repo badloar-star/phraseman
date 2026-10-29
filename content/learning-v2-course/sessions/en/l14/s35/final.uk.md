@@ -43,7 +43,7 @@
 
 - ✅ **We were holding on to the rail while the bus was moving.**
 - ❌ We was holding on to the rail while the bus was moving. — *З we потрібна were.*
-- ❌ We were holding on to the rail while the bus were moving. — *The bus — однина: was.*
+- ❌ We were holding on to the rail while the bus were moving. — *The bus — форма для одного: was.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-35:i03; family: context_gap_grammar -->
 I ___ reaching for my bag when the bus stopped. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **5 · Картка слова — step back**
@@ -86,7 +86,7 @@ I ___ reaching for my bag when the bus stopped. → **was** · were · is
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-35:i06; family: context_gap_grammar -->
 They ___ stepping back when the doors opened. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **9 · Картка слова — move aside**
@@ -106,7 +106,7 @@ They ___ stepping back when the doors opened. → **were** · was · are
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-35:i09; family: context_gap_grammar -->
 She ___ moving aside while I was carrying the bag. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **13 · Картка слова — hold on**
@@ -126,7 +126,7 @@ She ___ moving aside while I was carrying the bag. → **was** · were · is
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-35:i12; family: context_gap_grammar -->
 We ___ holding on to the rail while the bus was moving. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **17 · Поєднайте вирази з перекладом**

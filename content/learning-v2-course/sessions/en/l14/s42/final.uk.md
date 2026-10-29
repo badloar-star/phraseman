@@ -66,7 +66,7 @@
 **4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-42:i03; family: context_gap_grammar -->
 I ___ drawing a mole while you were reading. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **5 · Картка слова — deer**
@@ -86,7 +86,7 @@ I ___ drawing a mole while you were reading. → **was** · were · is
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-42:i06; family: context_gap_grammar -->
 They ___ drawing a deer when I arrived. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **9 · Картка слова — hare**
@@ -106,7 +106,7 @@ They ___ drawing a deer when I arrived. → **were** · was · are
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-42:i09; family: context_gap_grammar -->
 She ___ drawing a hare while I was talking. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **13 · Картка слова — bat**
@@ -126,7 +126,7 @@ She ___ drawing a hare while I was talking. → **was** · were · is
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-42:i12; family: context_gap_grammar -->
 We ___ drawing a bat when you called. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **17 · Поєднайте вирази з перекладом**

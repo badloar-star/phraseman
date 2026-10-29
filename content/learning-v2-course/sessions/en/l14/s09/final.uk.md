@@ -107,7 +107,7 @@ ___ he jumping on the trampoline? → **Was** · Is · Did
 <!-- interaction_id: en:lesson-14:session-09:i09; family: context_gap_grammar -->
 They ___ climbing on the climbing frame. → **weren’t** · were · wasn’t
 - were — *Без not зміст змінюється на ствердження. Потрібно weren’t.*
-- wasn’t — *З цим підметом потрібна weren’t.*
+- wasn’t — *З цим словом потрібна weren’t.*
 
 **13 · Картка слова — bouncy castle**
 <!-- interaction_id: en:lesson-14:session-09:word:bouncy-castle; family: word_card -->
@@ -127,7 +127,7 @@ They ___ climbing on the climbing frame. → **weren’t** · were · wasn’t
 <!-- interaction_id: en:lesson-14:session-09:i12; family: context_gap_grammar -->
 I ___ playing on the bouncy castle. → **wasn’t** · was · weren’t
 - was — *Без not зміст змінюється на ствердження. Потрібно wasn’t.*
-- weren’t — *З цим підметом потрібна wasn’t.*
+- weren’t — *З цим словом потрібна wasn’t.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-14:session-09:i13; family: speed_match -->

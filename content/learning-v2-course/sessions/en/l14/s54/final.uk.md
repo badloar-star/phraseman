@@ -66,7 +66,7 @@
 **4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-54:i03; family: context_gap_grammar -->
 I ___ making a stew while you were reading. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **5 · Картка слова — casserole**
@@ -86,7 +86,7 @@ I ___ making a stew while you were reading. → **was** · were · is
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-54:i06; family: context_gap_grammar -->
 They ___ making a casserole when I arrived. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **9 · Картка слова — broth**
@@ -106,7 +106,7 @@ They ___ making a casserole when I arrived. → **were** · was · are
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-54:i09; family: context_gap_grammar -->
 She ___ heating broth while I was talking. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **13 · Картка слова — dumplings**
@@ -126,7 +126,7 @@ She ___ heating broth while I was talking. → **was** · were · is
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-54:i12; family: context_gap_grammar -->
 We ___ making dumplings when you called. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **17 · Поєднайте вирази з перекладом**

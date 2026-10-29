@@ -66,7 +66,7 @@
 **4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-22:i03; family: context_gap_grammar -->
 I ___ adding soy sauce. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **5 · Картка слова — sesame oil**
@@ -86,7 +86,7 @@ I ___ adding soy sauce. → **was** · were · is
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-22:i06; family: context_gap_grammar -->
 She ___ using sesame oil at that moment. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **9 · Картка слова — sunflower oil**
@@ -106,7 +106,7 @@ She ___ using sesame oil at that moment. → **was** · were · is
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-22:i09; family: context_gap_grammar -->
 They ___ using sunflower oil at that moment. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **13 · Картка слова — tomato paste**
@@ -126,7 +126,7 @@ They ___ using sunflower oil at that moment. → **were** · was · are
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-22:i12; family: context_gap_grammar -->
 We ___ adding tomato paste at that moment. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **17 · Поєднайте вирази з перекладом**

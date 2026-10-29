@@ -107,7 +107,7 @@ ___ he wearing a cycle helmet? → **Was** · Is · Did
 <!-- interaction_id: en:lesson-14:session-10:i09; family: context_gap_grammar -->
 I ___ using the bike pump. → **wasn’t** · was · weren’t
 - was — *Без not зміст змінюється на ствердження. Потрібно wasn’t.*
-- weren’t — *З цим підметом потрібна wasn’t.*
+- weren’t — *З цим словом потрібна wasn’t.*
 
 **13 · Картка слова — bike bell**
 <!-- interaction_id: en:lesson-14:session-10:word:bike-bell; family: word_card -->
@@ -127,7 +127,7 @@ I ___ using the bike pump. → **wasn’t** · was · weren’t
 <!-- interaction_id: en:lesson-14:session-10:i12; family: context_gap_grammar -->
 They ___ using the bike bell. → **weren’t** · were · wasn’t
 - were — *Без not зміст змінюється на ствердження. Потрібно weren’t.*
-- wasn’t — *З цим підметом потрібна weren’t.*
+- wasn’t — *З цим словом потрібна weren’t.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-14:session-10:i13; family: speed_match -->

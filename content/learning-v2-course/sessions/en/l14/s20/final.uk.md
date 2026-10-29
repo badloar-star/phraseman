@@ -66,7 +66,7 @@
 **4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-20:i03; family: context_gap_grammar -->
 I ___ cleaning the changing mat. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **5 · Картка слова — nappy bag**
@@ -86,7 +86,7 @@ I ___ cleaning the changing mat. → **was** · were · is
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-20:i06; family: context_gap_grammar -->
 She ___ packing the nappy bag at that moment. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **9 · Картка слова — changing table**
@@ -106,7 +106,7 @@ She ___ packing the nappy bag at that moment. → **was** · were · is
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-20:i09; family: context_gap_grammar -->
 They ___ cleaning the changing table at that moment. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **13 · Картка слова — baby monitor**
@@ -126,7 +126,7 @@ They ___ cleaning the changing table at that moment. → **were** · was · are
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-20:i12; family: context_gap_grammar -->
 We ___ checking the baby monitor at that moment. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **17 · Поєднайте вирази з перекладом**

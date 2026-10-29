@@ -107,7 +107,7 @@ ___ he watching a whale? → **Was** · Is · Did
 <!-- interaction_id: en:lesson-14:session-14:i09; family: context_gap_grammar -->
 They ___ watching a shark. → **weren’t** · were · wasn’t
 - were — *Без not зміст змінюється на ствердження. Потрібно weren’t.*
-- wasn’t — *З цим підметом потрібна weren’t.*
+- wasn’t — *З цим словом потрібна weren’t.*
 
 **13 · Картка слова — penguin**
 <!-- interaction_id: en:lesson-14:session-14:word:penguin; family: word_card -->
@@ -127,7 +127,7 @@ They ___ watching a shark. → **weren’t** · were · wasn’t
 <!-- interaction_id: en:lesson-14:session-14:i12; family: context_gap_grammar -->
 I ___ watching a penguin. → **wasn’t** · was · weren’t
 - was — *Без not зміст змінюється на ствердження. Потрібно wasn’t.*
-- weren’t — *З цим підметом потрібна wasn’t.*
+- weren’t — *З цим словом потрібна wasn’t.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-14:session-14:i13; family: speed_match -->

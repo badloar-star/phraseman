@@ -66,7 +66,7 @@
 **4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-34:i03; family: context_gap_grammar -->
 I ___ leaning back while you were talking. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **5 · Карточка слова — lean forward**
@@ -86,7 +86,7 @@ I ___ leaning back while you were talking. → **was** · were · is
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-34:i06; family: context_gap_grammar -->
 They ___ leaning forward when I opened the box. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **9 · Карточка слова — stretch out**
@@ -106,7 +106,7 @@ They ___ leaning forward when I opened the box. → **were** · was · are
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-34:i09; family: context_gap_grammar -->
 She ___ stretching out on the sofa when I arrived. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **13 · Карточка слова — stand still**
@@ -126,7 +126,7 @@ She ___ stretching out on the sofa when I arrived. → **was** · were · is
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-34:i12; family: context_gap_grammar -->
 We ___ standing still while she was taking a photo. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **17 · Соедините выражения с переводом**

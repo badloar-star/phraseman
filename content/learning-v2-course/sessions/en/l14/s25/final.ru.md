@@ -66,7 +66,7 @@
 **4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-25:i03; family: context_gap_grammar -->
 I ___ cleaning my ankle boots when you called. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **5 · Карточка слова — ballet flats**
@@ -86,7 +86,7 @@ I ___ cleaning my ankle boots when you called. → **was** · were · is
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-25:i06; family: context_gap_grammar -->
 She ___ packing her ballet flats when I called. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **9 · Карточка слова — walking boots**
@@ -106,7 +106,7 @@ She ___ packing her ballet flats when I called. → **was** · were · is
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-25:i09; family: context_gap_grammar -->
 They ___ cleaning their walking boots when I arrived. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **13 · Карточка слова — insole**
@@ -126,7 +126,7 @@ They ___ cleaning their walking boots when I arrived. → **were** · was · are
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-25:i12; family: context_gap_grammar -->
 We ___ looking for an insole when you arrived. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **17 · Соедините выражения с переводом**

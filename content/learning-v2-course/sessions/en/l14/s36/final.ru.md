@@ -66,7 +66,7 @@
 **4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-36:i03; family: context_gap_grammar -->
 I ___ shrugging when you looked at me. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **5 · Карточка слова — sniff**
@@ -86,7 +86,7 @@ I ___ shrugging when you looked at me. → **was** · were · is
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-36:i06; family: context_gap_grammar -->
 She ___ sniffing the flowers while I was talking. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **9 · Карточка слова — wink**
@@ -106,7 +106,7 @@ She ___ sniffing the flowers while I was talking. → **was** · were · is
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-36:i09; family: context_gap_grammar -->
 He ___ winking at me when you arrived. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **13 · Карточка слова — giggle**
@@ -126,7 +126,7 @@ He ___ winking at me when you arrived. → **was** · were · is
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-36:i12; family: context_gap_grammar -->
 We ___ giggling while he was telling the story. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **17 · Соедините выражения с переводом**

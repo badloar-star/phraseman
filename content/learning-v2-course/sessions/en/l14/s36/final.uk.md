@@ -66,7 +66,7 @@
 **4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-36:i03; family: context_gap_grammar -->
 I ___ shrugging when you looked at me. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **5 · Картка слова — sniff**
@@ -86,7 +86,7 @@ I ___ shrugging when you looked at me. → **was** · were · is
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-36:i06; family: context_gap_grammar -->
 She ___ sniffing the flowers while I was talking. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **9 · Картка слова — wink**
@@ -106,7 +106,7 @@ She ___ sniffing the flowers while I was talking. → **was** · were · is
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-36:i09; family: context_gap_grammar -->
 He ___ winking at me when you arrived. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **13 · Картка слова — giggle**
@@ -126,7 +126,7 @@ He ___ winking at me when you arrived. → **was** · were · is
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-36:i12; family: context_gap_grammar -->
 We ___ giggling while he was telling the story. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **17 · Поєднайте вирази з перекладом**

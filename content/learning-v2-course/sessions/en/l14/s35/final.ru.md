@@ -43,7 +43,7 @@
 
 - ✅ **We were holding on to the rail while the bus was moving.**
 - ❌ We was holding on to the rail while the bus was moving. — *С we нужна were.*
-- ❌ We were holding on to the rail while the bus were moving. — *The bus — единственное число: was.*
+- ❌ We were holding on to the rail while the bus were moving. — *The bus — форма для одного: was.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-35:i03; family: context_gap_grammar -->
 I ___ reaching for my bag when the bus stopped. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **5 · Карточка слова — step back**
@@ -86,7 +86,7 @@ I ___ reaching for my bag when the bus stopped. → **was** · were · is
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-35:i06; family: context_gap_grammar -->
 They ___ stepping back when the doors opened. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **9 · Карточка слова — move aside**
@@ -106,7 +106,7 @@ They ___ stepping back when the doors opened. → **were** · was · are
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-35:i09; family: context_gap_grammar -->
 She ___ moving aside while I was carrying the bag. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **13 · Карточка слова — hold on**
@@ -126,7 +126,7 @@ She ___ moving aside while I was carrying the bag. → **was** · were · is
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-35:i12; family: context_gap_grammar -->
 We ___ holding on to the rail while the bus was moving. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **17 · Соедините выражения с переводом**

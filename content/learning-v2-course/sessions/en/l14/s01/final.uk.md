@@ -9,7 +9,7 @@
 
 ### Що ви читали о восьмій
 
-Учора о восьмій вечора ви сиділи на дивані й читали комікс. I was reading a comic book. — Я читав комікс. Past Continuous показує дію, яка тривала в певний момент минулого. Складіть речення: I + was + reading + a comic book. Спочатку назвіть, хто діяв, потім поставте was і дієслово з -ing: read → reading. Наприкінці додайте, що читали. Тут was reading передає процес читання о восьмій, а не повідомляє, що комікс уже прочитано.
+Учора о восьмій вечора ви сиділи на дивані й читали комікс. I was reading a comic book. — Я читав комікс. was / were + -ing показує дію, яка тривала в певний момент минулого. Складіть речення: I + was + reading + a comic book. Спочатку назвіть, хто діяв, потім поставте was і дієслово з -ing: read → reading. Наприкінці додайте, що читали. Тут was reading передає процес читання о восьмій, а не повідомляє, що комікс уже прочитано.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -66,7 +66,7 @@
 **4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-01:i03; family: context_gap_grammar -->
 I ___ reading a comic book. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **5 · Картка слова — jigsaw puzzle**
@@ -86,7 +86,7 @@ I ___ reading a comic book. → **was** · were · is
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-01:i06; family: context_gap_grammar -->
 They ___ doing a jigsaw puzzle at that moment. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **9 · Картка слова — colouring book**
@@ -106,7 +106,7 @@ They ___ doing a jigsaw puzzle at that moment. → **were** · was · are
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-01:i09; family: context_gap_grammar -->
 She ___ using a colouring book at that moment. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **13 · Картка слова — picture book**
@@ -126,7 +126,7 @@ She ___ using a colouring book at that moment. → **was** · were · is
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-01:i12; family: context_gap_grammar -->
 We ___ reading a picture book at that moment. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **17 · Поєднайте вирази з перекладом**

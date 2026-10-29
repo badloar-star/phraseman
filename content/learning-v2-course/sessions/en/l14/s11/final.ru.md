@@ -107,7 +107,7 @@ ___ he reading the shelf label? → **Was** · Is · Did
 <!-- interaction_id: en:lesson-14:session-11:i09; family: context_gap_grammar -->
 I ___ using the cash register. → **wasn’t** · was · weren’t
 - was — *Без not смысл меняется на утверждение. Нужно wasn’t.*
-- weren’t — *С этим подлежащим нужна wasn’t.*
+- weren’t — *С этим словом нужна wasn’t.*
 
 **13 · Карточка слова — conveyor belt**
 <!-- interaction_id: en:lesson-14:session-11:word:conveyor-belt; family: word_card -->
@@ -127,7 +127,7 @@ I ___ using the cash register. → **wasn’t** · was · weren’t
 <!-- interaction_id: en:lesson-14:session-11:i12; family: context_gap_grammar -->
 They ___ cleaning the conveyor belt. → **weren’t** · were · wasn’t
 - were — *Без not смысл меняется на утверждение. Нужно weren’t.*
-- wasn’t — *С этим подлежащим нужна weren’t.*
+- wasn’t — *С этим словом нужна weren’t.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-14:session-11:i13; family: speed_match -->

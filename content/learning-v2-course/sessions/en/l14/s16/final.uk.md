@@ -107,7 +107,7 @@ ___ he carrying the guitar case? → **Was** · Is · Did
 <!-- interaction_id: en:lesson-14:session-16:i09; family: context_gap_grammar -->
 They ___ using the music stand. → **weren’t** · were · wasn’t
 - were — *Без not зміст змінюється на ствердження. Потрібно weren’t.*
-- wasn’t — *З цим підметом потрібна weren’t.*
+- wasn’t — *З цим словом потрібна weren’t.*
 
 **13 · Картка слова — sheet music**
 <!-- interaction_id: en:lesson-14:session-16:word:sheet-music; family: word_card -->
@@ -127,7 +127,7 @@ They ___ using the music stand. → **weren’t** · were · wasn’t
 <!-- interaction_id: en:lesson-14:session-16:i12; family: context_gap_grammar -->
 I ___ reading the sheet music. → **wasn’t** · was · weren’t
 - was — *Без not зміст змінюється на ствердження. Потрібно wasn’t.*
-- weren’t — *З цим підметом потрібна wasn’t.*
+- weren’t — *З цим словом потрібна wasn’t.*
 
 **17 · Поєднайте вирази з перекладом**
 <!-- interaction_id: en:lesson-14:session-16:i13; family: speed_match -->

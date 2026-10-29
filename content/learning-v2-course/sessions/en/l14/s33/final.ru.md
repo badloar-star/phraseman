@@ -66,7 +66,7 @@
 **4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-33:i03; family: context_gap_grammar -->
 I ___ turning around when you called my name. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **5 · Карточка слова — look up**
@@ -86,7 +86,7 @@ I ___ turning around when you called my name. → **was** · were · is
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-33:i06; family: context_gap_grammar -->
 They ___ looking up while I was taking a photo. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **9 · Карточка слова — look down**
@@ -106,7 +106,7 @@ They ___ looking up while I was taking a photo. → **were** · was · are
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-33:i09; family: context_gap_grammar -->
 We ___ looking down when you called us. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **13 · Карточка слова — bend down**
@@ -126,7 +126,7 @@ We ___ looking down when you called us. → **were** · was · are
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-33:i12; family: context_gap_grammar -->
 She ___ bending down while I was holding her bag. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **17 · Соедините выражения с переводом**

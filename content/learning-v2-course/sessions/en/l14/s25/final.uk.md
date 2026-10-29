@@ -66,7 +66,7 @@
 **4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-25:i03; family: context_gap_grammar -->
 I ___ cleaning my ankle boots when you called. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **5 · Картка слова — ballet flats**
@@ -86,7 +86,7 @@ I ___ cleaning my ankle boots when you called. → **was** · were · is
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-25:i06; family: context_gap_grammar -->
 She ___ packing her ballet flats when I called. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **9 · Картка слова — walking boots**
@@ -106,7 +106,7 @@ She ___ packing her ballet flats when I called. → **was** · were · is
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-25:i09; family: context_gap_grammar -->
 They ___ cleaning their walking boots when I arrived. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **13 · Картка слова — insole**
@@ -126,7 +126,7 @@ They ___ cleaning their walking boots when I arrived. → **were** · was · are
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-25:i12; family: context_gap_grammar -->
 We ___ looking for an insole when you arrived. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **17 · Поєднайте вирази з перекладом**

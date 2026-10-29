@@ -66,7 +66,7 @@
 **4 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-33:i03; family: context_gap_grammar -->
 I ___ turning around when you called my name. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **5 · Картка слова — look up**
@@ -86,7 +86,7 @@ I ___ turning around when you called my name. → **was** · were · is
 **8 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-33:i06; family: context_gap_grammar -->
 They ___ looking up while I was taking a photo. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **9 · Картка слова — look down**
@@ -106,7 +106,7 @@ They ___ looking up while I was taking a photo. → **were** · was · are
 **12 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-33:i09; family: context_gap_grammar -->
 We ___ looking down when you called us. → **were** · was · are
-- was — *З цим підметом у минулому потрібна were.*
+- was — *З цим словом у минулому потрібна were.*
 - are — *Це не форма минулого. Потрібна were.*
 
 **13 · Картка слова — bend down**
@@ -126,7 +126,7 @@ We ___ looking down when you called us. → **were** · was · are
 **16 · Ідеться про момент у минулому. Виберіть was або were**
 <!-- interaction_id: en:lesson-14:session-33:i12; family: context_gap_grammar -->
 She ___ bending down while I was holding her bag. → **was** · were · is
-- were — *З цим підметом у минулому потрібна was.*
+- were — *З цим словом у минулому потрібна was.*
 - is — *Це не форма минулого. Потрібна was.*
 
 **17 · Поєднайте вирази з перекладом**

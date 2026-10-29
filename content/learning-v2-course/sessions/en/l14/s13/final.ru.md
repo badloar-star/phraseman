@@ -107,7 +107,7 @@ ___ he building a snowman? → **Was** · Is · Did
 <!-- interaction_id: en:lesson-14:session-13:i09; family: context_gap_grammar -->
 They ___ walking through the snowdrift. → **weren’t** · were · wasn’t
 - were — *Без not смысл меняется на утверждение. Нужно weren’t.*
-- wasn’t — *С этим подлежащим нужна weren’t.*
+- wasn’t — *С этим словом нужна weren’t.*
 
 **13 · Карточка слова — snowstorm**
 <!-- interaction_id: en:lesson-14:session-13:word:snowstorm; family: word_card -->
@@ -127,7 +127,7 @@ They ___ walking through the snowdrift. → **weren’t** · were · wasn’t
 <!-- interaction_id: en:lesson-14:session-13:i12; family: context_gap_grammar -->
 I ___ driving in the snowstorm. → **wasn’t** · was · weren’t
 - was — *Без not смысл меняется на утверждение. Нужно wasn’t.*
-- weren’t — *С этим подлежащим нужна wasn’t.*
+- weren’t — *С этим словом нужна wasn’t.*
 
 **17 · Соедините выражения с переводом**
 <!-- interaction_id: en:lesson-14:session-13:i13; family: speed_match -->

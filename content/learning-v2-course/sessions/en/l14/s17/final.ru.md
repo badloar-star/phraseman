@@ -9,7 +9,7 @@
 
 ### Что происходило у машины
 
-Вчера такси остановилось рядом, когда вы меняли спущенную шину. Начните рассказ с действия, которое уже шло: I was changing a flat tyre. — Я менял спущенную шину. Past Continuous задаёт фон: показывает, чем вы были заняты в момент другого события. Соберите I + was + changing; у change уберите e и добавьте -ing. Затем назовите предмет: a flat tyre. I changed a flat tyre тоже грамматически верно, но представляет замену целиком, а здесь нужен процесс при остановке такси.
+Вчера такси остановилось рядом, когда вы меняли спущенную шину. Начните рассказ с действия, которое уже шло: I was changing a flat tyre. — Я менял спущенную шину. was / were + -ing задаёт фон: показывает, чем вы были заняты в момент другого события. Соберите I + was + changing; у change уберите e и добавьте -ing. Затем назовите предмет: a flat tyre. I changed a flat tyre тоже грамматически верно, но представляет замену целиком, а здесь нужен процесс при остановке такси.
 
 **Выберите фразу для этой ситуации.**
 
@@ -66,7 +66,7 @@
 **4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-17:i03; family: context_gap_grammar -->
 I ___ changing a flat tyre. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **5 · Карточка слова — spare tyre**
@@ -86,7 +86,7 @@ I ___ changing a flat tyre. → **was** · were · is
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-17:i06; family: context_gap_grammar -->
 They ___ looking for the spare tyre at that moment. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **9 · Карточка слова — windscreen wiper**
@@ -106,7 +106,7 @@ They ___ looking for the spare tyre at that moment. → **were** · was · are
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-17:i09; family: context_gap_grammar -->
 He ___ checking the windscreen wiper at that moment. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **13 · Карточка слова — rear-view mirror**
@@ -126,7 +126,7 @@ He ___ checking the windscreen wiper at that moment. → **was** · were · is
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-17:i12; family: context_gap_grammar -->
 We ___ cleaning the rear-view mirror at that moment. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **17 · Соедините выражения с переводом**

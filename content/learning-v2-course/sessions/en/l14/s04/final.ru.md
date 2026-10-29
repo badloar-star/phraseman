@@ -66,7 +66,7 @@
 **4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-04:i03; family: context_gap_grammar -->
 I ___ filling a spray bottle. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **5 · Карточка слова — scrubbing brush**
@@ -86,7 +86,7 @@ I ___ filling a spray bottle. → **was** · were · is
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-04:i06; family: context_gap_grammar -->
 She ___ using a scrubbing brush at that moment. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **9 · Карточка слова — soapy water**
@@ -106,7 +106,7 @@ She ___ using a scrubbing brush at that moment. → **was** · were · is
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-04:i09; family: context_gap_grammar -->
 We ___ using soapy water at that moment. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **13 · Карточка слова — soap bubbles**
@@ -126,7 +126,7 @@ We ___ using soapy water at that moment. → **were** · was · are
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-04:i12; family: context_gap_grammar -->
 They ___ watching the soap bubbles at that moment. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **17 · Соедините выражения с переводом**

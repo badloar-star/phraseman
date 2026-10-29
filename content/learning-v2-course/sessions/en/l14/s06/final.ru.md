@@ -66,7 +66,7 @@
 **4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-06:i03; family: context_gap_grammar -->
 We ___ playing on the tennis court at that moment. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **5 · Карточка слова — teammate**
@@ -86,7 +86,7 @@ We ___ playing on the tennis court at that moment. → **were** · was · are
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-06:i06; family: context_gap_grammar -->
 I ___ talking to a teammate. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **9 · Карточка слова — spectator**
@@ -106,7 +106,7 @@ I ___ talking to a teammate. → **was** · were · is
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-06:i09; family: context_gap_grammar -->
 She ___ talking to a spectator at that moment. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **13 · Карточка слова — sports hall**
@@ -126,7 +126,7 @@ She ___ talking to a spectator at that moment. → **was** · were · is
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-06:i12; family: context_gap_grammar -->
 They ___ waiting in the sports hall at that moment. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **17 · Соедините выражения с переводом**

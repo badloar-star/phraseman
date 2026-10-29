@@ -9,7 +9,7 @@
 
 ### Что вы читали в восемь
 
-Вчера в восемь вечера вы сидели на диване и читали комикс. I was reading a comic book. — Я читал комикс. Past Continuous показывает действие, которое шло в определённый момент прошлого. Соберите предложение: I + was + reading + a comic book. Сначала назовите, кто действовал, затем поставьте was и глагол с -ing: read → reading. В конце добавьте, что читали. Здесь was reading передаёт процесс чтения в восемь, а не сообщает, что комикс уже прочитан.
+Вчера в восемь вечера вы сидели на диване и читали комикс. I was reading a comic book. — Я читал комикс. was / were + -ing показывает действие, которое шло в определённый момент прошлого. Соберите предложение: I + was + reading + a comic book. Сначала назовите, кто действовал, затем поставьте was и глагол с -ing: read → reading. В конце добавьте, что читали. Здесь was reading передаёт процесс чтения в восемь, а не сообщает, что комикс уже прочитан.
 
 **Выберите фразу для этой ситуации.**
 
@@ -66,7 +66,7 @@
 **4 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-01:i03; family: context_gap_grammar -->
 I ___ reading a comic book. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **5 · Карточка слова — jigsaw puzzle**
@@ -86,7 +86,7 @@ I ___ reading a comic book. → **was** · were · is
 **8 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-01:i06; family: context_gap_grammar -->
 They ___ doing a jigsaw puzzle at that moment. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **9 · Карточка слова — colouring book**
@@ -106,7 +106,7 @@ They ___ doing a jigsaw puzzle at that moment. → **were** · was · are
 **12 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-01:i09; family: context_gap_grammar -->
 She ___ using a colouring book at that moment. → **was** · were · is
-- were — *С этим подлежащим в прошлом нужна was.*
+- were — *С этим словом в прошлом нужна was.*
 - is — *Это не форма прошлого. Нужна was.*
 
 **13 · Карточка слова — picture book**
@@ -126,7 +126,7 @@ She ___ using a colouring book at that moment. → **was** · were · is
 **16 · Речь о моменте в прошлом. Выберите was или were**
 <!-- interaction_id: en:lesson-14:session-01:i12; family: context_gap_grammar -->
 We ___ reading a picture book at that moment. → **were** · was · are
-- was — *С этим подлежащим в прошлом нужна were.*
+- was — *С этим словом в прошлом нужна were.*
 - are — *Это не форма прошлого. Нужна were.*
 
 **17 · Соедините выражения с переводом**

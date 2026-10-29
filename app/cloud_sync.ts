@@ -325,6 +325,7 @@ import {
 } from '../modules/learning-v2/progress/progress_sync_v1';
 import { LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1, mergeCourseMasksRestoreValueV1 } from '../modules/learning-v2/progress/course_progress_masks_v1';
 import { LEARNING_V2_COURSE_SESSION_COUNT_V1 } from '../modules/learning-v2/content/course_topology_v1';
+import { learningV2LanguageScopedStorageKeyV1 } from '../modules/learning-v2/progress/course_local_progress_v1';
 import {
   isDeferredBootRestoreWaiting,
   onDeferredBootRestoreSettled,
@@ -489,6 +490,19 @@ function mergeTruthyFlagRestoreValue(localRaw: string | null | undefined, cloudR
   return !isTruthyFlag(cloudRaw) && isTruthyFlag(localRaw) ? (localRaw as string) : cloudRaw;
 }
 
+// зачем (координатор 29.10): прогресс испанского курса хранится под ключами с суффиксом «:target:es» и до сих пор не уезжал в облако —
+// при смене телефона или переустановке испанец терял весь курс. Имена строит тот же помощник, что пишет их на телефоне.
+export const LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1 = Object.freeze({
+  courseProgress: learningV2LanguageScopedStorageKeyV1(LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1, 'es'),
+  masks: learningV2LanguageScopedStorageKeyV1(LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1, 'es'),
+  stars: learningV2LanguageScopedStorageKeyV1(LEARNING_V2_SESSION_STARS_SYNC_KEY_V1, 'es'),
+});
+
+function logLearningV2EsMerge(kind: 'progress' | 'masks' | 'stars', localRaw: string | null | undefined, cloudRaw: string, merged: string): string {
+  console.log('[CLOUD-SYNC] es_progress:merge', JSON.stringify({ kind, localLen: localRaw?.length ?? null, cloudLen: cloudRaw.length, mergedLen: merged.length, changedLocal: merged !== (localRaw ?? null) })); // guard-ok: одна строка на слияние ключа es
+  return merged;
+}
+
 const FC_RESTORE_MERGE_STRATEGIES: Record<
   string,
   (localRaw: string | null | undefined, cloudRaw: string) => string
@@ -523,6 +537,14 @@ const FC_RESTORE_MERGE_STRATEGIES: Record<
   // побитовое ИЛИ, ни одна сторона ничего не стирает. Старое число LEARNING_V2_COURSE_PROGRESS_SYNC_KEY_V1 едет как прежде.
   [LEARNING_V2_COURSE_MASKS_SYNC_KEY_V1]: (localRaw, cloudRaw) => mergeCourseMasksRestoreValueV1(localRaw, cloudRaw, LEARNING_V2_COURSE_SESSION_COUNT_V1),
   learning_v2_not_from_start_used_v1: mergeTruthyFlagRestoreValue,
+  // зачем (координатор 29.10): испанский прогресс курса — те же правила слияния, что у английского (ничего не теряется);
+  // ключи свои (суффикс «:target:es»), поэтому с английским не смешиваются. Журнал [CLOUD-SYNC] — что пришло и что вышло.
+  [LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.courseProgress]: (localRaw, cloudRaw) =>
+    logLearningV2EsMerge('progress', localRaw, cloudRaw, mergeCourseProgressSyncRestoreValueV1(localRaw, cloudRaw)),
+  [LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.masks]: (localRaw, cloudRaw) =>
+    logLearningV2EsMerge('masks', localRaw, cloudRaw, mergeCourseMasksRestoreValueV1(localRaw, cloudRaw, LEARNING_V2_COURSE_SESSION_COUNT_V1)),
+  [LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.stars]: (localRaw, cloudRaw) =>
+    logLearningV2EsMerge('stars', localRaw, cloudRaw, mergeSessionStarsSyncRestoreValueV1(localRaw, cloudRaw)),
 };
 
 export const SYNC_KEYS = [
@@ -713,6 +735,11 @@ export const SYNC_KEYS = [
   // зачем (владелец 22.10): «Не хочу с начала» — один раз на аккаунт; флаг ставит телефон, облако хранит, чтобы он пережил
   // переустановку (app/learning_v2_not_from_start_once_v1.ts). Слияние ИЛИ — снять флаг нельзя.
   'learning_v2_not_from_start_used_v1',
+  // зачем (координатор 29.10): испанский прогресс курса — число, маски и звёзды (экзамены глав у испанского выключены); та же
+  // запись документа, новых чтений и записей нет, документ растёт максимум на ~3 КБ при полном курсе
+  LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.courseProgress,
+  LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.masks,
+  LEARNING_V2_ES_PROGRESS_SYNC_KEYS_V1.stars,
 ] as const;
 
 export function getRuntimeSyncKeys(keys: readonly unknown[] = SYNC_KEYS): string[] {
@@ -5226,6 +5253,8 @@ export async function restoreFromCloudDetailed(options: CloudRestoreOptions = {}
 }
 
 export const __cloudSyncTestHooks = {
+  // зачем (29.10): сторож испанского прогресса проверяет правило слияния своего ключа
+  restoreMergeStrategyForKey: (key: string) => FC_RESTORE_MERGE_STRATEGIES[key],
   decideUnchangedForceDocSkip,
   writeLastSyncSnapshot,
   maybeReseedWipedProgressAfterRestore,

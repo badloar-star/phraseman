@@ -2,7 +2,7 @@
 
 **Ситуация.** Наблюдать закат с набережной и описывать то, что видно вдали.
 
-**Что вы освоите:** She is gazing at the sunset; The horizon is clear; Please don’t block the view
+**Что вы освоите:** описать, что сейчас видно, и попросить не загораживать
 **Новые слова:** gaze, horizon, silhouette, sunset
 
 ## Интро 1

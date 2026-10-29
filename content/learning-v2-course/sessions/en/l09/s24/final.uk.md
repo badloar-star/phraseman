@@ -2,7 +2,7 @@
 
 **Ситуація.** Розрізняти види книжок і описувати огляд палітурки.
 
-**Що ви опануєте:** is inspecting; Are you reading…?; Please don’t touch…
+**Що ви опануєте:** запитати, що людина зараз робить, і попросити не чіпати: Please don’t touch…
 **Нові слова:** spine, hardback, paperback, binding
 
 ---

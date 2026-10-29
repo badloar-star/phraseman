@@ -2,7 +2,7 @@
 
 **Ситуація.** Уточнити теми зустрічі, записати рішення й помітити відповідь без слів.
 
-**Що ви опануєте:** I am checking the agenda; I am taking minutes; An attendee is nodding
+**Що ви опануєте:** розповісти, що зараз відбувається на зустрічі
 **Нові слова:** agenda, briefing, minutes, attendee
 **Повторення:** nod (7.56), nodding
 

@@ -2,7 +2,7 @@
 
 **Ситуация.** Описать своё состояние после тренировки и уточнить, работает ли вентиляция.
 
-**Что вы освоите:** I am sweating; Is the ventilation working?; I wear a sweatshirt
+**Что вы освоите:** сказать, что с вами сейчас, и спросить, работает ли что-то: Is the ventilation working?
 **Новые слова:** workout, ventilation, sweatshirt, deodorant
 
 ---

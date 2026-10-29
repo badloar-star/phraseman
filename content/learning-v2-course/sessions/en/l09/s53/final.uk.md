@@ -2,7 +2,7 @@
 
 **Ситуація.** Знайти потрібну частину зали й зрозуміти жест техніка під час налаштування звуку.
 
-**Що ви опануєте:** He is gesturing towards the door; The acoustics are good; Please don’t touch the amplifier
+**Що ви опануєте:** описати, що зараз відбувається, і попросити не чіпати
 **Нові слова:** gesture, auditorium, acoustics, amplifier
 
 ## Інтро 1

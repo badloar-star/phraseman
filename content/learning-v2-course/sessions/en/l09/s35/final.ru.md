@@ -2,7 +2,7 @@
 
 **Ситуация.** Показать движение в игре, описать птицу и попросить не трогать насекомое.
 
-**Что вы освоите:** hop → hopping; is hopping / is not hopping; Please don’t touch ...
+**Что вы освоите:** сказать, что сейчас происходит, и попросить не трогать: is hopping, Please don’t touch…
 **Новые слова:** hop, hopscotch, sparrow, grasshopper
 
 ## Интро 1

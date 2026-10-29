@@ -2,7 +2,7 @@
 
 **Ситуация.** Замечать информацию по дороге и слушать короткий выпуск новостей.
 
-**Что вы освоите:** glance at; I am reading the headline; Please don’t turn off the radio
+**Что вы освоите:** сказать, что вы сейчас читаете, и попросить не выключать
 **Новые слова:** glance, billboard, headline, bulletin
 
 ## Интро 1

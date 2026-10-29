@@ -2,7 +2,7 @@
 
 **Ситуація.** Розібрати подарунок для малюка й говорити з ним тихо, поки вдома гості.
 
-**Що ви опануєте:** She is murmuring to the baby; This is a onesie; Please don’t move the cradle
+**Що ви опануєте:** сказати, що зараз відбувається, і попросити не рухати
 **Нові слова:** murmur, pacifier, onesie, cradle
 
 ## Інтро 1

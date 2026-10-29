@@ -2,7 +2,7 @@
 
 **Ситуация.** Описать вздох и различить задержку и отмену.
 
-**Что вы освоите:** sigh → sighing; Is he sighing?; I am sighing with relief
+**Что вы освоите:** спросить и сказать, что человек сейчас делает: Is he sighing?
 **Новые слова:** sigh, relief, delay, cancellation
 
 ---

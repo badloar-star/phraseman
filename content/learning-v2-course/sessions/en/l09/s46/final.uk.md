@@ -2,7 +2,7 @@
 
 **Ситуація.** Гуляти старим кварталом, помічати деталі й зустрітися у дворі.
 
-**Що ви опануєте:** We are wandering; in the courtyard; Please don’t block the archway
+**Що ви опануєте:** сказати, що і де ви зараз робите, і попросити не загороджувати
 **Нові слова:** wander, courtyard, archway, cobblestone
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Уточнити джерело, знайти додаткову таблицю й пояснити виноску.
 
-**Що ви опануєте:** refer to → referring to; in the appendix; It is a footnote
+**Що ви опануєте:** сказати, на що ви зараз посилаєтеся: I am referring to the appendix
 **Нові слова:** refer, appendix, footnote, index
 
 ## Інтро 1

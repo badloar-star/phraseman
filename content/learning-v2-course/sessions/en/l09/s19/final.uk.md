@@ -2,7 +2,7 @@
 
 **Ситуація.** Описати свій стан після тренування й уточнити, чи працює вентиляція.
 
-**Що ви опануєте:** I am sweating; Is the ventilation working?; I wear a sweatshirt
+**Що ви опануєте:** сказати, що з вами зараз, і запитати, чи працює щось: Is the ventilation working?
 **Нові слова:** workout, ventilation, sweatshirt, deodorant
 
 ---

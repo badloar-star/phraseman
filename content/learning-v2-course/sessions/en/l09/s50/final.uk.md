@@ -2,7 +2,7 @@
 
 **Ситуація.** Розглядати зорові ефекти на виставці й відрізняти рух від враження.
 
-**Що ви опануєте:** He is staring at the hologram; The picture is not moving; I am looking at my reflection
+**Що ви опануєте:** сказати, хто на що зараз дивиться: He is staring at…
 **Нові слова:** stare, hologram, illusion, reflection
 
 ## Інтро 1

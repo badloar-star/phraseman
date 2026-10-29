@@ -2,7 +2,7 @@
 
 **Ситуація.** Описати насуплені брови, вираз обличчя та спантеличення.
 
-**Що ви опануєте:** frown → frowning; is frowning / is not frowning
+**Що ви опануєте:** сказати, що людина зараз робить: is frowning, is not frowning
 **Нові слова:** frown, forehead, expression, puzzled
 
 ---

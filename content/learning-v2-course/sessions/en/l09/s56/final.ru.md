@@ -2,7 +2,7 @@
 
 **Ситуация.** Рассказать, что команда делает сейчас, уточнить задачу и попросить не мешать.
 
-**Что вы освоите:** The steward is helping a visitor; Are you doing a headcount?; Please don't shout
+**Что вы освоите:** спросить, что сейчас делают, и попросить не шуметь
 **Новые слова:** steward, walkie-talkie, megaphone, headcount
 
 ## Интро 1

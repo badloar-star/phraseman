@@ -2,7 +2,7 @@
 
 **Ситуація.** Порівняти зразок зі сторінкою каталогу й пояснити, чому вибір ще не зроблено.
 
-**Що ви опануєте:** I am hesitating; I am checking the catalogue; Please don’t touch the wallpaper
+**Що ви опануєте:** сказати, що ви зараз робите, і попросити не чіпати
 **Нові слова:** swatch, wallpaper, catalogue, adhesive
 **Повторення:** hesitate (8.38)
 

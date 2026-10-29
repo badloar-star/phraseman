@@ -2,7 +2,7 @@
 
 **Ситуация.** Говорить о сне и узнавать предметы сказочного мира.
 
-**Что вы освоите:** dream → dreaming; am dreaming / am not dreaming
+**Что вы освоите:** сказать о себе, что вы сейчас делаете: I am dreaming, I am not dreaming
 **Новые слова:** dream, dragon, castle, nightmare
 
 ---

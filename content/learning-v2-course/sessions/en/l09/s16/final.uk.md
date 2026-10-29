@@ -2,7 +2,7 @@
 
 **Ситуація.** Підготувати камеру й описати роботу фотографа.
 
-**Що ви опануєте:** is cleaning / is not working; Please don’t touch…
+**Що ви опануєте:** сказати, що зараз відбувається, і попросити не чіпати: Please don’t touch…
 **Нові слова:** lens, shutter, photographer, flash
 
 ---

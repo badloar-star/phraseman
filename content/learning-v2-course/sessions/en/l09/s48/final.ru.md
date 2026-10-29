@@ -2,7 +2,7 @@
 
 **Ситуация.** Наблюдать за птицей и насекомыми с дорожки через заболоченную местность.
 
-**Что вы освоите:** The heron is standing in the water; We are crossing the causeway; Please don’t shout
+**Что вы освоите:** описать, что сейчас происходит, и попросить не шуметь
 **Новые слова:** heron, marsh, causeway, dragonfly
 
 ## Интро 1

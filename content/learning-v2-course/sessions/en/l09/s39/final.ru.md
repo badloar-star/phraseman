@@ -2,7 +2,7 @@
 
 **Ситуация.** Уточнить источник, найти дополнительную таблицу и объяснить сноску.
 
-**Что вы освоите:** refer to → referring to; in the appendix; It is a footnote
+**Что вы освоите:** сказать, на что вы сейчас ссылаетесь: I am referring to the appendix
 **Новые слова:** refer, appendix, footnote, index
 
 ## Интро 1

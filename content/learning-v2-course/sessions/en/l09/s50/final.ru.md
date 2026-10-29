@@ -2,7 +2,7 @@
 
 **Ситуация.** Рассматривать зрительные эффекты на выставке и отличать движение от впечатления.
 
-**Что вы освоите:** He is staring at the hologram; The picture is not moving; I am looking at my reflection
+**Что вы освоите:** сказать, кто на что сейчас смотрит: He is staring at…
 **Новые слова:** stare, hologram, illusion, reflection
 
 ## Интро 1

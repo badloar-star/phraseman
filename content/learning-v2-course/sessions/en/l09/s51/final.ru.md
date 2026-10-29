@@ -2,7 +2,7 @@
 
 **Ситуация.** Посетить обсерваторию вечером и посмотреть в телескоп.
 
-**Что вы освоите:** I am peering through the telescope; This is the eyepiece; Please don’t move the telescope
+**Что вы освоите:** сказать, что вы сейчас делаете, и попросить не двигать
 **Новые слова:** peer, telescope, eyepiece, observatory
 
 ## Интро 1

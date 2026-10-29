@@ -2,7 +2,7 @@
 
 **Ситуация.** Сравнить образец со страницей каталога и объяснить, почему выбор ещё не сделан.
 
-**Что вы освоите:** I am hesitating; I am checking the catalogue; Please don’t touch the wallpaper
+**Что вы освоите:** сказать, что вы сейчас делаете, и попросить не трогать
 **Новые слова:** swatch, wallpaper, catalogue, adhesive
 **Повторение:** hesitate (8.38)
 

@@ -2,7 +2,7 @@
 
 **Ситуація.** Описати рух учасників святкової ходи.
 
-**Що ви опануєте:** We are marching; The drummer is not marching; Are they marching?
+**Що ви опануєте:** сказати й запитати, що люди зараз роблять: Are they marching?
 **Нові слова:** march, parade, drummer, baton
 
 ---

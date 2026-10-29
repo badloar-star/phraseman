@@ -2,7 +2,7 @@
 
 **Ситуация.** Описать движение листьев, договориться о месте встречи и назвать течение воды.
 
-**Что вы освоите:** The leaves are whirling; I am near the carousel; This is an eddy
+**Что вы освоите:** описать, что сейчас происходит вокруг: The leaves are whirling
 **Новые слова:** whirl, carousel, stream, eddy
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Подготовить камеру и описать работу фотографа.
 
-**Что вы освоите:** is cleaning / is not working; Please don’t touch…
+**Что вы освоите:** сказать, что сейчас происходит, и попросить не трогать: Please don’t touch…
 **Новые слова:** lens, shutter, photographer, flash
 
 ---

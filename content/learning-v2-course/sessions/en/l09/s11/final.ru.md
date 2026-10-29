@@ -2,7 +2,7 @@
 
 **Ситуация.** Описать движения глаз и детали лица.
 
-**Что вы освоите:** blink → blinking; is + -ing / is not + -ing
+**Что вы освоите:** сказать, что сейчас происходит и что нет: is blinking, is not blinking
 **Новые слова:** blink, eyelid, eyebrow, eyelash
 
 ---

@@ -2,7 +2,7 @@
 
 **Ситуация.** Описать нахмуренные брови, выражение лица и недоумение.
 
-**Что вы освоите:** frown → frowning; is frowning / is not frowning
+**Что вы освоите:** сказать, что человек сейчас делает: is frowning, is not frowning
 **Новые слова:** frown, forehead, expression, puzzled
 
 ---

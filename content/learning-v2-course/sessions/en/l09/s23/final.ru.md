@@ -2,7 +2,7 @@
 
 **Ситуация.** Описать движение участников праздничного шествия.
 
-**Что вы освоите:** We are marching; The drummer is not marching; Are they marching?
+**Что вы освоите:** сказать и спросить, что люди сейчас делают: Are they marching?
 **Новые слова:** march, parade, drummer, baton
 
 ---

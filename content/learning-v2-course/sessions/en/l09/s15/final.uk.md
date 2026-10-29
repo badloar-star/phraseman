@@ -2,7 +2,7 @@
 
 **Ситуація.** Говорити про сон і впізнавати предмети казкового світу.
 
-**Що ви опануєте:** dream → dreaming; am dreaming / am not dreaming
+**Що ви опануєте:** сказати про себе, що ви зараз робите: I am dreaming, I am not dreaming
 **Нові слова:** dream, dragon, castle, nightmare
 
 ---

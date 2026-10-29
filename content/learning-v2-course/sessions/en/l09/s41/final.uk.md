@@ -2,7 +2,7 @@
 
 **Ситуація.** Описати рух листя, домовитися про місце зустрічі й назвати течію води.
 
-**Що ви опануєте:** The leaves are whirling; I am near the carousel; This is an eddy
+**Що ви опануєте:** описати, що зараз відбувається довкола: The leaves are whirling
 **Нові слова:** whirl, carousel, stream, eddy
 
 ## Інтро 1

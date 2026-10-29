@@ -3,7 +3,7 @@
 **Ситуація.** Упізнати морську тварину, запитати про її рух і ввічливо зупинити дотик.
 
 **Нові слова:** jellyfish, seahorse, tentacle, coral
-**Що ви опануєте:** is floating; Is ... swimming?; is not moving; Please don’t touch ...
+**Що ви опануєте:** сказати, що зараз відбувається, і попросити не чіпати: Please don’t touch…
 
 ## Інтро 1
 

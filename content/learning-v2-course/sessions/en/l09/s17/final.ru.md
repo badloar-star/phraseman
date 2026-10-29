@@ -2,7 +2,7 @@
 
 **Ситуация.** Уточнить, какую часть вещи сейчас осматривают.
 
-**Что вы освоите:** Are you inspecting…? Is she inspecting…? Is the zipper working?
+**Что вы освоите:** спросить, что сейчас происходит: Is the zipper working?
 **Новые слова:** inspect, seam, lining, zipper
 
 ---

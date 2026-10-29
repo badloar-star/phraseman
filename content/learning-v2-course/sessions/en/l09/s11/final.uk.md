@@ -2,7 +2,7 @@
 
 **Ситуація.** Описати рухи очей і деталі обличчя.
 
-**Що ви опануєте:** blink → blinking; is + -ing / is not + -ing
+**Що ви опануєте:** сказати, що зараз відбувається і що ні: is blinking, is not blinking
 **Нові слова:** blink, eyelid, eyebrow, eyelash
 
 ---

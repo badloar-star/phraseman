@@ -2,7 +2,7 @@
 
 **Ситуація.** Описати широку усмішку й дії учасників свята.
 
-**Що ви опануєте:** grin → grinning; Is he grinning?; is not waving
+**Що ви опануєте:** запитати й сказати, що людина зараз робить: Is he grinning?
 **Нові слова:** grin, dimple, mascot, confetti
 
 ---

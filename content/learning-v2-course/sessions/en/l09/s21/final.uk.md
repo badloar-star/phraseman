@@ -2,7 +2,7 @@
 
 **Ситуація.** Описати зітхання й розрізнити затримку та скасування.
 
-**Що ви опануєте:** sigh → sighing; Is he sighing?; I am sighing with relief
+**Що ви опануєте:** запитати й сказати, що людина зараз робить: Is he sighing?
 **Нові слова:** sigh, relief, delay, cancellation
 
 ---

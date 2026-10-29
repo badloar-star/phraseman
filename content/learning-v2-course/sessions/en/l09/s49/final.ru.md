@@ -2,7 +2,7 @@
 
 **Ситуация.** Разобрать подарок для малыша и говорить с ним тихо, пока дома гости.
 
-**Что вы освоите:** She is murmuring to the baby; This is a onesie; Please don’t move the cradle
+**Что вы освоите:** сказать, что сейчас происходит, и попросить не двигать
 **Новые слова:** murmur, pacifier, onesie, cradle
 
 ## Интро 1

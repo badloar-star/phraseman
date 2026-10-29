@@ -2,7 +2,7 @@
 
 **Ситуация.** Наблюдать за маленькими животными и описывать их движение.
 
-**Что вы освоите:** is crawling / is not crawling; Is the snail crawling?
+**Что вы освоите:** спросить и сказать, что сейчас происходит: Is the snail crawling?
 **Новые слова:** beetle, snail, moss, burrow
 
 ---

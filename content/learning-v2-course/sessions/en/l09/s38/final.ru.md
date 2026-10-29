@@ -2,7 +2,7 @@
 
 **Ситуация.** Сообщить о повторяющихся ошибках, объяснить отсутствие света и спросить о событии в учебной анимации.
 
-**Что вы освоите:** occur → occurring; Errors are occurring; There is a power outage
+**Что вы освоите:** сказать, что сейчас происходит: Errors are occurring
 **Новые слова:** occur, outage, glitch, eclipse
 
 ## Интро 1

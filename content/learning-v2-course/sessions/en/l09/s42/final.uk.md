@@ -2,7 +2,7 @@
 
 **Ситуація.** Пояснити очікування виходу, впізнати дублера й попросити не чіпати костюм.
 
-**Що ви опануєте:** I am waiting for my cue; The understudy is rehearsing; Please don’t touch the costume
+**Що ви опануєте:** сказати, що зараз відбувається за сценою, і попросити не чіпати
 **Нові слова:** cue, understudy, costume, script
 
 ## Інтро 1

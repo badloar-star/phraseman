@@ -2,7 +2,7 @@
 
 **Ситуація.** Помічати інформацію дорогою й слухати короткий випуск новин.
 
-**Що ви опануєте:** glance at; I am reading the headline; Please don’t turn off the radio
+**Що ви опануєте:** сказати, що ви зараз читаєте, і попросити не вимикати
 **Нові слова:** glance, billboard, headline, bulletin
 
 ## Інтро 1

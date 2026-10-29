@@ -2,7 +2,7 @@
 
 **Ситуация.** Сообщить об отправке работы, подготовке портфолио и позе для рисунка.
 
-**Что вы освоите:** submit → submitting; make → making; sit → sitting
+**Что вы освоите:** правильно добавлять -ing: making, sitting, submitting
 **Новые слова:** submit, entry, attachment, portfolio
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Показати рух у грі, описати птаха й попросити не торкатися комахи.
 
-**Що ви опануєте:** hop → hopping; is hopping / is not hopping; Please don’t touch ...
+**Що ви опануєте:** сказати, що зараз відбувається, і попросити не чіпати: is hopping, Please don’t touch…
 **Нові слова:** hop, hopscotch, sparrow, grasshopper
 
 ## Інтро 1

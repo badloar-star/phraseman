@@ -2,7 +2,7 @@
 
 **Ситуация.** Уточнить темы встречи, записать решения и заметить ответ без слов.
 
-**Что вы освоите:** I am checking the agenda; I am taking minutes; An attendee is nodding
+**Что вы освоите:** рассказать, что сейчас происходит на встрече
 **Новые слова:** agenda, briefing, minutes, attendee
 **Повторение:** nod (7.56), nodding
 

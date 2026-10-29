@@ -2,7 +2,7 @@
 
 **Ситуация.** Различать виды книг и описывать осмотр переплёта.
 
-**Что вы освоите:** is inspecting; Are you reading…?; Please don’t touch…
+**Что вы освоите:** спросить, что человек сейчас делает, и попросить не трогать: Please don’t touch…
 **Новые слова:** spine, hardback, paperback, binding
 
 ---

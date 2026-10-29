@@ -2,7 +2,7 @@
 
 **Ситуація.** Спостерігати за птахом і комахами з доріжки через заболочену місцевість.
 
-**Що ви опануєте:** The heron is standing in the water; We are crossing the causeway; Please don’t shout
+**Що ви опануєте:** описати, що зараз відбувається, і попросити не шуміти
 **Нові слова:** heron, marsh, causeway, dragonfly
 
 ## Інтро 1

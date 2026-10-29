@@ -2,7 +2,7 @@
 
 **Ситуация.** Объяснить ожидание выхода, узнать дублёра и попросить не трогать костюм.
 
-**Что вы освоите:** I am waiting for my cue; The understudy is rehearsing; Please don’t touch the costume
+**Что вы освоите:** сказать, что сейчас происходит за сценой, и попросить не трогать
 **Новые слова:** cue, understudy, costume, script
 
 ## Интро 1

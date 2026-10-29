@@ -2,7 +2,7 @@
 
 **Ситуація.** Відвідати обсерваторію ввечері й подивитися в телескоп.
 
-**Що ви опануєте:** I am peering through the telescope; This is the eyepiece; Please don’t move the telescope
+**Що ви опануєте:** сказати, що ви зараз робите, і попросити не рухати
 **Нові слова:** peer, telescope, eyepiece, observatory
 
 ## Інтро 1

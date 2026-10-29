@@ -2,7 +2,7 @@
 
 **Ситуация.** Описать вращение предмета и уточнить, продолжается ли оно.
 
-**Что вы освоите:** is spinning / is not spinning / Is it spinning?
+**Что вы освоите:** сказать и спросить, что сейчас происходит: Is it spinning?
 **Новые слова:** spin, propeller, turntable, pinwheel
 
 ---

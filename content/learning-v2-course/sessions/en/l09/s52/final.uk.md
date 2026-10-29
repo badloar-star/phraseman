@@ -2,7 +2,7 @@
 
 **Ситуація.** Спостерігати захід сонця з набережної й описувати те, що видно вдалині.
 
-**Що ви опануєте:** She is gazing at the sunset; The horizon is clear; Please don’t block the view
+**Що ви опануєте:** описати, що зараз видно, і попросити не загороджувати
 **Нові слова:** gaze, horizon, silhouette, sunset
 
 ## Інтро 1

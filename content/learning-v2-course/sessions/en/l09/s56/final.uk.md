@@ -2,7 +2,7 @@
 
 **Ситуація.** Розповісти, що команда робить зараз, уточнити завдання й попросити не заважати.
 
-**Що ви опануєте:** The steward is helping a visitor; Are you doing a headcount?; Please don't shout
+**Що ви опануєте:** запитати, що зараз роблять, і попросити не шуміти
 **Нові слова:** steward, walkie-talkie, megaphone, headcount
 
 ## Інтро 1

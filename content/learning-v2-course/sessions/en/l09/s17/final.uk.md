@@ -2,7 +2,7 @@
 
 **Ситуація.** Уточнити, яку частину речі зараз оглядають.
 
-**Що ви опануєте:** Are you inspecting…? Is she inspecting…? Is the zipper working?
+**Що ви опануєте:** запитати, що зараз відбувається: Is the zipper working?
 **Нові слова:** inspect, seam, lining, zipper
 
 ---

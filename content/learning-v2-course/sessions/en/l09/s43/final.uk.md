@@ -2,7 +2,7 @@
 
 **Ситуація.** Знайти потрібне зображення, перевірити результат сканування й прибрати зайві краї.
 
-**Що ви опануєте:** I am checking the preview; I am cropping the photo; scanning / cropping
+**Що ви опануєте:** сказати, що ви зараз робите з фото: I am cropping the photo
 **Нові слова:** thumbnail, preview, resolution, crop
 
 ## Інтро 1

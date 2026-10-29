@@ -10,7 +10,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import type { Lang } from '../../../constants/i18n';
 import { DebugLogger } from '../../../app/debug-logger';
 import StoryViewer from '../StoryViewer';
-import { STORY_SAMPLE_MY_RANK, STORY_TEMPLATE_IDS, studioEvents, studioStartIndex } from './story_template_registry';
+import { STORY_ALL_TEMPLATE_IDS, STORY_SAMPLE_MY_RANK, studioEvents, studioStartIndex } from './story_template_registry';
 
 const LOG = '[STORY-TPL]';
 /** Пауза между закрытием и новым показом, мс (макет: улёт 320 + 100). */
@@ -26,7 +26,8 @@ export default function StoryTemplateStudio({ lang, frame, settle = false }: Pro
   const [open, setOpen] = useState(true);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => {
-    DebugLogger.info(LOG, `фотостудия: ${events.length} кадров, старт с ${startIndex + 1} (${STORY_TEMPLATE_IDS[startIndex]}) lang=${lang} settle=${String(settle)}`);
+    // зачем (анонс конкурса 29.10): кадры 1–23 — макет stories-templates-v1, 24–27 — анонс «Набор месяца»
+    DebugLogger.info(LOG, `фотостудия: ${events.length} кадров, старт с ${startIndex + 1} (${STORY_ALL_TEMPLATE_IDS[startIndex]}) lang=${lang} settle=${String(settle)}`);
     return () => { if (timer.current) clearTimeout(timer.current); };
   }, [events.length, lang, settle, startIndex]);
   const onClose = useCallback(() => {

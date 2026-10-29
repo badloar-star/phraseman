@@ -13,7 +13,7 @@ import { isPremiumThemeId } from '../../../app/premium_theme_catalog';
 import { nextStreakMilestone } from '../../streak/moments/streak_milestones';
 import { DAY_MS, dayKeyToMs } from './story_template_dates';
 import {
-  isStoryTemplateId, STORY_TEMPLATE_SAMPLES,
+  isStoryTemplateId, STORY_CONTEST_RULES, STORY_TEMPLATE_SAMPLES,
   type StoryBubble, type StoryCardSample, type StoryPodiumEntry, type StoryTemplate,
 } from './story_template_registry';
 
@@ -142,7 +142,30 @@ export function storyTemplateFromEvent(event: StoryEventLike, studio = false): S
       return { id: 'mistakes', cleared: int(p.cleared), left: int(p.left), noNew: flag(p.noNew), samples: textList(p.samples) };
     case 'dialog_done':
       return str(p.title) ? { id: 'dialog', title: str(p.title), goalsDone: int(p.goalsDone), goalsTotal: int(p.goalsTotal), turns: int(p.turns), minutes: int(p.minutes), noHints: flag(p.noHints), bubbles: bubblesOf(p.bubbles) } : null;
+    case 'contest_intro':
+      return contestIntroOf(p, event.atMs);
     default:
       return null;
+  }
+}
+
+/**
+ * Анонс конкурса «Набор месяца»: событие на каждый кадр, payload.step — start | vote | prizes | invite (владелец 29.10, макет v2).
+ * Числа — правила владельца (STORY_CONTEST_RULES); событие может прислать свои (сервер конкурса знает действующие правила), неверные — правила.
+ * Неизвестный step — кадра нет (null), как у прочих событий без данных.
+ */
+export function contestIntroOf(p: Readonly<Record<string, unknown>>, atMs: number): StoryTemplate | null {
+  const pos = (v: unknown, fallback: number): number => { const n = num(v); return n !== null && n > 0 ? Math.trunc(n) : fallback; };
+  const r = STORY_CONTEST_RULES;
+  switch (str(p.step)) {
+    case 'start': return { id: 'contest_start', startMs: num(p.startMs) ?? atMs };
+    case 'vote': return { id: 'contest_vote', minDays: pos(p.minDays, r.minDays), minLessons: pos(p.minLessons, r.minLessons), votesPerMonth: pos(p.votesPerMonth, r.votesPerMonth) };
+    case 'prizes': {
+      const given = numList(p.plusMonths).map((n) => Math.trunc(n)).filter((n) => n > 0);
+      const plusMonths: readonly [number, number, number] = given.length === 3 ? [given[0]!, given[1]!, given[2]!] : r.plusMonths;
+      return { id: 'contest_prizes', plusMonths };
+    }
+    case 'invite': return { id: 'contest_invite', coins: pos(p.coins, r.inviteCoins), friends: pos(p.friends, r.inviteFriends), plusDays: pos(p.plusDays, r.invitePlusDays) };
+    default: return null;
   }
 }

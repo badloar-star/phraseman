@@ -95,6 +95,8 @@ export const storyCtaBottom = (insetBottom: number): number => Math.max(84, inse
 export const STORY_CTA_HEIGHT = 50;
 /** Кадр с кнопкой заканчивается выше: .sl.hascta { bottom: 150 }. */
 export const STORY_SLIDE_BOTTOM_CTA = 150;
+/** Строка под кнопкой — на 44 dp ниже её нижнего края (макет анонса: кнопка bottom 84, строка bottom 40). */
+const FINE_GAP = 44;
 
 export const StoryCta = memo(function StoryCta({ cta, lang, bottom, onPress, testID = 'story-cta' }: Readonly<{ cta: StoryTemplateCta; lang: Lang; bottom: number; onPress: () => void; testID?: string }>) {
   const pal = useStoryTemplatePalette();
@@ -107,15 +109,24 @@ export const StoryCta = memo(function StoryCta({ cta, lang, bottom, onPress, tes
   // зачем (Эмиль: кнопка отвечает на нажатие): scale .97 за 160 мс ease-out, отпустил — назад
   const onPressIn = useCallback(() => { pressed.value = withTiming(1, { duration: 160, easing: EASE_OUT }); }, [pressed]);
   const onPressOut = useCallback(() => { pressed.value = withTiming(0, { duration: 160, easing: EASE_OUT }); }, [pressed]);
+  // зачем (анонс конкурса, владелец 29.10): мелкая строка под кнопкой — «Apple и Google не спонсоры конкурса»; появляется после кнопки (1200 мс)
+  const fineIn = useAnimatedStyle(() => ({ opacity: EASE_OUT(phase(frameMs(progress.value, durationMs, final), 1200, 420)) }));
   const label = tplText(lang, cta.label);
   return (
-    <Animated.View style={[c.wrap, { bottom }, enter]}>
-      <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={label} onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut} // guard-ok: кнопка во всю ширину кадра × 50 dp
-        style={[c.btn, { backgroundColor: pal.cta, boxShadow: `0 12px 28px -12px ${mix(pal.shTint, 0.55)}` }]}>
-        <Ionicons name={cta.icon} size={18} color={pal.ctaInk} style={c.icon} />
-        <Text style={[c.label, { color: pal.ctaInk }]}>{label}</Text>
-      </Pressable>
-    </Animated.View>
+    <>
+      <Animated.View style={[c.wrap, { bottom }, enter]}>
+        <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={label} onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut} // guard-ok: кнопка во всю ширину кадра × 50 dp
+          style={[c.btn, { backgroundColor: pal.cta, boxShadow: `0 12px 28px -12px ${mix(pal.shTint, 0.55)}` }]}>
+          <Ionicons name={cta.icon} size={18} color={pal.ctaInk} style={c.icon} />
+          <Text style={[c.label, { color: pal.ctaInk }]}>{label}</Text>
+        </Pressable>
+      </Animated.View>
+      {cta.fine ? (
+        <Animated.View testID={`${testID}-fine`} pointerEvents="none" style={[c.fine, { bottom: Math.max(12, bottom - FINE_GAP) }, fineIn]}>
+          <Text style={[c.fineText, { color: pal.mu }]}>{tplText(lang, cta.fine)}</Text>
+        </Animated.View>
+      ) : null}
+    </>
   );
 });
 
@@ -143,6 +154,9 @@ const c = StyleSheet.create({
   btn: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 10, borderRadius: 25, paddingHorizontal: 20 },
   icon: { lineHeight: 18 },
   label: { fontSize: 17, lineHeight: 22, fontWeight: '700', flexShrink: 1 },
+  // .fine анонса: поля 28, 12/16, по центру, цвет «приглушённый» темы
+  fine: { position: 'absolute', left: 28, right: 28 },
+  fineText: { fontSize: 12, lineHeight: 16, textAlign: 'center' },
   // .pz: 56, по центру экрана; две полоски 6 × 20 с полями 3
   pz: { position: 'absolute', left: '50%', top: '50%', width: 56, height: 56, marginLeft: -28, marginTop: -28, borderRadius: 28, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
   pzBar: { width: 6, height: 20, borderRadius: 2, marginHorizontal: 3 },

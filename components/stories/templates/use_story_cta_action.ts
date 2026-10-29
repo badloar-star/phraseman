@@ -21,6 +21,8 @@ import { useTheme } from '../../ThemeContext';
 import type { StoryTemplateCta } from './story_template_registry';
 
 const LOG = '[STORY-TPL]';
+/** Каталог наборов сообщества (= FC_PACKS_ROUTE). */
+const PACKS_ROUTE = '/flashcards_packs';
 
 /** Данные кадра для действия: тема для «Включить тему» (кадр «Новая тема» или объявление design=theme). */
 export type StoryCtaContext = Readonly<{ source: string; themeId: string | null }>;
@@ -49,6 +51,14 @@ export function useStoryCtaAction(lang: Lang, studio: boolean, closeViewer: (sou
       DebugLogger.info(LOG, 'Plus: закрываем просмотр и открываем окно Plus context=generic source=story_announcement');
       closeViewer('cta_open_plus');
       openPremiumPaywall(router, { context: 'generic', source: 'story_announcement' });
+      return;
+    }
+    if (cta.action === 'open_packs') {
+      // зачем (анонс конкурса «Набор месяца», владелец 29.10): кнопка последнего кадра ведёт в каталог наборов сообщества — тот же маршрут,
+      // что FC_PACKS_ROUTE (app/flashcards/tabbar_state.ts; модуль не тянем в просмотр историй); просмотр (Modal) закрываем, иначе каталог открылся бы под ним
+      DebugLogger.info(LOG, `наборы: закрываем просмотр и открываем ${PACKS_ROUTE} (кадр=${ctx.source})`);
+      closeViewer('cta_open_packs');
+      router.push(PACKS_ROUTE as never);
       return;
     }
     if (cta.action === 'share_link') {

@@ -15,15 +15,25 @@ export const STORY_TEMPLATE_IDS = [
   'streak7', 'streak100', 'ach', 'level', 'lesson', 'exam', 'summit', 'peakweek', 'duel', 'overtaken', 'friend', 'pack',
   'packpop', 'phrase', 'week', 'month', 'invite', 'holiday', 'rank', 'theme', 'coins', 'mistakes', 'dialog',
 ] as const;
-export type StoryTemplateId = (typeof STORY_TEMPLATE_IDS)[number];
+
+/**
+ * Анонс конкурса «Набор месяца» — 4 кадра (владелец 29.10: «Да, делать в коде», макет claude.ai/artifact/GukYuSACfWas4P9toiG7sS v2).
+ * зачем отдельным списком: STORY_TEMPLATE_IDS — ровно 23 кадра макета stories-templates-v1 по порядку (по нему снимает Сверка, кадры 1–23);
+ * кадры конкурса идут после них — в фотостудии это 24–27.
+ */
+export const STORY_CONTEST_TEMPLATE_IDS = ['contest_start', 'contest_vote', 'contest_prizes', 'contest_invite'] as const;
+/** Все шаблоны: 23 кадра макета + кадры конкурса. */
+export const STORY_ALL_TEMPLATE_IDS = [...STORY_TEMPLATE_IDS, ...STORY_CONTEST_TEMPLATE_IDS] as const;
+export type StoryTemplateId = (typeof STORY_ALL_TEMPLATE_IDS)[number];
 
 export function isStoryTemplateId(value: unknown): value is StoryTemplateId {
-  return typeof value === 'string' && (STORY_TEMPLATE_IDS as readonly string[]).includes(value);
+  return typeof value === 'string' && (STORY_ALL_TEMPLATE_IDS as readonly string[]).includes(value);
 }
 
 export type StoryIconName = React.ComponentProps<typeof Ionicons>['name'];
-export type StoryTemplateCtaAction = 'catch_up' | 'duel' | 'open_pack' | 'add_cards' | 'share_link' | 'use_theme' | 'open_plus';
-export type StoryTemplateCta = Readonly<{ action: StoryTemplateCtaAction; label: StoryTemplateStringKey; icon: StoryIconName }>;
+export type StoryTemplateCtaAction = 'catch_up' | 'duel' | 'open_pack' | 'add_cards' | 'share_link' | 'use_theme' | 'open_plus' | 'open_packs';
+/** `fine` — мелкая строка под кнопкой (анонс конкурса: «Apple и Google не спонсоры конкурса», владелец 29.10). */
+export type StoryTemplateCta = Readonly<{ action: StoryTemplateCtaAction; label: StoryTemplateStringKey; icon: StoryIconName; fine?: StoryTemplateStringKey }>;
 
 /** Кнопки действия макета (`cta`): подпись и глиф Ionicons — те же, что в макете (arrowR, flash, layers, bookmark, share, palette). */
 export const STORY_TEMPLATE_CTA: Readonly<Partial<Record<StoryTemplateId, StoryTemplateCta>>> = {
@@ -33,6 +43,8 @@ export const STORY_TEMPLATE_CTA: Readonly<Partial<Record<StoryTemplateId, StoryT
   phrase: { action: 'add_cards', label: 'ctaAddToCards', icon: 'bookmark' },
   invite: { action: 'share_link', label: 'ctaShareLink', icon: 'share-social' },
   theme: { action: 'use_theme', label: 'ctaUseTheme', icon: 'color-palette' },
+  // зачем (владелец 29.10): кнопка «Открыть наборы» — на последнем кадре анонса, под ней мелко про спонсоров
+  contest_invite: { action: 'open_packs', label: 'ctaOpenPacks', icon: 'layers', fine: 'contestSponsors' },
 };
 
 /** Человек в кадре: имя и ранг монеты (монета = аватар). */
@@ -68,7 +80,20 @@ export type StoryTemplate =
   | T<'theme', { themeId: string; opened: number | null; total: number | null }>
   | T<'coins', { milestone: number; days: number; rank: number | null }>
   | T<'mistakes', { cleared: number; left: number; noNew: boolean; samples: readonly string[] }>
-  | T<'dialog', { title: string; goalsDone: number; goalsTotal: number; turns: number; minutes: number; noHints: boolean; bubbles: readonly StoryBubble[] }>;
+  | T<'dialog', { title: string; goalsDone: number; goalsTotal: number; turns: number; minutes: number; noHints: boolean; bubbles: readonly StoryBubble[] }>
+  // ── анонс конкурса «Набор месяца»: числа — правила владельца 29.10, событие может прислать свои ──
+  | T<'contest_start', { startMs: number }>
+  | T<'contest_vote', { minDays: number; minLessons: number; votesPerMonth: number }>
+  | T<'contest_prizes', { plusMonths: readonly [number, number, number] }>
+  | T<'contest_invite', { coins: number; friends: number; plusDays: number }>;
+
+/**
+ * Правила конкурса для анонса (владелец 29.10): голосовать — через 3 дня и после 1 урока, до 10 голосов в месяц; призы — Plus на 3, 2 и 1 месяц
+ * за 1, 2 и 3 место; за друга, прошедшего 1 урок, — 500 монет обоим; за 3 друзей, каждый из которых прошёл 1 урок, — Plus на 14 дней.
+ */
+export const STORY_CONTEST_RULES = Object.freeze({
+  minDays: 3, minLessons: 1, votesPerMonth: 10, plusMonths: [3, 2, 1] as const, inviteCoins: 500, inviteFriends: 3, invitePlusDays: 14,
+});
 
 export type StoryTemplateOf<I extends StoryTemplateId> = Extract<StoryTemplate, { id: I }>;
 
@@ -123,18 +148,22 @@ export const STORY_TEMPLATE_SAMPLES: Readonly<{ [I in StoryTemplateId]: StoryTem
     id: 'dialog', title: 'В кафе', goalsDone: 6, goalsTotal: 6, turns: 14, minutes: 4, noHints: true,
     bubbles: [{ text: '¿Me pones un café con leche?', me: false }, { text: 'Claro. ¿Para llevar?', me: true }, { text: 'Sí, gracias. ¿Cuánto es?', me: false }],
   },
+  contest_start: { id: 'contest_start', startMs: day(2026, 11, 1) },
+  contest_vote: { id: 'contest_vote', minDays: STORY_CONTEST_RULES.minDays, minLessons: STORY_CONTEST_RULES.minLessons, votesPerMonth: STORY_CONTEST_RULES.votesPerMonth },
+  contest_prizes: { id: 'contest_prizes', plusMonths: STORY_CONTEST_RULES.plusMonths },
+  contest_invite: { id: 'contest_invite', coins: STORY_CONTEST_RULES.inviteCoins, friends: STORY_CONTEST_RULES.inviteFriends, plusDays: STORY_CONTEST_RULES.invitePlusDays },
 };
 
 // ── фотостудия (dev-маршрут) ─────────────────────────────────────────────────────────────────────────────────────────
 
-/** Номер кадра из параметра фотостудии: id шаблона («duel») или номер 1…23; иначе — первый кадр. */
+/** Номер кадра из параметра фотостудии: id шаблона («duel») или номер 1…27 (24–27 — анонс конкурса); иначе — первый кадр. */
 export function studioStartIndex(raw: string | undefined): number {
-  if (isStoryTemplateId(raw)) return STORY_TEMPLATE_IDS.indexOf(raw);
+  if (isStoryTemplateId(raw)) return (STORY_ALL_TEMPLATE_IDS as readonly string[]).indexOf(raw);
   const n = Math.trunc(Number(raw));
-  return Number.isFinite(n) && n >= 1 && n <= STORY_TEMPLATE_IDS.length ? n - 1 : 0;
+  return Number.isFinite(n) && n >= 1 && n <= STORY_ALL_TEMPLATE_IDS.length ? n - 1 : 0;
 }
 
-/** 23 события фотостудии: тип «ачивка» (без особой обработки в просмотре), метка шаблона в payload. */
+/** События фотостудии — по одному на шаблон: тип «ачивка» (без особой обработки в просмотре), метка шаблона в payload. */
 export function studioEvents(nowMs: number): StoryEventList {
-  return STORY_TEMPLATE_IDS.map((id) => ({ id: `studio-${id}`, type: 'achievement' as const, payload: { studioTemplate: id }, atMs: nowMs, seen: false }));
+  return STORY_ALL_TEMPLATE_IDS.map((id) => ({ id: `studio-${id}`, type: 'achievement' as const, payload: { studioTemplate: id }, atMs: nowMs, seen: false }));
 }

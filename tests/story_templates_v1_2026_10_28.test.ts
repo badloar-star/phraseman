@@ -42,21 +42,23 @@ describe('шаблоны историй v1 — реестр', () => {
     for (const id of STORY_TEMPLATE_IDS) expect(STORY_TEMPLATE_SAMPLES[id].id).toBe(id);
   });
 
-  it('шесть кнопок действия макета — у «друг обогнал», «новый друг», «набор добавляют», «фраза дня», «пригласи», «новая тема»', () => {
-    expect(Object.keys(STORY_TEMPLATE_CTA).sort()).toEqual(['friend', 'invite', 'overtaken', 'packpop', 'phrase', 'theme']);
+  it('шесть кнопок действия макета — у «друг обогнал», «новый друг», «набор добавляют», «фраза дня», «пригласи», «новая тема»; седьмая — у анонса конкурса', () => {
+    // зачем (владелец 29.10): кнопка «Открыть наборы» на последнем кадре анонса «Набор месяца» — сверх шести кнопок макета историй
+    expect(Object.keys(STORY_TEMPLATE_CTA).sort()).toEqual(['contest_invite', 'friend', 'invite', 'overtaken', 'packpop', 'phrase', 'theme']);
     expect(STORY_TEMPLATE_CTA.theme).toEqual({ action: 'use_theme', label: 'ctaUseTheme', icon: 'color-palette' });
     expect(tplText('ru', 'ctaCatchUp')).toBe('Догнать');
     expect(tplText('ru', 'ctaShareLink')).toBe('Поделиться ссылкой');
   });
 
-  it('фотостудия: кадр по id или номеру, 23 события-метки', () => {
+  it('фотостудия: кадр по id или номеру; 23 кадра макета, за ними 4 кадра анонса конкурса', () => {
     expect(studioStartIndex('duel')).toBe(8);
     expect(studioStartIndex('23')).toBe(22);
     expect(studioStartIndex('0')).toBe(0);
     expect(studioStartIndex(undefined)).toBe(0);
     const events = studioEvents(1);
-    expect(events).toHaveLength(23);
+    expect(events).toHaveLength(27);
     expect(events[8]).toMatchObject({ id: 'studio-duel', type: 'achievement', payload: { studioTemplate: 'duel' } });
+    expect(events[23]).toMatchObject({ id: 'studio-contest_start', payload: { studioTemplate: 'contest_start' } });
   });
 });
 
@@ -65,7 +67,9 @@ describe('шаблоны историй v1 — строки на 9 языках'
     const vars = { days: 7, next: 14, opened: 3, total: 24, toLevel: 'A2', chapters: 8, lessons: 96, lessonNo: 12, coins: 40, minutes: 6, chapter: 2,
       nextChapter: 3, league: 'Гранит', floor: 15, floors: 15, my: 4, their: 2, name: 'Тимур', min: 1, sec: 40, gap: 80, daysLeft: 2, packTitle: 'Еда',
       cards: 48, pct: 92, count: 14, time: '0:02', streak: 7, h: 3, m: '20', active: 21, daysInMonth: 31, exams: 2, date: '20 июля', theme: 'Титан',
-      rank: 8, cleared: 12, left: 3, title: 'В кафе', done: 6, turns: 14 };
+      rank: 8, cleared: 12, left: 3, title: 'В кафе', done: 6, turns: 14,
+      // анонс конкурса «Набор месяца» (29.10): голоса, месяцы Plus, место, друзья, дни Plus
+      votes: 10, months: 3, place: 1, friends: 3, plusDays: 14 };
     for (const key of STORY_TEMPLATE_STRING_KEYS) {
       for (const lang of LANGS) {
         const text = tplText(lang, key, vars);

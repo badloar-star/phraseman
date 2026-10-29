@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете проживание и заботы о доме.
 
-**Что вы освоите:** спросить и сказать, сколько чего-то: We don't know many landladies.
+**Что вы освоите:** спросить, сколько у человека жильцов: How many lodgers do you have?
 **Новые слова:** lodger, landlady, accommodation, maintenance
 
 ## Интро 1

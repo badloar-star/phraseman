@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте завдання й підготовку до занять.
 
-**Що ви опануєте:** запитати й сказати, скільки чогось: We don't have many worksheets.
+**Що ви опануєте:** запитати, скільки чогось є: How much coursework do we have?
 **Нові слова:** assignment, worksheet, coursework, revision
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете задания и подготовку к занятиям.
 
-**Что вы освоите:** спросить и сказать, сколько чего-то: We don't have many worksheets.
+**Что вы освоите:** спросить, сколько чего-то есть: How much coursework do we have?
 **Новые слова:** assignment, worksheet, coursework, revision
 
 ## Интро 1

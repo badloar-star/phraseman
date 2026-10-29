@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете документы об образовании, знания и обучение.
 
-**Что вы освоите:** спросить и сказать, сколько чего-то: We don't have many certificates.
+**Что вы освоите:** спросить, сколько у собеседника квалификаций: How many qualifications do you have?
 **Новые слова:** qualification, certificate, knowledge, tuition
 
 ## Интро 1

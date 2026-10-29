@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте проживання й турботи про будинок.
 
-**Що ви опануєте:** запитати й сказати, скільки чогось: We don't know many landladies.
+**Що ви опануєте:** запитати, скільки в людини мешканців: How many lodgers do you have?
 **Нові слова:** lodger, landlady, accommodation, maintenance
 
 ## Інтро 1

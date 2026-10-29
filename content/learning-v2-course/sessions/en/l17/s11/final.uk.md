@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте людей на дорозі та дорожні умови.
 
-**Що ви опануєте:** запитати й сказати, скільки чогось: There isn't much pollution here.
+**Що ви опануєте:** запитати, скільки людей чимось користується: How many commuters use this train?
 **Нові слова:** commuter, motorist, congestion, pollution
 
 ## Інтро 1

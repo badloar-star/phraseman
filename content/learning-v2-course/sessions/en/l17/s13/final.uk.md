@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте учасників, підтримку й програму заходу.
 
-**Що ви опануєте:** запитати й сказати, скільки чогось: We don't have many sponsors.
+**Що ви опануєте:** запитати, скільки учасників: How many participants do we have?
 **Нові слова:** participant, sponsor, entertainment, funding
 
 ## Інтро 1

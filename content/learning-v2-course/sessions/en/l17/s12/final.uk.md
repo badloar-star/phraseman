@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте документи про освіту, знання й навчання.
 
-**Що ви опануєте:** запитати й сказати, скільки чогось: We don't have many certificates.
+**Що ви опануєте:** запитати, скільки в співрозмовника кваліфікацій: How many qualifications do you have?
 **Нові слова:** qualification, certificate, knowledge, tuition
 
 ## Інтро 1

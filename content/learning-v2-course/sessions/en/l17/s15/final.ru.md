@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете новичков, обучение и помощь наставника.
 
-**Что вы освоите:** спросить и сказать, сколько чего-то: We don't have many apprentices.
+**Что вы освоите:** спросить, сколько стажёров: How many trainees do we have?
 **Новые слова:** trainee, apprentice, supervision, guidance
 
 ## Интро 1

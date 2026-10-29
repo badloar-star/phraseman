@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете людей на дороге и дорожные условия.
 
-**Что вы освоите:** спросить и сказать, сколько чего-то: There isn't much pollution here.
+**Что вы освоите:** спросить, сколько людей пользуется чем-то: How many commuters use this train?
 **Новые слова:** commuter, motorist, congestion, pollution
 
 ## Интро 1

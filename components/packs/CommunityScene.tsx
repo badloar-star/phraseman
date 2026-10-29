@@ -2,7 +2,7 @@ import { useRouter } from 'expo-router';
 /** Native counterpart of community-scene-v3; geometry follows the approved 430 dp reference. */
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
-import React, { useEffect, useState, useSyncExternalStore } from 'react';
+import React, { useEffect, useMemo, useState, useSyncExternalStore } from 'react';
 import { AppState, Modal, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { LinearGradient } from '../SafeLinearGradient';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
@@ -22,6 +22,7 @@ import { captureAccountGeneration, isCurrentAccountGeneration } from '../../app/
 import { DebugLogger } from '../../app/debug-logger';
 // зачем (координатор 29.10, Переводчик): LP раньше отдавал украинцу и испанцу английский — теперь 9 языков по словарю
 import { communitySceneText } from './community_scene_strings';
+import { communityContestMonthStore, monthlyContestPlace } from './community_scene_shared';
 
 export type CommunitySceneAuthor = Readonly<{ name: string; coinRank: number; isPremium: boolean }>;
 export const communityScenePanelStyle = StyleSheet.create({ panel: {
@@ -84,25 +85,16 @@ export function CommunitySceneTile({ pack, lang, likes, onOpen, onLongPress, aut
   referencePlace?: number;
 }>): React.JSX.Element {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
-  const g = liquidGlassTokens(liquidGlassThemeId);
-  const c = homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance);
+  // зачем (оптимизация плиток 29.10): токены зависят только от темы — считаем на смену темы, а не на каждый рендер каждой плитки
+  const { g, c } = useMemo(() => ({ g: liquidGlassTokens(liquidGlassThemeId), c: homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance) }), [liquidGlassThemeId, liquidGlassAppearance]);
   const resolvedAuthor = useCommunityAuthor(authorOverride ? null : pack, lang);
   const author = authorOverride ?? resolvedAuthor;
-  const [month, setMonth] = useState(() => contestMonth(Date.now()));
-  useSyncExternalStore(packSocialLive.subscribe, packSocialLive.getVersion, packSocialLive.getVersion);
-  useEffect(() => {
-    const refresh = () => setMonth(previous => {
-      const next = contestMonth(Date.now());
-      return previous.id === next.id ? previous : next;
-    });
-    // Refresh on resume and across a month boundary without network requests.
-    const timer = setInterval(refresh, 60000);
-    const subscription = AppState.addEventListener('change', state => { if (state === 'active') refresh(); });
-    return () => { clearInterval(timer); subscription.remove(); };
-  }, []);
-  const monthlyPlace = month.id >= COMMUNITY_CONTEST_FIRST_MONTH && !authorOverride
-    ? rankContestEntries(packSocialLive.contestEntries(month.id), month).findIndex(entry => entry.id === pack.id) + 1
-    : 0;
+  // зачем (оптимизация плиток 29.10): один таймер и один слушатель AppState на весь список (community_scene_shared), месяц меняется на границе без сети
+  const month = useSyncExternalStore(communityContestMonthStore.subscribe, communityContestMonthStore.get, communityContestMonthStore.get);
+  // зачем: подписка на ЧИСЛО — сердечко у другого набора место этой плитки не меняет, и плитка не перерисовывается; таблица мест одна на версию хранилища
+  const placeLive = month.id >= COMMUNITY_CONTEST_FIRST_MONTH && !authorOverride;
+  const readPlace = (): number => (placeLive ? monthlyContestPlace(pack.id, month) : 0);
+  const monthlyPlace = useSyncExternalStore(packSocialLive.subscribe, readPlace, readPlace);
   const place = authorOverride && typeof referencePlace === 'number' && Number.isSafeInteger(referencePlace) && referencePlace > 0
     ? referencePlace : monthlyPlace;
   return <KitTouchable testID={`community-scene-tile-${pack.id}`} accessibilityRole="button" accessibilityLabel={packTitleForInterface(pack, lang)} onPress={onOpen} onLongPress={onLongPress} style={s.tile}>
@@ -152,9 +144,12 @@ export function CommunityContestStage({ packs, lang, onOpen, authorId, topInset 
       const current = Date.now();
       return Math.floor(current / 60000) === Math.floor(previous / 60000) ? previous : current;
     });
-    const timer = setInterval(refresh, 1000);
+    // зачем (оптимизация плиток 29.10): счётчик показывает минуты — будим JS раз в минуту на её границе, а не 60 раз (было setInterval 1 с)
+    let timer: ReturnType<typeof setTimeout> | null = null;
+    const schedule = () => { timer = setTimeout(() => { refresh(); schedule(); }, 60000 - (Date.now() % 60000) + 50); };
+    schedule();
     const subscription = AppState.addEventListener('change', state => { if (state === 'active') refresh(); });
-    return () => { clearInterval(timer); subscription.remove(); };
+    return () => { if (timer !== null) clearTimeout(timer); subscription.remove(); };
   }, []);
   const nowMs = authors && typeof referenceNowMs === 'number' && Number.isFinite(referenceNowMs) ? referenceNowMs : liveNowMs;
   const month = contestMonth(nowMs);

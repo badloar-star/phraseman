@@ -2,7 +2,7 @@
 
 **Ситуация.** Обсудите варианты проживания и питания, которые вы выбрали для отпуска.
 
-**Что вы освоите:** review: past questions and event sequence
+**Что вы освоите:** повторить: спросить о прошлом и рассказать по порядку — Did you call? First I called, then I left.
 **Новые слова:** self-catering, half board, full board, bed and breakfast
 
 ## Интро 1

@@ -10,95 +10,222 @@ import { writeAccessProjection } from './access_projection';
 import { isStorePremiumActive, isAdminGrantActive } from './premium_status';
 import { syncPublicProfilePlusAfterCommit } from './public_profile_plus_sync';
 import { contestCanonicalOwner, contestRewardOwners } from './community_contest_identity';
-import { getWeekKey, isoDateUtc } from './progress_events';
+import { getWeekKey, isoDateUtc, parseAccountCreatedAtMs } from './progress_events';
+import {
+  CONTEST_TALLY_RULE_VERSION,
+  CONTEST_WIN_STORY_FIELD,
+  contestAccountCreatedAtMs,
+  contestLessonsCompleted,
+  contestStandingsShouldRefresh,
+  contestWinStoryValue,
+  tallyContestMonth,
+  type TallyPack,
+  type TallyStats,
+  type TallyVote,
+  type TallyVoter,
+} from './community_month_tally';
+import { grantPlusOnce } from './plus_grant';
 
 const RESULTS = 'community_month_results';
 const REWARDS = 'community_month_rewards';
 const WINNERS = 'community_contest_winners';
+const STANDINGS = 'community_month_standings';
+const LOG_TALLY = '[CONTEST-TALLY]';
+const LOG_FINAL = '[CONTEST-FINAL]';
+/** Владелец 29.10 ~07:55: места 1/2/3 → Plus 3/2/1 месяца автоматически (монет за места нет). */
+const PLUS_MONTHS_BY_PLACE = [3, 2, 1] as const;
+const errText = (error: unknown) => (error instanceof Error ? error.message : String(error)).slice(0, 160);
 
-/** Read real membership documents: client-maintained display counters cannot decide prizes. */
-async function readEntries(db: FirebaseFirestore.Firestore, month: ContestMonth, readerUid?: string): Promise<ContestEntry[]> {
-  const entries: ContestEntry[] = [];
+async function contestEnabledFor(db: FirebaseFirestore.Firestore, month: ContestMonth): Promise<boolean> {
+  const config = (await db.collection('community_contest_config').doc('current').get()).data();
+  return config?.enabled === true && month.id >= COMMUNITY_CONTEST_FIRST_MONTH
+    && typeof config.firstFullMonth === 'string' && month.id >= config.firstFullMonth;
+}
+
+/**
+ * Подсчёт месяца по правилам владельца (функции/src/community_month_tally.ts). Наборы — только этого месяца (запрос по
+ * publishedAt), голоса — запросом по каждому такому набору (их единицы; индекс по группе коллекций не нужен), профили
+ * голосующих — getAll пачками (одно чтение на человека, не на голос). Голоса старых сборок пишутся как раньше —
+ * правила допуска применяются здесь, поэтому лайки 147/148 не ломаются.
+ */
+export async function buildMonthTally(db: FirebaseFirestore.Firestore, month: ContestMonth): Promise<{ entries: ContestEntry[]; stats: TallyStats }> {
+  const startedAt = Date.now();
   const identities = new Map<string, Promise<string | null>>();
   const canonical = (uid: string) => {
     if (!identities.has(uid)) identities.set(uid, contestCanonicalOwner(db, uid));
     return identities.get(uid)!;
   };
-  let cursor: FirebaseFirestore.QueryDocumentSnapshot | undefined;
-  for (;;) {
-    let query = db.collection('community_packs').where('publishedAt', '<', month.endMs).orderBy('publishedAt').limit(200);
-    if (cursor) query = query.startAfter(cursor);
-    const page = await query.get();
-    for (const doc of page.docs) {
-      const d = doc.data();
-      const authorId = String(d.authorStableId ?? d.authorId ?? '');
-      if (!authorId || !['published', 'update_pending'].includes(String(d.listingStatus)) || d.videoId || d.removedByAuthor) continue;
-      const canonicalAuthor = await canonical(authorId);
-      if (!canonicalAuthor) continue;
-      const votes = await doc.ref.collection('contest_votes').where('monthId', '==', month.id).get();
-      const members = new Map<string, { liked: boolean; at: number; id: string }>();
-      for (const vote of votes.docs) {
-        const uid = await canonical(String(vote.data().userId ?? ''));
-        if (!uid || uid === canonicalAuthor) continue;
-        const data = vote.data();
-        const at = typeof data.updatedAt?.toMillis === 'function' ? data.updatedAt.toMillis() : 0;
-        if (at < month.startMs || at >= month.endMs) continue;
-        const previous = members.get(uid);
-        if (!previous || at > previous.at || (at === previous.at && vote.id > previous.id)) {
-          members.set(uid, { liked: data.liked === true, at, id: vote.id });
+  const packSnap = await db.collection('community_packs')
+    .where('publishedAt', '>=', month.startMs).where('publishedAt', '<', month.endMs)
+    .orderBy('publishedAt').limit(2000).get();
+  const packs: TallyPack[] = [];
+  const votes: TallyVote[] = [];
+  for (const doc of packSnap.docs) {
+    const d = doc.data();
+    const authorId = String(d.authorStableId ?? d.authorId ?? '');
+    if (!authorId || d.videoId || d.removedByAuthor) {
+      console.log(LOG_TALLY, JSON.stringify({ step: 'pack_skip', packId: doc.id, reason: !authorId ? 'no_author' : d.videoId ? 'video_pack' : 'removed_by_author' }));
+      continue;
+    }
+    const owner = await canonical(authorId);
+    if (!owner) {
+      console.warn(LOG_TALLY, JSON.stringify({ step: 'pack_skip', packId: doc.id, reason: 'author_unresolved' }));
+      continue;
+    }
+    packs.push({ id: doc.id, authorId: owner, title: String(d.title ?? d.titleRu ?? ''), publishedAtMs: Number(d.publishedAt), status: String(d.listingStatus) });
+    const voteSnap = await doc.ref.collection('contest_votes').where('monthId', '==', month.id).limit(5000).get();
+    for (const vote of voteSnap.docs) {
+      const v = vote.data();
+      const voterId = await canonical(String(v.userId ?? ''));
+      if (!voterId) continue;
+      votes.push({ packId: doc.id, voterId, liked: v.liked === true, atMs: typeof v.updatedAt?.toMillis === 'function' ? v.updatedAt.toMillis() : 0, voteId: vote.id });
+    }
+  }
+  const voterIds = [...new Set(votes.map((v) => v.voterId))];
+  const voters = new Map<string, TallyVoter>();
+  for (let i = 0; i < voterIds.length; i += 300) {
+    const snaps = await db.getAll(...voterIds.slice(i, i + 300).map((id) => db.collection('users').doc(id)));
+    for (const s of snaps) {
+      const data = s.data() ?? {};
+      const profileCreatedAtMs = parseAccountCreatedAtMs(data.created_at);
+      let authCreatedAtMs: number | null = null;
+      if (profileCreatedAtMs == null) {
+        // владелец 29.10: у старых аккаунтов created_at бывает пуст — берём дату создания в Firebase Auth
+        try {
+          authCreatedAtMs = Date.parse((await admin.auth().getUser(s.id)).metadata.creationTime) || null;
+        } catch (error) {
+          console.warn(LOG_TALLY, JSON.stringify({ step: 'voter_age_unknown', reason: errText(error) }));
         }
       }
-      entries.push({ id: doc.id, authorId: canonicalAuthor, title: String(d.title ?? d.titleRu ?? ''), hearts: [...members.values()].filter(v => v.liked).length, ...(readerUid ? { myMonthHeart: members.get(readerUid)?.liked === true } : {}), publishedAtMs: Number(d.publishedAt), status: String(d.listingStatus) });
-    }
-    if (page.size < 200) break;
-    cursor = page.docs[page.docs.length - 1];
-  }
-  return entries;
-}
-
-/** One immutable result plus at most three receipts. Parallel retries cannot choose new winners. */
-export async function finalizeCommunityMonth(db: FirebaseFirestore.Firestore, month: ContestMonth): Promise<void> {
-  if (Date.now() < month.endMs) throw new Error('Cannot finalize an active month');
-  const resultRef = db.collection(RESULTS).doc(month.id);
-  if ((await resultRef.get()).exists) return;
-  const candidates = rankContestEntries(await readEntries(db, month), month);
-  await db.runTransaction(async tx => {
-    if ((await tx.get(resultRef)).exists) return;
-    const previousPrizes = candidates.length ? await tx.getAll(...candidates.map(entry => db.collection(WINNERS).doc(entry.id))) : [];
-    const winners = candidates.filter((_, index) => !previousPrizes[index].exists).slice(0, 3);
-    const finalizedAtMs = Date.now();
-    tx.create(resultRef, { monthId: month.id, winners, finalizedAtMs, ruleVersion: 2 });
-    winners.forEach((winner, index) => {
-      const rewardId = communityRewardId(month.id, winner.id);
-      tx.create(db.collection(WINNERS).doc(winner.id), { monthId: month.id, place: index + 1, rewardId, finalizedAtMs });
-      tx.create(db.collection('users').doc(winner.authorId).collection(REWARDS).doc(rewardId), {
-        rewardId, monthId: month.id, packId: winner.id, packTitle: winner.title, place: index + 1,
-        hearts: winner.hearts, prize: contestPrize(index + 1), claimed: false, finalizedAtMs,
+      voters.set(s.id, {
+        createdAtMs: contestAccountCreatedAtMs(profileCreatedAtMs, authCreatedAtMs),
+        lessonsCompleted: contestLessonsCompleted((data.progress ?? {}) as Record<string, unknown>),
       });
-    });
-  });
+    }
+  }
+  const result = tallyContestMonth({ month, packs, votes, voters });
+  console.log(LOG_TALLY, JSON.stringify({ step: 'built', monthId: month.id, ms: Date.now() - startedAt, packsRead: packSnap.size, voters: voterIds.length, ...result.stats }));
+  return result;
 }
 
-export const communityMonthFinalize = onSchedule({ region: 'us-central1', schedule: '5 0 1 * *', timeZone: 'UTC', timeoutSeconds: 540, retryCount: 5 }, async () => {
-  const config = (await admin.firestore().collection('community_contest_config').doc('current').get()).data();
-  if (config?.enabled !== true) return;
-  const current = contestMonth(Date.now());
-  const previous = contestMonth(current.startMs - 1);
-  if (typeof config.firstFullMonth !== 'string' || previous.id < config.firstFullMonth || previous.id < COMMUNITY_CONTEST_FIRST_MONTH) return;
-  await finalizeCommunityMonth(admin.firestore(), contestMonth(current.startMs - 1));
+/** Снимок рейтинга месяца: один документ, его читает рейтинг вместо обхода всех наборов на каждое открытие. */
+export async function writeMonthStandings(db: FirebaseFirestore.Firestore, month: ContestMonth): Promise<void> {
+  const { entries, stats } = await buildMonthTally(db, month);
+  const prev = entries.length ? await db.getAll(...entries.map((e) => db.collection(WINNERS).doc(e.id))) : [];
+  const fresh = entries.filter((_, i) => !prev[i].exists);
+  const ranked = rankContestEntries(fresh, month);
+  const rankedIds = new Set(ranked.map((e) => e.id));
+  const unranked = fresh.filter((e) => !rankedIds.has(e.id)).sort((a, b) => a.publishedAtMs - b.publishedAtMs);
+  const list = [...ranked, ...unranked].slice(0, 300)
+    .map(({ id, authorId, title, hearts, publishedAtMs, status }) => ({ id, authorId, title, hearts, publishedAtMs, status }));
+  await db.collection(STANDINGS).doc(month.id).set({
+    monthId: month.id, ruleVersion: CONTEST_TALLY_RULE_VERSION, builtAtMs: Date.now(), entries: list, totalEntries: fresh.length, stats,
+  });
+  console.log(LOG_TALLY, JSON.stringify({ step: 'standings_written', monthId: month.id, entries: list.length, ranked: ranked.length }));
+}
+
+/** Каждый час; пересчёт раз в 3 ч, а в последние сутки месяца — каждый час (владелец 29.10). */
+export const communityMonthStandingsRefresh = onSchedule({ region: 'us-central1', schedule: 'every 1 hours', timeZone: 'UTC', timeoutSeconds: 300, retryCount: 2 }, async () => {
+  const db = admin.firestore();
+  const now = Date.now();
+  const month = contestMonth(now);
+  if (!(await contestEnabledFor(db, month))) {
+    console.log(LOG_TALLY, JSON.stringify({ step: 'skip', reason: 'contest_disabled_or_before_first_month', monthId: month.id }));
+    return;
+  }
+  if (!contestStandingsShouldRefresh(now, month)) {
+    console.log(LOG_TALLY, JSON.stringify({ step: 'skip', reason: 'not_due', monthId: month.id, hourUtc: new Date(now).getUTCHours() }));
+    return;
+  }
+  await writeMonthStandings(db, month);
 });
 
-/** Current ranking uses exactly the same monthly membership reader as prize finalization. */
-export const communityMonthGetRanking = onCall({ ...HOT_CALLABLE_OPTIONS, timeoutSeconds: 120 }, async request => {
+/**
+ * Итог месяца: неизменяемый результат + автоматический Plus 3/2/1 и история победителю (той же записью, тем же ключом).
+ * Повторный запуск дописывает только недоданные выдачи (журнал plus_grant_ledger не даст выдать дважды).
+ */
+export async function finalizeCommunityMonth(db: FirebaseFirestore.Firestore, month: ContestMonth): Promise<void> {
+  if (Date.now() < month.endMs) {
+    console.warn(LOG_FINAL, JSON.stringify({ step: 'skip', reason: 'month_active', monthId: month.id }));
+    return;
+  }
+  const resultRef = db.collection(RESULTS).doc(month.id);
+  let result = (await resultRef.get()).data();
+  if (!result) {
+    const { entries, stats } = await buildMonthTally(db, month); // финализация считает заново, снимок ей не нужен
+    const prev = entries.length ? await db.getAll(...entries.map((e) => db.collection(WINNERS).doc(e.id))) : [];
+    const winners = rankContestEntries(entries.filter((_, i) => !prev[i].exists), month).slice(0, 3);
+    const finalizedAtMs = Date.now();
+    await db.runTransaction(async (tx) => {
+      if ((await tx.get(resultRef)).exists) return; // параллельный запуск уже записал итог
+      tx.create(resultRef, { monthId: month.id, winners, stats, finalizedAtMs, ruleVersion: CONTEST_TALLY_RULE_VERSION, prize: 'plus_months_3_2_1' });
+      winners.forEach((w, i) => tx.create(db.collection(WINNERS).doc(w.id), { monthId: month.id, place: i + 1, finalizedAtMs }));
+    });
+    result = (await resultRef.get()).data();
+    console.log(LOG_FINAL, JSON.stringify({ step: 'result_written', monthId: month.id, winners: (result?.winners ?? []).length, ...stats }));
+  } else {
+    console.log(LOG_FINAL, JSON.stringify({ step: 'result_exists', monthId: month.id, winners: (result.winners ?? []).length }));
+  }
+  const winners = (result?.winners ?? []) as ContestEntry[];
+  for (const [index, w] of winners.entries()) {
+    const place = (index + 1) as 1 | 2 | 3;
+    const plusMonths = PLUS_MONTHS_BY_PLACE[index];
+    const story = (months: number) => contestWinStoryValue({ monthId: month.id, place, plusMonths: months, packId: w.id, packTitle: w.title, hearts: w.hearts, grantedAtMs: Date.now() });
+    try {
+      const r = await grantPlusOnce(db, {
+        uid: w.authorId,
+        grantKey: `community_month:${month.id}:place${place}`,
+        duration: { months: plusMonths },
+        plan: 'community_month',
+        source: `community_month:${month.id}`,
+        extraProgress: { [CONTEST_WIN_STORY_FIELD]: story(plusMonths) },
+        // бессрочный Plus не продлевается — история без строки про месяцы (Моменты 29.10)
+        extraProgressLifetime: { [CONTEST_WIN_STORY_FIELD]: story(0) },
+      });
+      console.log(LOG_FINAL, JSON.stringify({ step: 'grant', monthId: month.id, place, packId: w.id, status: r.status }));
+    } catch (error) {
+      // не бросаем: остальные места выдаются; расписание повторит упавшую выдачу через час
+      console.warn(LOG_FINAL, JSON.stringify({ step: 'grant_failed', monthId: month.id, place, packId: w.id, reason: errText(error) }));
+    }
+  }
+}
+
+/** 1-го числа каждый час (UTC): первый запуск пишет итог и выдаёт Plus, следующие доделывают упавшие выдачи. */
+export const communityMonthFinalize = onSchedule({ region: 'us-central1', schedule: '5 * 1 * *', timeZone: 'UTC', timeoutSeconds: 540, retryCount: 5 }, async () => {
+  const db = admin.firestore();
+  const current = contestMonth(Date.now());
+  const previous = contestMonth(current.startMs - 1);
+  if (!(await contestEnabledFor(db, previous))) {
+    console.log(LOG_FINAL, JSON.stringify({ step: 'skip', reason: 'contest_disabled_or_before_first_month', monthId: previous.id }));
+    return;
+  }
+  await finalizeCommunityMonth(db, previous);
+});
+
+/** Рейтинг: снимок месяца (2 чтения) + свои голоса пакетом по известным id. Форма ответа прежняя — 147/148 совместимы. */
+export const communityMonthGetRanking = onCall({ ...HOT_CALLABLE_OPTIONS, timeoutSeconds: 60 }, async request => {
   if (!request.auth) throw new HttpsError('unauthenticated', 'Sign in required');
   const db = admin.firestore();
   const uid = await resolveStableUidForAuth(db, request.auth.uid, String(request.data?.userId ?? ''), { requireKnownIdentity: true });
   const month = contestMonth(Date.now());
-  const config = (await db.collection('community_contest_config').doc('current').get()).data();
-  if (config?.enabled !== true || month.id < COMMUNITY_CONTEST_FIRST_MONTH || typeof config.firstFullMonth !== 'string' || month.id < config.firstFullMonth) return { monthId: month.id, entries: [] };
-  const entries = await readEntries(db, month, uid);
-  const previous = entries.length ? await db.getAll(...entries.map(entry => db.collection(WINNERS).doc(entry.id))) : [];
-  return { monthId: month.id, entries: entries.filter((_, index) => !previous[index].exists) };
+  if (!(await contestEnabledFor(db, month))) return { monthId: month.id, entries: [] };
+  let snap = await db.collection(STANDINGS).doc(month.id).get();
+  if (!snap.exists) {
+    // первый вызов месяца до первого расписания — строим один раз, дальше все читают снимок
+    console.warn(LOG_TALLY, JSON.stringify({ step: 'standings_missing_build_now', monthId: month.id }));
+    await writeMonthStandings(db, month);
+    snap = await db.collection(STANDINGS).doc(month.id).get();
+  }
+  const entries = (snap.data()?.entries ?? []) as ContestEntry[];
+  // «моё сердце»: голос лежит по известному id `${monthId}_${uid}` — getAll, без запроса по группе коллекций
+  const myVotes = entries.length
+    ? await db.getAll(...entries.map((e) => db.collection('community_packs').doc(e.id).collection('contest_votes').doc(`${month.id}_${uid}`)))
+    : [];
+  return {
+    monthId: month.id,
+    builtAtMs: snap.data()?.builtAtMs ?? null,
+    entries: entries.map((e, i) => ({ ...e, myMonthHeart: myVotes[i]?.data()?.liked === true })),
+  };
 });
 
 export const communityMonthGetRewards = onCall(HOT_CALLABLE_OPTIONS, async request => {
@@ -111,6 +238,10 @@ export const communityMonthGetRewards = onCall(HOT_CALLABLE_OPTIONS, async reque
   return { rewards: pages.flatMap(page => page.docs.map(doc => doc.data())).sort((a, b) => Number(b.finalizedAtMs) - Number(a.finalizedAtMs)) };
 });
 
+/**
+ * «Забрать приз» осталось для сборок 147/148. С 29.10 призы начисляются автоматически и квитанций
+ * community_month_rewards для новых месяцев нет — кнопке отвечаем «не найдено», без ошибки на стороне сервера.
+ */
 export const communityMonthClaimReward = onCall(HOT_CALLABLE_OPTIONS, async request => {
   if (!request.auth) throw new HttpsError('unauthenticated', 'Sign in required');
   const rewardId = String(request.data?.rewardId ?? '');
@@ -120,7 +251,7 @@ export const communityMonthClaimReward = onCall(HOT_CALLABLE_OPTIONS, async requ
   return claimCommunityMonthReward(db, uid, rewardId, request.auth.uid);
 });
 
-/** Transaction boundary shared by callable and emulator verification. */
+/** Transaction boundary shared by callable and emulator verification (legacy receipts only). */
 export async function claimCommunityMonthReward(db: FirebaseFirestore.Firestore, uid: string, rewardId: string, authUid: string): Promise<Record<string, unknown>> {
   const userRef = db.collection('users').doc(uid);
   const owners = await contestRewardOwners(db, uid);

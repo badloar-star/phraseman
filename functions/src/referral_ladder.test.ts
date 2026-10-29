@@ -4,6 +4,7 @@ import {
   LADDER_LESSON_WINDOW_MS,
   LADDER_MAX_FRIENDS_PER_MONTH,
   decideReferralLadder,
+  ladderCoinsOpId,
   ladderPlusGrantKey,
   type LadderInput,
 } from './referral_ladder';
@@ -42,5 +43,14 @@ describe('лесенка: кто засчитывается', () => {
   });
   it('ключ ступени Plus проходит журнал выдачи', () => {
     expect(plusGrantLedgerId(ladderPlusGrantKey('refA', 2))).toBe('referral_ladder__refA_tier2');
+  });
+  it('ключ монет проходит формат журнала монет и не несёт сырых uid', () => {
+    const OP_ID_RE = /^[a-z0-9_]{1,32}:[A-Za-z0-9_.-]{1,96}$/;
+    const a = ladderCoinsOpId('referrerStableUid_0123456789abcdef0123', 'refereeStableUid_0123456789abcdef0123', 'referrer');
+    const b = ladderCoinsOpId('referrerStableUid_0123456789abcdef0123', 'refereeStableUid_0123456789abcdef0123', 'referee');
+    expect(a).toMatch(OP_ID_RE);
+    expect(b).toMatch(OP_ID_RE);
+    expect(a).not.toBe(b);
+    expect(a).not.toContain('referrerStableUid');
   });
 });

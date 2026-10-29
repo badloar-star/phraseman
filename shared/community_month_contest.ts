@@ -4,7 +4,9 @@ export type ContestEntry = Readonly<{
   id: string; authorId: string; title: string; hearts: number;
   publishedAtMs: number; status: string; hasWonPrize?: boolean; myMonthHeart?: boolean;
 }>;
-export type ContestPrize = Readonly<{ kind: 'plus'; months: 3 }> | Readonly<{ kind: 'coins'; amount: 2000 | 1000 }>;
+// зачем (владелец 29.10 ~07:55): места 1/2/3 → Plus 3/2/1 месяца автоматически; монет за места больше нет.
+// Вариант 'coins' оставлен в типе только для старых квитанций «забрать приз» (147/148), новые его не создают.
+export type ContestPrize = Readonly<{ kind: 'plus'; months: 3 | 2 | 1 }> | Readonly<{ kind: 'coins'; amount: 2000 | 1000 }>;
 export const COMMUNITY_CONTEST_RULE_VERSION = 'community-month.v2';
 export const COMMUNITY_CONTEST_FIRST_MONTH = '2026-11';
 
@@ -34,7 +36,7 @@ export function rankContestEntries(entries: readonly ContestEntry[], month: Cont
 
 export function contestPrize(place: number): ContestPrize | null {
   if (place === 1) return { kind: 'plus', months: 3 };
-  if (place === 2) return { kind: 'coins', amount: 2000 };
-  if (place === 3) return { kind: 'coins', amount: 1000 };
+  if (place === 2) return { kind: 'plus', months: 2 };
+  if (place === 3) return { kind: 'plus', months: 1 };
   return null;
 }

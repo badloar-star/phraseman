@@ -10,6 +10,8 @@
 //  - не больше 10 засчитанных друзей в месяц на пригласившего (≤ 3 × 14 дней Plus в месяц).
 // Модуль чистый: решение по фактам на входе, без Firestore. Каждый отказ — с причиной для лога [REF-LADDER].
 
+import { createHash } from 'crypto';
+
 export const LADDER_COINS_PER_FRIEND = 500;
 export const LADDER_FRIENDS_PER_TIER = 3;
 export const LADDER_PLUS_DAYS_PER_TIER = 14;
@@ -77,8 +79,11 @@ export function decideReferralLadder(input: LadderInput): LadderDecision {
 }
 
 /** Ключи журналов (идемпотентность): монеты — на пару, Plus — на ступень пригласившего. */
+// зачем: журнал монет принимает ровно одно двоеточие (OP_ID_RE в stars_ledger.ts) и суффикс ≤ 96 знаков — пара uid
+// туда не влезает гарантированно, поэтому пара хэшируется (заодно в расписке нет сырых uid).
 export function ladderCoinsOpId(referrerUid: string, refereeUid: string, side: 'referrer' | 'referee'): string {
-  return `referral_ladder_coins:${side}:${referrerUid}_${refereeUid}`;
+  const pair = createHash('sha256').update(`${referrerUid}|${refereeUid}`).digest('hex').slice(0, 40);
+  return `referral_ladder:${side}_${pair}`;
 }
 export function ladderPlusGrantKey(referrerUid: string, tier: number): string {
   return `referral_ladder:${referrerUid}_tier${tier}`;

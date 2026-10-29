@@ -159,7 +159,7 @@ export function isGiftAccessActive(progress: ProgressLike, now: number = Date.no
   const data = progress ?? {};
   const introUntil = parseProgressMs(data.intro_access_until_ms);
   const loyaltyUntil = parseProgressMs(data.loyalty_gift_until_ms);
-  return introUntil > now || loyaltyUntil > now;
+  return introUntil > now || loyaltyUntil > now || parseProgressMs(data.community_plus_until_ms) > now;
 }
 
 const VIP_ENTITLEMENT_KEYS = [
@@ -245,7 +245,7 @@ async function resolveOwnedHiddenAliasAccess(
  * Для доступа к функциям по-прежнему isPremiumAccessActive.
  */
 export function isRealPlusActive(progress: ProgressLike, now: number = Date.now()): boolean {
-  return isStorePremiumActive(progress, now) || isAdminGrantActive(progress, now) || isVipActive(progress, now);
+  return isStorePremiumActive(progress, now) || isAdminGrantActive(progress, now) || isVipActive(progress, now) || parseProgressMs(progress?.community_plus_until_ms) > now;
 }
 
 /**
@@ -257,6 +257,8 @@ export function isRealPlusActive(progress: ProgressLike, now: number = Date.now(
 export function realPlusUntilMs(progress: ProgressLike, now: number = Date.now()): number | null {
   const data = progress ?? {};
   const untils: number[] = [];
+  const contestUntil = parseProgressMs(data.community_plus_until_ms);
+  if (contestUntil > now) untils.push(contestUntil);
   if (isStorePremiumActive(progress, now)) {
     // зачем (бэклог 22.10 L710/L819): у подписки premium_expiry='0' — «срок ведёт вебхук», настоящий срок в premium_rc_expiry_ms.
     // Раньше 0 уходил как «бессрочно», и кольцо Plus у подписчика горело вечно. Тот же запас, что у isStorePremiumActive.

@@ -610,6 +610,9 @@ export {
 } from "./community_packs";
 // зачем (04.10, сессия 3 «Карточки»): удаление одной карточки из своего опубликованного набора.
 export { communityAuthorRemoveCard } from "./community_pack_card_remove";
+export { communityMonthGetRanking, communityMonthFinalize, communityMonthGetRewards, communityMonthClaimReward } from './community_month_contest';
+// зачем (владелец 29.10): снимок рейтинга месяца по расписанию вместо обхода всех наборов на каждое открытие
+export { communityMonthStandingsRefresh } from './community_month_contest';
 
 // D128 (2026-09-30): озвучка одобренных наборов карточек через OpenAI TTS.
 // Деплой — только после релиза клиента 2.0 (D91), прицельно:

@@ -1,7 +1,8 @@
 # Ядро · коммит B: подключение подсчёта, снимка и автоначисления Plus в код конкурса (владелец 29.10)
 
 Governance-ID: TG-4C9258D358DD
-Status: In progress
+Governance-ID: TG-FCBD26B2499A
+Status: Done (B) — снимок HEAD bfb2b33f1: типы functions 0 ошибок, юнит-тесты 44/44 (tally, plus_grant, ladder, access_projection)
 Owner: 1 · ЯДРО
 
 ## Outcome

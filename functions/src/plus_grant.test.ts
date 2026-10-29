@@ -2,7 +2,7 @@
 // механизмом Telegram (vip_*), продлевая, а не затирая; повтор не начисляет второй раз. Сторож чистого ядра выдачи.
 import { buildAccessProjection } from './access_projection';
 import { isVipActive } from './premium_status';
-import { addUtcMonths, buildPlusGrantPatch, currentPlusEndMs, plusGrantLedgerId } from './plus_grant';
+import { addUtcMonths, buildPlusGrantPatch, currentPlusEndMs, plusGrantLedgerId, plusGrantLogKey } from './plus_grant';
 
 const DAY = 24 * 60 * 60 * 1000;
 const NOW = Date.UTC(2026, 10, 1, 0, 10); // 1.11 00:10 UTC — запуск финализации
@@ -30,6 +30,9 @@ describe('plus_grant — продление, а не затирание', () => 
     expect(r.baseMs).toBe(until);
     expect(r.untilMs).toBe(addUtcMonths(until, 2));
     expect(r.patch.vip_from).toBe(String(from));
+    // Ревизор 29.10: метка источника действующего VIP не затирается, наша — отдельно
+    expect(r.patch.vip_plan).toBe('promo');
+    expect(r.patch.plus_grant_last_plan).toBe('community_month');
   });
 
   it('платная подписка магазина до X → Plus продлевается после X', () => {
@@ -61,5 +64,13 @@ describe('plus_grant — продление, а не затирание', () => 
   it('ключ журнала: месяц+место / приглашение — валиден и без «/»', () => {
     expect(plusGrantLedgerId('community_month:2026-11:place1')).toBe('community_month__2026-11__place1');
     expect(() => plusGrantLedgerId('community_month:2026/11')).toThrow();
+  });
+
+  it('журнал функций: ключ без сырого uid', () => {
+    const key = 'referral_ladder:UidAbc123XyZ_tier1';
+    const logged = plusGrantLogKey(key);
+    expect(logged).toMatch(/^referral_ladder#[0-9a-f]{12}$/);
+    expect(logged).not.toContain('UidAbc123XyZ');
+    expect(plusGrantLogKey(key)).toBe(logged);
   });
 });

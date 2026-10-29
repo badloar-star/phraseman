@@ -4,6 +4,7 @@
 // Поэтому никакой «кнопки забрать»: сервер сам пишет vip_* (как Telegram-продление и промокоды) и проекцию доступа, которую
 // читает приложение. Срок продлевается, а не затирается: max(текущий конец ЛЮБОГО Plus, сейчас) + N. Повторный запуск
 // ничего не начисляет: журнал plus_grant_ledger/{key} создаётся в той же транзакции, что и выдача.
+import { createHash } from 'crypto';
 import { writeAccessProjectionFromPatch } from './access_projection';
 import { isAdminGrantActive, isStorePremiumActive, isVipActive, parseProgressMs } from './premium_status';
 
@@ -65,14 +66,19 @@ export function buildPlusGrantPatch(
   const baseMs = Math.max(currentEnd, nowMs);
   const untilMs = 'months' in duration ? addUtcMonths(baseMs, duration.months) : baseMs + Math.max(0, Math.floor(duration.days)) * DAY_MS;
   // vip_from: если VIP уже идёт — не сдвигаем начало (иначе «окно» начнётся позже и Plus мигнёт); иначе — сейчас
-  const vipFrom = isVipActive(progress, nowMs) ? parseProgressMs(progress.vip_from) : 0;
+  const vipActiveNow = isVipActive(progress, nowMs);
+  const vipFrom = vipActiveNow ? parseProgressMs(progress.vip_from) : 0;
+  // зачем (Ревизор 29.10): у действующего VIP метка источника (promo, telegram…) нужна разбору жалоб и plus:src —
+  // её не затираем, наша метка уходит в plus_grant_last_plan. Новый VIP получает нашу метку как источник.
+  const existingPlan = typeof progress.vip_plan === 'string' ? progress.vip_plan.trim() : '';
   return {
     kind: 'grant',
     baseMs,
     untilMs,
     patch: {
       vip_active: 'true',
-      vip_plan: plan,
+      vip_plan: vipActiveNow && existingPlan ? existingPlan : plan,
+      plus_grant_last_plan: plan,
       vip_from: String(vipFrom > 0 && vipFrom <= nowMs ? vipFrom : nowMs),
       vip_until: String(untilMs),
       vip_admin_override: 'true',
@@ -80,6 +86,12 @@ export function buildPlusGrantPatch(
       plus_grant_last_key: grantKey,
     },
   };
+}
+
+/** Ключ для журнала функций: вид выдачи + короткий хэш, без сырого uid (Ревизор 29.10). */
+export function plusGrantLogKey(grantKey: string): string {
+  const kind = grantKey.split(':')[0] ?? 'unknown';
+  return `${kind}#${createHash('sha256').update(grantKey).digest('hex').slice(0, 12)}`;
 }
 
 /** Ключ журнала → id документа (без «/»). */
@@ -111,7 +123,7 @@ export async function grantPlusOnce(db: FirebaseFirestore.Firestore, input: Read
 }>): Promise<PlusGrantResult> {
   const ledgerRef = db.collection(PLUS_GRANT_LEDGER).doc(plusGrantLedgerId(input.grantKey));
   const userRef = db.collection('users').doc(input.uid);
-  console.log(`${LOG} enter`, JSON.stringify({ key: input.grantKey, plan: input.plan, source: input.source, duration: input.duration }));
+  console.log(`${LOG} enter`, JSON.stringify({ key: plusGrantLogKey(input.grantKey), plan: input.plan, source: input.source, duration: input.duration }));
   try {
     const result = await db.runTransaction(async (tx) => {
       const [ledgerSnap, userSnap] = await Promise.all([tx.get(ledgerRef), tx.get(userRef)]);
@@ -149,10 +161,10 @@ export async function grantPlusOnce(db: FirebaseFirestore.Firestore, input: Read
       });
       return { status: 'granted', untilMs: built.untilMs, baseMs: built.baseMs } as const;
     });
-    console.log(`${LOG} result`, JSON.stringify({ key: input.grantKey, ...result }));
+    console.log(`${LOG} result`, JSON.stringify({ key: plusGrantLogKey(input.grantKey), ...result }));
     return result;
   } catch (error) {
-    console.warn(`${LOG} failed`, JSON.stringify({ key: input.grantKey, reason: error instanceof Error ? error.message.slice(0, 160) : String(error) }));
+    console.warn(`${LOG} failed`, JSON.stringify({ key: plusGrantLogKey(input.grantKey), reason: error instanceof Error ? error.message.slice(0, 160) : String(error) }));
     throw error;
   }
 }

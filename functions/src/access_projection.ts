@@ -9,6 +9,8 @@ export type AccessProjection = Readonly<{
   premiumExpiresAtMs: number;
   vipActive: boolean;
   updatedAtMs: number;
+  /** История победителю конкурса (JSON v1 из progress.contest_last_win); нет поля — нечего показывать. */
+  contestLastWin?: string;
 }>;
 
 type SetWriter = Readonly<{
@@ -33,10 +35,14 @@ export function buildAccessProjection(
   nowMs: number = Date.now(),
 ): AccessProjection {
   const safeNow = Number.isSafeInteger(nowMs) && nowMs >= 0 ? nowMs : Date.now();
-  const premiumPlan = boundedString(progress.premium_plan).toLowerCase();
+  const premiumPlan = progressMs(progress.community_plus_until_ms) > safeNow
+    && !isStorePremiumActive(progress, safeNow) && !isAdminGrantActive(progress, safeNow)
+    ? 'community_prize'
+    : boundedString(progress.premium_plan).toLowerCase();
   const premiumExpiresAtMs = Math.max(
     progressMs(progress.premium_expiry),
     progressMs(progress.premium_rc_expiry_ms),
+    progressMs(progress.community_plus_until_ms),
   );
   // The listener is allowed to show only a compact server-owned projection,
   // but it must never invent a different entitlement policy. In particular,
@@ -44,8 +50,13 @@ export function buildAccessProjection(
   // RevenueCat expiry/revoke. Otherwise the app says Plus while AI correctly
   // rejects the same account with dialog_plus_required.
   const premiumActive = isStorePremiumActive(progress, safeNow)
-    || isAdminGrantActive(progress, safeNow);
+    || isAdminGrantActive(progress, safeNow)
+    || progressMs(progress.community_plus_until_ms) > safeNow;
   const vipActive = isVipActive(progress, safeNow);
+  // зачем (владелец 29.10, история победителю; формат согласован с Моментами): проекцию слушает PremiumContext, поэтому
+  // факт победы доходит до телефона без новых чтений. Берём из progress, а не пишем отдельно: проекцию перезаписывают
+  // целиком (merge:false) все выдачи Plus — отдельная копия стёрлась бы, а сборка из progress переживает любую запись.
+  const contestLastWin = boundedString(progress.contest_last_win, 600);
 
   return Object.freeze({
     schemaVersion: ACCESS_PROJECTION_SCHEMA_VERSION,
@@ -54,6 +65,7 @@ export function buildAccessProjection(
     premiumExpiresAtMs,
     vipActive,
     updatedAtMs: safeNow,
+    ...(contestLastWin ? { contestLastWin } : {}),
   });
 }
 

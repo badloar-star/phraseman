@@ -4,6 +4,7 @@ Governance-ID: TG-987448099152
 Governance-ID: TG-FFEDD3549E61
 Governance-ID: TG-B001232839EB
 Governance-ID: TG-4C9258D358DD
+Governance-ID: TG-D40C25F9E1C8
 Status: Done (A) — снимок HEAD: functions jest 40/40, клиент 4/4; подключение в конкурс — коммит B
 Owner: 1 · ЯДРО
 
@@ -37,3 +38,8 @@ functions jest: plus_grant + community_month_tally; jest клиента — те
 
 ## Rollback
 `git revert`; модуль не вызывается до подключения в финализацию.
+
+## Доработка по Ревизору (29.10)
+1) В журнал функций ключ выдачи уходит без сырого uid: вид ключа + короткий sha256.
+2) Если VIP уже действует, метка источника vip_plan (promo, telegram…) сохраняется; наша метка — в plus_grant_last_plan.
+Проверка: functions jest plus_grant на снимке. Откат: git revert.

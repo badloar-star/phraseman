@@ -23,12 +23,12 @@
 
 ### Де були вішаки
 
-Після прибирання ви запитуєте, чи були вішаки-плічка в шафі. Запитайте: Were the coat hangers in the wardrobe? Почніть із were, бо вішаків кілька. Потім назвіть їх — the coat hangers — і додайте місце in the wardrobe. У назві множини набуває останнє слово hangers. Were саме починає запитання про минуле; did перед ним не ставимо.
+Після прибирання ви запитуєте, чи були вішаки-плічка в шафі. Запитайте: Were the coat hangers in the wardrobe? Почніть із were, бо вішаків кілька. Потім назвіть їх — the coat hangers — і додайте місце in the wardrobe. У назві форма для кількох набуває останнє слово hangers. Were саме починає запитання про минуле; did перед ним не ставимо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Were the coat hangers in the wardrobe?**
-- ❌ Was the coat hangers in the wardrobe? — *Множина: were.*
+- ❌ Was the coat hangers in the wardrobe? — *Форма для кількох: were.*
 - ❌ Did the coat hangers were in the wardrobe? — *У запитанні з were не потрібен did.*
 
 ---

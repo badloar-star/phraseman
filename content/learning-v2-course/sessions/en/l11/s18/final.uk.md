@@ -9,13 +9,13 @@
 
 ### Квасоля на тарілці
 
-Ви згадуєте вчорашній сніданок: на тарілці була квасоля в томатному соусі. Скажіть: There were baked beans on the plate. Почніть із there were, потім назвіть їжу baked beans і додайте місце on the plate. В англійській beans — множина, хоча українською «квасоля» — однина. Тому для минулого потрібна форма were. Обирайте її за англійським словом beans.
+Ви згадуєте вчорашній сніданок: на тарілці була квасоля в томатному соусі. Скажіть: There were baked beans on the plate. Почніть із there were, потім назвіть їжу baked beans і додайте місце on the plate. В англійській beans — форма для кількох, хоча українською «квасоля» — форма для одного. Тому для минулого потрібна форма were. Обирайте її за англійським словом beans.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There were baked beans on the plate.**
-- ❌ There was baked beans on the plate. — *Beans — множина: were.*
-- ❌ There is baked beans on the plate. — *Говоримо про минуле та множину: were.*
+- ❌ There was baked beans on the plate. — *Beans — форма для кількох: were.*
+- ❌ There is baked beans on the plate. — *Говоримо про минуле та форма для кількох: were.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Рис у шафі
 
-Розбираючи покупки, ви згадуєте, що бурий рис уже був у шафі. Скажіть: There was brown rice in the cupboard. Почніть із there was, щоб повідомити про наявність продукту в минулому. Потім назвіть його — brown rice. Rice тут незлічуване: ви говорите про продукт, а не рахуєте окремі зерна. Тому потрібні was і назва без a. Наприкінці додайте місце in the cupboard.
+Розбираючи покупки, ви згадуєте, що бурий рис уже був у шафі. Скажіть: There was brown rice in the cupboard. Почніть із there was, щоб повідомити про наявність продукту в минулому. Потім назвіть його — brown rice. Rice тут не рахується поштучно: ви говорите про продукт, а не рахуєте окремі зерна. Тому потрібні was і назва без a. Наприкінці додайте місце in the cupboard.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There was brown rice in the cupboard.**
-- ❌ There were brown rice in the cupboard. — *Із незлічуваним rice потрібна was.*
+- ❌ There were brown rice in the cupboard. — *Із не рахується поштучно rice потрібна was.*
 - ❌ There was a brown rice in the cupboard. — *Тут rice — продукт без a.*
 
 ---
@@ -37,7 +37,7 @@
 
 ### Вода в пляшці
 
-Ви згадуєте вчорашню пляшку: усередині була мінеральна вода. Скажіть: There was mineral water in the bottle. Почніть із there was, потім назвіть рідину mineral water. Тут water незлічуване: ви не рахуєте пляшки або порції, тому використовуйте was без a перед назвою води. Завершіть фразу місцем in the bottle — «у пляшці».
+Ви згадуєте вчорашню пляшку: усередині була мінеральна вода. Скажіть: There was mineral water in the bottle. Почніть із there was, потім назвіть рідину mineral water. Тут water не рахується поштучно: ви не рахуєте пляшки або порції, тому використовуйте was без a перед назвою води. Завершіть фразу місцем in the bottle — «у пляшці».
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — baked beans**
 <!-- interaction_id: en:lesson-11:session-18:word:baked-beans; family: word_card -->
-> **baked beans** — квасоля в томатному соусі. Англійською множина.
+> **baked beans** — квасоля в томатному соусі. Англійською форма для кількох.
 
 **2 · Повідомте: у мисці була квасоля в соусі. Почніть із There**
 <!-- interaction_id: en:lesson-11:session-18:i01; family: phrase_builder -->
@@ -66,8 +66,8 @@
 **4 · Учора на тарілці була квасоля в соусі. Виберіть форму**
 <!-- interaction_id: en:lesson-11:session-18:i03; family: context_gap_grammar -->
 There ___ baked beans on the plate. → **were** · was · is
-- was — *Beans — множина: were.*
-- is — *Минулий час, множина: were.*
+- was — *Beans — форма для кількох: were.*
+- is — *Минулий час, форма для кількох: were.*
 
 **5 · Картка слова — brown rice**
 <!-- interaction_id: en:lesson-11:session-18:word:brown-rice; family: word_card -->
@@ -86,7 +86,7 @@ There ___ baked beans on the plate. → **were** · was · is
 **8 · У сумці був бурий рис. Виберіть форму**
 <!-- interaction_id: en:lesson-11:session-18:i06; family: context_gap_grammar -->
 There ___ brown rice in the bag. → **was** · were · are
-- were — *Із незлічуваним rice використовуємо was.*
+- were — *Із не рахується поштучно rice використовуємо was.*
 - are — *Потрібна форма минулого was.*
 
 **9 · Картка слова — black pepper**
@@ -126,7 +126,7 @@ No, it ___. → **wasn't** · weren't · didn't
 **16 · У пляшці була мінеральна вода. Виберіть форму**
 <!-- interaction_id: en:lesson-11:session-18:i12; family: context_gap_grammar -->
 There ___ mineral water in the bottle. → **was** · were · are
-- were — *Вода незлічувана: was.*
+- were — *Вода не рахується поштучно: was.*
 - are — *У минулому про воду говоримо was.*
 
 **17 · Поєднайте слова з перекладом**

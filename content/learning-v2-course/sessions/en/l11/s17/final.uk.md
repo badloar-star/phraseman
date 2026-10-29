@@ -23,7 +23,7 @@
 
 ### Дві прищіпки в сумці
 
-До прибирання в сумці лежали дві прищіпки для білизни. Скажіть: There were two clothes pegs in the bag. Для кількох предметів у минулому почніть із there were. Потім укажіть кількість two і предмети clothes pegs. Слово pegs отримує закінчення множини -s; перед two не ставимо a. Завершіть фразу місцем in the bag. Вибір were залежить від двох прищіпок, а не від однієї сумки.
+До прибирання в сумці лежали дві прищіпки для білизни. Скажіть: There were two clothes pegs in the bag. Для кількох предметів у минулому почніть із there were. Потім укажіть кількість two і предмети clothes pegs. Слово pegs отримує закінчення -s для кількох; перед two не ставимо a. Завершіть фразу місцем in the bag. Вибір were залежить від двох прищіпок, а не від однієї сумки.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-11:session-17:i03; family: context_gap_grammar -->
 There ___ a bed sheet on the bed. → **was** · were · are
 - were — *Один предмет: was.*
-- are — *Are — теперішній час і множина; тут was.*
+- are — *Are — теперішній час і форма для кількох; тут was.*
 
 **5 · Картка слова — bath mat**
 <!-- interaction_id: en:lesson-11:session-17:word:bath-mat; family: word_card -->
@@ -127,7 +127,7 @@ There ___ two clothes pegs on the floor. → **were** · was · is
 <!-- interaction_id: en:lesson-11:session-17:i12; family: context_gap_grammar -->
 There ___ a towel rail in the room. → **was** · were · are
 - were — *Один предмет: was.*
-- are — *Are — теперішній час і множина; тут was.*
+- are — *Are — теперішній час і форма для кількох; тут was.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-11:session-17:i13; family: speed_match -->

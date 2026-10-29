@@ -23,13 +23,13 @@
 
 ### Де вчора був крем
 
-Ви шукаєте сонцезахисний крем і згадуєте, що вчора він був у вашій сумці. Скажіть: Yesterday the sun cream was in my bag. Спочатку вкажіть час yesterday, потім назвіть конкретний крем the sun cream. Cream тут незлічуване, тому для минулого потрібна форма was. Наприкінці додайте місце in my bag — «у моїй сумці». Was використовується не лише для стану, а й для розташування в минулому.
+Ви шукаєте сонцезахисний крем і згадуєте, що вчора він був у вашій сумці. Скажіть: Yesterday the sun cream was in my bag. Спочатку вкажіть час yesterday, потім назвіть конкретний крем the sun cream. Cream тут не рахується поштучно, тому для минулого потрібна форма was. Наприкінці додайте місце in my bag — «у моїй сумці». Was використовується не лише для стану, а й для розташування в минулому.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Yesterday the sun cream was in my bag.**
 - ❌ Yesterday the sun cream is in my bag. — *Говоримо про вчора: was.*
-- ❌ Yesterday the sun cream were in my bag. — *Sun cream тут незлічуване: was.*
+- ❌ Yesterday the sun cream were in my bag. — *Sun cream тут не рахується поштучно: was.*
 
 ---
 
@@ -37,12 +37,12 @@
 
 ### Учорашній стан взуття
 
-Ви згадуєте свої в’єтнамки після вчорашнього пляжу: вони були брудними. Скажіть: Yesterday my flip-flops were dirty. Почніть із yesterday, потім назвіть взуття my flip-flops. Flip-flops — множина, тому далі поставте were. Наприкінці додайте стан dirty. Для опису цього взуття зараз потрібна форма are, але yesterday вказує на минуле: тут обираємо were.
+Ви згадуєте свої в’єтнамки після вчорашнього пляжу: вони були брудними. Скажіть: Yesterday my flip-flops were dirty. Почніть із yesterday, потім назвіть взуття my flip-flops. Flip-flops — форма для кількох, тому далі поставте were. Наприкінці додайте стан dirty. Для опису цього взуття зараз потрібна форма are, але yesterday вказує на минуле: тут обираємо were.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Yesterday my flip-flops were dirty.**
-- ❌ Yesterday my flip-flops was dirty. — *Flip-flops — множина: were.*
+- ❌ Yesterday my flip-flops was dirty. — *Flip-flops — форма для кількох: were.*
 - ❌ Yesterday my flip-flops are dirty. — *Yesterday — минуле, тому were.*
 
 ---
@@ -87,7 +87,7 @@ Yesterday my beach towel ___ in my bag. → **was** · is · were
 <!-- interaction_id: en:lesson-11:session-25:i06; family: context_gap_grammar -->
 The sun cream ___ on the table now. → **is** · was · are
 - was — *Now — зараз, потрібна is.*
-- are — *Sun cream незлічуване: is.*
+- are — *Sun cream не рахується поштучно: is.*
 
 **9 · Картка слова — sun hat**
 <!-- interaction_id: en:lesson-11:session-25:word:sun-hat; family: word_card -->
@@ -111,7 +111,7 @@ My sun hat ___ dry now. → **is** · was · were
 
 **13 · Картка слова — flip-flops**
 <!-- interaction_id: en:lesson-11:session-25:word:flip-flops; family: word_card -->
-> **flip-flops** — в’єтнамки, капці з перемичкою між пальцями. Множина.
+> **flip-flops** — в’єтнамки, капці з перемичкою між пальцями. Форма для кількох.
 
 **14 · Скажіть, що вчора ваші в’єтнамки були мокрі. Почніть із Yesterday**
 <!-- interaction_id: en:lesson-11:session-25:i10; family: phrase_builder -->
@@ -127,7 +127,7 @@ My sun hat ___ dry now. → **is** · was · were
 <!-- interaction_id: en:lesson-11:session-25:i12; family: context_gap_grammar -->
 Yesterday my flip-flops ___ in my bag. → **were** · are · was
 - are — *Учора: were, не are.*
-- was — *Множина: were.*
+- was — *Форма для кількох: were.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-11:session-25:i13; family: speed_match -->

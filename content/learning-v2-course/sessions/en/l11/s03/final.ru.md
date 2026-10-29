@@ -9,12 +9,12 @@
 
 ### Где вчера был порошок
 
-После уборки вы вспоминаете, что вчера стиральный порошок был в шкафу. Скажите: The washing powder was in the cupboard yesterday. Начните с конкретного средства the washing powder, затем поставьте was. Powder здесь неисчисляемое, поэтому для прошлого нужна was, а не were. Добавьте место in the cupboard и время yesterday. Так вы сообщаете, где средство находилось вчера.
+После уборки вы вспоминаете, что вчера стиральный порошок был в шкафу. Скажите: The washing powder was in the cupboard yesterday. Начните с конкретного средства the washing powder, затем поставьте was. Powder здесь не считается поштучно, поэтому для прошлого нужна was, а не were. Добавьте место in the cupboard и время yesterday. Так вы сообщаете, где средство находилось вчера.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The washing powder was in the cupboard yesterday.**
-- ❌ The washing powder were in the cupboard yesterday. — *Powder здесь неисчисляемое: нужна was.*
+- ❌ The washing powder were in the cupboard yesterday. — *Powder здесь не считается поштучно: нужна was.*
 - ❌ The washing powder is in the cupboard yesterday. — *Yesterday требует прошедшего времени: was.*
 
 ---
@@ -23,13 +23,13 @@
 
 ### Мокрые перчатки после уборки
 
-Вы вспоминаете резиновые перчатки после вчерашней уборки: они были мокрыми. Скажите: The rubber gloves were wet. Сначала назовите предметы the rubber gloves. Gloves — множественное число, поэтому дальше поставьте were для прошлого. Затем добавьте состояние wet — «мокрые». Даже если речь об одной паре, английское gloves требует were.
+Вы вспоминаете резиновые перчатки после вчерашней уборки: они были мокрыми. Скажите: The rubber gloves were wet. Сначала назовите предметы the rubber gloves. Gloves — форма для нескольких, поэтому дальше поставьте were для прошлого. Затем добавьте состояние wet — «мокрые». Даже если речь об одной паре, английское gloves требует were.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The rubber gloves were wet.**
 - ❌ The rubber gloves was wet. — *С gloves нужна were.*
-- ❌ The rubber gloves is wet. — *Is не подходит к множественному числу и прошлому времени.*
+- ❌ The rubber gloves is wet. — *Is не подходит, когда перчаток несколько и речь о прошлом.*
 
 ---
 
@@ -86,7 +86,7 @@ The washing powder ___ on the shelf yesterday. → **was** · were · is
 **8 · Теперь средство здесь: выберите форму настоящего времени**
 <!-- interaction_id: en:lesson-11:session-03:i06; family: context_gap_grammar -->
 The washing-up liquid ___ here right now. → **is** · are · am
-- are — *Здесь единственное число: is.*
+- are — *Здесь форма для одного: is.*
 - am — *Am используется с I. Здесь is.*
 
 **9 · Карточка слова — cleaning cloth**
@@ -111,7 +111,7 @@ The cleaning cloth ___ dirty yesterday. → **was** · were · am
 
 **13 · Карточка слова — rubber gloves**
 <!-- interaction_id: en:lesson-11:session-03:word:rubber-gloves; family: word_card -->
-> **rubber gloves** — резиновые перчатки. Множественное число: were.
+> **rubber gloves** — резиновые перчатки. Форма для нескольких: were.
 
 **14 · Резиновые перчатки были на столе**
 <!-- interaction_id: en:lesson-11:session-03:i10; family: phrase_builder -->
@@ -126,8 +126,8 @@ The cleaning cloth ___ dirty yesterday. → **was** · were · am
 **16 · После уборки перчатки были грязными**
 <!-- interaction_id: en:lesson-11:session-03:i12; family: context_gap_grammar -->
 The rubber gloves ___ dirty. → **were** · was · is
-- was — *Gloves — множественное число: were.*
-- is — *Для множественного числа в прошлом нужна were.*
+- was — *Gloves — форма для нескольких: were.*
+- is — *Для формы для нескольких в прошлом нужна were.*
 
 **17 · Соедините названия с переводом**
 <!-- interaction_id: en:lesson-11:session-03:i13; family: speed_match -->

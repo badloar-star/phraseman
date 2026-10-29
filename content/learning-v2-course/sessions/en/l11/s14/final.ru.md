@@ -9,12 +9,12 @@
 
 ### Спросить о вкусе чипсов
 
-Друг ел чипсы во вчерашней поездке, и вы спрашиваете об их вкусе: Were the crisps salty? — чипсы были солёными? Начните с were: crisps — множественное число. Затем назовите конкретные чипсы the crisps и добавьте признак salty. Вопрос о прошлом строится перестановкой were перед предметом; did не нужен. Crisps — британское название картофельных чипсов.
+Друг ел чипсы во вчерашней поездке, и вы спрашиваете об их вкусе: Were the crisps salty? — чипсы были солёными? Начните с were: crisps — форма для нескольких. Затем назовите конкретные чипсы the crisps и добавьте признак salty. Вопрос о прошлом строится перестановкой were перед предметом; did не нужен. Crisps — британское название картофельных чипсов.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Were the crisps salty?**
-- ❌ Was the crisps salty? — *Crisps — множественное число: were.*
+- ❌ Was the crisps salty? — *Crisps — форма для нескольких: were.*
 - ❌ Did the crisps were salty? — *Вопрос с were строится без did.*
 
 ---
@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — crisps**
 <!-- interaction_id: en:lesson-11:session-14:word:crisps; family: word_card -->
-> **crisps** — картофельные чипсы. Британское название во множественном числе.
+> **crisps** — картофельные чипсы. Британское название в форме для нескольких.
 
 **2 · Спросите, были ли чипсы солёными**
 <!-- interaction_id: en:lesson-11:session-14:i01; family: phrase_builder -->
@@ -86,7 +86,7 @@ The crisps ___ in the bag. → **were** · was · did
 **8 · Скажите, что несколько крекеров были не свежими**
 <!-- interaction_id: en:lesson-11:session-14:i06; family: context_gap_grammar -->
 The crackers ___ not fresh. → **were** · was · did
-- was — *Crackers — множественное число: were.*
+- was — *Crackers — форма для нескольких: were.*
 - did — *Отрицание с be: were not.*
 
 **9 · Карточка слова — peanut**

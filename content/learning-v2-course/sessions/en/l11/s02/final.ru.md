@@ -9,7 +9,7 @@
 
 ### Где вчера было мыло
 
-Вы вспоминаете, где лежало мыло во время вчерашней уборки: The soap was on the shelf yesterday — «Мыло вчера было на полке». Сначала называем вещь — the soap, затем ставим was, после него место — on the shelf, а в конце время — yesterday. Soap здесь неисчисляемое, поэтому нужна was, не were. Yesterday относит сообщение к прошлому: настоящее is здесь не подходит.
+Вы вспоминаете, где лежало мыло во время вчерашней уборки: The soap was on the shelf yesterday — «Мыло вчера было на полке». Сначала называем вещь — the soap, затем ставим was, после него место — on the shelf, а в конце время — yesterday. Soap здесь не считается поштучно, поэтому нужна was, не were. Yesterday относит сообщение к прошлому: настоящее is здесь не подходит.
 
 **Выберите фразу для этой ситуации.**
 
@@ -23,7 +23,7 @@
 
 ### Где была бумага
 
-Друг спрашивает, куда вы положили туалетную бумагу во время уборки. Вы вспоминаете её место: The toilet paper was in the cupboard — «Туалетная бумага была в шкафу». Собираем предложение: the toilet paper + was + in the cupboard. Paper здесь неисчисляемое, поэтому используем was. The показывает, что речь о той самой бумаге, которую вы убирали; in означает, что она находилась внутри шкафа.
+Друг спрашивает, куда вы положили туалетную бумагу во время уборки. Вы вспоминаете её место: The toilet paper was in the cupboard — «Туалетная бумага была в шкафу». Собираем предложение: the toilet paper + was + in the cupboard. Paper здесь не считается поштучно, поэтому используем was. The показывает, что речь о той самой бумаге, которую вы убирали; in означает, что она находилась внутри шкафа.
 
 **Выберите фразу для этой ситуации.**
 
@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — soap**
 <!-- interaction_id: en:lesson-11:session-02:word:soap; family: word_card -->
-> **soap** — мыло. Здесь неисчисляемое: the soap was.
+> **soap** — мыло. Здесь не считается поштучно: the soap was.
 
 **2 · Мыло было на полке**
 <!-- interaction_id: en:lesson-11:session-02:i01; family: phrase_builder -->
@@ -86,12 +86,12 @@ The soap ___ here yesterday. → **was** · were · is
 **8 · Теперь гель рядом с вами: выберите настоящее время**
 <!-- interaction_id: en:lesson-11:session-02:i06; family: context_gap_grammar -->
 The shower gel ___ here right now. → **is** · are · am
-- are — *Здесь единственное число: is.*
+- are — *Здесь форма для одного: is.*
 - am — *Am используется с I. Здесь is.*
 
 **9 · Карточка слова — toilet paper**
 <!-- interaction_id: en:lesson-11:session-02:word:toilet-paper; family: word_card -->
-> **toilet paper** — туалетная бумага. Здесь неисчисляемое: was.
+> **toilet paper** — туалетная бумага. Здесь не считается поштучно: was.
 
 **10 · Туалетная бумага была в шкафу**
 <!-- interaction_id: en:lesson-11:session-02:i07; family: phrase_builder -->
@@ -107,7 +107,7 @@ The shower gel ___ here right now. → **is** · are · am
 <!-- interaction_id: en:lesson-11:session-02:i09; family: context_gap_grammar -->
 The toilet paper ___ on the shelf yesterday. → **was** · were · are
 - were — *Здесь нужна was.*
-- are — *Are — настоящее и множественное число. Здесь was.*
+- are — *Are — настоящее и форма для нескольких. Здесь was.*
 
 **13 · Карточка слова — washbasin**
 <!-- interaction_id: en:lesson-11:session-02:word:washbasin; family: word_card -->

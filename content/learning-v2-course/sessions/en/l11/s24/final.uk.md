@@ -141,7 +141,7 @@ well done — молодець · never mind — нічого страшного
 <!-- interaction_id: en:lesson-11:session-24:i15; family: context_gap_grammar -->
 My friends ___ happy. → **were** · was · is
 - was — *Кілька друзів: were.*
-- is — *Минулий час і множина: were.*
+- is — *Минулий час і форма для кількох: were.*
 
 **20 · Скажіть, що обід був смачний**
 <!-- interaction_id: en:lesson-11:session-24:i16; family: scripted_repeat_compare -->

@@ -126,7 +126,7 @@ You ___ ill yesterday. → **were** · was · are
 **16 · Перед від’їздом згадуєте: учора квитки були в сумці. Виберіть форму**
 <!-- interaction_id: en:lesson-11:session-47:i12; family: context_gap_grammar -->
 The tickets ___ in the bag yesterday. → **were** · was · are
-- was — *Tickets — множина: were.*
+- was — *Tickets — форма для кількох: were.*
 - are — *Учора: were.*
 
 **17 · Поєднайте побажання й вітання з перекладом**

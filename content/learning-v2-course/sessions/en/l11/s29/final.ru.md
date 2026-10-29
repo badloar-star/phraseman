@@ -29,7 +29,7 @@
 
 - ✅ **There was a fire engine near the fire station.**
 - ❌ There were a fire engine near the fire station. — *Одна машина: was.*
-- ❌ There was fire engine near the fire station. — *Перед одним исчисляемым предметом здесь нужно a.*
+- ❌ There was fire engine near the fire station. — *Перед одним считается поштучно предметом здесь нужно a.*
 
 ---
 

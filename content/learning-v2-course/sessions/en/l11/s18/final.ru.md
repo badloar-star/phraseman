@@ -9,13 +9,13 @@
 
 ### Фасоль на тарелке
 
-Вы вспоминаете вчерашний завтрак: на тарелке была фасоль в томатном соусе. Скажите: There were baked beans on the plate. Начните с there were, затем назовите еду baked beans и добавьте место on the plate. В английском beans — множественное число, хотя по-русски «фасоль» — единственное. Поэтому для прошлого нужна форма were. Выбирайте её по английскому слову beans.
+Вы вспоминаете вчерашний завтрак: на тарелке была фасоль в томатном соусе. Скажите: There were baked beans on the plate. Начните с there were, затем назовите еду baked beans и добавьте место on the plate. В английском beans — форма для нескольких, хотя по-русски «фасоль» — единственное. Поэтому для прошлого нужна форма were. Выбирайте её по английскому слову beans.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There were baked beans on the plate.**
-- ❌ There was baked beans on the plate. — *Beans — множественное число: were.*
-- ❌ There is baked beans on the plate. — *Говорим о прошлом и множественном числе: were.*
+- ❌ There was baked beans on the plate. — *Beans — форма для нескольких: were.*
+- ❌ There is baked beans on the plate. — *Говорим о прошлом, и фасоли много: were.*
 
 ---
 
@@ -23,12 +23,12 @@
 
 ### Рис в шкафу
 
-Разбирая покупки, вы вспоминаете, что бурый рис уже был в шкафу. Скажите: There was brown rice in the cupboard. Начните с there was, чтобы сообщить о наличии продукта в прошлом. Затем назовите его — brown rice. Rice здесь неисчисляемое: вы говорите о продукте, а не считаете отдельные зёрна. Поэтому нужны was и название без a. В конце добавьте место in the cupboard.
+Разбирая покупки, вы вспоминаете, что бурый рис уже был в шкафу. Скажите: There was brown rice in the cupboard. Начните с there was, чтобы сообщить о наличии продукта в прошлом. Затем назовите его — brown rice. Rice здесь не считается поштучно: вы говорите о продукте, а не считаете отдельные зёрна. Поэтому нужны was и название без a. В конце добавьте место in the cupboard.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There was brown rice in the cupboard.**
-- ❌ There were brown rice in the cupboard. — *С неисчисляемым rice нужна was.*
+- ❌ There were brown rice in the cupboard. — *С не считается поштучно rice нужна was.*
 - ❌ There was a brown rice in the cupboard. — *Здесь rice — продукт без a.*
 
 ---
@@ -37,7 +37,7 @@
 
 ### Вода в бутылке
 
-Вы вспоминаете вчерашнюю бутылку: внутри была минеральная вода. Скажите: There was mineral water in the bottle. Начните с there was, затем назовите жидкость mineral water. Здесь water неисчисляемое: вы не считаете бутылки или порции, поэтому используйте was без a перед названием воды. Завершите фразу местом in the bottle — «в бутылке».
+Вы вспоминаете вчерашнюю бутылку: внутри была минеральная вода. Скажите: There was mineral water in the bottle. Начните с there was, затем назовите жидкость mineral water. Здесь water не считается поштучно: вы не считаете бутылки или порции, поэтому используйте was без a перед названием воды. Завершите фразу местом in the bottle — «в бутылке».
 
 **Выберите фразу для этой ситуации.**
 
@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — baked beans**
 <!-- interaction_id: en:lesson-11:session-18:word:baked-beans; family: word_card -->
-> **baked beans** — фасоль в томатном соусе. По-английски множественное число.
+> **baked beans** — фасоль в томатном соусе. По-английски форма для нескольких.
 
 **2 · Сообщите: в миске была фасоль в соусе. Начните с There**
 <!-- interaction_id: en:lesson-11:session-18:i01; family: phrase_builder -->
@@ -66,8 +66,8 @@
 **4 · Вчера на тарелке была фасоль в соусе. Выберите форму**
 <!-- interaction_id: en:lesson-11:session-18:i03; family: context_gap_grammar -->
 There ___ baked beans on the plate. → **were** · was · is
-- was — *Beans — множественное число: were.*
-- is — *Прошлое, множественное число: were.*
+- was — *Beans — форма для нескольких: were.*
+- is — *Прошлое, форма для нескольких: were.*
 
 **5 · Карточка слова — brown rice**
 <!-- interaction_id: en:lesson-11:session-18:word:brown-rice; family: word_card -->
@@ -86,7 +86,7 @@ There ___ baked beans on the plate. → **were** · was · is
 **8 · В сумке был бурый рис. Выберите форму**
 <!-- interaction_id: en:lesson-11:session-18:i06; family: context_gap_grammar -->
 There ___ brown rice in the bag. → **was** · were · are
-- were — *С неисчисляемым rice используем was.*
+- were — *С не считается поштучно rice используем was.*
 - are — *Нужна форма прошлого was.*
 
 **9 · Карточка слова — black pepper**
@@ -126,7 +126,7 @@ No, it ___. → **wasn't** · weren't · didn't
 **16 · В бутылке была минеральная вода. Выберите форму**
 <!-- interaction_id: en:lesson-11:session-18:i12; family: context_gap_grammar -->
 There ___ mineral water in the bottle. → **was** · were · are
-- were — *Вода неисчисляемая: was.*
+- were — *Вода не считается поштучно: was.*
 - are — *В прошлом о воде говорим was.*
 
 **17 · Соедините слова с переводом**

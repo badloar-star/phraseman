@@ -23,7 +23,7 @@
 
 ### Две корзины у двери
 
-Вы вспоминаете вчерашний магазин: рядом с дверью стояли две корзины для покупок. Скажите: There were two shopping baskets next to the door. Начните с there were, чтобы сообщить о нескольких предметах в прошлом. Затем назовите количество и предметы — two shopping baskets. Множественное число получает baskets; перед two артикль a не нужен. Завершите фразу местом next to the door — «рядом с дверью».
+Вы вспоминаете вчерашний магазин: рядом с дверью стояли две корзины для покупок. Скажите: There were two shopping baskets next to the door. Начните с there were, чтобы сообщить о нескольких предметах в прошлом. Затем назовите количество и предметы — two shopping baskets. Форма для нескольких получает baskets; перед two a не нужен. Завершите фразу местом next to the door — «рядом с дверью».
 
 **Выберите фразу для этой ситуации.**
 
@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-11:session-31:i03; family: context_gap_grammar -->
 There ___ two changing rooms in the shop. → **were** · was · is
 - was — *Две комнаты: were.*
-- is — *Прошлое, множественное число: were.*
+- is — *Прошлое, форма для нескольких: were.*
 
 **5 · Карточка слова — shop window**
 <!-- interaction_id: en:lesson-11:session-31:word:shop-window; family: word_card -->

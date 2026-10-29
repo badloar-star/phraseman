@@ -23,12 +23,12 @@
 
 ### Где вчера лежали очки
 
-Вчера ваши очки для плавания лежали в вашей сумке. Скажите: The swimming goggles were in my bag — очки для плавания были в моей сумке. Сначала назовите предмет: the swimming goggles. В английском goggles имеет форму множественного числа, даже когда речь об одной паре, поэтому дальше нужно were. В конце добавьте место: in my bag. My показывает, чья это сумка.
+Вчера ваши очки для плавания лежали в вашей сумке. Скажите: The swimming goggles were in my bag — очки для плавания были в моей сумке. Сначала назовите предмет: the swimming goggles. В английском goggles имеет форму для нескольких, даже когда речь об одной паре, поэтому дальше нужно were. В конце добавьте место: in my bag. My показывает, чья это сумка.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The swimming goggles were in my bag.**
-- ❌ The swimming goggles was in my bag. — *Goggles — множественное число: were.*
+- ❌ The swimming goggles was in my bag. — *Goggles — форма для нескольких: were.*
 - ❌ The swimming goggles were on the table. — *Нужна сумка, не стол.*
 
 ---
@@ -71,7 +71,7 @@ The swimming costume ___ wet yesterday. → **was** · is · were
 
 **5 · Карточка слова — swimming trunks**
 <!-- interaction_id: en:lesson-11:session-42:word:swimming-trunks; family: word_card -->
-> **swimming trunks** — плавки. Множественное число.
+> **swimming trunks** — плавки. Форма для нескольких.
 
 **6 · Сообщите: плавки были не сухими**
 <!-- interaction_id: en:lesson-11:session-42:i04; family: phrase_builder -->
@@ -86,12 +86,12 @@ The swimming costume ___ wet yesterday. → **was** · is · were
 **8 · Вчера плавки были в сумке. Выберите форму**
 <!-- interaction_id: en:lesson-11:session-42:i06; family: context_gap_grammar -->
 The swimming trunks ___ in the bag yesterday. → **were** · was · are
-- was — *Trunks — множественное число: were.*
+- was — *Trunks — форма для нескольких: were.*
 - are — *Вчера: were.*
 
 **9 · Карточка слова — swimming goggles**
 <!-- interaction_id: en:lesson-11:session-42:word:swimming-goggles; family: word_card -->
-> **swimming goggles** — очки для плавания. Множественное число.
+> **swimming goggles** — очки для плавания. Форма для нескольких.
 
 **10 · Спросите, были ли очки для плавания в сумке**
 <!-- interaction_id: en:lesson-11:session-42:i07; family: phrase_builder -->
@@ -107,7 +107,7 @@ The swimming trunks ___ in the bag yesterday. → **were** · was · are
 <!-- interaction_id: en:lesson-11:session-42:i09; family: context_gap_grammar -->
 The swimming goggles ___ here now. → **are** · were · is
 - were — *Now — сейчас: are.*
-- is — *Goggles — множественное число: are.*
+- is — *Goggles — форма для нескольких: are.*
 
 **13 · Карточка слова — swimming cap**
 <!-- interaction_id: en:lesson-11:session-42:word:swimming-cap; family: word_card -->

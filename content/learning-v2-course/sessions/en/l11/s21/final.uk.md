@@ -23,12 +23,12 @@
 
 ### Корм у мисці
 
-Ви згадуєте вчорашню миску улюбленця: у ній був корм. Скажіть: There was pet food in the bowl. Почніть із there was, щоб повідомити про наявність їжі в минулому. Потім додайте pet food — «корм для домашніх тварин». Food тут незлічуване: корм не рахуємо окремими предметами, тому потрібні was і назва без a. Завершіть фразу місцем in the bowl — «у мисці».
+Ви згадуєте вчорашню миску улюбленця: у ній був корм. Скажіть: There was pet food in the bowl. Почніть із there was, щоб повідомити про наявність їжі в минулому. Потім додайте pet food — «корм для домашніх тварин». Food тут не рахується поштучно: корм не рахуємо окремими предметами, тому потрібні was і назва без a. Завершіть фразу місцем in the bowl — «у мисці».
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There was pet food in the bowl.**
-- ❌ There were pet food in the bowl. — *Із незлічуваним food потрібна was.*
+- ❌ There were pet food in the bowl. — *Із не рахується поштучно food потрібна was.*
 - ❌ There was a pet food in the bowl. — *Тут food не потребує a.*
 
 ---
@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-11:session-21:i03; family: context_gap_grammar -->
 There ___ two kittens in the garden. → **were** · was · is
 - was — *Двоє кошенят: were.*
-- is — *Минулий час і множина: were.*
+- is — *Минулий час і форма для кількох: were.*
 
 **5 · Картка слова — pet shop**
 <!-- interaction_id: en:lesson-11:session-21:word:pet-shop; family: word_card -->

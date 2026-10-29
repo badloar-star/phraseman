@@ -23,13 +23,13 @@
 
 ### Форма була чистою
 
-Учора перед школою ваша шкільна форма була чистою. Скажіть: The school uniform was clean yesterday — шкільна форма була чистою вчора. Спочатку назвіть предмет: The school uniform. Потім was: uniform тут в однині, навіть якщо комплект складається з кількох речей. Після was поставте ознаку clean, а наприкінці час yesterday.
+Учора перед школою ваша шкільна форма була чистою. Скажіть: The school uniform was clean yesterday — шкільна форма була чистою вчора. Спочатку назвіть предмет: The school uniform. Потім was: uniform тут у формі для одного, навіть якщо комплект складається з кількох речей. Після was поставте ознаку clean, а наприкінці час yesterday.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The school uniform was clean yesterday.**
 - ❌ The school uniform is clean yesterday. — *Учора: was.*
-- ❌ The school uniform were clean yesterday. — *Uniform тут в однині: was.*
+- ❌ The school uniform were clean yesterday. — *Uniform тут у формі для одного: was.*
 
 ---
 
@@ -37,12 +37,12 @@
 
 ### Взуття було мокрим?
 
-Ви не пам'ятаєте, чи було вчора взуття для прогулянок мокрим, і запитуєте про це брата. Скажіть: Were the walking shoes wet? — взуття для прогулянок було мокрим? Для запитання поставте Were перед назвою речей: the walking shoes. Shoes — множина, тому потрібна were. Після назви додайте ознаку wet. Were показує, що ви запитуєте про минуле.
+Ви не пам'ятаєте, чи було вчора взуття для прогулянок мокрим, і запитуєте про це брата. Скажіть: Were the walking shoes wet? — взуття для прогулянок було мокрим? Для запитання поставте Were перед назвою речей: the walking shoes. Shoes — форма для кількох, тому потрібна were. Після назви додайте ознаку wet. Were показує, що ви запитуєте про минуле.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Were the walking shoes wet?**
-- ❌ Was the walking shoes wet? — *Shoes — множина: were.*
+- ❌ Was the walking shoes wet? — *Shoes — форма для кількох: were.*
 - ❌ Are the walking shoes wet? — *Are запитує про теперішнє, а потрібне минуле.*
 
 ---
@@ -107,7 +107,7 @@ There ___ two long-sleeved shirts in the bag. → **were** · was · are
 <!-- interaction_id: en:lesson-11:session-43:i09; family: context_gap_grammar -->
 The school uniform ___ dry now. → **is** · was · are
 - was — *Now — зараз: is.*
-- are — *Uniform тут в однині: is.*
+- are — *Uniform тут у формі для одного: is.*
 
 **13 · Картка слова — walking shoes**
 <!-- interaction_id: en:lesson-11:session-43:word:walking-shoes; family: word_card -->
@@ -126,7 +126,7 @@ The school uniform ___ dry now. → **is** · was · are
 **16 · Учора взуття для прогулянок було брудне. Виберіть форму**
 <!-- interaction_id: en:lesson-11:session-43:i12; family: context_gap_grammar -->
 The walking shoes ___ dirty yesterday. → **were** · was · are
-- was — *Shoes — множина: were.*
+- was — *Shoes — форма для кількох: were.*
 - are — *Учора: were.*
 
 **17 · Поєднайте слова з перекладом**

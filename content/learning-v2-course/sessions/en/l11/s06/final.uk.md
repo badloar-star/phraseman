@@ -126,7 +126,7 @@ The hairdresser ___ busy on Thursday. → **was** · were · am
 **16 · Розкажіть, як діти почувалися в суботу**
 <!-- interaction_id: en:lesson-11:session-06:i12; family: context_gap_grammar -->
 The children ___ happy on Saturday. → **were** · was · is
-- was — *Children — множина: were.*
+- was — *Children — форма для кількох: were.*
 - is — *У минулому з children потрібна were.*
 
 **17 · Поєднайте дні тижня з перекладом**

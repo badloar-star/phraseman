@@ -141,7 +141,7 @@ well done — молодец · never mind — ничего страшного �
 <!-- interaction_id: en:lesson-11:session-24:i15; family: context_gap_grammar -->
 My friends ___ happy. → **were** · was · is
 - was — *Несколько друзей: were.*
-- is — *Прошлое и множественное число: were.*
+- is — *Прошлое и форма для нескольких: were.*
 
 **20 · Скажите, что обед был вкусным**
 <!-- interaction_id: en:lesson-11:session-24:i16; family: scripted_repeat_compare -->

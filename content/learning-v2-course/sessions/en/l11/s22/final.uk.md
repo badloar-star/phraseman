@@ -15,7 +15,7 @@
 
 - ✅ **My mum and dad were at home.**
 - ❌ My mum and dad was at home. — *Дві людини: were.*
-- ❌ My mum and dad is at home. — *Потрібен минулий час і множина: were.*
+- ❌ My mum and dad is at home. — *Потрібен минулий час і форма для кількох: were.*
 
 ---
 

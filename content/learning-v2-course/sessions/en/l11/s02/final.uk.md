@@ -9,7 +9,7 @@
 
 ### Де вчора було мило
 
-Ви згадуєте, де лежало мило під час учорашнього прибирання: The soap was on the shelf yesterday — «Мило вчора було на полиці». Спочатку називаємо річ — the soap, потім ставимо was, після нього місце — on the shelf, а наприкінці час — yesterday. Soap тут незлічуване, тому потрібна was, не were. Yesterday відносить повідомлення до минулого: теперішнє is тут не підходить.
+Ви згадуєте, де лежало мило під час учорашнього прибирання: The soap was on the shelf yesterday — «Мило вчора було на полиці». Спочатку називаємо річ — the soap, потім ставимо was, після нього місце — on the shelf, а наприкінці час — yesterday. Soap тут не рахується поштучно, тому потрібна was, не were. Yesterday відносить повідомлення до минулого: теперішнє is тут не підходить.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -23,7 +23,7 @@
 
 ### Де був папір
 
-Друг запитує, куди ви поклали туалетний папір під час прибирання. Ви згадуєте його місце: The toilet paper was in the cupboard — «Туалетний папір був у шафці». Складаємо речення: the toilet paper + was + in the cupboard. Paper тут незлічуване, тому використовуємо was. The показує, що йдеться про той самий папір, який ви прибирали; in означає, що він був усередині шафки.
+Друг запитує, куди ви поклали туалетний папір під час прибирання. Ви згадуєте його місце: The toilet paper was in the cupboard — «Туалетний папір був у шафці». Складаємо речення: the toilet paper + was + in the cupboard. Paper тут не рахується поштучно, тому використовуємо was. The показує, що йдеться про той самий папір, який ви прибирали; in означає, що він був усередині шафки.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — soap**
 <!-- interaction_id: en:lesson-11:session-02:word:soap; family: word_card -->
-> **soap** — мило. Тут незлічуване: the soap was.
+> **soap** — мило. Тут не рахується поштучно: the soap was.
 
 **2 · Мило було на полиці**
 <!-- interaction_id: en:lesson-11:session-02:i01; family: phrase_builder -->
@@ -86,12 +86,12 @@ The soap ___ here yesterday. → **was** · were · is
 **8 · Тепер гель поруч із вами: виберіть теперішній час**
 <!-- interaction_id: en:lesson-11:session-02:i06; family: context_gap_grammar -->
 The shower gel ___ here right now. → **is** · are · am
-- are — *Тут однина: is.*
+- are — *Тут форма для одного: is.*
 - am — *Am використовується з I. Тут is.*
 
 **9 · Картка слова — toilet paper**
 <!-- interaction_id: en:lesson-11:session-02:word:toilet-paper; family: word_card -->
-> **toilet paper** — туалетний папір. Тут незлічуване: was.
+> **toilet paper** — туалетний папір. Тут не рахується поштучно: was.
 
 **10 · Туалетний папір був у шафці**
 <!-- interaction_id: en:lesson-11:session-02:i07; family: phrase_builder -->
@@ -107,7 +107,7 @@ The shower gel ___ here right now. → **is** · are · am
 <!-- interaction_id: en:lesson-11:session-02:i09; family: context_gap_grammar -->
 The toilet paper ___ on the shelf yesterday. → **was** · were · are
 - were — *Тут потрібна was.*
-- are — *Are — теперішній час і множина. Тут was.*
+- are — *Are — теперішній час і форма для кількох. Тут was.*
 
 **13 · Картка слова — washbasin**
 <!-- interaction_id: en:lesson-11:session-02:word:washbasin; family: word_card -->

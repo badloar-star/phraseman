@@ -23,12 +23,12 @@
 
 ### Где были вешалки
 
-После уборки вы спрашиваете, были ли вешалки-плечики в шкафу. Спросите: Were the coat hangers in the wardrobe? Начните с were, потому что вешалок несколько. Затем назовите их — the coat hangers — и добавьте место in the wardrobe. В названии множественное число получает последнее слово hangers. Were само начинает вопрос о прошлом; did перед ним не ставим.
+После уборки вы спрашиваете, были ли вешалки-плечики в шкафу. Спросите: Were the coat hangers in the wardrobe? Начните с were, потому что вешалок несколько. Затем назовите их — the coat hangers — и добавьте место in the wardrobe. В названии форма для нескольких получает последнее слово hangers. Were само начинает вопрос о прошлом; did перед ним не ставим.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Were the coat hangers in the wardrobe?**
-- ❌ Was the coat hangers in the wardrobe? — *Множественное число: were.*
+- ❌ Was the coat hangers in the wardrobe? — *Форма для нескольких: were.*
 - ❌ Did the coat hangers were in the wardrobe? — *В вопросе с were не нужен did.*
 
 ---

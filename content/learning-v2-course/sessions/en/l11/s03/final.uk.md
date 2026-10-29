@@ -9,12 +9,12 @@
 
 ### Де вчора був порошок
 
-Після прибирання ви згадуєте, що вчора пральний порошок був у шафі. Скажіть: The washing powder was in the cupboard yesterday. Почніть із конкретного засобу the washing powder, потім поставте was. Powder тут незлічуване, тому для минулого потрібне was, а не were. Додайте місце in the cupboard і час yesterday. Так ви повідомляєте, де засіб перебував учора.
+Після прибирання ви згадуєте, що вчора пральний порошок був у шафі. Скажіть: The washing powder was in the cupboard yesterday. Почніть із конкретного засобу the washing powder, потім поставте was. Powder тут не рахується поштучно, тому для минулого потрібне was, а не were. Додайте місце in the cupboard і час yesterday. Так ви повідомляєте, де засіб перебував учора.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The washing powder was in the cupboard yesterday.**
-- ❌ The washing powder were in the cupboard yesterday. — *Powder тут незлічуване: потрібна was.*
+- ❌ The washing powder were in the cupboard yesterday. — *Powder тут не рахується поштучно: потрібна was.*
 - ❌ The washing powder is in the cupboard yesterday. — *Yesterday потребує минулого часу: was.*
 
 ---
@@ -23,13 +23,13 @@
 
 ### Мокрі рукавички після прибирання
 
-Ви згадуєте гумові рукавички після вчорашнього прибирання: вони були мокрі. Скажіть: The rubber gloves were wet. Спочатку назвіть предмети the rubber gloves. Gloves — множина, тому далі поставте were для минулого. Потім додайте стан wet — «мокрі». Навіть якщо йдеться про одну пару, англійське gloves потребує were.
+Ви згадуєте гумові рукавички після вчорашнього прибирання: вони були мокрі. Скажіть: The rubber gloves were wet. Спочатку назвіть предмети the rubber gloves. Gloves — форма для кількох, тому далі поставте were для минулого. Потім додайте стан wet — «мокрі». Навіть якщо йдеться про одну пару, англійське gloves потребує were.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The rubber gloves were wet.**
 - ❌ The rubber gloves was wet. — *Із gloves потрібна were.*
-- ❌ The rubber gloves is wet. — *Is не підходить до множини й минулого часу.*
+- ❌ The rubber gloves is wet. — *Is не підходить, коли рукавичок кілька й ідеться про минуле.*
 
 ---
 
@@ -86,7 +86,7 @@ The washing powder ___ on the shelf yesterday. → **was** · were · is
 **8 · Тепер засіб тут: виберіть форму теперішнього часу**
 <!-- interaction_id: en:lesson-11:session-03:i06; family: context_gap_grammar -->
 The washing-up liquid ___ here right now. → **is** · are · am
-- are — *Тут однина: is.*
+- are — *Тут форма для одного: is.*
 - am — *Am використовується з I. Тут is.*
 
 **9 · Картка слова — cleaning cloth**
@@ -111,7 +111,7 @@ The cleaning cloth ___ dirty yesterday. → **was** · were · am
 
 **13 · Картка слова — rubber gloves**
 <!-- interaction_id: en:lesson-11:session-03:word:rubber-gloves; family: word_card -->
-> **rubber gloves** — гумові рукавички. Множина: were.
+> **rubber gloves** — гумові рукавички. Форма для кількох: were.
 
 **14 · Гумові рукавички були на столі**
 <!-- interaction_id: en:lesson-11:session-03:i10; family: phrase_builder -->
@@ -126,8 +126,8 @@ The cleaning cloth ___ dirty yesterday. → **was** · were · am
 **16 · Після прибирання рукавички були брудні**
 <!-- interaction_id: en:lesson-11:session-03:i12; family: context_gap_grammar -->
 The rubber gloves ___ dirty. → **were** · was · is
-- was — *Gloves — множина: were.*
-- is — *Для множини в минулому потрібна were.*
+- was — *Gloves — форма для кількох: were.*
+- is — *Для форма для кількох в минулому потрібна were.*
 
 **17 · Поєднайте назви з перекладом**
 <!-- interaction_id: en:lesson-11:session-03:i13; family: speed_match -->

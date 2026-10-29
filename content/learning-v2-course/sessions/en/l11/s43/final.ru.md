@@ -23,13 +23,13 @@
 
 ### Форма была чистой
 
-Вчера перед школой ваша школьная форма была чистой. Скажите: The school uniform was clean yesterday — школьная форма была чистой вчера. Сначала назовите предмет: The school uniform. Затем was: uniform здесь в единственном числе, даже если комплект состоит из нескольких вещей. После was поставьте признак clean, а в конце время yesterday.
+Вчера перед школой ваша школьная форма была чистой. Скажите: The school uniform was clean yesterday — школьная форма была чистой вчера. Сначала назовите предмет: The school uniform. Затем was: uniform здесь в форме для одного, даже если комплект состоит из нескольких вещей. После was поставьте признак clean, а в конце время yesterday.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The school uniform was clean yesterday.**
 - ❌ The school uniform is clean yesterday. — *Вчера: was.*
-- ❌ The school uniform were clean yesterday. — *Uniform здесь в единственном числе: was.*
+- ❌ The school uniform were clean yesterday. — *Uniform здесь в форме для одного: was.*
 
 ---
 
@@ -37,12 +37,12 @@
 
 ### Обувь была мокрой?
 
-Вы не помните, была ли вчера обувь для прогулок мокрой, и спрашиваете об этом брата. Скажите: Were the walking shoes wet? — обувь для прогулок была мокрой? Для вопроса поставьте Were перед названием вещей: the walking shoes. Shoes — множественное число, поэтому нужна were. После названия добавьте признак wet. Were показывает, что вы спрашиваете о прошлом.
+Вы не помните, была ли вчера обувь для прогулок мокрой, и спрашиваете об этом брата. Скажите: Were the walking shoes wet? — обувь для прогулок была мокрой? Для вопроса поставьте Were перед названием вещей: the walking shoes. Shoes — форма для нескольких, поэтому нужна were. После названия добавьте признак wet. Were показывает, что вы спрашиваете о прошлом.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Were the walking shoes wet?**
-- ❌ Was the walking shoes wet? — *Shoes — множественное число: were.*
+- ❌ Was the walking shoes wet? — *Shoes — форма для нескольких: were.*
 - ❌ Are the walking shoes wet? — *Are спрашивает о настоящем, а нужно прошлое.*
 
 ---
@@ -107,7 +107,7 @@ There ___ two long-sleeved shirts in the bag. → **were** · was · are
 <!-- interaction_id: en:lesson-11:session-43:i09; family: context_gap_grammar -->
 The school uniform ___ dry now. → **is** · was · are
 - was — *Now — сейчас: is.*
-- are — *Uniform здесь в единственном числе: is.*
+- are — *Uniform здесь в форме для одного: is.*
 
 **13 · Карточка слова — walking shoes**
 <!-- interaction_id: en:lesson-11:session-43:word:walking-shoes; family: word_card -->
@@ -126,7 +126,7 @@ The school uniform ___ dry now. → **is** · was · are
 **16 · Вчера обувь для прогулок была грязной. Выберите форму**
 <!-- interaction_id: en:lesson-11:session-43:i12; family: context_gap_grammar -->
 The walking shoes ___ dirty yesterday. → **were** · was · are
-- was — *Shoes — множественное число: were.*
+- was — *Shoes — форма для нескольких: were.*
 - are — *Вчера: were.*
 
 **17 · Соедините слова с переводом**

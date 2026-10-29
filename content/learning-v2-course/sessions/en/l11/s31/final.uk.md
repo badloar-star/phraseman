@@ -23,7 +23,7 @@
 
 ### Два кошики біля дверей
 
-Ви згадуєте вчорашній магазин: поруч із дверима стояли два кошики для покупок. Скажіть: There were two shopping baskets next to the door. Почніть із there were, щоб повідомити про кілька предметів у минулому. Потім назвіть кількість і предмети — two shopping baskets. Множини набуває baskets; перед two артикль a не потрібен. Завершіть фразу місцем next to the door — «поруч із дверима».
+Ви згадуєте вчорашній магазин: поруч із дверима стояли два кошики для покупок. Скажіть: There were two shopping baskets next to the door. Почніть із there were, щоб повідомити про кілька предметів у минулому. Потім назвіть кількість і предмети — two shopping baskets. Форма для кількох набуває baskets; перед two a не потрібен. Завершіть фразу місцем next to the door — «поруч із дверима».
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-11:session-31:i03; family: context_gap_grammar -->
 There ___ two changing rooms in the shop. → **were** · was · is
 - was — *Дві кімнати: were.*
-- is — *Минулий час, множина: were.*
+- is — *Минулий час, форма для кількох: were.*
 
 **5 · Картка слова — shop window**
 <!-- interaction_id: en:lesson-11:session-31:word:shop-window; family: word_card -->

@@ -9,13 +9,13 @@
 
 ### Где вчера было детское питание
 
-Родные ищут детское питание, а вы помните, что вчера оно было в шкафу. Скажите: Yesterday the baby food was in the cupboard. Начните с yesterday, чтобы сразу указать время. Затем назовите конкретное питание the baby food и поставьте was: food здесь неисчисляемое, поэтому were не подходит. В конце добавьте место in the cupboard. Питание как еду не считаем отдельными предметами, поэтому перед baby food не ставим a.
+Родные ищут детское питание, а вы помните, что вчера оно было в шкафу. Скажите: Yesterday the baby food was in the cupboard. Начните с yesterday, чтобы сразу указать время. Затем назовите конкретное питание the baby food и поставьте was: food здесь не считается поштучно, поэтому were не подходит. В конце добавьте место in the cupboard. Питание как еду не считаем отдельными предметами, поэтому перед baby food не ставим a.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Yesterday the baby food was in the cupboard.**
 - ❌ Yesterday the baby food is in the cupboard. — *Вчера: was, не is.*
-- ❌ Yesterday the baby food were in the cupboard. — *Food здесь неисчисляемое: was.*
+- ❌ Yesterday the baby food were in the cupboard. — *Food здесь не считается поштучно: was.*
 
 ---
 
@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-11:session-26:i03; family: context_gap_grammar -->
 The baby food ___ in the fridge yesterday. → **was** · is · were
 - is — *Вчера: was.*
-- were — *Food здесь неисчисляемое: was.*
+- were — *Food здесь не считается поштучно: was.*
 
 **5 · Карточка слова — baby bottle**
 <!-- interaction_id: en:lesson-11:session-26:word:baby-bottle; family: word_card -->

@@ -9,13 +9,13 @@
 
 ### Де вчора було дитяче харчування
 
-Рідні шукають дитяче харчування, а ви пам’ятаєте, що вчора воно було в шафі. Скажіть: Yesterday the baby food was in the cupboard. Почніть із yesterday, щоб одразу вказати час. Потім назвіть конкретне харчування the baby food і поставте was: food тут незлічуване, тому were не підходить. Наприкінці додайте місце in the cupboard. Харчування як їжу не рахуємо окремими предметами, тому перед baby food не ставимо a.
+Рідні шукають дитяче харчування, а ви пам’ятаєте, що вчора воно було в шафі. Скажіть: Yesterday the baby food was in the cupboard. Почніть із yesterday, щоб одразу вказати час. Потім назвіть конкретне харчування the baby food і поставте was: food тут не рахується поштучно, тому were не підходить. Наприкінці додайте місце in the cupboard. Харчування як їжу не рахуємо окремими предметами, тому перед baby food не ставимо a.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Yesterday the baby food was in the cupboard.**
 - ❌ Yesterday the baby food is in the cupboard. — *Учора: was, не is.*
-- ❌ Yesterday the baby food were in the cupboard. — *Food тут незлічуване: was.*
+- ❌ Yesterday the baby food were in the cupboard. — *Food тут не рахується поштучно: was.*
 
 ---
 
@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-11:session-26:i03; family: context_gap_grammar -->
 The baby food ___ in the fridge yesterday. → **was** · is · were
 - is — *Учора: was.*
-- were — *Food тут незлічуване: was.*
+- were — *Food тут не рахується поштучно: was.*
 
 **5 · Картка слова — baby bottle**
 <!-- interaction_id: en:lesson-11:session-26:word:baby-bottle; family: word_card -->

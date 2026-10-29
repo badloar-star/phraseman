@@ -9,12 +9,12 @@
 
 ### Запитати про смак чипсів
 
-Друг їв чипси у вчорашній поїздці, і ви запитуєте про їхній смак: Were the crisps salty? — чипси були солоними? Почніть із were: crisps — множина. Потім назвіть конкретні чипси the crisps і додайте ознаку salty. Запитання про минуле будується перестановкою were перед предметом; did не потрібне. Crisps — британська назва картопляних чипсів.
+Друг їв чипси у вчорашній поїздці, і ви запитуєте про їхній смак: Were the crisps salty? — чипси були солоними? Почніть із were: crisps — форма для кількох. Потім назвіть конкретні чипси the crisps і додайте ознаку salty. Запитання про минуле будується перестановкою were перед предметом; did не потрібне. Crisps — британська назва картопляних чипсів.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Were the crisps salty?**
-- ❌ Was the crisps salty? — *Crisps — множина: were.*
+- ❌ Was the crisps salty? — *Crisps — форма для кількох: were.*
 - ❌ Did the crisps were salty? — *Запитання з were будується без did.*
 
 ---
@@ -51,7 +51,7 @@
 
 **1 · Картка слова — crisps**
 <!-- interaction_id: en:lesson-11:session-14:word:crisps; family: word_card -->
-> **crisps** — картопляні чипси. Британська назва у множині.
+> **crisps** — картопляні чипси. Британська назва у формі для кількох.
 
 **2 · Запитайте, чи були чипси солоні**
 <!-- interaction_id: en:lesson-11:session-14:i01; family: phrase_builder -->
@@ -86,7 +86,7 @@ The crisps ___ in the bag. → **were** · was · did
 **8 · Скажіть, що кілька крекерів були не свіжі**
 <!-- interaction_id: en:lesson-11:session-14:i06; family: context_gap_grammar -->
 The crackers ___ not fresh. → **were** · was · did
-- was — *Crackers — множина: were.*
+- was — *Crackers — форма для кількох: were.*
 - did — *Заперечення з be: were not.*
 
 **9 · Картка слова — peanut**

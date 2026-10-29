@@ -15,7 +15,7 @@
 
 - ✅ **There was a cereal bar in my bag.**
 - ❌ There were a cereal bar in my bag. — *Один предмет: was.*
-- ❌ There was cereal bar in my bag. — *Перед одним злічуваним предметом тут потрібне a.*
+- ❌ There was cereal bar in my bag. — *Перед одним рахується поштучно предметом тут потрібне a.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **The apple juice was cold yesterday.**
 - ❌ The apple juice is cold yesterday. — *Yesterday — минуле: was.*
-- ❌ The apple juice were cold yesterday. — *Juice тут незлічуване: was.*
+- ❌ The apple juice were cold yesterday. — *Juice тут не рахується поштучно: was.*
 
 ---
 
@@ -87,7 +87,7 @@ There ___ two cereal bars in the bag yesterday. → **were** · was · are
 <!-- interaction_id: en:lesson-11:session-28:i06; family: context_gap_grammar -->
 The orange juice ___ warm now. → **is** · was · are
 - was — *Зараз: is.*
-- are — *Juice незлічуване: is.*
+- are — *Juice не рахується поштучно: is.*
 
 **9 · Картка слова — apple juice**
 <!-- interaction_id: en:lesson-11:session-28:word:apple-juice; family: word_card -->

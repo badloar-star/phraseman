@@ -15,7 +15,7 @@
 
 - ✅ **There was a lunch box in the bag.**
 - ❌ There were a lunch box in the bag. — *Один контейнер: was.*
-- ❌ There was lunch box in the bag. — *Перед одним исчисляемым предметом здесь нужно a.*
+- ❌ There was lunch box in the bag. — *Перед одним считается поштучно предметом здесь нужно a.*
 
 ---
 
@@ -127,7 +127,7 @@ No, it ___. → **wasn't** · weren't · didn't
 <!-- interaction_id: en:lesson-11:session-19:i12; family: context_gap_grammar -->
 There ___ three paper bags next to the door. → **were** · was · is
 - was — *Три пакета: were.*
-- is — *Нужно прошлое и множественное число: were.*
+- is — *Нужно прошлое и форма для нескольких: were.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-11:session-19:i13; family: speed_match -->

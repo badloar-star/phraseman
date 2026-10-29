@@ -23,7 +23,7 @@
 
 ### Два водителя у станции
 
-Вчера рядом со станцией вы видели двух водителей такси. Скажите: There were two taxi drivers near the station. Начните с there were, потому что сообщаете о нескольких людях в прошлом. Затем укажите количество и людей — two taxi drivers. Окончание -s получает drivers, а taxi не меняется. Перед two артикль a не нужен. Завершите фразу местом near the station.
+Вчера рядом со станцией вы видели двух водителей такси. Скажите: There were two taxi drivers near the station. Начните с there were, потому что сообщаете о нескольких людях в прошлом. Затем укажите количество и людей — two taxi drivers. Окончание -s получает drivers, а taxi не меняется. Перед two a не нужен. Завершите фразу местом near the station.
 
 **Выберите фразу для этой ситуации.**
 
@@ -87,7 +87,7 @@ There ___ a public toilet near the station. → **was** · were · are
 <!-- interaction_id: en:lesson-11:session-20:i06; family: context_gap_grammar -->
 There ___ two bus drivers near the café. → **were** · was · is
 - was — *Два человека: were.*
-- is — *Прошлое и множественное число: were.*
+- is — *Прошлое и форма для нескольких: were.*
 
 **9 · Карточка слова — taxi driver**
 <!-- interaction_id: en:lesson-11:session-20:word:taxi-driver; family: word_card -->

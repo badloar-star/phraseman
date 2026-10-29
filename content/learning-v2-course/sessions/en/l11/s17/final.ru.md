@@ -23,7 +23,7 @@
 
 ### Две прищепки в сумке
 
-До уборки в сумке лежали две прищепки для белья. Скажите: There were two clothes pegs in the bag. Для нескольких предметов в прошлом начните с there were. Затем укажите количество two и предметы clothes pegs. Слово pegs получает окончание множественного числа -s; перед two не ставим a. Завершите фразу местом in the bag. Выбор were зависит от двух прищепок, а не от одной сумки.
+До уборки в сумке лежали две прищепки для белья. Скажите: There were two clothes pegs in the bag. Для нескольких предметов в прошлом начните с there were. Затем укажите количество two и предметы clothes pegs. Слово pegs получает окончание формы для нескольких -s; перед two не ставим a. Завершите фразу местом in the bag. Выбор were зависит от двух прищепок, а не от одной сумки.
 
 **Выберите фразу для этой ситуации.**
 
@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-11:session-17:i03; family: context_gap_grammar -->
 There ___ a bed sheet on the bed. → **was** · were · are
 - were — *Один предмет: was.*
-- are — *Are — настоящее и множественное число; здесь was.*
+- are — *Are — настоящее и форма для нескольких; здесь was.*
 
 **5 · Карточка слова — bath mat**
 <!-- interaction_id: en:lesson-11:session-17:word:bath-mat; family: word_card -->
@@ -127,7 +127,7 @@ There ___ two clothes pegs on the floor. → **were** · was · is
 <!-- interaction_id: en:lesson-11:session-17:i12; family: context_gap_grammar -->
 There ___ a towel rail in the room. → **was** · were · are
 - were — *Один предмет: was.*
-- are — *Are — настоящее и множественное число; здесь was.*
+- are — *Are — настоящее и форма для нескольких; здесь was.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-11:session-17:i13; family: speed_match -->

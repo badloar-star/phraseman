@@ -23,12 +23,12 @@
 
 ### Корм в миске
 
-Вы вспоминаете вчерашнюю миску питомца: в ней был корм. Скажите: There was pet food in the bowl. Начните с there was, чтобы сообщить о наличии еды в прошлом. Затем добавьте pet food — «корм для домашних животных». Food здесь неисчисляемое: корм не считаем отдельными предметами, поэтому нужны was и название без a. Завершите фразу местом in the bowl — «в миске».
+Вы вспоминаете вчерашнюю миску питомца: в ней был корм. Скажите: There was pet food in the bowl. Начните с there was, чтобы сообщить о наличии еды в прошлом. Затем добавьте pet food — «корм для домашних животных». Food здесь не считается поштучно: корм не считаем отдельными предметами, поэтому нужны was и название без a. Завершите фразу местом in the bowl — «в миске».
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There was pet food in the bowl.**
-- ❌ There were pet food in the bowl. — *С неисчисляемым food нужна was.*
+- ❌ There were pet food in the bowl. — *С не считается поштучно food нужна was.*
 - ❌ There was a pet food in the bowl. — *Здесь food не требует a.*
 
 ---
@@ -67,7 +67,7 @@
 <!-- interaction_id: en:lesson-11:session-21:i03; family: context_gap_grammar -->
 There ___ two kittens in the garden. → **were** · was · is
 - was — *Два котёнка: were.*
-- is — *Прошлое и множественное число: were.*
+- is — *Прошлое и форма для нескольких: were.*
 
 **5 · Карточка слова — pet shop**
 <!-- interaction_id: en:lesson-11:session-21:word:pet-shop; family: word_card -->

@@ -15,7 +15,7 @@
 
 - ✅ **My mum and dad were at home.**
 - ❌ My mum and dad was at home. — *Два человека: were.*
-- ❌ My mum and dad is at home. — *Нужно прошлое и множественное число: were.*
+- ❌ My mum and dad is at home. — *Нужно прошлое и форма для нескольких: were.*
 
 ---
 

@@ -23,12 +23,12 @@
 
 ### Де вчора лежали окуляри
 
-Учора ваші окуляри для плавання лежали у вашій сумці. Скажіть: The swimming goggles were in my bag — окуляри для плавання були в моїй сумці. Спочатку назвіть предмет: the swimming goggles. В англійській goggles має форму множини, навіть коли йдеться про одну пару, тому далі потрібне were. Наприкінці додайте місце: in my bag. My показує, чия це сумка.
+Учора ваші окуляри для плавання лежали у вашій сумці. Скажіть: The swimming goggles were in my bag — окуляри для плавання були в моїй сумці. Спочатку назвіть предмет: the swimming goggles. В англійській goggles має форму для кількох, навіть коли йдеться про одну пару, тому далі потрібне were. Наприкінці додайте місце: in my bag. My показує, чия це сумка.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The swimming goggles were in my bag.**
-- ❌ The swimming goggles was in my bag. — *Goggles — множина: were.*
+- ❌ The swimming goggles was in my bag. — *Goggles — форма для кількох: were.*
 - ❌ The swimming goggles were on the table. — *Потрібна сумка, не стіл.*
 
 ---
@@ -71,7 +71,7 @@ The swimming costume ___ wet yesterday. → **was** · is · were
 
 **5 · Картка слова — swimming trunks**
 <!-- interaction_id: en:lesson-11:session-42:word:swimming-trunks; family: word_card -->
-> **swimming trunks** — плавки. Множина.
+> **swimming trunks** — плавки. Форма для кількох.
 
 **6 · Повідомте: плавки були не сухі**
 <!-- interaction_id: en:lesson-11:session-42:i04; family: phrase_builder -->
@@ -86,12 +86,12 @@ The swimming costume ___ wet yesterday. → **was** · is · were
 **8 · Учора плавки були в сумці. Виберіть форму**
 <!-- interaction_id: en:lesson-11:session-42:i06; family: context_gap_grammar -->
 The swimming trunks ___ in the bag yesterday. → **were** · was · are
-- was — *Trunks — множина: were.*
+- was — *Trunks — форма для кількох: were.*
 - are — *Учора: were.*
 
 **9 · Картка слова — swimming goggles**
 <!-- interaction_id: en:lesson-11:session-42:word:swimming-goggles; family: word_card -->
-> **swimming goggles** — окуляри для плавання. Множина.
+> **swimming goggles** — окуляри для плавання. Форма для кількох.
 
 **10 · Запитайте, чи були окуляри для плавання в сумці**
 <!-- interaction_id: en:lesson-11:session-42:i07; family: phrase_builder -->
@@ -107,7 +107,7 @@ The swimming trunks ___ in the bag yesterday. → **were** · was · are
 <!-- interaction_id: en:lesson-11:session-42:i09; family: context_gap_grammar -->
 The swimming goggles ___ here now. → **are** · were · is
 - were — *Now — зараз: are.*
-- is — *Goggles — множина: are.*
+- is — *Goggles — форма для кількох: are.*
 
 **13 · Картка слова — swimming cap**
 <!-- interaction_id: en:lesson-11:session-42:word:swimming-cap; family: word_card -->

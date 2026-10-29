@@ -23,13 +23,13 @@
 
 ### Где вчера был крем
 
-Вы ищете солнцезащитный крем и вспоминаете, что вчера он был в вашей сумке. Скажите: Yesterday the sun cream was in my bag. Сначала укажите время yesterday, затем назовите конкретный крем the sun cream. Cream здесь неисчисляемое, поэтому для прошлого нужна форма was. В конце добавьте место in my bag — «в моей сумке». Was используется не только для состояния, но и для местоположения в прошлом.
+Вы ищете солнцезащитный крем и вспоминаете, что вчера он был в вашей сумке. Скажите: Yesterday the sun cream was in my bag. Сначала укажите время yesterday, затем назовите конкретный крем the sun cream. Cream здесь не считается поштучно, поэтому для прошлого нужна форма was. В конце добавьте место in my bag — «в моей сумке». Was используется не только для состояния, но и для местоположения в прошлом.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Yesterday the sun cream was in my bag.**
 - ❌ Yesterday the sun cream is in my bag. — *Говорим о вчера: was.*
-- ❌ Yesterday the sun cream were in my bag. — *Sun cream здесь неисчисляемое: was.*
+- ❌ Yesterday the sun cream were in my bag. — *Sun cream здесь не считается поштучно: was.*
 
 ---
 
@@ -37,12 +37,12 @@
 
 ### Вчерашнее состояние обуви
 
-Вы вспоминаете свои вьетнамки после вчерашнего пляжа: они были грязными. Скажите: Yesterday my flip-flops were dirty. Начните с yesterday, затем назовите обувь my flip-flops. Flip-flops — множественное число, поэтому дальше поставьте were. В конце добавьте состояние dirty. Для описания этой обуви сейчас нужна форма are, но yesterday указывает на прошлое: здесь выбираем were.
+Вы вспоминаете свои вьетнамки после вчерашнего пляжа: они были грязными. Скажите: Yesterday my flip-flops were dirty. Начните с yesterday, затем назовите обувь my flip-flops. Flip-flops — форма для нескольких, поэтому дальше поставьте were. В конце добавьте состояние dirty. Для описания этой обуви сейчас нужна форма are, но yesterday указывает на прошлое: здесь выбираем were.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Yesterday my flip-flops were dirty.**
-- ❌ Yesterday my flip-flops was dirty. — *Flip-flops — множественное число: were.*
+- ❌ Yesterday my flip-flops was dirty. — *Flip-flops — форма для нескольких: were.*
 - ❌ Yesterday my flip-flops are dirty. — *Yesterday — прошлое, поэтому were.*
 
 ---
@@ -87,7 +87,7 @@ Yesterday my beach towel ___ in my bag. → **was** · is · were
 <!-- interaction_id: en:lesson-11:session-25:i06; family: context_gap_grammar -->
 The sun cream ___ on the table now. → **is** · was · are
 - was — *Now — сейчас, нужна is.*
-- are — *Sun cream неисчисляемое: is.*
+- are — *Sun cream не считается поштучно: is.*
 
 **9 · Карточка слова — sun hat**
 <!-- interaction_id: en:lesson-11:session-25:word:sun-hat; family: word_card -->
@@ -111,7 +111,7 @@ My sun hat ___ dry now. → **is** · was · were
 
 **13 · Карточка слова — flip-flops**
 <!-- interaction_id: en:lesson-11:session-25:word:flip-flops; family: word_card -->
-> **flip-flops** — вьетнамки, шлёпанцы с перемычкой между пальцами. Множественное число.
+> **flip-flops** — вьетнамки, шлёпанцы с перемычкой между пальцами. Форма для нескольких.
 
 **14 · Скажите, что вчера ваши вьетнамки были мокрыми. Начните с Yesterday**
 <!-- interaction_id: en:lesson-11:session-25:i10; family: phrase_builder -->
@@ -127,7 +127,7 @@ My sun hat ___ dry now. → **is** · was · were
 <!-- interaction_id: en:lesson-11:session-25:i12; family: context_gap_grammar -->
 Yesterday my flip-flops ___ in my bag. → **were** · are · was
 - are — *Вчера: were, не are.*
-- was — *Множественное число: were.*
+- was — *Форма для нескольких: were.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-11:session-25:i13; family: speed_match -->

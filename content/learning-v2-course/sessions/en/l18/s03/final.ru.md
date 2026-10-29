@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете доступные варианты и обсуждаете планы.
 
-**Что вы освоите:** сравнить две вещи: shorter than ours
+**Что вы освоите:** сравнить время в пути: The train journey is shorter than ours.
 **Новые слова:** train journey, bus journey, car journey, walking route
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте конкретні напої: у кожної пари однакова якість або ціна.
 
-**Що ви опануєте:** сказати, що дві речі однакові: as strong as yours
+**Що ви опануєте:** сказати, що дві речі однакові: This instant coffee is as strong as yours.
 **Нові слова:** instant coffee, ground coffee, black tea, green tea
 
 ## Інтро 1

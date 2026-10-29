@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы выбираете перекусы в разных магазинах, сравнивая цены, вкус и размер упаковок.
 
-**Что вы освоите:** назвать самый лучший или худший вариант: the cheapest snack here
+**Что вы освоите:** назвать самый дешёвый вариант: The plain yoghurt is the cheapest option.
 **Новые слова:** fresh fruit, dried fruit, mixed nuts, plain yoghurt
 
 ## Интро 1

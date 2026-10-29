@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: We received such a warm welcome.
+**Що ви опануєте:** висловити сильне враження: We received such a warm welcome.
 **Нові слова:** warm welcome, helping hand, big smile, friendly face
 
 ## Інтро 1

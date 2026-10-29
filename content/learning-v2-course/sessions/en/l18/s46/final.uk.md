@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: This job advert is so clear.
+**Що ви опануєте:** висловити сильне враження: This job advert is so clear.
 **Нові слова:** job advert, job vacancy, working hours, annual leave
 
 ## Інтро 1

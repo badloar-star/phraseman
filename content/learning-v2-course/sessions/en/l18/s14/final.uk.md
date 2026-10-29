@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви дивитеся умови трьох магазинів і порівнюєте варіанти отримання замовлення.
 
-**Що ви опануєте:** назвати найкращий чи найгірший варіант: the fastest option here
+**Що ви опануєте:** назвати найшвидший варіант: Express delivery is the fastest option here.
 **Нові слова:** standard delivery, express delivery, next-day delivery, free collection
 
 ## Інтро 1

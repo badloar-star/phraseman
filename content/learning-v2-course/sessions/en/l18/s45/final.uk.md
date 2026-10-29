@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: A second chance is so helpful.
+**Що ви опануєте:** висловити сильне враження: A second chance is so helpful.
 **Нові слова:** first impression, second chance, last chance, good reason
 
 ## Інтро 1

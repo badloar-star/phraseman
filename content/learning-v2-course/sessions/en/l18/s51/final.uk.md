@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: This needs such careful attention.
+**Що ви опануєте:** висловити сильне враження: Your opinion is so useful.
 **Нові слова:** opportunity, attention, interest, opinion
 
 ## Інтро 1

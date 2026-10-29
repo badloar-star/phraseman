@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** сказать «так / такой» с чувством: The live music is so loud.
+**Что вы освоите:** выразить сильное впечатление: The live music is so loud.
 **Новые слова:** live music, live concert, street performance, music festival
 
 ## Интро 1

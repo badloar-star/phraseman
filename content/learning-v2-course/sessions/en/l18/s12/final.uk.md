@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви вибираєте перекуси в різних магазинах, порівнюючи ціни, смак і розмір паковань.
 
-**Що ви опануєте:** назвати найкращий чи найгірший варіант: the cheapest snack here
+**Що ви опануєте:** назвати найдешевший варіант: The plain yoghurt is the cheapest option.
 **Нові слова:** fresh fruit, dried fruit, mixed nuts, plain yoghurt
 
 ## Інтро 1

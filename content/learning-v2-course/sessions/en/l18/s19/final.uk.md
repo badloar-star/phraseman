@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте вибрані речі й помічаєте однакові якості.
 
-**Що ви опануєте:** сказати, що дві речі однакові: as light as mine
+**Що ви опануєте:** сказати, що дві речі однакові: These reading glasses are as light as mine.
 **Нові слова:** reading glasses, contact lenses, eye drops, glasses case
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы смотрите условия трёх магазинов и сравниваете варианты получения заказа.
 
-**Что вы освоите:** назвать самый лучший или худший вариант: the fastest option here
+**Что вы освоите:** назвать самый быстрый вариант: Express delivery is the fastest option here.
 **Новые слова:** standard delivery, express delivery, next-day delivery, free collection
 
 ## Интро 1

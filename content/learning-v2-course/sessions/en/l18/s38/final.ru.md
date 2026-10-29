@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** сказать «так / такой» с чувством: We received such a warm welcome.
+**Что вы освоите:** выразить сильное впечатление: We received such a warm welcome.
 **Новые слова:** warm welcome, helping hand, big smile, friendly face
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** сказать «так / такой» с чувством: This short break is so welcome.
+**Что вы освоите:** выразить сильное впечатление: This short break is so welcome.
 **Новые слова:** short break, quick shower, early start, late night
 
 ## Интро 1

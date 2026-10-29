@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете выбранные вещи и замечаете одинаковые качества.
 
-**Что вы освоите:** сказать, что две вещи одинаковые: as cheap as yours
+**Что вы освоите:** сказать, что две вещи одинаковые: This fabric softener is as cheap as yours.
 **Новые слова:** fabric softener, stain remover, laundry detergent, cleaning spray
 
 ## Интро 1

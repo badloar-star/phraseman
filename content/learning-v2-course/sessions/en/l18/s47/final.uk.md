@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: The food poisoning was so bad.
+**Що ви опануєте:** висловити сильне враження: The food poisoning was so bad.
 **Нові слова:** food poisoning, hay fever, travel sickness, chest pain
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте доступні варіанти й обговорюєте плани.
 
-**Що ви опануєте:** порівняти дві речі: colder than mine
+**Що ви опануєте:** порівняти дві речі: Your cold drink is colder than mine.
 **Нові слова:** hot meal, cold drink, soft drink, still water
 
 ## Інтро 1

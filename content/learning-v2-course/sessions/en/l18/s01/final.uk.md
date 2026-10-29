@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте номер, ванну й житловий простір із тим, що вже знаєте.
 
-**Що ви опануєте:** порівняти дві речі: cheaper than ours
+**Що ви опануєте:** порівняти ціну двох речей: This hotel room is cheaper than ours.
 **Нові слова:** hotel room, shared bathroom, private bathroom, living space
 
 ## Інтро 1

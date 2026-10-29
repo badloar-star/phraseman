@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте вибрані речі й помічаєте однакові якості.
 
-**Що ви опануєте:** сказати, що дві речі однакові: as cheap as yours
+**Що ви опануєте:** сказати, що дві речі однакові: This fabric softener is as cheap as yours.
 **Нові слова:** fabric softener, stain remover, laundry detergent, cleaning spray
 
 ## Інтро 1

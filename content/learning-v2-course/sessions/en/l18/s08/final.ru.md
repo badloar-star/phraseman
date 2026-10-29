@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете доступные варианты и обсуждаете планы.
 
-**Что вы освоите:** сравнить две вещи: slower than a taxi
+**Что вы освоите:** сравнить два вида транспорта: The airport bus is slower than a taxi.
 **Новые слова:** airport bus, airport train, taxi fare, travel pass
 
 ## Интро 1

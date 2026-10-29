@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** сказать «так / такой» с чувством: This needs such careful attention.
+**Что вы освоите:** выразить сильное впечатление: Your opinion is so useful.
 **Новые слова:** opportunity, attention, interest, opinion
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: This benefit is so important.
+**Що ви опануєте:** висловити сильне враження: This benefit is so important.
 **Нові слова:** benefit, advantage, disadvantage, difference
 
 ## Інтро 1

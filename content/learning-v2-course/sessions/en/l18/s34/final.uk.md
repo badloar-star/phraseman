@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: The birthday party is so noisy.
+**Що ви опануєте:** висловити сильне враження: The birthday party is so noisy.
 **Нові слова:** birthday party, wedding anniversary, family dinner, family reunion
 
 ## Інтро 1

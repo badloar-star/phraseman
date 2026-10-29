@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** сказать «так / такой» с чувством: This benefit is so important.
+**Что вы освоите:** выразить сильное впечатление: This benefit is so important.
 **Новые слова:** benefit, advantage, disadvantage, difference
 
 ## Интро 1

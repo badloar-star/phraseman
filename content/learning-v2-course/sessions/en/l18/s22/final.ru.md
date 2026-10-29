@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете выбранные вещи и замечаете одинаковые качества.
 
-**Что вы освоите:** сказать, что две вещи одинаковые: as fast as ours
+**Что вы освоите:** сказать, что две вещи одинаковые: This electric kettle is as fast as ours.
 **Новые слова:** electric kettle, electric oven, gas cooker, electric hob
 
 ## Интро 1

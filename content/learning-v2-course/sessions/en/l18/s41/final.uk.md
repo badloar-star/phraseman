@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: This short break is so welcome.
+**Що ви опануєте:** висловити сильне враження: This short break is so welcome.
 **Нові слова:** short break, quick shower, early start, late night
 
 ## Інтро 1

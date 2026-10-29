@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете доступные варианты и обсуждаете планы.
 
-**Что вы освоите:** сравнить две вещи: colder than mine
+**Что вы освоите:** сравнить две вещи: Your cold drink is colder than mine.
 **Новые слова:** hot meal, cold drink, soft drink, still water
 
 ## Интро 1

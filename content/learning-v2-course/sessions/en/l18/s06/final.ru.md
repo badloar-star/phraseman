@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете доступные варианты и обсуждаете планы.
 
-**Что вы освоите:** сравнить две вещи: lighter than mine
+**Что вы освоите:** сравнить две вещи: This cotton shirt is lighter than mine.
 **Новые слова:** cotton shirt, wool jumper, winter coat, summer dress
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете выбранные вещи и замечаете одинаковые качества.
 
-**Что вы освоите:** сказать, что две вещи одинаковые: as hot as yours
+**Что вы освоите:** сказать, что две вещи одинаковые: This takeaway meal is as hot as yours.
 **Новые слова:** lunch menu, vegetarian option, daily special, takeaway meal
 
 ## Интро 1

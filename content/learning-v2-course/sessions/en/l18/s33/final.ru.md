@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** сказать «так / такой» с чувством: My close friend is so kind.
+**Что вы освоите:** выразить сильное впечатление: My close friend is so kind.
 **Новые слова:** close friend, mutual friend, childhood friend, next-door neighbour
 
 ## Интро 1

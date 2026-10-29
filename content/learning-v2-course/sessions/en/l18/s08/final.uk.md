@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте доступні варіанти й обговорюєте плани.
 
-**Що ви опануєте:** порівняти дві речі: slower than a taxi
+**Що ви опануєте:** порівняти два види транспорту: The airport bus is slower than a taxi.
 **Нові слова:** airport bus, airport train, taxi fare, travel pass
 
 ## Інтро 1

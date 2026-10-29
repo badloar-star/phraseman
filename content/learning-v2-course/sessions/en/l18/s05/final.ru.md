@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете доступные варианты и обсуждаете планы.
 
-**Что вы освоите:** сравнить две вещи: lower than before
+**Что вы освоите:** сравнить цену с прежней: The sale price is lower than before.
 **Новые слова:** sale price, regular price, total cost, unit price
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте вибрані речі й помічаєте однакові якості.
 
-**Що ви опануєте:** сказати, що дві речі однакові: as hot as yours
+**Що ви опануєте:** сказати, що дві речі однакові: This takeaway meal is as hot as yours.
 **Нові слова:** lunch menu, vegetarian option, daily special, takeaway meal
 
 ## Інтро 1

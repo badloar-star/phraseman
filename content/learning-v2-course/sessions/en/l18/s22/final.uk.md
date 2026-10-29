@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте вибрані речі й помічаєте однакові якості.
 
-**Що ви опануєте:** сказати, що дві речі однакові: as fast as ours
+**Що ви опануєте:** сказати, що дві речі однакові: This electric kettle is as fast as ours.
 **Нові слова:** electric kettle, electric oven, gas cooker, electric hob
 
 ## Інтро 1

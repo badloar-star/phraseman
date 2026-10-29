@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сравниваете доступные варианты и обсуждаете планы.
 
-**Что вы освоите:** сравнить две вещи: nicer than ours
+**Что вы освоите:** сравнить две вещи: This garden view is nicer than ours.
 **Новые слова:** top floor, ground-floor flat, garden view, city view
 
 ## Интро 1

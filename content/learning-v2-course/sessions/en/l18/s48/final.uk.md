@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: The train delay is so long.
+**Що ви опануєте:** висловити сильне враження: The train delay is so long.
 **Нові слова:** train delay, flight delay, traffic noise, background noise
 
 ## Інтро 1

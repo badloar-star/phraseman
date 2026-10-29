@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** сказать «так / такой» с чувством: A second chance is so helpful.
+**Что вы освоите:** выразить сильное впечатление: A second chance is so helpful.
 **Новые слова:** first impression, second chance, last chance, good reason
 
 ## Интро 1

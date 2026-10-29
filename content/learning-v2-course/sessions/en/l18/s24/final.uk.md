@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте вибрані речі й помічаєте однакові якості.
 
-**Що ви опануєте:** сказати, що дві речі однакові: as long as ours
+**Що ви опануєте:** сказати, що дві речі однакові: Your weekend break is as long as ours.
 **Нові слова:** weekend break, city break, camping trip, beach holiday
 
 ## Інтро 1

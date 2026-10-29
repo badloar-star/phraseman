@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы делитесь сильным впечатлением и подчёркиваете качество.
 
-**Что вы освоите:** сказать «так / такой» с чувством: This light lunch is so fresh.
+**Что вы освоите:** выразить сильное впечатление: This light lunch is so fresh.
 **Новые слова:** light lunch, big breakfast, quick snack, hot drink
 
 ## Интро 1

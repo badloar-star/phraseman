@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви ділитеся сильним враженням і підкреслюєте якість.
 
-**Що ви опануєте:** сказати «так / такий» з почуттям: This light lunch is so fresh.
+**Що ви опануєте:** висловити сильне враження: This light lunch is so fresh.
 **Нові слова:** light lunch, big breakfast, quick snack, hot drink
 
 ## Інтро 1

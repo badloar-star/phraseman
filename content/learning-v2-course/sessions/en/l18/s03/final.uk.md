@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви порівнюєте доступні варіанти й обговорюєте плани.
 
-**Що ви опануєте:** порівняти дві речі: shorter than ours
+**Що ви опануєте:** порівняти час у дорозі: The train journey is shorter than ours.
 **Нові слова:** train journey, bus journey, car journey, walking route
 
 ## Інтро 1

@@ -188,18 +188,30 @@ function isTranslationDictionary(source) {
 // зачем 'actionToastTri(' (координатор 12.10): тост на 9 языков с объектом { ru, uk, en, … } — тот же класс ложного срабатывания, что и у triLang.
 const TRANSLATORS = ['triLang', 'pickLang', 'localized', 't(', 'L(', 'LP(', 'T(', 'actionToastTri('];
 
+/**
+ * Дев-превью (app/dev_*.tsx, *_preview.tsx) — экраны с образцами для разработчика, в выпуске их не видят.
+ * зачем (координатор 29.10): app/dev_community_scene_preview.tsx давал 32 «непереведённых» образца («Ирина», «B2 глаголы») —
+ * сторож ругался на текст, который человек не увидит. Правило то же, что у сторожа ключей triLang (scripts/trilang_key_guard.mjs).
+ */
+export function isDevPreviewFile(file) {
+  const f = file.replace(/\\/g, '/');
+  return /(^|\/)dev_[^/]*\.tsx$/.test(f) || /_preview\.tsx$/.test(f);
+}
+
 function walk(dir, out = []) {
   let entries;
   try {
     entries = fs.readdirSync(dir, { withFileTypes: true });
-  } catch {
+  } catch (error) {
+    // зачем: немой catch молча пропустил бы папку, и сторож сказал бы «OK» — пишем, что не прочитали
+    console.warn(`[I18N-SCAN] папка не прочитана, её файлы не проверены: ${dir} — ${error instanceof Error ? error.message : String(error)}`);
     return out;
   }
   for (const entry of entries) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) {
       if (!SKIP_DIR.test(entry.name)) walk(full, out);
-    } else if (entry.name.endsWith('.tsx')) {
+    } else if (entry.name.endsWith('.tsx') && !isDevPreviewFile(full)) {
       out.push(full);
     }
   }
@@ -401,7 +413,7 @@ function addedUntranslatedLines() {
       const fileHeader = line.match(/^\+\+\+ b\/(.+)$/);
       if (fileHeader) {
         const rel = fileHeader[1];
-        if (CONTENT_FILES.some((re) => re.test(rel))) {
+        if (CONTENT_FILES.some((re) => re.test(rel)) || isDevPreviewFile(rel)) {
           maskedLines = null;
           continue;
         }

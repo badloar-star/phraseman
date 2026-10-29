@@ -15,7 +15,7 @@
 
 - ✅ **There was a cereal bar in my bag.**
 - ❌ There were a cereal bar in my bag. — *Один предмет: was.*
-- ❌ There was cereal bar in my bag. — *Перед одним считается поштучно предметом здесь нужен a.*
+- ❌ There was cereal bar in my bag. — *Предмет один, и его можно посчитать: нужно a.*
 
 ---
 

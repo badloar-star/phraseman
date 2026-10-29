@@ -15,7 +15,7 @@
 
 - ✅ **There was a lunch box in the bag.**
 - ❌ There were a lunch box in the bag. — *Один контейнер: was.*
-- ❌ There was lunch box in the bag. — *Перед одним рахується поштучно предметом тут потрібне a.*
+- ❌ There was lunch box in the bag. — *Предмет один, і його можна порахувати: потрібне a.*
 
 ---
 

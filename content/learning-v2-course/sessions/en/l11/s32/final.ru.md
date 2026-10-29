@@ -43,7 +43,7 @@
 
 - ✅ **There was a double bed in the room.**
 - ❌ There were a double bed in the room. — *Это одна кровать: was.*
-- ❌ There was double bed in the room. — *Перед одним считается поштучно предметом здесь нужен a.*
+- ❌ There was double bed in the room. — *Предмет один, и его можно посчитать: нужно a.*
 
 ---
 

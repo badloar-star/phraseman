@@ -43,7 +43,7 @@
 
 - ✅ **There was a double bed in the room.**
 - ❌ There were a double bed in the room. — *Це одне ліжко: was.*
-- ❌ There was double bed in the room. — *Перед одним рахується поштучно предметом тут потрібне a.*
+- ❌ There was double bed in the room. — *Предмет один, і його можна порахувати: потрібне a.*
 
 ---
 

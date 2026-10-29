@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-52",
   "learningOutcomeByLocale": {
-    "ru": "отрицать принадлежность с no es suyo и no son suyos.",
-    "uk": "заперечувати належність із no es suyo та no son suyos."
+    "ru": "сказать, что вещь не его: El bolso no es suyo.",
+    "uk": "сказати, що річ не його: El bolso no es suyo."
   },
   "pages": [
     {
@@ -70,7 +70,7 @@
       },
       "bodyByLocale": {
         "ru": "Друг показывает на несколько книг и считает их книгами Педро. Поправьте его: `No son suyos` — «Они не его». Соберите `no` + `son` + `suyos`. Теперь вещей несколько: es замените на son, а suyo на suyos. No остаётся перед глаголом. Форма suyos относится к мужскому множественному libros.",
-        "uk": "Друг показує на кілька книжок і вважає їх книжками Педро. Виправте його: `No son suyos` — «Вони не його». Складіть `no` + `son` + `suyos`. Тепер речей кілька: es замініть на son, а suyo на suyos. No залишається перед дієсловом. Форма suyos стосується чоловічого множинного libros."
+        "uk": "Друг показує на кілька книжок і вважає їх книжками Педро. Виправте його: `No son suyos` — «Вони не його». Складіть `no` + `son` + `suyos`. Тепер речей кілька: es замініть на son, а suyo на suyos. No залишається перед дієсловом. Форма suyos стосується libros: чоловічий рід, їх кілька."
       },
       "question": {
         "interactionId": "es:lesson-04:session-52:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "790c3cec81d22552746788ddeb52a22b5d2a7a482f5ebd244e63052f888c89af"
+  "introFingerprint": "2b85210db203fcebbb8465af1a89e389a8cf10d1959ebc757caf473610ba8348"
 }

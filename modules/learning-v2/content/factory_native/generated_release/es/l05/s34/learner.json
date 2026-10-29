@@ -243,8 +243,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — у нас три коробки",
             "feedbackByLocale": {
-              "ru": "Нужно множественное число cajas.",
-              "uk": "Потрібна множина cajas."
+              "ru": "Нужна форма для нескольких: cajas.",
+              "uk": "Потрібна форма для кількох: cajas."
             }
           },
           {
@@ -659,5 +659,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ea04a2981d1d44be99d2551b3cce3fbd0d3af9045ec778d89ff6bd6720ccb713"
+  "learnerFingerprint": "a85cbdb6389d938a9455cb166c3354b7c3e1a4b0b556f75e1e11aee50da415e3"
 }

@@ -165,8 +165,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — здесь есть кафе?",
             "feedbackByLocale": {
-              "ru": "Café здесь единственного числа, мужского рода: un.",
-              "uk": "Café тут в однині, чоловічого роду: un."
+              "ru": "Café здесь один предмет, мужского рода: un.",
+              "uk": "Café тут одна річ, чоловічого роду: un."
             }
           }
         ]
@@ -722,5 +722,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8a4db7836f0d6b6193a9a9752681c1414ffed06fe9a95a44058b7e111a11dd5a"
+  "learnerFingerprint": "c0663121700b31471d9756d382cef5c8cd2a1140726113f0d73cfd1791800f2d"
 }

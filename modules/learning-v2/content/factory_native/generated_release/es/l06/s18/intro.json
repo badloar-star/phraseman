@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-06:session-18",
   "learningOutcomeByLocale": {
-    "ru": "сообщить о кровати и уточнить её наличие в комнате.",
-    "uk": "повідомити про ліжко й уточнити його наявність у кімнаті."
+    "ru": "спросить, есть ли кровать в комнате: ¿Hay una cama en la habitación?",
+    "uk": "запитати, чи є ліжко в кімнаті: ¿Hay una cama en la habitación?"
   },
   "pages": [
     {

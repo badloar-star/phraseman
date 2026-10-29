@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-46",
   "learningOutcomeByLocale": {
-    "ru": "использовать son в вопросе о нескольких предметах.",
-    "uk": "використовувати son у запитанні про кілька предметів."
+    "ru": "спросить, чьи это ключи: ¿De quién son las llaves?",
+    "uk": "запитати, чиї це ключі: ¿De quién son las llaves?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "В’язка ключів"
       },
       "bodyByLocale": {
-        "ru": "На столе остались ключи. Спросите у друзей `¿De quién son las llaves?` — «Чьи это ключи?» Соберите `de quién` + `son` + `las llaves`. Ключей несколько, поэтому вместо es нужно son. Llaves женского рода во множественном числе: перед ним las. Вопрос de quién сохраняется, даже если у всех ключей один хозяин.",
-        "uk": "На столі залишилися ключі. Запитайте друзів `¿De quién son las llaves?` — «Чиї це ключі?» Складіть `de quién` + `son` + `las llaves`. Ключів кілька, тому замість es потрібне son. Llaves жіночого роду в множині: перед ним las. Запитання de quién зберігається, навіть якщо всі ключі мають одного власника."
+        "ru": "На столе остались ключи. Спросите у друзей `¿De quién son las llaves?` — «Чьи это ключи?» Соберите `de quién` + `son` + `las llaves`. Ключей несколько, поэтому вместо es нужно son. Llaves женского рода, когда их несколько: перед ним las. Вопрос de quién сохраняется, даже если у всех ключей один хозяин.",
+        "uk": "На столі залишилися ключі. Запитайте друзів `¿De quién son las llaves?` — «Чиї це ключі?» Складіть `de quién` + `son` + `las llaves`. Ключів кілька, тому замість es потрібне son. Llaves жіночого роду, коли їх кілька: перед ним las. Запитання de quién зберігається, навіть якщо всі ключі мають одного власника."
       },
       "question": {
         "interactionId": "es:lesson-04:session-46:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "523175ea3251fa4ff2e89c2cf587c510f9881e7e65478bde46e8e755178f1f2d"
+  "introFingerprint": "65ba3fd38bac350093b52e45b8b7e6f9197c80a992c9c69b2bf19b9f6febbeff"
 }

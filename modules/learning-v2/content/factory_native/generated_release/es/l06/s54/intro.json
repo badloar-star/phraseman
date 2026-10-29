@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-06:session-54",
   "learningOutcomeByLocale": {
-    "ru": "задавать вопрос с muchas sillas и уточнять место.",
-    "uk": "ставити запитання з muchas sillas та уточнювати місце."
+    "ru": "спросить, много ли стульев: ¿Hay muchas sillas?",
+    "uk": "запитати, чи багато стільців: ¿Hay muchas sillas?"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Уточнити, що стільців мало"
       },
       "bodyByLocale": {
-        "ru": "Вам сказали, что в выбранной комнате небольшой запас стульев. Переспросите `¿Hay pocas sillas?` — «Мало стульев?» Соберите `¿Hay` + `pocas sillas?`. Меняем только количество: pocas вместо muchas. Женский род и множественное число сохраняются.",
-        "uk": "Вам сказали, що в обраній кімнаті невеликий запас стільців. Перепитайте `¿Hay pocas sillas?` — «Мало стільців?» Складіть `¿Hay` + `pocas sillas?`. Змінюємо лише кількість: pocas замість muchas. Жіночий рід і множина зберігаються."
+        "ru": "Вам сказали, что в выбранной комнате небольшой запас стульев. Переспросите `¿Hay pocas sillas?` — «Мало стульев?» Соберите `¿Hay` + `pocas sillas?`. Меняем только количество: pocas вместо muchas. Женский род сохраняется, и стульев по-прежнему несколько.",
+        "uk": "Вам сказали, що в обраній кімнаті невеликий запас стільців. Перепитайте `¿Hay pocas sillas?` — «Мало стільців?» Складіть `¿Hay` + `pocas sillas?`. Змінюємо лише кількість: pocas замість muchas. Жіночий рід зберігається, і стільців, як і раніше, кілька."
       },
       "question": {
         "interactionId": "es:lesson-06:session-54:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e62ff297128d5d3160ea045396de3bf7721e35ee46ff8e9fed22361a89f3dc12"
+  "introFingerprint": "7e6b8f903a56cf20e1dba7f973066b0d7a94bfdb86bbec6bdee134f8ac729a6f"
 }

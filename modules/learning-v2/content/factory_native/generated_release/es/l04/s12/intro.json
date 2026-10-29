@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-12",
   "learningOutcomeByLocale": {
-    "ru": "задать вопрос о принадлежности и отдельно ответить от своего лица.",
-    "uk": "поставити запитання про належність і окремо відповісти від свого імені."
+    "ru": "спросить, его ли это машина: ¿Es tu carro?",
+    "uk": "запитати, чи це його машина: ¿Es tu carro?"
   },
   "pages": [
     {

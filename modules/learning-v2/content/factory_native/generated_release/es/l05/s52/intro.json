@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-52",
   "learningOutcomeByLocale": {
-    "ru": "спросить возраст другого человека и назвать его в ответе.",
-    "uk": "запитати вік іншої людини й назвати його у відповіді."
+    "ru": "спросить, сколько лет другому человеку: ¿Cuántos años tiene Ana?",
+    "uk": "запитати, скільки років іншій людині: ¿Cuántos años tiene Ana?"
   },
   "pages": [
     {

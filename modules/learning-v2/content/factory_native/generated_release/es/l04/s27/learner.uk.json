@@ -253,7 +253,7 @@
             "testedDimension": "Вставте слово — це наші друзі-чоловіки",
             "feedbackByLocale": {
               "ru": "Нужно «наши» перед множественным amigos: nuestros.",
-              "uk": "Потрібно «наші» перед множиною amigos: nuestros."
+              "uk": "Потрібно «наші» перед amigos, коли їх кілька: nuestros."
             }
           }
         ]
@@ -659,5 +659,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "563fabfbf17e859f6258eb5a3892e71e1fa38fb205773432a1e334095adec5de"
+  "learnerFingerprint": "2941dfe26bb87992dfd2e752a2d7ee87d9bd2f1c8d03098087badac093065727"
 }

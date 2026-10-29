@@ -122,8 +122,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — много воды",
             "feedbackByLocale": {
-              "ru": "Agua здесь не во множественном числе.",
-              "uk": "Agua тут не в множині."
+              "ru": "Agua здесь не в форме для нескольких.",
+              "uk": "Agua тут не у формі для кількох."
             }
           }
         ]
@@ -252,8 +252,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — мало воды",
             "feedbackByLocale": {
-              "ru": "Нужна форма единственного числа poca.",
-              "uk": "Потрібна форма однини poca."
+              "ru": "Нужна форма для одного poca.",
+              "uk": "Потрібна форма для одного poca."
             }
           }
         ]
@@ -387,8 +387,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — много книг",
             "feedbackByLocale": {
-              "ru": "Libros во множественном числе: muchos.",
-              "uk": "Libros у множині: muchos."
+              "ru": "Libros — это несколько: muchos.",
+              "uk": "Libros — це кілька: muchos."
             }
           }
         ]
@@ -586,8 +586,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — много стульев",
             "feedbackByLocale": {
-              "ru": "Sillas во множественном числе: muchas.",
-              "uk": "Sillas у множині: muchas."
+              "ru": "Sillas — это несколько: muchas.",
+              "uk": "Sillas — це кілька: muchas."
             }
           }
         ]
@@ -655,8 +655,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — мало стульев",
             "feedbackByLocale": {
-              "ru": "Sillas во множественном числе: pocas.",
-              "uk": "Sillas у множині: pocas."
+              "ru": "Sillas — это несколько: pocas.",
+              "uk": "Sillas — це кілька: pocas."
             }
           }
         ]
@@ -1003,5 +1003,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "321a1ad71805e9d84e1e28c4703ca2365106d110d3d6c002d8a8d2fc25172926"
+  "learnerFingerprint": "052100e41ac9dd9a550a8a98e9be22838e3dbb719279f85a9f50e36fe38dd3a5"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-40",
   "learningOutcomeByLocale": {
-    "ru": "закрепить число после tener для количества вещей и возраста.",
-    "uk": "закріпити число після tener для кількості речей і віку."
+    "ru": "назвать количество вещей: Tenemos dos hijos.",
+    "uk": "назвати кількість речей: Tenemos dos hijos."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Ваш вік"
       },
       "bodyByLocale": {
-        "ru": "При знакомстве сообщите `Tengo veinte años` — «Мне двадцать лет». Соберите `Tengo` + `veinte` + `años`. Возраст выражаем через tener. О себе говорим tengo, а после числа veinte используем años во множественном числе. Перед числом нет артикля.",
-        "uk": "При знайомстві повідомте `Tengo veinte años` — «Мені двадцять років». Зберіть `Tengo` + `veinte` + `años`. Вік виражаємо через tener. Про себе кажемо tengo, а після числа veinte використовуємо años у множині. Перед числом немає артикля."
+        "ru": "При знакомстве сообщите `Tengo veinte años` — «Мне двадцать лет». Соберите `Tengo` + `veinte` + `años`. Возраст выражаем через tener. О себе говорим tengo, а после числа veinte используем años в форме для нескольких. Перед числом нет артикля.",
+        "uk": "При знайомстві повідомте `Tengo veinte años` — «Мені двадцять років». Зберіть `Tengo` + `veinte` + `años`. Вік виражаємо через tener. Про себе кажемо tengo, а після числа veinte використовуємо años у формі для кількох. Перед числом немає артикля."
       },
       "question": {
         "interactionId": "es:lesson-05:session-40:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Запитання знайомому"
       },
       "bodyByLocale": {
-        "ru": "Вы с собеседником на «ты» и спрашиваете его возраст: `¿Cuántos años tienes?` — «Сколько тебе лет?» Соберите `¿Cuántos años` + `tienes?`. В начале ставим вопрос о количестве лет, затем tienes. Cuántos согласовано с años: мужской род, множественное число. Отдельное tú здесь не добавляем.",
-        "uk": "Ви зі співрозмовником на «ти» й питаєте його вік: `¿Cuántos años tienes?` — «Скільки тобі років?» Зберіть `¿Cuántos años` + `tienes?`. На початку ставимо запитання про кількість років, потім tienes. Cuántos узгоджене з años: чоловічий рід, множина. Окреме tú тут не додаємо."
+        "ru": "Вы с собеседником на «ты» и спрашиваете его возраст: `¿Cuántos años tienes?` — «Сколько тебе лет?» Соберите `¿Cuántos años` + `tienes?`. В начале ставим вопрос о количестве лет, затем tienes. Cuántos согласовано с años: мужской род, форма для нескольких. Отдельное tú здесь не добавляем.",
+        "uk": "Ви зі співрозмовником на «ти» й питаєте його вік: `¿Cuántos años tienes?` — «Скільки тобі років?» Зберіть `¿Cuántos años` + `tienes?`. На початку ставимо запитання про кількість років, потім tienes. Cuántos узгоджене з años: чоловічий рід, форма для кількох. Окреме tú тут не додаємо."
       },
       "question": {
         "interactionId": "es:lesson-05:session-40:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cdc4f59b9d94a1332f47d8d8bf582b82e19da8a9a2a8e58fb6bda6ec841bda94"
+  "introFingerprint": "06d1acac00906448cf5680abdba9d2bbcadf48f1c5ff470c9d3acde12a17cfc6"
 }

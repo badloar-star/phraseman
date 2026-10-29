@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-06:session-03",
   "learningOutcomeByLocale": {
-    "ru": "добавить aquí, чтобы сообщить о наличии предмета здесь.",
-    "uk": "додати aquí, щоб повідомити про наявність предмета тут."
+    "ru": "сказать, что предмет есть здесь: Hay una silla aquí.",
+    "uk": "сказати, що предмет є тут: Hay una silla aquí."
   },
   "pages": [
     {

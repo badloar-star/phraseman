@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-06:session-23",
   "learningOutcomeByLocale": {
-    "ru": "спросить о наличии мебели в комнате и дать короткий ответ.",
-    "uk": "запитати про наявність меблів у кімнаті й дати коротку відповідь."
+    "ru": "спросить, есть ли в комнате стол: ¿Hay una mesa en la habitación?",
+    "uk": "запитати, чи є в кімнаті стіл: ¿Hay una mesa en la habitación?"
   },
   "pages": [
     {

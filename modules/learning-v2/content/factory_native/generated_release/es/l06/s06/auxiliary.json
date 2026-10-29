@@ -7,7 +7,7 @@
       "responseFeedbackById": {
         "es:lesson-06:session-06:intro1:r2": {
           "ru": "После dos нужно множественное sillas.",
-          "uk": "Після dos потрібна множина sillas."
+          "uk": "Після dos потрібна форма для кількох: sillas."
         },
         "es:lesson-06:session-06:intro1:r3": {
           "ru": "Перед dos здесь нет una.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "1bbec690773f6e7afb5ba995edc2b4ef8f38df37cce1516e7c234d2051121625"
+  "auxiliaryFingerprint": "017624c1b0a9c26ef16c0af41cb2353f740634307ee010ca97487cdf410bf13e"
 }

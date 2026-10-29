@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-33",
   "learningOutcomeByLocale": {
-    "ru": "после tener поставить dos и существительное во множественном числе.",
-    "uk": "після tener поставити dos та іменник у множині."
+    "ru": "сказать, что у вас два предмета: Tengo dos libros.",
+    "uk": "сказати, що у вас два предмети: Tengo dos libros."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Ваша сім’я"
       },
       "bodyByLocale": {
-        "ru": "Вы с партнёром рассказываете о семье: `Tenemos dos hijos` — «У нас двое детей». Соберите `Tenemos` + `dos` + `hijos`. Dos уже означает «два», поэтому un или una перед ним не ставим. После dos нужно множественное число: hijo → hijos. В этом контексте hijos может обозначать двух сыновей или сына и дочь; для двух дочерей используется hijas.",
-        "uk": "Ви з партнером розповідаєте про сім’ю: `Tenemos dos hijos` — «Ми маємо двох дітей». Зберіть `Tenemos` + `dos` + `hijos`. Dos уже означає «два», тому un або una перед ним не ставимо. Після dos потрібна множина: hijo → hijos. У цьому контексті hijos може позначати двох синів або сина й доньку; для двох доньок використовується hijas."
+        "ru": "Вы с партнёром рассказываете о семье: `Tenemos dos hijos` — «У нас двое детей». Соберите `Tenemos` + `dos` + `hijos`. Dos уже означает «два», поэтому un или una перед ним не ставим. После dos нужна форма для нескольких: hijo → hijos. В этом контексте hijos может обозначать двух сыновей или сына и дочь; для двух дочерей используется hijas.",
+        "uk": "Ви з партнером розповідаєте про сім’ю: `Tenemos dos hijos` — «Ми маємо двох дітей». Зберіть `Tenemos` + `dos` + `hijos`. Dos уже означає «два», тому un або una перед ним не ставимо. Після dos потрібна форма для кількох: hijo → hijos. У цьому контексті hijos може позначати двох синів або сина й доньку; для двох доньок використовується hijas."
       },
       "question": {
         "interactionId": "es:lesson-05:session-33:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a86691ca8e770a91d57c758be738d738c868bed0e44c8586a57411c34f82b4c2"
+  "introFingerprint": "82f7e341bd2e8127adbb3b0849ec182429947fb6ec2734501ad0d216f325ea7e"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-14",
   "learningOutcomeByLocale": {
-    "ru": "использовать tus с существительным женского рода во множественном числе.",
-    "uk": "використовувати tus з іменником жіночого роду в множині."
+    "ru": "описать сумки собеседника: Tus bolsas son rojas.",
+    "uk": "описати сумки співрозмовника: Tus bolsas son rojas."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Упізнати червоні сумки"
       },
       "bodyByLocale": {
-        "ru": "Чтобы подруга не взяла чужие сумки, напомните: `Tus bolsas son rojas` — «Твои сумки красные». Соберите `tus bolsas` + `son` + `rojas`. Цвет согласуйте с bolsas: женский род и множественное число дают rojas. Форма tus остаётся той же, что и в tus zapatos.",
-        "uk": "Щоб подруга не взяла чужі сумки, нагадайте: `Tus bolsas son rojas` — «Твої сумки червоні». Зберіть `tus bolsas` + `son` + `rojas`. Колір узгодьте з bolsas: жіночий рід і множина дають rojas. Форма tus залишається тією самою, що й у tus zapatos."
+        "ru": "Чтобы подруга не взяла чужие сумки, напомните: `Tus bolsas son rojas` — «Твои сумки красные». Соберите `tus bolsas` + `son` + `rojas`. Цвет согласуйте с bolsas: женский род и значение «несколько» дают rojas. Форма tus остаётся той же, что и в tus zapatos.",
+        "uk": "Щоб подруга не взяла чужі сумки, нагадайте: `Tus bolsas son rojas` — «Твої сумки червоні». Зберіть `tus bolsas` + `son` + `rojas`. Колір узгодьте з bolsas: жіночий рід і значення «кілька» дають rojas. Форма tus залишається тією самою, що й у tus zapatos."
       },
       "question": {
         "interactionId": "es:lesson-04:session-14:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2e1a901b09b73b30fe99105d52e085c0b3d2d39592cee90bb278dc5f9e941b3d"
+  "introFingerprint": "34cf076ab39993d341d8925d98085dbc3e2a21eb080460d1965ab198dab9e93d"
 }

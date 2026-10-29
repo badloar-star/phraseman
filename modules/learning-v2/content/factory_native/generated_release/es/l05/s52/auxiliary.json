@@ -10,8 +10,8 @@
           "uk": "Про іншу людину використовуємо tiene."
         },
         "es:lesson-05:session-52:intro1:r3": {
-          "ru": "Años — мужской род, множественное число: cuántos.",
-          "uk": "Años — чоловічий рід, множина: cuántos."
+          "ru": "Años — мужской род, форма для нескольких: cuántos.",
+          "uk": "Años — чоловічий рід, форма для кількох: cuántos."
         }
       }
     },
@@ -24,7 +24,7 @@
         },
         "es:lesson-05:session-52:intro2:r3": {
           "ru": "После treinta нужно множественное años.",
-          "uk": "Після treinta потрібна множина años."
+          "uk": "Після treinta потрібна форма для кількох: años."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "972484e333bbc569186314ca7503dbbd7560ed0e24e436bb6ae8043ecb349e9a"
+  "auxiliaryFingerprint": "1a63f0650effd9262aace7190f733bd29a4925d1869877ac7eed54a8fdb11d3a"
 }

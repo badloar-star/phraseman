@@ -6,8 +6,8 @@
       "interactionId": "es:lesson-05:session-33:intro1:q",
       "responseFeedbackById": {
         "es:lesson-05:session-33:intro1:r2": {
-          "ru": "После dos нужно множественное число hijos.",
-          "uk": "Після dos потрібна множина hijos."
+          "ru": "После dos нужна форма для нескольких: hijos.",
+          "uk": "Після dos потрібна форма для кількох: hijos."
         },
         "es:lesson-05:session-33:intro1:r3": {
           "ru": "Dos уже задаёт количество; un здесь не нужно.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "aa8ee97e59c4b66b92391e1fa6e020a5eb68a380ed39a109b94266c4b17db695"
+  "auxiliaryFingerprint": "407fe84583d0e9d718f72416ec74e016fd937264811c2ee3da6aa9440f6f3fe8"
 }

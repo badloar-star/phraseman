@@ -122,8 +122,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — здесь есть комната?",
             "feedbackByLocale": {
-              "ru": "Habitación единственного числа, женского рода: una.",
-              "uk": "Habitación в однині, жіночого роду: una."
+              "ru": "Habitación — один предмет, женского рода: una.",
+              "uk": "Habitación — одна річ, жіночого роду: una."
             }
           }
         ]
@@ -659,5 +659,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "46030fd4e997791fcc185156bc66a92773556948bfcb10d8dcc234c0fe344f26"
+  "learnerFingerprint": "d159fc855f645f971fa20032027f24c4ebdeab52e7f2e5597670aef5dfe96b75"
 }

@@ -7,7 +7,7 @@
       "responseFeedbackById": {
         "es:lesson-05:session-53:intro1:r2": {
           "ru": "После dos нужно множественное hijos.",
-          "uk": "Після dos потрібна множина hijos."
+          "uk": "Після dos потрібна форма для кількох: hijos."
         },
         "es:lesson-05:session-53:intro1:r3": {
           "ru": "О вас с партнёром вместе говорим tenemos.",
@@ -20,7 +20,7 @@
       "responseFeedbackById": {
         "es:lesson-05:session-53:intro2:r2": {
           "ru": "После dos нужно множественное hijas.",
-          "uk": "Після dos потрібна множина hijas."
+          "uk": "Після dos потрібна форма для кількох: hijas."
         },
         "es:lesson-05:session-53:intro2:r3": {
           "ru": "Это не уточняет, что обе — дочери; для задания нужно hijas.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "14544b0c49fa305ae05e86cd46e6c2bf7090a2ca0074c7cd0c770b66714eee91"
+  "auxiliaryFingerprint": "7e1c4ac2575f9a326732ddf3ef130684aa6d7114d13ee6351a81ce0e1afff4ad"
 }

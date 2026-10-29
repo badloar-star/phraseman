@@ -556,8 +556,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — Педро тридцать лет",
             "feedbackByLocale": {
-              "ru": "После treinta нужно множественное число años.",
-              "uk": "Після treinta потрібна множина años."
+              "ru": "После treinta нужна форма для нескольких: años.",
+              "uk": "Після treinta потрібна форма для кількох: años."
             }
           },
           {
@@ -712,5 +712,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "04b8335ea0cd41d52d9efbb403fceca33862d18092f1c6019253362f40d1ee46"
+  "learnerFingerprint": "2042b9f0390e60db5eeefc26caab3d9bcbd745ca87d9ba365a2060786d7cedb9"
 }

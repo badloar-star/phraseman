@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-15",
   "learningOutcomeByLocale": {
-    "ru": "отрицать принадлежность одной вещи и нескольких вещей собеседнику.",
-    "uk": "заперечувати належність однієї речі та кількох речей співрозмовнику."
+    "ru": "сказать, что ключи не собеседника: No son tus llaves.",
+    "uk": "сказати, що ключі не співрозмовника: No son tus llaves."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Чужа в'язка"
       },
       "bodyByLocale": {
-        "ru": "Друг взял связку чужих ключей. Скажите `No son tus llaves` — «Это не твои ключи». Соберите `no` + `son` + `tus llaves`. Для нескольких ключей нужны son и tus, а no по-прежнему стоит перед глаголом. Собеседнику говорим на «ты»; множественное число относится к ключам.",
-        "uk": "Друг узяв в'язку чужих ключів. Скажіть `No son tus llaves` — «Це не твої ключі». Зберіть `no` + `son` + `tus llaves`. Для кількох ключів потрібні son і tus, а no й далі стоїть перед дієсловом. До співрозмовника звертаємося на «ти»; множина стосується ключів."
+        "ru": "Друг взял связку чужих ключей. Скажите `No son tus llaves` — «Это не твои ключи». Соберите `no` + `son` + `tus llaves`. Для нескольких ключей нужны son и tus, а no по-прежнему стоит перед глаголом. Собеседнику говорим на «ты»; «несколько» относится к ключам.",
+        "uk": "Друг узяв в'язку чужих ключів. Скажіть `No son tus llaves` — «Це не твої ключі». Зберіть `no` + `son` + `tus llaves`. Для кількох ключів потрібні son і tus, а no й далі стоїть перед дієсловом. До співрозмовника звертаємося на «ти»; «кілька» стосується ключів."
       },
       "question": {
         "interactionId": "es:lesson-04:session-15:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a3f82c896d3e88e215c6fb815d9efb96c8e0372f741db5d49287c4af4426d9b0"
+  "introFingerprint": "6b275e67ed63999b2ade6c50e2d1fd47ccd8f007c545a63bc35b487bd4510476"
 }

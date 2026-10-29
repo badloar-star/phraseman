@@ -122,8 +122,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — мало воды",
             "feedbackByLocale": {
-              "ru": "Agua здесь не во множественном числе: poca.",
-              "uk": "Agua тут не в множині: poca."
+              "ru": "Agua здесь не в форме для нескольких: poca.",
+              "uk": "Agua тут не у формі для кількох: poca."
             }
           }
         ]
@@ -664,5 +664,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2a965f2031490419b89caf24ae46ff0c7ab6b172c0ac516b2068c13eccabe7cf"
+  "learnerFingerprint": "57f08473ee6711b80f88981c84e3a15270a646966e398fb7775c679feb3c56b1"
 }

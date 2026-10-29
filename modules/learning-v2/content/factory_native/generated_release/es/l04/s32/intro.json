@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-32",
   "learningOutcomeByLocale": {
-    "ru": "выбирать форму «наш» по роду и числу названного человека или предмета.",
-    "uk": "вибирати форму «наш» за родом і числом названої людини або предмета."
+    "ru": "выбирать нужную форму слова «наш»: Nuestras amigas son amables.",
+    "uk": "вибирати потрібну форму слова «наш»: Nuestras amigas son amables."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Наш будинок"
       },
       "bodyByLocale": {
-        "ru": "Показываете гостю семейный дом. Скажите `Es nuestra casa` — «Это наш дом». Соберите `es` + `nuestra casa`. Casa женского рода и в единственном числе, поэтому выбираем nuestra. Число членов семьи не меняет es: дом один.",
-        "uk": "Показуєте гостю сімейний будинок. Скажіть `Es nuestra casa` — «Це наш будинок». Зберіть `es` + `nuestra casa`. Casa жіночого роду й в однині, тому вибираємо nuestra. Кількість членів родини не змінює es: будинок один."
+        "ru": "Показываете гостю семейный дом. Скажите `Es nuestra casa` — «Это наш дом». Соберите `es` + `nuestra casa`. Casa женского рода, и она одна, поэтому выбираем nuestra. Число членов семьи не меняет es: дом один.",
+        "uk": "Показуєте гостю сімейний будинок. Скажіть `Es nuestra casa` — «Це наш будинок». Зберіть `es` + `nuestra casa`. Casa жіночого роду, і вона одна, тому вибираємо nuestra. Кількість членів родини не змінює es: будинок один."
       },
       "question": {
         "interactionId": "es:lesson-04:session-32:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Наші подруги"
       },
       "bodyByLocale": {
-        "ru": "К вам подошли общие подруги семьи. Представьте их гостю: `Son nuestras amigas` — «Это наши подруги». Соберите `son` + `nuestras amigas`. Amigas женского рода и во множественном числе; оба признака отражены в nuestras. Говорим о нескольких людях, поэтому son.",
-        "uk": "До вас підійшли спільні подруги родини. Представте їх гостю: `Son nuestras amigas` — «Це наші подруги». Зберіть `son` + `nuestras amigas`. Amigas жіночого роду й у множині; обидві ознаки відображені в nuestras. Говоримо про кількох людей, тому son."
+        "ru": "К вам подошли общие подруги семьи. Представьте их гостю: `Son nuestras amigas` — «Это наши подруги». Соберите `son` + `nuestras amigas`. Amigas женского рода, и подруг несколько; оба признака отражены в nuestras. Говорим о нескольких людях, поэтому son.",
+        "uk": "До вас підійшли спільні подруги родини. Представте їх гостю: `Son nuestras amigas` — «Це наші подруги». Зберіть `son` + `nuestras amigas`. Amigas жіночого роду, і подруг кілька; обидві ознаки відображені в nuestras. Говоримо про кількох людей, тому son."
       },
       "question": {
         "interactionId": "es:lesson-04:session-32:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "581ee37ed70d45b082a1610f6b1a67475f2c026f9c423047e7d7a27ba81a4098"
+  "introFingerprint": "a02fba5c99cadb38941ac79f98bb103a8b84a2e4aec69c5097b9d28a806b7a22"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-06:session-48",
   "learningOutcomeByLocale": {
-    "ru": "выбирать форму mucho или poco по испанскому существительному.",
-    "uk": "обирати форму mucho або poco за іспанським іменником."
+    "ru": "выбрать «много» или «мало» по слову: Hay poca agua aquí.",
+    "uk": "вибрати «багато» або «мало» за словом: Hay poca agua aquí."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Книжок небагато"
       },
       "bodyByLocale": {
-        "ru": "В комнате есть книги для гостей, но выбор небольшой. Скажите `Hay pocos libros` — «Мало книг». Соберите `Hay` + `pocos` + `libros`. Libro мужского рода, libros во множественном числе: выбираем pocos. Книги есть, просто их мало; no hay libros сообщило бы, что их нет.",
-        "uk": "У кімнаті є книжки для гостей, але вибір невеликий. Скажіть `Hay pocos libros` — «Мало книжок». Складіть `Hay` + `pocos` + `libros`. Libro чоловічого роду, libros у множині: обираємо pocos. Книжки є, просто їх мало; no hay libros повідомило б, що їх немає."
+        "ru": "В комнате есть книги для гостей, но выбор небольшой. Скажите `Hay pocos libros` — «Мало книг». Соберите `Hay` + `pocos` + `libros`. Libro мужского рода, libros — когда их несколько: выбираем pocos. Книги есть, просто их мало; no hay libros сообщило бы, что их нет.",
+        "uk": "У кімнаті є книжки для гостей, але вибір невеликий. Скажіть `Hay pocos libros` — «Мало книжок». Складіть `Hay` + `pocos` + `libros`. Libro чоловічого роду, libros — коли їх кілька: обираємо pocos. Книжки є, просто їх мало; no hay libros повідомило б, що їх немає."
       },
       "question": {
         "interactionId": "es:lesson-06:session-48:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3799d7e6d4efd5730332f0552e3a1267799909a8215894302fa1ae43d7b1da09"
+  "introFingerprint": "7e7afa2a9a99b2ec43efe07cf441cdf0d17a56eefb98016d1107ed30508ed4cf"
 }

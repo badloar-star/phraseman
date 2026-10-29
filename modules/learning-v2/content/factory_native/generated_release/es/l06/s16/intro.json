@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-06:session-16",
   "learningOutcomeByLocale": {
-    "ru": "выбирать вопрос о наличии, утвердительный ответ и отрицательное сообщение.",
-    "uk": "вибирати запитання про наявність, ствердну відповідь і заперечне повідомлення."
+    "ru": "ответить «есть» или «нет» на вопрос: No, no hay mesas.",
+    "uk": "відповісти «є» або «немає» на питання: No, no hay mesas."
   },
   "pages": [
     {

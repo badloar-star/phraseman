@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-21",
   "learningOutcomeByLocale": {
-    "ru": "менять su на sus, когда называете несколько вещей.",
-    "uk": "змінювати su на sus, коли називаєте кілька речей."
+    "ru": "говорить о нескольких её книгах: Son sus libros.",
+    "uk": "говорити про кілька її книг: Son sus libros."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Нові книжки"
       },
       "bodyByLocale": {
-        "ru": "Чтобы друг узнал книги Аны, скажите `Sus libros son nuevos` — «Её книги новые». Соберите `sus libros` + `son` + `nuevos`. Libros мужского рода и множественного числа, поэтому nuevos. Описание согласуется с книгами, а не с Аной.",
-        "uk": "Щоб друг упізнав книжки Ани, скажіть `Sus libros son nuevos` — «Її книжки нові». Зберіть `sus libros` + `son` + `nuevos`. Libros чоловічого роду й у множині, тому nuevos. Опис узгоджується з книжками, а не з Аною."
+        "ru": "Чтобы друг узнал книги Аны, скажите `Sus libros son nuevos` — «Её книги новые». Соберите `sus libros` + `son` + `nuevos`. Libros мужского рода, и книг несколько, поэтому nuevos. Описание согласуется с книгами, а не с Аной.",
+        "uk": "Щоб друг упізнав книжки Ани, скажіть `Sus libros son nuevos` — «Її книжки нові». Зберіть `sus libros` + `son` + `nuevos`. Libros чоловічого роду, і книжок кілька, тому nuevos. Опис узгоджується з книжками, а не з Аною."
       },
       "question": {
         "interactionId": "es:lesson-04:session-21:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6edd331014cf9ff37d54c441aaee1f478ac500b7be2e280183b614625d65ba59"
+  "introFingerprint": "f54574710cae4abcd2820a142a4c6e8b9b998f02c4893b03e14d4f9081d2141d"
 }

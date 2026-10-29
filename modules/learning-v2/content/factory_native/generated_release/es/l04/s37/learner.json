@@ -122,8 +122,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — эти книги рядом новые",
             "feedbackByLocale": {
-              "ru": "Libros — мужской род, множественное число: estos.",
-              "uk": "Libros — чоловічий рід, множина: estos."
+              "ru": "Libros — мужской род, их несколько: estos.",
+              "uk": "Libros — чоловічий рід, їх кілька: estos."
             }
           }
         ]
@@ -679,5 +679,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e85ed9621f9562d504c1834dbef1f5280c516e22b8328a2d8b7878051a3289e4"
+  "learnerFingerprint": "f0cc1f01467cc956919c0a6d08716f9d21b86c54408eba14cae3ced1ee193ef9"
 }

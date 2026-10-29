@@ -11,7 +11,7 @@
         },
         "es:lesson-04:session-07:intro1:r3": {
           "ru": "С единственным bolso нужно mi.",
-          "uk": "З одниною bolso потрібне mi."
+          "uk": "Для одного bolso потрібне mi."
         }
       }
     },
@@ -24,7 +24,7 @@
         },
         "es:lesson-04:session-07:intro2:r3": {
           "ru": "Перед множественным libros нужно mis.",
-          "uk": "Перед множиною libros потрібне mis."
+          "uk": "Перед libros, коли їх кілька, потрібне mis."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "aabc9061fa227dbb1d3558bef9956a9146c606cba86d5723b894f5a73b077c0c"
+  "auxiliaryFingerprint": "906ea0fcdb65d18d9b5048d035f412de9d45ddb4cbb1734703079f8f1b77e343"
 }

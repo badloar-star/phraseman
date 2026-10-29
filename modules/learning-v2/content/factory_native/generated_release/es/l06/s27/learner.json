@@ -267,8 +267,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — книга в комнате",
             "feedbackByLocale": {
-              "ru": "Habitación — единственное число, женский род: la.",
-              "uk": "Habitación — однина, жіночий рід: la."
+              "ru": "Habitación — один предмет, женский род: la.",
+              "uk": "Habitación — одна річ, жіночий рід: la."
             }
           }
         ]
@@ -710,5 +710,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7501c99719f45aa2a5afd06fc0692c37cfee72cd7c644598f105fe51808de78a"
+  "learnerFingerprint": "7e4fbac55570406b0db629e9e17de9d0f3674488924104afb2122f5b40473573"
 }

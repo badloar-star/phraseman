@@ -6,8 +6,8 @@
       "interactionId": "es:lesson-05:session-51:intro1:q",
       "responseFeedbackById": {
         "es:lesson-05:session-51:intro1:r2": {
-          "ru": "В tener frío слово frío не получает окончание множественного числа.",
-          "uk": "У tener frío слово frío не отримує закінчення множини."
+          "ru": "В tener frío слово frío не получает окончание, даже когда речь о нескольких.",
+          "uk": "У tener frío слово frío не отримує закінчення, навіть коли йдеться про кількох."
         },
         "es:lesson-05:session-51:intro1:r3": {
           "ru": "Ощущение холода выражаем через tenemos frío.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "aaf3f28ff5156ad7ad379052cd9a2b8e0d487999b20f57c91104056a3b3bbfe3"
+  "auxiliaryFingerprint": "da6756ec19582224ee58160c57b6ac4ff4889fba9e2367c65a1bd51189eb6096"
 }

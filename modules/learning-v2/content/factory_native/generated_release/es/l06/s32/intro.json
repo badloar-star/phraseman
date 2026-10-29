@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-06:session-32",
   "learningOutcomeByLocale": {
-    "ru": "различать наличие и местоположение, задавать вопрос «где» и отвечать на него.",
-    "uk": "розрізняти наявність і місце, ставити запитання «де» й відповідати на нього."
+    "ru": "спросить, где нужная вещь: ¿Dónde está la silla?",
+    "uk": "запитати, де потрібна річ: ¿Dónde está la silla?"
   },
   "pages": [
     {
@@ -70,7 +70,7 @@
       },
       "bodyByLocale": {
         "ru": "Друг ищет книги, которые оставил вам. Вы нашли их на столе. Сообщите `Los libros están en la mesa` — «Книги на столе». Соберите `Los libros` + `están` + `en la mesa`. Книги известны, и их несколько: los libros и están. Стол по-прежнему один — ему не нужно становиться множественным ради всей стопки.",
-        "uk": "Друг шукає книжки, які залишив вам. Ви знайшли їх на столі. Повідомте `Los libros están en la mesa` — «Книжки на столі». Складіть `Los libros` + `están` + `en la mesa`. Книжки відомі, і їх кілька: los libros і están. Стіл досі один — йому не потрібно ставати множинним заради всього стосу."
+        "uk": "Друг шукає книжки, які залишив вам. Ви знайшли їх на столі. Повідомте `Los libros están en la mesa` — «Книжки на столі». Складіть `Los libros` + `están` + `en la mesa`. Книжки відомі, і їх кілька: los libros і están. Стіл досі один — йому не потрібна форма для кількох заради всього стосу."
       },
       "question": {
         "interactionId": "es:lesson-06:session-32:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0572d3915799fa18374ee5162b39d9f76d5a1531afe59d806fc6ff8ba0528840"
+  "introFingerprint": "ae56cde2fdda6cfd0dd2d31590df2582bdf558d189443ffd4a95183df35347d2"
 }

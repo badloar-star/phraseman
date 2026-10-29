@@ -20,7 +20,7 @@
       "responseFeedbackById": {
         "es:lesson-04:session-21:intro2:r2": {
           "ru": "Перед множественным libros нужно sus.",
-          "uk": "Перед множиною libros потрібне sus."
+          "uk": "Перед libros, коли їх кілька, потрібне sus."
         },
         "es:lesson-04:session-21:intro2:r3": {
           "ru": "Для нескольких книг нужно son.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "1144eb20ca256ee928fb74a55b456f58dfaa20c6e16b0d7edaf06c41736781fb"
+  "auxiliaryFingerprint": "e061cf1a645a1e478d056ecf6ad156ed74f49f8d6450f9f0d25edd4f97dcb5f6"
 }

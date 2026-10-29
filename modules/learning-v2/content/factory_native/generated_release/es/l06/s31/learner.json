@@ -527,8 +527,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — здесь есть стул?",
             "feedbackByLocale": {
-              "ru": "Silla — единственное число, женский род: una.",
-              "uk": "Silla — однина, жіночий рід: una."
+              "ru": "Silla — один предмет, женский род: una.",
+              "uk": "Silla — одна річ, жіночий рід: una."
             }
           }
         ]
@@ -674,5 +674,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a0f9de0934a47c2d8047c925fca18f15e43476cf7ddd8e6a817ca10b8b1f5b3f"
+  "learnerFingerprint": "c42d66ff0974e0afd246bec23c2836c09e39c451517dc71d72ffb58b0caec2e0"
 }

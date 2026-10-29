@@ -522,8 +522,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — скільки років Ані?",
             "feedbackByLocale": {
-              "ru": "Años во множественном числе: cuántos.",
-              "uk": "Años у множині: cuántos."
+              "ru": "Años в форме для нескольких: cuántos.",
+              "uk": "Años у формі для кількох: cuántos."
             }
           }
         ]
@@ -669,5 +669,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "873ccfd05f92a610611d73658204f82884e5a91010385261067f2ea74e70bcf8"
+  "learnerFingerprint": "3cf2c8d5872e37445e294b682418fc60c209c10258ba7f699189beecd83858eb"
 }

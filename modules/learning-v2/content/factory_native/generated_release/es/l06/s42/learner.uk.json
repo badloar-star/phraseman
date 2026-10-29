@@ -165,8 +165,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — є багато води",
             "feedbackByLocale": {
-              "ru": "Agua здесь не во множественном числе: mucha.",
-              "uk": "Agua тут не в множині: mucha."
+              "ru": "Agua здесь не в форме для нескольких: mucha.",
+              "uk": "Agua тут не у формі для кількох: mucha."
             }
           }
         ]
@@ -560,8 +560,8 @@
             "correct": false,
             "testedDimension": "Вставте слово — багато води?",
             "feedbackByLocale": {
-              "ru": "Agua здесь не во множественном числе: mucha.",
-              "uk": "Agua тут не в множині: mucha."
+              "ru": "Agua здесь не в форме для нескольких: mucha.",
+              "uk": "Agua тут не у формі для кількох: mucha."
             }
           }
         ]
@@ -707,5 +707,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9df2d1ebd1e438366152121c49084843b45aba5a56a35ffdad1eec8859cd8466"
+  "learnerFingerprint": "3c5733e2f26ea55cf6ec536ed540aec2148f31d3666a4419051e6f03c39d7bd0"
 }

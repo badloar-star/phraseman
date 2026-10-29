@@ -517,8 +517,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — воды осталось мало, но она есть",
             "feedbackByLocale": {
-              "ru": "Agua здесь в единственном числе: poca.",
-              "uk": "Agua тут в однині: poca."
+              "ru": "Agua здесь в форме для одного: poca.",
+              "uk": "Agua тут у формі для одного: poca."
             }
           }
         ]
@@ -664,5 +664,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d93a769d52337f3dc41b438f1859bab8bb200e367d61aefa3cb2fe313f1eadd4"
+  "learnerFingerprint": "519323085b00c165a9cd6da69b13f78856551ced25eca610612c392434feaac5"
 }

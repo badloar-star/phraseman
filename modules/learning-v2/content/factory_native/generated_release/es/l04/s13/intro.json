@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-13",
   "learningOutcomeByLocale": {
-    "ru": "использовать tus для нескольких вещей собеседника.",
-    "uk": "використовувати tus для кількох речей співрозмовника."
+    "ru": "сказать, что туфли принадлежат собеседнику: Son tus zapatos.",
+    "uk": "сказати, що туфлі належать співрозмовнику: Son tus zapatos."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Упізнати за кольором"
       },
       "bodyByLocale": {
-        "ru": "У друга чёрные туфли. Напомните ему `Tus zapatos son negros` — «Твои туфли чёрные». Соберите `tus zapatos` + `son` + `negros`. Zapatos мужского рода и множественного числа, поэтому negros. Tus также показывает, что вещей несколько.",
-        "uk": "У друга чорні туфлі. Нагадайте йому `Tus zapatos son negros` — «Твої туфлі чорні». Зберіть `tus zapatos` + `son` + `negros`. Zapatos чоловічого роду й у множині, тому negros. Tus також показує, що речей кілька."
+        "ru": "У друга чёрные туфли. Напомните ему `Tus zapatos son negros` — «Твои туфли чёрные». Соберите `tus zapatos` + `son` + `negros`. Zapatos мужского рода, и туфель несколько, поэтому negros. Tus также показывает, что вещей несколько.",
+        "uk": "У друга чорні туфлі. Нагадайте йому `Tus zapatos son negros` — «Твої туфлі чорні». Зберіть `tus zapatos` + `son` + `negros`. Zapatos чоловічого роду, і туфель кілька, тому negros. Tus також показує, що речей кілька."
       },
       "question": {
         "interactionId": "es:lesson-04:session-13:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8a90f3bd617fe9bf6db97a166ea40e0b9c4bb0f278fd1dda59f7767137778a3d"
+  "introFingerprint": "e90331a90147a09d80ce1bbbc5bb7cb0936a9bb800d08a0970aecc76fe55b93a"
 }

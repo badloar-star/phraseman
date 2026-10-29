@@ -567,8 +567,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — на столе есть книга?",
             "feedbackByLocale": {
-              "ru": "Mesa — единственное число, женский род: la.",
-              "uk": "Mesa — однина, жіночий рід: la."
+              "ru": "Mesa — один предмет, женский род: la.",
+              "uk": "Mesa — одна річ, жіночий рід: la."
             }
           }
         ]
@@ -714,5 +714,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "17dfc46a1d20c37e7cde434ccf10d144c65fe692a233ae8a678cffadf41dea5c"
+  "learnerFingerprint": "71426b1a26ceb5d676a1fe51a4b771bf4aa4de593185972b6c005fa560284b29"
 }

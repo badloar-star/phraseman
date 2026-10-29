@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-25",
   "learningOutcomeByLocale": {
-    "ru": "использовать tenemos, когда говорите «у нас есть».",
-    "uk": "використовувати tenemos, коли кажете «ми маємо»."
+    "ru": "сказать «у нас есть» о вещи: Tenemos un carro.",
+    "uk": "сказати «у нас є» про річ: Tenemos un carro."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Машина для поїздки"
       },
       "bodyByLocale": {
-        "ru": "Вы с близким человеком едете вместе. Объясните другу `Tenemos un carro` — «У нас есть машина». Соберите `Tenemos` + `un carro`. Tenemos — форма tener для «мы»: наличие относится к вам и ещё кому-то. Она уже показывает «мы», поэтому отдельное местоимение здесь не нужно. Это форма знакомого глагола, не новое слово.",
-        "uk": "Ви з близькою людиною їдете разом. Поясніть другові `Tenemos un carro` — «Ми маємо машину». Зберіть `Tenemos` + `un carro`. Tenemos — форма tener для «ми»: наявність стосується вас і ще когось. Вона вже показує «ми», тому окремий займенник тут не потрібен. Це форма знайомого дієслова, не нове слово."
+        "ru": "Вы с близким человеком едете вместе. Объясните другу `Tenemos un carro` — «У нас есть машина». Соберите `Tenemos` + `un carro`. Tenemos — форма tener для «мы»: наличие относится к вам и ещё кому-то. Она уже показывает «мы», поэтому писать «мы» отдельно здесь не нужно. Это форма знакомого глагола, не новое слово.",
+        "uk": "Ви з близькою людиною їдете разом. Поясніть другові `Tenemos un carro` — «Ми маємо машину». Зберіть `Tenemos` + `un carro`. Tenemos — форма tener для «ми»: наявність стосується вас і ще когось. Вона вже показує «ми», тому писати «ми» окремо тут не потрібно. Це форма знайомого дієслова, не нове слово."
       },
       "question": {
         "interactionId": "es:lesson-05:session-25:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "17b2c4982cb07c362b5ef08f60e6142fbd86cf26940ea053af19730c27ef7f6a"
+  "introFingerprint": "49c0d44db463a147807efa51c69d9ddcbe8baa300e6af792ca01db9d5ea95f3b"
 }

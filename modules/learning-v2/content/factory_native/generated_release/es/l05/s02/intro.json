@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-05:session-02",
   "learningOutcomeByLocale": {
-    "ru": "ставить una после tengo перед одним предметом женского рода.",
-    "uk": "ставити una після tengo перед одним предметом жіночого роду."
+    "ru": "сказать, что у вас есть вещь женского рода: Tengo una caja.",
+    "uk": "сказати, що у вас є річ жіночого роду: Tengo una caja."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Ключ від дому"
       },
       "bodyByLocale": {
-        "ru": "Перед выходом вы сообщаете, что ключ у вас есть: `Tengo una llave` — «У меня есть ключ». Соберите `tengo` + `una llave`. В русском «ключ» мужского рода, но испанское llave — женского. Поэтому una. Вы говорите об одном ключе, и существительное остаётся в единственном числе.",
-        "uk": "Перед виходом ви повідомляєте, що ключ у вас є: `Tengo una llave` — «У мене є ключ». Складіть `tengo` + `una llave`. В українській «ключ» чоловічого роду, але іспанське llave — жіночого. Тому una. Ви говорите про один ключ, і іменник залишається в однині."
+        "ru": "Перед выходом вы сообщаете, что ключ у вас есть: `Tengo una llave` — «У меня есть ключ». Соберите `tengo` + `una llave`. В русском «ключ» мужского рода, но испанское llave — женского. Поэтому una. Вы говорите об одном ключе, и существительное остаётся в форме для одного.",
+        "uk": "Перед виходом ви повідомляєте, що ключ у вас є: `Tengo una llave` — «У мене є ключ». Складіть `tengo` + `una llave`. В українській «ключ» чоловічого роду, але іспанське llave — жіночого. Тому una. Ви говорите про один ключ, і іменник залишається у формі для одного."
       },
       "question": {
         "interactionId": "es:lesson-05:session-02:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "146983e8c9b889351f7fd5958500c0ceb53172cfba5bd383eba982793f83f0a4"
+  "introFingerprint": "ee13bf14f1f3ae5dcadcf8bff0ba6aa642a499f6c2bf6a36f04dda2aaf42df6d"
 }

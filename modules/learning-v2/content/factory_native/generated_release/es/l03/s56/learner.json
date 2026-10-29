@@ -653,8 +653,8 @@
             "correct": false,
             "testedDimension": "Вставьте слово — туфли довольно дорогие",
             "feedbackByLocale": {
-              "ru": "Zapatos во множественном числе.",
-              "uk": "Zapatos у множині."
+              "ru": "Zapatos — их несколько.",
+              "uk": "Zapatos — їх кілька."
             }
           },
           {
@@ -1068,5 +1068,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ba1e7e4596a968c31a8e631f7a1671710446413295d9eb62188758f686d9db73"
+  "learnerFingerprint": "d55090f2945c9baa507d9a47dd956f3912fc56cd6266ed568fb6be44a5880222"
 }

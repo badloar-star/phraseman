@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-27",
   "learningOutcomeByLocale": {
-    "ru": "использовать nuestros перед мужским существительным во множественном числе.",
-    "uk": "використовувати nuestros перед іменником чоловічого роду в множині."
+    "ru": "говорить о ваших общих друзьях: Son nuestros amigos.",
+    "uk": "говорити про ваших спільних друзів: Son nuestros amigos."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Один спільний друг"
       },
       "bodyByLocale": {
-        "ru": "К вам подошёл друг, которого знаете и вы, и сестра. Представьте его гостю: `Es nuestro amigo` — «Это наш друг». Соберите `es` + `nuestro amigo`. Мужское amigo в единственном числе требует nuestro, как знакомое carro. Вы говорите от себя и сестры, но представляете одного человека: поэтому es.",
-        "uk": "До вас підійшов друг, якого знаєте і ви, і сестра. Представте його гостю: `Es nuestro amigo` — «Це наш друг». Зберіть `es` + `nuestro amigo`. Чоловіче amigo в однині потребує nuestro, як знайоме carro. Ви говорите від себе й сестри, але представляєте одну людину: тому es."
+        "ru": "К вам подошёл друг, которого знаете и вы, и сестра. Представьте его гостю: `Es nuestro amigo` — «Это наш друг». Соберите `es` + `nuestro amigo`. Мужское amigo для одного человека требует nuestro, как знакомое carro. Вы говорите от себя и сестры, но представляете одного человека: поэтому es.",
+        "uk": "До вас підійшов друг, якого знаєте і ви, і сестра. Представте його гостю: `Es nuestro amigo` — «Це наш друг». Зберіть `es` + `nuestro amigo`. Чоловіче amigo для однієї людини потребує nuestro, як знайоме carro. Ви говорите від себе й сестри, але представляєте одну людину: тому es."
       },
       "question": {
         "interactionId": "es:lesson-04:session-27:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8079e147eb7460aa4e38bf562b4ed0fd0819904926c996fdb9b70d50e3df3cdc"
+  "introFingerprint": "da19c3d763351352abd3a61332fd17162d72a8cd4bc2e1d12f34b10a45ba8f4a"
 }

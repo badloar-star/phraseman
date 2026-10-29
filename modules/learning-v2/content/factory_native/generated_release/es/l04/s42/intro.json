@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "es:lesson-04:session-42",
   "learningOutcomeByLocale": {
-    "ru": "собрать вопрос ¿Qué es eso? и отдельно назвать предмет в ответе.",
-    "uk": "скласти запитання ¿Qué es eso? й окремо назвати предмет у відповіді."
+    "ru": "спросить, что это за предмет: ¿Qué es eso?",
+    "uk": "запитати, що це за предмет: ¿Qué es eso?"
   },
   "pages": [
     {

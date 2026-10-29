@@ -25,7 +25,7 @@
 
 **Назовите грецкие орехи с unas.**
 
-- ✅ **Son unas nueces.** — *Множественное число nuez — nueces.*
+- ✅ **Son unas nueces.** — *Для нескольких: nuez — nueces.*
 - ❌ Son unas nuezs. — *Конечная z меняется на ces: nueces.*
 - ❌ Son unos nueces. — *Nueces женского рода: unas.*
 
@@ -61,7 +61,7 @@
 `Son unas ___.`
 → **nueces** · nuez · nuezs
 Полная фраза: **Son unas nueces.**
-- nuez — *Нужно множественное число: nueces.*
+- nuez — *Нужна форма для нескольких: nueces.*
 - nuezs — *Z заменяется на ces: nueces.*
 
 **5 · Соберите фразу — это грецкие орехи, с unas**

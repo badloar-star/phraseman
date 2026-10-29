@@ -94,7 +94,7 @@
 `Son unos ___.`
 → **dulces** · dulce · dulceses
 Полная фраза: **Son unos dulces.**
-- dulce — *Нужно множественное число: dulces.*
+- dulce — *Нужна форма для нескольких: dulces.*
 - dulceses — *К dulce добавляется только -s: dulces.*
 
 **11 · Послушайте и соберите фразу**

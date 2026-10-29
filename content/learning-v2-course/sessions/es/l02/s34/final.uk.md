@@ -33,11 +33,11 @@
 
 ### Нові ковдри
 
-Залишилося розкласти нові ковдри. `Manta` — «ковдра», слово жіночого роду: la manta; кілька — mantas. Скажіть `Las mantas son nuevas` — «Ковдри нові». Зберіть `las mantas` + `son` + `nuevas`. Із знайомого nuevo виберіть жіночу множинну форму nuevas: йдеться про кілька mantas.
+Залишилося розкласти нові ковдри. `Manta` — «ковдра», слово жіночого роду: la manta; кілька — mantas. Скажіть `Las mantas son nuevas` — «Ковдри нові». Зберіть `las mantas` + `son` + `nuevas`. Із знайомого nuevo виберіть жіночу форму для кількох — nuevas: йдеться про кілька mantas.
 
 **Скажіть, що ковдри нові.**
 
-- ✅ **Las mantas son nuevas.** — *Mantas жіночого роду й у множині: nuevas.*
+- ✅ **Las mantas son nuevas.** — *Mantas жіночого роду, і їх кілька: nuevas.*
 - ❌ Las mantas son nuevos. — *Для жіночих mantas потрібна nuevas.*
 - ❌ Las mantas son nueva. — *Ковдр кілька: nuevas.*
 

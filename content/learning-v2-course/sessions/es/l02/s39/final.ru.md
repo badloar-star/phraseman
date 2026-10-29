@@ -108,7 +108,7 @@
 → **libros** · libro · libras
 Полная фраза: **Son los libros de Ana.**
 - libro — *Книг несколько: libros.*
-- libras — *Множественное число libro — libros.*
+- libras — *Для нескольких: libro — libros.*
 
 **12 · Скажите вслух — это книги Аны**
 🎙 **Son los libros de Ana.**

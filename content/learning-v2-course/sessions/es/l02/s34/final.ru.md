@@ -37,7 +37,7 @@
 
 **Скажите, что одеяла новые.**
 
-- ✅ **Las mantas son nuevas.** — *Mantas женского рода и во множественном числе: nuevas.*
+- ✅ **Las mantas son nuevas.** — *Mantas женского рода, и их несколько: nuevas.*
 - ❌ Las mantas son nuevos. — *Для женских mantas нужна nuevas.*
 - ❌ Las mantas son nueva. — *Одеял несколько: nuevas.*
 

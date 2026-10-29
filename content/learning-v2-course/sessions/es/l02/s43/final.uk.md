@@ -25,7 +25,7 @@
 
 **Назвіть волоські горіхи з unas.**
 
-- ✅ **Son unas nueces.** — *Множина nuez — nueces.*
+- ✅ **Son unas nueces.** — *Для кількох: nuez — nueces.*
 - ❌ Son unas nuezs. — *Кінцева z змінюється на ces: nueces.*
 - ❌ Son unos nueces. — *Nueces жіночого роду: unas.*
 
@@ -61,7 +61,7 @@
 `Son unas ___.`
 → **nueces** · nuez · nuezs
 Повна фраза: **Son unas nueces.**
-- nuez — *Потрібна множина: nueces.*
+- nuez — *Потрібна форма для кількох: nueces.*
 - nuezs — *Z замінюється на ces: nueces.*
 
 **5 · Зберіть фразу — це волоські горіхи, з unas**

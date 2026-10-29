@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви повторюєте звички розділу й додаєте нові: видаляєте старі повідомлення, шукаєте телефон, отримуєте посилки й натискаєте кнопку ліфта.
 
-**Що ви опануєте:** повторити звички з often і usually та спитати про них із Do you often і Does ... often
+**Що ви опануєте:** запитати, як часто ви щось робите: Do you often forget the key?
 **Нові слова:** delete, search, receive, press
 **Повертаються:** unplug, cancel, fasten, forget, miss, phone, parcel, button, letter, message, kettle, toaster, bus, key
 

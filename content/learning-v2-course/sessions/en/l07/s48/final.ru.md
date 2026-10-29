@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы повторяете привычки главы и добавляете новые: удаляете старые сообщения, ищете телефон, получаете посылки и нажимаете кнопку лифта.
 
-**Что вы освоите:** повторить привычки с often и usually и спросить о них с Do you often и Does ... often
+**Что вы освоите:** спросить, как часто вы что-то делаете: Do you often forget the key?
 **Новые слова:** delete, search, receive, press
 **Возвращаются:** unplug, cancel, fasten, forget, miss, phone, parcel, button, letter, message, kettle, toaster, bus, key
 

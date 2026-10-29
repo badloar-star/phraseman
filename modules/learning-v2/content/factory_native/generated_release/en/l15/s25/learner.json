@@ -501,17 +501,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous. Скажите: «Я приношу карточку с записью на приём завтра».",
+      "prompt": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Это уже решено. Скажите: «Я приношу карточку с записью на приём завтра».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous. Скажите: «Я приношу карточку с записью на приём завтра».",
+      "accessibilityLabel": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Это уже решено. Скажите: «Я приношу карточку с записью на приём завтра».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "I am bringing my appointment card tomorrow.",
         "localizedMeaning": {
-          "ru": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous. Скажите: «Я приношу карточку с записью на приём завтра».",
-          "uk": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous. Скажіть: «Я приношу картку із записом на прийом завтра»."
+          "ru": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Это уже решено. Скажите: «Я приношу карточку с записью на приём завтра».",
+          "uk": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Це вже вирішено. Скажіть: «Я приношу картку із записом на прийом завтра»."
         },
         "orderedTokens": [
           "I",
@@ -613,7 +613,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+      "prompt": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-25:i09:r1",
@@ -621,7 +621,7 @@
         },
         {
           "responseId": "en:lesson-15:session-25:i09:r2",
-          "text": "am going to bring"
+          "text": "am bring"
         },
         {
           "responseId": "en:lesson-15:session-25:i09:r3",
@@ -630,12 +630,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
-          "uk": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Передайте домовленість через Present Continuous."
+          "ru": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Скажите, что это уже решено.",
+          "uk": "Прийом у лікаря призначено на завтра; адміністратор попросив узяти картку запису. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "I ___ my appointment card tomorrow.",
         "gapOptions": [
@@ -645,28 +645,28 @@
           },
           {
             "responseId": "en:lesson-15:session-25:i09:r2",
-            "text": "am going to bring"
+            "text": "am bring"
           },
           {
             "responseId": "en:lesson-15:session-25:i09:r3",
             "text": "bring"
           }
         ],
-        "testedDimension": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+        "testedDimension": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-25:i09:r2",
             "correct": false,
-            "testedDimension": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После am нужна форма с -ing: am bringing.",
+              "uk": "Після am потрібна форма з -ing: am bringing."
             }
           },
           {
             "responseId": "en:lesson-15:session-25:i09:r3",
             "correct": false,
-            "testedDimension": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Приём у врача назначен на завтра; администратор попросил взять карточку записи. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: am bringing.",
               "uk": "Потрібна повна форма: am bringing."
@@ -725,17 +725,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous. Скажите: «Мы оплачиваем членство в пятницу».",
+      "prompt": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Это уже решено. Скажите: «Мы оплачиваем членство в пятницу».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous. Скажите: «Мы оплачиваем членство в пятницу».",
+      "accessibilityLabel": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Это уже решено. Скажите: «Мы оплачиваем членство в пятницу».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are paying for our membership on Friday.",
         "localizedMeaning": {
-          "ru": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous. Скажите: «Мы оплачиваем членство в пятницу».",
-          "uk": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous. Скажіть: «Ми оплачуємо членство в п’ятницю»."
+          "ru": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Это уже решено. Скажите: «Мы оплачиваем членство в пятницу».",
+          "uk": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Це вже вирішено. Скажіть: «Ми оплачуємо членство в п’ятницю»."
         },
         "orderedTokens": [
           "We",
@@ -838,7 +838,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+      "prompt": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-25:i12:r1",
@@ -846,7 +846,7 @@
         },
         {
           "responseId": "en:lesson-15:session-25:i12:r2",
-          "text": "are going to pay"
+          "text": "are pay"
         },
         {
           "responseId": "en:lesson-15:session-25:i12:r3",
@@ -855,12 +855,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
-          "uk": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Передайте домовленість через Present Continuous."
+          "ru": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Скажите, что это уже решено.",
+          "uk": "Ви з другом узгодили візит до клубу в п’ятницю для оплати членства. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ for our membership on Friday.",
         "gapOptions": [
@@ -870,28 +870,28 @@
           },
           {
             "responseId": "en:lesson-15:session-25:i12:r2",
-            "text": "are going to pay"
+            "text": "are pay"
           },
           {
             "responseId": "en:lesson-15:session-25:i12:r3",
             "text": "pay"
           }
         ],
-        "testedDimension": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+        "testedDimension": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-25:i12:r2",
             "correct": false,
-            "testedDimension": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are paying.",
+              "uk": "Після are потрібна форма з -ing: are paying."
             }
           },
           {
             "responseId": "en:lesson-15:session-25:i12:r3",
             "correct": false,
-            "testedDimension": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Вы с другом согласовали визит в клуб в пятницу для оплаты членства. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: are paying.",
               "uk": "Потрібна повна форма: are paying."
@@ -1056,13 +1056,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "prompt": "Теперь день уже согласован. Повторите, что это уже решено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-15:session-25:i16:audio"
       ],
-      "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "accessibilityLabel": "Теперь день уже согласован. Повторите, что это уже решено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1123,5 +1123,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8fa18ed7794d48d3ee52fdd8e03890d76a07183f2d92a3275b92e75c21413128"
+  "learnerFingerprint": "075ca0066deab1053a32e34fbf0f74c11158893be5c898536fb18841ef5abece"
 }

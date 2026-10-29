@@ -498,11 +498,11 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous. Скажите: «Мы идём наблюдать за птицами в субботу».",
+      "prompt": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Это уже решено. Скажите: «Мы идём наблюдать за птицами в субботу».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous. Скажите: «Мы идём наблюдать за птицами в субботу».",
+      "accessibilityLabel": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Это уже решено. Скажите: «Мы идём наблюдать за птицами в субботу».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are going birdwatching on Saturday.",
@@ -609,7 +609,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.",
+      "prompt": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-31:i09:r1",
@@ -626,11 +626,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.",
+          "ru": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Скажите, что это уже решено.",
           "uk": "Ви з друзями домовилися про суботню прогулянку для спостереження за птахами. Передайте домовленість через Present Continuous."
         },
         "gappedTargetPhrase": "We ___ birdwatching on Saturday.",
@@ -655,7 +655,7 @@
             "correct": false,
             "testedDimension": "Вы с друзьями договорились о субботней прогулке для наблюдения за птицами. Передайте договорённость через Present Continuous.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через am / is / are + -ing.",
               "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
             }
           },
@@ -721,11 +721,11 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous. Скажите: «Они идут наблюдать за звёздами сегодня вечером».",
+      "prompt": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Это уже решено. Скажите: «Они идут наблюдать за звёздами сегодня вечером».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous. Скажите: «Они идут наблюдать за звёздами сегодня вечером».",
+      "accessibilityLabel": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Это уже решено. Скажите: «Они идут наблюдать за звёздами сегодня вечером».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are going stargazing tonight.",
@@ -831,7 +831,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.",
+      "prompt": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-31:i12:r1",
@@ -848,11 +848,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.",
+          "ru": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Скажите, что это уже решено.",
           "uk": "Ваші батьки узгодили зустріч із клубом любителів зір на цей вечір. Передайте домовленість через Present Continuous."
         },
         "gappedTargetPhrase": "They ___ stargazing tonight.",
@@ -877,7 +877,7 @@
             "correct": false,
             "testedDimension": "Ваши родители согласовали встречу с клубом любителей звёзд на этот вечер. Передайте договорённость через Present Continuous.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
+              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через am / is / are + -ing.",
               "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
             }
           },
@@ -1053,13 +1053,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "prompt": "Теперь день уже согласован. Повторите, что это уже решено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-15:session-31:i16:audio"
       ],
-      "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "accessibilityLabel": "Теперь день уже согласован. Повторите, что это уже решено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c26eb8700b92a69937e67aff41e653fe62dd04083c581d11c5096feba1fd0918"
+  "learnerFingerprint": "936773793212f9016df89b175a3510956a7b50a5226fb9dca36de4100c5dff30"
 }

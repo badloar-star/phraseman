@@ -502,17 +502,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы получаем интернет-заказ в магазине завтра».",
+      "prompt": "Магазин подтвердил ваш заказ; забрать его можно завтра. Это уже решено. Скажите: «Мы получаем интернет-заказ в магазине завтра».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы получаем интернет-заказ в магазине завтра».",
+      "accessibilityLabel": "Магазин подтвердил ваш заказ; забрать его можно завтра. Это уже решено. Скажите: «Мы получаем интернет-заказ в магазине завтра».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are using click and collect tomorrow.",
         "localizedMeaning": {
-          "ru": "Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous. Скажите: «Мы получаем интернет-заказ в магазине завтра».",
-          "uk": "Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Передайте домовленість через Present Continuous. Скажіть: «Ми отримуємо інтернет-замовлення в магазині завтра»."
+          "ru": "Магазин подтвердил ваш заказ; забрать его можно завтра. Это уже решено. Скажите: «Мы получаем интернет-заказ в магазине завтра».",
+          "uk": "Магазин підтвердив ваше замовлення; забрати його можна завтра. Це вже вирішено. Скажіть: «Ми отримуємо інтернет-замовлення в магазині завтра»."
         },
         "orderedTokens": [
           "We",
@@ -614,7 +614,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous.",
+      "prompt": "Магазин подтвердил ваш заказ; забрать его можно завтра. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-28:i09:r1",
@@ -622,7 +622,7 @@
         },
         {
           "responseId": "en:lesson-15:session-28:i09:r2",
-          "text": "are going to use"
+          "text": "are use"
         },
         {
           "responseId": "en:lesson-15:session-28:i09:r3",
@@ -631,12 +631,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Магазин подтвердил ваш заказ; забрать его можно завтра. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous.",
-          "uk": "Магазин підтвердив ваше замовлення; час отримання призначено на завтра. Передайте домовленість через Present Continuous."
+          "ru": "Магазин подтвердил ваш заказ; забрать его можно завтра. Скажите, что это уже решено.",
+          "uk": "Магазин підтвердив ваше замовлення; забрати його можна завтра. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ click and collect tomorrow.",
         "gapOptions": [
@@ -646,28 +646,28 @@
           },
           {
             "responseId": "en:lesson-15:session-28:i09:r2",
-            "text": "are going to use"
+            "text": "are use"
           },
           {
             "responseId": "en:lesson-15:session-28:i09:r3",
             "text": "use"
           }
         ],
-        "testedDimension": "Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous.",
+        "testedDimension": "Магазин подтвердил ваш заказ; забрать его можно завтра. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-28:i09:r2",
             "correct": false,
-            "testedDimension": "Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Магазин подтвердил ваш заказ; забрать его можно завтра. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are using.",
+              "uk": "Після are потрібна форма з -ing: are using."
             }
           },
           {
             "responseId": "en:lesson-15:session-28:i09:r3",
             "correct": false,
-            "testedDimension": "Магазин подтвердил ваш заказ; время получения назначено на завтра. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Магазин подтвердил ваш заказ; забрать его можно завтра. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: are using.",
               "uk": "Потрібна повна форма: are using."
@@ -726,17 +726,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous. Скажите: «Они встречаются возле фотокабины завтра в десять».",
+      "prompt": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Это уже решено. Скажите: «Они встречаются возле фотокабины завтра в десять».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous. Скажите: «Они встречаются возле фотокабины завтра в десять».",
+      "accessibilityLabel": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Это уже решено. Скажите: «Они встречаются возле фотокабины завтра в десять».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are meeting by the photo booth at ten tomorrow.",
         "localizedMeaning": {
-          "ru": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous. Скажите: «Они встречаются возле фотокабины завтра в десять».",
-          "uk": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Передайте домовленість через Present Continuous. Скажіть: «Вони зустрічаються біля фотокабіни завтра о десятій»."
+          "ru": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Это уже решено. Скажите: «Они встречаются возле фотокабины завтра в десять».",
+          "uk": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Це вже вирішено. Скажіть: «Вони зустрічаються біля фотокабіни завтра о десятій»."
         },
         "orderedTokens": [
           "They",
@@ -841,7 +841,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous.",
+      "prompt": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-28:i12:r1",
@@ -849,7 +849,7 @@
         },
         {
           "responseId": "en:lesson-15:session-28:i12:r2",
-          "text": "are going to meet"
+          "text": "are meet"
         },
         {
           "responseId": "en:lesson-15:session-28:i12:r3",
@@ -858,12 +858,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous.",
-          "uk": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Передайте домовленість через Present Continuous."
+          "ru": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Скажите, что это уже решено.",
+          "uk": "Ваші друзі узгодили зустріч завтра о десятій біля фотокабіни. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "They ___ by the photo booth at ten tomorrow.",
         "gapOptions": [
@@ -873,28 +873,28 @@
           },
           {
             "responseId": "en:lesson-15:session-28:i12:r2",
-            "text": "are going to meet"
+            "text": "are meet"
           },
           {
             "responseId": "en:lesson-15:session-28:i12:r3",
             "text": "meet"
           }
         ],
-        "testedDimension": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous.",
+        "testedDimension": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-28:i12:r2",
             "correct": false,
-            "testedDimension": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are meeting.",
+              "uk": "Після are потрібна форма з -ing: are meeting."
             }
           },
           {
             "responseId": "en:lesson-15:session-28:i12:r3",
             "correct": false,
-            "testedDimension": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Ваши друзья согласовали встречу завтра в десять у фотокабины. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: are meeting.",
               "uk": "Потрібна повна форма: are meeting."
@@ -1060,13 +1060,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "prompt": "Теперь день уже согласован. Повторите, что это уже решено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-15:session-28:i16:audio"
       ],
-      "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "accessibilityLabel": "Теперь день уже согласован. Повторите, что это уже решено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "00d36ed9de7b6a51c0e43e24b6ca1edded66db3f2654254bb2039cd3e9d29482"
+  "learnerFingerprint": "6d68d2d815c84b18198ad88978cd4d6b023201b02251faf1d6935766e912f388"
 }

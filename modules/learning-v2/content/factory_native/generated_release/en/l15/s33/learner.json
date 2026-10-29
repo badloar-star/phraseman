@@ -501,17 +501,17 @@
       "purpose": "guided_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Вы с подругой подтвердили приглашение на субботний девичник. Передайте договорённость через Present Continuous. Скажите: «Мы идём на девичник в субботу».",
+      "prompt": "Вы с подругой подтвердили приглашение на субботний девичник. Это уже решено. Скажите: «Мы идём на девичник в субботу».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с подругой подтвердили приглашение на субботний девичник. Передайте договорённость через Present Continuous. Скажите: «Мы идём на девичник в субботу».",
+      "accessibilityLabel": "Вы с подругой подтвердили приглашение на субботний девичник. Это уже решено. Скажите: «Мы идём на девичник в субботу».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "We are attending a hen party on Saturday.",
         "localizedMeaning": {
-          "ru": "Вы с подругой подтвердили приглашение на субботний девичник. Передайте договорённость через Present Continuous. Скажите: «Мы идём на девичник в субботу».",
-          "uk": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous. Скажіть: «Ми йдемо на дівич-вечір у суботу»."
+          "ru": "Вы с подругой подтвердили приглашение на субботний девичник. Это уже решено. Скажите: «Мы идём на девичник в субботу».",
+          "uk": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Це вже вирішено. Скажіть: «Ми йдемо на дівич-вечір у суботу»."
         },
         "orderedTokens": [
           "We",
@@ -614,7 +614,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы с подругой подтвердили приглашение на субботний девичник. Передайте договорённость через Present Continuous.",
+      "prompt": "Вы с подругой подтвердили приглашение на субботний девичник. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-33:i09:r1",
@@ -622,7 +622,7 @@
         },
         {
           "responseId": "en:lesson-15:session-33:i09:r2",
-          "text": "are going to attend"
+          "text": "are attend"
         },
         {
           "responseId": "en:lesson-15:session-33:i09:r3",
@@ -631,12 +631,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы с подругой подтвердили приглашение на субботний девичник. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Вы с подругой подтвердили приглашение на субботний девичник. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы с подругой подтвердили приглашение на субботний девичник. Передайте договорённость через Present Continuous.",
-          "uk": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Передайте домовленість через Present Continuous."
+          "ru": "Вы с подругой подтвердили приглашение на субботний девичник. Скажите, что это уже решено.",
+          "uk": "Ви з подругою підтвердили запрошення на суботній дівич-вечір. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "We ___ a hen party on Saturday.",
         "gapOptions": [
@@ -646,28 +646,28 @@
           },
           {
             "responseId": "en:lesson-15:session-33:i09:r2",
-            "text": "are going to attend"
+            "text": "are attend"
           },
           {
             "responseId": "en:lesson-15:session-33:i09:r3",
             "text": "attend"
           }
         ],
-        "testedDimension": "Вы с подругой подтвердили приглашение на субботний девичник. Передайте договорённость через Present Continuous.",
+        "testedDimension": "Вы с подругой подтвердили приглашение на субботний девичник. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-33:i09:r2",
             "correct": false,
-            "testedDimension": "Вы с подругой подтвердили приглашение на субботний девичник. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Вы с подругой подтвердили приглашение на субботний девичник. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are attending.",
+              "uk": "Після are потрібна форма з -ing: are attending."
             }
           },
           {
             "responseId": "en:lesson-15:session-33:i09:r3",
             "correct": false,
-            "testedDimension": "Вы с подругой подтвердили приглашение на субботний девичник. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Вы с подругой подтвердили приглашение на субботний девичник. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: are attending.",
               "uk": "Потрібна повна форма: are attending."
@@ -726,17 +726,17 @@
       "purpose": "retrieval_practice",
       "family": "phrase_builder",
       "inputMode": "ordered_tokens",
-      "prompt": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Передайте договорённость через Present Continuous. Скажите: «Они идут на мальчишник в пятницу».",
+      "prompt": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Это уже решено. Скажите: «Они идут на мальчишник в пятницу».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Передайте договорённость через Present Continuous. Скажите: «Они идут на мальчишник в пятницу».",
+      "accessibilityLabel": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Это уже решено. Скажите: «Они идут на мальчишник в пятницу».",
       "modePayload": {
         "family": "phrase_builder",
         "targetPhrase": "They are attending a stag party on Friday.",
         "localizedMeaning": {
-          "ru": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Передайте договорённость через Present Continuous. Скажите: «Они идут на мальчишник в пятницу».",
-          "uk": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous. Скажіть: «Вони йдуть на парубочу вечірку в п’ятницю»."
+          "ru": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Это уже решено. Скажите: «Они идут на мальчишник в пятницу».",
+          "uk": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Це вже вирішено. Скажіть: «Вони йдуть на парубочу вечірку в п’ятницю»."
         },
         "orderedTokens": [
           "They",
@@ -839,7 +839,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Передайте договорённость через Present Continuous.",
+      "prompt": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Скажите, что это уже решено.",
       "responseOptions": [
         {
           "responseId": "en:lesson-15:session-33:i12:r1",
@@ -847,7 +847,7 @@
         },
         {
           "responseId": "en:lesson-15:session-33:i12:r2",
-          "text": "are going to attend"
+          "text": "are attend"
         },
         {
           "responseId": "en:lesson-15:session-33:i12:r3",
@@ -856,12 +856,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Передайте договорённость через Present Continuous.",
+      "accessibilityLabel": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Скажите, что это уже решено.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Передайте договорённость через Present Continuous.",
-          "uk": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Передайте домовленість через Present Continuous."
+          "ru": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Скажите, что это уже решено.",
+          "uk": "Ваші друзі домовилися прийти на передвесільну вечірку нареченого в п’ятницю. Скажіть, що це вже вирішено."
         },
         "gappedTargetPhrase": "They ___ a stag party on Friday.",
         "gapOptions": [
@@ -871,28 +871,28 @@
           },
           {
             "responseId": "en:lesson-15:session-33:i12:r2",
-            "text": "are going to attend"
+            "text": "are attend"
           },
           {
             "responseId": "en:lesson-15:session-33:i12:r3",
             "text": "attend"
           }
         ],
-        "testedDimension": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Передайте договорённость через Present Continuous.",
+        "testedDimension": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Скажите, что это уже решено.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-15:session-33:i12:r2",
             "correct": false,
-            "testedDimension": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Скажите, что это уже решено.",
             "feedbackByLocale": {
-              "ru": "Это возможная фраза, но здесь требуется указанная форма. Передайте договорённость через Present Continuous.",
-              "uk": "Це можлива фраза, але тут потрібна вказана форма. Передайте домовленість через Present Continuous."
+              "ru": "После are нужна форма с -ing: are attending.",
+              "uk": "Після are потрібна форма з -ing: are attending."
             }
           },
           {
             "responseId": "en:lesson-15:session-33:i12:r3",
             "correct": false,
-            "testedDimension": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Передайте договорённость через Present Continuous.",
+            "testedDimension": "Ваши друзья договорились прийти на предсвадебную вечеринку жениха в пятницу. Скажите, что это уже решено.",
             "feedbackByLocale": {
               "ru": "Нужна полная форма: are attending.",
               "uk": "Потрібна повна форма: are attending."
@@ -1059,13 +1059,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "prompt": "Теперь день уже согласован. Повторите, что это уже решено.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-15:session-33:i16:audio"
       ],
-      "accessibilityLabel": "Теперь день уже согласован. Повторите договорённость через Present Continuous.",
+      "accessibilityLabel": "Теперь день уже согласован. Повторите, что это уже решено.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "94d30f42d919182f1e59b48a3e0198abc6446eafedb6a7b81ebac37bc571c171"
+  "learnerFingerprint": "5cf33264f04ccc8996c0860c94e0e291aab2980c6f5c5e1bd7b94711bc46a426"
 }

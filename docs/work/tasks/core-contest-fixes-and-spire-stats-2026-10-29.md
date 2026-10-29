@@ -1,7 +1,7 @@
 # Ядро · конкурс «Набор месяца» до 1.11 + статистика Пика (владелец ~09:30 через координатора, 29.10)
 
 Governance-ID: TG-D0E8E42B7451
-Status: In progress
+Status: Done (документы) — конкурс 7a8230aa6 (патч ждёт коммита Codex/ответов на вопросы); статистика Пика docs/work/research/spire-statistics-2026-10-29.md
 Owner: 1 · ЯДРО
 
 ## Outcome

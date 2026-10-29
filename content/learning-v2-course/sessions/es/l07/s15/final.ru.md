@@ -9,13 +9,13 @@
 
 ### Число перед женским родом
 
-Вы насчитали двадцать один стул. Назовите количество с предметом: `Veintiuna sillas` — «Двадцать один стул». Соберите `Veintiuna` + `sillas`. Silla женского рода, поэтому veintiuna с a в конце. Sillas во множественном числе: предметов больше одного. Ориентируемся на испанское silla, а не на русский «стул».
+Вы насчитали двадцать один стул. Назовите количество с предметом: `Veintiuna sillas` — «Двадцать один стул». Соберите `Veintiuna` + `sillas`. Silla женского рода, поэтому veintiuna с a в конце. Sillas в форме для нескольких: предметов больше одного. Ориентируемся на испанское silla, а не на русский «стул».
 
 **Назовите «Двадцать один стул». Используйте veintiuna перед sillas, без hay.**
 
 - ✅ **Veintiuna sillas.** — *Veintiuna + sillas.*
 - ❌ Veintiún sillas. — *Veintiún подходит перед мужским родом, а sillas женского рода.*
-- ❌ Veintiuna silla. — *Предметов двадцать один: нужно множественное число sillas.*
+- ❌ Veintiuna silla. — *Предметов двадцать один: нужна форма для нескольких — sillas.*
 
 ## Интро 2
 
@@ -27,7 +27,7 @@
 
 - ✅ **Hay veintiuna sillas aquí.** — *Hay + veintiuna sillas + aquí.*
 - ❌ Hay veintiún sillas aquí. — *Silla женского рода: veintiuna.*
-- ❌ Hay veintiuna silla aquí. — *Нужно множественное число sillas.*
+- ❌ Hay veintiuna silla aquí. — *Нужна форма для нескольких: sillas.*
 
 ## Интро 3
 

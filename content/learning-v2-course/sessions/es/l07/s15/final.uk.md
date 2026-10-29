@@ -9,13 +9,13 @@
 
 ### Число перед жіночим родом
 
-Ви нарахували двадцять один стілець. Назвіть кількість із предметом: `Veintiuna sillas` — «Двадцять один стілець». Складіть `Veintiuna` + `sillas`. Silla жіночого роду, тому veintiuna з a наприкінці. Sillas у множині: предметів більше одного. Орієнтуємося на іспанське silla, а не на українське «стілець».
+Ви нарахували двадцять один стілець. Назвіть кількість із предметом: `Veintiuna sillas` — «Двадцять один стілець». Складіть `Veintiuna` + `sillas`. Silla жіночого роду, тому veintiuna з a наприкінці. Sillas у формі для кількох: предметів більше одного. Орієнтуємося на іспанське silla, а не на українське «стілець».
 
 **Назвіть «Двадцять один стілець». Використайте veintiuna перед sillas, без hay.**
 
 - ✅ **Veintiuna sillas.** — *Veintiuna + sillas.*
 - ❌ Veintiún sillas. — *Veintiún підходить перед чоловічим родом, а sillas жіночого роду.*
-- ❌ Veintiuna silla. — *Предметів двадцять один: потрібна множина sillas.*
+- ❌ Veintiuna silla. — *Предметів двадцять один: потрібна форма для кількох — sillas.*
 
 ## Інтро 2
 
@@ -27,7 +27,7 @@
 
 - ✅ **Hay veintiuna sillas aquí.** — *Hay + veintiuna sillas + aquí.*
 - ❌ Hay veintiún sillas aquí. — *Silla жіночого роду: veintiuna.*
-- ❌ Hay veintiuna silla aquí. — *Потрібна множина sillas.*
+- ❌ Hay veintiuna silla aquí. — *Потрібна форма для кількох: sillas.*
 
 ## Інтро 3
 

@@ -358,3 +358,8 @@ const currentPath = currentNavigationHref() ?? navigationPathSignature ?? pathna
 > Если можно, пришлите снимок экрана с этой надписью. Ещё мы нашли и уже исправляем ошибку: у людей с длинным ником бот не открывал оплату. Если ваш ник в Phraseman длинный или на русском, после исправления попробуйте ещё раз — мы напишем, когда будет готово.
 
 Отправлять после выкладки исправления бота (кнопка владельца).
+
+## 30. Сцена Пика по утверждённому «Глубокому небу» (Темы 29.10)
+
+Владелец 29.10 утвердил: тёмное оформление — «Глубокое небо», светлое — тон темы ярче и глубже. Эталон — 4b3e5eea9, функция `components/scene/scene_palette.ts` (4dc58c8c3, parity 256/256).
+`components/spire/SpireScene.tsx` и `SpireScenePedestal.tsx` сейчас грязные у тебя. Их нужно поменять одной вставкой: `scenePalette` в backdrop-спеку и цвета пьедестала из approved. Готовый патч и описание: `docs/work/handover/scene-approved-peak-and-dialogs-geometry-2026-10-29.md`. Чистые `spire_scene_backdrop(_math).tsx` Темы делают сами.

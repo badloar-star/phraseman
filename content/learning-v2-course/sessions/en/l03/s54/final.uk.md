@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви з подругою вибираєте шарфи, сорочки й шкарпетки з малюнком. Перед малюнком і предметом ставимо щось одне: this або the. Або This striped scarf, або The striped scarf, але не обидва слова разом.
 
-**Що ви опануєте:** називати річ із малюнком і не ставити this/that та the поруч: This striped scarf
+**Що ви опануєте:** назвати річ із візерунком: This striped blanket is soft.
 **Нові слова:** striped, checked, spotted, floral
 **Повертаються:** scarf, shirt, dress, sock, blanket
 

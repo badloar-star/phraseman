@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы с подругой выбираете шарфы, рубашки и носки с рисунком. Перед рисунком и предметом ставим что-то одно: this или the. Либо This striped scarf, либо The striped scarf, но не оба слова вместе.
 
-**Что вы освоите:** называть вещь с рисунком и не ставить this/that и the рядом: This striped scarf
+**Что вы освоите:** назвать вещь с рисунком: This striped blanket is soft.
 **Новые слова:** striped, checked, spotted, floral
 **Возвращаются:** scarf, shirt, dress, sock, blanket
 

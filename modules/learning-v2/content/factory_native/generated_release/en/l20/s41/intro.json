@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-20:session-41",
   "learningOutcomeByLocale": {
-    "ru": "don't / doesn't have to + base verb",
-    "uk": "don't / doesn't have to + base verb"
+    "ru": "сказать, что что-то делать не обязательно: He doesn't have to accompany me.",
+    "uk": "сказати, що щось робити не обов'язково: He doesn't have to accompany me."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Матеріали вже є"
       },
       "bodyByLocale": {
-        "ru": "Supplies — необходимые материалы или принадлежности. На занятии по рисованию бумагу и краски выдаёт организатор. Вы сообщаете другу, что покупать их не нужно. В этом значении supplies употребляется во множественном числе. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
-        "uk": "Supplies — необхідні матеріали або приладдя. На занятті з малювання папір і фарби видає організатор. Ви повідомляєте другові, що купувати їх не потрібно. У цьому значенні supplies вживається у множині. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
+        "ru": "Supplies — необходимые материалы или принадлежности. На занятии по рисованию бумагу и краски выдаёт организатор. Вы сообщаете другу, что покупать их не нужно. В этом значении supplies употребляется в форме для нескольких. Don't have to означает «необязательно, нет необходимости», как знакомое needn't. Это не запрет: действие можно выполнить по желанию. С I, you, we, they используем don't have to; с he, she, it — doesn't have to. После doesn't сохраняем have, а не has.",
+        "uk": "Supplies — необхідні матеріали або приладдя. На занятті з малювання папір і фарби видає організатор. Ви повідомляєте другові, що купувати їх не потрібно. У цьому значенні supplies вживається у формі для кількох. Don't have to означає «необовʼязково, немає потреби», як знайоме needn't. Це не заборона: дію можна виконати за бажанням. З I, you, we, they використовуємо don't have to; з he, she, it — doesn't have to. Після doesn't зберігаємо have, а не has."
       },
       "question": {
         "interactionId": "en:lesson-20:session-41:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "535e7e9d303947919c9cee8ad9b03bbf7d0e3d7af0160194ed9aac92d527293d"
+  "introFingerprint": "7a2500490323090685bdd224f69493993c6108b2dc60a4d258e48bcceedda410"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-18:session-55:intro1:q",
       "responseFeedbackById": {
         "en:lesson-18:session-55:intro1:r2": {
-          "ru": "Здесь неисчисляемое значение: such без a.",
-          "uk": "Тут незлічуване значення: such без a."
+          "ru": "Нужно such без a: stress здесь не считают поштучно.",
+          "uk": "Потрібне such без a: stress тут не рахують поштучно."
         },
         "en:lesson-18:session-55:intro1:r3": {
-          "ru": "В этом неисчисляемом значении артикль a не нужен.",
-          "uk": "У цьому незлічуваному значенні артикль a не потрібен."
+          "ru": "В этом значении такое не считают поштучно, поэтому a не нужен.",
+          "uk": "У цьому значенні таке не рахують поштучно, тому a не потрібен."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "6b064567e3f0aa4121b25694c32ed9869e7f3a2aef07c6d02cd409b7cc6ab422"
+  "auxiliaryFingerprint": "969ccd6a70bae0c8e8f2045a7e1216eccb22aa71896732afecf6b1520d386859"
 }

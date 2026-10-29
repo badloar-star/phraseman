@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-18:session-50:intro3:q",
       "responseFeedbackById": {
         "en:lesson-18:session-50:intro3:r2": {
-          "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
-          "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+          "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.",
+          "uk": "Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an."
         },
         "en:lesson-18:session-50:intro3:r3": {
           "ru": "Порядок: such a/an, не a/an such.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "6a27d4e0ef3b21e17ac5e4eb3eaffe39b3fce9955d0f0956769c5fdce14a2ef4"
+  "auxiliaryFingerprint": "ca04b422b441d48124b588ddb3f8e88fd9b505b5e66bf6effcd4d741a2b01363"
 }

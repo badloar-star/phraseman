@@ -209,7 +209,7 @@
             "correct": false,
             "testedDimension": "Доповніть фразу про необхідність.",
             "feedbackByLocale": {
-              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "ru": "Выберите форму по тому, кто действует: I/we — have to, she/he — has to.",
               "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
             }
           },
@@ -433,7 +433,7 @@
             "correct": false,
             "testedDimension": "Доповніть фразу про необхідність.",
             "feedbackByLocale": {
-              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "ru": "Выберите форму по тому, кто действует: I/we — have to, she/he — has to.",
               "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
             }
           },
@@ -657,7 +657,7 @@
             "correct": false,
             "testedDimension": "Доповніть фразу про необхідність.",
             "feedbackByLocale": {
-              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "ru": "Выберите форму по тому, кто действует: I/we — have to, she/he — has to.",
               "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
             }
           },
@@ -879,7 +879,7 @@
             "correct": false,
             "testedDimension": "Доповніть фразу про необхідність.",
             "feedbackByLocale": {
-              "ru": "Выберите форму по подлежащему: I/we — have to, she/he — has to.",
+              "ru": "Выберите форму по тому, кто действует: I/we — have to, she/he — has to.",
               "uk": "Виберіть форму за підметом: I/we — have to, she/he — has to."
             }
           },
@@ -1118,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "98915d4a4dce800a35464d6a0d09303d35d4ccbfc2c6e111702ee78cad557ca6"
+  "learnerFingerprint": "6c858c97423a804e901ed95f702077564d8bbdb301cd38cb3329ef22a2b0707f"
 }

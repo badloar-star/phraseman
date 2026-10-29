@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-56",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "выразить сильное впечатление: Good communication is so important.",
+    "uk": "висловити сильне враження: Good communication is so important."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Добрі стосунки"
       },
       "bodyByLocale": {
-        "ru": "Вы с сестрой всегда можете спокойно обсудить трудности и помочь друг другу. Relationship — отношения между людьми. We have such a good relationship. — У нас такие хорошие отношения. После We have идёт целая группа such a good relationship. В английском relationship здесь в единственном числе: это одна связь между вами. Поэтому порядок такой: such + a + good + relationship; артикль a ставим после such.",
-        "uk": "Ви із сестрою завжди можете спокійно обговорити труднощі й допомогти одне одному. Relationship — стосунки між людьми. We have such a good relationship. — У нас такі добрі стосунки. Після We have йде ціла група such a good relationship. В англійській relationship тут в однині: це один зв’язок між вами. Тому порядок такий: such + a + good + relationship; артикль a ставимо після such."
+        "ru": "Вы с сестрой всегда можете спокойно обсудить трудности и помочь друг другу. Relationship — отношения между людьми. We have such a good relationship. — У нас такие хорошие отношения. После We have идёт целая группа such a good relationship. В английском relationship здесь в форме для одного: это одна связь между вами. Поэтому порядок такой: such + a + good + relationship; a ставим после such.",
+        "uk": "Ви із сестрою завжди можете спокійно обговорити труднощі й допомогти одне одному. Relationship — стосунки між людьми. We have such a good relationship. — У нас такі добрі стосунки. Після We have йде ціла група such a good relationship. В англійській relationship тут у формі для одного: це один зв’язок між вами. Тому порядок такий: such + a + good + relationship; a ставимо після such."
       },
       "question": {
         "interactionId": "en:lesson-18:session-56:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Серйозна сварка"
       },
       "bodyByLocale": {
-        "ru": "Два друга сильно поссорились и теперь не разговаривают. Argument здесь — ссора. This argument is so serious. — Эта ссора такая серьёзная. This argument называет конкретную ссору, is связывает её с оценкой, а so усиливает serious. Собираем: This argument + is + so + serious. После so идёт прилагательное без существительного, поэтому артикль a здесь не нужен.",
-        "uk": "Двоє друзів сильно посварилися й тепер не розмовляють. Argument тут — сварка. This argument is so serious. — Ця сварка така серйозна. This argument називає конкретну сварку, is пов’язує її з оцінкою, а so підсилює serious. Складаємо: This argument + is + so + serious. Після so йде прикметник без іменника, тому артикль a тут не потрібен."
+        "ru": "Два друга сильно поссорились и теперь не разговаривают. Argument здесь — ссора. This argument is so serious. — Эта ссора такая серьёзная. This argument называет конкретную ссору, is связывает её с оценкой, а so усиливает serious. Собираем: This argument + is + so + serious. После so идёт прилагательное без существительного, поэтому a здесь не нужен.",
+        "uk": "Двоє друзів сильно посварилися й тепер не розмовляють. Argument тут — сварка. This argument is so serious. — Ця сварка така серйозна. This argument називає конкретну сварку, is пов’язує її з оцінкою, а so підсилює serious. Складаємо: This argument + is + so + serious. Після so йде прикметник без іменника, тому a тут не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-18:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "286a1d7021964146532d812d0562d99b94b446bf75d7af7902e1cd97541afa37"
+  "introFingerprint": "908b82deb3c4d4d2c3c24c62be7887cf9f5f1b70b369a0d8b3ece6d2b101c8d4"
 }

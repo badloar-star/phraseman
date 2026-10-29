@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Дополните описание в настоящем времени.",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I, а не с этим подлежащим.",
+              "ru": "Am употребляется с I, а не с этим словом.",
               "uk": "Am уживається з I, а не з цим підметом."
             }
           }
@@ -438,7 +438,7 @@
             "correct": false,
             "testedDimension": "Дополните описание в настоящем времени.",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I, а не с этим подлежащим.",
+              "ru": "Am употребляется с I, а не с этим словом.",
               "uk": "Am уживається з I, а не з цим підметом."
             }
           }
@@ -659,7 +659,7 @@
             "correct": false,
             "testedDimension": "Дополните описание в настоящем времени.",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I, а не с этим подлежащим.",
+              "ru": "Am употребляется с I, а не с этим словом.",
               "uk": "Am уживається з I, а не з цим підметом."
             }
           }
@@ -880,7 +880,7 @@
             "correct": false,
             "testedDimension": "Дополните описание в настоящем времени.",
             "feedbackByLocale": {
-              "ru": "Am употребляется с I, а не с этим подлежащим.",
+              "ru": "Am употребляется с I, а не с этим словом.",
               "uk": "Am уживається з I, а не з цим підметом."
             }
           }
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8b990c08f0212db907c9074d1ab6666b1068c3768c0e7423a232bc13350a11f0"
+  "learnerFingerprint": "be6d6412a2199f5a986a467320b45080615e33c87bcebddeda3a2822fc642a20"
 }

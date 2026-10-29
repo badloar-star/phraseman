@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-20:session-47:intro1:q",
       "responseFeedbackById": {
         "en:lesson-20:session-47:intro1:r2": {
-          "ru": "Согласуйте don’t или doesn’t с подлежащим.",
-          "uk": "Узгодьте don’t або doesn’t з підметом."
+          "ru": "Согласуйте don’t или doesn’t с тем, кто действует.",
+          "uk": "Узгодьте don’t або doesn’t з тим, хто діє."
         },
         "en:lesson-20:session-47:intro1:r3": {
           "ru": "После don’t и doesn’t нужна форма have, не has.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-20:session-47:intro2:q",
       "responseFeedbackById": {
         "en:lesson-20:session-47:intro2:r2": {
-          "ru": "Согласуйте don’t или doesn’t с подлежащим.",
-          "uk": "Узгодьте don’t або doesn’t з підметом."
+          "ru": "Согласуйте don’t или doesn’t с тем, кто действует.",
+          "uk": "Узгодьте don’t або doesn’t з тим, хто діє."
         },
         "en:lesson-20:session-47:intro2:r3": {
           "ru": "После don’t и doesn’t нужна форма have, не has.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-20:session-47:intro3:q",
       "responseFeedbackById": {
         "en:lesson-20:session-47:intro3:r2": {
-          "ru": "Согласуйте don’t или doesn’t с подлежащим.",
-          "uk": "Узгодьте don’t або doesn’t з підметом."
+          "ru": "Согласуйте don’t или doesn’t с тем, кто действует.",
+          "uk": "Узгодьте don’t або doesn’t з тим, хто діє."
         },
         "en:lesson-20:session-47:intro3:r3": {
           "ru": "После don’t и doesn’t нужна форма have, не has.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "9965c09b9f178e8b78559101db4189ff0f431bf7e7278550d511cd2b221e6981"
+  "auxiliaryFingerprint": "ff4fe2ade051128ba1be47a0efa358662b952e01a4916c53b4c1925d68efcf31"
 }

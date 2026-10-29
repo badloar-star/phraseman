@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-19:session-37",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "объяснить, что вам не подходит: This time is so inconvenient.",
+    "uk": "пояснити, що вам не підходить: This time is so inconvenient."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Нечесна відповідь"
       },
       "bodyByLocale": {
-        "ru": "Друг отрицает, что разбил чашку, хотя вы видели, как это случилось: That is such a dishonest answer — «это такой нечестный ответ». После That is называем ответ целиком: a dishonest answer. Чтобы усилить оценку этой группы, ставим such перед a. Получаем such + a + dishonest + answer. Артикль нужен перед одним исчисляемым answer, а such идёт перед артиклем.",
-        "uk": "Друг заперечує, що розбив чашку, хоча ви бачили, як це сталося: That is such a dishonest answer — «це така нечесна відповідь». Після That is називаємо відповідь цілком: a dishonest answer. Щоб підсилити оцінку цієї групи, ставимо such перед a. Отримуємо such + a + dishonest + answer. Артикль потрібен перед одним злічуваним answer, а such іде перед артиклем."
+        "ru": "Друг отрицает, что разбил чашку, хотя вы видели, как это случилось: That is such a dishonest answer — «это такой нечестный ответ». После That is называем ответ целиком: a dishonest answer. Чтобы усилить оценку этой группы, ставим such перед a. Получаем such + a + dishonest + answer. A стоит перед answer — ответ один, а such идёт перед a.",
+        "uk": "Друг заперечує, що розбив чашку, хоча ви бачили, як це сталося: That is such a dishonest answer — «це така нечесна відповідь». Після That is називаємо відповідь цілком: a dishonest answer. Щоб підсилити оцінку цієї групи, ставимо such перед a. Отримуємо such + a + dishonest + answer. A стоїть перед answer — відповідь одна, а such іде перед a."
       },
       "question": {
         "interactionId": "en:lesson-19:session-37:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c8b390085f10bd01049c96e982184d35dea79d5ed4a13828705d5473e0011cd4"
+  "introFingerprint": "3d0b58e1acb41c1f36f33ac10d4590465292dd735bd7c9e56d1cbaeef7e6e752"
 }

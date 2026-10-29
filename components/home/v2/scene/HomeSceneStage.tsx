@@ -14,7 +14,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { msSinceJsEntry } from '../../../../app/cold_start_entry_mark';
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import MaskedView from '@react-native-masked-view/masked-view';
-import { StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
+import { PixelRatio, StyleSheet, Text, View, useWindowDimensions, type ImageSourcePropType } from 'react-native';
+import SceneBackdrop from '../../../scene/SceneBackdrop';
+import { scenePaletteCached } from '../../../scene/scene_palette';
+import { logSceneTheme } from './scene_theme_log';
 import Animated, { Easing, FadeIn, FadeInDown, useReducedMotion } from 'react-native-reanimated';
 import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
 
@@ -111,7 +114,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   useRenderCause('home:scene', () => ({ state, evening, tokens, copy, liveEnergy, chips, art, artAccent, artDim, pending, busy }), renderWindowEpoch()); // зачем: причина каждой перерисовки в окне 10 с, [HOME-RENDERS]; в релизе пустая функция
   const reduceMotion = useReducedMotion();
   const { lang } = useLang();
-  const { liquidGlassThemeId, isDark } = useTheme();
+  const { liquidGlassThemeId, liquidGlassAppearance, isDark } = useTheme();
   const heroReady = useAfterFirstFrame('home:hero'); // зачем (ускорение первого кадра; координатор 22.10): герой — со 2-го кадра тем же FadeIn
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом, иначе строки наезжают
   const { fontScale, height: windowH, width: windowW } = useWindowDimensions();
@@ -123,6 +126,15 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const firstLayoutLoggedRef = useRef(false); // [HOME-SCENE-FIRST]: первая раскладка сцены — одна строка
   const glowLoggedRef = useRef(false);
   const stageH = homeSceneStageHeight({ windowH, windowW, pillTop, fontScale, share: HOME_SCENE_SCREEN_SHARE });
+  // зачем (вердикт владельца 29.10, scenePalette; координатор: «палитра и звёзды — один раз на (тема, оформление, экран, размер), замер первого кадра в [SCENE-THEME]»):
+  // цвет фона Главной — из единой функции; кэш модуля, поэтому на следующих кадрах/перерисовках расчёта нет. Размер — в px эталонной канвы (dp × PixelRatio).
+  const dpr = PixelRatio.get();
+  const scenePal = useMemo(() => {
+    const t0 = Date.now();
+    const pal = scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'home', windowW * dpr, stageH * dpr, dpr);
+    logSceneTheme('home:stage', liquidGlassThemeId, liquidGlassAppearance, 'scenePalette(' + pal.mode + ')', { mode: pal.mode, ms: Date.now() - t0, evening: evening ? 1 : 0, guard: JSON.stringify(pal.guard) });
+    return pal;
+  }, [liquidGlassThemeId, liquidGlassAppearance, windowW, stageH, dpr, evening]);
   // зачем (координатор 25.10 по замеру Тем 8bd8aea17: правило о герое поверх текста отменено — текст обязан читаться): высота места под героя
   // известна после раскладки; герой рисуется со 2-го кадра (heroReady), так что маска встаёт вместе с ним, без мигания
   const [heroSpaceH, setHeroSpaceH] = useState<number | null>(null);
@@ -154,33 +166,20 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
         console.log('[TOP-BAND]', JSON.stringify({ at: 'home_scene_stage_layout', msSinceModule: Math.round(Date.now() - HOME_STAGE_MODULE_AT), sceneReady: !pending, state, topInset: Math.round(topInset), y: Math.round(e.nativeEvent.layout.y), sceneTop: tokens.sceneTop })); // guard-ok: одна строка на смену раскладки
       }}
     >
-      <LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />
+      {/* зачем (вердикт владельца 29.10, scenePalette): фон Главной — утверждённая сцена; тёмное «Глубокое небо», светлое «А». Вечер пока такой же (эталон «Небо + тёплый край» придёт) */}
+      <SceneBackdrop palette={scenePal} idPrefix="homeSc" />
       <PremiumThemeMotion themeId={liquidGlassThemeId} isLight={!isDark} width={windowW} height={stageH} />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%" onLayout={() => { if (!glowLoggedRef.current) { glowLoggedRef.current = true; console.log('[HOME-SCENE-FIRST]', JSON.stringify({ at: 'glow_first_layout', msSinceJsEntry: msSinceJsEntry(), source: 'svg_glow' })); } /* guard-ok: одна строка на монтирование */ }}>
         <Defs>
-          <RadialGradient id="sceneLight" cx={evening ? '82%' : '18%'} cy="0%" rx="70%" ry="50%" fx={evening ? '82%' : '18%'} fy="0%">
-            {/* зачем (эталон home-scene-states.html): вечером справа сверху — тёплый свет eveningGlow, угли снизу слева — sceneEmber */}
-            <Stop offset="0" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="1" />
-            <Stop offset="1" stopColor={evening ? tokens.eveningGlow : tokens.sceneGlow} stopOpacity="0" />
-          </RadialGradient>
           <RadialGradient id="sceneHalo" cx="50%" cy="50%" r="50%">
             <Stop offset="0" stopColor={HOME_SCENE_INK.halo} stopOpacity={HOME_SCENE_INK.haloOpacity} />
             <Stop offset="1" stopColor={HOME_SCENE_INK.halo} stopOpacity="0" />
           </RadialGradient>
-          {evening ? (
-            <RadialGradient id="sceneEmber" cx="50%" cy="50%" r="50%">
-              <Stop offset="0" stopColor={tokens.sceneEmber} stopOpacity="1" />
-              <Stop offset="1" stopColor={tokens.sceneEmber} stopOpacity="0" />
-            </RadialGradient>
-          ) : null}
         </Defs>
-        <Rect x="0" y="0" width="100%" height="100%" fill="url(#sceneLight)" />
         {/* зачем (Темы 25.10, season-home-contrast): при крупном шрифте герой уходит в свободное место над текстом — ореол уходит вместе с ним, иначе светлое пятно остаётся под надзаголовком */}
         {heroBounded ? null : <Rect x="57%" y={topInset + HERO_TOP} width={168} height={168} fill="url(#sceneHalo)" />}
-        {evening ? <Rect x={-40} y={stageH - 200} width={260} height={260} fill="url(#sceneEmber)" /> : null}
       </Svg>
       {/* зачем (эталон: у тёмной сцены затемнения низа нет — иначе стык с карточками сливается; шов ≥ 1,34) */}
-      {tokens.scrim ? <LinearGradient pointerEvents="none" colors={[HOME_SCENE_INK.scrimFrom, HOME_SCENE_INK.scrimTo]} style={s.scrim} /> : null}
       <View style={s.topSpace} />
       {/* зачем: герой в слоте свободного места (flex 1) между шапкой и текстом: обычный шрифт — как в эталоне (214 от верха слота; правило: под текстом герой ≤ 16 % в светлом и ≤ 9 % в тёмном — над текстом он плавно гаснет к 0, home_scene_hero_fade), крупный или «маска съела бы героя» — не выше свободного места */}
       <View style={s.heroSpace} pointerEvents="none" onLayout={(e) => { const h = Math.round(e.nativeEvent.layout.height); setHeroSpaceH((prev) => (prev === h ? prev : h)); }}>

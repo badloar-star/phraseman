@@ -35,10 +35,12 @@ describe('светлые Диалоги × grad_*: нет слоёв из про
     expect(c.glowBottom).toBeNull();
   });
 
-  it('подложка не рисует полностью прозрачные слои', () => {
+  // зачем (29.10, scenePalette): подложка Диалогов больше не рисует свечения из bgGlow вовсе — фон строится общим слоем из scenePalette (слоёв из прозрачного цвета нет по построению)
+  it('подложка Диалогов рисует утверждённую сцену из scenePalette, а не свечения из bgGlow', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'components', 'dialogs', 'scene', 'DialogsSceneBackdrop.tsx'), 'utf8');
-    expect(src).toContain('isClearColor(c.glowRight)');
-    expect(src).toContain('isClearColor(c.glowLeft)');
-    expect(src).toContain('isClearColor(c.glowBottom)');
+    expect(src).toContain('scenePaletteCached(');
+    expect(src).toContain('<SceneBackdrop palette={palette}');
+    expect(src).not.toContain('glowRight');
+    expect(src).not.toContain('RadialGradient');
   });
 });

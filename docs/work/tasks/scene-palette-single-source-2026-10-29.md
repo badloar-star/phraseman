@@ -55,3 +55,10 @@ Governance-ID: TG-ADB191E4E3C3
 
 Outcome: страж контраста «Глубокого неба» в scenePalette считает те же строки пикселей, что guardSky эталона (квантование по слоям и звёзды), и сверяется в parity-тесте с manifest.json; в docs/work/handover/ лежит патч/инструкция для файлов Пика, занятых Codex, и описание геометрии света Диалогов против Главной. Экраны на функцию не переводятся до зелёного parity.
 Scope: components/scene/scene_palette.ts, tests/scene_palette_parity.test.ts, документ в docs/work/handover/. Architecture/Security/Debt/Verification/Rollback — как выше.
+
+## Шаг 2: Главная и Диалоги берут цвет сцены из scenePalette
+
+Governance-ID: TG-ADB191E4E3C3
+
+Outcome: общий слой components/scene/SceneBackdrop.tsx рисует утверждённую сцену (тёмное «Глубокое небо», светлое «А») по результату scenePalette; HomeSceneStage и DialogsSceneBackdrop рисуют фон им; цвета шапки/статус-бара Главной берут верх из той же палитры; палитра и 70 звёзд считаются один раз на (тема, оформление, экран, размер) — кэш модуля; вечер Главной = обычное «небо» (владелец выбрал «Небо + тёплый край», эталон придёт); светлые Диалоги — надписи и кнопки как в тёмном оформлении; лог [SCENE-THEME] с временем первого кадра.
+Scope: components/scene/*, HomeSceneStage.tsx, HomeScene.tsx, dialogs scene (DialogsSceneBackdrop, dialogs_scene_tokens, use_dialogs_scene_theme), тесты. Пик, Сезон, остальные — следующими шагами. Architecture/Security/Debt/Verification/Rollback — как выше.

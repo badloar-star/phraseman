@@ -75,6 +75,7 @@ describe('верх экрана: зона часов — часть общего
     const stage = read('components/home/v2/scene/HomeSceneStage.tsx');
     expect(stage).toContain('style={[s.stage, { minHeight: stageH }, topInset > 0 ? { paddingTop: topInset } : null]}');
     // градиент сцены — во весь блок, включая зону часов
-    expect(stage).toContain('<LinearGradient colors={[tokens.sceneTop, tokens.sceneBottom]} start={{ x: 0.22, y: 0 }} end={{ x: 0.78, y: 1 }} style={StyleSheet.absoluteFill} />');
+    // зачем (вердикт владельца 29.10): фон сцены Главной рисует общий слой по scenePalette — он заполняет всю область сцены, включая зону часов
+    expect(stage).toContain('<SceneBackdrop palette={scenePal} idPrefix="homeSc" />');
   });
 });

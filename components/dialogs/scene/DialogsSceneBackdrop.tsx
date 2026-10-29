@@ -1,51 +1,42 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// DialogsSceneBackdrop.tsx — подложка «Сцены» «Диалогов»: основа bgTop → bg и свет bgGlow из токенов темы (эталон dialogs-scene-states.html, `.sc .light`).
+// DialogsSceneBackdrop.tsx — подложка «Сцены» «Диалогов»: утверждённая сцена (тёмное «Глубокое небо», светлое «А») из scenePalette.
 //
-// зачем (владелец 22.10: верх листа согласия «живой мини-диалог» на свету темы): одна и та же подложка у сцены хаба и у верха листа согласия — вынесена из DialogsSceneStage,
-// чтобы не дублировать градиенты. Заполняет родителя (absoluteFill), касаний не ловит. idPrefix разводит id градиентов, когда две подложки на экране одновременно (сцена под листом).
+// зачем (вердикт владельца 29.10: «Тёмная тема везде — глубокое небо, светлая — тон темы ярче и глубже, все экраны»; закрывает и чёрные пятна светлых grad_*: свечений из
+// прозрачного цвета больше нет вовсе): одна и та же подложка у сцены хаба и у верха листа согласия (DialogsConsentTop) — рисует общий SceneBackdrop по реальному размеру
+// области. До первой раскладки (размера ещё нет) показывает вертикальный градиент «зенит → низ» тех же цветов, чтобы первый кадр не был пустым (colors.top/bottom теперь
+// тоже из scenePalette). idPrefix разводит id градиентов, когда две подложки на экране. Касаний не ловит, заполняет родителя (absoluteFill).
 // ═══════════════════════════════════════════════════════════════════════════
 import { LinearGradient } from 'expo-linear-gradient';
-import React, { memo } from 'react';
-import { StyleSheet } from 'react-native';
-import Svg, { Defs, RadialGradient, Rect, Stop } from 'react-native-svg';
+import React, { memo, useCallback, useState } from 'react';
+import { PixelRatio, StyleSheet, View, type LayoutChangeEvent } from 'react-native';
 
-import { isClearColor, type DialogsSceneColors } from './dialogs_scene_tokens';
+import SceneBackdrop from '../../scene/SceneBackdrop';
+import { scenePaletteCached } from '../../scene/scene_palette';
+import { useTheme } from '../../ThemeContext';
+import type { DialogsSceneColors } from './dialogs_scene_tokens';
 
 type Props = Readonly<{ colors: DialogsSceneColors; idPrefix: string }>;
+type Size = Readonly<{ w: number; h: number }>;
 
 function DialogsSceneBackdrop({ colors: c, idPrefix }: Props) {
-  const r = `${idPrefix}GlowR`;
-  const l = `${idPrefix}GlowL`;
-  const b = `${idPrefix}GlowB`;
-  // зачем (находка Сверки 29.10): слой из полностью прозрачного цвета не рисуется — иначе stopOpacity=1 даёт чёрное пятно
-  const showR = !isClearColor(c.glowRight);
-  const showL = !isClearColor(c.glowLeft);
-  const showB = c.glowBottom !== null && !isClearColor(c.glowBottom);
+  const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
+  const [size, setSize] = useState<Size | null>(null);
+  const onLayout = useCallback((e: LayoutChangeEvent) => {
+    const w = Math.round(e.nativeEvent.layout.width);
+    const h = Math.round(e.nativeEvent.layout.height);
+    if (w <= 0 || h <= 0) return;
+    setSize((prev) => (prev && prev.w === w && prev.h === h ? prev : { w, h }));
+  }, []);
+  const dpr = PixelRatio.get();
+  const palette = size ? scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'dialogs', size.w * dpr, size.h * dpr, dpr) : null;
   return (
-    <>
-      <LinearGradient pointerEvents="none" colors={[c.top, c.bottom]} start={{ x: 0.42, y: 0 }} end={{ x: 0.58, y: 1 }} style={StyleSheet.absoluteFill} />
-      <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%">
-        <Defs>
-          {showR ? <RadialGradient id={r} cx="84%" cy="14%" rx="70%" ry="46%" fx="84%" fy="14%">
-            <Stop offset="0" stopColor={c.glowRight} stopOpacity="1" />
-            <Stop offset="1" stopColor={c.glowRight} stopOpacity="0" />
-          </RadialGradient> : null}
-          {showL ? <RadialGradient id={l} cx="8%" cy="0%" rx="60%" ry="42%" fx="8%" fy="0%">
-            <Stop offset="0" stopColor={c.glowLeft} stopOpacity="1" />
-            <Stop offset="1" stopColor={c.glowLeft} stopOpacity="0" />
-          </RadialGradient> : null}
-          {showB && c.glowBottom ? (
-            <RadialGradient id={b} cx="50%" cy="100%" rx="80%" ry="50%" fx="50%" fy="100%">
-              <Stop offset="0" stopColor={c.glowBottom} stopOpacity="1" />
-              <Stop offset="1" stopColor={c.glowBottom} stopOpacity="0" />
-            </RadialGradient>
-          ) : null}
-        </Defs>
-        {showR ? <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${r})`} /> : null}
-        {showL ? <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${l})`} /> : null}
-        {showB && c.glowBottom ? <Rect x="0" y="0" width="100%" height="100%" fill={`url(#${b})`} /> : null}
-      </Svg>
-    </>
+    <View pointerEvents="none" style={StyleSheet.absoluteFill} onLayout={onLayout}>
+      {palette ? (
+        <SceneBackdrop palette={palette} idPrefix={idPrefix} />
+      ) : (
+        <LinearGradient pointerEvents="none" colors={[c.top, c.bottom]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill} />
+      )}
+    </View>
   );
 }
 

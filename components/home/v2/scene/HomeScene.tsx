@@ -27,7 +27,8 @@ import { buildHomeSceneCopy, homeSceneChipLabel, homeSceneOfflineLine, type Home
 import { homeSceneAllReleasedDone, homeSceneDaysAwayByVisits, homeSceneDaysSince, homeSceneLastActivityDay, homeSceneStreakLost } from './home_scene_inputs';
 import { useAppVisitGap } from '../../../../modules/welcome_back/use_app_visit_gap';
 import { minutesUntilMidnight, pickHomeSceneState, type HomeSceneDecision } from './home_scene_state';
-import { homeSceneTokensForTheme, type HomeSceneStageTokens } from './home_scene_tokens';
+import { homeSceneTokensForTheme, relativeLuminance, type HomeSceneStageTokens } from './home_scene_tokens';
+import { scenePaletteCached } from '../../../scene/scene_palette';
 import { logSceneTheme } from './scene_theme_log';
 import { setHomeSceneStatusTint } from './home_scene_status_tint';
 import { useHomeSceneOffline } from './use_home_scene_offline';
@@ -259,7 +260,16 @@ export type HomeSceneViewProps = Readonly<{
  */
 export function useHomeSceneStageTokens(evening: boolean): HomeSceneStageTokens {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
-  const tokens = useMemo(() => homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening), [liquidGlassThemeId, liquidGlassAppearance, evening]);
+  // зачем (вердикт владельца 29.10, scenePalette): верх/низ сцены для шапки, статус-бара и пьедесталов — из единой функции (тёмное: зенит и низ «неба»; светлое: верх и низ «А»).
+  // Размер эталонной канвы (1080 × 1082) — для цвета достаточно: от размера зависят только число шагов стража и затемнение; сам фон Главной считается по реальному размеру в HomeSceneStage.
+  const tokens = useMemo(() => {
+    const base = homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance, evening);
+    const pal = scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'home', 1080, 1082, 2.625);
+    const sceneTop = pal.mode === 'dark-sky' ? pal.gradient.stops[0]!.color.hex : pal.gradient.top.hex;
+    const sceneBottom = pal.mode === 'dark-sky' ? pal.gradient.stops[5]!.color.hex : pal.gradient.bottom.hex;
+    const lum = relativeLuminance(sceneTop);
+    return { ...base, sceneTop, sceneBottom, whiteContrastTop: lum === null ? base.whiteContrastTop : 1.05 / (lum + 0.05) };
+  }, [liquidGlassThemeId, liquidGlassAppearance, evening]);
   // зачем (баг владельца 28.10, закон «сперва логи»): какими цветами и откуда нарисована сцена Главной — один поиск [SCENE-THEME]
   useEffect(() => {
     logSceneTheme(evening ? 'home:evening' : 'home', liquidGlassThemeId, liquidGlassAppearance, 'homeSceneTokensForTheme(max)', { top: tokens.sceneTop, bottom: tokens.sceneBottom, glow: tokens.sceneGlow });

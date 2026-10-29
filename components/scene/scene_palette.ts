@@ -362,3 +362,21 @@ export function scenePalette(themeId: string, appearance: SceneAppearance, scree
   const tokens = liquidGlassTokens(themeId, { level: 'max', appearance });
   return approvedScene(tokens, appearance, screen, W, H, opts);
 }
+
+/** Шесть премиум-тем: Главная/Пик у них сейчас без затемнения низа (вход стража другой). */
+const PREMIUM_SCENE_THEMES: ReadonlySet<string> = new Set(['grad_full_olive', 'grad_full_ref_signal_lime', 'grad_full_ref_storm_violet', 'grad_full_titanium', 'grad_full_horizon', 'grad_full_ref_gravity_blue']);
+export const isPremiumSceneTheme = (themeId: string): boolean => PREMIUM_SCENE_THEMES.has(themeId);
+
+const cache = new Map<string, ScenePaletteResult>();
+/**
+ * Палитра сцены с кэшем модуля: считается ОДИН раз на (тема, оформление, экран, размер, dp), а не на каждую перерисовку.
+ * зачем (координатор 29.10, скорость): палитра и 70 звёзд — чистая математика, ей нечего делать на каждом кадре; первый показ — ~1–3 мс, остальные — из кэша.
+ */
+export function scenePaletteCached(themeId: string, appearance: SceneAppearance, screen: SceneScreen, W: number, H: number, dp: number): ScenePaletteResult {
+  const key = `${themeId}|${appearance}|${screen}|${Math.round(W)}|${Math.round(H)}|${dp}`;
+  const hit = cache.get(key);
+  if (hit) return hit;
+  const value = scenePalette(themeId, appearance, screen, Math.round(W), Math.round(H), { premium: isPremiumSceneTheme(themeId), dp });
+  cache.set(key, value);
+  return value;
+}

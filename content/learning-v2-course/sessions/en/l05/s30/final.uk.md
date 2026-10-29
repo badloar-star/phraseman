@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви підміняєте подругу на стійці готелю. Туристи повернулися з екскурсії, і треба знайти забуті речі й віддати кожну господареві.
 
-**Що ви опануєте:** називати господаря через 's і в парі речей: The hoodie is the tourist's.
+**Що ви опануєте:** сказати, що річ належить туристу: The hoodie is the tourist's.
 **Нові слова:** mittens, hoodie, sneakers, lanyard
 **Повертаються:** guest, tourist, instructor, desk, chair, bag, hall, jacket, hat, coat, gym
 

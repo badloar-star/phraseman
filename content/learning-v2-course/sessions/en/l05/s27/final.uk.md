@@ -2,7 +2,7 @@
 
 **Ситуація.** У класі після уроку англійської залишилися речі вчительки й учнів. Треба розібратися, що чиє, і не називати річ двічі.
 
-**Що ви опануєте:** спитати, чия річ, і відповісти, не повторюючи її назву: Is this textbook the teacher's?
+**Що ви опануєте:** коротко відповісти, чия річ: It is my sister's.
 **Нові слова:** marker, whiteboard, calculator, textbook
 **Повертаються:** teacher, cousin, brother, sister, friend, desk, chair, notebook, ruler, pencil, bag
 

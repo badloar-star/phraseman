@@ -2,7 +2,7 @@
 
 **Ситуация.** В классе после урока английского остались вещи учительницы и учеников. Нужно разобраться, что чьё, и не называть вещь дважды.
 
-**Что вы освоите:** спросить, чья вещь, и ответить, не повторяя её название: Is this textbook the teacher's?
+**Что вы освоите:** коротко ответить, чья вещь: It is my sister's.
 **Новые слова:** marker, whiteboard, calculator, textbook
 **Возвращаются:** teacher, cousin, brother, sister, friend, desk, chair, notebook, ruler, pencil, bag
 

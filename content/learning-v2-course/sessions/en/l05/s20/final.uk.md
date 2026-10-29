@@ -2,7 +2,7 @@
 
 **Ситуація.** Подруга на кухні, охоронець в офісі й сусід на подвір’ї хочуть дізнатися, чия річ. Власник — чоловік, дружина, син чи донька, і його називаємо з ’s: The mug is my husband’s.
 
-**Що ви опануєте:** назвати власника речі з ’s: The umbrella is his wife’s.
+**Що ви опануєте:** сказати, чия це річ: The umbrella is his wife’s.
 **Нові слова:** husband, wife, son, daughter
 **Повертаються:** mug, football, umbrella, key, backpack, scarf, ball
 

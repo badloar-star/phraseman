@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы подменяете подругу на стойке гостиницы. Туристы вернулись с экскурсии, и нужно найти забытые вещи и отдать каждую хозяину.
 
-**Что вы освоите:** называть хозяина через 's и в паре вещей: The hoodie is the tourist's.
+**Что вы освоите:** сказать, что вещь принадлежит туристу: The hoodie is the tourist's.
 **Новые слова:** mittens, hoodie, sneakers, lanyard
 **Возвращаются:** guest, tourist, instructor, desk, chair, bag, hall, jacket, hat, coat, gym
 

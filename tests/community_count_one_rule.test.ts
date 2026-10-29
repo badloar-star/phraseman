@@ -48,7 +48,8 @@ test('плитка хаба и экран «Сообщество» считаю�
   expect(hub).toContain('subscribePackLanguage(setFeedPackLanguage)');
   expect(hub).toContain("'[COMMUNITY-COUNT] tile'");
   const list = read('app/flashcards/FlashcardsCategoryHub.tsx');
-  expect(list).toContain('communityFeedPacks(communityPacks, { hiddenIds: hiddenCommunityPackIds, language: packLanguage, isLocalPack: isLocalAuthorPackId })');
+  // перепин 29.10 (релиз 2.0.3): список хаба читает каталог под именем catalogCommunityPacks; правило то же — communityFeedPacks с теми же скрытыми, языком и локальными наборами
+  expect(list).toContain('communityFeedPacks(catalogCommunityPacks, { hiddenIds: hiddenCommunityPackIds, language: packLanguage, isLocalPack: isLocalAuthorPackId })');
   expect(list).toContain('applyCommunityPacksFilter(feed.packs, communityQuery, communitySort)');
   expect(list).toContain("'[COMMUNITY-COUNT] list'");
 });

@@ -10,6 +10,9 @@ import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { triLang, type Lang } from '../../constants/i18n';
 import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
 import { CommunitySceneBackdrop, CommunitySceneFan } from './CommunityScene';
+import { CommunityRootTabs } from './CommunityRootTabs';
+import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
+import { tabPillTopOffset } from '../v2/tab_bar_geometry';
 
 export type CommunitySceneCard = Readonly<{ id: string; front: string; back: string }>;
 type Props = Readonly<{
@@ -17,11 +20,13 @@ type Props = Readonly<{
   cards: readonly CommunitySceneCard[]; actions: React.ReactNode; loading?: boolean;
   onBack?: () => void; onTrain?: () => void;
   onSpeak: (id: string) => void; onMore: () => void; onComments?: () => void;
+  onSelectRoute?: (route: string) => void;
 }>;
 
 /** The approved scene uses compact speech rows; actual audio and ownership stay with the caller. */
-export function CommunityPackScene({ title, subtitle, author, coinRank, count, lang, cards, actions, loading, onBack, onTrain, onSpeak, onMore, onComments }: Props): React.JSX.Element {
+export function CommunityPackScene({ title, subtitle, author, coinRank, count, lang, cards, actions, loading, onBack, onTrain, onSpeak, onMore, onComments, onSelectRoute }: Props): React.JSX.Element {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
+  const insets = useStableSafeAreaInsets();
   const backTop = useScreenBackContentTop() - SCREEN_BACK_ZONE;
   const scene = homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance);
   const g = liquidGlassTokens(liquidGlassThemeId);
@@ -33,7 +38,7 @@ export function CommunityPackScene({ title, subtitle, author, coinRank, count, l
     </View>
     <View style={[s.panelTop, { backgroundColor: g.opaqueCard }]}><Text style={[s.heading, { color: g.text }]}>{label}</Text><Text style={{ color: g.secondary, fontSize: 16 }}>{count}</Text></View>
   </View>;
-  return <View style={{ flex: 1, backgroundColor: g.bg }}><FlatList testID="community-pack-scene" data={cards} keyExtractor={card => card.id} ListHeaderComponent={header} contentContainerStyle={{ paddingBottom: 100 }} showsVerticalScrollIndicator={false}
+  return <View style={{ flex: 1, backgroundColor: g.bg }}><FlatList testID="community-pack-scene" data={cards} keyExtractor={card => card.id} ListHeaderComponent={header} contentContainerStyle={{ paddingBottom: onSelectRoute ? tabPillTopOffset(insets.bottom) + 20 : 100 }} showsVerticalScrollIndicator={false}
     renderItem={({ item }) => <View style={{ backgroundColor: g.opaqueCard, marginHorizontal: 16, paddingHorizontal: 16 }}><KitTouchable onPress={() => onSpeak(item.id)} accessibilityRole="button" accessibilityLabel={`${item.front}. ${item.back}`} style={[s.row, { borderBottomColor: g.dividerTone }]}><View style={[s.icon, { backgroundColor: g.opaqueControl }]}><Ionicons name="volume-high" size={18} color={g.text} /></View><View style={{ flex: 1 }}><Text style={[s.front, { color: g.text }]}>{item.front}</Text><Text style={[s.back, { color: g.secondary }]}>{item.back}</Text></View></KitTouchable></View>}
     ListEmptyComponent={<View style={{ padding: 24, marginHorizontal: 16, backgroundColor: g.opaqueCard }}><Text style={{ color: g.secondary }}>{loading ? triLang(lang, { ru: 'Загружаем карточки…', uk: 'Завантажуємо картки…', en: 'Loading cards…', es: 'Cargando tarjetas…' }) : triLang(lang, { ru: 'В наборе пока нет карточек', uk: 'У наборі ще немає карток', en: 'No cards yet', es: 'Aún no hay tarjetas' })}</Text></View>}
     ListFooterComponent={<View style={{ backgroundColor: g.opaqueCard, marginHorizontal: 16, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, padding: 16, gap: 10 }}>
@@ -41,7 +46,7 @@ export function CommunityPackScene({ title, subtitle, author, coinRank, count, l
       {onComments ? <KitTouchable onPress={onComments} accessibilityRole="button" style={{ minHeight: 48, alignItems: 'center', justifyContent: 'center' }}><Text style={{ color: g.secondary }}>{triLang(lang, { ru: 'Обсуждение набора', uk: 'Обговорення набору', en: 'Pack discussion', es: 'Comentarios del pack' })}</Text></KitTouchable> : null}
     </View>}
 
-  />{onBack ? <ScreenBackButton screen="community_pack_scene" testID="community-pack-back" onPress={onBack} sceneTop={scene.sceneTop} /> : null}</View>;
+  />{onSelectRoute ? <CommunityRootTabs lang={lang} bottomInset={insets.bottom} onSelectRoute={onSelectRoute} /> : null}{onBack ? <ScreenBackButton screen="community_pack_scene" testID="community-pack-back" onPress={onBack} sceneTop={scene.sceneTop} /> : null}</View>;
 }
 
 // theme-exempt: white foreground and translucent controls belong to the dark scene in the reference.

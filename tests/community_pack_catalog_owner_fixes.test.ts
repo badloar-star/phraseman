@@ -181,10 +181,12 @@ describe('экран набора: раскладка и действия', () =
     expect(collection).toContain('isEditableCustomCard={previewMode ? () => false : isEditableCustomCard}');
   });
 
-  it('лайк доступен только после добавления набора себе', () => {
-    expect(socialBar).toContain('if (!isAdded) {');
-    expect(socialBar).toContain('likeLockedToast');
-    expect(socialBar).toContain('qa-pack-like-locked');
+  // перепин 29.10 (слияние релиза 2.0.3): правило владельца 26.10 — сердечко доступно ДО добавления чужого набора (собственный набор поддержать нельзя);
+  // прежняя блокировка «лайк только после добавления» (likeLockedToast) из выпущенного кода убрана
+  it('лайк доступен до добавления чужого набора (правило владельца 26.10), блокировки по добавлению нет', () => {
+    expect(socialBar).toContain('Правило владельца (26.10)');
+    expect(socialBar).not.toContain('likeLockedToast');
+    expect(socialBar).not.toContain('qa-pack-like-locked');
   });
 
   it('кнопка «Сделать публичным» есть у своей неопубликованной коллекции', () => {
@@ -235,7 +237,11 @@ describe('шапка каталога сообщества (замечания �
     expect(screen).toContain('testID="flashcards-header-back"');
     /** В теле каталога заголовков больше нет — дубль «Наборы» / «Наборы сообщества» убран. */
     expect(hub).not.toContain("ru: 'Наборы сообщества'");
-    expect(hub).not.toMatch(/ru: 'Наборы',/);
+    // перепин 29.10 (релиз 2.0.3): в режиме «Сцены» панель каталога несёт свой заголовок «Наборы» — он допустим ТОЛЬКО внутри ветки sceneMode, один раз
+    const sceneTitleAt = hub.indexOf("ru: 'Наборы',");
+    expect(sceneTitleAt).toBeGreaterThan(-1);
+    expect(hub.indexOf("ru: 'Наборы',", sceneTitleAt + 1)).toBe(-1);
+    expect(hub.slice(Math.max(0, sceneTitleAt - 400), sceneTitleAt)).toContain('sceneMode ?');
   });
 
   it('поиск — постоянная капсула «Наборы и авторы» (cards-v2 catalog()), без лупы-переключателя', () => {

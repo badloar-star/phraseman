@@ -6,14 +6,14 @@ export function createPackSocialLiveStore() {
   let version = 0;
   const values = new Map<string, PackSocialSnapshot>();
   const pending = new Set<string>();
-  const monthlyBefore = new Map<string, { entry?: ContestEntry; liked: boolean }>();
+  const monthlyBefore = new Map<string, { monthId: string; entry?: ContestEntry; liked: boolean }>();
   let monthId = '';
   const monthly = new Map<string, ContestEntry>();
   const likeVersions = new Map<string, number>();
   const intents = new Map<string, boolean>();
   const listeners = new Set<() => void>();
   return {
-    beginLike(id: string): boolean { if (pending.has(id)) return false; pending.add(id); monthlyBefore.set(id, { entry: monthly.get(id), liked: values.get(id)?.liked ?? false }); return true; },
+    beginLike(id: string): boolean { if (pending.has(id)) return false; pending.add(id); monthlyBefore.set(id, { monthId, entry: monthly.get(id), liked: values.get(id)?.liked ?? false }); return true; },
     endLike(id: string): void { pending.delete(id); monthlyBefore.delete(id); },
     contestEntries(month: string): ContestEntry[] { return month === monthId ? [...monthly.values()] : []; },
     setContestEntries(month: string, entries: readonly ContestEntry[], startedVersion = Infinity): void {
@@ -24,7 +24,13 @@ export function createPackSocialLiveStore() {
         if ((likeVersions.get(entry.id) ?? 0) > startedVersion && monthly.has(entry.id)) continue;
         if (!pending.has(entry.id) || !monthly.has(entry.id)) monthly.set(entry.id, entry);
       }
-      for (const id of monthly.keys()) if (!entries.some(entry => entry.id === id)) monthly.delete(id);
+      const receivedIds = new Set(entries.map(entry => entry.id));
+      for (const id of monthly.keys()) {
+        // Omission is also a server update: it must obey the same local-write
+        // protection as a returned row, including after the request completes.
+        if (receivedIds.has(id) || pending.has(id) || (likeVersions.get(id) ?? 0) > startedVersion) continue;
+        monthly.delete(id);
+      }
       version += 1; listeners.forEach(notify => notify());
     },
     getVersion: () => version,
@@ -47,7 +53,7 @@ export function createPackSocialLiveStore() {
       const row = monthId === contestMonth(Date.now()).id ? monthly.get(id) : undefined;
       const before = monthlyBefore.get(id);
       if (row) {
-        if (before?.entry && liked === before.liked) monthly.set(id, before.entry);
+        if (before?.entry && before.monthId === monthId && liked === before.liked) monthly.set(id, before.entry);
         else monthly.set(id, { ...row, myMonthHeart: liked, hearts: Math.max(0, row.hearts + Number(liked) - Number(row.myMonthHeart === true)) });
       }
       values.set(id, { ...previous, liked, likesCount: Math.max(0, previous.likesCount + (liked ? 1 : -1)) });

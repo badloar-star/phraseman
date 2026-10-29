@@ -14,7 +14,7 @@ import { coinRankRowForDisplay } from '../../app/coin_rank_table_v1';
 import { useCommunityAuthor } from '../../app/community_packs/packAuthorNames';
 import { packTitleForInterface, type FlashcardMarketPack } from '../../app/flashcards/marketplace';
 import { triLang, type Lang } from '../../constants/i18n';
-import { communityContestSchedule, contestMonth, rankContestEntries } from '../../shared/community_month_contest';
+import { COMMUNITY_CONTEST_FIRST_MONTH, communityContestSchedule, contestMonth, rankContestEntries } from '../../shared/community_month_contest';
 
 import { packSocialLive } from '../../app/community_packs/packSocialLive';
 import { callCommunityMonthGetRanking } from '../../app/community_packs/functionsClient';
@@ -53,11 +53,16 @@ export function CommunitySceneFan({ size = 224, top = 92, right = -18 }: Readonl
 export function CommunitySceneBackdrop(): React.JSX.Element {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const c = homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance);
+  // SVG stops replace the color's alpha; preserve the scene token's opacity explicitly.
+  const rgbaGlow = /^rgba\((.+),([\d.]+)\)$/.exec(c.sceneGlow);
+  const hexAlpha = /^#[\da-f]{8}$/i.test(c.sceneGlow);
+  const glowColor = rgbaGlow ? `rgb(${rgbaGlow[1]})` : hexAlpha ? c.sceneGlow.slice(0, 7) : c.sceneGlow;
+  const glowOpacity = rgbaGlow ? Number(rgbaGlow[2]) : hexAlpha ? parseInt(c.sceneGlow.slice(7), 16) / 255 : 1;
   return <View pointerEvents="none" style={StyleSheet.absoluteFill}>
     <LinearGradient colors={[c.sceneTop, c.sceneBottom]} start={{ x: .22, y: 0 }} end={{ x: .78, y: 1 }} style={StyleSheet.absoluteFill} />
     <Svg width="100%" height="100%" style={StyleSheet.absoluteFill}>
       <Defs><RadialGradient id="communitySceneLight" cx="18%" cy="0%" rx="70%" ry="50%" fx="18%" fy="0%">
-        <Stop offset="0" stopColor={c.sceneGlow} /><Stop offset=".7" stopColor={c.sceneGlow} stopOpacity="0" />
+        <Stop offset="0" stopColor={glowColor} stopOpacity={glowOpacity} /><Stop offset="0.7" stopColor={glowColor} stopOpacity="0" />
       </RadialGradient></Defs>
       <Rect width="100%" height="100%" fill="url(#communitySceneLight)" />
     </Svg>
@@ -71,18 +76,38 @@ function AuthorCoin({ pack, lang, size = 22, authorOverride }: Readonly<{ pack: 
   return <Image source={coinRankRowForDisplay(author.coinRank ?? 0).source} style={{ width: size, height: size }} contentFit="contain" accessibilityElementsHidden />;
 }
 
-export function CommunitySceneTile({ pack, lang, likes, onOpen, onLongPress, authorOverride, heart }: Readonly<{
+export function CommunitySceneTile({ pack, lang, likes, onOpen, onLongPress, authorOverride, heart, referencePlace }: Readonly<{
   pack: FlashcardMarketPack; lang: Lang; likes: number; onOpen: () => void; onLongPress?: () => void; authorOverride?: CommunitySceneAuthor; heart?: React.ReactNode;
+  /** Visual fixtures only; ignored without an explicit fixture author. */
+  referencePlace?: number;
 }>): React.JSX.Element {
   const { liquidGlassThemeId, liquidGlassAppearance } = useTheme();
   const g = liquidGlassTokens(liquidGlassThemeId);
   const c = homeSceneTokensForTheme(liquidGlassThemeId, liquidGlassAppearance);
   const resolvedAuthor = useCommunityAuthor(authorOverride ? null : pack, lang);
   const author = authorOverride ?? resolvedAuthor;
+  const [month, setMonth] = useState(() => contestMonth(Date.now()));
+  useSyncExternalStore(packSocialLive.subscribe, packSocialLive.getVersion, packSocialLive.getVersion);
+  useEffect(() => {
+    const refresh = () => setMonth(previous => {
+      const next = contestMonth(Date.now());
+      return previous.id === next.id ? previous : next;
+    });
+    // Refresh on resume and across a month boundary without network requests.
+    const timer = setInterval(refresh, 60000);
+    const subscription = AppState.addEventListener('change', state => { if (state === 'active') refresh(); });
+    return () => { clearInterval(timer); subscription.remove(); };
+  }, []);
+  const monthlyPlace = month.id >= COMMUNITY_CONTEST_FIRST_MONTH && !authorOverride
+    ? rankContestEntries(packSocialLive.contestEntries(month.id), month).findIndex(entry => entry.id === pack.id) + 1
+    : 0;
+  const place = authorOverride && typeof referencePlace === 'number' && Number.isSafeInteger(referencePlace) && referencePlace > 0
+    ? referencePlace : monthlyPlace;
   return <KitTouchable testID={`community-scene-tile-${pack.id}`} accessibilityRole="button" accessibilityLabel={packTitleForInterface(pack, lang)} onPress={onOpen} onLongPress={onLongPress} style={s.tile}>
     <LinearGradient colors={[c.sceneTop, c.sceneBottom]} style={StyleSheet.absoluteFill} />
     <LinearGradient colors={[g.accentGlow, 'transparent']} start={{ x: 1, y: 0 }} end={{ x: .3, y: .8 }} style={StyleSheet.absoluteFill} />
     <View style={s.tileCount}><Ionicons name="copy-outline" size={13} color={WHITE} /><Text style={s.count}>{pack.cardCount}</Text></View>
+    {place > 0 ? <View testID={`community-month-place-${pack.id}`} accessible accessibilityLabel={triLang(lang, { ru: `${place} место в конкурсе месяца`, uk: `${place} місце в конкурсі місяця`, es: `Puesto ${place} en el concurso del mes`, en: `Place ${place} in the monthly contest` })} style={s.tileRank}><Text style={s.tileRankText}>{place}</Text></View> : null}
     <Text style={s.tileTitle}>{packTitleForInterface(pack, lang)}</Text>
     <View style={s.author}><AuthorCoin pack={pack} lang={lang} authorOverride={authorOverride} /><Text style={s.authorName}>{author.name}</Text>{heart ?? <><Ionicons name="heart-outline" size={14} color={WHITE} /><Text style={s.count}>{likes}</Text></>}</View>
   </KitTouchable>;
@@ -173,6 +198,8 @@ export function CommunityContestStage({ packs, lang, onOpen, authorId, topInset 
 }
 
 const s = StyleSheet.create({
+  tileRank: { position: 'absolute', top: 12, right: 12, minWidth: 26, height: 26, paddingHorizontal: 5, borderRadius: 13, backgroundColor: WHITE, alignItems: 'center', justifyContent: 'center' },
+  tileRankText: { color: '#121318', fontSize: 13, fontWeight: '800' },
   stage: { height: 580, position: 'relative', overflow: 'hidden', borderBottomLeftRadius: 34, borderBottomRightRadius: 34 },
   fan: { position: 'absolute', right: -18, top: 92, width: 224, height: 224 },
   stageCopy: { paddingHorizontal: 20, paddingTop: 28, maxWidth: 250 }, kicker: { color: WHITE, opacity: .8, fontSize: 14, fontWeight: '600' }, stageTitle: { fontSize: 34, lineHeight: 40, fontWeight: '800', color: WHITE, marginTop: 6 },

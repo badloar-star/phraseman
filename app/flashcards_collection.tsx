@@ -43,7 +43,7 @@ import { pluralWithCount } from '../constants/plural';
 import { packCardRemovalRefusalText } from './community_packs/packCardRemovalCopy';
 import { isLightThemeMode } from '../constants/theme';
 import { actionToastTri, emitAppEvent } from './events';
-import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { dismissToTabRoute, markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { CATEGORIES, STR } from './flashcards/constants';
 import { SYSTEM_CARDS } from './flashcards/system-cards';
 import { flashcardsSystemCardsForTarget } from './flashcards_target_gate';
@@ -1540,7 +1540,7 @@ export default function FlashcardsScreen() {
         у системы уже после первого кадра — пока экран входит в стек и ещё не приклеен к окну, inset сверху = 0 и панель стоит под часами. Отступы берём
         из useStableSafeAreaInsets (родной или запасной по высоте строки состояния — не меньше), как требует Performance Bible. Равнозначно SafeAreaView
         по всем четырём краям. Журнал положения панели — [CARDS-SET-HEADER] (PackHeaderV2). */}
-    <View style={[st.safe, { backgroundColor: 'transparent', paddingTop: insets.top, paddingBottom: insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }]}>
+    <View style={[st.safe, { backgroundColor: 'transparent', paddingTop: communitySceneSurface ? 0 : insets.top, paddingBottom: communitySceneSurface ? 0 : insets.bottom, paddingLeft: insets.left, paddingRight: insets.right }]}>
       <StatusBar barStyle={(communitySceneSurface || (previewMode && !currentMarketPack?.videoId) || statusBarLight) ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
         {deeplinkCardsState === 'failed' ? (
           <PackOpenFailedView lang={lang} onRetry={retryDeeplinkCards} onBack={leaveCollection} />
@@ -1570,6 +1570,7 @@ export default function FlashcardsScreen() {
           <CommunityPackPreviewSkeleton lang={lang} onBack={handleCollectionBack} />
         ) : (previewMode || communitySceneSurface) && currentMarketPack ? (
           <CommunityPackPreview
+            onSelectRoute={communitySceneSurface ? route => dismissToTabRoute(router, route) : undefined}
             owned={packOwnedByMe}
             onTrain={packOwnedByMe && listCards.length > 0 ? onTrainThisPack : undefined}
             pack={currentMarketPack}

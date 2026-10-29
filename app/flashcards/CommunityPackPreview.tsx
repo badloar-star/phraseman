@@ -58,6 +58,7 @@ type Props = {
   cardContentLang: FlashcardContentLang;
   t: Theme;
   onBack: () => void;
+  onSelectRoute?: (route: string) => void;
   /** «⋮» — жалоба и «Не показывать мне» (ReportPackModal экрана набора). */
   onMore: () => void;
   onAdded: () => void;
@@ -74,7 +75,7 @@ const SIDE = 20;
 const SKELETON_ROW_H = 118; // `.zg.s0 { grid-auto-rows: 118px }` — тот же размер, что у готовой плитки, без прыжка
 
 export default function CommunityPackPreview({
-  pack, cards, lang, cardContentLang, t, onMore, onAdded, onRequestPurchase, onOpenComments, onSpeak, cardsLoading = false, owned = false, onTrain,
+  pack, cards, lang, cardContentLang, t, onMore, onAdded, onRequestPurchase, onOpenComments, onSpeak, cardsLoading = false, owned = false, onTrain, onSelectRoute,
 }: Props) {
   // зачем (координатор 05.10, FONTSCALE2): межстрочный растёт с системным шрифтом; при 1.0 тот же объект стилей
   const styles = useScaledTextStyles(baseStyles);
@@ -191,7 +192,7 @@ export default function CommunityPackPreview({
     onSpeak(card.en, { language: inferExpoSpeechLanguage(card.en, card.packLanguage), cardAudio: true });
   }, [byId, onSpeak]);
 
-  if (!pack.videoId) return <CommunityPackScene title={title} subtitle={[pack.packLanguage?.toUpperCase(), level].filter(Boolean).join(' · ')} author={author.name} coinRank={author.coinRank ?? 0} count={count} lang={lang} cards={items} loading={cardsLoading} onSpeak={speakCard} onMore={onMore} onComments={onOpenComments} onTrain={owned ? onTrain : undefined} actions={<><CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="sceneAdd" onAdded={onAdded} onRequestPurchase={onRequestPurchase} /><CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="sceneHeart" /></>} />;
+  if (!pack.videoId) return <CommunityPackScene onSelectRoute={onSelectRoute} title={title} subtitle={[pack.packLanguage?.toUpperCase(), level].filter(Boolean).join(' · ')} author={author.name} coinRank={author.coinRank ?? 0} count={count} lang={lang} cards={items} loading={cardsLoading} onSpeak={speakCard} onMore={onMore} onComments={onOpenComments} onTrain={owned ? onTrain : undefined} actions={<><CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="sceneAdd" onAdded={onAdded} onRequestPurchase={onRequestPurchase} /><CommunityPackSocialBar pack={pack} lang={lang} t={t} owned={owned} variant="sceneHeart" /></>} />;
   return (
     <View testID="pack-preview" style={styles.root}>
         {/* зачем (ЗАМОК ВЛАДЕЛЬЦА 22.10 «кнопка в своём месте, не пересекается с другими элементами»): верхний ряд до прокрутки — контент под круг не заезжает */}
@@ -295,3 +296,4 @@ const baseStyles = StyleSheet.create({
   gridWrap: { marginTop: 0 },
   skeletons: { gap: 10 },
 });
+

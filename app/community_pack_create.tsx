@@ -75,8 +75,10 @@ import {
 import { getCanonicalUserId } from './user_id_policy';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { CommunityPackCheckScene } from '../components/packs/CommunityPackCheckScene';
+import { leaveAfterCommunityDraftSave } from './community_packs/communityDraftNavigation';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
-import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
+import { dismissToTabRoute, markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { useFeatureAccess, usePremium } from '../components/PremiumContext';
 import { trackEvent } from './analytics';
 import { creatorPaywallContext, shouldGateCreator } from './creator_access';
@@ -347,6 +349,8 @@ export default function CommunityPackCreateScreen() {
   const titleInputRef = useRef<TextInput>(null);
   const descriptionInputRef = useRef<TextInput>(null);
   const draftEnInputRef = useRef<TextInput>(null);
+  const draftLeaveLock = useRef(false);
+  const latestDraftLeaveSnapshot = useRef('');
   const draftRuInputRef = useRef<TextInput>(null);
   const draftEsInputRef = useRef<TextInput>(null);
   const draftPlannedInputRef = useRef<TextInput>(null);
@@ -1058,10 +1062,32 @@ export default function CommunityPackCreateScreen() {
   // «Сохранить». Логика черновика/публикации/лимитов выше не менялась.
   const backLabel = L('Назад', 'Назад', 'Back', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz');
   const menuLabel = L('Меню', 'Меню', 'Menu', 'Menú', 'Menu', 'Menu', 'Menu', 'Menü', 'Menu');
-  const goBack = () => {
-    Keyboard.dismiss();
-    safeRouterBack(router, '/flashcards' as any);
+  const draftLeaveSnapshot = {
+    title, description, themeIdx, packLanguage, publishToCommunity,
+    ...(level ? { level } : {}), rows, addCardFormOpen,
+    draftEn, draftRu, draftEs, draftPlannedTranslation, draftNote,
   };
+  latestDraftLeaveSnapshot.current = JSON.stringify(draftLeaveSnapshot);
+  const leaveDraftTo = (leave: () => void) => {
+    Keyboard.dismiss();
+    if (isEditMode || !canUse || !draftHydrated) { leave(); return; }
+    const generation = captureAccountGeneration();
+    const savedSnapshot = latestDraftLeaveSnapshot.current;
+    void leaveAfterCommunityDraftSave({
+      lock: draftLeaveLock,
+      save: () => saveCommunityPackCreateDraft(draftLeaveSnapshot, studyTarget, lang, { throwOnError: true }),
+      leave,
+      // A user can continue editing while storage is pending. Keep those newer edits on screen.
+      isCurrent: () => isCurrentAccountGeneration(generation) && latestDraftLeaveSnapshot.current === savedSnapshot,
+      error: () => emitAppEvent('action_toast', actionToastTri('error', {
+        ru: 'Не удалось сохранить черновик. Попробуй выйти ещё раз.',
+        uk: 'Не вдалося зберегти чернетку. Спробуй вийти ще раз.',
+        en: 'Could not save your draft. Try leaving again.',
+        es: 'No se pudo guardar el borrador. Intenta salir de nuevo.',
+      })),
+    });
+  };
+  const goBack = () => leaveDraftTo(() => safeRouterBack(router, '/flashcards' as any));
   // зачем (Макеты cards-074, решение координатора 13.10): шапка вторичных экранов (недоступно для правки, недоступно в сборке, скелетон перед пейволом) — как у основной формы
   // и в утверждённом cards-v2 edHead: × слева, заголовок слева, без ← и центровки; один общий EditorHeader вместо двух разных шапок
   const renderHeader = (title: string, right?: React.ReactNode) => (
@@ -1171,7 +1197,7 @@ export default function CommunityPackCreateScreen() {
   };
   const fieldInput = { color: kg.text, fontSize: 16, lineHeight: 24, paddingHorizontal: 0, paddingVertical: 0 } as const;
 
-  if (contestReview) return <SafeAreaView style={{ flex: 1 }} edges={['left', 'right']}><CommunityPackCheckScene lang={lang} cards={rows.map(row => ({ id: row.id, front: row.en, back: cardBackText(row), issue: !row.en.trim() ? triLang(lang, { ru: 'Добавь слово или фразу', uk: 'Додай слово або фразу', es: 'Añade una palabra o frase', en: 'Add a word or phrase' }) : undefined }))} busy={busy} error={contestReviewError} bottomInset={insets.bottom + 16} onBack={() => setContestReview(false)} onEdit={index => { setContestReview(false); editRow(index); }} onPublish={onSubmit} /></SafeAreaView>;
+  if (contestReview) return <SafeAreaView style={{ flex: 1 }} edges={['left', 'right']}><CommunityPackCheckScene lang={lang} cards={rows.map(row => ({ id: row.id, front: row.en, back: cardBackText(row), issue: !row.en.trim() ? triLang(lang, { ru: 'Добавь слово или фразу', uk: 'Додай слово або фразу', es: 'Añade una palabra o frase', en: 'Add a word or phrase' }) : undefined }))} busy={busy} error={contestReviewError} bottomInset={insets.bottom + 16} onSelectRoute={route => { if (!busy) leaveDraftTo(() => dismissToTabRoute(router, route)); }} onBack={() => setContestReview(false)} onEdit={index => { setContestReview(false); editRow(index); }} onPublish={onSubmit} /></SafeAreaView>;
 
   return (
     <CardsGlassScreen g={g}>
@@ -1572,3 +1598,4 @@ const baseStyles = StyleSheet.create({
     minHeight: 64,
   },
 });
+

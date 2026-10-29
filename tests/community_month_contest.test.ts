@@ -24,8 +24,9 @@ describe('community month contest', () => {
   });
   it('awards the owner-approved currency and amounts', () => {
     expect(contestPrize(1)).toEqual({ kind: 'plus', months: 3 });
-    expect(contestPrize(2)).toEqual({ kind: 'coins', amount: 2000 });
-    expect(contestPrize(3)).toEqual({ kind: 'coins', amount: 1000 });
+    // перепин 29.10 (владелец ~07:55, коммит f1395a92a): места 1/2/3 = Plus на 3/2/1 месяца автоматически, монет за места больше нет
+    expect(contestPrize(2)).toEqual({ kind: 'plus', months: 2 });
+    expect(contestPrize(3)).toEqual({ kind: 'plus', months: 1 });
     expect(contestPrize(4)).toBeNull();
   });
 });

@@ -243,6 +243,8 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'safety_flags', field: 'uid', values: 'stable' },
   { collection: 'safety_flags', field: 'authUid', values: 'auth' },
   { collection: 'review_promo_claims', field: 'uid', values: 'stable' },
+  { collection: 'spire_floor_record_attempts', field: 'uid', values: 'stable' },
+  { collection: 'spire_floor_record_results', field: 'uid', values: 'stable' },
   { collection: 'vip_survey_responses', field: 'uid', values: 'stable' },
   { collection: 'shard_survey_responses', field: 'uid', values: 'stable' },
   { collection: 'subscription_cancel_surveys', field: 'uid', values: 'stable' },
@@ -322,6 +324,7 @@ const DIRECT_DOCUMENT_SPECS: AccountDeleteDirectDocumentSpec[] = [
   { collection: 'users', values: 'both' },
   { collection: 'public_profiles', values: 'both' },
   { collection: 'leaderboard', values: 'both' },
+  { collection: 'premium_theme_video_watch', values: 'stable' },
   { collection: 'arena_profiles', values: 'both' },
   { collection: 'arena_question_history', values: 'both' },
   { collection: 'matchmaking_queue', values: 'both' },
@@ -1587,6 +1590,21 @@ export async function removeFromSpireGroups(
     stats.queriesRun += 1;
     const snap = await db.collection('spire_groups').where(memberPath, '!=', null).limit(DELETE_BATCH_LIMIT).get();
     if (snap.empty) break;
+    // Erase private best times and public ownership before removing membership.
+    // A failed scrub leaves membership discoverable for the deletion retry.
+    for (const group of snap.docs) {
+      const recordRef = db.collection('spire_floor_records').doc(group.id);
+      await db.runTransaction(async (tx) => {
+        const recordSnap = await tx.get(recordRef);
+        if (!recordSnap.exists) return;
+        const data = recordSnap.data() ?? {};
+        const records = { ...(data.records ?? {}) };
+        const personal = { ...(data.personal ?? {}) };
+        delete personal[stableUid];
+        for (const floor of Object.keys(records)) if (records[floor]?.uid === stableUid) delete records[floor];
+        tx.update(recordRef, { records, personal });
+      });
+    }
     const batch = db.batch();
     for (const doc of snap.docs) {
       batch.update(doc.ref, {

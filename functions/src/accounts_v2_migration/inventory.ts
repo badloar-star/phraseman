@@ -190,7 +190,7 @@ const PROGRESS_RULES: readonly InventoryRule[] = [
   // derive — права Plus
   rule('p.plus_progress', 'progress', {
     exact: ['had_premium_ever', 'intro_access_until_ms', 'intro_access_granted_at_ms', 'loyalty_gift_until_ms', 'loyalty_gift_granted_at_ms',
-      'intro_full_access_started_at_v1', 'intro_full_access_ends_at_v1'],
+      'intro_full_access_started_at_v1', 'intro_full_access_ends_at_v1', 'premium_theme_entitlements_v1'],
   }, 'derive', 'plus_entitlement_reference', [], PLUS_PROGRESS_NOTE),
   rule('p.plus', 'progress', {
     exact: ['premium_plan', 'premium_expiry', 'admin_premium_override', 'premium_admin_grant_at',

@@ -48,6 +48,12 @@ describe('account deletion plan covers the PM-252 gaps by both identities', () =
     }
   });
 
+  test('premium theme video watch counter is deleted by stable document id', () => {
+    const direct = accountDeleteDirectDocumentPlan(STABLE, AUTH);
+    expect(direct).toContainEqual({ collection: 'premium_theme_video_watch', id: STABLE });
+    expect(direct).not.toContainEqual({ collection: 'premium_theme_video_watch', id: AUTH });
+  });
+
   // зачем (координатор 15.10, 3705b3984): метка «посчитан» статистики экрана уровня онбординга адресована stableId — стирается с аккаунтом.
   test('the onboarding level «counted» marker is deleted by the stable id', () => {
     const direct = accountDeleteDirectDocumentPlan(STABLE, AUTH);
@@ -106,6 +112,11 @@ function makeDb(seed: Record<string, Record<string, Data>>) {
         commit: async () => { ops.forEach((op) => op()); },
       };
     },
+    // зачем (сироты Codex 29.10): removeFromSpireGroups стирает рекорды этажей Пика в транзакции — заглушке нужен runTransaction
+    runTransaction: async <T>(fn: (tx: unknown) => Promise<T>): Promise<T> => fn({
+      get: (r: { get: () => Promise<unknown> }) => r.get(),
+      update: (r: { c: string; id: string }, patch: Data) => applyUpdate(col(r.c).get(r.id)!, patch),
+    }),
   };
   return { db: db as unknown as admin.firestore.Firestore, store };
 }
@@ -139,6 +150,23 @@ test('spire groups drop the member (name included) and decrement the live count'
   expect(store.spire_groups.get('g1')!.liveMemberCount).toBe(1);
   expect(store.spire_groups.get('g2')!.liveMemberCount).toBe(1);
   expect(JSON.stringify([...store.spire_groups.values()])).not.toContain('Аня');
+});
+
+test('spire floor records of the deleted member are scrubbed; other members keep theirs', async () => {
+  const { db, store } = makeDb({
+    spire_groups: { g1: { liveMemberCount: 2, members: { [STABLE]: { name: 'Аня' }, other: { name: 'Bob' } } } },
+    spire_floor_records: {
+      g1: {
+        records: { 1: { uid: STABLE, ms: 900 }, 2: { uid: 'other', ms: 1200 } },
+        personal: { [STABLE]: { 1: 900 }, other: { 2: 1200 } },
+      },
+    },
+  });
+  await removeFromSpireGroups(db, STABLE, stats());
+  const record = store.spire_floor_records.get('g1')!;
+  expect(record.records).toEqual({ 2: { uid: 'other', ms: 1200 } });
+  expect(record.personal).toEqual({ other: { 2: 1200 } });
+  expect(JSON.stringify(record)).not.toContain(STABLE);
 });
 
 test('a ban keeps only an identity hash — no uid, name or reason text', async () => {

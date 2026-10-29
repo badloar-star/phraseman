@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви згадуєте заняття, які повторювалися на відпочинку й у школі.
 
-**Що ви опануєте:** past context + would + action verb
+**Що ви опануєте:** розповісти, як ви зазвичай робили раніше: Every summer we would swim
 **Нові слова:** wildlife, scenery, atmosphere, environment
 
 ## Інтро 1

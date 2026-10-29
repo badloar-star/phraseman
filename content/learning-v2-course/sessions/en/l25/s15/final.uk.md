@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви згадуєте, як їли та пили в дитинстві.
 
-**Що ви опануєте:** past context + would + action verb
+**Що ви опануєте:** розповісти, як ви зазвичай робили раніше: Every summer we would swim
 **Нові слова:** gulp, nibble, munch, slurp
 
 ## Інтро 1

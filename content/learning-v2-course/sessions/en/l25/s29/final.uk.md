@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про поведінку й почуття після події.
 
-**Що ви опануєте:** before|after + past clause
+**Що ви опануєте:** сказати, що було до чи після: after we ate, before it rained
 **Нові слова:** sincere, impolite, humble, coward
 
 ## Інтро 1

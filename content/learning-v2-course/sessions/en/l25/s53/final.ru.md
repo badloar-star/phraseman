@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы вспоминаете повторявшиеся семейные прогулки и поездки в детстве.
 
-**Что вы освоите:** past context + would + action verb
+**Что вы освоите:** рассказать, как вы обычно поступали раньше: Every summer we would swim
 **Новые слова:** towards, alongside, beneath, throughout
 
 ## Интро 1

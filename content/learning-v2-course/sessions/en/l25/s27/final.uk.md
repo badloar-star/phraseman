@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте, що виявили на кухні.
 
-**Що ви опануєте:** before|after + past clause
+**Що ви опануєте:** сказати, що було до чи після: after we ate, before it rained
 **Нові слова:** rotten, mouldy, spoil, stink
 
 ## Інтро 1

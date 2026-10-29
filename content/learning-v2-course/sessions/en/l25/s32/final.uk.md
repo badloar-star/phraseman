@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви називаєте близьких і розповідаєте про сімейний вечір.
 
-**Що ви опануєте:** before|after + past clause
+**Що ви опануєте:** сказати, що було до чи після: after we ate, before it rained
 **Нові слова:** fiancé, fiancée, stepson, stepdaughter
 
 ## Інтро 1

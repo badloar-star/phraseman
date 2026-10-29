@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви згадуєте колишні почуття й риси характеру.
 
-**Що ви опануєте:** used to + base verb for past states
+**Що ви опануєте:** розповісти, як було раніше: I used to live here
 **Нові слова:** fearless, helpless, outgoing, carefree
 
 ## Інтро 1

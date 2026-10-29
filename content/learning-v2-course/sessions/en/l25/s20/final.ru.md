@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете о последовательности приготовления еды.
 
-**Что вы освоите:** had + past participle before later past event
+**Что вы освоите:** рассказать, что случилось раньше другого события в прошлом: The film had started when we came
 **Новые слова:** blend, dissolve, thicken, shred
 
 ## Интро 1

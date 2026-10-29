@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про зустріч і спільні плани.
 
-**Що ви опануєте:** before|after + past clause
+**Що ви опануєте:** сказати, що було до чи після: after we ate, before it rained
 **Нові слова:** greeting, handshake, outing, gathering
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви згадуєте ігри та поробки своїх шкільних років.
 
-**Що ви опануєте:** past context + would + action verb
+**Що ви опануєте:** розповісти, як ви зазвичай робили раніше: Every summer we would swim
 **Нові слова:** dolls, puppets, scooters, rockets
 
 ## Інтро 1

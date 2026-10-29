@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про вечір біля вогню й подальше прибирання.
 
-**Що ви опануєте:** before|after + past clause; another + singular noun
+**Що ви опануєте:** сказати, що було до чи після, і попросити ще один: after we ate, another cup
 **Нові слова:** flame, ash, log, fireplace
 
 ## Інтро 1

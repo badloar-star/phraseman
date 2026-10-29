@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы вспоминаете повторявшиеся занятия на отдыхе и в школе.
 
-**Что вы освоите:** past context + would + action verb
+**Что вы освоите:** рассказать, как вы обычно поступали раньше: Every summer we would swim
 **Новые слова:** wildlife, scenery, atmosphere, environment
 
 ## Интро 1

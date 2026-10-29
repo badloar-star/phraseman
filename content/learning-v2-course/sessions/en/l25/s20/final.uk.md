@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про послідовність приготування їжі.
 
-**Що ви опануєте:** had + past participle before later past event
+**Що ви опануєте:** розповісти, що сталося раніше за іншу подію в минулому: The film had started when we came
 **Нові слова:** blend, dissolve, thicken, shred
 
 ## Інтро 1

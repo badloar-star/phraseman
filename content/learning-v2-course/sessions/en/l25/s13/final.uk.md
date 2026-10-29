@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про звички вдома та ігри в школі.
 
-**Що ви опануєте:** past context + would + action verb
+**Що ви опануєте:** розповісти, як ви зазвичай робили раніше: Every summer we would swim
 **Нові слова:** grab, tiptoe, chuckle, imitate
 
 ## Інтро 1

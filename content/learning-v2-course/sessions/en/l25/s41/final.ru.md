@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы вспоминаете прежние чувства и черты характера.
 
-**Что вы освоите:** used to + base verb for past states
+**Что вы освоите:** рассказать, как было раньше: I used to live here
 **Новые слова:** fearless, helpless, outgoing, carefree
 
 ## Интро 1

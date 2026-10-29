@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте, що відбувалося з тваринами перед вашою появою.
 
-**Що ви опануєте:** had + past participle before later past event
+**Що ви опануєте:** розповісти, що сталося раніше за іншу подію в минулому: The film had started when we came
 **Нові слова:** land, flee, hunt, release
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви описуєте послідовність подій на дорозі.
 
-**Що ви опануєте:** before|after + past clause
+**Що ви опануєте:** сказати, що було до чи після: after we ate, before it rained
 **Нові слова:** reverse, overtake, skid, collide
 
 ## Інтро 1

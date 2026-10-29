@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про реакцію людини й наступну подію.
 
-**Що ви опануєте:** had + past participle before later past event
+**Що ви опануєте:** розповісти, що сталося раніше за іншу подію в минулому: The film had started when we came
 **Нові слова:** confuse, embarrass, scare, satisfy
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы восстанавливаете порядок событий перед встречей и переездом.
 
-**Что вы освоите:** had + past participle before later past event
+**Что вы освоите:** рассказать, что случилось раньше другого события в прошлом: The film had started when we came
 **Новые слова:** rewrite, retell, revisit, reunite
 
 ## Интро 1

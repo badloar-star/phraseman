@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте, що люди сказали або зробили перед наступною подією.
 
-**Що ви опануєте:** had + past participle before later past event
+**Що ви опануєте:** розповісти, що сталося раніше за іншу подію в минулому: The film had started when we came
 **Нові слова:** accuse, forbid, beg, applaud
 
 ## Інтро 1

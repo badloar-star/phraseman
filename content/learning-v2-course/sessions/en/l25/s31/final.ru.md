@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете о вечере у огня и последующей уборке.
 
-**Что вы освоите:** before|after + past clause; another + singular noun
+**Что вы освоите:** сказать, что было до или после, и попросить ещё один: after we ate, another cup
 **Новые слова:** flame, ash, log, fireplace
 
 ## Интро 1

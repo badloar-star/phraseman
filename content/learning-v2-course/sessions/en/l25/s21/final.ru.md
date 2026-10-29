@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете об изменениях внешности и одежды до другого события.
 
-**Что вы освоите:** had + past participle before later past event
+**Что вы освоите:** рассказать, что случилось раньше другого события в прошлом: The film had started when we came
 **Новые слова:** curl, wrinkle, shorten, lengthen
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви згадуєте повторювані родинні прогулянки й поїздки в дитинстві.
 
-**Що ви опануєте:** past context + would + action verb
+**Що ви опануєте:** розповісти, як ви зазвичай робили раніше: Every summer we would swim
 **Нові слова:** towards, alongside, beneath, throughout
 
 ## Інтро 1

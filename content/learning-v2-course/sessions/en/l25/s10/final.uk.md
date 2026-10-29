@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви згадуєте шкільні змагання й тренування.
 
-**Що ви опануєте:** past context + would + action verb
+**Що ви опануєте:** розповісти, як ви зазвичай робили раніше: Every summer we would swim
 **Нові слова:** winner, loser, athlete, league
 
 ## Інтро 1

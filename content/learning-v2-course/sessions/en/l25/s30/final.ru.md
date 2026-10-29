@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете о встрече и совместных планах.
 
-**Что вы освоите:** before|after + past clause
+**Что вы освоите:** сказать, что было до или после: after we ate, before it rained
 **Новые слова:** greeting, handshake, outing, gathering
 
 ## Интро 1

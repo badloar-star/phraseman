@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете, что обнаружили на кухне.
 
-**Что вы освоите:** before|after + past clause
+**Что вы освоите:** сказать, что было до или после: after we ate, before it rained
 **Новые слова:** rotten, mouldy, spoil, stink
 
 ## Интро 1

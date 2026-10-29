@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы описываете последовательность событий на дороге.
 
-**Что вы освоите:** before|after + past clause
+**Что вы освоите:** сказать, что было до или после: after we ate, before it rained
 **Новые слова:** reverse, overtake, skid, collide
 
 ## Интро 1

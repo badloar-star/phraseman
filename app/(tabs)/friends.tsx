@@ -122,6 +122,11 @@ import { buildCloudReferralInviteShare } from '../referral_invite_share';
 import { generateReferralCode, getReferralCode } from '../referral_system';
 import { isReferralCloudEnabled } from '../referral_flags';
 import { useReferralRoulettePolicy } from '../referral_roulette_flag';
+import { useReferralLadderEnabled } from '../referral_ladder_flag'; // зачем (владелец 29.10): «Лесенка приглашений» на месте пустого списка друзей, за флагом referral_ladder_enabled
+import { deriveReferralLadder } from '../referral_ladder_model';
+import ReferralLadder from '../../components/referral_ladder';
+import ReferralLadderHowSheet from '../../components/referral_ladder_how_sheet';
+import { useReferralCodeCopy } from '../../hooks/use_referral_code_copy';
 import { selectAccountScopedReferralState, selectReferralSurfaceState } from '../referral_surface_state';
 import {
   shouldShowReferralAccessEnded,
@@ -1216,6 +1221,16 @@ export default function FriendsTabScreen() {
     persistedDrain: scopedReferralState.drain,
   });
   const referralMarketingVisible = referralSurface.marketingVisible;
+  // зачем (владелец 29.10, утверждённый макет «Лесенка приглашений», ответ координатора В): флаг включён и программа не сворачивается → в пустом списке стоит лесенка
+  // (данные — из уже загруженного снимка приглашений, новых чтений нет); код копируется с мгновенной галочкой; «Как это работает» — лист лесенки.
+  const friendsLadderEnabled = useReferralLadderEnabled();
+  const friendsLadderShown = friendsLadderEnabled && referralMarketingVisible;
+  const friendsLadderView = useMemo(
+    () => deriveReferralLadder(scopedReferralState.drain?.ladder, scopedReferralState.invites),
+    [scopedReferralState.drain?.ladder, scopedReferralState.invites],
+  );
+  const [friendsLadderHowOpen, setFriendsLadderHowOpen] = useState(false);
+  const ladderCodeCopy = useReferralCodeCopy(referralCode, referralAccountKey);
   const referralRefreshInFlightRef = useRef<Promise<void> | null>(null);
   const referralLastRefreshAtRef = useRef(0);
   const friendsRuntimeActiveRef = useRef(friendsRuntimeActive);
@@ -2784,6 +2799,17 @@ export default function FriendsTabScreen() {
     <FriendsEmptyState
       onAdd={() => { hapticTap(); setAddModalOpen(true); }}
       error={friendsListError}
+      ladder={friendsLadderShown ? (
+        <ReferralLadder
+          view={friendsLadderView}
+          code={referralCode}
+          codeCopied={ladderCodeCopy.copied}
+          shareBusy={false}
+          onCopy={ladderCodeCopy.copy}
+          onShare={() => { void handleReferralInvite(); }}
+          onHow={() => setFriendsLadderHowOpen(true)}
+        />
+      ) : null}
     />
   );
 
@@ -2851,6 +2877,10 @@ export default function FriendsTabScreen() {
         />
       </BouncyWrap>
 
+
+      {friendsLadderShown ? (
+        <ReferralLadderHowSheet visible={friendsLadderHowOpen} onClose={() => setFriendsLadderHowOpen(false)} view={friendsLadderView} />
+      ) : null}
 
       <AddFriendModal
         visible={addModalOpen}

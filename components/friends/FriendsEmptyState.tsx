@@ -17,9 +17,12 @@ import { FriendsGlassButton, useFriendsGlass } from './FriendsGlassKit';
 export default function FriendsEmptyState({
   onAdd,
   error = false,
+  ladder = null,
 }: {
   onAdd: () => void;
   error?: boolean;
+  /** «Лесенка приглашений» (владелец 29.10): если передана — стоит на месте значка, заголовка и подсказки; «Добавить друга» остаётся под ней. */
+  ladder?: React.ReactNode;
 }) {
   const { lang } = useLang();
   const { glass, textScale } = useFriendsGlass();
@@ -50,6 +53,25 @@ export default function FriendsEmptyState({
     pl: 'Znajdź znajomego po imieniu albo udostępnij swój kod.',
   });
   const add = triLang(lang, { ru: 'Добавить друга', uk: 'Додати друга', en: 'Add friend', es: 'Agregar amigo', 'pt-BR': 'Adicionar amigo', vi: 'Thêm bạn', id: 'Tambah teman', tr: 'Arkadaş ekle', pl: 'Dodaj znajomego' });
+  if (ladder) {
+    return (
+      <View testID="friends-list-empty" style={{ paddingTop: 12, paddingBottom: 8, paddingHorizontal: 24 }}>
+        {ladder}
+        <FriendsGlassButton
+          glass={glass}
+          textScale={textScale}
+          compact
+          hug
+          variant="ghost"
+          label={add}
+          onPress={onAdd}
+          testID="friends-empty-add"
+          accessibilityLabel={add}
+          style={{ marginTop: 14, alignSelf: 'center' }}
+        />
+      </View>
+    );
+  }
   // зачем (координатор 18.10, паритет с макетом community.html friendsEmpty: padding-top error ? 68 : 190)
   return (
     <View testID="friends-list-empty" style={{ alignItems: 'center', paddingTop: error ? 68 : 190, paddingBottom: 8, paddingHorizontal: 24 }}>

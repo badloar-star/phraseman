@@ -2,7 +2,7 @@
 
 **Ситуація.** Описати сонливість і дії під час відпочинку.
 
-**Що ви опануєте:** am yawning / is not sleeping / is carrying; yawn уже знайоме
+**Що ви опануєте:** сказати, що ви втомилися й позіхаєте: I am yawning.
 **Нові слова:** drowsy, recliner, slipper, sleeve
 
 ---

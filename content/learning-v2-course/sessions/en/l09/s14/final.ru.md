@@ -2,7 +2,7 @@
 
 **Ситуация.** Описать сонливость и действия во время отдыха.
 
-**Что вы освоите:** am yawning / is not sleeping / is carrying; yawn уже знакомо
+**Что вы освоите:** сказать, что вы устали и зеваете: I am yawning.
 **Новые слова:** drowsy, recliner, slipper, sleeve
 
 ---

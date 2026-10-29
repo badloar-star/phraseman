@@ -239,7 +239,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы уронили тарелку вчера. Выберите Past Simple.",
+      "prompt": "Вы уронили тарелку вчера. Выберите форму для законченного прошлого.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-40:i04:r1",
@@ -256,11 +256,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы уронили тарелку вчера. Выберите Past Simple.",
+      "accessibilityLabel": "Вы уронили тарелку вчера. Выберите форму для законченного прошлого.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы уронили тарелку вчера. Выберите Past Simple.",
+          "ru": "Вы уронили тарелку вчера. Выберите форму для законченного прошлого.",
           "uk": "Ви впустили тарілку вчора. Виберіть Past Simple."
         },
         "gappedTargetPhrase": "I ___ a plate yesterday.",
@@ -294,7 +294,7 @@
             "correct": false,
             "testedDimension": "Вы уронили тарелку вчера. Выберите Past Simple.",
             "feedbackByLocale": {
-              "ru": "Dropping без вспомогательного глагола здесь не подходит.",
+              "ru": "Одной формы Dropping здесь мало.",
               "uk": "Dropping без допоміжного дієслова тут не підходить."
             }
           }
@@ -906,7 +906,7 @@
             "correct": false,
             "testedDimension": "Тарелка разбилась. Вы берёте ещё одну.",
             "feedbackByLocale": {
-              "ru": "Plate в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Plate, поэтому another.",
               "uk": "Plate в однині, тому another."
             }
           },
@@ -1107,5 +1107,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8f1425ebb949de916636c354a9fabe822082b3f44f588309bece72caf59fc468"
+  "learnerFingerprint": "f00f0c3425d4637168b77d419eb8e3aaac74514cb074fc47c6a1c598f59adb25"
 }

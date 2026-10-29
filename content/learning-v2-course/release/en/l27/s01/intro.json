@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-01",
   "learningOutcomeByLocale": {
-    "ru": "if + past simple, would + base verb",
-    "uk": "if + past simple, would + base verb"
+    "ru": "сказать, что вы сделали бы в другой ситуации: I would visit you every weekend.",
+    "uk": "сказати, що ви зробили б в іншій ситуації: I would visit you every weekend."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Якби було більше часу"
       },
       "bodyByLocale": {
-        "ru": "Вы хотите путешествовать, но свободного времени мало. Представьте другое положение: If I had more time, I would travel — если бы у меня было больше времени, я бы путешествовал. Собираем две части: If + I + had + more time — условие; I + would + travel — результат. Had — форма past simple, но здесь она обозначает воображаемое условие сейчас или в будущем. В результате после would ставим travel без to. Между начальным условием и результатом нужна запятая.",
-        "uk": "Ви хочете подорожувати, але вільного часу мало. Уявіть інше становище: If I had more time, I would travel — якби в мене було більше часу, я б подорожував. Складаємо дві частини: If + I + had + more time — умова; I + would + travel — результат. Had — форма past simple, але тут вона позначає уявну умову зараз або в майбутньому. У результаті після would ставимо travel без to. Між початковою умовою та результатом потрібна кома."
+        "ru": "Вы хотите путешествовать, но свободного времени мало. Представьте другое положение: If I had more time, I would travel — если бы у меня было больше времени, я бы путешествовал. Собираем две части: If + I + had + more time — условие; I + would + travel — результат. Had — форма прошлого, но здесь она обозначает воображаемое условие сейчас или в будущем. В результате после would ставим travel без to. Между начальным условием и результатом нужна запятая.",
+        "uk": "Ви хочете подорожувати, але вільного часу мало. Уявіть інше становище: If I had more time, I would travel — якби в мене було більше часу, я б подорожував. Складаємо дві частини: If + I + had + more time — умова; I + would + travel — результат. Had — форма минулого, але тут вона позначає уявну умову зараз або в майбутньому. У результаті після would ставимо travel без to. Між початковою умовою та результатом потрібна кома."
       },
       "question": {
         "interactionId": "en:lesson-27:session-01:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "585661a7511b432fed45f0bacc97607798b5d641d1382623adf492e0afe6153f"
+  "introFingerprint": "7eb428db00a7a33d3b837ebce34741b26933fe1bb054739085dbe3bab57d7936"
 }

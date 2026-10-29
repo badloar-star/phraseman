@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-32",
   "learningOutcomeByLocale": {
-    "ru": "if, when, unless; already, yet; by the time",
-    "uk": "if, when, unless; already, yet; by the time"
+    "ru": "спросить, проверили ли уже список: Have you checked the list yet?",
+    "uk": "запитати, чи вже перевірили список: Have you checked the list yet?"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Заплатили до закриття"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о вчерашней покупке: к закрытию магазина вы уже расплатились. Скажите: I had paid by the time the shop closed — я заплатил к тому времени, как магазин закрылся. Собираем: I + had paid + by the time the shop closed — кто, что сделал раньше, к какому моменту в прошлом. Had paid показывает оплату до закрытия. После had нужна третья форма pay — paid. Подлежащее I обозначает того, кто заплатил.",
-        "uk": "Ви розповідаєте про вчорашню покупку: до закриття магазину ви вже розрахувалися. Скажіть: I had paid by the time the shop closed — я заплатив до того часу, як магазин закрився. Складаємо: I + had paid + by the time the shop closed — хто, що зробив раніше, до якого моменту в минулому. Had paid показує оплату до закриття. Після had потрібна третя форма pay — paid. Підмет I позначає того, хто заплатив."
+        "ru": "Вы рассказываете о вчерашней покупке: к закрытию магазина вы уже расплатились. Скажите: I had paid by the time the shop closed — я заплатил к тому времени, как магазин закрылся. Собираем: I + had paid + by the time the shop closed — кто, что сделал раньше, к какому моменту в прошлом. Had paid показывает оплату до закрытия. После had нужна форма pay — paid. I обозначает того, кто заплатил.",
+        "uk": "Ви розповідаєте про вчорашню покупку: до закриття магазину ви вже розрахувалися. Скажіть: I had paid by the time the shop closed — я заплатив до того часу, як магазин закрився. Складаємо: I + had paid + by the time the shop closed — хто, що зробив раніше, до якого моменту в минулому. Had paid показує оплату до закриття. Після had потрібна форма pay — paid. I позначає того, хто заплатив."
       },
       "question": {
         "interactionId": "en:lesson-26:session-32:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "14d959bd3b91067caf3d34bf5143bae38248f221082a8864623295b7d70ea036"
+  "introFingerprint": "f99b58734541abc57b12ef849112fba073e36a8a39a0b7dc8bb4ca32ef54d5cf"
 }

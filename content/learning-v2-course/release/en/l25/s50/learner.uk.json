@@ -1052,7 +1052,7 @@
             "correct": false,
             "testedDimension": "Друг просить трохи зачекати. Йому потрібна ще хвилина.",
             "feedbackByLocale": {
-              "ru": "Minute в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Minute, поэтому another.",
               "uk": "Minute в однині, тому another."
             }
           },
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3407372fcb1fa8a13cbe01bf8beee7bd9c56d41294f7707d181c81f996793ff4"
+  "learnerFingerprint": "6c55705b3a9174c81df3de3bc7aa2887fb075448126106beb433a2ffb18aa8a8"
 }

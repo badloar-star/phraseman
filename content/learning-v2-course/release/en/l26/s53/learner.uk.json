@@ -360,7 +360,7 @@
             "correct": false,
             "testedDimension": "Опишіть звичний результат: волосся пушиться під дощем.",
             "feedbackByLocale": {
-              "ru": "Hair здесь неисчисляемое: gets.",
+              "ru": "Hair здесь не считается поштучно: gets.",
               "uk": "Hair тут незлічуване: gets."
             }
           },
@@ -1071,5 +1071,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "68750cbda6262b97cc4b3a430c0281f0d79a9907a18cda9e802e4ad6bd098b3c"
+  "learnerFingerprint": "0fc281f847a32918e43a1a4ea12a5cc4916d61a3e4f130ed1c682c83ac9532f2"
 }

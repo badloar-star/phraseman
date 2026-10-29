@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-26:session-13:intro1:q",
       "responseFeedbackById": {
         "en:lesson-26:session-13:intro1:r2": {
-          "ru": "После have нужна третья форма made.",
-          "uk": "Після have потрібна третя форма made."
+          "ru": "После have нужна форма made.",
+          "uk": "Після have потрібна форма made."
         },
         "en:lesson-26:session-13:intro1:r3": {
           "ru": "С I используем have.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "bde999e9b85082d0a9c7de67d61f33203180f81dfa0007cbc9dde23e122de665"
+  "auxiliaryFingerprint": "bfa4c469af59e8edf83f846ee36017688848b144ffa942633157d3b74c36168c"
 }

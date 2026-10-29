@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-34",
   "learningOutcomeByLocale": {
-    "ru": "past perfect + by the time + past simple",
-    "uk": "past perfect + by the time + past simple"
+    "ru": "сказать, что случилось до другого события: I hurt my hand before we left home.",
+    "uk": "сказати, що сталося до іншої події: I hurt my hand before we left home."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Палець набряк до повернення додому"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете, как ударили палец на прогулке: ещё до возвращения домой костяшка уже опухла. Скажите: My knuckle had swollen by the time we got home — костяшка моего пальца опухла к тому времени, как мы добрались домой. Собираем: My knuckle + had swollen + by the time we got home — что, какое изменение произошло раньше, к какому моменту в прошлом. После had нужна третья форма swollen, а не swell. Had swollen подчёркивает уже произошедшее изменение; got home задаёт последующее возвращение.",
-        "uk": "Ви розповідаєте, як ударили палець на прогулянці: ще до повернення додому кісточка вже набрякла. Скажіть: My knuckle had swollen by the time we got home — кісточка мого пальця набрякла до того часу, як ми дісталися додому. Складаємо: My knuckle + had swollen + by the time we got home — що, яка зміна відбулася раніше, до якого моменту в минулому. Після had потрібна третя форма swollen, а не swell. Had swollen підкреслює зміну, що вже відбулася; got home задає пізніше повернення."
+        "ru": "Вы рассказываете, как ударили палец на прогулке: ещё до возвращения домой костяшка уже опухла. Скажите: My knuckle had swollen by the time we got home — костяшка моего пальца опухла к тому времени, как мы добрались домой. Собираем: My knuckle + had swollen + by the time we got home — что, какое изменение произошло раньше, к какому моменту в прошлом. После had нужна форма swollen, а не swell. Had swollen подчёркивает уже произошедшее изменение; got home задаёт последующее возвращение.",
+        "uk": "Ви розповідаєте, як ударили палець на прогулянці: ще до повернення додому кісточка вже набрякла. Скажіть: My knuckle had swollen by the time we got home — кісточка мого пальця набрякла до того часу, як ми дісталися додому. Складаємо: My knuckle + had swollen + by the time we got home — що, яка зміна відбулася раніше, до якого моменту в минулому. Після had потрібна форма swollen, а не swell. Had swollen підкреслює зміну, що вже відбулася; got home задає пізніше повернення."
       },
       "question": {
         "interactionId": "en:lesson-25:session-34:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "812017c50aa3baf38a20357db052d5cc4c49d5e9ad0d9ef9860c1ea00961eec6"
+  "introFingerprint": "c1400f9043c504a2a0afe070e3d47df2ee7f782c984f704b36a2161f9f74d5cc"
 }

@@ -539,7 +539,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Автобус поїхав раніше за ваш прихід. Виберіть третю форму після had.",
+      "prompt": "Автобус поїхав раніше за ваш прихід. Виберіть форму слова після had.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-38:i08:r1",
@@ -556,12 +556,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Автобус поїхав раніше за ваш прихід. Виберіть третю форму після had.",
+      "accessibilityLabel": "Автобус поїхав раніше за ваш прихід. Виберіть форму слова після had.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Автобус ушёл раньше вашего прихода. Выберите третью форму после had.",
-          "uk": "Автобус поїхав раніше за ваш прихід. Виберіть третю форму після had."
+          "uk": "Автобус поїхав раніше за ваш прихід. Виберіть форму слова після had."
         },
         "gappedTargetPhrase": "The bus had ___ by the time I reached the stop.",
         "gapOptions": [
@@ -585,7 +585,7 @@
             "correct": false,
             "testedDimension": "Автобус поїхав раніше за ваш прихід. Виберіть третю форму після had.",
             "feedbackByLocale": {
-              "ru": "Went — Past Simple; после had нужна третья форма gone.",
+              "ru": "Went — форма прошлого; после had нужна форма gone.",
               "uk": "Went — Past Simple; після had потрібна третя форма gone."
             }
           },
@@ -719,7 +719,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Передача вже закінчилася, і зараз її більше не показують. Виберіть Present Perfect.",
+      "prompt": "Передача вже закінчилася, і зараз її більше не показують. Виберіть форму з have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-38:i11:r1",
@@ -736,12 +736,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Передача вже закінчилася, і зараз її більше не показують. Виберіть Present Perfect.",
+      "accessibilityLabel": "Передача вже закінчилася, і зараз її більше не показують. Виберіть форму з have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Передача уже закончилась, и сейчас её больше не показывают. Выберите Present Perfect.",
-          "uk": "Передача вже закінчилася, і зараз її більше не показують. Виберіть Present Perfect."
+          "uk": "Передача вже закінчилася, і зараз її більше не показують. Виберіть форму з have / has."
         },
         "gappedTargetPhrase": "The programme ___.",
         "gapOptions": [
@@ -765,7 +765,7 @@
             "correct": false,
             "testedDimension": "Передача вже закінчилася, і зараз її більше не показують. Виберіть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "Programme в единственном числе требует has.",
+              "ru": "Речь об одном — Programme, поэтому has.",
               "uk": "Programme в однині вимагає has."
             }
           },
@@ -774,7 +774,7 @@
             "correct": false,
             "testedDimension": "Передача вже закінчилася, і зараз її більше не показують. Виберіть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "После has нужна третья форма ended.",
+              "ru": "После has нужна форма ended.",
               "uk": "Після has потрібна третя форма ended."
             }
           }
@@ -1051,7 +1051,7 @@
             "correct": false,
             "testedDimension": "Усі місця в цьому ряду зайняті. Ви пропонуєте пошукати ще один стілець.",
             "feedbackByLocale": {
-              "ru": "Chair в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Chair, поэтому another.",
               "uk": "Chair в однині, тому another."
             }
           },
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a2ca9110b03e5cad36c46741d2d96b145ddbc0c956c8f4297a7ad146037819ad"
+  "learnerFingerprint": "5c7c8fec2785053b2e71949fa39c116f26fa5c9375708170229139019f38d961"
 }

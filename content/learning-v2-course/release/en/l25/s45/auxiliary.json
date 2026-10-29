@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-25:session-45:intro1:q",
       "responseFeedbackById": {
         "en:lesson-25:session-45:intro1:r2": {
-          "ru": "Более раннее действие: had + третья форма.",
-          "uk": "Раніша дія: had + третя форма."
+          "ru": "Более раннее действие: had + done.",
+          "uk": "Раніша дія: had + done."
         },
         "en:lesson-25:session-45:intro1:r3": {
-          "ru": "Здесь нужен Past Perfect: had + третья форма.",
-          "uk": "Тут потрібен Past Perfect: had + третя форма."
+          "ru": "Здесь нужна форма had + done.",
+          "uk": "Тут потрібна форма had + done."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-25:session-45:intro2:q",
       "responseFeedbackById": {
         "en:lesson-25:session-45:intro2:r2": {
-          "ru": "Более раннее действие: had + третья форма.",
-          "uk": "Раніша дія: had + третя форма."
+          "ru": "Более раннее действие: had + done.",
+          "uk": "Раніша дія: had + done."
         },
         "en:lesson-25:session-45:intro2:r3": {
-          "ru": "Здесь нужен Past Perfect: had + третья форма.",
-          "uk": "Тут потрібен Past Perfect: had + третя форма."
+          "ru": "Здесь нужна форма had + done.",
+          "uk": "Тут потрібна форма had + done."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-25:session-45:intro3:q",
       "responseFeedbackById": {
         "en:lesson-25:session-45:intro3:r2": {
-          "ru": "Более раннее действие: had + третья форма.",
-          "uk": "Раніша дія: had + третя форма."
+          "ru": "Более раннее действие: had + done.",
+          "uk": "Раніша дія: had + done."
         },
         "en:lesson-25:session-45:intro3:r3": {
-          "ru": "Здесь нужен Past Perfect: had + третья форма.",
-          "uk": "Тут потрібен Past Perfect: had + третя форма."
+          "ru": "Здесь нужна форма had + done.",
+          "uk": "Тут потрібна форма had + done."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "b25202a78053a572d1fddb294876a6963c2c487b6144ee152d1bfaeb96a6c3e4"
+  "auxiliaryFingerprint": "df15493a428d0bd6e8dbd7526457892035df55ccc88c1277f4ebe53368bacf13"
 }

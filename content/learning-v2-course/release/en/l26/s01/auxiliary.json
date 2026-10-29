@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-26:session-01:intro1:q",
       "responseFeedbackById": {
         "en:lesson-26:session-01:intro1:r2": {
-          "ru": "Для этого подлежащего в Present Simple нужна форма evaporates.",
-          "uk": "Для цього підмета в Present Simple потрібна форма evaporates."
+          "ru": "Для этого слова в форме work / works нужна форма evaporates.",
+          "uk": "Для цього слова в формі work / works потрібна форма evaporates."
         },
         "en:lesson-26:session-01:intro1:r3": {
-          "ru": "Обычная закономерность: Present Simple в обеих частях.",
-          "uk": "Звичайна закономірність: Present Simple в обох частинах."
+          "ru": "Обычная закономерность: форма work / works в обеих частях.",
+          "uk": "Звичайна закономірність: форма work / works в обох частинах."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-26:session-01:intro2:q",
       "responseFeedbackById": {
         "en:lesson-26:session-01:intro2:r2": {
-          "ru": "Для этого подлежащего в Present Simple нужна форма condenses.",
-          "uk": "Для цього підмета в Present Simple потрібна форма condenses."
+          "ru": "Для этого слова в форме work / works нужна форма condenses.",
+          "uk": "Для цього слова в формі work / works потрібна форма condenses."
         },
         "en:lesson-26:session-01:intro2:r3": {
-          "ru": "Обычная закономерность: Present Simple в обеих частях.",
-          "uk": "Звичайна закономірність: Present Simple в обох частинах."
+          "ru": "Обычная закономерность: форма work / works в обеих частях.",
+          "uk": "Звичайна закономірність: форма work / works в обох частинах."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-26:session-01:intro3:q",
       "responseFeedbackById": {
         "en:lesson-26:session-01:intro3:r2": {
-          "ru": "Для этого подлежащего в Present Simple нужна форма stiffen.",
-          "uk": "Для цього підмета в Present Simple потрібна форма stiffen."
+          "ru": "Для этого слова в форме work / works нужна форма stiffen.",
+          "uk": "Для цього слова в формі work / works потрібна форма stiffen."
         },
         "en:lesson-26:session-01:intro3:r3": {
-          "ru": "Обычная закономерность: Present Simple в обеих частях.",
-          "uk": "Звичайна закономірність: Present Simple в обох частинах."
+          "ru": "Обычная закономерность: форма work / works в обеих частях.",
+          "uk": "Звичайна закономірність: форма work / works в обох частинах."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ad8a74b8eb88e9b12ed890e9999bd0ae0834b106fb4ac5b21c830c72dd59f6a8"
+  "auxiliaryFingerprint": "ef1cb1a57827ae8f5c70efe5f8e5084b8960d5b3e692bc55fafedff93680ea46"
 }

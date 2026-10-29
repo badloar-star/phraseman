@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-26:session-02:intro1:q",
       "responseFeedbackById": {
         "en:lesson-26:session-02:intro1:r2": {
-          "ru": "В Present Simple с этим подлежащим нужна форма squeak.",
-          "uk": "У Present Simple із цим підметом потрібна форма squeak."
+          "ru": "С этим словом нужна форма squeak.",
+          "uk": "У формі work / works із цим словом потрібна форма squeak."
         },
         "en:lesson-26:session-02:intro1:r3": {
-          "ru": "Обычный результат: Present Simple, не форма с -ing без вспомогательного глагола.",
-          "uk": "Звичайний результат: Present Simple, а не форма з -ing без допоміжного дієслова."
+          "ru": "Обычный результат: форма work / works, не форма с -ing без am / is / are.",
+          "uk": "Звичайний результат: форма work / works, а не форма з -ing без am / is / are."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-26:session-02:intro2:q",
       "responseFeedbackById": {
         "en:lesson-26:session-02:intro2:r2": {
-          "ru": "В Present Simple с этим подлежащим нужна форма rustle.",
-          "uk": "У Present Simple із цим підметом потрібна форма rustle."
+          "ru": "С этим словом нужна форма rustle.",
+          "uk": "У формі work / works із цим словом потрібна форма rustle."
         },
         "en:lesson-26:session-02:intro2:r3": {
-          "ru": "Обычный результат: Present Simple, не форма с -ing без вспомогательного глагола.",
-          "uk": "Звичайний результат: Present Simple, а не форма з -ing без допоміжного дієслова."
+          "ru": "Обычный результат: форма work / works, не форма с -ing без am / is / are.",
+          "uk": "Звичайний результат: форма work / works, а не форма з -ing без am / is / are."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-26:session-02:intro3:q",
       "responseFeedbackById": {
         "en:lesson-26:session-02:intro3:r2": {
-          "ru": "В Present Simple с этим подлежащим нужна форма roars.",
-          "uk": "У Present Simple із цим підметом потрібна форма roars."
+          "ru": "С этим словом нужна форма roars.",
+          "uk": "У формі work / works із цим словом потрібна форма roars."
         },
         "en:lesson-26:session-02:intro3:r3": {
-          "ru": "Обычный результат: Present Simple, не форма с -ing без вспомогательного глагола.",
-          "uk": "Звичайний результат: Present Simple, а не форма з -ing без допоміжного дієслова."
+          "ru": "Обычный результат: форма work / works, не форма с -ing без am / is / are.",
+          "uk": "Звичайний результат: форма work / works, а не форма з -ing без am / is / are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "11aa36898393d44ebc4c500daef8f54e63546a2e4cea6a42a8bbc42dd0b14831"
+  "auxiliaryFingerprint": "80a5678bb83e90a4b05a74b36d6a211e25d7463edb96cd713403da329f4ca32e"
 }

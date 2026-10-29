@@ -360,7 +360,7 @@
             "correct": false,
             "testedDimension": "Опишите привычный результат: волосы пушатся под дождём.",
             "feedbackByLocale": {
-              "ru": "Hair здесь неисчисляемое: gets.",
+              "ru": "Hair здесь не считается поштучно: gets.",
               "uk": "Hair тут незлічуване: gets."
             }
           },
@@ -1071,5 +1071,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f757c3b749ab49c42eab8a07c01b7debc8015589c3bb84d47092bdf7bbc31e54"
+  "learnerFingerprint": "c34faa1ab501dea1d4bccbe35ced006394556b476d843ce0631bbaca0dc9d1f8"
 }

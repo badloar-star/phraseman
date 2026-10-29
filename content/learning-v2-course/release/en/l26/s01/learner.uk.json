@@ -135,7 +135,7 @@
             "correct": false,
             "testedDimension": "Ви говорите про звичку, а не про завтрашній план. Доповніть звичайний результат.",
             "feedbackByLocale": {
-              "ru": "После I в Present Simple нужно use без -s.",
+              "ru": "После I в форме work / works нужно use без -s.",
               "uk": "Після I у Present Simple потрібно use без -s."
             }
           },
@@ -144,7 +144,7 @@
             "correct": false,
             "testedDimension": "Ви говорите про звичку, а не про завтрашній план. Доповніть звичайний результат.",
             "feedbackByLocale": {
-              "ru": "Для привычки здесь нужна форма use; using без вспомогательного глагола не подходит.",
+              "ru": "Для привычки здесь нужна форма use; using без am / is / are не подходит.",
               "uk": "Для звички тут потрібна форма use; using без допоміжного дієслова не підходить."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Щоразу під час дощу ви берете парасолю. В обох частинах описано звичайну звичку.",
             "feedbackByLocale": {
-              "ru": "После it в Present Simple нужна форма rains.",
+              "ru": "После it в форме work / works нужна форма rains.",
               "uk": "Після it у Present Simple потрібна форма rains."
             }
           },
@@ -662,7 +662,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Мовець описує свою реакцію на холод. Fingers — множина.",
+      "prompt": "Мовець описує свою реакцію на холод. Fingers — їх кілька.",
       "responseOptions": [
         {
           "responseId": "en:lesson-26:session-01:i09:r1",
@@ -679,12 +679,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Мовець описує свою реакцію на холод. Fingers — множина.",
+      "accessibilityLabel": "Мовець описує свою реакцію на холод. Fingers — їх кілька.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Говорящий описывает свою реакцию на холод. Fingers — множественное число.",
-          "uk": "Мовець описує свою реакцію на холод. Fingers — множина."
+          "uk": "Мовець описує свою реакцію на холод. Fingers — їх кілька."
         },
         "gappedTargetPhrase": "My fingers ___ when I work outside in winter.",
         "gapOptions": [
@@ -717,7 +717,7 @@
             "correct": false,
             "testedDimension": "Мовець описує свою реакцію на холод. Fingers — множина.",
             "feedbackByLocale": {
-              "ru": "Здесь нужен Present Simple: stiffen.",
+              "ru": "Здесь нужна форма work / works: stiffen.",
               "uk": "Тут потрібен Present Simple: stiffen."
             }
           }
@@ -1131,5 +1131,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9b7e848ffdbe578f040bef2503333bb9bdcddcfcd150ba99b4b8b99084aa9287"
+  "learnerFingerprint": "79de2f37304168e275f8513bc8284e3fe1fa26b439c03d690b1c07823a3f57e1"
 }

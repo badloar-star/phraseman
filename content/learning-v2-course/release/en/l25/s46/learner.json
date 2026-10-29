@@ -1047,7 +1047,7 @@
             "correct": false,
             "testedDimension": "Первый рассказ закончился. Дети просят ещё один.",
             "feedbackByLocale": {
-              "ru": "Story в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Story, поэтому another.",
               "uk": "Story в однині, тому another."
             }
           },
@@ -1108,5 +1108,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5d1690b7ebd187605ac1ff68541c9cdea0092aed51ec4ddc48300900b8d8d474"
+  "learnerFingerprint": "2606c9bf4dff644b51373b2bc305756ae7c8b95e8cd9d2d17aa873e287929cf5"
 }

@@ -23,8 +23,8 @@
           "uk": "З I потрібно stop без -s."
         },
         "en:lesson-26:session-18:intro2:r3": {
-          "ru": "Нужно сказуемое stop, а не stopping без вспомогательного глагола.",
-          "uk": "Потрібен присудок stop, а не stopping без допоміжного дієслова."
+          "ru": "Нужна полная форма stop, а не stopping без am / is / are.",
+          "uk": "Потрібна повна форма stop, а не stopping без am / is / are."
         }
       }
     },
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-26:session-18:intro3:q",
       "responseFeedbackById": {
         "en:lesson-26:session-18:intro3:r2": {
-          "ru": "После have нужна третья форма paid.",
-          "uk": "Після have потрібна третя форма paid."
+          "ru": "После have нужна форма paid.",
+          "uk": "Після have потрібна форма paid."
         },
         "en:lesson-26:session-18:intro3:r3": {
           "ru": "С I употребляем have.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "1643c33cbe952214aa85aea32c1d07852991cbb49ade6a583ee7cc4684f6bd64"
+  "auxiliaryFingerprint": "0b0e28d6e616f8c6827aed9a8de158fab5ce56532050723258a2fc58046a2211"
 }

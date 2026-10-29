@@ -800,7 +800,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы подготовили комнату до приезда семьи. Дополните Past Perfect.",
+      "prompt": "Вы подготовили комнату до приезда семьи. Покажите, что это случилось раньше.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-32:i12:r1",
@@ -817,11 +817,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы подготовили комнату до приезда семьи. Дополните Past Perfect.",
+      "accessibilityLabel": "Вы подготовили комнату до приезда семьи. Покажите, что это случилось раньше.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы подготовили комнату до приезда семьи. Дополните Past Perfect.",
+          "ru": "Вы подготовили комнату до приезда семьи. Покажите, что это случилось раньше.",
           "uk": "Ви підготували кімнату до приїзду родини. Доповніть Past Perfect."
         },
         "gappedTargetPhrase": "I ___ prepared the room before my family arrived.",
@@ -987,7 +987,7 @@
             "correct": false,
             "testedDimension": "Вчера вы один раз забрали детей из школы.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple collected.",
+              "ru": "Yesterday требует формы прошлого collected.",
               "uk": "Yesterday потребує Past Simple collected."
             }
           },
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f94845988a0118dcfca07e4cb184870bd946fa5f79c9303150c2ac81db77c2ea"
+  "learnerFingerprint": "769c05148235bfde82f65ac24848baf1e93681c40ac27d1c12eeb659b485207c"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-26:session-04:intro1:q",
       "responseFeedbackById": {
         "en:lesson-26:session-04:intro1:r2": {
-          "ru": "В Present Simple с этим подлежащим нужна форма follow.",
-          "uk": "У Present Simple із цим підметом потрібна форма follow."
+          "ru": "С этим словом нужна форма follow.",
+          "uk": "У формі work / works із цим словом потрібна форма follow."
         },
         "en:lesson-26:session-04:intro1:r3": {
-          "ru": "Привычная реакция: Present Simple в обеих частях.",
-          "uk": "Звична реакція: Present Simple в обох частинах."
+          "ru": "Привычная реакция: форма work / works в обеих частях.",
+          "uk": "Звична реакція: форма work / works в обох частинах."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-26:session-04:intro2:q",
       "responseFeedbackById": {
         "en:lesson-26:session-04:intro2:r2": {
-          "ru": "В Present Simple с этим подлежащим нужна форма check.",
-          "uk": "У Present Simple із цим підметом потрібна форма check."
+          "ru": "С этим словом нужна форма check.",
+          "uk": "У формі work / works із цим словом потрібна форма check."
         },
         "en:lesson-26:session-04:intro2:r3": {
-          "ru": "Привычная реакция: Present Simple в обеих частях.",
-          "uk": "Звична реакція: Present Simple в обох частинах."
+          "ru": "Привычная реакция: форма work / works в обеих частях.",
+          "uk": "Звична реакція: форма work / works в обох частинах."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-26:session-04:intro3:q",
       "responseFeedbackById": {
         "en:lesson-26:session-04:intro3:r2": {
-          "ru": "В Present Simple с этим подлежащим нужна форма notice.",
-          "uk": "У Present Simple із цим підметом потрібна форма notice."
+          "ru": "С этим словом нужна форма notice.",
+          "uk": "У формі work / works із цим словом потрібна форма notice."
         },
         "en:lesson-26:session-04:intro3:r3": {
-          "ru": "Привычная реакция: Present Simple в обеих частях.",
-          "uk": "Звична реакція: Present Simple в обох частинах."
+          "ru": "Привычная реакция: форма work / works в обеих частях.",
+          "uk": "Звична реакція: форма work / works в обох частинах."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "ec529e91ab9f778d0e227ed43729ab1aa42051db3e58e7fa3263eff0b92d4e94"
+  "auxiliaryFingerprint": "2c968e90995920ccea0c5ad0408ed4881e5d12459ab964e2aff9d2685f8aef61"
 }

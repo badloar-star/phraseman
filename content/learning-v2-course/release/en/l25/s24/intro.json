@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-24",
   "learningOutcomeByLocale": {
-    "ru": "had + past participle before later past event",
-    "uk": "had + past participle before later past event"
+    "ru": "предложить поехать другой дорогой: Let us take another road.",
+    "uk": "запропонувати поїхати іншою дорогою: Let us take another road."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Тісто піднялося"
       },
       "bodyByLocale": {
-        "ru": "Expand — увеличиваться в размере или объёме. The dough had expanded before she put it in the oven — тесто увеличилось в объёме до того, как она поставила его в духовку. Сначала тесто поднялось, затем она поставила его выпекаться. Had expanded — более раннее событие. Put здесь стоит в Past Simple: написание этой формы совпадает с начальной.",
-        "uk": "Expand — збільшуватися в розмірі або об’ємі. The dough had expanded before she put it in the oven — тісто збільшилося в об’ємі до того, як вона поставила його в духовку. Спочатку тісто піднялося, потім вона поставила його випікатися. Had expanded — раніша подія. Put тут стоїть у Past Simple: написання цієї форми збігається з початковою."
+        "ru": "Expand — увеличиваться в размере или объёме. The dough had expanded before she put it in the oven — тесто увеличилось в объёме до того, как она поставила его в духовку. Сначала тесто поднялось, затем она поставила его выпекаться. Had expanded — более раннее событие. Put здесь стоит в форме прошлого: написание этой формы совпадает с начальной.",
+        "uk": "Expand — збільшуватися в розмірі або об’ємі. The dough had expanded before she put it in the oven — тісто збільшилося в об’ємі до того, як вона поставила його в духовку. Спочатку тісто піднялося, потім вона поставила його випікатися. Had expanded — раніша подія. Put тут стоїть у формі минулого: написання цієї форми збігається з початковою."
       },
       "question": {
         "interactionId": "en:lesson-25:session-24:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "501d3941c9a14e5f1ff0a1935eaa67ac8e73227c95d2a72f37b5fd7a586b7d37"
+  "introFingerprint": "75e6519d5e5044fb8b36105895cd78eefc331a968d9bb947485a07019cba422d"
 }

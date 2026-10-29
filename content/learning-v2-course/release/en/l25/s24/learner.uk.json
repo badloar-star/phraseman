@@ -549,7 +549,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Хліб уже спекли до вашого повернення. Доповніть Past Perfect.",
+      "prompt": "Хліб уже спекли до вашого повернення. Покажіть, що це сталося раніше.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-24:i08:r1",
@@ -566,12 +566,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Хліб уже спекли до вашого повернення. Доповніть Past Perfect.",
+      "accessibilityLabel": "Хліб уже спекли до вашого повернення. Покажіть, що це сталося раніше.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Хлеб уже испекли к вашему возвращению. Дополните Past Perfect.",
-          "uk": "Хліб уже спекли до вашого повернення. Доповніть Past Perfect."
+          "uk": "Хліб уже спекли до вашого повернення. Покажіть, що це сталося раніше."
         },
         "gappedTargetPhrase": "She ___ baked the bread before I returned.",
         "gapOptions": [
@@ -846,7 +846,7 @@
             "correct": false,
             "testedDimension": "Ви відвідали парк один раз учора.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple visited.",
+              "ru": "Yesterday требует формы прошлого visited.",
               "uk": "Yesterday потребує Past Simple visited."
             }
           },
@@ -1054,7 +1054,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "За цей час парк змінився, і зміни видно зараз. Доповніть Present Perfect.",
+      "prompt": "За цей час парк змінився, і зміни видно зараз. Доповніть фразу з have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-24:i17:r1",
@@ -1071,12 +1071,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "За цей час парк змінився, і зміни видно зараз. Доповніть Present Perfect.",
+      "accessibilityLabel": "За цей час парк змінився, і зміни видно зараз. Доповніть фразу з have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "За это время парк изменился, и изменения видны сейчас. Дополните Present Perfect.",
-          "uk": "За цей час парк змінився, і зміни видно зараз. Доповніть Present Perfect."
+          "uk": "За цей час парк змінився, і зміни видно зараз. Доповніть фразу з have / has."
         },
         "gappedTargetPhrase": "The park has ___ a lot.",
         "gapOptions": [
@@ -1124,5 +1124,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9127530fa2b16640d80050bd08738bf7231a68b7f9426e6d49e6e580422bd980"
+  "learnerFingerprint": "600b31f8109aaa98c3790f180e54e654628b92e8e8c37d60bb4a666b814c42df"
 }

@@ -666,7 +666,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Шторы легко двигаются от сквозняка. Дополните действие во множественном числе.",
+      "prompt": "Шторы легко двигаются от сквозняка. Дополните действие: их несколько.",
       "responseOptions": [
         {
           "responseId": "en:lesson-26:session-03:i10:r1",
@@ -683,11 +683,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Шторы легко двигаются от сквозняка. Дополните действие во множественном числе.",
+      "accessibilityLabel": "Шторы легко двигаются от сквозняка. Дополните действие: их несколько.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Шторы легко двигаются от сквозняка. Дополните действие во множественном числе.",
+          "ru": "Шторы легко двигаются от сквозняка. Дополните действие: их несколько.",
           "uk": "Штори легко рухаються від протягу. Доповніть дію в множині."
         },
         "gappedTargetPhrase": "The curtains ___ when air comes through the door.",
@@ -712,7 +712,7 @@
             "correct": false,
             "testedDimension": "Шторы легко двигаются от сквозняка. Дополните действие во множественном числе.",
             "feedbackByLocale": {
-              "ru": "Curtains — множественное число: flutter без -s.",
+              "ru": "Curtains — форма для нескольких: flutter без -s.",
               "uk": "Curtains — множина: flutter без -s."
             }
           },
@@ -721,7 +721,7 @@
             "correct": false,
             "testedDimension": "Шторы легко двигаются от сквозняка. Дополните действие во множественном числе.",
             "feedbackByLocale": {
-              "ru": "Здесь нужен Present Simple: flutter.",
+              "ru": "Здесь нужна форма work / works: flutter.",
               "uk": "Тут потрібен Present Simple: flutter."
             }
           }
@@ -1143,5 +1143,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "99b19cd24526771525ccf56d122fd1dedf0b0133c9eb9266794e1e834c497e9f"
+  "learnerFingerprint": "a905129cb5a82058d4f497f59bde6ecec13e80dd32322694fcd4f18648f88994"
 }

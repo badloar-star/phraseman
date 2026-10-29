@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-23",
   "learningOutcomeByLocale": {
-    "ru": "had + past participle before later past event",
-    "uk": "had + past participle before later past event"
+    "ru": "сказать, что вы уже покормили кота: I have already fed the cat.",
+    "uk": "сказати, що ви вже погодували кота: I have already fed the cat."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Миша втекла до появи кішки"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете, что заметили дома: мышь успела убежать до того, как в комнату вошла кошка. Скажите: The mouse had fled before the cat entered the room — мышь убежала до того, как кошка вошла в комнату. Собираем: The mouse + had fled + before the cat entered the room — кто, что сделал раньше, до какого события. После had нужна третья форма fled, а не flee. Had fled показывает завершённый побег, entered — более поздний вход кошки в комнату.",
-        "uk": "Ви розповідаєте, що помітили вдома: миша встигла втекти до того, як до кімнати зайшла кішка. Скажіть: The mouse had fled before the cat entered the room — миша втекла до того, як кішка зайшла до кімнати. Складаємо: The mouse + had fled + before the cat entered the room — хто, що зробив раніше, до якої події. Після had потрібна третя форма fled, а не flee. Had fled показує завершену втечу, entered — пізніший вхід кішки до кімнати."
+        "ru": "Вы рассказываете, что заметили дома: мышь успела убежать до того, как в комнату вошла кошка. Скажите: The mouse had fled before the cat entered the room — мышь убежала до того, как кошка вошла в комнату. Собираем: The mouse + had fled + before the cat entered the room — кто, что сделал раньше, до какого события. После had нужна форма fled, а не flee. Had fled показывает завершённый побег, entered — более поздний вход кошки в комнату.",
+        "uk": "Ви розповідаєте, що помітили вдома: миша встигла втекти до того, як до кімнати зайшла кішка. Скажіть: The mouse had fled before the cat entered the room — миша втекла до того, як кішка зайшла до кімнати. Складаємо: The mouse + had fled + before the cat entered the room — хто, що зробив раніше, до якої події. Після had потрібна форма fled, а не flee. Had fled показує завершену втечу, entered — пізніший вхід кішки до кімнати."
       },
       "question": {
         "interactionId": "en:lesson-25:session-23:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Птах знову на волі"
       },
       "bodyByLocale": {
-        "ru": "Release — выпускать на свободу. We had released the bird before the rain began — мы выпустили птицу до начала дождя. Например, птица залетела в дом, а мы помогли ей выбраться наружу. Сначала выпустили птицу, затем начался дождь. После had нужна форма released; после before здесь стоит began, Past Simple от begin.",
-        "uk": "Release — випускати на волю. We had released the bird before the rain began — ми випустили птаха до початку дощу. Наприклад, птах залетів у дім, а ми допомогли йому вибратися назовні. Спочатку випустили птаха, потім почався дощ. Після had потрібна форма released; після before тут стоїть began, Past Simple від begin."
+        "ru": "Release — выпускать на свободу. We had released the bird before the rain began — мы выпустили птицу до начала дождя. Например, птица залетела в дом, а мы помогли ей выбраться наружу. Сначала выпустили птицу, затем начался дождь. После had нужна форма released; после before здесь стоит began, форма прошлого от begin.",
+        "uk": "Release — випускати на волю. We had released the bird before the rain began — ми випустили птаха до початку дощу. Наприклад, птах залетів у дім, а ми допомогли йому вибратися назовні. Спочатку випустили птаха, потім почався дощ. Після had потрібна форма released; після before тут стоїть began, форма минулого від begin."
       },
       "question": {
         "interactionId": "en:lesson-25:session-23:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2466720dbbb3add7705e84414b47a0268cd68d60517f27cdc26cfd2f0e91c954"
+  "introFingerprint": "76c4b7914204a394fd485f7eca4d762d93335f065d1db9a60712f1fa0ec6664d"
 }

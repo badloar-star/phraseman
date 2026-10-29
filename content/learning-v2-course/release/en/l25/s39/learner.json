@@ -1047,7 +1047,7 @@
             "correct": false,
             "testedDimension": "Одного стула не хватает. Попросите ещё один.",
             "feedbackByLocale": {
-              "ru": "Chair в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Chair, поэтому another.",
               "uk": "Chair в однині, тому another."
             }
           },
@@ -1105,5 +1105,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1ab54808a88d5543bd906e5d39e8236a036df2d29d9a644ab35f4d87d568accd"
+  "learnerFingerprint": "1ea651ace069452e0708281fd550583f024bd2fe3a6497104a56884977938c1d"
 }

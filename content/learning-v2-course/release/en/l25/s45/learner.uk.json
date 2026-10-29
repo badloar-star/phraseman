@@ -1046,7 +1046,7 @@
             "correct": false,
             "testedDimension": "Парасольку зламано. Потрібно взяти іншу.",
             "feedbackByLocale": {
-              "ru": "Umbrella в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Umbrella, поэтому another.",
               "uk": "Umbrella в однині, тому another."
             }
           },
@@ -1105,5 +1105,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6737ffd0bbcc1d897469add92c9911991f497b03459b1f3f9202837e9c3cff92"
+  "learnerFingerprint": "0a55e8eaa0bd85f81927885d0e62243eb20d02f9f60725d9a635236cd1159d73"
 }

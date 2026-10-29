@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-14",
   "learningOutcomeByLocale": {
-    "ru": "zero conditional; first conditional; just, already, yet; past perfect + by the time",
-    "uk": "zero conditional; first conditional; just, already, yet; past perfect + by the time"
+    "ru": "спросить, есть ли у человека нужная вещь: Have you got a clean undershirt?",
+    "uk": "запитати, чи є в людини потрібна річ: Have you got a clean undershirt?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Щойно вдягли халат"
       },
       "bodyByLocale": {
-        "ru": "Вы вышли из душа и говорите партнёру, что уже одеты: I have just put on my bathrobe — я только что надел банный халат. Собираем: I + have + just + put on + my bathrobe — кто, have, только что, надел, что именно. С I нужна have. После неё используем третью форму put; у этого глагола она совпадает с начальной. On остаётся рядом с put: вместе put on означает надеть. Just ставим перед put on.",
-        "uk": "Ви вийшли з душу й кажете партнеру, що вже вдягнені: I have just put on my bathrobe — я щойно вдягнув банний халат. Складаємо: I + have + just + put on + my bathrobe — хто, have, щойно, вдягнув, що саме. З I потрібна have. Після неї використовуємо третю форму put; у цього дієслова вона збігається з початковою. On залишається поруч із put: разом put on означає вдягти. Just ставимо перед put on."
+        "ru": "Вы вышли из душа и говорите партнёру, что уже одеты: I have just put on my bathrobe — я только что надел банный халат. Собираем: I + have + just + put on + my bathrobe — кто, have, только что, надел, что именно. С I нужна have. После неё используем форму put; у этого глагола она совпадает с начальной. On остаётся рядом с put: вместе put on означает надеть. Just ставим перед put on.",
+        "uk": "Ви вийшли з душу й кажете партнеру, що вже вдягнені: I have just put on my bathrobe — я щойно вдягнув банний халат. Складаємо: I + have + just + put on + my bathrobe — хто, have, щойно, вдягнув, що саме. З I потрібна have. Після неї використовуємо форму put; у цього дієслова вона збігається з початковою. On залишається поруч із put: разом put on означає вдягти. Just ставимо перед put on."
       },
       "question": {
         "interactionId": "en:lesson-26:session-14:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Перевірити речі для ночівлі"
       },
       "bodyByLocale": {
-        "ru": "Перед поездкой вы спрашиваете партнёршу, положила ли она ночную рубашку в сумку: Have you packed your nightie yet? — ты уже положила свою ночную рубашку? Собираем: Have + you + packed + your nightie + yet? В вопросе have идёт перед you, затем третья форма packed и то, что нужно собрать. У pack добавляем -ed. Yet в конце спрашивает, выполнено ли ожидаемое действие к этому моменту.",
-        "uk": "Перед поїздкою ви запитуєте партнерку, чи поклала вона нічну сорочку в сумку: Have you packed your nightie yet? — ти вже поклала свою нічну сорочку? Складаємо: Have + you + packed + your nightie + yet? У запитанні have йде перед you, потім третя форма packed і те, що потрібно зібрати. До pack додаємо -ed. Yet наприкінці запитує, чи виконано очікувану дію до цього моменту."
+        "ru": "Перед поездкой вы спрашиваете партнёршу, положила ли она ночную рубашку в сумку: Have you packed your nightie yet? — ты уже положила свою ночную рубашку? Собираем: Have + you + packed + your nightie + yet? В вопросе have идёт перед you, затем форма packed и то, что нужно собрать. У pack добавляем -ed. Yet в конце спрашивает, выполнено ли ожидаемое действие к этому моменту.",
+        "uk": "Перед поїздкою ви запитуєте партнерку, чи поклала вона нічну сорочку в сумку: Have you packed your nightie yet? — ти вже поклала свою нічну сорочку? Складаємо: Have + you + packed + your nightie + yet? У запитанні have йде перед you, потім форма packed і те, що потрібно зібрати. До pack додаємо -ed. Yet наприкінці запитує, чи виконано очікувану дію до цього моменту."
       },
       "question": {
         "interactionId": "en:lesson-26:session-14:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Змінити підгузок до приїзду таксі"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете, как вчера собирали малыша: подгузник успели сменить до приезда такси. Скажите: I had changed the diaper by the time the taxi arrived — я сменил подгузник к тому времени, как приехало такси. Собираем: I + had changed + the diaper + by the time the taxi arrived — кто, что сделал раньше, что сменил, к какому прошлому моменту. Had changed отмечает действие до приезда. После had нужна третья форма changed; к change добавляем -d. Arrived обозначает последующий приезд.",
-        "uk": "Ви розповідаєте, як учора збирали малюка: підгузок встигли змінити до приїзду таксі. Скажіть: I had changed the diaper by the time the taxi arrived — я змінив підгузок до того часу, як приїхало таксі. Складаємо: I + had changed + the diaper + by the time the taxi arrived — хто, що зробив раніше, що змінив, до якого минулого моменту. Had changed позначає дію до приїзду. Після had потрібна третя форма changed; до change додаємо -d. Arrived позначає пізніший приїзд."
+        "ru": "Вы рассказываете, как вчера собирали малыша: подгузник успели сменить до приезда такси. Скажите: I had changed the diaper by the time the taxi arrived — я сменил подгузник к тому времени, как приехало такси. Собираем: I + had changed + the diaper + by the time the taxi arrived — кто, что сделал раньше, что сменил, к какому прошлому моменту. Had changed отмечает действие до приезда. После had нужна форма changed; к change добавляем -d. Arrived обозначает последующий приезд.",
+        "uk": "Ви розповідаєте, як учора збирали малюка: підгузок встигли змінити до приїзду таксі. Скажіть: I had changed the diaper by the time the taxi arrived — я змінив підгузок до того часу, як приїхало таксі. Складаємо: I + had changed + the diaper + by the time the taxi arrived — хто, що зробив раніше, що змінив, до якого минулого моменту. Had changed позначає дію до приїзду. Після had потрібна форма changed; до change додаємо -d. Arrived позначає пізніший приїзд."
       },
       "question": {
         "interactionId": "en:lesson-26:session-14:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "aa4c14129836433563619f634bfea13899e2c608a1b669325d9e1f26d3437149"
+  "introFingerprint": "6364736b3a83292aef53445bdc76701a05ba96f0c4181d8e533e4500071ebac3"
 }

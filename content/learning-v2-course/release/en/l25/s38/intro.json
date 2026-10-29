@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-38",
   "learningOutcomeByLocale": {
-    "ru": "past perfect + by the time + past simple",
-    "uk": "past perfect + by the time + past simple"
+    "ru": "сказать, когда вы что-то закончили: I finished the exercise ten minutes ago.",
+    "uk": "сказати, коли ви щось закінчили: I finished the exercise ten minutes ago."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Уже чув новини"
       },
       "bodyByLocale": {
-        "ru": "Listener — слушатель. The listener had heard the news by the time I called — слушатель уже услышал новости к тому моменту, когда я позвонил. Например, он слушал радио. Listener называет человека, а heard — третья форма hear. Had heard показывает, что к звонку новость уже была ему известна.",
-        "uk": "Listener — слухач. The listener had heard the news by the time I called — слухач уже почув новини до того моменту, коли я зателефонував. Наприклад, він слухав радіо. Listener називає людину, а heard — третя форма hear. Had heard показує, що до дзвінка новина вже була йому відома."
+        "ru": "Listener — слушатель. The listener had heard the news by the time I called — слушатель уже услышал новости к тому моменту, когда я позвонил. Например, он слушал радио. Listener называет человека, а heard — форма hear после have. Had heard показывает, что к звонку новость уже была ему известна.",
+        "uk": "Listener — слухач. The listener had heard the news by the time I called — слухач уже почув новини до того моменту, коли я зателефонував. Наприклад, він слухав радіо. Listener називає людину, а heard — форма hear після have. Had heard показує, що до дзвінка новина вже була йому відома."
       },
       "question": {
         "interactionId": "en:lesson-25:session-38:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "acef97156c9b72e2829940d22f8b00535a3d8b8db23704520e98c9cbde3ade9c"
+  "introFingerprint": "6db605f869c5bbbdba2750c025102fc60e0022b21c958b3d15c06b7568f0eec4"
 }

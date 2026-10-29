@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-25:session-44:intro1:q",
       "responseFeedbackById": {
         "en:lesson-25:session-44:intro1:r2": {
-          "ru": "Ранее завершённое действие: had + третья форма.",
-          "uk": "Раніше завершена дія: had + третя форма."
+          "ru": "Ранее завершённое действие: had + done.",
+          "uk": "Раніше завершена дія: had + done."
         },
         "en:lesson-25:session-44:intro1:r3": {
-          "ru": "Здесь нужен Past Perfect: had + третья форма.",
-          "uk": "Тут потрібен Past Perfect: had + третя форма."
+          "ru": "Здесь нужна форма had + done.",
+          "uk": "Тут потрібна форма had + done."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-25:session-44:intro2:q",
       "responseFeedbackById": {
         "en:lesson-25:session-44:intro2:r2": {
-          "ru": "Ранее завершённое действие: had + третья форма.",
-          "uk": "Раніше завершена дія: had + третя форма."
+          "ru": "Ранее завершённое действие: had + done.",
+          "uk": "Раніше завершена дія: had + done."
         },
         "en:lesson-25:session-44:intro2:r3": {
-          "ru": "Здесь нужен Past Perfect: had + третья форма.",
-          "uk": "Тут потрібен Past Perfect: had + третя форма."
+          "ru": "Здесь нужна форма had + done.",
+          "uk": "Тут потрібна форма had + done."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-25:session-44:intro3:q",
       "responseFeedbackById": {
         "en:lesson-25:session-44:intro3:r2": {
-          "ru": "Ранее завершённое действие: had + третья форма.",
-          "uk": "Раніше завершена дія: had + третя форма."
+          "ru": "Ранее завершённое действие: had + done.",
+          "uk": "Раніше завершена дія: had + done."
         },
         "en:lesson-25:session-44:intro3:r3": {
-          "ru": "Здесь нужен Past Perfect: had + третья форма.",
-          "uk": "Тут потрібен Past Perfect: had + третя форма."
+          "ru": "Здесь нужна форма had + done.",
+          "uk": "Тут потрібна форма had + done."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "0157d84726148023230d663e88b73a292a73b58c349666aa6e8b4f2aa78159b7"
+  "auxiliaryFingerprint": "ab65f23996431d5111f51c25932050a5a88418129b8daeedce6ffdf932507fe3"
 }

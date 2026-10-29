@@ -284,7 +284,7 @@
             "correct": false,
             "testedDimension": "Вы пообещаете приготовить другое блюдо, если гость не ест рыбу. Дополните условие.",
             "feedbackByLocale": {
-              "ru": "В этом условии после if нужен Present Simple: do not eat.",
+              "ru": "В этом условии после if нужна форма work / works: do not eat.",
               "uk": "У цій умові після if потрібен Present Simple: do not eat."
             }
           },
@@ -1062,5 +1062,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1d58db7109c9b4fb93446e0ff8f77fc1fa24ddc9a39eef0c6b7b9875674fc81e"
+  "learnerFingerprint": "5c8b94938fe2b56f7ce06ab5d0e18076a0f56a34709a172c84f9901c1f75103a"
 }

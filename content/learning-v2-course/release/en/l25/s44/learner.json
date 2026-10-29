@@ -238,7 +238,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Результат контрольной уже известен. Выберите Present Perfect.",
+      "prompt": "Результат контрольной уже известен. Выберите форму с have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-44:i04:r1",
@@ -255,11 +255,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Результат контрольной уже известен. Выберите Present Perfect.",
+      "accessibilityLabel": "Результат контрольной уже известен. Выберите форму с have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Результат контрольной уже известен. Выберите Present Perfect.",
+          "ru": "Результат контрольной уже известен. Выберите форму с have / has.",
           "uk": "Результат контрольної вже відомий. Виберіть Present Perfect."
         },
         "gappedTargetPhrase": "The teacher ___ our tests.",
@@ -284,7 +284,7 @@
             "correct": false,
             "testedDimension": "Результат контрольной уже известен. Выберите Present Perfect.",
             "feedbackByLocale": {
-              "ru": "Teacher в единственном числе требует has.",
+              "ru": "Речь об одном — Teacher, поэтому has.",
               "uk": "Teacher в однині вимагає has."
             }
           },
@@ -293,7 +293,7 @@
             "correct": false,
             "testedDimension": "Результат контрольной уже известен. Выберите Present Perfect.",
             "feedbackByLocale": {
-              "ru": "После has нужна третья форма marked.",
+              "ru": "После has нужна форма marked.",
               "uk": "Після has потрібна третя форма marked."
             }
           }
@@ -1050,7 +1050,7 @@
             "correct": false,
             "testedDimension": "Учитель разрешил задать ещё один вопрос. Попросите об этом.",
             "feedbackByLocale": {
-              "ru": "Перед question в единственном числе нужно another.",
+              "ru": "Перед question (предмет один) нужно another.",
               "uk": "Перед question в однині потрібно another."
             }
           },
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "50e621b8814c7e3069e6ab5e15012793871f67ef4a8fc4558de5116896a640a4"
+  "learnerFingerprint": "d6e3c843289e4f99ec3e84ea96ea9bacbca2e7eec99027002416f3bebae9c939"
 }

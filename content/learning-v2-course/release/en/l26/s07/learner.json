@@ -487,7 +487,7 @@
             "correct": false,
             "testedDimension": "Речь о свойстве ломкого пластика, а не любого пластика. Выберите результат.",
             "feedbackByLocale": {
-              "ru": "Plastic — неисчисляемое; нужна форма breaks, как с it.",
+              "ru": "Plastic не считают поштучно; нужна форма breaks, как с it.",
               "uk": "Plastic — незлічуване; потрібна форма breaks, як з it."
             }
           },
@@ -496,7 +496,7 @@
             "correct": false,
             "testedDimension": "Речь о свойстве ломкого пластика, а не любого пластика. Выберите результат.",
             "feedbackByLocale": {
-              "ru": "Для свойства в Present Simple нужно breaks; breaking не образует сказуемое.",
+              "ru": "Для свойства в форме work / works нужно breaks; breaking не может стоять отдельно.",
               "uk": "Для властивості у Present Simple потрібно breaks; breaking не утворює присудок."
             }
           }
@@ -866,7 +866,7 @@
             "correct": false,
             "testedDimension": "Вы рассказываете о своей обычной привычке. Дополните действие.",
             "feedbackByLocale": {
-              "ru": "Здесь нужен Present Simple: close, а не closing без вспомогательного глагола.",
+              "ru": "Здесь нужна форма work / works: close, а не closing без am / is / are.",
               "uk": "Тут потрібен Present Simple: close, а не closing без допоміжного дієслова."
             }
           }
@@ -1076,7 +1076,7 @@
             "correct": false,
             "testedDimension": "Это привычный выбор вашей сестры. Дополните условие с she.",
             "feedbackByLocale": {
-              "ru": "После she в Present Simple нужно wants с -s.",
+              "ru": "После she в форме work / works нужно wants с -s.",
               "uk": "Після she у Present Simple потрібно wants із -s."
             }
           },
@@ -1141,5 +1141,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7580355f4edca903580f4cb5455e9467c609ad5bc888d7e3482d05f0a3dea398"
+  "learnerFingerprint": "33f069a0355fe05da9292f1b048fdbc168e42f48cfad1a425ca5996026fb36f6"
 }

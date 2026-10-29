@@ -905,7 +905,7 @@
             "correct": false,
             "testedDimension": "Опишите свою привычку извиняться после ошибки.",
             "feedbackByLocale": {
-              "ru": "Для привычки нужно сказуемое say, не отдельное saying.",
+              "ru": "Для привычки нужна полная форма say, не отдельное saying.",
               "uk": "Для звички потрібен присудок say, а не окреме saying."
             }
           }
@@ -1065,5 +1065,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8896dc7f36eb914f3962d4816f8db97404b9d090dcb92aded3409fbf8c61e9d6"
+  "learnerFingerprint": "05dc9d26e9cb52c8e8b7d7dd1c24502417bd3bc334cceb6fc4ecbdf77182a67a"
 }

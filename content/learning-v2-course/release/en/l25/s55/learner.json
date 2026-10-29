@@ -1048,7 +1048,7 @@
             "correct": false,
             "testedDimension": "Эта рубашка не подходит. Вы хотите посмотреть другую.",
             "feedbackByLocale": {
-              "ru": "Shirt в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Shirt, поэтому another.",
               "uk": "Shirt в однині, тому another."
             }
           },
@@ -1106,5 +1106,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a62c5b0d685d4c2dbcd1ed0822440db028f963db12e9dca8a0c78d6a0045d7b5"
+  "learnerFingerprint": "e2b21185fccc6f6aa8c5c4def768d83392880a8099a311b7a3a0598e4071bc8a"
 }

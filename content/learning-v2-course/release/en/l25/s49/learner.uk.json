@@ -1048,7 +1048,7 @@
             "correct": false,
             "testedDimension": "Чай допоміг зігрітися. Ви просите ще чашку.",
             "feedbackByLocale": {
-              "ru": "Cup в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Cup, поэтому another.",
               "uk": "Cup в однині, тому another."
             }
           },
@@ -1107,5 +1107,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b9d9f2a7dcec48dd4a1275b364ee82c4c0ef8c1c74d3e26e80797f6db4b786dd"
+  "learnerFingerprint": "2b182e4b2827ba76d78827845a95bc9957b41a295bb3eda6313cde90a155de3e"
 }

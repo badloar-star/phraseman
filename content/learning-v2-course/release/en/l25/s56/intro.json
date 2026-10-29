@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-56",
   "learningOutcomeByLocale": {
-    "ru": "past simple; review of past narrative forms",
-    "uk": "past simple; review of past narrative forms"
+    "ru": "сказать, что место занято: This seat is occupied.",
+    "uk": "сказати, що місце зайняте: This seat is occupied."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Номер був вільний після приїзду"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о заселении вчера: нужный номер оказался свободен. Скажите: The room was vacant when we arrived — номер был свободен, когда мы приехали. Собираем: The room + was + vacant + when we arrived — что, был, в каком состоянии, в какой момент. The room — единственное число, поэтому в прошлом нужна was. Vacant описывает состояние номера. When we arrived указывает момент в прошлом, поэтому is здесь не подходит.",
-        "uk": "Ви розповідаєте про вчорашнє заселення: потрібний номер виявився вільним. Скажіть: The room was vacant when we arrived — номер був вільний, коли ми приїхали. Складаємо: The room + was + vacant + when we arrived — що, був, у якому стані, у який момент. The room — однина, тому в минулому потрібна was. Vacant описує стан номера. When we arrived указує момент у минулому, тому is тут не підходить."
+        "ru": "Вы рассказываете о заселении вчера: нужный номер оказался свободен. Скажите: The room was vacant when we arrived — номер был свободен, когда мы приехали. Собираем: The room + was + vacant + when we arrived — что, был, в каком состоянии, в какой момент. The room — одна вещь, поэтому в прошлом нужна was. Vacant описывает состояние номера. When we arrived указывает момент в прошлом, поэтому is здесь не подходит.",
+        "uk": "Ви розповідаєте про вчорашнє заселення: потрібний номер виявився вільним. Скажіть: The room was vacant when we arrived — номер був вільний, коли ми приїхали. Складаємо: The room + was + vacant + when we arrived — що, був, у якому стані, у який момент. The room — одна річ, тому в минулому потрібна was. Vacant описує стан номера. When we arrived указує момент у минулому, тому is тут не підходить."
       },
       "question": {
         "interactionId": "en:lesson-25:session-56:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Якою була кухня після приїзду"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете вчерашний приход в дом: кухня была залита солнечным светом. Скажите: The kitchen was sunlit when we arrived — кухня была освещена солнцем, когда мы пришли. Собираем: The kitchen + was + sunlit + when we arrived — что, была, какой, в какой момент. The kitchen — единственное число, поэтому ставим was. Sunlit описывает состояние кухни, а when we arrived задаёт прошлый момент. После подлежащего нужна was; одно been её не заменяет.",
-        "uk": "Ви згадуєте вчорашній прихід до будинку: кухня була залита сонячним світлом. Скажіть: The kitchen was sunlit when we arrived — кухня була освітлена сонцем, коли ми прийшли. Складаємо: The kitchen + was + sunlit + when we arrived — що, була, якою, у який момент. The kitchen — однина, тому ставимо was. Sunlit описує стан кухні, а when we arrived задає минулий момент. Після підмета потрібна was; одне been її не замінює."
+        "ru": "Вы вспоминаете вчерашний приход в дом: кухня была залита солнечным светом. Скажите: The kitchen was sunlit when we arrived — кухня была освещена солнцем, когда мы пришли. Собираем: The kitchen + was + sunlit + when we arrived — что, была, какой, в какой момент. The kitchen — одна вещь, поэтому ставим was. Sunlit описывает состояние кухни, а when we arrived задаёт прошлый момент. После подлежащего нужна was; одно been её не заменяет.",
+        "uk": "Ви згадуєте вчорашній прихід до будинку: кухня була залита сонячним світлом. Скажіть: The kitchen was sunlit when we arrived — кухня була освітлена сонцем, коли ми прийшли. Складаємо: The kitchen + was + sunlit + when we arrived — що, була, якою, у який момент. The kitchen — одна річ, тому ставимо was. Sunlit описує стан кухні, а when we arrived задає минулий момент. Після підмета потрібна was; одне been її не замінює."
       },
       "question": {
         "interactionId": "en:lesson-25:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "67d19e009a6f8415d2b308260588e66fadbd690fd2fdbf15cbd2a5856088bb70"
+  "introFingerprint": "32d67f015dfe0d4f4676d594df068b8e17aaf2d6a61f87fa9f1312cc7c37caa3"
 }

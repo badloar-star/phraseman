@@ -626,7 +626,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Стіл накрили раніше, ніж прийшли гості. Виберіть Past Perfect.",
+      "prompt": "Стіл накрили раніше, ніж прийшли гості. Покажіть, що це сталося раніше.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-20:i09:r1",
@@ -643,12 +643,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Стіл накрили раніше, ніж прийшли гості. Виберіть Past Perfect.",
+      "accessibilityLabel": "Стіл накрили раніше, ніж прийшли гості. Покажіть, що це сталося раніше.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Стол накрыли раньше, чем пришли гости. Выберите Past Perfect.",
-          "uk": "Стіл накрили раніше, ніж прийшли гості. Виберіть Past Perfect."
+          "uk": "Стіл накрили раніше, ніж прийшли гості. Покажіть, що це сталося раніше."
         },
         "gappedTargetPhrase": "We ___ set the table before our guests came.",
         "gapOptions": [
@@ -964,7 +964,7 @@
             "correct": false,
             "testedDimension": "Учора ви приготували одну конкретну вечерю.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple cooked.",
+              "ru": "Yesterday требует формы прошлого cooked.",
               "uk": "Yesterday потребує Past Simple cooked."
             }
           },
@@ -1123,5 +1123,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "110669eef08183152785cefef43072023cdadf3170202dd7f10060e1029dac1a"
+  "learnerFingerprint": "93abf1c3c845f7bc7a117b76b4de643de8a67f47125f6232d36287dfda0f3ab5"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-33",
   "learningOutcomeByLocale": {
-    "ru": "past perfect + by the time + past simple",
-    "uk": "past perfect + by the time + past simple"
+    "ru": "сказать, что уже случилось к определённому моменту: had left by the time we arrived",
+    "uk": "сказати, що вже сталося до певного моменту: had left by the time we arrived"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "До того моменту вже"
       },
       "bodyByLocale": {
-        "ru": "Insert — вставить внутрь. I had inserted the key by the time she reached the door — я уже вставил ключ к тому моменту, когда она подошла к двери. By the time означает «к тому моменту, когда». Мы называем момент в прошлом — she reached the door — и говорим, что к нему уже было сделано: had inserted. Для завершённого к тому моменту действия используем Past Perfect, для самого момента — Past Simple.",
-        "uk": "Insert — вставити всередину. I had inserted the key by the time she reached the door — я вже вставив ключ до того моменту, коли вона підійшла до дверей. By the time означає «до того моменту, коли». Ми називаємо момент у минулому — she reached the door — і кажемо, що до нього вже було зроблено: had inserted. Для завершеної до того моменту дії використовуємо Past Perfect, для самого моменту — Past Simple."
+        "ru": "Insert — вставить внутрь. I had inserted the key by the time she reached the door — я уже вставил ключ к тому моменту, когда она подошла к двери. By the time означает «к тому моменту, когда». Мы называем момент в прошлом — she reached the door — и говорим, что к нему уже было сделано: had inserted. Для завершённого к тому моменту действия используем had + done, для самого момента — форма прошлого.",
+        "uk": "Insert — вставити всередину. I had inserted the key by the time she reached the door — я вже вставив ключ до того моменту, коли вона підійшла до дверей. By the time означає «до того моменту, коли». Ми називаємо момент у минулому — she reached the door — і кажемо, що до нього вже було зроблено: had inserted. Для завершеної до того моменту дії використовуємо had + done, для самого моменту — форма минулого."
       },
       "question": {
         "interactionId": "en:lesson-25:session-33:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Ґудзики розстебнули до ремонту"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете, как помогали подруге починить рубашку: пока вы искали иглу, она уже расстегнула пуговицы. Скажите: She had undone the buttons by the time I found the needle — она расстегнула пуговицы к тому времени, как я нашёл иглу. Собираем: She + had undone + the buttons + by the time I found the needle — кто, что сделал раньше, что расстегнул, к какому моменту. После had нужна третья форма undone, а не undo. Found обозначает более поздний момент, когда игла нашлась.",
-        "uk": "Ви згадуєте, як допомагали подрузі полагодити сорочку: поки ви шукали голку, вона вже розстебнула ґудзики. Скажіть: She had undone the buttons by the time I found the needle — вона розстебнула ґудзики до того часу, як я знайшов голку. Складаємо: She + had undone + the buttons + by the time I found the needle — хто, що зробив раніше, що розстебнув, до якого моменту. Після had потрібна третя форма undone, а не undo. Found позначає пізніший момент, коли голка знайшлася."
+        "ru": "Вы вспоминаете, как помогали подруге починить рубашку: пока вы искали иглу, она уже расстегнула пуговицы. Скажите: She had undone the buttons by the time I found the needle — она расстегнула пуговицы к тому времени, как я нашёл иглу. Собираем: She + had undone + the buttons + by the time I found the needle — кто, что сделал раньше, что расстегнул, к какому моменту. После had нужна форма undone, а не undo. Found обозначает более поздний момент, когда игла нашлась.",
+        "uk": "Ви згадуєте, як допомагали подрузі полагодити сорочку: поки ви шукали голку, вона вже розстебнула ґудзики. Скажіть: She had undone the buttons by the time I found the needle — вона розстебнула ґудзики до того часу, як я знайшов голку. Складаємо: She + had undone + the buttons + by the time I found the needle — хто, що зробив раніше, що розстебнув, до якого моменту. Після had потрібна форма undone, а не undo. Found позначає пізніший момент, коли голка знайшлася."
       },
       "question": {
         "interactionId": "en:lesson-25:session-33:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fc6af21187c88ba3bf8ee6bc3ba3c09530ba0b02eb2cc0fa73c9de3dde7f7103"
+  "introFingerprint": "83f5bc234a4b0d3919f61666c67425030945be1c6e6b19b8eb609dbaff980a97"
 }

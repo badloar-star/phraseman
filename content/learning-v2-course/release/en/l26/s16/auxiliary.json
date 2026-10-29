@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-26:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-26:session-16:intro2:r2": {
-          "ru": "После have нужна третья форма filled.",
-          "uk": "Після have потрібна третя форма filled."
+          "ru": "После have нужна форма filled.",
+          "uk": "Після have потрібна форма filled."
         },
         "en:lesson-26:session-16:intro2:r3": {
           "ru": "С I используем have.",
@@ -36,11 +36,11 @@
           "uk": "З I вживаємо make без -s."
         },
         "en:lesson-26:session-16:intro3:r3": {
-          "ru": "Нужно сказуемое say, не saying без вспомогательного глагола.",
-          "uk": "Потрібен присудок say, а не saying без допоміжного дієслова."
+          "ru": "Нужна полная форма say, не saying без am / is / are.",
+          "uk": "Потрібна повна форма say, а не saying без am / is / are."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "500301e03c96c3e7425154a46125a031a10fb108cc0746254a88f8b31c03cba9"
+  "auxiliaryFingerprint": "6f17601da5e3debb98478cd2401a67bf3726d9e8d2f64cb5fac22ea55272ae83"
 }

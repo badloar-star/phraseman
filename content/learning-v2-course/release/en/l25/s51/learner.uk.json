@@ -1050,7 +1050,7 @@
             "correct": false,
             "testedDimension": "Перший поїзд поїхав. Ви вирішуєте сісти на інший.",
             "feedbackByLocale": {
-              "ru": "Train в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Train, поэтому another.",
               "uk": "Train в однині, тому another."
             }
           },
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "909cf79f3a0ee993d85c9c370068eda2763821c3fc0613cd4771e9dfd7b9bbf2"
+  "learnerFingerprint": "859127156439fd5a79b7150cb5984563f67cfd4066d775193370e343afb96683"
 }

@@ -719,7 +719,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви знайшли кота вчора. Виберіть Past Simple.",
+      "prompt": "Ви знайшли кота вчора. Виберіть форму для завершеного минулого.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-48:i11:r1",
@@ -736,12 +736,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви знайшли кота вчора. Виберіть Past Simple.",
+      "accessibilityLabel": "Ви знайшли кота вчора. Виберіть форму для завершеного минулого.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы нашли кота вчера. Выберите Past Simple.",
-          "uk": "Ви знайшли кота вчора. Виберіть Past Simple."
+          "uk": "Ви знайшли кота вчора. Виберіть форму для завершеного минулого."
         },
         "gappedTargetPhrase": "We ___ the cat yesterday.",
         "gapOptions": [
@@ -774,7 +774,7 @@
             "correct": false,
             "testedDimension": "Ви знайшли кота вчора. Виберіть Past Simple.",
             "feedbackByLocale": {
-              "ru": "Finding без вспомогательного глагола здесь не подходит.",
+              "ru": "Одной формы Finding здесь мало.",
               "uk": "Finding без допоміжного дієслова тут не підходить."
             }
           }
@@ -1049,7 +1049,7 @@
             "correct": false,
             "testedDimension": "Перший рушник мокрий. Попросіть ще один.",
             "feedbackByLocale": {
-              "ru": "Towel в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Towel, поэтому another.",
               "uk": "Towel в однині, тому another."
             }
           },
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5a9af8d3aed4dc36aa687cae0397f85e9fb32814198c163d9824b06f10fc1c3b"
+  "learnerFingerprint": "821d8e289e5987434d4c1336a8a295b7d0b05ccd73dfbf4f6233d386a2dc368a"
 }

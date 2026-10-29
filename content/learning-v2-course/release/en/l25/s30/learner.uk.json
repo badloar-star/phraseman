@@ -834,7 +834,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви поговорили з тіткою вчора, у завершений час.",
+      "prompt": "Ви поговорили з тіткою вчора — це вже минуле.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-30:i13:r1",
@@ -851,12 +851,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви поговорили з тіткою вчора, у завершений час.",
+      "accessibilityLabel": "Ви поговорили з тіткою вчора — це вже минуле.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы поговорили с тётей вчера, в законченное время.",
-          "uk": "Ви поговорили з тіткою вчора, у завершений час."
+          "uk": "Ви поговорили з тіткою вчора — це вже минуле."
         },
         "gappedTargetPhrase": "I ___ to my aunt yesterday.",
         "gapOptions": [
@@ -880,7 +880,7 @@
             "correct": false,
             "testedDimension": "Ви поговорили з тіткою вчора, у завершений час.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple spoke.",
+              "ru": "Yesterday требует формы прошлого spoke.",
               "uk": "Yesterday потребує Past Simple spoke."
             }
           },
@@ -1122,5 +1122,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b2672a4139741a9dffa182f27b2c413b4538ef8bd10c35a2d07749b90b2de8f5"
+  "learnerFingerprint": "6446ec951d3237f9b514d0dffd6fe40a4f7e358346eadeea28a17e350c2ade85"
 }

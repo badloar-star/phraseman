@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-30",
   "learningOutcomeByLocale": {
-    "ru": "before|after + past clause",
-    "uk": "before|after + past clause"
+    "ru": "поблагодарить за приглашение: Thank you for inviting me.",
+    "uk": "подякувати за запрошення: Thank you for inviting me."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Рукостискання перед відходом"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете прощание с другом: He gave me a handshake before he left — он пожал мне руку перед тем, как ушёл. Собираем: He + gave + me + a handshake + before he left — кто, что сделал, кому, что, перед каким событием. Gave — прошедшая форма give; me стоит сразу после gave и называет получателя. Before he left показывает: сначала рукопожатие, потом уход. В обеих частях past simple: gave и left.",
-        "uk": "Ви згадуєте прощання з другом: He gave me a handshake before he left — він потиснув мені руку перед тим, як пішов. Складаємо: He + gave + me + a handshake + before he left — хто, що зробив, кому, що, перед якою подією. Gave — минула форма give; me стоїть одразу після gave та називає отримувача. Before he left показує: спочатку рукостискання, потім відхід. В обох частинах past simple: gave і left."
+        "ru": "Вы вспоминаете прощание с другом: He gave me a handshake before he left — он пожал мне руку перед тем, как ушёл. Собираем: He + gave + me + a handshake + before he left — кто, что сделал, кому, что, перед каким событием. Gave — прошедшая форма give; me стоит сразу после gave и называет получателя. Before he left показывает: сначала рукопожатие, потом уход. В обеих частях форма прошлого: gave и left.",
+        "uk": "Ви згадуєте прощання з другом: He gave me a handshake before he left — він потиснув мені руку перед тим, як пішов. Складаємо: He + gave + me + a handshake + before he left — хто, що зробив, кому, що, перед якою подією. Gave — минула форма give; me стоїть одразу після gave та називає отримувача. Before he left показує: спочатку рукостискання, потім відхід. В обох частинах форма минулого: gave і left."
       },
       "question": {
         "interactionId": "en:lesson-25:session-30:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Зустріч закінчилася після їжі"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о вчерашнем вечере с друзьями: The gathering ended after we ate — встреча закончилась после того, как мы поели. Собираем: The gathering + ended + after we ate — что, что произошло, после какого события. After связывает события: еда была раньше окончания встречи, хотя упомянута в конце фразы. В обеих частях past simple. У end добавляем -ed, а ate — прошедшая форма eat.",
-        "uk": "Ви розповідаєте про вчорашній вечір із друзями: The gathering ended after we ate — зустріч закінчилася після того, як ми поїли. Складаємо: The gathering + ended + after we ate — що, що відбулося, після якої події. After пов’язує події: їжа була раніше закінчення зустрічі, хоча згадана наприкінці фрази. В обох частинах past simple. До end додаємо -ed, а ate — минула форма eat."
+        "ru": "Вы рассказываете о вчерашнем вечере с друзьями: The gathering ended after we ate — встреча закончилась после того, как мы поели. Собираем: The gathering + ended + after we ate — что, что произошло, после какого события. After связывает события: еда была раньше окончания встречи, хотя упомянута в конце фразы. В обеих частях форма прошлого. У end добавляем -ed, а ate — прошедшая форма eat.",
+        "uk": "Ви розповідаєте про вчорашній вечір із друзями: The gathering ended after we ate — зустріч закінчилася після того, як ми поїли. Складаємо: The gathering + ended + after we ate — що, що відбулося, після якої події. After пов’язує події: їжа була раніше закінчення зустрічі, хоча згадана наприкінці фрази. В обох частинах форма минулого. До end додаємо -ed, а ate — минула форма eat."
       },
       "question": {
         "interactionId": "en:lesson-25:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cdaef6ed367d2188f6926420c0f8c1dbc55beab1ebce252e3fae6716e594594d"
+  "introFingerprint": "8b16c0701ad8eb2eb5b42116e01a27f4536a452564c5168b23a7a381c41c340c"
 }

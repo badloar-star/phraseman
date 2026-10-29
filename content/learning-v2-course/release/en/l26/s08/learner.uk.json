@@ -256,7 +256,7 @@
             "correct": false,
             "testedDimension": "Ви завжди прибираєте зайвий жир перед смаженням. Доповніть звичну дію.",
             "feedbackByLocale": {
-              "ru": "После I в Present Simple нужна форма remove без -s.",
+              "ru": "После I в форме work / works нужна форма remove без -s.",
               "uk": "Після I у Present Simple потрібна форма remove без -s."
             }
           },
@@ -265,7 +265,7 @@
             "correct": false,
             "testedDimension": "Ви завжди прибираєте зайвий жир перед смаженням. Доповніть звичну дію.",
             "feedbackByLocale": {
-              "ru": "Для привычного действия здесь нужно remove; removing без вспомогательного глагола не подходит.",
+              "ru": "Для привычного действия здесь нужно remove; removing без am / is / are не подходит.",
               "uk": "Для звичної дії тут потрібно remove; removing без допоміжного дієслова не підходить."
             }
           }
@@ -673,7 +673,7 @@
             "correct": false,
             "testedDimension": "Ви описуєте свою звичайну звичку, а не разовий план. Доповніть умову.",
             "feedbackByLocale": {
-              "ru": "The sauce — единственное число: is.",
+              "ru": "The sauce — форма для одного: is.",
               "uk": "The sauce — однина: is."
             }
           },
@@ -1120,7 +1120,7 @@
             "correct": false,
             "testedDimension": "Супу іноді бракує смаку. Доповніть умову, за якої ви додаєте сіль.",
             "feedbackByLocale": {
-              "ru": "Нужна личная форма lacks; lacking здесь не образует сказуемое.",
+              "ru": "Нужна личная форма lacks; lacking здесь не может стоять отдельно.",
               "uk": "Потрібна особова форма lacks; lacking тут не утворює присудок."
             }
           }
@@ -1135,5 +1135,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f4e6bdeae64e3aeb1ad100b5b660997331044c97070384b370d915f27cea2f8e"
+  "learnerFingerprint": "661abab24cbc79960a87b6020e60991798b9dfb47b3d24d58434a35c8007d7f7"
 }

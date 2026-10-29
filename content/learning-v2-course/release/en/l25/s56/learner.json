@@ -1052,7 +1052,7 @@
             "correct": false,
             "testedDimension": "В номере только один стул, а вас двое. Попросите ещё один.",
             "feedbackByLocale": {
-              "ru": "Chair в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Chair, поэтому another.",
               "uk": "Chair в однині, тому another."
             }
           },
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5dcf8820ec78cf39cf32a1f2afa867aee121fbed4393974facc4d2a7f3035e99"
+  "learnerFingerprint": "75e1821e372ea40263876d4d135a84f999520cf733bd51a62fcd19f7288de8b7"
 }

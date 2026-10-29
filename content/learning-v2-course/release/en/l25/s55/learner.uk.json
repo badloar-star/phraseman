@@ -1048,7 +1048,7 @@
             "correct": false,
             "testedDimension": "Ця сорочка не підходить. Ви хочете подивитися іншу.",
             "feedbackByLocale": {
-              "ru": "Shirt в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Shirt, поэтому another.",
               "uk": "Shirt в однині, тому another."
             }
           },
@@ -1106,5 +1106,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1ea3d69e3791ba9e14a7d50c3878c11873b8a1c3f4edcfb73ada0dd18d60ac2f"
+  "learnerFingerprint": "a94ecbe26d68666da22e2feee6ccee81d33e4ad7e2e93c1de24d522699146901"
 }

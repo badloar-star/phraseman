@@ -210,7 +210,7 @@
             "correct": false,
             "testedDimension": "Вы описываете звук своей двери. Дополните результат.",
             "feedbackByLocale": {
-              "ru": "The door — единственное число, поэтому squeaks.",
+              "ru": "The door — одна вещь, поэтому squeaks.",
               "uk": "The door — однина, тому squeaks."
             }
           },
@@ -219,7 +219,7 @@
             "correct": false,
             "testedDimension": "Вы описываете звук своей двери. Дополните результат.",
             "feedbackByLocale": {
-              "ru": "В Present Simple здесь нужно squeaks, не squeaking.",
+              "ru": "В форме work / works здесь нужно squeaks, не squeaking.",
               "uk": "У Present Simple тут потрібно squeaks, не squeaking."
             }
           }
@@ -519,7 +519,7 @@
             "correct": false,
             "testedDimension": "Вы не будите ребёнка. Дополните привычное отрицательное действие.",
             "feedbackByLocale": {
-              "ru": "С I отрицание в Present Simple строится через do not.",
+              "ru": "С I отрицание в форме work / works строится через do not.",
               "uk": "З I заперечення у Present Simple утворюється через do not."
             }
           },
@@ -528,7 +528,7 @@
             "correct": false,
             "testedDimension": "Вы не будите ребёнка. Дополните привычное отрицательное действие.",
             "feedbackByLocale": {
-              "ru": "Перед make здесь нужен вспомогательный do not, не am not.",
+              "ru": "Перед make здесь нужно do not, не am not.",
               "uk": "Перед make тут потрібне do not, не am not."
             }
           }
@@ -818,7 +818,7 @@
             "correct": false,
             "testedDimension": "Листья шуршат в ветреную погоду. Дополните условие.",
             "feedbackByLocale": {
-              "ru": "The wind — единственное число: blows.",
+              "ru": "The wind — форма для одного: blows.",
               "uk": "The wind — однина: blows."
             }
           },
@@ -1134,5 +1134,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "df2b4b1142974581f7d94809b50bf9a1c3091fe6d92a65c375d9c8beb50788ec"
+  "learnerFingerprint": "f8c9b9200e4b5061dbaa7ad472f6f31ca09aa42e11ddfa582350ce4bfff20240"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-54",
   "learningOutcomeByLocale": {
-    "ru": "past perfect; before + past simple",
-    "uk": "past perfect; before + past simple"
+    "ru": "предложить добавку к блюду: Would you like some gravy?",
+    "uk": "запропонувати добавку до страви: Would you like some gravy?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Підлива до приходу гостей"
       },
       "bodyByLocale": {
-        "ru": "Gravy — подливка, часто на основе мясного сока. We had made the gravy before the guests arrived — мы приготовили подливку до прихода гостей. Сначала она была готова, потом пришли гости. Had made показывает более раннее действие; made — третья форма make. Gravy обычно неисчисляемое: здесь the gravy — конкретная подливка к нашему ужину.",
-        "uk": "Gravy — підлива, часто на основі м’ясного соку. We had made the gravy before the guests arrived — ми приготували підливу до приходу гостей. Спочатку вона була готова, потім прийшли гості. Had made показує ранішу дію; made — третя форма make. Gravy зазвичай незлічуване: тут the gravy — конкретна підлива до нашої вечері."
+        "ru": "Gravy — подливка, часто на основе мясного сока. We had made the gravy before the guests arrived — мы приготовили подливку до прихода гостей. Сначала она была готова, потом пришли гости. Had made показывает более раннее действие; made — форма make после have. Gravy обычно не считается поштучно: здесь the gravy — конкретная подливка к нашему ужину.",
+        "uk": "Gravy — підлива, часто на основі м’ясного соку. We had made the gravy before the guests arrived — ми приготували підливу до приходу гостей. Спочатку вона була готова, потім прийшли гості. Had made показує ранішу дію; made — форма make після have. Gravy зазвичай не рахується поштучно: тут the gravy — конкретна підлива до нашої вечері."
       },
       "question": {
         "interactionId": "en:lesson-25:session-54:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Вибрати додаток до замовлення"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете поход за мороженым: подруга определилась с посыпкой ещё до вашего заказа. Скажите: She had chosen the topping before I ordered — она выбрала добавку сверху до того, как я сделал заказ. Собираем: She + had chosen + the topping + before I ordered — кто, что сделал раньше, что выбрал, до какого события. После had нужна третья форма chosen, а не chose или choose. Before I ordered задаёт более поздний момент в прошлом.",
-        "uk": "Ви згадуєте похід по морозиво: подруга визначилася з посипкою ще до вашого замовлення. Скажіть: She had chosen the topping before I ordered — вона вибрала додаток зверху до того, як я зробив замовлення. Складаємо: She + had chosen + the topping + before I ordered — хто, що зробив раніше, що вибрав, до якої події. Після had потрібна третя форма chosen, а не chose чи choose. Before I ordered задає пізніший момент у минулому."
+        "ru": "Вы вспоминаете поход за мороженым: подруга определилась с посыпкой ещё до вашего заказа. Скажите: She had chosen the topping before I ordered — она выбрала добавку сверху до того, как я сделал заказ. Собираем: She + had chosen + the topping + before I ordered — кто, что сделал раньше, что выбрал, до какого события. После had нужна форма chosen, а не chose или choose. Before I ordered задаёт более поздний момент в прошлом.",
+        "uk": "Ви згадуєте похід по морозиво: подруга визначилася з посипкою ще до вашого замовлення. Скажіть: She had chosen the topping before I ordered — вона вибрала додаток зверху до того, як я зробив замовлення. Складаємо: She + had chosen + the topping + before I ordered — хто, що зробив раніше, що вибрав, до якої події. Після had потрібна форма chosen, а не chose чи choose. Before I ordered задає пізніший момент у минулому."
       },
       "question": {
         "interactionId": "en:lesson-25:session-54:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "133982e0caa9a5f43f72102cf1448e29dad537fdcb714fa7e5fe778701fad631"
+  "introFingerprint": "6e582fcf8b746af2dcf04daae6d6ebec915a8719259493434895e5a965ee90cc"
 }

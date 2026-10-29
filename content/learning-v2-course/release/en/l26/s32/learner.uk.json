@@ -593,7 +593,7 @@
             "correct": false,
             "testedDimension": "Якщо баклажана немає, ви купите гриби. Доповніть умову.",
             "feedbackByLocale": {
-              "ru": "Eggplant здесь в единственном числе: is.",
+              "ru": "Eggplant здесь один: is.",
               "uk": "Eggplant тут в однині: is."
             }
           }
@@ -1106,5 +1106,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "32ef787ceed43e11d125e49e475237b374c0c0fab006221e71b19e6ba2921c95"
+  "learnerFingerprint": "466ebe0fd7d9df1bb075882f550d8e1922e8ca0c0137c5769e3867fce779fa03"
 }

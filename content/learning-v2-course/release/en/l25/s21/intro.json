@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-21",
   "learningOutcomeByLocale": {
-    "ru": "had + past participle before later past event",
-    "uk": "had + past participle before later past event"
+    "ru": "сказать, что вы уже погладили вещь: I have already ironed your shirt.",
+    "uk": "сказати, що ви вже попрасували річ: I have already ironed your shirt."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Спідниця стала довшою"
       },
       "bodyByLocale": {
-        "ru": "Lengthen — удлинять, делать длиннее. She had lengthened the skirt before her daughter wore it — она удлинила юбку до того, как дочь её надела. Например, добавила снизу полосу ткани. Сначала изменила юбку, затем дочь её надела. Had lengthened показывает более раннее действие; wore — Past Simple от wear. It заменяет the skirt.",
-        "uk": "Lengthen — подовжувати, робити довшим. She had lengthened the skirt before her daughter wore it — вона подовжила спідницю до того, як донька її вдягнула. Наприклад, додала знизу смугу тканини. Спочатку змінила спідницю, потім донька її вдягнула. Had lengthened показує ранішу дію; wore — Past Simple від wear. It замінює the skirt."
+        "ru": "Lengthen — удлинять, делать длиннее. She had lengthened the skirt before her daughter wore it — она удлинила юбку до того, как дочь её надела. Например, добавила снизу полосу ткани. Сначала изменила юбку, затем дочь её надела. Had lengthened показывает более раннее действие; wore — форма прошлого от wear. It заменяет the skirt.",
+        "uk": "Lengthen — подовжувати, робити довшим. She had lengthened the skirt before her daughter wore it — вона подовжила спідницю до того, як донька її вдягнула. Наприклад, додала знизу смугу тканини. Спочатку змінила спідницю, потім донька її вдягнула. Had lengthened показує ранішу дію; wore — форма минулого від wear. It замінює the skirt."
       },
       "question": {
         "interactionId": "en:lesson-25:session-21:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "58dae7e4a8ba648ae629e033f0bf46bcc36f3c6f418ac745c1d3ae7f8b66e018"
+  "introFingerprint": "90277b0e6b7b33138e5ff8c7789ca67fdcef6fac7beddbe7b80bb3d247720771"
 }

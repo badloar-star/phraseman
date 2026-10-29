@@ -446,7 +446,7 @@
             "correct": false,
             "testedDimension": "Вы обычно проверяете странные истории, прежде чем им верить. Дополните описание привычки.",
             "feedbackByLocale": {
-              "ru": "Checking без вспомогательного глагола не образует сказуемое.",
+              "ru": "Checking без am / is / are не может стоять отдельно.",
               "uk": "Checking без допоміжного дієслова не утворює присудок."
             }
           }
@@ -657,7 +657,7 @@
             "correct": false,
             "testedDimension": "Сосед спрашивает, что вы сделаете завтра, если будет дождь. Дополните свой план.",
             "feedbackByLocale": {
-              "ru": "В будущем условии после if нужен Present Simple: rains.",
+              "ru": "В будущем условии после if нужна форма work / works: rains.",
               "uk": "У майбутній умові після if потрібен Present Simple: rains."
             }
           },
@@ -666,7 +666,7 @@
             "correct": false,
             "testedDimension": "Сосед спрашивает, что вы сделаете завтра, если будет дождь. Дополните свой план.",
             "feedbackByLocale": {
-              "ru": "Нужно сказуемое rains, не отдельная форма raining.",
+              "ru": "Нужна полная форма rains, не отдельная форма raining.",
               "uk": "Потрібен присудок rains, а не окрема форма raining."
             }
           }
@@ -1074,5 +1074,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b1c626df38926b8c72389fb5ae1e0232511d879f5f4a6ea13e4b15b541198b2d"
+  "learnerFingerprint": "6b985d8a9cc1b25863bc16dab6360a0dd2852830dbfc8c308acda01c0945ec42"
 }

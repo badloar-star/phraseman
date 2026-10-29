@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-51",
   "learningOutcomeByLocale": {
-    "ru": "past perfect; before + past simple",
-    "uk": "past perfect; before + past simple"
+    "ru": "сказать, что вы восстановили силы: I slowly regained my strength.",
+    "uk": "сказати, що ви відновили сили: I slowly regained my strength."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Ключі за диваном"
       },
       "bodyByLocale": {
-        "ru": "Ключи упали за диван, и перед выходом вы их достали. Retrieve — забрать или достать что-то обратно. He had retrieved his keys before he left — он достал свои ключи до того, как ушёл. В этом контексте retrieve означает именно вернуть себе ключи из труднодоступного места. Had retrieved — более раннее действие, left — последующий уход. После had нужна третья форма retrieved.",
-        "uk": "Ключі впали за диван, і перед виходом ви їх дістали. Retrieve — забрати чи дістати щось назад. He had retrieved his keys before he left — він дістав свої ключі до того, як пішов. У цьому контексті retrieve означає саме повернути собі ключі з важкодоступного місця. Had retrieved — раніша дія, left — подальший вихід. Після had потрібна третя форма retrieved."
+        "ru": "Ключи упали за диван, и перед выходом вы их достали. Retrieve — забрать или достать что-то обратно. He had retrieved his keys before he left — он достал свои ключи до того, как ушёл. В этом контексте retrieve означает именно вернуть себе ключи из труднодоступного места. Had retrieved — более раннее действие, left — последующий уход. После had нужна форма retrieved.",
+        "uk": "Ключі впали за диван, і перед виходом ви їх дістали. Retrieve — забрати чи дістати щось назад. He had retrieved his keys before he left — він дістав свої ключі до того, як пішов. У цьому контексті retrieve означає саме повернути собі ключі з важкодоступного місця. Had retrieved — раніша дія, left — подальший вихід. Після had потрібна форма retrieved."
       },
       "question": {
         "interactionId": "en:lesson-25:session-51:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cb213b52fbceff4f965d27facbaec17b24ea2b8e0a660b666c2a289fc9b3275f"
+  "introFingerprint": "4c21b91c5e937fe6d8174dab53b3d57b0e72b918ae5532884f6ffc50b3af5c64"
 }

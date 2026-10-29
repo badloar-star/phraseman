@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-49",
   "learningOutcomeByLocale": {
-    "ru": "past perfect; before; by the time + past simple",
-    "uk": "past perfect; before; by the time + past simple"
+    "ru": "описать погоду: It is hot and humid today.",
+    "uk": "описати погоду: It is hot and humid today."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Небо в серпанку"
       },
       "bodyByLocale": {
-        "ru": "Hazy — подёрнутый дымкой, не вполне ясный. The sky had become hazy by the time we reached the beach — небо уже затянуло дымкой к тому моменту, когда мы добрались до пляжа. Had become описывает изменение, которое уже произошло к нашему приходу. Become — третья форма глагола become; после had не ставим became. By the time we reached the beach задаёт более поздний момент.",
-        "uk": "Hazy — оповитий серпанком, не зовсім ясний. The sky had become hazy by the time we reached the beach — небо вже затягло серпанком до того моменту, коли ми дісталися пляжу. Had become описує зміну, яка вже сталася до нашого приходу. Become — третя форма дієслова become; після had не ставимо became. By the time we reached the beach задає пізніший момент."
+        "ru": "Hazy — подёрнутый дымкой, не вполне ясный. The sky had become hazy by the time we reached the beach — небо уже затянуло дымкой к тому моменту, когда мы добрались до пляжа. Had become описывает изменение, которое уже произошло к нашему приходу. Become — форма после have от become; после had не ставим became. By the time we reached the beach задаёт более поздний момент.",
+        "uk": "Hazy — оповитий серпанком, не зовсім ясний. The sky had become hazy by the time we reached the beach — небо вже затягло серпанком до того моменту, коли ми дісталися пляжу. Had become описує зміну, яка вже сталася до нашого приходу. Become — форма після have від become; після had не ставимо became. By the time we reached the beach задає пізніший момент."
       },
       "question": {
         "interactionId": "en:lesson-25:session-49:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "eb0a2289db92cf24e0ab69d74ab56b095323f0dc9ed520bc3d74c885d11c69c6"
+  "introFingerprint": "d9f6590263976c0e4bac7d6146d126e93674c9de4543efaf28b26a294a503436"
 }

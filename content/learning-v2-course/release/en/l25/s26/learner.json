@@ -801,7 +801,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.",
+      "prompt": "Вы уже убрали комнату до прихода мамы. Покажите, что это случилось раньше.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-26:i12:r1",
@@ -818,11 +818,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.",
+      "accessibilityLabel": "Вы уже убрали комнату до прихода мамы. Покажите, что это случилось раньше.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы уже убрали комнату до прихода мамы. Дополните Past Perfect.",
+          "ru": "Вы уже убрали комнату до прихода мамы. Покажите, что это случилось раньше.",
           "uk": "Ви вже прибрали кімнату до приходу мами. Доповніть Past Perfect."
         },
         "gappedTargetPhrase": "I ___ cleaned my room before my mother came home.",
@@ -989,7 +989,7 @@
             "correct": false,
             "testedDimension": "Вы поговорили об этом один раз вчера.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple talked.",
+              "ru": "Yesterday требует формы прошлого talked.",
               "uk": "Yesterday потребує Past Simple talked."
             }
           },
@@ -1122,5 +1122,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0a2a35720b5093ec6442d232c142d7f691b5b7500d6b1b3ec6bbfca3f0d45097"
+  "learnerFingerprint": "43badd6ee5f1f1fd513ed5a2079def85607c773084d0a98ccd8eefe7c3f6bd01"
 }

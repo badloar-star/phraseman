@@ -586,7 +586,7 @@
             "correct": false,
             "testedDimension": "Мама предлагает взять запасную одежду на случай холода. Дополните условие.",
             "feedbackByLocale": {
-              "ru": "После if в этом условии нужен Present Simple: gets.",
+              "ru": "После if в этом условии нужна форма work / works: gets.",
               "uk": "Після if у цій умові потрібен Present Simple: gets."
             }
           },
@@ -595,7 +595,7 @@
             "correct": false,
             "testedDimension": "Мама предлагает взять запасную одежду на случай холода. Дополните условие.",
             "feedbackByLocale": {
-              "ru": "Нужно сказуемое gets, а не отдельная форма getting.",
+              "ru": "Нужна полная форма gets, а не отдельная форма getting.",
               "uk": "Потрібен присудок gets, а не окрема форма getting."
             }
           }
@@ -1083,5 +1083,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7000a748fe671cbe9071bb0f896892a606b297589d33d9085d8c54353d9d6112"
+  "learnerFingerprint": "96efea66da4d8f803e57ba33a320456626910853a99490e229a9accf1cb2beff"
 }

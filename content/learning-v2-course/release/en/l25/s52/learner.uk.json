@@ -1053,7 +1053,7 @@
             "correct": false,
             "testedDimension": "Друг просить трохи часу перед відповіддю. Доповніть прохання.",
             "feedbackByLocale": {
-              "ru": "Moment в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Moment, поэтому another.",
               "uk": "Moment в однині, тому another."
             }
           },
@@ -1113,5 +1113,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "79f97c33d5ca3758c3bba23cf6185404b034b6430a8cdb3145453544b1a3afe6"
+  "learnerFingerprint": "45bf0e80ca28f71c8dbd683cc5f1003f3eb1d6dd62c33253abd6bec6ba932163"
 }

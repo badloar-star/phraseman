@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-26:session-08:intro1:q",
       "responseFeedbackById": {
         "en:lesson-26:session-08:intro1:r2": {
-          "ru": "После I в Present Simple нужна форма use.",
-          "uk": "Після I в Present Simple потрібна форма use."
+          "ru": "После I в форме work / works нужна форма use.",
+          "uk": "Після I в формі work / works потрібна форма use."
         },
         "en:lesson-26:session-08:intro1:r3": {
-          "ru": "Обычный выбор при условии: Present Simple в обеих частях.",
-          "uk": "Звичайний вибір за умови: Present Simple в обох частинах."
+          "ru": "Обычный выбор при условии: форма work / works в обеих частях.",
+          "uk": "Звичайний вибір за умови: форма work / works в обох частинах."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-26:session-08:intro2:q",
       "responseFeedbackById": {
         "en:lesson-26:session-08:intro2:r2": {
-          "ru": "После I в Present Simple нужна форма remove.",
-          "uk": "Після I в Present Simple потрібна форма remove."
+          "ru": "После I в форме work / works нужна форма remove.",
+          "uk": "Після I в формі work / works потрібна форма remove."
         },
         "en:lesson-26:session-08:intro2:r3": {
-          "ru": "Обычный выбор при условии: Present Simple в обеих частях.",
-          "uk": "Звичайний вибір за умови: Present Simple в обох частинах."
+          "ru": "Обычный выбор при условии: форма work / works в обеих частях.",
+          "uk": "Звичайний вибір за умови: форма work / works в обох частинах."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-26:session-08:intro3:q",
       "responseFeedbackById": {
         "en:lesson-26:session-08:intro3:r2": {
-          "ru": "После I в Present Simple нужна форма add.",
-          "uk": "Після I в Present Simple потрібна форма add."
+          "ru": "После I в форме work / works нужна форма add.",
+          "uk": "Після I в формі work / works потрібна форма add."
         },
         "en:lesson-26:session-08:intro3:r3": {
-          "ru": "Обычный выбор при условии: Present Simple в обеих частях.",
-          "uk": "Звичайний вибір за умови: Present Simple в обох частинах."
+          "ru": "Обычный выбор при условии: форма work / works в обеих частях.",
+          "uk": "Звичайний вибір за умови: форма work / works в обох частинах."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "93fe4b32a9c6fe8a8b44a2eb344b9ce5d8fed2af8c31099a7c6037daff7523ed"
+  "auxiliaryFingerprint": "b9c928a93af2dd9bb7039113377750fbb3ca20309a969945362e1c46ab8c43d8"
 }

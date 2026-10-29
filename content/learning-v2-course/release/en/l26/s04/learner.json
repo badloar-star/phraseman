@@ -220,7 +220,7 @@
             "correct": false,
             "testedDimension": "Вы описываете своё обычное поведение на занятиях танцами.",
             "feedbackByLocale": {
-              "ru": "Для привычки нужен Present Simple: watch, не watching без вспомогательного глагола.",
+              "ru": "Для привычки нужна форма work / works: watch, не watching без am / is / are.",
               "uk": "Для звички потрібен Present Simple: watch, не watching без допоміжного дієслова."
             }
           }
@@ -527,7 +527,7 @@
             "correct": false,
             "testedDimension": "Говорящий описывает изменение своего пульса во время упражнений. Дополните условие.",
             "feedbackByLocale": {
-              "ru": "В условии здесь нужен Present Simple: exercise.",
+              "ru": "В условии здесь нужна форма work / works: exercise.",
               "uk": "В умові тут потрібен Present Simple: exercise."
             }
           }
@@ -1028,7 +1028,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Говорящий не продолжает танцевать после окончания музыки. Дополните отрицание.",
+      "prompt": "Говорящий не продолжает танцевать после окончания музыки. Дополните фразу с «не».",
       "responseOptions": [
         {
           "responseId": "en:lesson-26:session-04:i16:r1",
@@ -1045,11 +1045,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Говорящий не продолжает танцевать после окончания музыки. Дополните отрицание.",
+      "accessibilityLabel": "Говорящий не продолжает танцевать после окончания музыки. Дополните фразу с «не».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Говорящий не продолжает танцевать после окончания музыки. Дополните отрицание.",
+          "ru": "Говорящий не продолжает танцевать после окончания музыки. Дополните фразу с «не».",
           "uk": "Мовець не продовжує танцювати після завершення музики. Доповніть заперечення."
         },
         "gappedTargetPhrase": "I ___ keep dancing when the music stops.",
@@ -1131,5 +1131,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b22686491d8cc98a945100e7565d3809e8214db0f93484bc1cc7c082794e5a12"
+  "learnerFingerprint": "a640c78a6c06ce3ccf6257f9aa353d5b3272ee1650844cbbd7d14258d03944d2"
 }

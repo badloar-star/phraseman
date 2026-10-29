@@ -794,7 +794,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Разговор закончился ещё до прихода учителя. Дополните Past Perfect.",
+      "prompt": "Разговор закончился ещё до прихода учителя. Покажите, что это случилось раньше.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-29:i12:r1",
@@ -811,11 +811,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Разговор закончился ещё до прихода учителя. Дополните Past Perfect.",
+      "accessibilityLabel": "Разговор закончился ещё до прихода учителя. Покажите, что это случилось раньше.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Разговор закончился ещё до прихода учителя. Дополните Past Perfect.",
+          "ru": "Разговор закончился ещё до прихода учителя. Покажите, что это случилось раньше.",
           "uk": "Розмова закінчилася ще до приходу вчителя. Доповніть Past Perfect."
         },
         "gappedTargetPhrase": "We ___ finished talking before the teacher arrived.",
@@ -1060,7 +1060,7 @@
             "correct": false,
             "testedDimension": "Вы увидели друга вчера и извинились тогда.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple apologised.",
+              "ru": "Yesterday требует формы прошлого apologised.",
               "uk": "Yesterday потребує Past Simple apologised."
             }
           },
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9c0db7eb69bfc413f6e567e006ed674b04da254209cf159a5242df8cb8477d80"
+  "learnerFingerprint": "23678ba9acd21b6e14880085e999495b7f374ca63562567452085dec83924908"
 }

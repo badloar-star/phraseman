@@ -242,7 +242,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму.",
+      "prompt": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть потрібну форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-22:i04:r1",
@@ -259,12 +259,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму.",
+      "accessibilityLabel": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть потрібну форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Учитель запретил фотографии до того, как вы вошли. Выберите третью форму.",
-          "uk": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму."
+          "uk": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть потрібну форму слова."
         },
         "gappedTargetPhrase": "The teacher had ___ photos before we came in.",
         "gapOptions": [
@@ -288,7 +288,7 @@
             "correct": false,
             "testedDimension": "Учитель заборонив фотографії до того, як ви ввійшли. Виберіть третю форму.",
             "feedbackByLocale": {
-              "ru": "Forbade — Past Simple; после had нужна форма forbidden.",
+              "ru": "Forbade — форма прошлого; после had нужна форма forbidden.",
               "uk": "Forbade — Past Simple; після had потрібна форма forbidden."
             }
           },
@@ -959,7 +959,7 @@
             "correct": false,
             "testedDimension": "Один концерт закінчився вчора. Ви поаплодували тоді.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple applauded.",
+              "ru": "Yesterday требует формы прошлого applauded.",
               "uk": "Yesterday потребує Past Simple applauded."
             }
           },
@@ -1023,7 +1023,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви вже вибачилися. Доповніть Present Perfect.",
+      "prompt": "Ви вже вибачилися. Доповніть фразу з have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-22:i16:r1",
@@ -1040,12 +1040,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви вже вибачилися. Доповніть Present Perfect.",
+      "accessibilityLabel": "Ви вже вибачилися. Доповніть фразу з have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы уже извинились. Дополните Present Perfect.",
-          "uk": "Ви вже вибачилися. Доповніть Present Perfect."
+          "uk": "Ви вже вибачилися. Доповніть фразу з have / has."
         },
         "gappedTargetPhrase": "I have already ___ sorry.",
         "gapOptions": [
@@ -1078,7 +1078,7 @@
             "correct": false,
             "testedDimension": "Ви вже вибачилися. Доповніть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "Have saying не образует Present Perfect.",
+              "ru": "Have saying не образует have / has + done.",
               "uk": "Have saying не утворює Present Perfect."
             }
           }
@@ -1130,5 +1130,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e43dd18e49471709020b3412fddc1a8a9098622c8de3f013414030532dfdf820"
+  "learnerFingerprint": "a31693a77bf2006ae172635693e278b544f6d81e3355a95d2cc15338467fa909"
 }

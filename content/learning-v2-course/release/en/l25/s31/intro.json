@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-31",
   "learningOutcomeByLocale": {
-    "ru": "before|after + past clause; another + singular noun",
-    "uk": "before|after + past clause; another + singular noun"
+    "ru": "сказать, что вы делали после чего-то: We sat by the fireplace after dinner.",
+    "uk": "сказати, що ви робили після чогось: We sat by the fireplace after dinner."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Вогонь згас"
       },
       "bodyByLocale": {
-        "ru": "Flame — пламя. The flame went out before we left — пламя погасло до того, как мы ушли. Went out здесь значит «погасло», а не «вышло из комнаты». Сначала пламя погасло, потом мы ушли: before показывает этот порядок. Went и left — формы Past Simple.",
-        "uk": "Flame — полум’я. The flame went out before we left — полум’я згасло до того, як ми пішли. Went out тут означає «згасло», а не «вийшло з кімнати». Спочатку полум’я згасло, потім ми пішли: before показує цей порядок. Went і left — форми Past Simple."
+        "ru": "Flame — пламя. The flame went out before we left — пламя погасло до того, как мы ушли. Went out здесь значит «погасло», а не «вышло из комнаты». Сначала пламя погасло, потом мы ушли: before показывает этот порядок. Went и left — формы прошлого.",
+        "uk": "Flame — полум’я. The flame went out before we left — полум’я згасло до того, як ми пішли. Went out тут означає «згасло», а не «вийшло з кімнати». Спочатку полум’я згасло, потім ми пішли: before показує цей порядок. Went і left — форми минулого."
       },
       "question": {
         "interactionId": "en:lesson-25:session-31:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Біля каміна"
       },
       "bodyByLocale": {
-        "ru": "Fireplace — камин. We cleaned the fireplace after the fire went out — мы почистили камин после того, как огонь погас. The fireplace — сам камин, the fire — огонь в нём. Сначала огонь погас, затем мы почистили камин. After сообщает порядок событий; обе части здесь стоят в Past Simple.",
-        "uk": "Fireplace — камін. We cleaned the fireplace after the fire went out — ми почистили камін після того, як вогонь згас. The fireplace — сам камін, the fire — вогонь у ньому. Спочатку вогонь згас, потім ми почистили камін. After повідомляє порядок подій; обидві частини тут стоять у Past Simple."
+        "ru": "Fireplace — камин. We cleaned the fireplace after the fire went out — мы почистили камин после того, как огонь погас. The fireplace — сам камин, the fire — огонь в нём. Сначала огонь погас, затем мы почистили камин. After сообщает порядок событий; обе части здесь стоят в форме прошлого.",
+        "uk": "Fireplace — камін. We cleaned the fireplace after the fire went out — ми почистили камін після того, як вогонь згас. The fireplace — сам камін, the fire — вогонь у ньому. Спочатку вогонь згас, потім ми почистили камін. After повідомляє порядок подій; обидві частини тут стоять у формі минулого."
       },
       "question": {
         "interactionId": "en:lesson-25:session-31:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "801889bb09985d2d3baeb1489841fbc4073defc12c8cf84f529a952d16095802"
+  "introFingerprint": "8032af583b5d2aef27e4b89fecad4f1613076acaac8b6570a48736023e568e98"
 }

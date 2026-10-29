@@ -7,6 +7,7 @@ const path = require('path');
 const PAGES = {
   'peak-friends-room': { title: 'Комната друзей в Пике', h1: 'Комната друзей в Пике', lead: '' /* координатор 29.10: вводный абзац — служебный, владельцу не показываем */ },
   'week-goal-together': { title: 'Цель недели вдвоём', h1: 'Цель недели вдвоём', lead: '' },
+  'achievements-new': { title: 'Новые достижения', h1: 'Новые достижения', lead: '', scripts: ['achievements-new.data.js'] }, // 90 новых ачивок на кадре экрана достижений (координатор 29.10)
   'invite-ladder': { title: 'Лесенка приглашений', h1: 'Лесенка приглашений вместо рулетки Plus — на настоящем экране', lead: 'Основа телефона — кадр вкладки «Друзья» текущей сборки («Затмение» тёмное); экран приглашений ждёт кадра Сверки. Понятные ступени вместо скрытой рулетки: за друга, прошедшего первый урок, — 500 монет обоим; за каждых трёх друзей — Plus на 14 дней (утверждено 29.10).' },
 };
 const which = process.argv[2] || 'all'; const names = which === 'all' ? Object.keys(PAGES) : [which];
@@ -41,6 +42,7 @@ ${themesLine}
 ${icodeLine}
 <script>window.__FRAMES = ${JSON.stringify(frames)};</script>
 <script src="comp-kit.js"></script>
+${(p.scripts || []).map((x) => `<script src="${x}"></script>`).join('\n')}
 <script src="${name}.app.js"></script>
 </body>
 </html>

@@ -1046,7 +1046,7 @@
             "correct": false,
             "testedDimension": "Первая попытка договориться не удалась. Вы просите ещё один шанс.",
             "feedbackByLocale": {
-              "ru": "Chance в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Chance, поэтому another.",
               "uk": "Chance в однині, тому another."
             }
           },
@@ -1106,5 +1106,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "bc25612ff28e0c6d5594d62be8a0e28dc59c355f8132df705070a40befe97af4"
+  "learnerFingerprint": "b07eff8ca2c7ef386ac4be85b88de0010b4066b4a5d2598af9907da5533bd3f0"
 }

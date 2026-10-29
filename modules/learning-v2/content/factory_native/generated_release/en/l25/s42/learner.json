@@ -685,7 +685,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы гуляли с собакой вчера. Выберите Past Simple.",
+      "prompt": "Вы гуляли с собакой вчера. Выберите форму для законченного прошлого.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-42:i10:r1",
@@ -702,11 +702,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы гуляли с собакой вчера. Выберите Past Simple.",
+      "accessibilityLabel": "Вы гуляли с собакой вчера. Выберите форму для законченного прошлого.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы гуляли с собакой вчера. Выберите Past Simple.",
+          "ru": "Вы гуляли с собакой вчера. Выберите форму для законченного прошлого.",
           "uk": "Ви гуляли із собакою вчора. Виберіть Past Simple."
         },
         "gappedTargetPhrase": "I ___ the dog yesterday.",
@@ -740,7 +740,7 @@
             "correct": false,
             "testedDimension": "Вы гуляли с собакой вчера. Выберите Past Simple.",
             "feedbackByLocale": {
-              "ru": "Walking без вспомогательного глагола здесь не подходит.",
+              "ru": "Одной формы Walking здесь мало.",
               "uk": "Walking без допоміжного дієслова тут не підходить."
             }
           }
@@ -1054,7 +1054,7 @@
             "correct": false,
             "testedDimension": "Первая миска занята кормом. Нужна ещё одна для воды.",
             "feedbackByLocale": {
-              "ru": "Перед bowl в единственном числе нужно another.",
+              "ru": "Перед bowl (предмет один) нужно another.",
               "uk": "Перед bowl в однині потрібно another."
             }
           },
@@ -1118,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9bec2c39b9224bf18d31987f23aee9526d2a82ce013fd9f1aa44ec85d51959b2"
+  "learnerFingerprint": "05f3e4461665000b6965427624e52aed9ba077e68efc03c96b0d929572e0ea9e"
 }

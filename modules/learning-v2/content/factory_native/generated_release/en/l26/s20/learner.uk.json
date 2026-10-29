@@ -183,7 +183,7 @@
             "correct": false,
             "testedDimension": "Ви поставили будильник і встанете після його сигналу. Доповніть час підйому.",
             "feedbackByLocale": {
-              "ru": "The alarm — единственное число: rings.",
+              "ru": "The alarm — форма для одного: rings.",
               "uk": "The alarm — однина: rings."
             }
           }
@@ -1077,5 +1077,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f9887f238adcd8a163d5a9f4469c37603d6619cc3b9ef79ed7c73b541d57ba37"
+  "learnerFingerprint": "0a9eae587613cf8bee26a089d1e14ffe51223585374a1199fbb52f6bdc65943f"
 }

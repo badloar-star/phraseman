@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-06",
   "learningOutcomeByLocale": {
-    "ru": "zero conditional: when + present simple, present simple",
-    "uk": "zero conditional: when + present simple, present simple"
+    "ru": "сказать, что вы чувствуете в определённой ситуации: I feel nauseous when I smell petrol.",
+    "uk": "сказати, що ви відчуваєте в певній ситуації: I feel nauseous when I smell petrol."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Описати оніміння"
       },
       "bodyByLocale": {
-        "ru": "Numb — онемевший, потерявший обычную чувствительность. My fingers feel numb when they get very cold — мои пальцы немеют, когда сильно мёрзнут. Так говорящий описывает своё ощущение. Fingers — множественное число, поэтому feel без -s; they get тоже без -s. When связывает ощущение с ситуацией, в которой оно у этого человека повторяется.",
-        "uk": "Numb — онімілий, той, що втратив звичайну чутливість. My fingers feel numb when they get very cold — мої пальці німіють, коли сильно мерзнуть. Так мовець описує своє відчуття. Fingers — множина, тому feel без -s; they get теж без -s. When пов’язує відчуття із ситуацією, у якій воно в цієї людини повторюється."
+        "ru": "Numb — онемевший, потерявший обычную чувствительность. My fingers feel numb when they get very cold — мои пальцы немеют, когда сильно мёрзнут. Так говорящий описывает своё ощущение. Fingers — форма для нескольких, поэтому feel без -s; they get тоже без -s. When связывает ощущение с ситуацией, в которой оно у этого человека повторяется.",
+        "uk": "Numb — онімілий, той, що втратив звичайну чутливість. My fingers feel numb when they get very cold — мої пальці німіють, коли сильно мерзнуть. Так мовець описує своє відчуття. Fingers — форма для кількох, тому feel без -s; they get теж без -s. When пов’язує відчуття із ситуацією, у якій воно в цієї людини повторюється."
       },
       "question": {
         "interactionId": "en:lesson-26:session-06:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Чому не читаєте в машині"
       },
       "bodyByLocale": {
-        "ru": "Друг предлагает вам книгу в дороге, а вы объясняете свою обычную реакцию на чтение в машине: I feel nauseous when I read in a car — меня тошнит, когда я читаю в машине. Собираем: I + feel nauseous + when I read in a car — кто, какое ощущение испытывает, в какой ситуации. После I ставим feel, затем слово nauseous, описывающее ощущение. В части с when снова I и read без -s. Обе части в present simple: речь о том, что с вами обычно происходит, а не со всеми людьми.",
-        "uk": "Друг пропонує вам книжку в дорозі, а ви пояснюєте свою звичайну реакцію на читання в машині: I feel nauseous when I read in a car — мене нудить, коли я читаю в машині. Складаємо: I + feel nauseous + when I read in a car — хто, яке відчуття має, у якій ситуації. Після I ставимо feel, потім слово nauseous, що описує відчуття. У частині з when знову I та read без -s. Обидві частини в present simple: йдеться про те, що з вами зазвичай відбувається, а не з усіма людьми."
+        "ru": "Друг предлагает вам книгу в дороге, а вы объясняете свою обычную реакцию на чтение в машине: I feel nauseous when I read in a car — меня тошнит, когда я читаю в машине. Собираем: I + feel nauseous + when I read in a car — кто, какое ощущение испытывает, в какой ситуации. После I ставим feel, затем слово nauseous, описывающее ощущение. В части с when снова I и read без -s. Обе части в форме work / works: речь о том, что с вами обычно происходит, а не со всеми людьми.",
+        "uk": "Друг пропонує вам книжку в дорозі, а ви пояснюєте свою звичайну реакцію на читання в машині: I feel nauseous when I read in a car — мене нудить, коли я читаю в машині. Складаємо: I + feel nauseous + when I read in a car — хто, яке відчуття має, у якій ситуації. Після I ставимо feel, потім слово nauseous, що описує відчуття. У частині з when знову I та read без -s. Обидві частини в формі work / works: йдеться про те, що з вами зазвичай відбувається, а не з усіма людьми."
       },
       "question": {
         "interactionId": "en:lesson-26:session-06:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Як саме болить"
       },
       "bodyByLocale": {
-        "ru": "Throb — пульсировать, болеть ритмичными толчками. My head throbs when I have a headache — голова пульсирует, когда у меня головная боль. Здесь человек уточняет характер своей боли. Head — единственное число, поэтому throbs; после I — have. Для описания того, что у говорящего обычно происходит при таком условии, используем Present Simple в обеих частях.",
-        "uk": "Throb — пульсувати, боліти ритмічними поштовхами. My head throbs when I have a headache — голова пульсує, коли в мене головний біль. Тут людина уточнює характер свого болю. Head — однина, тому throbs; після I — have. Для опису того, що в мовця зазвичай відбувається за такої умови, використовуємо Present Simple в обох частинах."
+        "ru": "Throb — пульсировать, болеть ритмичными толчками. My head throbs when I have a headache — голова пульсирует, когда у меня головная боль. Здесь человек уточняет характер своей боли. Head — форма для одного, поэтому throbs; после I — have. Для описания того, что у говорящего обычно происходит при таком условии, используем форму work / works в обеих частях.",
+        "uk": "Throb — пульсувати, боліти ритмічними поштовхами. My head throbs when I have a headache — голова пульсує, коли в мене головний біль. Тут людина уточнює характер свого болю. Head — форма для одного, тому throbs; після I — have. Для опису того, що в мовця зазвичай відбувається за такої умови, використовуємо форму work / works в обох частинах."
       },
       "question": {
         "interactionId": "en:lesson-26:session-06:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fac383e2314ba94c143e2dbd59f70b0a0d6c2da68698d4179d5848cecbb51a63"
+  "introFingerprint": "cc5a84a982131bf497ad65079eb7b9d52af52b8678fb914b0d40e543c763ef7d"
 }

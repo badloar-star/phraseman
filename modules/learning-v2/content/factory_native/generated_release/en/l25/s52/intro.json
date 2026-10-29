@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-52",
   "learningOutcomeByLocale": {
-    "ru": "past simple for finished past time",
-    "uk": "past simple for finished past time"
+    "ru": "сказать, что вы чувствовали: I felt uneasy in the empty house.",
+    "uk": "сказати, що ви відчували: I felt uneasy in the empty house."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Здивуватися вчорашній ціні"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете вчерашний поход в магазин: цена оказалась совсем не такой, как вы ожидали. Скажите: I was astonished by the price yesterday — вчера я был изумлён ценой. Собираем: I + was + astonished + by the price + yesterday — кто, был, в каком состоянии, чем оно вызвано, когда. Yesterday задаёт законченное время в прошлом, поэтому с I нужна was. Astonished стоит после was, а by the price называет причину удивления.",
-        "uk": "Ви згадуєте вчорашній похід до крамниці: ціна виявилася зовсім не такою, як ви очікували. Скажіть: I was astonished by the price yesterday — учора я був вражений ціною. Складаємо: I + was + astonished + by the price + yesterday — хто, був, у якому стані, чим він викликаний, коли. Yesterday задає завершений час у минулому, тому з I потрібна was. Astonished стоїть після was, а by the price називає причину здивування."
+        "ru": "Вы вспоминаете вчерашний поход в магазин: цена оказалась совсем не такой, как вы ожидали. Скажите: I was astonished by the price yesterday — вчера я был изумлён ценой. Собираем: I + was + astonished + by the price + yesterday — кто, был, в каком состоянии, чем оно вызвано, когда. Yesterday говорит, что это уже прошлое, поэтому с I нужна was. Astonished стоит после was, а by the price называет причину удивления.",
+        "uk": "Ви згадуєте вчорашній похід до крамниці: ціна виявилася зовсім не такою, як ви очікували. Скажіть: I was astonished by the price yesterday — учора я був вражений ціною. Складаємо: I + was + astonished + by the price + yesterday — хто, був, у якому стані, чим він викликаний, коли. Yesterday показує, що це вже минуле, тому з I потрібна was. Astonished стоїть після was, а by the price називає причину здивування."
       },
       "question": {
         "interactionId": "en:lesson-25:session-52:intro2:q",
@@ -124,7 +124,7 @@
       },
       "bodyByLocale": {
         "ru": "Heartbroken — убитый горем, испытывающий очень сильную душевную боль. She was heartbroken after the news yesterday — вчера после этих новостей она была убита горем. Это гораздо сильнее, чем небольшое огорчение. After показывает порядок: сначала новости, потом её реакция. Yesterday относит рассказ к законченному времени в прошлом. С she здесь тоже was: she was heartbroken.",
-        "uk": "Heartbroken — убитий горем, той, хто відчуває дуже сильний душевний біль. She was heartbroken after the news yesterday — учора після цих новин вона була вбита горем. Це набагато сильніше за невелике засмучення. After показує порядок: спочатку новини, потім її реакція. Yesterday відносить розповідь до завершеного часу в минулому. Із she тут теж was: she was heartbroken."
+        "uk": "Heartbroken — убитий горем, той, хто відчуває дуже сильний душевний біль. She was heartbroken after the news yesterday — учора після цих новин вона була вбита горем. Це набагато сильніше за невелике засмучення. After показує порядок: спочатку новини, потім її реакція. Yesterday показує, що йдеться про минуле. Із she тут теж was: she was heartbroken."
       },
       "question": {
         "interactionId": "en:lesson-25:session-52:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2f0aa3c9fab5e5fcc3b3d815c36e065664878a906925178a74ffb11aeef8df2c"
+  "introFingerprint": "74f6bd7fa984c00110f9eaa0764b15b9be1a08eb247cd01fce27609cb7fa56c6"
 }

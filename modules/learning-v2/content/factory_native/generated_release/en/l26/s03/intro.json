@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-03",
   "learningOutcomeByLocale": {
-    "ru": "zero conditional: when + present simple, present simple",
-    "uk": "zero conditional: when + present simple, present simple"
+    "ru": "сказать, что делает вещь, когда она работает: My washing machine vibrates when it spins.",
+    "uk": "сказати, що робить річ, коли вона працює: My washing machine vibrates when it spins."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Телефон подає сигнал"
       },
       "bodyByLocale": {
-        "ru": "Телефон настроен на вибрацию. My phone vibrates when someone calls — мой телефон вибрирует, когда кто-нибудь звонит. Vibrate — быстро и мелко дрожать. Здесь описываем обычную реакцию моего телефона, не всех телефонов. Phone — единственное число, поэтому vibrates. Someone тоже требует форму с -s: calls. Обе части в Present Simple.",
-        "uk": "Телефон налаштовано на вібрацію. My phone vibrates when someone calls — мій телефон вібрує, коли хтось телефонує. Vibrate — швидко й дрібно тремтіти. Тут описуємо звичайну реакцію мого телефона, а не всіх телефонів. Phone — однина, тому vibrates. Someone також потребує форми з -s: calls. Обидві частини в Present Simple."
+        "ru": "Телефон настроен на вибрацию. My phone vibrates when someone calls — мой телефон вибрирует, когда кто-нибудь звонит. Vibrate — быстро и мелко дрожать. Здесь описываем обычную реакцию моего телефона, не всех телефонов. Phone — форма для одного, поэтому vibrates. Someone тоже требует форму с -s: calls. Обе части в форме work / works.",
+        "uk": "Телефон налаштовано на вібрацію. My phone vibrates when someone calls — мій телефон вібрує, коли хтось телефонує. Vibrate — швидко й дрібно тремтіти. Тут описуємо звичайну реакцію мого телефона, а не всіх телефонів. Phone — форма для одного, тому vibrates. Someone також потребує форми з -s: calls. Обидві частини в формі work / works."
       },
       "question": {
         "interactionId": "en:lesson-26:session-03:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Що відбувається при запуску прання"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, что начинает двигаться в стиральной машине. Объясните: The drum rotates when I start the washing machine — барабан вращается, когда я включаю стиральную машину. Собираем: The drum + rotates + when I start the washing machine — что, как движется, при каком действии. В обеих частях present simple: описываем обычную работу машины. The drum — один барабан, поэтому rotates с -s. После I используем start без -s. When указывает, что запускает это движение.",
-        "uk": "Друг запитує, що починає рухатися в пральній машині. Поясніть: The drum rotates when I start the washing machine — барабан обертається, коли я вмикаю пральну машину. Складаємо: The drum + rotates + when I start the washing machine — що, як рухається, за якої дії. В обох частинах present simple: описуємо звичайну роботу машини. The drum — один барабан, тому rotates із -s. Після I використовуємо start без -s. When указує, що запускає цей рух."
+        "ru": "Друг спрашивает, что начинает двигаться в стиральной машине. Объясните: The drum rotates when I start the washing machine — барабан вращается, когда я включаю стиральную машину. Собираем: The drum + rotates + when I start the washing machine — что, как движется, при каком действии. В обеих частях форма work / works: описываем обычную работу машины. The drum — один барабан, поэтому rotates с -s. После I используем start без -s. When указывает, что запускает это движение.",
+        "uk": "Друг запитує, що починає рухатися в пральній машині. Поясніть: The drum rotates when I start the washing machine — барабан обертається, коли я вмикаю пральну машину. Складаємо: The drum + rotates + when I start the washing machine — що, як рухається, за якої дії. В обох частинах форма work / works: описуємо звичайну роботу машини. The drum — один барабан, тому rotates із -s. Після I використовуємо start без -s. When указує, що запускає цей рух."
       },
       "question": {
         "interactionId": "en:lesson-26:session-03:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Штори біля вікна"
       },
       "bodyByLocale": {
-        "ru": "Flutter — легко колыхаться или трепетать. The curtains flutter when I open the window — шторы колышутся, когда я открываю окно. Представьте лёгкие шторы, которые двигает сквозняк. Curtains — множественное число, поэтому flutter без -s; после I — open без -s. When показывает, при каком условии это обычно происходит. Это zero conditional, а не рассказ об одном будущем открытии окна.",
-        "uk": "Flutter — легко колихатися або тріпотіти. The curtains flutter when I open the window — штори колишуться, коли я відчиняю вікно. Уявіть легкі штори, які рухає протяг. Curtains — множина, тому flutter без -s; після I — open без -s. When показує, за якої умови це зазвичай відбувається. Це zero conditional, а не розповідь про одне майбутнє відчинення вікна."
+        "ru": "Flutter — легко колыхаться или трепетать. The curtains flutter when I open the window — шторы колышутся, когда я открываю окно. Представьте лёгкие шторы, которые двигает сквозняк. Curtains — форма для нескольких, поэтому flutter без -s; после I — open без -s. When показывает, при каком условии это обычно происходит. Это то, что бывает всегда, а не рассказ об одном будущем открытии окна.",
+        "uk": "Flutter — легко колихатися або тріпотіти. The curtains flutter when I open the window — штори колишуться, коли я відчиняю вікно. Уявіть легкі штори, які рухає протяг. Curtains — форма для кількох, тому flutter без -s; після I — open без -s. When показує, за якої умови це зазвичай відбувається. Це те, що буває завжди, а не розповідь про одне майбутнє відчинення вікна."
       },
       "question": {
         "interactionId": "en:lesson-26:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4eb5464976589b78882944b5db8baa429ad0ddc3eab5778ec0dcc8c2c4666517"
+  "introFingerprint": "6f81402c3b876a82e448962923c7b549120e367fe103a44f1bb5b954399d8fd0"
 }

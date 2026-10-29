@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-37",
   "learningOutcomeByLocale": {
-    "ru": "past perfect + by the time + past simple",
-    "uk": "past perfect + by the time + past simple"
+    "ru": "назвать человека по его действию: The caller gave me her name.",
+    "uk": "назвати людину за її дією: The caller gave me her name."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Покупець уже заплатив"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете очередь в магазине: когда вы дошли до кассы, покупатель перед вами уже расплатился. Скажите: The shopper had paid by the time I reached the till — покупатель заплатил к тому времени, как я подошёл к кассе. Собираем: The shopper + had paid + by the time I reached the till — кто, что сделал раньше, к какому моменту в прошлом. После had нужна третья форма paid, а не pay. Had paid отмечает завершённую оплату; reached обозначает ваш последующий подход к кассе.",
-        "uk": "Ви згадуєте чергу в магазині: коли ви дійшли до каси, покупець перед вами вже розрахувався. Скажіть: The shopper had paid by the time I reached the till — покупець заплатив до того часу, як я підійшов до каси. Складаємо: The shopper + had paid + by the time I reached the till — хто, що зробив раніше, до якого моменту в минулому. Після had потрібна третя форма paid, а не pay. Had paid позначає завершену оплату; reached позначає ваш пізніший підхід до каси."
+        "ru": "Вы вспоминаете очередь в магазине: когда вы дошли до кассы, покупатель перед вами уже расплатился. Скажите: The shopper had paid by the time I reached the till — покупатель заплатил к тому времени, как я подошёл к кассе. Собираем: The shopper + had paid + by the time I reached the till — кто, что сделал раньше, к какому моменту в прошлом. После had нужна форма paid, а не pay. Had paid отмечает завершённую оплату; reached обозначает ваш последующий подход к кассе.",
+        "uk": "Ви згадуєте чергу в магазині: коли ви дійшли до каси, покупець перед вами вже розрахувався. Скажіть: The shopper had paid by the time I reached the till — покупець заплатив до того часу, як я підійшов до каси. Складаємо: The shopper + had paid + by the time I reached the till — хто, що зробив раніше, до якого моменту в минулому. Після had потрібна форма paid, а не pay. Had paid позначає завершену оплату; reached позначає ваш пізніший підхід до каси."
       },
       "question": {
         "interactionId": "en:lesson-25:session-37:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Хто залишив повідомлення"
       },
       "bodyByLocale": {
-        "ru": "Caller здесь — звонящий, человек, который звонит по телефону. The caller had left a message by the time I found my phone — звонящий уже оставил сообщение к тому моменту, когда я нашёл телефон. Сначала он оставил сообщение, потом я нашёл телефон. Left a message значит «оставил сообщение»; left здесь третья форма leave. Не нужно знать имя человека, чтобы назвать его the caller.",
-        "uk": "Caller тут — людина, яка телефонує. The caller had left a message by the time I found my phone — той, хто телефонував, уже залишив повідомлення до того моменту, коли я знайшов телефон. Спочатку він залишив повідомлення, потім я знайшов телефон. Left a message означає «залишив повідомлення»; left тут третя форма leave. Не потрібно знати ім’я людини, щоб назвати її the caller."
+        "ru": "Caller здесь — звонящий, человек, который звонит по телефону. The caller had left a message by the time I found my phone — звонящий уже оставил сообщение к тому моменту, когда я нашёл телефон. Сначала он оставил сообщение, потом я нашёл телефон. Left a message значит «оставил сообщение»; left здесь форма leave. Не нужно знать имя человека, чтобы назвать его the caller.",
+        "uk": "Caller тут — людина, яка телефонує. The caller had left a message by the time I found my phone — той, хто телефонував, уже залишив повідомлення до того моменту, коли я знайшов телефон. Спочатку він залишив повідомлення, потім я знайшов телефон. Left a message означає «залишив повідомлення»; left тут форма leave. Не потрібно знати ім’я людини, щоб назвати її the caller."
       },
       "question": {
         "interactionId": "en:lesson-25:session-37:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "26a4a5696682f8c7377ecf4a5566b3b16a7f343e93021fa4a75ce4091edddbc1"
+  "introFingerprint": "442b6d8b4946618fb5d6172a1d9e04c6804e6b0b61a86aa80b2ef86dcba531b6"
 }

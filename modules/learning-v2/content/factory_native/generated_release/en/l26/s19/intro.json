@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-19",
   "learningOutcomeByLocale": {
-    "ru": "future time clauses; first and zero conditional; already, yet; past perfect",
-    "uk": "future time clauses; first and zero conditional; already, yet; past perfect"
+    "ru": "сказать, что вы уже закончили: I have already finished my work.",
+    "uk": "сказати, що ви вже закінчили: I have already finished my work."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Роботу вже закінчено"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, закончили ли вы дело, перед тем как выйти вместе. Ответьте: I have already finished — я уже закончил. Собираем: I + have + already + finished — кто, have, уже, действие. После I нужна have, не has. Already ставим между have и третьей формой finished с -ed. Present perfect показывает готовый результат сейчас; название дела можно не повторять, поскольку оно известно из вопроса.",
-        "uk": "Друг запитує, чи закінчили ви справу, перш ніж вийти разом. Дайте відповідь: I have already finished — я вже закінчив. Складаємо: I + have + already + finished — хто, have, уже, дія. Після I потрібна have, не has. Already ставимо між have і третьою формою finished із -ed. Present perfect показує готовий результат зараз; назву справи можна не повторювати, бо вона відома із запитання."
+        "ru": "Друг спрашивает, закончили ли вы дело, перед тем как выйти вместе. Ответьте: I have already finished — я уже закончил. Собираем: I + have + already + finished — кто, have, уже, действие. После I нужна have, не has. Already ставим между have и формой после have finished с -ed. Форма have / has + done показывает готовый результат сейчас; название дела можно не повторять, поскольку оно известно из вопроса.",
+        "uk": "Друг запитує, чи закінчили ви справу, перш ніж вийти разом. Дайте відповідь: I have already finished — я вже закінчив. Складаємо: I + have + already + finished — хто, have, уже, дія. Після I потрібна have, не has. Already ставимо між have і формою після have finished із -ed. Форма have / has + done показує готовий результат зараз; назву справи можна не повторювати, бо вона відома із запитання."
       },
       "question": {
         "interactionId": "en:lesson-26:session-19:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "706b6f38ab91e82113c93ee43e1346c40b5697a02a951b9cc6e011c2d6faf536"
+  "introFingerprint": "2e49485706bef5597eb512c1ada7f6fcc72255b218e88f969bd4c3c0a2f95a88"
 }

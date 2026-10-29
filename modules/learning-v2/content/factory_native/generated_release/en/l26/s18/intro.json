@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-18",
   "learningOutcomeByLocale": {
-    "ru": "future time clauses; zero and first conditional; already, yet; past perfect",
-    "uk": "future time clauses; zero and first conditional; already, yet; past perfect"
+    "ru": "предложить поделить счёт: Let us split the bill.",
+    "uk": "запропонувати поділити рахунок: Let us split the bill."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Що робите з нудним фільмом"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, досматриваете ли вы неинтересные фильмы. Объясните привычку: If a film is dull, I stop watching — если фильм скучный, я перестаю смотреть. Собираем: If + a film + is + dull, + I + stop + watching — условие, затем обычная реакция. Обе части стоят в present simple. С I нужна stop без -s; после stop действие называется формой watching. После начального условия ставим запятую.",
-        "uk": "Друг запитує, чи додивляєтеся ви нецікаві фільми. Поясніть звичку: If a film is dull, I stop watching — якщо фільм нудний, я перестаю дивитися. Складаємо: If + a film + is + dull, + I + stop + watching — умова, потім звичайна реакція. Обидві частини стоять у present simple. З I потрібна stop без -s; після stop дія називається формою watching. Після початкової умови ставимо кому."
+        "ru": "Друг спрашивает, досматриваете ли вы неинтересные фильмы. Объясните привычку: If a film is dull, I stop watching — если фильм скучный, я перестаю смотреть. Собираем: If + a film + is + dull, + I + stop + watching — условие, затем обычная реакция. Обе части стоят в форме work / works. С I нужна stop без -s; после stop действие называется формой watching. После начального условия ставим запятую.",
+        "uk": "Друг запитує, чи додивляєтеся ви нецікаві фільми. Поясніть звичку: If a film is dull, I stop watching — якщо фільм нудний, я перестаю дивитися. Складаємо: If + a film + is + dull, + I + stop + watching — умова, потім звичайна реакція. Обидві частини стоять у формі work / works. З I потрібна stop без -s; після stop дія називається формою watching. Після початкової умови ставимо кому."
       },
       "question": {
         "interactionId": "en:lesson-26:session-18:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Свою частину вже оплатили"
       },
       "bodyByLocale": {
-        "ru": "Друзья собирают деньги за общий ужин. Вы уже перевели свою часть и говорите: I have already paid my share — я уже заплатил свою часть. Собираем: I + have + already + paid + my share — кто, have, уже, действие, что оплатил. С I используем have. Already стоит перед третьей формой pay — paid. Present perfect сообщает о результате сейчас: ваша часть оплачена.",
-        "uk": "Друзі збирають гроші за спільну вечерю. Ви вже переказали свою частину й кажете: I have already paid my share — я вже заплатив свою частину. Складаємо: I + have + already + paid + my share — хто, have, уже, дія, що оплатив. З I використовуємо have. Already стоїть перед третьою формою pay — paid. Present perfect повідомляє про результат зараз: вашу частину оплачено."
+        "ru": "Друзья собирают деньги за общий ужин. Вы уже перевели свою часть и говорите: I have already paid my share — я уже заплатил свою часть. Собираем: I + have + already + paid + my share — кто, have, уже, действие, что оплатил. С I используем have. Already стоит перед формой после have pay — paid. Форма have / has + done сообщает о результате сейчас: ваша часть оплачена.",
+        "uk": "Друзі збирають гроші за спільну вечерю. Ви вже переказали свою частину й кажете: I have already paid my share — я вже заплатив свою частину. Складаємо: I + have + already + paid + my share — хто, have, уже, дія, що оплатив. З I використовуємо have. Already стоїть перед формою після have pay — paid. Форма have / has + done повідомляє про результат зараз: вашу частину оплачено."
       },
       "question": {
         "interactionId": "en:lesson-26:session-18:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "13e1d751755baa6f8932f11bf96c952b10f3abf865e9fb22ff558ec646cbdc53"
+  "introFingerprint": "58e70c2bdae6aa5a0408c71d59a1688f465433504bac5d9fa473a126f596ac81"
 }

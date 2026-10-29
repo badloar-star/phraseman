@@ -174,7 +174,7 @@
             "correct": false,
             "testedDimension": "Сейчас у вас мало времени. Представьте другую ситуацию.",
             "feedbackByLocale": {
-              "ru": "В условии здесь past simple: had.",
+              "ru": "В условии здесь форма прошлого: had.",
               "uk": "В умові тут past simple: had."
             }
           },
@@ -183,7 +183,7 @@
             "correct": false,
             "testedDimension": "Сейчас у вас мало времени. Представьте другую ситуацию.",
             "feedbackByLocale": {
-              "ru": "Having не образует здесь сказуемое.",
+              "ru": "Having здесь не может стоять отдельно.",
               "uk": "Having тут не утворює присудок."
             }
           }
@@ -1079,5 +1079,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3cb8f3f7fad0fbfc3a5e91ccbae81ef0915614630e5a48844690cbb9c201fbb6"
+  "learnerFingerprint": "2b0e79215196e34164178b663f1767badc1a5774c2c2f2774d90ea90766d9a94"
 }

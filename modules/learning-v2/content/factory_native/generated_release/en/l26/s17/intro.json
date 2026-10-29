@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-17",
   "learningOutcomeByLocale": {
-    "ru": "future main clause + time clause in present simple: when, after, before",
-    "uk": "future main clause + time clause in present simple: when, after, before"
+    "ru": "сказать, что вы сделаете позже: I will call when I unpack.",
+    "uk": "сказати, що ви зробите пізніше: I will call when I unpack."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Написати, коли приїде таксі"
       },
       "bodyByLocale": {
-        "ru": "Вы ждёте такси и обещаете сообщить другу о его приезде: I will text you when the cab arrives — я напишу тебе, когда приедет такси. Собираем: I + will text + you + when the cab arrives — кто, что сделает, кому, когда. Всё относится к будущему, но формы частей различаются: в главной части will text, после when — present simple arrives без will. When называет ожидаемый момент сообщения. The cab — единственное число, поэтому arrive получает -s.",
-        "uk": "Ви чекаєте таксі й обіцяєте повідомити друга про його приїзд: I will text you when the cab arrives — я напишу тобі, коли приїде таксі. Складаємо: I + will text + you + when the cab arrives — хто, що зробить, кому, коли. Усе стосується майбутнього, але форми частин різняться: у головній частині will text, після when — present simple arrives без will. When називає очікуваний момент повідомлення. The cab — однина, тому arrive отримує -s."
+        "ru": "Вы ждёте такси и обещаете сообщить другу о его приезде: I will text you when the cab arrives — я напишу тебе, когда приедет такси. Собираем: I + will text + you + when the cab arrives — кто, что сделает, кому, когда. Всё относится к будущему, но формы частей различаются: в главной части will text, после when — форма work / works arrives без will. When называет ожидаемый момент сообщения. The cab — одна вещь, поэтому arrive получает -s.",
+        "uk": "Ви чекаєте таксі й обіцяєте повідомити друга про його приїзд: I will text you when the cab arrives — я напишу тобі, коли приїде таксі. Складаємо: I + will text + you + when the cab arrives — хто, що зробить, кому, коли. Усе стосується майбутнього, але форми частин різняться: у головній частині will text, після when — форма work / works arrives без will. When називає очікуваний момент повідомлення. The cab — одна річ, тому arrive отримує -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-17:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Зателефонувати після відпустки"
       },
       "bodyByLocale": {
-        "ru": "Вы договариваетесь созвониться с другом после отдыха. Скажите: I will call you after my vacation ends — я позвоню тебе после окончания отпуска. Собираем: I + will call + you + after my vacation ends — кто, что сделает, кому, после какого события. Will call выражает будущее обещание. В части с after, указывающей время звонка, используем present simple: ends без will. My vacation — единственное число, поэтому end получает -s.",
-        "uk": "Ви домовляєтеся зателефонувати другові після відпочинку. Скажіть: I will call you after my vacation ends — я зателефоную тобі після закінчення відпустки. Складаємо: I + will call + you + after my vacation ends — хто, що зробить, кому, після якої події. Will call виражає майбутню обіцянку. У частині з after, яка вказує час дзвінка, використовуємо present simple: ends без will. My vacation — однина, тому end отримує -s."
+        "ru": "Вы договариваетесь созвониться с другом после отдыха. Скажите: I will call you after my vacation ends — я позвоню тебе после окончания отпуска. Собираем: I + will call + you + after my vacation ends — кто, что сделает, кому, после какого события. Will call выражает будущее обещание. В части с after, указывающей время звонка, используем форму work / works: ends без will. My vacation — форма для одного, поэтому end получает -s.",
+        "uk": "Ви домовляєтеся зателефонувати другові після відпочинку. Скажіть: I will call you after my vacation ends — я зателефоную тобі після закінчення відпустки. Складаємо: I + will call + you + after my vacation ends — хто, що зробить, кому, після якої події. Will call виражає майбутню обіцянку. У частині з after, яка вказує час дзвінка, використовуємо форму work / works: ends без will. My vacation — форма для одного, тому end отримує -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-17:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bdc06d1edbd7fea4a0db51789af8fcfc691a58393dfb2002aa320c10760fb089"
+  "introFingerprint": "4e8fef038b927c647d00881825dd22cb05c2263548b73ae25529f776c8022562"
 }

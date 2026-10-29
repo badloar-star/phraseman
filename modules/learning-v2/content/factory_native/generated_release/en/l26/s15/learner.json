@@ -284,7 +284,7 @@
             "correct": false,
             "testedDimension": "Сестра спрашивает, что случилось. Вы только что ударили голень. Дополните недавнее действие.",
             "feedbackByLocale": {
-              "ru": "У hit третья форма hit, не hitted.",
+              "ru": "У hit форма hit, не hitted.",
               "uk": "У hit третя форма hit, не hitted."
             }
           },
@@ -293,7 +293,7 @@
             "correct": false,
             "testedDimension": "Сестра спрашивает, что случилось. Вы только что ударили голень. Дополните недавнее действие.",
             "feedbackByLocale": {
-              "ru": "После have здесь нужна третья форма hit.",
+              "ru": "После have здесь нужна форма hit.",
               "uk": "Після have тут потрібна третя форма hit."
             }
           }
@@ -1075,5 +1075,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2fd398b3cbe9c2ff1b830d5656ab16ddb98a472fcbe78cfa2fee753c462170ad"
+  "learnerFingerprint": "427b7350eeba19a9889ce088b1bd910556810e64e9a24796ee09752634655efd"
 }

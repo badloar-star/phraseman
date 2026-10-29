@@ -391,7 +391,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Майстер знайшов причину вчора. Виберіть Past Simple.",
+      "prompt": "Майстер знайшов причину вчора. Виберіть форму для завершеного минулого.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-35:i06:r1",
@@ -408,12 +408,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Майстер знайшов причину вчора. Виберіть Past Simple.",
+      "accessibilityLabel": "Майстер знайшов причину вчора. Виберіть форму для завершеного минулого.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Мастер нашёл причину вчера. Выберите Past Simple.",
-          "uk": "Майстер знайшов причину вчора. Виберіть Past Simple."
+          "uk": "Майстер знайшов причину вчора. Виберіть форму для завершеного минулого."
         },
         "gappedTargetPhrase": "The repairman ___ the problem yesterday.",
         "gapOptions": [
@@ -446,7 +446,7 @@
             "correct": false,
             "testedDimension": "Майстер знайшов причину вчора. Виберіть Past Simple.",
             "feedbackByLocale": {
-              "ru": "Finding без вспомогательного глагола здесь не подходит.",
+              "ru": "Одной формы Finding здесь мало.",
               "uk": "Finding без допоміжного дієслова тут не підходить."
             }
           }
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e82d462296afce81c457f1d4c64e6d5d42de825a02edd9ea4c1bf4fb9f990d9a"
+  "learnerFingerprint": "320a5e6e35d3b391b54641db01fca0004c27f3da9e68a20c3a03ac5659bb4067"
 }

@@ -797,7 +797,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы уже убрали холодильник до возвращения семьи. Дополните Past Perfect.",
+      "prompt": "Вы уже убрали холодильник до возвращения семьи. Покажите, что это случилось раньше.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-27:i12:r1",
@@ -814,11 +814,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы уже убрали холодильник до возвращения семьи. Дополните Past Perfect.",
+      "accessibilityLabel": "Вы уже убрали холодильник до возвращения семьи. Покажите, что это случилось раньше.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы уже убрали холодильник до возвращения семьи. Дополните Past Perfect.",
+          "ru": "Вы уже убрали холодильник до возвращения семьи. Покажите, что это случилось раньше.",
           "uk": "Ви вже прибрали холодильник до повернення родини. Доповніть Past Perfect."
         },
         "gappedTargetPhrase": "I ___ cleaned the fridge before my family returned.",
@@ -1017,7 +1017,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы уже проверили покупки. Дополните Present Perfect.",
+      "prompt": "Вы уже проверили покупки. Дополните фразу с have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-27:i16:r1",
@@ -1034,11 +1034,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы уже проверили покупки. Дополните Present Perfect.",
+      "accessibilityLabel": "Вы уже проверили покупки. Дополните фразу с have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы уже проверили покупки. Дополните Present Perfect.",
+          "ru": "Вы уже проверили покупки. Дополните фразу с have / has.",
           "uk": "Ви вже перевірили покупки. Доповніть Present Perfect."
         },
         "gappedTargetPhrase": "I have already ___ everything.",
@@ -1072,7 +1072,7 @@
             "correct": false,
             "testedDimension": "Вы уже проверили покупки. Дополните Present Perfect.",
             "feedbackByLocale": {
-              "ru": "Have checking не образует Present Perfect.",
+              "ru": "Have checking не образует have / has + done.",
               "uk": "Have checking не утворює Present Perfect."
             }
           }
@@ -1120,5 +1120,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3366df02df412043b208d1b5540b45feca8c5f42e3bec86af9e0966c62d39bd4"
+  "learnerFingerprint": "2a5a99fb2c37305157a7eb87d1d190d63777bb051dc8eeed70363b4405c9f1e6"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-08",
   "learningOutcomeByLocale": {
-    "ru": "zero conditional: if/when + present simple, present simple",
-    "uk": "zero conditional: if/when + present simple, present simple"
+    "ru": "сказать, что вы добавляете, если не хватает вкуса: I add pepper if the soup lacks flavour.",
+    "uk": "сказати, що ви додаєте, якщо не вистачає смаку: I add pepper if the soup lacks flavour."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Коли продукту бракує"
       },
       "bodyByLocale": {
-        "ru": "Shortage — нехватка. I use frozen fruit when there is a shortage of fresh fruit — я использую замороженные фрукты, когда не хватает свежих. A shortage of показывает, чего именно не хватает. Это мой обычный способ заменить продукт, поэтому use в Present Simple. When there is a shortage описывает условие, при котором я так поступаю.",
-        "uk": "Shortage — нестача. I use frozen fruit when there is a shortage of fresh fruit — я використовую заморожені фрукти, коли бракує свіжих. A shortage of показує, чого саме бракує. Це мій звичайний спосіб замінити продукт, тому use в Present Simple. When there is a shortage описує умову, за якої я так роблю."
+        "ru": "Shortage — нехватка. I use frozen fruit when there is a shortage of fresh fruit — я использую замороженные фрукты, когда не хватает свежих. A shortage of показывает, чего именно не хватает. Это мой обычный способ заменить продукт, поэтому use в форме work / works. When there is a shortage описывает условие, при котором я так поступаю.",
+        "uk": "Shortage — нестача. I use frozen fruit when there is a shortage of fresh fruit — я використовую заморожені фрукти, коли бракує свіжих. A shortage of показує, чого саме бракує. Це мій звичайний спосіб замінити продукт, тому use в формі work / works. When there is a shortage описує умову, за якої я так роблю."
       },
       "question": {
         "interactionId": "en:lesson-26:session-08:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Як готуєте м’ясо"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, как вы готовите мясо. Опишите обычное действие: I remove excess fat when I cook meat — я удаляю лишний жир, когда готовлю мясо. Собираем: I + remove + excess fat + when I cook meat — кто, что делает, что убирает, когда. В обеих частях present simple: вы рассказываете о привычке. После I используем remove и cook без -s. When связывает действие с ситуацией, в которой вы обычно так поступаете.",
-        "uk": "Друг запитує, як ви готуєте м’ясо. Опишіть звичайну дію: I remove excess fat when I cook meat — я видаляю зайвий жир, коли готую м’ясо. Складаємо: I + remove + excess fat + when I cook meat — хто, що робить, що прибирає, коли. В обох частинах present simple: ви розповідаєте про звичку. Після I використовуємо remove і cook без -s. When пов’язує дію із ситуацією, у якій ви зазвичай так робите."
+        "ru": "Друг спрашивает, как вы готовите мясо. Опишите обычное действие: I remove excess fat when I cook meat — я удаляю лишний жир, когда готовлю мясо. Собираем: I + remove + excess fat + when I cook meat — кто, что делает, что убирает, когда. В обеих частях форма work / works: вы рассказываете о привычке. После I используем remove и cook без -s. When связывает действие с ситуацией, в которой вы обычно так поступаете.",
+        "uk": "Друг запитує, як ви готуєте м’ясо. Опишіть звичайну дію: I remove excess fat when I cook meat — я видаляю зайвий жир, коли готую м’ясо. Складаємо: I + remove + excess fat + when I cook meat — хто, що робить, що прибирає, коли. В обох частинах форма work / works: ви розповідаєте про звичку. Після I використовуємо remove і cook без -s. When пов’язує дію із ситуацією, у якій ви зазвичай так робите."
       },
       "question": {
         "interactionId": "en:lesson-26:session-08:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Коли додаєте сіль"
       },
       "bodyByLocale": {
-        "ru": "Вы пробуете суп и объясняете другу свой обычный способ приправлять его: I add salt if the soup lacks flavour — я добавляю соль, если супу не хватает вкуса. Собираем: I + add + salt + if the soup lacks flavour — кто, что делает, что добавляет, при каком условии. Обе части в present simple: это привычная реакция. После I нужно add без -s; the soup — единственное число, поэтому lacks с -s. После lacks сразу ставим flavour без of.",
-        "uk": "Ви куштуєте суп і пояснюєте другові свій звичайний спосіб приправляти його: I add salt if the soup lacks flavour — я додаю сіль, якщо супу бракує смаку. Складаємо: I + add + salt + if the soup lacks flavour — хто, що робить, що додає, за якої умови. Обидві частини в present simple: це звична реакція. Після I потрібне add без -s; the soup — однина, тому lacks із -s. Після lacks одразу ставимо flavour без of."
+        "ru": "Вы пробуете суп и объясняете другу свой обычный способ приправлять его: I add salt if the soup lacks flavour — я добавляю соль, если супу не хватает вкуса. Собираем: I + add + salt + if the soup lacks flavour — кто, что делает, что добавляет, при каком условии. Обе части в форме work / works: это привычная реакция. После I нужно add без -s; the soup — форма для одного, поэтому lacks с -s. После lacks сразу ставим flavour без of.",
+        "uk": "Ви куштуєте суп і пояснюєте другові свій звичайний спосіб приправляти його: I add salt if the soup lacks flavour — я додаю сіль, якщо супу бракує смаку. Складаємо: I + add + salt + if the soup lacks flavour — хто, що робить, що додає, за якої умови. Обидві частини в формі work / works: це звична реакція. Після I потрібне add без -s; the soup — форма для одного, тому lacks із -s. Після lacks одразу ставимо flavour без of."
       },
       "question": {
         "interactionId": "en:lesson-26:session-08:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a6e63cd0dfe75258025cbab75e54fb7cb3678938a069a61db19dbddb51ea60e2"
+  "introFingerprint": "fd17ed992f575e728a0a4f1c7c2563d70f1ac775f40a189c28623b7e7c3d54c9"
 }

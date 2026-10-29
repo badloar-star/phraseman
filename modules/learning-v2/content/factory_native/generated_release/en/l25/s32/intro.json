@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-32",
   "learningOutcomeByLocale": {
-    "ru": "before|after + past clause",
-    "uk": "before|after + past clause"
+    "ru": "сказать, что вы сделали до чьего-то прихода: I cooked dinner before my fiancée arrived.",
+    "uk": "сказати, що ви зробили до чийогось приходу: I cooked dinner before my fiancée arrived."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Дзвінок перед виходом"
       },
       "bodyByLocale": {
-        "ru": "Fiancé — жених, мужчина, с которым человек помолвлен. My fiancé called before I left — мой жених позвонил до того, как я ушла. Сначала был звонок, затем уход. Fiancé называют человека и до дня свадьбы. Это не муж: о браке пока не сказано. После my артикль не ставим.",
-        "uk": "Fiancé — наречений, чоловік, із яким людина заручена. My fiancé called before I left — мій наречений зателефонував до того, як я пішла. Спочатку був дзвінок, потім вихід. Fiancé називають людину й до дня весілля. Це не чоловік у шлюбі: про шлюб поки не сказано. Після my артикль не ставимо."
+        "ru": "Fiancé — жених, мужчина, с которым человек помолвлен. My fiancé called before I left — мой жених позвонил до того, как я ушла. Сначала был звонок, затем уход. Fiancé называют человека и до дня свадьбы. Это не муж: о браке пока не сказано. После my a / the не ставим.",
+        "uk": "Fiancé — наречений, чоловік, із яким людина заручена. My fiancé called before I left — мій наречений зателефонував до того, як я пішла. Спочатку був дзвінок, потім вихід. Fiancé називають людину й до дня весілля. Це не чоловік у шлюбі: про шлюб поки не сказано. Після my a / the не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-25:session-32:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Наречена приїхала після приготування вечері"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о вчерашнем ужине: сначала вы приготовили еду, а потом приехала невеста. Скажите: My fiancée arrived after I cooked dinner — моя невеста приехала после того, как я приготовил ужин. Собираем: My fiancée + arrived + after I cooked dinner — кто, что сделал, после какого события. After показывает, что приготовление ужина было раньше приезда. В обеих частях past simple: к arrive добавляем -d, к cook — -ed.",
-        "uk": "Ви розповідаєте про вчорашню вечерю: спочатку ви приготували їжу, а потім приїхала наречена. Скажіть: My fiancée arrived after I cooked dinner — моя наречена приїхала після того, як я приготував вечерю. Складаємо: My fiancée + arrived + after I cooked dinner — хто, що зробив, після якої події. After показує, що приготування вечері було раніше приїзду. В обох частинах past simple: до arrive додаємо -d, до cook — -ed."
+        "ru": "Вы рассказываете о вчерашнем ужине: сначала вы приготовили еду, а потом приехала невеста. Скажите: My fiancée arrived after I cooked dinner — моя невеста приехала после того, как я приготовил ужин. Собираем: My fiancée + arrived + after I cooked dinner — кто, что сделал, после какого события. After показывает, что приготовление ужина было раньше приезда. В обеих частях форма прошлого: к arrive добавляем -d, к cook — -ed.",
+        "uk": "Ви розповідаєте про вчорашню вечерю: спочатку ви приготували їжу, а потім приїхала наречена. Скажіть: My fiancée arrived after I cooked dinner — моя наречена приїхала після того, як я приготував вечерю. Складаємо: My fiancée + arrived + after I cooked dinner — хто, що зробив, після якої події. After показує, що приготування вечері було раніше приїзду. В обох частинах форма минулого: до arrive додаємо -d, до cook — -ed."
       },
       "question": {
         "interactionId": "en:lesson-25:session-32:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f413e979faf5341261c9a32a0d16e8cad2248c111180b204c3ac0e19215a4e4d"
+  "introFingerprint": "1742587c17d9a110422e3b665d36e09b1b9ffc4e131fe2eb764622cfe958541e"
 }

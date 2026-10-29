@@ -256,7 +256,7 @@
             "correct": false,
             "testedDimension": "Вы всегда убираете лишний жир перед жаркой. Дополните привычное действие.",
             "feedbackByLocale": {
-              "ru": "После I в Present Simple нужна форма remove без -s.",
+              "ru": "После I в форме work / works нужна форма remove без -s.",
               "uk": "Після I у Present Simple потрібна форма remove без -s."
             }
           },
@@ -265,7 +265,7 @@
             "correct": false,
             "testedDimension": "Вы всегда убираете лишний жир перед жаркой. Дополните привычное действие.",
             "feedbackByLocale": {
-              "ru": "Для привычного действия здесь нужно remove; removing без вспомогательного глагола не подходит.",
+              "ru": "Для привычного действия здесь нужно remove; removing без am / is / are не подходит.",
               "uk": "Для звичної дії тут потрібно remove; removing без допоміжного дієслова не підходить."
             }
           }
@@ -673,7 +673,7 @@
             "correct": false,
             "testedDimension": "Вы описываете свою обычную привычку, а не разовый план. Дополните условие.",
             "feedbackByLocale": {
-              "ru": "The sauce — единственное число: is.",
+              "ru": "The sauce — форма для одного: is.",
               "uk": "The sauce — однина: is."
             }
           },
@@ -1120,7 +1120,7 @@
             "correct": false,
             "testedDimension": "Супу иногда не хватает вкуса. Дополните условие, при котором вы добавляете соль.",
             "feedbackByLocale": {
-              "ru": "Нужна личная форма lacks; lacking здесь не образует сказуемое.",
+              "ru": "Нужна личная форма lacks; lacking здесь не может стоять отдельно.",
               "uk": "Потрібна особова форма lacks; lacking тут не утворює присудок."
             }
           }
@@ -1135,5 +1135,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c9deaa266a89a3449166af47340e29fb6dd618dd312313ec3a8a3b1977946e61"
+  "learnerFingerprint": "c191f45a7f71d52f6c7cc855e857871eac4b24203dc8538d7b849dbf11552a02"
 }

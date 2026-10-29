@@ -1049,7 +1049,7 @@
             "correct": false,
             "testedDimension": "Цей шлях перекрито. Запропонуйте спробувати інший.",
             "feedbackByLocale": {
-              "ru": "Перед way в единственном числе используем another.",
+              "ru": "Перед way (предмет один) используем another.",
               "uk": "Перед way в однині вживаємо another."
             }
           },
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d7db6b1f106b8ce508f8856e1123eec898581f9462bdf08502a50c5ee811743a"
+  "learnerFingerprint": "a1b5adae673d121870de8abaf1226322d0b710e454241ef21a11d28a68a4a246"
 }

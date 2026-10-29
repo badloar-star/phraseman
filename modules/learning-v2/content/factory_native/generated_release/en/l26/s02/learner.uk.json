@@ -210,7 +210,7 @@
             "correct": false,
             "testedDimension": "Ви описуєте звук своїх дверей. Доповніть результат.",
             "feedbackByLocale": {
-              "ru": "The door — единственное число, поэтому squeaks.",
+              "ru": "The door — одна вещь, поэтому squeaks.",
               "uk": "The door — однина, тому squeaks."
             }
           },
@@ -219,7 +219,7 @@
             "correct": false,
             "testedDimension": "Ви описуєте звук своїх дверей. Доповніть результат.",
             "feedbackByLocale": {
-              "ru": "В Present Simple здесь нужно squeaks, не squeaking.",
+              "ru": "В форме work / works здесь нужно squeaks, не squeaking.",
               "uk": "У Present Simple тут потрібно squeaks, не squeaking."
             }
           }
@@ -519,7 +519,7 @@
             "correct": false,
             "testedDimension": "Ви не будите дитину. Доповніть звичну заперечну дію.",
             "feedbackByLocale": {
-              "ru": "С I отрицание в Present Simple строится через do not.",
+              "ru": "С I отрицание в форме work / works строится через do not.",
               "uk": "З I заперечення у Present Simple утворюється через do not."
             }
           },
@@ -528,7 +528,7 @@
             "correct": false,
             "testedDimension": "Ви не будите дитину. Доповніть звичну заперечну дію.",
             "feedbackByLocale": {
-              "ru": "Перед make здесь нужен вспомогательный do not, не am not.",
+              "ru": "Перед make здесь нужно do not, не am not.",
               "uk": "Перед make тут потрібне do not, не am not."
             }
           }
@@ -818,7 +818,7 @@
             "correct": false,
             "testedDimension": "Листя шарудить у вітряну погоду. Доповніть умову.",
             "feedbackByLocale": {
-              "ru": "The wind — единственное число: blows.",
+              "ru": "The wind — форма для одного: blows.",
               "uk": "The wind — однина: blows."
             }
           },
@@ -1134,5 +1134,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "79349c7b7b71050d9c49014f63d105a4d9cd9c00901a8797e131b96b0debc599"
+  "learnerFingerprint": "fea195ce9967833bc218085903b934dfe87d8f7e09feb0f6ae53a3c6f51669a3"
 }

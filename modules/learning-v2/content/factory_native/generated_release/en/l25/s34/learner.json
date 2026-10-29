@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы подстригли ногти вчера. Выберите время для законченного события.",
+      "prompt": "Вы подстригли ногти вчера. Выберите форму для законченного события.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-34:i06:r1",
@@ -407,11 +407,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы подстригли ногти вчера. Выберите время для законченного события.",
+      "accessibilityLabel": "Вы подстригли ногти вчера. Выберите форму для законченного события.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы подстригли ногти вчера. Выберите время для законченного события.",
+          "ru": "Вы подстригли ногти вчера. Выберите форму для законченного события.",
           "uk": "Ви підстригли нігті вчора. Виберіть час для завершеної події."
         },
         "gappedTargetPhrase": "I ___ my nails yesterday.",
@@ -436,7 +436,7 @@
             "correct": false,
             "testedDimension": "Вы подстригли ногти вчера. Выберите время для законченного события.",
             "feedbackByLocale": {
-              "ru": "Yesterday называет законченный момент; здесь нужен Past Simple cut.",
+              "ru": "Yesterday называет законченный момент; здесь нужна форма прошлого cut.",
               "uk": "Yesterday називає завершений момент; тут потрібен Past Simple cut."
             }
           },
@@ -445,7 +445,7 @@
             "correct": false,
             "testedDimension": "Вы подстригли ногти вчера. Выберите время для законченного события.",
             "feedbackByLocale": {
-              "ru": "Had cutting не образует Past Perfect; для вчерашнего события достаточно cut.",
+              "ru": "Had cutting не образует had + done; для вчерашнего события достаточно cut.",
               "uk": "Had cutting не утворює Past Perfect; для вчорашньої події досить cut."
             }
           }
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7bd7b18f112d450df26f69ded8eb29e9034bcb30608912f65d98d19d6fb3b7d4"
+  "learnerFingerprint": "3be28b4365853b9740165db55c73b75ebdd0539e12b166406e0229de96e6d7f0"
 }

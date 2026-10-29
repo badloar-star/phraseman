@@ -657,7 +657,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сумку зібрали раніше, ніж приїхало таксі. Доповніть Past Perfect.",
+      "prompt": "Сумку зібрали раніше, ніж приїхало таксі. Покажіть, що це сталося раніше.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-21:i10:r1",
@@ -674,12 +674,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сумку зібрали раніше, ніж приїхало таксі. Доповніть Past Perfect.",
+      "accessibilityLabel": "Сумку зібрали раніше, ніж приїхало таксі. Покажіть, що це сталося раніше.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Сумку собрали раньше, чем приехало такси. Дополните Past Perfect.",
-          "uk": "Сумку зібрали раніше, ніж приїхало таксі. Доповніть Past Perfect."
+          "uk": "Сумку зібрали раніше, ніж приїхало таксі. Покажіть, що це сталося раніше."
         },
         "gappedTargetPhrase": "I ___ packed my bag before the taxi arrived.",
         "gapOptions": [
@@ -889,7 +889,7 @@
             "correct": false,
             "testedDimension": "Ви купили одну конкретну сорочку вчора.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple bought.",
+              "ru": "Yesterday требует формы прошлого bought.",
               "uk": "Yesterday потребує Past Simple bought."
             }
           },
@@ -1057,7 +1057,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви вже вибрали одяг. Доповніть Present Perfect.",
+      "prompt": "Ви вже вибрали одяг. Доповніть фразу з have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-21:i17:r1",
@@ -1074,12 +1074,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви вже вибрали одяг. Доповніть Present Perfect.",
+      "accessibilityLabel": "Ви вже вибрали одяг. Доповніть фразу з have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы уже выбрали одежду. Дополните Present Perfect.",
-          "uk": "Ви вже вибрали одяг. Доповніть Present Perfect."
+          "uk": "Ви вже вибрали одяг. Доповніть фразу з have / has."
         },
         "gappedTargetPhrase": "I have already ___ my clothes.",
         "gapOptions": [
@@ -1103,7 +1103,7 @@
             "correct": false,
             "testedDimension": "Ви вже вибрали одяг. Доповніть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "После have нужна третья форма chosen.",
+              "ru": "После have нужна форма chosen.",
               "uk": "Після have потрібна третя форма chosen."
             }
           },
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a3c44001dd40079a16f3e53b72f1bd3ffc502acab814a17de95af674c0eaee20"
+  "learnerFingerprint": "456b2a89132195f1223c424fb522d01bb3c31bfa16799b5d04ffa94b1ae203ac"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-27",
   "learningOutcomeByLocale": {
-    "ru": "if, when, unless; already, yet; by the time",
-    "uk": "if, when, unless; already, yet; by the time"
+    "ru": "сказать, когда вы приступите к еде: We will eat when everyone arrives.",
+    "uk": "сказати, коли ви приступите до їжі: We will eat when everyone arrives."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Коли псується настрій"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, почему к вечеру вы иногда становитесь угрюмым. Объясните свою привычную реакцию: I get moody when I am tired — у меня портится настроение, когда я устал. Собираем: I + get + moody + when I am tired — кто, становится, каким, когда. Обе части стоят в present simple, потому что связь повторяется. После I нужна get без -s; в части с tired используем am.",
-        "uk": "Друг запитує, чому надвечір ви іноді стаєте похмурим. Поясніть свою звичну реакцію: I get moody when I am tired — у мене псується настрій, коли я втомлений. Складаємо: I + get + moody + when I am tired — хто, стає, яким, коли. Обидві частини стоять у present simple, бо зв’язок повторюється. Після I потрібна get без -s; у частині з tired використовуємо am."
+        "ru": "Друг спрашивает, почему к вечеру вы иногда становитесь угрюмым. Объясните свою привычную реакцию: I get moody when I am tired — у меня портится настроение, когда я устал. Собираем: I + get + moody + when I am tired — кто, становится, каким, когда. Обе части стоят в форме work / works, потому что связь повторяется. После I нужна get без -s; в части с tired используем am.",
+        "uk": "Друг запитує, чому надвечір ви іноді стаєте похмурим. Поясніть свою звичну реакцію: I get moody when I am tired — у мене псується настрій, коли я втомлений. Складаємо: I + get + moody + when I am tired — хто, стає, яким, коли. Обидві частини стоять у формі work / works, бо зв’язок повторюється. Після I потрібна get без -s; у частині з tired використовуємо am."
       },
       "question": {
         "interactionId": "en:lesson-26:session-27:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Ви вже перепросили"
       },
       "bodyByLocale": {
-        "ru": "Вы задели друга шуткой. Собеседник советует извиниться, но вы уже это сделали. Ответьте: I have already apologised — я уже извинился. Собираем: I + have + already + apologised — кто, have, уже, действие. Already ставим между have и третьей формой apologised. В apologised к apologise добавлено -d. Present perfect сообщает о выполненном действии к настоящему моменту.",
-        "uk": "Ви зачепили друга жартом. Співрозмовник радить перепросити, але ви вже це зробили. Дайте відповідь: I have already apologised — я вже перепросив. Складаємо: I + have + already + apologised — хто, have, уже, дія. Already ставимо між have і третьою формою apologised. В apologised до apologise додано -d. Present perfect повідомляє про виконану дію до теперішнього моменту."
+        "ru": "Вы задели друга шуткой. Собеседник советует извиниться, но вы уже это сделали. Ответьте: I have already apologised — я уже извинился. Собираем: I + have + already + apologised — кто, have, уже, действие. Already ставим между have и формой после have apologised. В apologised к apologise добавлено -d. Форма have / has + done сообщает о выполненном действии к настоящему моменту.",
+        "uk": "Ви зачепили друга жартом. Співрозмовник радить перепросити, але ви вже це зробили. Дайте відповідь: I have already apologised — я вже перепросив. Складаємо: I + have + already + apologised — хто, have, уже, дія. Already ставимо між have і формою після have apologised. В apologised до apologise додано -d. Форма have / has + done повідомляє про виконану дію до теперішнього моменту."
       },
       "question": {
         "interactionId": "en:lesson-26:session-27:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2db51562efe76bcd3f9c79bd5446360980755dc5c28503bcd756600edd9bccfc"
+  "introFingerprint": "4c28d7bbd1c27c81753add27a901d80922226ac86e0d531efc34bc5265c925b3"
 }

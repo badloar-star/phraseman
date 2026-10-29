@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-45",
   "learningOutcomeByLocale": {
-    "ru": "past perfect; before + past simple",
-    "uk": "past perfect; before + past simple"
+    "ru": "сказать, что вы вдруг вспомнили: I suddenly recalled his name.",
+    "uk": "сказати, що ви раптом згадали: I suddenly recalled his name."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Друг наполіг"
       },
       "bodyByLocale": {
-        "ru": "Insist — настаивать. Вы хотели идти пешком, но друг настоял на такси: He had insisted on a taxi before we left — он настоял на такси до того, как мы ушли. Запомните сочетание insist on + предмет или вариант: insist on a taxi. Это сильнее, чем просто предложить такси. Insisted — третья форма; после had она одинакова для всех лиц.",
-        "uk": "Insist — наполягати. Ви хотіли йти пішки, але друг наполіг на таксі: He had insisted on a taxi before we left — він наполіг на таксі до того, як ми пішли. Запам’ятайте поєднання insist on + предмет або варіант: insist on a taxi. Це сильніше, ніж просто запропонувати таксі. Insisted — третя форма; після had вона однакова для всіх осіб."
+        "ru": "Insist — настаивать. Вы хотели идти пешком, но друг настоял на такси: He had insisted on a taxi before we left — он настоял на такси до того, как мы ушли. Запомните сочетание insist on + предмет или вариант: insist on a taxi. Это сильнее, чем просто предложить такси. Insisted — форма после have; после had она одинакова для всех лиц.",
+        "uk": "Insist — наполягати. Ви хотіли йти пішки, але друг наполіг на таксі: He had insisted on a taxi before we left — він наполіг на таксі до того, як ми пішли. Запам’ятайте поєднання insist on + предмет або варіант: insist on a taxi. Це сильніше, ніж просто запропонувати таксі. Insisted — форма після have; після had вона однакова для всіх осіб."
       },
       "question": {
         "interactionId": "en:lesson-25:session-45:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "227986c842a6529edc36b2c1609aad32f656a065334d4e53aaf8b8bfe4364fd8"
+  "introFingerprint": "90c434dec87ab1fafbf9b6bd44909d5a4d56715fa5d0887411b423e2ac749893"
 }

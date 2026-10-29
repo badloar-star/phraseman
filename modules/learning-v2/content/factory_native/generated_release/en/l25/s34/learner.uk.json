@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви підстригли нігті вчора. Виберіть час для завершеної події.",
+      "prompt": "Ви підстригли нігті вчора. Виберіть форму для завершеної події.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-34:i06:r1",
@@ -407,12 +407,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви підстригли нігті вчора. Виберіть час для завершеної події.",
+      "accessibilityLabel": "Ви підстригли нігті вчора. Виберіть форму для завершеної події.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы подстригли ногти вчера. Выберите время для законченного события.",
-          "uk": "Ви підстригли нігті вчора. Виберіть час для завершеної події."
+          "uk": "Ви підстригли нігті вчора. Виберіть форму для завершеної події."
         },
         "gappedTargetPhrase": "I ___ my nails yesterday.",
         "gapOptions": [
@@ -436,7 +436,7 @@
             "correct": false,
             "testedDimension": "Ви підстригли нігті вчора. Виберіть час для завершеної події.",
             "feedbackByLocale": {
-              "ru": "Yesterday называет законченный момент; здесь нужен Past Simple cut.",
+              "ru": "Yesterday называет законченный момент; здесь нужна форма прошлого cut.",
               "uk": "Yesterday називає завершений момент; тут потрібен Past Simple cut."
             }
           },
@@ -445,7 +445,7 @@
             "correct": false,
             "testedDimension": "Ви підстригли нігті вчора. Виберіть час для завершеної події.",
             "feedbackByLocale": {
-              "ru": "Had cutting не образует Past Perfect; для вчерашнего события достаточно cut.",
+              "ru": "Had cutting не образует had + done; для вчерашнего события достаточно cut.",
               "uk": "Had cutting не утворює Past Perfect; для вчорашньої події досить cut."
             }
           }
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0a40aa679776478f513a62817eb3961a86a9151c6ee1552600d28749609da6a8"
+  "learnerFingerprint": "b8ae1d4f7b7eff9613f469a8576e0c12157a4c1a85cda801d4ae811f01b9e8fe"
 }

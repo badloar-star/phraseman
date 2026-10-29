@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-15",
   "learningOutcomeByLocale": {
-    "ru": "just, already, yet; first conditional; zero conditional; past perfect + by the time",
-    "uk": "just, already, yet; first conditional; zero conditional; past perfect + by the time"
+    "ru": "спросить, нашёл ли человек вещь: Have you found the mirror yet?",
+    "uk": "запитати, чи знайшла людина річ: Have you found the mirror yet?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Щойно вдарили гомілку"
       },
       "bodyByLocale": {
-        "ru": "Вы задели ногой край стола. Друг спрашивает, что случилось. Ответьте: I have just hit my shin — я только что ударил голень. Собираем: I + have + just + hit + my shin — кто, have, только что, действие, что ударил. Just стоит между have и третьей формой hit. У hit все формы пишутся одинаково; hitted не нужно. С I используем have, а вся фраза сообщает о недавнем событии сейчас.",
-        "uk": "Ви зачепили ногою край столу. Друг запитує, що сталося. Дайте відповідь: I have just hit my shin — я щойно вдарив гомілку. Складаємо: I + have + just + hit + my shin — хто, have, щойно, дія, що вдарив. Just стоїть між have і третьою формою hit. У hit усі форми пишуться однаково; hitted не потрібне. З I використовуємо have, а вся фраза повідомляє про недавню подію зараз."
+        "ru": "Вы задели ногой край стола. Друг спрашивает, что случилось. Ответьте: I have just hit my shin — я только что ударил голень. Собираем: I + have + just + hit + my shin — кто, have, только что, действие, что ударил. Just стоит между have и формой после have hit. У hit все формы пишутся одинаково; hitted не нужно. С I используем have, а вся фраза сообщает о недавнем событии сейчас.",
+        "uk": "Ви зачепили ногою край столу. Друг запитує, що сталося. Дайте відповідь: I have just hit my shin — я щойно вдарив гомілку. Складаємо: I + have + just + hit + my shin — хто, have, щойно, дія, що вдарив. Just стоїть між have і формою після have hit. У hit усі форми пишуться однаково; hitted не потрібне. З I використовуємо have, а вся фраза повідомляє про недавню подію зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-15:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "25f758c95f53349bfd9e91a0ac61fad7750953437e43ae06cba0d7b7a633fa44"
+  "introFingerprint": "012f9681fc289da6ff2209ba2ea7b414ada38d72b05009eea8e023ae6d1354f7"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-22",
   "learningOutcomeByLocale": {
-    "ru": "had + past participle before later past event",
-    "uk": "had + past participle before later past event"
+    "ru": "попросить дать ещё один шанс: Please give me another chance.",
+    "uk": "попросити дати ще один шанс: Please give me another chance."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Заборона вже діяла"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете вечер дома: мама запретила перекусы, а позже вы открыли шкаф с едой. Скажите: My mother had forbidden snacks before I opened the cupboard — мама запретила перекусы до того, как я открыл шкаф. Собираем: My mother + had forbidden + snacks + before I opened the cupboard — кто, что сделал раньше, что запретил, до какого события. После had нужна третья форма forbidden, а не forbid или forbade. Had forbidden отмечает более ранний запрет; opened — последующее открытие шкафа.",
-        "uk": "Ви згадуєте вечір удома: мама заборонила перекуси, а пізніше ви відкрили шафку з їжею. Скажіть: My mother had forbidden snacks before I opened the cupboard — мама заборонила перекуси до того, як я відкрив шафку. Складаємо: My mother + had forbidden + snacks + before I opened the cupboard — хто, що зробив раніше, що заборонив, до якої події. Після had потрібна третя форма forbidden, а не forbid чи forbade. Had forbidden позначає ранішу заборону; opened — пізніше відкриття шафки."
+        "ru": "Вы вспоминаете вечер дома: мама запретила перекусы, а позже вы открыли шкаф с едой. Скажите: My mother had forbidden snacks before I opened the cupboard — мама запретила перекусы до того, как я открыл шкаф. Собираем: My mother + had forbidden + snacks + before I opened the cupboard — кто, что сделал раньше, что запретил, до какого события. После had нужна форма forbidden, а не forbid или forbade. Had forbidden отмечает более ранний запрет; opened — последующее открытие шкафа.",
+        "uk": "Ви згадуєте вечір удома: мама заборонила перекуси, а пізніше ви відкрили шафку з їжею. Скажіть: My mother had forbidden snacks before I opened the cupboard — мама заборонила перекуси до того, як я відкрив шафку. Складаємо: My mother + had forbidden + snacks + before I opened the cupboard — хто, що зробив раніше, що заборонив, до якої події. Після had потрібна форма forbidden, а не forbid чи forbade. Had forbidden позначає ранішу заборону; opened — пізніше відкриття шафки."
       },
       "question": {
         "interactionId": "en:lesson-25:session-22:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c051c1e0e5512d1ac5078d773135ab5808b812c83452054c46a8e755fa92e9f1"
+  "introFingerprint": "c3ef3262f4a27b6eba52e5e0ddd3953c48e0d4139e9cec1c9251dc19b03ed63b"
 }

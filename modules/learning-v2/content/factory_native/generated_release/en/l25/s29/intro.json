@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-29",
   "learningOutcomeByLocale": {
-    "ru": "before|after + past clause",
-    "uk": "before|after + past clause"
+    "ru": "сказать, что произошло до чего-то: I was impolite before I heard your explanation.",
+    "uk": "сказати, що сталося до чогось: I was impolite before I heard your explanation."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Як я почувався"
       },
       "bodyByLocale": {
-        "ru": "Coward — трус. I felt like a coward after I ran away — я чувствовал себя трусом после того, как убежал. Это оценка собственного поступка, а не просто сообщение «мне было страшно». Coward — существительное о человеке: a coward. В felt like a coward слово like значит «как». Felt и ran — формы Past Simple; после after названо событие, которое случилось раньше.",
-        "uk": "Coward — боягуз. I felt like a coward after I ran away — я почувався боягузом після того, як утік. Це оцінка власного вчинку, а не просто повідомлення «мені було страшно». Coward — іменник про людину: a coward. У felt like a coward слово like означає «як». Felt і ran — форми Past Simple; після after названо подію, яка сталася раніше."
+        "ru": "Coward — трус. I felt like a coward after I ran away — я чувствовал себя трусом после того, как убежал. Это оценка собственного поступка, а не просто сообщение «мне было страшно». Coward — существительное о человеке: a coward. В felt like a coward слово like значит «как». Felt и ran — формы прошлого; после after названо событие, которое случилось раньше.",
+        "uk": "Coward — боягуз. I felt like a coward after I ran away — я почувався боягузом після того, як утік. Це оцінка власного вчинку, а не просто повідомлення «мені було страшно». Coward — іменник про людину: a coward. У felt like a coward слово like означає «як». Felt і ran — форми минулого; після after названо подію, яка сталася раніше."
       },
       "question": {
         "interactionId": "en:lesson-25:session-29:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "aea6c1c24653091639f4836fc3ab6cac29db5ad47a71ef1ea62296a5e9be208e"
+  "introFingerprint": "03b9d3ba239a4185fb419161292ccb269dc478166dc4959ab273273c06ea45e2"
 }

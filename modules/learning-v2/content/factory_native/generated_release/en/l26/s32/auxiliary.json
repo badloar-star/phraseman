@@ -23,8 +23,8 @@
           "uk": "Після if у цій умові is без will."
         },
         "en:lesson-26:session-32:intro2:r3": {
-          "ru": "Здесь eggplant в единственном числе; нужно is.",
-          "uk": "Тут eggplant в однині; потрібно is."
+          "ru": "Здесь eggplant один, поэтому is.",
+          "uk": "Тут eggplant один, тому is."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "fcd006933b50a1b6cb4504fe7ff71d43b3c69843c6cadb35b099932aa1681861"
+  "auxiliaryFingerprint": "6395408424323ae077c94e2466262760b0921d6b4f4a28e6e9adf3b802e9ee78"
 }

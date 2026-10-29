@@ -1049,7 +1049,7 @@
             "correct": false,
             "testedDimension": "Перша ложка впала на підлогу. Попросіть іншу.",
             "feedbackByLocale": {
-              "ru": "Spoon в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Spoon, поэтому another.",
               "uk": "Spoon в однині, тому another."
             }
           },
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e9f78c23575033278b5ff11d02045beea8ac150c55e5baa16c2cfb5be6f41be8"
+  "learnerFingerprint": "426a51fd53c6b79abc48914eaaa4511e18504c80e3a9a3b0f150e5cd54d8a38e"
 }

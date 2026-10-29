@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-20",
   "learningOutcomeByLocale": {
-    "ru": "future time clauses; first and zero conditional; already, yet; past perfect",
-    "uk": "future time clauses; first and zero conditional; already, yet; past perfect"
+    "ru": "попросить передать вещь: Chuck me the cushion.",
+    "uk": "попросити подати річ: Chuck me the cushion."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Устати за сигналом будильника"
       },
       "bodyByLocale": {
-        "ru": "Вы ещё лежите в кровати и говорите, когда встанете: I will get up when the alarm rings — я встану, когда зазвонит будильник. Собираем: I + will get up + when the alarm rings — кто, что сделает, когда. Will get up выражает намерение. После when, задающего будущий момент подъёма, используем rings без will. The alarm — единственное число, поэтому к ring добавляем -s.",
-        "uk": "Ви ще лежите в ліжку й кажете, коли встанете: I will get up when the alarm rings — я встану, коли задзвонить будильник. Складаємо: I + will get up + when the alarm rings — хто, що зробить, коли. Will get up виражає намір. Після when, яке задає майбутній момент підйому, використовуємо rings без will. The alarm — однина, тому до ring додаємо -s."
+        "ru": "Вы ещё лежите в кровати и говорите, когда встанете: I will get up when the alarm rings — я встану, когда зазвонит будильник. Собираем: I + will get up + when the alarm rings — кто, что сделает, когда. Will get up выражает намерение. После when, задающего будущий момент подъёма, используем rings без will. The alarm — одна вещь, поэтому к ring добавляем -s.",
+        "uk": "Ви ще лежите в ліжку й кажете, коли встанете: I will get up when the alarm rings — я встану, коли задзвонить будильник. Складаємо: I + will get up + when the alarm rings — хто, що зробить, коли. Will get up виражає намір. Після when, яке задає майбутній момент підйому, використовуємо rings без will. The alarm — одна річ, тому до ring додаємо -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-20:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0ff79c6e0d52d8cd30f2325a8bffe43fdbf3e986dcd4294c2db3d6f3e114f49d"
+  "introFingerprint": "4019d3dfcc735f0e0dabf7c3fff6f7406a53fc556910b300b55c3464e54cd39c"
 }

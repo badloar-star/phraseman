@@ -1019,7 +1019,7 @@
             "correct": false,
             "testedDimension": "Ви купили квиток один раз учора.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple bought.",
+              "ru": "Yesterday требует формы прошлого bought.",
               "uk": "Yesterday потребує Past Simple bought."
             }
           },
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "209af6e4b28fff3dedcd1254811acc1d4d55daa1f60f42555926738b4127a00d"
+  "learnerFingerprint": "a7573eb1e9a7f1e8a159cb39d1804af109f9a8d1f27d892bee9a8aff63fd94e3"
 }

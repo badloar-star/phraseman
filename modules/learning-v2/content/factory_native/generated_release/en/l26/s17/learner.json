@@ -183,7 +183,7 @@
             "correct": false,
             "testedDimension": "Такси приедет позже. Дополните момент, когда вы выйдете из дома.",
             "feedbackByLocale": {
-              "ru": "The cab — единственное число, поэтому arrives.",
+              "ru": "The cab — одна вещь, поэтому arrives.",
               "uk": "The cab — однина, тому arrives."
             }
           }
@@ -850,7 +850,7 @@
             "correct": false,
             "testedDimension": "Отпуск уже запланирован. Вы обещаете позвонить после его окончания. Дополните время звонка.",
             "feedbackByLocale": {
-              "ru": "My vacation — единственное число: ends.",
+              "ru": "My vacation — форма для одного: ends.",
               "uk": "My vacation — однина: ends."
             }
           }
@@ -1124,5 +1124,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "13fee7aebf14b82cdbe0823a1e7f053fd3143f397bebc05d9ee524c8cd3fafc4"
+  "learnerFingerprint": "40c274fe4575088c422b83f7523b607b80c1359a2394fb83e498fd9c09faf813"
 }

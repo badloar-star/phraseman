@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-26:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-26:session-03:intro1:r2": {
-          "ru": "В Present Simple с этим подлежащим нужна форма vibrates.",
-          "uk": "У Present Simple із цим підметом потрібна форма vibrates."
+          "ru": "С этим словом нужна форма vibrates.",
+          "uk": "У формі work / works із цим словом потрібна форма vibrates."
         },
         "en:lesson-26:session-03:intro1:r3": {
-          "ru": "Обычная реакция: Present Simple в обеих частях.",
-          "uk": "Звичайна реакція: Present Simple в обох частинах."
+          "ru": "Обычная реакция: форма work / works в обеих частях.",
+          "uk": "Звичайна реакція: форма work / works в обох частинах."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-26:session-03:intro2:q",
       "responseFeedbackById": {
         "en:lesson-26:session-03:intro2:r2": {
-          "ru": "В Present Simple с этим подлежащим нужна форма rotates.",
-          "uk": "У Present Simple із цим підметом потрібна форма rotates."
+          "ru": "С этим словом нужна форма rotates.",
+          "uk": "У формі work / works із цим словом потрібна форма rotates."
         },
         "en:lesson-26:session-03:intro2:r3": {
-          "ru": "Обычная реакция: Present Simple в обеих частях.",
-          "uk": "Звичайна реакція: Present Simple в обох частинах."
+          "ru": "Обычная реакция: форма work / works в обеих частях.",
+          "uk": "Звичайна реакція: форма work / works в обох частинах."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-26:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-26:session-03:intro3:r2": {
-          "ru": "В Present Simple с этим подлежащим нужна форма flutter.",
-          "uk": "У Present Simple із цим підметом потрібна форма flutter."
+          "ru": "С этим словом нужна форма flutter.",
+          "uk": "У формі work / works із цим словом потрібна форма flutter."
         },
         "en:lesson-26:session-03:intro3:r3": {
-          "ru": "Обычная реакция: Present Simple в обеих частях.",
-          "uk": "Звичайна реакція: Present Simple в обох частинах."
+          "ru": "Обычная реакция: форма work / works в обеих частях.",
+          "uk": "Звичайна реакція: форма work / works в обох частинах."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "1be4bef1de9bfef1849ddf5a3ef3221e2deba355eef6e8f9619d4bcab9fc78d2"
+  "auxiliaryFingerprint": "cf1667785941ce2b81b817237a64a6e3056b8c5e19ab174de0f938b802006323"
 }

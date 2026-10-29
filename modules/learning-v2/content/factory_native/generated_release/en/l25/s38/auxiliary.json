@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-25:session-38:intro1:q",
       "responseFeedbackById": {
         "en:lesson-25:session-38:intro1:r2": {
-          "ru": "Результат к моменту в прошлом: had + третья форма.",
-          "uk": "Результат до моменту в минулому: had + третя форма."
+          "ru": "Результат к моменту в прошлом: had + done.",
+          "uk": "Результат до моменту в минулому: had + done."
         },
         "en:lesson-25:session-38:intro1:r3": {
-          "ru": "Здесь нужен Past Perfect: had + третья форма.",
-          "uk": "Тут потрібен Past Perfect: had + третя форма."
+          "ru": "Здесь нужна форма had + done.",
+          "uk": "Тут потрібна форма had + done."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-25:session-38:intro2:q",
       "responseFeedbackById": {
         "en:lesson-25:session-38:intro2:r2": {
-          "ru": "Результат к моменту в прошлом: had + третья форма.",
-          "uk": "Результат до моменту в минулому: had + третя форма."
+          "ru": "Результат к моменту в прошлом: had + done.",
+          "uk": "Результат до моменту в минулому: had + done."
         },
         "en:lesson-25:session-38:intro2:r3": {
-          "ru": "Здесь нужен Past Perfect: had + третья форма.",
-          "uk": "Тут потрібен Past Perfect: had + третя форма."
+          "ru": "Здесь нужна форма had + done.",
+          "uk": "Тут потрібна форма had + done."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-25:session-38:intro3:q",
       "responseFeedbackById": {
         "en:lesson-25:session-38:intro3:r2": {
-          "ru": "Результат к моменту в прошлом: had + третья форма.",
-          "uk": "Результат до моменту в минулому: had + третя форма."
+          "ru": "Результат к моменту в прошлом: had + done.",
+          "uk": "Результат до моменту в минулому: had + done."
         },
         "en:lesson-25:session-38:intro3:r3": {
-          "ru": "Здесь нужен Past Perfect: had + третья форма.",
-          "uk": "Тут потрібен Past Perfect: had + третя форма."
+          "ru": "Здесь нужна форма had + done.",
+          "uk": "Тут потрібна форма had + done."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "f9c6c8ed4ada5d29e73d2775958f6cd3a0468f09537de1b1e6812cf82809f745"
+  "auxiliaryFingerprint": "577ac8e82994a3b875aa00a8aa9350a0ae2f05591da82a599439611e9091bbde"
 }

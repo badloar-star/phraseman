@@ -486,7 +486,7 @@
             "correct": false,
             "testedDimension": "Ви зазвичай вимикаєте нудний фільм. Доповніть свою звичку.",
             "feedbackByLocale": {
-              "ru": "Нужно сказуемое stop, не отдельное stopping.",
+              "ru": "Нужна полная форма stop, не отдельное stopping.",
               "uk": "Потрібен присудок stop, а не окреме stopping."
             }
           }
@@ -1081,5 +1081,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "292b44325ef929109f14181a3c1d58e1be1d09cc58073352276f01ca7a912445"
+  "learnerFingerprint": "db668bf7452cc0c457e8e04ae354654973edd7ae541e05c0830085b5bd622db2"
 }

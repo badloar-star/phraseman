@@ -1046,7 +1046,7 @@
             "correct": false,
             "testedDimension": "Зонтик сломан. Нужно взять другой.",
             "feedbackByLocale": {
-              "ru": "Umbrella в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Umbrella, поэтому another.",
               "uk": "Umbrella в однині, тому another."
             }
           },
@@ -1105,5 +1105,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2f3a2edca01faac2bb72da12d6c838c997fd96257922d4b404c40d92025d7a15"
+  "learnerFingerprint": "fa007a1dcc4ca1bacb9419cbcf78788a4eb15ca1630c5ff123bac0d7b1173e61"
 }

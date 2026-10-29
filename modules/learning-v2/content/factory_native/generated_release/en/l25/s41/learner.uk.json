@@ -798,7 +798,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect.",
+      "prompt": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть форму з have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-41:i12:r1",
@@ -815,12 +815,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect.",
+      "accessibilityLabel": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть форму з have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы уже познакомились с соседями, поэтому представлять вас не нужно. Выберите Present Perfect.",
-          "uk": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect."
+          "uk": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть форму з have / has."
         },
         "gappedTargetPhrase": "We ___ our neighbours.",
         "gapOptions": [
@@ -853,7 +853,7 @@
             "correct": false,
             "testedDimension": "Ви вже познайомилися із сусідами, тому представляти вас не потрібно. Виберіть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "После have нужна третья форма met.",
+              "ru": "После have нужна форма met.",
               "uk": "Після have потрібна третя форма met."
             }
           }
@@ -1052,7 +1052,7 @@
             "correct": false,
             "testedDimension": "Першу спробу закінчили. Запропонуйте спробувати ще раз.",
             "feedbackByLocale": {
-              "ru": "Try здесь существительное в единственном числе, поэтому another.",
+              "ru": "Try здесь — одна попытка, поэтому another.",
               "uk": "Try тут іменник в однині, тому another."
             }
           },
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a429bbac38166c0a19f44825a5a37062f2933994be07a389fd21144703d4c0d5"
+  "learnerFingerprint": "bffe237f150b0c854d8f6878d09b11cccfef8e057db2b255f10090c7413c751d"
 }

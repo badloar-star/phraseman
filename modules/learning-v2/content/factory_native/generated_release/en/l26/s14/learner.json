@@ -140,7 +140,7 @@
             "correct": false,
             "testedDimension": "Вы обычно надеваете халат, когда вам холодно. Дополните условие этой привычки.",
             "feedbackByLocale": {
-              "ru": "Нужно сказуемое feel, не отдельная форма feeling.",
+              "ru": "Нужна полная форма feel, не отдельная форма feeling.",
               "uk": "Потрібен присудок feel, а не окрема форма feeling."
             }
           }
@@ -433,7 +433,7 @@
             "correct": false,
             "testedDimension": "Выберите план на случай холода во время поездки.",
             "feedbackByLocale": {
-              "ru": "В условии после if нужен Present Simple: gets.",
+              "ru": "В условии после if нужна форма work / works: gets.",
               "uk": "В умові після if потрібен Present Simple: gets."
             }
           },
@@ -442,7 +442,7 @@
             "correct": false,
             "testedDimension": "Выберите план на случай холода во время поездки.",
             "feedbackByLocale": {
-              "ru": "Getting не образует здесь сказуемое.",
+              "ru": "Getting здесь не может стоять отдельно.",
               "uk": "Getting не утворює тут присудка."
             }
           }
@@ -869,7 +869,7 @@
             "correct": false,
             "testedDimension": "Подгузник сменили до приезда машины. Дополните более раннее действие.",
             "feedbackByLocale": {
-              "ru": "Arrived обозначает прошлый момент; нужен Past Perfect: had changed.",
+              "ru": "Arrived обозначает прошлый момент; нужна форма had + done: had changed.",
               "uk": "Arrived позначає минулий момент; потрібен Past Perfect: had changed."
             }
           },
@@ -1082,5 +1082,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cbf7d1b4706e060d3b3980a0ef6c3e333a1c0d89fb25ac6a265895968927dca0"
+  "learnerFingerprint": "469bfee3d1d052329386b77b29c3cef51a516daac636c7780d2f6a172930dc5e"
 }

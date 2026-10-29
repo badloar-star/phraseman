@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-28",
   "learningOutcomeByLocale": {
-    "ru": "past perfect; used to and present habits; after + past clause",
-    "uk": "past perfect; used to and present habits; after + past clause"
+    "ru": "сказать, что вы делаете в наши дни: We shop online nowadays.",
+    "uk": "сказати, що ви робите в наші дні: We shop online nowadays."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Ми вже зустрічалися"
       },
       "bodyByLocale": {
-        "ru": "Previously — ранее. Представьте: вы стали работать вместе и вспомнили, что уже встречались. I had previously met her at school — я ранее встречал её в школе. Previously относится ко времени до вашей совместной работы. Had met показывает более раннюю встречу; previously можно поставить между had и met. Само слово previously не требует Past Perfect в каждом предложении.",
-        "uk": "Previously — раніше. Уявіть: ви стали працювати разом і згадали, що вже зустрічалися. I had previously met her at school — я раніше зустрічав її в школі. Previously стосується часу до вашої спільної роботи. Had met показує ранішу зустріч; previously можна поставити між had і met. Саме слово previously не вимагає Past Perfect у кожному реченні."
+        "ru": "Previously — ранее. Представьте: вы стали работать вместе и вспомнили, что уже встречались. I had previously met her at school — я ранее встречал её в школе. Previously относится ко времени до вашей совместной работы. Had met показывает более раннюю встречу; previously можно поставить между had и met. Само слово previously не требует had + done в каждом предложении.",
+        "uk": "Previously — раніше. Уявіть: ви стали працювати разом і згадали, що вже зустрічалися. I had previously met her at school — я раніше зустрічав її в школі. Previously стосується часу до вашої спільної роботи. Had met показує ранішу зустріч; previously можна поставити між had і met. Саме слово previously не вимагає had + done у кожному реченні."
       },
       "question": {
         "interactionId": "en:lesson-25:session-28:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Як тепер дістаєтеся на роботу"
       },
       "bodyByLocale": {
-        "ru": "Раньше вы ездили на работу на машине, а теперь ходите пешком. Друг спрашивает о нынешней привычке. Ответьте: I walk to work nowadays — теперь я хожу на работу пешком. Собираем: I + walk + to work + nowadays — кто, что делает, куда, в какое время жизни. Nowadays относит привычку к настоящему, поэтому нужна walk в present simple. После I не добавляем -s. To work показывает направление, а nowadays в конце подчёркивает, что так вы поступаете теперь.",
-        "uk": "Раніше ви їздили на роботу машиною, а тепер ходите пішки. Друг запитує про теперішню звичку. Дайте відповідь: I walk to work nowadays — тепер я ходжу на роботу пішки. Складаємо: I + walk + to work + nowadays — хто, що робить, куди, у який період життя. Nowadays відносить звичку до теперішнього, тому потрібна walk у present simple. Після I не додаємо -s. To work показує напрямок, а nowadays наприкінці підкреслює, що так ви робите тепер."
+        "ru": "Раньше вы ездили на работу на машине, а теперь ходите пешком. Друг спрашивает о нынешней привычке. Ответьте: I walk to work nowadays — теперь я хожу на работу пешком. Собираем: I + walk + to work + nowadays — кто, что делает, куда, в какое время жизни. Nowadays относит привычку к настоящему, поэтому нужна простая форма walk. После I не добавляем -s. To work показывает направление, а nowadays в конце подчёркивает, что так вы поступаете теперь.",
+        "uk": "Раніше ви їздили на роботу машиною, а тепер ходите пішки. Друг запитує про теперішню звичку. Дайте відповідь: I walk to work nowadays — тепер я ходжу на роботу пішки. Складаємо: I + walk + to work + nowadays — хто, що робить, куди, у який період життя. Nowadays відносить звичку до теперішнього, тому потрібна проста форма walk. Після I не додаємо -s. To work показує напрямок, а nowadays наприкінці підкреслює, що так ви робите тепер."
       },
       "question": {
         "interactionId": "en:lesson-25:session-28:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Незрозуміло, як це сталося"
       },
       "bodyByLocale": {
-        "ru": "Somehow — каким-то образом: вы не знаете или не объясняете, как это произошло. I somehow lost my key after I left the house — я каким-то образом потерял ключ после того, как вышел из дома. Выход был раньше потери, это показывает after. Somehow не называет место и не означает «где-то». Здесь lost и left — две формы Past Simple.",
-        "uk": "Somehow — якимось чином: ви не знаєте або не пояснюєте, як це сталося. I somehow lost my key after I left the house — я якимось чином загубив ключ після того, як вийшов із дому. Вихід був раніше за втрату, це показує after. Somehow не називає місце й не означає «десь». Тут lost і left — дві форми Past Simple."
+        "ru": "Somehow — каким-то образом: вы не знаете или не объясняете, как это произошло. I somehow lost my key after I left the house — я каким-то образом потерял ключ после того, как вышел из дома. Выход был раньше потери, это показывает after. Somehow не называет место и не означает «где-то». Здесь lost и left — две формы прошлого.",
+        "uk": "Somehow — якимось чином: ви не знаєте або не пояснюєте, як це сталося. I somehow lost my key after I left the house — я якимось чином загубив ключ після того, як вийшов із дому. Вихід був раніше за втрату, це показує after. Somehow не називає місце й не означає «десь». Тут lost і left — дві форми минулого."
       },
       "question": {
         "interactionId": "en:lesson-25:session-28:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c682602d178a17078af145a7d604cb21ca330ecc175d7c6a03d4c0cd48913db7"
+  "introFingerprint": "ea6c40a6b23da8066cebde2d58ea63d54c81e66e0115beac20e9f05247017f05"
 }

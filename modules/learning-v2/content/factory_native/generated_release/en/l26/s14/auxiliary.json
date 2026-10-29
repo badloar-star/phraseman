@@ -10,8 +10,8 @@
           "uk": "З I потрібно have."
         },
         "en:lesson-26:session-14:intro1:r3": {
-          "ru": "После have нужна третья форма put.",
-          "uk": "Після have потрібна третя форма put."
+          "ru": "После have нужна форма put.",
+          "uk": "Після have потрібна форма put."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "9ae7681a1484848ae5e7683e64ae653fa51bf2fe895d036ee94d62aa8cccf067"
+  "auxiliaryFingerprint": "1a825a22d2ba91c6ceed101311fbc28528335bf36acaf4aeda1d14450c3225a8"
 }

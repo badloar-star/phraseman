@@ -839,7 +839,7 @@
             "correct": false,
             "testedDimension": "Першу книжку прочитали. Попросіть іншу книжку.",
             "feedbackByLocale": {
-              "ru": "Перед book в единственном числе нужно another.",
+              "ru": "Перед book (предмет один) нужно another.",
               "uk": "Перед book в однині потрібно another."
             }
           },
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9abc0fea6ef6e8b7193c2f0f4190caa11afe5b9c8bd3cc45158b6097e4063454"
+  "learnerFingerprint": "35e2a3873e4530b9ca6da353892cf42439d1e12442e9dac7721f3caf1e2df419"
 }

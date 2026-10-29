@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-12",
   "learningOutcomeByLocale": {
-    "ru": "first conditional; zero conditional; just, already, yet; past perfect + by the time",
-    "uk": "first conditional; zero conditional; just, already, yet; past perfect + by the time"
+    "ru": "спросить, сделал ли человек что-то уже: Have you packed the potty yet?",
+    "uk": "запитати, чи зробила людина щось уже: Have you packed the potty yet?"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Перевірити сумку малюка"
       },
       "bodyByLocale": {
-        "ru": "Перед выходом вы уточняете, положил ли партнёр пустышку в сумку: Have you packed the dummy yet? — ты уже положил пустышку? Собираем вопрос: Have + you + packed + the dummy + yet? Сначала have, затем кто, третья форма глагола, предмет и yet. С you нужно have; у pack третья форма packed с -ed. Yet в конце показывает, что вы ожидаете выполнения этого действия к настоящему моменту.",
-        "uk": "Перед виходом ви уточнюєте, чи поклав партнер пустушку в сумку: Have you packed the dummy yet? — ти вже поклав пустушку? Складаємо запитання: Have + you + packed + the dummy + yet? Спочатку have, потім хто, третя форма дієслова, предмет і yet. З you потрібне have; у pack третя форма packed із -ed. Yet наприкінці показує, що ви очікуєте виконання цієї дії до теперішнього моменту."
+        "ru": "Перед выходом вы уточняете, положил ли партнёр пустышку в сумку: Have you packed the dummy yet? — ты уже положил пустышку? Собираем вопрос: Have + you + packed + the dummy + yet? Сначала have, затем кто, форма после have (done, seen), предмет и yet. С you нужно have; у pack форма packed с -ed. Yet в конце показывает, что вы ожидаете выполнения этого действия к настоящему моменту.",
+        "uk": "Перед виходом ви уточнюєте, чи поклав партнер пустушку в сумку: Have you packed the dummy yet? — ти вже поклав пустушку? Складаємо запитання: Have + you + packed + the dummy + yet? Спочатку have, потім хто, форма після have (done, seen), предмет і yet. З you потрібне have; у pack форма packed із -ed. Yet наприкінці показує, що ви очікуєте виконання цієї дії до теперішнього моменту."
       },
       "question": {
         "interactionId": "en:lesson-26:session-12:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "11d2dfedf881a37bfa86005dfbcc29fe180c2eaaa5c31281c2870d0e6942f9fa"
+  "introFingerprint": "3dd3bbeb8a478e9b70ec29d01eb10879d08218b6be1160575a860c04e44c0f17"
 }

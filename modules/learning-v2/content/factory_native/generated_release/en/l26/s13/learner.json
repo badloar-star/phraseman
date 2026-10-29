@@ -586,7 +586,7 @@
             "correct": false,
             "testedDimension": "Вы ещё не решили, идти ли в магазин. Покупка зависит от того, открыт ли он. Дополните условие.",
             "feedbackByLocale": {
-              "ru": "После if в этом условии нужен Present Simple: is.",
+              "ru": "После if в этом условии нужна форма work / works: is.",
               "uk": "Після if у цій умові потрібен Present Simple: is."
             }
           },
@@ -595,7 +595,7 @@
             "correct": false,
             "testedDimension": "Вы ещё не решили, идти ли в магазин. Покупка зависит от того, открыт ли он. Дополните условие.",
             "feedbackByLocale": {
-              "ru": "Being не образует здесь сказуемое.",
+              "ru": "Being здесь не может стоять отдельно.",
               "uk": "Being не утворює тут присудка."
             }
           }
@@ -1074,5 +1074,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "076f5629728283798f8be1dd9fdbd2222d120cb3941b922753652d86ece3938b"
+  "learnerFingerprint": "b9523aea20082dec05bd47f50b24d837e7c1a89821088c9254294fb5cec31652"
 }

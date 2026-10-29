@@ -1050,7 +1050,7 @@
             "correct": false,
             "testedDimension": "Тут гамірно. Запропонуйте пошукати інше місце.",
             "feedbackByLocale": {
-              "ru": "Place в единственном числе, поэтому another.",
+              "ru": "Речь об одном — Place, поэтому another.",
               "uk": "Place в однині, тому another."
             }
           },
@@ -1113,5 +1113,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6fcd9064cd3e73483a81f0cddf2f0eb27ced143088c8175ee6bf13b71ecccdf4"
+  "learnerFingerprint": "ef996f5e7b6538cd7409f9dd7cdc8d91b8f9f8e1f9606a88b0db380401a40514"
 }

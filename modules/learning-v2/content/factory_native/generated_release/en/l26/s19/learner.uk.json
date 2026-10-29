@@ -699,7 +699,7 @@
             "correct": false,
             "testedDimension": "Якщо ви не розчули людину, ви зазвичай просите повторити. Доповніть звичку.",
             "feedbackByLocale": {
-              "ru": "Для привычки нужно сказуемое ask.",
+              "ru": "Для привычки нужна полная форма ask.",
               "uk": "Для звички потрібен присудок ask."
             }
           }
@@ -1078,5 +1078,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9ba434b26182533e8fe73bddd52f04657ce0d5210ffaada941c0e0142372ba00"
+  "learnerFingerprint": "1106036dd2b040808150f93f05a80d96f5cdb3b31c0bdc4e7c06440ee69fdc55"
 }

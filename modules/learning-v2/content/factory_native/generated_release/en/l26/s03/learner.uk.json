@@ -666,7 +666,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Штори легко рухаються від протягу. Доповніть дію в множині.",
+      "prompt": "Штори легко рухаються від протягу. Доповніть дію: їх кілька.",
       "responseOptions": [
         {
           "responseId": "en:lesson-26:session-03:i10:r1",
@@ -683,12 +683,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Штори легко рухаються від протягу. Доповніть дію в множині.",
+      "accessibilityLabel": "Штори легко рухаються від протягу. Доповніть дію: їх кілька.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Шторы легко двигаются от сквозняка. Дополните действие во множественном числе.",
-          "uk": "Штори легко рухаються від протягу. Доповніть дію в множині."
+          "uk": "Штори легко рухаються від протягу. Доповніть дію: їх кілька."
         },
         "gappedTargetPhrase": "The curtains ___ when air comes through the door.",
         "gapOptions": [
@@ -712,7 +712,7 @@
             "correct": false,
             "testedDimension": "Штори легко рухаються від протягу. Доповніть дію в множині.",
             "feedbackByLocale": {
-              "ru": "Curtains — множественное число: flutter без -s.",
+              "ru": "Curtains — форма для нескольких: flutter без -s.",
               "uk": "Curtains — множина: flutter без -s."
             }
           },
@@ -721,7 +721,7 @@
             "correct": false,
             "testedDimension": "Штори легко рухаються від протягу. Доповніть дію в множині.",
             "feedbackByLocale": {
-              "ru": "Здесь нужен Present Simple: flutter.",
+              "ru": "Здесь нужна форма work / works: flutter.",
               "uk": "Тут потрібен Present Simple: flutter."
             }
           }
@@ -1143,5 +1143,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fea214ade23e29b92ca5a39771a12097cc089f2b5d15b65f316d2ac422504779"
+  "learnerFingerprint": "c54ad27a97bf55e052986b65c82a9b3384960bbec9eeb41756af2540ecc44fcb"
 }

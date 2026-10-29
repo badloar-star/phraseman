@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-13",
   "learningOutcomeByLocale": {
-    "ru": "just, already, yet; zero conditional; first conditional; past perfect + by the time",
-    "uk": "just, already, yet; zero conditional; first conditional; past perfect + by the time"
+    "ru": "сказать, что вы только что приготовили: I have just made oatmeal.",
+    "uk": "сказати, що ви щойно приготували: I have just made oatmeal."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Повідомити про готовий сніданок"
       },
       "bodyByLocale": {
-        "ru": "Друг заходит на кухню и спрашивает про завтрак. Вы только что закончили готовить: I have just made oatmeal — я только что приготовил овсянку. Собираем: I + have + just + made + oatmeal — кто, have, только что, действие, что приготовил. С I ставим have. После have нужна третья форма made, а не make; just помещаем между have и made. Так сообщаем о совсем недавнем действии, важном сейчас.",
-        "uk": "Друг заходить на кухню й запитує про сніданок. Ви щойно закінчили готувати: I have just made oatmeal — я щойно приготував вівсянку. Складаємо: I + have + just + made + oatmeal — хто, have, щойно, дія, що приготував. З I ставимо have. Після have потрібна третя форма made, а не make; just розміщуємо між have і made. Так повідомляємо про зовсім недавню дію, важливу зараз."
+        "ru": "Друг заходит на кухню и спрашивает про завтрак. Вы только что закончили готовить: I have just made oatmeal — я только что приготовил овсянку. Собираем: I + have + just + made + oatmeal — кто, have, только что, действие, что приготовил. С I ставим have. После have нужна форма made, а не make; just помещаем между have и made. Так сообщаем о совсем недавнем действии, важном сейчас.",
+        "uk": "Друг заходить на кухню й запитує про сніданок. Ви щойно закінчили готувати: I have just made oatmeal — я щойно приготував вівсянку. Складаємо: I + have + just + made + oatmeal — хто, have, щойно, дія, що приготував. З I ставимо have. Після have потрібна форма made, а не make; just розміщуємо між have і made. Так повідомляємо про зовсім недавню дію, важливу зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-13:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Купити джем дорогою"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом идёте мимо магазина и договариваетесь купить цитрусовый джем, если магазин открыт: We will buy marmalade if the shop is open. Собираем: We + will buy + marmalade + if the shop is open — кто, что сделает, что купит, при каком условии. После will используем buy без -s. После if условие выражаем через is open: с единственным числом the shop нужна is, а will в этой части не ставим.",
-        "uk": "Ви з другом ідете повз крамницю й домовляєтеся купити цитрусовий джем, якщо вона відчинена: We will buy marmalade if the shop is open. Складаємо: We + will buy + marmalade + if the shop is open — хто, що зробить, що купить, за якої умови. Після will використовуємо buy без -s. Після if умову виражаємо через is open: з одниною the shop потрібна is, а will у цій частині не ставимо."
+        "ru": "Вы с другом идёте мимо магазина и договариваетесь купить цитрусовый джем, если магазин открыт: We will buy marmalade if the shop is open. Собираем: We + will buy + marmalade + if the shop is open — кто, что сделает, что купит, при каком условии. После will используем buy без -s. После if условие выражаем через is open: с the shop (магазин один) нужна is, а will в этой части не ставим.",
+        "uk": "Ви з другом ідете повз крамницю й домовляєтеся купити цитрусовий джем, якщо вона відчинена: We will buy marmalade if the shop is open. Складаємо: We + will buy + marmalade + if the shop is open — хто, що зробить, що купить, за якої умови. Після will використовуємо buy без -s. Після if умову виражаємо через is open: з the shop (магазин один) потрібна is, а will у цій частині не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-26:session-13:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0646551e996282783eef3543fc48bb53ed1acb4a57546f13a3bb279298f9c0e0"
+  "introFingerprint": "824760075d88f356da281e8fe2f0c0f5a17b1a711b5754f31fb11289824e65bd"
 }

@@ -368,7 +368,7 @@ const currentPath = currentNavigationHref() ?? navigationPathSignature ?? pathna
 
 В кадре объявления «peak» башня (~500 узлов SVG) монтируется вместе с самим кадром, и на появлении случается всплеск сборки мусора: GC первого тика 61, у соседних кадров 35–45.
 Патч для `components/stories/announcements_v2/frames_sections_a.tsx` (файл грязный у тебя) лежит в `docs/work/handover/spire-tower-deferred-mount-2026-10-29.patch`, описание рядом в `.md`.
-Применять ТОЛЬКО после коммита Дизайна с обёрткой `SpireTowerDeferred` (хэш будет в журнале). Внешне ничего не меняется. Критерий: GC первого тика кадра peak ≤ 40.
+Применять ТОЛЬКО после коммита Дизайна с обёрткой `SpireTowerDeferred` — он уже в ветке: c2bc33c7b; команда: `git apply -p1 docs/work/handover/spire-tower-deferred-mount-2026-10-29.patch`. Внешне ничего не меняется. Критерий: GC первого тика кадра peak ≤ 40.
 `StorySlides.tsx:79` (тоже грязный у тебя) — та же замена описана в `.md`, решение за хозяином шаблонов историй (Моменты).
 
 ## 32. В твоём `admin/v2/legacy.html` уже закоммичены чужие строки — не потеряй их (29.10)

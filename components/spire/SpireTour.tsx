@@ -17,7 +17,7 @@ import { useStableSafeAreaInsets } from '../../app/stable_safe_area_metrics';
 import { coinRankSourceForSize } from '../../app/coin_rank_table_v1';
 import { spireTierName } from '../../modules/spire/tier_names';
 import V2Pressable from '../v2/V2Pressable';
-import SpireTowerSvg from './SpireTowerSvg';
+import SpireTowerDeferred from './SpireTowerDeferred'; // зачем (координатор 29.10): башня тура встаёт следующим кадром, рамка того же размера
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
 import { spireGameText } from './spire_game_strings';
@@ -36,7 +36,7 @@ function TourTower({ lang }: Readonly<{ lang: Lang }>) {
   const scene = useSpireScene(); // зачем (владелец 13.10, светлая тема: «окно башни — по ТЕМЕ, а не по башне»): фон сцены тура — из темы, как у экрана
   return (
     <View style={s.towerClip} pointerEvents="none">
-      <SpireTowerSvg lang={lang} myFloor={null} selected={0} onSelect={noop} width={TOWER_WIDTH} scene={scene} cropHeight={TOUR_CROP_UNITS} />
+      <SpireTowerDeferred source="tour" lang={lang} myFloor={null} selected={0} onSelect={noop} width={TOWER_WIDTH} scene={scene} cropHeight={TOUR_CROP_UNITS} />
     </View>
   );
 }

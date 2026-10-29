@@ -1,0 +1,21 @@
+diff --git a/components/stories/announcements_v2/frames_sections_a.tsx b/components/stories/announcements_v2/frames_sections_a.tsx
+--- a/components/stories/announcements_v2/frames_sections_a.tsx
++++ b/components/stories/announcements_v2/frames_sections_a.tsx
+@@ -21,7 +21,7 @@
+ import { DebugLogger } from '../../../app/debug-logger';
+ import { spireSkinForTier } from '../../../modules/spire/tower_skins';
+ import SpireRankCoin from '../../spire/SpireRankCoin';
+-import SpireTowerSvg from '../../spire/SpireTowerSvg';
++import SpireTowerDeferred from '../../spire/SpireTowerDeferred'; // зачем (координатор 29.10): башня кадра «peak» встаёт следующим кадром, рамка того же размера
+ import { SPIRE_TOWER_GEOM, SPIRE_TW } from '../../spire/spire_tower_model';
+ import { SPIRE_SCENE_TOWER } from '../../spire/useSpireScene';
+ import { resolveThemedArt } from '../../theme/themed_art_registry';
+@@ -253,7 +253,7 @@
+         <View style={f.colL} pointerEvents="none">
+           <TowerReveal width={TOWER_W} height={TOWER_H}>
+             <View style={f.towerShift}>
+-              <SpireTowerSvg lang={lang} myFloor={PEAK_FLOOR} selected={PEAK_FLOOR} onSelect={noopSelect} width={TOWER_W} skin={PEAK_SKIN} scene={SPIRE_SCENE_TOWER} />
++              <SpireTowerDeferred source="announcement_peak" lang={lang} myFloor={PEAK_FLOOR} selected={PEAK_FLOOR} onSelect={noopSelect} width={TOWER_W} skin={PEAK_SKIN} scene={SPIRE_SCENE_TOWER} />
+             </View>
+           </TowerReveal>
+         </View>

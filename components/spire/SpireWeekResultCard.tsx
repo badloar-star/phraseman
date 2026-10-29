@@ -17,7 +17,7 @@ import { spireSkinForTier } from '../../modules/spire/tower_skins';
 import AvatarView from '../AvatarView';
 import { useSpirePalette } from './useSpirePalette';
 import { useSpireShadow } from './useSpireShadow';
-import SpireTowerSvg from './SpireTowerSvg';
+import SpireTowerDeferred from './SpireTowerDeferred'; // зачем (координатор 29.10): башня «Итога недели» встаёт следующим кадром, рамка того же размера
 import { spireWeekTopViewBox } from './spire_tower_bounds';
 import { SPIRE_FLOOR_COUNT } from './spire_tower_model';
 import { spireText } from './spire_strings';
@@ -117,7 +117,7 @@ function SpireWeekResultCard({ lang, result, myCoinRank }: Props) {
   };
   const towerAndCoin = (
     <>
-      <SpireTowerSvg variant="weekTop" lang={lang} myFloor={towerFloor} selected={0} onSelect={noop} width={towerW} skin={skin} />
+      <SpireTowerDeferred source="week_result" variant="weekTop" lang={lang} myFloor={towerFloor} selected={0} onSelect={noop} width={towerW} skin={skin} />
       {myCoinRank !== null ? (
         <View style={[s.coin, { backgroundColor: p.cardRaised }]}>
           <AvatarView avatar="" coinRank={myCoinRank} size={COIN} />

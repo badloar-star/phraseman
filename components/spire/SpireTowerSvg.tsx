@@ -317,6 +317,21 @@ type Props = Readonly<{
   sceneClean?: boolean;
 }>;
 
+export type SpireTowerSvgProps = Props;
+
+/**
+ * Высота, которую займёт `Svg` башни при этих свойствах. зачем (координатор 29.10, разбор JS-стопа на Пике): отложенный монтаж
+ * (SpireTowerDeferred) рисует до башни пустую рамку ТОГО ЖЕ размера — раскладка не сдвигается, когда башня встаёт. Формулы те же, что ниже в Svg.
+ */
+export function spireTowerSvgHeight(p: Pick<Props, 'width' | 'myFloor' | 'variant' | 'cropHeight'> & Partial<Pick<Props, 'skin'>>): number {
+  if (p.variant === 'weekTop') {
+    const vb = spireWeekTopViewBox(p.skin ?? SPIRE_DEFAULT_SKIN, p.myFloor === SPIRE_FLOOR_COUNT);
+    return (p.width * vb.h) / vb.w;
+  }
+  const visibleH = p.cropHeight !== undefined ? Math.min(SPIRE_TOWER_GEOM.height, p.cropHeight) : SPIRE_TOWER_GEOM.height;
+  return visibleH * (p.width / SPIRE_TW);
+}
+
 function SpireTowerSvg({ lang, myFloor, selected, onSelect, width, skin = SPIRE_DEFAULT_SKIN, variant = 'tower', scene, cropHeight, illustration = false, hideWords = false, hideFloorLabels = false, sceneClean = false }: Props) {
   const geom = SPIRE_TOWER_GEOM;
   const scale = width / SPIRE_TW;

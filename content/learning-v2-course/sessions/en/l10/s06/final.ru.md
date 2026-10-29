@@ -127,7 +127,7 @@ I would ___ some sparkling water. → **like** · likes · liking
 <!-- interaction_id: en:lesson-10:session-06:i12; family: context_gap_grammar -->
 I need ___ teaspoon. → **a** · an · some
 - an — *Teaspoon начинается с согласного звука: a.*
-- some — *Одна считается поштучно ложка: a teaspoon.*
+- some — *Ложка одна: a teaspoon.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-10:session-06:i13; family: speed_match -->

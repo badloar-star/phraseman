@@ -2,7 +2,7 @@
 
 **Ситуація.** Знайдіть потрібні речі для прання й миття посуду.
 
-**Що ви опануєте:** запитати, чия річ, і сказати, що можна: Whose laundry bag is this?
+**Що ви опануєте:** сказати, що ви можете знайти: I can find the laundry bag.
 **Нові слова:** clothes airer, tumble dryer, laundry bag, dishwasher tablet
 
 ## Інтро 1

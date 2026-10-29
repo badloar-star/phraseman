@@ -2,7 +2,7 @@
 
 **Ситуация.** Найдите нужные вещи для стирки и мытья посуды.
 
-**Что вы освоите:** спросить, чья вещь, и сказать, что можно: Whose laundry bag is this?
+**Что вы освоите:** сказать, что вы можете найти: I can find the laundry bag.
 **Новые слова:** clothes airer, tumble dryer, laundry bag, dishwasher tablet
 
 ## Интро 1

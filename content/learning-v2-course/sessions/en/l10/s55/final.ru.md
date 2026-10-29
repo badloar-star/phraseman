@@ -4,7 +4,7 @@
 
 **Новые слова:** untidy, sleeveless, uncomfortable, yet
 
-**Что вы освоите:** описать комнату и одежду и сказать «ещё не готов»: My room is untidy.
+**Что вы освоите:** описать комнату: My room is untidy.
 
 ## Интро 1
 

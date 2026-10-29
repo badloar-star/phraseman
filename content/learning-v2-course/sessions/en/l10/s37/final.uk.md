@@ -2,7 +2,7 @@
 
 **Ситуація.** Знайти річ під меблями й пояснити, як несете стіл крізь двері.
 
-**Що ви опануєте:** сказати, де що розташовано: The keys are underneath the chair.
+**Що ви опануєте:** сказати, де що знаходиться: The keys are underneath the chair.
 **Нові слова:** underneath, against, backwards, sideways
 
 ## Інтро 1

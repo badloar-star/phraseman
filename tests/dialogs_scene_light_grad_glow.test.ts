@@ -26,6 +26,15 @@ describe('светлые Диалоги × grad_*: нет слоёв из про
     expect(relativeLuminance(c.textZone) ?? 0).toBeGreaterThanOrEqual(MIN_LIGHT_BASE_LUMINANCE);
   });
 
+  // зачем (Ревизор к ac9573883): тёмное оформление grad_* не меняется молча — свет берётся из bgGlow как был, нижнего света нет
+  it.each(GRAD_IDS)('%s dark: свет сцены = bgGlow темы, нижнего света нет', (id) => {
+    const t = dialogsSceneTokensForTheme(id, 'dark');
+    const c = dialogsSceneColors(t);
+    expect(c.glowRight).toBe(t.bgGlow[0]);
+    expect(c.glowLeft).toBe(t.bgGlow[1]);
+    expect(c.glowBottom).toBeNull();
+  });
+
   it('подложка не рисует полностью прозрачные слои', () => {
     const src = fs.readFileSync(path.join(__dirname, '..', 'components', 'dialogs', 'scene', 'DialogsSceneBackdrop.tsx'), 'utf8');
     expect(src).toContain('isClearColor(c.glowRight)');

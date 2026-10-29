@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-23",
   "learningOutcomeByLocale": {
-    "ru": "уточнить, действует ли билет, и ответить коротко",
-    "uk": "уточнити, чи дійсний квиток, і відповісти коротко"
+    "ru": "сказать, что билет действителен: It is valid.",
+    "uk": "сказати, що квиток дійсний: It is valid."
   },
   "pages": [
     {

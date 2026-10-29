@@ -884,7 +884,7 @@
             "correct": false,
             "testedDimension": "Подруга хочет узнать про ремонт на шоссе. Выберите нужное слово",
             "feedbackByLocale": {
-              "ru": "Дорожные работы — слово во множественном числе, поэтому нужно any, а не a.",
+              "ru": "Дорожные работы — слово в форме для нескольких, поэтому нужно any, а не a.",
               "uk": "Дорожні роботи — слово у множині, тому потрібно any, а не a."
             }
           }
@@ -1148,5 +1148,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "84eae7dd39f6b2fb72e902f6e53f8cbe3cc3c67e4d5b4e3786d3c03f30ab61c0"
+  "learnerFingerprint": "05e096253b8097dc86e48eb60b70537c12056e1598d3a51bab0ce78f2e1d95b0"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-01:session-10",
   "learningOutcomeByLocale": {
-    "ru": "как описать собеседника с помощью `You are` и прилагательного",
-    "uk": "як описати співрозмовника за допомогою `You are` і прикметника"
+    "ru": "похвалить собеседника за скорость: You are fast.",
+    "uk": "похвалити співрозмовника за швидкість: You are fast."
   },
   "pages": [
     {

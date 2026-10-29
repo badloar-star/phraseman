@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-02:session-24",
   "learningOutcomeByLocale": {
-    "ru": "повторить короткие ответы о людях и вещах",
-    "uk": "повторити короткі відповіді про людей і речі"
+    "ru": "спросить, действителен ли билет: Is it valid?",
+    "uk": "запитати, чи дійсний квиток: Is it valid?"
   },
   "pages": [
     {

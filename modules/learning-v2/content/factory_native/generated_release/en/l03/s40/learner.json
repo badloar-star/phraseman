@@ -185,7 +185,7 @@
             "correct": false,
             "testedDimension": "Продавец показывает на коробку вдали. Дополните его фразу",
             "feedbackByLocale": {
-              "ru": "После That артикль a не ставим: That box is heavy.",
+              "ru": "После That a не ставим: That box is heavy.",
               "uk": "Після That артикль a не ставимо: That box is heavy."
             }
           }
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e99889295061fc4966deec8f103028dad5108f86b1b94b6226efb63ec695e22c"
+  "learnerFingerprint": "4b5f6afd3be8f827e8ce5fc5faa8bb8e0f2a0e372c03fa1e30a2aadbefaf5906"
 }

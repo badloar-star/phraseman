@@ -1008,7 +1008,7 @@
           "door"
         ],
         "authoredDistractorTokens": [
-          "a"
+          "are"
         ],
         "slotFeedback": [
           {
@@ -1016,8 +1016,8 @@
             "correct": false,
             "testedDimension": "Гость заходит в участок. Скажите ему полной фразой: рядом с дверью стоит сотрудник полиции",
             "feedbackByLocale": {
-              "ru": "здесь нужно `an` — `There is an officer next to the door.`",
-              "uk": "тут потрібно `an` — `There is an officer next to the door.`"
+              "ru": "сотрудник один, поэтому `is` — `There is an officer next to the door.`",
+              "uk": "співробітник один, тому `is` — `There is an officer next to the door.`"
             }
           }
         ],
@@ -1149,5 +1149,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "95f73949256a19bee40f0381213f056a34f0508087239db1aed4fa10517eb085"
+  "learnerFingerprint": "31b30cdb4f73c3a051230458174f8f680a13985dfa67f2b663d53c6471506acd"
 }

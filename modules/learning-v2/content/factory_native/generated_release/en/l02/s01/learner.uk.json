@@ -527,7 +527,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви ще не готові виходити. Доповніть заперечення про себе",
+      "prompt": "Ви ще не готові виходити. Доповніть фразу з «не» про себе",
       "responseOptions": [
         {
           "responseId": "en:lesson-02:session-01:i08:r1",
@@ -544,12 +544,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви ще не готові виходити. Доповніть заперечення про себе",
+      "accessibilityLabel": "Ви ще не готові виходити. Доповніть фразу з «не» про себе",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы ещё не готовы выходить. Дополните отрицание о себе",
-          "uk": "Ви ще не готові виходити. Доповніть заперечення про себе"
+          "uk": "Ви ще не готові виходити. Доповніть фразу з «не» про себе"
         },
         "gappedTargetPhrase": "I ___ not ready.",
         "gapOptions": [
@@ -1174,5 +1174,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0786489fbac9ef063e95603ce253fcf65fddbf18205cb4e4de5263e390e2d5c2"
+  "learnerFingerprint": "8b7f739eda82393c59bfeae5bae885fc0e7fbdea6ab30a4b27a8aefeb915df88"
 }

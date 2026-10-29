@@ -1941,9 +1941,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 53,
-    sourceFingerprint: "2bb521e37a7278db66e0a825dcdc04b452619cedb87f8da9d46dfb071f36fb55",
+    sourceFingerprint: "8a60e424673e923efb65cc4e41d6fb5080d9512551bc713a952972c1631a1c43",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, где что находится: The court is near the school.","uk":"сказати, де що знаходиться: The court is near the school."}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, где что находится: The court is near the school.","uk":"сказати, де що розташоване: The court is near the school."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 5","uk":"Англійська · Урок 5"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
@@ -1955,9 +1955,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 5, sessionOrdinal: 55,
-    sourceFingerprint: "a49d41d13f3224f4b27ab3b50c7be499f96cf6efbc0a15b87e3c09ca11540ebe",
+    sourceFingerprint: "bf20d8bc41c7fb9b928706e0e794450413bc09691279914d9b348308bc4b5864",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, где находится роспись: The mural is under the window.","uk":"сказати, де знаходиться розпис: The mural is under the window."}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, где находится роспись: The mural is under the window.","uk":"сказати, де розташований розпис: The mural is under the window."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 5","uk":"Англійська · Урок 5"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
@@ -2690,9 +2690,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 7, sessionOrdinal: 48,
-    sourceFingerprint: "6a802fa30a295564f028bfc6f5640b8d990bd36e8ad4ae681c0cdb4026bbb5e4",
+    sourceFingerprint: "f683f4f30ceefa85ae5c92024d46dff3f35639d7accf981d48bcba2f1ec653e1",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить, как часто вы что-то делаете: Do you often forget the key?","uk":"запитати, як часто ви щось робите: Do you often forget the key?"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить, часто ли человек что-то забывает: Do you often forget the key?","uk":"запитати, чи часто людина щось забуває: Do you often forget the key?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 7","uk":"Англійська · Урок 7"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
@@ -3264,9 +3264,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 9, sessionOrdinal: 18,
-    sourceFingerprint: "6c695c663806c83827658e48b337280b74b55ee740a2afe16267e9799665e70d",
+    sourceFingerprint: "e7b441d82aae5be49879f6b6fa7f1b31e31c7672fe0621252f60c895f0c8117f",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить, не дрожите ли вы от холода: Are you shivering?","uk":"запитати, чи ви не тремтите від холоду: Are you shivering?"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить, холодно ли собеседнику: Are you shivering?","uk":"запитати, чи холодно співрозмовникові: Are you shivering?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 9","uk":"Англійська · Урок 9"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
@@ -3789,9 +3789,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 10, sessionOrdinal: 37,
-    sourceFingerprint: "b3dbebd9cea1067fb6bb56b2f1056e99a0d3be6b38c1d8a8e9e593fdf3bce3db",
+    sourceFingerprint: "408132614f1dc0725a0340937c8ffce072c1b8c2f421cfa224fb0221781abb05",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, где что находится: The keys are underneath the chair.","uk":"сказати, де що знаходиться: The keys are underneath the chair."}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сказать, где что находится: The keys are underneath the chair.","uk":"сказати, де що лежить: The keys are underneath the chair."}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 10","uk":"Англійська · Урок 10"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
@@ -10075,9 +10075,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 26, sessionOrdinal: 39,
-    sourceFingerprint: "0e976350aaa0d76cd0aca7597af7ed88bd263adc264e5039f11359ae35fc2e1d",
+    sourceFingerprint: "5e575e1a4df143288eed697fa55afbeeb28c529250d3d98076e83e37033aecf7",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить, нашли ли вы ключи: Have you found your keys yet?","uk":"запитати, чи ви знайшли ключі: Have you found your keys yet?"}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"спросить, найдены ли ключи: Have you found your keys yet?","uk":"запитати, чи ключі вже знайшлися: Have you found your keys yet?"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Английский · Урок 26","uk":"Англійська · Урок 26"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
@@ -12385,9 +12385,9 @@ export const FACTORY_NATIVE_CATALOG_ROWS_V1: readonly LearningV2FactoryNativeCat
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({
     lessonOrdinal: 32, sessionOrdinal: 33,
-    sourceFingerprint: "cc4de0f84e02f98945f910985f18a139a17b64b8aec6af084b6ca0e1afc77691",
+    sourceFingerprint: "bd688aba8c6a24b88e0e016071d870261f01f97867e0d0abf85ac57ab5014ee6",
     newWordCount: 4,
-    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сделать вывод по признакам: His coat is here, so he must be nearby.","uk":"зробити висновок за ознаками: His coat is here, so he must be nearby."}),
+    learningOutcomeByAuthoredLocale: Object.freeze({"ru":"сделать вывод по признакам: he must be nearby","uk":"зробити висновок за ознаками: he must be nearby"}),
     lessonTitleByAuthoredLocale: Object.freeze({"ru":"Урок 32","uk":"Урок 32"}),
   }),
   Object.freeze<LearningV2FactoryNativeCatalogRowV1>({

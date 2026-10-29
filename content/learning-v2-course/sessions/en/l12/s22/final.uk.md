@@ -2,7 +2,7 @@
 
 **Ситуація.** Повідомте про результат іспиту й наступне заняття.
 
-**Що ви опануєте:** fail → failed; checked, had
+**Що ви опануєте:** розповісти про минуле: failed, checked, had
 **Нові слова:** fail, driving test, theory test, test result
 
 ## Інтро 1

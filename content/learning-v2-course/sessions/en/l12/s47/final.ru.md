@@ -2,7 +2,7 @@
 
 **Ситуация.** Прочитайте простые надписи и расскажите, что заметили на коробке.
 
-**Что вы освоите:** review: noticed, checked, packed; common package labels
+**Что вы освоите:** повторить: noticed, checked, packed и надписи на посылках
 **Новые слова:** warning, keep dry, handle with care, this way up
 
 ## Интро 1

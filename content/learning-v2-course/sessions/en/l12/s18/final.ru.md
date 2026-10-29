@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о подготовке ко вчерашнему празднику.
 
-**Что вы освоите:** finished event: celebrated, chose, used; was/were
+**Что вы освоите:** рассказать о том, что уже закончилось: celebrated, chose
 **Новые слова:** birthday cake, party hat, birthday candle, wrapping paper
 
 ## Интро 1

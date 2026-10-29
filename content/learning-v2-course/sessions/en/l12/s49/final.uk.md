@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, що вчора відклали й спакували.
 
-**Що ви опануєте:** review: used, packed, chose, checked; was/were
+**Що ви опануєте:** повторити: used, packed, chose, checked
 **Нові слова:** reusable, unwanted, brand-new, worn-out
 
 ## Інтро 1

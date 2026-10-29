@@ -2,7 +2,7 @@
 
 **Ситуация.** Поздравьте близкого и вспомните окончание учёбы.
 
-**Что вы освоите:** graduate → graduated; finished, celebrated; was/were
+**Что вы освоите:** рассказать о выпуске и празднике: graduated, celebrated
 **Новые слова:** graduate, university degree, final exam, graduation day
 
 ## Интро 1

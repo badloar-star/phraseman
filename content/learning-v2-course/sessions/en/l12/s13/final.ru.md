@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашний обед и напитки.
 
-**Что вы освоите:** shake → shook; have → had; was/were
+**Что вы освоите:** рассказать о прошлом: shook, had
 **Новые слова:** salt shaker, milkshake, grape juice, coconut milk
 
 ## Интро 1

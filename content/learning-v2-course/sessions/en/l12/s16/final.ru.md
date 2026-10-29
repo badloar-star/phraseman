@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о спокойном семейном вечере.
 
-**Что вы освоите:** review: chose, hid, played; was/were
+**Что вы освоите:** повторить: рассказать о прошлом — chose, hid, played
 **Новые слова:** jigsaw, playing cards, dominoes, hide-and-seek
 
 ## Интро 1

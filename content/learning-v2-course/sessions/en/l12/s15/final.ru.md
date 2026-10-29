@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашние игры на улице.
 
-**Что вы освоите:** throw → threw; used; was/were
+**Что вы освоите:** рассказать о прошлом: threw, used
 **Новые слова:** tennis ball, rubber ball, paper plane, skipping rope
 
 ## Интро 1

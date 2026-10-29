@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните дождь и солнце вчера.
 
-**Что вы освоите:** watched, noticed, enjoyed; was/were
+**Что вы освоите:** рассказать о прошлом: watched, noticed, enjoyed
 **Новые слова:** thunderstorm, raindrop, drizzle, sunshine
 
 ## Интро 1

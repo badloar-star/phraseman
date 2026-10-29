@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про підготовку до вчорашнього свята.
 
-**Що ви опануєте:** finished event: celebrated, chose, used; was/were
+**Що ви опануєте:** розповісти про те, що вже закінчилося: celebrated, chose
 **Нові слова:** birthday cake, party hat, birthday candle, wrapping paper
 
 ## Інтро 1

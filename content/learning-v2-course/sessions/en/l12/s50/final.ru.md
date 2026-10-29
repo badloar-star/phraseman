@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните, какую одежду вчера нашли и подготовили.
 
-**Что вы освоите:** review: found, ironed, washed; was/were
+**Что вы освоите:** повторить: found, ironed, washed
 **Новые слова:** unused, creased, unwashed, unironed
 
 ## Интро 1

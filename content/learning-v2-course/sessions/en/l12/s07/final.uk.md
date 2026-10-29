@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, як учора підготували місце для гостя.
 
-**Що ви опануєте:** regular past: used, cleaned, moved, unfolded
+**Що ви опануєте:** розповісти про вчорашнє: додавати -ed або -d — used, cleaned
 **Нові слова:** spare key, spare room, sofa bed, folding chair
 
 ## Інтро 1

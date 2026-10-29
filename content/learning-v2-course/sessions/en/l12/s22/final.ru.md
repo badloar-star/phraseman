@@ -2,7 +2,7 @@
 
 **Ситуация.** Сообщите о результате экзамена и следующем занятии.
 
-**Что вы освоите:** fail → failed; checked, had
+**Что вы освоите:** рассказать о прошлом: failed, checked, had
 **Новые слова:** fail, driving test, theory test, test result
 
 ## Интро 1

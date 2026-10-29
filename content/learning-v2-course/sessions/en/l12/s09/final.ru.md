@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, что выбрали в подарок.
 
-**Что вы освоите:** choose → chose; go → went; see → saw; have → had
+**Что вы освоите:** рассказать о вчерашнем словами, которые меняются целиком: went, saw, had
 **Новые слова:** bunch of flowers, box of chocolates, birthday card, gift bag
 
 ## Интро 1

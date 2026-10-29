@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, какие домашние вещи проверили и почистили.
 
-**Что вы освоите:** checked /t/, cleaned /d/, used /d/
+**Что вы освоите:** правильно произносить -ed: checked, cleaned, used
 **Новые слова:** desk lamp, ceiling fan, wall clock, door chain
 
 ## Интро 1

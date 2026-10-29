@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про прибирання ванної й прислухайтеся до закінчень.
 
-**Що ви опануєте:** -ed: /t/, /d/, /ɪd/; washed, cleaned, wanted
+**Що ви опануєте:** правильно вимовляти -ed: washed, cleaned, wanted
 **Нові слова:** shower head, toilet seat, soap dispenser, toothbrush holder
 
 ## Інтро 1

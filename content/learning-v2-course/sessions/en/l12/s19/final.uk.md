@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про вчорашні змагання у школі.
 
-**Що ви опануєте:** finished event: competed, enjoyed, used; was/were
+**Що ви опануєте:** розповісти про те, що вже закінчилося: competed, enjoyed
 **Нові слова:** compete, sports day, football pitch, running track
 
 ## Інтро 1

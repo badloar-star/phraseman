@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о вчерашней игре.
 
-**Что вы освоите:** kick → kicked /t/; cleaned /d/; noticed /t/
+**Что вы освоите:** правильно произносить -ed: kicked, cleaned, noticed
 **Новые слова:** kick, football boots, goalkeeper, goalpost
 
 ## Интро 1

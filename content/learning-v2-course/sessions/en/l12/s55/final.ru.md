@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, куда вчера сходили и где сделали покупки.
 
-**Что вы освоите:** review: visited; was/were
+**Что вы освоите:** повторить: visited, was / were
 **Новые слова:** town centre, high street, town square, street market
 
 ## Интро 1

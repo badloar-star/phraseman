@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните, какие орехи выбрали вчера.
 
-**Что вы освоите:** review: wanted /ɪd/, packed /t/, chose
+**Что вы освоите:** повторить: wanted, packed, chose
 **Новые слова:** cashew, walnut, hazelnut, pistachio
 
 ## Интро 1

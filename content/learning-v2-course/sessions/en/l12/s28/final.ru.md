@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните, чем пользовались перед выходом из дома.
 
-**Что вы освоите:** changed /d/, used /d/, wanted /ɪd/, needed /ɪd/
+**Что вы освоите:** правильно произносить -ed: changed, wanted
 **Новые слова:** shoehorn, shoe polish, clothes brush, lint roller
 
 ## Интро 1

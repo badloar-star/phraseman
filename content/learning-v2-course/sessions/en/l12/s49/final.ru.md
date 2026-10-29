@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, что вчера отложили и упаковали.
 
-**Что вы освоите:** review: used, packed, chose, checked; was/were
+**Что вы освоите:** повторить: used, packed, chose, checked
 **Новые слова:** reusable, unwanted, brand-new, worn-out
 
 ## Интро 1

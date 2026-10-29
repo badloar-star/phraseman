@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, як учора спланували поїздку автобусом.
 
-**Що ви опануєте:** checked, noticed; was/were
+**Що ви опануєте:** розповісти про минуле: checked, noticed
 **Нові слова:** bus route, bus fare, bus timetable, bus lane
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашнюю прогулку.
 
-**Что вы освоите:** crossed, parked, visited; was/were
+**Что вы освоите:** рассказать о прошлом: crossed, parked, visited
 **Новые слова:** main road, side street, public park, pedestrian street
 
 ## Интро 1

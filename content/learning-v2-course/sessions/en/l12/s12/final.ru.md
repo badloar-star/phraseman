@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, как началось утро и что было на завтрак.
 
-**Что вы освоите:** rise → rose; have → had; was/were
+**Что вы освоите:** рассказать о прошлом: rose, had
 **Новые слова:** breakfast cereal, fruit yoghurt, boiled egg, soft cheese
 
 ## Интро 1

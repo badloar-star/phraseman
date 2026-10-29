@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про вчорашні справи з машиною.
 
-**Що ви опануєте:** regular past: parked, visited, used, checked
+**Що ви опануєте:** розповісти про вчорашнє: додавати до дії -ed — parked, visited
 **Нові слова:** parking space, car wash, car keys, driving licence
 
 ## Інтро 1

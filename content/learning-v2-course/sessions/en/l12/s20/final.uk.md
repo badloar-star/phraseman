@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, що помітили на вулиці вчора.
 
-**Що ви опануєте:** finished event: noticed, checked, used; was/were
+**Що ви опануєте:** розповісти про те, що вже закінчилося: noticed, checked
 **Нові слова:** cycle lane, speed limit, zebra crossing, parking meter
 
 ## Інтро 1

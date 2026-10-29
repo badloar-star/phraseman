@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, як учора залишили записку й зібрали папери.
 
-**Що ви опануєте:** review: used, found; was/were
+**Що ви опануєте:** повторити: used, found
 **Нові слова:** sticky note, paper clip, rubber band, drawing pin
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, які домашні речі перевірили й почистили.
 
-**Що ви опануєте:** checked /t/, cleaned /d/, used /d/
+**Що ви опануєте:** правильно вимовляти -ed: checked, cleaned, used
 **Нові слова:** desk lamp, ceiling fan, wall clock, door chain
 
 ## Інтро 1

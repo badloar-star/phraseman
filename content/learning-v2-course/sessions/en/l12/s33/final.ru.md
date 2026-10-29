@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, как вчера сходили в музей.
 
-**Что вы освоите:** finished event: checked, used, thanked; was/were
+**Что вы освоите:** рассказать о том, что уже закончилось: checked, thanked
 **Новые слова:** opening hours, entrance ticket, audio guide, tour guide
 
 ## Интро 1

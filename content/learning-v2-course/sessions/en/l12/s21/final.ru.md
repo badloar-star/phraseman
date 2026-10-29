@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о питомце и вещах для него.
 
-**Что вы освоите:** escape → escaped; checked, cleaned, chose
+**Что вы освоите:** рассказать о прошлом: escaped, checked, chose
 **Новые слова:** escape, cat flap, pet carrier, dog collar
 
 ## Интро 1

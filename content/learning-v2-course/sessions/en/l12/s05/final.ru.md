@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о вчерашних делах с машиной.
 
-**Что вы освоите:** regular past: parked, visited, used, checked
+**Что вы освоите:** рассказать о вчерашнем: добавлять к действию -ed — parked, visited
 **Новые слова:** parking space, car wash, car keys, driving licence
 
 ## Интро 1

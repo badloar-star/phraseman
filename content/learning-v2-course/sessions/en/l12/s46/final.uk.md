@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про улюбленців і вчорашнє прибирання.
 
-**Що ви опануєте:** watched, cleaned; was/were
+**Що ви опануєте:** розповісти про минуле: watched, cleaned
 **Нові слова:** guinea pig, budgie, rabbit hutch, fish tank
 
 ## Інтро 1

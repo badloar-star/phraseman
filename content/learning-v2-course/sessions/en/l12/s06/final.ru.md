@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, что вчера почистили, постирали и положили в дорожную сумку.
 
-**Что вы освоите:** regular past: cleaned, washed, packed; was/were
+**Что вы освоите:** рассказать о вчерашнем: cleaned, washed и was / were
 **Новые слова:** rain boots, baseball cap, underpants, sports bra
 
 ## Интро 1

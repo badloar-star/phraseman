@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, как вчера убрали еду и приготовили лёд.
 
-**Что вы освоите:** review: added, filled, used, washed
+**Что вы освоите:** повторить: added, filled, used, washed
 **Новые слова:** ice cube, ice tray, freezer bag, food container
 
 ## Интро 1

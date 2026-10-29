@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о вчерашних соревнованиях в школе.
 
-**Что вы освоите:** finished event: competed, enjoyed, used; was/were
+**Что вы освоите:** рассказать о том, что уже закончилось: competed, enjoyed
 **Новые слова:** compete, sports day, football pitch, running track
 
 ## Интро 1

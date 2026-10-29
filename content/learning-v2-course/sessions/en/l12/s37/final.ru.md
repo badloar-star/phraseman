@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите об учебной тревоге, которая уже закончилась.
 
-**Что вы освоите:** finished event: had, noticed, used, waited
+**Что вы освоите:** рассказать о том, что уже закончилось: had, noticed, waited
 **Новые слова:** fire drill, fire alarm, fire exit, meeting point
 
 ## Интро 1

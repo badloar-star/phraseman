@@ -2,7 +2,7 @@
 
 **Ситуация.** Назовите знакомые части машины и расскажите, что вчера почистили.
 
-**Что вы освоите:** regular past: cleaned, washed, checked; was/were
+**Что вы освоите:** рассказать о вчерашнем: cleaned, checked и was / were
 **Новые слова:** windscreen, steering wheel, number plate, car seat
 
 ## Интро 1

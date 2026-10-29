@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, як учора перевірили й почистили сумку.
 
-**Що ви опануєте:** review: checked, cleaned; was/were
+**Що ви опануєте:** повторити: checked, cleaned
 **Нові слова:** luggage tag, shoulder strap, side pocket, inside pocket
 
 ## Інтро 1

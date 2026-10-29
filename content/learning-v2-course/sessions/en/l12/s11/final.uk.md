@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про гру й прибирання іграшок.
 
-**Що ви опануєте:** hide → hid; was/were; cleaned
+**Що ви опануєте:** розповісти про минуле: hid, cleaned
 **Нові слова:** teddy bear, toy car, building blocks, toy box
 
 ## Інтро 1

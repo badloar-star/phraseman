@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о питомцах и вчерашней уборке.
 
-**Что вы освоите:** watched, cleaned; was/were
+**Что вы освоите:** рассказать о прошлом: watched, cleaned
 **Новые слова:** guinea pig, budgie, rabbit hutch, fish tank
 
 ## Интро 1

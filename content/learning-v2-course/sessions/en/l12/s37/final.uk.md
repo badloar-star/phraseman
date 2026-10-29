@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про навчальну тривогу, яка вже закінчилася.
 
-**Що ви опануєте:** finished event: had, noticed, used, waited
+**Що ви опануєте:** розповісти про те, що вже закінчилося: had, noticed, waited
 **Нові слова:** fire drill, fire alarm, fire exit, meeting point
 
 ## Інтро 1

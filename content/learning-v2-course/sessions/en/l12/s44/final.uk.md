@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про похід магазинами одягу й взуття.
 
-**Що ви опануєте:** visited /ɪd/, checked /t/; was/were
+**Що ви опануєте:** правильно вимовляти -ed: visited, checked
 **Нові слова:** shoe shop, clothes shop, charity shop, shoe size
 
 ## Інтро 1

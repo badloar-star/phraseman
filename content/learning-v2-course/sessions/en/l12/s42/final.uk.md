@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте дощ і сонце вчора.
 
-**Що ви опануєте:** watched, noticed, enjoyed; was/were
+**Що ви опануєте:** розповісти про минуле: watched, noticed, enjoyed
 **Нові слова:** thunderstorm, raindrop, drizzle, sunshine
 
 ## Інтро 1

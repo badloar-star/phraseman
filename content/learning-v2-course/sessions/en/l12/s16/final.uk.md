@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про спокійний родинний вечір.
 
-**Що ви опануєте:** review: chose, hid, played; was/were
+**Що ви опануєте:** повторити: розповісти про минуле — chose, hid, played
 **Нові слова:** jigsaw, playing cards, dominoes, hide-and-seek
 
 ## Інтро 1

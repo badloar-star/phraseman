@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, які горіхи вибрали вчора.
 
-**Що ви опануєте:** review: wanted /ɪd/, packed /t/, chose
+**Що ви опануєте:** повторити: wanted, packed, chose
 **Нові слова:** cashew, walnut, hazelnut, pistachio
 
 ## Інтро 1

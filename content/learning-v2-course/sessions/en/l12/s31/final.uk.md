@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть про вчорашню роботу в саду.
 
-**Що ви опануєте:** planted /ɪd/, watered /d/; was/were
+**Що ви опануєте:** правильно вимовляти -ed: planted, watered
 **Нові слова:** rose bush, flowerbed, tomato plant, fruit tree
 
 ## Інтро 1

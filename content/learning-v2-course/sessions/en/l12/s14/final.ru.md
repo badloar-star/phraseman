@@ -2,7 +2,7 @@
 
 **Ситуация.** Назовите вещи и сообщите о краже простой фразой.
 
-**Что вы освоите:** steal → stole; had, checked; was/were
+**Что вы освоите:** рассказать о прошлом: stole, checked
 **Новые слова:** steal, bus pass, travel card, coin purse
 
 ## Интро 1

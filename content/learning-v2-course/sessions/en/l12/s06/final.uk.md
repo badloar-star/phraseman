@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, що вчора почистили, випрали та спакували в дорожню сумку.
 
-**Що ви опануєте:** regular past: cleaned, washed, packed; was/were
+**Що ви опануєте:** розповісти про вчорашнє: cleaned, washed та was / were
 **Нові слова:** rain boots, baseball cap, underpants, sports bra
 
 ## Інтро 1

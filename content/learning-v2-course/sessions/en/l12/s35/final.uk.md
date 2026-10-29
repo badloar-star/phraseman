@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, кого навідували вчора.
 
-**Що ви опануєте:** visited, helped, thanked; was/were
+**Що ви опануєте:** розповісти про минуле: visited, helped, thanked
 **Нові слова:** mother-in-law, father-in-law, great-grandmother, great-grandfather
 
 ## Інтро 1

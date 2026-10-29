@@ -2,7 +2,7 @@
 
 **Ситуація.** Назвіть звичні частини машини й розкажіть, що вчора почистили.
 
-**Що ви опануєте:** regular past: cleaned, washed, checked; was/were
+**Що ви опануєте:** розповісти про вчорашнє: cleaned, checked та was / were
 **Нові слова:** windscreen, steering wheel, number plate, car seat
 
 ## Інтро 1

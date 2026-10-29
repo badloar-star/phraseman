@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, що вчора приготували до школи.
 
-**Що ви опануєте:** -ed pronunciation review: packed /t/, cleaned /d/, needed /ɪd/; finished /t/
+**Що ви опануєте:** повторити, як звучить -ed: packed, cleaned, needed
 **Нові слова:** pencil case, schoolbag, exercise book, pencil sharpener
 
 ## Інтро 1

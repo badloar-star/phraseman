@@ -2,7 +2,7 @@
 
 **Ситуація.** Назвіть звичайні речі й розкажіть про вчорашнє прибирання.
 
-**Що ви опануєте:** review: cleaned, used, packed; was/were
+**Що ви опануєте:** повторити: розповісти про минуле — cleaned, used, packed
 **Нові слова:** nail clippers, nail file, cotton bud, cotton wool
 
 ## Інтро 1

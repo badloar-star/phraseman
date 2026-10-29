@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите об игре и уборке игрушек.
 
-**Что вы освоите:** hide → hid; was/were; cleaned
+**Что вы освоите:** рассказать о прошлом: hid, cleaned
 **Новые слова:** teddy bear, toy car, building blocks, toy box
 
 ## Интро 1

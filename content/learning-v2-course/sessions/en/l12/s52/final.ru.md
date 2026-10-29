@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните, как вчера оставили записку и собрали бумаги.
 
-**Что вы освоите:** review: used, found; was/were
+**Что вы освоите:** повторить: used, found
 **Новые слова:** sticky note, paper clip, rubber band, drawing pin
 
 ## Интро 1

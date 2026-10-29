@@ -2,7 +2,7 @@
 
 **Ситуація.** Прочитайте прості написи й розкажіть, що помітили на коробці.
 
-**Що ви опануєте:** review: noticed, checked, packed; common package labels
+**Що ви опануєте:** повторити: noticed, checked, packed і написи на посилках
 **Нові слова:** warning, keep dry, handle with care, this way up
 
 ## Інтро 1

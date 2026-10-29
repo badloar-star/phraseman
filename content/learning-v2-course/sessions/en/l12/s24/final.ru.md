@@ -2,7 +2,7 @@
 
 **Ситуация.** Назовите обычные вещи и расскажите о вчерашней уборке.
 
-**Что вы освоите:** review: cleaned, used, packed; was/were
+**Что вы освоите:** повторить: рассказать о прошлом — cleaned, used, packed
 **Новые слова:** nail clippers, nail file, cotton bud, cotton wool
 
 ## Интро 1

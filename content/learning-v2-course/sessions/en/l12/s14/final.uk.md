@@ -2,7 +2,7 @@
 
 **Ситуація.** Назвіть речі й повідомте про крадіжку простою фразою.
 
-**Що ви опануєте:** steal → stole; had, checked; was/were
+**Що ви опануєте:** розповісти про минуле: stole, checked
 **Нові слова:** steal, bus pass, travel card, coin purse
 
 ## Інтро 1

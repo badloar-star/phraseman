@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, что вчера приготовили для школы.
 
-**Что вы освоите:** -ed pronunciation review: packed /t/, cleaned /d/, needed /ɪd/; finished /t/
+**Что вы освоите:** повторить, как звучит -ed: packed, cleaned, needed
 **Новые слова:** pencil case, schoolbag, exercise book, pencil sharpener
 
 ## Интро 1

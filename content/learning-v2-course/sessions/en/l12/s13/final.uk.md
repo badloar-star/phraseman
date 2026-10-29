@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашній обід і напої.
 
-**Що ви опануєте:** shake → shook; have → had; was/were
+**Що ви опануєте:** розповісти про минуле: shook, had
 **Нові слова:** salt shaker, milkshake, grape juice, coconut milk
 
 ## Інтро 1

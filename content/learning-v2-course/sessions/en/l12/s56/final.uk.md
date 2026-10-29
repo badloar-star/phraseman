@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, що вчора знайшли у ванній і поклали в сумку.
 
-**Що ви опануєте:** review: found, used, packed; was/were
+**Що ви опануєте:** повторити: found, used, packed
 **Нові слова:** hair tie, hair clip, hairpin, shower cap
 
 ## Інтро 1

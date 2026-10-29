@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашні ігри надворі.
 
-**Що ви опануєте:** throw → threw; used; was/were
+**Що ви опануєте:** розповісти про минуле: threw, used
 **Нові слова:** tennis ball, rubber ball, paper plane, skipping rope
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о походе по магазинам одежды и обуви.
 
-**Что вы освоите:** visited /ɪd/, checked /t/; was/were
+**Что вы освоите:** правильно произносить -ed: visited, checked
 **Новые слова:** shoe shop, clothes shop, charity shop, shoe size
 
 ## Интро 1

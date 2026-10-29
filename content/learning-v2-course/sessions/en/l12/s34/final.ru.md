@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите о вчерашних покупках в городе.
 
-**Что вы освоите:** finished event: visited, used, needed; was/were
+**Что вы освоите:** рассказать о том, что уже закончилось: visited, needed
 **Новые слова:** market stall, shopping trolley, carrier bag, department store
 
 ## Интро 1

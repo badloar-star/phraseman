@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните, что проверили перед поездкой.
 
-**Что вы освоите:** checked, travelled, used; was/were
+**Что вы освоите:** рассказать о прошлом: checked, travelled, used
 **Новые слова:** train ticket, platform number, rush hour, railcard
 
 ## Интро 1

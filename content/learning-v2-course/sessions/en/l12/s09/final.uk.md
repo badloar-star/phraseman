@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, що вибрали на подарунок.
 
-**Що ви опануєте:** choose → chose; go → went; see → saw; have → had
+**Що ви опануєте:** розповісти про вчорашнє словами, що змінюються повністю: went, saw, had
 **Нові слова:** bunch of flowers, box of chocolates, birthday card, gift bag
 
 ## Інтро 1

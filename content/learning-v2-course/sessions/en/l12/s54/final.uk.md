@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, що вчора поправили, випрали й переставили.
 
-**Що ви опануєте:** review: moved, washed; was/were
+**Що ви опануєте:** повторити: moved, washed
 **Нові слова:** sofa cushion, cushion cover, footstool, rocking chair
 
 ## Інтро 1

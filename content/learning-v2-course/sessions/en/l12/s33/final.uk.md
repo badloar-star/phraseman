@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, як учора сходили до музею.
 
-**Що ви опануєте:** finished event: checked, used, thanked; was/were
+**Що ви опануєте:** розповісти про те, що вже закінчилося: checked, thanked
 **Нові слова:** opening hours, entrance ticket, audio guide, tour guide
 
 ## Інтро 1

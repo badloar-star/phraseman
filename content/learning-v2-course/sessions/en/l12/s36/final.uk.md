@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашню прогулянку.
 
-**Що ви опануєте:** crossed, parked, visited; was/were
+**Що ви опануєте:** розповісти про минуле: crossed, parked, visited
 **Нові слова:** main road, side street, public park, pedestrian street
 
 ## Інтро 1

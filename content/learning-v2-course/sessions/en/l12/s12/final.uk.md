@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, як почався ранок і що було на сніданок.
 
-**Що ви опануєте:** rise → rose; have → had; was/were
+**Що ви опануєте:** розповісти про минуле: rose, had
 **Нові слова:** breakfast cereal, fruit yoghurt, boiled egg, soft cheese
 
 ## Інтро 1

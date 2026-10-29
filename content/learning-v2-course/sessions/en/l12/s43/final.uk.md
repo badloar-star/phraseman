@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, які продукти використали вчора.
 
-**Що ви опануєте:** cooked /t/, used /d/, wanted /ɪd/
+**Що ви опануєте:** правильно вимовляти -ed: cooked, used, wanted
 **Нові слова:** chickpeas, kidney beans, sweetcorn, couscous
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, що вибрали й узяли із собою вчора.
 
-**Що ви опануєте:** review: wanted /ɪd/, packed /t/, loved /d/; was/were
+**Що ви опануєте:** повторити, як звучить -ed: wanted, packed, loved
 **Нові слова:** muesli, coleslaw, breadstick, rice cake
 
 ## Інтро 1

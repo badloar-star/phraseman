@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, який одяг учора знайшли й підготували.
 
-**Що ви опануєте:** review: found, ironed, washed; was/were
+**Що ви опануєте:** повторити: found, ironed, washed
 **Нові слова:** unused, creased, unwashed, unironed
 
 ## Інтро 1

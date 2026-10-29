@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните, что выбрали и взяли с собой вчера.
 
-**Что вы освоите:** review: wanted /ɪd/, packed /t/, loved /d/; was/were
+**Что вы освоите:** повторить, как звучит -ed: wanted, packed, loved
 **Новые слова:** muesli, coleslaw, breadstick, rice cake
 
 ## Интро 1

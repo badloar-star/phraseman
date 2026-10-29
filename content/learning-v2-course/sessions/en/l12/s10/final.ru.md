@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните летние дела в саду.
 
-**Что вы освоите:** grow → grew; chose, used, checked; was/were
+**Что вы освоите:** рассказать о прошлом: grew, chose, used
 **Новые слова:** vegetable patch, seed packet, gardening gloves, garden hose
 
 ## Интро 1

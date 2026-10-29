@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте літні справи в саду.
 
-**Що ви опануєте:** grow → grew; chose, used, checked; was/were
+**Що ви опануєте:** розповісти про минуле: grew, chose, used
 **Нові слова:** vegetable patch, seed packet, gardening gloves, garden hose
 
 ## Інтро 1

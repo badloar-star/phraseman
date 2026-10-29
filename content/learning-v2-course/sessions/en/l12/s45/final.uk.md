@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте, що перевірили перед поїздкою.
 
-**Що ви опануєте:** checked, travelled, used; was/were
+**Що ви опануєте:** розповісти про минуле: checked, travelled, used
 **Нові слова:** train ticket, platform number, rush hour, railcard
 
 ## Інтро 1

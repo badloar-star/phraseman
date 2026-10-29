@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, как вчера подготовили место для гостя.
 
-**Что вы освоите:** regular past: used, cleaned, moved, unfolded
+**Что вы освоите:** рассказать о вчерашнем: добавлять -ed или -d — used, cleaned
 **Новые слова:** spare key, spare room, sofa bed, folding chair
 
 ## Интро 1

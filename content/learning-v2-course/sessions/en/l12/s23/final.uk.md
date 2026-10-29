@@ -2,7 +2,7 @@
 
 **Ситуація.** Привітайте близьку людину й згадайте закінчення навчання.
 
-**Що ви опануєте:** graduate → graduated; finished, celebrated; was/were
+**Що ви опануєте:** розповісти про випуск і свято: graduated, celebrated
 **Нові слова:** graduate, university degree, final exam, graduation day
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните, что заметили на улице вчера.
 
-**Что вы освоите:** finished event: noticed, checked, used; was/were
+**Что вы освоите:** рассказать о том, что уже закончилось: noticed, checked
 **Новые слова:** cycle lane, speed limit, zebra crossing, parking meter
 
 ## Интро 1

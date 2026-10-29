@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, как вчера подготовили вещи для ночёвки.
 
-**Что вы освоите:** review: packed, checked, counted, cleaned
+**Что вы освоите:** повторить: packed, checked, counted, cleaned
 **Новые слова:** sleeping bag, airbed, tent peg, camping stove
 
 ## Интро 1

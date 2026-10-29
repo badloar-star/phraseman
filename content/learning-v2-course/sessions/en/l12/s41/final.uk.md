@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, що помили й перевірили в машині.
 
-**Що ви опануєте:** washed, checked, closed; was/were
+**Що ви опануєте:** розповісти про минуле: washed, checked, closed
 **Нові слова:** car boot, car bonnet, wing mirror, car door
 
 ## Інтро 1

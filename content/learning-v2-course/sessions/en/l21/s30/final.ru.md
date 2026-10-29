@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете транспорт, бронирование и стоимость жилья.
 
-**Что вы освоите:** описать что-то с чувством: This bus is so unreliable.
+**Что вы освоите:** сказать, что вас не устраивает: This bus is so unreliable.
 **Новые слова:** unreliable, unavailable, avoidable, unaffordable
 
 ## Интро 1

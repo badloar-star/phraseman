@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте, як хочете вести непросту розмову.
 
-**Що ви опануєте:** сказати, що вам хочеться чи треба зробити: I need to change the subject.
+**Що ви опануєте:** сказати, що вам потрібно зробити: I need to change the subject.
 **Нові слова:** lose my temper, raise my voice, keep my voice down, change the subject
 
 ## Інтро 1

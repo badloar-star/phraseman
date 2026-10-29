@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете по-английски цель своего визита.
 
-**Что вы освоите:** сказать, зачем вы что-то делаете: to see the dentist
+**Что вы освоите:** сказать, зачем вы что-то делаете: I make an appointment to see the dentist.
 **Новые слова:** make an appointment, eye test, hearing test, collect a prescription
 
 ## Интро 1

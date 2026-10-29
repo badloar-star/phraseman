@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы ищете путь в незнакомом месте и дорогу обратно.
 
-**Что вы освоите:** сказать, зачем вы что-то делаете: to find the station
+**Что вы освоите:** сказать, зачем вы что-то делаете: I read a map to choose a route.
 **Новые слова:** ask for directions, read a map, follow the signs, find my way back
 
 ## Интро 1

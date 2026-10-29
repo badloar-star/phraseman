@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете о своих занятиях и целях.
 
-**Что вы освоите:** сказать, зачем вы что-то делаете: to get stronger
+**Что вы освоите:** сказать, зачем вы что-то делаете: I attend a fitness class to get stronger.
 **Новые слова:** fitness class, exercise mat, walking group, running club
 
 ## Интро 1

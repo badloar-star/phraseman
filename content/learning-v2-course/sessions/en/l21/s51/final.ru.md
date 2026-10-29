@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы собираетесь закончить дело к определённому сроку.
 
-**Что вы освоите:** сказать, что вам хочется или нужно сделать: I need to meet a deadline.
+**Что вы освоите:** сказать, что вам нужно сделать: I need to meet a deadline.
 **Новые слова:** make a start, run out of time, meet a deadline, get it over with
 
 ## Интро 1

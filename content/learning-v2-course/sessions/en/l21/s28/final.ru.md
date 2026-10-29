@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете честность и обещания, обращаясь к другу.
 
-**Что вы освоите:** попросить кого-то что-то сделать: want you to tell the truth
+**Что вы освоите:** попросить кого-то что-то сделать: I want you to tell the truth.
 **Новые слова:** tell the truth, tell a lie, break a promise, make a promise
 
 ## Интро 1

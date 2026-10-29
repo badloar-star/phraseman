@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви говорите про домашні справи до та після їжі.
 
-**Що ви опануєте:** сказати, що вам хочеться чи треба зробити: I need to set the table.
+**Що ви опануєте:** сказати, що вам потрібно зробити: I need to set the table.
 **Нові слова:** set the table, do the washing-up, take out the rubbish, put the kettle on
 
 ## Інтро 1

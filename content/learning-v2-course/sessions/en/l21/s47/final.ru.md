@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы говорите о домашних делах до и после еды.
 
-**Что вы освоите:** сказать, что вам хочется или нужно сделать: I need to set the table.
+**Что вы освоите:** сказать, что вам нужно сделать: I need to set the table.
 **Новые слова:** set the table, do the washing-up, take out the rubbish, put the kettle on
 
 ## Интро 1

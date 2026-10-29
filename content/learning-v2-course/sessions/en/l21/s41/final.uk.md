@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте англійською мету свого візиту.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: to see the dentist
+**Що ви опануєте:** сказати, навіщо ви щось робите: I make an appointment to see the dentist.
 **Нові слова:** make an appointment, eye test, hearing test, collect a prescription
 
 ## Інтро 1

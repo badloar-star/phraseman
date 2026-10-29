@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте чесність та обіцянки, звертаючись до друга.
 
-**Що ви опануєте:** попросити когось щось зробити: want you to tell the truth
+**Що ви опануєте:** попросити когось щось зробити: I want you to tell the truth.
 **Нові слова:** tell the truth, tell a lie, break a promise, make a promise
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви шукаєте шлях у незнайомому місці та дорогу назад.
 
-**Що ви опануєте:** сказати, навіщо ви щось робите: to find the station
+**Що ви опануєте:** сказати, навіщо ви щось робите: I read a map to choose a route.
 **Нові слова:** ask for directions, read a map, follow the signs, find my way back
 
 ## Інтро 1

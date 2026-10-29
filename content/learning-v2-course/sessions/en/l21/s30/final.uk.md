@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте транспорт, бронювання та вартість житла.
 
-**Що ви опануєте:** описати щось із почуттям: This bus is so unreliable.
+**Що ви опануєте:** сказати, що вас не влаштовує: This bus is so unreliable.
 **Нові слова:** unreliable, unavailable, avoidable, unaffordable
 
 ## Інтро 1

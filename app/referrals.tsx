@@ -36,6 +36,7 @@ import ReferralCodeSheet from '../components/referral_code_sheet';
 import ReferralHowSheet from '../components/referral_how_sheet';
 import ReferralLadder from '../components/referral_ladder'; // зачем (владелец 29.10): «Лесенка приглашений» вместо рулетки, за флагом referral_ladder_enabled
 import ReferralLadderHowSheet from '../components/referral_ladder_how_sheet';
+import { referralLadderText } from '../components/referral_ladder_strings';
 import RouletteWinModal from '../components/roulette_win_modal';
 import type { RouletteWinData } from '../components/roulette_win_modal';
 import RouletteWinCelebration from '../components/roulette_win_celebration';
@@ -193,7 +194,7 @@ export default function ReferralsScreen() {
   // (два шага, прогресс x из 3, без кнопок «забрать»); дуга и «Получить приз» остаются только пока есть накопленные ключи. Флаг выключен — экран прежний.
   const ladderEnabled = useReferralLadderEnabled();
   const ladderShown = ladderEnabled && marketingVisible;
-  const ladderView = useMemo(() => deriveReferralLadder(scopedReferralState.drain?.ladder), [scopedReferralState.drain?.ladder]);
+  const ladderView = useMemo(() => deriveReferralLadder(scopedReferralState.drain?.ladder, invites), [scopedReferralState.drain?.ladder, invites]);
   const rouletteShown = referralUiVisible && (!ladderShown || referralRouletteVisibleWithLadder(scopedReferralState.drain, spinCredits));
   const [ladderHowOpen, setLadderHowOpen] = useState(false);
   const sunsetCopy = referralSunsetCopy[lang as Lang] ?? referralSunsetCopy.ru;
@@ -638,7 +639,15 @@ export default function ReferralsScreen() {
     const rewarded = invite.status === 'rewarded';
     const skipped = invite.status === 'skipped_referrer_cap';
     const spinReady = qualified || skipped;
-    const statusText = rewarded
+    // зачем (координатор 29.10, лесенка): при включённой лесенке и статусе приглашения от сервера (ladder) строка говорит языком лесенки; без поля — прежний текст рулетки
+    const ladderStatus = ladderShown && invite.ladder ? invite.ladder : null;
+    const statusText = ladderStatus === 'counted'
+      ? referralLadderText(lang as Lang, 'inviteCounted', { coins: ladderView.coinsPerFriend })
+      : ladderStatus === 'waiting'
+        ? referralLadderText(lang as Lang, 'inviteWaiting')
+        : ladderStatus === 'not_counted'
+          ? referralLadderText(lang as Lang, 'inviteNotCounted')
+          : rewarded
       ? L('Ключ начислен', 'Ключ нараховано', 'Key credited', 'Llave añadida', 'Chave adicionada', 'Đã cộng chìa khóa', 'Kunci ditambahkan', 'Anahtar eklendi', 'Klucz dodany')
       : spinReady
         ? L('Ключ готов', 'Ключ готовий', 'Key ready', 'Llave lista', 'Chave pronta', 'Chìa khóa đã sẵn sàng', 'Kunci siap', 'Anahtar hazır', 'Klucz jest gotowy')

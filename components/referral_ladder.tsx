@@ -54,7 +54,9 @@ function ReferralLadder({ view, code, codeCopied, shareBusy, onCopy, onShare, on
   const coins = view.coinsPerFriend;
   const days = view.plusDays;
   const step1 = view.step1Done
-    ? referralLadderText(L, 'step1Counted', { n: view.counted, coins })
+    ? (view.counted === 1 && view.firstName
+      ? referralLadderText(L, 'step1One', { name: view.firstName, coins })
+      : referralLadderText(L, 'step1Counted', { n: view.counted, coins }))
     : referralLadderText(L, 'step1Empty', { coins });
   const step2 = view.step2Done ? referralLadderText(L, 'step2Done', { days }) : referralLadderText(L, 'step2', { days });
   const progressLabel = view.step2Done ? undefined : referralLadderText(L, 'progress', { n: view.cycle, need: view.friendsPerGrant });

@@ -8,7 +8,7 @@
 // monthCounted, monthlyCap, lessonWindowDays }; прогресс = countedFriends − plusGrants × friendsPerGrant (по факту 0..2: на каждом третьем сервер сразу выдаёт Plus).
 // Статусы «покупка Plus» (qualified/rewarded старой рулетки) с «первым уроком» НЕ смешиваются.
 // ═══════════════════════════════════════════════════════════════════════════
-import type { ReferralDrainState, ReferralLadderData } from './referral_cloud';
+import type { ReferralDrainState, ReferralInvite, ReferralLadderData } from './referral_cloud';
 
 export const LADDER_DEFAULT_COINS = 500;
 export const LADDER_DEFAULT_PLUS_DAYS = 14;
@@ -19,6 +19,8 @@ export type ReferralLadderView = Readonly<{
   /** Пришли ли данные лесенки с сервера (иначе все числа — значения по умолчанию, ступени пустые). */
   hasData: boolean;
   counted: number;
+  /** Имя единственного засчитанного друга (ответ координатора 29.10: без рода и падежа); null — друзей не один или имени нет. */
+  firstName: string | null;
   coinsPerFriend: number;
   plusDays: number;
   friendsPerGrant: number;
@@ -42,7 +44,7 @@ function whole(value: unknown, fallback: number, min = 0): number {
   return Number.isFinite(n) && n >= min ? n : fallback;
 }
 
-export function deriveReferralLadder(raw: Partial<ReferralLadderData> | null | undefined): ReferralLadderView {
+export function deriveReferralLadder(raw: Partial<ReferralLadderData> | null | undefined, invites?: ReadonlyArray<Pick<ReferralInvite, 'ladder' | 'refereeName'>> | null): ReferralLadderView {
   const hasData = !!raw && typeof raw === 'object';
   const counted = whole(raw?.countedFriends, 0);
   const perGrant = whole(raw?.friendsPerGrant, LADDER_DEFAULT_PER_GRANT, 1);
@@ -52,11 +54,14 @@ export function deriveReferralLadder(raw: Partial<ReferralLadderData> | null | u
   // зачем: сервер выдаёт Plus ровно на каждом третьем, так что cycle живёт в 0..2; «выдано» = были выдачи и новая тройка ещё не начата,
   // либо счётчик уже догнал тройку, а выдача ещё в пути (3/3 мгновенно превращается в Plus).
   const step2Done = cycle >= perGrant || (grants > 0 && cycle === 0 && counted > 0);
+  const countedInvites = counted === 1 ? (invites ?? []).filter((i) => i.ladder === 'counted') : [];
+  const rawName = countedInvites.length === 1 ? String(countedInvites[0]?.refereeName ?? '').trim().split(' ').filter(Boolean).join(' ') : '';
   const monthlyCap = whole(raw?.monthlyCap, 0);
   const monthCounted = whole(raw?.monthCounted, 0);
   return {
     hasData,
     counted,
+    firstName: rawName ? rawName.slice(0, 40) : null,
     coinsPerFriend: whole(raw?.coinsPerFriend, LADDER_DEFAULT_COINS, 1),
     plusDays: whole(raw?.plusDaysPerGrant, LADDER_DEFAULT_PLUS_DAYS, 1),
     friendsPerGrant: perGrant,

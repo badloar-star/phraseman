@@ -125,6 +125,18 @@ describe('разметка', () => {
     expect(all).not.toContain('из 3');
     expect(view.queryByTestId('referral-ladder-bar')).toBeNull();
   });
+  it('один засчитанный друг с именем: «Аня — первый урок пройден · по 500 монет вам обоим» (без рода и падежа); без имени или при нескольких — «Засчитано друзей: N»', async () => {
+    const one = deriveReferralLadder(data(1), [{ ladder: 'counted', refereeName: '  Аня ' }, { ladder: 'waiting', refereeName: 'Марк' }]);
+    expect(one.firstName).toBe('Аня');
+    const named = await render(<ReferralLadder {...props(1)} view={one} />);
+    expect(textsOf(named.toJSON())).toContain('Аня — первый урок пройден · по 500 монет вам обоим');
+    // имя не используем, если засчитанных приглашений в списке не ровно одно или у друга нет имени
+    expect(deriveReferralLadder(data(1), [{ ladder: 'counted', refereeName: '' }]).firstName).toBeNull();
+    expect(deriveReferralLadder(data(1), [{ ladder: 'counted', refereeName: 'Аня' }, { ladder: 'counted', refereeName: 'Марк' }]).firstName).toBeNull();
+    expect(deriveReferralLadder(data(2), [{ ladder: 'counted', refereeName: 'Аня' }]).firstName).toBeNull();
+    const plain = await render(<ReferralLadder {...props(2)} />);
+    expect(textsOf(plain.toJSON())).toContain('Засчитано друзей: 2 — по 500 монет тебе и каждому');
+  });
   it('потолок месяца: строка-сообщение показывается только при достигнутом потолке', async () => {
     const capped = await render(<ReferralLadder {...props(0)} view={deriveReferralLadder(data(10, 3, { monthCounted: 10, monthlyCap: 10 }))} />);
     expect(capped.queryByTestId('referral-ladder-cap')).not.toBeNull();
@@ -171,6 +183,14 @@ describe('подключение', () => {
     expect(screen).toContain('onPress={() => { if (ladderShown) setLadderHowOpen(true); else setHowSheetOpen(true); }}');
     expect(screen).toContain('<ReferralLadderHowSheet visible={ladderHowOpen}');
     // экран не делает собственных запросов за лесенкой: данные приходят со снимком приглашений
+    // строки списка приглашений при лесенке: ждём урок / засчитан / не засчитан; без поля ladder у приглашения — прежний текст рулетки
+    expect(screen).toContain("const ladderStatus = ladderShown && invite.ladder ? invite.ladder : null;");
+    expect(screen).toContain("referralLadderText(lang as Lang, 'inviteCounted', { coins: ladderView.coinsPerFriend })");
+    expect(screen).toContain("referralLadderText(lang as Lang, 'inviteWaiting')");
+    expect(screen).toContain("referralLadderText(lang as Lang, 'inviteNotCounted')");
+    expect(screen).toContain('deriveReferralLadder(scopedReferralState.drain?.ladder, invites)');
+    expect(referralLadderText('ru', 'inviteCounted', { coins: 500 })).toBe('Засчитан · 500 монет');
+    expect(referralLadderText('ru', 'inviteNotCounted')).toBe('Не засчитан по правилам программы');
     expect(read('components/referral_ladder.tsx')).not.toMatch(/firebase|firestore|httpsCallable|fetch\(|useEffect|setInterval|setTimeout/i);
   });
 });

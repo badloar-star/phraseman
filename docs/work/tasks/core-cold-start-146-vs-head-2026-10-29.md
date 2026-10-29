@@ -1,6 +1,7 @@
 # Ядро · холодный старт HEAD против 146 на слабом профиле + черновик «уроки пакетами» (координатор 29.10)
 
 Governance-ID: TG-42527716E70B
+Governance-ID: TG-0AF23840BB8A
 Status: In progress
 Owner: 1 · ЯДРО
 

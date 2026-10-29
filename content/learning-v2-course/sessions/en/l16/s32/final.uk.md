@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви помічаєте, що близькій людині потрібна допомога, і пропонуєте зробити частину роботи.
 
-**Що ви опануєте:** I'll + offer; Shall I + base verb?
+**Що ви опануєте:** запропонувати допомогу: I’ll help, Shall I open the window?
 **Нові слова:** upside down, inside out, upright, lengthways
 
 ## Інтро 1

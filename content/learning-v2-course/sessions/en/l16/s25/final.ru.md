@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы предлагаете помочь с напитками и едой.
 
-**Что вы освоите:** I'll + offer; Shall I + base verb?
+**Что вы освоите:** предложить помощь: I’ll help, Shall I open the window?
 **Новые слова:** top up, heat up, cool down, slice up
 
 ## Интро 1

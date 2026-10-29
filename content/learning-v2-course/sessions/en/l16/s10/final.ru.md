@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы замечаете бытовую задачу и решаете, что сделаете прямо сейчас.
 
-**Что вы освоите:** I'll + base verb: spontaneous decision
+**Что вы освоите:** решить прямо сейчас: I’ll take this one
 **Новые слова:** tablespoon, trivet, bottle opener, pizza cutter
 
 ## Интро 1

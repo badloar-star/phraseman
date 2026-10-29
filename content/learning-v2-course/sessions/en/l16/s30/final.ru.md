@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы замечаете, что близкому нужна помощь, и предлагаете сделать часть работы.
 
-**Что вы освоите:** I'll + offer; Shall I + base verb?
+**Что вы освоите:** предложить помощь: I’ll help, Shall I open the window?
 **Новые слова:** move over, squeeze in, come round, go over
 
 ## Интро 1

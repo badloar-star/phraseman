@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обещаете помочь близкому или выполнить общее дело.
 
-**Что вы освоите:** I'll + base verb: promise
+**Что вы освоите:** пообещать: I’ll call you
 **Новые слова:** check in on, look out for, stand by, keep in touch
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пропонуєте допомогти з напоями та їжею.
 
-**Що ви опануєте:** I'll + offer; Shall I + base verb?
+**Що ви опануєте:** запропонувати допомогу: I’ll help, Shall I open the window?
 **Нові слова:** top up, heat up, cool down, slice up
 
 ## Інтро 1

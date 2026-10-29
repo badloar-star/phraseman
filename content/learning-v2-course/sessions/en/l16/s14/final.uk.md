@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви помічаєте побутове завдання й вирішуєте, що зробите просто зараз.
 
-**Що ви опануєте:** I'll + base verb: spontaneous decision
+**Що ви опануєте:** вирішити просто зараз: I’ll take this one
 **Нові слова:** fold up, spread out, lay out, rinse out
 
 ## Інтро 1

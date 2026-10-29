@@ -1,10 +1,10 @@
 // ═══════════════════════════════════════════════════════════════════════════
 // story_contest_intro_2026_10_29.test.ts — анонс конкурса «Набор месяца» в наборе историй.
 //
-// зачем (владелец 29.10: «Да, делать в коде», макет claude.ai/artifact/GukYuSACfWas4P9toiG7sS v2): 4 кадра после 23 кадров макета историй,
-// числа — правила владельца (голосовать через 3 дня и после 1 урока, до 10 голосов в месяц; Plus на 3 / 2 / 1 месяц за места; 500 монет обоим
-// за друга с первым уроком, за 3 друзей — Plus, дни пока 7 с TODO), русские тексты — слово в слово из макета, кнопка «Открыть наборы» и строка
-// про спонсоров — на последнем кадре. Ничего не публикуется — проверяем шаблон.
+// зачем (владелец 29.10: «Да, делать в коде», макет claude.ai/artifact/GukYuSACfWas4P9toiG7sS v5): 4 кадра после 23 кадров макета историй;
+// Plus на 3 / 2 / 1 месяц за места, 500 монет тебе и другу; на кадрах «Как голосовать» и «Зови друзей» плиток с числами нет (владелец 29.10
+// ~09:05 и ~09:07: «вот это убери»). Русские тексты — слово в слово из макета, кнопка «Открыть наборы» и строка про спонсоров — на последнем
+// кадре. Ничего не публикуется (только после серверной части конкурса) — проверяем шаблон.
 // ═══════════════════════════════════════════════════════════════════════════
 import fs from 'node:fs';
 import path from 'node:path';
@@ -13,7 +13,7 @@ import { contestIntroOf, storyTemplateFromEvent } from '../components/stories/te
 import {
   STORY_ALL_TEMPLATE_IDS, STORY_CONTEST_RULES, STORY_CONTEST_TEMPLATE_IDS, STORY_TEMPLATE_CTA, STORY_TEMPLATE_IDS, STORY_TEMPLATE_SAMPLES, studioStartIndex,
 } from '../components/stories/templates/story_template_registry';
-import { tplText } from '../components/stories/templates/story_template_strings';
+import { STORY_TEMPLATE_STRING_KEYS, tplText } from '../components/stories/templates/story_template_strings';
 import { useStoryCtaAction } from '../components/stories/templates/use_story_cta_action';
 
 const mockPush = jest.fn();
@@ -42,9 +42,11 @@ describe('анонс «Набор месяца» — реестр', () => {
     expect(studioStartIndex('contest_invite')).toBe(26);
   });
 
-  it('числа — правила владельца 29.10, за 3 друзей — Plus на 14 дней (утверждено, без TODO)', () => {
-    expect(STORY_CONTEST_RULES).toEqual({ minDays: 3, minLessons: 1, votesPerMonth: 10, plusMonths: [3, 2, 1], inviteCoins: 500, inviteFriends: 3, invitePlusDays: 14 });
-    expect(read('components/stories/templates/story_template_registry.ts')).not.toContain('TODO(владелец)');
+  it('числа анонса — Plus на 3 / 2 / 1 месяц и 500 монет; без TODO; пометка «публиковать только после серверной части»', () => {
+    expect(STORY_CONTEST_RULES).toEqual({ plusMonths: [3, 2, 1], inviteCoins: 500 });
+    const registry = read('components/stories/templates/story_template_registry.ts');
+    expect(registry).not.toContain('TODO(владелец)');
+    expect(registry).toContain('зачем: публиковать только после серверной части конкурса');
   });
 
   it('кнопка «Открыть наборы» и строка про спонсоров — только у последнего кадра', () => {
@@ -63,12 +65,9 @@ describe('анонс «Набор месяца» — тексты макета v
     expect(ru('contestCards', { cards: 126 })).toBe('126 карточек');
   });
 
-  it('кадр 2: голос — ♥, три числа с формами слов', () => {
+  it('кадр 2: голос — ♥; только заголовок и текст', () => {
     expect(ru('contestVoteOverline')).toBe('Как голосовать');
     expect(ru('contestVoteTitle')).toBe('Голос — это ♥ на наборе');
-    expect(ru('contestVoteDays', { days: 3 })).toBe('дня в приложении');
-    expect(ru('contestVoteLessons', { done: 1 })).toBe('пройденный урок');
-    expect(ru('contestVoteVotes', { votes: 10 })).toBe('голосов в месяц');
     expect(ru('contestVoteText')).toBe('За свой набор голосовать нельзя. Участвуют наборы, созданные в этом месяце.');
   });
 
@@ -81,14 +80,10 @@ describe('анонс «Набор месяца» — тексты макета v
     expect(plain(tplText('en', 'contestPlusMonths', { months: 1 }))).toBe('1 month');
   });
 
-  it('кадр 4: 500 монет тебе и другу, 3 друга прошли урок — Plus на 14 дней; кнопка и строка про спонсоров', () => {
+  it('кадр 4: 500 монет тебе и другу; кнопка и строка про спонсоров', () => {
     expect(ru('contestInviteOverline')).toBe('Зови друзей');
     expect(ru('contestInviteTitle', { coins: 500 })).toBe('500 монет тебе и другу');
     expect(ru('contestInviteText')).toBe('Монеты придут, когда друг пройдёт первый урок.');
-    expect(ru('contestInviteOne')).toBe('друг прошёл урок');
-    expect(ru('contestInviteOneReward', { coins: 500 })).toBe('500 монет обоим');
-    expect(ru('contestInviteThree', { friends: 3 })).toBe('друга прошли урок');
-    expect(ru('contestInviteThreeReward', { plusDays: 14 })).toBe('Plus на 14 дней');
     expect(ru('ctaOpenPacks')).toBe('Открыть наборы');
     expect(ru('contestSponsors')).toBe('Apple и Google не спонсоры конкурса.');
   });
@@ -99,16 +94,16 @@ describe('анонс «Набор месяца» — событие → кадр
 
   it('шаг события выбирает кадр; без чисел — правила владельца', () => {
     expect(contestIntroOf({ step: 'start' }, at)).toEqual({ id: 'contest_start', startMs: at });
-    expect(contestIntroOf({ step: 'vote' }, at)).toEqual({ id: 'contest_vote', minDays: 3, minLessons: 1, votesPerMonth: 10 });
+    expect(contestIntroOf({ step: 'vote' }, at)).toEqual({ id: 'contest_vote' });
     expect(contestIntroOf({ step: 'prizes' }, at)).toEqual({ id: 'contest_prizes', plusMonths: [3, 2, 1] });
-    expect(contestIntroOf({ step: 'invite' }, at)).toEqual({ id: 'contest_invite', coins: 500, friends: 3, plusDays: 14 });
+    expect(contestIntroOf({ step: 'invite' }, at)).toEqual({ id: 'contest_invite', coins: 500 });
     expect(contestIntroOf({ step: 'другое' }, at)).toBeNull();
   });
 
   it('сервер может прислать свои числа; неверные (0, минус, текст, не три места) — правила', () => {
     expect(contestIntroOf({ step: 'start', startMs: 5 }, at)).toEqual({ id: 'contest_start', startMs: 5 });
-    expect(contestIntroOf({ step: 'invite', plusDays: 30 }, at)).toMatchObject({ plusDays: 30 });
-    expect(contestIntroOf({ step: 'vote', minDays: 0, votesPerMonth: -2, minLessons: 'x' }, at)).toEqual({ id: 'contest_vote', minDays: 3, minLessons: 1, votesPerMonth: 10 });
+    expect(contestIntroOf({ step: 'invite', coins: 700 }, at)).toEqual({ id: 'contest_invite', coins: 700 });
+    expect(contestIntroOf({ step: 'invite', coins: -1 }, at)).toEqual({ id: 'contest_invite', coins: 500 });
     expect(contestIntroOf({ step: 'prizes', plusMonths: '6,3,1' }, at)).toEqual({ id: 'contest_prizes', plusMonths: [6, 3, 1] });
     expect(contestIntroOf({ step: 'prizes', plusMonths: '1,2' }, at)).toEqual({ id: 'contest_prizes', plusMonths: [3, 2, 1] });
   });
@@ -120,6 +115,15 @@ describe('анонс «Набор месяца» — событие → кадр
 });
 
 describe('анонс «Набор месяца» — показ и кнопка', () => {
+  it('кадры 25 и 27 — без плиток с числами (владелец 29.10): ни арта, ни их строк', () => {
+    const src = read('components/stories/templates/frames_contest.tsx');
+    expect(src).not.toContain('NumTile');
+    const body = (name: string): string => src.slice(src.indexOf(`export const ${name}`), src.indexOf('});', src.indexOf(`export const ${name}`)));
+    for (const frame of ['ContestVoteFrame', 'ContestInviteFrame']) expect([frame, body(frame).includes('<Art')]).toEqual([frame, false]);
+    const gone = ['contestVoteDays', 'contestVoteLessons', 'contestVoteVotes', 'contestInviteOne', 'contestInviteOneReward', 'contestInviteThree', 'contestInviteThreeReward'];
+    for (const key of gone) expect([key, (STORY_TEMPLATE_STRING_KEYS as readonly string[]).includes(key)]).toEqual([key, false]);
+  });
+
   it('просмотр рисует 4 кадра анонса, строка про спонсоров — под кнопкой', () => {
     const slide = read('components/stories/templates/StoryTemplateSlide.tsx');
     for (const id of STORY_CONTEST_TEMPLATE_IDS) expect(slide).toContain(`case '${id}':`);

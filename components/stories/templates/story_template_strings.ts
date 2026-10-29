@@ -131,9 +131,6 @@ const S = {
   contestSamplePackC: ['Поездка', 'Подорож', 'Trip', 'Viaje', 'Viagem', 'Chuyến đi', 'Perjalanan', 'Seyahat', 'Podróż'],
   contestVoteOverline: ['Как голосовать', 'Як голосувати', 'How to vote', 'Cómo votar', 'Como votar', 'Cách bình chọn', 'Cara memilih', 'Nasıl oy verilir', 'Jak głosować'],
   contestVoteTitle: ['Голос — это ♥ на наборе', 'Голос — це ♥ на наборі', 'A vote is a ♥ on a pack', 'Un voto es un ♥ en un pack', 'Um voto é um ♥ em um pacote', 'Một phiếu là một ♥ trên bộ thẻ', 'Satu suara adalah ♥ pada paket', 'Oy, pakete verilen bir ♥', 'Głos to ♥ przy zestawie'],
-  contestVoteDays: ['{days_w} в приложении', '{days_w} у застосунку', '{days_w} in the app', '{days_w} en la app', '{days_w} no app', '{days_w} trong ứng dụng', '{days_w} di aplikasi', 'uygulamada {days_w}', '{days_w} w aplikacji'],
-  contestVoteLessons: ['{done_w}', '{done_w}', '{done_w}', '{done_w}', '{done_w}', '{done_w}', '{done_w}', '{done_w}', '{done_w}'],
-  contestVoteVotes: ['{votes_w} в месяц', '{votes_w} на місяць', '{votes_w} a month', '{votes_w} al mes', '{votes_w} por mês', '{votes_w} mỗi tháng', '{votes_w} per bulan', 'ayda {votes_w}', '{votes_w} w miesiącu'],
   contestVoteText: ['За свой набор голосовать нельзя. Участвуют наборы, созданные в этом месяце.', 'За свій набір голосувати не можна. Беруть участь набори, створені цього місяця.', 'You can’t vote for your own pack. Only packs made this month take part.', 'No puedes votar por tu propio pack. Participan los packs creados este mes.', 'Não dá para votar no seu próprio pacote. Participam os pacotes criados neste mês.', 'Không thể bình chọn cho bộ thẻ của mình. Chỉ các bộ thẻ tạo trong tháng này tham gia.', 'Tidak bisa memilih paket sendiri. Yang ikut hanya paket yang dibuat bulan ini.', 'Kendi paketine oy veremezsin. Bu ay oluşturulan paketler katılır.', 'Nie można głosować na własny zestaw. Biorą udział zestawy utworzone w tym miesiącu.'],
   contestPrizesOverline: ['Призы за места', 'Призи за місця', 'Prizes by place', 'Premios por puesto', 'Prêmios por colocação', 'Giải thưởng theo hạng', 'Hadiah per peringkat', 'Sıralama ödülleri', 'Nagrody za miejsca'],
   contestPrizesTitle: ['Итоги — 1 числа каждого месяца', 'Підсумки — 1 числа щомісяця', 'Results on the 1st of every month', 'Resultados el día 1 de cada mes', 'Resultados no dia 1 de cada mês', 'Kết quả vào ngày 1 hằng tháng', 'Hasil tiap tanggal 1', 'Sonuçlar her ayın 1’inde', 'Wyniki 1. dnia każdego miesiąca'],
@@ -143,11 +140,7 @@ const S = {
   contestInviteOverline: ['Зови друзей', 'Клич друзів', 'Invite friends', 'Invita a amigos', 'Convide amigos', 'Mời bạn bè', 'Ajak teman', 'Arkadaşlarını davet et', 'Zaproś znajomych'],
   contestInviteTitle: ['{coins} {cw} тебе и другу', '{coins} {cw} тобі й другові', '{coins} {cw} for you and a friend', '{coins} {cw} para ti y tu amigo', '{coins} {cw} para você e um amigo', '{coins} {cw} cho bạn và bạn bè', '{coins} {cw} untukmu dan teman', 'Sana ve arkadaşına {coins} {cw}', '{coins} {cw} dla ciebie i znajomego'],
   contestInviteText: ['Монеты придут, когда друг пройдёт первый урок.', 'Монети прийдуть, коли друг пройде перший урок.', 'The coins arrive when your friend finishes the first lesson.', 'Las monedas llegan cuando tu amigo termina la primera lección.', 'As moedas chegam quando seu amigo conclui a primeira lição.', 'Xu sẽ đến khi bạn bè học xong bài đầu tiên.', 'Koin masuk saat temanmu menyelesaikan pelajaran pertama.', 'Arkadaşın ilk dersi bitirince coinler gelir.', 'Monety przyjdą, gdy znajomy ukończy pierwszą lekcję.'],
-  contestInviteOne: ['друг прошёл урок', 'друг пройшов урок', 'friend did a lesson', 'amigo hizo una lección', 'amigo fez uma lição', 'bạn đã học một bài', 'teman selesai satu pelajaran', 'arkadaş ders bitirdi', 'znajomy zrobił lekcję'],
-  contestInviteOneReward: ['{coins} {cw} обоим', '{coins} {cw} обом', '{coins} {cw} each', '{coins} {cw} cada uno', '{coins} {cw} para cada um', 'Mỗi người {coins} {cw}', '{coins} {cw} masing-masing', 'İkinize {coins} {cw}', 'Po {coins} {cw}'],
-  // зачем (координатор 29.10): Plus за друзей — тоже только когда каждый прошёл урок; подпись плитки говорит это прямо
-  contestInviteThree: ['{friends_w} прошли урок', '{friends_w} пройшли урок', '{friends_w} did a lesson', '{friends_w} hicieron una lección', '{friends_w} fizeram uma lição', '{friends_w} đã học một bài', '{friends_w} selesai satu pelajaran', '{friends_w} ders bitirdi', '{friends_w} zrobiło lekcję'],
-  contestInviteThreeReward: ['Plus на {plusDays} {plusDays_w}', 'Plus на {plusDays} {plusDays_w}', 'Plus for {plusDays} {plusDays_w}', 'Plus por {plusDays} {plusDays_w}', 'Plus por {plusDays} {plusDays_w}', 'Plus {plusDays} {plusDays_w}', 'Plus {plusDays} {plusDays_w}', '{plusDays} {plusDays_w} Plus', 'Plus na {plusDays} {plusDays_w}'],
+  // зачем (владелец 29.10 ~09:05 и ~09:07, «вот это убери»): плитки кадров «Как голосовать» и «Зови друзей» убраны вместе с их строками
   // ── история победителю «Набор месяца» (владелец 29.10, макет v4: «Твой набор — 1 место за ноябрь») ──
   // зачем: ru — слово в слово из макета; 8 языков выверил Переводчик 29.10 (en «#1 in November», vi — порядок слов). {monthIn} — месяц вместе
   // с предлогом (таблица MONTH_IN ниже: в pl и tr предлог/окончание меняются от месяца к месяцу), {pack} — название набора, как его написал автор.
@@ -177,19 +170,18 @@ const WORDS = {
   card: { ru: f3('карточка', 'карточки', 'карточек'), uk: f3('картка', 'картки', 'карток'), pl: f3('karta', 'karty', 'kart'), en: f2('card', 'cards'), es: f2('tarjeta', 'tarjetas'), 'pt-BR': f2('cartão', 'cartões'), vi: f1('thẻ'), id: f1('kartu'), tr: f1('kart') },
   turn: { ru: f3('реплика', 'реплики', 'реплик'), uk: f3('репліка', 'репліки', 'реплік'), pl: f3('kwestia', 'kwestie', 'kwestii'), en: f2('line', 'lines'), es: f2('frase', 'frases'), 'pt-BR': f2('fala', 'falas'), vi: f1('lượt nói'), id: f1('giliran'), tr: f1('replik') },
   exam: { ru: f3('экзамен', 'экзамена', 'экзаменов'), uk: f3('іспит', 'іспити', 'іспитів'), pl: f3('egzamin', 'egzaminy', 'egzaminów'), en: f2('exam', 'exams'), es: f2('examen', 'exámenes'), 'pt-BR': f2('exame', 'exames'), vi: f1('bài thi'), id: f1('ujian'), tr: f1('sınav') },
-  // анонс конкурса (29.10) — ru по макету владельца; остальные языки выверил Переводчик 29.10 — без правок
+  // конкурс (29.10) — ru по макету владельца; остальные языки выверил Переводчик 29.10 — без правок. Плитки с друзьями и уроками владелец
+  // убрал — их таблицы (друг, пройденный урок) ушли вместе с ними; месяцы Plus и голоса нужны лесенке и истории победителю
   month: { ru: f3('месяц', 'месяца', 'месяцев'), uk: f3('місяць', 'місяці', 'місяців'), pl: f3('miesiąc', 'miesiące', 'miesięcy'), en: f2('month', 'months'), es: f2('mes', 'meses'), 'pt-BR': f2('mês', 'meses'), vi: f1('tháng'), id: f1('bulan'), tr: f1('ay') },
-  friend: { ru: f3('друг', 'друга', 'друзей'), uk: f3('друг', 'друзі', 'друзів'), pl: f3('znajomy', 'znajomych', 'znajomych'), en: f2('friend', 'friends'), es: f2('amigo', 'amigos'), 'pt-BR': f2('amigo', 'amigos'), vi: f1('bạn'), id: f1('teman'), tr: f1('arkadaş') },
   vote: { ru: f3('голос', 'голоса', 'голосов'), uk: f3('голос', 'голоси', 'голосів'), pl: f3('głos', 'głosy', 'głosów'), en: f2('vote', 'votes'), es: f2('voto', 'votos'), 'pt-BR': f2('voto', 'votos'), vi: f1('phiếu'), id: f1('suara'), tr: f1('oy') },
-  lessonDone: { ru: f3('пройденный урок', 'пройденных урока', 'пройденных уроков'), uk: f3('пройдений урок', 'пройдені уроки', 'пройдених уроків'), pl: f3('ukończona lekcja', 'ukończone lekcje', 'ukończonych lekcji'), en: f2('lesson done', 'lessons done'), es: f2('lección hecha', 'lecciones hechas'), 'pt-BR': f2('lição feita', 'lições feitas'), vi: f1('bài học đã xong'), id: f1('pelajaran selesai'), tr: f1('tamamlanan ders') },
 } as const satisfies Readonly<Record<string, WordRow>>;
 
 /** Какая таблица к какому плейсхолдеру (Переводчик 28.10): `{days}` → `{days_w}` и т. д. */
 const WORD_OF: Readonly<Record<string, keyof typeof WORDS>> = {
   days: 'day', next: 'day', daysLeft: 'day', active: 'day', streak: 'day',
   lessons: 'lesson', minutes: 'minute', chapters: 'chapter', count: 'person', cards: 'card', turns: 'turn', exams: 'exam',
-  // анонс конкурса: {months} месяцев Plus, {friends} друзей, {votes} голосов, {done} пройденных уроков, {plusDays} дней Plus
-  months: 'month', friends: 'friend', votes: 'vote', done: 'lessonDone', plusDays: 'day',
+  // конкурс: {months} месяцев Plus (лесенка, история победителю), {votes} голосов (история победителю)
+  months: 'month', votes: 'vote',
 };
 
 /** Число из переменной: 1180, «1 180» (с неразрывным пробелом) → 1180; не число → null. */

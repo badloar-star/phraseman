@@ -152,22 +152,23 @@ export function storyTemplateFromEvent(event: StoryEventLike, studio = false): S
 }
 
 /**
- * Анонс конкурса «Набор месяца»: событие на каждый кадр, payload.step — start | vote | prizes | invite (владелец 29.10, макет v2).
+ * Анонс конкурса «Набор месяца»: событие на каждый кадр, payload.step — start | vote | prizes | invite (владелец 29.10, макет v5).
  * Числа — правила владельца (STORY_CONTEST_RULES); событие может прислать свои (сервер конкурса знает действующие правила), неверные — правила.
- * Неизвестный step — кадра нет (null), как у прочих событий без данных.
+ * Неизвестный step — кадра нет (null), как у прочих событий без данных. «Как голосовать» — только текст (плитки владелец убрал 29.10).
+ * зачем: публиковать только после серверной части конкурса (координатор 29.10) — событие contest_intro сейчас никто не создаёт.
  */
 export function contestIntroOf(p: Readonly<Record<string, unknown>>, atMs: number): StoryTemplate | null {
   const pos = (v: unknown, fallback: number): number => { const n = num(v); return n !== null && n > 0 ? Math.trunc(n) : fallback; };
   const r = STORY_CONTEST_RULES;
   switch (str(p.step)) {
     case 'start': return { id: 'contest_start', startMs: num(p.startMs) ?? atMs };
-    case 'vote': return { id: 'contest_vote', minDays: pos(p.minDays, r.minDays), minLessons: pos(p.minLessons, r.minLessons), votesPerMonth: pos(p.votesPerMonth, r.votesPerMonth) };
+    case 'vote': return { id: 'contest_vote' };
     case 'prizes': {
       const given = numList(p.plusMonths).map((n) => Math.trunc(n)).filter((n) => n > 0);
       const plusMonths: readonly [number, number, number] = given.length === 3 ? [given[0]!, given[1]!, given[2]!] : r.plusMonths;
       return { id: 'contest_prizes', plusMonths };
     }
-    case 'invite': return { id: 'contest_invite', coins: pos(p.coins, r.inviteCoins), friends: pos(p.friends, r.inviteFriends), plusDays: pos(p.plusDays, r.invitePlusDays) };
+    case 'invite': return { id: 'contest_invite', coins: pos(p.coins, r.inviteCoins) };
     default: return null;
   }
 }

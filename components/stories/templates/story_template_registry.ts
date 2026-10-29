@@ -20,6 +20,8 @@ export const STORY_TEMPLATE_IDS = [
  * Анонс конкурса «Набор месяца» — 4 кадра (владелец 29.10: «Да, делать в коде», макет claude.ai/artifact/GukYuSACfWas4P9toiG7sS v2).
  * зачем отдельным списком: STORY_TEMPLATE_IDS — ровно 23 кадра макета stories-templates-v1 по порядку (по нему снимает Сверка, кадры 1–23);
  * кадры конкурса идут после них — в фотостудии это 24–27.
+ * зачем: публиковать только после серверной части конкурса (координатор 29.10) — голос за любой урок, автоначисление Plus 3 / 2 / 1 и Plus
+ * на 14 дней за 3 друзей должны работать на сервере раньше анонса. Событие contest_intro сейчас никто не создаёт, флага в админке у него нет.
  */
 export const STORY_CONTEST_TEMPLATE_IDS = ['contest_start', 'contest_vote', 'contest_prizes', 'contest_invite'] as const;
 /**
@@ -89,19 +91,18 @@ export type StoryTemplate =
   | T<'dialog', { title: string; goalsDone: number; goalsTotal: number; turns: number; minutes: number; noHints: boolean; bubbles: readonly StoryBubble[] }>
   // ── анонс конкурса «Набор месяца»: числа — правила владельца 29.10, событие может прислать свои ──
   | T<'contest_start', { startMs: number }>
-  | T<'contest_vote', { minDays: number; minLessons: number; votesPerMonth: number }>
+  // «Как голосовать» — только текст (плитки с числами владелец убрал 29.10), данных у кадра нет
+  | T<'contest_vote', object>
   | T<'contest_prizes', { plusMonths: readonly [number, number, number] }>
-  | T<'contest_invite', { coins: number; friends: number; plusDays: number }>
+  | T<'contest_invite', { coins: number }>
   // ── история победителю: month — 1…12 из monthId; plusMonths 0 — бессрочный Plus (строки про Plus нет); packTitle '' — без строки набора ──
   | T<'contest_winner', { place: 1 | 2 | 3; month: number; plusMonths: number; packTitle: string; hearts: number }>;
 
 /**
- * Правила конкурса для анонса (владелец 29.10): голосовать — через 3 дня и после 1 урока, до 10 голосов в месяц; призы — Plus на 3, 2 и 1 месяц
- * за 1, 2 и 3 место; за друга, прошедшего 1 урок, — 500 монет обоим; за 3 друзей, каждый из которых прошёл 1 урок, — Plus на 14 дней.
+ * Числа, которые показывает анонс (владелец 29.10): призы — Plus на 3, 2 и 1 месяц за 1, 2 и 3 место; за друга с первым уроком — 500 монет
+ * тебе и ему. Условия голоса и Plus за 3 друзей на кадрах больше не показываются (плитки убраны 29.10) — на сервере они те же, считает Ядро.
  */
-export const STORY_CONTEST_RULES = Object.freeze({
-  minDays: 3, minLessons: 1, votesPerMonth: 10, plusMonths: [3, 2, 1] as const, inviteCoins: 500, inviteFriends: 3, invitePlusDays: 14,
-});
+export const STORY_CONTEST_RULES = Object.freeze({ plusMonths: [3, 2, 1] as const, inviteCoins: 500 });
 
 export type StoryTemplateOf<I extends StoryTemplateId> = Extract<StoryTemplate, { id: I }>;
 
@@ -157,9 +158,9 @@ export const STORY_TEMPLATE_SAMPLES: Readonly<{ [I in StoryTemplateId]: StoryTem
     bubbles: [{ text: '¿Me pones un café con leche?', me: false }, { text: 'Claro. ¿Para llevar?', me: true }, { text: 'Sí, gracias. ¿Cuánto es?', me: false }],
   },
   contest_start: { id: 'contest_start', startMs: day(2026, 11, 1) },
-  contest_vote: { id: 'contest_vote', minDays: STORY_CONTEST_RULES.minDays, minLessons: STORY_CONTEST_RULES.minLessons, votesPerMonth: STORY_CONTEST_RULES.votesPerMonth },
+  contest_vote: { id: 'contest_vote' },
   contest_prizes: { id: 'contest_prizes', plusMonths: STORY_CONTEST_RULES.plusMonths },
-  contest_invite: { id: 'contest_invite', coins: STORY_CONTEST_RULES.inviteCoins, friends: STORY_CONTEST_RULES.inviteFriends, plusDays: STORY_CONTEST_RULES.invitePlusDays },
+  contest_invite: { id: 'contest_invite', coins: STORY_CONTEST_RULES.inviteCoins },
   // макет v4: «Твой набор — 1 место за ноябрь», Plus на 3 месяца, «B2 глаголы» и ♥ 42
   contest_winner: { id: 'contest_winner', place: 1, month: 11, plusMonths: STORY_CONTEST_RULES.plusMonths[0], packTitle: 'B2 глаголы', hearts: 42 },
 };

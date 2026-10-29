@@ -6,6 +6,7 @@
 // системе, что 23 шаблона историй (тот же каркас кадра, классы .ov / .h1 / .p, часы кадра, «Уменьшить движение» — сразу конечный вид).
 // Тексты простые, с цифрами, без метафор; числа — правила конкурса (STORY_CONTEST_RULES), событие может прислать свои. Цвета — только темы.
 // Кнопка «Открыть наборы» и мелкая строка про спонсоров — у последнего кадра (STORY_TEMPLATE_CTA.contest_invite, рисует просмотр).
+// Кадры 25 «Как голосовать» и 27 «Зови друзей» — без плиток с числами (владелец 29.10 ~09:05 и ~09:07: «вот это убери»): только текст, по центру.
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { memo } from 'react';
 import { StyleSheet, Text, View, type ViewStyle } from 'react-native';
@@ -62,34 +63,13 @@ export const ContestStartFrame = memo(function ContestStartFrame({ tpl, lang }: 
   );
 });
 
-// ── 25 · как голосовать: три крупных числа ───────────────────────────────────────────────────────────────────────────
+// ── 25 · как голосовать: только текст ────────────────────────────────────────────────────────────────────────────────
 
-const NumTile = memo(function NumTile({ value, label, reward, d, hi }: Readonly<{ value: number; label: string; reward?: string; d: number; hi?: boolean }>) {
-  const pal = useStoryTemplatePalette();
-  return (
-    <Enter d={d} style={[s.num, hi ? null : { backgroundColor: mix(pal.tx, 0.07) }]}>
-      {hi ? (
-        <View style={s.numClip} pointerEvents="none">
-          <LinearGradient colors={[mix(pal.accG, 0.3), mix(pal.accG, 0.1)]} style={StyleSheet.absoluteFill} />
-        </View>
-      ) : null}
-      <Text style={[s.numV, { color: pal.tx }]}>{value}</Text>
-      <Text style={[s.numL, { color: pal.sec }]}>{label}</Text>
-      {reward ? <Text style={[s.numR, { color: pal.acc }]}>{reward}</Text> : null}
-    </Enter>
-  );
-});
-
-export const ContestVoteFrame = memo(function ContestVoteFrame({ tpl, lang }: StoryFrameProps<'contest_vote'>) {
+// зачем (владелец 29.10 ~09:05, «вот это убери»): три плитки «3 дня · 1 урок · 10 голосов» убраны — кадр без картинки, текст по центру
+// (как другие кадры без арта); правила подсчёта на сервере те же.
+export const ContestVoteFrame = memo(function ContestVoteFrame({ lang }: StoryFrameProps<'contest_vote'>) {
   return (
     <FrameRoot testID="story-tpl-contest_vote">
-      <Art>
-        <View style={s.nums}>
-          <NumTile value={tpl.minDays} label={tplText(lang, 'contestVoteDays', { days: tpl.minDays })} d={120} />
-          <NumTile value={tpl.minLessons} label={tplText(lang, 'contestVoteLessons', { done: tpl.minLessons })} d={200} />
-          <NumTile value={tpl.votesPerMonth} label={tplText(lang, 'contestVoteVotes', { votes: tpl.votesPerMonth })} d={280} />
-        </View>
-      </Art>
       <Ov text={tplText(lang, 'contestVoteOverline')} d={360} />
       <H1 text={tplText(lang, 'contestVoteTitle')} d0={440} />
       <P text={tplText(lang, 'contestVoteText')} d={620} />
@@ -139,17 +119,13 @@ export const ContestPrizesFrame = memo(function ContestPrizesFrame({ tpl, lang }
   );
 });
 
-// ── 27 · награды за приглашения: 1 друг и 3 друга ───────────────────────────────────────────────────────────────────
+// ── 27 · зови друзей: только текст, кнопка «Открыть наборы» и строка про спонсоров — у просмотра ─────────────────────
 
+// зачем (владелец 29.10 ~09:07, «вот это убери»): плитки «1 друг → 500 монет обоим» и «3 друга → Plus на 14 дней» убраны — кадр без
+// картинки, текст по центру; награды на сервере те же.
 export const ContestInviteFrame = memo(function ContestInviteFrame({ tpl, lang }: StoryFrameProps<'contest_invite'>) {
   return (
     <FrameRoot testID="story-tpl-contest_invite">
-      <Art>
-        <View style={[s.nums, s.nums2]}>
-          <NumTile value={1} label={tplText(lang, 'contestInviteOne')} reward={tplText(lang, 'contestInviteOneReward', { coins: tpl.coins })} d={120} />
-          <NumTile value={tpl.friends} label={tplText(lang, 'contestInviteThree', { friends: tpl.friends })} reward={tplText(lang, 'contestInviteThreeReward', { plusDays: tpl.plusDays })} d={220} hi />
-        </View>
-      </Art>
       <Ov text={tplText(lang, 'contestInviteOverline')} d={360} />
       <H1 text={tplText(lang, 'contestInviteTitle', { coins: tpl.coins })} d0={440} />
       <P text={tplText(lang, 'contestInviteText')} d={620} />
@@ -249,14 +225,6 @@ const s = StyleSheet.create({
   tileCards: { fontSize: 12, lineHeight: 15, fontWeight: '600' },
   tileName: { fontSize: 15, lineHeight: 19, fontWeight: '700' },
   tileHearts: { fontSize: 13, lineHeight: 16, fontWeight: '700', fontVariant: ['tabular-nums'] },
-  // три числа: ряд 334, зазор 10, плитка радиус 22, число 44/48 800
-  nums: { flexDirection: 'row', gap: 10, width: 334, maxWidth: '100%', marginBottom: 8 },
-  nums2: { width: 300 },
-  num: { flex: 1, borderRadius: 22, paddingTop: 16, paddingHorizontal: 8, paddingBottom: 14, alignItems: 'center' },
-  numClip: { ...StyleSheet.absoluteFillObject, borderRadius: 22, overflow: 'hidden' },
-  numV: { fontSize: 44, lineHeight: 48, fontWeight: '800', letterSpacing: -1, fontVariant: ['tabular-nums'] },
-  numL: { marginTop: 4, fontSize: 13, lineHeight: 17, fontWeight: '600', textAlign: 'center' },
-  numR: { marginTop: 10, fontSize: 17, lineHeight: 21, fontWeight: '800', textAlign: 'center' },
   // лесенка 334 × 230: ступени растут снизу, верх скруглён 20, низ 10
   ladder: { flexDirection: 'row', alignItems: 'flex-end', gap: 10, width: 334, maxWidth: '100%', height: 230, marginBottom: 8 },
   step: { flex: 1, borderTopLeftRadius: 20, borderTopRightRadius: 20, borderBottomLeftRadius: 10, borderBottomRightRadius: 10, alignItems: 'center', paddingTop: 12, paddingHorizontal: 6, gap: 6, transformOrigin: '50% 100%' },

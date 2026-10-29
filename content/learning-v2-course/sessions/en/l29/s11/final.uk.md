@@ -23,13 +23,13 @@
 
 ### Хто зв’язав шарф
 
-Подруга запитує, хто зв’язав ваш шарф. Дайте відповідь: The scarf was made by my aunt — шарф зробила моя тітка. Складіть The scarf + was made + by my aunt. Після назви речі поставте was made: з нею виконали дію. Made — третя форма make. Частина by my aunt називає людину, яка зробила шарф.
+Подруга запитує, хто зв’язав ваш шарф. Дайте відповідь: The scarf was made by my aunt — шарф зробила моя тітка. Складіть The scarf + was made + by my aunt. Після назви речі поставте was made: з нею виконали дію. Made — форма make після have. Частина by my aunt називає людину, яка зробила шарф.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The scarf was made by my aunt.**
 - ❌ The scarf was made from my aunt. — *Людину, яка зробила річ, позначає by.*
-- ❌ The scarf was make by my aunt. — *Тут потрібна третя форма made.*
+- ❌ The scarf was make by my aunt. — *Тут потрібна форма made.*
 
 ---
 

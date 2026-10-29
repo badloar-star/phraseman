@@ -23,7 +23,7 @@
 
 ### Хто проводить заняття
 
-Ви дізнаєтеся, хто веде заняття в спортивному центрі. Працівник відповідає: The class is taught by a local coach — заняття проводить місцевий тренер. Складіть The class + is taught + by a local coach. Після The class поставте is та taught, третю форму teach. Частина by a local coach називає того, хто проводить заняття.
+Ви дізнаєтеся, хто веде заняття в спортивному центрі. Працівник відповідає: The class is taught by a local coach — заняття проводить місцевий тренер. Складіть The class + is taught + by a local coach. Після The class поставте is та taught, форму teach. Частина by a local coach називає того, хто проводить заняття.
 
 **Виберіть фразу для цієї ситуації.**
 

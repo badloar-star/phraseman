@@ -23,7 +23,7 @@
 
 ### Кто привёз заказ
 
-Друг спрашивает, кто привёз еду. Ответьте: The order was delivered by a courier — заказ доставил курьер. Соберите The order + was delivered + by a courier. Сначала назовите заказ, затем поставьте was и delivered, третью форму deliver. Часть by a courier указывает человека, который выполнил доставку.
+Друг спрашивает, кто привёз еду. Ответьте: The order was delivered by a courier — заказ доставил курьер. Соберите The order + was delivered + by a courier. Сначала назовите заказ, затем поставьте was и delivered, форму deliver. Часть by a courier указывает человека, который выполнил доставку.
 
 **Выберите фразу для этой ситуации.**
 

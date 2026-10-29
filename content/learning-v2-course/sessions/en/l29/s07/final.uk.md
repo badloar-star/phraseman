@@ -23,7 +23,7 @@
 
 ### Хто полагодив полицю
 
-Друг запитує, хто полагодив полицю після її падіння. Дайте відповідь: The shelf was repaired by my neighbour — полицю полагодив мій сусід. Складіть The shelf + was repaired + by my neighbour. Після The shelf поставте was та repaired, третю форму repair. Частина by my neighbour вказує людину, яка виконала ремонт.
+Друг запитує, хто полагодив полицю після її падіння. Дайте відповідь: The shelf was repaired by my neighbour — полицю полагодив мій сусід. Складіть The shelf + was repaired + by my neighbour. Після The shelf поставте was та repaired, форму repair. Частина by my neighbour вказує людину, яка виконала ремонт.
 
 **Виберіть фразу для цієї ситуації.**
 

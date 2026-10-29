@@ -23,12 +23,12 @@
 
 ### Хто посадив зелень
 
-Друг запитує про насадження, і ви пояснюєте, що їх зробила ваша мати. Скажіть: These herbs were planted by my mother — цю зелень посадила моя мати. Складіть These herbs + were planted + by my mother. Почніть із рослин у множині, тому виберіть were planted. Після by назвіть людину, яка їх посадила.
+Друг запитує про насадження, і ви пояснюєте, що їх зробила ваша мати. Скажіть: These herbs were planted by my mother — цю зелень посадила моя мати. Складіть These herbs + were planted + by my mother. Рослин кілька, тому виберіть were planted. Після by назвіть людину, яка їх посадила.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **These herbs were planted by my mother.**
-- ❌ These herbs was planted by my mother. — *З herbs у множині потрібне were.*
+- ❌ These herbs was planted by my mother. — *З herbs у формі для кількох потрібне were.*
 - ❌ These herbs were planted of my mother. — *Людину, яка виконала дію, позначає by.*
 
 ---
@@ -98,8 +98,8 @@ This is the garden ___ we grow herbs. → **where** · who · whose
 **11 · Зелень посадила ваша мати.**
 <!-- interaction_id: en:lesson-29:session-23:i11; family: context_gap_grammar -->
 These herbs ___ planted by my mother. → **were** · was · is
-- was — *Herbs у множині: were.*
-- is — *Тут минула дія й множина: were.*
+- was — *Herbs — їх кілька: were.*
+- is — *Тут минула дія й форма для кількох: were.*
 
 **12 · Попросіть передати миску.**
 <!-- interaction_id: en:lesson-29:session-23:i12; family: phrase_builder -->

@@ -23,12 +23,12 @@
 
 ### Кто посадил зелень
 
-Друг спрашивает о посадках, и вы объясняете, что их сделала ваша мать. Скажите: These herbs were planted by my mother — эту зелень посадила моя мать. Соберите These herbs + were planted + by my mother. Начните с растений во множественном числе, поэтому выберите were planted. После by назовите человека, который их посадил.
+Друг спрашивает о посадках, и вы объясняете, что их сделала ваша мать. Скажите: These herbs were planted by my mother — эту зелень посадила моя мать. Соберите These herbs + were planted + by my mother. Растений несколько, поэтому выберите were planted. После by назовите человека, который их посадил.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **These herbs were planted by my mother.**
-- ❌ These herbs was planted by my mother. — *С herbs во множественном числе нужно were.*
+- ❌ These herbs was planted by my mother. — *С herbs в форме для нескольких нужно were.*
 - ❌ These herbs were planted of my mother. — *Человека, выполнившего действие, вводит by.*
 
 ---
@@ -98,8 +98,8 @@ This is the garden ___ we grow herbs. → **where** · who · whose
 **11 · Зелень посадила ваша мать.**
 <!-- interaction_id: en:lesson-29:session-23:i11; family: context_gap_grammar -->
 These herbs ___ planted by my mother. → **were** · was · is
-- was — *Herbs во множественном числе: were.*
-- is — *Здесь прошлое действие и множественное число: were.*
+- was — *Herbs — их несколько: were.*
+- is — *Здесь прошлое действие и форма для нескольких: were.*
 
 **12 · Попросите передать миску.**
 <!-- interaction_id: en:lesson-29:session-23:i12; family: phrase_builder -->

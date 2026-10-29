@@ -23,7 +23,7 @@
 
 ### Кто проводит занятие
 
-Вы узнаёте, кто ведёт занятие в спортивном центре. Сотрудник отвечает: The class is taught by a local coach — занятие проводит местный тренер. Соберите The class + is taught + by a local coach. После The class поставьте is и taught, третью форму teach. Часть by a local coach называет того, кто проводит занятие.
+Вы узнаёте, кто ведёт занятие в спортивном центре. Сотрудник отвечает: The class is taught by a local coach — занятие проводит местный тренер. Соберите The class + is taught + by a local coach. После The class поставьте is и taught, форму teach. Часть by a local coach называет того, кто проводит занятие.
 
 **Выберите фразу для этой ситуации.**
 

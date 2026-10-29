@@ -23,7 +23,7 @@
 
 ### Хто привіз замовлення
 
-Друг запитує, хто привіз їжу. Дайте відповідь: The order was delivered by a courier — замовлення доставив кур’єр. Складіть The order + was delivered + by a courier. Спочатку назвіть замовлення, потім поставте was та delivered, третю форму deliver. Частина by a courier вказує людину, яка виконала доставку.
+Друг запитує, хто привіз їжу. Дайте відповідь: The order was delivered by a courier — замовлення доставив кур’єр. Складіть The order + was delivered + by a courier. Спочатку назвіть замовлення, потім поставте was та delivered, форму deliver. Частина by a courier вказує людину, яка виконала доставку.
 
 **Виберіть фразу для цієї ситуації.**
 

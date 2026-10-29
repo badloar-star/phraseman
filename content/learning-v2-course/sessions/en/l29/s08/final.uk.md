@@ -60,7 +60,7 @@
 **3 · Доповніть опис звичного ранкового звуку птахів.**
 <!-- interaction_id: en:lesson-29:session-08:i03; family: context_gap_grammar -->
 The birds ___ every morning. → **chirp** · chirps · chirping
-- chirps — *Із множиною birds використовуємо chirp без закінчення s.*
+- chirps — *З birds (їх кілька) використовуємо chirp без закінчення s.*
 - chirping — *Для звичної дії тут потрібна chirp.*
 
 **4 · Послухайте й виберіть**

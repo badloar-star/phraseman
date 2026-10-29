@@ -23,7 +23,7 @@
 
 ### Кто починил полку
 
-Друг спрашивает, кто починил полку после её падения. Ответьте: The shelf was repaired by my neighbour — полку починил мой сосед. Соберите The shelf + was repaired + by my neighbour. После The shelf поставьте was и repaired, третью форму repair. Часть by my neighbour указывает человека, который выполнил ремонт.
+Друг спрашивает, кто починил полку после её падения. Ответьте: The shelf was repaired by my neighbour — полку починил мой сосед. Соберите The shelf + was repaired + by my neighbour. После The shelf поставьте was и repaired, форму repair. Часть by my neighbour указывает человека, который выполнил ремонт.
 
 **Выберите фразу для этой ситуации.**
 

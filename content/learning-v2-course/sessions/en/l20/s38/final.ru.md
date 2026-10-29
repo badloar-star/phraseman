@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы обсуждаете изменение плана, исправляете небольшую ошибку и выбираете экскурсию.
 
-**Что вы освоите:** дать мягкий совет: ought to correct this minor mistake
+**Что вы освоите:** дать мягкий совет: You ought to correct this minor mistake.
 **Новые слова:** major, minor, recent, capable
 
 ## Интро 1

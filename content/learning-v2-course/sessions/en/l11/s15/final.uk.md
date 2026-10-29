@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте продукти на кухні та запитайте, де вони були вчора.
 
-**Що ви опануєте:** запитати про минуле й сказати «не було»: Was the salad dressing cold?
+**Що ви опануєте:** запитати, чи було щось на місці: Was the olive oil in the cupboard?
 **Нові слова:** salad dressing, olive oil, peanut butter, maple syrup
 
 ## Інтро 1

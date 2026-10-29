@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашнюю прогулку: что было в сумке и каким был перекус.
 
-**Что вы освоите:** рассказать, что было и что где было вчера: Was the orange juice cold?
+**Что вы освоите:** сказать, что где было: There was apple juice in the bottle.
 **Новые слова:** cereal bar, orange juice, apple juice, fruit salad
 
 ## Интро 1

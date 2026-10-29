@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте кімнату до прибирання: які речі там були.
 
-**Що ви опануєте:** сказати, що було в кімнаті: There was a bath mat
+**Що ви опануєте:** сказати, що було в кімнаті: There was a bath mat on the floor.
 **Нові слова:** bed sheet, bath mat, clothes peg, towel rail
 
 ## Інтро 1

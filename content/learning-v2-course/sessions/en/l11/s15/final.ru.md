@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните продукты на кухне и спросите, где они были вчера.
 
-**Что вы освоите:** спросить о прошлом и сказать «не было»: Was the salad dressing cold?
+**Что вы освоите:** спросить, было ли что-то на месте: Was the olive oil in the cupboard?
 **Новые слова:** salad dressing, olive oil, peanut butter, maple syrup
 
 ## Интро 1

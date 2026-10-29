@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашню прогулянку: що було в сумці та яким був перекус.
 
-**Що ви опануєте:** розповісти, що було і що де було вчора: Was the orange juice cold?
+**Що ви опануєте:** сказати, що де було: There was apple juice in the bottle.
 **Нові слова:** cereal bar, orange juice, apple juice, fruit salad
 
 ## Інтро 1

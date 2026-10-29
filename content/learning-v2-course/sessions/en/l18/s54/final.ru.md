@@ -15,7 +15,7 @@
 
 - ✅ **You have such great energy.**
 - ❌ You have so great energy. — *Здесь это не считают поштучно: such без a.*
-- ❌ You have such a great energy. — *В этом значении это не считают поштучно, и a не нужен.*
+- ❌ You have such a great energy. — *В этом значении такое не считают поштучно, поэтому a не нужен.*
 
 ---
 

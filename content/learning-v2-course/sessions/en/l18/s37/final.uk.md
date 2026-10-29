@@ -29,7 +29,7 @@
 
 - ✅ **This is such hard work.**
 - ❌ This is so hard work. — *Тут це не рахують поштучно: such без a.*
-- ❌ This is such a hard work. — *У цьому значенні це не рахують поштучно, і a не потрібен.*
+- ❌ This is such a hard work. — *У цьому значенні таке не рахують поштучно, тому a не потрібен.*
 
 ---
 

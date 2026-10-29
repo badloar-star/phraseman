@@ -29,7 +29,7 @@
 
 - ✅ **This needs such careful attention.**
 - ❌ This needs so careful attention. — *Тут це не рахують поштучно: such без a.*
-- ❌ This needs such a careful attention. — *У цьому значенні це не рахують поштучно, і a не потрібен.*
+- ❌ This needs such a careful attention. — *У цьому значенні таке не рахують поштучно, тому a не потрібен.*
 
 ---
 

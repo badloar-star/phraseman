@@ -15,7 +15,7 @@
 
 - ✅ **This causes such great stress.**
 - ❌ This causes so great stress. — *Тут це не рахують поштучно: such без a.*
-- ❌ This causes such a great stress. — *У цьому значенні це не рахують поштучно, і a не потрібен.*
+- ❌ This causes such a great stress. — *У цьому значенні таке не рахують поштучно, тому a не потрібен.*
 
 ---
 

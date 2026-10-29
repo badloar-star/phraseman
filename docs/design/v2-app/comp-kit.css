@@ -1,0 +1,103 @@
+/* comp-kit.css — общие детали макетов соревновательной ветки (peak-friends-room, week-goal-together, invite-ladder) поверх реальных
+   кадров (каркас real-frame.css). Префикс ck-. Кегли и радиусы — как в приложении: строки 15/20 и 13/17, панели r22 тоном opaqueCard,
+   стекло 14 % белого, кнопка 50/r25 (компактная 40/r20); без рамок (только hairline-разделители одной стороны). Движение: шторка
+   340 мс ease-out, тост 2,2 с, нажатие 90 мс, прогресс 900 мс. Снято с friends-connection.css (тот же стиль «Друзей»). */
+:root { --ck-out: cubic-bezier(.23, 1, .32, 1); }
+@font-face { font-family: IoniconsApp; src: url(assets/Ionicons.ttf); }
+.io { font-family: IoniconsApp; font-style: normal; font-weight: 400; line-height: 1; display: inline-block; }
+.ck-coin { border-radius: 50%; display: block; flex: none; }
+.ck-ins-over { position: absolute; inset: 0; display: flex; align-items: center; padding: 0 20px; }
+.ck-ins-over > * { width: 100%; }
+/* блок поверх кадра в координатах телефона (left/top/width в px телефона), фон — растянутая чистая полоска того же кадра */
+.ck-over { position: absolute; z-index: 20; }
+.ck-over .bg { position: absolute; inset: 0; background-repeat: no-repeat; }
+.ck-over .in { position: relative; }
+/* переключатель состояний страницы (над телефонами) */
+.ck-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+.ck-chip { display: inline-flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; border-radius: 17px; background: #1C1F25; color: #D6D6D8; font-size: 13px; font-weight: 600; cursor: pointer; user-select: none; }
+.ck-chip.on { background: #E8ECF2; color: #0B0D10; }
+/* сегмент внутри телефона (как вкладки «Пик · Друзья · Наборы», но плашкой) */
+.ck-seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 16px; background: rgba(255, 255, 255, .10); }
+.ck-seg span { height: 30px; padding: 0 10px; border-radius: 13px; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, .78); cursor: pointer; white-space: nowrap; }
+.ck-seg span.on { background: rgba(255, 255, 255, .92); color: #0B0D10; }
+.ck-seg span small { font-weight: 600; opacity: .7; font-size: 12px; }
+/* панель и строки */
+.ck-panel { margin: 0 0 12px; padding: 12px 14px 8px; border-radius: 22px; background: var(--card); color: var(--tx); width: 100%; }
+.ck-panel.glass { background: rgba(255, 255, 255, .12); }
+.ck-panel .hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.ck-panel .hd b { font-size: 16px; font-weight: 700; }
+.ck-panel .hd span { font-size: 13px; color: var(--sec); display: inline-flex; align-items: center; gap: 2px; cursor: pointer; }
+.ck-panel.glass .hd span, .ck-panel.glass .ck-row .tx small, .ck-panel.glass .ck-row .rt { color: rgba(255, 255, 255, .72); }
+.ck-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; }
+.ck-row + .ck-row { border-top: 1px solid rgba(255, 255, 255, .07); }
+.ck-row.me { background: rgba(255, 255, 255, .08); margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 12px; border-top: 0; }
+.ck-row.me + .ck-row { border-top: 0; }
+.ck-row .pl { width: 18px; font-size: 14px; font-weight: 700; color: var(--sec); text-align: center; flex: none; }
+.ck-row .ic { width: 30px; display: inline-flex; justify-content: center; font-size: 19px; color: var(--sec); flex: none; }
+.ck-row .tx { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.ck-row .tx b { font-size: 14px; font-weight: 600; line-height: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ck-row .tx small { font-size: 12px; line-height: 16px; color: var(--sec); }
+.ck-row .rt { font-size: 13px; font-weight: 700; color: var(--sec); flex: none; font-variant-numeric: tabular-nums; }
+.ck-row .rt.up { color: var(--acc); }
+.ck-row.ck-dim { opacity: .55; } /* свой класс: .dim занят kit.css (затемнение шторки) */
+/* кнопки */
+.ck-btn { display: flex; align-items: center; justify-content: center; gap: 8px; height: 50px; border-radius: 25px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+.ck-btn.sm { height: 40px; border-radius: 20px; font-size: 14px; margin-top: 8px; }
+.ck-btn.solid { background: var(--solid); color: var(--on-solid); }
+.ck-btn.tonal { background: var(--ctl); color: var(--tx); }
+.ck-btn.glass { background: rgba(255, 255, 255, .16); color: #fff; }
+.ck-btn .io { font-size: 18px; }
+.ck-btn.sm .io { font-size: 16px; }
+/* полоса прогресса */
+.ck-bar { height: 8px; border-radius: 4px; background: rgba(255, 255, 255, .12); overflow: hidden; }
+.ck-bar i { display: block; height: 100%; width: 0; border-radius: 4px; background: var(--acc); transition: width .9s var(--ck-out); }
+.ck-bar.live i { width: var(--w); }
+.ck-bar.gold i { background: #F2C05A; }
+/* пустое состояние внутри панели */
+.ck-empty { text-align: center; padding: 8px 4px 6px; color: var(--tx); }
+.ck-empty .ck-ic { display: inline-flex; width: 44px; height: 44px; border-radius: 14px; align-items: center; justify-content: center; background: rgba(255, 255, 255, .12); font-size: 22px; margin-bottom: 10px; }
+.ck-empty b { display: block; font-size: 15px; font-weight: 700; line-height: 20px; }
+.ck-empty p { margin: 4px 0 10px; font-size: 12px; line-height: 16px; color: rgba(255, 255, 255, .75); }
+.ck-note { font-size: 12px; line-height: 16px; color: var(--sec); margin: 8px 0 0; }
+.ck-panel.glass .ck-note { color: rgba(255, 255, 255, .7); }
+/* шторка и затемнение на телефоне */
+.ck-ov { position: absolute; inset: 0; z-index: 80; overflow: hidden; border-radius: inherit; }
+.ck-ov .ck-scrim { position: absolute; inset: 0; background: rgba(0, 0, 0, .45); opacity: 0; transition: opacity .3s var(--ck-out); }
+.ck-ov.on .ck-scrim { opacity: 1; }
+.ck-sheet { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 20px 28px; border-radius: 28px 28px 0 0; background: var(--card); color: var(--tx); transform: translateY(100%); transition: transform .34s var(--ck-out); max-height: 86%; overflow-y: auto; scrollbar-width: none; }
+.ck-ov.on .ck-sheet { transform: none; }
+.ck-ov.off .ck-scrim { opacity: 0; } .ck-ov.off .ck-sheet { transform: translateY(100%); }
+.ck-sheet .grab { width: 36px; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, .25); margin: 0 auto 14px; }
+.ck-sheet .hd { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.ck-sheet .hd b { font-size: 20px; font-weight: 700; }
+.ck-sheet .x { width: 32px; height: 32px; border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; background: var(--ctl); font-size: 16px; cursor: pointer; }
+.ck-sheet .ck-row .ic { color: var(--acc); }
+.ck-code { display: flex; align-items: center; justify-content: center; gap: 10px; height: 50px; border-radius: 25px; background: var(--ctl); color: var(--tx); font-weight: 700; font-size: 18px; letter-spacing: .06em; cursor: pointer; margin: 14px 0; }
+.ck-code .io { font-size: 18px; color: var(--sec); }
+/* подиум итога недели */
+.ck-podium { display: flex; align-items: flex-end; justify-content: center; gap: 10px; margin: 8px 0 14px; }
+.ck-podium div { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.ck-podium .st { width: 100%; border-radius: 12px 12px 0 0; background: var(--ctl); display: flex; align-items: flex-end; justify-content: center; padding-bottom: 6px; font-weight: 800; font-size: 18px; color: var(--tx); }
+.ck-podium .p1 .st { height: 74px; background: linear-gradient(180deg, rgba(242, 192, 90, .55), rgba(242, 192, 90, .18)); }
+.ck-podium .p2 .st { height: 56px; } .ck-podium .p3 .st { height: 44px; }
+.ck-podium b { font-size: 13px; font-weight: 700; }
+.ck-podium small { font-size: 12px; color: var(--sec); }
+/* тост сверху — как ActionToast top_line */
+.ck-toast { position: absolute; left: 14px; right: 14px; top: 54px; z-index: 90; display: flex; align-items: center; gap: 12px; padding: 8px 12px 8px 8px; border-radius: 19px; background: var(--card); color: var(--tx); font-size: 14px; font-weight: 600; box-shadow: 0 10px 24px rgba(0, 0, 0, .35); animation: ck-toast-in .3s var(--ck-out); }
+.ck-toast .tile { width: 41px; height: 41px; border-radius: 13px; display: inline-flex; align-items: center; justify-content: center; background: var(--ctl); font-size: 20px; color: var(--acc); }
+.ck-toast.off { opacity: 0; transform: translateY(-8px); transition: opacity .3s, transform .3s; }
+@keyframes ck-toast-in { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+/* нажатие и всплытие */
+.t { transition: transform .09s var(--ck-out); }
+.t:active { transform: scale(.97); }
+.pop { animation: ck-pop .25s var(--ck-out); }
+@keyframes ck-pop { 40% { transform: scale(1.12); } }
+/* появление блока на кадре */
+.ck-fade { animation: ck-fade .32s var(--ck-out); }
+@keyframes ck-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+/* стоимость — таблица для координатора */
+.ck-cost { display: grid; grid-template-columns: 120px 1fr; gap: 4px 12px; font-size: 13px; color: #8E8E96; margin: -8px 0 16px; max-width: 900px; }
+.ck-cost div { display: contents; }
+.ck-cost b { color: #D6D6D8; font-weight: 600; }
+.ck-warn { color: #D9A05B; }
+@media (prefers-reduced-motion: reduce) { .ck-sheet, .ck-ov .ck-scrim, .ck-bar i, .ck-fade, .pop, .ck-toast { transition: none !important; animation: none !important; } }

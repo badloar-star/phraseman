@@ -1,0 +1,22 @@
+/* week-goal-together.css — карточка «Цель недели вдвоём» (см. week-goal-together.app.js): карточка тоном opaqueCard r22 как панель
+   «Сегодня», две строки «монета · имя · полоса · n из 7», подвал с наградой и кнопкой 40/r20. */
+.wg-line { display: flex; align-items: center; gap: 10px; padding: 6px 0; }
+.wg-line .nm { width: 34px; font-size: 14px; font-weight: 600; color: var(--tx); flex: none; }
+.wg-line .bars { flex: 1; }
+.wg-line .n { width: 46px; text-align: right; font-size: 12px; font-weight: 600; color: var(--sec); font-variant-numeric: tabular-nums; flex: none; }
+.wg-text { margin: 2px 0 6px; font-size: 13px; line-height: 18px; color: var(--sec); }
+.wg-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 6px; }
+.wg-foot .ck-btn { margin: 0; padding: 0 14px; }
+.wg-reward { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--acc); }
+.wg-reward.soft { color: var(--sec); font-weight: 600; } /* soft, не dim: .dim занят kit.css */
+.wg-reward .io { font-size: 15px; }
+.wg-hint { font-size: 12px; color: var(--sec); }
+.ck-panel .hd span .io { font-size: 14px; margin-right: 4px; color: var(--acc); }
+/* выбор дней в шторке */
+.wg-days { display: flex; gap: 8px; margin: 12px 0 4px; }
+.wg-days span { flex: 1; height: 44px; border-radius: 14px; background: var(--ctl); display: inline-flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; color: var(--tx); cursor: pointer; }
+.wg-days span.on { background: var(--solid); color: var(--on-solid); }
+.ck-row.wg-sel { background: rgba(255, 255, 255, .08); margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 12px; }
+.wg-sheet-bars { margin: 6px 0 4px; }
+.wg-acts { display: flex; gap: 8px; margin-top: 8px; }
+.wg-acts .ck-btn { flex: 1; margin: 0; }

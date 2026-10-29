@@ -1,0 +1,22 @@
+/* peak-friends-room.css — панель друзей в левой колонке Пика (см. peak-friends-room.app.js). Ширина блока 206 px телефона — как у
+   панели комнаты на кадре; сегмент вместо заголовка «Комната недели 29» (кегль 15/600 как у заголовка кадра). */
+.pfr-seg { height: 42px; display: flex; align-items: center; margin: 0 0 6px 2px; }
+.pfr-seg .ck-seg span { height: 28px; padding: 0 9px; font-size: 12.5px; }
+.ck-over .ck-panel { padding: 8px 10px 6px; }
+.ck-over .ck-row { padding: 6px 0; gap: 8px; }
+.ck-over .ck-row.pfr-compact { padding: 3px 0; }
+.ck-over .ck-row.pfr-compact .tx b { font-size: 13px; line-height: 16px; }
+.ck-over .ck-row .pl { width: 14px; font-size: 12px; }
+.ck-over .ck-row .tx b { font-size: 13.5px; }
+.ck-over .ck-row .tx small { font-size: 11px; line-height: 14px; }
+.ck-over .ck-row .rt { font-size: 12.5px; }
+.ck-over .ck-row .ic { width: 24px; font-size: 16px; }
+.ck-over .ck-note { font-size: 11px; line-height: 14px; margin-top: 6px; }
+.ck-over .ck-empty p { font-size: 11.5px; line-height: 15px; }
+.ck-over .ck-btn.sm { height: 36px; font-size: 13px; }
+.pfr-hidden { opacity: 0; pointer-events: none; transition: opacity .2s var(--ck-out); }
+/* подсказка-возврат, когда показан кадр как есть: маленькая стеклянная плашка на месте сегмента «Друзья» */
+.pfr-peek { position: absolute; left: 150px; top: 262px; height: 28px; padding: 0 10px; border-radius: 13px; background: rgba(255, 255, 255, .14); color: #fff; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; z-index: 25; animation: ck-fade .3s var(--ck-out); }
+.pfr-peek .io { font-size: 14px; }
+.pfr-acts { display: flex; gap: 8px; margin-top: 6px; }
+.pfr-acts .ck-btn { flex: 1; margin: 0; }

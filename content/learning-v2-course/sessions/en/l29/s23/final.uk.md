@@ -99,7 +99,7 @@ This is the garden ___ we grow herbs. → **where** · who · whose
 <!-- interaction_id: en:lesson-29:session-23:i11; family: context_gap_grammar -->
 These herbs ___ planted by my mother. → **were** · was · is
 - was — *Herbs — їх кілька: were.*
-- is — *Тут минула дія й форма для кількох: were.*
+- is — *Тут минуле, і рослин кілька: were.*
 
 **12 · Попросіть передати миску.**
 <!-- interaction_id: en:lesson-29:session-23:i12; family: phrase_builder -->

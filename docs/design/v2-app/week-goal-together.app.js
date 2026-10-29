@@ -1,28 +1,45 @@
-/* week-goal-together.app.js — «Цель недели вдвоём» на РЕАЛЬНЫХ кадрах (Главная scene_home_graphite_dark.png и вкладка «Друзья»
-   now_friends_top_graphite_dark.png; каркас comp-kit.js).
-   зачем (владелец 29.10 через координатора: пересматривает своё «нет» от 21.10 — показать макет; исследование, идея 7): общая цель
-   недели с другом — дни занятий обоих, награда обоим, напоминание другу. На Главной — карточка под панелью «Сегодня» (вставлена ломтём:
-   всё ниже сдвинулось, как при настоящей вставке); в «Друзьях» — та же карточка над списком друзей (на кадре пустое состояние заменено
-   списком, кадр со списком Сверка снимет позже). Дни считаются из дней активности обоих (как серия вдвоём) — новых чтений нет.
-   Правки координатора 29.10: тап по другу открывает карточку друга; «5 дней / 7 дней» меняет цель; «Предложить <имя>»; цифры сходятся;
-   в телефоне ни служебных пометок, ни подписей-расшифровок. Журнал — [WG]. */
+/* week-goal-together.app.js — «Цель недели вдвоём» на РЕАЛЬНОМ кадре вкладки «Друзья» (now_friends_top_graphite_dark.png; каркас comp-kit.js).
+   зачем (владелец 29.10 ~13:20 через координатора): «на Главной его не должно быть! … В разделе Друзья — хорошо, но там надо показывать
+   СРАЗУ уже с друзьями, со списками, чтобы я видел, как всё будет выглядеть на самом деле». Поэтому раздел Главной снят, а вкладка собрана
+   как в приложении с друзьями (app/(tabs)/friends.tsx, кадра со списком у Сверки пока нет — заказан): лента «Итоги недели» (FriendWeekRail:
+   заголовок 19/24 + счётчик + «пн · 9:00», карточки 236 r22 с монетой 40, огнём/книгой/подиумом и «Дать пять»), шапка списка («Активные
+   заявки» + счётчик, круглый «+» 44), карточка заявки (FriendsRequestCard: монета 44, «Хочет добавить тебя в друзья», «Принять»/«Отклонить»),
+   заголовок «Твои друзья», строки друзей (FriendListRow: плашка 64 r14, монета 44, имя 16/21, огонь пары + подпись 13/18, шеврон или
+   «Позвать» 36). Карточка цели — под заголовком «Твои друзья», над строками. Внутри телефона ни пометок, ни подписей-расшифровок.
+   Дни цели считаются из дней активности обоих (как серия вдвоём) — новых чтений нет. Журнал — [WG]. */
 (() => {
-const LOG = '[WG]'; const K = window.CK; const { io, ci, phone, insOn, col, panel, row, btn, sheet, bar } = K;
-const HOME = 'scene_home_graphite_dark.png'; const FR = 'now_friends_top_graphite_dark.png';
-/* геометрия кадра Главной (px 1080 × 2400): панель «Сегодня» 1050…1700, плитки 1780…1990 — карточка цели вставляется в зазор y 1724;
-   вкладка «Друзья»: вкладки 140…200, пустое состояние 930…1540 — вырезается, на его место встают карточка цели и список друзей */
-const Y_HOME = 1724; const FR_CUT = [930, 1540];
-const FRIENDS = [['Аня', 12, 'серия 9 дней', 'занималась сегодня'], ['Марк', 9, 'серия 3 дня', 'занимался вчера'], ['Лидия', 1, 'серия 21 день', 'занималась сегодня']];
-const dat = (name) => ({ 'Аня': 'Ане', 'Марк': 'Марку', 'Лидия': 'Лидии' }[name] || name);
-const gen = (name) => ({ 'Аня': 'Ани', 'Марк': 'Марка', 'Лидия': 'Лидии' }[name] || name); // родительный: «ждём ответа Ани»
-const ins = (name) => ({ 'Аня': 'Аней', 'Марк': 'Марком', 'Лидия': 'Лидией' }[name] || name); // творительный: «цель с Аней»
-const fem = (name) => name !== 'Марк'; // «не ответила» / «не ответил»
+const LOG = '[WG]'; const K = window.CK; const { io, ci, phone, col, panel, row, btn, sheet, bar } = K;
+const FR = 'now_friends_top_graphite_dark.png';
+/* геометрия кадра (px 1080 × 2400): вкладки «Пик · Друзья · Наборы» 193…265 (подчёркивание до 265), пустое состояние 930…1540 — вырезаем
+   всё от 300 до 1540 и на это место ставим вкладку со списком; подложка вставки — градиент по цветам кадра на краях выреза */
+const FR_CUT = [300, 1540]; const BG = 'linear-gradient(180deg, rgb(27, 34, 42), rgb(7, 12, 17))';
+/* друзья как в приложении: монета ранга, серия, что делал; pair — «Серия вдвоём» (огонь пары: on / dim / off, дни, подпись pairRowSubline);
+   call — справа «Позвать» вместо шеврона (друг ещё не занимался или сегодня никто); rel — подпись без пары («N дней вместе») */
+const FRIENDS = [
+  { n: 'Аня', r: 12, streak: 'серия 9 дней', did: 'занималась сегодня', pair: { tone: 'on', days: 9, text: 'Оба занимались сегодня' } },
+  { n: 'Марк', r: 9, streak: 'серия 3 дня', did: 'занимался вчера', pair: { tone: 'dim', days: 3, text: 'Сегодня ещё без занятия' }, call: true },
+  { n: 'Лидия', r: 1, streak: 'серия 21 день', did: 'занималась сегодня', pair: { tone: 'on', days: 21, text: 'Занятие сделано · ждёт тебя' } },
+  { n: 'Олег', r: 7, streak: 'серия 2 дня', did: 'занимался вчера', pair: { tone: 'dim', days: 5, text: 'Сегодня ещё никто из вас' }, call: true },
+  { n: 'Соня', r: 3, streak: 'серия 1 день', did: 'занималась сегодня', pair: null, rel: '3 дня вместе' },
+  { n: 'Женя', r: 14, streak: 'серия прервалась', did: 'занимался на прошлой неделе', pair: { tone: 'off', days: 0, text: 'Серия прервалась' } },
+];
+const REQUEST = { n: 'Ирина', r: 2 }; let REQ = 'open'; // входящая заявка: open → accepted / declined (мгновенно, без ожидания сети)
+/* лента «Итоги недели» (прошлая неделя 19–25 октября): у кого были занятия — огонь/уроки/этаж и «Дать пять»; кто пропустил — «Позвать» */
+const WEEK = [
+  { n: 'Лидия', r: 1, kind: 'active', streak: 7, lessons: 9, floor: 4, line: 'Неделя без пропусков' },
+  { n: 'Аня', r: 12, kind: 'active', streak: 5, lessons: 6, floor: 3, line: null },
+  { n: 'Олег', r: 7, kind: 'rested' },
+];
+const WEEK_RANGE = '19–25 октября';
+const CASES = { 'Аня': ['Ане', 'Ани', 'Аней', 'Аню', true], 'Марк': ['Марку', 'Марка', 'Марком', 'Марка', false], 'Лидия': ['Лидии', 'Лидии', 'Лидией', 'Лидию', true], 'Олег': ['Олегу', 'Олега', 'Олегом', 'Олега', false], 'Соня': ['Соне', 'Сони', 'Соней', 'Соню', true], 'Женя': ['Жене', 'Жени', 'Женей', 'Женю', false], 'Ирина': ['Ирине', 'Ирины', 'Ириной', 'Ирину', true] };
+const dat = (name) => (CASES[name] || [name])[0]; const gen = (name) => (CASES[name] || [, name])[1] || name; const ins = (name) => (CASES[name] || [, , name])[2] || name; const acc = (name) => (CASES[name] || [, , , name])[3] || name; const fem = (name) => (CASES[name] || [, , , , true])[4];
 const INVITER = ['Аня', 12]; const INVITED_DAYS = 5; // сторона друга: Аня предлагает 5 дней из 7 (пример координатора 29.10)
 let PICK = 'Аня'; let PICK_DAYS = 7; // выбор в шторке «Цель недели вдвоём»: друг и дни — меняют цель после «Предложить»
 /* данные состояний: цель (дней), сделано у меня и у друга, осталось дней — сходятся: сделано ≤ прошедших дней, друг успевает */
 const DATA = { none: null, waiting: 'waiting', invited: 'invited', expired: 'expired', active: { goal: 7, me: 4, fr: 4, left: 3 }, lag: { goal: 5, me: 4, fr: 2, left: 3 }, done: { goal: 7, me: 7, fr: 7, left: 0 } };
 const ANSWER_DAYS = 3; // предложение без ответа гаснет через 3 дня (координатор 29.10)
 let FRIEND = ['Аня', 12];
+const CALLED = new Set(); const HF = new Set(); // «Позвать» / «Дать пять» — нажатое помнится при перерисовке раздела
 const days = (n) => `${n} ${n % 10 === 1 && n % 100 !== 11 ? 'день' : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 'дня' : 'дней'}`;
 const line = (name, rank, n, goal, act = '') => `<div class="wg-line${act ? ' t' : ''}"${act ? ` data-act="${act}"` : ''}>${ci(rank, 26)}<span class="nm">${name}</span><span class="bars">${bar(Math.round((n / goal) * 100))}</span><span class="n">${n} из ${goal}</span></div>`;
 const card = (st) => {
@@ -35,54 +52,76 @@ const card = (st) => {
   // без ответа три дня — предложение погасло
   if (d === 'expired') return panel('Цель недели вдвоём', '', `${row(ci(FRIEND[1], 30), `${FRIEND[0]} не ответил${fem(FRIEND[0]) ? 'а' : ''} — предложение погасло`, '', '', '', 'wg-wait')}${btn('Предложить снова', 'tonal sm', 'open:pick', 'refresh')}`);
   const lines = line('Ты', 5, d.me, d.goal) + line(FRIEND[0], FRIEND[1], d.fr, d.goal, `friend:${FRIEND[0]}`);
-  if (st === 'done') return panel('Цель недели вдвоём', `${io('checkmark-circle')} выполнена`, `${lines}<div class="wg-foot"><span class="wg-reward">${io('gift')}100 монет тебе и ${FRIEND[0] === 'Аня' ? 'Ане' : dat(FRIEND[0])}</span>${btn('Забрать', 'solid sm', 'claim', 'sparkles')}</div>`);
+  if (st === 'done') return panel('Цель недели вдвоём', `${io('checkmark-circle')} выполнена`, `${lines}<div class="wg-foot"><span class="wg-reward">${io('gift')}100 монет тебе и ${dat(FRIEND[0])}</span>${btn('Забрать', 'solid sm', 'claim', 'sparkles')}</div>`);
   const foot = st === 'lag'
     ? `<div class="wg-foot"><span class="wg-reward soft">${io('gift')}100 монет обоим</span>${btn('Напомнить', 'tonal sm', 'nudge', 'notifications-outline')}</div>`
     : `<div class="wg-foot"><span class="wg-reward soft">${io('gift')}100 монет обоим</span></div>`;
   return panel('Цель недели вдвоём', `ещё ${days(d.left)}`, `${lines}${foot}`);
 };
-const H_CARD = { none: 300, waiting: 400, invited: 400, expired: 400, active: 440, lag: 470, done: 470 }; // высота вставки в px КАДРА (insOn считает в кадре)
-const homeWill = (st) => phone(HOME, { inserts: [insOn(HOME, Y_HOME, H_CARD[st], card(st), 1740)] });
-/* «Друзья»: на месте пустого состояния — карточка цели и список друзей (строки как в приложении: монета, имя, что делал) */
-const friendsList = () => `<div class="wg-list">${FRIENDS.map(([n, r, s, w]) => row(ci(r, 40), n, '', w, `friend:${n}`)).join('')}</div>`;
-const H_FR = { none: 820, waiting: 940, invited: 940, expired: 900, active: 1080, lag: 1120, done: 1120 }; // высота вставки в px кадра
-const frWill = (st) => phone(FR, { cut: FR_CUT, inserts: [insOn(FR, FR_CUT[0], H_FR[st], `<div class="wg-fr">${card(st)}${friendsList()}</div>`, 924)] }); // карточка друга — только по тапу (координатор 29.10: не всплывать поверх тоста)
+/* вкладка «Друзья» как в приложении */
+const pill = (label, ic, cls, act) => `<span class="wf-pill${cls ? ' ' + cls : ''}${act ? ' t' : ''}"${act ? ` data-act="${act}"` : ''}>${ic ? io(ic) : ''}${label}</span>`;
+const weekCard = (w) => {
+  const head = `<div class="hd">${ci(w.r, 40)}<div class="tx"><div class="nm">${w.n}</div><div class="rg">${WEEK_RANGE}</div></div></div>`;
+  if (w.kind === 'rested') return `<div class="wf-wk rest">${head}<div class="rest">Без занятий на этой неделе. Позовёшь?</div><div class="wf-grow"></div>${CALLED.has(w.n) ? pill('Позвали', 'checkmark', 'done') : pill('Позвать', 'notifications-outline', '', `call:${w.n}`)}</div>`;
+  const stats = `<div class="wf-st"><span>${io('flame')}${w.streak}</span><span>${io('book')}${w.lessons}</span><span>${io('podium')}${w.floor}</span></div>`;
+  return `<div class="wf-wk">${head}${stats}${w.line ? `<div class="ln">${w.line}</div>` : ''}<div class="wf-grow"></div>${HF.has(w.n) ? pill('Пять отправлено', 'checkmark', 'done') : pill('Дать пять', 'hand-left-outline', '', `hf:${w.n}`)}</div>`;
+};
+const rail = () => `<div class="wf-sec"><div class="tl"><b>Итоги недели</b><span class="wf-cnt">${WEEK.length}</span></div><span class="wf-when">пн · 9:00</span></div><div class="wf-rail">${WEEK.map(weekCard).join('')}</div>`;
+const friendRow = (f) => {
+  const sub = f.pair
+    ? `<div class="wf-sub"><span class="fl ${f.pair.tone}">${io('flame')}${f.pair.days ? days(f.pair.days) : ''}</span><span class="pt">${f.pair.text}</span></div>`
+    : `<div class="wf-sub"><span class="pt">${f.rel || f.did}</span></div>`;
+  const right = f.call ? (CALLED.has(f.n) ? pill('Позвали', 'checkmark', 'call done') : pill('Позвать', '', 'call', `call:${f.n}`)) : `<span class="chev">${io('chevron-forward')}</span>`;
+  return `<div class="wf-card"><span class="t" data-act="friend:${f.n}">${ci(f.r, 44)}</span><div class="tx t" data-act="friend:${f.n}"><div class="nm">${f.n}</div>${sub}</div>${right}</div>`;
+};
+const requestCard = () => `<div class="wf-card wf-req"><div class="top">${ci(REQUEST.r, 44)}<div class="tx"><div class="nm">${REQUEST.n}</div><div class="wf-sub"><span class="pt">Хочет добавить тебя в друзья</span></div></div></div><div class="acts">${btn('Принять', 'solid', 'req:accept')}${btn('Отклонить', 'ghost', 'req:decline')}</div></div>`;
+const listHeader = () => `<div class="wf-sec"><div class="tl">${REQ === 'open' ? `<b>Активные заявки</b><span class="wf-cnt">1</span>` : '<b>Твои друзья</b>'}</div><span class="wf-rb">${io('add')}</span></div>`;
+const rowsOf = () => (REQ === 'accepted' ? [{ n: REQUEST.n, r: REQUEST.r, pair: null, rel: 'Сегодня в друзьях' }, ...FRIENDS] : FRIENDS).map(friendRow).join('');
+/* вкладка целиком: лента, шапка, заявка, «Твои друзья», [карточка цели], строки; goal = null — как сейчас, без карточки */
+const tab = (goal) => `<div class="wf">${rail()}${listHeader()}${REQ === 'open' ? `${requestCard()}<div class="wf-title">Твои друзья</div>` : ''}${goal || ''}${rowsOf()}</div>`;
+const frPhone = (html) => phone(FR, { cut: FR_CUT, inserts: [{ y: FR_CUT[0], html: `<div class="wf-ins" style="background:${BG}">${html}</div>` }] });
+const frNow = () => frPhone(tab(null));
+const frWill = (st) => frPhone(tab(card(st))); // карточка друга — только по тапу (координатор 29.10: не всплывать поверх тоста)
 const sectionOf = (ph) => ph.closest('section.block').id;
-const pickRows = () => FRIENDS.map(([n, r, s]) => row(ci(r, 36), n, '', s, `choose:${n}`, n === PICK ? 'wg-sel' : '')).join('');
+const rightPhone = (id) => document.querySelector(`#${id} .col:nth-child(2) .ph`); /* зачем: правый телефон — «как будет»; .lbl тоже div, поэтому nth-of-type ловил левый */
+const pickRows = () => FRIENDS.map((f) => row(ci(f.r, 36), f.n, '', f.streak, `choose:${f.n}`, f.n === PICK ? 'wg-sel' : '')).join('');
 const SHEETS = {
   pick: () => sheet('Цель недели вдвоём', `${pickRows()}<div class="wg-days"><span class="t${PICK_DAYS === 5 ? ' on' : ''}" data-act="days:5">5 дней</span><span class="t${PICK_DAYS === 7 ? ' on' : ''}" data-act="days:7">7 дней</span></div>${btn(`Предложить ${dat(PICK)}`, 'solid', 'propose', 'paper-plane-outline').replace('class="ck-btn', 'data-propose class="ck-btn')}`),
-  friend: (ph) => { const name = ph.dataset.friend || FRIEND[0]; const f = FRIENDS.find((x) => x[0] === name) || FRIENDS[0]; const st = K.state[sectionOf(ph)] || 'active'; const d = typeof DATA[st] === 'object' ? DATA[st] : null; const mine = name === FRIEND[0] && !!d; const pending = st === 'waiting' && name === FRIEND[0]; const inv = st === 'invited' && name === INVITER[0]; /* зачем: карточка друга показывает то же, что карточка цели на этом экране — в т. ч. «ждём ответа» и приглашение, без повторного «Предложить цель» */ return sheet(name, `${row(ci(f[1], 44), f[2][0].toUpperCase() + f[2].slice(1), '', '')}${mine ? row(`<span class="ic">${io('flag-outline')}</span>`, d.left ? `Цель недели: ${d.fr} из ${d.goal}, ещё ${days(d.left)}` : `Цель недели выполнена: ${d.fr} из ${d.goal}`, '', '') : pending ? row(`<span class="ic">${io('flag-outline')}</span>`, `Предложение отправлено, ждём ответа ещё ${days(ANSWER_DAYS)}`, '', '') : inv ? row(`<span class="ic">${io('flag-outline')}</span>`, `Предлагает цель: ${days(INVITED_DAYS)} из 7`, '', '') : row(`<span class="ic">${io('flag-outline')}</span>`, 'Цели недели вдвоём пока нет', '', '')}${mine ? `<div class="wg-sheet-bars">${line('Ты', 5, d.me, d.goal)}${line(name, f[1], d.fr, d.goal)}</div>` : ''}<div class="wg-acts">${mine ? (d.left ? btn('Напомнить', 'tonal sm', 'nudge', 'notifications-outline') : '') : pending ? '' : inv ? btn('Принять', 'solid sm', 'accept', 'checkmark') : btn('Предложить цель', 'tonal sm', 'open:pick', 'flag-outline')}${btn('Дать пять', 'tonal sm', 'toast:Дал пять', 'hand-right')}</div>`); },
+  friend: (ph) => { const name = ph.dataset.friend || FRIEND[0]; const f = FRIENDS.find((x) => x.n === name) || FRIENDS[0]; const st = K.state[sectionOf(ph)] || 'active'; const d = typeof DATA[st] === 'object' ? DATA[st] : null; const mine = name === FRIEND[0] && !!d; const pending = st === 'waiting' && name === FRIEND[0]; const inv = st === 'invited' && name === INVITER[0]; /* зачем: карточка друга показывает то же, что карточка цели на этом экране — в т. ч. «ждём ответа» и приглашение, без повторного «Предложить цель» */ return sheet(name, `${row(ci(f.r, 44), f.streak[0].toUpperCase() + f.streak.slice(1), '', f.did)}${mine ? row(`<span class="ic">${io('flag-outline')}</span>`, d.left ? `Цель недели: ${d.fr} из ${d.goal}, ещё ${days(d.left)}` : `Цель недели выполнена: ${d.fr} из ${d.goal}`, '', '') : pending ? row(`<span class="ic">${io('flag-outline')}</span>`, `Предложение отправлено, ждём ответа ещё ${days(ANSWER_DAYS)}`, '', '') : inv ? row(`<span class="ic">${io('flag-outline')}</span>`, `Предлагает цель: ${days(INVITED_DAYS)} из 7`, '', '') : row(`<span class="ic">${io('flag-outline')}</span>`, 'Цели недели вдвоём пока нет', '', '')}${mine ? `<div class="wg-sheet-bars">${line('Ты', 5, d.me, d.goal)}${line(name, f.r, d.fr, d.goal)}</div>` : ''}<div class="wg-acts">${mine ? (d.left ? btn('Напомнить', 'tonal sm', 'nudge', 'notifications-outline') : '') : pending ? '' : inv ? btn('Принять', 'solid sm', 'accept', 'checkmark') : btn('Предложить цель', 'tonal sm', 'open:pick', 'flag-outline')}${btn('Дать пять', 'tonal sm', 'toast:Дал пять', 'hand-right')}</div>`); },
 };
 const onAct = (name, arg, node, ph) => {
   if (name === 'choose') { PICK = arg; node.parentElement.querySelectorAll('.ck-row').forEach((r) => r.classList.toggle('wg-sel', r === node)); const b = ph.querySelector('[data-propose]'); if (b) b.lastChild.textContent = `Предложить ${dat(PICK)}`; K.once(node, 'pop'); return true; }
   if (name === 'days') { PICK_DAYS = Number(arg); node.parentElement.querySelectorAll('span').forEach((s) => s.classList.toggle('on', s === node)); K.once(node, 'pop'); return true; }
-  if (name === 'propose') { // мгновенно: цель появляется в карточке (друг и дни из шторки), сеть догоняет; друг подтвердит позже
-    const f = FRIENDS.find((x) => x[0] === PICK) || FRIENDS[0]; FRIEND = [f[0], f[1]]; DATA.active = { goal: PICK_DAYS, me: Math.min(4, PICK_DAYS - 1), fr: Math.min(4, PICK_DAYS - 1), left: 3 }; DATA.done = { goal: PICK_DAYS, me: PICK_DAYS, fr: PICK_DAYS, left: 0 };
-    K.closeSheet(ph); const id = sectionOf(ph); K.after(360, () => { K.setState(id, 'waiting'); const nph = document.querySelector(`#${id} .col:nth-child(2) .ph`); /* зачем: правый телефон — «как будет»; .lbl тоже div, поэтому nth-of-type ловил левый */ if (nph) K.toast(nph, `Предложение отправлено ${dat(FRIEND[0])}`, 'paper-plane-outline'); }); return true;
+  if (name === 'propose') { // мгновенно: карточка показывает «ждём ответа» (друг и дни из шторки), сеть догоняет
+    const f = FRIENDS.find((x) => x.n === PICK) || FRIENDS[0]; FRIEND = [f.n, f.r]; DATA.active = { goal: PICK_DAYS, me: Math.min(4, PICK_DAYS - 1), fr: Math.min(4, PICK_DAYS - 1), left: 3 }; DATA.done = { goal: PICK_DAYS, me: PICK_DAYS, fr: PICK_DAYS, left: 0 };
+    K.closeSheet(ph); const id = sectionOf(ph); K.after(360, () => { K.setState(id, 'waiting'); const nph = rightPhone(id); if (nph) K.toast(nph, `Предложение отправлено ${dat(FRIEND[0])}`, 'paper-plane-outline'); }); return true;
   }
   if (name === 'accept') { // мгновенно: цель открывается с нуля на предложенные дни, сеть догоняет
     FRIEND = [INVITER[0], INVITER[1]]; DATA.active = { goal: INVITED_DAYS, me: 0, fr: 0, left: 7 }; DATA.done = { goal: INVITED_DAYS, me: INVITED_DAYS, fr: INVITED_DAYS, left: 0 };
-    const id = sectionOf(ph); K.setState(id, 'active'); const nph = document.querySelector(`#${id} .col:nth-child(2) .ph`); if (nph) K.toast(nph, `Цель с ${ins(FRIEND[0])} принята`, 'checkmark-circle'); return true;
+    const id = sectionOf(ph); K.setState(id, 'active'); const nph = rightPhone(id); if (nph) K.toast(nph, `Цель с ${ins(FRIEND[0])} принята`, 'checkmark-circle'); return true;
   }
-  if (name === 'decline') { const id = sectionOf(ph); K.setState(id, 'none'); const nph = document.querySelector(`#${id} .col:nth-child(2) .ph`); if (nph) K.toast(nph, `${INVITER[0]} узнает: не сейчас`, 'close'); return true; }
-  if (name === 'cancel') { const id = sectionOf(ph); K.setState(id, 'none'); const nph = document.querySelector(`#${id} .col:nth-child(2) .ph`); if (nph) K.toast(nph, 'Предложение отменено', 'close'); return true; }
+  if (name === 'decline') { const id = sectionOf(ph); K.setState(id, 'none'); const nph = rightPhone(id); if (nph) K.toast(nph, `${INVITER[0]} узнает: не сейчас`, 'close'); return true; }
+  if (name === 'cancel') { const id = sectionOf(ph); K.setState(id, 'none'); const nph = rightPhone(id); if (nph) K.toast(nph, 'Предложение отменено', 'close'); return true; }
   if (name === 'friend') { ph.dataset.friend = arg; K.openSheet(ph, 'friend'); return true; }
   if (name === 'nudge') { K.closeSheet(ph); K.after(ph.querySelector('.ck-ov') ? 380 : 0, () => K.toast(ph, `Напомнил ${dat(FRIEND[0])}`, 'notifications-outline')); return true; }
   if (name === 'claim') { K.once(node, 'pop'); node.innerHTML = `${io('checkmark')}Получено`; node.classList.remove('solid'); node.classList.add('tonal'); K.toast(ph, `100 монет — тебе и ${dat(FRIEND[0])}`, 'gift'); return true; }
+  if (name === 'call') { // как в приложении: «Позвать» → «Позвали» сразу, до ответа сервера (состояния кнопки, идея 1)
+    CALLED.add(arg); node.classList.add('done'); node.classList.remove('t'); node.removeAttribute('data-act'); node.innerHTML = `${io('checkmark')}Позвали`; K.once(node, 'pop'); K.toast(ph, `Позвали ${acc(arg)}`, 'notifications-outline'); return true;
+  }
+  if (name === 'hf') { HF.add(arg); node.classList.add('done'); node.classList.remove('t'); node.removeAttribute('data-act'); node.innerHTML = `${io('checkmark')}Пять отправлено`; K.once(node, 'pop'); K.toast(ph, 'Пятюня отправлена', 'hand-right'); return true; }
+  if (name === 'req') { // заявка: принято/отклонено — экран меняется сразу (карточка уходит, Ирина в списке), запись догоняет
+    REQ = arg === 'accept' ? 'accepted' : 'declined'; const id = sectionOf(ph); const wasRight = ph === rightPhone(id); K.renderSection(id); const target = wasRight ? rightPhone(id) : document.querySelector(`#${id} .col:nth-child(1) .ph`); if (target) K.toast(target, arg === 'accept' ? `${REQUEST.n} теперь в друзьях` : 'Заявка отклонена', arg === 'accept' ? 'checkmark-circle' : 'close'); return true;
+  }
   return false;
 };
 const SECTIONS = [
-  { id: 'wg-home', title: 'На Главной — карточка под панелью «Сегодня»',
-    lead: 'Слева — Главная как сейчас (кадр сборки, «Затмение»). Справа — тот же кадр со вставленной карточкой «Цель недели вдвоём»: дни занятий обоих и сколько дней осталось. Состояния чипами: нет цели (выбрать друга и 5 или 7 дней — после «Предложить» карточка сразу показывает «ждём ответа»), ждём ответа (у предлагающего: отсчёт трёх дней, «Отменить»), приглашение от друга (у друга: «Принять» / «Не сейчас» — принятие сразу открывает цель), идёт (оба 4 из 7, ещё 3 дня), друг отстаёт (цель 5 дней: ты 4, друг 2, ещё 3 дня — напомнить), выполнена (забрать 100 монет), погасло (без ответа три дня — «Предложить снова»). Тап по строке друга открывает его карточку. Награда 100 монет обоим — цифра на утверждение владельца; без награды цель работает как серия вдвоём. Напоминание — раз в день на друга, тихие часы 22–09, как «Позвать» серии вдвоём.',
-    costs: [['Чтения', '0 новых — дни занятий друга уже есть в снимке «Вместе» (как серия вдвоём, active_days); цель хранится в профиле пары'], ['Записи', '1 документ friend_goals/{пара}_{неделя} при предложении, +1 при ответе друга («Принять» / «Не сейчас»); погасание через 3 дня считает телефон по дате предложения — записей нет; награда — серверная функция по дням обоих: 2 записи монет + 1 статус; напоминание — friendsNudge как у серии (1 запись)'], ['Итого', '≤ 4 записи на пару в неделю, чтений нет → на 1000 активных ≈ $0,001 в день'], ['Решение владельца', 'идея 4 отклонена 21.10 — макет для пересмотра']],
+  { id: 'wg-friends', title: 'В «Друзьях» — вкладка с друзьями и карточка цели над списком',
+    lead: 'Владелец 29.10: на Главной карточки нет — цель живёт только в «Друзьях». Вкладка показана сразу с друзьями, как в приложении: лента «Итоги недели» (прошлая неделя, «Дать пять» / «Позвать»), входящая заявка («Принять» / «Отклонить»), «Твои друзья» и строки с огнём пары, подписью дня и «Позвать» у тех, кого есть смысл звать. Кадра со списком у Сверки пока нет (у тестового аккаунта нет друзей) — список собран по строкам приложения на реальном кадре, кадр заказан. Карточка цели — под заголовком «Твои друзья», над строками. Состояния чипами: нет цели (выбрать друга и 5 или 7 дней — после «Предложить» карточка сразу показывает «ждём ответа»), ждём ответа (отсчёт трёх дней, «Отменить»), приглашение от друга («Принять» / «Не сейчас»), идёт (оба 4 из 7, ещё 3 дня), друг отстаёт (цель 5: ты 4, друг 2 — напомнить), выполнена (забрать 100 монет), погасло (без ответа три дня — «Предложить снова»). Тап по другу открывает его карточку. Награда 100 монет обоим — цифра на утверждение владельца.',
+    costs: [['Чтения', '0 новых — дни занятий друга уже есть в снимке «Вместе» (как серия вдвоём, active_days); цель хранится в профиле пары'], ['Записи', '1 документ friend_goals/{пара}_{неделя} при предложении, +1 при ответе друга («Принять» / «Не сейчас»); погасание через 3 дня считает телефон по дате предложения — записей нет; награда — серверная функция по дням обоих: 2 записи монет + 1 статус; напоминание — friendsNudge как у серии (1 запись)'], ['Итого', '≤ 4 записи на пару в неделю, чтений нет → на 1000 активных ≈ $0,001 в день'], ['Решение владельца', 'идея 4 отклонена 21.10 — макет для пересмотра; 29.10: «в Друзьях — хорошо», на Главной не показывать']],
     states: [['none', 'Нет цели'], ['waiting', 'Ждём ответа'], ['invited', 'Приглашение от Ани'], ['active', 'Идёт · оба 4 из 7'], ['lag', 'Друг отстаёт · цель 5'], ['done', 'Выполнена'], ['expired', 'Погасло']],
-    body: (st) => [col('Сейчас · Главная, кадр приложения', phone(HOME)), col({ none: 'Как будет · предложить цель другу', waiting: 'Как будет · ждём ответа друга', invited: 'Как будет · у друга: принять или не сейчас', active: 'Как будет · цель идёт', lag: 'Как будет · друг отстаёт — напомнить', done: 'Как будет · выполнена, награда обоим', expired: 'Как будет · без ответа три дня — погасло' }[st], homeWill(st))] },
-  { id: 'wg-friends', title: 'В «Друзьях» — та же карточка над списком и цель в карточке друга',
-    lead: 'На вкладке «Друзья» карточка цели стоит над списком друзей (на кадре пустое состояние заменено списком из трёх друзей — кадр со списком Сверка снимет позже). Тап по другу открывает его карточку: прогресс обоих, «Напомнить», «Дать пять»; у друга без цели — «Предложить цель».',
-    costs: [['Чтения', '0 — то же состояние, что на Главной'], ['Записи', 'напоминание — 1 запись (friendsNudge), не чаще раза в день на друга']],    states: [['active', 'Идёт'], ['invited', 'Приглашение от Ани'], ['waiting', 'Ждём ответа'], ['none', 'Нет цели'], ['done', 'Выполнена'], ['expired', 'Погасло']],
-    body: (st) => [col('Сейчас · «Друзья», кадр приложения', phone(FR)), col({ none: 'Как будет · предложить цель', waiting: 'Как будет · ждём ответа друга', invited: 'Как будет · у друга: принять или не сейчас', active: 'Как будет · цель над списком (тап по другу — его карточка)', done: 'Как будет · выполнена', expired: 'Как будет · без ответа три дня — погасло' }[st], frWill(st))] },
+    body: (st) => [col('Сейчас · вкладка с друзьями (список по строкам приложения, кадр заказан Сверке)', frNow()), col({ none: 'Как будет · предложить цель другу', waiting: 'Как будет · ждём ответа друга', invited: 'Как будет · у друга: принять или не сейчас', active: 'Как будет · цель идёт (тап по другу — его карточка)', lag: 'Как будет · друг отстаёт — напомнить', done: 'Как будет · выполнена, награда обоим', expired: 'Как будет · без ответа три дня — погасло' }[st], frWill(st))] },
 ];
 K.mount({ sections: SECTIONS, sheets: SHEETS, onAct });
-console.log(LOG, 'готово', JSON.stringify({ home: K.have(HOME), friends: K.have(FR) })); // guard-ok: одна строка на страницу
-window.__wg = { SECTIONS, DATA, pick: () => [PICK, PICK_DAYS] };
+console.log(LOG, 'готово', JSON.stringify({ friends: K.have(FR), rows: FRIENDS.length, week: WEEK.length })); // guard-ok: одна строка на страницу
+window.__wg = { SECTIONS, DATA, pick: () => [PICK, PICK_DAYS], req: () => REQ };
 })();

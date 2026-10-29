@@ -1,5 +1,6 @@
 /* week-goal-together.css — карточка «Цель недели вдвоём» (см. week-goal-together.app.js): карточка тоном opaqueCard r22 как панель
-   «Сегодня», две строки «монета · имя · полоса · n из 7», подвал с наградой и кнопкой 40/r20. */
+   «Сегодня», две строки «монета · имя · полоса · n из 7», подвал с наградой и кнопкой 40/r20. Плюс вкладка «Друзья» со списком — размеры
+   компонентов приложения (FriendWeekRail / FriendsRequestCard / FriendListRow / FriendsGlassKit), префикс wf-. */
 .wg-line { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-radius: 10px; }
 .wg-line.t { cursor: pointer; }
 .wg-line .nm { width: 34px; font-size: 14px; font-weight: 600; color: var(--tx); flex: none; }
@@ -22,11 +23,58 @@
 .ck-panel .hd b { white-space: normal; line-height: 20px; }
 .ck-row.wg-sel { background: rgba(255, 255, 255, .08); margin: 0 -8px; padding-left: 8px; padding-right: 8px; border-radius: 12px; }
 .wg-sheet-bars { margin: 6px 0 4px; }
-/* «Друзья»: карточка цели и список друзей на месте пустого состояния */
-.wg-fr { padding: 20px 20px 24px; }
-.wg-list { margin-top: 6px; padding: 4px 14px; border-radius: 22px; background: var(--card); }
-.wg-list .ck-row { padding: 10px 0; }
-.wg-list .ck-row .tx b { font-size: 15px; }
-.wg-list .ck-row .rt { font-weight: 500; }
+.ck-sheet .ck-row .tx b { white-space: normal; }
 .wg-acts { display: flex; gap: 8px; margin-top: 8px; }
 .wg-acts .ck-btn { flex: 1; margin: 0; }
+/* ——— вкладка «Друзья» со списком (владелец 29.10: показывать сразу с друзьями) ——— */
+.wf-ins { position: relative; }
+.wf { padding: 12px 20px 24px; } /* боковое поле списка 20 dp, как PX вкладки */
+/* шапка секции: заголовок 19/24, счётчик 24/r12 тоном контрола, справа «пн · 9:00» или круглый «+» 44 */
+.wf-sec { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 44px; margin: 0 0 12px; }
+.wf-sec .tl { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.wf-sec b { font-size: 19px; line-height: 24px; font-weight: 700; color: var(--tx); }
+.wf-cnt { min-width: 33px; height: 24px; padding: 0 9px; border-radius: 12px; background: var(--ctl); display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--tx); font-variant-numeric: tabular-nums; }
+.wf-when { font-size: 16px; line-height: 21px; font-weight: 600; color: var(--sec); flex: none; }
+.wf-rb { width: 44px; height: 44px; border-radius: 50%; background: var(--ctl); display: inline-flex; align-items: center; justify-content: center; color: var(--tx); font-size: 20px; flex: none; box-shadow: 0 1px 2px rgba(0, 0, 0, .28); }
+.wf-title { font-size: 19px; line-height: 24px; font-weight: 700; color: var(--tx); margin: 24px 0 12px; }
+/* лента «Итоги недели»: карточки 236 r22 поля 14, листаются вбок от края до края экрана */
+.wf-rail { display: flex; gap: 10px; overflow-x: auto; scrollbar-width: none; margin: 0 -20px 12px; padding: 0 20px 6px; scroll-snap-type: x mandatory; }
+.wf-rail::-webkit-scrollbar { display: none; }
+.wf-wk { flex: none; width: 236px; min-height: 150px; border-radius: 22px; padding: 14px; background: var(--card); display: flex; flex-direction: column; scroll-snap-align: start; box-shadow: 0 2px 8px rgba(0, 0, 0, .24); }
+.wf-wk.rest { opacity: .8; }
+.wf-wk .hd { display: flex; align-items: center; gap: 12px; }
+.wf-wk .tx { flex: 1; min-width: 0; }
+.wf-wk .nm { font-size: 16px; line-height: 21px; font-weight: 700; color: var(--tx); }
+.wf-wk .rg { font-size: 13px; line-height: 17px; color: var(--sec); }
+.wf-wk .wf-st { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+.wf-wk .wf-st span { display: inline-flex; align-items: center; gap: 3px; font-size: 16px; line-height: 21px; font-weight: 700; color: var(--tx); font-variant-numeric: tabular-nums; }
+.wf-wk .wf-st .io { font-size: 15px; color: var(--acc); }
+.wf-wk .ln { margin-top: 6px; font-size: 13px; line-height: 18px; color: var(--sec); }
+.wf-wk .rest { margin-top: 12px; min-height: 58px; font-size: 13px; line-height: 18px; color: var(--sec); }
+.wf-wk .wf-grow { flex: 1; }
+/* пилюля 36/r18: «Дать пять» / «Позвать» тоном контрола; «готово» — мягкий успех; в строке «Позвать» — заливка цветом текста, надпись цветом плашки (FriendCallPill) */
+.wf-pill { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; border-radius: 18px; padding: 6px 14px; background: var(--ctl); color: var(--tx); font-size: 16px; line-height: 21px; font-weight: 700; align-self: flex-start; margin-top: 10px; flex: none; }
+.wf-pill.t { cursor: pointer; }
+.wf-pill .io { font-size: 16px; }
+.wf-pill.done { background: rgba(111, 208, 140, .18); color: #9BE3B2; }
+.wf-pill.call { background: var(--tx); color: var(--card); margin: 0; }
+.wf-pill.call.done { background: rgba(111, 208, 140, .18); color: #9BE3B2; }
+/* строка друга: плашка 64 r14 поля 10/14 зазор 14, монета 44, имя 16/21, подпись 13/18 с огнём пары, шеврон 18 */
+.wf-card { display: flex; align-items: center; gap: 14px; min-height: 64px; border-radius: 14px; padding: 10px 14px; background: var(--card); box-shadow: 0 2px 8px rgba(0, 0, 0, .24); margin-bottom: 10px; }
+.wf-card > .t { cursor: pointer; }
+.wf-card .ck-coin { flex: none; display: block; }
+.wf-card .tx { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.wf-card .nm { font-size: 16px; line-height: 21px; font-weight: 700; color: var(--tx); }
+.wf-card .wf-sub { font-size: 13px; line-height: 18px; color: var(--sec); display: flex; align-items: center; gap: 6px; min-width: 0; }
+.wf-card .wf-sub .pt { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wf-card .wf-sub .fl { display: inline-flex; align-items: center; gap: 3px; font-size: 13px; line-height: 17px; font-weight: 700; color: var(--tx); flex: none; }
+.wf-card .wf-sub .fl .io { font-size: 15px; color: var(--acc); }
+.wf-card .wf-sub .fl.dim { color: var(--sec); } .wf-card .wf-sub .fl.dim .io { opacity: .55; }
+.wf-card .wf-sub .fl.off { color: var(--sec); } .wf-card .wf-sub .fl.off .io { opacity: .35; }
+.wf-card .chev { font-size: 18px; color: var(--sec); flex: none; }
+/* карточка заявки: столбиком, поля 14, зазор 12; кнопки 44/r22 во всю строку, «Отклонить» — тоном кнопки без заливки темы */
+.wf-req { flex-direction: column; align-items: stretch; gap: 12px; padding: 14px; margin-bottom: 0; }
+.wf-req .top { display: flex; align-items: center; gap: 12px; }
+.wf-req .acts { display: flex; gap: 10px; }
+.wf-req .acts .ck-btn { flex: 1; margin: 0; height: 44px; border-radius: 22px; font-size: 16px; font-weight: 600; }
+.ck-btn.ghost { background: var(--ctl); color: var(--tx); }

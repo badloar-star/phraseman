@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга про вчорашні покупки й ягоди для пирога.
 
-**Що ви опануєте:** повторити: запитати про минуле з yesterday, last week
+**Що ви опануєте:** запитати, чи купили щось учора: Did you buy blackcurrants yesterday?
 **Нові слова:** blackcurrants, redcurrants, gooseberries, cranberries
 
 ## Інтро 1

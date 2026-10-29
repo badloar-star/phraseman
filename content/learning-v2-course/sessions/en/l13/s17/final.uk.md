@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть другові, як учора змінювалися темп і настрій.
 
-**Що ви опануєте:** після did і didn’t ставити дію без змін: Did you see? I didn’t see
+**Що ви опануєте:** після did і didn’t ставити дію без змін: Did you calm down quickly yesterday?
 **Нові слова:** slow down, speed up, calm down, cheer up
 
 ## Інтро 1

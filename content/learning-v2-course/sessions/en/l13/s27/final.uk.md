@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга, які овочі він учора приготував.
 
-**Що ви опануєте:** повторити: did і didn’t з yesterday, last week
+**Що ви опануєте:** запитати, що робили з овочами: Did he buy vegetables last week?
 **Нові слова:** sweet potato, turnip, parsnip, butternut squash
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Підбийте підсумок поїздки: дорога туди, пересадка, ночівля й повернення.
 
-**Що ви опануєте:** повторити: запитати про минуле й розповісти по черзі — Did you call? First I called, then I left.
+**Що ви опануєте:** повторити: запитати про минуле й розповісти по черзі: Did you enjoy the outward journey?
 **Нові слова:** outward journey, return journey, connecting flight, overnight stay
 
 ## Інтро 1

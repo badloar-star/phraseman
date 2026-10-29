@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросите друга, какие овощи он вчера приготовил.
 
-**Что вы освоите:** повторить: did и didn’t с yesterday, last week
+**Что вы освоите:** спросить, что делали с овощами: Did he buy vegetables last week?
 **Новые слова:** sweet potato, turnip, parsnip, butternut squash
 
 ## Интро 1

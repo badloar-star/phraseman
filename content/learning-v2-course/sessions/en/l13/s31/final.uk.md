@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви обговорюєте невелику домашню випадковість, пояснюєте відчинене вікно й готуєтеся вийти.
 
-**Що ви опануєте:** запитати про минуле з yesterday, last week: Did you go yesterday?
+**Що ви опануєте:** запитати про минуле з yesterday, last week: Did you drop it yesterday?
 **Нові слова:** accidentally, deliberately, properly, completely
 
 ## Інтро 1

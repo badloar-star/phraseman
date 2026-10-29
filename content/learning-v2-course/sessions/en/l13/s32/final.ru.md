@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросите друга о вчерашних покупках и ягодах для пирога.
 
-**Что вы освоите:** повторить: спросить о прошлом с yesterday, last week
+**Что вы освоите:** спросить, купили ли что-то вчера: Did you buy blackcurrants yesterday?
 **Новые слова:** blackcurrants, redcurrants, gooseberries, cranberries
 
 ## Интро 1

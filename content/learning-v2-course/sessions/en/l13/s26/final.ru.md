@@ -2,7 +2,7 @@
 
 **Ситуация.** Спросите друга о вчерашней уборке дома и в саду.
 
-**Что вы освоите:** повторить: did и didn’t с yesterday, last week
+**Что вы освоите:** спросить, делали ли дела по дому: Did he wash the windows yesterday?
 **Новые слова:** garden shed, doorframe, window frame, curtain rail
 
 ## Интро 1

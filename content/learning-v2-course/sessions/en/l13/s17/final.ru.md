@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите другу, как вчера менялись темп и настроение.
 
-**Что вы освоите:** после did и didn’t ставить действие без изменений: Did you see? I didn’t see
+**Что вы освоите:** после did и didn’t ставить действие без изменений: Did you calm down quickly yesterday?
 **Новые слова:** slow down, speed up, calm down, cheer up
 
 ## Интро 1

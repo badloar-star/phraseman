@@ -2,7 +2,7 @@
 
 **Ситуація.** Запитайте друга про вчорашнє прибирання вдома й у саду.
 
-**Що ви опануєте:** повторити: did і didn’t з yesterday, last week
+**Що ви опануєте:** запитати, чи робили справи вдома: Did he wash the windows yesterday?
 **Нові слова:** garden shed, doorframe, window frame, curtain rail
 
 ## Інтро 1

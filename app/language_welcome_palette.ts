@@ -9,6 +9,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import { homeSceneTokensForTheme, relativeLuminance } from '../components/home/v2/scene/home_scene_tokens';
 import { SPIRE_SCENE_INK } from '../components/spire/scene/spire_scene_palette';
+import { sceneBottomHex, scenePaletteCached, sceneTopHex } from '../components/scene/scene_palette';
 
 export type LanguageWelcomePalette = Readonly<{
   /** Градиент сцены сверху вниз; нижний цвет — фон экрана. */
@@ -67,12 +68,16 @@ function legibleInk(bottom: string, stops: readonly string[]): string {
 export function languageWelcomePalette(themeId: string, appearance: 'dark' | 'light'): LanguageWelcomePalette {
   const scene = homeSceneTokensForTheme(themeId, appearance);
   const accent = scene.todayRing[1];
+  // зачем (вердикт владельца 29.10, scenePalette): верх и низ фона экрана — из единой функции сцены (тёмное «Глубокое небо», светлое «А»); кольца темы остаются из сцены Главной
+  const pal = scenePaletteCached(themeId, appearance, 'home', 1080, 1082, 2.625);
+  const sceneTop = sceneTopHex(pal);
+  const sceneBottom = sceneBottomHex(pal);
   return Object.freeze({
-    top: scene.sceneTop,
-    bottom: scene.sceneBottom,
+    top: sceneTop,
+    bottom: sceneBottom,
     text: SPIRE_SCENE_INK.text,
     soft: SPIRE_SCENE_INK.muted,
-    ink: legibleInk(scene.sceneBottom, scene.todayRing),
+    ink: legibleInk(sceneBottom, scene.todayRing),
     mark: accent,
     accentSoft: withAlpha(accent, 0.16),
     haloDone: withAlpha(accent, 0.22),

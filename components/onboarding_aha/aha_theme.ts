@@ -7,6 +7,7 @@
 // хук — use_aha_theme.ts; страж — tests/onboarding_aha_theme_palette.test.ts (все темы × оформления).
 import { liquidGlassTokens } from '../../constants/liquidGlassThemePalette';
 import { homeSceneTokensForTheme, relativeLuminance } from '../home/v2/scene/home_scene_tokens';
+import { sceneBottomHex, scenePaletteCached, sceneTopHex } from '../scene/scene_palette';
 import { themeRoleAlpha } from '../theme_role_colors';
 
 const HEX6 = /^#([0-9a-f]{6})$/i;
@@ -104,10 +105,12 @@ export function ahaThemeFor(themeId: string, appearance: 'dark' | 'light'): AhaT
   // зачем (Ревизор по ec25c850c, координатор 28.10): белый свет сцены — токен text темы (тёмный набор: почти белый), а не литерал rgba(255,255,255,…); стекло и текст на тёмной сцене — он же с прозрачностью
   const light = glass.text;
   const whiteA = (a: number): string => themeRoleAlpha(light, a);
-  const bottom = scene.sceneBottom;
+  // зачем (вердикт владельца 29.10, scenePalette): верх и низ фона онбординга — из единой функции сцены (тёмное «Глубокое небо», светлое «А»)
+  const pal = scenePaletteCached(themeId, appearance, 'home', 1080, 1082, 2.625);
+  const bottom = sceneBottomHex(pal);
   const deep = shade(bottom, 0.45);
   const next: AhaTheme = Object.freeze({
-    bgGradient: [scene.sceneTop, bottom, deep] as const,
+    bgGradient: [sceneTopHex(pal), bottom, deep] as const,
     ctaGradient: [ring1, ring2, ring3] as const,
     ctaShadow: shade(ring3, 0.5),
     ctaTextColor: legibleInk(bottom, [ring1, ring2, ring3]),

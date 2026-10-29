@@ -83,3 +83,10 @@ Governance-ID: TG-190D92B77BE9
 
 Outcome: (1) сначала лог [SCENE-THEME] home:icons {x, y, size, sceneW, sceneH, источник} — выяснить, сдвинул ли иконки героя коммит 1e1613865 (фон SceneBackdrop против раскладки героя); отчёт координатору ДО правки; (2) вкладка «Уроки» берёт фон из scenePalette (после Сезона).
 Scope: HomeSceneStage.tsx (лог), далее по результату. Architecture/Security/Debt/Verification/Rollback — как выше.
+
+## Шаг 3г: приветствие языка берёт фон из scenePalette
+
+Governance-ID: TG-190D92B77BE9
+
+Outcome: экран выбора языка рисует фон слоем SceneBackdropFill (scenePalette, экран home), а top/bottom его палитры — из той же функции; лог [SCENE-THEME] language_welcome. Коммит на экран. Затем aha — отдельным коммитом.
+Scope: app/language_welcome_palette.ts, app/language_welcome.tsx, тесты-читатели. Architecture/Security/Debt/Verification/Rollback — как выше.

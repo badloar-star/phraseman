@@ -35,6 +35,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
+import SceneBackdropFill from '../components/scene/SceneBackdropFill';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLocalSearchParams, useRootNavigationState, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -243,7 +244,7 @@ export default function LanguageWelcomeScreen() {
     router.replace('/(tabs)/home' as any);
   }, [router]);
 
-  if (!target || !entryResolved) return <View style={styles.safe}><LinearGradient pointerEvents="none" colors={[p.top, p.bottom]} style={StyleSheet.absoluteFill} /></View>;
+  if (!target || !entryResolved) return <View style={styles.safe}><SceneBackdropFill screen="home" logName="language_welcome" idPrefix="langWelcome" fallback={[p.top, p.bottom]} /></View>;
 
   const flagAsset = FLAG_ASSETS[target];
 
@@ -315,7 +316,7 @@ export default function LanguageWelcomeScreen() {
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
-      <LinearGradient pointerEvents="none" colors={[p.top, p.bottom]} style={StyleSheet.absoluteFill} />
+      <SceneBackdropFill screen="home" logName="language_welcome" idPrefix="langWelcome" fallback={[p.top, p.bottom]} />
       <StatusBar barStyle="light-content" />
       <View style={styles.header}>
         <Pressable
@@ -450,7 +451,7 @@ function DoneCelebration({
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
-      <LinearGradient pointerEvents="none" colors={[p.top, p.bottom]} style={StyleSheet.absoluteFill} />
+      <SceneBackdropFill screen="home" logName="language_welcome" idPrefix="langWelcome" fallback={[p.top, p.bottom]} />
       <StatusBar barStyle="light-content" />
       <View style={styles.doneBody}>
         <View style={styles.badgeWrap}>
@@ -539,7 +540,8 @@ const makeStyles = (p: LanguageWelcomePalette) => StyleSheet.create({
     paddingHorizontal: 14,
     paddingVertical: 12,
   },
-  optionCardSelected: { borderColor: p.mark, backgroundColor: p.markSoft },
+  // зачем: переименование accent→mark (d423b930e) не дошло до палитры — p.markSoft не существует, подсветка выбранного пункта пропадала
+  optionCardSelected: { borderColor: p.mark, backgroundColor: p.accentSoft },
   optionTitle: { color: p.text, fontSize: 16, fontWeight: '600', flex: 1 },
   radio: {
     width: 26,

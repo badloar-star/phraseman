@@ -11,6 +11,7 @@ import { LIQUID_GLASS_THEME_IDS, liquidGlassTokens } from '../constants/liquidGl
 import { homeSceneOklchOf, homeSceneTokensForTheme, relativeLuminance, whiteContrastOn } from '../components/home/v2/scene/home_scene_tokens';
 import { SEASON_REF_CHROMA, SEASON_TINT_SCALE_MIN, hexChroma, hexHue, seasonThemedArt } from '../components/learning-v2/season/season_art';
 import { languageWelcomePalette } from '../app/language_welcome_palette';
+import { sceneBottomHex, scenePaletteCached, sceneTopHex } from '../components/scene/scene_palette';
 
 const ROOT = path.resolve(__dirname, '..');
 const APPEARANCES = ['dark', 'light'] as const;
@@ -74,8 +75,9 @@ describe('экран «Приветствие нового языка»: пал�
     for (const appearance of APPEARANCES) {
       for (const id of LIQUID_GLASS_THEME_IDS as readonly string[]) {
         const p = languageWelcomePalette(id, appearance);
-        const scene = homeSceneTokensForTheme(id, appearance);
-        if (p.top !== scene.sceneTop || p.bottom !== scene.sceneBottom) bad.push(`${id}/${appearance}: фон не из сцены темы`);
+        // зачем (вердикт владельца 29.10): фон экрана — из единой scenePalette (тёмное «Глубокое небо», светлое «А»), а не из токенов сцены Главной
+        const pal = scenePaletteCached(id, appearance, 'home', 1080, 1082, 2.625);
+        if (p.top !== sceneTopHex(pal) || p.bottom !== sceneBottomHex(pal)) bad.push(`${id}/${appearance}: фон не из сцены темы`);
         if (whiteContrastOn(p.top) < 4.5 || whiteContrastOn(p.bottom) < 4.5) bad.push(`${id}/${appearance}: белый текст на фоне < 4,5`);
         for (const stop of p.cta) if (contrast(p.ink, stop) < 4.5) bad.push(`${id}/${appearance}: подпись кнопки на ${stop} < 4,5`);
         for (const stop of p.cta) if (contrast(stop, p.bottom) < 3) bad.push(`${id}/${appearance}: кнопка ${stop} на фоне < 3`);

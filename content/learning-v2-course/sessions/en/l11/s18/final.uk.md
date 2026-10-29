@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There was brown rice in the cupboard.**
-- ❌ There were brown rice in the cupboard. — *Із не рахується поштучно rice потрібна was.*
+- ❌ There were brown rice in the cupboard. — *Rice не рахують поштучно, тому потрібна was.*
 - ❌ There was a brown rice in the cupboard. — *Тут rice — продукт без a.*
 
 ---
@@ -86,7 +86,7 @@ There ___ baked beans on the plate. → **were** · was · is
 **8 · У сумці був бурий рис. Виберіть форму**
 <!-- interaction_id: en:lesson-11:session-18:i06; family: context_gap_grammar -->
 There ___ brown rice in the bag. → **was** · were · are
-- were — *Із не рахується поштучно rice використовуємо was.*
+- were — *Rice не рахують поштучно, тому використовуємо was.*
 - are — *Потрібна форма минулого was.*
 
 **9 · Картка слова — black pepper**

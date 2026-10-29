@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There was pet food in the bowl.**
-- ❌ There were pet food in the bowl. — *Із не рахується поштучно food потрібна was.*
+- ❌ There were pet food in the bowl. — *Food не рахують поштучно, тому потрібна was.*
 - ❌ There was a pet food in the bowl. — *Тут food не потребує a.*
 
 ---

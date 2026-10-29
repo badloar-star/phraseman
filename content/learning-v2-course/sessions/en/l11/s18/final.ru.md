@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There was brown rice in the cupboard.**
-- ❌ There were brown rice in the cupboard. — *С не считается поштучно rice нужна was.*
+- ❌ There were brown rice in the cupboard. — *Rice не считают поштучно, поэтому нужна was.*
 - ❌ There was a brown rice in the cupboard. — *Здесь rice — продукт без a.*
 
 ---
@@ -86,7 +86,7 @@ There ___ baked beans on the plate. → **were** · was · is
 **8 · В сумке был бурый рис. Выберите форму**
 <!-- interaction_id: en:lesson-11:session-18:i06; family: context_gap_grammar -->
 There ___ brown rice in the bag. → **was** · were · are
-- were — *С не считается поштучно rice используем was.*
+- were — *Rice не считают поштучно, поэтому используем was.*
 - are — *Нужна форма прошлого was.*
 
 **9 · Карточка слова — black pepper**

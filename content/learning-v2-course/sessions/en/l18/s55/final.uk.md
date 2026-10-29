@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This causes such great stress.**
-- ❌ This causes so great stress. — *Тут незлічуване значення: such без a.*
-- ❌ This causes such a great stress. — *У цьому незлічуваному значенні артикль a не потрібен.*
+- ❌ This causes so great stress. — *Тут це не рахують поштучно: such без a.*
+- ❌ This causes such a great stress. — *У цьому значенні це не рахують поштучно, і a не потрібен.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-55:i03; family: context_gap_grammar -->
 This causes ___ great stress. → **such** · so · much
-- so — *Тут незлічуване значення: such без a.*
+- so — *Тут це не рахують поштучно: such без a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **5 · Картка слова — pressure**

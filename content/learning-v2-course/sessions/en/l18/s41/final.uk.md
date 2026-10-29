@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **A quick shower is such a good idea.**
-- ❌ A quick shower is so a good idea. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ A quick shower is so a good idea. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ A quick shower is a such good idea. — *Порядок: such a, не a such.*
 
 ---
@@ -37,12 +37,12 @@
 
 ### Розповісти про пізній вечір
 
-Ви засиділися з друзями й лягли спати далеко за північ. We had such a late night — ми так пізно лягли. Почніть із We had: had показує, що вечір уже минув. Після нього поставте such a late night. Тут night — іменник з означенням late, тому потрібні such і артикль a в порядку such a late night.
+Ви засиділися з друзями й лягли спати далеко за північ. We had such a late night — ми так пізно лягли. Почніть із We had: had показує, що вечір уже минув. Після нього поставте such a late night. Тут night — іменник з означенням late, тому потрібні such і a в порядку such a late night.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We had such a late night.**
-- ❌ We had so a late night. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ We had so a late night. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ We had a such late night. — *Порядок: such a, не a such.*
 
 ---
@@ -86,7 +86,7 @@ This short break is ___ welcome. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-41:i06; family: context_gap_grammar -->
 A quick shower is ___ a good idea. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — early start**
@@ -126,7 +126,7 @@ The early start is ___ difficult. → **so** · such · much
 **16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-41:i12; family: context_gap_grammar -->
 We had ___ a late night. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **17 · Поєднайте вирази з перекладом**

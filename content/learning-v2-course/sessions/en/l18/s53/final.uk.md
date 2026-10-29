@@ -23,12 +23,12 @@
 
 ### Похвалити пам’ять
 
-Друг без підказок згадав слова з минулого заняття, і ви здивовані його пам’яттю. Memory — пам’ять. You have such a good memory. — У тебе така добра пам’ять. Після You have йде such a good memory. Тут memory означає здатність людини запам’ятовувати, і в сполученні a good memory потрібен артикль a. Підсилення such ставимо перед ним: such + a + good + memory.
+Друг без підказок згадав слова з минулого заняття, і ви здивовані його пам’яттю. Memory — пам’ять. You have such a good memory. — У тебе така добра пам’ять. Після You have йде such a good memory. Тут memory означає здатність людини запам’ятовувати, і в сполученні a good memory потрібен a. Підсилення such ставимо перед ним: such + a + good + memory.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **You have such a good memory.**
-- ❌ You have so a good memory. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- ❌ You have so a good memory. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - ❌ You have a such good memory. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -37,12 +37,12 @@
 
 ### Похвалити уяву
 
-Друг вигадав кумедну історію, яка допомогла вам запам’ятати нові слова. Imagination — уява. You have such a great imagination. — У тебе така багата уява. Складаємо: You have + such + a + great + imagination. Підсилюємо всю групу a great imagination, тому використовуємо such. Артикль a стоїть після such і перед great; сполучення a such тут неправильне.
+Друг вигадав кумедну історію, яка допомогла вам запам’ятати нові слова. Imagination — уява. You have such a great imagination. — У тебе така багата уява. Складаємо: You have + such + a + great + imagination. Підсилюємо всю групу a great imagination, тому використовуємо such. Слово a стоїть після such і перед great; сполучення a such тут неправильне.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **You have such a great imagination.**
-- ❌ You have so a great imagination. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- ❌ You have so a great imagination. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - ❌ You have a such great imagination. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -86,7 +86,7 @@ Your ability is ___ useful. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-53:i06; family: context_gap_grammar -->
 You have ___ a good memory. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — concentration**
@@ -126,7 +126,7 @@ Concentration is ___ important. → **so** · such · much
 **16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-53:i12; family: context_gap_grammar -->
 You have ___ a great imagination. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **17 · Поєднайте вирази з перекладом**

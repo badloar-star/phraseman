@@ -9,12 +9,12 @@
 
 ### Вдале знайомство
 
-Друг уперше зустрівся з вашими сусідами, і їм сподобалося з ним спілкуватися. First impression — перше враження. You made such a good first impression. — Ти справив таке добре перше враження. You made означає «ти справив», потім іде such a good first impression. Such підсилює всю групу з іменником impression. Артикль a ставимо після such; далі good first impression — добре перше враження.
+Друг уперше зустрівся з вашими сусідами, і їм сподобалося з ним спілкуватися. First impression — перше враження. You made such a good first impression. — Ти справив таке добре перше враження. You made означає «ти справив», потім іде such a good first impression. Such підсилює всю групу з іменником impression. Слово a ставимо після such; далі good first impression — добре перше враження.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **You made such a good first impression.**
-- ❌ You made so a good first impression. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- ❌ You made so a good first impression. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - ❌ You made a such good first impression. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **You have such a good reason.**
-- ❌ You have so a good reason. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- ❌ You have so a good reason. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - ❌ You have a such good reason. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -66,7 +66,7 @@
 **4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-45:i03; family: context_gap_grammar -->
 You made ___ a good first impression. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **5 · Картка слова — second chance**
@@ -126,7 +126,7 @@ This last chance is ___ important. → **so** · such · much
 **16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-45:i12; family: context_gap_grammar -->
 You have ___ a good reason. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **17 · Поєднайте вирази з перекладом**

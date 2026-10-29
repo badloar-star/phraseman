@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This is such a long flight delay.**
-- ❌ This is so a long flight delay. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- ❌ This is so a long flight delay. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - ❌ This is a such long flight delay. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **There is such loud background noise.**
-- ❌ There is so loud background noise. — *Здесь неисчисляемое значение: such без a.*
+- ❌ There is so loud background noise. — *Здесь это не считают поштучно: such без a.*
 - ❌ There is such loudly background noise. — *Перед существительным нужно прилагательное loud, не наречие loudly.*
 
 ---
@@ -86,7 +86,7 @@ The train delay is ___ long. → **so** · such · much
 **8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-48:i06; family: context_gap_grammar -->
 This is ___ a long flight delay. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **9 · Карточка слова — traffic noise**
@@ -126,7 +126,7 @@ The traffic noise is ___ loud. → **so** · such · much
 **16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-48:i12; family: context_gap_grammar -->
 There is ___ loud background noise. → **such** · so · much
-- so — *Здесь неисчисляемое значение: such без a.*
+- so — *Здесь это не считают поштучно: such без a.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **17 · Соедините выражения с переводом**

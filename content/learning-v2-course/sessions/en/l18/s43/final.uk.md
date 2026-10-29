@@ -14,7 +14,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We had such a busy day.**
-- ❌ We had so a busy day. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ We had so a busy day. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ We had a such busy day. — *Порядок: such a, не a such.*
 
 ---
@@ -66,7 +66,7 @@
 **4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-43:i03; family: context_gap_grammar -->
 We had ___ a busy day. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **5 · Картка слова — quiet evening**
@@ -106,7 +106,7 @@ This quiet evening is ___ nice. → **so** · such · much
 **12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-43:i09; family: context_gap_grammar -->
 We had ___ a lovely long weekend. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **13 · Картка слова — late lunch**

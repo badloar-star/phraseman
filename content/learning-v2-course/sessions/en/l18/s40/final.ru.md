@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Free parking is such a great help.**
-- ❌ Free parking is so a great help. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- ❌ Free parking is so a great help. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - ❌ Free parking is a such great help. — *Порядок: such a, не a such.*
 
 ---
@@ -86,7 +86,7 @@ Free entry is ___ useful. → **so** · such · much
 **8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-40:i06; family: context_gap_grammar -->
 Free parking is ___ a great help. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **9 · Карточка слова — public event**
@@ -106,7 +106,7 @@ Free parking is ___ a great help. → **such** · so · much
 **12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-40:i09; family: context_gap_grammar -->
 This is ___ a fun public event. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **13 · Карточка слова — charity event**

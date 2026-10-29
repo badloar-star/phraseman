@@ -23,12 +23,12 @@
 
 ### Похвалити спільного друга
 
-Ви із сестрою обговорюєте спільного друга, який допоміг вам обом із переїздом. Our mutual friend is such a helpful person — наш спільний друг — така чуйна людина. Після Our mutual friend is йде such a helpful person. Тут головне слово person, тому підсилюємо всю групу словом such. Артикль a ставимо після such, а helpful — перед person.
+Ви із сестрою обговорюєте спільного друга, який допоміг вам обом із переїздом. Our mutual friend is such a helpful person — наш спільний друг — така чуйна людина. Після Our mutual friend is йде such a helpful person. Тут головне слово person, тому підсилюємо всю групу словом such. Слово a ставимо після such, а helpful — перед person.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Our mutual friend is such a helpful person.**
-- ❌ Our mutual friend is so a helpful person. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ Our mutual friend is so a helpful person. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ Our mutual friend is a such helpful person. — *Порядок: such a, не a such.*
 
 ---
@@ -37,12 +37,12 @@
 
 ### Тепло відгукнутися про сусіда
 
-Сусід із квартири поруч поливав ваші рослини, поки ви були у від’їзді. My next-door neighbour is such a kind person — мій сусід — така добра людина. Спочатку назвіть сусіда: My next-door neighbour. Потім is та оцінка such a kind person. Порядок оцінки: such + a + kind + person; such стоїть перед артиклем, а не після нього.
+Сусід із квартири поруч поливав ваші рослини, поки ви були у від’їзді. My next-door neighbour is such a kind person — мій сусід — така добра людина. Спочатку назвіть сусіда: My next-door neighbour. Потім is та оцінка such a kind person. Порядок оцінки: such + a + kind + person; such стоїть перед словом a / the, а не після нього.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **My next-door neighbour is such a kind person.**
-- ❌ My next-door neighbour is so a kind person. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ My next-door neighbour is so a kind person. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ My next-door neighbour is a such kind person. — *Порядок: such a, не a such.*
 
 ---
@@ -86,7 +86,7 @@ My close friend is ___ kind. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-33:i06; family: context_gap_grammar -->
 Our mutual friend is ___ a helpful person. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — childhood friend**
@@ -126,7 +126,7 @@ My childhood friend is ___ funny. → **so** · such · much
 **16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-33:i12; family: context_gap_grammar -->
 My next-door neighbour is ___ a kind person. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **17 · Поєднайте вирази з перекладом**

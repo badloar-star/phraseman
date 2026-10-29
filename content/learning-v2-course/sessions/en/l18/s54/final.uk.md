@@ -14,8 +14,8 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **You have such great energy.**
-- ❌ You have so great energy. — *Тут незлічуване значення: such без a.*
-- ❌ You have such a great energy. — *У цьому незлічуваному значенні артикль a не потрібен.*
+- ❌ You have so great energy. — *Тут це не рахують поштучно: such без a.*
+- ❌ You have such a great energy. — *У цьому значенні це не рахують поштучно, і a не потрібен.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-54:i03; family: context_gap_grammar -->
 You have ___ great energy. → **such** · so · much
-- so — *Тут незлічуване значення: such без a.*
+- so — *Тут це не рахують поштучно: such без a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **5 · Картка слова — strength**

@@ -14,7 +14,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is such a waste of time.**
-- ❌ This is so a waste of time. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ This is so a waste of time. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ This is a such waste of time. — *Порядок: such a, не a such.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **It is such a small favour.**
-- ❌ It is so a small favour. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ It is so a small favour. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ It is a such small favour. — *Порядок: such a, не a such.*
 
 ---
@@ -66,7 +66,7 @@
 **4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-39:i03; family: context_gap_grammar -->
 This is ___ a waste of time. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **5 · Картка слова — change of plan**
@@ -106,7 +106,7 @@ This change of plan is ___ important. → **so** · such · much
 **12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-39:i09; family: context_gap_grammar -->
 We had ___ a long wait. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **13 · Картка слова — small favour**
@@ -126,7 +126,7 @@ We had ___ a long wait. → **such** · so · much
 **16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-39:i12; family: context_gap_grammar -->
 It is ___ a small favour. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **17 · Поєднайте вирази з перекладом**

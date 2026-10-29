@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **Free parking is such a great help.**
-- ❌ Free parking is so a great help. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ Free parking is so a great help. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ Free parking is a such great help. — *Порядок: such a, не a such.*
 
 ---
@@ -86,7 +86,7 @@ Free entry is ___ useful. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-40:i06; family: context_gap_grammar -->
 Free parking is ___ a great help. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — public event**
@@ -106,7 +106,7 @@ Free parking is ___ a great help. → **such** · so · much
 **12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-40:i09; family: context_gap_grammar -->
 This is ___ a fun public event. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **13 · Картка слова — charity event**

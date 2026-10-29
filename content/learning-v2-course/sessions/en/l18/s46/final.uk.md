@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is such an interesting job vacancy.**
-- ❌ This is so an interesting job vacancy. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- ❌ This is so an interesting job vacancy. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - ❌ This is an such interesting job vacancy. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -37,7 +37,7 @@
 
 ### Коротка відпустка
 
-Ви плануєте поїздку й помічаєте, що днів відпустки ледь вистачить на неї. Annual leave — щорічна відпустка. My annual leave is so short. — Моя щорічна відпустка така коротка. My annual leave називає вашу відпустку, потім is пов’язує її з характеристикою short. So підсилює short і стоїть перед ним. My вже показує, чия відпустка, тому артикль перед annual leave не додаємо.
+Ви плануєте поїздку й помічаєте, що днів відпустки ледь вистачить на неї. Annual leave — щорічна відпустка. My annual leave is so short. — Моя щорічна відпустка така коротка. My annual leave називає вашу відпустку, потім is пов’язує її з характеристикою short. So підсилює short і стоїть перед ним. My вже показує, чия відпустка, тому слово a / the перед annual leave не додаємо.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -86,7 +86,7 @@ This job advert is ___ clear. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-46:i06; family: context_gap_grammar -->
 This is ___ an interesting job vacancy. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — working hours**

@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This is such a big responsibility.**
-- ❌ This is so a big responsibility. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- ❌ This is so a big responsibility. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - ❌ This is a such big responsibility. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -106,7 +106,7 @@ Freedom is ___ important. → **so** · such · much
 **12 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-50:i09; family: context_gap_grammar -->
 Independence is ___ a great feeling. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **13 · Карточка слова — responsibility**
@@ -126,7 +126,7 @@ Independence is ___ a great feeling. → **such** · so · much
 **16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-50:i12; family: context_gap_grammar -->
 This is ___ a big responsibility. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **17 · Соедините выражения с переводом**

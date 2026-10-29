@@ -23,12 +23,12 @@
 
 ### Добрі стосунки
 
-Ви із сестрою завжди можете спокійно обговорити труднощі й допомогти одне одному. Relationship — стосунки між людьми. We have such a good relationship. — У нас такі добрі стосунки. Після We have йде ціла група such a good relationship. В англійській relationship тут в однині: це один зв’язок між вами. Тому порядок такий: such + a + good + relationship; артикль a ставимо після such.
+Ви із сестрою завжди можете спокійно обговорити труднощі й допомогти одне одному. Relationship — стосунки між людьми. We have such a good relationship. — У нас такі добрі стосунки. Після We have йде ціла група such a good relationship. В англійській relationship тут у формі для одного: це один зв’язок між вами. Тому порядок такий: such + a + good + relationship; a ставимо після such.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We have such a good relationship.**
-- ❌ We have so a good relationship. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- ❌ We have so a good relationship. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - ❌ We have a such good relationship. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -37,7 +37,7 @@
 
 ### Серйозна сварка
 
-Двоє друзів сильно посварилися й тепер не розмовляють. Argument тут — сварка. This argument is so serious. — Ця сварка така серйозна. This argument називає конкретну сварку, is пов’язує її з оцінкою, а so підсилює serious. Складаємо: This argument + is + so + serious. Після so йде прикметник без іменника, тому артикль a тут не потрібен.
+Двоє друзів сильно посварилися й тепер не розмовляють. Argument тут — сварка. This argument is so serious. — Ця сварка така серйозна. This argument називає конкретну сварку, is пов’язує її з оцінкою, а so підсилює serious. Складаємо: This argument + is + so + serious. Після so йде прикметник без іменника, тому a тут не потрібен.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -86,7 +86,7 @@ Good communication is ___ important. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-56:i06; family: context_gap_grammar -->
 We have ___ a good relationship. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — discussion**
@@ -106,7 +106,7 @@ We have ___ a good relationship. → **such** · so · much
 **12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-56:i09; family: context_gap_grammar -->
 This is ___ a useful discussion. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **13 · Картка слова — argument**

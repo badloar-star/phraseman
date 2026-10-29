@@ -23,12 +23,12 @@
 
 ### Поскаржитися на вітер
 
-Ви намагаєтеся поставити намет, але сильний вітер заважає його закріпити. The strong wind is such a problem — сильний вітер — така проблема. Після The strong wind is поставте such a problem. Problem — іменник, тому обираємо such. Артикль a залишається безпосередньо перед problem, а such ставимо перед a; прикметник у цій групі не обов’язковий.
+Ви намагаєтеся поставити намет, але сильний вітер заважає його закріпити. The strong wind is such a problem — сильний вітер — така проблема. Після The strong wind is поставте such a problem. Problem — іменник, тому обираємо such. Слово a залишається безпосередньо перед problem, а such ставимо перед a; прикметник у цій групі не обов’язковий.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The strong wind is such a problem.**
-- ❌ The strong wind is so a problem. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ The strong wind is so a problem. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ The strong wind is a such problem. — *Порядок: such a, не a such.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The deep snow is such a surprise.**
-- ❌ The deep snow is so a surprise. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ The deep snow is so a surprise. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ The deep snow is a such surprise. — *Порядок: such a, не a such.*
 
 ---
@@ -86,7 +86,7 @@ The heavy rain is ___ loud. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-35:i06; family: context_gap_grammar -->
 The strong wind is ___ a problem. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — thick fog**
@@ -126,7 +126,7 @@ The thick fog is ___ bad. → **so** · such · much
 **16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-35:i12; family: context_gap_grammar -->
 The deep snow is ___ a surprise. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **17 · Поєднайте вирази з перекладом**

@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is such a big responsibility.**
-- ❌ This is so a big responsibility. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- ❌ This is so a big responsibility. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - ❌ This is a such big responsibility. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -106,7 +106,7 @@ Freedom is ___ important. → **so** · such · much
 **12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-50:i09; family: context_gap_grammar -->
 Independence is ___ a great feeling. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **13 · Картка слова — responsibility**
@@ -126,7 +126,7 @@ Independence is ___ a great feeling. → **such** · so · much
 **16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-50:i12; family: context_gap_grammar -->
 This is ___ a big responsibility. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **17 · Поєднайте вирази з перекладом**

@@ -9,12 +9,12 @@
 
 ### Удачное знакомство
 
-Друг впервые встретился с вашими соседями, и им понравилось с ним общаться. First impression — первое впечатление. You made such a good first impression. — Ты произвёл такое хорошее первое впечатление. You made означает «ты произвёл», затем идёт such a good first impression. Such усиливает всю группу с существительным impression. Артикль a ставим после such; дальше good first impression — хорошее первое впечатление.
+Друг впервые встретился с вашими соседями, и им понравилось с ним общаться. First impression — первое впечатление. You made such a good first impression. — Ты произвёл такое хорошее первое впечатление. You made означает «ты произвёл», затем идёт such a good first impression. Such усиливает всю группу с существительным impression. Слово a ставим после such; дальше good first impression — хорошее первое впечатление.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **You made such a good first impression.**
-- ❌ You made so a good first impression. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- ❌ You made so a good first impression. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - ❌ You made a such good first impression. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **You have such a good reason.**
-- ❌ You have so a good reason. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- ❌ You have so a good reason. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - ❌ You have a such good reason. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -66,7 +66,7 @@
 **4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-45:i03; family: context_gap_grammar -->
 You made ___ a good first impression. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **5 · Карточка слова — second chance**
@@ -126,7 +126,7 @@ This last chance is ___ important. → **so** · such · much
 **16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-45:i12; family: context_gap_grammar -->
 You have ___ a good reason. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **17 · Соедините выражения с переводом**

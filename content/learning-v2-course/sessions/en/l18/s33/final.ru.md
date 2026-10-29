@@ -23,12 +23,12 @@
 
 ### Похвалить общего друга
 
-Вы с сестрой обсуждаете общего друга, который помог вам обоим с переездом. Our mutual friend is such a helpful person — наш общий друг — такой отзывчивый человек. После Our mutual friend is идёт such a helpful person. Здесь главное слово person, поэтому усиливаем всю группу словом such. Артикль a ставим после such, а helpful — перед person.
+Вы с сестрой обсуждаете общего друга, который помог вам обоим с переездом. Our mutual friend is such a helpful person — наш общий друг — такой отзывчивый человек. После Our mutual friend is идёт such a helpful person. Здесь главное слово person, поэтому усиливаем всю группу словом such. Слово a ставим после such, а helpful — перед person.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Our mutual friend is such a helpful person.**
-- ❌ Our mutual friend is so a helpful person. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- ❌ Our mutual friend is so a helpful person. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - ❌ Our mutual friend is a such helpful person. — *Порядок: such a, не a such.*
 
 ---
@@ -37,12 +37,12 @@
 
 ### Тепло отозваться о соседе
 
-Сосед из квартиры рядом поливал ваши растения, пока вы были в отъезде. My next-door neighbour is such a kind person — мой сосед — такой добрый человек. Сначала назовите соседа: My next-door neighbour. Затем is и оценка such a kind person. Порядок оценки: such + a + kind + person; such стоит перед артиклем, а не после него.
+Сосед из квартиры рядом поливал ваши растения, пока вы были в отъезде. My next-door neighbour is such a kind person — мой сосед — такой добрый человек. Сначала назовите соседа: My next-door neighbour. Затем is и оценка such a kind person. Порядок оценки: such + a + kind + person; such стоит перед словом a / the, а не после него.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **My next-door neighbour is such a kind person.**
-- ❌ My next-door neighbour is so a kind person. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- ❌ My next-door neighbour is so a kind person. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - ❌ My next-door neighbour is a such kind person. — *Порядок: such a, не a such.*
 
 ---
@@ -86,7 +86,7 @@ My close friend is ___ kind. → **so** · such · much
 **8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-33:i06; family: context_gap_grammar -->
 Our mutual friend is ___ a helpful person. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **9 · Карточка слова — childhood friend**
@@ -126,7 +126,7 @@ My childhood friend is ___ funny. → **so** · such · much
 **16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-33:i12; family: context_gap_grammar -->
 My next-door neighbour is ___ a kind person. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **17 · Соедините выражения с переводом**

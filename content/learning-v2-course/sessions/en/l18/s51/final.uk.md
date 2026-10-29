@@ -14,7 +14,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is such a good opportunity.**
-- ❌ This is so a good opportunity. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- ❌ This is so a good opportunity. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - ❌ This is a such good opportunity. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -23,13 +23,13 @@
 
 ### Робота потребує уваги
 
-Ви збираєте маленьку модель за схемою: деталі легко переплутати, тому доводиться уважно звіряти кожен крок. Attention — увага. This needs such careful attention. — Це потребує такої пильної уваги. This указує на збирання, needs — потребує, потім such careful attention. Підсилюємо сполучення careful з іменником attention, тому потрібне such. Attention тут незлічуване: a не додаємо.
+Ви збираєте маленьку модель за схемою: деталі легко переплутати, тому доводиться уважно звіряти кожен крок. Attention — увага. This needs such careful attention. — Це потребує такої пильної уваги. This указує на збирання, needs — потребує, потім such careful attention. Підсилюємо сполучення careful з іменником attention, тому потрібне such. Attention тут не рахується поштучно: a не додаємо.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This needs such careful attention.**
-- ❌ This needs so careful attention. — *Тут незлічуване значення: such без a.*
-- ❌ This needs such a careful attention. — *У цьому незлічуваному значенні артикль a не потрібен.*
+- ❌ This needs so careful attention. — *Тут це не рахують поштучно: such без a.*
+- ❌ This needs such a careful attention. — *У цьому значенні це не рахують поштучно, і a не потрібен.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-51:i03; family: context_gap_grammar -->
 This is ___ a good opportunity. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **5 · Картка слова — attention**
@@ -86,7 +86,7 @@ This is ___ a good opportunity. → **such** · so · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-51:i06; family: context_gap_grammar -->
 This needs ___ careful attention. → **such** · so · much
-- so — *Тут незлічуване значення: such без a.*
+- so — *Тут це не рахують поштучно: such без a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — interest**

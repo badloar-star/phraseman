@@ -23,12 +23,12 @@
 
 ### Поделиться впечатлением с концерта
 
-Вы слушаете любимую группу и пишете другу, как вам нравится концерт. We are at such a great live concert — мы на таком замечательном концерте с живым исполнением. We are at сообщает, где вы находитесь. Дальше поставьте such a great live concert: such усиливает всю группу с concert, а артикль a стоит после such, перед great.
+Вы слушаете любимую группу и пишете другу, как вам нравится концерт. We are at such a great live concert — мы на таком замечательном концерте с живым исполнением. We are at сообщает, где вы находитесь. Дальше поставьте such a great live concert: such усиливает всю группу с concert, а a стоит после such, перед great.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are at such a great live concert.**
-- ❌ We are at so a great live concert. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- ❌ We are at so a great live concert. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - ❌ We are at a such great live concert. — *Порядок: such a, не a such.*
 
 ---
@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This is such a big music festival.**
-- ❌ This is so a big music festival. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- ❌ This is so a big music festival. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - ❌ This is a such big music festival. — *Порядок: such a, не a such.*
 
 ---
@@ -86,7 +86,7 @@ The live music is ___ loud. → **so** · such · much
 **8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-36:i06; family: context_gap_grammar -->
 We are at ___ a great live concert. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **9 · Карточка слова — street performance**
@@ -126,7 +126,7 @@ The street performance is ___ funny. → **so** · such · much
 **16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-36:i12; family: context_gap_grammar -->
 This is ___ a big music festival. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **17 · Соедините выражения с переводом**

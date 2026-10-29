@@ -23,12 +23,12 @@
 
 ### Магазин поруч із домом
 
-Ви вибираєте квартиру й помічаєте, що до магазину можна дійти за хвилину. Advantage — перевага. This is such a big advantage. — Це така велика перевага. This указує на близький магазин, потім is і ціла група such a big advantage. У ній є іменник advantage в однині, тому порядок: such + a + big + advantage.
+Ви вибираєте квартиру й помічаєте, що до магазину можна дійти за хвилину. Advantage — перевага. This is such a big advantage. — Це така велика перевага. This указує на близький магазин, потім is і ціла група such a big advantage. У ній є іменник advantage у формі для одного, тому порядок: such + a + big + advantage.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is such a big advantage.**
-- ❌ This is so a big advantage. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- ❌ This is so a big advantage. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - ❌ This is a such big advantage. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -37,12 +37,12 @@
 
 ### Порівняти дві кімнати
 
-Ви переходите з тісної кімнати до просторої й одразу помічаєте, наскільки вони відрізняються. Difference — різниця. There is such a big difference. — Така велика різниця. There is повідомляє, що різниця є; потім називаємо її: such a big difference. Such підсилює всю групу з іменником difference. Артикль a стоїть після such і перед big, а не перед such.
+Ви переходите з тісної кімнати до просторої й одразу помічаєте, наскільки вони відрізняються. Difference — різниця. There is such a big difference. — Така велика різниця. There is повідомляє, що різниця є; потім називаємо її: such a big difference. Such підсилює всю групу з іменником difference. Слово a стоїть після such і перед big, а не перед such.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There is such a big difference.**
-- ❌ There is so a big difference. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- ❌ There is so a big difference. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - ❌ There is a such big difference. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -86,7 +86,7 @@ This benefit is ___ important. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-52:i06; family: context_gap_grammar -->
 This is ___ a big advantage. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — disadvantage**
@@ -126,7 +126,7 @@ This disadvantage is ___ serious. → **so** · such · much
 **16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-52:i12; family: context_gap_grammar -->
 There is ___ a big difference. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **17 · Поєднайте вирази з перекладом**

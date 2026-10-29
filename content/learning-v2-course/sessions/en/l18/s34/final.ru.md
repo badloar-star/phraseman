@@ -28,7 +28,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **Our wedding anniversary is such a special day.**
-- ❌ Our wedding anniversary is so a special day. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- ❌ Our wedding anniversary is so a special day. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - ❌ Our wedding anniversary is a such special day. — *Порядок: such a, не a such.*
 
 ---
@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are having such a happy family reunion.**
-- ❌ We are having so a happy family reunion. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- ❌ We are having so a happy family reunion. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - ❌ We are having a such happy family reunion. — *Порядок: such a, не a such.*
 
 ---
@@ -86,7 +86,7 @@ The birthday party is ___ noisy. → **so** · such · much
 **8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-34:i06; family: context_gap_grammar -->
 Our wedding anniversary is ___ a special day. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **9 · Карточка слова — family dinner**
@@ -126,7 +126,7 @@ This family dinner is ___ lovely. → **so** · such · much
 **16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-34:i12; family: context_gap_grammar -->
 We are having ___ a happy family reunion. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **17 · Соедините выражения с переводом**

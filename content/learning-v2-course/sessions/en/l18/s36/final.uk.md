@@ -23,12 +23,12 @@
 
 ### Поділитися враженням із концерту
 
-Ви слухаєте улюблений гурт і пишете другу, як вам подобається концерт. We are at such a great live concert — ми на такому чудовому концерті з живим виконанням. We are at повідомляє, де ви перебуваєте. Далі поставте such a great live concert: such підсилює всю групу з concert, а артикль a стоїть після such, перед great.
+Ви слухаєте улюблений гурт і пишете другу, як вам подобається концерт. We are at such a great live concert — ми на такому чудовому концерті з живим виконанням. We are at повідомляє, де ви перебуваєте. Далі поставте such a great live concert: such підсилює всю групу з concert, а a стоїть після such, перед great.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are at such a great live concert.**
-- ❌ We are at so a great live concert. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ We are at so a great live concert. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ We are at a such great live concert. — *Порядок: such a, не a such.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is such a big music festival.**
-- ❌ This is so a big music festival. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ This is so a big music festival. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ This is a such big music festival. — *Порядок: such a, не a such.*
 
 ---
@@ -86,7 +86,7 @@ The live music is ___ loud. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-36:i06; family: context_gap_grammar -->
 We are at ___ a great live concert. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — street performance**
@@ -126,7 +126,7 @@ The street performance is ___ funny. → **so** · such · much
 **16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-36:i12; family: context_gap_grammar -->
 This is ___ a big music festival. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **17 · Поєднайте вирази з перекладом**

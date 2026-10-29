@@ -106,7 +106,7 @@ This hay fever is ___ annoying. → **so** · such · much
 **12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-47:i09; family: context_gap_grammar -->
 Travel sickness is ___ a problem for me. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **13 · Картка слова — chest pain**

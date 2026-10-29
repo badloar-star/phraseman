@@ -9,12 +9,12 @@
 
 ### Розповісти про теплий прийом
 
-Ви вперше приїхали до родичів друга, і вас зустріли дуже привітно. We received such a warm welcome — нас так тепло прийняли. Почніть із We received — ми отримали, потім назвіть те, що отримали: a warm welcome. Щоб підкреслити враження, поставте such перед усією цією групою: such a warm welcome. Артикль залишається після such, а warm — перед welcome.
+Ви вперше приїхали до родичів друга, і вас зустріли дуже привітно. We received such a warm welcome — нас так тепло прийняли. Почніть із We received — ми отримали, потім назвіть те, що отримали: a warm welcome. Щоб підкреслити враження, поставте such перед усією цією групою: such a warm welcome. Слово a / the залишається після such, а warm — перед welcome.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We received such a warm welcome.**
-- ❌ We received so a warm welcome. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- ❌ We received so a warm welcome. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - ❌ We received a such warm welcome. — *Порядок: such a, не a such.*
 
 ---
@@ -66,7 +66,7 @@
 **4 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-38:i03; family: context_gap_grammar -->
 We received ___ a warm welcome. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **5 · Картка слова — helping hand**
@@ -106,7 +106,7 @@ A helping hand is ___ useful. → **so** · such · much
 **12 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-38:i09; family: context_gap_grammar -->
 You have ___ a big smile. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **13 · Картка слова — friendly face**

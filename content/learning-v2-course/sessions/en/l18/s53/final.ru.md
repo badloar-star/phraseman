@@ -23,12 +23,12 @@
 
 ### Похвалить память
 
-Друг без подсказок вспомнил слова с прошлого занятия, и вы удивлены его памятью. Memory — память. You have such a good memory. — У тебя такая хорошая память. После You have идёт such a good memory. Здесь memory означает способность человека запоминать, и в сочетании a good memory нужен артикль a. Усиление such ставим перед ним: such + a + good + memory.
+Друг без подсказок вспомнил слова с прошлого занятия, и вы удивлены его памятью. Memory — память. You have such a good memory. — У тебя такая хорошая память. После You have идёт such a good memory. Здесь memory означает способность человека запоминать, и в сочетании a good memory нужен a. Усиление such ставим перед ним: such + a + good + memory.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **You have such a good memory.**
-- ❌ You have so a good memory. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- ❌ You have so a good memory. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - ❌ You have a such good memory. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -37,12 +37,12 @@
 
 ### Похвалить воображение
 
-Друг придумал забавную историю, которая помогла вам запомнить новые слова. Imagination — воображение. You have such a great imagination. — У тебя такое богатое воображение. Собираем: You have + such + a + great + imagination. Усиливаем всю группу a great imagination, поэтому используем such. Артикль a стоит после such и перед great; сочетание a such здесь неверно.
+Друг придумал забавную историю, которая помогла вам запомнить новые слова. Imagination — воображение. You have such a great imagination. — У тебя такое богатое воображение. Собираем: You have + such + a + great + imagination. Усиливаем всю группу a great imagination, поэтому используем such. Слово a стоит после such и перед great; сочетание a such здесь неверно.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **You have such a great imagination.**
-- ❌ You have so a great imagination. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- ❌ You have so a great imagination. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - ❌ You have a such great imagination. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -86,7 +86,7 @@ Your ability is ___ useful. → **so** · such · much
 **8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-53:i06; family: context_gap_grammar -->
 You have ___ a good memory. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **9 · Карточка слова — concentration**
@@ -126,7 +126,7 @@ Concentration is ___ important. → **so** · such · much
 **16 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-53:i12; family: context_gap_grammar -->
 You have ___ a great imagination. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **17 · Соедините выражения с переводом**

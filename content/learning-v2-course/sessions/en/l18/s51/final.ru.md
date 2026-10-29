@@ -14,7 +14,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This is such a good opportunity.**
-- ❌ This is so a good opportunity. — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- ❌ This is so a good opportunity. — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - ❌ This is a such good opportunity. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -23,13 +23,13 @@
 
 ### Работа требует внимания
 
-Вы собираете маленькую модель по схеме: детали легко перепутать, поэтому приходится внимательно сверять каждый шаг. Attention — внимание. This needs such careful attention. — Это требует такого пристального внимания. This указывает на сборку, needs — требует, затем such careful attention. Усиливаем сочетание careful с существительным attention, поэтому нужен such. Attention здесь неисчисляемое: a не добавляем.
+Вы собираете маленькую модель по схеме: детали легко перепутать, поэтому приходится внимательно сверять каждый шаг. Attention — внимание. This needs such careful attention. — Это требует такого пристального внимания. This указывает на сборку, needs — требует, затем such careful attention. Усиливаем сочетание careful с существительным attention, поэтому нужен such. Attention здесь не считается поштучно: a не добавляем.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **This needs such careful attention.**
-- ❌ This needs so careful attention. — *Здесь неисчисляемое значение: such без a.*
-- ❌ This needs such a careful attention. — *В этом неисчисляемом значении артикль a не нужен.*
+- ❌ This needs so careful attention. — *Здесь это не считают поштучно: such без a.*
+- ❌ This needs such a careful attention. — *В этом значении это не считают поштучно, и a не нужен.*
 
 ---
 
@@ -66,7 +66,7 @@
 **4 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-51:i03; family: context_gap_grammar -->
 This is ___ a good opportunity. → **such** · so · much
-- so — *После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.*
+- so — *После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **5 · Карточка слова — attention**
@@ -86,7 +86,7 @@ This is ___ a good opportunity. → **such** · so · much
 **8 · Усильте описание словом so или such.**
 <!-- interaction_id: en:lesson-18:session-51:i06; family: context_gap_grammar -->
 This needs ___ careful attention. → **such** · so · much
-- so — *Здесь неисчисляемое значение: such без a.*
+- so — *Здесь это не считают поштучно: such без a.*
 - much — *Здесь much не подходит перед этой группой слов.*
 
 **9 · Карточка слова — interest**

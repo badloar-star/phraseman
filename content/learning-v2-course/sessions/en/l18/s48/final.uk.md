@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **This is such a long flight delay.**
-- ❌ This is so a long flight delay. — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- ❌ This is so a long flight delay. — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - ❌ This is a such long flight delay. — *Порядок: such a/an, не a/an such.*
 
 ---
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **There is such loud background noise.**
-- ❌ There is so loud background noise. — *Тут незлічуване значення: such без a.*
+- ❌ There is so loud background noise. — *Тут це не рахують поштучно: such без a.*
 - ❌ There is such loudly background noise. — *Перед іменником потрібен прикметник loud, не прислівник loudly.*
 
 ---
@@ -86,7 +86,7 @@ The train delay is ___ long. → **so** · such · much
 **8 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-48:i06; family: context_gap_grammar -->
 This is ___ a long flight delay. → **such** · so · much
-- so — *Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an.*
+- so — *Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **9 · Картка слова — traffic noise**
@@ -126,7 +126,7 @@ The traffic noise is ___ loud. → **so** · such · much
 **16 · Посильте опис словом so або such.**
 <!-- interaction_id: en:lesson-18:session-48:i12; family: context_gap_grammar -->
 There is ___ loud background noise. → **such** · so · much
-- so — *Тут незлічуване значення: such без a.*
+- so — *Тут це не рахують поштучно: such без a.*
 - much — *Тут much не підходить перед цією групою слів.*
 
 **17 · Поєднайте вирази з перекладом**

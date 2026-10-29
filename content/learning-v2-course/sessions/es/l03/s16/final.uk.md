@@ -33,11 +33,11 @@
 
 ### Сині рушники
 
-З іншої сумки дістали кілька синіх рушників. Скажіть `Las toallas son azules` — «Рушники сині». Зберіть `las toallas` + `son` + `azules`. До azul додається -es, а не -s. Для жіночого toallas і чоловічого предмета у множині форма однакова: azules.
+З іншої сумки дістали кілька синіх рушників. Скажіть `Las toallas son azules` — «Рушники сині». Зберіть `las toallas` + `son` + `azules`. До azul додається -es, а не -s. Для жіночого toallas і чоловічого предмета, коли їх кілька, форма однакова: azules.
 
 **Опишіть сині рушники.**
 
-- ✅ **Las toallas son azules.** — *Множина від azul — azules.*
+- ✅ **Las toallas son azules.** — *Форма для кількох від azul — azules.*
 - ❌ Las toallas son azul. — *Рушників кілька: azules.*
 - ❌ Las toallas son azulas. — *Не змінюйте форму за родом: azules.*
 

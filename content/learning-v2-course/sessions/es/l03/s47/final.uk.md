@@ -38,7 +38,7 @@
 **Скажіть, що соуси не гострі.**
 
 - ✅ **Las salsas no son picantes.** — *Кілька salsas: no son picantes.*
-- ❌ Las salsas no es picantes. — *Множина потребує son.*
+- ❌ Las salsas no es picantes. — *Для кількох потрібне son.*
 - ❌ Las salsas no son picante. — *Потрібне узгоджене picantes.*
 
 ## Практика · 12 завдань
@@ -81,7 +81,7 @@
 🔊 *Las salsas no son saladas.*
 Плитки: `saladas` · `son` · `no` · `salsas` · `las` · `salada`.
 → **Las salsas no son saladas.**
-*Плитка `salada` зайва: звучить множина saladas.*
+*Плитка `salada` зайва: звучить форма для кількох saladas.*
 
 **8 · Вставте слово — соуси не гострі**
 `Las salsas no ___ picantes.`

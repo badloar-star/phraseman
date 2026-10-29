@@ -96,7 +96,7 @@
 → **pequeña** · pequeño · pequeños
 Полная фраза: **La habitación no es pequeña.**
 - pequeño — *Habitación женского рода: pequeña.*
-- pequeños — *Нужна форма женского рода единственного числа: pequeña.*
+- pequeños — *Нужна форма женского рода для одного: pequeña.*
 
 **11 · Скажите вслух — диван маленький; назовите предмет**
 🎙 **El sofá es pequeño.**

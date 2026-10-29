@@ -9,23 +9,23 @@
 
 ### Дороге взуття
 
-Дивитеся на пару взуття й зауважуєте: `Los zapatos son bastante caros` — «Туфлі досить дорогі». Зберіть `los zapatos` + `son` + `bastante caros`. Caros узгоджується з чоловічою множиною zapatos. Bastante перед прикметником не отримує -s: це оцінка ступеня дорожнечі.
+Дивитеся на пару взуття й зауважуєте: `Los zapatos son bastante caros` — «Туфлі досить дорогі». Зберіть `los zapatos` + `son` + `bastante caros`. Caros узгоджується з чоловічим zapatos, коли їх кілька. Bastante перед прикметником не отримує -s: це оцінка ступеня дорожнечі.
 
 **Опишіть досить дорогі туфлі через bastante.**
 
 - ✅ **Los zapatos son bastante caros.** — *Caros змінюється, bastante залишається тим самим.*
 - ❌ Los zapatos son bastantes caros. — *Перед прикметником достатньо форми bastante.*
-- ❌ Los zapatos son bastante caro. — *Zapatos у множині: caros.*
+- ❌ Los zapatos son bastante caro. — *Zapatos — їх кілька: caros.*
 
 ## Інтро 2
 
 ### Одна сумка
 
-Переводите погляд на одну сумку. Скажіть `El bolso es bastante caro` — «Сумка досить дорога». Зберіть `el bolso` + `es` + `bastante caro`. В іспанській bolso чоловічого роду: caro. В однині замість son використовуйте es, але bastante змінювати не потрібно.
+Переводите погляд на одну сумку. Скажіть `El bolso es bastante caro` — «Сумка досить дорога». Зберіть `el bolso` + `es` + `bastante caro`. В іспанській bolso чоловічого роду: caro. Коли предмет один, замість son використовуйте es, але bastante змінювати не потрібно.
 
 **Назвіть досить дорогу сумку словом bolso, використовуючи bastante.**
 
-- ✅ **El bolso es bastante caro.** — *Чоловіча однина: bolso — caro.*
+- ✅ **El bolso es bastante caro.** — *Чоловічий рід, одна річ: bolso — caro.*
 - ❌ El bolso es bastante cara. — *Bolso чоловічого роду: caro.*
 - ❌ El bolso es bastante caros. — *Сумка одна: caro.*
 
@@ -33,11 +33,11 @@
 
 ### Інші сумки
 
-Поруч кілька сумок, які тут називаємо bolsas. Скажіть `Las bolsas son bastante caras` — «Сумки досить дорогі». Зберіть `las bolsas` + `son` + `bastante caras`. Bolsa жіночого роду, тому в множині caras. Перед ним, як і раніше, bastante: ні рід, ні число предметів його не змінюють.
+Поруч кілька сумок, які тут називаємо bolsas. Скажіть `Las bolsas son bastante caras` — «Сумки досить дорогі». Зберіть `las bolsas` + `son` + `bastante caras`. Bolsa жіночого роду, тому коли їх кілька, caras. Перед ним, як і раніше, bastante: ні рід, ні число предметів його не змінюють.
 
 **Опишіть досить дорогі сумки словом bolsas, використовуючи bastante.**
 
-- ✅ **Las bolsas son bastante caras.** — *Жіноча множина caras, незмінне bastante.*
+- ✅ **Las bolsas son bastante caras.** — *Жіноча форма для кількох caras, незмінне bastante.*
 - ❌ Las bolsas son bastantes caras. — *Перед прикметником потрібне bastante.*
 - ❌ Las bolsas son bastante caros. — *Bolsas жіночого роду: caras.*
 
@@ -58,7 +58,7 @@
 **3 · Зберіть фразу — туфлі досить дорогі, використайте bastante**
 Плитки: `caros` · `bastante` · `son` · `zapatos` · `los` · `caro`.
 → **Los zapatos son bastante caros.**
-*Плитка `caro` зайва: zapatos у множині.*
+*Плитка `caro` зайва: zapatos — їх кілька.*
 
 **4 · Вставте слово — сумка досить дорога**
 `El bolso es bastante ___.`

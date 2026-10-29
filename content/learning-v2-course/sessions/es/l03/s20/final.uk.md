@@ -9,7 +9,7 @@
 
 ### Білі чашки
 
-Розгортаєте покупку: `Son unas tazas blancas` — «Це білі чашки». Зберіть `son` + `unas tazas` + `blancas`. Tazas жіночого роду й у множині: обирайте unas, а не unos. Колір blanco отримує закінчення -as і стоїть після tazas.
+Розгортаєте покупку: `Son unas tazas blancas` — «Це білі чашки». Зберіть `son` + `unas tazas` + `blancas`. Tazas жіночого роду, і їх кілька: обирайте unas, а не unos. Колір blanco отримує закінчення -as і стоїть після tazas.
 
 **Назвіть білі чашки, використовуючи unas.**
 
@@ -25,7 +25,7 @@
 
 **Назвіть зелені пляшки, використовуючи unas.**
 
-- ✅ **Son unas botellas verdes.** — *Verde у множині — verdes.*
+- ✅ **Son unas botellas verdes.** — *Verde для кількох — verdes.*
 - ❌ Son unas botellas verdas. — *Жіночий рід не змінює -e: verdes.*
 - ❌ Son unas botellas verde. — *Пляшок кілька: verdes.*
 
@@ -33,7 +33,7 @@
 
 ### Маленькі ложки
 
-До чашок купили маленькі ложки. Скажіть `Son unas cucharas pequeñas` — «Це маленькі ложки». Зберіть `son` + `unas cucharas` + `pequeñas`. Cucharas жіночого роду й у множині, тому розмір виражаємо формою pequeñas. У цій фразі поставте розмір після cucharas.
+До чашок купили маленькі ложки. Скажіть `Son unas cucharas pequeñas` — «Це маленькі ложки». Зберіть `son` + `unas cucharas` + `pequeñas`. Cucharas жіночого роду, і їх кілька, тому розмір виражаємо формою pequeñas. У цій фразі поставте розмір після cucharas.
 
 **Назвіть маленькі ложки, використовуючи unas.**
 

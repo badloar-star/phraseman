@@ -15,13 +15,13 @@
 
 - ✅ **Los zapatos son bastante caros.** — *Caros меняется, bastante остаётся прежним.*
 - ❌ Los zapatos son bastantes caros. — *Перед прилагательным достаточно формы bastante.*
-- ❌ Los zapatos son bastante caro. — *Zapatos во множественном числе: caros.*
+- ❌ Los zapatos son bastante caro. — *Zapatos — их несколько: caros.*
 
 ## Интро 2
 
 ### Одна сумка
 
-Переводите взгляд на одну сумку. Скажите `El bolso es bastante caro` — «Сумка довольно дорогая». Соберите `el bolso` + `es` + `bastante caro`. В испанском bolso мужского рода: caro. В единственном числе вместо son используйте es, но bastante менять не нужно.
+Переводите взгляд на одну сумку. Скажите `El bolso es bastante caro` — «Сумка довольно дорогая». Соберите `el bolso` + `es` + `bastante caro`. В испанском bolso мужского рода: caro. Когда предмет один, вместо son используйте es, но bastante менять не нужно.
 
 **Назовите довольно дорогую сумку словом bolso, используя bastante.**
 
@@ -33,7 +33,7 @@
 
 ### Другие сумки
 
-Рядом несколько сумок, которые здесь называем bolsas. Скажите `Las bolsas son bastante caras` — «Сумки довольно дорогие». Соберите `las bolsas` + `son` + `bastante caras`. Bolsa женского рода, поэтому во множественном числе caras. Перед ним по-прежнему bastante: ни род, ни число предметов его не меняют.
+Рядом несколько сумок, которые здесь называем bolsas. Скажите `Las bolsas son bastante caras` — «Сумки довольно дорогие». Соберите `las bolsas` + `son` + `bastante caras`. Bolsa женского рода, поэтому когда их несколько, caras. Перед ним по-прежнему bastante: ни род, ни число предметов его не меняют.
 
 **Опишите довольно дорогие сумки словом bolsas, используя bastante.**
 
@@ -58,7 +58,7 @@
 **3 · Соберите фразу — туфли довольно дорогие, используйте bastante**
 Плитки: `caros` · `bastante` · `son` · `zapatos` · `los` · `caro`.
 → **Los zapatos son bastante caros.**
-*Плитка `caro` лишняя: zapatos во множественном числе.*
+*Плитка `caro` лишняя: zapatos — их несколько.*
 
 **4 · Вставьте слово — сумка довольно дорогая**
 `El bolso es bastante ___.`

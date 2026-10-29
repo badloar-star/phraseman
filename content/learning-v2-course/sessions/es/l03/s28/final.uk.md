@@ -26,7 +26,7 @@
 **Скажіть, що чашки крихкі.**
 
 - ✅ **Las tazas son frágiles.** — *Кілька речей: frágiles.*
-- ❌ Las tazas son frágil. — *Потрібна множина frágiles.*
+- ❌ Las tazas son frágil. — *Потрібна форма для кількох frágiles.*
 - ❌ Las tazas son frágils. — *Додайте -es повністю: frágiles.*
 
 ## Інтро 3

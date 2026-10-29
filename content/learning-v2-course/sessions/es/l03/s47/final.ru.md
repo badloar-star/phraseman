@@ -38,7 +38,7 @@
 **Скажите, что соусы не острые.**
 
 - ✅ **Las salsas no son picantes.** — *Несколько salsas: no son picantes.*
-- ❌ Las salsas no es picantes. — *Множественное число требует son.*
+- ❌ Las salsas no es picantes. — *Для нескольких нужно son.*
 - ❌ Las salsas no son picante. — *Нужно согласованное picantes.*
 
 ## Практика · 12 заданий

@@ -9,19 +9,19 @@
 
 ### Чорні рукавички
 
-Дістаєте куплені рукавички. Скажіть `Son unos guantes negros` — «Це чорні рукавички». Зберіть `son` + `unos guantes` + `negros`. Предметів кілька: замість es un потрібні son unos. Колір теж у множині й стоїть після guantes.
+Дістаєте куплені рукавички. Скажіть `Son unos guantes negros` — «Це чорні рукавички». Зберіть `son` + `unos guantes` + `negros`. Предметів кілька: замість es un потрібні son unos. Колір теж у формі для кількох і стоїть після guantes.
 
 **Назвіть чорні рукавички, використовуючи unos.**
 
 - ✅ **Son unos guantes negros.** — *Son + unos guantes + negros.*
 - ❌ Es unos guantes negros. — *Для кількох речей тут потрібне son.*
-- ❌ Son unos guantes negro. — *Guantes у множині: negros.*
+- ❌ Son unos guantes negro. — *Guantes — їх кілька: negros.*
 
 ## Інтро 2
 
 ### Білі шкарпетки
 
-Далі показуєте білі шкарпетки: `Son unos calcetines blancos` — «Це білі шкарпетки». Зберіть `son` + `unos calcetines` + `blancos`. Calcetines чоловічого роду й у множині, тому колір має закінчення -os. Не обирайте форму за словом «пара»: в іспанській фразі ми називаємо шкарпетки.
+Далі показуєте білі шкарпетки: `Son unos calcetines blancos` — «Це білі шкарпетки». Зберіть `son` + `unos calcetines` + `blancos`. Calcetines чоловічого роду, і їх кілька, тому колір має закінчення -os. Не обирайте форму за словом «пара»: в іспанській фразі ми називаємо шкарпетки.
 
 **Назвіть білі шкарпетки, використовуючи unos.**
 

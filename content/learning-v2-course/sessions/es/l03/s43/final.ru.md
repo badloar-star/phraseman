@@ -27,7 +27,7 @@
 
 - ✅ **Las galletas son dulces.** — *Несколько galletas: son dulces.*
 - ❌ Las galletas son dulce. — *Нужно множественное dulces.*
-- ❌ Las galletas son dulcas. — *Форма множественного числа — dulces.*
+- ❌ Las galletas son dulcas. — *Форма для нескольких — dulces.*
 
 ## Интро 3
 

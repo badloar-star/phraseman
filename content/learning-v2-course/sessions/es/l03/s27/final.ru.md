@@ -33,12 +33,12 @@
 
 ### Две сумки для семьи
 
-Выбираете несколько таких сумок. Скажите `Las bolsas son resistentes` — «Сумки прочные». Соберите `las bolsas` + `son` + `resistentes`. Для множественного числа к resistente добавьте -s. Род не меняет форму, а число меняет: resistente → resistentes.
+Выбираете несколько таких сумок. Скажите `Las bolsas son resistentes` — «Сумки прочные». Соберите `las bolsas` + `son` + `resistentes`. Чтобы сказать о нескольких, к resistente добавьте -s. Род не меняет форму, а число меняет: resistente → resistentes.
 
 **Опишите несколько прочных сумок словом bolsas.**
 
 - ✅ **Las bolsas son resistentes.** — *Несколько сумок: resistentes.*
-- ❌ Las bolsas son resistente. — *Нужна форма множественного числа resistentes.*
+- ❌ Las bolsas son resistente. — *Нужна форма для нескольких resistentes.*
 - ❌ Las bolsas son resistentas. — *Не меняйте -e на -a: resistentes.*
 
 ## Практика · 12 заданий

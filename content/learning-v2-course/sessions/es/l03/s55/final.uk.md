@@ -39,7 +39,7 @@
 
 - ✅ **Las cajas no son muy grandes.** — *Кілька cajas: son і grandes.*
 - ❌ Las cajas no es muy grandes. — *Потрібне son.*
-- ❌ Las cajas no son muy grande. — *Потрібна множина grandes.*
+- ❌ Las cajas no son muy grande. — *Потрібна форма для кількох grandes.*
 
 ## Практика · 12 завдань
 

@@ -99,7 +99,7 @@
 `Los zapatos son bastante ___.`
 → **caros** · caro · caras
 Полная фраза: **Los zapatos son bastante caros.**
-- caro — *Zapatos во множественном числе.*
+- caro — *Zapatos — их несколько.*
 - caras — *Zapatos мужского рода.*
 
 **11 · Послушайте и выберите слово**

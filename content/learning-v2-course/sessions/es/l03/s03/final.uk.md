@@ -14,7 +14,7 @@
 **Скажіть, що книги великі.**
 
 - ✅ **Los libros son grandes.** — *Кілька книг: son grandes.*
-- ❌ Los libros son grande. — *Потрібна форма множини grandes.*
+- ❌ Los libros son grande. — *Потрібна форма для кількох grandes.*
 - ❌ Los libros es grandes. — *З libros використовуйте son.*
 
 ## Інтро 2
@@ -33,11 +33,11 @@
 
 ### Залишилися невеликі книги
 
-Великі книги вже упакували. Решта книг маленькі. Скажіть `Los libros son pequeños` — «Книги маленькі». Складіть `los libros` + `son` + `pequeños`. До чоловічої форми pequeño додайте -s. Тут потрібні й чоловічий рід, і множина: pequeños.
+Великі книги вже упакували. Решта книг маленькі. Скажіть `Los libros son pequeños` — «Книги маленькі». Складіть `los libros` + `son` + `pequeños`. До чоловічої форми pequeño додайте -s. Тут потрібні й чоловічий рід, і форма для кількох: pequeños.
 
 **Скажіть, що книги маленькі.**
 
-- ✅ **Los libros son pequeños.** — *Libros чоловічого роду в множині: pequeños.*
+- ✅ **Los libros son pequeños.** — *Libros чоловічого роду, коли їх кілька: pequeños.*
 - ❌ Los libros son pequeño. — *Книг кілька: pequeños.*
 - ❌ Los libros son pequeñas. — *Для чоловічого libros потрібно pequeños.*
 
@@ -48,7 +48,7 @@
 → **grandes** · grande · grandas
 Повна фраза: **Los libros son grandes.**
 - grande — *Книг кілька: grandes.*
-- grandas — *Форма grande не змінюється за родом; у множині grandes.*
+- grandas — *Форма grande не змінюється за родом; для кількох — grandes.*
 
 **2 · Зберіть фразу — книги великі**
 Плитки: `grandes` · `son` · `libros` · `los` · `es`.

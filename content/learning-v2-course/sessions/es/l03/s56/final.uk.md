@@ -39,7 +39,7 @@
 
 - ✅ **Los amigos son amables.** — *Кілька друзів: son amables.*
 - ❌ Los amigos es amables. — *Потрібне son.*
-- ❌ Los amigos son amable. — *Потрібна множина amables.*
+- ❌ Los amigos son amable. — *Потрібна форма для кількох amables.*
 
 ## Практика · 20 завдань
 
@@ -99,7 +99,7 @@
 `Los zapatos son bastante ___.`
 → **caros** · caro · caras
 Повна фраза: **Los zapatos son bastante caros.**
-- caro — *Zapatos у множині.*
+- caro — *Zapatos — їх кілька.*
 - caras — *Zapatos чоловічого роду.*
 
 **11 · Послухайте й виберіть слово**

@@ -26,7 +26,7 @@
 **Скажите, что чашки хрупкие.**
 
 - ✅ **Las tazas son frágiles.** — *Несколько вещей: frágiles.*
-- ❌ Las tazas son frágil. — *Нужно множественное число frágiles.*
+- ❌ Las tazas son frágil. — *Нужна форма для нескольких frágiles.*
 - ❌ Las tazas son frágils. — *Добавьте -es целиком: frágiles.*
 
 ## Интро 3

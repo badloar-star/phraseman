@@ -33,12 +33,12 @@
 
 ### Дві сумки для сім'ї
 
-Обираєте кілька таких сумок. Скажіть `Las bolsas son resistentes` — «Сумки міцні». Зберіть `las bolsas` + `son` + `resistentes`. Для множини до resistente додайте -s. Рід не змінює форму, а число змінює: resistente → resistentes.
+Обираєте кілька таких сумок. Скажіть `Las bolsas son resistentes` — «Сумки міцні». Зберіть `las bolsas` + `son` + `resistentes`. Щоб сказати про кількох, до resistente додайте -s. Рід не змінює форму, а число змінює: resistente → resistentes.
 
 **Опишіть кілька міцних сумок словом bolsas.**
 
 - ✅ **Las bolsas son resistentes.** — *Кілька сумок: resistentes.*
-- ❌ Las bolsas son resistente. — *Потрібна форма множини resistentes.*
+- ❌ Las bolsas son resistente. — *Потрібна форма для кількох resistentes.*
 - ❌ Las bolsas son resistentas. — *Не змінюйте -e на -a: resistentes.*
 
 ## Практика · 12 завдань

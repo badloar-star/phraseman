@@ -39,7 +39,7 @@
 
 - ✅ **El queso es salado.** — *Queso чоловічого роду: salado.*
 - ❌ El queso es salada. — *Потрібна форма salado.*
-- ❌ El queso es salados. — *Тут queso в однині: salado.*
+- ❌ El queso es salados. — *Тут queso — одна річ: salado.*
 
 ## Практика · 12 завдань
 

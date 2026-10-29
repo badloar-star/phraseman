@@ -26,8 +26,8 @@
 **Опишіть кілька штук солодкого печива.**
 
 - ✅ **Las galletas son dulces.** — *Кілька galletas: son dulces.*
-- ❌ Las galletas son dulce. — *Потрібна множина dulces.*
-- ❌ Las galletas son dulcas. — *Форма множини — dulces.*
+- ❌ Las galletas son dulce. — *Потрібна форма для кількох dulces.*
+- ❌ Las galletas son dulcas. — *Форма для кількох — dulces.*
 
 ## Інтро 3
 

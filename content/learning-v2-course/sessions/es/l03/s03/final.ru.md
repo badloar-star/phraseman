@@ -33,11 +33,11 @@
 
 ### Остались небольшие книги
 
-Большие книги уже упаковали. Оставшиеся книги маленькие. Скажите `Los libros son pequeños` — «Книги маленькие». Соберите `los libros` + `son` + `pequeños`. К мужской форме pequeño добавьте -s. Здесь нужны и мужской род, и множественное число: pequeños.
+Большие книги уже упаковали. Оставшиеся книги маленькие. Скажите `Los libros son pequeños` — «Книги маленькие». Соберите `los libros` + `son` + `pequeños`. К мужской форме pequeño добавьте -s. Здесь нужны и мужской род, и форма для нескольких: pequeños.
 
 **Скажите, что книги маленькие.**
 
-- ✅ **Los libros son pequeños.** — *Libros мужского рода во множественном числе: pequeños.*
+- ✅ **Los libros son pequeños.** — *Libros мужского рода, когда их несколько: pequeños.*
 - ❌ Los libros son pequeño. — *Книг несколько: pequeños.*
 - ❌ Los libros son pequeñas. — *Для мужского libros нужно pequeños.*
 
@@ -48,7 +48,7 @@
 → **grandes** · grande · grandas
 Полная фраза: **Los libros son grandes.**
 - grande — *Книг несколько: grandes.*
-- grandas — *Форма grande не меняется по роду; во множественном числе grandes.*
+- grandas — *Форма grande не меняется по роду; для нескольких — grandes.*
 
 **2 · Соберите фразу — книги большие**
 Плитки: `grandes` · `son` · `libros` · `los` · `es`.

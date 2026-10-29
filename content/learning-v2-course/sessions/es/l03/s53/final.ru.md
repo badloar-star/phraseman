@@ -37,7 +37,7 @@
 
 **Назовите красные сумки словом bolsos. Начните с Son unos, цвет поставьте после предмета.**
 
-- ✅ **Son unos bolsos rojos.** — *Все части группы во множественном числе.*
+- ✅ **Son unos bolsos rojos.** — *Все части группы — для нескольких.*
 - ❌ Son unos bolsos rojo. — *Нужна форма rojos.*
 - ❌ Son unos bolsos rojas. — *Bolsos мужского рода: rojos.*
 

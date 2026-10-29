@@ -9,7 +9,7 @@
 
 ### Белые чашки
 
-Разворачиваете покупку: `Son unas tazas blancas` — «Это белые чашки». Соберите `son` + `unas tazas` + `blancas`. Tazas женского рода и во множественном числе: выбирайте unas, а не unos. Цвет blanco получает окончание -as и стоит после tazas.
+Разворачиваете покупку: `Son unas tazas blancas` — «Это белые чашки». Соберите `son` + `unas tazas` + `blancas`. Tazas женского рода, и их несколько: выбирайте unas, а не unos. Цвет blanco получает окончание -as и стоит после tazas.
 
 **Назовите белые чашки, используя unas.**
 
@@ -25,7 +25,7 @@
 
 **Назовите зелёные бутылки, используя unas.**
 
-- ✅ **Son unas botellas verdes.** — *Verde во множественном числе — verdes.*
+- ✅ **Son unas botellas verdes.** — *Verde для нескольких — verdes.*
 - ❌ Son unas botellas verdas. — *Женский род не меняет -e: verdes.*
 - ❌ Son unas botellas verde. — *Бутылок несколько: verdes.*
 
@@ -33,7 +33,7 @@
 
 ### Маленькие ложки
 
-К чашкам купили маленькие ложки. Скажите `Son unas cucharas pequeñas` — «Это маленькие ложки». Соберите `son` + `unas cucharas` + `pequeñas`. Cucharas женского рода и во множественном числе, поэтому размер выражаем формой pequeñas. В этой фразе поставьте размер после cucharas.
+К чашкам купили маленькие ложки. Скажите `Son unas cucharas pequeñas` — «Это маленькие ложки». Соберите `son` + `unas cucharas` + `pequeñas`. Cucharas женского рода, и их несколько, поэтому размер выражаем формой pequeñas. В этой фразе поставьте размер после cucharas.
 
 **Назовите маленькие ложки, используя unas.**
 

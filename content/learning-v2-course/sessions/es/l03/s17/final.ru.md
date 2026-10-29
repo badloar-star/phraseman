@@ -90,7 +90,7 @@
 → **rojo** · roja · rojas
 Полная фраза: **Es un cuaderno rojo.**
 - roja — *Cuaderno мужского рода: rojo.*
-- rojas — *Нужны мужской род и единственное число: rojo.*
+- rojas — *Нужны мужской род и форма для одного: rojo.*
 
 **9 · Скажите вслух — это красная книга; начните с Es un**
 🎙 **Es un libro rojo.**

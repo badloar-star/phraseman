@@ -38,7 +38,7 @@
 **Скажіть, що ці соуси гострі.**
 
 - ✅ **Las salsas son picantes.** — *Кілька соусів: salsas, son, picantes.*
-- ❌ Las salsas son picante. — *Потрібна множина picantes.*
+- ❌ Las salsas son picante. — *Потрібна форма для кількох picantes.*
 - ❌ Las salsas son picantas. — *Не змінюйте -e на -a: picantes.*
 
 ## Практика · 16 завдань

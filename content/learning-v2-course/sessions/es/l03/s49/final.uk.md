@@ -37,7 +37,7 @@
 
 **Похваліть кілька фотографій, почавши з Son і не повторюючи назви предметів.**
 
-- ✅ **Son muy bonitas.** — *Muy не змінюється; bonitas — множина.*
+- ✅ **Son muy bonitas.** — *Muy не змінюється; bonitas — форма для кількох.*
 - ❌ Son muys bonitas. — *У muy немає форми muys.*
 - ❌ Son muy bonita. — *Кілька фотографій: bonitas.*
 

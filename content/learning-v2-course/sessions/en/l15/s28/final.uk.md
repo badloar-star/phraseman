@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви відокремлюєте свої наміри від уже узгоджених майбутніх справ.
 
-**Що ви опануєте:** сказати, що ви вирішили зробити: going to order some food
+**Що ви опануєте:** сказати, що збираєтеся щось замовити: I am going to order some food.
 **Нові слова:** delivery slot, collection point, click and collect, photo booth
 
 ## Інтро 1

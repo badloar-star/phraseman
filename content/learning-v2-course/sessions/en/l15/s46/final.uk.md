@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви відокремлюєте свої наміри від уже узгоджених майбутніх справ.
 
-**Що ви опануєте:** описати важкий характер знайомого: my reckless brother
+**Що ви опануєте:** описати важкий характер знайомого: We are meeting our narrow-minded cousin tomorrow.
 **Нові слова:** reckless, inflexible, narrow-minded, ungrateful
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы отделяете свои намерения от уже согласованных будущих дел.
 
-**Что вы освоите:** назвать ещё один узор на одежде: buying a pinstripe suit
+**Что вы освоите:** назвать узор на одежде: I am buying a pinstripe suit tomorrow.
 **Новые слова:** pinstripe, patchwork, gingham, houndstooth
 
 ## Интро 1

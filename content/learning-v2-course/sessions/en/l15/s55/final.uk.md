@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви відокремлюєте свої наміри від уже узгоджених майбутніх справ.
 
-**Що ви опануєте:** назвати ще один візерунок на одязі: buying a pinstripe suit
+**Що ви опануєте:** назвати візерунок на одязі: I am buying a pinstripe suit tomorrow.
 **Нові слова:** pinstripe, patchwork, gingham, houndstooth
 
 ## Інтро 1

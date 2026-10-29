@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы отделяете свои намерения от уже согласованных будущих дел.
 
-**Что вы освоите:** назвать рисунок на ткани: buying a paisley scarf
+**Что вы освоите:** назвать рисунок на ткани: I am buying a paisley scarf tomorrow.
 **Новые слова:** paisley, tartan, polka dots, herringbone
 
 ## Интро 1

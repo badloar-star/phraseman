@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви відокремлюєте свої наміри від уже узгоджених майбутніх справ.
 
-**Що ви опануєте:** описати покупку за ціною та користю: buying a practical coat
+**Що ви опануєте:** описати покупку за ціною і користю: I am buying a practical coat tomorrow.
 **Нові слова:** practical, economical, affordable, overpriced
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы отделяете свои намерения от уже согласованных будущих дел.
 
-**Что вы освоите:** описать, с кем удобно делать общее дело: our cooperative neighbour
+**Что вы освоите:** описать, кто готов помочь: They are meeting their supportive teacher on Friday.
 **Новые слова:** adventurous, resourceful, cooperative, supportive
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы отделяете свои намерения от уже согласованных будущих дел.
 
-**Что вы освоите:** описать, какой настрой у друга или знакомого: my optimistic friend
+**Что вы освоите:** описать настрой друга или знакомого: I am calling my optimistic friend tomorrow.
 **Новые слова:** optimistic, pessimistic, indecisive, decisive
 
 ## Интро 1

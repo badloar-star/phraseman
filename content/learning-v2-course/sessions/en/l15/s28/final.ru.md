@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы отделяете свои намерения от уже согласованных будущих дел.
 
-**Что вы освоите:** сказать, что вы решили сделать: going to order some food
+**Что вы освоите:** сказать, что собираетесь что-то заказать: I am going to order some food.
 **Новые слова:** delivery slot, collection point, click and collect, photo booth
 
 ## Интро 1

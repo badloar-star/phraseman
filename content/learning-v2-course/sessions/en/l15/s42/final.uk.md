@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви відокремлюєте свої наміри від уже узгоджених майбутніх справ.
 
-**Що ви опануєте:** описати, який настрій у друга чи знайомого: my optimistic friend
+**Що ви опануєте:** описати настрій друга чи знайомого: I am calling my optimistic friend tomorrow.
 **Нові слова:** optimistic, pessimistic, indecisive, decisive
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы отделяете свои намерения от уже согласованных будущих дел.
 
-**Что вы освоите:** описать трудный характер знакомого: my reckless brother
+**Что вы освоите:** описать трудный характер знакомого: We are meeting our narrow-minded cousin tomorrow.
 **Новые слова:** reckless, inflexible, narrow-minded, ungrateful
 
 ## Интро 1

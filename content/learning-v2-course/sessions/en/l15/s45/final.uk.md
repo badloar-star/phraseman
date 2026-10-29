@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви відокремлюєте свої наміри від уже узгоджених майбутніх справ.
 
-**Що ви опануєте:** описати, з ким зручно робити спільну справу: our cooperative neighbour
+**Що ви опануєте:** описати, хто готовий допомогти: They are meeting their supportive teacher on Friday.
 **Нові слова:** adventurous, resourceful, cooperative, supportive
 
 ## Інтро 1

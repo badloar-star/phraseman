@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы отделяете свои намерения от уже согласованных будущих дел.
 
-**Что вы освоите:** описать покупку по цене и пользе: buying a practical coat
+**Что вы освоите:** описать покупку по цене и пользе: I am buying a practical coat tomorrow.
 **Новые слова:** practical, economical, affordable, overpriced
 
 ## Интро 1

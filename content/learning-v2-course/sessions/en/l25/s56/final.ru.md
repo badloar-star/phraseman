@@ -15,7 +15,7 @@
 
 - ✅ **The seat was occupied when we arrived.**
 - ❌ The seat is occupied when we arrived. — *Состояние в названный момент прошлого: was.*
-- ❌ The seat been occupied when we arrived. — *Когда речь об одном, в форме прошлого нужна форма was.*
+- ❌ The seat been occupied when we arrived. — *Когда речь об одном, в прошлом нужно was.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **The room was vacant when we arrived.**
 - ❌ The room is vacant when we arrived. — *Состояние в названный момент прошлого: was.*
-- ❌ The room been vacant when we arrived. — *Когда речь об одном, в форме прошлого нужна форма was.*
+- ❌ The room been vacant when we arrived. — *Когда речь об одном, в прошлом нужно was.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **The kitchen was sunlit when we arrived.**
 - ❌ The kitchen is sunlit when we arrived. — *Состояние в названный момент прошлого: was.*
-- ❌ The kitchen been sunlit when we arrived. — *Когда речь об одном, в форме прошлого нужна форма was.*
+- ❌ The kitchen been sunlit when we arrived. — *Когда речь об одном, в прошлом нужно was.*
 
 ---
 

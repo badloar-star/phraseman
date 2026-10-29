@@ -15,7 +15,7 @@
 
 - ✅ **The seat was occupied when we arrived.**
 - ❌ The seat is occupied when we arrived. — *Стан у названий момент минулого: was.*
-- ❌ The seat been occupied when we arrived. — *Коли йдеться про одне, у формі минулого потрібна форма was.*
+- ❌ The seat been occupied when we arrived. — *Коли йдеться про одне, у минулому потрібне was.*
 
 ---
 
@@ -29,7 +29,7 @@
 
 - ✅ **The room was vacant when we arrived.**
 - ❌ The room is vacant when we arrived. — *Стан у названий момент минулого: was.*
-- ❌ The room been vacant when we arrived. — *Коли йдеться про одне, у формі минулого потрібна форма was.*
+- ❌ The room been vacant when we arrived. — *Коли йдеться про одне, у минулому потрібне was.*
 
 ---
 
@@ -43,7 +43,7 @@
 
 - ✅ **The kitchen was sunlit when we arrived.**
 - ❌ The kitchen is sunlit when we arrived. — *Стан у названий момент минулого: was.*
-- ❌ The kitchen been sunlit when we arrived. — *Коли йдеться про одне, у формі минулого потрібна форма was.*
+- ❌ The kitchen been sunlit when we arrived. — *Коли йдеться про одне, у минулому потрібне was.*
 
 ---
 

@@ -1,5 +1,6 @@
 /* scene-home-h.css — макет «Сцена Главной высотой как у «Уроков»» (см. scene-home-h.app.js): два телефона в ряд (Главная сейчас/вариант,
-   Уроки), линейка по краю сцены «Уроков», мерцающие звёзды поверх тёмного неба; служебных надписей в телефоне нет. */
+   Уроки), линейка по краю сцены «Уроков», мерцающие звёзды поверх тёмного неба, движение премиум-темы Титан; служебных надписей в
+   телефоне нет. */
 #sh .sp-real-row { margin-top: 20px; }
 #sh .sh-phones { display: flex; gap: 24px; align-items: flex-start; position: relative; }
 #sh .col { width: 430px; flex: none; }
@@ -10,12 +11,15 @@
 .sf-bar .sp-lbl { margin-left: 8px; }
 /* линейка — пунктир по краю сцены «Уроков» через оба телефона (элемент страницы, поверх) */
 .sh-ruler { position: absolute; left: -8px; right: -8px; height: 0; border-top: 1px dashed rgba(242, 192, 90, .9); pointer-events: none; z-index: 40; }
-/* мерцающие звёзды — слой поверх тёмного неба в тех же точках, что звёзды формулы */
+/* мерцающие звёзды — слой поверх тёмного неба в тех же точках, что звёзды холста: белая точка со свечением, альфа .12 ↔ 1 (как в коде «Тем») */
 .sh-stars { position: absolute; inset: 0; pointer-events: none; z-index: 24; }
-.sh-star { position: absolute; border-radius: 50%; background: #fff; box-shadow: 0 0 4px 1px rgba(255, 255, 255, .55); animation-name: sh-tw; animation-timing-function: ease-in-out; animation-iteration-count: infinite; }
-@keyframes sh-tw { 0%, 100% { transform: scale(.7); filter: brightness(.6); } 50% { transform: scale(1.25); filter: brightness(1.6); } }
-@media (prefers-reduced-motion: reduce) { .sh-star { animation: none !important; } }
-/* перерисованный заголовок урока — как в чистом макете */
-.sf-copy { position: absolute; left: 21px; z-index: 25; color: #fff; pointer-events: none; display: flex; flex-direction: column; gap: 4px; }
-.sf-copy small { font-size: 13.6px; line-height: 17px; color: rgba(255, 255, 255, .72); }
-.sf-copy b { font-weight: 700; font-size: 25px; line-height: 30px; letter-spacing: -.2px; text-wrap: balance; }
+.sh-star { position: absolute; border-radius: 50%; background: #fff; box-shadow: 0 0 4px 1px rgba(255, 255, 255, .55); opacity: .12; animation-name: sh-tw; animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-direction: alternate; }
+@keyframes sh-tw { from { opacity: .12; } to { opacity: 1; } }
+/* движение премиум-темы Титан — как PremiumThemeMotion (premium_theme_motion_sources.ts, dp × 1.045 = px телефона): блик и уголёк
+   плывут 38 с / 49 с туда-обратно; поверх кадра, где блик уже впечатан, — полупрозрачно и только осветляя (screen) */
+.sh-pm { position: absolute; left: 5px; top: 0; width: 430px; height: 300px; overflow: hidden; pointer-events: none; z-index: 23; mix-blend-mode: screen; opacity: .6; }
+.sh-pm i { position: absolute; display: block; border-radius: 50%; transform-origin: 65% 35%; animation: sh-pm 38s ease-in-out infinite alternate; }
+.sh-pm-a { width: 481px; height: 324px; right: -105px; top: -105px; background: radial-gradient(ellipse at 35% 75%, #c8d0d533, transparent 55%); box-shadow: 0 1px 0 #eff3f577, 0 5px 18px #b8c9d530; rotate: -25deg; }
+.sh-pm-b { width: 324px; height: 230px; right: -105px; top: 42px; background: radial-gradient(ellipse at 70% 50%, #ff322966, transparent 65%); box-shadow: inset -2px -1px 0 #ff857166; rotate: -32deg; animation-duration: 49.4s; animation-delay: -19s; animation-direction: alternate-reverse; }
+@keyframes sh-pm { from { transform: translate(-7px, -3px); opacity: .72; } to { transform: translate(5px, 4px); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .sh-star, .sh-pm i { animation: none !important; } }

@@ -5,8 +5,8 @@
 // cubic, ≤ 1,2 с). Здесь те же кривые и длительности 1:1, но всё считается от часов кадра (story_frame_clock): пауза удержанием останавливает и
 // входы, и счётчики; «Уменьшить движение» — сразу конечное состояние. Числа и печать обновляют только свой Text (лист), без перерисовки кадра.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { memo, useCallback, useMemo, useState } from 'react';
-import { StyleSheet, Text, View, type LayoutChangeEvent, type StyleProp, type TextStyle, type ViewStyle } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { StyleSheet, Text, View, type LayoutChangeEvent, type NativeSyntheticEvent, type StyleProp, type TextLayoutEventData, type TextStyle, type ViewStyle } from 'react-native';
 import Animated, { runOnJS, useAnimatedReaction, useAnimatedStyle } from 'react-native-reanimated';
 import { EASE_CSS_OUT, EASE_OUT, EASE_SPRING, frameMs, groupThousands, phase, useStoryFrameClock } from './story_frame_clock';
 import { balancedWidth } from './story_template_layout';
@@ -62,6 +62,25 @@ type WordsProps = Readonly<{
   accessibilityRole?: 'header';
 }>;
 
+// зачем (Сверка 29.10: кадр 13 всё ещё «Набор / добавили 14 челове / к», правка «замер один раз» не помогла — сперва логи, потом починка):
+// ВРЕМЕННАЯ трассировка [STORY-WORDS] — ширины слов (первый и повторные замеры), пробел, max, рассчитанная и фактическая ширина строки,
+// ожидаемые строки и каждое слово, которое разорвалось внутри себя. console.log, а не DebugLogger.info: снимки Сверки идут со сборки,
+// где __DEV__ может быть выключен, а console.warn в dev кладёт плашку LogBox поверх кадра. После починки убрать всё, кроме строки «разорвано».
+const LOG_WORDS = '[STORY-WORDS]';
+
+/** Строки, которые даст перенос по словам при ширине limit (та же логика, что в balancedWidth) — для трассировки. */
+function predictedLines(words: readonly string[], widths: readonly number[], gap: number, limit: number): string[] {
+  const lines: string[] = [];
+  let line = 0;
+  words.forEach((word, i) => {
+    const wd = widths[i] ?? 0;
+    if (line === 0 || line + gap + wd > limit) { lines.push(word); line = wd; return; }
+    lines[lines.length - 1] += ` ${word}`;
+    line += gap + wd;
+  });
+  return lines;
+}
+
 /** Заголовок, слова которого входят по очереди (.w.a). Ширина блока выравнивается как text-wrap: balance после первого замера. */
 export const Words = memo(function Words({ text, d0, step = 50, style, maxWidth, gap, testID, accessibilityRole }: WordsProps) {
   const words = useMemo(() => text.split(' ').filter(Boolean), [text]);
@@ -71,16 +90,36 @@ export const Words = memo(function Words({ text, d0, step = 50, style, maxWidth,
     // зачем (Сверка 28.10, кадр 13 «челове|к»): ширины слов меряются ОДИН раз — в строке шириной maxWidth, где слово не переносится.
     // После сужения до «balance» узкое слово (число + слово через неразрывный пробел) переносилось внутри себя, повторный замер давал
     // меньшую ширину, строка сужалась ещё — петля рвала слово посреди. Повторные замеры того же текста не учитываем.
-    if (measured.has(i)) return;
-    measured.set(i, e.nativeEvent.layout.width); // guard-ok: Map в памяти — ширины слов для выравнивания строк, не запись данных
+    const next = e.nativeEvent.layout.width;
+    const prev = measured.get(i);
+    if (prev !== undefined) {
+      console.log(`${LOG_WORDS} «${text}»: слово ${i} «${words[i] ?? '?'}» перемерено ${prev.toFixed(2)} → ${next.toFixed(2)} — не учитываем (замер один раз)`); // guard-ok: временная трассировка кадра 13
+      return;
+    }
+    measured.set(i, next); // guard-ok: Map в памяти — ширины слов для выравнивания строк, не запись данных
     if (measured.size === words.length) setWidths(words.map((_, k) => measured.get(k) ?? 0));
-  }, [measured, words]);
+  }, [measured, words, text]);
   const width = widths ? balancedWidth(widths, gap, maxWidth) : maxWidth;
+  useEffect(() => {
+    if (!widths) return;
+    const flat = StyleSheet.flatten(style) ?? {};
+    console.log(`${LOG_WORDS} «${text}»: слова ${words.length}, ширины [${widths.map((x) => x.toFixed(2)).join(', ')}] пробел ${gap} max ${maxWidth} шрифт ${String(flat.fontSize)}/${String(flat.fontWeight)}/${String(flat.letterSpacing ?? 0)} → строка ${width}; ожидаем строки: ${predictedLines(words, widths, gap, width).map((l) => `«${l}»`).join(' / ')}`); // guard-ok: временная трассировка кадра 13
+  }, [widths]); // eslint-disable-line react-hooks/exhaustive-deps -- зачем: одна строка на готовый замер
+  const onRow = useCallback((e: LayoutChangeEvent) => {
+    if (!widths) return; // первый проход — строка ещё шириной max, ширина не рассчитана: писать нечего
+    console.log(`${LOG_WORDS} «${text}»: строка фактически ${e.nativeEvent.layout.width.toFixed(2)} × ${e.nativeEvent.layout.height.toFixed(2)} при заданной ${width}`); // guard-ok: временная трассировка кадра 13
+  }, [text, width, widths]);
+  const onWordLines = useCallback((i: number, e: NativeSyntheticEvent<TextLayoutEventData>) => {
+    const lines = e.nativeEvent.lines;
+    if (lines.length <= 1) return; // слово в одну строку — норма
+    // зачем: это и есть баг кадра 13 — слово разорвано внутри себя; строку оставить и после починки (сигнал, что ширины разошлись)
+    console.log(`${LOG_WORDS} ⚠ «${text}»: слово ${i} «${words[i] ?? '?'}» разорвано на ${lines.length} строки: ${lines.map((l) => `«${l.text}» ${l.width.toFixed(2)}`).join(' | ')}; замер слова ${measured.get(i)?.toFixed(2) ?? '—'}, строка ${width}`); // guard-ok: сигнал разрыва слова
+  }, [measured, text, width, words]);
   return (
-    <View testID={testID} accessible accessibilityRole={accessibilityRole} accessibilityLabel={text} style={[w.row, { width, columnGap: gap }]}>
+    <View testID={testID} accessible accessibilityRole={accessibilityRole} accessibilityLabel={text} style={[w.row, { width, columnGap: gap }]} onLayout={onRow}>
       {words.map((word, i) => (
         <Enter key={`${i}-${word}`} kind="a" d={d0 + i * step}>
-          <Text style={style} onLayout={(e) => onWord(i, e)}>{word}</Text>
+          <Text style={style} onLayout={(e) => onWord(i, e)} onTextLayout={(e) => onWordLines(i, e)}>{word}</Text>
         </Enter>
       ))}
     </View>

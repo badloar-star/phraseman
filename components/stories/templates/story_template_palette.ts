@@ -9,6 +9,7 @@ import { useMemo } from 'react';
 import { useTheme } from '../../ThemeContext';
 import { liquidGlassTokens } from '../../../constants/liquidGlassThemePalette';
 import { colorWithAlpha } from '../../v2/plateAlpha';
+import { splitAlpha } from './story_template_layout';
 
 export type StoryTemplatePalette = Readonly<{
   /** --bg-top / --bg-mid / --bg-bot — градиент фона просмотра. */
@@ -57,9 +58,12 @@ export function storyTemplatePalette(themeId: unknown): StoryTemplatePalette {
   });
 }
 
-/** color-mix(in srgb, color N%, transparent) — тот же цвет с прозрачностью. */
+/** color-mix(in srgb, color N%, transparent) — тот же цвет, прозрачность = своя прозрачность цвета × N (как в CSS). */
 export function mix(color: string, alpha: number): string {
-  return colorWithAlpha(color, Math.max(0, Math.min(1, alpha)));
+  // зачем (Сверка 28.10, кадр 3 «плитка под ачивкой» в светлом): тень светлых тем — полупрозрачный токен (#36365929 ≈ 16 %), а colorWithAlpha
+  // заменяет прозрачность, а не умножает: тень рисовалась на 70 % вместо 11 % макета — в ~6 раз темнее (замер снимков: −25 у края против −5).
+  // В тёмных темах тень непрозрачная (#000000) — там ничего не меняется.
+  return colorWithAlpha(color, splitAlpha(color).alpha * Math.max(0, Math.min(1, alpha)));
 }
 
 export function useStoryTemplatePalette(): StoryTemplatePalette {

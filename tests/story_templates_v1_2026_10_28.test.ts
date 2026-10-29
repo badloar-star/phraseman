@@ -13,6 +13,7 @@ import {
   balancedWidth, coinDrops, confettiPieces, monthCells, snowFlakes, splitAlpha, streakWeekCells, summitTowerSize, weekBars, WEEK_BAR_MAX,
 } from '../components/stories/templates/story_template_layout';
 import { dayKeyToMs, DAY_MS } from '../components/stories/templates/story_template_dates';
+import { mix } from '../components/stories/templates/story_template_palette';
 import type { Lang } from '../constants/i18n';
 
 // подмены поднимаются выше импортов (jest hoist). Часы кадра импортируют useSharedValue; сами кривые и фазы — чистые функции
@@ -24,6 +25,9 @@ jest.mock('../app/coin_rank_table_v1', () => ({
   coinRankRowForDisplay: (r: number) => ({ priceToReach: r * 1000 }),
 }));
 jest.mock('../components/spire/spire_tower_model', () => ({ SPIRE_TW: 390, SPIRE_TOWER_GEOM: { height: 900 } }));
+// палитра кадров берёт тему из контекста — для чистой функции mix() контекст и токены не нужны
+jest.mock('../components/ThemeContext', () => ({ useTheme: () => ({}) }));
+jest.mock('../constants/liquidGlassThemePalette', () => ({ liquidGlassTokens: () => ({}) }));
 
 const LANGS: readonly Lang[] = ['ru', 'uk', 'en', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
 const plain = (s: string): string => s.replace(/ /g, ' ');
@@ -174,6 +178,17 @@ describe('шаблоны историй v1 — формулы макета', () 
     expect(splitAlpha('#3FD9A655')).toEqual({ solid: '#3FD9A6', alpha: 0x55 / 255 });
     expect(splitAlpha('#FFFFFF')).toEqual({ solid: '#FFFFFF', alpha: 1 });
     expect(splitAlpha('rgba(10, 20, 30, 0.5)')).toEqual({ solid: 'rgb(10, 20, 30)', alpha: 0.5 });
+  });
+
+  // зачем (Сверка 28.10, кадр 3 «плитка под ачивкой» в светлом): color-mix(in srgb, X N%, transparent) умножает свою прозрачность X на N.
+  // Тень светлых тем — #RRGGBB29 (≈ 16 %): × 70 % = ≈ 11 %, а не 70 % (было в ~6 раз темнее макета).
+  it('mix() — как color-mix макета: своя прозрачность токена × доля', () => {
+    const alphaOf = (rgba: string): number => Number(/,([\d.]+)\)$/.exec(rgba)?.[1]);
+    expect(mix('#36365929', 0.7)).toMatch(/^rgba\(54,54,89,/);
+    expect(alphaOf(mix('#36365929', 0.7))).toBeCloseTo((0x29 / 255) * 0.7, 4);
+    expect(mix('#000000', 0.7)).toBe('rgba(0,0,0,0.7)');
+    expect(alphaOf(mix('rgba(0, 0, 0, 0.5)', 0.55))).toBeCloseTo(0.275, 4);
+    expect(mix('#FFFFFF', 0)).toBe('rgba(255,255,255,0)');
   });
 });
 

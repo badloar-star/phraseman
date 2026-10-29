@@ -33,14 +33,21 @@ type Copy9 = Readonly<Record<Locale9, string>>;
 const pick = (copy: Copy9, locale: string): string => copy[locale as Locale9] ?? copy.en;
 
 const INSTRUCTION: Readonly<Record<LearningV2TaskFamilyV1, Readonly<{ icon: LearningV2TaskIconV1; copy: Copy9 }>>> = {
-  listen_choose: { icon: "ear", copy: { ru: "Послушай и выбери", uk: "Послухай і вибери", en: "Listen and choose", es: "Escucha y elige", "pt-BR": "Ouça e escolha", vi: "Nghe và chọn", id: "Dengar dan pilih", tr: "Dinle ve seç", pl: "Posłuchaj i wybierz" } },
-  listen_build_dictation: { icon: "headset", copy: { ru: "Послушай и собери", uk: "Послухай і склади", en: "Listen and build", es: "Escucha y arma", "pt-BR": "Ouça e monte", vi: "Nghe và ghép", id: "Dengar dan susun", tr: "Dinle ve kur", pl: "Posłuchaj i ułóż" } },
-  phrase_builder: { icon: "puzzle", copy: { ru: "Собери фразу", uk: "Склади фразу", en: "Build the phrase", es: "Arma la frase", "pt-BR": "Monte a frase", vi: "Ghép câu", id: "Susun frasa", tr: "Cümleyi kur", pl: "Ułóż zdanie" } },
-  context_gap_grammar: { icon: "create", copy: { ru: "Вставь слово", uk: "Встав слово", en: "Fill in the word", es: "Completa la palabra", "pt-BR": "Complete a palavra", vi: "Điền từ", id: "Isi katanya", tr: "Kelimeyi yerleştir", pl: "Wstaw słowo" } },
-  speed_match: { icon: "swap", copy: { ru: "Найди пары", uk: "Знайди пари", en: "Match the pairs", es: "Une las parejas", "pt-BR": "Ligue os pares", vi: "Ghép cặp", id: "Cari pasangan", tr: "Eşleri bul", pl: "Połącz pary" } },
-  scripted_repeat_compare: { icon: "mic", copy: { ru: "Скажи вслух", uk: "Скажи вголос", en: "Say it out loud", es: "Dilo en voz alta", "pt-BR": "Diga em voz alta", vi: "Nói to lên", id: "Ucapkan keras", tr: "Sesli söyle", pl: "Powiedz na głos" } },
-  sound_contrast: { icon: "ear", copy: { ru: "Различи звуки", uk: "Розрізни звуки", en: "Spot the sound", es: "Distingue sonidos", "pt-BR": "Diferencie os sons", vi: "Phân biệt âm", id: "Bedakan bunyinya", tr: "Sesleri ayırt et", pl: "Rozróżnij dźwięki" } },
+  listen_choose: { icon: "ear", copy: { ru: "Послушайте и выберите", uk: "Послухайте й виберіть", en: "Listen and choose", es: "Escucha y elige", "pt-BR": "Ouça e escolha", vi: "Nghe và chọn", id: "Dengar dan pilih", tr: "Dinle ve seç", pl: "Posłuchaj i wybierz" } },
+  listen_build_dictation: { icon: "headset", copy: { ru: "Послушайте и соберите", uk: "Послухайте й складіть", en: "Listen and build", es: "Escucha y arma", "pt-BR": "Ouça e monte", vi: "Nghe và ghép", id: "Dengar dan susun", tr: "Dinle ve kur", pl: "Posłuchaj i ułóż" } },
+  phrase_builder: { icon: "puzzle", copy: { ru: "Соберите фразу", uk: "Складіть фразу", en: "Build the phrase", es: "Arma la frase", "pt-BR": "Monte a frase", vi: "Ghép câu", id: "Susun frasa", tr: "Cümleyi kur", pl: "Ułóż zdanie" } },
+  context_gap_grammar: { icon: "create", copy: { ru: "Вставьте слово", uk: "Вставте слово", en: "Fill in the word", es: "Completa la palabra", "pt-BR": "Complete a palavra", vi: "Điền từ", id: "Isi katanya", tr: "Kelimeyi yerleştir", pl: "Wstaw słowo" } },
+  speed_match: { icon: "swap", copy: { ru: "Найдите пары", uk: "Знайдіть пари", en: "Match the pairs", es: "Une las parejas", "pt-BR": "Ligue os pares", vi: "Ghép cặp", id: "Cari pasangan", tr: "Eşleri bul", pl: "Połącz pary" } },
+  scripted_repeat_compare: { icon: "mic", copy: { ru: "Скажите вслух", uk: "Скажіть уголос", en: "Say it out loud", es: "Dilo en voz alta", "pt-BR": "Diga em voz alta", vi: "Nói to lên", id: "Ucapkan keras", tr: "Sesli söyle", pl: "Powiedz na głos" } },
+  sound_contrast: { icon: "ear", copy: { ru: "Различите звуки", uk: "Розрізніть звуки", en: "Spot the sound", es: "Distingue sonidos", "pt-BR": "Diferencie os sons", vi: "Phân biệt âm", id: "Bedakan bunyinya", tr: "Sesleri ayırt et", pl: "Rozróżnij dźwięki" } },
 };
+
+/** Одно и то же действие: без регистра и знаков препинания («Соберите фразу.» = «соберите фразу»). */
+function sameActionV1(a: string, b: string): boolean {
+  const norm = (text: string): string => text.toLocaleLowerCase().replace(/[^\p{L}\p{N}]+/gu, "");
+  const left = norm(a);
+  return left.length > 0 && left === norm(b);
+}
 
 const GENERIC_GOAL_LABEL_RE = /^(?:соберите(?: фразу)?|складіть(?: фразу)?|скажите(?: вслух| по-английски)?|скажіть(?: уголос| англійською)?|произнесите|вимовте)$/iu;
 const GOAL_SAY: Copy9 = { ru: "Скажите по-английски", uk: "Скажіть англійською", en: "Say it in English", es: "Dilo en inglés", "pt-BR": "Diga em inglês", vi: "Nói bằng tiếng Anh", id: "Katakan dalam bahasa Inggris", tr: "İngilizce söyle", pl: "Powiedz po angielsku" };
@@ -146,6 +153,21 @@ export function splitLearningV2TaskPromptV1(input: Readonly<{
         finalSituation = parts.slice(0, -1).join(" ") || null;
         finalGoal = { label: null, text: last };
       }
+    }
+    // зачем (координатор 29.10; владелец: занятия на «вы»): чип режима уже говорит действие («Соберите фразу») — то же действие в ситуации или в цели не повторяем
+    const repeatsChip = (text: string): boolean => sameActionV1(text, instruction);
+    if (finalSituation) {
+      const kept = splitSentencesV1(finalSituation).filter((part) => !repeatsChip(part));
+      const next = kept.join(" ") || null;
+      if (next !== finalSituation) console.log("[V2-TASK-PARTS]", JSON.stringify({ chipRepeat: "situation", family, rule, instruction, before: finalSituation, after: next })); // guard-ok: одна строка на отброшенный повтор чипа
+      finalSituation = next;
+    }
+    if (finalGoal && repeatsChip(finalGoal.text)) {
+      console.log("[V2-TASK-PARTS]", JSON.stringify({ chipRepeat: "goal_text", family, rule, instruction, text: finalGoal.text })); // guard-ok: одна строка на отброшенный повтор чипа
+      finalGoal = null;
+    } else if (finalGoal?.label && repeatsChip(finalGoal.label)) {
+      console.log("[V2-TASK-PARTS]", JSON.stringify({ chipRepeat: "goal_label", family, rule, instruction, label: finalGoal.label })); // guard-ok: одна строка на отброшенный повтор чипа
+      finalGoal = { label: null, text: finalGoal.text };
     }
     return Object.freeze({ instruction, icon: head.icon, situation: finalSituation, goal: finalGoal, rule });
   };

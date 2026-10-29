@@ -19,7 +19,7 @@ describe('части строки задания (правила Learning V2)', 
       interfaceLocale: 'ru',
       modePayload: { explanationV1: { phrase: { meaningByLocale: { ru: 'Я здесь.' } } } },
     });
-    expect(parts.instruction).toBe('Собери фразу');
+    expect(parts.instruction).toBe('Соберите фразу');
     expect(parts.icon).toBe('puzzle');
     expect(parts.situation).toBe('Коллега ищет вас, а вы уже в комнате.');
     expect(parts.goal).toEqual({ label: 'Скажите по-английски', text: 'Я здесь.' });

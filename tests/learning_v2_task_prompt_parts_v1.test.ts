@@ -15,7 +15,7 @@ describe('splitLearningV2TaskPromptV1', () => {
       interfaceLocale: 'ru',
       modePayload: { explanationV1: { phrase: { meaningByLocale: { ru: 'Я здесь.', uk: 'Я тут.' } } } },
     })).toEqual({
-      instruction: 'Собери фразу', icon: 'puzzle',
+      instruction: 'Соберите фразу', icon: 'puzzle',
       situation: 'Коллега ищет вас, а вы уже в комнате.',
       goal: { label: 'Скажите по-английски', text: 'Я здесь.' },
       rule: 'dash_lead',
@@ -28,7 +28,7 @@ describe('splitLearningV2TaskPromptV1', () => {
       prompt: 'Вставьте слово — начальница звонит и спрашивает, добрались ли вы до офиса; ответьте, что вы уже здесь',
       interfaceLocale: 'ru',
     });
-    expect(parts.instruction).toBe('Вставь слово');
+    expect(parts.instruction).toBe('Вставьте слово');
     expect(parts.situation).toBe('Начальница звонит и спрашивает, добрались ли вы до офиса.');
     expect(parts.goal).toEqual({ label: null, text: 'Ответьте, что вы уже здесь.' });
   });
@@ -180,5 +180,28 @@ describe('phrase meaning comes from the quote in the task text', () => {
   it('a real addressee label stays («Скажите ей»)', () => {
     expect(splitLearningV2TaskPromptV1({ family: 'phrase_builder', prompt: 'Бабушка ищет бубен. Скажите ей: «Бубен рядом с диваном»', interfaceLocale: 'ru' }).goal)
       .toEqual({ label: 'Скажите ей', text: 'Бубен рядом с диваном' });
+  });
+});
+
+// зачем (координатор 29.10; владелец: занятия на «вы»): чип режима теперь «Соберите фразу» — то же действие в ситуации или в цели не повторяем
+describe('чип режима не повторяется в тексте задания', () => {
+  it('команда, совпавшая с чипом, не становится целью', () => {
+    const parts = splitLearningV2TaskPromptV1({
+      family: 'phrase_builder',
+      prompt: 'Коллега ищет вас, а вы уже в комнате. Соберите фразу.',
+      interfaceLocale: 'ru',
+    });
+    expect(parts.instruction).toBe('Соберите фразу');
+    expect(parts.goal?.text ?? '').not.toMatch(/соберите фразу/i);
+    expect(parts.situation ?? '').not.toMatch(/соберите фразу/i);
+  });
+
+  it('другое действие чип не вытесняет: «Скажите ей» остаётся подписью цели', () => {
+    const parts = splitLearningV2TaskPromptV1({
+      family: 'phrase_builder',
+      prompt: 'Соседка спрашивает дорогу. Скажите ей: «Turn left.»',
+      interfaceLocale: 'ru',
+    });
+    expect(parts.goal).toEqual({ label: 'Скажите ей', text: 'Turn left.' });
   });
 });

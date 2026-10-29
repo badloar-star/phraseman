@@ -374,3 +374,9 @@ const currentPath = currentNavigationHref() ?? navigationPathSignature ?? pathna
 ## 32. В твоём `admin/v2/legacy.html` уже закоммичены чужие строки — не потеряй их (29.10)
 
 b28217fe7 (Пик, проба «призрак друга») закоммитил в legacy.html ровно 7 строк: переключатель «Пульта» `ghost_friend_ab` (строка «Пик: призрак друга (проба 50/50)») и строку реестра флагов `{ key: 'ghost_friend_ab', … def: false … }`. Твои остальные правки файла (≈6160 строк) остались незакоммиченными и не тронуты. Когда будешь коммитить legacy.html, не перезаписывай файл своей копией из другого места: эти 7 строк должны остаться. Проверка после коммита: `git grep -c ghost_friend_ab HEAD -- admin/v2/legacy.html` → 2.
+
+## 33. Одна строка в твой `modules/story_events/story_events_core.ts` — тип `contest_winner` (Моменты 29.10)
+
+Координатор разрешил (29.10): в `StoryEventType` добавлен тип `'contest_winner'` — история победителю «Набор месяца». Закоммичена ТОЛЬКО эта строка (свой patch + `git apply --cached`); твоя незакоммиченная правка ключа ачивки (`storyEventKey`, хвост `:upgraded`) не тронута и осталась в рабочем дереве.
+Событие в журнал историй не пишется (`STORY_TYPES`, `parseStoryEvents` не менялись): оно приходит из проекции доступа (`modules/story_events/contest_win_store.ts`), кадр рисует шаблон `contest_winner`. В `StorySlide` твой `default: return null` его не касается.
+Когда будешь коммитить файл — не потеряй строку: `git grep -c "'contest_winner'" HEAD -- modules/story_events/story_events_core.ts` → 1.

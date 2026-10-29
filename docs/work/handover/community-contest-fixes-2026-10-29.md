@@ -1,6 +1,6 @@
 # Конкурс «Набор месяца»: исправления до старта 1.11 — передача Codex (Ядро, 29.10)
 
-Решения владельца 29.10 ~09:30 (через координатора). Код конкурса сейчас **незакоммичен у Codex**
+Решения владельца 29.10 07:50–07:55 (кнопки, через координатора; поручение исследования — ~09:30 по журналу координатора). Код конкурса сейчас **незакоммичен у Codex**
 (`functions/src/community_month_contest.ts`, `community_contest_identity.ts`, `shared/community_month_contest.ts`,
 `firestore.rules`, `firestore.indexes.json`, `functions/src/index.ts` — `??`/`M`). Поэтому здесь готовый патч, а не коммит.
 Если файлы закоммитят до 1.11 — Ядро вносит его само. Выкладка — только по «да» владельца
@@ -12,9 +12,9 @@
 |---|---|---|---|
 | 1 | Участвуют только наборы, созданные в текущем месяце (решение 26.10) | все наборы с `publishedAt < конец месяца` | `publishedAt` ∈ [начало, конец) месяца |
 | 2 | Голос засчитывается от аккаунта ≥3 дней | любой вошедший | возраст аккаунта на момент голоса ≥ 72 ч |
-| 3 | …с ≥1 пройденным уроком | нет | `lessons_completed ≥ 1` (классика) **или** ≥1 завершённая сессия V2 — см. вопрос 1 |
-| 4 | До 10 голосов в месяц | без лимита | у каждого голосующего засчитываются 10 самых ранних действующих голосов месяца |
-| 5 | Места — снимок раз в N часов, не обход на каждое открытие | на каждое открытие обход ВСЕХ наборов + запрос голосов по каждому | один документ `community_month_standings/{yyyy-mm}`, пересчёт раз в 3 ч |
+| 3 | …с ≥1 пройденным уроком (любым) | нет | классика (`lessons_completed`/`completed_lessons`) **или** Learning V2 (`progress.learning_v2_course_progress_sync_v1` ≥ 1) |
+| 4 | До 10 голосов в месяц | без лимита | 10 самых ранних **действующих** голосов; снятый лайк возвращает голос |
+| 5 | Места — снимок, не обход на каждое открытие | на каждое открытие обход ВСЕХ наборов + запрос голосов по каждому | один документ `community_month_standings/{yyyy-mm}`, пересчёт раз в 3 ч, в последние сутки — каждый час |
 | 6 | В правилах строка «Apple и Google не спонсоры конкурса» | нет | текст в шторке «Условия участия» (клиент, Codex) |
 | 7 | Тексты на 9 языках | ru и en, остальным en | заявка Переводчику (раздел 6) |
 
@@ -23,93 +23,31 @@
 перестанут проходить сами лайки. Поэтому лайк остаётся лайком, а условия 1–4 применяются **при подсчёте на сервере**.
 Если голос не засчитан, человек ничего не теряет, кроме места в рейтинге. Причина пишется в статистику снимка.
 
-## 1. Новый чистый модуль подсчёта — `functions/src/community_month_tally.ts`
+## 1. Модуль подсчёта — УЖЕ В GIT: `functions/src/community_month_tally.ts`
 
-Чистая функция без Firestore: её и проверяют тесты, и зовут снимок и финализация.
+Чистый модуль без импорта незакоммиченных файлов Codex (свои типы, структурно совместимы с `ContestEntry`), с тестом
+`functions/src/community_month_tally.test.ts` на все правила. Codex только подключает его. Что в нём:
 
-```ts
-// Подсчёт «Набора месяца» по правилам владельца 29.10. Чистая функция: ни Firestore, ни времени — всё во входе.
-import type { ContestEntry, ContestMonth } from '../../shared/community_month_contest';
-
-export const CONTEST_MIN_ACCOUNT_AGE_MS = 3 * 24 * 60 * 60 * 1000;
-export const CONTEST_MIN_LESSONS = 1;
-export const CONTEST_MAX_VOTES_PER_MONTH = 10;
-export const CONTEST_RULE_VERSION = 3;
-
-export type TallyPack = Readonly<{ id: string; authorId: string; title: string; publishedAtMs: number; status: string }>;
-export type TallyVote = Readonly<{ packId: string; voterId: string; liked: boolean; atMs: number; voteId: string }>;
-export type TallyVoter = Readonly<{ createdAtMs: number | null; lessonsCompleted: number }>;
-export type TallyStats = Readonly<{
-  packs: number; votesRead: number; counted: number;
-  excluded: Readonly<{ outsideMonth: number; self: number; unliked: number; unknownVoter: number; tooYoung: number; noLesson: number; overCap: number; packNotEligible: number }>;
-}>;
-
-export function tallyContestMonth(input: Readonly<{
-  month: ContestMonth; packs: readonly TallyPack[]; votes: readonly TallyVote[]; voters: ReadonlyMap<string, TallyVoter>;
-}>): { entries: ContestEntry[]; stats: TallyStats } {
-  const { month } = input;
-  const ex = { outsideMonth: 0, self: 0, unliked: 0, unknownVoter: 0, tooYoung: 0, noLesson: 0, overCap: 0, packNotEligible: 0 };
-  // правило 1: только наборы, опубликованные в этом месяце
-  const packs = new Map(input.packs
-    .filter((p) => p.publishedAtMs >= month.startMs && p.publishedAtMs < month.endMs && ['published', 'update_pending'].includes(p.status))
-    .map((p) => [p.id, p]));
-  // последнее состояние голоса (пакет, голосующий) внутри месяца
-  const latest = new Map<string, TallyVote>();
-  for (const v of input.votes) {
-    if (v.atMs < month.startMs || v.atMs >= month.endMs) { ex.outsideMonth += 1; continue; }
-    const key = `${v.packId}\u0000${v.voterId}`;
-    const prev = latest.get(key);
-    if (!prev || v.atMs > prev.atMs || (v.atMs === prev.atMs && v.voteId > prev.voteId)) latest.set(key, v);
-  }
-  // допуск голосующего (правила 2–3), затем лимит 10 на человека (правило 4) — по времени, стабильно
-  const byVoter = new Map<string, TallyVote[]>();
-  for (const v of latest.values()) {
-    const pack = packs.get(v.packId);
-    if (!pack) { ex.packNotEligible += 1; continue; }
-    if (!v.liked) { ex.unliked += 1; continue; }
-    if (v.voterId === pack.authorId) { ex.self += 1; continue; }
-    const voter = input.voters.get(v.voterId);
-    if (!voter) { ex.unknownVoter += 1; continue; }
-    if (voter.createdAtMs == null || v.atMs - voter.createdAtMs < CONTEST_MIN_ACCOUNT_AGE_MS) { ex.tooYoung += 1; continue; }
-    if (voter.lessonsCompleted < CONTEST_MIN_LESSONS) { ex.noLesson += 1; continue; }
-    byVoter.set(v.voterId, [...(byVoter.get(v.voterId) ?? []), v]);
-  }
-  const hearts = new Map<string, number>();
-  let counted = 0;
-  for (const list of byVoter.values()) {
-    const sorted = [...list].sort((a, b) => a.atMs - b.atMs || (a.packId < b.packId ? -1 : 1));
-    sorted.slice(CONTEST_MAX_VOTES_PER_MONTH).forEach(() => { ex.overCap += 1; });
-    for (const v of sorted.slice(0, CONTEST_MAX_VOTES_PER_MONTH)) { hearts.set(v.packId, (hearts.get(v.packId) ?? 0) + 1); counted += 1; }
-  }
-  const entries: ContestEntry[] = [...packs.values()].map((p) => ({
-    id: p.id, authorId: p.authorId, title: p.title, hearts: hearts.get(p.id) ?? 0, publishedAtMs: p.publishedAtMs, status: p.status,
-  }));
-  return { entries, stats: { packs: packs.size, votesRead: input.votes.length, counted, excluded: ex } };
-}
-```
-
-Заметка: «самые ранние 10» считаются по времени **последнего** изменения голоса (`updatedAt`): так устроена
-запись `contest_votes`. Снял и снова поставил лайк — голос уходит в конец очереди. Больше 10 действующих
-голосов одновременно у человека не бывает.
+- `tallyContestMonth({ month, packs, votes, voters })` → `{ entries, stats }` — правила 1–4 ниже, причины отсева в `stats.excluded`
+  (`outsideMonth, packNotEligible, unliked, self, unknownVoter, tooYoung, noLesson, overCap`);
+- `contestLessonsCompleted(progress)` — урок = **любой** (владелец 29.10): классика `lessons_completed`/`completed_lessons`
+  **плюс** Learning V2: `progress.learning_v2_course_progress_sync_v1` (число пройденных подряд) или маска пройденных
+  `progress.learning_v2_course_masks_sync_v1` (поле `c`, ловит прохождение не с начала; `o` — «открыто», не считается).
+  Оба поля клиент уже синхронизирует с 22.10 (подтвердила сессия Learning V2), новое поле не нужно;
+- `contestAccountCreatedAtMs(profileCreatedAtMs, authCreatedAtMs)` — `users.created_at`, а если пусто — Firebase Auth;
+- `contestStandingsShouldRefresh(nowMs, month)` — раз в 3 ч, в последние сутки месяца — каждый час;
+- `CONTEST_MAX_VOTES_PER_MONTH = 10`: засчитываются 10 **действующих** голосов, самые ранние по времени последнего
+  изменения; снятый лайк перестаёт быть действующим и возвращает голос (владелец 29.10).
 
 ## 2. `community_month_contest.ts` — сборщик, снимок, рейтинг
 
 ### 2.1 Сборщик вместо `readEntries` (тот же для снимка и финализации)
 
 ```ts
-import { tallyContestMonth, CONTEST_RULE_VERSION, type TallyVote, type TallyVoter } from './community_month_tally';
+import { tallyContestMonth, contestLessonsCompleted, contestAccountCreatedAtMs, contestStandingsShouldRefresh, CONTEST_TALLY_RULE_VERSION, type TallyVote, type TallyVoter } from './community_month_tally';
 import { parseAccountCreatedAtMs } from './progress_events';
 const STANDINGS = 'community_month_standings';
 const LOG = '[CONTEST-TALLY]';
-
-function lessonsCompleted(progress: Record<string, unknown>): number {
-  const direct = Math.trunc(Number(progress.lessons_completed ?? 0));
-  if (Number.isFinite(direct) && direct > 0) return direct;
-  const completed = progress.completed_lessons;
-  if (Array.isArray(completed)) return completed.length;
-  if (completed && typeof completed === 'object') return Object.keys(completed).length;
-  return 0; // + поле завершённых сессий V2 — вопрос 1
-}
 
 async function buildMonthTally(db: FirebaseFirestore.Firestore, month: ContestMonth) {
   const startedAt = Date.now();
@@ -143,13 +81,17 @@ async function buildMonthTally(db: FirebaseFirestore.Firestore, month: ContestMo
     const snaps = await db.getAll(...voterIds.slice(i, i + 300).map((id) => db.collection('users').doc(id)));
     for (const s of snaps) {
       const data = s.data() ?? {};
-      let createdAtMs = parseAccountCreatedAtMs(data.created_at);
-      if (createdAtMs == null) {
-        // зачем: у старых аккаунтов created_at бывает пуст — берём дату создания в Firebase Auth, а не отказываем молча
-        try { createdAtMs = Date.parse((await admin.auth().getUser(s.id)).metadata.creationTime) || null; }
+      const profileCreatedAtMs = parseAccountCreatedAtMs(data.created_at);
+      let authCreatedAtMs: number | null = null;
+      if (profileCreatedAtMs == null) {
+        // зачем (владелец 29.10): у старых аккаунтов created_at бывает пуст — берём дату создания в Firebase Auth
+        try { authCreatedAtMs = Date.parse((await admin.auth().getUser(s.id)).metadata.creationTime) || null; }
         catch (e) { console.warn(`${LOG} voter_age_unknown`, JSON.stringify({ reason: e instanceof Error ? e.message.slice(0, 80) : 'unknown' })); }
       }
-      voters.set(s.id, { createdAtMs, lessonsCompleted: lessonsCompleted((data.progress ?? {}) as Record<string, unknown>) });
+      voters.set(s.id, {
+        createdAtMs: contestAccountCreatedAtMs(profileCreatedAtMs, authCreatedAtMs),
+        lessonsCompleted: contestLessonsCompleted((data.progress ?? {}) as Record<string, unknown>),
+      });
     }
   }
   const result = tallyContestMonth({ month, packs, votes, voters });
@@ -159,10 +101,10 @@ async function buildMonthTally(db: FirebaseFirestore.Firestore, month: ContestMo
 ```
 
 `finalizeCommunityMonth`: `rankContestEntries((await buildMonthTally(db, month)).entries, month)` вместо `readEntries`;
-в результат `ruleVersion: CONTEST_RULE_VERSION` и `stats`. Победители прошлых месяцев отсекаются, как сейчас
+в результат `ruleVersion: CONTEST_TALLY_RULE_VERSION` и `stats`. Победители прошлых месяцев отсекаются, как сейчас
 (`community_contest_winners`). Финализация **всегда** считает заново, на снимок не опирается.
 
-### 2.2 Снимок раз в 3 часа
+### 2.2 Снимок: раз в 3 часа, в последние сутки месяца — каждый час
 
 ```ts
 export async function writeMonthStandings(db: FirebaseFirestore.Firestore, month: ContestMonth) {
@@ -172,7 +114,7 @@ export async function writeMonthStandings(db: FirebaseFirestore.Firestore, month
   const unranked = entries.filter((e, i) => !prev[i].exists && e.hearts === 0)
     .sort((a, b) => a.publishedAtMs - b.publishedAtMs);
   await db.collection(STANDINGS).doc(month.id).set({
-    monthId: month.id, ruleVersion: CONTEST_RULE_VERSION, builtAtMs: Date.now(),
+    monthId: month.id, ruleVersion: CONTEST_TALLY_RULE_VERSION, builtAtMs: Date.now(),
     // зачем: в одном документе — весь список участников месяца (сейчас их единицы; потолок 300 — запас на годы при росте)
     entries: [...ranked, ...unranked].slice(0, 300).map(({ id, authorId, title, hearts, publishedAtMs, status }) => ({ id, authorId, title, hearts, publishedAtMs, status })),
     totalEntries: ranked.length + unranked.length, stats,
@@ -180,13 +122,18 @@ export async function writeMonthStandings(db: FirebaseFirestore.Firestore, month
 }
 
 export const communityMonthStandingsRefresh = onSchedule(
-  { region: 'us-central1', schedule: 'every 3 hours', timeZone: 'UTC', timeoutSeconds: 300, retryCount: 2 },
+  { region: 'us-central1', schedule: 'every 1 hours', timeZone: 'UTC', timeoutSeconds: 300, retryCount: 2 },
   async () => {
     const db = admin.firestore();
     const config = (await db.collection('community_contest_config').doc('current').get()).data();
     const month = contestMonth(Date.now());
     if (config?.enabled !== true || month.id < COMMUNITY_CONTEST_FIRST_MONTH || typeof config.firstFullMonth !== 'string' || month.id < config.firstFullMonth) {
       console.log('[CONTEST-TALLY] refresh_skip', JSON.stringify({ enabled: config?.enabled === true, monthId: month.id, firstFullMonth: config?.firstFullMonth ?? null }));
+      return;
+    }
+    // владелец 29.10: раз в 3 ч, в последние сутки — каждый час; лишний запуск выходит до чтений базы (кроме конфига)
+    if (!contestStandingsShouldRefresh(Date.now(), month)) {
+      console.log('[CONTEST-TALLY] refresh_skip', JSON.stringify({ reason: 'not_due', hourUtc: new Date().getUTCHours() }));
       return;
     }
     await writeMonthStandings(db, month);
@@ -252,7 +199,9 @@ match /community_month_standings/{monthId} {
 **Джарвис / контракт данных** (правило CLAUDE.md «тронул данные»): новая коллекция `community_month_standings` →
 правило выше, строка в `jarvis_data_contract_guard.test.ts`, если департамент Сообщества читает конкурс.
 
-## 4. Тесты (запускать после коммита Codex)
+## 4. Тесты
+
+Правила 1–4 и границы — уже в git (`functions/src/community_month_tally.test.ts`). После коммита Codex добавить:
 
 - `functions/src/community_month_tally.test.ts` (чистые):
   - набор прошлого месяца не участвует, набор этого месяца участвует;
@@ -294,6 +243,111 @@ match /community_month_standings/{monthId} {
 - **Переводчику:** все тексты конкурса (сцена, шторка условий, окно победителя, приз) — на 9 языков интерфейса
   (ru, uk, en, es, pt-BR, vi, id, tr, pl); сейчас `triLang` отдаёт en для uk/es.
 
+## 6а. Автоначисление Plus победителям (владелец 29.10 ~07:55) — модуль УЖЕ В GIT: `functions/src/plus_grant.ts`
+
+«Конкурсы не прекращаются, каждый месяц. Система начисляет автоматически Plus, и он активируется как надо! Юзеру приходит история.»
+
+**Призы:** 1 место — Plus 3 месяца, 2 — 2 месяца, 3 — 1 месяц (вместо монет 2000/1000 у мест 2–3 и кнопки «Забрать»).
+
+**Механизм — как Telegram:** `grantPlusOnce(db, { uid, grantKey, duration: { months }, plan: 'community_month', source, extraProgress })`:
+- пишет `vip_active / vip_plan / vip_from / vip_until / vip_admin_override / vip_admin_grant_at` + проекцию доступа
+  (`writeAccessProjectionFromPatch`) — приложение узнаёт Plus сразу (тест `tests/plus_auto_grant_client_access_2026_10_29.test.ts`:
+  `isPremiumAccessProgressActive` и все 32 урока по `PLUS_OPENS_ALL_LESSONS`);
+- срок = **max(конец любого текущего Plus — VIP, магазин, админ, community; сейчас) + N календарных месяцев**; бессрочный Plus — не трогаем (`lifetime`);
+- идемпотентно: журнал `plus_grant_ledger/{community_month__yyyy-mm__placeN}` создаётся в той же транзакции; повтор → `already`;
+- склейка аккаунта в процессе → ошибка `account_updating`, повтор следующим запуском расписания;
+- логи `[PLUS-GRANT] enter / result / failed`.
+
+**Финализация (замена `finalizeCommunityMonth` + `communityMonthClaimReward`):**
+
+```ts
+// 1-го числа: сначала итог (неизменяемый), потом выдача; выдача повторяется каждый час, пока все места не выданы
+const PLUS_MONTHS_BY_PLACE = [3, 2, 1] as const;
+export async function finalizeCommunityMonth(db: FirebaseFirestore.Firestore, month: ContestMonth): Promise<void> {
+  const LOGF = '[CONTEST-FINAL]';
+  if (Date.now() < month.endMs) { console.warn(LOGF, JSON.stringify({ step: 'skip', reason: 'month_active', monthId: month.id })); return; }
+  const resultRef = db.collection(RESULTS).doc(month.id);
+  let result = (await resultRef.get()).data();
+  if (!result) {
+    const { entries, stats } = await buildMonthTally(db, month);      // свежий подсчёт, не снимок
+    const prev = entries.length ? await db.getAll(...entries.map((e) => db.collection(WINNERS).doc(e.id))) : [];
+    const winners = rankContestEntries(entries.filter((_, i) => !prev[i].exists), month).slice(0, 3);
+    await db.runTransaction(async (tx) => {
+      if ((await tx.get(resultRef)).exists) return;                    // параллельный запуск уже записал итог
+      tx.create(resultRef, { monthId: month.id, winners, stats, finalizedAtMs: Date.now(), ruleVersion: CONTEST_TALLY_RULE_VERSION });
+      winners.forEach((w, i) => tx.create(db.collection(WINNERS).doc(w.id), { monthId: month.id, place: i + 1, finalizedAtMs: Date.now() }));
+    });
+    result = (await resultRef.get()).data();
+    console.log(LOGF, JSON.stringify({ step: 'result_written', monthId: month.id, winners: (result?.winners ?? []).length, ...stats }));
+  }
+  for (const [index, w] of ((result?.winners ?? []) as ContestEntry[]).entries()) {
+    const place = index + 1;
+    try {
+      const r = await grantPlusOnce(db, {
+        uid: w.authorId, grantKey: `community_month:${month.id}:place${place}`, duration: { months: PLUS_MONTHS_BY_PLACE[index] },
+        plan: 'community_month', source: `community_month:${month.id}`,
+        // факт для истории победителя — тем же патчем, только вместе с выдачей (см. «История» ниже)
+        extraProgress: { [CONTEST_WIN_STORY_FIELD]: contestWinStoryValue({ monthId: month.id, place: place as 1 | 2 | 3,
+          plusMonths: PLUS_MONTHS_BY_PLACE[index], packId: w.id, packTitle: w.title, hearts: w.hearts, grantedAtMs: Date.now() }) },
+      });
+      console.log(LOGF, JSON.stringify({ step: 'grant', monthId: month.id, place, packId: w.id, status: r.status }));
+    } catch (error) {
+      console.warn(LOGF, JSON.stringify({ step: 'grant_failed', monthId: month.id, place, packId: w.id, reason: error instanceof Error ? error.message.slice(0, 120) : String(error) }));
+    }
+  }
+}
+```
+
+Расписание финализации — **каждый час 1-го числа** (`'5 * 1 * *'`, UTC): первый запуск пишет итог и выдаёт, следующие
+доделывают только упавшие выдачи (журнал не даст выдать дважды). Последний часовой пересчёт снимка — 23:00 последнего дня;
+финализация считает заново от голосов, снимок ей не нужен. Старые записи `community_month_rewards` и
+`communityMonthClaimReward` больше не нужны для новых месяцев; функцию оставить, пока её зовут сборки 147/148
+(для них — ответ «нечего забирать», без ошибки).
+
+**История победителю (владелец 29.10: «Да, делать в коде», макет Моментов GukYuSACfWas4P9toiG7sS).**
+Сервер кладёт в профиль `progress.contest_last_win` — JSON одной строкой (`contestWinStoryValue` в
+`functions/src/community_month_tally.ts`, уже в git):
+
+```json
+{ "v": 1, "monthId": "2026-11", "place": 1, "plusMonths": 3, "packId": "…", "packTitle": "до 120 знаков", "hearts": 17, "grantedAtMs": 1793… }
+```
+
+Пишется **той же транзакцией и тем же ключом журнала** `community_month:{yyyy-mm}:place{n}`, что Plus
+(`grantPlusOnce.extraProgress`): история не придёт без Plus и не придёт дважды. Бессрочному подписчику Plus не
+меняется, но поле истории всё равно пишется (исправлено в `plus_grant.ts`). Профиль приложение и так получает при
+синхронизации — **ноль новых чтений**.
+
+Приложение (Моменты/Codex): при синхронизации, если `contest_last_win` новое (`monthId+place` ≠ последнему
+показанному) → `recordStoryEvent('contest_win', { monthId, place, plusMonths, packTitle, hearts })` → шаблон
+«Твой набор — N место за <месяц>, Plus на N месяцев включён». Тип `contest_win` добавить в `StoryEventType`
+(`modules/story_events/story_events_core.ts` — сейчас изменён другой сессией, правят Моменты). Повтор той же записи
+(ключ повтора события = `monthId:place`) история не дублирует — это уже умеет `story_events_core`.
+
+**Согласование с Моментами:** сообщения между сессиями у Ядра сейчас приостановлены — прошу координатора переслать
+Моментам этот абзац; если им нужна другая форма полей — поменяю `contestWinStoryValue` (версия `v` для этого).
+
+**Крайние случаи — предложения на решение:**
+
+| Случай | Предлагаю |
+|---|---|
+| Ничья по сердцам | как сейчас в `rankContestEntries`: раньше опубликован — выше, затем id. Одно место — одному набору, Plus не делится |
+| 0 засчитанных голосов у всех | приза нет, итог месяца пишется пустым (`winners: []`), ничего не переносится |
+| Меньше трёх наборов с голосами | призы получают только они (1–2 места), пустые места не выдаются |
+| Набор удалён / скрыт модерацией / снят автором до 1-го числа | не участвует; место уходит следующему |
+| Автор удалил аккаунт до 1-го числа | `contestCanonicalOwner` → null, набор не участвует; место следующему |
+| Автор удалил аккаунт ПОСЛЕ итога, до выдачи | `user_missing` в журнале, Plus не выдаётся, место НЕ переигрывается (итог неизменяем) |
+| Аккаунт в процессе склейки | выдача повторяется каждый час 1-го числа; не вышло за сутки — строка в Джарвисе на ручной разбор |
+| Победитель уже с бессрочным Plus | `lifetime`: ничего не меняем, история всё равно приходит (место честное) |
+| Тот же набор снова первый | уже победившие наборы не участвуют (`community_contest_winners`), как в коде Codex |
+
+**Лесенка приглашений (владелец: 14 дней Plus за 3 друзей, у каждого пройден 1 урок; 500 монет обоим за каждого):**
+выдача Plus — тем же `grantPlusOnce`: `grantKey: 'referral_ladder:<uid>_tier3'`, `duration: { days: 14 }`,
+`plan: 'referral_ladder'`. «Прошёл урок» — тот же `contestLessonsCompleted` (классика или V2). Монеты 500/500 — через
+журнал монет (`prepareStarOperations`, opId `referral_friend:<inviter>_<friend>`), не через Plus-модуль.
+
+**Правила и удаление аккаунта:** `plus_grant_ledger/{id}` — `allow read, write: if false` (только сервер).
+В журнале есть uid → `account_delete.ts` должен удалять записи `where('uid', '==', uid)` (как другие журналы выдачи).
+
 ## 7. Порядок выкладки (по «да» владельца, до 1.11 00:00 UTC)
 
 1. Индексы (`firestore:indexes`) — сразу, строятся минуты.
@@ -302,10 +356,16 @@ match /community_month_standings/{monthId} {
    право вызова не нужно, это расписание), из снимка проверенного хэша. После — `scripts/check_callable_invoker.mjs --only communityMonthGetRanking`.
 4. 1.11 после 00:05 UTC — журнал `[CONTEST-TALLY]`, документ снимка появился.
 
-## 8. Вопросы
+## 8. Ответы владельца (29.10 ~07:50) и открытое
 
-1. «Пройденный урок» — только классические уроки (`lessons_completed`) или и сессия Learning V2? На сервере я не нашёл
-   поля завершённых сессий V2 в `users.progress` — нужен ответ Learning V2, какое поле надёжно.
-2. Возраст аккаунта — по `users.created_at`, а если пусто — по дате создания в Firebase Auth. Ок?
-3. Лимит 10 — «действующих голосов», снятый лайк освобождает место. Ок, или считать каждое нажатие?
-4. Пересчёт раз в 3 ч (как в плане Codex 26.10) — или чаще в последние сутки месяца?
+1. Пройденный урок — любой: классика или Learning V2. ✅ в модуле.
+2. Возраст — `users.created_at`, иначе Firebase Auth. ✅
+3. 10 действующих голосов, снятый лайк возвращает голос. ✅
+4. Пересчёт раз в 3 ч, в последние сутки — каждый час. ✅ (`contestStandingsShouldRefresh`, расписание каждый час)
+
+**Открыто — Learning V2:** испанский курс хранит прогресс под ключом `learning_v2_course_progress_sync_v1:target:es`
+(`learningV2LanguageScopedStorageKeyV1`), а в список облачной синхронизации (`app/cloud_sync.ts`) входит только
+английский ключ. Ученик, прошедший занятие только испанского V2 и ни одного классического урока, на сервере выглядит
+как «урок не пройден». Минимальная правка (Learning V2, не Ядро — файл в их работе): добавить испанский ключ в
+синхронизацию со слиянием «максимум», как у английского. Тогда в `contestLessonsCompleted` добавить чтение
+`progress['learning_v2_course_progress_sync_v1:target:es']` — одна строка. Дубль поля не заводим.

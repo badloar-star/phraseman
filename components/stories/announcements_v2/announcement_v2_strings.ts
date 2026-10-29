@@ -3,61 +3,60 @@
 //
 // зачем: тексты объявления пишет владелец в админке (метка, заголовок, блоки), а короткие подписи внутри шаблонов («дня осталось», «VS»,
 // «Твой код», «исправлено», «Как сделать», «Было / Стало», кнопки) — часть кадра и живут здесь на 9 языках интерфейса в формате
-// story_template_strings (ru, uk, en, es, pt-BR, vi, id, tr, pl). ПЕРЕВОДЧИК: значения uk … pl ниже — временно английские (помечены
-// TRANSLATE), список отправлен координатору 28.10; до замены релиз этих кадров не идёт (гейт перевода scan_untranslated_ui).
+// story_template_strings (ru, uk, en, es, pt-BR, vi, id, tr, pl). Переводы на 9 языков —
+// Переводчик 29.10 (кнопки и «Твой код» — те же, что у Моментов в story_template_strings, чтобы одна кнопка не переводилась дважды).
 // ═══════════════════════════════════════════════════════════════════════════
 import type { Lang } from '../../../constants/i18n';
 import { pluralWord } from '../../../constants/plural';
 
 type Nine = readonly [string, string, string, string, string, string, string, string, string];
 const LANG_INDEX: Readonly<Record<string, number>> = { ru: 0, uk: 1, en: 2, es: 3, 'pt-BR': 4, vi: 5, id: 6, tr: 7, pl: 8 };
-/** TRANSLATE: ru + en от макета, остальные семь — английский до ответа Переводчика. */
-const t = (ru: string, en: string): Nine => [ru, en, en, en, en, en, en, en, en];
 
 const S = {
   // ── кнопки действия (строго как в макете: plus / invite / theme) ──
-  ctaOpenPlus: t('Открыть Plus', 'Open Plus'),
-  ctaShareInvite: t('Поделиться ссылкой', 'Share link'),
-  ctaUseTheme: t('Включить тему', 'Turn on theme'),
+  ctaOpenPlus: ['Открыть Plus', 'Відкрити Plus', 'Open Plus', 'Abrir Plus', 'Abrir Plus', 'Mở Plus', 'Buka Plus', 'Plus’ı aç', 'Otwórz Plus'],
+  ctaShareInvite: ['Поделиться ссылкой', 'Поділитися посиланням', 'Share link', 'Compartir enlace', 'Compartilhar link', 'Chia sẻ liên kết', 'Bagikan tautan', 'Bağlantıyı paylaş', 'Udostępnij link'],
+  ctaUseTheme: ['Включить тему', 'Увімкнути тему', 'Turn on theme', 'Activar tema', 'Ativar tema', 'Bật chủ đề', 'Aktifkan tema', 'Temayı aç', 'Włącz motyw'],
   // ── подписи внутри кадров ──
   /** 7 · обратный отсчёт: «{n} {n_w}» под цифрой — слово к числу дней (формы ниже). */
-  countdownLeft: t('осталось', 'left'),
+  // зачем: pl «do końca» — у «zostało» форма меняется с числом, «3 dni do końca» верно при любом числе.
+  countdownLeft: ['осталось', 'залишилось', 'left', 'restantes', 'restantes', 'còn lại', 'lagi', 'kaldı', 'do końca'],
   /** 11 · только сегодня: центр печати. */
-  hours24: t('24 ч', '24 h'),
+  hours24: ['24 ч', '24 год', '24 h', '24 h', '24 h', '24 giờ', '24 jam', '24 sa', '24 h'],
   /** 14 · карточки: подпись под словом на лицевой стороне. */
-  cardsTapToFlip: t('нажмите, чтобы перевернуть', 'tap to flip'),
+  cardsTapToFlip: ['нажмите, чтобы перевернуть', 'натисніть, щоб перевернути', 'tap to flip', 'toca para girar', 'toque para virar', 'chạm để lật', 'ketuk untuk membalik', 'çevirmek için dokun', 'dotknij, aby odwrócić'],
   /** 16 · дуэли. */
-  vs: t('VS', 'VS'),
+  vs: ['VS', 'VS', 'VS', 'VS', 'VS', 'VS', 'VS', 'VS', 'VS'],
   /** 18 · ошибки: подписи «Было» / «Стало» на карточке. */
-  was: t('Было', 'Was'),
-  became: t('Стало', 'Now'),
+  was: ['Было', 'Було', 'Was', 'Antes', 'Antes', 'Trước', 'Sebelum', 'Önce', 'Było'],
+  became: ['Стало', 'Стало', 'Now', 'Ahora', 'Agora', 'Sau', 'Sesudah', 'Sonra', 'Jest'],
   /** 22 · Plus: слово в кольце. */
-  plus: t('Plus', 'Plus'),
+  plus: ['Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus', 'Plus'],
   /** 25 · пригласи друзей: подпись карточки кода. */
-  yourCode: t('Твой код', 'Your code'),
+  yourCode: ['Твой код', 'Твій код', 'Your code', 'Tu código', 'Seu código', 'Mã của bạn', 'Kodemu', 'Kodun', 'Twój kod'],
   /** 35 · мы прочитали: подпись записки. */
-  fixed: t('исправлено', 'fixed'),
+  fixed: ['исправлено', 'виправлено', 'fixed', 'corregido', 'corrigido', 'đã sửa', 'sudah diperbaiki', 'düzeltildi', 'naprawione'],
   /** 36 · совет: заголовок карточки. */
-  howTo: t('Как сделать', 'How to'),
+  howTo: ['Как сделать', 'Як зробити', 'How to', 'Cómo hacerlo', 'Como fazer', 'Cách làm', 'Caranya', 'Nasıl yapılır', 'Jak to zrobić'],
   /** 10 · скоро: слово на занавесе, если метка пустая. */
-  soon: t('Скоро', 'Soon'),
+  soon: ['Скоро', 'Скоро', 'Soon', 'Pronto', 'Em breve', 'Sắp ra mắt', 'Segera', 'Yakında', 'Wkrótce'],
   /** 11 · только сегодня: надпись по кругу, если метка пустая. */
-  todayOnly: t('Только сегодня', 'Today only'),
+  todayOnly: ['Только сегодня', 'Тільки сьогодні', 'Today only', 'Solo hoy', 'Só hoje', 'Chỉ hôm nay', 'Hanya hari ini', 'Sadece bugün', 'Tylko dziś'],
   /** 13 · диалоги: перевод трёх подсказок примера под плитками (блоки = английские фразы примера макета). */
-  dialogsHint1: t('Повторите?', 'Could you repeat?'),
-  dialogsHint2: t('Я имею в виду…', 'I mean…'),
-  dialogsHint3: t('Да ладно!', 'No way!'),
+  dialogsHint1: ['Повторите?', 'Повторіть?', 'Could you repeat?', '¿Puedes repetir?', 'Pode repetir?', 'Bạn nói lại được không?', 'Bisa diulang?', 'Tekrar eder misiniz?', 'Możesz powtórzyć?'],
+  dialogsHint2: ['Я имею в виду…', 'Я маю на увазі…', 'I mean…', 'Quiero decir…', 'Quero dizer…', 'Ý tôi là…', 'Maksudku…', 'Yani…', 'To znaczy…'],
+  dialogsHint3: ['Да ладно!', 'Та ну!', 'No way!', '¡No me digas!', 'Não acredito!', 'Không thể nào!', 'Masa sih!', 'Yok artık!', 'Niemożliwe!'],
   /** 14 · карточки: оборот верхней карточки — значение слова quit из примера макета. */
-  cardsSampleMeaning: t('уйти с работы', 'to quit'),
-} as const;
+  cardsSampleMeaning: ['уйти с работы', 'піти з роботи', 'to leave a job', 'dejar el trabajo', 'sair do emprego', 'nghỉ việc', 'berhenti kerja', 'işi bırakmak', 'rzucić pracę'],
+} as const satisfies Readonly<Record<string, Nine>>;
 
 export type AnnouncementV2StringKey = keyof typeof S;
 export const ANNOUNCEMENT_V2_STRING_KEYS = Object.keys(S) as readonly AnnouncementV2StringKey[];
 
-/** Слово «день» к числу (7 · обратный отсчёт): формы на 9 языках (TRANSLATE для uk … pl — английские формы). */
+/** Слово «день» к числу (7 · обратный отсчёт): формы one / few / many на 9 языках (где «few» нет — повтор «many»; vi, id, tr слово не меняют). */
 const DAY_FORMS: readonly (readonly [string, string, string])[] = [
-  ['день', 'дня', 'дней'], ['day', 'days', 'days'], ['day', 'days', 'days'], ['day', 'days', 'days'], ['day', 'days', 'days'],
-  ['day', 'days', 'days'], ['day', 'days', 'days'], ['day', 'days', 'days'], ['day', 'days', 'days'],
+  ['день', 'дня', 'дней'], ['день', 'дні', 'днів'], ['day', 'days', 'days'], ['día', 'días', 'días'], ['dia', 'dias', 'dias'],
+  ['ngày', 'ngày', 'ngày'], ['hari', 'hari', 'hari'], ['gün', 'gün', 'gün'], ['dzień', 'dni', 'dni'],
 ];
 
 export function annText(lang: Lang, key: AnnouncementV2StringKey): string {

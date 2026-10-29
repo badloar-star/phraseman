@@ -28,7 +28,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The handles were replaced on Monday.**
-- ❌ The handles was replaced on Monday. — *З handles у множині використовуємо were.*
+- ❌ The handles was replaced on Monday. — *З handles у формі для кількох використовуємо were.*
 - ❌ The handles were replace on Monday. — *Для «замінили ручки» потрібна were replaced.*
 
 ---

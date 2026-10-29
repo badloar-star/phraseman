@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — subtitles**
 <!-- interaction_id: en:lesson-28:session-13:i01; family: word_card -->
-> **subtitles** — Субтитры: текст реплик на экране. Это форма множественного числа; один субтитр — a subtitle.
+> **subtitles** — Субтитры: текст реплик на экране. Это форма для нескольких; один субтитр — a subtitle.
 
 **2 · Уточните, есть ли у фильма субтитры.**
 <!-- interaction_id: en:lesson-28:session-13:i02; family: phrase_builder -->

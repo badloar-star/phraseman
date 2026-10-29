@@ -140,7 +140,7 @@ My friend had ___ by the time I arrived. → **finished** · finish · finishing
 **20 · Мастер обещает подстричь волосы ножницами. Выберите нужную форму cut.**
 <!-- interaction_id: en:lesson-28:session-19:i20; family: context_gap_grammar -->
 Your hair will be ___ with scissors. → **cut** · cutting · cuts
-- cutting — *Здесь третья форма — cut.*
+- cutting — *Здесь форма после have — cut.*
 - cuts — *После will be здесь cut, без -s.*
 
 **21 · Вам нравится результат. Скажите об этом мастеру.**

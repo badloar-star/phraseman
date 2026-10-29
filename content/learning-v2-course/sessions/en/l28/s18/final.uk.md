@@ -51,7 +51,7 @@
 
 **1 · Картка слова — jewellery**
 <!-- interaction_id: en:lesson-28:session-18:i01; family: word_card -->
-> **jewellery** — Прикраси, ювелірні вироби. В англійській це незлічуване слово: jewellery is.
+> **jewellery** — Прикраси, ювелірні вироби. В англійській це слово, яке не рахують поштучно: jewellery is.
 
 **2 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-28:session-18:i02; family: listen_choose -->

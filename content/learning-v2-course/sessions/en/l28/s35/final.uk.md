@@ -9,7 +9,7 @@
 
 ### Хто написав музику
 
-Після концерту ви запитуєте про музику. Друг відповідає: The music was written by my sister — музику написала моя сестра. Складіть The music + was written + by + my sister. Почніть із музики, про яку говорите. Was written повідомляє, що її написали; written — третя форма write. By my sister називає автора.
+Після концерту ви запитуєте про музику. Друг відповідає: The music was written by my sister — музику написала моя сестра. Складіть The music + was written + by + my sister. Почніть із музики, про яку говорите. Was written повідомляє, що її написали; written — форма write після have. By my sister називає автора.
 
 **Виберіть фразу для цієї ситуації.**
 

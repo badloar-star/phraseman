@@ -75,7 +75,7 @@ A message will ___ sent. → **be** · is · was
 
 **6 · Картка слова — dentures**
 <!-- interaction_id: en:lesson-28:session-32:i06; family: word_card -->
-> **dentures** — Знімні зубні протези. Слово тут у множині; для одного протеза використовується denture.
+> **dentures** — Знімні зубні протези. Слово тут у формі для кількох; для одного протеза використовується denture.
 
 **7 · Послухайте й виберіть**
 <!-- interaction_id: en:lesson-28:session-32:i07; family: listen_choose -->

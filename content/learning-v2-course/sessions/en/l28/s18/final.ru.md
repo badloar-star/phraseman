@@ -51,7 +51,7 @@
 
 **1 · Карточка слова — jewellery**
 <!-- interaction_id: en:lesson-28:session-18:i01; family: word_card -->
-> **jewellery** — Украшения, ювелирные изделия. В английском это неисчисляемое слово: jewellery is.
+> **jewellery** — Украшения, ювелирные изделия. В английском это слово, которое не считают поштучно: jewellery is.
 
 **2 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-28:session-18:i02; family: listen_choose -->

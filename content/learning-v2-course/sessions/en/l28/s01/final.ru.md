@@ -9,13 +9,13 @@
 
 ### Когда пекут хлеб
 
-В фермерском магазине продавец объясняет, что хлеб пекут каждое утро. The bread is baked every morning — хлеб пекут каждое утро. Здесь начинаем с хлеба: важно, что с ним делают, а имя пекаря не требуется. После The bread поставьте is + baked, затем every morning. Это пассивный залог: is вместе с третьей формой baked обозначает действие над хлебом. У правильного глагола bake третья форма оканчивается на -ed.
+В фермерском магазине продавец объясняет, что хлеб пекут каждое утро. The bread is baked every morning — хлеб пекут каждое утро. Здесь начинаем с хлеба: важно, что с ним делают, а имя пекаря не требуется. После The bread поставьте is + baked, затем every morning. Здесь говорим, что с хлебом делают: is вместе с формой после have baked обозначает действие над хлебом. У правильного глагола bake форма после have оканчивается на -ed.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The bread is baked every morning.**
-- ❌ The bread are baked every morning. — *Bread здесь неисчисляемое: используем is, не are.*
-- ❌ The bread is bake every morning. — *После is в этой модели нужна третья форма baked.*
+- ❌ The bread are baked every morning. — *Bread здесь не считается поштучно: используем is, не are.*
+- ❌ The bread is bake every morning. — *После is в этой модели нужна форма baked.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Овощи с соседних полей
 
-Вы показываете на ящик овощей. Продавец говорит, что их выращивают поблизости. Locally — на месте, в этой местности. These vegetables are grown locally — эти овощи выращивают здесь, поблизости. Начните с These vegetables, затем are: vegetables — множественное число. После are поставьте grown — третью форму grow, затем locally. Овощи не выполняют действие: их выращивают, поэтому здесь are grown.
+Вы показываете на ящик овощей. Продавец говорит, что их выращивают поблизости. Locally — на месте, в этой местности. These vegetables are grown locally — эти овощи выращивают здесь, поблизости. Начните с These vegetables, затем are: vegetables — форма для нескольких. После are поставьте grown — форму grow, затем locally. Овощи не выполняют действие: их выращивают, поэтому здесь are grown.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **These vegetables are grown locally.**
-- ❌ These vegetables is grown locally. — *С vegetables во множественном числе нужна are.*
-- ❌ These vegetables are grow locally. — *Третья форма grow — grown.*
+- ❌ These vegetables is grown locally. — *С vegetables в форме для нескольких нужна are.*
+- ❌ These vegetables are grow locally. — *Форма после have grow — grown.*
 
 ---
 
@@ -37,12 +37,12 @@
 
 ### Где делают сыр
 
-На прилавке лежит сыр, который делают на этой ферме. Produce — производить, изготавливать. The cheese is produced here — сыр производят здесь. Соберите фразу: The cheese — о каком продукте говорим; is + produced — что с ним делают; here — где. Cheese здесь обозначает продукт в целом и сочетается с is. Produced — третья форма правильного глагола produce.
+На прилавке лежит сыр, который делают на этой ферме. Produce — производить, изготавливать. The cheese is produced here — сыр производят здесь. Соберите фразу: The cheese — о каком продукте говорим; is + produced — что с ним делают; here — где. Cheese здесь обозначает продукт в целом и сочетается с is. Produced — форма после have правильного глагола produce.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **The cheese is produced here.**
-- ❌ The cheese is produce here. — *В пассивной форме нужна produced, не produce.*
+- ❌ The cheese is produce here. — *Когда говорим, что с предметом делают, нужна produced, не produce.*
 - ❌ The cheese are produced here. — *С cheese здесь используем is.*
 
 ---
@@ -62,7 +62,7 @@
 **3 · На ферме выращивают клубнику. Назовите ягоды в начале фразы.**
 <!-- interaction_id: en:lesson-28:session-01:i03; family: context_gap_grammar -->
 The strawberries ___ grown here. → **are** · is · am
-- is — *Strawberries — множественное число, поэтому are.*
+- is — *Strawberries — форма для нескольких, поэтому are.*
 - am — *Am сочетается с I; здесь нужны are grown.*
 
 **4 · Попросите килограмм яблок.**
@@ -86,8 +86,8 @@ The strawberries ___ grown here. → **are** · is · am
 **8 · Масло делают здесь. Made — форма слова make. Дополните фразу о том, что делают с маслом.**
 <!-- interaction_id: en:lesson-28:session-01:i08; family: context_gap_grammar -->
 The butter is ___ here. → **made** · make · making
-- make — *В пассивной форме после is нужна made.*
-- making — *Для пассивной формы здесь используем is made.*
+- make — *Когда говорим, что с предметом делают, после is нужна made.*
+- making — *Чтобы сказать, что с предметом делают, здесь используем is made.*
 
 **9 · Карточка слова — organic**
 <!-- interaction_id: en:lesson-28:session-01:i09; family: word_card -->
@@ -122,8 +122,8 @@ The butter is ___ here. → **made** · make · making
 **16 · На прилавке лежат булочки, которые пекут ежедневно.**
 <!-- interaction_id: en:lesson-28:session-01:i16; family: context_gap_grammar -->
 The rolls are ___ every day. → **baked** · bake · bakes
-- bake — *После are в пассивной форме нужна baked.*
-- bakes — *Bakes — личная форма; после are в этой пассивной модели нужна третья форма baked.*
+- bake — *После are, когда говорим, что с предметом делают, нужна baked.*
+- bakes — *Bakes — личная форма; после are в этой схеме («что с предметом делают») нужна форма baked.*
 
 **17 · Попросите разрезать хлеб пополам.**
 <!-- interaction_id: en:lesson-28:session-01:i17; family: scripted_repeat_compare -->
@@ -142,7 +142,7 @@ The rolls are ___ every day. → **baked** · bake · bakes
 **20 · Магазин убирают каждый вечер. Выберите форму перед cleaned.**
 <!-- interaction_id: en:lesson-28:session-01:i20; family: context_gap_grammar -->
 The shop ___ cleaned every evening. → **is** · are · am
-- are — *The shop — единственное число, поэтому is.*
+- are — *The shop — одна вещь, поэтому is.*
 - am — *Am используется с I; здесь нужно is.*
 
 **21 · Попросите чек за покупки.**

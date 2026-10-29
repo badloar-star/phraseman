@@ -140,7 +140,7 @@ The class had ___ by the time we arrived. → **started** · start · starting
 **20 · Роботи покладуть на полицю. Виберіть потрібну форму put.**
 <!-- interaction_id: en:lesson-28:session-20:i20; family: context_gap_grammar -->
 The paintings will be ___ on the shelf. → **put** · putting · puts
-- putting — *Тут третя форма — put.*
+- putting — *Тут форма після have — put.*
 - puts — *Після will be тут put, без -s.*
 
 **21 · Запитайте, коли можна забрати картину.**

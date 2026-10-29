@@ -9,13 +9,13 @@
 
 ### Коли печуть хліб
 
-У фермерській крамниці продавець пояснює, що хліб печуть щоранку. The bread is baked every morning — хліб печуть щоранку. Тут починаємо з хліба: важливо, що з ним роблять, а ім’я пекаря не потрібне. Після The bread поставте is + baked, потім every morning. Це пасивний стан: is разом із третьою формою baked позначає дію над хлібом. У правильного дієслова bake третя форма закінчується на -ed.
+У фермерській крамниці продавець пояснює, що хліб печуть щоранку. The bread is baked every morning — хліб печуть щоранку. Тут починаємо з хліба: важливо, що з ним роблять, а ім’я пекаря не потрібне. Після The bread поставте is + baked, потім every morning. Тут кажемо, що з хлібом роблять: is разом із формою після have baked позначає дію над хлібом. У правильного дієслова bake форма після have закінчується на -ed.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The bread is baked every morning.**
-- ❌ The bread are baked every morning. — *Bread тут незлічуване: використовуємо is, не are.*
-- ❌ The bread is bake every morning. — *Після is у цій моделі потрібна третя форма baked.*
+- ❌ The bread are baked every morning. — *Bread тут не рахується поштучно: використовуємо is, не are.*
+- ❌ The bread is bake every morning. — *Після is у цій моделі потрібна форма baked.*
 
 ---
 
@@ -23,13 +23,13 @@
 
 ### Овочі із сусідніх полів
 
-Ви показуєте на ящик овочів. Продавець каже, що їх вирощують поблизу. Locally — на місці, у цій місцевості. These vegetables are grown locally — ці овочі вирощують тут, поблизу. Почніть із These vegetables, потім are: vegetables — множина. Після are поставте grown — третю форму grow, далі locally. Овочі не виконують дію: їх вирощують, тому тут are grown.
+Ви показуєте на ящик овочів. Продавець каже, що їх вирощують поблизу. Locally — на місці, у цій місцевості. These vegetables are grown locally — ці овочі вирощують тут, поблизу. Почніть із These vegetables, потім are: vegetables — форма для кількох. Після are поставте grown — форму grow, далі locally. Овочі не виконують дію: їх вирощують, тому тут are grown.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **These vegetables are grown locally.**
-- ❌ These vegetables is grown locally. — *З vegetables у множині потрібна are.*
-- ❌ These vegetables are grow locally. — *Третя форма grow — grown.*
+- ❌ These vegetables is grown locally. — *З vegetables у формі для кількох потрібна are.*
+- ❌ These vegetables are grow locally. — *Форма після have grow — grown.*
 
 ---
 
@@ -37,12 +37,12 @@
 
 ### Де роблять сир
 
-На прилавку лежить сир, який роблять на цій фермі. Produce — виробляти, виготовляти. The cheese is produced here — сир виробляють тут. Складіть фразу: The cheese — про який продукт говоримо; is + produced — що з ним роблять; here — де. Cheese тут позначає продукт загалом і поєднується з is. Produced — третя форма правильного дієслова produce.
+На прилавку лежить сир, який роблять на цій фермі. Produce — виробляти, виготовляти. The cheese is produced here — сир виробляють тут. Складіть фразу: The cheese — про який продукт говоримо; is + produced — що з ним роблять; here — де. Cheese тут позначає продукт загалом і поєднується з is. Produced — форма після have правильного дієслова produce.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **The cheese is produced here.**
-- ❌ The cheese is produce here. — *У пасивній формі потрібна produced, не produce.*
+- ❌ The cheese is produce here. — *Коли кажемо, що з предметом роблять, потрібна produced, не produce.*
 - ❌ The cheese are produced here. — *З cheese тут використовуємо is.*
 
 ---
@@ -62,7 +62,7 @@
 **3 · На фермі вирощують полуницю. Назвіть ягоди на початку фрази.**
 <!-- interaction_id: en:lesson-28:session-01:i03; family: context_gap_grammar -->
 The strawberries ___ grown here. → **are** · is · am
-- is — *Strawberries — множина, тому are.*
+- is — *Strawberries — форма для кількох, тому are.*
 - am — *Am поєднується з I; тут потрібні are grown.*
 
 **4 · Попросіть кілограм яблук.**
@@ -86,8 +86,8 @@ The strawberries ___ grown here. → **are** · is · am
 **8 · Масло роблять тут. Made — форма слова make. Доповніть фразу про те, що роблять з маслом.**
 <!-- interaction_id: en:lesson-28:session-01:i08; family: context_gap_grammar -->
 The butter is ___ here. → **made** · make · making
-- make — *У пасивній формі після is потрібна made.*
-- making — *Для пасивної форми тут використовуємо is made.*
+- make — *Коли кажемо, що з предметом роблять, після is потрібна made.*
+- making — *Щоб сказати, що з предметом роблять, тут використовуємо is made.*
 
 **9 · Картка слова — organic**
 <!-- interaction_id: en:lesson-28:session-01:i09; family: word_card -->
@@ -122,8 +122,8 @@ The butter is ___ here. → **made** · make · making
 **16 · На прилавку лежать булочки, які печуть щодня.**
 <!-- interaction_id: en:lesson-28:session-01:i16; family: context_gap_grammar -->
 The rolls are ___ every day. → **baked** · bake · bakes
-- bake — *Після are у пасивній формі потрібна baked.*
-- bakes — *Bakes — особова форма; після are у цій пасивній моделі потрібна третя форма baked.*
+- bake — *Після are, коли кажемо, що з предметом роблять, потрібна baked.*
+- bakes — *Bakes — особова форма; після are в цій схемі («що з предметом роблять») потрібна форма baked.*
 
 **17 · Попросіть розрізати хліб навпіл.**
 <!-- interaction_id: en:lesson-28:session-01:i17; family: scripted_repeat_compare -->
@@ -142,7 +142,7 @@ The rolls are ___ every day. → **baked** · bake · bakes
 **20 · Крамницю прибирають щовечора. Виберіть форму перед cleaned.**
 <!-- interaction_id: en:lesson-28:session-01:i20; family: context_gap_grammar -->
 The shop ___ cleaned every evening. → **is** · are · am
-- are — *The shop — однина, тому is.*
+- are — *The shop — одна річ, тому is.*
 - am — *Am використовується з I; тут потрібне is.*
 
 **21 · Попросіть чек за покупки.**

@@ -75,7 +75,7 @@ A message will ___ sent. → **be** · is · was
 
 **6 · Карточка слова — dentures**
 <!-- interaction_id: en:lesson-28:session-32:i06; family: word_card -->
-> **dentures** — Съёмные зубные протезы. Слово здесь во множественном числе; для одного протеза используется denture.
+> **dentures** — Съёмные зубные протезы. Слово здесь в форме для нескольких; для одного протеза используется denture.
 
 **7 · Послушайте и выберите**
 <!-- interaction_id: en:lesson-28:session-32:i07; family: listen_choose -->

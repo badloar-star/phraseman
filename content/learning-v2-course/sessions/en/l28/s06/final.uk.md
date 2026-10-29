@@ -103,7 +103,7 @@ I wish the fabric ___ softer. → **were** · is · be
 
 **12 · Картка слова — boxers**
 <!-- interaction_id: en:lesson-28:session-06:i12; family: word_card -->
-> **boxers** — Вільні труси-боксери; слово у множині.
+> **boxers** — Вільні труси-боксери; слово у формі для кількох.
 
 **13 · Скажіть, що боксери завеликі.**
 <!-- interaction_id: en:lesson-28:session-06:i13; family: phrase_builder -->

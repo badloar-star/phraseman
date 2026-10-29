@@ -37,12 +37,12 @@
 
 ### Отдых на завтра забронирован
 
-Вы с подругой забронировали посещение спа на завтра, чтобы отдохнуть после напряжённых дней. Wind down — расслабиться. Передайте согласованный план: We are winding down at the spa tomorrow. Порядок: We + are winding down + at the spa + tomorrow. С we ставим are, к wind добавляем -ing и сохраняем down. Забронированное посещение и tomorrow показывают будущее значение Present Continuous.
+Вы с подругой забронировали посещение спа на завтра, чтобы отдохнуть после напряжённых дней. Wind down — расслабиться. Передайте согласованный план: We are winding down at the spa tomorrow. Порядок: We + are winding down + at the spa + tomorrow. С we ставим are, к wind добавляем -ing и сохраняем down. Забронированное посещение и tomorrow показывают будущее значение am / is / are + -ing.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are winding down at the spa tomorrow.**
-- ❌ We are going to wind down at the spa tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to wind down at the spa tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is winding down at the spa tomorrow. — *Нарушено построение формы.*
 
 ---

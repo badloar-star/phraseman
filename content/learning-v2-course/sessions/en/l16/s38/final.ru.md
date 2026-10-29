@@ -37,12 +37,12 @@
 
 ### Покупка стульев назначена
 
-Вы с другом договорились завтра встретиться в магазине и купить переносные стулья. Portable — переносной. Передайте согласованный план: We are buying portable chairs tomorrow. Порядок: We + are buying + portable chairs + tomorrow. С we ставим are, к buy добавляем -ing, сохраняя y: buying. Tomorrow и договорённость с другом показывают будущее значение Present Continuous.
+Вы с другом договорились завтра встретиться в магазине и купить переносные стулья. Portable — переносной. Передайте согласованный план: We are buying portable chairs tomorrow. Порядок: We + are buying + portable chairs + tomorrow. С we ставим are, к buy добавляем -ing, сохраняя y: buying. Tomorrow и договорённость с другом показывают будущее значение am / is / are + -ing.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are buying portable chairs tomorrow.**
-- ❌ We are going to buy portable chairs tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to buy portable chairs tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is buying portable chairs tomorrow. — *Нарушено построение формы.*
 
 ---

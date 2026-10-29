@@ -37,12 +37,12 @@
 
 ### Согласовать осмотр дома
 
-Вы договорились с владельцем завтра осмотреть дом с хозяйственной комнатой. Utility room — комната для стирки и других домашних дел. Скажите о договорённости: We are viewing a house with a utility room tomorrow. Начните с We + are viewing, добавьте дом a house with a utility room, затем время tomorrow. Are + viewing образует Present Continuous; согласованный план и время показывают его будущее значение.
+Вы договорились с владельцем завтра осмотреть дом с хозяйственной комнатой. Utility room — комната для стирки и других домашних дел. Скажите о договорённости: We are viewing a house with a utility room tomorrow. Начните с We + are viewing, добавьте дом a house with a utility room, затем время tomorrow. Are + viewing образует am / is / are + -ing; согласованный план и время показывают его будущее значение.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are viewing a house with a utility room tomorrow.**
-- ❌ We are going to view a house with a utility room tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to view a house with a utility room tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is viewing a house with a utility room tomorrow. — *Нарушено построение формы.*
 
 ---

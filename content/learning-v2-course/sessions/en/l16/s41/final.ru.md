@@ -37,12 +37,12 @@
 
 ### Завтра попробовать соус
 
-Вы с подругой договорились завтра вместе попробовать её новый кисловатый соус. Tangy — с приятным кисловатым вкусом. Скажите о договорённости: We are tasting a tangy sauce tomorrow. Порядок: We + are tasting + a tangy sauce + tomorrow. С we используем are; перед -ing убираем конечную e в taste: tasting. Tomorrow и договорённость показывают будущее значение Present Continuous.
+Вы с подругой договорились завтра вместе попробовать её новый кисловатый соус. Tangy — с приятным кисловатым вкусом. Скажите о договорённости: We are tasting a tangy sauce tomorrow. Порядок: We + are tasting + a tangy sauce + tomorrow. С we используем are; перед -ing убираем конечную e в taste: tasting. Tomorrow и договорённость показывают будущее значение am / is / are + -ing.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are tasting a tangy sauce tomorrow.**
-- ❌ We are going to taste a tangy sauce tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to taste a tangy sauce tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is tasting a tangy sauce tomorrow. — *Нарушено построение формы.*
 
 ---

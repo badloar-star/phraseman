@@ -37,12 +37,12 @@
 
 ### Купівлю стільців призначено
 
-Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Portable — переносний. Передайте узгоджений план: We are buying portable chairs tomorrow. Порядок: We + are buying + portable chairs + tomorrow. З we ставимо are, до buy додаємо -ing, зберігаючи y: buying. Tomorrow та домовленість із другом показують майбутнє значення Present Continuous.
+Ви з другом домовилися завтра зустрітися в магазині й купити переносні стільці. Portable — переносний. Передайте узгоджений план: We are buying portable chairs tomorrow. Порядок: We + are buying + portable chairs + tomorrow. З we ставимо are, до buy додаємо -ing, зберігаючи y: buying. Tomorrow та домовленість із другом показують майбутнє значення am / is / are + -ing.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are buying portable chairs tomorrow.**
-- ❌ We are going to buy portable chairs tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to buy portable chairs tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is buying portable chairs tomorrow. — *Порушено побудову форми.*
 
 ---

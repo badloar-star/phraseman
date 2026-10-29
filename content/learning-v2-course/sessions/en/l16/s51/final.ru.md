@@ -37,12 +37,12 @@
 
 ### Осмотр квартиры уже согласован
 
-Вы договорились с владельцем на завтра осмотреть ухоженную квартиру. Well-kept — ухоженный, в хорошем состоянии. Скажите о договорённости: We are viewing a well-kept flat tomorrow. Соберите предложение: We + are viewing + a well-kept flat + tomorrow. С we ставим are, действие выражаем формой viewing. Согласованное время tomorrow показывает, что Present Continuous здесь описывает будущее дело.
+Вы договорились с владельцем на завтра осмотреть ухоженную квартиру. Well-kept — ухоженный, в хорошем состоянии. Скажите о договорённости: We are viewing a well-kept flat tomorrow. Соберите предложение: We + are viewing + a well-kept flat + tomorrow. С we ставим are, действие выражаем формой viewing. Согласованное время tomorrow показывает, что am / is / are + -ing здесь описывает будущее дело.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are viewing a well-kept flat tomorrow.**
-- ❌ We are going to view a well-kept flat tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to view a well-kept flat tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is viewing a well-kept flat tomorrow. — *Нарушено построение формы.*
 
 ---

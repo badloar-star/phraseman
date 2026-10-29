@@ -37,12 +37,12 @@
 
 ### Прибирання гаража в суботу
 
-Ви узгодили із сім'єю прибирання гаража на суботу. Clean out — вичистити зсередини, прибравши зайве. Передайте домовленість: We are cleaning out the garage on Saturday. Порядок: We + are cleaning out + the garage + on Saturday. З we ставимо are, закінчення -ing додаємо до clean, а out зберігаємо. Узгоджений день показує, що Present Continuous описує майбутнє прибирання.
+Ви узгодили із сім'єю прибирання гаража на суботу. Clean out — вичистити зсередини, прибравши зайве. Передайте домовленість: We are cleaning out the garage on Saturday. Порядок: We + are cleaning out + the garage + on Saturday. З we ставимо are, закінчення -ing додаємо до clean, а out зберігаємо. Узгоджений день показує, що am / is / are + -ing описує майбутнє прибирання.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are cleaning out the garage on Saturday.**
-- ❌ We are going to clean out the garage on Saturday. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to clean out the garage on Saturday. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is cleaning out the garage on Saturday. — *Порушено побудову форми.*
 
 ---

@@ -37,12 +37,12 @@
 
 ### Завтра забрать стол
 
-Вы с другом согласовали с продавцом, что завтра заберёте складной стол. Foldable — складной. Передайте договорённость: We are collecting a foldable table tomorrow. Соберите фразу: We + are collecting + a foldable table + tomorrow. С we используем are, к collect добавляем -ing. Согласованное получение и tomorrow показывают будущее значение Present Continuous.
+Вы с другом согласовали с продавцом, что завтра заберёте складной стол. Foldable — складной. Передайте договорённость: We are collecting a foldable table tomorrow. Соберите фразу: We + are collecting + a foldable table + tomorrow. С we используем are, к collect добавляем -ing. Согласованное получение и tomorrow показывают будущее значение am / is / are + -ing.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are collecting a foldable table tomorrow.**
-- ❌ We are going to collect a foldable table tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to collect a foldable table tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is collecting a foldable table tomorrow. — *Нарушено построение формы.*
 
 ---

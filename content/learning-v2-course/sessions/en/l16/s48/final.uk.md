@@ -37,12 +37,12 @@
 
 ### Вихід на прогулянку узгоджено
 
-Ви з друзями домовилися завтра вийти на прогулянку о восьмій. Head out — вийти, вирушити кудись. Передайте домовленість: We are heading out at eight tomorrow. Складіть речення: We + are heading out + at eight + tomorrow. З we використовуємо are, до head додаємо -ing, а out зберігаємо. At eight tomorrow називає узгоджений час і показує майбутнє значення Present Continuous.
+Ви з друзями домовилися завтра вийти на прогулянку о восьмій. Head out — вийти, вирушити кудись. Передайте домовленість: We are heading out at eight tomorrow. Складіть речення: We + are heading out + at eight + tomorrow. З we використовуємо are, до head додаємо -ing, а out зберігаємо. At eight tomorrow називає узгоджений час і показує майбутнє значення am / is / are + -ing.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are heading out at eight tomorrow.**
-- ❌ We are going to head out at eight tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to head out at eight tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is heading out at eight tomorrow. — *Порушено побудову форми.*
 
 ---

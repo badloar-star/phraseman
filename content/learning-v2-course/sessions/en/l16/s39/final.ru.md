@@ -37,12 +37,12 @@
 
 ### Забрать палатку по договорённости
 
-Вы с другом договорились с прокатом завтра забрать компактную палатку. Compact — занимающий мало места. Передайте согласованный план: We are collecting a compact tent tomorrow. Порядок: We + are collecting + a compact tent + tomorrow. С we ставим are, к collect добавляем -ing. Tomorrow и договорённость с прокатом показывают будущее значение Present Continuous.
+Вы с другом договорились с прокатом завтра забрать компактную палатку. Compact — занимающий мало места. Передайте согласованный план: We are collecting a compact tent tomorrow. Порядок: We + are collecting + a compact tent + tomorrow. С we ставим are, к collect добавляем -ing. Tomorrow и договорённость с прокатом показывают будущее значение am / is / are + -ing.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are collecting a compact tent tomorrow.**
-- ❌ We are going to collect a compact tent tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to collect a compact tent tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is collecting a compact tent tomorrow. — *Нарушено построение формы.*
 
 ---

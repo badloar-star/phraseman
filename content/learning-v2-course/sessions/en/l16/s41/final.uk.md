@@ -37,12 +37,12 @@
 
 ### Завтра скуштувати соус
 
-Ви з подругою домовилися завтра разом скуштувати її новий кислуватий соус. Tangy — із приємним кислуватим смаком. Скажіть про домовленість: We are tasting a tangy sauce tomorrow. Порядок: We + are tasting + a tangy sauce + tomorrow. З we використовуємо are; перед -ing прибираємо кінцеву e у taste: tasting. Tomorrow та домовленість показують майбутнє значення Present Continuous.
+Ви з подругою домовилися завтра разом скуштувати її новий кислуватий соус. Tangy — із приємним кислуватим смаком. Скажіть про домовленість: We are tasting a tangy sauce tomorrow. Порядок: We + are tasting + a tangy sauce + tomorrow. З we використовуємо are; перед -ing прибираємо кінцеву e у taste: tasting. Tomorrow та домовленість показують майбутнє значення am / is / are + -ing.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are tasting a tangy sauce tomorrow.**
-- ❌ We are going to taste a tangy sauce tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to taste a tangy sauce tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is tasting a tangy sauce tomorrow. — *Порушено побудову форми.*
 
 ---

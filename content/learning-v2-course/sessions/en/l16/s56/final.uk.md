@@ -37,12 +37,12 @@
 
 ### Огляд призначено на завтра
 
-Ви з агентом узгодили завтрашній огляд квартири біля води. Waterfront тут означає розташований біля самої води. Передайте домовленість через Present Continuous: We + are viewing + a waterfront flat + tomorrow → We are viewing a waterfront flat tomorrow. Після we використовуємо are, до view додаємо -ing. Tomorrow та узгоджений огляд показують, що йдеться про майбутнє, а не про дію просто зараз.
+Ви з агентом узгодили завтрашній огляд квартири біля води. Waterfront тут означає розташований біля самої води. Передайте домовленість через am / is / are + -ing: We + are viewing + a waterfront flat + tomorrow → We are viewing a waterfront flat tomorrow. Після we використовуємо are, до view додаємо -ing. Tomorrow та узгоджений огляд показують, що йдеться про майбутнє, а не про дію просто зараз.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are viewing a waterfront flat tomorrow.**
-- ❌ We are going to view a waterfront flat tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to view a waterfront flat tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is viewing a waterfront flat tomorrow. — *Порушено побудову форми.*
 
 ---

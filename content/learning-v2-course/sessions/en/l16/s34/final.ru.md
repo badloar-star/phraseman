@@ -37,12 +37,12 @@
 
 ### Прогулка на завтра согласована
 
-Вы с другом договорились завтра прогуляться на свежем воздухе, чтобы взбодриться. Refreshing — освежающий, возвращающий бодрость. Передайте договорённость: We are taking a refreshing walk tomorrow. Порядок: We + are taking + a refreshing walk + tomorrow. С we ставим are; перед -ing убираем e в take: taking. Tomorrow и согласованная прогулка показывают будущее значение Present Continuous.
+Вы с другом договорились завтра прогуляться на свежем воздухе, чтобы взбодриться. Refreshing — освежающий, возвращающий бодрость. Передайте договорённость: We are taking a refreshing walk tomorrow. Порядок: We + are taking + a refreshing walk + tomorrow. С we ставим are; перед -ing убираем e в take: taking. Tomorrow и согласованная прогулка показывают будущее значение am / is / are + -ing.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are taking a refreshing walk tomorrow.**
-- ❌ We are going to take a refreshing walk tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to take a refreshing walk tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is taking a refreshing walk tomorrow. — *Нарушено построение формы.*
 
 ---

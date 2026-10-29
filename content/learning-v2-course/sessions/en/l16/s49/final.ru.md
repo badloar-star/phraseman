@@ -37,12 +37,12 @@
 
 ### Выезд из гостиницы согласован
 
-Вы согласовали с гостиницей выезд на завтра в десять. Check out — выписаться из гостиницы. Передайте договорённость: We are checking out at ten tomorrow. Порядок: We + are checking out + at ten + tomorrow. С we ставим are, к check добавляем -ing, а out сохраняем. At ten называет час; tomorrow и согласованное время показывают будущее значение Present Continuous.
+Вы согласовали с гостиницей выезд на завтра в десять. Check out — выписаться из гостиницы. Передайте договорённость: We are checking out at ten tomorrow. Порядок: We + are checking out + at ten + tomorrow. С we ставим are, к check добавляем -ing, а out сохраняем. At ten называет час; tomorrow и согласованное время показывают будущее значение am / is / are + -ing.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are checking out at ten tomorrow.**
-- ❌ We are going to check out at ten tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to check out at ten tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is checking out at ten tomorrow. — *Нарушено построение формы.*
 
 ---

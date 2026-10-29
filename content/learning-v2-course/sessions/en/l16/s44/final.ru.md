@@ -37,12 +37,12 @@
 
 ### Установка замков назначена
 
-Вы с напарником согласовали на завтра установку замков на кухонные шкафчики. Childproof здесь означает с защитой от открывания маленькими детьми. Передайте договорённость: We are fitting childproof locks tomorrow. Порядок: We + are fitting + childproof locks + tomorrow. С we ставим are; в fitting удваиваем t перед -ing. Согласованная установка и tomorrow показывают, что Present Continuous описывает будущее действие.
+Вы с напарником согласовали на завтра установку замков на кухонные шкафчики. Childproof здесь означает с защитой от открывания маленькими детьми. Передайте договорённость: We are fitting childproof locks tomorrow. Порядок: We + are fitting + childproof locks + tomorrow. С we ставим are; в fitting удваиваем t перед -ing. Согласованная установка и tomorrow показывают, что am / is / are + -ing описывает будущее действие.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are fitting childproof locks tomorrow.**
-- ❌ We are going to fit childproof locks tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to fit childproof locks tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is fitting childproof locks tomorrow. — *Нарушено построение формы.*
 
 ---

@@ -9,7 +9,7 @@
 
 ### Яким вийде печиво
 
-Ви вперше готуєте печиво за новим рецептом і припускаєте, що воно вийде розсипчастим. Crumbly — розсипчастий, той, що легко кришиться. Передайте думку: I think the biscuits will be crumbly. Порядок: I think + the biscuits + will be + crumbly. Після will ставимо be без to навіть із множиною biscuits, потім ознаку crumbly. I think показує припущення. Тут тренуємо will; інші форми можуть бути доречними за іншого акценту.
+Ви вперше готуєте печиво за новим рецептом і припускаєте, що воно вийде розсипчастим. Crumbly — розсипчастий, той, що легко кришиться. Передайте думку: I think the biscuits will be crumbly. Порядок: I think + the biscuits + will be + crumbly. Після will ставимо be без to навіть коли печива багато — biscuits, потім ознаку crumbly. I think показує припущення. Тут тренуємо will; інші форми можуть бути доречними за іншого акценту.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are cooking skinless chicken together tonight.**
-- ❌ We are going to cook skinless chicken together tonight. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to cook skinless chicken together tonight. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is cooking skinless chicken together tonight. — *Порушено побудову форми.*
 
 ---

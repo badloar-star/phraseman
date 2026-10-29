@@ -37,12 +37,12 @@
 
 ### Просмотр назначен на завтра
 
-Вы с агентом согласовали завтрашний просмотр квартиры у воды. Waterfront здесь означает расположенный у самой воды. Передайте договорённость через Present Continuous: We + are viewing + a waterfront flat + tomorrow → We are viewing a waterfront flat tomorrow. После we используем are, к view добавляем -ing. Tomorrow и согласованный просмотр показывают, что речь о будущем, а не о действии прямо сейчас.
+Вы с агентом согласовали завтрашний просмотр квартиры у воды. Waterfront здесь означает расположенный у самой воды. Передайте договорённость через am / is / are + -ing: We + are viewing + a waterfront flat + tomorrow → We are viewing a waterfront flat tomorrow. После we используем are, к view добавляем -ing. Tomorrow и согласованный просмотр показывают, что речь о будущем, а не о действии прямо сейчас.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are viewing a waterfront flat tomorrow.**
-- ❌ We are going to view a waterfront flat tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to view a waterfront flat tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is viewing a waterfront flat tomorrow. — *Нарушено построение формы.*
 
 ---

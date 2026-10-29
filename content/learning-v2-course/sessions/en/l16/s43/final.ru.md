@@ -9,7 +9,7 @@
 
 ### Каким получится печенье
 
-Вы впервые готовите печенье по новому рецепту и предполагаете, что оно получится рассыпчатым. Crumbly — рассыпчатый, легко крошащийся. Передайте мнение: I think the biscuits will be crumbly. Порядок: I think + the biscuits + will be + crumbly. После will ставим be без to даже с множественным biscuits, затем признак crumbly. I think показывает предположение. Здесь тренируем will; другие формы могут быть уместны при другом акценте.
+Вы впервые готовите печенье по новому рецепту и предполагаете, что оно получится рассыпчатым. Crumbly — рассыпчатый, легко крошащийся. Передайте мнение: I think the biscuits will be crumbly. Порядок: I think + the biscuits + will be + crumbly. После will ставим be без to даже когда печенья много — biscuits, затем признак crumbly. I think показывает предположение. Здесь тренируем will; другие формы могут быть уместны при другом акценте.
 
 **Выберите фразу для этой ситуации.**
 
@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are cooking skinless chicken together tonight.**
-- ❌ We are going to cook skinless chicken together tonight. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to cook skinless chicken together tonight. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is cooking skinless chicken together tonight. — *Нарушено построение формы.*
 
 ---

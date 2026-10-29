@@ -37,12 +37,12 @@
 
 ### Завтра забрати стіл
 
-Ви з другом узгодили з продавцем, що завтра заберете складаний стіл. Foldable — складаний. Передайте домовленість: We are collecting a foldable table tomorrow. Складіть фразу: We + are collecting + a foldable table + tomorrow. З we використовуємо are, до collect додаємо -ing. Узгоджене отримання та tomorrow показують майбутнє значення Present Continuous.
+Ви з другом узгодили з продавцем, що завтра заберете складаний стіл. Foldable — складаний. Передайте домовленість: We are collecting a foldable table tomorrow. Складіть фразу: We + are collecting + a foldable table + tomorrow. З we використовуємо are, до collect додаємо -ing. Узгоджене отримання та tomorrow показують майбутнє значення am / is / are + -ing.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are collecting a foldable table tomorrow.**
-- ❌ We are going to collect a foldable table tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to collect a foldable table tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is collecting a foldable table tomorrow. — *Порушено побудову форми.*
 
 ---

@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are cutting down on sweets from Monday.**
-- ❌ We are going to cut down on sweets from Monday. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to cut down on sweets from Monday. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is cutting down on sweets from Monday. — *Порушено побудову форми.*
 
 ---

@@ -42,7 +42,7 @@
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are walking along the unpaved road tomorrow.**
-- ❌ We are going to walk along the unpaved road tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to walk along the unpaved road tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is walking along the unpaved road tomorrow. — *Нарушено построение формы.*
 
 ---

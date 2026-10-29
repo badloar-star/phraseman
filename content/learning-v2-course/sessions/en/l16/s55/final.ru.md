@@ -37,12 +37,12 @@
 
 ### Назначить просмотр новостройки
 
-Вы договорились с агентом на завтра посмотреть недавно построенную квартиру. New-build — недавно построенный, когда говорим о жилье. Передайте согласованный план: We are viewing a new-build flat tomorrow. Порядок: We + are + viewing + a new-build flat + tomorrow. С we используем are, действие выражаем формой viewing. Договорённость и слово tomorrow придают Present Continuous значение будущего.
+Вы договорились с агентом на завтра посмотреть недавно построенную квартиру. New-build — недавно построенный, когда говорим о жилье. Передайте согласованный план: We are viewing a new-build flat tomorrow. Порядок: We + are + viewing + a new-build flat + tomorrow. С we используем are, действие выражаем формой viewing. Договорённость и слово tomorrow придают am / is / are + -ing значение будущего.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are viewing a new-build flat tomorrow.**
-- ❌ We are going to view a new-build flat tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to view a new-build flat tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is viewing a new-build flat tomorrow. — *Нарушено построение формы.*
 
 ---

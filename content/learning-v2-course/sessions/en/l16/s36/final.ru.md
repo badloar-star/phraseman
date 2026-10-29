@@ -37,12 +37,12 @@
 
 ### Визит согласован в последний момент
 
-Вы с семьёй только сегодня окончательно договорились с хозяевами о завтрашнем визите. Last-minute — организованный в последний момент. Передайте договорённость: We are making a last-minute visit tomorrow. Порядок: We + are making + a last-minute visit + tomorrow. С we используем are; перед -ing убираем e в make: making. Tomorrow и подтверждение хозяев показывают будущее значение Present Continuous.
+Вы с семьёй только сегодня окончательно договорились с хозяевами о завтрашнем визите. Last-minute — организованный в последний момент. Передайте договорённость: We are making a last-minute visit tomorrow. Порядок: We + are making + a last-minute visit + tomorrow. С we используем are; перед -ing убираем e в make: making. Tomorrow и подтверждение хозяев показывают будущее значение am / is / are + -ing.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are making a last-minute visit tomorrow.**
-- ❌ We are going to make a last-minute visit tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to make a last-minute visit tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is making a last-minute visit tomorrow. — *Нарушено построение формы.*
 
 ---

@@ -37,12 +37,12 @@
 
 ### Виїзд із готелю узгоджено
 
-Ви узгодили з готелем виїзд на завтра о десятій. Check out — виписатися з готелю. Передайте домовленість: We are checking out at ten tomorrow. Порядок: We + are checking out + at ten + tomorrow. З we ставимо are, до check додаємо -ing, а out зберігаємо. At ten називає годину; tomorrow та узгоджений час показують майбутнє значення Present Continuous.
+Ви узгодили з готелем виїзд на завтра о десятій. Check out — виписатися з готелю. Передайте домовленість: We are checking out at ten tomorrow. Порядок: We + are checking out + at ten + tomorrow. З we ставимо are, до check додаємо -ing, а out зберігаємо. At ten називає годину; tomorrow та узгоджений час показують майбутнє значення am / is / are + -ing.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are checking out at ten tomorrow.**
-- ❌ We are going to check out at ten tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to check out at ten tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is checking out at ten tomorrow. — *Порушено побудову форми.*
 
 ---

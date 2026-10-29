@@ -37,12 +37,12 @@
 
 ### Установлення замків призначено
 
-Ви з напарником узгодили на завтра встановлення замків на кухонні шафки. Childproof тут означає із захистом від відкривання маленькими дітьми. Передайте домовленість: We are fitting childproof locks tomorrow. Порядок: We + are fitting + childproof locks + tomorrow. З we ставимо are; у fitting подвоюємо t перед -ing. Узгоджене встановлення та tomorrow показують, що Present Continuous описує майбутню дію.
+Ви з напарником узгодили на завтра встановлення замків на кухонні шафки. Childproof тут означає із захистом від відкривання маленькими дітьми. Передайте домовленість: We are fitting childproof locks tomorrow. Порядок: We + are fitting + childproof locks + tomorrow. З we ставимо are; у fitting подвоюємо t перед -ing. Узгоджене встановлення та tomorrow показують, що am / is / are + -ing описує майбутню дію.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are fitting childproof locks tomorrow.**
-- ❌ We are going to fit childproof locks tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to fit childproof locks tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is fitting childproof locks tomorrow. — *Порушено побудову форми.*
 
 ---

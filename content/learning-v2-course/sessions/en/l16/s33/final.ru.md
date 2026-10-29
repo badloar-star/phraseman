@@ -37,12 +37,12 @@
 
 ### Рассказать о записи на занятие
 
-Вы с другом записались на завтрашнее занятие по первой помощи; время подтверждено. We are joining a worthwhile activity tomorrow. — Завтра мы участвуем в полезном занятии. Чтобы передать договорённость через Present Continuous, соберите we + are + joining. Joining получается из join добавлением -ing. Затем добавьте a worthwhile activity — «занятие, стоящее потраченного времени» — и tomorrow. Именно tomorrow показывает, что речь о будущем. Going to также возможно, но здесь отрабатываем Present Continuous для договорённости.
+Вы с другом записались на завтрашнее занятие по первой помощи; время подтверждено. We are joining a worthwhile activity tomorrow. — Завтра мы участвуем в полезном занятии. Чтобы передать договорённость через am / is / are + -ing, соберите we + are + joining. Joining получается из join добавлением -ing. Затем добавьте a worthwhile activity — «занятие, стоящее потраченного времени» — и tomorrow. Именно tomorrow показывает, что речь о будущем. Going to также возможно, но здесь отрабатываем am / is / are + -ing для договорённости.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are joining a worthwhile activity tomorrow.**
-- ❌ We are going to join a worthwhile activity tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to join a worthwhile activity tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is joining a worthwhile activity tomorrow. — *Нарушено построение формы.*
 
 ---

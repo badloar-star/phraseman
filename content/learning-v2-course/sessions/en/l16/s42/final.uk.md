@@ -9,7 +9,7 @@
 
 ### Які груші привезуть
 
-Ви чекаєте замовлені груші й припускаєте, що вони виявляться нестиглими. Unripe — нестиглий. Висловіть думку: I think the pears will be unripe. Складіть фразу: I think + the pears + will be + unripe. Після will ставимо be без to незалежно від множини pears. Unripe описує груші, а I think показує припущення. Тут тренуємо will; інші форми можуть бути доречними за іншого акценту.
+Ви чекаєте замовлені груші й припускаєте, що вони виявляться нестиглими. Unripe — нестиглий. Висловіть думку: I think the pears will be unripe. Складіть фразу: I think + the pears + will be + unripe. Після will ставимо be без to навіть коли груш кілька — pears. Unripe описує груші, а I think показує припущення. Тут тренуємо will; інші форми можуть бути доречними за іншого акценту.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -42,7 +42,7 @@
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are collecting the seedless grapes tomorrow.**
-- ❌ We are going to collect the seedless grapes tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to collect the seedless grapes tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is collecting the seedless grapes tomorrow. — *Порушено побудову форми.*
 
 ---

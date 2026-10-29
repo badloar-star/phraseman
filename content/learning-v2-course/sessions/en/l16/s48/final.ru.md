@@ -37,12 +37,12 @@
 
 ### Выход на прогулку согласован
 
-Вы с друзьями договорились завтра выйти на прогулку в восемь. Head out — выйти, отправиться куда-либо. Передайте договорённость: We are heading out at eight tomorrow. Соберите предложение: We + are heading out + at eight + tomorrow. С we используем are, к head добавляем -ing, а out сохраняем. At eight tomorrow называет согласованное время и показывает будущее значение Present Continuous.
+Вы с друзьями договорились завтра выйти на прогулку в восемь. Head out — выйти, отправиться куда-либо. Передайте договорённость: We are heading out at eight tomorrow. Соберите предложение: We + are heading out + at eight + tomorrow. С we используем are, к head добавляем -ing, а out сохраняем. At eight tomorrow называет согласованное время и показывает будущее значение am / is / are + -ing.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are heading out at eight tomorrow.**
-- ❌ We are going to head out at eight tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to head out at eight tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is heading out at eight tomorrow. — *Нарушено построение формы.*
 
 ---

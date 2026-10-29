@@ -37,12 +37,12 @@
 
 ### Огляд квартири вже узгоджено
 
-Ви домовилися з власником на завтра оглянути доглянуту квартиру. Well-kept — доглянутий, у хорошому стані. Скажіть про домовленість: We are viewing a well-kept flat tomorrow. Складіть речення: We + are viewing + a well-kept flat + tomorrow. З we ставимо are, дію виражаємо формою viewing. Узгоджений час tomorrow показує, що Present Continuous тут описує майбутню справу.
+Ви домовилися з власником на завтра оглянути доглянуту квартиру. Well-kept — доглянутий, у хорошому стані. Скажіть про домовленість: We are viewing a well-kept flat tomorrow. Складіть речення: We + are viewing + a well-kept flat + tomorrow. З we ставимо are, дію виражаємо формою viewing. Узгоджений час tomorrow показує, що am / is / are + -ing тут описує майбутню справу.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are viewing a well-kept flat tomorrow.**
-- ❌ We are going to view a well-kept flat tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to view a well-kept flat tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is viewing a well-kept flat tomorrow. — *Порушено побудову форми.*
 
 ---

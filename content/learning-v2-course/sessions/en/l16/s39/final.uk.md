@@ -37,12 +37,12 @@
 
 ### Забрати намет за домовленістю
 
-Ви з другом домовилися з прокатом завтра забрати компактний намет. Compact — той, що займає мало місця. Передайте узгоджений план: We are collecting a compact tent tomorrow. Порядок: We + are collecting + a compact tent + tomorrow. З we ставимо are, до collect додаємо -ing. Tomorrow та домовленість із прокатом показують майбутнє значення Present Continuous.
+Ви з другом домовилися з прокатом завтра забрати компактний намет. Compact — той, що займає мало місця. Передайте узгоджений план: We are collecting a compact tent tomorrow. Порядок: We + are collecting + a compact tent + tomorrow. З we ставимо are, до collect додаємо -ing. Tomorrow та домовленість із прокатом показують майбутнє значення am / is / are + -ing.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are collecting a compact tent tomorrow.**
-- ❌ We are going to collect a compact tent tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to collect a compact tent tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is collecting a compact tent tomorrow. — *Порушено побудову форми.*
 
 ---

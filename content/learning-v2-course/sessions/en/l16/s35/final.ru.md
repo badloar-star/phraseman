@@ -37,12 +37,12 @@
 
 ### Маршрут на завтра согласован
 
-Вы с другом уже выбрали простой маршрут на завтра и согласовали время выезда. Straightforward — простой и понятный, без сложностей. Передайте договорённость: We are taking a straightforward route tomorrow. Порядок: We + are taking + a straightforward route + tomorrow. С we ставим are; перед -ing убираем e в take: taking. Tomorrow и согласованный выезд показывают будущее значение Present Continuous.
+Вы с другом уже выбрали простой маршрут на завтра и согласовали время выезда. Straightforward — простой и понятный, без сложностей. Передайте договорённость: We are taking a straightforward route tomorrow. Порядок: We + are taking + a straightforward route + tomorrow. С we ставим are; перед -ing убираем e в take: taking. Tomorrow и согласованный выезд показывают будущее значение am / is / are + -ing.
 
 **Выберите фразу для этой ситуации.**
 
 - ✅ **We are taking a straightforward route tomorrow.**
-- ❌ We are going to take a straightforward route tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через Present Continuous.*
+- ❌ We are going to take a straightforward route tomorrow. — *Эта форма возможна в другом контексте; здесь тренируем указанную. Передайте подтверждённую договорённость через am / is / are + -ing.*
 - ❌ We is taking a straightforward route tomorrow. — *Нарушено построение формы.*
 
 ---

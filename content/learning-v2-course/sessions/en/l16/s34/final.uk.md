@@ -37,12 +37,12 @@
 
 ### Прогулянку на завтра узгоджено
 
-Ви з другом домовилися завтра прогулятися на свіжому повітрі, щоб збадьоритися. Refreshing — освіжальний, той, що повертає бадьорість. Передайте домовленість: We are taking a refreshing walk tomorrow. Порядок: We + are taking + a refreshing walk + tomorrow. З we ставимо are; перед -ing прибираємо e у take: taking. Tomorrow та узгоджена прогулянка показують майбутнє значення Present Continuous.
+Ви з другом домовилися завтра прогулятися на свіжому повітрі, щоб збадьоритися. Refreshing — освіжальний, той, що повертає бадьорість. Передайте домовленість: We are taking a refreshing walk tomorrow. Порядок: We + are taking + a refreshing walk + tomorrow. З we ставимо are; перед -ing прибираємо e у take: taking. Tomorrow та узгоджена прогулянка показують майбутнє значення am / is / are + -ing.
 
 **Виберіть фразу для цієї ситуації.**
 
 - ✅ **We are taking a refreshing walk tomorrow.**
-- ❌ We are going to take a refreshing walk tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через Present Continuous.*
+- ❌ We are going to take a refreshing walk tomorrow. — *Ця форма можлива в іншому контексті; тут тренуємо вказану. Передайте підтверджену домовленість через am / is / are + -ing.*
 - ❌ We is taking a refreshing walk tomorrow. — *Порушено побудову форми.*
 
 ---

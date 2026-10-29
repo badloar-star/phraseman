@@ -34,8 +34,6 @@ import Animated, {
   cancelAnimation,
   Easing,
   FadeInDown,
-  SlideInRight,
-  SlideOutLeft,
   useAnimatedStyle,
   ReduceMotion,
   useReducedMotion,
@@ -279,6 +277,7 @@ import {
 } from "./learning_v2_unlocked_lesson_words_v1";
 import { recordLearningV2LessonBankPhraseV1 } from "./learning_v2_lesson_phrase_bank_v1";
 import { DebugLogger } from './debug-logger';
+import { useV2TaskSwapTrace, v2StackEntering, v2StackExiting } from './learning_v2_task_swap_trace';
 import { recordTodayTaskActivity } from '../modules/today-tasks/today_tasks_store';
 import { noteSwallowedHandler } from './swallow_log'; // зачем: PM-229 — немой catch → причина в журнале, значение по умолчанию прежнее
 import type { LearningV2FactoryNativeNewWordEncounterV1 } from "../modules/learning-v2/content/factory_native/factory_native_course_v1";
@@ -1546,6 +1545,10 @@ function LearningV2DirectSessionPlayerV1() {
   );
   const practiceEncounterKey = practiceEncounterIds.join("\u0000");
   const practiceActivated = introDone && newWordFlow.kind !== "presenting";
+  // зачем (жалоба 29.10 «экран наслаивается», Android 2.0.3, урок 8; координатор и Ревизор — сперва логи): [V2-STACK] пишет появление и уход
+  // слоя задания (ref Animated.View), конец входа/выхода и висящие слои. Ключ тот же, что был у Animated.View, — поведение перехода не меняется.
+  const practiceKey = `practice-${practiceIndex}-${practiceActivated ? "active" : "blocked"}`;
+  const practiceLayerRef = useV2TaskSwapTrace({ key: practiceKey, task: practice?.interactionId ?? null, reducedMotion, lesson: lessonOrdinal, session: sessionOrdinal });
   const speechNa = useSpeechUnavailableOnDevice();
   const voiceFailuresHere = practice ? (voiceFailuresByInteraction[practice.interactionId] ?? 0) : 0;
   const voiceSkipOnDevice =
@@ -3560,13 +3563,14 @@ function LearningV2DirectSessionPlayerV1() {
             // получает то же состояние/колбэки, что и старый блок ниже
             // (selectedChoiceId/orderedIds/evaluate остаются в player'е).
             <Animated.View
-              key={`practice-${practiceIndex}-${practiceActivated ? "active" : "blocked"}`}
+              key={practiceKey}
+              ref={practiceLayerRef}
               style={practiceActivated ? undefined : styles.practiceBlocked}
               // зачем: переход к следующему заданию по каталогу активностей 04
               // (уход влево 110мс + приход справа 110мс, только transform/
               // opacity, суммарно 200-240мс) — не общий FadeInDown.
-              entering={reducedMotion ? undefined : SlideInRight.duration(110)}
-              exiting={reducedMotion ? undefined : SlideOutLeft.duration(110)}
+              entering={reducedMotion ? undefined : v2StackEntering(practiceKey)}
+              exiting={reducedMotion ? undefined : v2StackExiting(practiceKey)}
             >
               <LearningV2ModeRouterV1
                 family={practice.family}
@@ -3641,12 +3645,13 @@ function LearningV2DirectSessionPlayerV1() {
             // размещены сразу под заданием; footer больше не прячет главное
             // действие голосового режима.
             <Animated.View
-              key={`practice-${practiceIndex}-${practiceActivated ? "active" : "blocked"}`}
+              key={practiceKey}
+              ref={practiceLayerRef}
               style={practiceActivated ? undefined : styles.practiceBlocked}
               // зачем: тот же переход B5 (каталог 04), что у остальных 6
               // режимов — не общий FadeInDown.
-              entering={reducedMotion ? undefined : SlideInRight.duration(110)}
-              exiting={reducedMotion ? undefined : SlideOutLeft.duration(110)}
+              entering={reducedMotion ? undefined : v2StackEntering(practiceKey)}
+              exiting={reducedMotion ? undefined : v2StackExiting(practiceKey)}
             >
               <ScriptedRepeatCompareModeV1
                 family={practice.family}
@@ -3721,10 +3726,11 @@ function LearningV2DirectSessionPlayerV1() {
             и не общий FadeInDown. Ключ по индексу перезапускает вход/выход.
             Геометрия зоны не меняется — прыжка контента нет. */}
           <Animated.View
-            key={`practice-${practiceIndex}-${practiceActivated ? "active" : "blocked"}`}
+            key={practiceKey}
+            ref={practiceLayerRef}
             style={practiceActivated ? undefined : styles.practiceBlocked}
-            entering={reducedMotion ? undefined : SlideInRight.duration(110)}
-            exiting={reducedMotion ? undefined : SlideOutLeft.duration(110)}
+            entering={reducedMotion ? undefined : v2StackEntering(practiceKey)}
+            exiting={reducedMotion ? undefined : v2StackExiting(practiceKey)}
           >
             <View style={styles.promptRow}>
               <Text

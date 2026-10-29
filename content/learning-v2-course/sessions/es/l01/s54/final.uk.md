@@ -86,7 +86,7 @@
 → **numeroso** · numerosa · numerosos
 Повна фраза: **Es numeroso.**
 - numerosa — *El grupo чоловічого роду: numeroso.*
-- numerosos — *Група одна, потрібна форма однини.*
+- numerosos — *Група одна, потрібна форма для одного.*
 
 **10 · Зберіть фразу — оцініть одну групу el grupo: вона численна**
 Плитки: `numeroso` · `es` · `son`.

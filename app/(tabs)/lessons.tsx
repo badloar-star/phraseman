@@ -141,7 +141,7 @@ import { prefetchLessonMenuCache } from "../lesson_menu";
 import { navOnce } from "../nav_once"; // зачем (аудит Optimistic UI Уроков, 13.10): двойной тап по карточке урока
 import ReportErrorButton from "../../components/ReportErrorButton";
 import { consumeLessonsV2PageRequest, peekLessonsV2PageRequestAgeMs } from "../lessons_open_v2_request";
-import { noteLessonsFirstFrame, noteLessonsLeave } from "../lessons_tab_diagnostics";
+import { noteLessonsFirstFrame, noteLessonsLeave, noteLessonsModuleReady, noteLessonsStage } from "../lessons_tab_diagnostics";
 import { LessonsGateDialog } from "../../components/lessons/LessonsGateDialog";
 import { LUM } from "../../constants/motionHybrid";
 import { pickLessonsExamStatus } from "../lessons_exam_status";
@@ -2424,6 +2424,9 @@ function useLegacyCoinBalanceBinding(enabled: boolean): LegacyCoinBalanceBinding
   return binding;
 }
 
+// зачем (координатор 29.10, пустой экран ~8 с на холодном старте): модуль вкладки загружен — в журнал обращений (мс от тапа, если тап уже был).
+noteLessonsModuleReady();
+
 export default function LessonsTab({
   overlayIdentityEpoch: _overlayIdentityEpoch = 0,
   presentation = "push",
@@ -2467,6 +2470,8 @@ export default function LessonsTab({
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  // зачем (координатор 29.10): первая отрисовка вкладки после тапа — этап в журнал обращений (в фоне без тапа — только консоль)
+  useEffect(() => { noteLessonsStage("first_render"); }, []);
   usePerfR1Probe("lessons"); // зачем (координатор 12.10, R1_PERF_FIRST_FRAME): первый кадр и число коммитов корня за 3 с; в релизе — пустая функция
   const isRetainedTab = presentation === "tab";
   perfR1BodyMark('lessons', 'a_tab_pad', perfBodyStart);

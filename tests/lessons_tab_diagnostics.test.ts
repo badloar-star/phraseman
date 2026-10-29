@@ -6,11 +6,14 @@ import path from 'node:path';
 const mockRecord = jest.fn(async (_event: unknown) => undefined);
 jest.mock('../app/support_diagnostics', () => ({ recordSupportDiagnostic: (event: unknown) => mockRecord(event) }));
 
+import { JS_STARTED_AT_MS } from '../app/cold_start_diagnostics';
 import {
   lessonsFirstFrameBucket,
   noteLessonsFirstFrame,
   noteLessonsLeave,
+  noteLessonsModuleReady,
   noteLessonsOpenStart,
+  noteLessonsStage,
   resetLessonsTabDiagnosticsForTests,
   type LessonsLeaveReason,
 } from '../app/lessons_tab_diagnostics';
@@ -38,20 +41,49 @@ describe('lessons tab diagnostics', () => {
     expect(lessonsFirstFrameBucket(30000)).toBe('gt8s');
   });
 
-  it('первый кадр: тап → событие с корзиной и durationMs, метка расходуется один раз', () => {
-    noteLessonsOpenStart('home_tile', 10_000);
-    noteLessonsFirstFrame(12_500);
-    expect(mockRecord).toHaveBeenCalledTimes(1);
-    expect(mockRecord.mock.calls[0]![0]).toMatchObject({ event: 'feature_action', action: 'lessons:first_frame_ms:1to3s', screen: '/lessons', durationMs: 2500 });
-    noteLessonsFirstFrame(13_000);
-    expect(mockRecord).toHaveBeenCalledTimes(1);
+  const actions = () => mockRecord.mock.calls.map((call) => (call[0] as { action: string }).action);
+  const WARM = JS_STARTED_AT_MS + 10 * 60_000; // тап через 10 минут после старта JS — не холодный
+
+  it('первый кадр: тап → событие с корзиной и durationMs, метка расходуется один раз; тёплый тап без суффикса', () => {
+    noteLessonsOpenStart('home_tile', WARM);
+    noteLessonsFirstFrame(WARM + 2_500);
+    expect(actions()).toEqual(['lessons:open:warm:module_pending', 'lessons:first_frame_ms:1to3s']);
+    expect(mockRecord.mock.calls[1]![0]).toMatchObject({ event: 'feature_action', screen: '/lessons', durationMs: 2500 });
+    noteLessonsFirstFrame(WARM + 3_000);
+    expect(mockRecord).toHaveBeenCalledTimes(2);
+  });
+
+  it('холодный старт: тап в первые 45 с жизни JS → open:cold, этапы и first_frame с суффиксом :cold, модуль грузится 4 с', () => {
+    const t0 = JS_STARTED_AT_MS + 5_000;
+    noteLessonsOpenStart('home_tile', t0);
+    noteLessonsModuleReady(t0 + 4_000);
+    noteLessonsStage('first_render', t0 + 6_000);
+    noteLessonsStage('first_render', t0 + 6_500); // повтор этапа в одном открытии не пишется
+    noteLessonsFirstFrame(t0 + 7_500);
+    expect(actions()).toEqual([
+      'lessons:open:cold:module_pending',
+      'lessons:stage:module_ready:3to8s:cold',
+      'lessons:stage:first_render:3to8s:cold',
+      'lessons:first_frame_ms:3to8s:cold',
+    ]);
+    expect(mockRecord.mock.calls[1]![0]).toMatchObject({ durationMs: 4_000 });
+    // следующий тап при уже загруженном модуле — module_ready
+    noteLessonsOpenStart('home_tile', t0 + 20_000);
+    expect(actions()[4]).toBe('lessons:open:cold:module_ready');
+  });
+
+  it('этап без метки тапа (премаунт в фоне) в журнал обращений не пишется', () => {
+    noteLessonsStage('first_render', WARM);
+    noteLessonsModuleReady(WARM);
+    expect(mockRecord).not.toHaveBeenCalled();
   });
 
   it('без метки тапа или с протухшей меткой события нет, причина в журнале', () => {
     noteLessonsFirstFrame(5_000);
     expect(mockRecord).not.toHaveBeenCalled();
-    noteLessonsOpenStart('tab_bar', 1_000);
-    noteLessonsFirstFrame(1_000 + 31_000);
+    noteLessonsOpenStart('tab_bar', WARM);
+    mockRecord.mockClear(); // само событие open записано; проверяем, что протухший first_frame — нет
+    noteLessonsFirstFrame(WARM + 31_000);
     expect(mockRecord).not.toHaveBeenCalled();
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining('метка тапа протухла'), expect.any(String));
   });
@@ -71,7 +103,8 @@ describe('lessons tab diagnostics', () => {
     const reasons: LessonsLeaveReason[] = ['hidden_tab_redirect', 'back_button', 'tab_bar_tap', 'route_param', 'tab_switch'];
     const actions = [
       ...reasons.map((r) => `lessons:leave:${r}`),
-      ...['lt1s', '1to3s', '3to8s', 'gt8s'].map((b) => `lessons:first_frame_ms:${b}`),
+      ...['lt1s', '1to3s', '3to8s', 'gt8s'].flatMap((b) => [`lessons:first_frame_ms:${b}`, `lessons:first_frame_ms:${b}:cold`, `lessons:stage:module_ready:${b}:cold`, `lessons:stage:first_render:${b}`]),
+      ...['cold', 'warm'].flatMap((c) => ['module_ready', 'module_pending'].map((m) => `lessons:open:${c}:${m}`)),
     ];
     for (const action of actions) {
       expect(sanitizeSupportDiagnosticEvent({ atMs: Date.now(), event: 'feature_action', action, screen: '/lessons', result: 'info', subject: 'app' })?.action).toBe(action);
@@ -94,7 +127,10 @@ describe('lessons tab diagnostics', () => {
     expect(lessons).toContain('noteLessonsLeave("back_button", { page: "legacy_list" })');
     expect(lessons).toContain('noteLessonsLeave("tab_switch"');
     expect(lessons).toContain('noteLessonsFirstFrame()');
+    expect(lessons).toContain('noteLessonsModuleReady();');
+    expect(lessons).toContain('noteLessonsStage("first_render")');
     const home = read('app/(tabs)/home.tsx');
-    expect(home).toContain("noteLessonsOpenStart('home_tile');");
+    expect(home).toContain('noteLessonsOpenStart(source);');
+    expect(home).toContain("openLessonsTabFromHome('home_tile')");
   });
 });

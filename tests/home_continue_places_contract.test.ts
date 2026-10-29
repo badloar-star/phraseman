@@ -165,7 +165,9 @@ describe('подключение: точки входа пишут метку, �
     expect(home).toContain('{continuePlace === null && !continueStart ? (');
     expect(home).toContain('{continuePlace !== null || continueStart ? (');
     expect(home).toContain('hideProgress');
-    expect(home).toContain("go('/learning-v2/course');");
+    // перепин 29.10 (координатор): «Начать урок 1» — вкладка «Уроки» + запрос карты V2, а не экран-перенаправление курса
+    expect(home).toContain("openLessonsTabFromHome('home_continue_first');");
+    expect(home).not.toContain("go('/learning-v2/course');");
     expect(home).toContain("nav.push({ pathname: '/lesson_menu', params: { id: '1' } } as never);");
     // прежняя карточка урока и V2 — как была (строки закреплены другими сторожами)
     expect(home).toContain('{priorityCardVisible || continueCardPending ? (');

@@ -15,6 +15,8 @@ import { captureAccountGeneration, subscribeAccountGeneration } from './account_
 import { recordSupportDiagnostic } from './support_diagnostics';
 
 const LOG = '[COLD-START]';
+/** Момент загрузки JS-бандла (≈ старт процесса): от него считается «холодный ли тап» для событий вкладки «Уроки». */
+export const JS_STARTED_AT_MS = Date.now();
 export const COLD_START_LAST_SEEN_KEY = 'app_last_seen_v1';
 const WAIT_ACTIVE_MS = 60_000;
 

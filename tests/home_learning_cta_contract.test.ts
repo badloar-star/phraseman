@@ -61,9 +61,11 @@ describe('home learning CTA contract', () => {
     // перепин 28.10 (владелец «кнопка Уроки не работает»; Сверка: двойная навигация + 8 с пустого экрана): плитка сразу переключает вкладку,
     // а «выбери карту V2» передаёт тихим запросом, который вкладка «Уроки» забирает при фокусе; прежний push /learning-v2/course с плитки убран
     expect(source).toContain('onPress: openLessonsFromHome');
-    expect(source).toContain("if (!v2Hidden) requestLessonsV2Page('home_tile');");
-    expect(source).toMatch(/requestLessonsV2Page\('home_tile'\);\s*goToTab\(1\);/);
-    const handlerBody = source.slice(source.indexOf('const openLessonsFromHome = () => {'), source.indexOf('const quickItems = ['));
+    // перепин 29.10 (координатор): обработчик принимает источник — плитка и «Начать урок 1» идут одним путём
+    expect(source).toContain("const openLessonsFromHome = () => openLessonsTabFromHome('home_tile');");
+    expect(source).toContain('if (!v2Hidden) requestLessonsV2Page(source);');
+    expect(source).toMatch(/requestLessonsV2Page\(source\);\s*goToTab\(1\);/);
+    const handlerBody = source.slice(source.indexOf('const openLessonsTabFromHome = ('), source.indexOf('const quickItems = ['));
     expect(handlerBody.length).toBeGreaterThan(200);
     expect(handlerBody).not.toContain("go('/learning-v2/course')");
     // скрытая вкладка (fr/de/it): не молчим — тост и журнал, а не немой goToTab на Главную
@@ -77,6 +79,21 @@ describe('home learning CTA contract', () => {
     // пульс подсказки не держит InteractionManager (иначе отложенные переходы ждут ~7,5 с)
     expect(source.match(/isInteraction: false/g)?.length ?? 0).toBeGreaterThanOrEqual(2);
     expect(source).not.toContain("go(isLearningV2Hidden() ? '/lessons_list'");
+  });
+
+  // зачем (координатор 29.10): «Начать урок 1» без истории — самый важный тап нового человека; старый go('/learning-v2/course') на холодном старте давал ~8 с пустого экрана
+  it('starts lesson 1 from the continue card through the same fast tab path, not the course redirect route', () => {
+    expect(source).not.toContain("go('/learning-v2/course')");
+    expect(source).toContain("openLessonsTabFromHome('home_continue_first');");
+    const start = source.indexOf('const openHomeContinuePlace = () => {');
+    const body = source.slice(start, source.indexOf('const renderHomeV2Header', start));
+    // при рубильнике «V2 скрыт» по-прежнему меню урока 1, быстрый путь — только после этой проверки
+    expect(body).toContain("nav.push({ pathname: '/lesson_menu', params: { id: '1' } } as never);");
+    expect(body.indexOf('isLearningV2Hidden()')).toBeLessThan(body.indexOf("openLessonsTabFromHome('home_continue_first')"));
+    // журнал различает вход: источник в press и switched, и в замере вкладки
+    expect(source).toMatch(/\[HOME-LESSONS-BTN\] press[\s\S]{0,300}source, v2Hidden/);
+    expect(source).toContain("'[HOME-LESSONS-BTN] switched', JSON.stringify({ source, ms:");
+    expect(source).toContain('noteLessonsOpenStart(source);');
   });
 
   // зачем: владелец убрал с главной плашку «Выбрать свой план обучения» —

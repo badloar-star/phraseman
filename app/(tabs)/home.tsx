@@ -2496,12 +2496,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
         // зачем (владелец 28.10, «кнопка Уроки не работает»; замер Сверки: холодный старт + тап = ~8 с пустого экрана, двойная навигация push /learning-v2/course → dismissTo): плитка сразу
         // переключает вкладку «Уроки» (тот же handleTabChange, что у таббара) и, если V2 открыт, оставляет тихий запрос «выбери карту V2» (app/lessons_open_v2_request.ts) — его применяет сама вкладка
         // при фокусе. Маршрут /learning-v2/course остаётся только для внешних ссылок. Вкладка скрыта для языка обучения — тап не молчит: журнал и тост.
-        const openLessonsFromHome = () => {
+        // зачем (координатор 29.10): «Начать урок 1» без истории шёл тем же старым маршрутом (первый и самый важный тап нового человека) — теперь тот же быстрый путь; source различает вход в журнале.
+        const openLessonsTabFromHome = (source: 'home_tile' | 'home_continue_first') => {
             const startedAt = Date.now();
             const v2Hidden = isLearningV2Hidden();
             const learnTabVisible = isLearnTabVisibleForTarget(studyTarget);
             console.log('[HOME-LESSONS-BTN] press', JSON.stringify({ // guard-ok: одна строка на тап по плитке
-                v2Hidden, v2SwitchHidden: LEARNING_V2_HIDDEN, uiLang: peekResolvedUiLang() ?? null, studyTarget: String(studyTarget), learnTabVisible, activeIdx,
+                source, v2Hidden, v2SwitchHidden: LEARNING_V2_HIDDEN, uiLang: peekResolvedUiLang() ?? null, studyTarget: String(studyTarget), learnTabVisible, activeIdx,
                 branch: !learnTabVisible ? 'tab_hidden_toast' : v2Hidden ? 'goToTab(1) classic' : 'goToTab(1) + request v2 map',
             }));
             if (!learnTabVisible) {
@@ -2512,12 +2513,13 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
                 void hapticTap();
                 return;
             }
-            noteLessonsOpenStart('home_tile');
-            if (!v2Hidden) requestLessonsV2Page('home_tile');
+            noteLessonsOpenStart(source);
+            if (!v2Hidden) requestLessonsV2Page(source);
             goToTab(1);
             void hapticTap();
-            console.log('[HOME-LESSONS-BTN] switched', JSON.stringify({ ms: Date.now() - startedAt })); // guard-ok: сколько заняло переключение вкладки (JS-часть)
+            console.log('[HOME-LESSONS-BTN] switched', JSON.stringify({ source, ms: Date.now() - startedAt })); // guard-ok: сколько заняло переключение вкладки (JS-часть)
         };
+        const openLessonsFromHome = () => openLessonsTabFromHome('home_tile');
         // Плитка «Уроки» — переключает вкладку «Обучение» (retained-tab), которая открывает карту V2 (новые уроки).
         // зачем (владелец 17.10: «Обучение открывает новые уроки»): раньше плитка вела в старый список /lessons_list. Он остался только при рубильнике «V2 скрыт»
         // (маршрут курса в этом случае уводит на Главную) и как выход из старых уроков; без выпущенных занятий маршрут курса сам открывает старый список.
@@ -2720,7 +2722,8 @@ export default function HomeScreen({ onOpenDevHub }: { onOpenDevHub?: () => void
             nav.push({ pathname: '/lesson_menu', params: { id: '1' } } as never);
             return;
           }
-          go('/learning-v2/course');
+          // зачем (координатор 29.10): раньше переход на маршрут курса — экран-перенаправление ждал InteractionManager, на холодном старте ~8 с пустого экрана на самом первом тапе; теперь вкладка «Уроки» + тихий запрос карты V2.
+          openLessonsTabFromHome('home_continue_first');
         };
         const renderHomeV2Header = (tone: 'default' | 'scene', surface?: string) => (
               <HomeBellStateContext.Provider value={homeBellState}>

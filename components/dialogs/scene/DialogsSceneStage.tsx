@@ -28,9 +28,10 @@ const LOG = '[DIALOGS-SCENE]';
 /** Доля экрана под сцену вместе со строкой статуса: владелец 22.10 выбрал вариант 2 scenes-compact.html — 392 из 844 (46 %). */
 export const DIALOGS_SCENE_SCREEN_SHARE = 392 / 844;
 /** Высота сцены варианта 2 на экране 844; при крупном шрифте сцена растёт, а не режет текст. */
-export const DIALOGS_SCENE_MIN_HEIGHT = 392;
-/** Панель под сценой наезжает на неё (вариант 2: `.after` margin-top −22). */
-export const DIALOGS_SCENE_PANEL_OVERLAP = 22;
+export const DIALOGS_SCENE_MIN_HEIGHT = 392 - 34; // зачем (владелец 29.10): нижний край сцены там, где была видимая граница с панелью: − наезд 22 − зазор 12
+/** Панель под сценой НЕ заезжает на неё (владелец 29.10: нижний край сцены виден со скруглением 32 dp целиком); зазор до панели — 12 dp. */
+export const DIALOGS_SCENE_PANEL_OVERLAP = 0;
+export const DIALOGS_SCENE_PANEL_GAP = 12;
 /** Герой варианта 2: 160 × 160, справа −14. */
 const HERO = 160;
 /** Герой начинается на 44 ниже верха шапки (пилюля 36 + зазор 8): эталон — шапка на 52, герой на 96. */
@@ -67,7 +68,7 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
   const s = useScaledTextStyles(baseStyles); // зачем (FONTSCALE2): межстрочный растёт вместе с системным шрифтом
   // зачем (владелец 22.10, вариант 2): сцена — 46 % экрана вместе со строкой статуса; на крупном шрифте растёт вниз (minHeight)
   const { height: windowH } = useWindowDimensions();
-  const stageH = Math.round(windowH * DIALOGS_SCENE_SCREEN_SHARE);
+  const stageH = Math.round(windowH * DIALOGS_SCENE_SCREEN_SHARE) - 34;
   const smallTitle = copy.small || copy.title.length > LONG_TITLE_CHARS;
   const pressCta = () => {
     if (copy.ctaDisabled) { console.warn(LOG, 'cta:ignored', JSON.stringify({ reason: 'cta_disabled', state })); return; } // guard-ok: ранний выход называет причину
@@ -166,7 +167,7 @@ function DialogsSceneStage(p: DialogsSceneStageProps) {
 
 const baseStyles = StyleSheet.create({
   // зачем (вариант 2 scenes-compact.html): сцена во всю ширину, скругление только снизу — `.sc` 0 0 32 32; minHeight (46 % экрана задаёт Stage), а не height — крупный шрифт растит сцену
-  stage: { minHeight: DIALOGS_SCENE_MIN_HEIGHT, borderBottomLeftRadius: 32, borderBottomRightRadius: 32, overflow: 'hidden' },
+  stage: { minHeight: DIALOGS_SCENE_MIN_HEIGHT, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, overflow: 'hidden' },
   flex: { flex: 1 },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: '60%' },
   heroSpace: { flex: 1 },

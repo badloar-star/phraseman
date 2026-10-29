@@ -389,11 +389,11 @@ function HeroTile({ icon, label, onPress, dark, testID }: Readonly<{ icon: IonNa
 const styles = StyleSheet.create({
   flex: { flex: 1 },
   // зачем (Сверка §21, координатор 22.10: «HUD-плашка налезает на строку «Урок 2 · …» и заголовок во всех темах»): обложка — не фиксированная высота с текстом, прижатым к низу, а минимальная высота 380/392 и поток; тексты и кнопки лежат ПОД строкой HUD (отступ сверху = безопасный верх + 8 + строка 44 + 12) и при нехватке места обложка вырастает, а не наезжает на HUD
-  hero: { minHeight: 380, borderBottomLeftRadius: 34, borderBottomRightRadius: 34, overflow: 'hidden' },
+  hero: { minHeight: 380, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, overflow: 'hidden' },
   // зачем (владелец 22.10: высота сцен 46 % для всех; scenes-compact.html «Обучение · Сезон», вариант 2): 392 dp вместе с зоной часов, фон от верха экрана
   heroBodyTall: { paddingBottom: 44 },
   hudPlate: { borderRadius: 22, paddingHorizontal: 6, paddingVertical: 2, flexDirection: 'row', alignItems: 'center' },
-  heroTall: { minHeight: 392, borderBottomLeftRadius: 32, borderBottomRightRadius: 32 },
+  heroTall: { minHeight: 392, borderBottomLeftRadius: 28, borderBottomRightRadius: 28 },
   scrim: { position: 'absolute', left: 0, right: 0, bottom: 0, height: 320 },
   heroTop: { position: 'absolute', left: 20, right: 20, flexDirection: 'row', alignItems: 'center', gap: 10 },
   pill: { height: 40, paddingHorizontal: 14, borderRadius: 20, flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: PILL },

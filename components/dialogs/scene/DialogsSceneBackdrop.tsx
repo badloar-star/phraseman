@@ -31,7 +31,7 @@ function DialogsSceneBackdrop({ colors: c, idPrefix }: Props) {
   const dpr = PixelRatio.get();
   const { height: windowH } = useWindowDimensions();
   const palette = size ? scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'dialogs', size.w * dpr, size.h * dpr, dpr) : null;
-  if (palette && size) logSceneEdge('dialogs', { sceneH: size.h, sceneW: size.w, windowH: Math.round(windowH), shareOfWindow: Math.round((size.h / windowH) * 100), bottomRadius: 32, fadeToBg: false, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: palette.mode, source: 'scenePalette' }); // guard-ok: журнал края сцены
+  if (palette && size) logSceneEdge('dialogs', { sceneH: size.h, sceneW: size.w, windowH: Math.round(windowH), shareOfWindow: Math.round((size.h / windowH) * 100), bottomRadius: 28, fadeToBg: false, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: palette.mode, source: 'scenePalette' }); // guard-ok: журнал края сцены
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill} onLayout={onLayout}>
       {palette ? (

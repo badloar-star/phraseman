@@ -14,7 +14,7 @@ import { alphaHex } from '../../../constants/v2Style';
 import { useScaledTextStyles } from '../../../hooks/useLineScale';
 import { useLv2Glass } from '../../learning-v2/LearningV2Glass';
 import V2Pressable from '../../v2/V2Pressable';
-import { DIALOGS_SCENE_PANEL_OVERLAP } from './DialogsSceneStage';
+import { DIALOGS_SCENE_PANEL_GAP, DIALOGS_SCENE_PANEL_OVERLAP } from './DialogsSceneStage';
 import { contrastRatio } from './dialogs_scene_tokens';
 
 type IonName = React.ComponentProps<typeof Ionicons>['name'];
@@ -164,7 +164,7 @@ function DialogsScenePanel(p: DialogsScenePanelProps) {
 
 const baseStyles = StyleSheet.create({
   // зачем: панель наезжает на сцену (.dpanel margin −38 16 0) и лежит выше неё
-  panel: { zIndex: 3, marginTop: -DIALOGS_SCENE_PANEL_OVERLAP, marginHorizontal: 16, borderRadius: 28, padding: 16 },
+  panel: { zIndex: 3, marginTop: DIALOGS_SCENE_PANEL_GAP - DIALOGS_SCENE_PANEL_OVERLAP, marginHorizontal: 16, borderRadius: 28, padding: 16 },
   panelInset: { marginTop: 16, marginHorizontal: 0 },
   cardLocked: { opacity: 0.62 },
   more: { minHeight: 44, paddingVertical: 6, paddingHorizontal: 16, borderRadius: 22, marginTop: 12, alignItems: 'center', justifyContent: 'center' },

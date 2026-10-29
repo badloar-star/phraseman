@@ -6,7 +6,17 @@
 // Предел сжатия — 320 (вариант 1 макета 38 %: текст, кнопка и герой ещё помещаются); если и так не влезает (маленький экран 360×640 и ниже, крупный шрифт), Главная прокручивается как раньше.
 // Числа — из вёрстки: «Сегодня» (HomeV2TodayCard, режим сцены) 14 + 30 + три строки 52 + 52 + 55 + 6; плитка (подпись внутри, scenes-compact `.tile`) — 6 + картинка 58 + подпись 17 + 10 = 91; «Фраза дня» — 80; зазоры ленты 12.
 // ═══════════════════════════════════════════════════════════════════════════
-export const HOME_SCENE_PANEL_OVERLAP_DP = 22;
+// зачем (факт Макетов + слово владельца 29.10: «нижний край сцены — со скруглением, как вверху карточки; НИГДЕ не обрезан»): раньше карточка «Сегодня» заезжала на сцену на 22 dp и закрывала её
+// нижние скруглённые углы — край выглядел обрезанным по прямой. Теперь карточка начинается ПОД краем сцены с зазором (как между остальными карточками), скругление 32 dp видно целиком.
+export const HOME_SCENE_PANEL_OVERLAP_DP = 0;
+/** Зазор между нижним краем сцены и карточкой «Сегодня» (тот же шаг, что между карточками ниже). */
+export const HOME_SCENE_PANEL_GAP_DP = 12;
+/**
+ * Сдвиг нижнего края сцены вверх (владелец 29.10: «сцена должна заканчиваться там, где заканчивалась раньше, как отдельный объёмный элемент»): раньше видимой границей был верх карточки
+ * (сцена − 22 наезда); теперь граница — сам нижний край сцены, а карточка начинается на зазор ниже. Чтобы верх карточки и всё под ней остались на тех же местах:
+ * сцена ниже на 22 (бывший наезд) + 12 (зазор) = 34 dp.
+ */
+export const HOME_SCENE_EDGE_SHIFT_DP = 22 + HOME_SCENE_PANEL_GAP_DP;
 const TODAY_CARD = 14 + 30 + (52 + 52 + 55) + 6;
 const PHRASE_CARD = 80;
 const FEED_GAP = 12;
@@ -20,12 +30,12 @@ const BREATHING = 8;
 
 /** Высота всего, что стоит под сценой (с учётом наезда карточки «Сегодня»). */
 export function homeBelowSceneHeight(_windowW: number): number {
-  return TODAY_CARD + FEED_GAP + TILE_HEIGHT + FEED_GAP + PHRASE_CARD - HOME_SCENE_PANEL_OVERLAP_DP;
+  return HOME_SCENE_PANEL_GAP_DP + TODAY_CARD + FEED_GAP + TILE_HEIGHT + FEED_GAP + PHRASE_CARD - HOME_SCENE_PANEL_OVERLAP_DP;
 }
 
 /** Высота сцены: доля экрана (46 %), но не больше, чем остаётся над таб-баром после всего, что под сценой. */
 export function homeSceneStageHeight(input: Readonly<{ windowH: number; windowW: number; pillTop: number; fontScale: number; share: number }>): number {
-  const wanted = Math.round(input.windowH * input.share);
+  const wanted = Math.round(input.windowH * input.share) - HOME_SCENE_EDGE_SHIFT_DP;
   if (input.fontScale > HOME_SCENE_FIT_MAX_FONT_SCALE) return wanted;
   const room = Math.floor(input.windowH - input.pillTop - BREATHING - homeBelowSceneHeight(input.windowW));
   return Math.max(HOME_SCENE_FIT_MIN, Math.min(wanted, room));

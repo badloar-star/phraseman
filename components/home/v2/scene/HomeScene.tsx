@@ -396,7 +396,7 @@ export function HomeSceneView(p: HomeSceneViewProps) {
 const s = StyleSheet.create({
   // зачем: сцена во всю ширину — гасим боковой отступ ленты Главной (V2.homePad)
   // зачем (владелец 22.10, вариант 2 scenes-compact.html): карточка «Сегодня» наезжает на низ сцены на 22 (зазор ленты Главной гасим)
-  root: { marginHorizontal: -V2.homePad, marginBottom: -(HOME_SCENE_PANEL_OVERLAP + V2.gap) },
+  root: { marginHorizontal: -V2.homePad, marginBottom: -HOME_SCENE_PANEL_OVERLAP },
   top: { position: 'absolute', left: 0, right: 0, top: 0, paddingTop: 8, paddingHorizontal: 20, gap: 10 },
   offline: { flexDirection: 'row', alignItems: 'center', gap: 10, borderRadius: 16, paddingHorizontal: 14, paddingVertical: 10, backgroundColor: HOME_SCENE_INK.glass }, // аудит контраста 22.10: 14 % вместо 16 % — «Нет сети» ≥ 4,5 в светлых sage/grad_aurora
   // зачем (D145): строка «Нет сети» — шкала 13/17

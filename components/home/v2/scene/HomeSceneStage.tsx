@@ -51,7 +51,7 @@ const TITLE_LONG_CHARS = 18;
 /** Высота сцены варианта 2 на экране 844; на крупном шрифте сцена растёт, а не режет текст. */
 export const HOME_SCENE_STAGE_MIN_HEIGHT = 392;
 /** Панель «Сегодня» наезжает на сцену (вариант 2: −22). */
-export const HOME_SCENE_PANEL_OVERLAP = 22;
+export const HOME_SCENE_PANEL_OVERLAP = 0; // зачем: карточка «Сегодня» не заезжает на сцену (скругление низа видно целиком); зазор до неё — естественный шаг V2.gap
 /** Герой варианта 2: 160 × 160, справа −14, на 52 ниже часов. */
 const HERO = 160;
 /** Верх шапки внутри сцены (HomeScene: paddingTop 12). */
@@ -149,7 +149,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   }, [liquidGlassThemeId, liquidGlassAppearance, windowW, stageH, topInset, heroSpaceH, heroBounded]);
   // зачем (слово владельца 29.10, [SCENE-EDGE]): блок сцены Главной — высота, доля окна, нижний край (радиус 32, без плавного ухода в фон), источник палитры
   useEffect(() => {
-    logSceneEdge('home', { sceneH: Math.round(stageH), sceneW: Math.round(windowW), windowH: Math.round(windowH), shareOfWindow: Math.round((stageH / windowH) * 100), bottomRadius: 32, fadeToBg: false, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: scenePal.mode, source: 'scenePalette', evening });
+    logSceneEdge('home', { sceneH: Math.round(stageH), sceneW: Math.round(windowW), windowH: Math.round(windowH), shareOfWindow: Math.round((stageH / windowH) * 100), bottomRadius: 28, fadeToBg: false, panelOverlap: HOME_SCENE_PANEL_OVERLAP, themeId: liquidGlassThemeId, appearance: liquidGlassAppearance, mode: scenePal.mode, source: 'scenePalette', evening });
   }, [stageH, windowW, windowH, liquidGlassThemeId, liquidGlassAppearance, scenePal.mode, evening]);
   // зачем (слово владельца 29.10, [SCENE-LAYERS]): порядок слоёв сцены Главной снизу вверх — слои цвета лежат ПОД героем-иконкой, герой и текст рисуются последними
   useEffect(() => {
@@ -289,7 +289,7 @@ function LiveEnergyText({ build, style, testID, header = false }: Readonly<{ bui
 
 const baseStyles = StyleSheet.create({
   // зачем: сцена во всю ширину экрана, скругление только снизу — как .a-stage (0 0 36 36)
-  stage: { minHeight: HOME_SCENE_STAGE_MIN_HEIGHT, borderBottomLeftRadius: 32, borderBottomRightRadius: 32, overflow: 'hidden', justifyContent: 'space-between' },
+  stage: { minHeight: HOME_SCENE_STAGE_MIN_HEIGHT, borderBottomLeftRadius: 28, borderBottomRightRadius: 28, overflow: 'hidden', justifyContent: 'space-between' },
   // зачем (проверка картинок 9 · САЙТ 22.10: у 9 из 10 героев предмет почти у края холста): поле 6 % внутри места героя — 13 из 214
   heroSpace: { flex: 1 },
   hero: { position: 'absolute', right: -14, top: HERO_TOP - TOP_SPACE, width: HERO, height: HERO },

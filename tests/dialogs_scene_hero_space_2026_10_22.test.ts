@@ -8,13 +8,14 @@ const src = fs.readFileSync(path.join(__dirname, '..', 'components/dialogs/scene
 const code = src.replace(/\{\/\*[\s\S]*?\*\/\}/g, '').replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
 
 describe('сцена Диалогов, вариант 2: высота 46 %, герой не пересекает текстовую колонку', () => {
-  it('высота — 46 % экрана (392 из 844), панель наезжает на 22, скругление снизу 32', () => {
+  it('высота — 46 % экрана (392 из 844), панель НЕ наезжает (зазор 12, владелец 29.10), скругление снизу 28', () => {
     expect(code).toContain('export const DIALOGS_SCENE_SCREEN_SHARE = 392 / 844;');
-    expect(code).toContain('export const DIALOGS_SCENE_MIN_HEIGHT = 392;');
-    expect(code).toContain('export const DIALOGS_SCENE_PANEL_OVERLAP = 22;');
-    expect(code).toContain('const stageH = Math.round(windowH * DIALOGS_SCENE_SCREEN_SHARE);');
+    expect(code).toContain('export const DIALOGS_SCENE_MIN_HEIGHT = 392 - 34;');
+    expect(code).toContain('export const DIALOGS_SCENE_PANEL_OVERLAP = 0;');
+    expect(code).toContain('export const DIALOGS_SCENE_PANEL_GAP = 12;');
+    expect(code).toContain('const stageH = Math.round(windowH * DIALOGS_SCENE_SCREEN_SHARE) - 34;');
     expect(code).toMatch(/style=\{\[s\.stage, \{ minHeight: stageH \}\]\}/);
-    expect(code).toMatch(/stage: \{ minHeight: DIALOGS_SCENE_MIN_HEIGHT, borderBottomLeftRadius: 32, borderBottomRightRadius: 32,/);
+    expect(code).toMatch(/stage: \{ minHeight: DIALOGS_SCENE_MIN_HEIGHT, borderBottomLeftRadius: 28, borderBottomRightRadius: 28,/);
   });
 
   it('герой 160 × 160, справа −14, на 44 ниже шапки; пустой слот прижимает текст к низу', () => {

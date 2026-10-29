@@ -43,7 +43,7 @@ const HERO_SIZE = 160;
 /** Системный шрифт крупнее этого — кольца-герой встают в свободное место между шапкой и текстом (как HERO_BOUND_FONT_SCALE на Главной). */
 export const TODAY_HERO_BOUND_FONT_SCALE = 1.15;
 /** Панель «Задания дня» наезжает на сцену (вариант 2: −22). */
-const PANEL_OVERLAP = 22;
+const PANEL_OVERLAP = -12; // зачем (владелец 29.10): панель начинается под краем сцены с зазором 12 dp, а не заезжает на неё — скругление низа видно целиком
 const ROW_ICON: Readonly<Record<TodayTaskKind, React.ComponentProps<typeof Ionicons>['name']>> = {
   lesson: 'book-outline', dialog: 'chatbubbles-outline', cards: 'copy-outline', video: 'play-circle-outline', mistakes: 'alert-circle-outline', spire_steps: 'trending-up-outline',
 };
@@ -73,7 +73,7 @@ const TodaySceneView = memo(function TodaySceneView({ title, history, decision, 
   const s = useScaledTextStyles(baseStyles);
   const { fontScale, height: windowH } = useWindowDimensions();
   // зачем (владелец 22.10, вариант 2): сцена — 46 % экрана; на крупном шрифте растёт, а не режет текст
-  const stageH = Math.round(windowH * STAGE_SCREEN_SHARE);
+  const stageH = Math.round(windowH * STAGE_SCREEN_SHARE) - 34; // зачем (владелец 29.10): край сцены там же, где была видимая граница; панель ниже с зазором 12
   const heroBounded = fontScale > TODAY_HERO_BOUND_FONT_SCALE;
   const [slotH, setSlotH] = useState(0);
   // зачем: на крупном шрифте текст занимает больше места, 200×200 на абсолютных координатах заезжали под него — кольца вписываются во flex-слот уменьшением (масштаб ≤ 1), шрифт не трогаем

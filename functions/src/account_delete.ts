@@ -207,6 +207,8 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'referral_owners', field: 'ownerStableId', values: 'stable' },
   { collection: 'referral_attributions', field: 'referrerStableId', values: 'stable' },
   { collection: 'referral_attributions', field: 'refereeStableId', values: 'stable' },
+  // зачем (лесенка и автовыдача Plus, 29.10): журнал выдачи Plus хранит uid получателя — стирается с аккаунтом.
+  { collection: 'plus_grant_ledger', field: 'uid', values: 'stable' },
   { collection: 'friend_code_index', field: 'ownerStableId', values: 'stable' },
   { collection: 'app_activity', field: 'uid', values: 'stable' },
   { collection: 'app_errors', field: 'uid', values: 'stable' },
@@ -334,6 +336,8 @@ const DIRECT_DOCUMENT_SPECS: AccountDeleteDirectDocumentSpec[] = [
   { collection: 'user_consents', values: 'both' },
   { collection: 'referral_owners', values: 'both' },
   { collection: 'referral_attributions', values: 'both' },
+  // зачем (лесенка приглашений, 29.10): счётчики пригласившего, id = stableId.
+  { collection: 'referral_ladder_stats', values: 'stable' },
   { collection: 'voice_minute_wallets', values: 'stable' },
   // зачем (PM-252 п.1, 04.10): публичная проекция «Топ хелперов» и архив дубля профиля — по id = uid.
   { collection: 'top_helpers', values: 'both' },

@@ -11,6 +11,8 @@ export type AccessProjection = Readonly<{
   updatedAtMs: number;
   /** История победителю конкурса (JSON v1 из progress.contest_last_win); нет поля — нечего показывать. */
   contestLastWin?: string;
+  /** История награды лесенки приглашений (JSON v1 из progress.referral_last_reward); нет поля — нечего показывать. */
+  referralLastReward?: string;
 }>;
 
 type SetWriter = Readonly<{
@@ -57,6 +59,8 @@ export function buildAccessProjection(
   // факт победы доходит до телефона без новых чтений. Берём из progress, а не пишем отдельно: проекцию перезаписывают
   // целиком (merge:false) все выдачи Plus — отдельная копия стёрлась бы, а сборка из progress переживает любую запись.
   const contestLastWin = boundedString(progress.contest_last_win, 600);
+  // зачем (владелец 29.10: лесенка приглашений «истории обоим»): тот же путь, что у истории победителя
+  const referralLastReward = boundedString(progress.referral_last_reward, 400);
 
   return Object.freeze({
     schemaVersion: ACCESS_PROJECTION_SCHEMA_VERSION,
@@ -66,6 +70,7 @@ export function buildAccessProjection(
     vipActive,
     updatedAtMs: safeNow,
     ...(contestLastWin ? { contestLastWin } : {}),
+    ...(referralLastReward ? { referralLastReward } : {}),
   });
 }
 

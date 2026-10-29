@@ -23,6 +23,8 @@ export const LEARNING_V2_PROGRESS_SYNC_FIELD = 'learning_v2_course_progress_sync
  * не с начала, которого нет в числе «подряд» (Learning V2 29.10). «o» (открыто) ≠ пройдено — не считаем.
  */
 export const LEARNING_V2_MASKS_SYNC_FIELD = 'learning_v2_course_masks_sync_v1';
+/** Испанский курс синкается теми же ключами с суффиксом (learningV2LanguageScopedStorageKeyV1, Learning V2 29.10, c474f64c9). */
+export const LEARNING_V2_ES_SYNC_SUFFIX = ':target:es';
 
 const HEX_BITS = [0, 1, 1, 2, 1, 2, 2, 3, 1, 2, 2, 3, 2, 3, 3, 4];
 
@@ -74,7 +76,12 @@ export function contestLessonsCompleted(progress: Readonly<Record<string, unknow
   const completed = progress.completed_lessons;
   const classicList = Array.isArray(completed) ? completed.length
     : completed && typeof completed === 'object' ? Object.keys(completed).length : 0;
-  const v2 = Math.max(count(progress[LEARNING_V2_PROGRESS_SYNC_FIELD]), learningV2CompletedFromMasks(progress[LEARNING_V2_MASKS_SYNC_FIELD]));
+  const v2Course = (suffix: string) => Math.max(
+    count(progress[LEARNING_V2_PROGRESS_SYNC_FIELD + suffix]),
+    learningV2CompletedFromMasks(progress[LEARNING_V2_MASKS_SYNC_FIELD + suffix]),
+  );
+  // зачем (владелец 29.10: «урок любой»): испанский курс — такой же урок, как английский; курсы разные, поэтому сумма
+  const v2 = v2Course('') + v2Course(LEARNING_V2_ES_SYNC_SUFFIX);
   return Math.max(classicDirect, classicList) + v2;
 }
 

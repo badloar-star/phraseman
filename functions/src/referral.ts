@@ -45,6 +45,21 @@ import { isStorePremiumActive } from './premium_status';
 // квалификация реферала стартует пару с bonusDays=3 «дней вместе» + недельный буст сундука.
 import { applyReferralPairBonus } from './friends_together';
 import { writeAccessProjectionFromPatch } from './access_projection';
+import { contestLessonsCompleted } from './community_month_tally';
+import { LADDER_LESSON_WINDOW_MS } from './referral_ladder';
+import {
+  REFERRAL_LADDER_PROGRAM,
+  REFERRAL_LADDER_STATS,
+  ladderLessonTransition,
+  ladderLogId,
+  ladderSummary,
+  processReferralLadderLesson,
+  readLadderStats,
+  referralLadderEnabledFromData,
+  retryReferralLadderForReferrer,
+  type LadderRowState,
+  type LadderSummary,
+} from './referral_ladder_server';
 
 const REGION = 'us-central1';
 
@@ -471,7 +486,12 @@ export async function markRefereeQualified(
   const attRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(userId);
   const attSnap = await attRef.get();
   if (!attSnap.exists) return;
-  const att0 = attSnap.data() as { status?: string; referrerStableId?: string };
+  const att0 = attSnap.data() as { status?: string; referrerStableId?: string; program?: string };
+  // зачем (владелец 29.10): приглашения по лесенке засчитываются за урок, а не за покупку — старый путь их не трогает
+  if (att0?.program === REFERRAL_LADDER_PROGRAM) {
+    console.log(`[REF-LADDER] skip_purchase_path referee=${ladderLogId(userId)} status=${String(att0.status)}`);
+    return;
+  }
   // Уже qualified/rewarded — ничего не делаем (идемпотентность).
   if (att0?.status && att0.status !== 'pending') return;
   const referrerId = String(att0.referrerStableId ?? '').trim();
@@ -490,8 +510,9 @@ export async function markRefereeQualified(
     if (!attR.exists) return;
     const refereeProgressNow = (refeeSnap.data() as { progress?: Record<string, unknown> } | undefined)?.progress;
     if (!isStorePremiumActive(refereeProgressNow, Date.now())) return;
-    const row = attR.data() as { status?: string; createdAt?: unknown; createdAtMs?: unknown };
+    const row = attR.data() as { status?: string; createdAt?: unknown; createdAtMs?: unknown; program?: string };
     if (row?.status && row.status !== 'pending') return;
+    if (row?.program === REFERRAL_LADDER_PROGRAM) return;
 
     const nowMs = Date.now();
     const policy = referralRoulettePolicyFromData(configSnap.data() as { numbers?: Record<string, unknown> } | undefined);
@@ -686,7 +707,9 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
     if (policy.emergencyStop) {
       throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP');
     }
-    if (!canCreateNewReferral(policy)) {
+    // зачем (владелец 29.10): рулетку выключают одновременно с включением лесенки — новые приглашения идут в лесенку
+    const ladderOn = referralLadderEnabledFromData(configSnap.data() as { bools?: Record<string, unknown>; numbers?: Record<string, unknown> } | undefined);
+    if (!canCreateNewReferral(policy) && !ladderOn) {
       throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_SOFT_OFF');
     }
     const userSnap = await tx.get(userRef);
@@ -728,6 +751,11 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
       createdAt: now,
       createdAtMs: nowMs,
       deadlineAtMs: attributionDeadlineMs(nowMs),
+      ...(ladderOn ? {
+        program: REFERRAL_LADDER_PROGRAM,
+        ladder: 'waiting' as LadderRowState,
+        ladderDeadlineMs: nowMs + LADDER_LESSON_WINDOW_MS,
+      } : {}),
       updatedAt: now,
     });
     console.log(JSON.stringify({
@@ -744,17 +772,25 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
       referrerStableId: ownerStableId,
       refCode,
       hasStorePremium: isStorePremiumActive(refereeProgress, Date.now()),
+      ladderOn,
+      refereeHasLesson: contestLessonsCompleted(refereeProgress) >= 1,
     };
   });
+  // Лесенка: урок пройден ещё до ввода кода — засчитываем сразу (триггер записи профиля этот переход уже пропустил).
+  if (result?.ok && !result.already && 'ladderOn' in result && result.ladderOn && result.refereeHasLesson) {
+    await processReferralLadderLesson(db, refereeStableId, 'apply').catch((e) => {
+      console.warn(`[REF-LADDER] apply_count_failed referee=${ladderLogId(refereeStableId)} reason=${e instanceof Error ? e.message.slice(0, 160) : String(e)}`);
+    });
+  }
   // Мгновенная квалификация, если приглашённый УЖЕ купил Plus/Pro до ввода кода
   // (вебхук успел записать store-план раньше apply). markRefereeQualified сам
   // перепроверяет всё в транзакции (идемпотентно).
-  if (result?.ok && !result.already && result.hasStorePremium) {
+  if (result?.ok && !result.already && result.hasStorePremium && !('ladderOn' in result && result.ladderOn)) {
     await markRefereeQualified(db, refereeStableId).catch((e) => {
       console.warn('[referral] qualify after apply failed', e);
     });
   }
-  const { hasStorePremium: _hasStorePremium, ...response } = result;
+  const { hasStorePremium: _hasStorePremium, ladderOn: _ladderOn, refereeHasLesson: _hasLesson, ...response } = result as typeof result & { ladderOn?: boolean; refereeHasLesson?: boolean };
   return response;
 });
 
@@ -786,6 +822,12 @@ export async function handleReferralUsersWrite(
     )) return;
     const pA = (after as { progress?: Record<string, unknown> })?.progress;
     const pB = (before as { progress?: Record<string, unknown> } | undefined)?.progress;
+    // Лесенка: первый пройденный урок друга (0 → ≥1). Переход бывает раз в жизни аккаунта — одно чтение строки приглашения.
+    if (ladderLessonTransition(pB, pA)) {
+      await processReferralLadderLesson(admin.firestore(), userId, 'users_write').catch((e) => {
+        console.warn(`[REF-LADDER] users_write_failed referee=${ladderLogId(userId)} reason=${e instanceof Error ? e.message.slice(0, 160) : String(e)}`);
+      });
+    }
     // Дёшево выходим: реагируем только на переход «не было store-премиума → есть».
     // store-план пишет только сервер (RevenueCat/Telegram webhook) — firestore.rules
     // запрещает клиенту premium_* (progressHasNoPremiumWrites), подделать нельзя.
@@ -807,6 +849,14 @@ type InviteState = {
   /** Server-derived grandfather deadline; zero only for unrecoverable legacy rows. */
   deadlineAtMs: number;
   qualifiedAtMs?: number;
+  /** Лесенка (контракт с Дизайном 29.10): когда друг прошёл первый урок. */
+  lessonPassedAtMs?: number;
+  /** Лесенка: ждём урок / засчитан / не засчитан. Причину отказа клиенту не отдаём. */
+  ladder?: LadderRowState;
+  /** Лесенка: до какого момента друг должен пройти урок (ввод кода + 30 дней). */
+  ladderDeadlineMs?: number;
+  /** Лесенка: rewarded по лесенке — 'ladder'. */
+  rewardKind?: string;
 };
 
 type ReferralDrainState = {
@@ -826,6 +876,8 @@ type ListMyInvitesResponse = {
   qualifiedCount: number;
   claimableVipDays: number;
   drain: ReferralDrainState;
+  /** Лесенка приглашений: есть, когда она включена или уже что-то засчитано. */
+  ladder?: LadderSummary;
 };
 
 const LIST_MY_INVITES_SERVER_CACHE_TTL_MS = 60_000;
@@ -869,7 +921,9 @@ export const referralListMyInvites = onCall(CALLABLE_BASE, async (request) => {
 
   const userRef = db.collection(USERS).doc(referrerStableId);
   const ledgerCollection = userRef.collection(REFERRAL_SPIN_LEDGER);
-  const [snap, configSnap, userSnap, ledgerSnap, migrationMarkerSnap, anyLedgerSnap] = await Promise.all([
+  // зачем (лесенка 29.10): повторы засчитывания (месячный лимит, сбой выдачи Plus) — до чтения списка, чтобы ответ был свежим
+  await retryReferralLadderForReferrer(db, referrerStableId);
+  const [snap, configSnap, userSnap, ledgerSnap, migrationMarkerSnap, anyLedgerSnap, ladderStatsSnap] = await Promise.all([
     db.collection(REFERRAL_ATTRIBUTIONS)
       .where('referrerStableId', '==', referrerStableId)
       .limit(200)
@@ -879,6 +933,7 @@ export const referralListMyInvites = onCall(CALLABLE_BASE, async (request) => {
     ledgerCollection.where('status', '==', 'available').get(),
     ledgerCollection.doc(REFERRAL_SPIN_LEDGER_MIGRATION_MARKER_ID).get(),
     ledgerCollection.limit(1).get(),
+    db.collection(REFERRAL_LADDER_STATS).doc(referrerStableId).get(),
   ]);
   const policy = referralRoulettePolicyFromData(
     configSnap.data() as { numbers?: Record<string, unknown> } | undefined,
@@ -902,14 +957,27 @@ export const referralListMyInvites = onCall(CALLABLE_BASE, async (request) => {
       qualifiedAt?: admin.firestore.Timestamp;
       qualifiedAtMs?: unknown;
       deadlineAtMs?: unknown;
+      program?: string;
+      ladder?: string;
+      ladderDeadlineMs?: unknown;
+      lessonPassedAtMs?: unknown;
+      rewardKind?: string;
     };
     const createdAtMs = policyTimestampMs(row.createdAt) || policyTimestampMs(row.createdAtMs);
     const qualifiedAtMs = policyTimestampMs(row.qualifiedAt) || policyTimestampMs(row.qualifiedAtMs);
     const deadlineAtMs = policyTimestampMs(row.deadlineAtMs) || attributionDeadlineMs(createdAtMs);
     const storedStatus = (row.status as AttributionStatus) ?? 'pending';
-    const status = storedStatus === 'pending' && !canQualifyAt(policy, createdAtMs, serverNowMs)
+    const isLadderRow = row.program === REFERRAL_LADDER_PROGRAM;
+    const ladderDeadlineMs = isLadderRow ? policyTimestampMs(row.ladderDeadlineMs) : 0;
+    // строка лесенки живёт по своему сроку (урок за 30 дней), а не по 7-дневному окну покупки рулетки
+    const status = storedStatus === 'pending' && (isLadderRow
+      ? ladderDeadlineMs > 0 && ladderDeadlineMs < serverNowMs
+      : !canQualifyAt(policy, createdAtMs, serverNowMs))
       ? 'expired' as AttributionStatus
       : storedStatus;
+    const lessonPassedAtMs = isLadderRow ? policyTimestampMs(row.lessonPassedAtMs) : 0;
+    const ladderState: LadderRowState | undefined = !isLadderRow ? undefined
+      : status === 'rewarded' ? 'counted' : status === 'expired' ? 'not_counted' : 'waiting';
     const refereeName = nameByStableId.get(d.id);
     return {
       refereeStableId: d.id,
@@ -918,6 +986,12 @@ export const referralListMyInvites = onCall(CALLABLE_BASE, async (request) => {
       createdAtMs,
       deadlineAtMs,
       ...(qualifiedAtMs > 0 ? { qualifiedAtMs } : {}),
+      ...(isLadderRow ? {
+        ladder: ladderState,
+        ...(ladderDeadlineMs > 0 ? { ladderDeadlineMs } : {}),
+        ...(lessonPassedAtMs > 0 ? { lessonPassedAtMs } : {}),
+        ...(row.rewardKind ? { rewardKind: row.rewardKind } : {}),
+      } : {}),
     };
   });
 
@@ -979,6 +1053,9 @@ export const referralListMyInvites = onCall(CALLABLE_BASE, async (request) => {
       ),
       earliestCreditExpiryMs,
     },
+    ...((referralLadderEnabledFromData(configSnap.data() as { bools?: Record<string, unknown>; numbers?: Record<string, unknown> } | undefined) || ladderStatsSnap.exists)
+      ? { ladder: ladderSummary(readLadderStats(ladderStatsSnap.data()), serverNowMs) }
+      : {}),
   };
   cacheListMyInvites(cacheKey, result);
   return result;

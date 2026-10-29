@@ -29,7 +29,7 @@ describe('лесенка: кто засчитывается', () => {
   it.each([
     ['сам себя (тот же uid)', { refereeUid: 'refA' }, 'self_referral'],
     ['то же устройство', { refereeInstallationId: 'inst-1' }, 'same_installation'],
-    ['старый аккаунт (создан за 2 суток до ввода кода)', { refereeCreatedAtMs: APPLIED - 48 * HOUR }, 'account_not_fresh'],
+    ['старый аккаунт (создан за 31 сутки до ввода кода)', { refereeCreatedAtMs: APPLIED - 31 * 24 * HOUR }, 'account_not_fresh'],
     ['возраст аккаунта неизвестен', { refereeCreatedAtMs: null }, 'account_age_unknown'],
     ['урок не пройден', { refereeLessonsCompleted: 0 }, 'no_lesson'],
     ['урок позже 30 дней', { lessonAtMs: APPLIED + LADDER_LESSON_WINDOW_MS + 1 }, 'lesson_window_expired'],
@@ -52,5 +52,8 @@ describe('лесенка: кто засчитывается', () => {
     expect(b).toMatch(OP_ID_RE);
     expect(a).not.toBe(b);
     expect(a).not.toContain('referrerStableUid');
+  });
+  it('аккаунт, созданный за неделю до ввода кода, засчитывается (владелец 21.09: окно 30 дней)', () => {
+    expect(decideReferralLadder(base({ refereeCreatedAtMs: APPLIED - 7 * 24 * HOUR })).ok).toBe(true);
   });
 });

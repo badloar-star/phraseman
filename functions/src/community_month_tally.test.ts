@@ -62,6 +62,10 @@ describe('правило 1: пройденный урок — любой', () =>
   it('Learning V2: облачная копия числа пройденных занятий', () => {
     expect(contestLessonsCompleted({ learning_v2_course_progress_sync_v1: '1' })).toBe(1);
     expect(contestLessonsCompleted({ learning_v2_course_progress_sync_v1: 'oops' })).toBe(0);
+    // испанский курс (ключи с суффиксом :target:es) — тоже урок; с английским суммируется
+    expect(contestLessonsCompleted({ 'learning_v2_course_progress_sync_v1:target:es': '2' })).toBe(2);
+    expect(contestLessonsCompleted({ 'learning_v2_course_masks_sync_v1:target:es': JSON.stringify({ v: 1, c: '80' }) })).toBe(1);
+    expect(contestLessonsCompleted({ learning_v2_course_progress_sync_v1: '1', 'learning_v2_course_progress_sync_v1:target:es': '1' })).toBe(2);
   });
   it('Learning V2 по маске пройденных (начал не с начала): «c» считается, «o» (открыто) — нет', () => {
     expect(learningV2CompletedFromMasks(JSON.stringify({ v: 1, c: '0400', o: 'ffff' }))).toBe(1);

@@ -149,6 +149,9 @@ export type StarOpReason =
   // реферальной рулетки монетами вместо жемчуга. Grant, НЕ earn: приз за
   // приглашённого друга не оплачен учёбой и не должен двигать очки лиги.
   | 'referral_spin'
+  // зачем (владелец 29.10): лесенка приглашений — 500 монет обоим за первый урок друга. Grant, НЕ earn: бонус
+  // за приглашение не оплачен учёбой и не должен двигать очки лиги.
+  | 'referral_ladder'
   // зачем: D104 (владелец, 2026-09-30) — награда в рассылке (global broadcast)
   // выдаётся монетами вместо жемчуга. Grant, НЕ earn: подарок команды не оплачен
   // учёбой и не должен двигать очки лиги.
@@ -198,6 +201,7 @@ export const STAR_OP_CLASS: Readonly<Record<StarOpReason, StarOpClass>> = Object
   spire_step: 'earn',
   spire_week_reward: 'grant',
   referral_spin: 'grant',
+  referral_ladder: 'grant',
   global_broadcast: 'grant',
   account_merge_out: 'spend',
   account_merge_in: 'grant',
@@ -260,6 +264,8 @@ export const STAR_OP_SOURCE: Readonly<Record<StarOpReason, RuneSourceKey>> = Obj
   spire_week_reward: 'other',
   // Приз реферальной рулетки (D100) — строка «спин» разреза «откуда руны».
   referral_spin: 'spin',
+  // Лесенка приглашений — «другое»: своей строки на экране нет, приток обязан попасть в сумму.
+  referral_ladder: 'other',
   // Подарок из рассылки (D104) — «другое»: своей строки на экране «Руны» нет.
   global_broadcast: 'other',
   // Перенос при слиянии (8T) — «другое»: своей строки на экране нет, а приток

@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте знайомим, як вас знайти: кафе в провулку, лавка біля ліхтаря, велосипед біля воріт. Ви кажете «поруч із» словами next to і не плутаєте їх з in, on та under.
 
-**Що ви опануєте:** сказати, що стоїть поруч: next to the fence
+**Що ви опануєте:** сказати, що щось стоїть поруч: The tree is next to the fence.
 **Нові слова:** alley, lamppost, gate, fence
 **Повертаються:** bench, bicycle, bin, bag, chair, tree, cafe, hotel, bank, library
 

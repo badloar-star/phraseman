@@ -2,7 +2,7 @@
 
 **Ситуація.** Агент надіслав опис квартири, а в рядках про техніку є помилки. Ви йдете по квартирі, звіряєте й виправляєте кожен рядок. Нової граматики немає: залишаються звичайні There is для одного предмета й There are для кількох.
 
-**Що ви опануєте:** виправити в описі помилку в числі й у запереченні: There is a microwave here.
+**Що ви опануєте:** сказати, чого немає в кімнаті: There isn’t an ironing board near the door.
 **Нові слова:** microwave, washing machine, ironing board, hairdryer
 **Повертаються:** kitchen, basement, hall, cupboard, shelf, worktop, laundrette, fridge, toaster, kettle, door, sink
 

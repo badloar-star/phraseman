@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете знакомым, как вас найти: кафе в переулке, скамейка у фонаря, велосипед у ворот. Вы говорите «рядом с» словами next to и не путаете их с in, on и under.
 
-**Что вы освоите:** сказать, что стоит рядом: next to the fence
+**Что вы освоите:** сказать, что что-то стоит рядом: The tree is next to the fence.
 **Новые слова:** alley, lamppost, gate, fence
 **Возвращаются:** bench, bicycle, bin, bag, chair, tree, cafe, hotel, bank, library
 

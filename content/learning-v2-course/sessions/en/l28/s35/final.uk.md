@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви прийшли на концерт у місцевому центрі.
 
-**Що ви опануєте:** сказати, хто виконав пісню: song was performed by my friend
+**Що ви опануєте:** сказати, хто виконав пісню: The song was performed by my friend.
 **Нові слова:** composer, songwriter, pianist, guitarist
 
 ## Інтро 1

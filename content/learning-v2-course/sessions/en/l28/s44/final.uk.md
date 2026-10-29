@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви купуєте посуд для дому й уточнюєте умови доставки.
 
-**Що ви опануєте:** сказати, коли доставлять замовлення: plates will be delivered on Friday
+**Що ви опануєте:** сказати, коли доставлять замовлення: The plates will be delivered on Friday.
 **Нові слова:** tableware, glassware, enamel, stoneware
 
 ## Інтро 1

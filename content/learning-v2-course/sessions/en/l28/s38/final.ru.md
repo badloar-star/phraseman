@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы вместе с близкими убираете квартиру.
 
-**Что вы освоите:** сказать, кто что убрал: windows were washed by my sister
+**Что вы освоите:** сказать, кто что убрал: The windows were washed by my sister.
 **Новые слова:** scourer, hoover, ventilate, streak
 
 ## Интро 1

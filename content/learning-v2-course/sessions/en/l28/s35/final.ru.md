@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы пришли на концерт в местном центре.
 
-**Что вы освоите:** сказать, кто исполнил песню: song was performed by my friend
+**Что вы освоите:** сказать, кто исполнил песню: The song was performed by my friend.
 **Новые слова:** composer, songwriter, pianist, guitarist
 
 ## Интро 1

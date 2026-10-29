@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви прийшли з дитиною на творче заняття й уточнюєте, які матеріали можна взяти.
 
-**Що ви опануєте:** сказати, що буде зроблено пізніше: will be kept here overnight
+**Що ви опануєте:** сказати, що буде зроблено пізніше: The painting will be kept here overnight.
 **Нові слова:** playdough, glitter, stencil, watercolours
 
 ## Інтро 1

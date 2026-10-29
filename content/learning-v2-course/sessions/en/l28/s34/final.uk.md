@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви йдете на показ фільму в місцевому центрі.
 
-**Що ви опануєте:** сказати, хто зробив фільм: made by a local filmmaker
+**Що ви опануєте:** сказати, хто зробив фільм: The film was made by a local filmmaker.
 **Нові слова:** filmmaker, screenwriter, narrator, soundtrack
 
 ## Інтро 1

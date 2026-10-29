@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы покупаете посуду для дома и уточняете условия доставки.
 
-**Что вы освоите:** сказать, когда доставят заказ: plates will be delivered on Friday
+**Что вы освоите:** сказать, когда доставят заказ: The plates will be delivered on Friday.
 **Новые слова:** tableware, glassware, enamel, stoneware
 
 ## Интро 1

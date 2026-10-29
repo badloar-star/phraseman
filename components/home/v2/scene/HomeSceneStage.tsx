@@ -131,7 +131,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
   const dpr = PixelRatio.get();
   const scenePal = useMemo(() => {
     const t0 = Date.now();
-    const pal = scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'home', windowW * dpr, stageH * dpr, dpr);
+    const pal = scenePaletteCached(liquidGlassThemeId, liquidGlassAppearance, 'home', windowW * dpr, stageH * dpr, dpr, evening); // вечер: «небо + тёплый край» (владелец 29.10), без красного и углей
     logSceneTheme('home:stage', liquidGlassThemeId, liquidGlassAppearance, 'scenePalette(' + pal.mode + ')', { mode: pal.mode, ms: Date.now() - t0, evening: evening ? 1 : 0, guard: JSON.stringify(pal.guard) });
     return pal;
   }, [liquidGlassThemeId, liquidGlassAppearance, windowW, stageH, dpr, evening]);
@@ -173,7 +173,7 @@ const HomeSceneStageView = memo(function HomeSceneStageView({ state, evening, to
         console.log('[TOP-BAND]', JSON.stringify({ at: 'home_scene_stage_layout', msSinceModule: Math.round(Date.now() - HOME_STAGE_MODULE_AT), sceneReady: !pending, state, topInset: Math.round(topInset), y: Math.round(e.nativeEvent.layout.y), sceneTop: tokens.sceneTop })); // guard-ok: одна строка на смену раскладки
       }}
     >
-      {/* зачем (вердикт владельца 29.10, scenePalette): фон Главной — утверждённая сцена; тёмное «Глубокое небо», светлое «А». Вечер пока такой же (эталон «Небо + тёплый край» придёт) */}
+      {/* зачем (вердикт владельца 29.10, scenePalette): фон Главной — утверждённая сцена; тёмное «Глубокое небо», светлое «А»; вечер — «Небо + тёплый край» (справа внизу тёплый отсвет оттенка темы, без красного света и углей) */}
       <SceneBackdrop palette={scenePal} idPrefix="homeSc" />
       <PremiumThemeMotion themeId={liquidGlassThemeId} isLight={!isDark} width={windowW} height={stageH} />
       <Svg pointerEvents="none" style={StyleSheet.absoluteFill} width="100%" height="100%" onLayout={() => { if (!glowLoggedRef.current) { glowLoggedRef.current = true; console.log('[HOME-SCENE-FIRST]', JSON.stringify({ at: 'glow_first_layout', msSinceJsEntry: msSinceJsEntry(), source: 'svg_glow' })); } /* guard-ok: одна строка на монтирование */ }}>

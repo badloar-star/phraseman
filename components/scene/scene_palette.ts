@@ -413,11 +413,11 @@ const cache = new Map<string, ScenePaletteResult>();
  * Палитра сцены с кэшем модуля: считается ОДИН раз на (тема, оформление, экран, размер, dp), а не на каждую перерисовку.
  * зачем (координатор 29.10, скорость): палитра и 70 звёзд — чистая математика, ей нечего делать на каждом кадре; первый показ — ~1–3 мс, остальные — из кэша.
  */
-export function scenePaletteCached(themeId: string, appearance: SceneAppearance, screen: SceneScreen, W: number, H: number, dp: number): ScenePaletteResult {
-  const key = `${themeId}|${appearance}|${screen}|${Math.round(W)}|${Math.round(H)}|${dp}`;
+export function scenePaletteCached(themeId: string, appearance: SceneAppearance, screen: SceneScreen, W: number, H: number, dp: number, evening = false): ScenePaletteResult {
+  const key = `${themeId}|${appearance}|${screen}|${Math.round(W)}|${Math.round(H)}|${dp}|${evening ? 'e' : 'd'}`;
   const hit = cache.get(key);
   if (hit) return hit;
-  const value = scenePalette(themeId, appearance, screen, Math.round(W), Math.round(H), { premium: isPremiumSceneTheme(themeId), dp });
+  const value = scenePalette(themeId, appearance, screen, Math.round(W), Math.round(H), { premium: isPremiumSceneTheme(themeId), dp, evening });
   cache.set(key, value);
   return value;
 }

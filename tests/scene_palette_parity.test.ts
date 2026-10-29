@@ -6,7 +6,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 import { liquidGlassTokens, LIQUID_GLASS_THEME_IDS } from '../constants/liquidGlassThemePalette';
-import { approvedScene, scenePalette, sceneTextZoneWhiteContrast, type SceneAppearance, type SceneScreen } from '../components/scene/scene_palette';
+import { approvedScene, scenePalette, scenePaletteCached, sceneTextZoneWhiteContrast, type SceneAppearance, type SceneScreen } from '../components/scene/scene_palette';
 
 const MOCK = path.join(__dirname, '..', 'docs', 'design', 'v2-app');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -111,5 +111,19 @@ describe('scenePalette = scene-approved.js эталона, разница 0', ()
     const tokens = appTokens('graphite', 'dark');
     const ts = approvedScene(tokens, 'dark', 'home', 1080, 1082, { evening: true }) as unknown as { warmEdge: { mode: string } };
     expect(ts.warmEdge.mode).toBe('band');
+  });
+
+  // зачем (владелец 29.10: вечер Главной «Небо + тёплый край» подключён): у ВСЕХ активных тем, тёмных и светлых, вечер даёт тёплый край, небо/«А» остаются, красного и углей нет,
+  // белый на зоне текста по-прежнему ≥ 4,6
+  it.each(IDS.flatMap((id) => (['dark', 'light'] as const).map((ap) => [id, ap] as const)))('вечер Главной: %s %s — тёплый край есть, текст читается', (id, ap) => {
+    const day = scenePaletteCached(id, ap, 'home', 1080, 1082, 2.625, false);
+    const eve = scenePaletteCached(id, ap, 'home', 1080, 1082, 2.625, true);
+    expect(day.warmEdge).toBeNull();
+    expect(eve.warmEdge).not.toBeNull();
+    expect(eve.mode).toBe(ap === 'dark' ? 'dark-sky-evening' : 'light-A-evening');
+    // тёплый край — не красный: оттенок в полосе янтаря 40…80° (трактовка band по умолчанию)
+    expect(eve.warmEdge!.hue).toBeGreaterThanOrEqual(40);
+    expect(eve.warmEdge!.hue).toBeLessThanOrEqual(80);
+    expect(sceneTextZoneWhiteContrast(eve)).toBeGreaterThanOrEqual(4.6);
   });
 });

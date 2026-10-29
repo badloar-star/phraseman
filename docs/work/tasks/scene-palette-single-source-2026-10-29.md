@@ -90,3 +90,10 @@ Governance-ID: TG-190D92B77BE9
 
 Outcome: экран выбора языка рисует фон слоем SceneBackdropFill (scenePalette, экран home), а top/bottom его палитры — из той же функции; лог [SCENE-THEME] language_welcome. Коммит на экран. Затем aha — отдельным коммитом.
 Scope: app/language_welcome_palette.ts, app/language_welcome.tsx, тесты-читатели. Architecture/Security/Debt/Verification/Rollback — как выше.
+
+## Шаг 4: вечер Главной «Небо + тёплый край» подключён
+
+Governance-ID: TG-6217288ECA94
+
+Outcome: вечерняя Главная (после 20:00, серия под угрозой) рисует утверждённое владельцем «Небо + тёплый край» (тёмное и светлое) из scenePalette: тёплый свет справа внизу оттенка темы, без красного и углей. Сторожа: parity + single_source + новый тест «вечер: тёплый край у всех тем, белый ≥ 4,6 на зоне текста».
+Scope: scene_palette.ts (scenePaletteCached с вечером), HomeSceneStage.tsx, тест. Architecture/Security/Debt/Verification/Rollback — как выше.

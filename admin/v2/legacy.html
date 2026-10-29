@@ -59378,6 +59378,7 @@ document.addEventListener('pm:section-opened',onOpen);
 .pm-staff-workspace-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:24px; }
 .pm-staff-section-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
 .pm-staff-section-card { padding:18px; border:1px solid var(--pm7-line,rgba(148,163,184,.28)); border-radius:16px; background:var(--pm7-panel,rgba(15,23,42,.72)); }
+#pm-staff-disabled-notice { margin: 0 0 16px; font-weight: 600; }
 @media (max-width: 720px) {
   .pm-staff-form { grid-template-columns: 1fr; }
   .pm-staff-field.pm-staff-wide,.pm-staff-actions { grid-column: 1; }
@@ -59402,6 +59403,23 @@ document.addEventListener('pm:section-opened',onOpen);
     access_revoked: 'Отзыв доступа',
     security_response: 'Мера безопасности',
   });
+  // зачем (владелец 29.10, через координатора): «персонал и приглашения — не включать». Семь callable
+  // adminStaff*Membership*/…Invitation* никогда не выкладывались (на бою падают not-found), поэтому раздел
+  // выключен целиком: карточка владельца не монтируется, проверка сессии сотрудника при входе не зовёт сервер,
+  // прямой вход (#staff / ?staff) показывает «раздел выключен». Код раздела остаётся в ветке («всё в одной
+  // ветке»); включение — только словом владельца: PM_STAFF_SECTION_ENABLED = true.
+  const PM_STAFF_SECTION_ENABLED = false;
+  const PM_STAFF_HIDDEN_REASON = 'owner_disabled';
+  const logStaffHidden = (where, details) => console.info(`[ADMIN-STAFF] hidden reason=${PM_STAFF_HIDDEN_REASON} where=${where} ${details || ''}`.trim());
+  const isStaffDirectEntry = () => {
+    // зачем: в контрактных тестах рантайм получает window без location — не падаем, считаем вход обычным
+    const loc = window.location || {};
+    const hash = String(loc.hash || '').replace(/^#/, '').toLowerCase();
+    const byHash = ['staff', 'staff-access', 'pm-staff-access-card', 'pm-staff-workspace'].includes(hash);
+    let bySearch = false;
+    try { bySearch = new URLSearchParams(String(loc.search || '')).has('staff'); } catch (error) { logStaffHidden('isStaffDirectEntry', `search_parse_failed=${error?.message || error}`); }
+    return { direct: byHash || bySearch, hash, bySearch };
+  };
   const state = { members: [], selected: null, busy: false, generation: 0 };
   const byId = (id) => document.getElementById(id);
   const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (char) => ({
@@ -59424,6 +59442,11 @@ document.addEventListener('pm:section-opened',onOpen);
     .map(([section]) => section);
 
   async function trySession(user) {
+    if (!PM_STAFF_SECTION_ENABLED) {
+      // зачем: раньше каждый вход без claim admin звал adminStaffGetSession — на бою функции нет, вызов падал not-found
+      logStaffHidden('trySession', `uid_present=${Boolean(user?.uid)} result=granted:false`);
+      return { granted:false, reason:PM_STAFF_HIDDEN_REASON };
+    }
     if (!user?.uid) return { granted:false, reason:'identity_missing' };
     try {
       const response = await call(CALLS.session, {});
@@ -59656,9 +59679,32 @@ document.addEventListener('pm:section-opened',onOpen);
     finally { if (generation === state.generation) setBusy(false); }
   }
 
+  function mountDisabledNotice(host) {
+    let notice = byId('pm-staff-disabled-notice');
+    if (!notice) {
+      notice = document.createElement('p');
+      notice.id = 'pm-staff-disabled-notice';
+      notice.className = 'pm-staff-target';
+      notice.setAttribute('role', 'status');
+      notice.setAttribute('aria-live', 'polite');
+      notice.textContent = 'Раздел «Персонал» выключен владельцем.';
+      host.prepend(notice);
+    }
+    notice.hidden = false;
+  }
+
   function mountOwnerPanel() {
     hideWorkspace();
     const host = byId('tab-control-panel');
+    if (!PM_STAFF_SECTION_ENABLED) {
+      const entry = isStaffDirectEntry();
+      logStaffHidden('mountOwnerPanel', `host=${host ? 'tab-control-panel' : 'missing'} entry=${entry.direct ? 'direct' : 'login'} hash=${entry.hash || '-'} search_staff=${entry.bySearch}`);
+      if (!entry.direct || !host) return;
+      // зачем: прямую ссылку на раздел не оставляем «молчаливой» — показываем заглушку там, где стояла карточка
+      mountDisabledNotice(host);
+      if (typeof window.switchTab === 'function') window.switchTab('control-panel', { replaceHash: true, markSeen: false });
+      return;
+    }
     if (!host) return;
     let card = byId('pm-staff-access-card');
     if (!card) {
@@ -59840,5 +59886,8 @@ document.addEventListener('pm:section-opened',onOpen);
 })();
 </script>
 <script src="scripts/pages/youtube-comments.js"></script>
+<!-- зачем (владелец 28.10: 36 шаблонов объявлений «как на макете» должны быть в админке): редактор объявлений 2.0,
+     встаёт в начало #tab-stories при готовом __pmAdminCore, свой CSS подключает сам; логи [ANN2-ADMIN] -->
+<script src="scripts/pages/story_announcements_v2.js" defer></script>
 </body>
 </html>

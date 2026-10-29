@@ -54,9 +54,13 @@ describe('staff access UI integration', () => {
     new Function('window', 'document', 'crypto', runtimeSource())(fakeWindow, fakeDocument, fakeCrypto);
     const runtime = fakeWindow.pmStaffAccessRuntime as { visibleSections: (session: unknown) => string[] };
     expect(runtime.visibleSections({ sections: { workspace: 'view', hiddenOne: 'hidden' } })).toEqual(['workspace']);
+    // зачем (владелец 29.10, «персонал и приглашения — не включать»): раздел выключен флагом в рантайме — проверка сессии
+    // сотрудника отвечает owner_disabled без единого вызова сервера (функций adminStaff*Membership на бою нет).
     await expect((fakeWindow.pmStaffAccessTrySession as (user: unknown) => Promise<unknown>)({ uid: 'staff-1' }))
-      .resolves.toMatchObject({ granted: true, profile: { uid: 'staff-1' } });
-    expect(call).toHaveBeenCalledWith('adminStaffGetSession', {});
+      .resolves.toEqual({ granted: false, reason: 'owner_disabled' });
+    expect(call).not.toHaveBeenCalled();
+    expect(runtimeSource()).toContain('const PM_STAFF_SECTION_ENABLED = false;');
+    expect(runtimeSource()).toContain('[ADMIN-STAFF] hidden reason=');
     expect(html).toContain("new Set(['adminStaffGetSession','adminStaffListMemberships','adminStaffResolveIdentity','adminStaffSetMembership','adminStaffCreateInvitation','adminStaffListInvitations','adminStaffRevokeInvitation'])");
   });
 
@@ -121,7 +125,7 @@ describe('staff access UI integration', () => {
     const created: any[] = [];
     const element = (): any => ({ disabled: false, hidden: false, textContent: '', innerHTML: '', dataset: {},
       removed: false, remove() { this.removed = true; }, replaceChildren: jest.fn(), querySelectorAll: () => [],
-      addEventListener: jest.fn(), appendChild: jest.fn(), insertBefore: jest.fn(), setAttribute: jest.fn() });
+      addEventListener: jest.fn(), appendChild: jest.fn(), insertBefore: jest.fn(), prepend: jest.fn(), setAttribute: jest.fn() });
     const host = element();
     const controls: Record<string, any> = {
       'tab-control-panel': host, 'pm-staff-status': element(), 'pm-staff-list': element(), 'pm-staff-target': element(),
@@ -130,17 +134,27 @@ describe('staff access UI integration', () => {
     const fakeDocument: any = { readyState: 'loading', addEventListener: jest.fn(), querySelectorAll: () => [],
       getElementById: (id: string) => controls[id] || created.find(item => item.id === id && !item.removed) || null,
       createElement: () => { const item = element(); created.push(item); return item; }, body: { appendChild: jest.fn() } };
-    const fakeWindow: any = { pmStaffAccessCall: call };
+    const fakeWindow: any = { pmStaffAccessCall: call, switchTab: jest.fn(), location: { hash: '', search: '' } };
     new Function('window', 'document', 'crypto', runtimeSource())(fakeWindow, fakeDocument, { randomUUID: () => 'op-owner' });
+    // зачем (владелец 29.10): раздел выключен — при обычном входе карточка владельца не создаётся и сервер не зовётся
     fakeWindow.pmStaffAccessMountOwnerPanel();
-    const card = created.find(item => item.id === 'pm-staff-access-card');
-    expect(card).toBeDefined();
-    expect(card.hidden).toBe(true);
-    expect(controls['pm-staff-save'].hidden).toBe(true);
-    expect(controls['pm-staff-resolve'].hidden).toBe(true);
+    expect(created.find(item => item.id === 'pm-staff-access-card')).toBeUndefined();
+    expect(created.find(item => item.id === 'pm-staff-disabled-notice')).toBeUndefined();
+    expect(call).not.toHaveBeenCalled();
+    expect(host.prepend).not.toHaveBeenCalled();
+    // прямой вход (#staff): заглушка «раздел выключен» в Пульте и переход на вкладку; сервер по-прежнему не зовётся
+    fakeWindow.location = { hash: '#staff', search: '' };
+    fakeWindow.pmStaffAccessMountOwnerPanel();
+    const notice = created.find(item => item.id === 'pm-staff-disabled-notice');
+    expect(notice).toBeDefined();
+    expect(notice.textContent).toBe('Раздел «Персонал» выключен владельцем.');
+    expect(notice.hidden).toBe(false);
+    expect(host.prepend).toHaveBeenCalledWith(notice);
+    expect(fakeWindow.switchTab).toHaveBeenCalledWith('control-panel', expect.objectContaining({ replaceHash: true }));
+    expect(created.find(item => item.id === 'pm-staff-access-card')).toBeUndefined();
+    expect(call).not.toHaveBeenCalled();
     await new Promise(resolve => setTimeout(resolve, 0));
-    expect(card.removed).toBe(true);
-    expect(card.hidden).toBe(true);
+    expect(call).not.toHaveBeenCalled();
   });
 
   test('committed revoke remains accurate when the follow-up list refresh fails', async () => {

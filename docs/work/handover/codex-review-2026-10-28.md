@@ -307,6 +307,16 @@
 
 Внимание: функция голосования `storyPollVote` ещё не выложена. До её выкладки опросы (design=poll) из нового редактора не публиковать.
 
+### 25. «Назад» — необязательная строка в твой `app/_layout.tsx` (от Дизайна, по просьбе координатора, 29.10)
+
+Основная починка «вторая Назад со списка ничего не делает» уже в `app/navigation_back.ts` (23f9de5c8), без твоего файла. По желанию: в обработчике `hardwareBackPress` читай путь в момент нажатия, тогда `[BACK-GLOBAL] press` и запасной маршрут видят живой путь, а не устаревший из замыкания:
+
+```ts
+const currentPath = currentNavigationHref() ?? navigationPathSignature ?? pathname;
+```
+
+`currentNavigationHref` добавь в импорт из `./navigation_back`. Описание: `docs/work/handover/navigation-back-global-2026-10-29.md`. Проверка: `npm run test:one -- tests/navigation_back_self_target_2026_10_29.test.ts tests/navigation_back.test.ts` и проверка типов.
+
 ## Кнопка «Уроки» на Главной (жалоба владельца) — для сведения
 
 - Гипотеза про `tabs_hidden_route_redirect` для интерфейса ru/uk скорее неверна: перенаправление срабатывает, только если текущий маршрут —

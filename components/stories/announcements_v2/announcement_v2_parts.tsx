@@ -175,7 +175,7 @@ export const Ring7 = memo(function Ring7({ lit, children }: Readonly<{ lit: numb
   return (
     <View style={m.ring7}>
       <Svg width={190} height={190} viewBox="0 0 190 190" style={StyleSheet.absoluteFill}>
-        {Array.from({ length: 7 }, (_, i) => <Segment key={i} i={i} lit={i < lit} d={500 + i * 180} />)} {/* guard-ok: 7 долей, порядок постоянный */}
+        {Array.from({ length: 7 }, (_, i) => <Segment key={i} i={i} lit={i < lit} d={500 + i * 180} />)}{/* guard-ok: 7 долей, порядок постоянный */}
       </Svg>
       <View style={m.ring7C}>{children}</View>
     </View>
@@ -238,7 +238,7 @@ export const ConicRing = memo(function ConicRing({ periodMs = 9000, style, point
   return (
     <Loop keys={SPIN} periodMs={periodMs} ease={EASE_LINEAR} style={[m.ring180, style]} pointerEvents={pointerEvents}>
       <Svg width={180} height={180} viewBox="0 0 180 180">
-        {Array.from({ length: RING_STEPS }, (_, i) => <Path key={i} d={arcPath(i)} stroke={conicColor(stops, i / RING_STEPS)} strokeWidth={20} fill="none" />)} {/* guard-ok: секторы кольца, порядок постоянный */}
+        {Array.from({ length: RING_STEPS }, (_, i) => <Path key={i} d={arcPath(i)} stroke={conicColor(stops, i / RING_STEPS)} strokeWidth={20} fill="none" />)}{/* guard-ok: секторы кольца, порядок постоянный */}
       </Svg>
     </Loop>
   );
@@ -264,7 +264,7 @@ export const Rays = memo(function Rays({ id }: Readonly<{ id: string }>) {
             <Stop offset="0.68" stopColor={pal.accSoft} stopOpacity={0} />
           </RadialGradient>
         </Defs>
-        {Array.from({ length: 12 }, (_, i) => <Path key={i} d={wedge(i)} fill={`url(#${id})`} />)} {/* guard-ok: 12 клиньев, порядок постоянный */}
+        {Array.from({ length: 12 }, (_, i) => <Path key={i} d={wedge(i)} fill={`url(#${id})`} />)}{/* guard-ok: 12 клиньев, порядок постоянный */}
       </Svg>
     </Loop>
   );

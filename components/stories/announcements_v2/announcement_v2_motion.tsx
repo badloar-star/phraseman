@@ -178,7 +178,7 @@ export const CircleReveal = memo(function CircleReveal({ width, height, cx, cy, 
       style={[{ width, height }, style]}
       maskElement={
         <View style={{ width, height }}>
-          <Animated.View style={[{ position: 'absolute', left: width * cx - radius, top: height * cy - radius, width: size, height: size, borderRadius: radius, backgroundColor: '#000' }, mask]} /> {/* theme-exempt: маска, цвет не виден */}
+          <Animated.View style={[{ position: 'absolute', left: width * cx - radius, top: height * cy - radius, width: size, height: size, borderRadius: radius, backgroundColor: '#000' }, mask]} />{/* theme-exempt: маска, цвет не виден */}
         </View>
       }
     >
@@ -234,7 +234,7 @@ export const AnnRoot = memo(function AnnRoot({ back, layer, maskText = false, le
       <View testID={testID} style={a.root} onLayout={onLayout}>
         {back ? <View pointerEvents="none" style={a.clip}>{back}</View> : null}
         {particles && maskLocations ? (
-          <MaskedView style={a.clip} pointerEvents="none" maskElement={<LinearGradient colors={['#000', '#000', 'transparent', 'transparent', '#000', '#000']} locations={maskLocations} style={StyleSheet.absoluteFill} />}> {/* theme-exempt: маска */}
+          <MaskedView style={a.clip} pointerEvents="none" maskElement={<LinearGradient colors={['#000', '#000', 'transparent', 'transparent', '#000', '#000']} locations={maskLocations} style={StyleSheet.absoluteFill} />}>{/* theme-exempt: маска */}
             {particles}
           </MaskedView>
         ) : particles}

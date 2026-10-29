@@ -35,6 +35,8 @@ function ThemedArtLayersImpl({ source, accent = null, style, contentFit = 'conta
     const key = `${liquidGlassThemeId}|${liquidGlassAppearance}|${level}|${tint}`;
     if (loggedTints.has(key)) return;
     loggedTints.add(key);
+    // зачем ([HERO-TINT], слово владельца 29.10: «краска не должна ложиться на иконки»; сперва логи): какой слой красится и чем — основа рисуется без tintColor, слой accent красится цветом темы
+    console.log(`[HERO-TINT] layers=base(untinted)+accent(tintColor=${tint}) accent=${hasAccent ? 1 : 0} theme=${liquidGlassThemeId} appearance=${liquidGlassAppearance} level=${level}`); // guard-ok: dev-журнал, одна строка на смену ключа
     console.log(`[THEMED-ART] tint=${tint} level=${level} intensity=${liquidGlassIntensity} theme=${liquidGlassThemeId} appearance=${liquidGlassAppearance}`); // guard-ok: dev-журнал цвета слоя accent, одна строка на смену
   }, [hasAccent, tint, liquidGlassThemeId, liquidGlassAppearance, liquidGlassIntensity]);
   return (

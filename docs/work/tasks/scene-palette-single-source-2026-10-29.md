@@ -186,3 +186,15 @@ Security and privacy: данные не собираются и не перед�
 Technical debt: старое затемнение низа сцены остаётся внутри блока (нужно стражу контраста текста); при необходимости убрать фейд в фон на краю — отдельно; Пик в этот коммит не входит.
 Verification: tests/scene_bottom_edge_contract, scene_star_twinkle_contract, home_scene_fit, dialogs_scene_hero_space, scene_layers_under_icons, scene_palette_parity; проверка типов по затронутым файлам; кадры «до/после» от Сверки.
 Rollback: git revert коммита; звёзды Svg возвращаются сами.
+
+## Шаг 17: [HERO-TINT] — журнал краски на иконках героя (сперва логи, правка после кандидата)
+
+Governance-ID: TG-1503390F1A90
+
+Outcome: в журнале видно, какой слой героя красится, каким цветом и с какой непрозрачностью (слой accent в ThemedArtLayers красится tintColor темы), чтобы по фактам решить, как оставить иконки поверх сцены своими цветами; поведение экрана не меняется.
+Scope: components/theme/ThemedArtLayers.tsx (одна строка журнала на смену ключа, dev). Правка окраски за флагом — отдельным шагом после хеша кандидата.
+Architecture: журнал в существующем эффекте слоя accent, без новых состояний и перерисовок.
+Security and privacy: данных не собирает, политика не затрагивается.
+Technical debt: журнал dev-only (в релизе console вырезается); для устройства владельца понадобится запись через журнал обращений.
+Verification: синтаксис файла, тесты ThemedArtLayers.
+Rollback: git revert коммита.

@@ -123,8 +123,8 @@
         "uk": "Залишити повідомлення"
       },
       "bodyByLocale": {
-        "ru": "Вы звоните другу, но он не может ответить. Вы хотите оставить голосовое сообщение: I want to leave a message — «я хочу оставить сообщение». После I want добавьте to leave — желаемое действие. Затем a message — что хотите оставить. Перед единственным исчисляемым message здесь нужен артикль a; у leave после to нет окончания -s или -ing.",
-        "uk": "Ви телефонуєте другові, але він не може відповісти. Ви хочете залишити голосове повідомлення: I want to leave a message — «я хочу залишити повідомлення». Після I want додайте to leave — бажану дію. Потім a message — що хочете залишити. Перед злічуваним message в однині тут потрібен артикль a; у leave після to немає закінчення -s чи -ing."
+        "ru": "Вы звоните другу, но он не может ответить. Вы хотите оставить голосовое сообщение: I want to leave a message — «я хочу оставить сообщение». После I want добавьте to leave — желаемое действие. Затем a message — что хотите оставить. Перед message здесь нужен a: сообщение одно; у leave после to нет окончания -s или -ing.",
+        "uk": "Ви телефонуєте другові, але він не може відповісти. Ви хочете залишити голосове повідомлення: I want to leave a message — «я хочу залишити повідомлення». Після I want додайте to leave — бажану дію. Потім a message — що хочете залишити. Перед message тут потрібне a: повідомлення одне; у leave після to немає закінчення -s чи -ing."
       },
       "question": {
         "interactionId": "en:lesson-21:session-21:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ca58388792c84b8865a3e50e646c9c913cb33fb138d47432ec358c717ffc754d"
+  "introFingerprint": "a638c8b38669a46fd282640f57495f6a8b231a0b19f16736af58ba226d64c8fe"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-03",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + for duration; since starting point",
-    "uk": "present perfect + for duration; since starting point"
+    "ru": "сказать, как долго что-то длится и с какого времени",
+    "uk": "сказати, як довго щось триває і відколи"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Три місяці занять"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом начали изучать нидерландский три месяца назад и всё ещё ходите на занятия. We have studied Dutch for three months — мы изучаем нидерландский уже три месяца. Dutch здесь — название языка. Собираем: we + have + studied + Dutch + for three months. С we ставим have, studied — третья форма study. После for указываем длительность: three months. Так связываем начало учёбы в прошлом с её продолжением сейчас.",
-        "uk": "Ви з другом почали вивчати нідерландську три місяці тому й досі відвідуєте заняття. We have studied Dutch for three months — ми вивчаємо нідерландську вже три місяці. Dutch тут — назва мови. Складаємо: we + have + studied + Dutch + for three months. Із we ставимо have, studied — третя форма study. Після for указуємо тривалість: three months. Так пов’язуємо початок навчання в минулому з його продовженням зараз."
+        "ru": "Вы с другом начали изучать нидерландский три месяца назад и всё ещё ходите на занятия. We have studied Dutch for three months — мы изучаем нидерландский уже три месяца. Dutch здесь — название языка. Собираем: we + have + studied + Dutch + for three months. С we ставим have, studied — форма study после have. После for указываем длительность: three months. Так связываем начало учёбы в прошлом с её продолжением сейчас.",
+        "uk": "Ви з другом почали вивчати нідерландську три місяці тому й досі відвідуєте заняття. We have studied Dutch for three months — ми вивчаємо нідерландську вже три місяці. Dutch тут — назва мови. Складаємо: we + have + studied + Dutch + for three months. Із we ставимо have, studied — форма study після have. Після for указуємо тривалість: three months. Так пов’язуємо початок навчання в минулому з його продовженням зараз."
       },
       "question": {
         "interactionId": "en:lesson-24:session-03:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0eb9be8d48c220ca4276319a6e541be481db8f5c59ab2886d544d87eb6745473"
+  "introFingerprint": "b7b73ce12afb6c88aa045ec8b6ed251ade9b4a10619672f4035c42a44229be54"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-12:session-40",
   "learningOutcomeByLocale": {
-    "ru": "review: wanted /ɪd/, packed /t/, chose",
-    "uk": "review: wanted /ɪd/, packed /t/, chose"
+    "ru": "повторить: wanted, packed, chose",
+    "uk": "повторити: wanted, packed, chose"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Хотіли фундук на перекус"
       },
       "bodyByLocale": {
-        "ru": "Вчера вы с другом выбирали перекус и хотели фундук. Hazelnut — лесной орех, фундук. Скажите: We wanted hazelnuts — Мы хотели фундук. Начните с We, затем поставьте wanted: окончание -ed показывает прошлое и звучит /ɪd/. После действия назовите орехи: hazelnuts. Их несколько, поэтому добавляем -s к hazelnut; a перед множественным числом не ставим.",
-        "uk": "Учора ви з другом вибирали перекус і хотіли фундук. Hazelnut — лісовий горіх, фундук. Скажіть: We wanted hazelnuts — Ми хотіли фундук. Почніть із We, потім поставте wanted: закінчення -ed показує минуле й звучить /ɪd/. Після дії назвіть горіхи: hazelnuts. Їх кілька, тому додаємо -s до hazelnut; a перед множиною не ставимо."
+        "ru": "Вчера вы с другом выбирали перекус и хотели фундук. Hazelnut — лесной орех, фундук. Скажите: We wanted hazelnuts — Мы хотели фундук. Начните с We, затем поставьте wanted: окончание -ed показывает прошлое и звучит /ɪd/. После действия назовите орехи: hazelnuts. Их несколько, поэтому добавляем -s к hazelnut; a, когда орехов несколько, не ставим.",
+        "uk": "Учора ви з другом вибирали перекус і хотіли фундук. Hazelnut — лісовий горіх, фундук. Скажіть: We wanted hazelnuts — Ми хотіли фундук. Почніть із We, потім поставте wanted: закінчення -ed показує минуле й звучить /ɪd/. Після дії назвіть горіхи: hazelnuts. Їх кілька, тому додаємо -s до hazelnut; a, коли горіхів кілька, не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-12:session-40:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4cfa971de23b1537b5bbcd9317c2e2e4cd5fdf812b4dbb451fc071c90027be09"
+  "introFingerprint": "9c7ada8462070db4520d441e0baa14769036b71bffb9a86d5e7180aa14e88bbc"
 }

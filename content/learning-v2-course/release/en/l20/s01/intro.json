@@ -15,8 +15,8 @@
         "uk": "Забрати свої речі"
       },
       "bodyByLocale": {
-        "ru": "Вы уходите из комнаты отдыха, и надпись напоминает забрать личные вещи: You must take your belongings — «вы должны забрать свои вещи». Belongings — личные вещи; слово употребляется во множественном числе. Must означает «нужно, должен» и здесь передаёт требование. Соберите предложение: You — кто выполняет действие, must — необходимость, take — действие, your belongings — что забрать. После must используем take без to. Must не меняется с I, you, we, they, he или she; окончания -s у него нет.",
-        "uk": "Ви виходите з кімнати відпочинку, і напис нагадує забрати особисті речі: You must take your belongings — «ви повинні забрати свої речі». Belongings — особисті речі; слово вживається в множині. Must означає «потрібно, повинен» і тут передає вимогу. Складіть речення: You — хто виконує дію, must — необхідність, take — дія, your belongings — що забрати. Після must використовуємо take без to. Must не змінюється з I, you, we, they, he або she; закінчення -s у нього немає."
+        "ru": "Вы уходите из комнаты отдыха, и надпись напоминает забрать личные вещи: You must take your belongings — «вы должны забрать свои вещи». Belongings — личные вещи; слово употребляется в форме для нескольких. Must означает «нужно, должен» и здесь передаёт требование. Соберите предложение: You — кто выполняет действие, must — необходимость, take — действие, your belongings — что забрать. После must используем take без to. Must не меняется с I, you, we, they, he или she; окончания -s у него нет.",
+        "uk": "Ви виходите з кімнати відпочинку, і напис нагадує забрати особисті речі: You must take your belongings — «ви повинні забрати свої речі». Belongings — особисті речі; слово вживається у формі для кількох. Must означає «потрібно, повинен» і тут передає вимогу. Складіть речення: You — хто виконує дію, must — необхідність, take — дія, your belongings — що забрати. Після must використовуємо take без to. Must не змінюється з I, you, we, they, he або she; закінчення -s у нього немає."
       },
       "question": {
         "interactionId": "en:lesson-20:session-01:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "64c68540b1adf35df8c3489d8744c0bcb42d4a735e122d75626647f4f4bc7c78"
+  "introFingerprint": "9cdf1ac7e5a56beca587c97f1ca5d3ed2cb2185d9ccc6ae6954290470f0a47f9"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-12:session-12",
   "learningOutcomeByLocale": {
-    "ru": "rise → rose; have → had; was/were",
-    "uk": "rise → rose; have → had; was/were"
+    "ru": "рассказать о прошлом: rose, had",
+    "uk": "розповісти про минуле: rose, had"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Сестра їла м'який сир"
       },
       "bodyByLocale": {
-        "ru": "Вчера за завтраком ваша сестра ела мягкий сыр. Сообщите об этом: She had some soft cheese — она ела мягкий сыр. Сначала She, затем had — прошедшая форма have. После действия назовите еду: some soft cheese. Cheese здесь неисчисляемое, поэтому a не ставим. Some обозначает неопределённое количество; можно сказать и просто soft cheese.",
-        "uk": "Учора за сніданком ваша сестра їла м'який сир. Повідомте про це: She had some soft cheese — вона їла м'який сир. Спочатку She, потім had — минула форма have. Після дії назвіть їжу: some soft cheese. Cheese тут незлічуване, тому a не ставимо. Some позначає невизначену кількість; можна сказати й просто soft cheese."
+        "ru": "Вчера за завтраком ваша сестра ела мягкий сыр. Сообщите об этом: She had some soft cheese — она ела мягкий сыр. Сначала She, затем had — прошедшая форма have. После действия назовите еду: some soft cheese. Cheese здесь не считается поштучно, поэтому a не ставим. Some обозначает неопределённое количество; можно сказать и просто soft cheese.",
+        "uk": "Учора за сніданком ваша сестра їла м'який сир. Повідомте про це: She had some soft cheese — вона їла м'який сир. Спочатку She, потім had — минула форма have. Після дії назвіть їжу: some soft cheese. Cheese тут не рахується поштучно, тому a не ставимо. Some позначає невизначену кількість; можна сказати й просто soft cheese."
       },
       "question": {
         "interactionId": "en:lesson-12:session-12:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f15d0ff1dd6e04e4ef7834ef4ef28fff72be36980cca7049f09d10b65f437970"
+  "introFingerprint": "85496df89164bc5f38f15ad07f319e05964bf56779593e36fda8bc70f25cc110"
 }

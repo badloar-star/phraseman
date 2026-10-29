@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-48",
   "learningOutcomeByLocale": {
-    "ru": "was/were; there was/there were; yesterday / now",
-    "uk": "was/were; there was/there were; yesterday / now"
+    "ru": "рассказать, что было и что где было вчера: there was a cat, it was cold",
+    "uk": "розповісти, що було і що де було вчора: there was a cat, it was cold"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Три мушлі на піску"
       },
       "bodyByLocale": {
-        "ru": "Вчера вы заметили на песке три морские ракушки. Расскажите, что там было: There were three seashells on the sand — на песке были три морские ракушки. Начните с There were: вы сообщаете о наличии нескольких предметов в прошлом. Затем назовите количество и вещи: three seashells, с s во множественном числе. В конце добавьте место: on the sand. Seashell пишется слитно.",
-        "uk": "Учора ви помітили на піску три морські мушлі. Розкажіть, що там було: There were three seashells on the sand — на піску були три морські мушлі. Почніть із There were: ви повідомляєте про наявність кількох предметів у минулому. Потім назвіть кількість і речі: three seashells, із s у множині. Наприкінці додайте місце: on the sand. Seashell пишеться разом."
+        "ru": "Вчера вы заметили на песке три морские ракушки. Расскажите, что там было: There were three seashells on the sand — на песке были три морские ракушки. Начните с There were: вы сообщаете о наличии нескольких предметов в прошлом. Затем назовите количество и вещи: three seashells, с s в форме для нескольких. В конце добавьте место: on the sand. Seashell пишется слитно.",
+        "uk": "Учора ви помітили на піску три морські мушлі. Розкажіть, що там було: There were three seashells on the sand — на піску були три морські мушлі. Почніть із There were: ви повідомляєте про наявність кількох предметів у минулому. Потім назвіть кількість і речі: three seashells, із s у формі для кількох. Наприкінці додайте місце: on the sand. Seashell пишеться разом."
       },
       "question": {
         "interactionId": "en:lesson-11:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d1426cb570bf3d0342d1151b0f3bde17c5a3ba2cabbd045d0b4d061cf7593397"
+  "introFingerprint": "2f5285d7f85f0bbb786dab32502d2f45a6122fed8eee98a4c433280e4e5b32cb"
 }

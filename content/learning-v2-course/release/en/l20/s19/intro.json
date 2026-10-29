@@ -69,8 +69,8 @@
         "uk": "Обговорити разом"
       },
       "bodyByLocale": {
-        "ru": "Друг сомневается, какой вечерний курс выбрать, и вы предлагаете вместе обсудить его выбор: We should talk it over — «нам стоит это обсудить». We включает вас и друга. После should ставим talk без to. В выражении talk it over местоимение it заменяет обсуждаемый вопрос и обязательно стоит между talk и over. Сначала назовите участников — We, затем совет should и всё выражение talk it over.",
-        "uk": "Друг вагається, який вечірній курс вибрати, і ви пропонуєте разом обговорити його вибір: We should talk it over — «нам варто це обговорити». We охоплює вас і друга. Після should ставимо talk без to. У виразі talk it over займенник it замінює обговорюване питання й обовʼязково стоїть між talk та over. Спочатку назвіть учасників — We, потім пораду should і весь вираз talk it over."
+        "ru": "Друг сомневается, какой вечерний курс выбрать, и вы предлагаете вместе обсудить его выбор: We should talk it over — «нам стоит это обсудить». We включает вас и друга. После should ставим talk без to. В выражении talk it over слово it заменяет обсуждаемый вопрос и обязательно стоит между talk и over. Сначала назовите участников — We, затем совет should и всё выражение talk it over.",
+        "uk": "Друг вагається, який вечірній курс вибрати, і ви пропонуєте разом обговорити його вибір: We should talk it over — «нам варто це обговорити». We охоплює вас і друга. Після should ставимо talk без to. У виразі talk it over слово it замінює обговорюване питання й обовʼязково стоїть між talk та over. Спочатку назвіть учасників — We, потім пораду should і весь вираз talk it over."
       },
       "question": {
         "interactionId": "en:lesson-20:session-19:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0c1a35001d093b312b6b964e287b11ec8aa64ab30da0e5005be8a1dd81a953cd"
+  "introFingerprint": "016a0a593c5c831d5862142015e0f6c856ef69f6bb80d59febc0f0b849af1826"
 }

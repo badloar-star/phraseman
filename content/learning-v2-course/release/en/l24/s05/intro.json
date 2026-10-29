@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-05",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + for duration; since starting point",
-    "uk": "present perfect + for duration; since starting point"
+    "ru": "сказать, как долго что-то длится и с какого времени",
+    "uk": "сказати, як довго щось триває і відколи"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "З якого року він удівець"
       },
       "bodyByLocale": {
-        "ru": "У знакомого умерла жена в 2020 году; с тех пор он вдовец. He has been a widower since 2020 — он вдовец с 2020 года. Widower означает «вдовец». Собираем: he + has + been + a widower + since 2020. Been — третья форма be; с he используем has. Widower — исчисляемое существительное: здесь называем одного человека, поэтому перед ним ставим a. Since 2020 показывает, когда началось состояние, которое сохраняется сейчас.",
-        "uk": "У знайомого померла дружина у 2020 році; відтоді він удівець. He has been a widower since 2020 — він удівець із 2020 року. Widower означає «вдівець». Складаємо: he + has + been + a widower + since 2020. Been — третя форма be; із he використовуємо has. Widower — злічуваний іменник: тут називаємо одну людину, тому перед ним ставимо a. Since 2020 показує, коли почався стан, який зберігається зараз."
+        "ru": "У знакомого умерла жена в 2020 году; с тех пор он вдовец. He has been a widower since 2020 — он вдовец с 2020 года. Widower означает «вдовец». Собираем: he + has + been + a widower + since 2020. Been — форма be после have; с he используем has. Widower — это можно посчитать: здесь называем одного человека, поэтому перед ним ставим a. Since 2020 показывает, когда началось состояние, которое сохраняется сейчас.",
+        "uk": "У знайомого померла дружина у 2020 році; відтоді він удівець. He has been a widower since 2020 — він удівець із 2020 року. Widower означає «вдівець». Складаємо: he + has + been + a widower + since 2020. Been — форма be після have; із he використовуємо has. Widower — це можна порахувати: тут називаємо одну людину, тому перед ним ставимо a. Since 2020 показує, коли почався стан, який зберігається зараз."
       },
       "question": {
         "interactionId": "en:lesson-24:session-05:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3246955bb3512484918d3c463f280efafe78a2f70dcc7ed618220f8fafb1ed2a"
+  "introFingerprint": "4d2fe061ff79a0e04bd5a37982bb48a6328257ba021a7132fdbfb4a5ab2a7e4f"
 }

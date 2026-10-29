@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-13:session-49",
   "learningOutcomeByLocale": {
-    "ru": "review: past questions and event sequence",
-    "uk": "review: past questions and event sequence"
+    "ru": "повторить: спросить о прошлом и рассказать по порядку",
+    "uk": "повторити: запитати про минуле й розповісти по черзі"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Скільки друг заплатив"
       },
       "bodyByLocale": {
-        "ru": "Друг вчера купил куртку. Спросите, заплатил ли он полную цену без скидки: Did you pay full price? — Ты заплатил полную цену? Соберите Did + you + pay. После did используйте pay, не paid. Затем добавьте full price. В сочетании pay full price перед full price не нужны ни предлог, ни артикль.",
-        "uk": "Друг учора купив куртку. Запитайте, чи заплатив він повну ціну без знижки: Did you pay full price? — Ти заплатив повну ціну? Складіть Did + you + pay. Після did використовуйте pay, не paid. Потім додайте full price. У сполученні pay full price перед full price не потрібні ні прийменник, ні артикль."
+        "ru": "Друг вчера купил куртку. Спросите, заплатил ли он полную цену без скидки: Did you pay full price? — Ты заплатил полную цену? Соберите Did + you + pay. После did используйте pay, не paid. Затем добавьте full price. В сочетании pay full price перед full price не нужны ни предлог, ни a / the.",
+        "uk": "Друг учора купив куртку. Запитайте, чи заплатив він повну ціну без знижки: Did you pay full price? — Ти заплатив повну ціну? Складіть Did + you + pay. Після did використовуйте pay, не paid. Потім додайте full price. У сполученні pay full price перед full price не потрібні ні прийменник, ні a / the."
       },
       "question": {
         "interactionId": "en:lesson-13:session-49:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5daf70975558fd3e99e41d498cdc0a09d27282215d93a13f105f1dcd4f163c19"
+  "introFingerprint": "e9975e4559e14b82d0544f5f59c7c96418a1b745f37a61dec067b72a06eff382"
 }

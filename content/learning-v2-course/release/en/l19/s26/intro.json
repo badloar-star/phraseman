@@ -69,8 +69,8 @@
         "uk": "Запам’ятати список слів"
       },
       "bodyByLocale": {
-        "ru": "Знакомая посмотрела небольшой список и уверена, что сможет его выучить: She is able to memorize these words — «она может запомнить эти слова». После She выбираем is, затем able to и действие memorize. These words называет конкретные слова из списка; these употребляем с множественным числом words. Memorize означает «запоминать, заучивать»; написание memorise тоже правильно.",
-        "uk": "Знайома переглянула невеликий список і впевнена, що зможе його вивчити: She is able to memorize these words — «вона може запам’ятати ці слова». Після She вибираємо is, потім able to й дію memorize. These words називає конкретні слова зі списку; these вживаємо з множиною words. Memorize означає «запам’ятовувати, вивчати напам’ять»; написання memorise теж правильне."
+        "ru": "Знакомая посмотрела небольшой список и уверена, что сможет его выучить: She is able to memorize these words — «она может запомнить эти слова». После She выбираем is, затем able to и действие memorize. These words называет конкретные слова из списка; these ставим, когда слов несколько: words. Memorize означает «запоминать, заучивать»; написание memorise тоже правильно.",
+        "uk": "Знайома переглянула невеликий список і впевнена, що зможе його вивчити: She is able to memorize these words — «вона може запам’ятати ці слова». Після She вибираємо is, потім able to й дію memorize. These words називає конкретні слова зі списку; these ставимо, коли слів кілька: words. Memorize означає «запам’ятовувати, вивчати напам’ять»; написання memorise теж правильне."
       },
       "question": {
         "interactionId": "en:lesson-19:session-26:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "74d7c7033b3ef70d768abead4ee7834a90585b67fcb46cd44c67ad7e59e9a82e"
+  "introFingerprint": "6d2c3578011f9b217e21ccb795bd6ef2a8a3b29c1864c5cd45acad5e6e2cd3cc"
 }

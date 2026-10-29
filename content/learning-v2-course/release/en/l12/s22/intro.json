@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-12:session-22",
   "learningOutcomeByLocale": {
-    "ru": "fail → failed; checked, had",
-    "uk": "fail → failed; checked, had"
+    "ru": "рассказать о прошлом: failed, checked, had",
+    "uk": "розповісти про минуле: failed, checked, had"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Переглянути свій результат"
       },
       "bodyByLocale": {
-        "ru": "Вы открыли страницу с результатом своего экзамена и посмотрели оценку. Сообщите о действии: I checked my test result — я проверил свой результат экзамена. Сначала I, затем check в прошлом: checked, с окончанием ed. После действия назовите то, что проверили: my test result. My показывает, что результат ваш; артикль перед my не ставим.",
-        "uk": "Ви відкрили сторінку з результатом свого іспиту й подивилися оцінку. Повідомте про дію: I checked my test result — я перевірив свій результат іспиту. Спочатку I, потім check у минулому: checked, із закінченням ed. Після дії назвіть те, що перевірили: my test result. My показує, що результат ваш; артикль перед my не ставимо."
+        "ru": "Вы открыли страницу с результатом своего экзамена и посмотрели оценку. Сообщите о действии: I checked my test result — я проверил свой результат экзамена. Сначала I, затем check в прошлом: checked, с окончанием ed. После действия назовите то, что проверили: my test result. My показывает, что результат ваш; a / the перед my не ставим.",
+        "uk": "Ви відкрили сторінку з результатом свого іспиту й подивилися оцінку. Повідомте про дію: I checked my test result — я перевірив свій результат іспиту. Спочатку I, потім check у минулому: checked, із закінченням ed. Після дії назвіть те, що перевірили: my test result. My показує, що результат ваш; a / the перед my не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-12:session-22:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e6e575af7d2371945264f5a41ad01aeb7c5d8793b9af4aaa7d16b57dfddeeadd"
+  "introFingerprint": "5912bbfb55106dcb0a13cc852f4b6144511f49c3e975bd4a2819eb4e00a77f93"
 }

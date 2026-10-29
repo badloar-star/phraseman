@@ -69,8 +69,8 @@
         "uk": "Припустити похмуру погоду"
       },
       "bodyByLocale": {
-        "ru": "Вы обсуждаете завтрашний пикник. Небо весь день затянуто облаками, и вы предполагаете, что завтра будет так же. I think it will be overcast tomorrow. — Думаю, завтра будет пасмурно. После I think поставьте it: в английской фразе о погоде оно занимает место подлежащего. Добавьте will be overcast и время tomorrow. Порядок такой: I think + it + will be + overcast + tomorrow. После will нужен be, а не is.",
-        "uk": "Ви обговорюєте завтрашній пікнік. Небо весь день затягнуте хмарами, і ви припускаєте, що завтра буде так само. I think it will be overcast tomorrow. — Думаю, завтра буде похмуро. Після I think поставте it: в англійській фразі про погоду воно займає місце підмета. Додайте will be overcast і час tomorrow. Порядок такий: I think + it + will be + overcast + tomorrow. Після will потрібне be, а не is."
+        "ru": "Вы обсуждаете завтрашний пикник. Небо весь день затянуто облаками, и вы предполагаете, что завтра будет так же. I think it will be overcast tomorrow. — Думаю, завтра будет пасмурно. После I think поставьте it: в английской фразе о погоде оно стоит там, где обычно стоит тот, о ком речь. Добавьте will be overcast и время tomorrow. Порядок такой: I think + it + will be + overcast + tomorrow. После will нужен be, а не is.",
+        "uk": "Ви обговорюєте завтрашній пікнік. Небо весь день затягнуте хмарами, і ви припускаєте, що завтра буде так само. I think it will be overcast tomorrow. — Думаю, завтра буде похмуро. Після I think поставте it: в англійській фразі про погоду воно стоїть там, де зазвичай стоїть той, про кого йдеться. Додайте will be overcast і час tomorrow. Порядок такий: I think + it + will be + overcast + tomorrow. Після will потрібне be, а не is."
       },
       "question": {
         "interactionId": "en:lesson-16:session-03:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "354ffd84fc741aae6eea479bd256ad90b4fdb3aa7fdea420bc07d8898ab9df28"
+  "introFingerprint": "548ee42dac935122b9fb5df2d91b7437cbcf3887259a1bc7dae6309dfc51cc24"
 }

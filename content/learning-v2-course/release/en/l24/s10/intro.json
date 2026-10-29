@@ -123,8 +123,8 @@
         "uk": "Як давно вона здається засмученою"
       },
       "bodyByLocale": {
-        "ru": "Подруга выглядит расстроенной. Вы спрашиваете того, кто был рядом, как давно это заметно. How long has she seemed upset? — как давно она кажется расстроенной? После how long ставим has перед she, затем seemed — третью форму seem. Upset описывает впечатление от её состояния. Мы не утверждаем, что знаем её чувства. Порядок — how long + has + she + seemed + upset?",
-        "uk": "Подруга має засмучений вигляд. Ви запитуєте того, хто був поруч, як давно це помітно. How long has she seemed upset? — як давно вона здається засмученою? Після how long ставимо has перед she, потім seemed — третю форму seem. Upset описує враження від її стану. Ми не стверджуємо, що знаємо її почуття. Порядок — how long + has + she + seemed + upset?"
+        "ru": "Подруга выглядит расстроенной. Вы спрашиваете того, кто был рядом, как давно это заметно. How long has she seemed upset? — как давно она кажется расстроенной? После how long ставим has перед she, затем seemed — форму seem. Upset описывает впечатление от её состояния. Мы не утверждаем, что знаем её чувства. Порядок — how long + has + she + seemed + upset?",
+        "uk": "Подруга має засмучений вигляд. Ви запитуєте того, хто був поруч, як давно це помітно. How long has she seemed upset? — як давно вона здається засмученою? Після how long ставимо has перед she, потім seemed — форму seem. Upset описує враження від її стану. Ми не стверджуємо, що знаємо її почуття. Порядок — how long + has + she + seemed + upset?"
       },
       "question": {
         "interactionId": "en:lesson-24:session-10:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3ae24ca4eb70769644cfdb8643f5ed3dec698c80e51f4978c22ea9525d183b11"
+  "introFingerprint": "f9517cbc9be52359c2dd2c6c79cbb02b4270f0fd5901dd3b6397c9834a5577bb"
 }

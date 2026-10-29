@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-12:session-24",
   "learningOutcomeByLocale": {
-    "ru": "review: cleaned, used, packed; was/were",
-    "uk": "review: cleaned, used, packed; was/were"
+    "ru": "повторить: рассказать о прошлом — cleaned, used, packed",
+    "uk": "повторити: розповісти про минуле — cleaned, used, packed"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Почистили щипчики"
       },
       "bodyByLocale": {
-        "ru": "Вчера после использования вы почистили щипчики для ногтей. Nail clippers — щипчики для ногтей. Расскажите об этом: I cleaned the nail clippers — Я почистил щипчики для ногтей. После I поставьте cleaned: к clean добавили -ed для прошлого. Затем назовите предмет: the nail clippers. Название clippers имеет форму множественного числа, но оно не меняет форму действия cleaned. The указывает на ваши щипчики.",
-        "uk": "Учора після використання ви почистили щипчики для нігтів. Nail clippers — щипчики для нігтів. Розкажіть про це: I cleaned the nail clippers — Я почистив щипчики для нігтів. Після I поставте cleaned: до clean додали -ed для минулого. Потім назвіть предмет: the nail clippers. Назва clippers має форму множини, але вона не змінює форму дії cleaned. The вказує на ваші щипчики."
+        "ru": "Вчера после использования вы почистили щипчики для ногтей. Nail clippers — щипчики для ногтей. Расскажите об этом: I cleaned the nail clippers — Я почистил щипчики для ногтей. После I поставьте cleaned: к clean добавили -ed для прошлого. Затем назовите предмет: the nail clippers. Название clippers имеет форму для нескольких, но оно не меняет форму действия cleaned. The указывает на ваши щипчики.",
+        "uk": "Учора після використання ви почистили щипчики для нігтів. Nail clippers — щипчики для нігтів. Розкажіть про це: I cleaned the nail clippers — Я почистив щипчики для нігтів. Після I поставте cleaned: до clean додали -ed для минулого. Потім назвіть предмет: the nail clippers. Назва clippers має форму для кількох, але вона не змінює форму дії cleaned. The вказує на ваші щипчики."
       },
       "question": {
         "interactionId": "en:lesson-12:session-24:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5ce02e4a613cc90fb0224e1bde5ac58cfbbd56ccaa9f34dc9a93a9bdaafc441d"
+  "introFingerprint": "0057cf3cba66fbbf6f4e9f50b9d620b5858f24f8c4f54f0c07de230cce791b5c"
 }

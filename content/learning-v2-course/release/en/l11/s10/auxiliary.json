@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-11:session-10:intro1:q",
       "responseFeedbackById": {
         "en:lesson-11:session-10:intro1:r2": {
-          "ru": "Fever здесь единственное число: was.",
-          "uk": "Fever тут однина: was."
+          "ru": "Fever здесь форма для одного: was.",
+          "uk": "Fever тут форма для одного: was."
         },
         "en:lesson-11:session-10:intro1:r3": {
           "ru": "Вопрос с was строится без did.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-11:session-10:intro2:q",
       "responseFeedbackById": {
         "en:lesson-11:session-10:intro2:r2": {
-          "ru": "Одна боль, единственное число: was.",
-          "uk": "Один біль, однина: was."
+          "ru": "Одна боль, форма для одного: was.",
+          "uk": "Один біль, форма для одного: was."
         },
         "en:lesson-11:session-10:intro2:r3": {
           "ru": "Этот вопрос о насморке. Здесь нужен stomach ache.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5bb6a0a081ce47f8c646ce4cfd31873a0448d578e00d6a01f0a0b728f0a876f9"
+  "auxiliaryFingerprint": "58c46e569451d9af72276f51720dfa2081d0147138b7e5263de12718f0918fd2"
 }

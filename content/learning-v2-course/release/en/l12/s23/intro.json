@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-12:session-23",
   "learningOutcomeByLocale": {
-    "ru": "graduate → graduated; finished, celebrated; was/were",
-    "uk": "graduate → graduated; finished, celebrated; was/were"
+    "ru": "рассказать о выпуске и празднике: graduated, celebrated",
+    "uk": "розповісти про випуск і свято: graduated, celebrated"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Закінчити підсумковий іспит"
       },
       "bodyByLocale": {
-        "ru": "Вы ответили на последний вопрос итогового экзамена и сдали работу. Сообщите о завершённом действии: I finished my final exam — я закончил свой итоговый экзамен. Начните с I, затем поставьте finished: finish + ed. После действия назовите, что закончили: my final exam. My показывает, что речь о вашем экзамене; артикль перед my не нужен.",
-        "uk": "Ви відповіли на останнє запитання підсумкового іспиту й здали роботу. Повідомте про завершену дію: I finished my final exam — я закінчив свій підсумковий іспит. Почніть з I, потім поставте finished: finish + ed. Після дії назвіть, що закінчили: my final exam. My показує, що йдеться про ваш іспит; артикль перед my не потрібен."
+        "ru": "Вы ответили на последний вопрос итогового экзамена и сдали работу. Сообщите о завершённом действии: I finished my final exam — я закончил свой итоговый экзамен. Начните с I, затем поставьте finished: finish + ed. После действия назовите, что закончили: my final exam. My показывает, что речь о вашем экзамене; a / the перед my не нужно.",
+        "uk": "Ви відповіли на останнє запитання підсумкового іспиту й здали роботу. Повідомте про завершену дію: I finished my final exam — я закінчив свій підсумковий іспит. Почніть з I, потім поставте finished: finish + ed. Після дії назвіть, що закінчили: my final exam. My показує, що йдеться про ваш іспит; a / the перед my не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-12:session-23:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c647660a68c08936dea460601b11126f552ca15d09801caf127259c731c1b117"
+  "introFingerprint": "dc299fe944eceacb2929be695b70151a29c26de538764721890cb4fb7b61dc43"
 }

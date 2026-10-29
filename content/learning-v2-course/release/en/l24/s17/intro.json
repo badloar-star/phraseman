@@ -15,8 +15,8 @@
         "uk": "Ремонт триває вже місяць"
       },
       "bodyByLocale": {
-        "ru": "Вы начали ремонтировать дом месяц назад и всё ещё работаете. We have been renovating this house for a month — мы ремонтируем этот дом уже месяц. Новая форма Present Perfect Continuous показывает процесс, начавшийся раньше и продолжающийся сейчас: have been + глагол с -ing. После we ставим have been renovating. В renovate убираем конечную e перед -ing. This house называет объект ремонта, for a month — длительность. Мы не утверждаем, что дом уже готов.",
-        "uk": "Ви почали ремонтувати будинок місяць тому й досі працюєте. We have been renovating this house for a month — ми ремонтуємо цей будинок уже місяць. Нова форма Present Perfect Continuous показує процес, який почався раніше й триває зараз: have been + дієслово з -ing. Після we ставимо have been renovating. У renovate прибираємо кінцеву e перед -ing. This house називає об’єкт ремонту, for a month — тривалість. Ми не стверджуємо, що будинок уже готовий."
+        "ru": "Вы начали ремонтировать дом месяц назад и всё ещё работаете. We have been renovating this house for a month — мы ремонтируем этот дом уже месяц. Новая форма have / has been + -ing показывает процесс, начавшийся раньше и продолжающийся сейчас: have been + глагол с -ing. После we ставим have been renovating. В renovate убираем конечную e перед -ing. This house называет объект ремонта, for a month — длительность. Мы не утверждаем, что дом уже готов.",
+        "uk": "Ви почали ремонтувати будинок місяць тому й досі працюєте. We have been renovating this house for a month — ми ремонтуємо цей будинок уже місяць. Нова форма have / has been + -ing показує процес, який почався раніше й триває зараз: have been + дієслово з -ing. Після we ставимо have been renovating. У renovate прибираємо кінцеву e перед -ing. This house називає об’єкт ремонту, for a month — тривалість. Ми не стверджуємо, що будинок уже готовий."
       },
       "question": {
         "interactionId": "en:lesson-24:session-17:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b86388118e44542ced97fbc688e550c91a9d6447e8077bbf0c4843d897043175"
+  "introFingerprint": "b28f2d8bfc0e1403b3b1e6470888b599718803a81082831dfdf038d7fd907704"
 }

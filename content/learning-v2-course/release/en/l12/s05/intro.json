@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-12:session-05",
   "learningOutcomeByLocale": {
-    "ru": "regular past: parked, visited, used, checked",
-    "uk": "regular past: parked, visited, used, checked"
+    "ru": "рассказать о вчерашнем: добавлять к действию -ed — parked, visited",
+    "uk": "розповісти про вчорашнє: додавати до дії -ed — parked, visited"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Перевірити посвідчення водія"
       },
       "bodyByLocale": {
-        "ru": "Перед поездкой вы посмотрели срок действия своего водительского удостоверения. Скажите, что проверили: I checked my driving licence — я проверил своё водительское удостоверение. Начните с I, затем поставьте check в прошлом: checked, добавляем ed. После действия назовите документ: my driving licence. My показывает, что удостоверение ваше; артикль перед my не нужен. Licence — британское написание этого существительного.",
-        "uk": "Перед поїздкою ви подивилися строк дії свого посвідчення водія. Скажіть, що перевірили: I checked my driving licence — я перевірив своє посвідчення водія. Почніть з I, потім поставте check у минулому: checked, додаємо ed. Після дії назвіть документ: my driving licence. My показує, що посвідчення ваше; артикль перед my не потрібен. Licence — британське написання цього іменника."
+        "ru": "Перед поездкой вы посмотрели срок действия своего водительского удостоверения. Скажите, что проверили: I checked my driving licence — я проверил своё водительское удостоверение. Начните с I, затем поставьте check в прошлом: checked, добавляем ed. После действия назовите документ: my driving licence. My показывает, что удостоверение ваше; a / the перед my не нужно. Licence — британское написание этого существительного.",
+        "uk": "Перед поїздкою ви подивилися строк дії свого посвідчення водія. Скажіть, що перевірили: I checked my driving licence — я перевірив своє посвідчення водія. Почніть з I, потім поставте check у минулому: checked, додаємо ed. Після дії назвіть документ: my driving licence. My показує, що посвідчення ваше; a / the перед my не потрібне. Licence — британське написання цього іменника."
       },
       "question": {
         "interactionId": "en:lesson-12:session-05:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "99cd8c9c3fc6d82d89aace6c1463312496248729ce7997e28aab24c1dde8f9b1"
+  "introFingerprint": "e116baa1ccee3760c90ea1378d674728f5490b25e2ca1962da34d61e3e22e947"
 }

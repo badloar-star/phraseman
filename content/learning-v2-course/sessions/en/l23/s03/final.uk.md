@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви повідомляєте, що вже зробили вдома.
 
-**Що ви опануєте:** subject + have|has + past participle
+**Що ви опануєте:** сказати, що вже зроблено й це видно зараз: I have washed the cups
 **Нові слова:** restock, disinfect, bleach, air-dry
 
 ## Інтро 1

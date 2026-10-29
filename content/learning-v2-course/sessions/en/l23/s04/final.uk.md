@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте, чому зараз потрібно відпочити або переглянути плани.
 
-**Що ви опануєте:** subject + have|has + past participle
+**Що ви опануєте:** сказати, що вже зроблено й це видно зараз: I have washed the cups
 **Нові слова:** overwork, overdo, underestimate, exaggerate
 
 ## Інтро 1

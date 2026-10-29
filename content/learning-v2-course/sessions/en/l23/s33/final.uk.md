@@ -2,7 +2,7 @@
 
 **Ситуація.** На зустрічі про професії ви кажете, з ким уже познайомилися.
 
-**Що ви опануєте:** have + just|already + participle; yet at end
+**Що ви опануєте:** сказати «щойно», «уже» і «ще ні»: I have just eaten, not yet
 **Нові слова:** scientist, engineer, architect, builder
 
 ## Інтро 1

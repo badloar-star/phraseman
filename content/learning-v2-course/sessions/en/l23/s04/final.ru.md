@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы объясняете, почему сейчас нужно отдохнуть или пересмотреть планы.
 
-**Что вы освоите:** subject + have|has + past participle
+**Что вы освоите:** сказать, что уже сделано и это видно сейчас: I have washed the cups
 **Новые слова:** overwork, overdo, underestimate, exaggerate
 
 ## Интро 1

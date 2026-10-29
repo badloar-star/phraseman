@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви помічаєте зміни й розповідаєте про них.
 
-**Що ви опануєте:** subject + have|has + past participle
+**Що ви опануєте:** сказати, що вже зроблено й це видно зараз: I have washed the cups
 **Нові слова:** appear, disappear, worsen, heal
 
 ## Інтро 1

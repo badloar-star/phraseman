@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про зміни вдома й поряд із домом.
 
-**Що ви опануєте:** subject + have|has + past participle
+**Що ви опануєте:** сказати, що вже зроблено й це видно зараз: I have washed the cups
 **Нові слова:** reopen, reorganise, redecorate, replant
 
 ## Інтро 1

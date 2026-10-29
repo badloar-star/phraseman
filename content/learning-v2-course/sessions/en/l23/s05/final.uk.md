@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви помічаєте помилку в планах або оплаті й пояснюєте її.
 
-**Що ви опануєте:** subject + have|has + past participle
+**Що ви опануєте:** сказати, що вже зроблено й це видно зараз: I have washed the cups
 **Нові слова:** misjudge, overestimate, underpay, regret
 
 ## Інтро 1

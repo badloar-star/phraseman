@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы собираете вещи и говорите, что уже приготовили.
 
-**Что вы освоите:** subject + have|has + past participle
+**Что вы освоите:** сказать, что уже сделано и это видно сейчас: I have washed the cups
 **Новые слова:** blouse, shorts, trousers, leggings
 
 ## Интро 1

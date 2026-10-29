@@ -2,7 +2,7 @@
 
 **Ситуация.** На встрече о профессиях вы говорите, с кем уже познакомились.
 
-**Что вы освоите:** have + just|already + participle; yet at end
+**Что вы освоите:** сказать «только что», «уже» и «ещё нет»: I have just eaten, not yet
 **Новые слова:** scientist, engineer, architect, builder
 
 ## Интро 1

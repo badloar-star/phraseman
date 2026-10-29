@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы сообщаете, что уже сделали по дому.
 
-**Что вы освоите:** subject + have|has + past participle
+**Что вы освоите:** сказать, что уже сделано и это видно сейчас: I have washed the cups
 **Новые слова:** restock, disinfect, bleach, air-dry
 
 ## Интро 1

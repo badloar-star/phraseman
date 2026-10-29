@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы замечаете ошибку в планах или оплате и объясняете её.
 
-**Что вы освоите:** subject + have|has + past participle
+**Что вы освоите:** сказать, что уже сделано и это видно сейчас: I have washed the cups
 **Новые слова:** misjudge, overestimate, underpay, regret
 
 ## Интро 1

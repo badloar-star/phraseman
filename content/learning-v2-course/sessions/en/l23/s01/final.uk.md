@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви пояснюєте, що вже зробили й що змінилося зараз.
 
-**Що ви опануєте:** subject + have|has + past participle
+**Що ви опануєте:** сказати, що вже зроблено й це видно зараз: I have washed the cups
 **Нові слова:** miscount, misdial, repack, rebook
 
 ## Інтро 1

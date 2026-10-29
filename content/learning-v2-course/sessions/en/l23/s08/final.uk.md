@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте родині, що вже зробили й що вдалося знайти для дитини.
 
-**Що ви опануєте:** subject + have|has + past participle
+**Що ви опануєте:** сказати, що вже зроблено й це видно зараз: I have washed the cups
 **Нові слова:** newborn, toddler, playgroup, childminder
 
 ## Інтро 1

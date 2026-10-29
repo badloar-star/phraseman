@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы рассказываете о переменах дома и рядом с домом.
 
-**Что вы освоите:** subject + have|has + past participle
+**Что вы освоите:** сказать, что уже сделано и это видно сейчас: I have washed the cups
 **Новые слова:** reopen, reorganise, redecorate, replant
 
 ## Интро 1

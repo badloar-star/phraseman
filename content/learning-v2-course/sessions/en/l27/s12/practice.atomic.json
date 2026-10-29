@@ -541,7 +541,7 @@
               "correct": false,
               "testedDimension": "Вы записали их вчера. Назовите законченное время.",
               "feedbackByLocale": {
-                "ru": "С yesterday здесь past simple.",
+                "ru": "С yesterday здесь форма прошлого.",
                 "uk": "Із yesterday тут past simple."
               }
             },
@@ -1570,7 +1570,7 @@
               "testedDimension": "Ви записали їх учора. Назвіть завершений час.",
               "feedbackByLocale": {
                 "ru": "С yesterday здесь past simple.",
-                "uk": "Із yesterday тут past simple."
+                "uk": "Із yesterday тут форма минулого."
               }
             },
             {

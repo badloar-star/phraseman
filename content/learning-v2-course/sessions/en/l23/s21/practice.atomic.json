@@ -161,7 +161,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-21:i03:r1",
@@ -178,11 +178,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "I have ___ volleyball.",
@@ -207,7 +207,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма played.",
+                "ru": "После have или has нужна форма played.",
                 "uk": "Після have або has потрібна третя форма played."
               }
             },
@@ -216,7 +216,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма played.",
+                "ru": "После have или has нужна форма played.",
                 "uk": "Після have або has потрібна третя форма played."
               }
             }
@@ -382,7 +382,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-21:i06:r1",
@@ -399,11 +399,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "She has ___ badminton.",
@@ -428,7 +428,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма played.",
+                "ru": "После have или has нужна форма played.",
                 "uk": "Після have або has потрібна третя форма played."
               }
             },
@@ -437,7 +437,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма played.",
+                "ru": "После have или has нужна форма played.",
                 "uk": "Після have або has потрібна третя форма played."
               }
             }
@@ -603,7 +603,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-21:i09:r1",
@@ -620,11 +620,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "We have ___ basketball.",
@@ -649,7 +649,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма played.",
+                "ru": "После have или has нужна форма played.",
                 "uk": "Після have або has потрібна третя форма played."
               }
             },
@@ -658,7 +658,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма played.",
+                "ru": "После have или has нужна форма played.",
                 "uk": "Після have або has потрібна третя форма played."
               }
             }
@@ -824,7 +824,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-21:i12:r1",
@@ -841,11 +841,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "He has ___ hockey.",
@@ -870,7 +870,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма played.",
+                "ru": "После have или has нужна форма played.",
                 "uk": "Після have або has потрібна третя форма played."
               }
             },
@@ -879,7 +879,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма played.",
+                "ru": "После have или has нужна форма played.",
                 "uk": "Після have або has потрібна третя форма played."
               }
             }
@@ -1261,7 +1261,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-21:i03:r1",
@@ -1278,12 +1278,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "I have ___ volleyball.",
           "gapOptions": [
@@ -1308,7 +1308,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма played.",
-                "uk": "Після have або has потрібна третя форма played."
+                "uk": "Після have або has потрібна форма played."
               }
             },
             {
@@ -1317,7 +1317,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма played.",
-                "uk": "Після have або has потрібна третя форма played."
+                "uk": "Після have або has потрібна форма played."
               }
             }
           ]
@@ -1482,7 +1482,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-21:i06:r1",
@@ -1499,12 +1499,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "She has ___ badminton.",
           "gapOptions": [
@@ -1529,7 +1529,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма played.",
-                "uk": "Після have або has потрібна третя форма played."
+                "uk": "Після have або has потрібна форма played."
               }
             },
             {
@@ -1538,7 +1538,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма played.",
-                "uk": "Після have або has потрібна третя форма played."
+                "uk": "Після have або has потрібна форма played."
               }
             }
           ]
@@ -1703,7 +1703,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-21:i09:r1",
@@ -1720,12 +1720,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "We have ___ basketball.",
           "gapOptions": [
@@ -1750,7 +1750,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма played.",
-                "uk": "Після have або has потрібна третя форма played."
+                "uk": "Після have або has потрібна форма played."
               }
             },
             {
@@ -1759,7 +1759,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма played.",
-                "uk": "Після have або has потрібна третя форма played."
+                "uk": "Після have або has потрібна форма played."
               }
             }
           ]
@@ -1924,7 +1924,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-21:i12:r1",
@@ -1941,12 +1941,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "He has ___ hockey.",
           "gapOptions": [
@@ -1971,7 +1971,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма played.",
-                "uk": "Після have або has потрібна третя форма played."
+                "uk": "Після have або has потрібна форма played."
               }
             },
             {
@@ -1980,7 +1980,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма played.",
-                "uk": "Після have або has потрібна третя форма played."
+                "uk": "Після have або has потрібна форма played."
               }
             }
           ]

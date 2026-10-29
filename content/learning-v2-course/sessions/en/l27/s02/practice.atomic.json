@@ -389,7 +389,7 @@
               "correct": false,
               "testedDimension": "Назовите конкретное законченное время: вчера.",
               "feedbackByLocale": {
-                "ru": "С yesterday здесь past simple.",
+                "ru": "С yesterday здесь форма прошлого.",
                 "uk": "Із yesterday тут past simple."
               }
             },
@@ -398,7 +398,7 @@
               "correct": false,
               "testedDimension": "Назовите конкретное законченное время: вчера.",
               "feedbackByLocale": {
-                "ru": "Calling само по себе не образует сказуемое.",
+                "ru": "Calling само по себе здесь не подходит.",
                 "uk": "Calling саме по собі не утворює присудок."
               }
             }
@@ -643,7 +643,7 @@
               "correct": false,
               "testedDimension": "Друг не слышит звонок. Он открыл бы дверь, если бы услышал его.",
               "feedbackByLocale": {
-                "ru": "В условии past simple без would.",
+                "ru": "В условии форма прошлого без would.",
                 "uk": "В умові past simple без would."
               }
             },
@@ -1456,7 +1456,7 @@
               "testedDimension": "Назвіть конкретний завершений час: учора.",
               "feedbackByLocale": {
                 "ru": "С yesterday здесь past simple.",
-                "uk": "Із yesterday тут past simple."
+                "uk": "Із yesterday тут форма минулого."
               }
             },
             {
@@ -1465,7 +1465,7 @@
               "testedDimension": "Назвіть конкретний завершений час: учора.",
               "feedbackByLocale": {
                 "ru": "Calling само по себе не образует сказуемое.",
-                "uk": "Calling саме по собі не утворює присудок."
+                "uk": "Calling саме по собі тут не підходить."
               }
             }
           ]
@@ -1710,7 +1710,7 @@
               "testedDimension": "Друг не чує дзвінка. Він відчинив би двері, якби почув його.",
               "feedbackByLocale": {
                 "ru": "В условии past simple без would.",
-                "uk": "В умові past simple без would."
+                "uk": "В умові форма минулого без would."
               }
             },
             {

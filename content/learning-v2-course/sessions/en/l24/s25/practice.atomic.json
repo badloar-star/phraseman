@@ -799,7 +799,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ о деньгах.",
               "feedbackByLocale": {
-                "ru": "С last week нужен Past Simple: found без have.",
+                "ru": "С last week нужна форма прошлого: found без have.",
                 "uk": "Із last week потрібен Past Simple: found без have."
               }
             },
@@ -808,7 +808,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ о деньгах.",
               "feedbackByLocale": {
-                "ru": "С last week нужен Past Simple: found без have.",
+                "ru": "С last week нужна форма прошлого: found без have.",
                 "uk": "Із last week потрібен Past Simple: found без have."
               }
             }
@@ -1908,7 +1908,7 @@
               "testedDimension": "Доповніть розповідь про гроші.",
               "feedbackByLocale": {
                 "ru": "С last week нужен Past Simple: found без have.",
-                "uk": "Із last week потрібен Past Simple: found без have."
+                "uk": "Із last week потрібна форма минулого: found без have."
               }
             },
             {
@@ -1917,7 +1917,7 @@
               "testedDimension": "Доповніть розповідь про гроші.",
               "feedbackByLocale": {
                 "ru": "С last week нужен Past Simple: found без have.",
-                "uk": "Із last week потрібен Past Simple: found без have."
+                "uk": "Із last week потрібна форма минулого: found без have."
               }
             }
           ]

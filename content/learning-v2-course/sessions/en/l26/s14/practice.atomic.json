@@ -140,7 +140,7 @@
               "correct": false,
               "testedDimension": "Вы обычно надеваете халат, когда вам холодно. Дополните условие этой привычки.",
               "feedbackByLocale": {
-                "ru": "Нужно сказуемое feel, не отдельная форма feeling.",
+                "ru": "Нужна полная форма feel, не отдельная форма feeling.",
                 "uk": "Потрібен присудок feel, а не окрема форма feeling."
               }
             }
@@ -433,7 +433,7 @@
               "correct": false,
               "testedDimension": "Выберите план на случай холода во время поездки.",
               "feedbackByLocale": {
-                "ru": "В условии после if нужен Present Simple: gets.",
+                "ru": "В условии после if нужна форма work / works: gets.",
                 "uk": "В умові після if потрібен Present Simple: gets."
               }
             },
@@ -442,7 +442,7 @@
               "correct": false,
               "testedDimension": "Выберите план на случай холода во время поездки.",
               "feedbackByLocale": {
-                "ru": "Getting не образует здесь сказуемое.",
+                "ru": "Getting здесь не может стоять отдельно.",
                 "uk": "Getting не утворює тут присудка."
               }
             }
@@ -869,7 +869,7 @@
               "correct": false,
               "testedDimension": "Подгузник сменили до приезда машины. Дополните более раннее действие.",
               "feedbackByLocale": {
-                "ru": "Arrived обозначает прошлый момент; нужен Past Perfect: had changed.",
+                "ru": "Arrived обозначает прошлый момент; нужна форма had + done: had changed.",
                 "uk": "Arrived позначає минулий момент; потрібен Past Perfect: had changed."
               }
             },
@@ -1215,7 +1215,7 @@
               "testedDimension": "Ви зазвичай надягаєте халат, коли вам холодно. Доповніть умову цієї звички.",
               "feedbackByLocale": {
                 "ru": "Нужно сказуемое feel, не отдельная форма feeling.",
-                "uk": "Потрібен присудок feel, а не окрема форма feeling."
+                "uk": "Потрібна повна форма feel, а не окрема форма feeling."
               }
             }
           ]
@@ -1508,7 +1508,7 @@
               "testedDimension": "Виберіть план на випадок холоду під час поїздки.",
               "feedbackByLocale": {
                 "ru": "В условии после if нужен Present Simple: gets.",
-                "uk": "В умові після if потрібен Present Simple: gets."
+                "uk": "В умові після if потрібна форма work / works: gets."
               }
             },
             {
@@ -1517,7 +1517,7 @@
               "testedDimension": "Виберіть план на випадок холоду під час поїздки.",
               "feedbackByLocale": {
                 "ru": "Getting не образует здесь сказуемое.",
-                "uk": "Getting не утворює тут присудка."
+                "uk": "Getting тут не може стояти окремо."
               }
             }
           ]
@@ -1944,7 +1944,7 @@
               "testedDimension": "Підгузок змінили до приїзду машини. Доповніть ранішу дію.",
               "feedbackByLocale": {
                 "ru": "Arrived обозначает прошлый момент; нужен Past Perfect: had changed.",
-                "uk": "Arrived позначає минулий момент; потрібен Past Perfect: had changed."
+                "uk": "Arrived позначає минулий момент; потрібна форма had + done: had changed."
               }
             },
             {

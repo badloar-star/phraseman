@@ -320,7 +320,7 @@
               "correct": false,
               "testedDimension": "Вы уже поговорили с ним.",
               "feedbackByLocale": {
-                "ru": "После have нужна третья форма spoken.",
+                "ru": "После have нужна форма spoken.",
                 "uk": "Після have потрібна третя форма spoken."
               }
             },
@@ -1313,7 +1313,7 @@
               "testedDimension": "Ви вже поговорили з ним.",
               "feedbackByLocale": {
                 "ru": "После have нужна третья форма spoken.",
-                "uk": "Після have потрібна третя форма spoken."
+                "uk": "Після have потрібна форма spoken."
               }
             },
             {

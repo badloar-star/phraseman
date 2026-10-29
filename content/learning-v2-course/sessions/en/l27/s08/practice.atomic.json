@@ -545,7 +545,7 @@
               "correct": false,
               "testedDimension": "Расскажите о покупке на прошлой неделе.",
               "feedbackByLocale": {
-                "ru": "С last week здесь past simple.",
+                "ru": "С last week здесь форма прошлого.",
                 "uk": "Із last week тут past simple."
               }
             },
@@ -1585,7 +1585,7 @@
               "testedDimension": "Розкажіть про покупку минулого тижня.",
               "feedbackByLocale": {
                 "ru": "С last week здесь past simple.",
-                "uk": "Із last week тут past simple."
+                "uk": "Із last week тут форма минулого."
               }
             },
             {

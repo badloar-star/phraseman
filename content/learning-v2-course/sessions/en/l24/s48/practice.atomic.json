@@ -355,7 +355,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple: sobbed.",
+                "ru": "Yesterday требует формы прошлого: sobbed.",
                 "uk": "Yesterday потребує Past Simple: sobbed."
               }
             },
@@ -364,7 +364,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple: sobbed.",
+                "ru": "Yesterday требует формы прошлого: sobbed.",
                 "uk": "Yesterday потребує Past Simple: sobbed."
               }
             }
@@ -801,7 +801,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple: yelled.",
+                "ru": "Yesterday требует формы прошлого: yelled.",
                 "uk": "Yesterday потребує Past Simple: yelled."
               }
             },
@@ -810,7 +810,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple: yelled.",
+                "ru": "Yesterday требует формы прошлого: yelled.",
                 "uk": "Yesterday потребує Past Simple: yelled."
               }
             }
@@ -1466,7 +1466,7 @@
               "testedDimension": "Доповніть розповідь.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple: sobbed.",
-                "uk": "Yesterday потребує Past Simple: sobbed."
+                "uk": "Yesterday потребує форма минулого: sobbed."
               }
             },
             {
@@ -1475,7 +1475,7 @@
               "testedDimension": "Доповніть розповідь.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple: sobbed.",
-                "uk": "Yesterday потребує Past Simple: sobbed."
+                "uk": "Yesterday потребує форма минулого: sobbed."
               }
             }
           ]
@@ -1912,7 +1912,7 @@
               "testedDimension": "Доповніть розповідь.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple: yelled.",
-                "uk": "Yesterday потребує Past Simple: yelled."
+                "uk": "Yesterday потребує форма минулого: yelled."
               }
             },
             {
@@ -1921,7 +1921,7 @@
               "testedDimension": "Доповніть розповідь.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple: yelled.",
-                "uk": "Yesterday потребує Past Simple: yelled."
+                "uk": "Yesterday потребує форма минулого: yelled."
               }
             }
           ]

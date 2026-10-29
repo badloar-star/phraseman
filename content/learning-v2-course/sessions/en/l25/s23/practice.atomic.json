@@ -360,7 +360,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
+        "prompt": "Кролик убежал раньше, чем вы открыли ворота. Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-23:i05:r1",
@@ -377,11 +377,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
+        "accessibilityLabel": "Кролик убежал раньше, чем вы открыли ворота. Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
+            "ru": "Кролик убежал раньше, чем вы открыли ворота. Выберите нужную форму слова.",
             "uk": "Кролик утік раніше, ніж ви відчинили ворота. Виберіть третю форму."
           },
           "gappedTargetPhrase": "The rabbit had ___ before I opened the gate.",
@@ -406,7 +406,7 @@
               "correct": false,
               "testedDimension": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После had нужна третья форма fled.",
+                "ru": "После had нужна форма fled.",
                 "uk": "Після had потрібна третя форма fled."
               }
             },
@@ -415,7 +415,7 @@
               "correct": false,
               "testedDimension": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Had fleeing не образует Past Perfect.",
+                "ru": "Had fleeing не образует had + done.",
                 "uk": "Had fleeing не утворює Past Perfect."
               }
             }
@@ -695,7 +695,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.",
+        "prompt": "Ворота закрыли раньше, чем собака выбежала во двор. Покажите, что это случилось раньше.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-23:i10:r1",
@@ -712,11 +712,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.",
+        "accessibilityLabel": "Ворота закрыли раньше, чем собака выбежала во двор. Покажите, что это случилось раньше.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.",
+            "ru": "Ворота закрыли раньше, чем собака выбежала во двор. Покажите, что это случилось раньше.",
             "uk": "Ворота зачинили раніше, ніж собака вибіг у двір. Виберіть Past Perfect."
           },
           "gappedTargetPhrase": "I ___ closed the gate before the dog came outside.",
@@ -922,7 +922,7 @@
               "correct": false,
               "testedDimension": "Вчера вы увидели одну лису.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple saw.",
+                "ru": "Yesterday требует формы прошлого saw.",
                 "uk": "Yesterday потребує Past Simple saw."
               }
             },
@@ -1476,7 +1476,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Кролик утік раніше, ніж ви відчинили ворота. Виберіть третю форму.",
+        "prompt": "Кролик утік раніше, ніж ви відчинили ворота. Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-23:i05:r1",
@@ -1493,12 +1493,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Кролик утік раніше, ніж ви відчинили ворота. Виберіть третю форму.",
+        "accessibilityLabel": "Кролик утік раніше, ніж ви відчинили ворота. Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Кролик убежал раньше, чем вы открыли ворота. Выберите третью форму.",
-            "uk": "Кролик утік раніше, ніж ви відчинили ворота. Виберіть третю форму."
+            "uk": "Кролик утік раніше, ніж ви відчинили ворота. Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "The rabbit had ___ before I opened the gate.",
           "gapOptions": [
@@ -1523,7 +1523,7 @@
               "testedDimension": "Кролик утік раніше, ніж ви відчинили ворота. Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После had нужна третья форма fled.",
-                "uk": "Після had потрібна третя форма fled."
+                "uk": "Після had потрібна форма fled."
               }
             },
             {
@@ -1532,7 +1532,7 @@
               "testedDimension": "Кролик утік раніше, ніж ви відчинили ворота. Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Had fleeing не образует Past Perfect.",
-                "uk": "Had fleeing не утворює Past Perfect."
+                "uk": "Had fleeing не утворює had + done."
               }
             }
           ]
@@ -1811,7 +1811,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ворота зачинили раніше, ніж собака вибіг у двір. Виберіть Past Perfect.",
+        "prompt": "Ворота зачинили раніше, ніж собака вибіг у двір. Покажіть, що це сталося раніше.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-23:i10:r1",
@@ -1828,12 +1828,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ворота зачинили раніше, ніж собака вибіг у двір. Виберіть Past Perfect.",
+        "accessibilityLabel": "Ворота зачинили раніше, ніж собака вибіг у двір. Покажіть, що це сталося раніше.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Ворота закрыли раньше, чем собака выбежала во двор. Выберите Past Perfect.",
-            "uk": "Ворота зачинили раніше, ніж собака вибіг у двір. Виберіть Past Perfect."
+            "uk": "Ворота зачинили раніше, ніж собака вибіг у двір. Покажіть, що це сталося раніше."
           },
           "gappedTargetPhrase": "I ___ closed the gate before the dog came outside.",
           "gapOptions": [
@@ -2039,7 +2039,7 @@
               "testedDimension": "Учора ви побачили одну лисицю.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple saw.",
-                "uk": "Yesterday потребує Past Simple saw."
+                "uk": "Yesterday потребує форми минулого saw."
               }
             },
             {
@@ -2184,7 +2184,7 @@
               "testedDimension": "Одні тварини на цій фотографії, решта — на наступній.",
               "feedbackByLocale": {
                 "ru": "Another относится к единственному числу; animals — множественное.",
-                "uk": "Another стосується однини; animals — множина."
+                "uk": "Another стосується форми для одного; animals — форма для кількох."
               }
             },
             {

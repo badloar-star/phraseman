@@ -1048,7 +1048,7 @@
               "correct": false,
               "testedDimension": "Эта рубашка не подходит. Вы хотите посмотреть другую.",
               "feedbackByLocale": {
-                "ru": "Shirt в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Shirt, поэтому another.",
                 "uk": "Shirt в однині, тому another."
               }
             },
@@ -2147,7 +2147,7 @@
               "testedDimension": "Ця сорочка не підходить. Ви хочете подивитися іншу.",
               "feedbackByLocale": {
                 "ru": "Shirt в единственном числе, поэтому another.",
-                "uk": "Shirt в однині, тому another."
+                "uk": "Ідеться про одне — Shirt, тому another."
               }
             },
             {

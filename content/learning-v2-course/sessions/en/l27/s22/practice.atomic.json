@@ -832,7 +832,7 @@
               "correct": false,
               "testedDimension": "Назовите время: вы заказали десять минут назад.",
               "feedbackByLocale": {
-                "ru": "С ten minutes ago здесь past simple.",
+                "ru": "С ten minutes ago здесь форма прошлого.",
                 "uk": "Із ten minutes ago тут past simple."
               }
             },
@@ -1823,7 +1823,7 @@
               "testedDimension": "Назвіть час: ви замовили десять хвилин тому.",
               "feedbackByLocale": {
                 "ru": "С ten minutes ago здесь past simple.",
-                "uk": "Із ten minutes ago тут past simple."
+                "uk": "Із ten minutes ago тут форма минулого."
               }
             },
             {

@@ -183,7 +183,7 @@
               "correct": false,
               "testedDimension": "Вы поставили будильник и встанете после его сигнала. Дополните время подъёма.",
               "feedbackByLocale": {
-                "ru": "The alarm — единственное число: rings.",
+                "ru": "The alarm — форма для одного: rings.",
                 "uk": "The alarm — однина: rings."
               }
             }
@@ -1253,7 +1253,7 @@
               "testedDimension": "Ви поставили будильник і встанете після його сигналу. Доповніть час підйому.",
               "feedbackByLocale": {
                 "ru": "The alarm — единственное число: rings.",
-                "uk": "The alarm — однина: rings."
+                "uk": "The alarm — форма для одного: rings."
               }
             }
           ]

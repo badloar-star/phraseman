@@ -799,7 +799,7 @@
               "correct": false,
               "testedDimension": "Вы помыли посуду час назад. Назовите это время.",
               "feedbackByLocale": {
-                "ru": "С an hour ago нужен past simple.",
+                "ru": "С an hour ago нужна форма прошлого.",
                 "uk": "Із an hour ago потрібен past simple."
               }
             },
@@ -1830,7 +1830,7 @@
               "testedDimension": "Ви помили посуд годину тому. Назвіть цей час.",
               "feedbackByLocale": {
                 "ru": "С an hour ago нужен past simple.",
-                "uk": "Із an hour ago потрібен past simple."
+                "uk": "Із an hour ago потрібна форма минулого."
               }
             },
             {

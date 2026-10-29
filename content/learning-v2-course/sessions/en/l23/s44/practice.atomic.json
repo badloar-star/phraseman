@@ -52,7 +52,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-44:i01:r1",
@@ -69,11 +69,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "I have ___ a new cafe.",
@@ -98,7 +98,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: discovered.",
+                "ru": "Нужна форма после have: discovered.",
                 "uk": "Потрібна третя форма: discovered."
               }
             },
@@ -107,7 +107,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: discovered.",
+                "ru": "Нужна форма после have: discovered.",
                 "uk": "Потрібна третя форма: discovered."
               }
             }
@@ -275,7 +275,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-44:i04:r1",
@@ -292,11 +292,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "She has ___ a game.",
@@ -321,7 +321,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: invented.",
+                "ru": "Нужна форма после have: invented.",
                 "uk": "Потрібна третя форма: invented."
               }
             },
@@ -330,7 +330,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: invented.",
+                "ru": "Нужна форма после have: invented.",
                 "uk": "Потрібна третя форма: invented."
               }
             }
@@ -497,7 +497,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-44:i07:r1",
@@ -514,11 +514,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "We have ___ a good habit.",
@@ -543,7 +543,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: developed.",
+                "ru": "Нужна форма после have: developed.",
                 "uk": "Потрібна третя форма: developed."
               }
             },
@@ -552,7 +552,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: developed.",
+                "ru": "Нужна форма после have: developed.",
                 "uk": "Потрібна третя форма: developed."
               }
             }
@@ -720,7 +720,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-44:i10:r1",
@@ -737,11 +737,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "He has ___ a picture.",
@@ -766,7 +766,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: created.",
+                "ru": "Нужна форма после have: created.",
                 "uk": "Потрібна третя форма: created."
               }
             },
@@ -775,7 +775,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: created.",
+                "ru": "Нужна форма после have: created.",
                 "uk": "Потрібна третя форма: created."
               }
             }
@@ -1158,7 +1158,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-44:i01:r1",
@@ -1175,12 +1175,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "I have ___ a new cafe.",
           "gapOptions": [
@@ -1205,7 +1205,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: discovered.",
-                "uk": "Потрібна третя форма: discovered."
+                "uk": "Потрібна форма після have: discovered."
               }
             },
             {
@@ -1214,7 +1214,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: discovered.",
-                "uk": "Потрібна третя форма: discovered."
+                "uk": "Потрібна форма після have: discovered."
               }
             }
           ]
@@ -1381,7 +1381,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-44:i04:r1",
@@ -1398,12 +1398,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "She has ___ a game.",
           "gapOptions": [
@@ -1428,7 +1428,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: invented.",
-                "uk": "Потрібна третя форма: invented."
+                "uk": "Потрібна форма після have: invented."
               }
             },
             {
@@ -1437,7 +1437,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: invented.",
-                "uk": "Потрібна третя форма: invented."
+                "uk": "Потрібна форма після have: invented."
               }
             }
           ]
@@ -1603,7 +1603,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-44:i07:r1",
@@ -1620,12 +1620,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "We have ___ a good habit.",
           "gapOptions": [
@@ -1650,7 +1650,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: developed.",
-                "uk": "Потрібна третя форма: developed."
+                "uk": "Потрібна форма після have: developed."
               }
             },
             {
@@ -1659,7 +1659,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: developed.",
-                "uk": "Потрібна третя форма: developed."
+                "uk": "Потрібна форма після have: developed."
               }
             }
           ]
@@ -1826,7 +1826,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-44:i10:r1",
@@ -1843,12 +1843,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "He has ___ a picture.",
           "gapOptions": [
@@ -1873,7 +1873,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: created.",
-                "uk": "Потрібна третя форма: created."
+                "uk": "Потрібна форма після have: created."
               }
             },
             {
@@ -1882,7 +1882,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: created.",
-                "uk": "Потрібна третя форма: created."
+                "uk": "Потрібна форма після have: created."
               }
             }
           ]

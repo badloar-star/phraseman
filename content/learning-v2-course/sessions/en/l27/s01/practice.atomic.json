@@ -174,7 +174,7 @@
               "correct": false,
               "testedDimension": "Сейчас у вас мало времени. Представьте другую ситуацию.",
               "feedbackByLocale": {
-                "ru": "В условии здесь past simple: had.",
+                "ru": "В условии здесь форма прошлого: had.",
                 "uk": "В умові тут past simple: had."
               }
             },
@@ -183,7 +183,7 @@
               "correct": false,
               "testedDimension": "Сейчас у вас мало времени. Представьте другую ситуацию.",
               "feedbackByLocale": {
-                "ru": "Having не образует здесь сказуемое.",
+                "ru": "Having здесь не может стоять отдельно.",
                 "uk": "Having тут не утворює присудок."
               }
             }
@@ -1246,7 +1246,7 @@
               "testedDimension": "Зараз у вас мало часу. Уявіть іншу ситуацію.",
               "feedbackByLocale": {
                 "ru": "В условии здесь past simple: had.",
-                "uk": "В умові тут past simple: had."
+                "uk": "В умові тут форма минулого: had."
               }
             },
             {
@@ -1255,7 +1255,7 @@
               "testedDimension": "Зараз у вас мало часу. Уявіть іншу ситуацію.",
               "feedbackByLocale": {
                 "ru": "Having не образует здесь сказуемое.",
-                "uk": "Having тут не утворює присудок."
+                "uk": "Having тут не може стояти окремо."
               }
             }
           ]

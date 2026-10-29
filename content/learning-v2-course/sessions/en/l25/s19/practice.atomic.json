@@ -625,7 +625,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ответ снял ваши сомнения до того, как вы согласились. Дополните Past Perfect.",
+        "prompt": "Ответ снял ваши сомнения до того, как вы согласились. Покажите, что это случилось раньше.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-19:i09:r1",
@@ -642,11 +642,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ответ снял ваши сомнения до того, как вы согласились. Дополните Past Perfect.",
+        "accessibilityLabel": "Ответ снял ваши сомнения до того, как вы согласились. Покажите, что это случилось раньше.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Ответ снял ваши сомнения до того, как вы согласились. Дополните Past Perfect.",
+            "ru": "Ответ снял ваши сомнения до того, как вы согласились. Покажите, что это случилось раньше.",
             "uk": "Відповідь зняла ваші сумніви до того, як ви погодилися. Доповніть Past Perfect."
           },
           "gappedTargetPhrase": "The answer ___ satisfied me before I agreed.",
@@ -922,7 +922,7 @@
               "correct": false,
               "testedDimension": "Вы спросили дорогу вчера. Это один завершённый случай.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple asked.",
+                "ru": "Yesterday требует формы прошлого asked.",
                 "uk": "Yesterday потребує Past Simple asked."
               }
             },
@@ -1741,7 +1741,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Відповідь зняла ваші сумніви до того, як ви погодилися. Доповніть Past Perfect.",
+        "prompt": "Відповідь зняла ваші сумніви до того, як ви погодилися. Покажіть, що це сталося раніше.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-19:i09:r1",
@@ -1758,12 +1758,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Відповідь зняла ваші сумніви до того, як ви погодилися. Доповніть Past Perfect.",
+        "accessibilityLabel": "Відповідь зняла ваші сумніви до того, як ви погодилися. Покажіть, що це сталося раніше.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Ответ снял ваши сомнения до того, как вы согласились. Дополните Past Perfect.",
-            "uk": "Відповідь зняла ваші сумніви до того, як ви погодилися. Доповніть Past Perfect."
+            "uk": "Відповідь зняла ваші сумніви до того, як ви погодилися. Покажіть, що це сталося раніше."
           },
           "gappedTargetPhrase": "The answer ___ satisfied me before I agreed.",
           "gapOptions": [
@@ -2039,7 +2039,7 @@
               "testedDimension": "Ви запитали дорогу вчора. Це один завершений випадок.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple asked.",
-                "uk": "Yesterday потребує Past Simple asked."
+                "uk": "Yesterday потребує форми минулого asked."
               }
             },
             {
@@ -2181,7 +2181,7 @@
               "testedDimension": "Одне запитання вже розібрали, решта ще залишилася.",
               "feedbackByLocale": {
                 "ru": "Another используется с единственным числом, а questions — множественное.",
-                "uk": "Another використовується з одниною, а questions — множина."
+                "uk": "Another використовується з формою для одного, а questions — форма для кількох."
               }
             },
             {

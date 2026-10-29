@@ -162,7 +162,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-32:i03:r1",
@@ -179,11 +179,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "I have ___ an actor.",
@@ -208,7 +208,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: met.",
+                "ru": "Нужна форма после have: met.",
                 "uk": "Потрібна третя форма: met."
               }
             },
@@ -217,7 +217,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: met.",
+                "ru": "Нужна форма после have: met.",
                 "uk": "Потрібна третя форма: met."
               }
             }
@@ -384,7 +384,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-32:i06:r1",
@@ -401,11 +401,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "She has ___ a singer.",
@@ -430,7 +430,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: met.",
+                "ru": "Нужна форма после have: met.",
                 "uk": "Потрібна третя форма: met."
               }
             },
@@ -439,7 +439,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: met.",
+                "ru": "Нужна форма после have: met.",
                 "uk": "Потрібна третя форма: met."
               }
             }
@@ -606,7 +606,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-32:i09:r1",
@@ -623,11 +623,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "We have ___ a dancer.",
@@ -652,7 +652,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: met.",
+                "ru": "Нужна форма после have: met.",
                 "uk": "Потрібна третя форма: met."
               }
             },
@@ -661,7 +661,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: met.",
+                "ru": "Нужна форма после have: met.",
                 "uk": "Потрібна третя форма: met."
               }
             }
@@ -828,7 +828,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-32:i12:r1",
@@ -845,11 +845,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "He has ___ a musician.",
@@ -874,7 +874,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: met.",
+                "ru": "Нужна форма после have: met.",
                 "uk": "Потрібна третя форма: met."
               }
             },
@@ -883,7 +883,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "Нужна третья форма: met.",
+                "ru": "Нужна форма после have: met.",
                 "uk": "Потрібна третя форма: met."
               }
             }
@@ -1266,7 +1266,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-32:i03:r1",
@@ -1283,12 +1283,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "I have ___ an actor.",
           "gapOptions": [
@@ -1313,7 +1313,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: met.",
-                "uk": "Потрібна третя форма: met."
+                "uk": "Потрібна форма після have: met."
               }
             },
             {
@@ -1322,7 +1322,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: met.",
-                "uk": "Потрібна третя форма: met."
+                "uk": "Потрібна форма після have: met."
               }
             }
           ]
@@ -1488,7 +1488,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-32:i06:r1",
@@ -1505,12 +1505,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "She has ___ a singer.",
           "gapOptions": [
@@ -1535,7 +1535,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: met.",
-                "uk": "Потрібна третя форма: met."
+                "uk": "Потрібна форма після have: met."
               }
             },
             {
@@ -1544,7 +1544,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: met.",
-                "uk": "Потрібна третя форма: met."
+                "uk": "Потрібна форма після have: met."
               }
             }
           ]
@@ -1710,7 +1710,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-32:i09:r1",
@@ -1727,12 +1727,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "We have ___ a dancer.",
           "gapOptions": [
@@ -1757,7 +1757,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: met.",
-                "uk": "Потрібна третя форма: met."
+                "uk": "Потрібна форма після have: met."
               }
             },
             {
@@ -1766,7 +1766,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: met.",
-                "uk": "Потрібна третя форма: met."
+                "uk": "Потрібна форма після have: met."
               }
             }
           ]
@@ -1932,7 +1932,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-32:i12:r1",
@@ -1949,12 +1949,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "He has ___ a musician.",
           "gapOptions": [
@@ -1979,7 +1979,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: met.",
-                "uk": "Потрібна третя форма: met."
+                "uk": "Потрібна форма після have: met."
               }
             },
             {
@@ -1988,7 +1988,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "Нужна третья форма: met.",
-                "uk": "Потрібна третя форма: met."
+                "uk": "Потрібна форма після have: met."
               }
             }
           ]

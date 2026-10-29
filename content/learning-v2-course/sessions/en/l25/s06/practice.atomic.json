@@ -503,7 +503,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
+        "prompt": "Вы рассказываете о результате, заметном сейчас. Дополните фразу с have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-06:i08:r1",
@@ -520,11 +520,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
+        "accessibilityLabel": "Вы рассказываете о результате, заметном сейчас. Дополните фразу с have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
+            "ru": "Вы рассказываете о результате, заметном сейчас. Дополните фразу с have / has.",
             "uk": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect."
           },
           "gappedTargetPhrase": "My life has ___ a lot.",
@@ -558,7 +558,7 @@
               "correct": false,
               "testedDimension": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
               "feedbackByLocale": {
-                "ru": "Changing здесь не образует Present Perfect; нужно changed.",
+                "ru": "Changing здесь не образует have / has + done; нужно changed.",
                 "uk": "Changing тут не утворює Present Perfect; потрібно changed."
               }
             }
@@ -1028,7 +1028,7 @@
               "correct": false,
               "testedDimension": "Вы говорите об одном вечере на прошлой неделе.",
               "feedbackByLocale": {
-                "ru": "Last week — законченное время: нужен Past Simple talked.",
+                "ru": "Last week — это уже прошлое: нужна форма прошлого talked.",
                 "uk": "Last week — завершений час: потрібен Past Simple talked."
               }
             },
@@ -1614,7 +1614,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect.",
+        "prompt": "Ви розповідаєте про результат, помітний зараз. Доповніть фразу з have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-06:i08:r1",
@@ -1631,12 +1631,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect.",
+        "accessibilityLabel": "Ви розповідаєте про результат, помітний зараз. Доповніть фразу з have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
-            "uk": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect."
+            "uk": "Ви розповідаєте про результат, помітний зараз. Доповніть фразу з have / has."
           },
           "gappedTargetPhrase": "My life has ___ a lot.",
           "gapOptions": [
@@ -1670,7 +1670,7 @@
               "testedDimension": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect.",
               "feedbackByLocale": {
                 "ru": "Changing здесь не образует Present Perfect; нужно changed.",
-                "uk": "Changing тут не утворює Present Perfect; потрібно changed."
+                "uk": "Changing тут не утворює have / has + done; потрібно changed."
               }
             }
           ]
@@ -2140,7 +2140,7 @@
               "testedDimension": "Ви говорите про один вечір минулого тижня.",
               "feedbackByLocale": {
                 "ru": "Last week — законченное время: нужен Past Simple talked.",
-                "uk": "Last week — завершений час: потрібен Past Simple talked."
+                "uk": "Last week — це вже минуле: потрібна форма минулого talked."
               }
             },
             {

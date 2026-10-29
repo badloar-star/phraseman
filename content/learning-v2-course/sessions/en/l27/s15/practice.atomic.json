@@ -570,7 +570,7 @@
               "correct": false,
               "testedDimension": "Вы играли в прошлую пятницу. Назовите законченное время.",
               "feedbackByLocale": {
-                "ru": "С last Friday здесь past simple.",
+                "ru": "С last Friday здесь форма прошлого.",
                 "uk": "Із last Friday тут past simple."
               }
             },
@@ -1600,7 +1600,7 @@
               "testedDimension": "Ви грали минулої п’ятниці. Назвіть завершений час.",
               "feedbackByLocale": {
                 "ru": "С last Friday здесь past simple.",
-                "uk": "Із last Friday тут past simple."
+                "uk": "Із last Friday тут форма минулого."
               }
             },
             {

@@ -163,7 +163,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-33:i03:r1",
@@ -180,11 +180,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "I have just ___ a scientist.",
@@ -209,7 +209,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма met.",
+                "ru": "После have или has нужна форма met.",
                 "uk": "Після have або has потрібна третя форма met."
               }
             },
@@ -218,7 +218,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма met.",
+                "ru": "После have или has нужна форма met.",
                 "uk": "Після have або has потрібна третя форма met."
               }
             }
@@ -386,7 +386,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-33:i06:r1",
@@ -403,11 +403,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "She has already ___ an engineer.",
@@ -432,7 +432,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма met.",
+                "ru": "После have или has нужна форма met.",
                 "uk": "Після have або has потрібна третя форма met."
               }
             },
@@ -441,7 +441,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма met.",
+                "ru": "После have или has нужна форма met.",
                 "uk": "Після have або has потрібна третя форма met."
               }
             }
@@ -609,7 +609,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-33:i09:r1",
@@ -626,11 +626,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "We haven't ___ an architect yet.",
@@ -655,7 +655,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма met.",
+                "ru": "После have или has нужна форма met.",
                 "uk": "Після have або has потрібна третя форма met."
               }
             },
@@ -664,7 +664,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма met.",
+                "ru": "После have или has нужна форма met.",
                 "uk": "Після have або has потрібна третя форма met."
               }
             }
@@ -832,7 +832,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Выберите третью форму.",
+        "prompt": "Выберите нужную форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-33:i12:r1",
@@ -849,11 +849,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Выберите третью форму.",
+        "accessibilityLabel": "Выберите нужную форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Выберите третью форму.",
+            "ru": "Выберите нужную форму слова.",
             "uk": "Виберіть третю форму."
           },
           "gappedTargetPhrase": "Have you ___ a builder yet?",
@@ -878,7 +878,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма met.",
+                "ru": "После have или has нужна форма met.",
                 "uk": "Після have або has потрібна третя форма met."
               }
             },
@@ -887,7 +887,7 @@
               "correct": false,
               "testedDimension": "Выберите третью форму.",
               "feedbackByLocale": {
-                "ru": "После have или has нужна третья форма met.",
+                "ru": "После have или has нужна форма met.",
                 "uk": "Після have або has потрібна третя форма met."
               }
             }
@@ -1334,7 +1334,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-33:i03:r1",
@@ -1351,12 +1351,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "I have just ___ a scientist.",
           "gapOptions": [
@@ -1381,7 +1381,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма met.",
-                "uk": "Після have або has потрібна третя форма met."
+                "uk": "Після have або has потрібна форма met."
               }
             },
             {
@@ -1390,7 +1390,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма met.",
-                "uk": "Після have або has потрібна третя форма met."
+                "uk": "Після have або has потрібна форма met."
               }
             }
           ]
@@ -1557,7 +1557,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-33:i06:r1",
@@ -1574,12 +1574,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "She has already ___ an engineer.",
           "gapOptions": [
@@ -1604,7 +1604,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма met.",
-                "uk": "Після have або has потрібна третя форма met."
+                "uk": "Після have або has потрібна форма met."
               }
             },
             {
@@ -1613,7 +1613,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма met.",
-                "uk": "Після have або has потрібна третя форма met."
+                "uk": "Після have або has потрібна форма met."
               }
             }
           ]
@@ -1780,7 +1780,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-33:i09:r1",
@@ -1797,12 +1797,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "We haven't ___ an architect yet.",
           "gapOptions": [
@@ -1827,7 +1827,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма met.",
-                "uk": "Після have або has потрібна третя форма met."
+                "uk": "Після have або has потрібна форма met."
               }
             },
             {
@@ -1836,7 +1836,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма met.",
-                "uk": "Після have або has потрібна третя форма met."
+                "uk": "Після have або has потрібна форма met."
               }
             }
           ]
@@ -2003,7 +2003,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Виберіть третю форму.",
+        "prompt": "Виберіть потрібну форму слова.",
         "responseOptions": [
           {
             "responseId": "en:lesson-23:session-33:i12:r1",
@@ -2020,12 +2020,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Виберіть третю форму.",
+        "accessibilityLabel": "Виберіть потрібну форму слова.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Выберите третью форму.",
-            "uk": "Виберіть третю форму."
+            "uk": "Виберіть потрібну форму слова."
           },
           "gappedTargetPhrase": "Have you ___ a builder yet?",
           "gapOptions": [
@@ -2050,7 +2050,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма met.",
-                "uk": "Після have або has потрібна третя форма met."
+                "uk": "Після have або has потрібна форма met."
               }
             },
             {
@@ -2059,7 +2059,7 @@
               "testedDimension": "Виберіть третю форму.",
               "feedbackByLocale": {
                 "ru": "После have или has нужна третья форма met.",
-                "uk": "Після have або has потрібна третя форма met."
+                "uk": "Після have або has потрібна форма met."
               }
             }
           ]

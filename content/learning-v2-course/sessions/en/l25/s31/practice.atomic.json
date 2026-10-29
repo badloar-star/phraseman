@@ -796,7 +796,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.",
+        "prompt": "Гости уже ушли к моменту вашего возвращения. Покажите, что это случилось раньше.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-31:i12:r1",
@@ -813,11 +813,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.",
+        "accessibilityLabel": "Гости уже ушли к моменту вашего возвращения. Покажите, что это случилось раньше.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.",
+            "ru": "Гости уже ушли к моменту вашего возвращения. Покажите, что это случилось раньше.",
             "uk": "Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect."
           },
           "gappedTargetPhrase": "The guests ___ left before I returned.",
@@ -984,7 +984,7 @@
               "correct": false,
               "testedDimension": "Вы остались у друзей на одну ночь вчера.",
               "feedbackByLocale": {
-                "ru": "Last night — законченное время; нужен Past Simple stayed.",
+                "ru": "Last night — это уже прошлое; нужна форма прошлого stayed.",
                 "uk": "Last night — завершений час; потрібен Past Simple stayed."
               }
             },
@@ -1906,7 +1906,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect.",
+        "prompt": "Гості вже пішли до моменту вашого повернення. Покажіть, що це сталося раніше.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-31:i12:r1",
@@ -1923,12 +1923,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect.",
+        "accessibilityLabel": "Гості вже пішли до моменту вашого повернення. Покажіть, що це сталося раніше.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Гости уже ушли к моменту вашего возвращения. Дополните Past Perfect.",
-            "uk": "Гості вже пішли до моменту вашого повернення. Доповніть Past Perfect."
+            "uk": "Гості вже пішли до моменту вашого повернення. Покажіть, що це сталося раніше."
           },
           "gappedTargetPhrase": "The guests ___ left before I returned.",
           "gapOptions": [
@@ -2095,7 +2095,7 @@
               "testedDimension": "Ви залишилися в друзів на одну ніч учора.",
               "feedbackByLocale": {
                 "ru": "Last night — законченное время; нужен Past Simple stayed.",
-                "uk": "Last night — завершений час; потрібен Past Simple stayed."
+                "uk": "Last night — це вже минуле; потрібна форма минулого stayed."
               }
             },
             {

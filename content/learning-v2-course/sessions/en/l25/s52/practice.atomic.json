@@ -1053,7 +1053,7 @@
               "correct": false,
               "testedDimension": "Друг просит немного времени перед ответом. Дополните просьбу.",
               "feedbackByLocale": {
-                "ru": "Moment в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Moment, поэтому another.",
                 "uk": "Moment в однині, тому another."
               }
             },
@@ -2159,7 +2159,7 @@
               "testedDimension": "Друг просить трохи часу перед відповіддю. Доповніть прохання.",
               "feedbackByLocale": {
                 "ru": "Moment в единственном числе, поэтому another.",
-                "uk": "Moment в однині, тому another."
+                "uk": "Ідеться про одне — Moment, тому another."
               }
             },
             {

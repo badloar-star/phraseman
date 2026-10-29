@@ -391,7 +391,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Мастер нашёл причину вчера. Выберите Past Simple.",
+        "prompt": "Мастер нашёл причину вчера. Выберите форму для законченного прошлого.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-35:i06:r1",
@@ -408,11 +408,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Мастер нашёл причину вчера. Выберите Past Simple.",
+        "accessibilityLabel": "Мастер нашёл причину вчера. Выберите форму для законченного прошлого.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Мастер нашёл причину вчера. Выберите Past Simple.",
+            "ru": "Мастер нашёл причину вчера. Выберите форму для законченного прошлого.",
             "uk": "Майстер знайшов причину вчора. Виберіть Past Simple."
           },
           "gappedTargetPhrase": "The repairman ___ the problem yesterday.",
@@ -446,7 +446,7 @@
               "correct": false,
               "testedDimension": "Мастер нашёл причину вчера. Выберите Past Simple.",
               "feedbackByLocale": {
-                "ru": "Finding без вспомогательного глагола здесь не подходит.",
+                "ru": "Одной формы Finding здесь мало.",
                 "uk": "Finding без допоміжного дієслова тут не підходить."
               }
             }
@@ -1494,7 +1494,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Майстер знайшов причину вчора. Виберіть Past Simple.",
+        "prompt": "Майстер знайшов причину вчора. Виберіть форму для завершеного минулого.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-35:i06:r1",
@@ -1511,12 +1511,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Майстер знайшов причину вчора. Виберіть Past Simple.",
+        "accessibilityLabel": "Майстер знайшов причину вчора. Виберіть форму для завершеного минулого.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Мастер нашёл причину вчера. Выберите Past Simple.",
-            "uk": "Майстер знайшов причину вчора. Виберіть Past Simple."
+            "uk": "Майстер знайшов причину вчора. Виберіть форму для завершеного минулого."
           },
           "gappedTargetPhrase": "The repairman ___ the problem yesterday.",
           "gapOptions": [
@@ -1550,7 +1550,7 @@
               "testedDimension": "Майстер знайшов причину вчора. Виберіть Past Simple.",
               "feedbackByLocale": {
                 "ru": "Finding без вспомогательного глагола здесь не подходит.",
-                "uk": "Finding без допоміжного дієслова тут не підходить."
+                "uk": "Однієї форми Finding тут замало."
               }
             }
           ]
@@ -2119,7 +2119,7 @@
               "testedDimension": "Перший приклад незрозумілий. Попросіть ще один.",
               "feedbackByLocale": {
                 "ru": "Перед единственным числом example используем another.",
-                "uk": "Перед одниною example вживаємо another."
+                "uk": "Перед example (предмет один) вживаємо another."
               }
             },
             {

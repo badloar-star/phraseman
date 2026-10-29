@@ -1050,7 +1050,7 @@
               "correct": false,
               "testedDimension": "Первый поезд ушёл. Вы решаете сесть на другой.",
               "feedbackByLocale": {
-                "ru": "Train в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Train, поэтому another.",
                 "uk": "Train в однині, тому another."
               }
             },
@@ -2154,7 +2154,7 @@
               "testedDimension": "Перший поїзд поїхав. Ви вирішуєте сісти на інший.",
               "feedbackByLocale": {
                 "ru": "Train в единственном числе, поэтому another.",
-                "uk": "Train в однині, тому another."
+                "uk": "Ідеться про одне — Train, тому another."
               }
             },
             {

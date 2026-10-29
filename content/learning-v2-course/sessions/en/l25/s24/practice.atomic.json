@@ -549,7 +549,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Хлеб уже испекли к вашему возвращению. Дополните Past Perfect.",
+        "prompt": "Хлеб уже испекли к вашему возвращению. Покажите, что это случилось раньше.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-24:i08:r1",
@@ -566,11 +566,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Хлеб уже испекли к вашему возвращению. Дополните Past Perfect.",
+        "accessibilityLabel": "Хлеб уже испекли к вашему возвращению. Покажите, что это случилось раньше.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Хлеб уже испекли к вашему возвращению. Дополните Past Perfect.",
+            "ru": "Хлеб уже испекли к вашему возвращению. Покажите, что это случилось раньше.",
             "uk": "Хліб уже спекли до вашого повернення. Доповніть Past Perfect."
           },
           "gappedTargetPhrase": "She ___ baked the bread before I returned.",
@@ -846,7 +846,7 @@
               "correct": false,
               "testedDimension": "Вы посетили парк один раз вчера.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple visited.",
+                "ru": "Yesterday требует формы прошлого visited.",
                 "uk": "Yesterday потребує Past Simple visited."
               }
             },
@@ -1054,7 +1054,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "За это время парк изменился, и изменения видны сейчас. Дополните Present Perfect.",
+        "prompt": "За это время парк изменился, и изменения видны сейчас. Дополните фразу с have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-24:i17:r1",
@@ -1071,11 +1071,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "За это время парк изменился, и изменения видны сейчас. Дополните Present Perfect.",
+        "accessibilityLabel": "За это время парк изменился, и изменения видны сейчас. Дополните фразу с have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "За это время парк изменился, и изменения видны сейчас. Дополните Present Perfect.",
+            "ru": "За это время парк изменился, и изменения видны сейчас. Дополните фразу с have / has.",
             "uk": "За цей час парк змінився, і зміни видно зараз. Доповніть Present Perfect."
           },
           "gappedTargetPhrase": "The park has ___ a lot.",
@@ -1665,7 +1665,7 @@
         "purpose": "guided_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Хліб уже спекли до вашого повернення. Доповніть Past Perfect.",
+        "prompt": "Хліб уже спекли до вашого повернення. Покажіть, що це сталося раніше.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-24:i08:r1",
@@ -1682,12 +1682,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Хліб уже спекли до вашого повернення. Доповніть Past Perfect.",
+        "accessibilityLabel": "Хліб уже спекли до вашого повернення. Покажіть, що це сталося раніше.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Хлеб уже испекли к вашему возвращению. Дополните Past Perfect.",
-            "uk": "Хліб уже спекли до вашого повернення. Доповніть Past Perfect."
+            "uk": "Хліб уже спекли до вашого повернення. Покажіть, що це сталося раніше."
           },
           "gappedTargetPhrase": "She ___ baked the bread before I returned.",
           "gapOptions": [
@@ -1963,7 +1963,7 @@
               "testedDimension": "Ви відвідали парк один раз учора.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple visited.",
-                "uk": "Yesterday потребує Past Simple visited."
+                "uk": "Yesterday потребує форми минулого visited."
               }
             },
             {
@@ -2170,7 +2170,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "За цей час парк змінився, і зміни видно зараз. Доповніть Present Perfect.",
+        "prompt": "За цей час парк змінився, і зміни видно зараз. Доповніть фразу з have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-24:i17:r1",
@@ -2187,12 +2187,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "За цей час парк змінився, і зміни видно зараз. Доповніть Present Perfect.",
+        "accessibilityLabel": "За цей час парк змінився, і зміни видно зараз. Доповніть фразу з have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "За это время парк изменился, и изменения видны сейчас. Дополните Present Perfect.",
-            "uk": "За цей час парк змінився, і зміни видно зараз. Доповніть Present Perfect."
+            "uk": "За цей час парк змінився, і зміни видно зараз. Доповніть фразу з have / has."
           },
           "gappedTargetPhrase": "The park has ___ a lot.",
           "gapOptions": [

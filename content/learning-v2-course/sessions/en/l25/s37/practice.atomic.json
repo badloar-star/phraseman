@@ -839,7 +839,7 @@
               "correct": false,
               "testedDimension": "Первую книгу прочитали. Попросите другую книгу.",
               "feedbackByLocale": {
-                "ru": "Перед book в единственном числе нужно another.",
+                "ru": "Перед book (предмет один) нужно another.",
                 "uk": "Перед book в однині потрібно another."
               }
             },
@@ -1941,7 +1941,7 @@
               "testedDimension": "Першу книжку прочитали. Попросіть іншу книжку.",
               "feedbackByLocale": {
                 "ru": "Перед book в единственном числе нужно another.",
-                "uk": "Перед book в однині потрібно another."
+                "uk": "Перед book (предмет один) потрібно another."
               }
             },
             {

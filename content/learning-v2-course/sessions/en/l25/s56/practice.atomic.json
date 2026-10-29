@@ -1052,7 +1052,7 @@
               "correct": false,
               "testedDimension": "В номере только один стул, а вас двое. Попросите ещё один.",
               "feedbackByLocale": {
-                "ru": "Chair в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Chair, поэтому another.",
                 "uk": "Chair в однині, тому another."
               }
             },
@@ -2157,7 +2157,7 @@
               "testedDimension": "У номері лише один стілець, а вас двоє. Попросіть ще один.",
               "feedbackByLocale": {
                 "ru": "Chair в единственном числе, поэтому another.",
-                "uk": "Chair в однині, тому another."
+                "uk": "Ідеться про одне — Chair, тому another."
               }
             },
             {

@@ -584,7 +584,7 @@
               "correct": false,
               "testedDimension": "Вы слышали этот коллектив вчера.",
               "feedbackByLocale": {
-                "ru": "С yesterday здесь past simple.",
+                "ru": "С yesterday здесь форма прошлого.",
                 "uk": "Із yesterday тут past simple."
               }
             },
@@ -1618,7 +1618,7 @@
               "testedDimension": "Ви чули цей колектив учора.",
               "feedbackByLocale": {
                 "ru": "С yesterday здесь past simple.",
-                "uk": "Із yesterday тут past simple."
+                "uk": "Із yesterday тут форма минулого."
               }
             },
             {

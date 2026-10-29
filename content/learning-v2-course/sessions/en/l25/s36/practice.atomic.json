@@ -722,7 +722,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Дети уснули до конца рассказа. Выберите третью форму после had.",
+        "prompt": "Дети уснули до конца рассказа. Выберите форму слова после had.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-36:i11:r1",
@@ -739,11 +739,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Дети уснули до конца рассказа. Выберите третью форму после had.",
+        "accessibilityLabel": "Дети уснули до конца рассказа. Выберите форму слова после had.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Дети уснули до конца рассказа. Выберите третью форму после had.",
+            "ru": "Дети уснули до конца рассказа. Выберите форму слова после had.",
             "uk": "Діти заснули до кінця розповіді. Виберіть третю форму після had."
           },
           "gappedTargetPhrase": "The children had ___ asleep by the time I finished the story.",
@@ -768,7 +768,7 @@
               "correct": false,
               "testedDimension": "Дети уснули до конца рассказа. Выберите третью форму после had.",
               "feedbackByLocale": {
-                "ru": "Fell — Past Simple; после had нужна третья форма fallen.",
+                "ru": "Fell — форма прошлого; после had нужна форма fallen.",
                 "uk": "Fell — Past Simple; після had потрібна третя форма fallen."
               }
             },
@@ -951,7 +951,7 @@
               "correct": false,
               "testedDimension": "Первую песню уже спели. Дети просят ещё одну.",
               "feedbackByLocale": {
-                "ru": "Song в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Song, поэтому another.",
                 "uk": "Song в однині, тому another."
               }
             },
@@ -1007,7 +1007,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы уже рассказали другу новость; важен результат сейчас. Выберите Present Perfect.",
+        "prompt": "Вы уже рассказали другу новость; важен результат сейчас. Выберите форму с have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-36:i16:r1",
@@ -1024,11 +1024,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы уже рассказали другу новость; важен результат сейчас. Выберите Present Perfect.",
+        "accessibilityLabel": "Вы уже рассказали другу новость; важен результат сейчас. Выберите форму с have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы уже рассказали другу новость; важен результат сейчас. Выберите Present Perfect.",
+            "ru": "Вы уже рассказали другу новость; важен результат сейчас. Выберите форму с have / has.",
             "uk": "Ви вже розповіли другові новину; важливий результат зараз. Виберіть Present Perfect."
           },
           "gappedTargetPhrase": "I ___ him the news.",
@@ -1062,7 +1062,7 @@
               "correct": false,
               "testedDimension": "Вы уже рассказали другу новость; важен результат сейчас. Выберите Present Perfect.",
               "feedbackByLocale": {
-                "ru": "После have нужна третья форма told, не tell.",
+                "ru": "После have нужна форма told, не tell.",
                 "uk": "Після have потрібна третя форма told, не tell."
               }
             }
@@ -1827,7 +1827,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Діти заснули до кінця розповіді. Виберіть третю форму після had.",
+        "prompt": "Діти заснули до кінця розповіді. Виберіть форму слова після had.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-36:i11:r1",
@@ -1844,12 +1844,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Діти заснули до кінця розповіді. Виберіть третю форму після had.",
+        "accessibilityLabel": "Діти заснули до кінця розповіді. Виберіть форму слова після had.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Дети уснули до конца рассказа. Выберите третью форму после had.",
-            "uk": "Діти заснули до кінця розповіді. Виберіть третю форму після had."
+            "uk": "Діти заснули до кінця розповіді. Виберіть форму слова після had."
           },
           "gappedTargetPhrase": "The children had ___ asleep by the time I finished the story.",
           "gapOptions": [
@@ -1874,7 +1874,7 @@
               "testedDimension": "Діти заснули до кінця розповіді. Виберіть третю форму після had.",
               "feedbackByLocale": {
                 "ru": "Fell — Past Simple; после had нужна третья форма fallen.",
-                "uk": "Fell — Past Simple; після had потрібна третя форма fallen."
+                "uk": "Fell — форма минулого; після had потрібна форма fallen."
               }
             },
             {
@@ -2057,7 +2057,7 @@
               "testedDimension": "Першу пісню вже заспівали. Діти просять ще одну.",
               "feedbackByLocale": {
                 "ru": "Song в единственном числе, поэтому another.",
-                "uk": "Song в однині, тому another."
+                "uk": "Ідеться про одне — Song, тому another."
               }
             },
             {
@@ -2112,7 +2112,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви вже розповіли другові новину; важливий результат зараз. Виберіть Present Perfect.",
+        "prompt": "Ви вже розповіли другові новину; важливий результат зараз. Виберіть форму з have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-36:i16:r1",
@@ -2129,12 +2129,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви вже розповіли другові новину; важливий результат зараз. Виберіть Present Perfect.",
+        "accessibilityLabel": "Ви вже розповіли другові новину; важливий результат зараз. Виберіть форму з have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вы уже рассказали другу новость; важен результат сейчас. Выберите Present Perfect.",
-            "uk": "Ви вже розповіли другові новину; важливий результат зараз. Виберіть Present Perfect."
+            "uk": "Ви вже розповіли другові новину; важливий результат зараз. Виберіть форму з have / has."
           },
           "gappedTargetPhrase": "I ___ him the news.",
           "gapOptions": [
@@ -2168,7 +2168,7 @@
               "testedDimension": "Ви вже розповіли другові новину; важливий результат зараз. Виберіть Present Perfect.",
               "feedbackByLocale": {
                 "ru": "После have нужна третья форма told, не tell.",
-                "uk": "Після have потрібна третя форма told, не tell."
+                "uk": "Після have потрібна форма told, не tell."
               }
             }
           ]

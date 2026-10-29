@@ -174,7 +174,7 @@
               "correct": false,
               "testedDimension": "Речь об одном уроке вчера, а не о прежней привычке.",
               "feedbackByLocale": {
-                "ru": "Yesterday — законченное время в прошлом, поэтому нужен Past Simple: took.",
+                "ru": "Yesterday — это уже прошлое, поэтому нужна форма прошлого: took.",
                 "uk": "Yesterday — завершений час у минулому, тому потрібен Past Simple: took."
               }
             },
@@ -314,7 +314,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы говорите о своём опыте без даты. Дополните Present Perfect.",
+        "prompt": "Вы говорите о своём опыте без даты. Дополните фразу с have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-02:i05:r1",
@@ -331,11 +331,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы говорите о своём опыте без даты. Дополните Present Perfect.",
+        "accessibilityLabel": "Вы говорите о своём опыте без даты. Дополните фразу с have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы говорите о своём опыте без даты. Дополните Present Perfect.",
+            "ru": "Вы говорите о своём опыте без даты. Дополните фразу с have / has.",
             "uk": "Ви говорите про свій досвід без дати. Доповніть Present Perfect."
           },
           "gappedTargetPhrase": "I have ___ this sport twice.",
@@ -360,7 +360,7 @@
               "correct": false,
               "testedDimension": "Вы говорите о своём опыте без даты. Дополните Present Perfect.",
               "feedbackByLocale": {
-                "ru": "После have в Present Perfect нужна форма tried.",
+                "ru": "После have в have / has + done нужна форма tried.",
                 "uk": "Після have у Present Perfect потрібна форма tried."
               }
             },
@@ -369,7 +369,7 @@
               "correct": false,
               "testedDimension": "Вы говорите о своём опыте без даты. Дополните Present Perfect.",
               "feedbackByLocale": {
-                "ru": "Trying не образует здесь Present Perfect; нужна форма tried.",
+                "ru": "Trying не образует здесь have / has + done; нужна форма tried.",
                 "uk": "Trying не утворює тут Present Perfect; потрібна форма tried."
               }
             }
@@ -1015,7 +1015,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы знаете один вид спорта и спрашиваете о других. После пропуска — множественное число.",
+        "prompt": "Вы знаете один вид спорта и спрашиваете о других. После пропуска — несколько предметов.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-02:i16:r1",
@@ -1032,11 +1032,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы знаете один вид спорта и спрашиваете о других. После пропуска — множественное число.",
+        "accessibilityLabel": "Вы знаете один вид спорта и спрашиваете о других. После пропуска — несколько предметов.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы знаете один вид спорта и спрашиваете о других. После пропуска — множественное число.",
+            "ru": "Вы знаете один вид спорта и спрашиваете о других. После пропуска — несколько предметов.",
             "uk": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — множина."
           },
           "gappedTargetPhrase": "What ___ sports do you enjoy?",
@@ -1061,7 +1061,7 @@
               "correct": false,
               "testedDimension": "Вы знаете один вид спорта и спрашиваете о других. После пропуска — множественное число.",
               "feedbackByLocale": {
-                "ru": "Another ставим перед исчисляемым существительным в единственном числе, а sports — множественное.",
+                "ru": "Another ставим перед названием одного предмета, а sports — множественное.",
                 "uk": "Another ставимо перед злічуваним іменником в однині, а sports — множина."
               }
             },
@@ -1285,7 +1285,7 @@
               "testedDimension": "Йдеться про один урок учора, а не про колишню звичку.",
               "feedbackByLocale": {
                 "ru": "Yesterday — законченное время в прошлом, поэтому нужен Past Simple: took.",
-                "uk": "Yesterday — завершений час у минулому, тому потрібен Past Simple: took."
+                "uk": "Yesterday — це вже минуле, тому потрібна форма минулого: took."
               }
             },
             {
@@ -1424,7 +1424,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви говорите про свій досвід без дати. Доповніть Present Perfect.",
+        "prompt": "Ви говорите про свій досвід без дати. Доповніть фразу з have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-02:i05:r1",
@@ -1441,12 +1441,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви говорите про свій досвід без дати. Доповніть Present Perfect.",
+        "accessibilityLabel": "Ви говорите про свій досвід без дати. Доповніть фразу з have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вы говорите о своём опыте без даты. Дополните Present Perfect.",
-            "uk": "Ви говорите про свій досвід без дати. Доповніть Present Perfect."
+            "uk": "Ви говорите про свій досвід без дати. Доповніть фразу з have / has."
           },
           "gappedTargetPhrase": "I have ___ this sport twice.",
           "gapOptions": [
@@ -1471,7 +1471,7 @@
               "testedDimension": "Ви говорите про свій досвід без дати. Доповніть Present Perfect.",
               "feedbackByLocale": {
                 "ru": "После have в Present Perfect нужна форма tried.",
-                "uk": "Після have у Present Perfect потрібна форма tried."
+                "uk": "Після have у have / has + done потрібна форма tried."
               }
             },
             {
@@ -1480,7 +1480,7 @@
               "testedDimension": "Ви говорите про свій досвід без дати. Доповніть Present Perfect.",
               "feedbackByLocale": {
                 "ru": "Trying не образует здесь Present Perfect; нужна форма tried.",
-                "uk": "Trying не утворює тут Present Perfect; потрібна форма tried."
+                "uk": "Trying не утворює тут have / has + done; потрібна форма tried."
               }
             }
           ]
@@ -2125,7 +2125,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — множина.",
+        "prompt": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — кілька предметів.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-02:i16:r1",
@@ -2142,12 +2142,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — множина.",
+        "accessibilityLabel": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — кілька предметів.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вы знаете один вид спорта и спрашиваете о других. После пропуска — множественное число.",
-            "uk": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — множина."
+            "uk": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — кілька предметів."
           },
           "gappedTargetPhrase": "What ___ sports do you enjoy?",
           "gapOptions": [
@@ -2172,7 +2172,7 @@
               "testedDimension": "Ви знаєте один вид спорту й запитуєте про інші. Після пропуску — множина.",
               "feedbackByLocale": {
                 "ru": "Another ставим перед исчисляемым существительным в единственном числе, а sports — множественное.",
-                "uk": "Another ставимо перед злічуваним іменником в однині, а sports — множина."
+                "uk": "Another ставимо перед назвою одного предмета, а sports — форма для кількох."
               }
             },
             {

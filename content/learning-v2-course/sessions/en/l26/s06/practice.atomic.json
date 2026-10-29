@@ -161,7 +161,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Говорящий описывает свои руки. Hands — множественное число.",
+        "prompt": "Говорящий описывает свои руки. Hands — их несколько.",
         "responseOptions": [
           {
             "responseId": "en:lesson-26:session-06:i03:r1",
@@ -178,11 +178,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Говорящий описывает свои руки. Hands — множественное число.",
+        "accessibilityLabel": "Говорящий описывает свои руки. Hands — их несколько.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Говорящий описывает свои руки. Hands — множественное число.",
+            "ru": "Говорящий описывает свои руки. Hands — их несколько.",
             "uk": "Мовець описує свої руки. Hands — множина."
           },
           "gappedTargetPhrase": "My hands ___ cold when I wait outside.",
@@ -216,7 +216,7 @@
               "correct": false,
               "testedDimension": "Говорящий описывает свои руки. Hands — множественное число.",
               "feedbackByLocale": {
-                "ru": "Здесь нужен Present Simple: feel, не feeling без are.",
+                "ru": "Здесь нужна форма work / works: feel, не feeling без are.",
                 "uk": "Тут потрібен Present Simple: feel, не feeling без are."
               }
             }
@@ -1020,7 +1020,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.",
+        "prompt": "Говорящий обычно не читает в дороге, если его тошнит. Дополните фразу с «не».",
         "responseOptions": [
           {
             "responseId": "en:lesson-26:session-06:i16:r1",
@@ -1037,11 +1037,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.",
+        "accessibilityLabel": "Говорящий обычно не читает в дороге, если его тошнит. Дополните фразу с «не».",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.",
+            "ru": "Говорящий обычно не читает в дороге, если его тошнит. Дополните фразу с «не».",
             "uk": "Мовець зазвичай не читає в дорозі, якщо його нудить. Доповніть заперечення."
           },
           "gappedTargetPhrase": "I ___ read if I feel nauseous.",
@@ -1281,7 +1281,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Мовець описує свої руки. Hands — множина.",
+        "prompt": "Мовець описує свої руки. Hands — їх кілька.",
         "responseOptions": [
           {
             "responseId": "en:lesson-26:session-06:i03:r1",
@@ -1298,12 +1298,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Мовець описує свої руки. Hands — множина.",
+        "accessibilityLabel": "Мовець описує свої руки. Hands — їх кілька.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Говорящий описывает свои руки. Hands — множественное число.",
-            "uk": "Мовець описує свої руки. Hands — множина."
+            "uk": "Мовець описує свої руки. Hands — їх кілька."
           },
           "gappedTargetPhrase": "My hands ___ cold when I wait outside.",
           "gapOptions": [
@@ -1337,7 +1337,7 @@
               "testedDimension": "Мовець описує свої руки. Hands — множина.",
               "feedbackByLocale": {
                 "ru": "Здесь нужен Present Simple: feel, не feeling без are.",
-                "uk": "Тут потрібен Present Simple: feel, не feeling без are."
+                "uk": "Тут потрібна форма work / works: feel, не feeling без are."
               }
             }
           ]
@@ -2140,7 +2140,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Мовець зазвичай не читає в дорозі, якщо його нудить. Доповніть заперечення.",
+        "prompt": "Мовець зазвичай не читає в дорозі, якщо його нудить. Доповніть фразу з «не».",
         "responseOptions": [
           {
             "responseId": "en:lesson-26:session-06:i16:r1",
@@ -2157,12 +2157,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Мовець зазвичай не читає в дорозі, якщо його нудить. Доповніть заперечення.",
+        "accessibilityLabel": "Мовець зазвичай не читає в дорозі, якщо його нудить. Доповніть фразу з «не».",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Говорящий обычно не читает в дороге, если его тошнит. Дополните отрицание.",
-            "uk": "Мовець зазвичай не читає в дорозі, якщо його нудить. Доповніть заперечення."
+            "uk": "Мовець зазвичай не читає в дорозі, якщо його нудить. Доповніть фразу з «не»."
           },
           "gappedTargetPhrase": "I ___ read if I feel nauseous.",
           "gapOptions": [

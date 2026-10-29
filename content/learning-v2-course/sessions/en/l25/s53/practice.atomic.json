@@ -1050,7 +1050,7 @@
               "correct": false,
               "testedDimension": "Здесь шумно. Предложите поискать другое место.",
               "feedbackByLocale": {
-                "ru": "Place в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Place, поэтому another.",
                 "uk": "Place в однині, тому another."
               }
             },
@@ -2156,7 +2156,7 @@
               "testedDimension": "Тут гамірно. Запропонуйте пошукати інше місце.",
               "feedbackByLocale": {
                 "ru": "Place в единственном числе, поэтому another.",
-                "uk": "Place в однині, тому another."
+                "uk": "Ідеться про одне — Place, тому another."
               }
             },
             {

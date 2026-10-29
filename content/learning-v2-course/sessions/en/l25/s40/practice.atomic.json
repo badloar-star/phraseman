@@ -239,7 +239,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы уронили тарелку вчера. Выберите Past Simple.",
+        "prompt": "Вы уронили тарелку вчера. Выберите форму для законченного прошлого.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-40:i04:r1",
@@ -256,11 +256,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы уронили тарелку вчера. Выберите Past Simple.",
+        "accessibilityLabel": "Вы уронили тарелку вчера. Выберите форму для законченного прошлого.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы уронили тарелку вчера. Выберите Past Simple.",
+            "ru": "Вы уронили тарелку вчера. Выберите форму для законченного прошлого.",
             "uk": "Ви впустили тарілку вчора. Виберіть Past Simple."
           },
           "gappedTargetPhrase": "I ___ a plate yesterday.",
@@ -294,7 +294,7 @@
               "correct": false,
               "testedDimension": "Вы уронили тарелку вчера. Выберите Past Simple.",
               "feedbackByLocale": {
-                "ru": "Dropping без вспомогательного глагола здесь не подходит.",
+                "ru": "Одной формы Dropping здесь мало.",
                 "uk": "Dropping без допоміжного дієслова тут не підходить."
               }
             }
@@ -906,7 +906,7 @@
               "correct": false,
               "testedDimension": "Тарелка разбилась. Вы берёте ещё одну.",
               "feedbackByLocale": {
-                "ru": "Plate в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Plate, поэтому another.",
                 "uk": "Plate в однині, тому another."
               }
             },
@@ -1338,7 +1338,7 @@
         "purpose": "supported_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви впустили тарілку вчора. Виберіть Past Simple.",
+        "prompt": "Ви впустили тарілку вчора. Виберіть форму для завершеного минулого.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-40:i04:r1",
@@ -1355,12 +1355,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви впустили тарілку вчора. Виберіть Past Simple.",
+        "accessibilityLabel": "Ви впустили тарілку вчора. Виберіть форму для завершеного минулого.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вы уронили тарелку вчера. Выберите Past Simple.",
-            "uk": "Ви впустили тарілку вчора. Виберіть Past Simple."
+            "uk": "Ви впустили тарілку вчора. Виберіть форму для завершеного минулого."
           },
           "gappedTargetPhrase": "I ___ a plate yesterday.",
           "gapOptions": [
@@ -1394,7 +1394,7 @@
               "testedDimension": "Ви впустили тарілку вчора. Виберіть Past Simple.",
               "feedbackByLocale": {
                 "ru": "Dropping без вспомогательного глагола здесь не подходит.",
-                "uk": "Dropping без допоміжного дієслова тут не підходить."
+                "uk": "Однієї форми Dropping тут замало."
               }
             }
           ]
@@ -2006,7 +2006,7 @@
               "testedDimension": "Тарілка розбилася. Ви берете ще одну.",
               "feedbackByLocale": {
                 "ru": "Plate в единственном числе, поэтому another.",
-                "uk": "Plate в однині, тому another."
+                "uk": "Ідеться про одне — Plate, тому another."
               }
             },
             {

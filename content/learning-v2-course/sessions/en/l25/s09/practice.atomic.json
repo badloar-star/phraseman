@@ -815,7 +815,7 @@
               "correct": false,
               "testedDimension": "Речь об одном вчерашнем походе, не о прежней привычке.",
               "feedbackByLocale": {
-                "ru": "Yesterday — завершённое время: выбираем walked.",
+                "ru": "Yesterday — это уже прошлое: выбираем walked.",
                 "uk": "Yesterday — завершений час: вибираємо walked."
               }
             },
@@ -824,7 +824,7 @@
               "correct": false,
               "testedDimension": "Речь об одном вчерашнем походе, не о прежней привычке.",
               "feedbackByLocale": {
-                "ru": "Для одного вчерашнего похода нужен Past Simple; would walk здесь не передаёт нужное событие.",
+                "ru": "Для одного вчерашнего похода нужна форма прошлого; would walk здесь не передаёт нужное событие.",
                 "uk": "Для одного вчорашнього походу потрібен Past Simple; would walk тут не передає потрібну подію."
               }
             }
@@ -1034,7 +1034,7 @@
               "correct": false,
               "testedDimension": "Вы говорите об опыте поездок до сегодняшнего дня.",
               "feedbackByLocale": {
-                "ru": "После have нужна третья форма visited.",
+                "ru": "После have нужна форма visited.",
                 "uk": "Після have потрібна третя форма visited."
               }
             },
@@ -1043,7 +1043,7 @@
               "correct": false,
               "testedDimension": "Вы говорите об опыте поездок до сегодняшнего дня.",
               "feedbackByLocale": {
-                "ru": "Have visiting не образует Present Perfect.",
+                "ru": "Have visiting не образует have / has + done.",
                 "uk": "Have visiting не утворює Present Perfect."
               }
             }
@@ -1933,7 +1933,7 @@
               "testedDimension": "Ідеться про один учорашній похід, не про колишню звичку.",
               "feedbackByLocale": {
                 "ru": "Yesterday — завершённое время: выбираем walked.",
-                "uk": "Yesterday — завершений час: вибираємо walked."
+                "uk": "Yesterday — це вже минуле: вибираємо walked."
               }
             },
             {
@@ -1942,7 +1942,7 @@
               "testedDimension": "Ідеться про один учорашній похід, не про колишню звичку.",
               "feedbackByLocale": {
                 "ru": "Для одного вчерашнего похода нужен Past Simple; would walk здесь не передаёт нужное событие.",
-                "uk": "Для одного вчорашнього походу потрібен Past Simple; would walk тут не передає потрібну подію."
+                "uk": "Для одного вчорашнього походу потрібна форма минулого; would walk тут не передає потрібну подію."
               }
             }
           ]
@@ -2152,7 +2152,7 @@
               "testedDimension": "Ви говорите про досвід поїздок до сьогодні.",
               "feedbackByLocale": {
                 "ru": "После have нужна третья форма visited.",
-                "uk": "Після have потрібна третя форма visited."
+                "uk": "Після have потрібна форма visited."
               }
             },
             {
@@ -2161,7 +2161,7 @@
               "testedDimension": "Ви говорите про досвід поїздок до сьогодні.",
               "feedbackByLocale": {
                 "ru": "Have visiting не образует Present Perfect.",
-                "uk": "Have visiting не утворює Present Perfect."
+                "uk": "Have visiting не утворює have / has + done."
               }
             }
           ]

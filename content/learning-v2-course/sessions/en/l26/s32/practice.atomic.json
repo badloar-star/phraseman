@@ -593,7 +593,7 @@
               "correct": false,
               "testedDimension": "Если баклажана нет, вы купите грибы. Дополните условие.",
               "feedbackByLocale": {
-                "ru": "Eggplant здесь в единственном числе: is.",
+                "ru": "Eggplant здесь один: is.",
                 "uk": "Eggplant тут в однині: is."
               }
             }
@@ -1692,7 +1692,7 @@
               "testedDimension": "Якщо баклажана немає, ви купите гриби. Доповніть умову.",
               "feedbackByLocale": {
                 "ru": "Eggplant здесь в единственном числе: is.",
-                "uk": "Eggplant тут в однині: is."
+                "uk": "Eggplant тут один: is."
               }
             }
           ]

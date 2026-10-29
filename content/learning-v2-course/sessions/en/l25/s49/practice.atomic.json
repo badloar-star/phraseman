@@ -1048,7 +1048,7 @@
               "correct": false,
               "testedDimension": "Чай помог согреться. Вы просите ещё чашку.",
               "feedbackByLocale": {
-                "ru": "Cup в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Cup, поэтому another.",
                 "uk": "Cup в однині, тому another."
               }
             },
@@ -2148,7 +2148,7 @@
               "testedDimension": "Чай допоміг зігрітися. Ви просите ще чашку.",
               "feedbackByLocale": {
                 "ru": "Cup в единственном числе, поэтому another.",
-                "uk": "Cup в однині, тому another."
+                "uk": "Ідеться про одне — Cup, тому another."
               }
             },
             {

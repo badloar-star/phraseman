@@ -284,7 +284,7 @@
               "correct": false,
               "testedDimension": "Вы пообещаете приготовить другое блюдо, если гость не ест рыбу. Дополните условие.",
               "feedbackByLocale": {
-                "ru": "В этом условии после if нужен Present Simple: do not eat.",
+                "ru": "В этом условии после if нужна форма work / works: do not eat.",
                 "uk": "У цій умові після if потрібен Present Simple: do not eat."
               }
             },
@@ -1339,7 +1339,7 @@
               "testedDimension": "Ви пообіцяєте приготувати іншу страву, якщо гість не їсть риби. Доповніть умову.",
               "feedbackByLocale": {
                 "ru": "В этом условии после if нужен Present Simple: do not eat.",
-                "uk": "У цій умові після if потрібен Present Simple: do not eat."
+                "uk": "У цій умові після if потрібна форма work / works: do not eat."
               }
             },
             {

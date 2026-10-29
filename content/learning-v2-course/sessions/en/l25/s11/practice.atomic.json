@@ -845,7 +845,7 @@
               "correct": false,
               "testedDimension": "Вы вспоминаете конкретный подарок на прошлой неделе.",
               "feedbackByLocale": {
-                "ru": "Last week требует Past Simple gave.",
+                "ru": "Last week требует формы прошлого gave.",
                 "uk": "Last week потребує Past Simple gave."
               }
             },
@@ -1961,7 +1961,7 @@
               "testedDimension": "Ви згадуєте конкретний подарунок минулого тижня.",
               "feedbackByLocale": {
                 "ru": "Last week требует Past Simple gave.",
-                "uk": "Last week потребує Past Simple gave."
+                "uk": "Last week потребує форми минулого gave."
               }
             },
             {

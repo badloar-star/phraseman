@@ -618,7 +618,7 @@
               "correct": false,
               "testedDimension": "Вы встретили ещё одного старого друга. После пропуска — один человек.",
               "feedbackByLocale": {
-                "ru": "Перед одним исчисляемым friend нужно another.",
+                "ru": "Перед friend (он один) нужно another.",
                 "uk": "Перед одним злічуваним friend потрібно another."
               }
             },
@@ -956,7 +956,7 @@
               "correct": false,
               "testedDimension": "Речь об одном разговоре прошлым вечером. Выберите форму для законченного события.",
               "feedbackByLocale": {
-                "ru": "Last night — законченное время: нужен Past Simple called.",
+                "ru": "Last night — это уже прошлое: нужна форма прошлого called.",
                 "uk": "Last night — завершений час: потрібен Past Simple called."
               }
             },
@@ -1733,7 +1733,7 @@
               "testedDimension": "Ви зустріли ще одного старого друга. Після пропуску — одна людина.",
               "feedbackByLocale": {
                 "ru": "Перед одним исчисляемым friend нужно another.",
-                "uk": "Перед одним злічуваним friend потрібно another."
+                "uk": "Перед friend (він один) потрібно another."
               }
             },
             {
@@ -2071,7 +2071,7 @@
               "testedDimension": "Йдеться про одну розмову минулого вечора. Виберіть форму для завершеної події.",
               "feedbackByLocale": {
                 "ru": "Last night — законченное время: нужен Past Simple called.",
-                "uk": "Last night — завершений час: потрібен Past Simple called."
+                "uk": "Last night — це вже минуле: потрібна форма минулого called."
               }
             },
             {

@@ -1047,7 +1047,7 @@
               "correct": false,
               "testedDimension": "Первый рассказ закончился. Дети просят ещё один.",
               "feedbackByLocale": {
-                "ru": "Story в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Story, поэтому another.",
                 "uk": "Story в однині, тому another."
               }
             },
@@ -2148,7 +2148,7 @@
               "testedDimension": "Перша розповідь закінчилася. Діти просять ще одну.",
               "feedbackByLocale": {
                 "ru": "Story в единственном числе, поэтому another.",
-                "uk": "Story в однині, тому another."
+                "uk": "Ідеться про одне — Story, тому another."
               }
             },
             {

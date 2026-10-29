@@ -834,7 +834,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы поговорили с тётей вчера, в законченное время.",
+        "prompt": "Вы поговорили с тётей вчера — это уже прошлое.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-30:i13:r1",
@@ -851,11 +851,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы поговорили с тётей вчера, в законченное время.",
+        "accessibilityLabel": "Вы поговорили с тётей вчера — это уже прошлое.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы поговорили с тётей вчера, в законченное время.",
+            "ru": "Вы поговорили с тётей вчера — это уже прошлое.",
             "uk": "Ви поговорили з тіткою вчора, у завершений час."
           },
           "gappedTargetPhrase": "I ___ to my aunt yesterday.",
@@ -880,7 +880,7 @@
               "correct": false,
               "testedDimension": "Вы поговорили с тётей вчера, в законченное время.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple spoke.",
+                "ru": "Yesterday требует формы прошлого spoke.",
                 "uk": "Yesterday потребує Past Simple spoke."
               }
             },
@@ -1948,7 +1948,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви поговорили з тіткою вчора, у завершений час.",
+        "prompt": "Ви поговорили з тіткою вчора — це вже минуле.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-30:i13:r1",
@@ -1965,12 +1965,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви поговорили з тіткою вчора, у завершений час.",
+        "accessibilityLabel": "Ви поговорили з тіткою вчора — це вже минуле.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вы поговорили с тётей вчера, в законченное время.",
-            "uk": "Ви поговорили з тіткою вчора, у завершений час."
+            "uk": "Ви поговорили з тіткою вчора — це вже минуле."
           },
           "gappedTargetPhrase": "I ___ to my aunt yesterday.",
           "gapOptions": [
@@ -1995,7 +1995,7 @@
               "testedDimension": "Ви поговорили з тіткою вчора, у завершений час.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple spoke.",
-                "uk": "Yesterday потребує Past Simple spoke."
+                "uk": "Yesterday потребує форми минулого spoke."
               }
             },
             {
@@ -2180,7 +2180,7 @@
               "testedDimension": "Одні гості прийшли, решта ще в дорозі.",
               "feedbackByLocale": {
                 "ru": "Another относится к единственному числу, не guests.",
-                "uk": "Another стосується однини, не guests."
+                "uk": "Another стосується форми для одного, не guests."
               }
             },
             {

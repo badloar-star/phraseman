@@ -506,7 +506,7 @@
               "correct": false,
               "testedDimension": "Вы посмотрели его в прошлом году.",
               "feedbackByLocale": {
-                "ru": "С last year здесь past simple.",
+                "ru": "С last year здесь форма прошлого.",
                 "uk": "Із last year тут past simple."
               }
             },
@@ -515,7 +515,7 @@
               "correct": false,
               "testedDimension": "Вы посмотрели его в прошлом году.",
               "feedbackByLocale": {
-                "ru": "Для past simple нужна форма saw.",
+                "ru": "В прошлом нужна форма saw.",
                 "uk": "Для past simple потрібна форма saw."
               }
             }
@@ -1539,7 +1539,7 @@
               "testedDimension": "Ви подивилися його минулого року.",
               "feedbackByLocale": {
                 "ru": "С last year здесь past simple.",
-                "uk": "Із last year тут past simple."
+                "uk": "Із last year тут форма минулого."
               }
             },
             {
@@ -1548,7 +1548,7 @@
               "testedDimension": "Ви подивилися його минулого року.",
               "feedbackByLocale": {
                 "ru": "Для past simple нужна форма saw.",
-                "uk": "Для past simple потрібна форма saw."
+                "uk": "У минулому потрібна форма saw."
               }
             }
           ]

@@ -802,7 +802,7 @@
               "correct": false,
               "testedDimension": "Уточните, что звонили вчера.",
               "feedbackByLocale": {
-                "ru": "С yesterday здесь past simple.",
+                "ru": "С yesterday здесь форма прошлого.",
                 "uk": "Із yesterday тут past simple."
               }
             },
@@ -1795,7 +1795,7 @@
               "testedDimension": "Уточніть, що телефонували вчора.",
               "feedbackByLocale": {
                 "ru": "С yesterday здесь past simple.",
-                "uk": "Із yesterday тут past simple."
+                "uk": "Із yesterday тут форма минулого."
               }
             },
             {

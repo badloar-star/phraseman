@@ -1046,7 +1046,7 @@
               "correct": false,
               "testedDimension": "Зонтик сломан. Нужно взять другой.",
               "feedbackByLocale": {
-                "ru": "Umbrella в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Umbrella, поэтому another.",
                 "uk": "Umbrella в однині, тому another."
               }
             },
@@ -2144,7 +2144,7 @@
               "testedDimension": "Парасольку зламано. Потрібно взяти іншу.",
               "feedbackByLocale": {
                 "ru": "Umbrella в единственном числе, поэтому another.",
-                "uk": "Umbrella в однині, тому another."
+                "uk": "Ідеться про одне — Umbrella, тому another."
               }
             },
             {

@@ -805,7 +805,7 @@
               "correct": false,
               "testedDimension": "Вчера вы извинились перед учителем. Выберите завершённое событие.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple, не Present Perfect.",
+                "ru": "Yesterday требует формы прошлого, не have / has + done.",
                 "uk": "Yesterday потребує Past Simple, не Present Perfect."
               }
             },
@@ -901,7 +901,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Объяснение уже получено, сейчас вы его понимаете. Дополните Present Perfect.",
+        "prompt": "Объяснение уже получено, сейчас вы его понимаете. Дополните фразу с have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-08:i14:r1",
@@ -918,11 +918,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Объяснение уже получено, сейчас вы его понимаете. Дополните Present Perfect.",
+        "accessibilityLabel": "Объяснение уже получено, сейчас вы его понимаете. Дополните фразу с have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Объяснение уже получено, сейчас вы его понимаете. Дополните Present Perfect.",
+            "ru": "Объяснение уже получено, сейчас вы его понимаете. Дополните фразу с have / has.",
             "uk": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect."
           },
           "gappedTargetPhrase": "She has ___ the rule to me.",
@@ -947,7 +947,7 @@
               "correct": false,
               "testedDimension": "Объяснение уже получено, сейчас вы его понимаете. Дополните Present Perfect.",
               "feedbackByLocale": {
-                "ru": "После has нужна третья форма explained.",
+                "ru": "После has нужна форма explained.",
                 "uk": "Після has потрібна третя форма explained."
               }
             },
@@ -956,7 +956,7 @@
               "correct": false,
               "testedDimension": "Объяснение уже получено, сейчас вы его понимаете. Дополните Present Perfect.",
               "feedbackByLocale": {
-                "ru": "Has explaining не образует Present Perfect; нужно has explained.",
+                "ru": "Has explaining не образует have / has + done; нужно has explained.",
                 "uk": "Has explaining не утворює Present Perfect; потрібно has explained."
               }
             }
@@ -1082,13 +1082,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Один случай уже рассказал друг. Скажите о своём опыте: «Я тоже совершал ошибки». Используйте Present Perfect.",
+        "prompt": "Один случай уже рассказал друг. Скажите о своём опыте: «Я тоже совершал ошибки». Используйте have / has.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-08:i17:audio"
         ],
-        "accessibilityLabel": "Один случай уже рассказал друг. Скажите о своём опыте: «Я тоже совершал ошибки». Используйте Present Perfect.",
+        "accessibilityLabel": "Один случай уже рассказал друг. Скажите о своём опыте: «Я тоже совершал ошибки». Используйте have / has.",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {
@@ -1914,7 +1914,7 @@
               "testedDimension": "Учора ви вибачилися перед учителем. Виберіть завершену подію.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple, не Present Perfect.",
-                "uk": "Yesterday потребує Past Simple, не Present Perfect."
+                "uk": "Yesterday потребує форми минулого, не have / has + done."
               }
             },
             {
@@ -2009,7 +2009,7 @@
         "purpose": "independent_check",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect.",
+        "prompt": "Пояснення вже отримано, тепер ви його розумієте. Доповніть фразу з have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-08:i14:r1",
@@ -2026,12 +2026,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect.",
+        "accessibilityLabel": "Пояснення вже отримано, тепер ви його розумієте. Доповніть фразу з have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Объяснение уже получено, сейчас вы его понимаете. Дополните Present Perfect.",
-            "uk": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect."
+            "uk": "Пояснення вже отримано, тепер ви його розумієте. Доповніть фразу з have / has."
           },
           "gappedTargetPhrase": "She has ___ the rule to me.",
           "gapOptions": [
@@ -2056,7 +2056,7 @@
               "testedDimension": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect.",
               "feedbackByLocale": {
                 "ru": "После has нужна третья форма explained.",
-                "uk": "Після has потрібна третя форма explained."
+                "uk": "Після has потрібна форма explained."
               }
             },
             {
@@ -2065,7 +2065,7 @@
               "testedDimension": "Пояснення вже отримано, тепер ви його розумієте. Доповніть Present Perfect.",
               "feedbackByLocale": {
                 "ru": "Has explaining не образует Present Perfect; нужно has explained.",
-                "uk": "Has explaining не утворює Present Perfect; потрібно has explained."
+                "uk": "Has explaining не утворює have / has + done; потрібно has explained."
               }
             }
           ]
@@ -2190,13 +2190,13 @@
         "purpose": "guided_practice",
         "family": "scripted_repeat_compare",
         "inputMode": "tap_record_compare",
-        "prompt": "Один випадок уже розповів друг. Скажіть про свій досвід: «Я теж припускався помилок». Використайте Present Perfect.",
+        "prompt": "Один випадок уже розповів друг. Скажіть про свій досвід: «Я теж припускався помилок». Використайте have / has.",
         "responseOptions": [],
         "mediaIds": [],
         "audioTargetIds": [
           "en:lesson-25:session-08:i17:audio"
         ],
-        "accessibilityLabel": "Один випадок уже розповів друг. Скажіть про свій досвід: «Я теж припускався помилок». Використайте Present Perfect.",
+        "accessibilityLabel": "Один випадок уже розповів друг. Скажіть про свій досвід: «Я теж припускався помилок». Використайте have / has.",
         "modePayload": {
           "family": "scripted_repeat_compare",
           "referenceAudio": {

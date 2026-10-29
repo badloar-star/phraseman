@@ -1019,7 +1019,7 @@
               "correct": false,
               "testedDimension": "Вы купили билет один раз вчера.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple bought.",
+                "ru": "Yesterday требует формы прошлого bought.",
                 "uk": "Yesterday потребує Past Simple bought."
               }
             },
@@ -2126,7 +2126,7 @@
               "testedDimension": "Ви купили квиток один раз учора.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple bought.",
-                "uk": "Yesterday потребує Past Simple bought."
+                "uk": "Yesterday потребує форми минулого bought."
               }
             },
             {

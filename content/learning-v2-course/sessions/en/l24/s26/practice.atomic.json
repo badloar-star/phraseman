@@ -800,7 +800,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ о прошлом.",
               "feedbackByLocale": {
-                "ru": "С yesterday нужен Past Simple: chased без has.",
+                "ru": "С yesterday нужна форма прошлого: chased без has.",
                 "uk": "Із yesterday потрібен Past Simple: chased без has."
               }
             },
@@ -809,7 +809,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ о прошлом.",
               "feedbackByLocale": {
-                "ru": "С yesterday нужен Past Simple: chased без has.",
+                "ru": "С yesterday нужна форма прошлого: chased без has.",
                 "uk": "Із yesterday потрібен Past Simple: chased без has."
               }
             }
@@ -1910,7 +1910,7 @@
               "testedDimension": "Доповніть розповідь про минуле.",
               "feedbackByLocale": {
                 "ru": "С yesterday нужен Past Simple: chased без has.",
-                "uk": "Із yesterday потрібен Past Simple: chased без has."
+                "uk": "Із yesterday потрібна форма минулого: chased без has."
               }
             },
             {
@@ -1919,7 +1919,7 @@
               "testedDimension": "Доповніть розповідь про минуле.",
               "feedbackByLocale": {
                 "ru": "С yesterday нужен Past Simple: chased без has.",
-                "uk": "Із yesterday потрібен Past Simple: chased без has."
+                "uk": "Із yesterday потрібна форма минулого: chased без has."
               }
             }
           ]

@@ -355,7 +355,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple: hid.",
+                "ru": "Yesterday требует формы прошлого: hid.",
                 "uk": "Yesterday потребує Past Simple: hid."
               }
             },
@@ -364,7 +364,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple: hid.",
+                "ru": "Yesterday требует формы прошлого: hid.",
                 "uk": "Yesterday потребує Past Simple: hid."
               }
             }
@@ -804,7 +804,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple: noticed.",
+                "ru": "Yesterday требует формы прошлого: noticed.",
                 "uk": "Yesterday потребує Past Simple: noticed."
               }
             },
@@ -813,7 +813,7 @@
               "correct": false,
               "testedDimension": "Дополните рассказ.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple: noticed.",
+                "ru": "Yesterday требует формы прошлого: noticed.",
                 "uk": "Yesterday потребує Past Simple: noticed."
               }
             }
@@ -1469,7 +1469,7 @@
               "testedDimension": "Доповніть розповідь.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple: hid.",
-                "uk": "Yesterday потребує Past Simple: hid."
+                "uk": "Yesterday потребує форма минулого: hid."
               }
             },
             {
@@ -1478,7 +1478,7 @@
               "testedDimension": "Доповніть розповідь.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple: hid.",
-                "uk": "Yesterday потребує Past Simple: hid."
+                "uk": "Yesterday потребує форма минулого: hid."
               }
             }
           ]
@@ -1918,7 +1918,7 @@
               "testedDimension": "Доповніть розповідь.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple: noticed.",
-                "uk": "Yesterday потребує Past Simple: noticed."
+                "uk": "Yesterday потребує форма минулого: noticed."
               }
             },
             {
@@ -1927,7 +1927,7 @@
               "testedDimension": "Доповніть розповідь.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple: noticed.",
-                "uk": "Yesterday потребує Past Simple: noticed."
+                "uk": "Yesterday потребує форма минулого: noticed."
               }
             }
           ]

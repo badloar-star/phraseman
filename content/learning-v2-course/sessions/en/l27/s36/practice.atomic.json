@@ -324,7 +324,7 @@
               "correct": false,
               "testedDimension": "Расскажите о прошлой поездке сюда.",
               "feedbackByLocale": {
-                "ru": "Last summer — законченное время: stayed.",
+                "ru": "Last summer — это уже прошлое: stayed.",
                 "uk": "Last summer — завершений час: stayed."
               }
             },
@@ -1318,7 +1318,7 @@
               "testedDimension": "Розкажіть про минулу поїздку сюди.",
               "feedbackByLocale": {
                 "ru": "Last summer — законченное время: stayed.",
-                "uk": "Last summer — завершений час: stayed."
+                "uk": "Last summer — це вже минуле: stayed."
               }
             },
             {

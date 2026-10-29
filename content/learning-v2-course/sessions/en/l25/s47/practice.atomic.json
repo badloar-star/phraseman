@@ -1046,7 +1046,7 @@
               "correct": false,
               "testedDimension": "Первая попытка договориться не удалась. Вы просите ещё один шанс.",
               "feedbackByLocale": {
-                "ru": "Chance в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Chance, поэтому another.",
                 "uk": "Chance в однині, тому another."
               }
             },
@@ -2145,7 +2145,7 @@
               "testedDimension": "Перша спроба домовитися не вдалася. Ви просите ще один шанс.",
               "feedbackByLocale": {
                 "ru": "Chance в единственном числе, поэтому another.",
-                "uk": "Chance в однині, тому another."
+                "uk": "Ідеться про одне — Chance, тому another."
               }
             },
             {

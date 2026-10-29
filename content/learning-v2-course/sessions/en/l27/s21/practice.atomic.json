@@ -864,7 +864,7 @@
               "correct": false,
               "testedDimension": "Вы позвонили ему вчера вечером.",
               "feedbackByLocale": {
-                "ru": "С last night здесь past simple.",
+                "ru": "С last night здесь форма прошлого.",
                 "uk": "Із last night тут past simple."
               }
             },
@@ -1852,7 +1852,7 @@
               "testedDimension": "Ви зателефонували йому вчора ввечері.",
               "feedbackByLocale": {
                 "ru": "С last night здесь past simple.",
-                "uk": "Із last night тут past simple."
+                "uk": "Із last night тут форма минулого."
               }
             },
             {

@@ -842,7 +842,7 @@
               "correct": false,
               "testedDimension": "Смешной рассказ вы услышали один раз вчера.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple told.",
+                "ru": "Yesterday требует формы прошлого told.",
                 "uk": "Yesterday потребує Past Simple told."
               }
             },
@@ -1016,7 +1016,7 @@
               "correct": false,
               "testedDimension": "Вы хотите услышать другие истории, несколько.",
               "feedbackByLocale": {
-                "ru": "Another относится к одному предмету; stories — множественное число.",
+                "ru": "Another относится к одному предмету; stories — форма для нескольких.",
                 "uk": "Another стосується одного предмета; stories — множина."
               }
             },
@@ -1951,7 +1951,7 @@
               "testedDimension": "Кумедну розповідь ви почули один раз учора.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple told.",
-                "uk": "Yesterday потребує Past Simple told."
+                "uk": "Yesterday потребує форми минулого told."
               }
             },
             {
@@ -2125,7 +2125,7 @@
               "testedDimension": "Ви хочете почути інші історії, кілька.",
               "feedbackByLocale": {
                 "ru": "Another относится к одному предмету; stories — множественное число.",
-                "uk": "Another стосується одного предмета; stories — множина."
+                "uk": "Another стосується одного предмета; stories — форма для кількох."
               }
             },
             {

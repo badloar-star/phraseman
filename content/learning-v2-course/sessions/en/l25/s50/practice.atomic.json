@@ -1052,7 +1052,7 @@
               "correct": false,
               "testedDimension": "Друг просит немного подождать. Ему нужна ещё минута.",
               "feedbackByLocale": {
-                "ru": "Minute в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Minute, поэтому another.",
                 "uk": "Minute в однині, тому another."
               }
             },
@@ -2154,7 +2154,7 @@
               "testedDimension": "Друг просить трохи зачекати. Йому потрібна ще хвилина.",
               "feedbackByLocale": {
                 "ru": "Minute в единственном числе, поэтому another.",
-                "uk": "Minute в однині, тому another."
+                "uk": "Ідеться про одне — Minute, тому another."
               }
             },
             {

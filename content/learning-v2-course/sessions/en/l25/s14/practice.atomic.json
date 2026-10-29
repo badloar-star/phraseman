@@ -763,7 +763,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+        "prompt": "Вы уже вымыли волосы; результат важен сейчас. Дополните фразу с have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-14:i11:r1",
@@ -780,11 +780,11 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+        "accessibilityLabel": "Вы уже вымыли волосы; результат важен сейчас. Дополните фразу с have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
-            "ru": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
+            "ru": "Вы уже вымыли волосы; результат важен сейчас. Дополните фразу с have / has.",
             "uk": "Ви вже помили волосся; результат важливий зараз. Доповніть Present Perfect."
           },
           "gappedTargetPhrase": "I have already ___ my hair.",
@@ -818,7 +818,7 @@
               "correct": false,
               "testedDimension": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
               "feedbackByLocale": {
-                "ru": "Have washing не образует Present Perfect.",
+                "ru": "Have washing не образует have / has + done.",
                 "uk": "Have washing не утворює Present Perfect."
               }
             }
@@ -1029,7 +1029,7 @@
               "correct": false,
               "testedDimension": "Вчера вы сходили в парикмахерскую один раз.",
               "feedbackByLocale": {
-                "ru": "Yesterday требует Past Simple went.",
+                "ru": "Yesterday требует формы прошлого went.",
                 "uk": "Yesterday потребує Past Simple went."
               }
             },
@@ -1881,7 +1881,7 @@
         "purpose": "retrieval_practice",
         "family": "context_gap_grammar",
         "inputMode": "single_choice",
-        "prompt": "Ви вже помили волосся; результат важливий зараз. Доповніть Present Perfect.",
+        "prompt": "Ви вже помили волосся; результат важливий зараз. Доповніть фразу з have / has.",
         "responseOptions": [
           {
             "responseId": "en:lesson-25:session-14:i11:r1",
@@ -1898,12 +1898,12 @@
         ],
         "mediaIds": [],
         "audioTargetIds": [],
-        "accessibilityLabel": "Ви вже помили волосся; результат важливий зараз. Доповніть Present Perfect.",
+        "accessibilityLabel": "Ви вже помили волосся; результат важливий зараз. Доповніть фразу з have / has.",
         "modePayload": {
           "family": "context_gap_grammar",
           "localizedScene": {
             "ru": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
-            "uk": "Ви вже помили волосся; результат важливий зараз. Доповніть Present Perfect."
+            "uk": "Ви вже помили волосся; результат важливий зараз. Доповніть фразу з have / has."
           },
           "gappedTargetPhrase": "I have already ___ my hair.",
           "gapOptions": [
@@ -1937,7 +1937,7 @@
               "testedDimension": "Ви вже помили волосся; результат важливий зараз. Доповніть Present Perfect.",
               "feedbackByLocale": {
                 "ru": "Have washing не образует Present Perfect.",
-                "uk": "Have washing не утворює Present Perfect."
+                "uk": "Have washing не утворює have / has + done."
               }
             }
           ]
@@ -2148,7 +2148,7 @@
               "testedDimension": "Учора ви сходили до перукарні один раз.",
               "feedbackByLocale": {
                 "ru": "Yesterday требует Past Simple went.",
-                "uk": "Yesterday потребує Past Simple went."
+                "uk": "Yesterday потребує форми минулого went."
               }
             },
             {

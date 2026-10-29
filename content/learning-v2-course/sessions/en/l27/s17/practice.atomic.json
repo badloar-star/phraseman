@@ -207,7 +207,7 @@
               "correct": false,
               "testedDimension": "Вы приехали бы рано, если бы вышли сейчас.",
               "feedbackByLocale": {
-                "ru": "В этом условии past simple: left без would.",
+                "ru": "В этом условии форма прошлого: left без would.",
                 "uk": "У цій умові past simple: left без would."
               }
             },
@@ -1242,7 +1242,7 @@
               "testedDimension": "Ви приїхали б рано, якби вийшли зараз.",
               "feedbackByLocale": {
                 "ru": "В этом условии past simple: left без would.",
-                "uk": "У цій умові past simple: left без would."
+                "uk": "У цій умові форма минулого: left без would."
               }
             },
             {

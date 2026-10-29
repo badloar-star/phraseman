@@ -653,7 +653,7 @@
               "correct": false,
               "testedDimension": "Вы познакомились с ней в прошлом году.",
               "feedbackByLocale": {
-                "ru": "С last year здесь past simple.",
+                "ru": "С last year здесь форма прошлого.",
                 "uk": "Із last year тут past simple."
               }
             },
@@ -1683,7 +1683,7 @@
               "testedDimension": "Ви познайомилися з нею минулого року.",
               "feedbackByLocale": {
                 "ru": "С last year здесь past simple.",
-                "uk": "Із last year тут past simple."
+                "uk": "Із last year тут форма минулого."
               }
             },
             {

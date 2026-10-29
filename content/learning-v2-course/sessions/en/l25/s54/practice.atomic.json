@@ -1049,7 +1049,7 @@
               "correct": false,
               "testedDimension": "Первая ложка упала на пол. Попросите другую.",
               "feedbackByLocale": {
-                "ru": "Spoon в единственном числе, поэтому another.",
+                "ru": "Речь об одном — Spoon, поэтому another.",
                 "uk": "Spoon в однині, тому another."
               }
             },
@@ -2153,7 +2153,7 @@
               "testedDimension": "Перша ложка впала на підлогу. Попросіть іншу.",
               "feedbackByLocale": {
                 "ru": "Spoon в единственном числе, поэтому another.",
-                "uk": "Spoon в однині, тому another."
+                "uk": "Ідеться про одне — Spoon, тому another."
               }
             },
             {

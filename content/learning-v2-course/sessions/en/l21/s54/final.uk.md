@@ -9,7 +9,7 @@
 
 ### Вдалий обід за свою ціну
 
-У кафе вам подали смачний ситний обід за невелику суму. Ви кажете: This meal is such good value — «цей обід такий вдалий за свою ціну». Спочатку This meal is, потім such і сполука good value. Such підсилює сполуку з іменником value. У виразі good value тут не потрібен артикль a; so безпосередньо перед good value не ставимо.
+У кафе вам подали смачний ситний обід за невелику суму. Ви кажете: This meal is such good value — «цей обід такий вдалий за свою ціну». Спочатку This meal is, потім such і сполука good value. Such підсилює сполуку з іменником value. У виразі good value тут не потрібен a; so безпосередньо перед good value не ставимо.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -107,7 +107,7 @@ This toy is ___ waste of money. → **such a** · so · such
 <!-- interaction_id: en:lesson-21:session-54:i09; family: context_gap_grammar -->
 That is ___ good news. → **such** · so · such a
 - so — *Для підсилення сполуки з іменником тут потрібне such, а не so.*
-- such a — *News тут незлічуване: перед good news не ставимо a.*
+- such a — *News тут не рахується поштучно: перед good news не ставимо a.*
 
 **13 · Картка слова — worth it**
 <!-- interaction_id: en:lesson-21:session-54:word:worth-it; family: word_card -->

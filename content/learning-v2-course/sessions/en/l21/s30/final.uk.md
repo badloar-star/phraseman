@@ -23,7 +23,7 @@ Unreliable — ненадійний. Автобус то запізнюєтьс�
 
 ### Кімната недоступна для бронювання
 
-Ви перевіряєте кімнату на потрібну дату, але забронювати її не можна: The room is unavailable — «кімната недоступна». Спочатку називаємо кімнату: The room. Потім ставимо is та її стан unavailable. Навіть якщо в українському перекладі немає слова «є», в англійській is пропускати не можна. Room тут в однині, тому is, а не are.
+Ви перевіряєте кімнату на потрібну дату, але забронювати її не можна: The room is unavailable — «кімната недоступна». Спочатку називаємо кімнату: The room. Потім ставимо is та її стан unavailable. Навіть якщо в українському перекладі немає слова «є», в англійській is пропускати не можна. Room тут у формі для одного, тому is, а не are.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -37,7 +37,7 @@ Unreliable — ненадійний. Автобус то запізнюєтьс�
 
 ### Оренда не по кишені
 
-Ви знайшли квартиру, але орендна плата перевищує ваш бюджет: The rent is unaffordable — «оренда не по кишені». The rent називає те, що оцінюєте. Після нього ставимо is, потім unaffordable — оцінку вартості. Rent тут незлічуваний іменник, тому потрібна форма is; без неї англійське речення буде неповним.
+Ви знайшли квартиру, але орендна плата перевищує ваш бюджет: The rent is unaffordable — «оренда не по кишені». The rent називає те, що оцінюєте. Після нього ставимо is, потім unaffordable — оцінку вартості. Rent тут слово, яке не рахують поштучно, тому потрібна форма is; без неї англійське речення буде неповним.
 
 **Виберіть фразу для цієї ситуації.**
 
@@ -67,7 +67,7 @@ Unreliable — ненадійний. Автобус то запізнюєтьс�
 <!-- interaction_id: en:lesson-21:session-30:i03; family: context_gap_grammar -->
 This bus ___ so unreliable. → **is** · are · am
 - are — *Тут описано один предмет: потрібне is.*
-- am — *Am уживається з I, а не з цим підметом.*
+- am — *Am уживається з I, а не з цим словом.*
 
 **5 · Картка слова — unavailable**
 <!-- interaction_id: en:lesson-21:session-30:word:unavailable; family: word_card -->
@@ -87,7 +87,7 @@ This bus ___ so unreliable. → **is** · are · am
 <!-- interaction_id: en:lesson-21:session-30:i06; family: context_gap_grammar -->
 The room ___ unavailable. → **is** · are · am
 - are — *Тут описано один предмет: потрібне is.*
-- am — *Am уживається з I, а не з цим підметом.*
+- am — *Am уживається з I, а не з цим словом.*
 
 **9 · Картка слова — avoidable**
 <!-- interaction_id: en:lesson-21:session-30:word:avoidable; family: word_card -->
@@ -107,7 +107,7 @@ The room ___ unavailable. → **is** · are · am
 <!-- interaction_id: en:lesson-21:session-30:i09; family: context_gap_grammar -->
 This mistake ___ avoidable. → **is** · are · am
 - are — *Тут описано один предмет: потрібне is.*
-- am — *Am уживається з I, а не з цим підметом.*
+- am — *Am уживається з I, а не з цим словом.*
 
 **13 · Картка слова — unaffordable**
 <!-- interaction_id: en:lesson-21:session-30:word:unaffordable; family: word_card -->
@@ -127,7 +127,7 @@ This mistake ___ avoidable. → **is** · are · am
 <!-- interaction_id: en:lesson-21:session-30:i12; family: context_gap_grammar -->
 The rent ___ unaffordable. → **is** · are · am
 - are — *Тут описано один предмет: потрібне is.*
-- am — *Am уживається з I, а не з цим підметом.*
+- am — *Am уживається з I, а не з цим словом.*
 
 **17 · Поєднайте слова з перекладом**
 <!-- interaction_id: en:lesson-21:session-30:i13; family: speed_match -->

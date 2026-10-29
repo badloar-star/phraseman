@@ -9,7 +9,7 @@
 
 ### Удачный обед за свою цену
 
-В кафе вам подали вкусный сытный обед за небольшую сумму. Вы говорите: This meal is such good value — «этот обед так хорош за свою цену». Сначала This meal is, затем such и сочетание good value. Such усиливает сочетание с существительным value. В выражении good value здесь не нужен артикль a; so непосредственно перед good value не ставим.
+В кафе вам подали вкусный сытный обед за небольшую сумму. Вы говорите: This meal is such good value — «этот обед так хорош за свою цену». Сначала This meal is, затем such и сочетание good value. Such усиливает сочетание с существительным value. В выражении good value здесь не нужен a; so непосредственно перед good value не ставим.
 
 **Выберите фразу для этой ситуации.**
 
@@ -107,7 +107,7 @@ This toy is ___ waste of money. → **such a** · so · such
 <!-- interaction_id: en:lesson-21:session-54:i09; family: context_gap_grammar -->
 That is ___ good news. → **such** · so · such a
 - so — *Для усиления сочетания с существительным здесь нужно such, а не so.*
-- such a — *News здесь неисчисляемое: перед good news не ставим a.*
+- such a — *News здесь не считается поштучно: перед good news не ставим a.*
 
 **13 · Карточка слова — worth it**
 <!-- interaction_id: en:lesson-21:session-54:word:worth-it; family: word_card -->

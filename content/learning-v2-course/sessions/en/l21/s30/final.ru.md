@@ -23,7 +23,7 @@ Unreliable — ненадёжный. Автобус то опаздывает, �
 
 ### Комната недоступна для бронирования
 
-Вы проверяете комнату на нужную дату, но забронировать её нельзя: The room is unavailable — «комната недоступна». Сначала называем комнату: The room. Затем ставим is и её состояние unavailable. Даже если в русском переводе нет слова «есть», в английском is пропускать нельзя. Room здесь в единственном числе, поэтому is, а не are.
+Вы проверяете комнату на нужную дату, но забронировать её нельзя: The room is unavailable — «комната недоступна». Сначала называем комнату: The room. Затем ставим is и её состояние unavailable. Даже если в русском переводе нет слова «есть», в английском is пропускать нельзя. Room здесь в форме для одного, поэтому is, а не are.
 
 **Выберите фразу для этой ситуации.**
 
@@ -37,7 +37,7 @@ Unreliable — ненадёжный. Автобус то опаздывает, �
 
 ### Аренда не по карману
 
-Вы нашли квартиру, но арендная плата превышает ваш бюджет: The rent is unaffordable — «аренда не по карману». The rent называет то, что оцениваете. После него ставим is, затем unaffordable — оценку стоимости. Rent здесь неисчисляемое существительное, поэтому нужна форма is; без неё английское предложение будет неполным.
+Вы нашли квартиру, но арендная плата превышает ваш бюджет: The rent is unaffordable — «аренда не по карману». The rent называет то, что оцениваете. После него ставим is, затем unaffordable — оценку стоимости. Rent здесь слово, которое не считают поштучно, поэтому нужна форма is; без неё английское предложение будет неполным.
 
 **Выберите фразу для этой ситуации.**
 
@@ -67,7 +67,7 @@ Unreliable — ненадёжный. Автобус то опаздывает, �
 <!-- interaction_id: en:lesson-21:session-30:i03; family: context_gap_grammar -->
 This bus ___ so unreliable. → **is** · are · am
 - are — *Здесь описывается один предмет: нужен is.*
-- am — *Am употребляется с I, а не с этим подлежащим.*
+- am — *Am употребляется с I, а не с этим словом.*
 
 **5 · Карточка слова — unavailable**
 <!-- interaction_id: en:lesson-21:session-30:word:unavailable; family: word_card -->
@@ -87,7 +87,7 @@ This bus ___ so unreliable. → **is** · are · am
 <!-- interaction_id: en:lesson-21:session-30:i06; family: context_gap_grammar -->
 The room ___ unavailable. → **is** · are · am
 - are — *Здесь описывается один предмет: нужен is.*
-- am — *Am употребляется с I, а не с этим подлежащим.*
+- am — *Am употребляется с I, а не с этим словом.*
 
 **9 · Карточка слова — avoidable**
 <!-- interaction_id: en:lesson-21:session-30:word:avoidable; family: word_card -->
@@ -107,7 +107,7 @@ The room ___ unavailable. → **is** · are · am
 <!-- interaction_id: en:lesson-21:session-30:i09; family: context_gap_grammar -->
 This mistake ___ avoidable. → **is** · are · am
 - are — *Здесь описывается один предмет: нужен is.*
-- am — *Am употребляется с I, а не с этим подлежащим.*
+- am — *Am употребляется с I, а не с этим словом.*
 
 **13 · Карточка слова — unaffordable**
 <!-- interaction_id: en:lesson-21:session-30:word:unaffordable; family: word_card -->
@@ -127,7 +127,7 @@ This mistake ___ avoidable. → **is** · are · am
 <!-- interaction_id: en:lesson-21:session-30:i12; family: context_gap_grammar -->
 The rent ___ unaffordable. → **is** · are · am
 - are — *Здесь описывается один предмет: нужен is.*
-- am — *Am употребляется с I, а не с этим подлежащим.*
+- am — *Am употребляется с I, а не с этим словом.*
 
 **17 · Соедините слова с переводом**
 <!-- interaction_id: en:lesson-21:session-30:i13; family: speed_match -->

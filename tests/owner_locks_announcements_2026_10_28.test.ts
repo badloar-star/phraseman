@@ -46,7 +46,9 @@ describe('замок владельца 28.10 — объявления = мак�
 
   it('подписи кнопок и строк кадров есть (ключи announcement_v2_strings)', () => {
     const strings = read('components/stories/announcements_v2/announcement_v2_strings.ts');
-    for (const key of ['ctaOpenPlus', 'ctaShareInvite', 'ctaUseTheme', 'countdownLeft', 'hours24', 'cardsTapToFlip', 'vs', 'was', 'became', 'plus', 'yourCode', 'fixed', 'howTo', 'soon', 'todayOnly', 'dialogsHint1', 'dialogsHint2', 'dialogsHint3', 'cardsSampleMeaning']) expect(strings).toContain(`${key}:`);
+    for (const key of ['ctaOpenPlus', 'ctaShareInvite', 'ctaUseTheme', 'countdownLeft', 'hours24', 'cardsTapToFlip', 'vs', 'was', 'became', 'plus', 'yourCode', 'fixed', 'howTo', 'soon', 'todayOnly', 'dialogsHint1', 'dialogsHint2', 'dialogsHint3', 'cardsSampleMeaning', 'examPassFrom']) expect(strings).toContain(`${key}:`);
+    // зачем (Переводчик 29.10): формы «вопрос» и согласование «остался/осталось» живут функциями, а не ключами — проверяем их наличие
+    for (const fn of ['annExamQuestions', 'annExamPassFrom', 'annDaysLeftWord']) expect(strings).toContain(`export function ${fn}(`);
   });
 
   it('геометрия по testID: метка, заголовок и блоки помечены одинаково в приложении и в макете (ST.rects)', () => {

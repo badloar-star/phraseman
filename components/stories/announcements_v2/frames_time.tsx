@@ -262,7 +262,9 @@ export const Today24Frame = memo(function Today24Frame({ content, lang }: AnnFra
       <TextZone>
         <View style={s.stamp}>
           <CircularText text={ring} id={ringId} />
-          <Enter kind="pop" d={300} dur={700}><Text style={[s.cen, { color: pal.tx }]}>{annText(lang, 'hours24')}</Text></Enter>
+          {/* зачем (координатор через Переводчика 29.10): в центре печати ≈150 px; замер при 62/800/−2 — «24 h», «24 ч» с запасом, «24 giờ» 148,
+              «24 год» 153, «24 jam» 169. Подписям длиннее 5 знаков — заданный кегль 52 (без автоужатия текста, запрет владельца): 169 → ≈142, 153 → ≈128 */}
+          <Enter kind="pop" d={300} dur={700}><Text style={[annText(lang, 'hours24').length > 5 ? s.cenNarrow : s.cen, { color: pal.tx }]}>{annText(lang, 'hours24')}</Text></Enter>
         </View>
         <AnnTitle text={content.title} d0={600} />
         <AnnBlocks blocks={content.blocks} d0={1000} max={1} />
@@ -313,4 +315,5 @@ const s = StyleSheet.create({
   // .stamp 230 × 230, 6 снизу; .cen «24 ч» 62/66 800 −2
   stamp: { width: 230, height: 230, alignItems: 'center', justifyContent: 'center', marginBottom: 6 },
   cen: { fontSize: 62, lineHeight: 66, fontWeight: '800', letterSpacing: -2 },
+  cenNarrow: { fontSize: 52, lineHeight: 56, fontWeight: '800', letterSpacing: -1.7 }, // typo-exempt: кегль печати «24 ч» для длинных языков (id, uk, vi), замер Переводчика 29.10
 });

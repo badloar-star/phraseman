@@ -121,6 +121,11 @@ const FLOAT: readonly Key[] = [{ at: 0, y: 0 }, { at: 0.5, y: -6 }, { at: 1, y: 
 // зачем: перевод под подсказками — пример render() макета (ru = [...]); поля перевода в контракте нет, поэтому строки живут в
 // announcement_v2_strings на 9 языках (правило владельца: тексты интерфейса — через Переводчика), а не константами на русском.
 const DIALOG_HINT_KEYS = ['dialogsHint1', 'dialogsHint2', 'dialogsHint3'] as const;
+/** Перевод под подсказкой; совпадает с самой фразой (английский интерфейс) — не рисуем (Переводчик 29.10: дубль под фразой). */
+function dialogHint(lang: Lang, i: number, phrase: string): string | null {
+  const hint = annText(lang, DIALOG_HINT_KEYS[i] ?? 'dialogsHint1');
+  return hint.trim().toLowerCase() === phrase.trim().toLowerCase() ? null : hint;
+}
 
 export const DialogsFrame = memo(function DialogsFrame({ content, lang }: AnnFrameProps) {
   const pal = useAnnPalette();
@@ -138,7 +143,7 @@ export const DialogsFrame = memo(function DialogsFrame({ content, lang }: AnnFra
             <Keyframed keys={TILE_IN} d={360 + i * 160} dur={640} ease={EASE_SPRING} style={tile}>
               {/* зачем: плитка фиксированной высоты 122 — длинная подсказка владельца не вылезает за плитку (у примера макета 2 строки) */}
               <Text style={[f.gtT, { color: pal.tx }]} numberOfLines={3}>{b.text}</Text>
-              <Text style={[f.gtRu, { color: pal.sec }]}>{annText(lang, DIALOG_HINT_KEYS[i] ?? 'dialogsHint1')}</Text>
+              {dialogHint(lang, i, b.text) !== null ? <Text style={[f.gtRu, { color: pal.sec }]}>{dialogHint(lang, i, b.text)}</Text> : null}
             </Keyframed>
           </Loop>
         ))}

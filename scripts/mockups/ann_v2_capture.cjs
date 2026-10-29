@@ -6,7 +6,8 @@
 // (dev_state?theme=…&appearance=…&next=/dev_moments_preview?state=announcements&frame=…&long=…&settle=1), снимает экран и проверяет,
 // что кадр не чёрный и не «красный Metro». Эмулятор на время съёмки переводится в 390 × 844 dp (wm size 1170x2532, density 480 —
 // геометрия макета 1:1), в конце — reset. Выход: <OUT>/<design>_<short|long>_<theme>_<dark|light>.png + manifest.json.
-//   node scripts/mockups/ann_v2_capture.cjs [--device=emulator-5554] [--wait-ms=2800] [--no-resize] [--only=poll,date] [--themes=graphite,ink,grad_lilac]
+//   node scripts/mockups/ann_v2_capture.cjs [--device=emulator-5554] [--wait-ms=800] [--no-resize] [--only=poll,date] [--themes=graphite,ink,grad_lilac]
+//        [--restart-every=100]   (--wait-ms — пауза после того, как приложение сообщило о кадре в logcat; готовность кадра ждём по его логу [STORY-ANN2])
 //   env OUT=C:/Temp/claude/ann_gate/emu. Перезапуск продолжает с места (готовые кадры пропускаются). Логи: [ANN-CAPTURE].
 // ═══════════════════════════════════════════════════════════════════════════
 const fs = require('fs');
@@ -20,10 +21,12 @@ const APP = require(path.join(ROOT, 'app.json')).expo.android.package;
 const args = Object.fromEntries(process.argv.slice(2).map((a) => { const m = /^--([^=]+)(?:=(.*))?$/.exec(a); return m ? [m[1], m[2] ?? 'true'] : [a, 'true']; }));
 const DEVICE = args.device || process.env.ANDROID_SERIAL || 'emulator-5554';
 const OUT = process.env.OUT || 'C:/Temp/claude/ann_gate/emu';
-const WAIT_MS = Number(args['wait-ms'] || 2800);
+const WAIT_MS = Number(args['wait-ms'] || 800);
 const THEMES = String(args.themes || 'graphite,ink,grad_lilac').split(',').filter(Boolean);
 const ONLY = String(args.only || '').split(',').filter(Boolean);
 const RESIZE = args['no-resize'] !== 'true';
+/** Профилактический холодный перезапуск приложения каждые N кадров (координатор 29.10: после ~20 мин съёмки бывает ANR); 0 — выключить. */
+const RESTART_EVERY = Number(args['restart-every'] ?? 0);
 /** Порядок и id шаблонов — из общего контракта (тот же, что в макете). */
 const DESIGNS = ['manifest', 'editorial', 'quote', 'list3', 'qa', 'number', 'countdown', 'date', 'schedule', 'soon', 'today24', 'lessons', 'dialogs', 'cards', 'peak', 'duels', 'phrase', 'mistakes', 'video', 'exam', 'ai', 'plus', 'contest', 'challenge', 'invite', 'thanks', 'poll', 'author', 'newyear', 'holiday', 'birthday', 'theme', 'version', 'maintenance', 'feedback', 'tip'];
 
@@ -61,6 +64,46 @@ function uiNodes(design) {
   return nodes;
 }
 const quote = (s) => `'${String(s).replace(/'/g, "'\\''")}'`;
+/** Холодный перезапуск приложения: force-stop; следующий deep link запустит его заново (бандл у Metro в кэше — ~10 с). */
+function coldRestart(why) {
+  console.log(LOG, `холодный перезапуск приложения: ${why}`);
+  adb(['shell', 'am', 'force-stop', APP], { soft: true });
+  return true;
+}
+/** Поверх фотостудии может открыться живое объявление (просмотр историй с testID story-viewer-close) — закрываем его тапом по крестику. */
+function dismissOverlay() {
+  const dump = adb(['shell', 'uiautomator dump /sdcard/ann_ui.xml >/dev/null 2>&1 && cat /sdcard/ann_ui.xml'], { soft: true });
+  const m = /resource-id="story-viewer-close"[^>]*bounds="\[(\d+),(\d+)\]\[(\d+),(\d+)\]"/.exec(dump || '');
+  if (!m) return false;
+  const cx = Math.round((+m[1] + +m[3]) / 2), cy = Math.round((+m[2] + +m[4]) / 2);
+  console.log(LOG, `поверх кадра — чужой просмотр историй, закрываю крестиком (${cx}, ${cy})`);
+  adb(['shell', 'input', 'tap', String(cx), String(cy)], { soft: true });
+  return true;
+}
+/** Ждём, пока приложение само скажет, что кадр отрисован: строка [STORY-ANN2]: кадр <design> lang= (DebugLogger → ReactNativeJS).
+ * зачем: фиксированная пауза либо мала после холодного старта (~14 с), либо велика для тёплого кадра (~1 с). */
+async function waitFrameLog(design, timeoutMs) {
+  const until = Date.now() + timeoutMs;
+  const needle = `[STORY-ANN2]: кадр ${design} lang=`;
+  while (Date.now() < until) {
+    const out = adb(['logcat', '-d', '-s', 'ReactNativeJS:I'], { soft: true });
+    if (out.includes(needle)) return true;
+    await sleep(400);
+  }
+  return false;
+}
+/** Сколько живёт процесс приложения, мс (toybox ps ETIME: [[d-]HH:]MM:SS); не разобрали — Infinity (перезапуск разрешён). */
+function appUptimeMs() {
+  const out = adb(['shell', `ps -o ETIME= -p $(pidof ${APP})`], { soft: true }).trim();
+  const m = /^(?:(\d+)-)?(?:(\d+):)?(\d+):(\d+)$/.exec(out);
+  if (!m) return Infinity;
+  return (((Number(m[1] || 0) * 24 + Number(m[2] || 0)) * 60 + Number(m[3])) * 60 + Number(m[4])) * 1000;
+}
+/** Строки ANR/зависания из logcat — в отчёт о сбое кадра (координатор 29.10: «на каком кадре и вывод logcat с ANR»). */
+function anrLines() {
+  const out = adb(['logcat', '-d', '-t', '400'], { soft: true });
+  return out.split(/\r?\n/).filter((l) => /ANR in |not responding|Input dispatching timed out|am_anr/.test(l)).slice(-6);
+}
 
 /** Кадр годный: PNG, не чёрный (средняя яркость > 10), не экран ошибки Metro (красного в верхней трети < 25 %). */
 async function judge(png) {
@@ -91,6 +134,9 @@ async function judge(png) {
   if (!mine || !/\tdevice$/.test(mine)) { console.error(LOG, `устройство ${DEVICE} не готово; adb devices:`, rows.length ? rows : ['(пусто — эмулятор не запущен или adb не найден)']); process.exit(2); }
   const before = { size: adb(['shell', 'wm', 'size'], { soft: true }).trim(), density: adb(['shell', 'wm', 'density'], { soft: true }).trim() };
   console.log(LOG, 'устройство', DEVICE, 'до съёмки:', before);
+  // зачем (29.10 07:17): экран эмулятора гаснет по таймауту при живом приложении — все кадры ушли бы в «black»; держим экран включённым на время съёмки
+  adb(['shell', 'svc', 'power', 'stayon', 'true'], { soft: true });
+  adb(['shell', 'input', 'keyevent', 'KEYCODE_WAKEUP'], { soft: true });
   if (RESIZE) { adb(['shell', 'wm', 'size', '1170x2532']); adb(['shell', 'wm', 'density', '480']); await sleep(1500); console.log(LOG, 'эмулятор переведён в 390 × 844 dp (1170x2532 @480)'); }
   const frames = []; const failures = [];
   let done = 0, skipped = 0;
@@ -104,9 +150,18 @@ async function judge(png) {
       const next = `/dev_moments_preview?state=announcements&frame=${design}&long=${long ? 1 : 0}&settle=1`;
       const link = `phraseman://dev_state?theme=${encodeURIComponent(theme)}&appearance=${ap}&next=${encodeURIComponent(next)}`;
       let verdict = null; let png = null;
-      for (let attempt = 1; attempt <= 2 && !(verdict && verdict.ok); attempt += 1) {
-        adb(['shell', `am start -a android.intent.action.VIEW -d ${quote(link)} ${APP}`]);
-        await sleep(WAIT_MS + (attempt - 1) * 1500);
+      // зачем: каждые RESTART_EVERY кадров — холодный перезапуск до того, как приложение зависнет (ANR после ~20 мин съёмки)
+      let justRestarted = RESTART_EVERY > 0 && done > 0 && done % RESTART_EVERY === 0 ? coldRestart(`профилактика, снято ${done}`) : false;
+      for (let attempt = 1; attempt <= 4 && !(verdict && verdict.ok); attempt += 1) {
+        // зачем (проба 08:21–08:43): на попытках 2 и 4 deep link не шлём — кадр мог просто не успеть (JS-STALL, переход между кадрами),
+        // повторная ссылка перезапускает маршрут и сбрасывает ожидание
+        if (attempt === 1 || attempt === 3) { adb(['logcat', '-c'], { soft: true }); adb(['shell', `am start -a android.intent.action.VIEW -d ${quote(link)} ${APP}`]); }
+        const t0 = Date.now();
+        // зачем: после нашего холодного старта бандл с медленного Metro (сборщик Сверки) идёт 3+ минуты — ждём до 5
+        const ready = await waitFrameLog(design, justRestarted ? 300000 : attempt === 1 ? 20000 : 10000);
+        if (!ready) console.log(LOG, `${name}: приложение не сообщило о кадре за ${Math.round((Date.now() - t0) / 1000)} с (попытка ${attempt}${justRestarted ? ', после перезапуска' : ''})`);
+        await sleep(ready ? WAIT_MS : 1500);
+        justRestarted = false;
         png = adb(['exec-out', 'screencap', '-p'], { binary: true });
         verdict = await judge(png);
         if (verdict.ok) {
@@ -116,10 +171,16 @@ async function judge(png) {
           const hasDesign = nodes ? nodes.some((n) => n.id === `story-ann-${design}`) : null;
           if (hasDesign === false) verdict = { ok: false, why: 'no_design_node', nodes: nodes.map((n) => n.id).slice(0, 8) };
         }
-        if (!verdict.ok) console.log(LOG, `${name}: попытка ${attempt} — ${verdict.why}${verdict.nodes ? ' узлы: ' + JSON.stringify(verdict.nodes) : ''}`);
+        if (!verdict.ok) {
+          console.log(LOG, `${name}: попытка ${attempt} — ${verdict.why}${verdict.nodes ? ' узлы: ' + JSON.stringify(verdict.nodes) : ''}`);
+          if (verdict.why === 'no_design_node' && dismissOverlay()) await sleep(1200);
+          // зачем: холодный перезапуск — только на 3-й неудаче, только если приложение вообще не сообщало о кадре (зависло) и не моложе 2 минут
+          // (после старта бандл с медленного Metro идёт 3+ мин — убивать его в это время значит никогда не дождаться)
+          if (attempt === 3 && !ready && appUptimeMs() > 120000) { const anr = anrLines(); if (anr.length) console.log(LOG, 'ANR в logcat:', anr.join(' | ').slice(0, 600)); justRestarted = coldRestart(`кадр ${name}: приложение молчит три попытки (${verdict.why})`); }
+        }
       }
       if (verdict && verdict.ok) { fs.writeFileSync(file, png); frames.push({ name, design, long, theme, ap, file: path.basename(file), width: verdict.width, height: verdict.height, nodes: verdict.nodes }); }
-      else failures.push({ name, link, why: verdict ? verdict.why : 'no_frame' });
+      else failures.push({ name, link, why: verdict ? verdict.why : 'no_frame', anr: anrLines() });
       done += 1;
       if (done % 12 === 0) console.log(LOG, `${done + skipped}/${total} (пропущено готовых ${skipped}, сбоев ${failures.length})`);
     }

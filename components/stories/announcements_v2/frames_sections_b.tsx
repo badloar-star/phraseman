@@ -29,7 +29,7 @@ import { AnnRoot, EASE_CSS, EASE_CSS_IN_OUT, EASE_CSS_OUT, EASE_OUT, EASE_SPRING
 import { useAnnPalette, type AnnPalette } from './announcement_v2_palette';
 import { Disc, Rays, Wave } from './announcement_v2_parts';
 import { announcementArt, type AnnouncementV2Content } from './announcement_v2_registry';
-import { annText } from './announcement_v2_strings';
+import { annExamPassFrom, annExamQuestions, annText } from './announcement_v2_strings';
 import { AnnBadge, AnnBlocks, AnnTitle, type AnnFrameProps } from './announcement_v2_text';
 
 const LOG = '[STORY-ANN2]';
@@ -248,12 +248,13 @@ export const VideoFrame = memo(function VideoFrame({ content }: AnnFrameProps) {
 /** stFromT: y −48 → 0 с проявлением; у .chips .chip кривая — пружина .34,1.56,.64,1, 600 мс. */
 const FROM_T: readonly Key[] = [{ at: 0, y: -48, opacity: 0 }, { at: 1, y: 0, opacity: 1 }];
 
-type ExamChip = Readonly<{ key: string; icon: React.ComponentProps<typeof Ionicons>['name']; d: number; text: Readonly<Record<Lang, string>> }>;
-// зачем: тексты чипов — пример макета («12 вопросов», «сдать от 10»), полей для них в объявлении нет. До строк annText (examQuestions /
-// examPassFrom — переданы координатору) живут здесь на 9 языках интерфейса. TRANSLATE: uk … pl — английские, как в announcement_v2_strings.ts.
+type ExamChip = Readonly<{ key: string; icon: React.ComponentProps<typeof Ionicons>['name']; d: number; text: (lang: Lang) => string }>;
+// зачем: тексты чипов — пример макета («12 вопросов», «сдать от 10»), полей для них в объявлении нет; числа — константы примера, слова — на
+// 9 языках из announcement_v2_strings (формы Переводчика 29.10), а не местная таблица с английскими заглушками.
+const EXAM_SAMPLE = { questions: 12, passFrom: 10 } as const;
 const EXAM_CHIPS: readonly ExamChip[] = [
-  { key: 'questions', icon: 'list', d: 1000, text: { ru: '12 вопросов', uk: '12 questions', en: '12 questions', es: '12 questions', 'pt-BR': '12 questions', vi: '12 questions', id: '12 questions', tr: '12 questions', pl: '12 questions' } },
-  { key: 'pass', icon: 'checkmark', d: 1150, text: { ru: 'сдать от 10', uk: '10 to pass', en: '10 to pass', es: '10 to pass', 'pt-BR': '10 to pass', vi: '10 to pass', id: '10 to pass', tr: '10 to pass', pl: '10 to pass' } },
+  { key: 'questions', icon: 'list', d: 1000, text: (lang) => annExamQuestions(lang, EXAM_SAMPLE.questions) },
+  { key: 'pass', icon: 'checkmark', d: 1150, text: (lang) => annExamPassFrom(lang, EXAM_SAMPLE.passFrom) },
 ];
 
 export const ExamFrame = memo(function ExamFrame({ content, lang }: AnnFrameProps) {
@@ -271,7 +272,7 @@ export const ExamFrame = memo(function ExamFrame({ content, lang }: AnnFrameProp
         {EXAM_CHIPS.map((c) => (
           <Keyframed key={c.key} keys={FROM_T} d={c.d} dur={600} ease={EASE_SPRING} style={chip}>
             <Ionicons name={c.icon} size={22} color={pal.acc} />
-            <Text style={chipText}>{c.text[lang] ?? c.text.en}</Text>
+            <Text style={chipText}>{c.text(lang)}</Text>
           </Keyframed>
         ))}
       </View>

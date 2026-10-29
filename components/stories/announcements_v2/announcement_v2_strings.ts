@@ -38,8 +38,9 @@ const S = {
   fixed: ['исправлено', 'виправлено', 'fixed', 'corregido', 'corrigido', 'đã sửa', 'sudah diperbaiki', 'düzeltildi', 'naprawione'],
   /** 36 · совет: заголовок карточки. */
   howTo: ['Как сделать', 'Як зробити', 'How to', 'Cómo hacerlo', 'Como fazer', 'Cách làm', 'Caranya', 'Nasıl yapılır', 'Jak to zrobić'],
-  /** 10 · скоро: слово на занавесе, если метка пустая. */
-  soon: ['Скоро', 'Скоро', 'Soon', 'Pronto', 'Em breve', 'Sắp ra mắt', 'Segera', 'Yakında', 'Wkrótce'],
+  /** 10 · скоро: слово на занавесе, если метка пустая. зачем (координатор через Переводчика 29.10): vi «Sắp ra mắt» — 320 px при коробке 300
+   *  (72/800), «Sắp có» ≈ 200 с тем же смыслом; pt-BR «Em breve» 281/300 — впритык, проверить на кадре. */
+  soon: ['Скоро', 'Скоро', 'Soon', 'Pronto', 'Em breve', 'Sắp có', 'Segera', 'Yakında', 'Wkrótce'],
   /** 11 · только сегодня: надпись по кругу, если метка пустая. */
   todayOnly: ['Только сегодня', 'Тільки сьогодні', 'Today only', 'Solo hoy', 'Só hoje', 'Chỉ hôm nay', 'Hanya hari ini', 'Sadece bugün', 'Tylko dziś'],
   /** 13 · диалоги: перевод трёх подсказок примера под плитками (блоки = английские фразы примера макета). */
@@ -48,6 +49,8 @@ const S = {
   dialogsHint3: ['Да ладно!', 'Та ну!', 'No way!', '¡No me digas!', 'Não acredito!', 'Không thể nào!', 'Masa sih!', 'Yok artık!', 'Niemożliwe!'],
   /** 14 · карточки: оборот верхней карточки — значение слова quit из примера макета. */
   cardsSampleMeaning: ['уйти с работы', 'піти з роботи', 'to leave a job', 'dejar el trabajo', 'sair do emprego', 'nghỉ việc', 'berhenti kerja', 'işi bırakmak', 'rzucić pracę'],
+  /** 20 · экзамен: чип «сдать от {n}» (Переводчик 29.10); число подставляет annExamPassFrom. */
+  examPassFrom: ['сдать от {n}', 'скласти від {n}', '{n} to pass', 'aprobar con {n}', 'passar com {n}', 'đạt từ {n}', 'lulus minimal {n}', 'geçmek için {n}', 'zaliczenie od {n}'],
 } as const satisfies Readonly<Record<string, Nine>>;
 
 export type AnnouncementV2StringKey = keyof typeof S;
@@ -59,20 +62,49 @@ const DAY_FORMS: readonly (readonly [string, string, string])[] = [
   ['ngày', 'ngày', 'ngày'], ['hari', 'hari', 'hari'], ['gün', 'gün', 'gün'], ['dzień', 'dni', 'dni'],
 ];
 
+/** Слово «вопрос» к числу (20 · экзамен, чип «12 вопросов»; формы Переводчика 29.10). */
+const QUESTION_FORMS: readonly (readonly [string, string, string])[] = [
+  ['вопрос', 'вопроса', 'вопросов'], ['питання', 'питання', 'питань'], ['question', 'questions', 'questions'], ['pregunta', 'preguntas', 'preguntas'],
+  ['pergunta', 'perguntas', 'perguntas'], ['câu hỏi', 'câu hỏi', 'câu hỏi'], ['soal', 'soal', 'soal'], ['soru', 'soru', 'soru'], ['pytanie', 'pytania', 'pytań'],
+];
+
+/**
+ * Глагол «осталось» согласованный с числом там, где это нужно (Переводчик 29.10: в ru/uk при 1 и 21 дне выходило «1 день осталось»).
+ * зачем: countdownLeft Переводчика остаётся значением по умолчанию (форма few/many); для one в ru/uk — своя форма.
+ */
+const LEFT_ONE: Readonly<Partial<Record<Lang, string>>> = { ru: 'остался', uk: 'залишився' };
+
 export function annText(lang: Lang, key: AnnouncementV2StringKey): string {
   const row = S[key];
   return row[LANG_INDEX[lang] ?? 2] ?? row[2];
 }
 
-/** «дня осталось» — слово к числу без самого числа (цифра стоит отдельно крупно). */
+function leftWord(lang: Lang, days: number): string {
+  const base = annText(lang, 'countdownLeft');
+  const one = LEFT_ONE[lang];
+  return one ? pluralWord(lang, days, { one, few: base, many: base }) : base;
+}
+
+/** «дня осталось» — слово к числу без самого числа (цифра стоит отдельно крупно); «день остался» при 1 / 21 в ru, uk. */
 export function annDaysLeftWord(lang: Lang, days: number): string {
   const forms = DAY_FORMS[LANG_INDEX[lang] ?? 2] ?? DAY_FORMS[2]!;
-  return `${pluralWord(lang, days, { one: forms[0], few: forms[1], many: forms[2] })} ${annText(lang, 'countdownLeft')}`;
+  return `${pluralWord(lang, days, { one: forms[0], few: forms[1], many: forms[2] })} ${leftWord(lang, days)}`;
 }
 
 /** «3 дня осталось» — число дней до конца срока. */
 export function annDaysLeft(lang: Lang, days: number): string {
   const forms = DAY_FORMS[LANG_INDEX[lang] ?? 2] ?? DAY_FORMS[2]!;
   const word = pluralWord(lang, days, { one: forms[0], few: forms[1], many: forms[2] });
-  return `${days} ${word} ${annText(lang, 'countdownLeft')}`;
+  return `${days} ${word} ${leftWord(lang, days)}`;
+}
+
+/** «12 вопросов» — число вопросов экзамена (чип кадра 20). */
+export function annExamQuestions(lang: Lang, n: number): string {
+  const forms = QUESTION_FORMS[LANG_INDEX[lang] ?? 2] ?? QUESTION_FORMS[2]!;
+  return `${n} ${pluralWord(lang, n, { one: forms[0], few: forms[1], many: forms[2] })}`;
+}
+
+/** «сдать от 10» — проходной балл экзамена (чип кадра 20). */
+export function annExamPassFrom(lang: Lang, n: number): string {
+  return annText(lang, 'examPassFrom').replace('{n}', String(n));
 }

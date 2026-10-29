@@ -4,7 +4,8 @@
    Вариант: нижний край сцены Главной на 1029 (как у «Уроков»), край резкий, скругление 28 dp, тень 0/9 dp размытие 18 dp α .70/.32,
    зазор 12 dp до карточки «Сегодня» (карточка и всё ниже на +3 px, таббар на месте).
    Графит (формульная тема, кадр HEAD с краем 984): небо заново растром высоты 1029 — без затемнения низа и без vignette, звёзды по всей
-   площади (70 формулы в верхних 40 % + 102 нижних той же плотности; у «Тем» в коде пока 48), мерцает каждая 8-я; UI, герой и заголовок на своих местах — сцена
+   площади (70 формулы в верхних 40 % + 102 нижних той же плотности; у «Тем» в коде пока 48), мерцает каждая 8-я; герой — чип «Герой»:
+   как на кадре (140 dp у края) / 160 dp справа 20 по центру (эталон, так в коде «Тем») / 200 dp; UI, герой и заголовок на своих местах — сцена
    растёт вниз под кнопкой. Переключатель «низ неба» (предложение «Тем» для контраста белого текста): без затемнения · горизонт глубже
    в самих остановках градиента · с полосой затемнения как сейчас.
    Титан (премиум: свой фон сцены как на бою — диагональный градиент + свет края, своё движение PremiumThemeMotion, без общих звёзд):
@@ -18,6 +19,9 @@
   const q = new URLSearchParams(location.search);
   let AP = q.get('ap') === 'light' ? 'light' : 'dark'; let VIEW = q.get('view') === 'now' ? 'now' : 'variant'; let RULER = q.get('ruler') !== '0';
   let THEME = q.get('theme') === 'titanium' ? 'titanium' : 'graphite'; let BOTTOM = ['none', 'stops', 'band'].includes(q.get('bottom')) ? q.get('bottom') : 'none';
+  /* герой варианта («Темы» 29.10): в готовом коде — картинка 160 dp, справа 20 dp, по центру сцены (эталон HERO_HOME); на кадре HEAD — 140 dp
+     у края (−14 dp). 'now' — как на кадре, '160' — эталон, '200' — «громаднее» (константа HERO в HomeSceneStage.tsx) */
+  let HERO = ['now', '160', '200'].includes(q.get('hero')) ? q.get('hero') : '160';
   const THEME_ID = { graphite: 'graphite', titanium: 'grad_full_titanium' };
   /* форма варианта — цифры «Тем» 29.10: край = высота обложки «Уроков» 392 dp (1029 px), скругление 28 dp, зазор 12 dp,
      тень boxShadow 0/9 dp, размытие 18 dp, чёрная, α .70 тёмное / .32 светлое */
@@ -78,23 +82,25 @@
     const paint = SR.painter(SA.approved(t, 'light', 'home', W, Hs, {}).spec, W, Hs); const d = new Uint8ClampedArray(W * Hs * 4);
     for (let y = 0; y < Hs; y += 1) for (let x = 0; x < W; x += 1) { const i = (y * W + x) * 4; const c = paint(x, y); d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255; } return d;
   };
-  const heroMask = async (h, ap) => { if (!h) return null; const im = await loadImg(`assets/v2art/hero512/${ap}/${h.art}.webp`); const { g } = canvasOf(h.size, h.size); g.drawImage(im, 0, 0, h.size, h.size); const d = g.getImageData(0, 0, h.size, h.size).data; const a = new Float32Array(h.size * h.size); for (let i = 0; i < a.length; i += 1) a[i] = (d[i * 4 + 3] / 255) * 0.96; return { alpha: a, x: h.x, y: h.y, w: h.size, h: h.size }; };
-  const CACHE = {}; const cacheKey = () => `${THEME}|${AP}|${THEME === 'graphite' && AP === 'dark' ? BOTTOM : '-'}`;
+  const heroMask = async (h, ap) => { if (!h) return null; const im = await loadImg(`assets/v2art/hero512/${ap}/${h.art}.webp`); const { g } = canvasOf(h.size, h.size); g.drawImage(im, 0, 0, h.size, h.size); const d = g.getImageData(0, 0, h.size, h.size).data; const a = new Float32Array(h.size * h.size); for (let i = 0; i < a.length; i += 1) a[i] = (d[i * 4 + 3] / 255) * 0.96; return { alpha: a, x: h.x, y: h.y, w: h.size, h: h.size, im }; };
+  const CACHE = {}; const cacheKey = () => `${THEME}|${AP}|${THEME === 'graphite' && AP === 'dark' ? BOTTOM : '-'}|${THEME === 'graphite' ? HERO : '-'}`;
   /* сборка варианта из кадра: формульная тема — перекраска сцены новым небом (UI/герой/заголовок на местах) и рост сцены вниз;
      премиум — вырез 29 строк чистого неба над кнопкой; дальше общее: зазор, карточка +3, углы 28 dp, тень, таббар на месте */
   const buildVariant = async (m, ap) => {
     const key = cacheKey(); if (CACHE[key]) return CACHE[key];
     const t0 = performance.now(); const edge = V.edge; const gap = Math.round(V.gapDp * DPX); const cardY = edge + gap; const shift = cardY - m.cardTop; const R = Math.round(V.radiusDp * DPX);
     const frame = await loadImg(m.file); const { c, g } = canvasOf(W, H); g.drawImage(frame, 0, 0, W, H);
-    const { c: out, g: og } = canvasOf(W, H); let sky = null; let st = null; let delta = 0;
+    const { c: out, g: og } = canvasOf(W, H); let sky = null; let st = null; let delta = 0; let heroDrawn = null;
     if (m.formula) {
       sky = skyRaster(ap, edge, BOTTOM); const scene = g.getImageData(0, 0, W, m.sceneH); const hero = await heroMask(m.hero, ap); st = {};
-      SR.recolor({ data: scene.data, W, H: m.sceneH, sceneH: m.sceneH, oldSpec: { image: { data: oldSky(ap, m.sceneH), width: W } }, newSpec: { image: { data: sky.data, width: W } }, radius: 0, hero, heroHide: false, keep: KEEP_AVATAR, stats: st });
+      SR.recolor({ data: scene.data, W, H: m.sceneH, sceneH: m.sceneH, oldSpec: { image: { data: oldSky(ap, m.sceneH), width: W } }, newSpec: { image: { data: sky.data, width: W } }, radius: 0, hero, heroHide: HERO !== 'now', keep: KEEP_AVATAR, stats: st }); // герой кадра прячется, если рисуем его заново
       og.putImageData(scene, 0, 0);
       // сцена растёт вниз: строки sceneH…edge — новое небо; свисающий низ кнопки «Продолжить» (строки sceneH…pillY1) — белым по его яркости
       const ext = new ImageData(sky.data.slice(m.sceneH * W * 4, edge * W * 4), W, edge - m.sceneH); const fr = g.getImageData(0, m.sceneH, W, m.pillY1 - m.sceneH).data; const ed = ext.data;
       for (let yy = 0; yy < m.pillY1 - m.sceneH; yy += 1) for (let x = 0; x < W; x += 1) { const i = (yy * W + x) * 4; const lum = 0.2126 * fr[i] + 0.7152 * fr[i + 1] + 0.0722 * fr[i + 2]; const a = Math.max(0, Math.min(1, (lum - 48) / 207)); if (a > 0) { ed[i] = ed[i] + (255 - ed[i]) * a; ed[i + 1] = ed[i + 1] + (255 - ed[i + 1]) * a; ed[i + 2] = ed[i + 2] + (255 - ed[i + 2]) * a; } }
       og.putImageData(ext, 0, m.sceneH);
+      // герой заново: картинка hero512 размером HERO dp, справа 20 dp, по центру новой высоты, прозрачность .96 (эталон HERO_HOME; так в коде «Тем»)
+      if (HERO !== 'now' && hero && hero.im) { const dp = Number(HERO); const size = Math.round(dp * DPX); const hx = W - size - Math.round(20 * DPX); const hy = Math.round((edge - size) / 2); og.save(); og.globalAlpha = 0.96; og.drawImage(hero.im, hx, hy, size, size); og.restore(); heroDrawn = { dp, size, x: hx, y: hy }; }
     } else {
       delta = m.cardTop - edge; // 29: видимая сцена кадра кончается под карточкой (1058) → вырезаем столько строк чистого неба над кнопкой
       og.drawImage(c, 0, 0, W, m.band0, 0, 0, W, m.band0); og.drawImage(c, 0, m.band0 + delta, W, m.cardTop - m.band0 - delta, 0, m.band0, W, edge - m.band0);
@@ -119,8 +125,8 @@
     shg.globalCompositeOperation = 'destination-out'; shg.shadowColor = 'transparent'; shg.beginPath(); shg.roundRect(0, -300, W, edge + 300, [0, 0, R, R]); shg.fill(); // оставить только саму тень
     const cr0 = m.cards[0]; og.save(); og.beginPath(); og.rect(0, edge, W, gap); og.rect(0, cardY, cr0.x0, 260); og.rect(cr0.x1, cardY, W - cr0.x1, 260); og.clip(); og.drawImage(shc, 0, 0); og.restore(); // guard-ok: альфа тени на холсте макета, не баланс пользователя
     const url = await new Promise((res, rej) => out.toBlob((b) => (b ? res(URL.createObjectURL(b)) : rej(new Error('toBlob пуст'))), 'image/png'));
-    const result = { url, stars: sky ? sky.stars : [], delta, cardY, st, a: sky ? sky.a : null };
-    console.log(LOG, 'вариант собран', JSON.stringify({ theme: THEME, ap, bottom: BOTTOM, file: m.file, sceneH: m.sceneH, edge, delta, band0: m.band0 || null, gap, cardY, shift, radius: R, shadow: sh, fromFrame, ms: Math.round(performance.now() - t0), classes: st })); // guard-ok
+    const result = { url, stars: sky ? sky.stars : [], delta, cardY, st, a: sky ? sky.a : null, hero: heroDrawn };
+    console.log(LOG, 'вариант собран', JSON.stringify({ theme: THEME, ap, bottom: BOTTOM, hero: m.formula ? HERO : 'кадр', heroDrawn, file: m.file, sceneH: m.sceneH, edge, delta, band0: m.band0 || null, gap, cardY, shift, radius: R, shadow: sh, fromFrame, ms: Math.round(performance.now() - t0), classes: st })); // guard-ok
     CACHE[key] = result; return result;
   };
   const col = (label, html) => `<div class="col"><div class="lbl">${label}</div>${html}</div>`;
@@ -135,7 +141,8 @@
     const ctl = (id, items, cur, key) => { const el = document.getElementById(id); if (el) el.innerHTML = items.map(([k, n]) => `<span class="chp${cur === k ? ' on' : ''}" data-${key}="${k}">${n}</span>`).join(''); };
     ctl('shView', [['now', 'Сейчас'], ['variant', 'Вариант']], VIEW, 'sh-view'); ctl('shAp', [['dark', 'Тёмная'], ['light', 'Светлая «А»']], AP, 'sh-ap'); ctl('shTheme', [['graphite', 'Графит'], ['titanium', 'Титан']], THEME, 'sh-theme');
     const bottomOn = THEME === 'graphite' && AP === 'dark'; const bw = document.getElementById('shBottomWrap'); if (bw) bw.style.display = bottomOn ? '' : 'none';
-    ctl('shBottom', [['none', 'Без затемнения'], ['stops', 'Горизонт глубже'], ['band', 'С полосой (сейчас)']], BOTTOM, 'sh-bottom'); ctl('shRuler', [['1', 'Линейка'], ['0', 'Без линейки']], RULER ? '1' : '0', 'sh-ruler');
+    ctl('shBottom', [['none', 'Без затемнения'], ['stops', 'Горизонт глубже'], ['band', 'С полосой (сейчас)']], BOTTOM, 'sh-bottom');
+    const hw = document.getElementById('shHeroWrap'); if (hw) hw.style.display = THEME === 'graphite' ? '' : 'none'; ctl('shHero', [['now', 'Как сейчас'], ['160', '160 dp (эталон)'], ['200', '200 dp']], HERO, 'sh-hero'); ctl('shRuler', [['1', 'Линейка'], ['0', 'Без линейки']], RULER ? '1' : '0', 'sh-ruler');
     const files = window.__SH_FILES; const ok = files ? files.includes(m.file) : await loadImg(m.file).then(() => true, (e) => { console.log(LOG, 'кадра нет:', e.message); return false; }); // список наличных кадров пишет сборщик — без запроса к отсутствующему файлу
     if (!ok) { root.innerHTML = '<p class="sf-empty">Кадры ещё не сняты</p>'; window.__shDone = true; console.log(LOG, 'нет кадра', JSON.stringify({ theme: THEME, ap: AP, file: m.file })); return; }
     const lesPh = RF.phone({ src: LESSONS.file, exists: true, cls: 'sp-rf', status: LESSONS.status, tab: LESSONS.tab });
@@ -149,16 +156,17 @@
     }
     root.innerHTML = `<div class="sp-real-row sh-row"><div class="phones sh-phones">${homeCol}${col(lesLabel, lesPh)}${RULER ? '<div class="sh-ruler" style="top:0"></div>' : ''}</div></div>`;
     if (RULER) { const ph = root.querySelector('.col:nth-child(2) .ph'); const body = ph && ph.querySelector('.rf-body'); const line = root.querySelector('.sh-ruler'); if (body && line) { const rowRect = root.querySelector('.sh-phones').getBoundingClientRect(); const b = body.getBoundingClientRect(); line.style.top = `${Math.round(b.top - rowRect.top + RF.px(LESSONS.edge))}px`; } }
-    const u = new URL(location.href); u.searchParams.set('ap', AP); u.searchParams.set('view', VIEW); u.searchParams.set('theme', THEME); u.searchParams.set('bottom', BOTTOM); u.searchParams.set('ruler', RULER ? '1' : '0'); history.replaceState(null, '', u);
-    window.__shDone = true; console.log(LOG, 'render', JSON.stringify({ theme: THEME, ap: AP, view: VIEW, bottom: BOTTOM, ruler: RULER, file: m.file })); // guard-ok
+    const u = new URL(location.href); u.searchParams.set('ap', AP); u.searchParams.set('view', VIEW); u.searchParams.set('theme', THEME); u.searchParams.set('bottom', BOTTOM); u.searchParams.set('hero', HERO); u.searchParams.set('ruler', RULER ? '1' : '0'); history.replaceState(null, '', u);
+    window.__shDone = true; console.log(LOG, 'render', JSON.stringify({ theme: THEME, ap: AP, view: VIEW, bottom: BOTTOM, hero: HERO, ruler: RULER, file: m.file })); // guard-ok
   };
   document.body.addEventListener('click', (e) => {
     const v = e.target.closest('.chp[data-sh-view]'); if (v) { VIEW = v.dataset.shView; render(); return; }
     const a = e.target.closest('.chp[data-sh-ap]'); if (a) { AP = a.dataset.shAp; render(); return; }
     const t = e.target.closest('.chp[data-sh-theme]'); if (t) { THEME = t.dataset.shTheme; render(); return; }
     const b = e.target.closest('.chp[data-sh-bottom]'); if (b) { BOTTOM = b.dataset.shBottom; render(); return; }
+    const h = e.target.closest('.chp[data-sh-hero]'); if (h) { HERO = h.dataset.shHero; render(); return; }
     const r = e.target.closest('.chp[data-sh-ruler]'); if (r) { RULER = r.dataset.shRuler === '1'; render(); }
   });
   render();
-  window.__sh = { render, V, FRAMES, cache: CACHE, cacheKey, setView: (v) => { VIEW = v; return render(); }, setAp: (a) => { AP = a; return render(); }, setTheme: (t) => { THEME = t; return render(); }, setBottom: (b) => { BOTTOM = b; return render(); } };
+  window.__sh = { render, V, FRAMES, cache: CACHE, cacheKey, setView: (v) => { VIEW = v; return render(); }, setAp: (a) => { AP = a; return render(); }, setTheme: (t) => { THEME = t; return render(); }, setBottom: (b) => { BOTTOM = b; return render(); }, setHero: (h) => { HERO = h; return render(); } };
 })();

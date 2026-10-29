@@ -48,7 +48,7 @@ ${engineCss}
 <body>
 <div class="page">
   <h1 class="page-h1">Сцена Главной — высота как у «Уроков»</h1>
-  <div class="thm sp-bar sf-bar"><span id="shView" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Оформление</span><span id="shAp" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Тема</span><span id="shTheme" style="display:inline-flex;gap:8px"></span><span id="shBottomWrap" style="display:inline-flex;align-items:center;gap:8px"><span class="sp-lbl">Низ неба</span><span id="shBottom" style="display:inline-flex;gap:8px"></span></span><span class="sp-lbl">Сравнение</span><span id="shRuler" style="display:inline-flex;gap:8px"></span></div>
+  <div class="thm sp-bar sf-bar"><span id="shView" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Оформление</span><span id="shAp" style="display:inline-flex;gap:8px"></span><span class="sp-lbl">Тема</span><span id="shTheme" style="display:inline-flex;gap:8px"></span><span id="shBottomWrap" style="display:inline-flex;align-items:center;gap:8px"><span class="sp-lbl">Низ неба</span><span id="shBottom" style="display:inline-flex;gap:8px"></span></span><span id="shHeroWrap" style="display:inline-flex;align-items:center;gap:8px"><span class="sp-lbl">Герой</span><span id="shHero" style="display:inline-flex;gap:8px"></span></span><span class="sp-lbl">Сравнение</span><span id="shRuler" style="display:inline-flex;gap:8px"></span></div>
   <div id="sh"></div>
   <div id="spControls" style="display:none"><span id="apList"></span><span id="modeList"></span><span id="stratList"></span></div>
   <div id="thmList" style="display:none"></div>

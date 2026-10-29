@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы спрашиваете знакомого о причёске и изменениях во внешности.
 
-**Что вы освоите:** How long + have|has + subject + past participle?
+**Что вы освоите:** спросить, как долго что-то длится: How long have you lived here?
 **Новые слова:** hairstyle, fringe, braces, piercing
 
 ## Интро 1

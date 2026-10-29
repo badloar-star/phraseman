@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы уточняете, как давно существует место или сохраняется ситуация.
 
-**Что вы освоите:** How long + have|has + subject + past participle?
+**Что вы освоите:** спросить, как долго что-то длится: How long have you lived here?
 **Новые слова:** exist, remain, seem, depend
 
 ## Интро 1

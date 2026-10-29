@@ -2,7 +2,7 @@
 
 **Ситуация.** Вы говорите о долгом путешествии и интересе к природе.
 
-**Что вы освоите:** How long + have|has + subject + past participle?
+**Что вы освоите:** спросить, как долго что-то длится: How long have you lived here?
 **Новые слова:** world, nature, planet, universe
 
 ## Интро 1

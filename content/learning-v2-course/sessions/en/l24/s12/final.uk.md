@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розумієте запитання про тривалість стану й використання інгалятора.
 
-**Що ви опануєте:** How long + have|has + subject + past participle?
+**Що ви опануєте:** запитати, як довго щось триває: How long have you lived here?
 **Нові слова:** asthma, diabetes, migraine, inhaler
 
 ## Інтро 1

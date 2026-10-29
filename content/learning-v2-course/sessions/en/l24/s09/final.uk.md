@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви запитуєте знайомого про зачіску й зміни в зовнішності.
 
-**Що ви опануєте:** How long + have|has + subject + past participle?
+**Що ви опануєте:** запитати, як довго щось триває: How long have you lived here?
 **Нові слова:** hairstyle, fringe, braces, piercing
 
 ## Інтро 1

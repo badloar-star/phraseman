@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви уточнюєте, як давно існує місце або зберігається ситуація.
 
-**Що ви опануєте:** How long + have|has + subject + past participle?
+**Що ви опануєте:** запитати, як довго щось триває: How long have you lived here?
 **Нові слова:** exist, remain, seem, depend
 
 ## Інтро 1

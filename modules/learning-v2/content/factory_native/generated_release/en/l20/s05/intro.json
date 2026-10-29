@@ -69,8 +69,8 @@
         "uk": "Достатньо води"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом собираетесь на долгую прогулку и хотите взять воду на весь путь: We must bring sufficient water — «нам нужно взять достаточно воды». После We ставим must и bring без to. Sufficient — «достаточный» — ставим перед water: sufficient water. Это более формальное выражение, чем enough water, с тем же смыслом в этой ситуации. Water здесь не требует артикля a.",
-        "uk": "Ви з другом збираєтеся на довгу прогулянку й хочете взяти воду на весь шлях: We must bring sufficient water — «нам потрібно взяти достатньо води». Після We ставимо must та bring без to. Sufficient — «достатній» — ставимо перед water: sufficient water. Це формальніший вираз, ніж enough water, з тим самим змістом у цій ситуації. Water тут не потребує артикля a."
+        "ru": "Вы с другом собираетесь на долгую прогулку и хотите взять воду на весь путь: We must bring sufficient water — «нам нужно взять достаточно воды». После We ставим must и bring без to. Sufficient — «достаточный» — ставим перед water: sufficient water. Это более формальное выражение, чем enough water, с тем же смыслом в этой ситуации. Water здесь не требует a.",
+        "uk": "Ви з другом збираєтеся на довгу прогулянку й хочете взяти воду на весь шлях: We must bring sufficient water — «нам потрібно взяти достатньо води». Після We ставимо must та bring без to. Sufficient — «достатній» — ставимо перед water: sufficient water. Це формальніший вираз, ніж enough water, з тим самим змістом у цій ситуації. Water тут не потребує a."
       },
       "question": {
         "interactionId": "en:lesson-20:session-05:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8351936a3804ef918f217a9ed1828965a9d0b4ae33c1920ad0c03a2234e11ede"
+  "introFingerprint": "bd552e5ba3b03a83f14b2b7162cd0b65a3e7ddd4d0915fa042013f804d3328ab"
 }

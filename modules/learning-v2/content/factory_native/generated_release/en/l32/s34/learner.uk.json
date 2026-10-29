@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сумка, яку я зібрав, важка. Скажіть без that.",
+      "prompt": "Сумка, яку ви зібрали, важка. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-34:i07:audio"
       ],
-      "accessibilityLabel": "Сумка, яку я зібрав, важка. Скажіть без that.",
+      "accessibilityLabel": "Сумка, яку ви зібрали, важка. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сумка, яку я зібрав, важка. Уточніть предмет без зайвого займенника.",
+      "prompt": "Сумка, яку ви зібрали, важка. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-34:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сумка, яку я зібрав, важка. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Сумка, яку ви зібрали, важка. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сумка, которую я собрал, тяжёлая. Уточните предмет без лишнего местоимения.",
-          "uk": "Сумка, яку я зібрав, важка. Уточніть предмет без зайвого займенника."
+          "ru": "Сумка, которую вы собрали, тяжёлая. Предмет уже назван — не повторяйте его.",
+          "uk": "Сумка, яку ви зібрали, важка. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The bag I ___ is heavy.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "packing"
           }
         ],
-        "testedDimension": "Сумка, яку я зібрав, важка. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Сумка, яку ви зібрали, важка. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-34:i08:r2",
             "correct": false,
-            "testedDimension": "Сумка, яку я зібрав, важка. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Сумка, яку ви зібрали, важка. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-34:i08:r3",
             "correct": false,
-            "testedDimension": "Сумка, яку я зібрав, важка. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Сумка, яку ви зібрали, важка. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма packed.",
               "uk": "Потрібна минула форма packed."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Із рукавів пальта Анни крапає вода. Скажіть висновок, замінивши The coat займенником It.",
+      "prompt": "Із рукавів пальта Анни крапає вода. Скажіть висновок, замінивши The coat словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-34:i10:audio"
       ],
-      "accessibilityLabel": "Із рукавів пальта Анни крапає вода. Скажіть висновок, замінивши The coat займенником It.",
+      "accessibilityLabel": "Із рукавів пальта Анни крапає вода. Скажіть висновок, замінивши The coat словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ce0f38d1173b6909d9dd5c31e89bf2e4594b04418271a5a547c3652db1821c1d"
+  "learnerFingerprint": "66a1da5f7e60e44e3329caf2df27a31bf7ebf20cceae55d14be752a1967c9b8f"
 }

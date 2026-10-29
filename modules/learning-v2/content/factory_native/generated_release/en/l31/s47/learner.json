@@ -753,7 +753,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
+      "prompt": "Список поможет Анне купить хлеб. Выберите, чем связать части фразы перед she could buy the bread.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-47:i16:r1",
@@ -770,12 +770,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
+      "accessibilityLabel": "Список поможет Анне купить хлеб. Выберите, чем связать части фразы перед she could buy the bread.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
-          "uk": "Список допоможе Анні купити хліб. Виберіть сполуку перед she could buy the bread."
+          "ru": "Список поможет Анне купить хлеб. Выберите, чем связать части фразы перед she could buy the bread.",
+          "uk": "Список допоможе Анні купити хліб. Виберіть, чим поєднати частини фрази перед she could buy the bread."
         },
         "gappedTargetPhrase": "I gave Anna the list ___ she could buy the bread.",
         "gapOptions": [
@@ -792,12 +792,12 @@
             "text": "for"
           }
         ],
-        "testedDimension": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
+        "testedDimension": "Список поможет Анне купить хлеб. Выберите, чем связать части фразы перед she could buy the bread.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-47:i16:r2",
             "correct": false,
-            "testedDimension": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
+            "testedDimension": "Список поможет Анне купить хлеб. Выберите, чем связать части фразы перед she could buy the bread.",
             "feedbackByLocale": {
               "ru": "Перед she could buy the bread нужно so that.",
               "uk": "Перед she could buy the bread потрібне so that."
@@ -806,7 +806,7 @@
           {
             "responseId": "en:lesson-31:session-47:i16:r3",
             "correct": false,
-            "testedDimension": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
+            "testedDimension": "Список поможет Анне купить хлеб. Выберите, чем связать части фразы перед she could buy the bread.",
             "feedbackByLocale": {
               "ru": "Цель с целой частью вводим через so that.",
               "uk": "Мету з цілою частиною вводимо через so that."
@@ -1051,5 +1051,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f4d203ffd8bccd70dbc01e1ee31b1e9da9af6eb484933e54d3f30a59ce3f720d"
+  "learnerFingerprint": "655173c10ff6b52ef00704d992d9b08544b2a37c814ef377027d5521b9954765"
 }

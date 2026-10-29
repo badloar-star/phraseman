@@ -986,8 +986,8 @@
             "correct": false,
             "testedDimension": "Ввічливо запитайте, де ложки.",
             "feedbackByLocale": {
-              "ru": "Множественное spoons требует are.",
-              "uk": "Множина spoons потребує are."
+              "ru": "Spoons (их несколько) требуют are.",
+              "uk": "Spoons (їх кілька) потребують are."
             }
           },
           {
@@ -1043,5 +1043,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "229337a2709c8d131f8876b93c3df529ab3a36baf135fdbee8d705b18635c502"
+  "learnerFingerprint": "4cd4c1e837d69a0533529a3a8eb35b70657bc4265d01c5ec514e0a1825113b4b"
 }

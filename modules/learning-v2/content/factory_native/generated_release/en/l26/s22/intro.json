@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-26:session-22",
   "learningOutcomeByLocale": {
-    "ru": "future time clauses; zero and first conditional; already, yet; past perfect",
-    "uk": "future time clauses; zero and first conditional; already, yet; past perfect"
+    "ru": "сказать, что будет, когда или если…, и что уже случилось к моменту",
+    "uk": "сказати, що буде, коли чи якщо…, і що вже сталося до моменту"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Додати крем після охолодження"
       },
       "bodyByLocale": {
-        "ru": "Печенье ещё горячее, и вы ждёте, чтобы добавить крем. Объясните: I will add the cream when the biscuits cool — я добавлю крем, когда печенье остынет. Собираем: I + will add + the cream + when the biscuits cool — кто, что сделает, что добавит, когда. Будущее выражаем через will add. После when, задающего время, используем cool без will. Biscuits — множественное число, поэтому cool без -s.",
-        "uk": "Печиво ще гаряче, і ви чекаєте, щоб додати крем. Поясніть: I will add the cream when the biscuits cool — я додам крем, коли печиво охолоне. Складаємо: I + will add + the cream + when the biscuits cool — хто, що зробить, що додасть, коли. Майбутнє виражаємо через will add. Після when, яке задає час, використовуємо cool без will. Biscuits — множина, тому cool без -s."
+        "ru": "Печенье ещё горячее, и вы ждёте, чтобы добавить крем. Объясните: I will add the cream when the biscuits cool — я добавлю крем, когда печенье остынет. Собираем: I + will add + the cream + when the biscuits cool — кто, что сделает, что добавит, когда. Будущее выражаем через will add. После when, задающего время, используем cool без will. Biscuits — форма для нескольких, поэтому cool без -s.",
+        "uk": "Печиво ще гаряче, і ви чекаєте, щоб додати крем. Поясніть: I will add the cream when the biscuits cool — я додам крем, коли печиво охолоне. Складаємо: I + will add + the cream + when the biscuits cool — хто, що зробить, що додасть, коли. Майбутнє виражаємо через will add. Після when, яке задає час, використовуємо cool без will. Biscuits — форма для кількох, тому cool без -s."
       },
       "question": {
         "interactionId": "en:lesson-26:session-22:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "be62b900956e7794390b8b5fbc203829ea1cf1611c81d3aabe7d6b8c279e2b61"
+  "introFingerprint": "6d9d64530bbc0e48ae6721b024ca9db56e3f57526a9fd66ed3474562d28f603d"
 }

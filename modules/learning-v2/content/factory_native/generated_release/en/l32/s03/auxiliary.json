@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-32:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-32:session-03:intro3:r2": {
-          "ru": "С местоимением порядок put it down.",
-          "uk": "Із займенником порядок put it down."
+          "ru": "Когда вместо предмета стоит it, порядок такой: put it down.",
+          "uk": "Коли замість предмета стоїть it, порядок такий: put it down."
         },
         "en:lesson-32:session-03:intro3:r3": {
           "ru": "Для результата в прошлом нужна форма put.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "38783b914b45c4b52899419dba14d6076e07bea25f64d919a50dd857143d7900"
+  "auxiliaryFingerprint": "fd0fbf87a537b352c5b7fad4b97c9f978e76f4b3d66d6936e70f85a5756ca7cd"
 }

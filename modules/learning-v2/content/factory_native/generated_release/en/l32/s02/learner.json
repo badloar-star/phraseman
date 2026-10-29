@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы уверены по памяти, что ключи здесь. Выберите связку после must.",
+      "prompt": "Вы уверены по памяти, что ключи здесь. Выберите форму be после must.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-02:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы уверены по памяти, что ключи здесь. Выберите связку после must.",
+      "accessibilityLabel": "Вы уверены по памяти, что ключи здесь. Выберите форму be после must.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы уверены по памяти, что ключи здесь. Выберите связку после must.",
-          "uk": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must."
+          "ru": "Вы уверены по памяти, что ключи здесь. Выберите форму be после must.",
+          "uk": "Ви впевнені з пам’яті, що ключі тут. Виберіть форму be після must."
         },
         "gappedTargetPhrase": "The keys must ___ here.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Вы уверены по памяти, что ключи здесь. Выберите связку после must.",
+        "testedDimension": "Вы уверены по памяти, что ключи здесь. Выберите форму be после must.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-02:i03:r2",
             "correct": false,
-            "testedDimension": "Вы уверены по памяти, что ключи здесь. Выберите связку после must.",
+            "testedDimension": "Вы уверены по памяти, что ключи здесь. Выберите форму be после must.",
             "feedbackByLocale": {
               "ru": "После must нужна начальная форма be.",
               "uk": "Після must потрібна початкова форма be."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-32:session-02:i03:r3",
             "correct": false,
-            "testedDimension": "Вы уверены по памяти, что ключи здесь. Выберите связку после must.",
+            "testedDimension": "Вы уверены по памяти, что ключи здесь. Выберите форму be после must.",
             "feedbackByLocale": {
               "ru": "Must сочетается с be, не is.",
               "uk": "Must поєднується з be, не is."
@@ -352,7 +352,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточните пальто через I wore, не повторяя предмет местоимением.",
+      "prompt": "Уточните пальто через I wore, не повторяя предмет словом it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-02:i08:r1",
@@ -369,12 +369,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните пальто через I wore, не повторяя предмет местоимением.",
+      "accessibilityLabel": "Уточните пальто через I wore, не повторяя предмет словом it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните пальто через I wore, не повторяя предмет местоимением.",
-          "uk": "Уточніть пальто через I wore, не повторюючи предмет займенником."
+          "ru": "Уточните пальто через I wore, не повторяя предмет словом it.",
+          "uk": "Уточніть пальто через I wore, не повторюючи предмет словом it."
         },
         "gappedTargetPhrase": "The coat I ___ is in the car.",
         "gapOptions": [
@@ -391,12 +391,12 @@
             "text": "worn"
           }
         ],
-        "testedDimension": "Уточните пальто через I wore, не повторяя предмет местоимением.",
+        "testedDimension": "Уточните пальто через I wore, не повторяя предмет словом it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-02:i08:r2",
             "correct": false,
-            "testedDimension": "Уточните пальто через I wore, не повторяя предмет местоимением.",
+            "testedDimension": "Уточните пальто через I wore, не повторяя предмет словом it.",
             "feedbackByLocale": {
               "ru": "Coat уже названо: it после wore не нужно.",
               "uk": "Coat уже названо: it після wore не потрібне."
@@ -405,7 +405,7 @@
           {
             "responseId": "en:lesson-32:session-02:i08:r3",
             "correct": false,
-            "testedDimension": "Уточните пальто через I wore, не повторяя предмет местоимением.",
+            "testedDimension": "Уточните пальто через I wore, не повторяя предмет словом it.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма wore.",
               "uk": "Потрібна минула форма wore."
@@ -680,13 +680,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы проверили карман и описываете именно его: «Карман, который я проверил, был пуст».",
+      "prompt": "Вы проверили карман и описываете именно его: «Карман, который вы проверили, был пуст».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-02:i14:audio"
       ],
-      "accessibilityLabel": "Вы проверили карман и описываете именно его: «Карман, который я проверил, был пуст».",
+      "accessibilityLabel": "Вы проверили карман и описываете именно его: «Карман, который вы проверили, был пуст».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1045,5 +1045,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5e730298d172b7f6cafff81d80f2686a10976684cc8814b3a5a8ef4999438969"
+  "learnerFingerprint": "2713da12631744e3bf07823003d9a2142b827dd87345eff0e99b853fcbad9b39"
 }

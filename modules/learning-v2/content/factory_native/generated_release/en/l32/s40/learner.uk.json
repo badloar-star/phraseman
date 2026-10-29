@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сумка, яку я зібрав, маленька. Скажіть без that.",
+      "prompt": "Сумка, яку ви зібрали, маленька. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-40:i07:audio"
       ],
-      "accessibilityLabel": "Сумка, яку я зібрав, маленька. Скажіть без that.",
+      "accessibilityLabel": "Сумка, яку ви зібрали, маленька. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сумка, яку я зібрав, маленька. Уточніть предмет без зайвого займенника.",
+      "prompt": "Сумка, яку ви зібрали, маленька. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-40:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сумка, яку я зібрав, маленька. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Сумка, яку ви зібрали, маленька. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сумка, которую я собрал, маленькая. Уточните предмет без лишнего местоимения.",
-          "uk": "Сумка, яку я зібрав, маленька. Уточніть предмет без зайвого займенника."
+          "ru": "Сумка, которую вы собрали, маленькая. Предмет уже назван — не повторяйте его.",
+          "uk": "Сумка, яку ви зібрали, маленька. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The bag I ___ is small.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "packing"
           }
         ],
-        "testedDimension": "Сумка, яку я зібрав, маленька. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Сумка, яку ви зібрали, маленька. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-40:i08:r2",
             "correct": false,
-            "testedDimension": "Сумка, яку я зібрав, маленька. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Сумка, яку ви зібрали, маленька. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-40:i08:r3",
             "correct": false,
-            "testedDimension": "Сумка, яку я зібрав, маленька. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Сумка, яку ви зібрали, маленька. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма packed.",
               "uk": "Потрібна минула форма packed."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви бачите, що вода сягає лише середини прозорої пляшки. Скажіть висновок, замінивши The bottle займенником It.",
+      "prompt": "Ви бачите, що вода сягає лише середини прозорої пляшки. Скажіть висновок, замінивши The bottle словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-40:i10:audio"
       ],
-      "accessibilityLabel": "Ви бачите, що вода сягає лише середини прозорої пляшки. Скажіть висновок, замінивши The bottle займенником It.",
+      "accessibilityLabel": "Ви бачите, що вода сягає лише середини прозорої пляшки. Скажіть висновок, замінивши The bottle словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "178da99794262384c8424bf2e42c484b595d30e39986d7d1bfb69abb65a29c29"
+  "learnerFingerprint": "cbffe6771fa640973e5fdfa6ae5ee4dab61f40e46ae55fe9bd4e77e6267ae33a"
 }

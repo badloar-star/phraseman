@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-40",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Учорашня розмова про багатство"
       },
       "bodyByLocale": {
-        "ru": "Вчера подруга рассказывала о богатстве известного человека. Вы пересказываете тему разговора. She talked about his wealth yesterday — вчера она говорила о его богатстве. Начинаем с she, затем ставим talked: вчерашний день закончился, поэтому нужен Past Simple. About вводит тему, а his wealth уточняет, о чьём богатстве шла речь. В конце ставим yesterday. Здесь не добавляем has перед talked.",
-        "uk": "Учора подруга розповідала про багатство відомої людини. Ви переказуєте тему розмови. She talked about his wealth yesterday — учора вона говорила про його багатство. Починаємо з she, потім ставимо talked: учорашній день завершився, тому потрібен Past Simple. About уводить тему, а his wealth уточнює, про чиє багатство йшлося. Наприкінці ставимо yesterday. Тут не додаємо has перед talked."
+        "ru": "Вчера подруга рассказывала о богатстве известного человека. Вы пересказываете тему разговора. She talked about his wealth yesterday — вчера она говорила о его богатстве. Начинаем с she, затем ставим talked: вчерашний день закончился, поэтому нужна форма прошлого. About вводит тему, а his wealth уточняет, о чьём богатстве шла речь. В конце ставим yesterday. Здесь не добавляем has перед talked.",
+        "uk": "Учора подруга розповідала про багатство відомої людини. Ви переказуєте тему розмови. She talked about his wealth yesterday — учора вона говорила про його багатство. Починаємо з she, потім ставимо talked: учорашній день завершився, тому потрібна форма минулого. About уводить тему, а his wealth уточнює, про чиє багатство йшлося. Наприкінці ставимо yesterday. Тут не додаємо has перед talked."
       },
       "question": {
         "interactionId": "en:lesson-24:session-40:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0298f7f658c0541010b2f3aec6dd7edc20b96fe275afe4025b029e710a25a9aa"
+  "introFingerprint": "ae2e348c09249a6564e98b45e91c3b9384e925031b0c82089893e01859b718cb"
 }

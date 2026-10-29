@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Шлем, который я купил, новый. Скажите без that.",
+      "prompt": "Шлем, который вы купили, новый. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-38:i07:audio"
       ],
-      "accessibilityLabel": "Шлем, который я купил, новый. Скажите без that.",
+      "accessibilityLabel": "Шлем, который вы купили, новый. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
+      "prompt": "Шлем, который вы купили, новый. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-38:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Шлем, который вы купили, новый. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
-          "uk": "Шолом, який я купив, новий. Уточніть предмет без зайвого займенника."
+          "ru": "Шлем, который вы купили, новый. Предмет уже назван — не повторяйте его.",
+          "uk": "Шолом, який ви купили, новий. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The helmet I ___ is new.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Шлем, который вы купили, новый. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-38:i08:r2",
             "correct": false,
-            "testedDimension": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Шлем, который вы купили, новый. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-38:i08:r3",
             "correct": false,
-            "testedDimension": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Шлем, который вы купили, новый. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. Скажите вывод, заменив The lock местоимением It.",
+      "prompt": "Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. Скажите вывод, заменив The lock словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-38:i10:audio"
       ],
-      "accessibilityLabel": "Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. Скажите вывод, заменив The lock местоимением It.",
+      "accessibilityLabel": "Дужка замка полностью закрыта, и цепь не снимается. Анна считала, что уже открыла его. Скажите вывод, заменив The lock словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "821ec8db078fb25ff385fd18ea6ab16c134d71540aca2f27fa86910551201096"
+  "learnerFingerprint": "a048e3214f1fdb28b94dbc8ca0726bfa7e2095080561ec681bea1f11f111b027"
 }

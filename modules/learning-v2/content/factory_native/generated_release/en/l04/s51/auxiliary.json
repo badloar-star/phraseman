@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-51:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-51:intro3:r2": {
-          "ru": "После Are there any здесь нужна форма множественного числа board games.",
-          "uk": "Після Are there any тут потрібна форма множини board games."
+          "ru": "После Are there any здесь нужна форма для нескольких board games.",
+          "uk": "Після Are there any тут потрібна форма для кількох board games."
         },
         "en:lesson-04:session-51:intro3:r3": {
-          "ru": "Board games стоит во множественном числе, поэтому вопрос начинаем с Are there.",
-          "uk": "Board games стоїть у множині, тому запитання починаємо з Are there."
+          "ru": "Board games стоит в форме для нескольких, поэтому вопрос начинаем с Are there.",
+          "uk": "Board games стоїть у формі для кількох, тому запитання починаємо з Are there."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "4d20cae3317cbaef9018c08ec7222307a36a15da7636e9cf72a2e365afd7b173"
+  "auxiliaryFingerprint": "18da969cdf287579363117e8e88914c469845512f26c35880988655e291db00f"
 }

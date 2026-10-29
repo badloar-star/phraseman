@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-52",
   "learningOutcomeByLocale": {
-    "ru": "was/were; family; questions and negatives",
-    "uk": "was/were; family; questions and negatives"
+    "ru": "спросить о семье в прошлом и сказать «не было»",
+    "uk": "запитати про родину в минулому й сказати «не було»"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Вітчим був удома"
       },
       "bodyByLocale": {
-        "ru": "Вчера ваш отчим был дома. Скажите об этом: My stepfather was at home yesterday — мой отчим был дома вчера. Начните с человека: My stepfather. Stepfather означает мужа мамы, который не является вашим родным отцом, и пишется слитно. Затем поставьте was: человек один, речь о прошлом. Добавьте место at home и время yesterday. Перед home в этом выражении артикль не нужен.",
-        "uk": "Учора ваш вітчим був удома. Скажіть про це: My stepfather was at home yesterday — мій вітчим був удома вчора. Почніть із людини: My stepfather. Stepfather означає чоловіка мами, який не є вашим рідним батьком, і пишеться разом. Потім поставте was: людина одна, йдеться про минуле. Додайте місце at home і час yesterday. Перед home у цьому вислові артикль не потрібен."
+        "ru": "Вчера ваш отчим был дома. Скажите об этом: My stepfather was at home yesterday — мой отчим был дома вчера. Начните с человека: My stepfather. Stepfather означает мужа мамы, который не является вашим родным отцом, и пишется слитно. Затем поставьте was: человек один, речь о прошлом. Добавьте место at home и время yesterday. Перед home в этом выражении a / the не нужно.",
+        "uk": "Учора ваш вітчим був удома. Скажіть про це: My stepfather was at home yesterday — мій вітчим був удома вчора. Почніть із людини: My stepfather. Stepfather означає чоловіка мами, який не є вашим рідним батьком, і пишеться разом. Потім поставте was: людина одна, йдеться про минуле. Додайте місце at home і час yesterday. Перед home у цьому вислові a / the не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-11:session-52:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Мачуха була на роботі"
       },
       "bodyByLocale": {
-        "ru": "Вчера ваша мачеха была на работе. Сообщите, где она находилась: My stepmother was at work yesterday — моя мачеха была на работе вчера. Сначала My stepmother: жена папы, которая не является вашей родной мамой. Затем was для одного человека в прошлом. Место добавьте готовым сочетанием at work, без артикля, а в конце поставьте yesterday. Stepmother называет родство и не выражает оценку человека.",
-        "uk": "Учора ваша мачуха була на роботі. Повідомте, де вона перебувала: My stepmother was at work yesterday — моя мачуха була на роботі вчора. Спочатку My stepmother: дружина тата, яка не є вашою рідною мамою. Потім was для однієї людини в минулому. Місце додайте готовим сполученням at work, без артикля, а наприкінці поставте yesterday. Stepmother називає спорідненість і не виражає оцінки людини."
+        "ru": "Вчера ваша мачеха была на работе. Сообщите, где она находилась: My stepmother was at work yesterday — моя мачеха была на работе вчера. Сначала My stepmother: жена папы, которая не является вашей родной мамой. Затем was для одного человека в прошлом. Место добавьте готовым сочетанием at work, без a / the, а в конце поставьте yesterday. Stepmother называет родство и не выражает оценку человека.",
+        "uk": "Учора ваша мачуха була на роботі. Повідомте, де вона перебувала: My stepmother was at work yesterday — моя мачуха була на роботі вчора. Спочатку My stepmother: дружина тата, яка не є вашою рідною мамою. Потім was для однієї людини в минулому. Місце додайте готовим сполученням at work, без a / the, а наприкінці поставте yesterday. Stepmother називає спорідненість і не виражає оцінки людини."
       },
       "question": {
         "interactionId": "en:lesson-11:session-52:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6650f1ca06e6195a3c922f18f47d230fc71e7d42e4438f28050f04c330fb3d78"
+  "introFingerprint": "751d537d8f94cd275b5438f815309c4ed7cfe264cefdc56e2d359b19729c4e4b"
 }

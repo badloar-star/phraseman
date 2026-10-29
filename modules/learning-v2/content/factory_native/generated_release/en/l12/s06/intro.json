@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-12:session-06",
   "learningOutcomeByLocale": {
-    "ru": "regular past: cleaned, washed, packed; was/were",
-    "uk": "regular past: cleaned, washed, packed; was/were"
+    "ru": "рассказать о вчерашнем: cleaned, washed и was / were",
+    "uk": "розповісти про вчорашнє: cleaned, washed та was / were"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Почистити чоботи після прогулянки"
       },
       "bodyByLocale": {
-        "ru": "После вчерашней прогулки вы почистили резиновые сапоги. Расскажите о работе: I cleaned the rain boots — я почистил резиновые сапоги. Начните с I, затем поставьте clean в прошлом: cleaned, добавляем ed. После действия назовите предмет: the rain boots. Cleaned сообщает, что вы сделали. Для описания состояния сапог использовалось бы were, поскольку boots — множественное число.",
-        "uk": "Після вчорашньої прогулянки ви почистили гумові чоботи. Розкажіть про роботу: I cleaned the rain boots — я почистив гумові чоботи. Почніть з I, потім поставте clean у минулому: cleaned, додаємо ed. Після дії назвіть предмет: the rain boots. Cleaned повідомляє, що ви зробили. Для опису стану чобіт використовувалося б were, оскільки boots — множина."
+        "ru": "После вчерашней прогулки вы почистили резиновые сапоги. Расскажите о работе: I cleaned the rain boots — я почистил резиновые сапоги. Начните с I, затем поставьте clean в прошлом: cleaned, добавляем ed. После действия назовите предмет: the rain boots. Cleaned сообщает, что вы сделали. Для описания состояния сапог использовалось бы were, поскольку boots — форма для нескольких.",
+        "uk": "Після вчорашньої прогулянки ви почистили гумові чоботи. Розкажіть про роботу: I cleaned the rain boots — я почистив гумові чоботи. Почніть з I, потім поставте clean у минулому: cleaned, додаємо ed. Після дії назвіть предмет: the rain boots. Cleaned повідомляє, що ви зробили. Для опису стану чобіт використовувалося б were, оскільки boots — форма для кількох."
       },
       "question": {
         "interactionId": "en:lesson-12:session-06:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Покласти бейсболку в сумку"
       },
       "bodyByLocale": {
-        "ru": "Вчера вы положили свою бейсболку в дорожную сумку. Сообщите об этом: I packed my baseball cap yesterday — я упаковал свою бейсболку вчера. Сначала I, затем действие в прошлом: pack → packed, добавляем ed. После глагола назовите вещь: my baseball cap. My показывает, что бейсболка ваша; артикль перед my не нужен. В конце укажите время: yesterday.",
-        "uk": "Учора ви поклали свою бейсболку в дорожню сумку. Повідомте про це: I packed my baseball cap yesterday — я спакував свою бейсболку вчора. Спочатку I, потім дія в минулому: pack → packed, додаємо ed. Після дієслова назвіть річ: my baseball cap. My показує, що бейсболка ваша; артикль перед my не потрібен. Наприкінці вкажіть час: yesterday."
+        "ru": "Вчера вы положили свою бейсболку в дорожную сумку. Сообщите об этом: I packed my baseball cap yesterday — я упаковал свою бейсболку вчера. Сначала I, затем действие в прошлом: pack → packed, добавляем ed. После глагола назовите вещь: my baseball cap. My показывает, что бейсболка ваша; a / the перед my не нужно. В конце укажите время: yesterday.",
+        "uk": "Учора ви поклали свою бейсболку в дорожню сумку. Повідомте про це: I packed my baseball cap yesterday — я спакував свою бейсболку вчора. Спочатку I, потім дія в минулому: pack → packed, додаємо ed. Після дієслова назвіть річ: my baseball cap. My показує, що бейсболка ваша; a / the перед my не потрібне. Наприкінці вкажіть час: yesterday."
       },
       "question": {
         "interactionId": "en:lesson-12:session-06:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c0014fdd3f521c42eeebdf9125d324a27d4c4278eb3332498ae0c1303b76fd34"
+  "introFingerprint": "8075dada9c6378e7d588b1e98940ac25fc5ed2c352ecc9be6aa532d1da7ff4c0"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-52",
   "learningOutcomeByLocale": {
-    "ru": "wish + past; if I were; unreal condition; present perfect / past simple",
-    "uk": "wish + past; if I were; unreal condition; present perfect / past simple"
+    "ru": "сказать, чего вам хочется иначе, и о том, что было бы, если бы…",
+    "uk": "сказати, чого вам хочеться інакше, і про те, що було б, якби…"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Коли поговорили з організаторкою"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, когда вы разговаривали с организатором пробежки. Организатор — женщина; разговор был вчера. Ответьте: I spoke to her yesterday — я поговорил с ней вчера. Spoke — прошедшая форма speak; her относится к организатору. Yesterday требует Past Simple, поэтому have не нужен.\n\nСобираем предложение: I + spoke + to her + yesterday — кто → действие в прошлом → с кем → когда.",
-        "uk": "Друг запитує, коли ви розмовляли з організаторкою пробіжки. Розмова була вчора. Дайте відповідь: I spoke to her yesterday — я поговорив із нею вчора. Spoke — минула форма speak; her стосується організаторки. Yesterday потребує Past Simple, тому have не потрібне.\n\nСкладаємо речення: I + spoke + to her + yesterday — хто → дія в минулому → з ким → коли."
+        "ru": "Друг спрашивает, когда вы разговаривали с организатором пробежки. Организатор — женщина; разговор был вчера. Ответьте: I spoke to her yesterday — я поговорил с ней вчера. Spoke — прошедшая форма speak; her относится к организатору. Yesterday требует формы прошлого, поэтому have не нужен.\n\nСобираем предложение: I + spoke + to her + yesterday — кто → действие в прошлом → с кем → когда.",
+        "uk": "Друг запитує, коли ви розмовляли з організаторкою пробіжки. Розмова була вчора. Дайте відповідь: I spoke to her yesterday — я поговорив із нею вчора. Spoke — минула форма speak; her стосується організаторки. Yesterday потребує форми минулого, тому have не потрібне.\n\nСкладаємо речення: I + spoke + to her + yesterday — хто → дія в минулому → з ким → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-52:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c0a7c67a934161e6bf1e4ddd8d9cf90111bbe382c1cf56162b277909655ffafd"
+  "introFingerprint": "3c29eccc86a1e2e2cfeafebe29831eeac3856bf11728e0d02107a3c13ad55d99"
 }

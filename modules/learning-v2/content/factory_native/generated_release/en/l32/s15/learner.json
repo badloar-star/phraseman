@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Открытка, которую я написал, короткая. Скажите без that.",
+      "prompt": "Открытка, которую вы написали, короткая. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-15:i07:audio"
       ],
-      "accessibilityLabel": "Открытка, которую я написал, короткая. Скажите без that.",
+      "accessibilityLabel": "Открытка, которую вы написали, короткая. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Открытка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+      "prompt": "Открытка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-15:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Открытка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Открытка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Открытка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
-          "uk": "Листівка, яку я написав, коротка. Уточніть предмет без зайвого займенника."
+          "ru": "Открытка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
+          "uk": "Листівка, яку ви написали, коротка. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The card I ___ is short.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "writing"
           }
         ],
-        "testedDimension": "Открытка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Открытка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-15:i08:r2",
             "correct": false,
-            "testedDimension": "Открытка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Открытка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-15:i08:r3",
             "correct": false,
-            "testedDimension": "Открытка, которую я написал, короткая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Открытка, которую вы написали, короткая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма wrote.",
               "uk": "Потрібна минула форма wrote."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Бен приехал после долгой дороги и говорит, что не ел с самого утра. Скажите вывод ещё раз, заменив The guest местоимением He.",
+      "prompt": "Бен приехал после долгой дороги и говорит, что не ел с самого утра. Скажите вывод ещё раз, заменив The guest словом He.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-15:i10:audio"
       ],
-      "accessibilityLabel": "Бен приехал после долгой дороги и говорит, что не ел с самого утра. Скажите вывод ещё раз, заменив The guest местоимением He.",
+      "accessibilityLabel": "Бен приехал после долгой дороги и говорит, что не ел с самого утра. Скажите вывод ещё раз, заменив The guest словом He.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ad8476470dfe4bebd50c454f25e20c80cc5bdd89ff77432a59f16dafb94cc851"
+  "learnerFingerprint": "a2b50f2523d31b7d23a3b0c338a7fcef5d8290a91ef8d65104ada5eec0fc22de"
 }

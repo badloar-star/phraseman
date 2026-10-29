@@ -15,8 +15,8 @@
         "uk": "Де зазвичай залишаєте взуття"
       },
       "bodyByLocale": {
-        "ru": "Гость спрашивает, куда вы ставите обувь дома. Покажите место в прихожей: I leave my shoes there when I come in — я оставляю там обувь, когда захожу. Собираем: I + leave + my shoes + there + when I come in — кто, что делает, что оставляет, где, когда. Это привычка, поэтому обе части стоят в present simple. После I используем leave и come без -s. When связывает повторяющиеся действия.",
-        "uk": "Гість запитує, куди ви ставите взуття вдома. Покажіть місце в передпокої: I leave my shoes there when I come in — я залишаю там взуття, коли заходжу. Складаємо: I + leave + my shoes + there + when I come in — хто, що робить, що залишає, де, коли. Це звичка, тому обидві частини стоять у present simple. Після I використовуємо leave і come без -s. When пов’язує повторювані дії."
+        "ru": "Гость спрашивает, куда вы ставите обувь дома. Покажите место в прихожей: I leave my shoes there when I come in — я оставляю там обувь, когда захожу. Собираем: I + leave + my shoes + there + when I come in — кто, что делает, что оставляет, где, когда. Это привычка, поэтому обе части стоят в форме work / works. После I используем leave и come без -s. When связывает повторяющиеся действия.",
+        "uk": "Гість запитує, куди ви ставите взуття вдома. Покажіть місце в передпокої: I leave my shoes there when I come in — я залишаю там взуття, коли заходжу. Складаємо: I + leave + my shoes + there + when I come in — хто, що робить, що залишає, де, коли. Це звичка, тому обидві частини стоять у формі work / works. Після I використовуємо leave і come без -s. When пов’язує повторювані дії."
       },
       "question": {
         "interactionId": "en:lesson-26:session-39:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Ліжко було готове до приїзду"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о вчерашней подготовке к приезду гостьи. К её приезду кровать уже была застелена: I had made the bed by the time she arrived — я застелил кровать к тому времени, как она приехала. Собираем: I + had made + the bed + by the time she arrived — кто, что сделал раньше, что подготовил, к какому моменту в прошлом. Had made показывает действие до приезда. После had нужна третья форма make — made.",
-        "uk": "Ви розповідаєте про вчорашню підготовку до приїзду гості. До її приїзду ліжко вже було застелене: I had made the bed by the time she arrived — я застелив ліжко до того часу, як вона приїхала. Складаємо: I + had made + the bed + by the time she arrived — хто, що зробив раніше, що підготував, до якого моменту в минулому. Had made показує дію до приїзду. Після had потрібна третя форма make — made."
+        "ru": "Вы рассказываете о вчерашней подготовке к приезду гостьи. К её приезду кровать уже была застелена: I had made the bed by the time she arrived — я застелил кровать к тому времени, как она приехала. Собираем: I + had made + the bed + by the time she arrived — кто, что сделал раньше, что подготовил, к какому моменту в прошлом. Had made показывает действие до приезда. После had нужна форма make — made.",
+        "uk": "Ви розповідаєте про вчорашню підготовку до приїзду гості. До її приїзду ліжко вже було застелене: I had made the bed by the time she arrived — я застелив ліжко до того часу, як вона приїхала. Складаємо: I + had made + the bed + by the time she arrived — хто, що зробив раніше, що підготував, до якого моменту в минулому. Had made показує дію до приїзду. Після had потрібна форма make — made."
       },
       "question": {
         "interactionId": "en:lesson-26:session-39:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "836ee638def036fdef5e47d21e9af74302bd7e7e8becb5bb7c4464a20fee864b"
+  "introFingerprint": "fa5fe23adb67aa3a46cc62d5174e44152c64540869f0f9cc2b56ab50da294ca6"
 }

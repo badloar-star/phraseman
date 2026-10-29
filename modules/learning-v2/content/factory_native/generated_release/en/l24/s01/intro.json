@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-01",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + for duration; since starting point",
-    "uk": "present perfect + for duration; since starting point"
+    "ru": "сказать, как долго что-то длится и с какого времени",
+    "uk": "сказати, як довго щось триває і відколи"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Працює в рідному місті"
       },
       "bodyByLocale": {
-        "ru": "Ваш знакомый начал работать в родном городе в 2020 году и работает там до сих пор. He has worked in his hometown since 2020 — он работает в своём родном городе с 2020 года. Hometown означает «родной город». Собираем: he + has + worked + in his hometown + since 2020. После he ставим has, затем worked — третью форму work. В конце since 2020 называет начало периода, который продолжается сейчас.",
-        "uk": "Ваш знайомий почав працювати в рідному місті у 2020 році й працює там досі. He has worked in his hometown since 2020 — він працює у своєму рідному місті з 2020 року. Hometown означає «рідне місто». Складаємо: he + has + worked + in his hometown + since 2020. Після he ставимо has, потім worked — третю форму work. Наприкінці since 2020 називає початок періоду, який триває зараз."
+        "ru": "Ваш знакомый начал работать в родном городе в 2020 году и работает там до сих пор. He has worked in his hometown since 2020 — он работает в своём родном городе с 2020 года. Hometown означает «родной город». Собираем: he + has + worked + in his hometown + since 2020. После he ставим has, затем worked — форму work. В конце since 2020 называет начало периода, который продолжается сейчас.",
+        "uk": "Ваш знайомий почав працювати в рідному місті у 2020 році й працює там досі. He has worked in his hometown since 2020 — він працює у своєму рідному місті з 2020 року. Hometown означає «рідне місто». Складаємо: he + has + worked + in his hometown + since 2020. Після he ставимо has, потім worked — форму work. Наприкінці since 2020 називає початок періоду, який триває зараз."
       },
       "question": {
         "interactionId": "en:lesson-24:session-01:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "22f1e21333dd1df77c3bf6ca069a03aba09e4b71a792e8e1656db374df967e55"
+  "introFingerprint": "acc5ce601390b91be1c80a65e62f1aa306c4cc0e6f0d126dc6ebff76b6d3984e"
 }

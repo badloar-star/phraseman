@@ -15,8 +15,8 @@
         "uk": "Відразу з’їсти печиво"
       },
       "bodyByLocale": {
-        "ru": "Друг замечает, что вы не держите намокшее печенье в руке. Объясните привычку: If I dunk a biscuit, I eat it straight away — если я макаю печенье, я сразу его съедаю. Собираем: If + I + dunk + a biscuit, + I + eat + it + straight away — условие, затем обычное действие. В обеих частях present simple: это повторяющаяся привычка. После I нужны dunk и eat без -s. После начального условия ставим запятую.",
-        "uk": "Друг помічає, що ви не тримаєте намокле печиво в руці. Поясніть звичку: If I dunk a biscuit, I eat it straight away — якщо я вмочую печиво, я відразу його з’їдаю. Складаємо: If + I + dunk + a biscuit, + I + eat + it + straight away — умова, потім звичайна дія. В обох частинах present simple: це повторювана звичка. Після I потрібні dunk і eat без -s. Після початкової умови ставимо кому."
+        "ru": "Друг замечает, что вы не держите намокшее печенье в руке. Объясните привычку: If I dunk a biscuit, I eat it straight away — если я макаю печенье, я сразу его съедаю. Собираем: If + I + dunk + a biscuit, + I + eat + it + straight away — условие, затем обычное действие. В обеих частях форма work / works: это повторяющаяся привычка. После I нужны dunk и eat без -s. После начального условия ставим запятую.",
+        "uk": "Друг помічає, що ви не тримаєте намокле печиво в руці. Поясніть звичку: If I dunk a biscuit, I eat it straight away — якщо я вмочую печиво, я відразу його з’їдаю. Складаємо: If + I + dunk + a biscuit, + I + eat + it + straight away — умова, потім звичайна дія. В обох частинах форма work / works: це повторювана звичка. Після I потрібні dunk і eat без -s. Після початкової умови ставимо кому."
       },
       "question": {
         "interactionId": "en:lesson-26:session-28:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "94b626b5dd3625a0c81a67d974ddc47e214295e0780ce8a11ff6ba20528a1845"
+  "introFingerprint": "2f8b7245e97027b6e7d17b0e18501163b2ab1388f5c4d254499fb49b39e96f84"
 }

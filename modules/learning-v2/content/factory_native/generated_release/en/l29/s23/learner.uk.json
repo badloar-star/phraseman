@@ -546,8 +546,8 @@
             "correct": false,
             "testedDimension": "Зелень посадила ваша мати.",
             "feedbackByLocale": {
-              "ru": "Herbs во множественном числе: were.",
-              "uk": "Herbs у множині: were."
+              "ru": "Herbs — их несколько: were.",
+              "uk": "Herbs — їх кілька: were."
             }
           },
           {
@@ -555,8 +555,8 @@
             "correct": false,
             "testedDimension": "Зелень посадила ваша мати.",
             "feedbackByLocale": {
-              "ru": "Здесь прошлое действие и множественное число: were.",
-              "uk": "Тут минула дія й множина: were."
+              "ru": "Здесь прошлое, и растений несколько: were.",
+              "uk": "Тут минуле, і рослин кілька: were."
             }
           }
         ]
@@ -1090,5 +1090,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "01c94a5ba755eafc877e5f82a739405f7b2ad88ea845aee1ad96f6b21cb1e7d6"
+  "learnerFingerprint": "9af6d2455bb99db6395db0cf85644e84772ed9e9b9f8f36df41833ffacf88785"
 }

@@ -123,8 +123,8 @@
         "uk": "Надіслати нагадування"
       },
       "bodyByLocale": {
-        "ru": "Вы договорились о встрече и хотите помочь знакомому не забыть её: Could I send you a reminder? — «можно мне прислать вам напоминание?» Начинаем с Could I, затем ставим send без to. После send сначала называем получателя — you, затем то, что отправим, — a reminder. Перед одним исчисляемым reminder нужен a. В таком порядке перед you не добавляем to.",
-        "uk": "Ви домовилися про зустріч і хочете допомогти знайомому не забути її: Could I send you a reminder? — «можна мені надіслати вам нагадування?» Починаємо з Could I, потім ставимо send без to. Після send спочатку називаємо отримувача — you, потім те, що надішлемо, — a reminder. Перед одним злічуваним reminder потрібен a. За такого порядку перед you не додаємо to."
+        "ru": "Вы договорились о встрече и хотите помочь знакомому не забыть её: Could I send you a reminder? — «можно мне прислать вам напоминание?» Начинаем с Could I, затем ставим send без to. После send сначала называем получателя — you, затем то, что отправим, — a reminder. Перед reminder нужен a: предмет один. В таком порядке перед you не добавляем to.",
+        "uk": "Ви домовилися про зустріч і хочете допомогти знайомому не забути її: Could I send you a reminder? — «можна мені надіслати вам нагадування?» Починаємо з Could I, потім ставимо send без to. Після send спочатку називаємо отримувача — you, потім те, що надішлемо, — a reminder. Перед reminder потрібне a: предмет один. За такого порядку перед you не додаємо to."
       },
       "question": {
         "interactionId": "en:lesson-19:session-35:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ba14b922721a109ca8e2cf88627af067ff1f42cb1db70fd2414f1d13e56a6cac"
+  "introFingerprint": "ae50fd85caf923a85a576d23664515c073ff89df3c12d016d99a16d8f3474cf2"
 }

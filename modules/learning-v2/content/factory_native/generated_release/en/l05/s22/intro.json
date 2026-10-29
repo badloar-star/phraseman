@@ -69,8 +69,8 @@
         "uk": "Рукавички в гардеробі"
       },
       "bodyByLocale": {
-        "ru": "В гардеробе театра остались две перчатки, и вы показываете их подруге. Gloves — «перчатки». Спросите: Whose gloves are these? — «Чьи это перчатки?» Начинаем с whose gloves — «чьи перчатки», затем ставим are these: показываем несколько вещей. Слова gloves, are и these согласованы во множественном числе.",
-        "uk": "У гардеробі театру залишилися дві рукавички, і ви показуєте їх подрузі. Gloves — «рукавички». Спитайте: Whose gloves are these? — «Чиї це рукавички?» Починаємо з whose gloves — «чиї рукавички», потім ставимо are these: показуємо кілька речей. Слова gloves, are та these узгоджені у множині."
+        "ru": "В гардеробе театра остались две перчатки, и вы показываете их подруге. Gloves — «перчатки». Спросите: Whose gloves are these? — «Чьи это перчатки?» Начинаем с whose gloves — «чьи перчатки», затем ставим are these: показываем несколько вещей. Слова gloves, are и these согласованы в форме для нескольких.",
+        "uk": "У гардеробі театру залишилися дві рукавички, і ви показуєте їх подрузі. Gloves — «рукавички». Спитайте: Whose gloves are these? — «Чиї це рукавички?» Починаємо з whose gloves — «чиї рукавички», потім ставимо are these: показуємо кілька речей. Слова gloves, are та these узгоджені у формі для кількох."
       },
       "question": {
         "interactionId": "en:lesson-05:session-22:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6620aab73395c18bfa987f22ee925d76b51951f0c959d4bb861386a86d54df46"
+  "introFingerprint": "652e5e4283303e769d22e74f2f2d129bed6efcc01e4eaa49b85d8ddb51125213"
 }

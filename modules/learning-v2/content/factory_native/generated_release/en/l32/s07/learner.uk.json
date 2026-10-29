@@ -353,7 +353,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточніть план, який ви знайшли, не повторюючи map займенником.",
+      "prompt": "Уточніть план, який ви знайшли, не повторюючи map словом it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-07:i08:r1",
@@ -370,12 +370,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточніть план, який ви знайшли, не повторюючи map займенником.",
+      "accessibilityLabel": "Уточніть план, який ви знайшли, не повторюючи map словом it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните план, который вы нашли, не повторяя map местоимением.",
-          "uk": "Уточніть план, який ви знайшли, не повторюючи map займенником."
+          "ru": "Уточните план, который вы нашли, не повторяя map словом it.",
+          "uk": "Уточніть план, який ви знайшли, не повторюючи map словом it."
         },
         "gappedTargetPhrase": "The map I ___ is useful.",
         "gapOptions": [
@@ -392,12 +392,12 @@
             "text": "finding"
           }
         ],
-        "testedDimension": "Уточніть план, який ви знайшли, не повторюючи map займенником.",
+        "testedDimension": "Уточніть план, який ви знайшли, не повторюючи map словом it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-07:i08:r2",
             "correct": false,
-            "testedDimension": "Уточніть план, який ви знайшли, не повторюючи map займенником.",
+            "testedDimension": "Уточніть план, який ви знайшли, не повторюючи map словом it.",
             "feedbackByLocale": {
               "ru": "Map уже названо: it после found не нужно.",
               "uk": "Map уже названо: it після found не потрібне."
@@ -406,7 +406,7 @@
           {
             "responseId": "en:lesson-32:session-07:i08:r3",
             "correct": false,
-            "testedDimension": "Уточніть план, який ви знайшли, не повторюючи map займенником.",
+            "testedDimension": "Уточніть план, який ви знайшли, не повторюючи map словом it.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма found.",
               "uk": "Потрібна минула форма found."
@@ -1037,5 +1037,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b4bd37735a54408d0a9aaa20ace69fab98c86cc4736b0c43501075cfe3325481"
+  "learnerFingerprint": "7b3eb97c14a5def2c1b085b66b5cfac6f3e7a073bb1f1c3166acffd59f01b4c0"
 }

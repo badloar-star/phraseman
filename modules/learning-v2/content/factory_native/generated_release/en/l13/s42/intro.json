@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-13:session-42",
   "learningOutcomeByLocale": {
-    "ru": "review: past event sequence",
-    "uk": "review: past event sequence"
+    "ru": "повторить: рассказать по порядку, что было сначала, а что потом",
+    "uk": "повторити: розповісти по черзі, що було спершу, а що потім"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Яку сумку друг узяв"
       },
       "bodyByLocale": {
-        "ru": "Друг вчера уехал на прогулку по городу. Уточните, взял ли он свою сумку через плечо: Did you take your shoulder bag? — Ты взял свою сумку через плечо? Соберите Did + you + take. После did используйте take, не прошедшую форму took. Затем добавьте your shoulder bag. При обращении к другу your означает «твоя»; после него артикль не нужен.",
-        "uk": "Друг учора поїхав на прогулянку містом. Уточніть, чи взяв він свою сумку через плече: Did you take your shoulder bag? — Ти взяв свою сумку через плече? Складіть Did + you + take. Після did використовуйте take, не минулу форму took. Потім додайте your shoulder bag. Коли звертаєтеся до друга, your означає «твоя»; після нього артикль не потрібен."
+        "ru": "Друг вчера уехал на прогулку по городу. Уточните, взял ли он свою сумку через плечо: Did you take your shoulder bag? — Ты взял свою сумку через плечо? Соберите Did + you + take. После did используйте take, не прошедшую форму took. Затем добавьте your shoulder bag. При обращении к другу your означает «твоя»; после него a / the не нужно.",
+        "uk": "Друг учора поїхав на прогулянку містом. Уточніть, чи взяв він свою сумку через плече: Did you take your shoulder bag? — Ти взяв свою сумку через плече? Складіть Did + you + take. Після did використовуйте take, не минулу форму took. Потім додайте your shoulder bag. Коли звертаєтеся до друга, your означає «твоя»; після нього a / the не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-13:session-42:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ff0d2d1ebd8f08d28761e2b617a98dbef5f1adc9e53d818131d01f4766b6d75e"
+  "introFingerprint": "3ebce4294c7c4d43ec02027708e49d0cfc28713d64906bc17978b43f15167292"
 }

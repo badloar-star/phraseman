@@ -15,8 +15,8 @@
         "uk": "Хто зробив знімок"
       },
       "bodyByLocale": {
-        "ru": "Вы показываете семейную фотографию. Вас спрашивают, кто её сделал. Ответьте: The photo was taken by my dad — фотографию сделал мой папа. Соберите The photo + was taken + by + my dad. Для фотографии используем take a photo; taken — третья форма take. Was taken сообщает о сделанном снимке, а by my dad называет человека, который его сделал.",
-        "uk": "Ви показуєте сімейну фотографію. Вас запитують, хто її зробив. Дайте відповідь: The photo was taken by my dad — фотографію зробив мій тато. Складіть The photo + was taken + by + my dad. Для фотографії використовуємо take a photo; taken — третя форма take. Was taken повідомляє про зроблений знімок, а by my dad називає людину, яка його зробила."
+        "ru": "Вы показываете семейную фотографию. Вас спрашивают, кто её сделал. Ответьте: The photo was taken by my dad — фотографию сделал мой папа. Соберите The photo + was taken + by + my dad. Для фотографии используем take a photo; taken — форма take после have. Was taken сообщает о сделанном снимке, а by my dad называет человека, который его сделал.",
+        "uk": "Ви показуєте сімейну фотографію. Вас запитують, хто її зробив. Дайте відповідь: The photo was taken by my dad — фотографію зробив мій тато. Складіть The photo + was taken + by + my dad. Для фотографії використовуємо take a photo; taken — форма take після have. Was taken повідомляє про зроблений знімок, а by my dad називає людину, яка його зробила."
       },
       "question": {
         "interactionId": "en:lesson-28:session-39:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "54202c2205295194e0084fcdc10939be2048fdc1dda717aa5355f4153bc7747e"
+  "introFingerprint": "cfa554bb5f0f1171f17223ba3ca45de9a0b0cfe5169d0df944f2da15f77669fa"
 }

@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сыр, который я купил, мягкий. Скажите без that.",
+      "prompt": "Сыр, который вы купили, мягкий. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-48:i07:audio"
       ],
-      "accessibilityLabel": "Сыр, который я купил, мягкий. Скажите без that.",
+      "accessibilityLabel": "Сыр, который вы купили, мягкий. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сыр, который я купил, мягкий. Уточните предмет без лишнего местоимения.",
+      "prompt": "Сыр, который вы купили, мягкий. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-48:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сыр, который я купил, мягкий. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Сыр, который вы купили, мягкий. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сыр, который я купил, мягкий. Уточните предмет без лишнего местоимения.",
-          "uk": "Сир, який я купив, м’який. Уточніть предмет без зайвого займенника."
+          "ru": "Сыр, который вы купили, мягкий. Предмет уже назван — не повторяйте его.",
+          "uk": "Сир, який ви купили, м’який. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The cheese I ___ is soft.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Сыр, который я купил, мягкий. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Сыр, который вы купили, мягкий. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-48:i08:r2",
             "correct": false,
-            "testedDimension": "Сыр, который я купил, мягкий. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Сыр, который вы купили, мягкий. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-48:i08:r3",
             "correct": false,
-            "testedDimension": "Сыр, который я купил, мягкий. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Сыр, который вы купили, мягкий. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна считает, что сока не осталось, но сквозь стекло видна жидкость. Скажите вывод, заменив The bottle местоимением It.",
+      "prompt": "Анна считает, что сока не осталось, но сквозь стекло видна жидкость. Скажите вывод, заменив The bottle словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-48:i10:audio"
       ],
-      "accessibilityLabel": "Анна считает, что сока не осталось, но сквозь стекло видна жидкость. Скажите вывод, заменив The bottle местоимением It.",
+      "accessibilityLabel": "Анна считает, что сока не осталось, но сквозь стекло видна жидкость. Скажите вывод, заменив The bottle словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3b694f900f0f91cb911008034d43404638112c0580a67d21ea50721049838ce2"
+  "learnerFingerprint": "0f2cac77f84dd728bd927a6ec31171d41fcc5bdc55cf7299304ae020850854d5"
 }

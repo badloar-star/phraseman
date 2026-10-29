@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-12:session-14",
   "learningOutcomeByLocale": {
-    "ru": "steal → stole; had, checked; was/were",
-    "uk": "steal → stole; had, checked; was/were"
+    "ru": "рассказать о прошлом: stole, checked",
+    "uk": "розповісти про минуле: stole, checked"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Повідомити про крадіжку гаманця"
       },
       "bodyByLocale": {
-        "ru": "Вы видели, как незнакомец забрал ваш кошелёк для монет со столика, и сообщаете о краже сотруднику кафе. Скажите: Someone stole my coin purse — кто-то украл мой кошелёк для мелочи. Сначала Someone, затем действие в прошлом: stole. После someone форма остаётся stole, без окончания s. Завершите предложение названием украденной вещи: my coin purse. Перед my артикль не ставим.",
-        "uk": "Ви бачили, як незнайомець забрав ваш гаманець для монет зі столика, і повідомляєте про крадіжку працівникові кафе. Скажіть: Someone stole my coin purse — хтось украв мій гаманець для дрібних грошей. Спочатку Someone, потім дія в минулому: stole. Після someone форма залишається stole, без закінчення s. Завершіть речення назвою вкраденої речі: my coin purse. Перед my артикль не ставимо."
+        "ru": "Вы видели, как незнакомец забрал ваш кошелёк для монет со столика, и сообщаете о краже сотруднику кафе. Скажите: Someone stole my coin purse — кто-то украл мой кошелёк для мелочи. Сначала Someone, затем действие в прошлом: stole. После someone форма остаётся stole, без окончания s. Завершите предложение названием украденной вещи: my coin purse. Перед my a / the не ставим.",
+        "uk": "Ви бачили, як незнайомець забрав ваш гаманець для монет зі столика, і повідомляєте про крадіжку працівникові кафе. Скажіть: Someone stole my coin purse — хтось украв мій гаманець для дрібних грошей. Спочатку Someone, потім дія в минулому: stole. Після someone форма залишається stole, без закінчення s. Завершіть речення назвою вкраденої речі: my coin purse. Перед my a / the не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-12:session-14:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "964f33057787bf8ab188c05e570810dcec498449b53904402bad0a95e30b38a3"
+  "introFingerprint": "580c9cfc21205464851a2366fcc51c39f4fb62c4f5951699f194fe7f6d6a390b"
 }

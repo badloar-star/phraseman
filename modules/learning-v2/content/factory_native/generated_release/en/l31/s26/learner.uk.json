@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви поїли, бо були голодні. Виберіть сполучник.",
+      "prompt": "Ви поїли, бо були голодні. Виберіть, чим поєднати частини фрази.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-26:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви поїли, бо були голодні. Виберіть сполучник.",
+      "accessibilityLabel": "Ви поїли, бо були голодні. Виберіть, чим поєднати частини фрази.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы поели, потому что были голодны. Выберите связку.",
-          "uk": "Ви поїли, бо були голодні. Виберіть сполучник."
+          "ru": "Вы поели, потому что были голодны. Выберите, чем связать части фразы.",
+          "uk": "Ви поїли, бо були голодні. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "I ate ___ I was hungry.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Ви поїли, бо були голодні. Виберіть сполучник.",
+        "testedDimension": "Ви поїли, бо були голодні. Виберіть, чим поєднати частини фрази.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-26:i03:r2",
             "correct": false,
-            "testedDimension": "Ви поїли, бо були голодні. Виберіть сполучник.",
+            "testedDimension": "Ви поїли, бо були голодні. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Перед целой частью I was hungry нужно because без of.",
               "uk": "Перед цілою частиною I was hungry потрібне because без of."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-31:session-26:i03:r3",
             "correct": false,
-            "testedDimension": "Ви поїли, бо були голодні. Виберіть сполучник.",
+            "testedDimension": "Ви поїли, бо були голодні. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Of не связывает эти части.",
               "uk": "Of не пов’язує ці частини."
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3f74666dfb444918c3323543e3cebba2d18a04a305c1bbfa4847aed47e839834"
+  "learnerFingerprint": "5c5fe67cda28b3d2952f9c2a7d6997c13fbe5819b8542b415fb4b988e4fe0689"
 }

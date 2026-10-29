@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-38",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Край столу вже чистий"
       },
       "bodyByLocale": {
-        "ru": "Вы вытерли липкий край стола и сообщаете, что работа сделана. I have cleaned the edge of the table — я вытер край стола. После I ставим have + cleaned: сообщаем о результате сейчас, не называя законченной даты. Cleaned — третья форма правильного глагола clean с -ed. The edge of the table называет, что вы вытерли; of связывает край с конкретным столом.",
-        "uk": "Ви витерли липкий край столу й повідомляєте, що роботу зроблено. I have cleaned the edge of the table — я витер край столу. Після I ставимо have + cleaned: повідомляємо про результат зараз, не називаючи завершеної дати. Cleaned — третя форма правильного дієслова clean з -ed. The edge of the table називає, що ви витерли; of пов’язує край із конкретним столом."
+        "ru": "Вы вытерли липкий край стола и сообщаете, что работа сделана. I have cleaned the edge of the table — я вытер край стола. После I ставим have + cleaned: сообщаем о результате сейчас, не называя законченной даты. Cleaned — форма после have правильного глагола clean с -ed. The edge of the table называет, что вы вытерли; of связывает край с конкретным столом.",
+        "uk": "Ви витерли липкий край столу й повідомляєте, що роботу зроблено. I have cleaned the edge of the table — я витер край столу. Після I ставимо have + cleaned: повідомляємо про результат зараз, не називаючи завершеної дати. Cleaned — форма після have правильного дієслова clean з -ed. The edge of the table називає, що ви витерли; of пов’язує край із конкретним столом."
       },
       "question": {
         "interactionId": "en:lesson-24:session-38:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Початок оповідання"
       },
       "bodyByLocale": {
-        "ru": "Beginning — начало. The beginning of the story — начало рассказа. She read the beginning of the story yesterday — вчера она прочитала начало рассказа. С yesterday используем Past Simple. Read в прошлом произносится «ред», хотя пишется так же, как исходная форма.",
-        "uk": "Beginning — початок. The beginning of the story — початок оповідання. She read the beginning of the story yesterday — учора вона прочитала початок оповідання. Із yesterday використовуємо Past Simple. Read у минулому вимовляється «ред», хоча пишеться так само, як початкова форма."
+        "ru": "Beginning — начало. The beginning of the story — начало рассказа. She read the beginning of the story yesterday — вчера она прочитала начало рассказа. С yesterday используем форму прошлого. Read в прошлом произносится «ред», хотя пишется так же, как исходная форма.",
+        "uk": "Beginning — початок. The beginning of the story — початок оповідання. She read the beginning of the story yesterday — учора вона прочитала початок оповідання. Із yesterday використовуємо форму минулого. Read у минулому вимовляється «ред», хоча пишеться так само, як початкова форма."
       },
       "question": {
         "interactionId": "en:lesson-24:session-38:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "27a382d8fa8e36f4cbb8fcb54eceefbc94aea8fd36faeb6bfeefb985e83e3643"
+  "introFingerprint": "8fdc79ea67d0737b4d79ed9eb0e6b331b49920dd5e44e7ac6cb345945074a47a"
 }

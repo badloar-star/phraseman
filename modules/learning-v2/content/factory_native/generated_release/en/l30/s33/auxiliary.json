@@ -23,8 +23,8 @@
           "uk": "Needs не виконує заданий зсув у минуле; тут потрібне needed."
         },
         "en:lesson-30:session-33:intro2:r3": {
-          "ru": "Нужна форма needed; needing без вспомогательного глагола здесь не подходит.",
-          "uk": "Потрібна форма needed; needing без допоміжного дієслова тут не підходить."
+          "ru": "Нужна форма needed; одной формы needing здесь мало.",
+          "uk": "Потрібна форма needed; однієї форми needing тут замало."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "36adf6c48febd25ae7a210713013c96c8647ee4ddde95ed8d9e8ba8ab2bca694"
+  "auxiliaryFingerprint": "7f14f14d4509aaea32f5461e3f32467c2726ffced9655930a528bbd943fe8497"
 }

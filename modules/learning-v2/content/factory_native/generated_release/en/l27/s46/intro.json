@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-27:session-46",
   "learningOutcomeByLocale": {
-    "ru": "present perfect / past simple; wish + past; if I were; unreal condition",
-    "uk": "present perfect / past simple; wish + past; if I were; unreal condition"
+    "ru": "сказать, чего вам хочется иначе, и о том, что было бы, если бы…",
+    "uk": "сказати, чого вам хочеться інакше, і про те, що було б, якби…"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Коли відкрили коробку"
       },
       "bodyByLocale": {
-        "ru": "Продавец спрашивает, когда вы открыли коробку с полкой. Это было вчера. Ответьте: I opened the box yesterday — я открыл коробку вчера. Yesterday называет законченное время, поэтому используем Past Simple: opened. К обычному глаголу open добавляем -ed. Have здесь не нужен: вы отвечаете именно на вопрос о времени вчера.\n\nСобираем предложение: I + opened + the box + yesterday — кто → действие в прошлом → что открыли → когда.",
-        "uk": "Продавець запитує, коли ви відкрили коробку з полицею. Це було вчора. Дайте відповідь: I opened the box yesterday — я відкрив коробку вчора. Yesterday називає завершений час, тому використовуємо Past Simple: opened. До звичайного дієслова open додаємо -ed. Have тут не потрібне: ви відповідаєте саме на запитання про час учора.\n\nСкладаємо речення: I + opened + the box + yesterday — хто → дія в минулому → що відкрили → коли."
+        "ru": "Продавец спрашивает, когда вы открыли коробку с полкой. Это было вчера. Ответьте: I opened the box yesterday — я открыл коробку вчера. Yesterday называет законченное время, поэтому используем форму прошлого: opened. К обычному глаголу open добавляем -ed. Have здесь не нужен: вы отвечаете именно на вопрос о времени вчера.\n\nСобираем предложение: I + opened + the box + yesterday — кто → действие в прошлом → что открыли → когда.",
+        "uk": "Продавець запитує, коли ви відкрили коробку з полицею. Це було вчора. Дайте відповідь: I opened the box yesterday — я відкрив коробку вчора. Yesterday називає завершений час, тому використовуємо форму минулого: opened. До звичайного дієслова open додаємо -ed. Have тут не потрібне: ви відповідаєте саме на запитання про час учора.\n\nСкладаємо речення: I + opened + the box + yesterday — хто → дія в минулому → що відкрили → коли."
       },
       "question": {
         "interactionId": "en:lesson-27:session-46:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "168b3bb9b16b542988fbc7598acdd3ecb10ce63f3926869d3c12624b8f064a66"
+  "introFingerprint": "38a295c359fd05fc2199e82b697330be2cd702914f821cb7fa430302b5c20721"
 }

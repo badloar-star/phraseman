@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви з друзями перестали грати через дощ. Виберіть сполуку.",
+      "prompt": "Ви з друзями перестали грати через дощ. Виберіть, чим поєднати частини фрази.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-31:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви з друзями перестали грати через дощ. Виберіть сполуку.",
+      "accessibilityLabel": "Ви з друзями перестали грати через дощ. Виберіть, чим поєднати частини фрази.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы с друзьями перестали играть из-за дождя. Выберите связку.",
-          "uk": "Ви з друзями перестали грати через дощ. Виберіть сполуку."
+          "ru": "Вы с друзьями перестали играть из-за дождя. Выберите, чем связать части фразы.",
+          "uk": "Ви з друзями перестали грати через дощ. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "We stopped playing ___ the rain.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Ви з друзями перестали грати через дощ. Виберіть сполуку.",
+        "testedDimension": "Ви з друзями перестали грати через дощ. Виберіть, чим поєднати частини фрази.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-31:i03:r2",
             "correct": false,
-            "testedDimension": "Ви з друзями перестали грати через дощ. Виберіть сполуку.",
+            "testedDimension": "Ви з друзями перестали грати через дощ. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Перед названием причины the rain нужно because of.",
               "uk": "Перед назвою причини the rain потрібне because of."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-31:session-31:i03:r3",
             "correct": false,
-            "testedDimension": "Ви з друзями перестали грати через дощ. Виберіть сполуку.",
+            "testedDimension": "Ви з друзями перестали грати через дощ. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Нужна полная связка because of.",
               "uk": "Потрібна повна сполука because of."
@@ -1042,5 +1042,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "89ccfac67318818df5d9ca0c6ceb196c75174de73aa6d9cba73d7649bae92c3b"
+  "learnerFingerprint": "97e1d3e43dcefd47793b07c7d1aceaf07f50daa8d1e9ee8aa6b5e6e85b7abe46"
 }

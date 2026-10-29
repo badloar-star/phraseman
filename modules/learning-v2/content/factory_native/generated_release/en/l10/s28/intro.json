@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-28",
   "learningOutcomeByLocale": {
-    "ru": "I am working tonight; I walk daily; We meet weekly; I pay monthly",
-    "uk": "I am working tonight; I walk daily; We meet weekly; I pay monthly"
+    "ru": "сказать, как часто вы что-то делаете: daily, weekly, monthly",
+    "uk": "сказати, як часто ви щось робите: daily, weekly, monthly"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Зустрічатися щотижня"
       },
       "bodyByLocale": {
-        "ru": "Знакомый спрашивает, как часто вы видитесь с друзьями. Вы встречаетесь каждую неделю: We meet weekly — «Мы встречаемся еженедельно». Сначала we, затем привычное действие meet и частота weekly. С we глагол meet остаётся без -s. Weekly отвечает на вопрос «как часто?» и в этой фразе стоит после meet; дополнительный предлог не нужен. Для регулярных встреч используем Present Simple.",
-        "uk": "Знайомий запитує, як часто ви бачитеся з друзями. Ви зустрічаєтеся щотижня: We meet weekly — «Ми зустрічаємося щотижня». Спочатку we, потім звична дія meet і частота weekly. З we дієслово meet залишається без -s. Weekly відповідає на запитання «як часто?» і в цій фразі стоїть після meet; додатковий прийменник не потрібен. Для регулярних зустрічей використовуємо Present Simple."
+        "ru": "Знакомый спрашивает, как часто вы видитесь с друзьями. Вы встречаетесь каждую неделю: We meet weekly — «Мы встречаемся еженедельно». Сначала we, затем привычное действие meet и частота weekly. С we глагол meet остаётся без -s. Weekly отвечает на вопрос «как часто?» и в этой фразе стоит после meet; дополнительный предлог не нужен. Для регулярных встреч используем форму без -ing.",
+        "uk": "Знайомий запитує, як часто ви бачитеся з друзями. Ви зустрічаєтеся щотижня: We meet weekly — «Ми зустрічаємося щотижня». Спочатку we, потім звична дія meet і частота weekly. З we дієслово meet залишається без -s. Weekly відповідає на запитання «як часто?» і в цій фразі стоїть після meet; додатковий прийменник не потрібен. Для регулярних зустрічей використовуємо форму без -ing."
       },
       "question": {
         "interactionId": "en:lesson-10:session-28:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ecb29af832155440f6ab88ad5e552f64b3407da775c460356e32331f73926895"
+  "introFingerprint": "83b6f9f463e69be0409bd46376a1c8f5943c8482d64e4207c908b6f5bde609c2"
 }

@@ -510,8 +510,8 @@
             "correct": false,
             "testedDimension": "Ви ще не відкрили банку соусу: повідомте про становище зараз.",
             "feedbackByLocale": {
-              "ru": "После have not нужна третья форма opened.",
-              "uk": "Після have not потрібна третя форма opened."
+              "ru": "После have not нужна форма opened.",
+              "uk": "Після have not потрібна форма opened."
             }
           },
           {
@@ -1041,5 +1041,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c9896a0783428ce05b5d1c75a7fb2f6b3483b8e742a5eb68783d055fa7a8673f"
+  "learnerFingerprint": "fbf13f95bdad00cbe6a2bea1fb043ab1389f35e2d921a2ce563da20459c40daa"
 }

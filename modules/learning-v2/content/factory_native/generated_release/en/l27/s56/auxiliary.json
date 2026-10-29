@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-27:session-56:intro1:q",
       "responseFeedbackById": {
         "en:lesson-27:session-56:intro1:r2": {
-          "ru": "После have нужна третья форма put, не putting.",
-          "uk": "Після have потрібна третя форма put, не putting."
+          "ru": "После have нужна форма put, не putting.",
+          "uk": "Після have потрібна форма put, не putting."
         },
         "en:lesson-27:session-56:intro1:r3": {
           "ru": "С I используем have.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "f4387eed0aee8f91d346fa1b20db8c22437d79663b0f7507a6369b12a7ace094"
+  "auxiliaryFingerprint": "875317a8d328e0d5502e2ea27d2f5e00edb63d51e2b80be7dca479bd22663955"
 }

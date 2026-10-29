@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-46:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-46:intro2:r2": {
-          "ru": "С a sack в единственном числе нужно Is there.",
-          "uk": "З a sack в однині потрібне Is there."
+          "ru": "С a sack в форме для одного нужно Is there.",
+          "uk": "З a sack у формі для одного потрібне Is there."
         },
         "en:lesson-04:session-46:intro2:r3": {
           "ru": "Мешок один, поэтому перед sack нужно a.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-46:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-46:intro3:r2": {
-          "ru": "Packets стоит во множественном числе, поэтому нужно aren’t.",
-          "uk": "Packets стоїть у множині, тому потрібне aren’t."
+          "ru": "Packets стоит в форме для нескольких, поэтому нужно aren’t.",
+          "uk": "Packets стоїть у формі для кількох, тому потрібне aren’t."
         },
         "en:lesson-04:session-46:intro3:r3": {
-          "ru": "После aren’t any здесь нужна форма множественного числа packets.",
-          "uk": "Після aren’t any тут потрібна форма множини packets."
+          "ru": "После aren’t any здесь нужна форма для нескольких packets.",
+          "uk": "Після aren’t any тут потрібна форма для кількох packets."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "7b1cfad413c7792cf7543d38ac6b59e02c7877a46955b12705f63527e6903433"
+  "auxiliaryFingerprint": "4f989f362e64eb5b40dfe988af473df85d275569a2bbd9b0c1620980c81f2aaf"
 }

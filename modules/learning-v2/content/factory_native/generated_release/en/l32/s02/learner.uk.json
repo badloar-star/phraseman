@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must.",
+      "prompt": "Ви впевнені з пам’яті, що ключі тут. Виберіть форму be після must.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-02:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must.",
+      "accessibilityLabel": "Ви впевнені з пам’яті, що ключі тут. Виберіть форму be після must.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы уверены по памяти, что ключи здесь. Выберите связку после must.",
-          "uk": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must."
+          "ru": "Вы уверены по памяти, что ключи здесь. Выберите форму be после must.",
+          "uk": "Ви впевнені з пам’яті, що ключі тут. Виберіть форму be після must."
         },
         "gappedTargetPhrase": "The keys must ___ here.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must.",
+        "testedDimension": "Ви впевнені з пам’яті, що ключі тут. Виберіть форму be після must.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-02:i03:r2",
             "correct": false,
-            "testedDimension": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must.",
+            "testedDimension": "Ви впевнені з пам’яті, що ключі тут. Виберіть форму be після must.",
             "feedbackByLocale": {
               "ru": "После must нужна начальная форма be.",
               "uk": "Після must потрібна початкова форма be."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-32:session-02:i03:r3",
             "correct": false,
-            "testedDimension": "Ви впевнені з пам’яті, що ключі тут. Виберіть зв’язку після must.",
+            "testedDimension": "Ви впевнені з пам’яті, що ключі тут. Виберіть форму be після must.",
             "feedbackByLocale": {
               "ru": "Must сочетается с be, не is.",
               "uk": "Must поєднується з be, не is."
@@ -352,7 +352,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточніть пальто через I wore, не повторюючи предмет займенником.",
+      "prompt": "Уточніть пальто через I wore, не повторюючи предмет словом it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-02:i08:r1",
@@ -369,12 +369,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточніть пальто через I wore, не повторюючи предмет займенником.",
+      "accessibilityLabel": "Уточніть пальто через I wore, не повторюючи предмет словом it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните пальто через I wore, не повторяя предмет местоимением.",
-          "uk": "Уточніть пальто через I wore, не повторюючи предмет займенником."
+          "ru": "Уточните пальто через I wore, не повторяя предмет словом it.",
+          "uk": "Уточніть пальто через I wore, не повторюючи предмет словом it."
         },
         "gappedTargetPhrase": "The coat I ___ is in the car.",
         "gapOptions": [
@@ -391,12 +391,12 @@
             "text": "worn"
           }
         ],
-        "testedDimension": "Уточніть пальто через I wore, не повторюючи предмет займенником.",
+        "testedDimension": "Уточніть пальто через I wore, не повторюючи предмет словом it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-02:i08:r2",
             "correct": false,
-            "testedDimension": "Уточніть пальто через I wore, не повторюючи предмет займенником.",
+            "testedDimension": "Уточніть пальто через I wore, не повторюючи предмет словом it.",
             "feedbackByLocale": {
               "ru": "Coat уже названо: it после wore не нужно.",
               "uk": "Coat уже названо: it після wore не потрібне."
@@ -405,7 +405,7 @@
           {
             "responseId": "en:lesson-32:session-02:i08:r3",
             "correct": false,
-            "testedDimension": "Уточніть пальто через I wore, не повторюючи предмет займенником.",
+            "testedDimension": "Уточніть пальто через I wore, не повторюючи предмет словом it.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма wore.",
               "uk": "Потрібна минула форма wore."
@@ -680,13 +680,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви перевірили кишеню й описуєте саме її: «Кишеня, яку я перевірив, була порожня».",
+      "prompt": "Ви перевірили кишеню й описуєте саме її: «Кишеня, яку ви перевірили, була порожня».",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-02:i14:audio"
       ],
-      "accessibilityLabel": "Ви перевірили кишеню й описуєте саме її: «Кишеня, яку я перевірив, була порожня».",
+      "accessibilityLabel": "Ви перевірили кишеню й описуєте саме її: «Кишеня, яку ви перевірили, була порожня».",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1045,5 +1045,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7d5101858f43549f476c9d7c2371a72031e38bfad75a50b53c0a23e2f2cfd095"
+  "learnerFingerprint": "324f25f1ca594f2294a7c6dafd8407bdb1614965a90cc070712c84e0c5f48f0f"
 }

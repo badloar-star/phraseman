@@ -69,8 +69,8 @@
         "uk": "Зрозуміти смуток героїні"
       },
       "bodyByLocale": {
-        "ru": "В фильме героиня прощается с другом, и вам понятно, почему ей грустно. Sadness — грусть. I can understand her sadness. — Я могу понять её грусть. Строим фразу: I + can + understand + her sadness. Understand после can остаётся без to. В her sadness слово her показывает, чья это грусть; оно стоит перед названием чувства, без дополнительного артикля.",
-        "uk": "У фільмі героїня прощається з другом, і вам зрозуміло, чому їй сумно. Sadness — смуток. I can understand her sadness. — Я можу зрозуміти її смуток. Будуємо фразу: I + can + understand + her sadness. Understand після can залишається без to. У her sadness слово her показує, чий це смуток; воно стоїть перед назвою почуття, без додаткового артикля."
+        "ru": "В фильме героиня прощается с другом, и вам понятно, почему ей грустно. Sadness — грусть. I can understand her sadness. — Я могу понять её грусть. Строим фразу: I + can + understand + her sadness. Understand после can остаётся без to. В her sadness слово her показывает, чья это грусть; оно стоит перед названием чувства, без лишнего a или the.",
+        "uk": "У фільмі героїня прощається з другом, і вам зрозуміло, чому їй сумно. Sadness — смуток. I can understand her sadness. — Я можу зрозуміти її смуток. Будуємо фразу: I + can + understand + her sadness. Understand після can залишається без to. У her sadness слово her показує, чий це смуток; воно стоїть перед назвою почуття, без додаткового a чи the."
       },
       "question": {
         "interactionId": "en:lesson-19:session-08:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "01a96ad1673f250bbc5a0e7d67a3424e79c2189d71f18aff214ae6808e281cde"
+  "introFingerprint": "42fbb7a638dcfbc94d846e271920498d540a3541793616dfdd548c5186fd7b67"
 }

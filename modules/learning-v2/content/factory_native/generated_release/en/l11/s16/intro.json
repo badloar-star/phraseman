@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-16",
   "learningOutcomeByLocale": {
-    "ru": "Was…? Were…? was not; were not",
-    "uk": "Was…? Were…? was not; were not"
+    "ru": "спросить о прошлом и сказать «не было»: Was it cold? It wasn’t",
+    "uk": "запитати про минуле й сказати «не було»: Was it cold? It wasn’t"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Де були вішаки"
       },
       "bodyByLocale": {
-        "ru": "После уборки вы спрашиваете, были ли вешалки-плечики в шкафу. Спросите: Were the coat hangers in the wardrobe? Начните с were, потому что вешалок несколько. Затем назовите их — the coat hangers — и добавьте место in the wardrobe. В названии множественное число получает последнее слово hangers. Were само начинает вопрос о прошлом; did перед ним не ставим.",
-        "uk": "Після прибирання ви запитуєте, чи були вішаки-плічка в шафі. Запитайте: Were the coat hangers in the wardrobe? Почніть із were, бо вішаків кілька. Потім назвіть їх — the coat hangers — і додайте місце in the wardrobe. У назві множини набуває останнє слово hangers. Were саме починає запитання про минуле; did перед ним не ставимо."
+        "ru": "После уборки вы спрашиваете, были ли вешалки-плечики в шкафу. Спросите: Were the coat hangers in the wardrobe? Начните с were, потому что вешалок несколько. Затем назовите их — the coat hangers — и добавьте место in the wardrobe. В названии форма для нескольких получает последнее слово hangers. Were само начинает вопрос о прошлом; did перед ним не ставим.",
+        "uk": "Після прибирання ви запитуєте, чи були вішаки-плічка в шафі. Запитайте: Were the coat hangers in the wardrobe? Почніть із were, бо вішаків кілька. Потім назвіть їх — the coat hangers — і додайте місце in the wardrobe. У назві форма для кількох набуває останнє слово hangers. Were саме починає запитання про минуле; did перед ним не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-11:session-16:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0a2c5b2cd0862b64197f2c42bb6d8ac949c5398616de24b3d04384cd4477694e"
+  "introFingerprint": "d34a87431ac5049bbf22b707275954ec226e0e42b4020540a61c39460bff7c79"
 }

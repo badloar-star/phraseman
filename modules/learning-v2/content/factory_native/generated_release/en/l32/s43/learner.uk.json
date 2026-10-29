@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "М’яч, який я знайшов, брудний. Скажіть без that.",
+      "prompt": "М’яч, який ви знайшли, брудний. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-43:i07:audio"
       ],
-      "accessibilityLabel": "М’яч, який я знайшов, брудний. Скажіть без that.",
+      "accessibilityLabel": "М’яч, який ви знайшли, брудний. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "М’яч, який я знайшов, брудний. Уточніть предмет без зайвого займенника.",
+      "prompt": "М’яч, який ви знайшли, брудний. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-43:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "М’яч, який я знайшов, брудний. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "М’яч, який ви знайшли, брудний. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Мяч, который я нашёл, грязный. Уточните предмет без лишнего местоимения.",
-          "uk": "М’яч, який я знайшов, брудний. Уточніть предмет без зайвого займенника."
+          "ru": "Мяч, который вы нашли, грязный. Предмет уже назван — не повторяйте его.",
+          "uk": "М’яч, який ви знайшли, брудний. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The ball I ___ is dirty.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "finding"
           }
         ],
-        "testedDimension": "М’яч, який я знайшов, брудний. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "М’яч, який ви знайшли, брудний. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-43:i08:r2",
             "correct": false,
-            "testedDimension": "М’яч, який я знайшов, брудний. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "М’яч, який ви знайшли, брудний. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-43:i08:r3",
             "correct": false,
-            "testedDimension": "М’яч, який я знайшов, брудний. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "М’яч, який ви знайшли, брудний. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма found.",
               "uk": "Потрібна минула форма found."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ви бачите, що хвіртку замкнено. Анна думала, що крізь неї покотився м’яч. Скажіть висновок, замінивши The gate займенником It.",
+      "prompt": "Ви бачите, що хвіртку замкнено. Анна думала, що крізь неї покотився м’яч. Скажіть висновок, замінивши The gate словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-43:i10:audio"
       ],
-      "accessibilityLabel": "Ви бачите, що хвіртку замкнено. Анна думала, що крізь неї покотився м’яч. Скажіть висновок, замінивши The gate займенником It.",
+      "accessibilityLabel": "Ви бачите, що хвіртку замкнено. Анна думала, що крізь неї покотився м’яч. Скажіть висновок, замінивши The gate словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6f11e1a112320dd2a86aa93d7118764937130a7688b1098fd4deb09beba3496b"
+  "learnerFingerprint": "0b2ff3f257d8190d1631172d5ce6efa59d01300f0aa0e86f72a93494de4e2b9c"
 }

@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-37:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-37:intro1:r2": {
-          "ru": "С a parcel locker в единственном числе нужно isn’t.",
-          "uk": "З a parcel locker в однині потрібне isn’t."
+          "ru": "С a parcel locker в форме для одного нужно isn’t.",
+          "uk": "З a parcel locker у формі для одного потрібне isn’t."
         },
         "en:lesson-04:session-37:intro1:r3": {
           "ru": "Почтомат один, поэтому после isn’t нужно a: isn’t a parcel locker.",
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-37:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-37:intro2:r2": {
-          "ru": "Pallets стоит во множественном числе, поэтому нужно aren’t.",
-          "uk": "Pallets стоїть у множині, тому потрібне aren’t."
+          "ru": "Pallets стоит в форме для нескольких, поэтому нужно aren’t.",
+          "uk": "Pallets стоїть у формі для кількох, тому потрібне aren’t."
         },
         "en:lesson-04:session-37:intro2:r3": {
-          "ru": "После aren’t any здесь нужна форма множественного числа pallets.",
-          "uk": "Після aren’t any тут потрібна форма множини pallets."
+          "ru": "После aren’t any здесь нужна форма для нескольких pallets.",
+          "uk": "Після aren’t any тут потрібна форма для кількох pallets."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "d1ff0300456c86033b73f3acc894f3f181bf4fa473d7300458e1bdcad8508fd0"
+  "auxiliaryFingerprint": "f6e83b6634a09c68d007fc7790ecb79367b1bb84d5940a163d34eb819fef8bb1"
 }

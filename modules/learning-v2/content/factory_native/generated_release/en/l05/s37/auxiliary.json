@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-05:session-37:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-37:intro1:r2": {
-          "ru": "earrings — множественное число, поэтому нужно are.",
-          "uk": "earrings — множина, тому потрібно are."
+          "ru": "earrings — форма для нескольких, поэтому нужно are.",
+          "uk": "earrings — форма для кількох, тому потрібно are."
         },
         "en:lesson-05:session-37:intro1:r3": {
           "ru": "his — его, а серьги принадлежат сестре: нужно hers.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "02d829559e17a5d9ad952655043f5e71ace9d2420e6010d1f35ca433139b9d42"
+  "auxiliaryFingerprint": "5af00f1c57684ef9c2a341ef16bda36bb9eb63ad802313212eb9753496b305d2"
 }

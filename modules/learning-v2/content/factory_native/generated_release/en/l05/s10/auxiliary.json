@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-05:session-10:intro3:q",
       "responseFeedbackById": {
         "en:lesson-05:session-10:intro3:r2": {
-          "ru": "Headphones имеет форму множественного числа, поэтому нужно are, а не is.",
-          "uk": "Headphones має форму множини, тому потрібно are, а не is."
+          "ru": "Headphones имеет форму для нескольких, поэтому нужно are, а не is.",
+          "uk": "Headphones має форму для кількох, тому потрібно are, а не is."
         },
         "en:lesson-05:session-10:intro3:r3": {
           "ru": "his — его, а вы говорите с братом: нужно your.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "b5662ed33775f5f1b114b38498f3f6aac14e45aa9183448752eff15523ae41ed"
+  "auxiliaryFingerprint": "0ee6515b41f072fe307276f6e3f542a56786ac78629e137fb84aba4fc280ca13"
 }

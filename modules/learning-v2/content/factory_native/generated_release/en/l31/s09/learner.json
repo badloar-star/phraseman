@@ -420,7 +420,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
+      "prompt": "Анна не водит машину. После «не» добавьте уточнение без «не».",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-09:i09:r1",
@@ -437,12 +437,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
+      "accessibilityLabel": "Анна не водит машину. После «не» добавьте уточнение без «не».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
-          "uk": "Анна не водить машину. Після заперечення додайте стверджувальне уточнення."
+          "ru": "Анна не водит машину. После «не» добавьте уточнение без «не».",
+          "uk": "Анна не водить машину. Після «не» додайте уточнення без «не»."
         },
         "gappedTargetPhrase": "She doesn't drive, ___ she?",
         "gapOptions": [
@@ -459,12 +459,12 @@
             "text": "is"
           }
         ],
-        "testedDimension": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
+        "testedDimension": "Анна не водит машину. После «не» добавьте уточнение без «не».",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-09:i09:r2",
             "correct": false,
-            "testedDimension": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
+            "testedDimension": "Анна не водит машину. После «не» добавьте уточнение без «не».",
             "feedbackByLocale": {
               "ru": "С she нужен does.",
               "uk": "З she потрібен does."
@@ -473,7 +473,7 @@
           {
             "responseId": "en:lesson-31:session-09:i09:r3",
             "correct": false,
-            "testedDimension": "Анна не водит машину. После отрицания добавьте утвердительное уточнение.",
+            "testedDimension": "Анна не водит машину. После «не» добавьте уточнение без «не».",
             "feedbackByLocale": {
               "ru": "Берём does из doesn’t.",
               "uk": "Беремо does із doesn’t."
@@ -971,7 +971,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
+      "prompt": "Друг не водит машину. В коротком вопросе уберите «не» из doesn’t.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-09:i20:r1",
@@ -988,12 +988,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
+      "accessibilityLabel": "Друг не водит машину. В коротком вопросе уберите «не» из doesn’t.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
-          "uk": "Друг не водить машину. У короткому запитанні приберіть заперечення з doesn’t."
+          "ru": "Друг не водит машину. В коротком вопросе уберите «не» из doesn’t.",
+          "uk": "Друг не водить машину. У короткому запитанні приберіть «не» з doesn’t."
         },
         "gappedTargetPhrase": "He doesn't drive, ___ he?",
         "gapOptions": [
@@ -1010,12 +1010,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
+        "testedDimension": "Друг не водит машину. В коротком вопросе уберите «не» из doesn’t.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-09:i20:r2",
             "correct": false,
-            "testedDimension": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
+            "testedDimension": "Друг не водит машину. В коротком вопросе уберите «не» из doesn’t.",
             "feedbackByLocale": {
               "ru": "С he нужен does.",
               "uk": "З he потрібен does."
@@ -1024,7 +1024,7 @@
           {
             "responseId": "en:lesson-31:session-09:i20:r3",
             "correct": false,
-            "testedDimension": "Друг не водит машину. В коротком вопросе уберите отрицание из doesn’t.",
+            "testedDimension": "Друг не водит машину. В коротком вопросе уберите «не» из doesn’t.",
             "feedbackByLocale": {
               "ru": "Берём does из doesn’t.",
               "uk": "Беремо does із doesn’t."
@@ -1074,5 +1074,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7abd6dced3ce6d2ea17ce0d098a84b1ea35e8a1a5d28e01896a1f47a90ef37da"
+  "learnerFingerprint": "77dbaf8e32143ad3438a46356381b1ac5503e91ab86d5f3fb8a9ee64b2543f62"
 }

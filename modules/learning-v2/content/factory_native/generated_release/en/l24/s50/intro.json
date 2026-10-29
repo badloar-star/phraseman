@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-50",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Пофарбував зовнішні двері"
       },
       "bodyByLocale": {
-        "ru": "Вы показываете соседу наружную дверь и рассказываете, что брат покрасил её вчера. He painted the outer door yesterday — вчера он покрасил наружную дверь. После he ставим painted: вчерашний день закончился, поэтому нужен Past Simple, без has. The outer door называет, какую дверь покрасили; outer стоит перед door. Yesterday в конце добавляет время. Основа — he + painted + the outer door + yesterday.",
-        "uk": "Ви показуєте сусідові зовнішні двері й розповідаєте, що брат пофарбував їх учора. He painted the outer door yesterday — учора він пофарбував зовнішні двері. Після he ставимо painted: учорашній день завершився, тому потрібен Past Simple, без has. The outer door називає, які двері пофарбували; outer стоїть перед door. Yesterday наприкінці додає час. Основа — he + painted + the outer door + yesterday."
+        "ru": "Вы показываете соседу наружную дверь и рассказываете, что брат покрасил её вчера. He painted the outer door yesterday — вчера он покрасил наружную дверь. После he ставим painted: вчерашний день закончился, поэтому нужна форма прошлого, без has. The outer door называет, какую дверь покрасили; outer стоит перед door. Yesterday в конце добавляет время. Основа — he + painted + the outer door + yesterday.",
+        "uk": "Ви показуєте сусідові зовнішні двері й розповідаєте, що брат пофарбував їх учора. He painted the outer door yesterday — учора він пофарбував зовнішні двері. Після he ставимо painted: учорашній день завершився, тому потрібна форма минулого, без has. The outer door називає, які двері пофарбували; outer стоїть перед door. Yesterday наприкінці додає час. Основа — he + painted + the outer door + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-50:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8a851cd60ecfc18d91fc7f2366750c03460d2d6414c270bd87b5ff0d763a4fad"
+  "introFingerprint": "15f04706ee270354bd5398589690b7c71908998099c7c2bc304aac272541ba1b"
 }

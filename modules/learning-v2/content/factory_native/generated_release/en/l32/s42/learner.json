@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Одеяло, которое я постирал, сухое. Скажите без that.",
+      "prompt": "Одеяло, которое вы постирали, сухое. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-42:i07:audio"
       ],
-      "accessibilityLabel": "Одеяло, которое я постирал, сухое. Скажите без that.",
+      "accessibilityLabel": "Одеяло, которое вы постирали, сухое. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
+      "prompt": "Одеяло, которое вы постирали, сухое. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-42:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Одеяло, которое вы постирали, сухое. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
-          "uk": "Ковдра, яку я виправ, суха. Уточніть предмет без зайвого займенника."
+          "ru": "Одеяло, которое вы постирали, сухое. Предмет уже назван — не повторяйте его.",
+          "uk": "Ковдра, яку ви випрали, суха. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The blanket I ___ is dry.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "washing"
           }
         ],
-        "testedDimension": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Одеяло, которое вы постирали, сухое. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-42:i08:r2",
             "correct": false,
-            "testedDimension": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Одеяло, которое вы постирали, сухое. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-42:i08:r3",
             "correct": false,
-            "testedDimension": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Одеяло, которое вы постирали, сухое. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма washed.",
               "uk": "Потрібна минула форма washed."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна считает, что на кровати ничего нет, но вы видите на ней большой чемодан. Скажите вывод, заменив The bed местоимением It.",
+      "prompt": "Анна считает, что на кровати ничего нет, но вы видите на ней большой чемодан. Скажите вывод, заменив The bed словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-42:i10:audio"
       ],
-      "accessibilityLabel": "Анна считает, что на кровати ничего нет, но вы видите на ней большой чемодан. Скажите вывод, заменив The bed местоимением It.",
+      "accessibilityLabel": "Анна считает, что на кровати ничего нет, но вы видите на ней большой чемодан. Скажите вывод, заменив The bed словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "09c16fba58f32f69054578f08a5b540983619273ff4f7ef61c4aaa8432ed2719"
+  "learnerFingerprint": "735ca21a46160696ccc37dc68e88b4fbbe70129a3d25ff0e4be385d4678108e5"
 }

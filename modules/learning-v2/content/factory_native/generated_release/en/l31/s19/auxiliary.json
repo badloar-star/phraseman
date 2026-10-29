@@ -23,8 +23,8 @@
           "uk": "Після where порядок the candles are."
         },
         "en:lesson-31:session-19:intro2:r3": {
-          "ru": "Множественное candles требует are.",
-          "uk": "Множина candles потребує are."
+          "ru": "Candles (их несколько) требуют are.",
+          "uk": "Candles (їх кілька) потребують are."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "381a1c7ceb5c77e21eb24088abc5255c6313195a8507317e240a397320966b39"
+  "auxiliaryFingerprint": "53d4c2fe2b693807164766b33705916a09c33b68a084ecb406a4a309bea478de"
 }

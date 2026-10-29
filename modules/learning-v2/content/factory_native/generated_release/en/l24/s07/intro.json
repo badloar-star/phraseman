@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-07",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + for duration; since starting point",
-    "uk": "present perfect + for duration; since starting point"
+    "ru": "сказать, как долго что-то длится и с какого времени",
+    "uk": "сказати, як довго щось триває і відколи"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Здібності з дитинства"
       },
       "bodyByLocale": {
-        "ru": "Ваша подруга ещё ребёнком легко решала трудные задачи и по-прежнему быстро находит решения. She has shown great intelligence since childhood — она проявляет большие умственные способности с детства. Intelligence здесь означает «умственные способности». После she ставим has, затем shown — третью форму show: she + has + shown + great intelligence. В конце добавляем since childhood: это начало периода, который продолжается до настоящего времени.",
-        "uk": "Ваша подруга ще дитиною легко розв’язувала складні задачі й досі швидко знаходить рішення. She has shown great intelligence since childhood — вона виявляє великі розумові здібності з дитинства. Intelligence тут означає «розумові здібності». Після she ставимо has, потім shown — третю форму show: she + has + shown + great intelligence. Наприкінці додаємо since childhood: це початок періоду, який триває до теперішнього часу."
+        "ru": "Ваша подруга ещё ребёнком легко решала трудные задачи и по-прежнему быстро находит решения. She has shown great intelligence since childhood — она проявляет большие умственные способности с детства. Intelligence здесь означает «умственные способности». После she ставим has, затем shown — форму show: she + has + shown + great intelligence. В конце добавляем since childhood: это начало периода, который продолжается до настоящего времени.",
+        "uk": "Ваша подруга ще дитиною легко розв’язувала складні задачі й досі швидко знаходить рішення. She has shown great intelligence since childhood — вона виявляє великі розумові здібності з дитинства. Intelligence тут означає «розумові здібності». Після she ставимо has, потім shown — форму show: she + has + shown + great intelligence. Наприкінці додаємо since childhood: це початок періоду, який триває до теперішнього часу."
       },
       "question": {
         "interactionId": "en:lesson-24:session-07:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6d8046a359a538df7d415da374b2309466dfe02968ee8a724cc28ba9ab64227a"
+  "introFingerprint": "d01ed6b218ce9588dce7797c869bfd5bc7d9f5eb9ade9d40b3e8a71b71c7cc82"
 }

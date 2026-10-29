@@ -123,8 +123,8 @@
         "uk": "Гаряча миска — поставив на стіл"
       },
       "bodyByLocale": {
-        "ru": "Вы взяли горячую миску и сразу поставили её: The bowl was hot, so I put it down — миска была горячей, поэтому я её поставил. Соберите The bowl was hot + so + I put it down. После so идёт результат. В сочетании put it down местоимение it стоит между put и down.",
-        "uk": "Ви взяли гарячу миску й одразу поставили її: The bowl was hot, so I put it down — миска була гаряча, тому я її поставив. Складіть The bowl was hot + so + I put it down. Після so йде результат. У сполуці put it down займенник it стоїть між put і down."
+        "ru": "Вы взяли горячую миску и сразу поставили её: The bowl was hot, so I put it down — миска была горячей, поэтому я её поставил. Соберите The bowl was hot + so + I put it down. После so идёт результат. В сочетании put it down слово it стоит между put и down.",
+        "uk": "Ви взяли гарячу миску й одразу поставили її: The bowl was hot, so I put it down — миска була гаряча, тому я її поставив. Складіть The bowl was hot + so + I put it down. Після so йде результат. У сполуці put it down слово it стоїть між put і down."
       },
       "question": {
         "interactionId": "en:lesson-32:session-03:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8404d52fcd2aed5a679e53eb490b21de70b63fe7fde4b61816c29fe23eacbcd6"
+  "introFingerprint": "eb1b2d766bf2ef14201e914b25f42d5d7cbf1234cbb44b19cc25e4f497f7dbc3"
 }

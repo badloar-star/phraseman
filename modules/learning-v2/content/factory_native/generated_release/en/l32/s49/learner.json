@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Тряпка, которую я постирал, чистая. Скажите без that.",
+      "prompt": "Тряпка, которую вы постирали, чистая. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-49:i07:audio"
       ],
-      "accessibilityLabel": "Тряпка, которую я постирал, чистая. Скажите без that.",
+      "accessibilityLabel": "Тряпка, которую вы постирали, чистая. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Тряпка, которую я постирал, чистая. Уточните предмет без лишнего местоимения.",
+      "prompt": "Тряпка, которую вы постирали, чистая. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-49:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Тряпка, которую я постирал, чистая. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Тряпка, которую вы постирали, чистая. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Тряпка, которую я постирал, чистая. Уточните предмет без лишнего местоимения.",
-          "uk": "Ганчірка, яку я виправ, чиста. Уточніть предмет без зайвого займенника."
+          "ru": "Тряпка, которую вы постирали, чистая. Предмет уже назван — не повторяйте его.",
+          "uk": "Ганчірка, яку ви випрали, чиста. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The cloth I ___ is clean.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "washing"
           }
         ],
-        "testedDimension": "Тряпка, которую я постирал, чистая. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Тряпка, которую вы постирали, чистая. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-49:i08:r2",
             "correct": false,
-            "testedDimension": "Тряпка, которую я постирал, чистая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Тряпка, которую вы постирали, чистая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-49:i08:r3",
             "correct": false,
-            "testedDimension": "Тряпка, которую я постирал, чистая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Тряпка, которую вы постирали, чистая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма washed.",
               "uk": "Потрібна минула форма washed."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна говорит, что чашка полная, но в ней осталось только немного чая на дне. Скажите вывод, заменив The cup местоимением It.",
+      "prompt": "Анна говорит, что чашка полная, но в ней осталось только немного чая на дне. Скажите вывод, заменив The cup словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-49:i10:audio"
       ],
-      "accessibilityLabel": "Анна говорит, что чашка полная, но в ней осталось только немного чая на дне. Скажите вывод, заменив The cup местоимением It.",
+      "accessibilityLabel": "Анна говорит, что чашка полная, но в ней осталось только немного чая на дне. Скажите вывод, заменив The cup словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9386277a5bff5176d6db2273aaee63d43bf1cd244a1eaab188aabfbb9d4b81b1"
+  "learnerFingerprint": "05ae20f088727efbe5a549e151a816d034f0956d111e08e5c57c69868c2bc88e"
 }

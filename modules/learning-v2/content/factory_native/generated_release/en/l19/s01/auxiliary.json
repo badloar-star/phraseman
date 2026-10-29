@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-19:session-01:intro2:q",
       "responseFeedbackById": {
         "en:lesson-19:session-01:intro2:r2": {
-          "ru": "Can одинаково с I, she и другими подлежащими.",
-          "uk": "Can однакове з I, she та іншими підметами."
+          "ru": "Can не меняется: одинаково с I, she и любым другим словом в начале.",
+          "uk": "Can не змінюється: однаково з I, she та будь-яким іншим словом на початку."
         },
         "en:lesson-19:session-01:intro2:r3": {
           "ru": "После can — suggest без -s.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "23bb39ac967dfe045ccab54d727a158c72ae1aad6eb92f89fdc984d31d6c3320"
+  "auxiliaryFingerprint": "8647eae95bc537f5f0a4d1f048192da324cae39ac24d4842c2b10ac019db8bb4"
 }

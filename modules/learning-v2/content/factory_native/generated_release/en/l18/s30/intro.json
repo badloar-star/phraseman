@@ -69,8 +69,8 @@
         "uk": "Перевірити ширину гаражних воріт"
       },
       "bodyByLocale": {
-        "ru": "Вы измерили проём гаражных ворот и убедились, что машина свободно в него проходит. The garage door is wide enough — гаражные ворота достаточно широкие. После The garage door поставьте is: английское door здесь в единственном числе. Затем wide enough: enough идёт после wide и показывает, что ширины хватает.",
-        "uk": "Ви виміряли отвір гаражних воріт і переконалися, що машина вільно в нього проходить. The garage door is wide enough — гаражні ворота достатньо широкі. Після The garage door поставте is: англійське door тут в однині. Потім wide enough: enough стоїть після wide і показує, що ширини вистачає."
+        "ru": "Вы измерили проём гаражных ворот и убедились, что машина свободно в него проходит. The garage door is wide enough — гаражные ворота достаточно широкие. После The garage door поставьте is: английское door здесь в форме для одного. Затем wide enough: enough идёт после wide и показывает, что ширины хватает.",
+        "uk": "Ви виміряли отвір гаражних воріт і переконалися, що машина вільно в нього проходить. The garage door is wide enough — гаражні ворота достатньо широкі. Після The garage door поставте is: англійське door тут у формі для одного. Потім wide enough: enough стоїть після wide і показує, що ширини вистачає."
       },
       "question": {
         "interactionId": "en:lesson-18:session-30:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c9816a23e7e8586312cec301471dc68ede4476cf687439fe60c408a2f5fdabf0"
+  "introFingerprint": "ff633b64a98ffd29b5ce3a3ef5beb5cd3df0c715e6dee0f5e186376334ab53fc"
 }

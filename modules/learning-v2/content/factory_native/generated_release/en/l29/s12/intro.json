@@ -69,8 +69,8 @@
         "uk": "Хто приготував салат"
       },
       "bodyByLocale": {
-        "ru": "Гость спрашивает, кто приготовил салат. Ответьте: The salad was made by my friend — салат приготовил мой друг. Соберите The salad + was made + by my friend. Was made сообщает о выполненном действии над салатом. Через by my friend назовите того, кто его приготовил. Made — третья форма make; после was здесь не ставим make.",
-        "uk": "Гість запитує, хто приготував салат. Дайте відповідь: The salad was made by my friend — салат приготував мій друг. Складіть The salad + was made + by my friend. Was made повідомляє про виконану дію над салатом. Через by my friend назвіть того, хто його приготував. Made — третя форма make; після was тут не ставимо make."
+        "ru": "Гость спрашивает, кто приготовил салат. Ответьте: The salad was made by my friend — салат приготовил мой друг. Соберите The salad + was made + by my friend. Was made сообщает о выполненном действии над салатом. Через by my friend назовите того, кто его приготовил. Made — форма make после have; после was здесь не ставим make.",
+        "uk": "Гість запитує, хто приготував салат. Дайте відповідь: The salad was made by my friend — салат приготував мій друг. Складіть The salad + was made + by my friend. Was made повідомляє про виконану дію над салатом. Через by my friend назвіть того, хто його приготував. Made — форма make після have; після was тут не ставимо make."
       },
       "question": {
         "interactionId": "en:lesson-29:session-12:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3b783b4066ebfdde27283bf70b12f51bd6ff20c61d5e70a63068b5f14d30bdc2"
+  "introFingerprint": "05b2794d4e4b9d81fdfe2d202a4bdd40825cbb27ac5b465727bd1bbc0669ff4e"
 }

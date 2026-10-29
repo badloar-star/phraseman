@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Полотенце, которым я воспользовался, мокрое. Скажите без that.",
+      "prompt": "Полотенце, которым вы воспользовались, мокрое. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-31:i07:audio"
       ],
-      "accessibilityLabel": "Полотенце, которым я воспользовался, мокрое. Скажите без that.",
+      "accessibilityLabel": "Полотенце, которым вы воспользовались, мокрое. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
+      "prompt": "Полотенце, которым вы воспользовались, мокрое. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-31:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Полотенце, которым вы воспользовались, мокрое. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
-          "uk": "Рушник, яким я скористався, мокрий. Уточніть предмет без зайвого займенника."
+          "ru": "Полотенце, которым вы воспользовались, мокрое. Предмет уже назван — не повторяйте его.",
+          "uk": "Рушник, яким ви скористалися, мокрий. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The towel I ___ is wet.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "using"
           }
         ],
-        "testedDimension": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Полотенце, которым вы воспользовались, мокрое. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-31:i08:r2",
             "correct": false,
-            "testedDimension": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Полотенце, которым вы воспользовались, мокрое. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-31:i08:r3",
             "correct": false,
-            "testedDimension": "Полотенце, которым я воспользовался, мокрое. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Полотенце, которым вы воспользовались, мокрое. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма used.",
               "uk": "Потрібна минула форма used."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Пробка вынута, но вода уже несколько минут не уходит из раковины. Скажите вывод ещё раз, заменив The sink местоимением It.",
+      "prompt": "Пробка вынута, но вода уже несколько минут не уходит из раковины. Скажите вывод ещё раз, заменив The sink словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-31:i10:audio"
       ],
-      "accessibilityLabel": "Пробка вынута, но вода уже несколько минут не уходит из раковины. Скажите вывод ещё раз, заменив The sink местоимением It.",
+      "accessibilityLabel": "Пробка вынута, но вода уже несколько минут не уходит из раковины. Скажите вывод ещё раз, заменив The sink словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1002,13 +1002,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Повторите вывод, заменив The cup местоимением It.",
+      "prompt": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Повторите вывод, заменив The cup словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-31:i21:audio"
       ],
-      "accessibilityLabel": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Повторите вывод, заменив The cup местоимением It.",
+      "accessibilityLabel": "Анна поставила чашку к чистой посуде, но внутри виден старый чай, а на краю следы помады. Повторите вывод, заменив The cup словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "951b9e50789a6ffbdfa1fc211a69bf08a24956da9b37ea3294a8203e7e687ecc"
+  "learnerFingerprint": "0145b317e0c7c367768b7bbe1d8f894a30a0a8c9544db9214ceb5fb6217c7795"
 }

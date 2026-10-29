@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Игрушка, которую я купил, маленькая. Скажите без that.",
+      "prompt": "Игрушка, которую вы купили, маленькая. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-19:i07:audio"
       ],
-      "accessibilityLabel": "Игрушка, которую я купил, маленькая. Скажите без that.",
+      "accessibilityLabel": "Игрушка, которую вы купили, маленькая. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Игрушка, которую я купил, маленькая. Уточните предмет без лишнего местоимения.",
+      "prompt": "Игрушка, которую вы купили, маленькая. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-19:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Игрушка, которую я купил, маленькая. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Игрушка, которую вы купили, маленькая. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Игрушка, которую я купил, маленькая. Уточните предмет без лишнего местоимения.",
-          "uk": "Іграшка, яку я купив, маленька. Уточніть предмет без зайвого займенника."
+          "ru": "Игрушка, которую вы купили, маленькая. Предмет уже назван — не повторяйте его.",
+          "uk": "Іграшка, яку ви купили, маленька. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The toy I ___ is small.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Игрушка, которую я купил, маленькая. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Игрушка, которую вы купили, маленькая. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-19:i08:r2",
             "correct": false,
-            "testedDimension": "Игрушка, которую я купил, маленькая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Игрушка, которую вы купили, маленькая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-19:i08:r3",
             "correct": false,
-            "testedDimension": "Игрушка, которую я купил, маленькая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Игрушка, которую вы купили, маленькая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Вы вспоминаете, как кошка долго вылизывала дно миски, прежде чем ушла. Сейчас саму миску вы не видите. Скажите вывод ещё раз, заменив The bowl местоимением It.",
+      "prompt": "Вы вспоминаете, как кошка долго вылизывала дно миски, прежде чем ушла. Сейчас саму миску вы не видите. Скажите вывод ещё раз, заменив The bowl словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-19:i10:audio"
       ],
-      "accessibilityLabel": "Вы вспоминаете, как кошка долго вылизывала дно миски, прежде чем ушла. Сейчас саму миску вы не видите. Скажите вывод ещё раз, заменив The bowl местоимением It.",
+      "accessibilityLabel": "Вы вспоминаете, как кошка долго вылизывала дно миски, прежде чем ушла. Сейчас саму миску вы не видите. Скажите вывод ещё раз, заменив The bowl словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "67b22bd27a4043ad8cc72b7932023dcef79e6744075cc15c084e2b46236ae717"
+  "learnerFingerprint": "69d1bd46d5897ba58f60d141ac2ab6e13c16ce57c80de1e18bad3b587cb9a2f9"
 }

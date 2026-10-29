@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-56",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Поїздка минулого року"
       },
       "bodyByLocale": {
-        "ru": "Подруга рассказывает о поездке, которая состоялась в прошлом году. She visited Asia last year — она побывала в Азии в прошлом году. Собираем: she + visited + Asia + last year. Last year называет законченный период, поэтому используем Past Simple: к visit добавляем -ed. Has перед visited здесь не ставим. Это сообщение об одной поездке в определённое время.",
-        "uk": "Подруга розповідає про поїздку, яка відбулася минулого року. She visited Asia last year — вона побувала в Азії торік. Складаємо: she + visited + Asia + last year. Last year називає завершений період, тому використовуємо Past Simple: до visit додаємо -ed. Has перед visited тут не ставимо. Це повідомлення про одну поїздку в певний час."
+        "ru": "Подруга рассказывает о поездке, которая состоялась в прошлом году. She visited Asia last year — она побывала в Азии в прошлом году. Собираем: she + visited + Asia + last year. Last year называет законченный период, поэтому используем форму прошлого: к visit добавляем -ed. Has перед visited здесь не ставим. Это сообщение об одной поездке в определённое время.",
+        "uk": "Подруга розповідає про поїздку, яка відбулася минулого року. She visited Asia last year — вона побувала в Азії торік. Складаємо: she + visited + Asia + last year. Last year називає завершений період, тому використовуємо форму минулого: до visit додаємо -ed. Has перед visited тут не ставимо. Це повідомлення про одну поїздку в певний час."
       },
       "question": {
         "interactionId": "en:lesson-24:session-56:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fc15516383d2f07677b2c2c222f71c39b12096d7160850d9d513bbc02f413075"
+  "introFingerprint": "6f07f3b47ffd9ae8630c765b6737d36c60fa7f6ef57161c9be194f7341da9a7d"
 }

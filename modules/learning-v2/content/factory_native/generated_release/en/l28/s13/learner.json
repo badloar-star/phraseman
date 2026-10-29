@@ -28,8 +28,8 @@
             "responseId": "en:lesson-28:session-13:i01:r1",
             "targetText": "subtitles",
             "meaningByLocale": {
-              "ru": "Субтитры: текст реплик на экране. Это форма множественного числа; один субтитр — a subtitle.",
-              "uk": "Субтитри: текст реплік на екрані. Це форма множини; один субтитр — a subtitle."
+              "ru": "Субтитры: текст реплик на экране. Это форма для нескольких; один субтитр — a subtitle.",
+              "uk": "Субтитри: текст реплік на екрані. Це форма для кількох; один субтитр — a subtitle."
             }
           }
         ],
@@ -39,8 +39,8 @@
         "wordCard": {
           "word": "subtitles",
           "definitionByLocale": {
-            "ru": "Субтитры: текст реплик на экране. Это форма множественного числа; один субтитр — a subtitle.",
-            "uk": "Субтитри: текст реплік на екрані. Це форма множини; один субтитр — a subtitle."
+            "ru": "Субтитры: текст реплик на экране. Это форма для нескольких; один субтитр — a subtitle.",
+            "uk": "Субтитри: текст реплік на екрані. Це форма для кількох; один субтитр — a subtitle."
           }
         }
       },
@@ -1034,5 +1034,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "db85ac3f8b8191416c79c20ad109505aa2267cb2db110ed6fa179bcb28abcc5e"
+  "learnerFingerprint": "ea91d45120adda4c55dbbe1d588bb6a80bb6341e3818cc20f9a4dcdaccbb5a4d"
 }

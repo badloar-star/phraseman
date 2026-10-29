@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-12:session-16",
   "learningOutcomeByLocale": {
-    "ru": "review: chose, hid, played; was/were",
-    "uk": "review: chose, hid, played; was/were"
+    "ru": "повторить: рассказать о прошлом — chose, hid, played",
+    "uk": "повторити: розповісти про минуле — chose, hid, played"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Пограти в хованки"
       },
       "bodyByLocale": {
-        "ru": "Вы с младшим братом поиграли в прятки дома. Назовите игру, в которую вы играли: We played hide-and-seek — мы играли в прятки. Сначала We — вы и брат, затем действие в прошлом: played. После глагола поставьте название игры: hide-and-seek. Перед ним не нужны ни предлог, ни артикль. Так вы сообщаете, во что играли вместе.",
-        "uk": "Ви з молодшим братом пограли в хованки вдома. Назвіть гру, у яку ви грали: We played hide-and-seek — ми грали в хованки. Спочатку We — ви й брат, потім дія в минулому: played. Після дієслова поставте назву гри: hide-and-seek. Перед нею не потрібні ні прийменник, ні артикль. Так ви повідомляєте, у що грали разом."
+        "ru": "Вы с младшим братом поиграли в прятки дома. Назовите игру, в которую вы играли: We played hide-and-seek — мы играли в прятки. Сначала We — вы и брат, затем действие в прошлом: played. После глагола поставьте название игры: hide-and-seek. Перед ним не нужны ни предлог, ни a / the. Так вы сообщаете, во что играли вместе.",
+        "uk": "Ви з молодшим братом пограли в хованки вдома. Назвіть гру, у яку ви грали: We played hide-and-seek — ми грали в хованки. Спочатку We — ви й брат, потім дія в минулому: played. Після дієслова поставте назву гри: hide-and-seek. Перед нею не потрібні ні прийменник, ні a / the. Так ви повідомляєте, у що грали разом."
       },
       "question": {
         "interactionId": "en:lesson-12:session-16:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "003445b3adcdfea9acf474409d5d9ca7300cced0716a7d5ccd0903476bfc5676"
+  "introFingerprint": "5648115ccd1743d3832c5ae7e31b9720f32c4056c74a4a041a2f37770f974fb2"
 }

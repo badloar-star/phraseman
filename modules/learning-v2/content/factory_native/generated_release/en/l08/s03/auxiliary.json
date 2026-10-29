@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-08:session-03:intro3:q",
       "responseFeedbackById": {
         "en:lesson-08:session-03:intro3:r2": {
-          "ru": "Jeans — форма множественного числа, поэтому нужно are these.",
-          "uk": "Jeans — форма множини, тому потрібно are these."
+          "ru": "Jeans — форма для нескольких, поэтому нужно are these.",
+          "uk": "Jeans — форма для кількох, тому потрібно are these."
         },
         "en:lesson-08:session-03:intro3:r3": {
           "ru": "Для «чьи» нужно whose.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "4098c07a93d78fde6b49b6068badf4cb539ff5b7449e3a969c4f3bb5a0987ff2"
+  "auxiliaryFingerprint": "7864c8faee047b5bae401295e482657400b797418155911d185040061338f699"
 }

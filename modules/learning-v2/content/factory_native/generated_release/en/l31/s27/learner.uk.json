@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви залишилися вдома, бо хворіли. Виберіть сполучник.",
+      "prompt": "Ви залишилися вдома, бо хворіли. Виберіть, чим поєднати частини фрази.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-27:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви залишилися вдома, бо хворіли. Виберіть сполучник.",
+      "accessibilityLabel": "Ви залишилися вдома, бо хворіли. Виберіть, чим поєднати частини фрази.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы остались дома, потому что болели. Выберите связку.",
-          "uk": "Ви залишилися вдома, бо хворіли. Виберіть сполучник."
+          "ru": "Вы остались дома, потому что болели. Выберите, чем связать части фразы.",
+          "uk": "Ви залишилися вдома, бо хворіли. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "I stayed home ___ I was ill.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Ви залишилися вдома, бо хворіли. Виберіть сполучник.",
+        "testedDimension": "Ви залишилися вдома, бо хворіли. Виберіть, чим поєднати частини фрази.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-27:i03:r2",
             "correct": false,
-            "testedDimension": "Ви залишилися вдома, бо хворіли. Виберіть сполучник.",
+            "testedDimension": "Ви залишилися вдома, бо хворіли. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Перед целой частью I was ill нужен because без of.",
               "uk": "Перед цілою частиною I was ill потрібне because без of."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-31:session-27:i03:r3",
             "correct": false,
-            "testedDimension": "Ви залишилися вдома, бо хворіли. Виберіть сполучник.",
+            "testedDimension": "Ви залишилися вдома, бо хворіли. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Of не связывает эти части.",
               "uk": "Of не пов’язує ці частини."
@@ -1043,5 +1043,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d411e8388f93cea360164baa4269277e9e210d130914292f37c06ea15e8201d7"
+  "learnerFingerprint": "3c70459a56beb66ca265a7ccfbd94822705c43a23ce7ae773eca396a8514ff5e"
 }

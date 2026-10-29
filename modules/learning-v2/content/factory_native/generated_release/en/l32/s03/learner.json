@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите связку.",
+      "prompt": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите форму be.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-03:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите связку.",
+      "accessibilityLabel": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите форму be.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите связку.",
-          "uk": "Над супом підіймається пара. Ви робите висновок, що він гарячий. Виберіть зв’язку."
+          "ru": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите форму be.",
+          "uk": "Над супом підіймається пара. Ви робите висновок, що він гарячий. Виберіть форму be."
         },
         "gappedTargetPhrase": "The soup must ___ hot.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "being"
           }
         ],
-        "testedDimension": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите связку.",
+        "testedDimension": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите форму be.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-03:i03:r2",
             "correct": false,
-            "testedDimension": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите связку.",
+            "testedDimension": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите форму be.",
             "feedbackByLocale": {
               "ru": "После must здесь нужна форма be.",
               "uk": "Після must тут потрібна форма be."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-32:session-03:i03:r3",
             "correct": false,
-            "testedDimension": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите связку.",
+            "testedDimension": "Над супом поднимается пар. Вы делаете вывод, что он горячий. Выберите форму be.",
             "feedbackByLocale": {
               "ru": "Используем начальную форму be.",
               "uk": "Використовуємо початкову форму be."
@@ -354,7 +354,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточните суп, который уже приготовила Анна, не повторяя soup местоимением.",
+      "prompt": "Уточните суп, который уже приготовила Анна, не повторяя soup словом it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-03:i08:r1",
@@ -371,12 +371,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточните суп, который уже приготовила Анна, не повторяя soup местоимением.",
+      "accessibilityLabel": "Уточните суп, который уже приготовила Анна, не повторяя soup словом it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните суп, который уже приготовила Анна, не повторяя soup местоимением.",
-          "uk": "Уточніть суп, який уже приготувала Анна, не повторюючи soup займенником."
+          "ru": "Уточните суп, который уже приготовила Анна, не повторяя soup словом it.",
+          "uk": "Уточніть суп, який уже приготувала Анна, не повторюючи soup словом it."
         },
         "gappedTargetPhrase": "The soup Anna ___ is ready.",
         "gapOptions": [
@@ -393,12 +393,12 @@
             "text": "make"
           }
         ],
-        "testedDimension": "Уточните суп, который уже приготовила Анна, не повторяя soup местоимением.",
+        "testedDimension": "Уточните суп, который уже приготовила Анна, не повторяя soup словом it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-03:i08:r2",
             "correct": false,
-            "testedDimension": "Уточните суп, который уже приготовила Анна, не повторяя soup местоимением.",
+            "testedDimension": "Уточните суп, который уже приготовила Анна, не повторяя soup словом it.",
             "feedbackByLocale": {
               "ru": "Soup уже названо: it после made не нужно.",
               "uk": "Soup уже названо: it після made не потрібне."
@@ -407,7 +407,7 @@
           {
             "responseId": "en:lesson-32:session-03:i08:r3",
             "correct": false,
-            "testedDimension": "Уточните суп, который уже приготовила Анна, не повторяя soup местоимением.",
+            "testedDimension": "Уточните суп, который уже приготовила Анна, не повторяя soup словом it.",
             "feedbackByLocale": {
               "ru": "Для завершённого прошлого действия нужна форма made.",
               "uk": "Для завершеної минулої дії потрібна форма made."
@@ -938,7 +938,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите связку.",
+      "prompt": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите форму be.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-03:i20:r1",
@@ -955,12 +955,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите связку.",
+      "accessibilityLabel": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите форму be.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите связку.",
-          "uk": "Бен не їв із ранку. Ви вже використовуєте must для висновку про голод. Виберіть зв’язку."
+          "ru": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите форму be.",
+          "uk": "Бен не їв із ранку. Ви вже використовуєте must для висновку про голод. Виберіть форму be."
         },
         "gappedTargetPhrase": "He must ___ hungry.",
         "gapOptions": [
@@ -977,12 +977,12 @@
             "text": "are"
           }
         ],
-        "testedDimension": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите связку.",
+        "testedDimension": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите форму be.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-03:i20:r2",
             "correct": false,
-            "testedDimension": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите связку.",
+            "testedDimension": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите форму be.",
             "feedbackByLocale": {
               "ru": "После must здесь нужна форма be.",
               "uk": "Після must тут потрібна форма be."
@@ -991,7 +991,7 @@
           {
             "responseId": "en:lesson-32:session-03:i20:r3",
             "correct": false,
-            "testedDimension": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите связку.",
+            "testedDimension": "Бен не ел с утра. Вы уже используете must для вывода о голоде. Выберите форму be.",
             "feedbackByLocale": {
               "ru": "Используем be, не are.",
               "uk": "Використовуємо be, не are."
@@ -1041,5 +1041,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ecc77a6c78bde36b0ee02c5a462e16798166edc92710e82e21edfb33ded394c8"
+  "learnerFingerprint": "e758701ce204bab2b973c64b41c0b875db574e48d2bd75e94f639b1ae2ec612f"
 }

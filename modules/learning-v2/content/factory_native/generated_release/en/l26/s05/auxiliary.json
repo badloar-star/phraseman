@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-26:session-05:intro1:q",
       "responseFeedbackById": {
         "en:lesson-26:session-05:intro1:r2": {
-          "ru": "Для этого подлежащего в Present Simple нужна форма open.",
-          "uk": "Для цього підмета в Present Simple потрібна форма open."
+          "ru": "Для этого слова в форме work / works нужна форма open.",
+          "uk": "Для цього слова в формі work / works потрібна форма open."
         },
         "en:lesson-26:session-05:intro1:r3": {
-          "ru": "Привычный результат: Present Simple в обеих частях.",
-          "uk": "Звичний результат: Present Simple в обох частинах."
+          "ru": "Привычный результат: форма work / works в обеих частях.",
+          "uk": "Звичний результат: форма work / works в обох частинах."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-26:session-05:intro2:q",
       "responseFeedbackById": {
         "en:lesson-26:session-05:intro2:r2": {
-          "ru": "Для этого подлежащего в Present Simple нужна форма speak.",
-          "uk": "Для цього підмета в Present Simple потрібна форма speak."
+          "ru": "Для этого слова в форме work / works нужна форма speak.",
+          "uk": "Для цього слова в формі work / works потрібна форма speak."
         },
         "en:lesson-26:session-05:intro2:r3": {
-          "ru": "Привычный результат: Present Simple в обеих частях.",
-          "uk": "Звичний результат: Present Simple в обох частинах."
+          "ru": "Привычный результат: форма work / works в обеих частях.",
+          "uk": "Звичний результат: форма work / works в обох частинах."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-26:session-05:intro3:q",
       "responseFeedbackById": {
         "en:lesson-26:session-05:intro3:r2": {
-          "ru": "Для этого подлежащего в Present Simple нужна форма step.",
-          "uk": "Для цього підмета в Present Simple потрібна форма step."
+          "ru": "Для этого слова в форме work / works нужна форма step.",
+          "uk": "Для цього слова в формі work / works потрібна форма step."
         },
         "en:lesson-26:session-05:intro3:r3": {
-          "ru": "Привычный результат: Present Simple в обеих частях.",
-          "uk": "Звичний результат: Present Simple в обох частинах."
+          "ru": "Привычный результат: форма work / works в обеих частях.",
+          "uk": "Звичний результат: форма work / works в обох частинах."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "64e034bf1ebcfacd2ef9d413f4cabab7e9256d081b6d4466eb30cbc587c4a125"
+  "auxiliaryFingerprint": "94d8ec77bede5145093b82405779829491b04f3ae09aae6d8af12f09dedc0ca4"
 }

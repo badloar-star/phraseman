@@ -15,8 +15,8 @@
         "uk": "Хто написав музику"
       },
       "bodyByLocale": {
-        "ru": "После концерта вы спрашиваете о музыке. Друг отвечает: The music was written by my sister — музыку написала моя сестра. Соберите The music + was written + by + my sister. Начните с музыки, о которой говорите. Was written сообщает, что её написали; written — третья форма write. By my sister называет автора.",
-        "uk": "Після концерту ви запитуєте про музику. Друг відповідає: The music was written by my sister — музику написала моя сестра. Складіть The music + was written + by + my sister. Почніть із музики, про яку говорите. Was written повідомляє, що її написали; written — третя форма write. By my sister називає автора."
+        "ru": "После концерта вы спрашиваете о музыке. Друг отвечает: The music was written by my sister — музыку написала моя сестра. Соберите The music + was written + by + my sister. Начните с музыки, о которой говорите. Was written сообщает, что её написали; written — форма write после have. By my sister называет автора.",
+        "uk": "Після концерту ви запитуєте про музику. Друг відповідає: The music was written by my sister — музику написала моя сестра. Складіть The music + was written + by + my sister. Почніть із музики, про яку говорите. Was written повідомляє, що її написали; written — форма write після have. By my sister називає автора."
       },
       "question": {
         "interactionId": "en:lesson-28:session-35:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "12e11d500ca7829211bf504336aa9949f3c9efdb6a9d2fe4138f11a17fb05c83"
+  "introFingerprint": "ca4bae8dac9e9754cf02bea04e0213ed6c5356c9acf8abf8bba5df6610175c72"
 }

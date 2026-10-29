@@ -988,8 +988,8 @@
             "correct": false,
             "testedDimension": "Скажите, что кисточка продаётся отдельно.",
             "feedbackByLocale": {
-              "ru": "После is нужна sold, третья форма sell.",
-              "uk": "Після is потрібна sold, третя форма sell."
+              "ru": "После is нужна sold, форма sell.",
+              "uk": "Після is потрібна sold, форма sell."
             }
           },
           {
@@ -1045,5 +1045,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cfde2a09f41b16dc6d07115aa70a07fbf37547d8da40950c3bd781527c3cf516"
+  "learnerFingerprint": "40b8c0646ca3129a9276d2701b4847eab9a9dfd40fc018708bcce4af3880f782"
 }

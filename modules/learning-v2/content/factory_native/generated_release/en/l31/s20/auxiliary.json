@@ -23,8 +23,8 @@
           "uk": "З are тут потрібно aren’t."
         },
         "en:lesson-31:session-20:intro2:r3": {
-          "ru": "Множественное eggs заменяем на they.",
-          "uk": "Множину eggs замінюємо на they."
+          "ru": "Eggs (их несколько) заменяем на they.",
+          "uk": "Eggs (їх кілька) замінюємо на they."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "26592239bdd5e1552849309a22428ccb03f14805c08a263edfd01aacc9b910b0"
+  "auxiliaryFingerprint": "3c86a7b1670ec74ca8d27dd1d01c44eb22553b641ad736de06d918591ab1083c"
 }

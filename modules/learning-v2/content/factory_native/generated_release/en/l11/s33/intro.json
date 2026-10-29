@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-33",
   "learningOutcomeByLocale": {
-    "ru": "was/were; there was/there were; yesterday / now",
-    "uk": "was/were; there was/there were; yesterday / now"
+    "ru": "рассказать, что было и что где было вчера: there was a cat, it was cold",
+    "uk": "розповісти, що було і що де було вчора: there was a cat, it was cold"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Дві підковдри в шафі"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете содержимое шкафа: там лежали два пододеяльника, чехла для одеял. Скажите: There were two duvet covers in the cupboard. Начните с there were, чтобы сообщить о нескольких предметах в определённом месте в прошлом. Затем назовите количество и предметы — two duvet covers. Множественное число получает последнее слово covers, а duvet не меняется. Перед two не ставим a. В конце укажите место in the cupboard.",
-        "uk": "Ви згадуєте вміст шафи: там лежали дві підковдри, чохли для ковдр. Скажіть: There were two duvet covers in the cupboard. Почніть із there were, щоб повідомити про кілька предметів у певному місці в минулому. Потім назвіть кількість і предмети — two duvet covers. Множини набуває останнє слово covers, а duvet не змінюється. Перед two не ставимо a. Наприкінці вкажіть місце in the cupboard."
+        "ru": "Вы вспоминаете содержимое шкафа: там лежали два пододеяльника, чехла для одеял. Скажите: There were two duvet covers in the cupboard. Начните с there were, чтобы сообщить о нескольких предметах в определённом месте в прошлом. Затем назовите количество и предметы — two duvet covers. Форма для нескольких получает последнее слово covers, а duvet не меняется. Перед two не ставим a. В конце укажите место in the cupboard.",
+        "uk": "Ви згадуєте вміст шафи: там лежали дві підковдри, чохли для ковдр. Скажіть: There were two duvet covers in the cupboard. Почніть із there were, щоб повідомити про кілька предметів у певному місці в минулому. Потім назвіть кількість і предмети — two duvet covers. Форма для кількох набуває останнє слово covers, а duvet не змінюється. Перед two не ставимо a. Наприкінці вкажіть місце in the cupboard."
       },
       "question": {
         "interactionId": "en:lesson-11:session-33:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "16345f08e48427c050f39ed252092bca895200e0375d649d9fabaa1c865596ab"
+  "introFingerprint": "44d58e091298331eeff24d1345ad9ab31018b8b5e766405347c0af67063b7599"
 }

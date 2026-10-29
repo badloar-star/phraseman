@@ -123,8 +123,8 @@
         "uk": "Записка була готова до того, як друг пішов"
       },
       "bodyByLocale": {
-        "ru": "Вчера вы успели написать другу записку до его ухода. Расскажите: I had written the note by the time he left — я написал записку к тому времени, как он ушёл. Собираем: I + had written + the note + by the time he left — кто, что сделал раньше, что написал, к какому моменту в прошлом. Had written показывает, что записка была написана до ухода друга. После had нужна третья форма write — written, не wrote.",
-        "uk": "Учора ви встигли написати другові записку до того, як він пішов. Розкажіть: I had written the note by the time he left — я написав записку до того часу, як він пішов. Складаємо: I + had written + the note + by the time he left — хто, що зробив раніше, що написав, до якого моменту в минулому. Had written показує написання до виходу друга. Після had потрібна третя форма write — written, не wrote."
+        "ru": "Вчера вы успели написать другу записку до его ухода. Расскажите: I had written the note by the time he left — я написал записку к тому времени, как он ушёл. Собираем: I + had written + the note + by the time he left — кто, что сделал раньше, что написал, к какому моменту в прошлом. Had written показывает, что записка была написана до ухода друга. После had нужна форма write — written, не wrote.",
+        "uk": "Учора ви встигли написати другові записку до того, як він пішов. Розкажіть: I had written the note by the time he left — я написав записку до того часу, як він пішов. Складаємо: I + had written + the note + by the time he left — хто, що зробив раніше, що написав, до якого моменту в минулому. Had written показує написання до виходу друга. Після had потрібна форма write — written, не wrote."
       },
       "question": {
         "interactionId": "en:lesson-26:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "75e32e0dd8ec1a26af7612ad09de297d38139b31e7a978b86faaf78d3506feee"
+  "introFingerprint": "93f5c8dddb87619cbc6d76ad697299695e93e1b60134aff7c2a332de3c3b9fe6"
 }

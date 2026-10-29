@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-37",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Не пам’ятаю віку"
       },
       "bodyByLocale": {
-        "ru": "Вы выбираете подарок племяннику и понимаете, что забыли, сколько ему лет. I have forgotten his age — я забыл, сколько ему лет. После I ставим have, затем forgotten — третью форму forget. Present Perfect показывает нынешний результат: сейчас вы не помните возраст. His age называет, что вы забыли. Порядок — I + have + forgotten + his age.",
-        "uk": "Ви вибираєте подарунок племінникові й розумієте, що забули, скільки йому років. I have forgotten his age — я забув, скільки йому років. Після I ставимо have, потім forgotten — третю форму forget. Present Perfect показує теперішній результат: зараз ви не пам’ятаєте віку. His age називає, що ви забули. Порядок — I + have + forgotten + his age."
+        "ru": "Вы выбираете подарок племяннику и понимаете, что забыли, сколько ему лет. I have forgotten his age — я забыл, сколько ему лет. После I ставим have, затем forgotten — форму forget. Форма have / has + done показывает нынешний результат: сейчас вы не помните возраст. His age называет, что вы забыли. Порядок — I + have + forgotten + his age.",
+        "uk": "Ви вибираєте подарунок племінникові й розумієте, що забули, скільки йому років. I have forgotten his age — я забув, скільки йому років. Після I ставимо have, потім forgotten — форму forget. Форма have / has + done показує теперішній результат: зараз ви не пам’ятаєте віку. His age називає, що ви забули. Порядок — I + have + forgotten + his age."
       },
       "question": {
         "interactionId": "en:lesson-24:session-37:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Були на похороні"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете, что знакомые на прошлой неделе были на похоронах. They attended the funeral last week — на прошлой неделе они были на похоронах. Last week называет завершившийся период, поэтому после they ставим attended — Past Simple от attend. Затем прямо называем событие: the funeral, без at. В конце last week уточняет время. Have здесь не нужен.",
-        "uk": "Ви розповідаєте, що знайомі минулого тижня були на похороні. They attended the funeral last week — минулого тижня вони були на похороні. Last week називає завершений період, тому після they ставимо attended — Past Simple від attend. Потім прямо називаємо подію: the funeral, без at. Наприкінці last week уточнює час. Have тут не потрібен."
+        "ru": "Вы рассказываете, что знакомые на прошлой неделе были на похоронах. They attended the funeral last week — на прошлой неделе они были на похоронах. Last week называет завершившийся период, поэтому после they ставим attended — форма прошлого от attend. Затем прямо называем событие: the funeral, без at. В конце last week уточняет время. Have здесь не нужен.",
+        "uk": "Ви розповідаєте, що знайомі минулого тижня були на похороні. They attended the funeral last week — минулого тижня вони були на похороні. Last week називає завершений період, тому після they ставимо attended — форма минулого від attend. Потім прямо називаємо подію: the funeral, без at. Наприкінці last week уточнює час. Have тут не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-24:session-37:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5ec106b8e2e7bfbf849a0fd5d84bb079bd657401f746cc5a7a1c385a36ce3506"
+  "introFingerprint": "9a2669172e9a3ef32f5864155a83a3734fad0e1e72c56b0330830407f1537ac0"
 }

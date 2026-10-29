@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Миска, которую я помыл, чистая. Скажите без that.",
+      "prompt": "Миска, которую вы помыли, чистая. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-28:i07:audio"
       ],
-      "accessibilityLabel": "Миска, которую я помыл, чистая. Скажите без that.",
+      "accessibilityLabel": "Миска, которую вы помыли, чистая. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+      "prompt": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-28:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
-          "uk": "Миска, яку я помив, чиста. Уточніть предмет без зайвого займенника."
+          "ru": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
+          "uk": "Миска, яку ви помили, чиста. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The bowl I ___ is clean.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "washing"
           }
         ],
-        "testedDimension": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-28:i08:r2",
             "correct": false,
-            "testedDimension": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-28:i08:r3",
             "correct": false,
-            "testedDimension": "Миска, которую я помыл, чистая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Миска, которую вы помыли, чистая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма washed.",
               "uk": "Потрібна минула форма washed."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна только что сняла кастрюлю с плиты, и над ней поднимается пар. Скажите вывод ещё раз, заменив The soup местоимением It.",
+      "prompt": "Анна только что сняла кастрюлю с плиты, и над ней поднимается пар. Скажите вывод ещё раз, заменив The soup словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-28:i10:audio"
       ],
-      "accessibilityLabel": "Анна только что сняла кастрюлю с плиты, и над ней поднимается пар. Скажите вывод ещё раз, заменив The soup местоимением It.",
+      "accessibilityLabel": "Анна только что сняла кастрюлю с плиты, и над ней поднимается пар. Скажите вывод ещё раз, заменив The soup словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1002,13 +1002,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна считает хлеб сегодняшним, но вы помните, что купили именно эту буханку неделю назад. Повторите вывод, заменив The bread местоимением It.",
+      "prompt": "Анна считает хлеб сегодняшним, но вы помните, что купили именно эту буханку неделю назад. Повторите вывод, заменив The bread словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-28:i21:audio"
       ],
-      "accessibilityLabel": "Анна считает хлеб сегодняшним, но вы помните, что купили именно эту буханку неделю назад. Повторите вывод, заменив The bread местоимением It.",
+      "accessibilityLabel": "Анна считает хлеб сегодняшним, но вы помните, что купили именно эту буханку неделю назад. Повторите вывод, заменив The bread словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6dd6e6179be1d332a7df8b3aafd631543455b9bf6828d754346b1d6c2b53a074"
+  "learnerFingerprint": "defcec260c6067275fd310feca6edba86394f0757b49273801887d4100e2c59d"
 }

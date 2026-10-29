@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-25",
   "learningOutcomeByLocale": {
-    "ru": "I walk at lunchtime; I read before bedtime; I am asleep at midnight; I work in the daytime",
-    "uk": "I walk at lunchtime; I read before bedtime; I am asleep at midnight; I work in the daytime"
+    "ru": "сказать, в какое время дня вы что-то делаете",
+    "uk": "сказати, у яку пору дня ви щось робите"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Читати перед сном"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, что вы обычно делаете перед сном. Вы отвечаете: I read before bedtime — «Я читаю перед сном». Сначала I, затем привычное действие read, а в конце время before bedtime. Before означает «перед», bedtime — время ложиться спать. С I используем read без -s; am перед ним не добавляем, потому что рассказываем о привычке в Present Simple.",
-        "uk": "Друг запитує, що ви зазвичай робите перед сном. Ви відповідаєте: I read before bedtime — «Я читаю перед сном». Спочатку I, потім звична дія read, а наприкінці час before bedtime. Before означає «перед», bedtime — час лягати спати. З I використовуємо read без -s; am перед ним не додаємо, тому що розповідаємо про звичку в Present Simple."
+        "ru": "Друг спрашивает, что вы обычно делаете перед сном. Вы отвечаете: I read before bedtime — «Я читаю перед сном». Сначала I, затем привычное действие read, а в конце время before bedtime. Before означает «перед», bedtime — время ложиться спать. С I используем read без -s; am перед ним не добавляем, потому что рассказываем о привычке в форме без -ing.",
+        "uk": "Друг запитує, що ви зазвичай робите перед сном. Ви відповідаєте: I read before bedtime — «Я читаю перед сном». Спочатку I, потім звична дія read, а наприкінці час before bedtime. Before означає «перед», bedtime — час лягати спати. З I використовуємо read без -s; am перед ним не додаємо, тому що розповідаємо про звичку у формі без -ing."
       },
       "question": {
         "interactionId": "en:lesson-10:session-25:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ab05f892d58e2f7775fd3f23d422f5103570af208f1226ca32f64190b0e8f38f"
+  "introFingerprint": "089e087fd7fa428dd2c934e6883d35b1ce7d4e12f1823feb19ea98c9871e3eb2"
 }

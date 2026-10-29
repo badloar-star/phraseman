@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
+      "prompt": "В комнате было темно, потому что лампа была сломана. Выберите, чем связать части фразы.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-30:i04:r1",
@@ -188,12 +188,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
+      "accessibilityLabel": "В комнате было темно, потому что лампа была сломана. Выберите, чем связать части фразы.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
-          "uk": "У кімнаті було темно, бо лампа була зламана. Виберіть сполучник."
+          "ru": "В комнате было темно, потому что лампа была сломана. Выберите, чем связать части фразы.",
+          "uk": "У кімнаті було темно, бо лампа була зламана. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "The room was dark ___ the lamp was broken.",
         "gapOptions": [
@@ -210,12 +210,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
+        "testedDimension": "В комнате было темно, потому что лампа была сломана. Выберите, чем связать части фразы.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-30:i04:r2",
             "correct": false,
-            "testedDimension": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
+            "testedDimension": "В комнате было темно, потому что лампа была сломана. Выберите, чем связать части фразы.",
             "feedbackByLocale": {
               "ru": "Перед целой частью the lamp was broken нужен because.",
               "uk": "Перед цілою частиною the lamp was broken потрібне because."
@@ -224,7 +224,7 @@
           {
             "responseId": "en:lesson-31:session-30:i04:r3",
             "correct": false,
-            "testedDimension": "В комнате было темно, потому что лампа была сломана. Выберите связку.",
+            "testedDimension": "В комнате было темно, потому что лампа была сломана. Выберите, чем связать части фразы.",
             "feedbackByLocale": {
               "ru": "Of не связывает эти части.",
               "uk": "Of не пов’язує ці частини."
@@ -1044,5 +1044,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "976feef267cf123598a7d897bd7d13a0ee0b12b40044ae43beea8604b9dbe20e"
+  "learnerFingerprint": "b68b7090537cfc7f96e465b0ad37a30a5220a3187e0babc2f55b61fe402ad2d8"
 }

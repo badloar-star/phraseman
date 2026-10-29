@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-32:session-11:intro3:q",
       "responseFeedbackById": {
         "en:lesson-32:session-11:intro3:r2": {
-          "ru": "Не повторяем coat местоимением it.",
-          "uk": "Не повторюємо coat займенником it."
+          "ru": "Не повторяем coat словом it.",
+          "uk": "Не повторюємо coat словом it."
         },
         "en:lesson-32:session-11:intro3:r3": {
           "ru": "Нужна прошедшая форма washed.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "1c39df16c0faa4cca3accbb467e27e745533ceb95acab5f8062d2510dc58f660"
+  "auxiliaryFingerprint": "eb4723106f0554469abddc6e6b9de86af6edd6daf244a986500d1276ab550bc8"
 }

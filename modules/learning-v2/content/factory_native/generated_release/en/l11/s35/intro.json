@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-35",
   "learningOutcomeByLocale": {
-    "ru": "was/were; there was/there were; yesterday / now",
-    "uk": "was/were; there was/there were; yesterday / now"
+    "ru": "рассказать, что было и что где было вчера: there was a cat, it was cold",
+    "uk": "розповісти, що було і що де було вчора: there was a cat, it was cold"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Два односпальні ліжка"
       },
       "bodyByLocale": {
-        "ru": "Вы описываете комнату до перестановки: в ней стояли две односпальные кровати. Скажите: There were two single beds in the room. Начните с there were, чтобы сообщить о нескольких предметах в прошлом. Затем назовите количество и предметы: two single beds. Single означает, что каждая кровать рассчитана на одного человека; кроватей при этом две, поэтому нужны beds и were. Перед two артикль a не ставим. В конце добавьте место in the room.",
-        "uk": "Ви описуєте кімнату до перестановки: у ній стояли два односпальні ліжка. Скажіть: There were two single beds in the room. Почніть із there were, щоб повідомити про кілька предметів у минулому. Потім назвіть кількість і предмети: two single beds. Single означає, що кожне ліжко розраховане на одну людину; ліжок водночас два, тому потрібні beds і were. Перед two артикль a не ставимо. Наприкінці додайте місце in the room."
+        "ru": "Вы описываете комнату до перестановки: в ней стояли две односпальные кровати. Скажите: There were two single beds in the room. Начните с there were, чтобы сообщить о нескольких предметах в прошлом. Затем назовите количество и предметы: two single beds. Single означает, что каждая кровать рассчитана на одного человека; кроватей при этом две, поэтому нужны beds и were. Перед two a не ставим. В конце добавьте место in the room.",
+        "uk": "Ви описуєте кімнату до перестановки: у ній стояли два односпальні ліжка. Скажіть: There were two single beds in the room. Почніть із there were, щоб повідомити про кілька предметів у минулому. Потім назвіть кількість і предмети: two single beds. Single означає, що кожне ліжко розраховане на одну людину; ліжок водночас два, тому потрібні beds і were. Перед two a не ставимо. Наприкінці додайте місце in the room."
       },
       "question": {
         "interactionId": "en:lesson-11:session-35:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7b3850746f3b72fd1a7c6c70334c0302fd0bdb1479b1965b01a5e1d18d5bfd2c"
+  "introFingerprint": "7ea586b3dd1678a02b3036908727f29e2a1b5f9c9c120c62a4a475587890bd95"
 }

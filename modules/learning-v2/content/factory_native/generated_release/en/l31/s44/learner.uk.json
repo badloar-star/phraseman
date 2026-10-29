@@ -752,7 +752,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку.",
+      "prompt": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть, чим поєднати частини фрази.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-44:i16:r1",
@@ -769,12 +769,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку.",
+      "accessibilityLabel": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть, чим поєднати частини фрази.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы читаете вслух с целью помочь Анне услышать вас. Выберите связку.",
-          "uk": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку."
+          "ru": "Вы читаете вслух с целью помочь Анне услышать вас. Выберите, чем связать части фразы.",
+          "uk": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "I am reading aloud ___ Anna can hear me.",
         "gapOptions": [
@@ -791,12 +791,12 @@
             "text": "for"
           }
         ],
-        "testedDimension": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку.",
+        "testedDimension": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть, чим поєднати частини фрази.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-44:i16:r2",
             "correct": false,
-            "testedDimension": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку.",
+            "testedDimension": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Перед Anna can hear me нужна связка so that.",
               "uk": "Перед Anna can hear me потрібна сполука so that."
@@ -805,7 +805,7 @@
           {
             "responseId": "en:lesson-31:session-44:i16:r3",
             "correct": false,
-            "testedDimension": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть сполуку.",
+            "testedDimension": "Ви читаєте вголос, щоб допомогти Анні почути вас. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Для цели с целой частью используем so that.",
               "uk": "Для мети з цілою частиною використовуємо so that."
@@ -1051,5 +1051,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "94bff0902d0f61bb9be3b781c831c1d2d9dc30393fa3d42e1869322b52a82dc9"
+  "learnerFingerprint": "737308a3e6062c0db6c22257446e6e142bea358f06b3b7fa57f7482416cad9e1"
 }

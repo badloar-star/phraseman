@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-10",
   "learningOutcomeByLocale": {
-    "ru": "Was it…? was not; were not; yesterday / right now",
-    "uk": "Was it…? was not; were not; yesterday / right now"
+    "ru": "спросить о вчерашнем и сказать «не было»: Was it open? It wasn’t",
+    "uk": "запитати про вчорашнє й сказати «не було»: Was it open? It wasn’t"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Чи була температура високою"
       },
       "bodyByLocale": {
-        "ru": "Друг вчера был с повышенной температурой, и вы спрашиваете, была ли она высокой: Was your fever high? Начните с was, затем назовите состояние собеседника your fever и добавьте признак high — «высокая». Fever здесь в единственном числе, поэтому нужна форма was. Она стоит перед your fever; did в таком вопросе не добавляем.",
-        "uk": "Друг учора був із підвищеною температурою, і ви запитуєте, чи була вона високою: Was your fever high? Почніть із was, потім назвіть стан співрозмовника your fever і додайте ознаку high — «висока». Fever тут в однині, тому потрібна форма was. Вона стоїть перед your fever; did у такому запитанні не додаємо."
+        "ru": "Друг вчера был с повышенной температурой, и вы спрашиваете, была ли она высокой: Was your fever high? Начните с was, затем назовите состояние собеседника your fever и добавьте признак high — «высокая». Fever здесь в форме для одного, поэтому нужна форма was. Она стоит перед your fever; did в таком вопросе не добавляем.",
+        "uk": "Друг учора був із підвищеною температурою, і ви запитуєте, чи була вона високою: Was your fever high? Почніть із was, потім назвіть стан співрозмовника your fever і додайте ознаку high — «висока». Fever тут у формі для одного, тому потрібна форма was. Вона стоїть перед your fever; did у такому запитанні не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-11:session-10:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f50472d256ac0a3970d9b90341b7e0273f7032641470c8fe428506aa706ed9eb"
+  "introFingerprint": "0b97ff76423757ecd74c9b7a72d5b249a14b074f506a0a35c2ec66c066ec7b3c"
 }

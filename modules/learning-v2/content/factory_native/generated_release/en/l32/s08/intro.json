@@ -65,8 +65,8 @@
       "pageId": "en:lesson-32:session-08:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Миска, которую я помыл",
-        "uk": "Миска, яку я помив"
+        "ru": "Миска, которую вы помыли",
+        "uk": "Миска, яку ви помили"
       },
       "bodyByLocale": {
         "ru": "Вы помыли миску и ставите её на пол: The bowl I washed is clean — миска, которую я помыл, чистая. Соберите The bowl + I washed + is clean. I washed уточняет bowl. That можно опустить: внутри уточнения I называет того, кто помыл миску.",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "11f5a9a94ba8fbff8a5e9499c63e9b38513ae8a73d48779790c1ea2382d8fae9"
+  "introFingerprint": "2055318570de1bc4344e517fdffbf644d67d9714ad11fbe1bc8ee2d107957bc3"
 }

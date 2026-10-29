@@ -123,8 +123,8 @@
         "uk": "Хто відчинив ворота"
       },
       "bodyByLocale": {
-        "ru": "Работник Том открыл ворота парка. Начните рассказ с ворот: The gate was opened by Tom — ворота открыл Том. Соберите The gate + was + opened + by Tom. Was opened описывает действие над воротами, by Tom называет исполнителя. В английском gate единственного числа, поэтому was.",
-        "uk": "Працівник Том відчинив ворота парку. Почніть розповідь із воріт: The gate was opened by Tom — ворота відчинив Том. Складіть The gate + was + opened + by Tom. Was opened описує дію над воротами, by Tom називає виконавця. В англійській gate в однині, тому was."
+        "ru": "Работник Том открыл ворота парка. Начните рассказ с ворот: The gate was opened by Tom — ворота открыл Том. Соберите The gate + was + opened + by Tom. Was opened описывает действие над воротами, by Tom называет исполнителя. В английском gate — один предмет, поэтому was.",
+        "uk": "Працівник Том відчинив ворота парку. Почніть розповідь із воріт: The gate was opened by Tom — ворота відчинив Том. Складіть The gate + was + opened + by Tom. Was opened описує дію над воротами, by Tom називає виконавця. В англійській gate — один предмет, тому was."
       },
       "question": {
         "interactionId": "en:lesson-31:session-10:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c814194f3f7601ffd248f9fa414cd87f9b74fed00541caffc96e0b25d062410c"
+  "introFingerprint": "779f568e9c95e6a4582849b6d4b70caa8f67e15a4b74a052be0a7774a3bbe432"
 }

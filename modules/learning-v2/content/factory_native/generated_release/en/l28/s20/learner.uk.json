@@ -980,8 +980,8 @@
             "correct": false,
             "testedDimension": "Роботи покладуть на полицю. Виберіть потрібну форму put.",
             "feedbackByLocale": {
-              "ru": "Здесь третья форма — put.",
-              "uk": "Тут третя форма — put."
+              "ru": "Здесь форма после have — put.",
+              "uk": "Тут форма після have — put."
             }
           },
           {
@@ -1037,5 +1037,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "764776e09c43366ae3525f56ea65c9645bf395252453fbfcff5c05b80b7e5170"
+  "learnerFingerprint": "afd89e5e15f39cf1f730fcd22a0f3e66f3312263ed8968dd50aef6ba368a225f"
 }

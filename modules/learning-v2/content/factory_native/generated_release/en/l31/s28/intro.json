@@ -15,8 +15,8 @@
         "uk": "Чому повернули взуття"
       },
       "bodyByLocale": {
-        "ru": "Вы вернули обувь в магазин: она оказалась слишком маленькой. Объясните другу: I took the shoes back because they were too small — я вернул обувь, потому что она была слишком маленькой. Соберите I took the shoes back + because + they were too small. После because даём целую причину. Английское shoes — множественное число, поэтому дальше they were.",
-        "uk": "Ви повернули взуття до крамниці: воно виявилося замалим. Поясніть другові: I took the shoes back because they were too small — я повернув взуття, бо воно було замалим. Складіть I took the shoes back + because + they were too small. Після because даємо цілу причину. Англійське shoes — множина, тому далі they were."
+        "ru": "Вы вернули обувь в магазин: она оказалась слишком маленькой. Объясните другу: I took the shoes back because they were too small — я вернул обувь, потому что она была слишком маленькой. Соберите I took the shoes back + because + they were too small. После because даём целую причину. Английское shoes — форма для нескольких, поэтому дальше they were.",
+        "uk": "Ви повернули взуття до крамниці: воно виявилося замалим. Поясніть другові: I took the shoes back because they were too small — я повернув взуття, бо воно було замалим. Складіть I took the shoes back + because + they were too small. Після because даємо цілу причину. Англійське shoes — форма для кількох, тому далі they were."
       },
       "question": {
         "interactionId": "en:lesson-31:session-28:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "d3dfedf300efce64c92f72151dbdaf7eea4a02fe1aec7a3f0aebc617f51fc36b"
+  "introFingerprint": "b134f23b9377478db67aeb5cfe974cbcb33ae25b19ff5deea594c2b51b68f9ec"
 }

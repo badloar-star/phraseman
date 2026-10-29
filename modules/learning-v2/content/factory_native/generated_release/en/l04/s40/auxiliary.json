@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-04:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-40:intro2:r2": {
-          "ru": "Mattresses стоит во множественном числе, поэтому нужно aren’t.",
-          "uk": "Mattresses стоїть у множині, тому потрібне aren’t."
+          "ru": "Mattresses стоит в форме для нескольких, поэтому нужно aren’t.",
+          "uk": "Mattresses стоїть у формі для кількох, тому потрібне aren’t."
         },
         "en:lesson-04:session-40:intro2:r3": {
-          "ru": "После aren’t any здесь нужна форма множественного числа mattresses.",
-          "uk": "Після aren’t any тут потрібна форма множини mattresses."
+          "ru": "После aren’t any здесь нужна форма для нескольких mattresses.",
+          "uk": "Після aren’t any тут потрібна форма для кількох mattresses."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "92840c8d318c34622d58dc57ece2c99025c5f6354c2e2169cbee6607c678b3b5"
+  "auxiliaryFingerprint": "62523df1eed8f0982ec2a0310c21abd36047b869d7a9d9f60e4b9386129862fb"
 }

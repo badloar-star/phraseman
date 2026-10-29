@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-30",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Вимова стала кращою"
       },
       "bodyByLocale": {
-        "ru": "Вы занимались произношением и теперь замечаете, что слова звучат лучше. I have improved my pronunciation — я улучшил своё произношение. После I ставим have, затем improved — третью форму improve с добавленной -d. Так показываем результат занятий к настоящему моменту. My pronunciation называет, что улучшилось. Собираем I + have + improved + my pronunciation.",
-        "uk": "Ви працювали над вимовою й тепер помічаєте, що слова звучать краще. I have improved my pronunciation — я поліпшив свою вимову. Після I ставимо have, потім improved — третю форму improve з доданою -d. Так показуємо результат занять на теперішній момент. My pronunciation називає, що поліпшилося. Складаємо I + have + improved + my pronunciation."
+        "ru": "Вы занимались произношением и теперь замечаете, что слова звучат лучше. I have improved my pronunciation — я улучшил своё произношение. После I ставим have, затем improved — форму improve с добавленной -d. Так показываем результат занятий к настоящему моменту. My pronunciation называет, что улучшилось. Собираем I + have + improved + my pronunciation.",
+        "uk": "Ви працювали над вимовою й тепер помічаєте, що слова звучать краще. I have improved my pronunciation — я поліпшив свою вимову. Після I ставимо have, потім improved — форму improve з доданою -d. Так показуємо результат занять на теперішній момент. My pronunciation називає, що поліпшилося. Складаємо I + have + improved + my pronunciation."
       },
       "question": {
         "interactionId": "en:lesson-24:session-30:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Учора вправлялася зі словами"
       },
       "bodyByLocale": {
-        "ru": "Вчера сестра выполняла упражнения со знакомыми словами. She practised vocabulary yesterday — вчера она упражнялась в употреблении слов. После she ставим practised: yesterday задаёт законченный день, поэтому нужен Past Simple. Practise заканчивается на e, и для прошедшей формы добавляем -d. Vocabulary называет, что она отрабатывала; yesterday в конце уточняет время. Has перед practised не добавляем.",
-        "uk": "Учора сестра виконувала вправи зі знайомими словами. She practised vocabulary yesterday — учора вона вправлялася у вживанні слів. Після she ставимо practised: yesterday задає завершений день, тому потрібен Past Simple. Practise закінчується на e, і для минулої форми додаємо -d. Vocabulary називає, що вона відпрацьовувала; yesterday наприкінці уточнює час. Has перед practised не додаємо."
+        "ru": "Вчера сестра выполняла упражнения со знакомыми словами. She practised vocabulary yesterday — вчера она упражнялась в употреблении слов. После she ставим practised: yesterday задаёт законченный день, поэтому нужна форма прошлого. Practise заканчивается на e, и для прошедшей формы добавляем -d. Vocabulary называет, что она отрабатывала; yesterday в конце уточняет время. Has перед practised не добавляем.",
+        "uk": "Учора сестра виконувала вправи зі знайомими словами. She practised vocabulary yesterday — учора вона вправлялася у вживанні слів. Після she ставимо practised: yesterday задає завершений день, тому потрібна форма минулого. Practise закінчується на e, і для минулої форми додаємо -d. Vocabulary називає, що вона відпрацьовувала; yesterday наприкінці уточнює час. Has перед practised не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-30:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Перевірили значення вчора"
       },
       "bodyByLocale": {
-        "ru": "Вчера друзья встретили незнакомое слово и проверили его значение в словаре. They checked the meaning yesterday — вчера они проверили значение. После they ставим checked: к check добавляем -ed. The meaning называет, что проверили, а yesterday — когда. Этот законченный день требует Past Simple, поэтому have здесь не нужен. Порядок — they + checked + the meaning + yesterday.",
-        "uk": "Учора друзі натрапили на незнайоме слово й перевірили його значення у словнику. They checked the meaning yesterday — учора вони перевірили значення. Після they ставимо checked: до check додаємо -ed. The meaning називає, що перевірили, а yesterday — коли. Цей завершений день потребує Past Simple, тому have тут не потрібен. Порядок — they + checked + the meaning + yesterday."
+        "ru": "Вчера друзья встретили незнакомое слово и проверили его значение в словаре. They checked the meaning yesterday — вчера они проверили значение. После they ставим checked: к check добавляем -ed. The meaning называет, что проверили, а yesterday — когда. Этот законченный день требует формы прошлого, поэтому have здесь не нужен. Порядок — they + checked + the meaning + yesterday.",
+        "uk": "Учора друзі натрапили на незнайоме слово й перевірили його значення у словнику. They checked the meaning yesterday — учора вони перевірили значення. Після they ставимо checked: до check додаємо -ed. The meaning називає, що перевірили, а yesterday — коли. Цей завершений день потребує форма минулого, тому have тут не потрібен. Порядок — they + checked + the meaning + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2f4a65c4414625698e82e5e2853d3de3c38ac4a63f4ae7e96a4f876980f8def8"
+  "introFingerprint": "6a4592da27e0d03d97e0198a41fba2bbd754fa8b5209abd78094b273e3df9ee4"
 }

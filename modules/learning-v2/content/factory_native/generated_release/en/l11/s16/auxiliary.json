@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-11:session-16:intro2:q",
       "responseFeedbackById": {
         "en:lesson-11:session-16:intro2:r2": {
-          "ru": "Множественное число: were.",
-          "uk": "Множина: were."
+          "ru": "Форма для нескольких: were.",
+          "uk": "Форма для кількох: were."
         },
         "en:lesson-11:session-16:intro2:r3": {
           "ru": "В вопросе с were не нужен did.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "d6837383bf64d9d2bcb4fa82638f4e9aa0dfa7a9972bbb04688043bde05f3a7e"
+  "auxiliaryFingerprint": "d26027ad7cb6f63455df9aeae2545488e5891b3696f53e673742cb7905ccd74d"
 }

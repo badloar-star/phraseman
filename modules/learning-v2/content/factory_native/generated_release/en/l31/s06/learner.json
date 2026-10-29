@@ -769,8 +769,8 @@
             "correct": false,
             "testedDimension": "Вчера Анна сказала: «Книги здесь». Перескажите со сдвигом are в прошлое, находясь у той же полки.",
             "feedbackByLocale": {
-              "ru": "Множественное books требует were.",
-              "uk": "Множина books потребує were."
+              "ru": "Books (их несколько) требуют were.",
+              "uk": "Books (їх кілька) потребують were."
             }
           }
         ]
@@ -1080,5 +1080,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1d03c9b5476a4861ae981cc86f8a2e9adb3ef9f62f1487d575d621d95d36e7b9"
+  "learnerFingerprint": "b3c3d8b6a54991a699bce180cec45c35b9076e3281688822b50511421e45a6c3"
 }

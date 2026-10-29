@@ -69,8 +69,8 @@
         "uk": "Розклад уже перевірено"
       },
       "bodyByLocale": {
-        "ru": "Друг предлагает посмотреть время автобуса, но вы уже сделали это. Ответьте: I have already checked them — я уже проверил расписание. Them заменяет bus times — обсуждаемые часы отправления автобусов. Собираем: I + have + already + checked + them — кто, have, уже, действие, что проверил. Already ставим между have и checked. После have нужна третья форма checked с -ed; present perfect сообщает о готовом результате сейчас.",
-        "uk": "Друг пропонує подивитися час автобуса, але ви вже зробили це. Дайте відповідь: I have already checked them — я вже перевірив розклад. Them замінює bus times — обговорювані години відправлення автобусів. Складаємо: I + have + already + checked + them — хто, have, уже, дія, що перевірив. Already ставимо між have і checked. Після have потрібна третя форма checked із -ed; present perfect повідомляє про готовий результат зараз."
+        "ru": "Друг предлагает посмотреть время автобуса, но вы уже сделали это. Ответьте: I have already checked them — я уже проверил расписание. Them заменяет bus times — обсуждаемые часы отправления автобусов. Собираем: I + have + already + checked + them — кто, have, уже, действие, что проверил. Already ставим между have и checked. После have нужна форма checked с -ed; have / has + done сообщает о готовом результате сейчас.",
+        "uk": "Друг пропонує подивитися час автобуса, але ви вже зробили це. Дайте відповідь: I have already checked them — я вже перевірив розклад. Them замінює bus times — обговорювані години відправлення автобусів. Складаємо: I + have + already + checked + them — хто, have, уже, дія, що перевірив. Already ставимо між have і checked. Після have потрібна форма checked із -ed; have / has + done повідомляє про готовий результат зараз."
       },
       "question": {
         "interactionId": "en:lesson-26:session-42:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9e42f9c346d4223f5a3765e93f3be8c096b64d621582d218adf62a72ddfd3b37"
+  "introFingerprint": "6b180497908eff36bfbc2433925cc907afe7811083136da72c84c0fccd876b27"
 }

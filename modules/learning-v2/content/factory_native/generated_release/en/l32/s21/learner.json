@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Клей, который я купил, прочный. Скажите без that.",
+      "prompt": "Клей, который вы купили, прочный. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-21:i07:audio"
       ],
-      "accessibilityLabel": "Клей, который я купил, прочный. Скажите без that.",
+      "accessibilityLabel": "Клей, который вы купили, прочный. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Клей, который я купил, прочный. Уточните предмет без лишнего местоимения.",
+      "prompt": "Клей, который вы купили, прочный. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-21:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Клей, который я купил, прочный. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Клей, который вы купили, прочный. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Клей, который я купил, прочный. Уточните предмет без лишнего местоимения.",
-          "uk": "Клей, який я купив, міцний. Уточніть предмет без зайвого займенника."
+          "ru": "Клей, который вы купили, прочный. Предмет уже назван — не повторяйте его.",
+          "uk": "Клей, який ви купили, міцний. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The glue I ___ is strong.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Клей, который я купил, прочный. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Клей, который вы купили, прочный. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-21:i08:r2",
             "correct": false,
-            "testedDimension": "Клей, который я купил, прочный. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Клей, который вы купили, прочный. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-21:i08:r3",
             "correct": false,
-            "testedDimension": "Клей, который я купил, прочный. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Клей, который вы купили, прочный. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "При лёгком нажатии на стул одна ножка сильно сгибается, а из соединения слышен треск. Скажите вывод ещё раз, заменив The leg местоимением It.",
+      "prompt": "При лёгком нажатии на стул одна ножка сильно сгибается, а из соединения слышен треск. Скажите вывод ещё раз, заменив The leg словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-21:i10:audio"
       ],
-      "accessibilityLabel": "При лёгком нажатии на стул одна ножка сильно сгибается, а из соединения слышен треск. Скажите вывод ещё раз, заменив The leg местоимением It.",
+      "accessibilityLabel": "При лёгком нажатии на стул одна ножка сильно сгибается, а из соединения слышен треск. Скажите вывод ещё раз, заменив The leg словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7e289fa0f29bc4f061c29e7d07ef0d83ea2b5938ea7a3af640fa1d98688e6f0c"
+  "learnerFingerprint": "9fb12f2fda77d287be13c09492ce0053b844f282393c1544d6abd795396580fe"
 }

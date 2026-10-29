@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Часы, которые я купил, новые. Скажите без that.",
+      "prompt": "Часы, которые вы купили, новые. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-29:i07:audio"
       ],
-      "accessibilityLabel": "Часы, которые я купил, новые. Скажите без that.",
+      "accessibilityLabel": "Часы, которые вы купили, новые. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Часы, которые я купил, новые. Уточните предмет без лишнего местоимения.",
+      "prompt": "Часы, которые вы купили, новые. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-29:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Часы, которые я купил, новые. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Часы, которые вы купили, новые. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Часы, которые я купил, новые. Уточните предмет без лишнего местоимения.",
-          "uk": "Годинник, який я купив, новий. Уточніть предмет без зайвого займенника."
+          "ru": "Часы, которые вы купили, новые. Предмет уже назван — не повторяйте его.",
+          "uk": "Годинник, який ви купили, новий. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The watch I ___ is new.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Часы, которые я купил, новые. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Часы, которые вы купили, новые. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-29:i08:r2",
             "correct": false,
-            "testedDimension": "Часы, которые я купил, новые. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Часы, которые вы купили, новые. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-29:i08:r3",
             "correct": false,
-            "testedDimension": "Часы, которые я купил, новые. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Часы, которые вы купили, новые. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "По верному времени поезд должен был прибыть десять минут назад, но на его платформе по-прежнему пусто. Скажите вывод ещё раз, заменив The train местоимением It.",
+      "prompt": "По верному времени поезд должен был прибыть десять минут назад, но на его платформе по-прежнему пусто. Скажите вывод ещё раз, заменив The train словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-29:i10:audio"
       ],
-      "accessibilityLabel": "По верному времени поезд должен был прибыть десять минут назад, но на его платформе по-прежнему пусто. Скажите вывод ещё раз, заменив The train местоимением It.",
+      "accessibilityLabel": "По верному времени поезд должен был прибыть десять минут назад, но на его платформе по-прежнему пусто. Скажите вывод ещё раз, заменив The train словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1002,13 +1002,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Минутная стрелка на вокзальных часах не двигалась уже двадцать минут. Вы отвергаете их показания. Повторите вывод, заменив The clock местоимением It.",
+      "prompt": "Минутная стрелка на вокзальных часах не двигалась уже двадцать минут. Вы отвергаете их показания. Повторите вывод, заменив The clock словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-29:i21:audio"
       ],
-      "accessibilityLabel": "Минутная стрелка на вокзальных часах не двигалась уже двадцать минут. Вы отвергаете их показания. Повторите вывод, заменив The clock местоимением It.",
+      "accessibilityLabel": "Минутная стрелка на вокзальных часах не двигалась уже двадцать минут. Вы отвергаете их показания. Повторите вывод, заменив The clock словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8cc7d30e1096c1dd48c8e604886e6555d412597c431412e33ef35d6c542f42e5"
+  "learnerFingerprint": "21c619d840b3eb5cfa3c72a3e1c0a6bf1deded49ea9076bc0d46b40147f0d081"
 }

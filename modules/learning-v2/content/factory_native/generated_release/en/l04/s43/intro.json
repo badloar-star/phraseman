@@ -15,8 +15,8 @@
         "uk": "Мішок під дощем"
       },
       "bodyByLocale": {
-        "ru": "Вы несёте мешок бумаги и пластика и ищете контейнеры для переработки. Recycling bin — «контейнер для вторсырья». Are there any recycling bins near the school? — «Рядом со школой есть контейнеры для вторсырья?» Начинаем вопрос с Are there, затем ставим any recycling bins и место — near the school. Recycling bins стоит во множественном числе, поэтому нужно are; any подходит для вопроса, есть ли контейнеры вообще.",
-        "uk": "Ви несете мішок паперу й пластику та шукаєте контейнери для переробки. Recycling bin — «контейнер для вторсировини». Are there any recycling bins near the school? — «Поруч зі школою є контейнери для вторсировини?» Починаємо запитання з Are there, потім ставимо any recycling bins і місце — near the school. Recycling bins стоїть у множині, тому потрібне are; any підходить для запитання, чи є контейнери взагалі."
+        "ru": "Вы несёте мешок бумаги и пластика и ищете контейнеры для переработки. Recycling bin — «контейнер для вторсырья». Are there any recycling bins near the school? — «Рядом со школой есть контейнеры для вторсырья?» Начинаем вопрос с Are there, затем ставим any recycling bins и место — near the school. Recycling bins стоит в форме для нескольких, поэтому нужно are; any подходит для вопроса, есть ли контейнеры вообще.",
+        "uk": "Ви несете мішок паперу й пластику та шукаєте контейнери для переробки. Recycling bin — «контейнер для вторсировини». Are there any recycling bins near the school? — «Поруч зі школою є контейнери для вторсировини?» Починаємо запитання з Are there, потім ставимо any recycling bins і місце — near the school. Recycling bins стоїть у формі для кількох, тому потрібне are; any підходить для запитання, чи є контейнери взагалі."
       },
       "question": {
         "interactionId": "en:lesson-04:session-43:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Дощ не вщухає"
       },
       "bodyByLocale": {
-        "ru": "Подруга ищет, что надеть под дождь. Вы видите несколько плащей в прихожей. Raincoat — «плащ от дождя». There are some raincoats in the hall — «В прихожей есть плащи». Сначала ставим There are, затем some raincoats и место — in the hall. Some сообщает о наличии без точного числа; raincoats стоит во множественном числе.",
-        "uk": "Подруга шукає, що вдягнути під дощ. Ви бачите кілька плащів у передпокої. Raincoat — «плащ від дощу». There are some raincoats in the hall — «У передпокої є плащі». Спочатку ставимо There are, потім some raincoats і місце — in the hall. Some повідомляє про наявність без точної кількості; raincoats стоїть у множині."
+        "ru": "Подруга ищет, что надеть под дождь. Вы видите несколько плащей в прихожей. Raincoat — «плащ от дождя». There are some raincoats in the hall — «В прихожей есть плащи». Сначала ставим There are, затем some raincoats и место — in the hall. Some сообщает о наличии без точного числа; raincoats стоит в форме для нескольких.",
+        "uk": "Подруга шукає, що вдягнути під дощ. Ви бачите кілька плащів у передпокої. Raincoat — «плащ від дощу». There are some raincoats in the hall — «У передпокої є плащі». Спочатку ставимо There are, потім some raincoats і місце — in the hall. Some повідомляє про наявність без точної кількості; raincoats стоїть у формі для кількох."
       },
       "question": {
         "interactionId": "en:lesson-04:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e99ebd560fc403c8dfe12ede28d338267f387f9bd298311e1b328d17ea12e9f0"
+  "introFingerprint": "1eb486e0658d8aaa547ff28f7dfbe3ff060c4c59bea88c16f3a34971063c599a"
 }

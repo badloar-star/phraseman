@@ -15,8 +15,8 @@
         "uk": "Хто намалював малюнки"
       },
       "bodyByLocale": {
-        "ru": "Вы листаете детскую книгу. Библиотекарь поясняет: The pictures were drawn by a local artist — картинки нарисовал местный художник. Соберите The pictures + were drawn + by + a local artist. Картинок несколько, поэтому нужна were. Drawn — третья форма draw. После by назовите художника, который выполнил работу.",
-        "uk": "Ви гортаєте дитячу книжку. Бібліотекар пояснює: The pictures were drawn by a local artist — малюнки намалював місцевий художник. Складіть The pictures + were drawn + by + a local artist. Малюнків кілька, тому потрібна were. Drawn — третя форма draw. Після by назвіть художника, який виконав роботу."
+        "ru": "Вы листаете детскую книгу. Библиотекарь поясняет: The pictures were drawn by a local artist — картинки нарисовал местный художник. Соберите The pictures + were drawn + by + a local artist. Картинок несколько, поэтому нужна were. Drawn — форма draw после have. После by назовите художника, который выполнил работу.",
+        "uk": "Ви гортаєте дитячу книжку. Бібліотекар пояснює: The pictures were drawn by a local artist — малюнки намалював місцевий художник. Складіть The pictures + were drawn + by + a local artist. Малюнків кілька, тому потрібна were. Drawn — форма draw після have. Після by назвіть художника, який виконав роботу."
       },
       "question": {
         "interactionId": "en:lesson-28:session-36:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cc1c5cd5e002d0c689bc6b4c1481c5c1eba45bda040c9c0a5d9906b8f69cfbaa"
+  "introFingerprint": "28464d3588ce1c78cf7ca07451304bf87b5435869e991dace9c222080a81596b"
 }

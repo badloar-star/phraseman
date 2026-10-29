@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ковдра, яку я виправ, суха. Скажіть без that.",
+      "prompt": "Ковдра, яку ви випрали, суха. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-42:i07:audio"
       ],
-      "accessibilityLabel": "Ковдра, яку я виправ, суха. Скажіть без that.",
+      "accessibilityLabel": "Ковдра, яку ви випрали, суха. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ковдра, яку я виправ, суха. Уточніть предмет без зайвого займенника.",
+      "prompt": "Ковдра, яку ви випрали, суха. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-42:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ковдра, яку я виправ, суха. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Ковдра, яку ви випрали, суха. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Одеяло, которое я постирал, сухое. Уточните предмет без лишнего местоимения.",
-          "uk": "Ковдра, яку я виправ, суха. Уточніть предмет без зайвого займенника."
+          "ru": "Одеяло, которое вы постирали, сухое. Предмет уже назван — не повторяйте его.",
+          "uk": "Ковдра, яку ви випрали, суха. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The blanket I ___ is dry.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "washing"
           }
         ],
-        "testedDimension": "Ковдра, яку я виправ, суха. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Ковдра, яку ви випрали, суха. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-42:i08:r2",
             "correct": false,
-            "testedDimension": "Ковдра, яку я виправ, суха. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Ковдра, яку ви випрали, суха. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-42:i08:r3",
             "correct": false,
-            "testedDimension": "Ковдра, яку я виправ, суха. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Ковдра, яку ви випрали, суха. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма washed.",
               "uk": "Потрібна минула форма washed."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна вважає, що на ліжку нічого немає, але ви бачите на ньому велику валізу. Скажіть висновок, замінивши The bed займенником It.",
+      "prompt": "Анна вважає, що на ліжку нічого немає, але ви бачите на ньому велику валізу. Скажіть висновок, замінивши The bed словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-42:i10:audio"
       ],
-      "accessibilityLabel": "Анна вважає, що на ліжку нічого немає, але ви бачите на ньому велику валізу. Скажіть висновок, замінивши The bed займенником It.",
+      "accessibilityLabel": "Анна вважає, що на ліжку нічого немає, але ви бачите на ньому велику валізу. Скажіть висновок, замінивши The bed словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "83dd440b2b04a706bffbfc9ed3e9322fbfd62522fcede5724227d9e5de7fa31c"
+  "learnerFingerprint": "0698d4f999f28fb058f273737fc4f5512b2ad8b7b507d27ef66002e9a907879d"
 }

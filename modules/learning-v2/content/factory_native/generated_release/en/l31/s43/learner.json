@@ -749,7 +749,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы записали время, чтобы запомнить. Выберите связку перед I could remember it.",
+      "prompt": "Вы записали время, чтобы запомнить. Выберите, чем связать части фразы перед I could remember it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-43:i16:r1",
@@ -766,12 +766,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы записали время, чтобы запомнить. Выберите связку перед I could remember it.",
+      "accessibilityLabel": "Вы записали время, чтобы запомнить. Выберите, чем связать части фразы перед I could remember it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы записали время, чтобы запомнить. Выберите связку перед I could remember it.",
-          "uk": "Ви записали час, щоб запам’ятати. Виберіть сполуку перед I could remember it."
+          "ru": "Вы записали время, чтобы запомнить. Выберите, чем связать части фразы перед I could remember it.",
+          "uk": "Ви записали час, щоб запам’ятати. Виберіть, чим поєднати частини фрази перед I could remember it."
         },
         "gappedTargetPhrase": "I wrote it down ___ I could remember it.",
         "gapOptions": [
@@ -788,12 +788,12 @@
             "text": "for"
           }
         ],
-        "testedDimension": "Вы записали время, чтобы запомнить. Выберите связку перед I could remember it.",
+        "testedDimension": "Вы записали время, чтобы запомнить. Выберите, чем связать части фразы перед I could remember it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-43:i16:r2",
             "correct": false,
-            "testedDimension": "Вы записали время, чтобы запомнить. Выберите связку перед I could remember it.",
+            "testedDimension": "Вы записали время, чтобы запомнить. Выберите, чем связать части фразы перед I could remember it.",
             "feedbackByLocale": {
               "ru": "Перед целой частью I could remember it нужно so that.",
               "uk": "Перед цілою частиною I could remember it потрібне so that."
@@ -802,7 +802,7 @@
           {
             "responseId": "en:lesson-31:session-43:i16:r3",
             "correct": false,
-            "testedDimension": "Вы записали время, чтобы запомнить. Выберите связку перед I could remember it.",
+            "testedDimension": "Вы записали время, чтобы запомнить. Выберите, чем связать части фразы перед I could remember it.",
             "feedbackByLocale": {
               "ru": "Для этой части с целью нужно so that.",
               "uk": "Для цієї частини з метою потрібне so that."
@@ -1044,5 +1044,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4a2b593dc551e88e0faa7111f39aaeb553476182a25d9b0c333c0f166e706cf9"
+  "learnerFingerprint": "0cf19e8e5493e154baec4f77c615210435d9a2608c742cf93136acef1cd314a0"
 }

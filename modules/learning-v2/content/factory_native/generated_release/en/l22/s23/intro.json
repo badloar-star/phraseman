@@ -69,8 +69,8 @@
         "uk": "Пересісти"
       },
       "bodyByLocale": {
-        "ru": "В автобусе вам неудобно на своём месте, и вы спрашиваете водителя, можно ли пересесть. Could I change seats? — Можно мне пересесть? Порядок слов: Could + I + change + seats? Could I делает вопрос вежливым, change остаётся в начальной форме. В выражении change seats слово seats стоит во множественном числе: вы переходите с одного места на другое.",
-        "uk": "В автобусі вам незручно на своєму місці, і ви питаєте водія, чи можна пересісти. Could I change seats? — Можна мені пересісти? Порядок слів: Could + I + change + seats? Could I робить запитання ввічливим, change залишається в початковій формі. У вислові change seats слово seats стоїть у множині: ви переходите з одного місця на інше."
+        "ru": "В автобусе вам неудобно на своём месте, и вы спрашиваете водителя, можно ли пересесть. Could I change seats? — Можно мне пересесть? Порядок слов: Could + I + change + seats? Could I делает вопрос вежливым, change остаётся в начальной форме. В выражении change seats слово seats стоит в форме для нескольких: вы переходите с одного места на другое.",
+        "uk": "В автобусі вам незручно на своєму місці, і ви питаєте водія, чи можна пересісти. Could I change seats? — Можна мені пересісти? Порядок слів: Could + I + change + seats? Could I робить запитання ввічливим, change залишається в початковій формі. У вислові change seats слово seats стоїть у формі для кількох: ви переходите з одного місця на інше."
       },
       "question": {
         "interactionId": "en:lesson-22:session-23:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6afdb9cabd63f2aaa7c53803de3cafc6fef6f87782a69e3f5b8d136497ee6dd9"
+  "introFingerprint": "ec5e086dfaed69d42457c96fcd2ba6599e548d094a17df3184aafa9b7e0198bc"
 }

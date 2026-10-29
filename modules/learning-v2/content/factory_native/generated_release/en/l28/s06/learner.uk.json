@@ -580,8 +580,8 @@
             "responseId": "en:lesson-28:session-06:i12:r1",
             "targetText": "boxers",
             "meaningByLocale": {
-              "ru": "Свободные трусы-боксеры; слово во множественном числе.",
-              "uk": "Вільні труси-боксери; слово у множині."
+              "ru": "Свободные трусы-боксеры; слово в форме для нескольких.",
+              "uk": "Вільні труси-боксери; слово у формі для кількох."
             }
           }
         ],
@@ -591,8 +591,8 @@
         "wordCard": {
           "word": "boxers",
           "definitionByLocale": {
-            "ru": "Свободные трусы-боксеры; слово во множественном числе.",
-            "uk": "Вільні труси-боксери; слово у множині."
+            "ru": "Свободные трусы-боксеры; слово в форме для нескольких.",
+            "uk": "Вільні труси-боксери; слово у формі для кількох."
           }
         }
       },
@@ -1069,5 +1069,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4010186d06d895ae396d028e585d906ba2b04c9b130f4111dd6a7028372b14b2"
+  "learnerFingerprint": "7afcbad3f6c75b1374e7c518624295cc777c6c6791f6c928d6130b118620f43c"
 }

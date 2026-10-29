@@ -69,8 +69,8 @@
         "uk": "Що лежить на столі"
       },
       "bodyByLocale": {
-        "ru": "Вы вошли в центр, и подруга спрашивает, как узнать, какие здесь занятия. У входа стоит стол, а на нём лежат бумажные листы с расписанием кружков, и их несколько. leaflet — «листовка». There are some leaflets on the table — «На столе есть несколько листовок». Сначала ставим There are, затем some leaflets и место — on the table. Some показывает, что листовки есть, без точного числа; с leaflets во множественном числе нужно are.",
-        "uk": "Ви зайшли до центру, і подруга питає, як дізнатися, які тут заняття. Біля входу стоїть стіл, а на ньому лежать паперові аркуші з розкладом гуртків, і їх кілька. leaflet — «листівка». There are some leaflets on the table — «На столі є кілька листівок». Спочатку ставимо There are, потім some leaflets і місце — on the table. Some показує, що листівки є, без точної кількості; з leaflets у множині потрібне are."
+        "ru": "Вы вошли в центр, и подруга спрашивает, как узнать, какие здесь занятия. У входа стоит стол, а на нём лежат бумажные листы с расписанием кружков, и их несколько. leaflet — «листовка». There are some leaflets on the table — «На столе есть несколько листовок». Сначала ставим There are, затем some leaflets и место — on the table. Some показывает, что листовки есть, без точного числа; с leaflets в форме для нескольких нужно are.",
+        "uk": "Ви зайшли до центру, і подруга питає, як дізнатися, які тут заняття. Біля входу стоїть стіл, а на ньому лежать паперові аркуші з розкладом гуртків, і їх кілька. leaflet — «листівка». There are some leaflets on the table — «На столі є кілька листівок». Спочатку ставимо There are, потім some leaflets і місце — on the table. Some показує, що листівки є, без точної кількості; з leaflets у формі для кількох потрібне are."
       },
       "question": {
         "interactionId": "en:lesson-04:session-51:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "855a6a7d974684a73141da92cee7dfc58c38ef15c4c07130d2fe7f100df6a1a4"
+  "introFingerprint": "943d2369f4440d07def2c9ff5da538484eea2462897dd92d1a38e1b1b4b494b8"
 }

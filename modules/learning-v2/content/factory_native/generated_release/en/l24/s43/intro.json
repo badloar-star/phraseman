@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-43",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Особливо сподобалася музика"
       },
       "bodyByLocale": {
-        "ru": "Праздник подходит к концу, и вы благодарите организаторов: больше всего вам понравилась музыка. We have particularly enjoyed the music — нам особенно понравилась музыка. После we ставим have, затем третью форму enjoyed. Particularly — «особенно» — помещаем между have и enjoyed: так выделяем музыкальную часть праздника. The music называет, что доставило удовольствие. Получается we + have + particularly + enjoyed + the music.",
-        "uk": "Свято добігає кінця, і ви дякуєте організаторам: найбільше вам сподобалася музика. We have particularly enjoyed the music — нам особливо сподобалася музика. Після we ставимо have, потім третю форму enjoyed. Particularly — «особливо» — розміщуємо між have та enjoyed: так виділяємо музичну частину свята. The music називає, що принесло задоволення. Виходить we + have + particularly + enjoyed + the music."
+        "ru": "Праздник подходит к концу, и вы благодарите организаторов: больше всего вам понравилась музыка. We have particularly enjoyed the music — нам особенно понравилась музыка. После we ставим have, затем форму enjoyed. Particularly — «особенно» — помещаем между have и enjoyed: так выделяем музыкальную часть праздника. The music называет, что доставило удовольствие. Получается we + have + particularly + enjoyed + the music.",
+        "uk": "Свято добігає кінця, і ви дякуєте організаторам: найбільше вам сподобалася музика. We have particularly enjoyed the music — нам особливо сподобалася музика. Після we ставимо have, потім форму enjoyed. Particularly — «особливо» — розміщуємо між have та enjoyed: так виділяємо музичну частину свята. The music називає, що принесло задоволення. Виходить we + have + particularly + enjoyed + the music."
       },
       "question": {
         "interactionId": "en:lesson-24:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "deff016e4498ce64da1a2a33223418774f967711042059f756d2e45d3ae7cd49"
+  "introFingerprint": "753bccd23b16c72fed5afde6c7b92e3fb43144ef92ed0a62535f8dab46794e64"
 }

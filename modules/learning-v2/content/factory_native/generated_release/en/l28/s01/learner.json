@@ -174,8 +174,8 @@
             "correct": false,
             "testedDimension": "На ферме выращивают клубнику. Назовите ягоды в начале фразы.",
             "feedbackByLocale": {
-              "ru": "Strawberries — множественное число, поэтому are.",
-              "uk": "Strawberries — множина, тому are."
+              "ru": "Strawberries — форма для нескольких, поэтому are.",
+              "uk": "Strawberries — форма для кількох, тому are."
             }
           },
           {
@@ -384,7 +384,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
+      "prompt": "Масло делают здесь. Made — форма слова make. Дополните фразу о том, что делают с маслом.",
       "responseOptions": [
         {
           "responseId": "en:lesson-28:session-01:i08:r1",
@@ -401,12 +401,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
+      "accessibilityLabel": "Масло делают здесь. Made — форма слова make. Дополните фразу о том, что делают с маслом.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
-          "uk": "Масло роблять тут. Made — третя форма make. Доповніть пасивну форму."
+          "ru": "Масло делают здесь. Made — форма слова make. Дополните фразу о том, что делают с маслом.",
+          "uk": "Масло роблять тут. Made — форма слова make. Доповніть фразу про те, що роблять з маслом."
         },
         "gappedTargetPhrase": "The butter is ___ here.",
         "gapOptions": [
@@ -423,24 +423,24 @@
             "text": "making"
           }
         ],
-        "testedDimension": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
+        "testedDimension": "Масло делают здесь. Made — форма слова make. Дополните фразу о том, что делают с маслом.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-28:session-01:i08:r2",
             "correct": false,
-            "testedDimension": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
+            "testedDimension": "Масло делают здесь. Made — форма слова make. Дополните фразу о том, что делают с маслом.",
             "feedbackByLocale": {
-              "ru": "В пассивной форме после is нужна made.",
-              "uk": "У пасивній формі після is потрібна made."
+              "ru": "Когда говорим, что с предметом делают, после is нужна made.",
+              "uk": "Коли кажемо, що з предметом роблять, після is потрібна made."
             }
           },
           {
             "responseId": "en:lesson-28:session-01:i08:r3",
             "correct": false,
-            "testedDimension": "Масло делают здесь. Made — третья форма make. Дополните пассивную форму.",
+            "testedDimension": "Масло делают здесь. Made — форма слова make. Дополните фразу о том, что делают с маслом.",
             "feedbackByLocale": {
-              "ru": "Для пассивной формы здесь используем is made.",
-              "uk": "Для пасивної форми тут використовуємо is made."
+              "ru": "Чтобы сказать, что с предметом делают, здесь используем is made.",
+              "uk": "Щоб сказати, що з предметом роблять, тут використовуємо is made."
             }
           }
         ]
@@ -801,8 +801,8 @@
             "correct": false,
             "testedDimension": "На прилавке лежат булочки, которые пекут ежедневно.",
             "feedbackByLocale": {
-              "ru": "После are в пассивной форме нужна baked.",
-              "uk": "Після are у пасивній формі потрібна baked."
+              "ru": "После are, когда говорим, что с предметом делают, нужна baked.",
+              "uk": "Після are, коли кажемо, що з предметом роблять, потрібна baked."
             }
           },
           {
@@ -810,8 +810,8 @@
             "correct": false,
             "testedDimension": "На прилавке лежат булочки, которые пекут ежедневно.",
             "feedbackByLocale": {
-              "ru": "Bakes — личная форма; после are в этой пассивной модели нужна третья форма baked.",
-              "uk": "Bakes — особова форма; після are у цій пасивній моделі потрібна третя форма baked."
+              "ru": "Bakes — личная форма; после are в этой схеме («что с предметом делают») нужна форма baked.",
+              "uk": "Bakes — особова форма; після are в цій схемі («що з предметом роблять») потрібна форма baked."
             }
           }
         ]
@@ -1014,8 +1014,8 @@
             "correct": false,
             "testedDimension": "Магазин убирают каждый вечер. Выберите форму перед cleaned.",
             "feedbackByLocale": {
-              "ru": "The shop — единственное число, поэтому is.",
-              "uk": "The shop — однина, тому is."
+              "ru": "The shop — одна вещь, поэтому is.",
+              "uk": "The shop — одна річ, тому is."
             }
           },
           {
@@ -1071,5 +1071,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2108a6139dc3e0de0b51ff5cf6e3c279ae347119a1c98a200efa86b2beae74f7"
+  "learnerFingerprint": "6bb785ef01456717f289412c02baaec9354c66b7b78a994d786ebd56c2718414"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-50",
   "learningOutcomeByLocale": {
-    "ru": "The train leaves soon; See you later; I am already here; The bus is on time",
-    "uk": "The train leaves soon; See you later; I am already here; The bus is on time"
+    "ru": "сказать «скоро», «уже», «вовремя» и попрощаться",
+    "uk": "сказати «скоро», «уже», «вчасно» і попрощатися"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Потяг скоро відправляється"
       },
       "bodyByLocale": {
-        "ru": "Вы смотрите расписание: ваш поезд отправляется через несколько минут. The train leaves soon — «Поезд скоро отправляется». Сначала называем поезд — the train, затем ставим leaves и время soon — «скоро». Для отправления по расписанию подходит Present Simple, даже если оно ещё впереди. Train — один поезд, поэтому к leave добавляем -s: leaves.",
-        "uk": "Ви дивитеся розклад: ваш потяг відправляється за кілька хвилин. The train leaves soon — «Потяг скоро відправляється». Спочатку називаємо потяг — the train, потім ставимо leaves і час soon — «скоро». Для відправлення за розкладом підходить Present Simple, навіть якщо воно ще попереду. Train — один потяг, тому до leave додаємо -s: leaves."
+        "ru": "Вы смотрите расписание: ваш поезд отправляется через несколько минут. The train leaves soon — «Поезд скоро отправляется». Сначала называем поезд — the train, затем ставим leaves и время soon — «скоро». Для отправления по расписанию подходит форма без -ing, даже если оно ещё впереди. Train — один поезд, поэтому к leave добавляем -s: leaves.",
+        "uk": "Ви дивитеся розклад: ваш потяг відправляється за кілька хвилин. The train leaves soon — «Потяг скоро відправляється». Спочатку називаємо потяг — the train, потім ставимо leaves і час soon — «скоро». Для відправлення за розкладом підходить форма без -ing, навіть якщо воно ще попереду. Train — один потяг, тому до leave додаємо -s: leaves."
       },
       "question": {
         "interactionId": "en:lesson-10:session-50:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0ceddbf9925ad5a3384870353642e4dd80fbd878d2da0e5c5519325242cb63f9"
+  "introFingerprint": "a40594112d38c0b4e6553ca4ae91b6cf4acbeb95aa5c44bf7e9015e075dfb4cb"
 }

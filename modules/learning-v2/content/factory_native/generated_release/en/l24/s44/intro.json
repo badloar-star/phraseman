@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-44",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Фільм дуже сподобався"
       },
       "bodyByLocale": {
-        "ru": "Вчера подруга посмотрела фильм и осталась в восторге. Вы передаёте её впечатление. She absolutely loved the film yesterday — вчера фильм ей очень понравился. После she ставим absolutely, чтобы усилить loved — «очень понравился». Затем the film называет фильм, о котором идёт речь. Yesterday указывает на законченный день, поэтому используем loved в Past Simple, без has. Порядок — she + absolutely + loved + the film + yesterday.",
-        "uk": "Учора подруга подивилася фільм і залишилася в захваті. Ви передаєте її враження. She absolutely loved the film yesterday — учора фільм їй дуже сподобався. Після she ставимо absolutely, щоб посилити loved — «дуже сподобався». Потім the film називає фільм, про який ідеться. Yesterday указує на завершений день, тому використовуємо loved у Past Simple, без has. Порядок — she + absolutely + loved + the film + yesterday."
+        "ru": "Вчера подруга посмотрела фильм и осталась в восторге. Вы передаёте её впечатление. She absolutely loved the film yesterday — вчера фильм ей очень понравился. После she ставим absolutely, чтобы усилить loved — «очень понравился». Затем the film называет фильм, о котором идёт речь. Yesterday указывает на законченный день, поэтому используем loved в форме прошлого, без has. Порядок — she + absolutely + loved + the film + yesterday.",
+        "uk": "Учора подруга подивилася фільм і залишилася в захваті. Ви передаєте її враження. She absolutely loved the film yesterday — учора фільм їй дуже сподобався. Після she ставимо absolutely, щоб посилити loved — «дуже сподобався». Потім the film називає фільм, про який ідеться. Yesterday указує на завершений день, тому використовуємо loved у формі минулого, без has. Порядок — she + absolutely + loved + the film + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-44:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Майже без сну"
       },
       "bodyByLocale": {
-        "ru": "Сосед всю ночь ворочался и лишь ненадолго заснул. Утром вы рассказываете об этой ночи. He hardly slept last night — прошлой ночью он почти не спал. После he ставим hardly — «почти не», затем slept, прошедшую форму sleep. Hardly уже передаёт отрицательный смысл, поэтому not не добавляем. Last night называет закончившуюся ночь; здесь нужен Past Simple, без has.",
-        "uk": "Сусід усю ніч крутився в ліжку й лише ненадовго заснув. Уранці ви розповідаєте про цю ніч. He hardly slept last night — минулої ночі він майже не спав. Після he ставимо hardly — «майже не», потім slept, минулу форму sleep. Hardly вже передає заперечне значення, тому not не додаємо. Last night називає завершену ніч; тут потрібен Past Simple, без has."
+        "ru": "Сосед всю ночь ворочался и лишь ненадолго заснул. Утром вы рассказываете об этой ночи. He hardly slept last night — прошлой ночью он почти не спал. После he ставим hardly — «почти не», затем slept, прошедшую форму sleep. Hardly уже передаёт отрицательный смысл, поэтому not не добавляем. Last night называет закончившуюся ночь; здесь нужна форма прошлого, без has.",
+        "uk": "Сусід усю ніч крутився в ліжку й лише ненадовго заснув. Уранці ви розповідаєте про цю ніч. He hardly slept last night — минулої ночі він майже не спав. Після he ставимо hardly — «майже не», потім slept, минулу форму sleep. Hardly вже передає заперечне значення, тому not не додаємо. Last night називає завершену ніч; тут потрібна форма минулого, без has."
       },
       "question": {
         "interactionId": "en:lesson-24:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1e9233ae762cf47733066e5660e6a362719ab9597c8ae32dde98c449aa49ad70"
+  "introFingerprint": "8eb7d4b5766a86527a8734b51a8f848aad1b0ec5fedbcd12fbd4341c6c7c6d0f"
 }

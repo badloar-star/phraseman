@@ -69,8 +69,8 @@
         "uk": "Хто приготував приправу"
       },
       "bodyByLocale": {
-        "ru": "Вы рассматриваете банку домашней приправы. Продавец поясняет: This was made by my mother — это приготовила моя мама. Соберите This + was made + by + my mother. This указывает на приправу. Was made сообщает, что её приготовили; made — третья форма make. By my mother называет человека, который это сделал.",
-        "uk": "Ви розглядаєте банку домашньої приправи. Продавець пояснює: This was made by my mother — це приготувала моя мама. Складіть This + was made + by + my mother. This указує на приправу. Was made повідомляє, що її приготували; made — третя форма make. By my mother називає людину, яка це зробила."
+        "ru": "Вы рассматриваете банку домашней приправы. Продавец поясняет: This was made by my mother — это приготовила моя мама. Соберите This + was made + by + my mother. This указывает на приправу. Was made сообщает, что её приготовили; made — форма make после have. By my mother называет человека, который это сделал.",
+        "uk": "Ви розглядаєте банку домашньої приправи. Продавець пояснює: This was made by my mother — це приготувала моя мама. Складіть This + was made + by + my mother. This указує на приправу. Was made повідомляє, що її приготували; made — форма make після have. By my mother називає людину, яка це зробила."
       },
       "question": {
         "interactionId": "en:lesson-28:session-43:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5d0a2acb50009789c5d3d33e846fca0b9172aa48b748299f47ca4366d9cc76f3"
+  "introFingerprint": "3147fc888eaa9a2be71fcb6210aeb2892658b1ef3fdf68cdefd9f5ba90abd214"
 }

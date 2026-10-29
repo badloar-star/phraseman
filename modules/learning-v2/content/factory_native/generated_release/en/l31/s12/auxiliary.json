@@ -23,8 +23,8 @@
           "uk": "Після where порядок the cups are."
         },
         "en:lesson-31:session-12:intro2:r3": {
-          "ru": "Множественное cups требует are.",
-          "uk": "Множина cups потребує are."
+          "ru": "Cups (их несколько) требуют are.",
+          "uk": "Cups (їх кілька) потребують are."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "bb87da468dadf075d01e5104ace3cf47860afc2b5d9195e0c6d58b262c70e991"
+  "auxiliaryFingerprint": "f6b688736afd648a4b2952cb96990c481eee656a4c166bf4ba939ac45f4b2edf"
 }

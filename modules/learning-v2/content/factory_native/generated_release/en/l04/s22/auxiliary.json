@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-22:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-22:intro1:r2": {
-          "ru": "Carrots стоит во множественном числе, поэтому нужно aren’t.",
-          "uk": "Carrots стоїть у множині, тому потрібне aren’t."
+          "ru": "Carrots стоит в форме для нескольких, поэтому нужно aren’t.",
+          "uk": "Carrots стоїть у формі для кількох, тому потрібне aren’t."
         },
         "en:lesson-04:session-22:intro1:r3": {
           "ru": "В отрицании вместо some нужно any: There aren't any carrots.",
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-22:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-22:intro2:r2": {
-          "ru": "После aren’t any здесь нужна форма множественного числа biscuits.",
-          "uk": "Після aren’t any тут потрібна форма множини biscuits."
+          "ru": "После aren’t any здесь нужна форма для нескольких biscuits.",
+          "uk": "Після aren’t any тут потрібна форма для кількох biscuits."
         },
         "en:lesson-04:session-22:intro2:r3": {
           "ru": "Чтобы сказать «нет», нужно aren't: There aren't any biscuits.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-22:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-22:intro3:r2": {
-          "ru": "Sausages стоит во множественном числе, поэтому нужно aren’t.",
-          "uk": "Sausages стоїть у множині, тому потрібне aren’t."
+          "ru": "Sausages стоит в форме для нескольких, поэтому нужно aren’t.",
+          "uk": "Sausages стоїть у формі для кількох, тому потрібне aren’t."
         },
         "en:lesson-04:session-22:intro3:r3": {
-          "ru": "После aren’t any здесь нужна форма множественного числа sausages.",
-          "uk": "Після aren’t any тут потрібна форма множини sausages."
+          "ru": "После aren’t any здесь нужна форма для нескольких sausages.",
+          "uk": "Після aren’t any тут потрібна форма для кількох sausages."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "2fa0bf9b629ca7556dcc3307a5ca4abf681e8a24a736c29b7df07baae02c5849"
+  "auxiliaryFingerprint": "e384a6947e797fbff54400761cf281fd59fe6f44999a2b415dcb8b35ceaa4535"
 }

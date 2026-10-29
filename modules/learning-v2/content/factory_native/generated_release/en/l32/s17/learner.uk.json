@@ -486,7 +486,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Це може бути вітер. Виберіть зв’язку після could.",
+      "prompt": "Це може бути вітер. Виберіть форму be після could.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-17:i11:r1",
@@ -503,12 +503,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Це може бути вітер. Виберіть зв’язку після could.",
+      "accessibilityLabel": "Це може бути вітер. Виберіть форму be після could.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Это может быть ветер. Выберите связку после could.",
-          "uk": "Це може бути вітер. Виберіть зв’язку після could."
+          "ru": "Это может быть ветер. Выберите форму be после could.",
+          "uk": "Це може бути вітер. Виберіть форму be після could."
         },
         "gappedTargetPhrase": "It could ___ the wind.",
         "gapOptions": [
@@ -525,12 +525,12 @@
             "text": "to be"
           }
         ],
-        "testedDimension": "Це може бути вітер. Виберіть зв’язку після could.",
+        "testedDimension": "Це може бути вітер. Виберіть форму be після could.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-17:i11:r2",
             "correct": false,
-            "testedDimension": "Це може бути вітер. Виберіть зв’язку після could.",
+            "testedDimension": "Це може бути вітер. Виберіть форму be після could.",
             "feedbackByLocale": {
               "ru": "После could здесь нужна форма be.",
               "uk": "Після could тут потрібна форма be."
@@ -539,7 +539,7 @@
           {
             "responseId": "en:lesson-32:session-17:i11:r3",
             "correct": false,
-            "testedDimension": "Це може бути вітер. Виберіть зв’язку після could.",
+            "testedDimension": "Це може бути вітер. Виберіть форму be після could.",
             "feedbackByLocale": {
               "ru": "После could не ставим to.",
               "uk": "Після could не ставимо to."
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9cd26938a2a76e5f3b2ce80685cab06d83ffb58d288f08410ab49776e208e562"
+  "learnerFingerprint": "918aa7f38972a31b08818da2d0d970868d54d08d25a9ad64b35b30f73d3056e3"
 }

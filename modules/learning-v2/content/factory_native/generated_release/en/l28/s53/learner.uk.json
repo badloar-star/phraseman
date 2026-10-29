@@ -988,8 +988,8 @@
             "correct": false,
             "testedDimension": "Скажіть, що пензлик продається окремо.",
             "feedbackByLocale": {
-              "ru": "После is нужна sold, третья форма sell.",
-              "uk": "Після is потрібна sold, третя форма sell."
+              "ru": "После is нужна sold, форма sell.",
+              "uk": "Після is потрібна sold, форма sell."
             }
           },
           {
@@ -1045,5 +1045,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e5a38d120918c409a888c74a7704d5d6941c2b7118640883e90acf8214b73908"
+  "learnerFingerprint": "c4c321e8677be7a691b2fa91933bf764f31a993af8c4bb08525f820ae681bb19"
 }

@@ -23,8 +23,8 @@
           "uk": "Стежка одна, тому запитання починаємо з Is there, а не з Are there."
         },
         "en:lesson-04:session-55:intro2:r3": {
-          "ru": "Перед footpath в единственном числе здесь нужно a.",
-          "uk": "Перед footpath в однині тут потрібне a."
+          "ru": "Перед footpath в форме для одного здесь нужно a.",
+          "uk": "Перед footpath у формі для одного тут потрібне a."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-55:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-55:intro3:r2": {
-          "ru": "Puddles стоит во множественном числе, поэтому нужно aren’t.",
-          "uk": "Puddles стоїть у множині, тому потрібно aren’t."
+          "ru": "Puddles стоит в форме для нескольких, поэтому нужно aren’t.",
+          "uk": "Puddles стоїть у формі для кількох, тому потрібно aren’t."
         },
         "en:lesson-04:session-55:intro3:r3": {
-          "ru": "После aren’t any здесь нужна форма множественного числа puddles.",
-          "uk": "Після aren’t any тут потрібна форма множини puddles."
+          "ru": "После aren’t any здесь нужна форма для нескольких puddles.",
+          "uk": "Після aren’t any тут потрібна форма для кількох puddles."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "837550ea4bb460083c2b7d2a559928125063af28e4c1bb06a4224f71c1ac74aa"
+  "auxiliaryFingerprint": "c019548b46f9fe3249ed75f3a4924085c5d5a44099afd9d14538b7dd7c342696"
 }

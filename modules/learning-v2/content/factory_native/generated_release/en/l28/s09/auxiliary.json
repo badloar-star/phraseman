@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-28:session-09:intro2:q",
       "responseFeedbackById": {
         "en:lesson-28:session-09:intro2:r2": {
-          "ru": "С handles во множественном числе используем were.",
-          "uk": "З handles у множині використовуємо were."
+          "ru": "С handles в форме для нескольких используем were.",
+          "uk": "З handles у формі для кількох використовуємо were."
         },
         "en:lesson-28:session-09:intro2:r3": {
           "ru": "Для «заменили ручки» нужна were replaced.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "a464d037f9db869588fb3c286f96e864d3608ddf39dbd39c45f9bddd3354d33e"
+  "auxiliaryFingerprint": "7c6c98e08d9abfab018a75026118d37cda97204f5ae48098df52f1ea53a472e0"
 }

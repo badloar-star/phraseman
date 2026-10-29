@@ -804,8 +804,8 @@
             "correct": false,
             "testedDimension": "Спросите, знает ли друг, где ваши билеты.",
             "feedbackByLocale": {
-              "ru": "Множественное tickets требует are.",
-              "uk": "Множина tickets потребує are."
+              "ru": "Tickets (их несколько) требуют are.",
+              "uk": "Tickets (їх кілька) потребують are."
             }
           }
         ]
@@ -1047,5 +1047,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7344dbf5fb42c4de70d24204cc9af615deac99e0eb744a8117683c7612c78fa5"
+  "learnerFingerprint": "b1e46b6873f48880a6e6608d6bbd9f96368c525bc72dd0a853ea94cadf59480f"
 }

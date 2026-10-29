@@ -15,8 +15,8 @@
         "uk": "Плата за опалення"
       },
       "bodyByLocale": {
-        "ru": "Вы смотрите квартиру и знаете месячную плату, но не знаете, нужно ли отдельно платить за отопление. Спросите: Is heating included in the rent? — отопление включено в арендную плату? Соберите Is + heating + included + in the rent? Поставьте Is перед heating, затем included, третью форму include. В конце уточните, в какую плату должно входить отопление.",
-        "uk": "Ви оглядаєте квартиру й знаєте місячну плату, але не знаєте, чи потрібно окремо платити за опалення. Запитайте: Is heating included in the rent? — опалення включено в орендну плату? Складіть Is + heating + included + in the rent? Поставте Is перед heating, потім included, третю форму include. Наприкінці уточніть, до якої плати має входити опалення."
+        "ru": "Вы смотрите квартиру и знаете месячную плату, но не знаете, нужно ли отдельно платить за отопление. Спросите: Is heating included in the rent? — отопление включено в арендную плату? Соберите Is + heating + included + in the rent? Поставьте Is перед heating, затем included, форму include. В конце уточните, в какую плату должно входить отопление.",
+        "uk": "Ви оглядаєте квартиру й знаєте місячну плату, але не знаєте, чи потрібно окремо платити за опалення. Запитайте: Is heating included in the rent? — опалення включено в орендну плату? Складіть Is + heating + included + in the rent? Поставте Is перед heating, потім included, форму include. Наприкінці уточніть, до якої плати має входити опалення."
       },
       "question": {
         "interactionId": "en:lesson-28:session-56:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Ще одна спальня"
       },
       "bodyByLocale": {
-        "ru": "В квартире есть небольшая свободная комната. Спросите хозяина: Can this room be used as a bedroom? — можно использовать эту комнату как спальню? Соберите Can + this room + be used + as a bedroom? После Can назовите комнату. Затем поставьте be и used, третью форму use. Часть as a bedroom объясняет, для чего вы хотите её использовать.",
-        "uk": "У квартирі є невелика вільна кімната. Запитайте господаря: Can this room be used as a bedroom? — чи можна використовувати цю кімнату як спальню? Складіть Can + this room + be used + as a bedroom? Після Can назвіть кімнату. Потім поставте be та used, третю форму use. Частина as a bedroom пояснює, для чого ви хочете її використовувати."
+        "ru": "В квартире есть небольшая свободная комната. Спросите хозяина: Can this room be used as a bedroom? — можно использовать эту комнату как спальню? Соберите Can + this room + be used + as a bedroom? После Can назовите комнату. Затем поставьте be и used, форму use. Часть as a bedroom объясняет, для чего вы хотите её использовать.",
+        "uk": "У квартирі є невелика вільна кімната. Запитайте господаря: Can this room be used as a bedroom? — чи можна використовувати цю кімнату як спальню? Складіть Can + this room + be used + as a bedroom? Після Can назвіть кімнату. Потім поставте be та used, форму use. Частина as a bedroom пояснює, для чого ви хочете її використовувати."
       },
       "question": {
         "interactionId": "en:lesson-28:session-56:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Нові вікна"
       },
       "bodyByLocale": {
-        "ru": "Во время осмотра квартиры хозяин рассказывает об окнах: The windows were replaced last year — окна заменили в прошлом году. Соберите The windows + were replaced + last year. После The windows нужна were, потому что окон несколько. Затем поставьте replaced, третью форму replace. Last year в конце называет время выполненной замены.",
-        "uk": "Під час огляду квартири господар розповідає про вікна: The windows were replaced last year — вікна замінили торік. Складіть The windows + were replaced + last year. Після The windows потрібна were, бо вікон кілька. Потім поставте replaced, третю форму replace. Last year наприкінці називає час виконаної заміни."
+        "ru": "Во время осмотра квартиры хозяин рассказывает об окнах: The windows were replaced last year — окна заменили в прошлом году. Соберите The windows + were replaced + last year. После The windows нужна were, потому что окон несколько. Затем поставьте replaced, форму replace. Last year в конце называет время выполненной замены.",
+        "uk": "Під час огляду квартири господар розповідає про вікна: The windows were replaced last year — вікна замінили торік. Складіть The windows + were replaced + last year. Після The windows потрібна were, бо вікон кілька. Потім поставте replaced, форму replace. Last year наприкінці називає час виконаної заміни."
       },
       "question": {
         "interactionId": "en:lesson-28:session-56:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "8b8b37ff00684c4bc3a02469ef4e7f670f7ec2a20d89bedc4fd7520ea81afbe9"
+  "introFingerprint": "a28080bbd68814141751a8cd505b08372d83db9776467fad9f54c04ecb9cb094"
 }

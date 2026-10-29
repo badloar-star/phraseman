@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-04:session-16:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-16:intro1:r2": {
-          "ru": "С a swimming pool в единственном числе нужно Is there.",
-          "uk": "З a swimming pool в однині потрібне Is there."
+          "ru": "С a swimming pool в форме для одного нужно Is there.",
+          "uk": "З a swimming pool у формі для одного потрібне Is there."
         },
         "en:lesson-04:session-16:intro1:r3": {
           "ru": "Бассейн один, поэтому перед ним нужно a: a swimming pool.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "e0f9193dbc216c0d63e8142f63b1f1870083a5e8a7cbdd2d5d6c5d0c93291d43"
+  "auxiliaryFingerprint": "959d50a2d6485ba21daf72c76c1352333dceb825f43f64b91105a96e60876b26"
 }

@@ -65,8 +65,8 @@
       "pageId": "en:lesson-32:session-05:intro2",
       "kind": "formula",
       "titleByLocale": {
-        "ru": "Бутерброд, который я приготовил",
-        "uk": "Бутерброд, який я приготував"
+        "ru": "Бутерброд, который вы приготовили",
+        "uk": "Бутерброд, який ви приготували"
       },
       "bodyByLocale": {
         "ru": "На столе несколько бутербродов. Укажите свой: The sandwich I made is for Ben — бутерброд, который я приготовил, для Бена. Соберите The sandwich + I made + is for Ben. Часть I made уточняет sandwich. Можно опустить that: внутри уточнения уже есть I, тот, кто приготовил бутерброд.",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1b78ba6509f174e19ecac0f8ab99b22637df9cfe9ef37df2907c697905ebb92d"
+  "introFingerprint": "33ebddb0a9ffeddadb7b015d05d243b9cdab1d7798ad941da46080ce0025a759"
 }

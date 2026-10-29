@@ -171,7 +171,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired.",
+      "prompt": "Ви залишилися вдома, бо втомилися. Виберіть, чим поєднати частини фрази перед I was tired.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-25:i04:r1",
@@ -188,12 +188,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired.",
+      "accessibilityLabel": "Ви залишилися вдома, бо втомилися. Виберіть, чим поєднати частини фрази перед I was tired.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы остались дома, потому что устали. Выберите связку перед I was tired.",
-          "uk": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired."
+          "ru": "Вы остались дома, потому что устали. Выберите, чем связать части фразы перед I was tired.",
+          "uk": "Ви залишилися вдома, бо втомилися. Виберіть, чим поєднати частини фрази перед I was tired."
         },
         "gappedTargetPhrase": "I stayed home ___ I was tired.",
         "gapOptions": [
@@ -210,12 +210,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired.",
+        "testedDimension": "Ви залишилися вдома, бо втомилися. Виберіть, чим поєднати частини фрази перед I was tired.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-25:i04:r2",
             "correct": false,
-            "testedDimension": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired.",
+            "testedDimension": "Ви залишилися вдома, бо втомилися. Виберіть, чим поєднати частини фрази перед I was tired.",
             "feedbackByLocale": {
               "ru": "Перед целой частью I was tired используем because без of.",
               "uk": "Перед цілою частиною I was tired використовуємо because без of."
@@ -224,7 +224,7 @@
           {
             "responseId": "en:lesson-31:session-25:i04:r3",
             "correct": false,
-            "testedDimension": "Ви залишилися вдома, бо втомилися. Виберіть сполучник перед I was tired.",
+            "testedDimension": "Ви залишилися вдома, бо втомилися. Виберіть, чим поєднати частини фрази перед I was tired.",
             "feedbackByLocale": {
               "ru": "Of само по себе не связывает эти части.",
               "uk": "Of саме по собі не пов’язує ці частини."
@@ -352,7 +352,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Причину названо словами the rain. Виберіть сполуку.",
+      "prompt": "Причину названо словами the rain. Виберіть, чим поєднати частини фрази.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-25:i08:r1",
@@ -369,12 +369,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Причину названо словами the rain. Виберіть сполуку.",
+      "accessibilityLabel": "Причину названо словами the rain. Виберіть, чим поєднати частини фрази.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Причина названа словами the rain. Выберите связку.",
-          "uk": "Причину названо словами the rain. Виберіть сполуку."
+          "ru": "Причина названа словами the rain. Выберите, чем связать части фразы.",
+          "uk": "Причину названо словами the rain. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "I stayed home ___ the rain.",
         "gapOptions": [
@@ -391,12 +391,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Причину названо словами the rain. Виберіть сполуку.",
+        "testedDimension": "Причину названо словами the rain. Виберіть, чим поєднати частини фрази.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-25:i08:r2",
             "correct": false,
-            "testedDimension": "Причину названо словами the rain. Виберіть сполуку.",
+            "testedDimension": "Причину названо словами the rain. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Перед названием причины the rain нужно because of.",
               "uk": "Перед назвою причини the rain потрібне because of."
@@ -405,7 +405,7 @@
           {
             "responseId": "en:lesson-31:session-25:i08:r3",
             "correct": false,
-            "testedDimension": "Причину названо словами the rain. Виберіть сполуку.",
+            "testedDimension": "Причину названо словами the rain. Виберіть, чим поєднати частини фрази.",
             "feedbackByLocale": {
               "ru": "Нужна полная связка because of.",
               "uk": "Потрібна повна сполука because of."
@@ -534,7 +534,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late.",
+      "prompt": "Поясніть запізнення затримкою автобуса. Виберіть, чим поєднати частини фрази перед the bus was late.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-25:i12:r1",
@@ -551,12 +551,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late.",
+      "accessibilityLabel": "Поясніть запізнення затримкою автобуса. Виберіть, чим поєднати частини фрази перед the bus was late.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Объясните опоздание задержкой автобуса. Выберите связку перед the bus was late.",
-          "uk": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late."
+          "ru": "Объясните опоздание задержкой автобуса. Выберите, чем связать части фразы перед the bus was late.",
+          "uk": "Поясніть запізнення затримкою автобуса. Виберіть, чим поєднати частини фрази перед the bus was late."
         },
         "gappedTargetPhrase": "I was late ___ the bus was late.",
         "gapOptions": [
@@ -573,12 +573,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late.",
+        "testedDimension": "Поясніть запізнення затримкою автобуса. Виберіть, чим поєднати частини фрази перед the bus was late.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-25:i12:r2",
             "correct": false,
-            "testedDimension": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late.",
+            "testedDimension": "Поясніть запізнення затримкою автобуса. Виберіть, чим поєднати частини фрази перед the bus was late.",
             "feedbackByLocale": {
               "ru": "Перед целой частью the bus was late нужно because.",
               "uk": "Перед цілою частиною the bus was late потрібне because."
@@ -587,7 +587,7 @@
           {
             "responseId": "en:lesson-31:session-25:i12:r3",
             "correct": false,
-            "testedDimension": "Поясніть запізнення затримкою автобуса. Виберіть сполучник перед the bus was late.",
+            "testedDimension": "Поясніть запізнення затримкою автобуса. Виберіть, чим поєднати частини фрази перед the bus was late.",
             "feedbackByLocale": {
               "ru": "Of не связывает эти части.",
               "uk": "Of не пов’язує ці частини."
@@ -942,7 +942,7 @@
       "purpose": "independent_check",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Перед словами the rain пропущено частину сполуки because of. Вставте її.",
+      "prompt": "Перед словами the rain пропущено частину because of. Вставте її.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-25:i20:r1",
@@ -959,12 +959,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Перед словами the rain пропущено частину сполуки because of. Вставте її.",
+      "accessibilityLabel": "Перед словами the rain пропущено частину because of. Вставте її.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Перед словами the rain пропущена часть связки because of. Вставьте её.",
-          "uk": "Перед словами the rain пропущено частину сполуки because of. Вставте її."
+          "ru": "Перед словами the rain пропущена часть because of. Вставьте её.",
+          "uk": "Перед словами the rain пропущено частину because of. Вставте її."
         },
         "gappedTargetPhrase": "I stayed home because ___ the rain.",
         "gapOptions": [
@@ -981,12 +981,12 @@
             "text": "at"
           }
         ],
-        "testedDimension": "Перед словами the rain пропущено частину сполуки because of. Вставте її.",
+        "testedDimension": "Перед словами the rain пропущено частину because of. Вставте її.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-25:i20:r2",
             "correct": false,
-            "testedDimension": "Перед словами the rain пропущено частину сполуки because of. Вставте її.",
+            "testedDimension": "Перед словами the rain пропущено частину because of. Вставте її.",
             "feedbackByLocale": {
               "ru": "Нужна связка because of.",
               "uk": "Потрібна сполука because of."
@@ -995,7 +995,7 @@
           {
             "responseId": "en:lesson-31:session-25:i20:r3",
             "correct": false,
-            "testedDimension": "Перед словами the rain пропущено частину сполуки because of. Вставте її.",
+            "testedDimension": "Перед словами the rain пропущено частину because of. Вставте її.",
             "feedbackByLocale": {
               "ru": "Нужна связка because of.",
               "uk": "Потрібна сполука because of."
@@ -1045,5 +1045,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e81f856a2a01fc92708db253d1891c191bf2077d079a1b60af786530cf336bed"
+  "learnerFingerprint": "87e3b7c118603e36bc89237bdc6d074dcb432baff0bdfd6ab3ca2ab7ad745b30"
 }

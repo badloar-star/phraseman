@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-04:session-34:intro1:q",
       "responseFeedbackById": {
         "en:lesson-04:session-34:intro1:r2": {
-          "ru": "Handrails стоит во множественном числе, поэтому нужно aren’t.",
-          "uk": "Handrails стоїть у множині, тому потрібне aren’t."
+          "ru": "Handrails стоит в форме для нескольких, поэтому нужно aren’t.",
+          "uk": "Handrails стоїть у формі для кількох, тому потрібне aren’t."
         },
         "en:lesson-04:session-34:intro1:r3": {
-          "ru": "После aren’t any здесь нужна форма множественного числа handrails.",
-          "uk": "Після aren’t any тут потрібна форма множини handrails."
+          "ru": "После aren’t any здесь нужна форма для нескольких handrails.",
+          "uk": "Після aren’t any тут потрібна форма для кількох handrails."
         }
       }
     },
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-04:session-34:intro2:q",
       "responseFeedbackById": {
         "en:lesson-04:session-34:intro2:r2": {
-          "ru": "С bulbs во множественном числе нужно aren’t.",
-          "uk": "З bulbs у множині потрібне aren’t."
+          "ru": "С bulbs в форме для нескольких нужно aren’t.",
+          "uk": "З bulbs у формі для кількох потрібне aren’t."
         },
         "en:lesson-04:session-34:intro2:r3": {
           "ru": "Лампочек нет, поэтому перед any нужно aren’t, а не are.",
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-04:session-34:intro3:q",
       "responseFeedbackById": {
         "en:lesson-04:session-34:intro3:r2": {
-          "ru": "Signs стоит во множественном числе, поэтому нужно aren’t.",
-          "uk": "Signs стоїть у множині, тому потрібне aren’t."
+          "ru": "Signs стоит в форме для нескольких, поэтому нужно aren’t.",
+          "uk": "Signs стоїть у формі для кількох, тому потрібне aren’t."
         },
         "en:lesson-04:session-34:intro3:r3": {
-          "ru": "После aren’t any здесь нужна форма множественного числа signs.",
-          "uk": "Після aren’t any тут потрібна форма множини signs."
+          "ru": "После aren’t any здесь нужна форма для нескольких signs.",
+          "uk": "Після aren’t any тут потрібна форма для кількох signs."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "eb8704d5392f1ce35402d4750ac35ec4958fb5eee9fd42660340b02d191fc4c7"
+  "auxiliaryFingerprint": "5f847eabeae36cab7069ed89a7ab45ec6cc1b244e4482a542deb1f33599459c1"
 }

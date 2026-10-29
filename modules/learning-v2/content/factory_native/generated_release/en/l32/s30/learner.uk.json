@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Пальто, яке я купив, тепле. Скажіть без that.",
+      "prompt": "Пальто, яке ви купили, тепле. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-30:i07:audio"
       ],
-      "accessibilityLabel": "Пальто, яке я купив, тепле. Скажіть без that.",
+      "accessibilityLabel": "Пальто, яке ви купили, тепле. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника.",
+      "prompt": "Пальто, яке ви купили, тепле. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-30:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Пальто, яке ви купили, тепле. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Пальто, которое я купил, тёплое. Уточните предмет без лишнего местоимения.",
-          "uk": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника."
+          "ru": "Пальто, которое вы купили, тёплое. Предмет уже назван — не повторяйте его.",
+          "uk": "Пальто, яке ви купили, тепле. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The coat I ___ is warm.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Пальто, яке ви купили, тепле. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-30:i08:r2",
             "correct": false,
-            "testedDimension": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Пальто, яке ви купили, тепле. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-30:i08:r3",
             "correct": false,
-            "testedDimension": "Пальто, яке я купив, тепле. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Пальто, яке ви купили, тепле. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна із зусиллям пересуває сумку й просить допомогти її підняти. Скажіть висновок іще раз, замінивши The bag займенником It.",
+      "prompt": "Анна із зусиллям пересуває сумку й просить допомогти її підняти. Скажіть висновок іще раз, замінивши The bag словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-30:i10:audio"
       ],
-      "accessibilityLabel": "Анна із зусиллям пересуває сумку й просить допомогти її підняти. Скажіть висновок іще раз, замінивши The bag займенником It.",
+      "accessibilityLabel": "Анна із зусиллям пересуває сумку й просить допомогти її підняти. Скажіть висновок іще раз, замінивши The bag словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1002,13 +1002,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Повторіть висновок, замінивши The suitcase займенником It.",
+      "prompt": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Повторіть висновок, замінивши The suitcase словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-30:i21:audio"
       ],
-      "accessibilityLabel": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Повторіть висновок, замінивши The suitcase займенником It.",
+      "accessibilityLabel": "Ваша валіза червона, а Анна показує вам чорну. Ви впевнені, що це інша річ. Повторіть висновок, замінивши The suitcase словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b84e911ffb41f5541a1e2fae4f01f909a0e69d15b177466db4e010ef3bca4ba2"
+  "learnerFingerprint": "4a10cbd2bb5af20b8457147d434e6a20c4699333f51672b659be925b0a32b11f"
 }

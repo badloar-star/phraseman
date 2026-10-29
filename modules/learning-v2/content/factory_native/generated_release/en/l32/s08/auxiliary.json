@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-32:session-08:intro2:q",
       "responseFeedbackById": {
         "en:lesson-32:session-08:intro2:r2": {
-          "ru": "Не повторяем bowl местоимением it.",
-          "uk": "Не повторюємо bowl займенником it."
+          "ru": "Не повторяем bowl словом it.",
+          "uk": "Не повторюємо bowl словом it."
         },
         "en:lesson-32:session-08:intro2:r3": {
           "ru": "Для завершённого действия нужна форма washed.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "1eda56eab5902f513d3c027a670222486bb2cc1317fe776804511ce26d6edb25"
+  "auxiliaryFingerprint": "56d49c2ca19fa4d08d96e9bf38703d363f11b67d31c74ac5ccb0d57c94ff8201"
 }

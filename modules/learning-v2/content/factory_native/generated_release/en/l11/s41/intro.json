@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-41",
   "learningOutcomeByLocale": {
-    "ru": "was/were; there was/there were; yesterday / now",
-    "uk": "was/were; there was/there were; yesterday / now"
+    "ru": "рассказать, что было и что где было вчера: there was a cat, it was cold",
+    "uk": "розповісти, що було і що де було вчора: there was a cat, it was cold"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Скільки бутербродів було на тарілці"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете вчерашний перекус: на тарелке лежали два бутерброда с сыром. Скажите: There were two cheese sandwiches on the plate — на тарелке было два бутерброда с сыром. Начните с there were, чтобы сообщить, что в прошлом где-то было несколько предметов. Затем назовите количество и предметы: two cheese sandwiches. У sandwich множественное число образуется с -es: sandwiches. В конце добавьте место on the plate.",
-        "uk": "Ви згадуєте вчорашній перекус: на тарілці лежали два бутерброди із сиром. Скажіть: There were two cheese sandwiches on the plate — на тарілці було два бутерброди із сиром. Почніть із there were, щоб повідомити, що в минулому десь було кілька предметів. Потім назвіть кількість і предмети: two cheese sandwiches. У sandwich множина утворюється з -es: sandwiches. Наприкінці додайте місце on the plate."
+        "ru": "Вы вспоминаете вчерашний перекус: на тарелке лежали два бутерброда с сыром. Скажите: There were two cheese sandwiches on the plate — на тарелке было два бутерброда с сыром. Начните с there were, чтобы сообщить, что в прошлом где-то было несколько предметов. Затем назовите количество и предметы: two cheese sandwiches. У sandwich форма для нескольких образуется с -es: sandwiches. В конце добавьте место on the plate.",
+        "uk": "Ви згадуєте вчорашній перекус: на тарілці лежали два бутерброди із сиром. Скажіть: There were two cheese sandwiches on the plate — на тарілці було два бутерброди із сиром. Почніть із there were, щоб повідомити, що в минулому десь було кілька предметів. Потім назвіть кількість і предмети: two cheese sandwiches. У sandwich форма для кількох утворюється з -es: sandwiches. Наприкінці додайте місце on the plate."
       },
       "question": {
         "interactionId": "en:lesson-11:session-41:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Запитати про температуру соку"
       },
       "bodyByLocale": {
-        "ru": "Друг пил фруктовый сок вчера, и вы хотите узнать, был ли сок холодным. Спросите: Was the fruit juice cold? — фруктовый сок был холодным? Начните вопрос с was, затем назовите напиток the fruit juice и добавьте состояние cold. Juice здесь неисчисляемое, поэтому нужна форма was. Если друг подтверждает, короткий ответ строится так: Yes, it was — да. It заменяет название сока.",
-        "uk": "Друг пив фруктовий сік учора, і ви хочете дізнатися, чи був сік холодним. Запитайте: Was the fruit juice cold? — фруктовий сік був холодним? Почніть запитання з was, потім назвіть напій the fruit juice і додайте стан cold. Juice тут незлічуване, тому потрібна форма was. Якщо друг підтверджує, коротка відповідь будується так: Yes, it was — так. It замінює назву соку."
+        "ru": "Друг пил фруктовый сок вчера, и вы хотите узнать, был ли сок холодным. Спросите: Was the fruit juice cold? — фруктовый сок был холодным? Начните вопрос с was, затем назовите напиток the fruit juice и добавьте состояние cold. Juice здесь не считается поштучно, поэтому нужна форма was. Если друг подтверждает, короткий ответ строится так: Yes, it was — да. It заменяет название сока.",
+        "uk": "Друг пив фруктовий сік учора, і ви хочете дізнатися, чи був сік холодним. Запитайте: Was the fruit juice cold? — фруктовий сік був холодним? Почніть запитання з was, потім назвіть напій the fruit juice і додайте стан cold. Juice тут не рахується поштучно, тому потрібна форма was. Якщо друг підтверджує, коротка відповідь будується так: Yes, it was — так. It замінює назву соку."
       },
       "question": {
         "interactionId": "en:lesson-11:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5b430d5b648d5d5d5e4eb329737b73ba9be8ded87325ed9cc3364389e32c6843"
+  "introFingerprint": "8e5056edf07cc5a4e94f01ab2bb95e510eb087a51df97a3a8d0d183e801c0882"
 }

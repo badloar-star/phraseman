@@ -15,8 +15,8 @@
         "uk": "Запис перенесли"
       },
       "bodyByLocale": {
-        "ru": "Вы пришли в салон, а вашу запись перенесли без предупреждения. Спросите: Why was my appointment changed? — почему мою запись перенесли? Соберите Why + was + my appointment + changed? Начните с Why, затем поставьте was перед my appointment. В конце нужна changed, третья форма change. Запись изменилась по чьему-то действию; здесь вы спрашиваете о причине.",
-        "uk": "Ви прийшли до салону, а ваш запис перенесли без попередження. Запитайте: Why was my appointment changed? — чому мій запис перенесли? Складіть Why + was + my appointment + changed? Почніть із Why, потім поставте was перед my appointment. Наприкінці потрібна changed, третя форма change. Запис змінився через чиюсь дію; тут ви запитуєте про причину."
+        "ru": "Вы пришли в салон, а вашу запись перенесли без предупреждения. Спросите: Why was my appointment changed? — почему мою запись перенесли? Соберите Why + was + my appointment + changed? Начните с Why, затем поставьте was перед my appointment. В конце нужна changed, форма change. Запись изменилась по чьему-то действию; здесь вы спрашиваете о причине.",
+        "uk": "Ви прийшли до салону, а ваш запис перенесли без попередження. Запитайте: Why was my appointment changed? — чому мій запис перенесли? Складіть Why + was + my appointment + changed? Почніть із Why, потім поставте was перед my appointment. Наприкінці потрібна changed, форма change. Запис змінився через чиюсь дію; тут ви запитуєте про причину."
       },
       "question": {
         "interactionId": "en:lesson-28:session-55:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Зняти старий колір"
       },
       "bodyByLocale": {
-        "ru": "Перед маникюром вы показываете старое покрытие на ногтях. Спросите: Can this colour be removed? — можно снять этот цвет? Соберите Can + this colour + be removed? После Can назовите покрытие словами this colour, затем поставьте be и removed, третью форму remove. Так вы спрашиваете, возможно ли выполнить действие над покрытием.",
-        "uk": "Перед манікюром ви показуєте старе покриття на нігтях. Запитайте: Can this colour be removed? — чи можна зняти цей колір? Складіть Can + this colour + be removed? Після Can назвіть покриття словами this colour, потім поставте be та removed, третю форму remove. Так ви запитуєте, чи можливо виконати дію з покриттям."
+        "ru": "Перед маникюром вы показываете старое покрытие на ногтях. Спросите: Can this colour be removed? — можно снять этот цвет? Соберите Can + this colour + be removed? После Can назовите покрытие словами this colour, затем поставьте be и removed, форму remove. Так вы спрашиваете, возможно ли выполнить действие над покрытием.",
+        "uk": "Перед манікюром ви показуєте старе покриття на нігтях. Запитайте: Can this colour be removed? — чи можна зняти цей колір? Складіть Can + this colour + be removed? Після Can назвіть покриття словами this colour, потім поставте be та removed, форму remove. Так ви запитуєте, чи можливо виконати дію з покриттям."
       },
       "question": {
         "interactionId": "en:lesson-28:session-55:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "193d2357c74702fe51168b527f1e88e2f8e1982f50b0f7fe3bca6657917f8d2f"
+  "introFingerprint": "0917fe2dfd659db4be650dd0778c12d6d528a042f82bb90c142dc317bb8e1cac"
 }

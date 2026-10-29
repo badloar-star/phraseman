@@ -977,8 +977,8 @@
             "correct": false,
             "testedDimension": "Мастер обещает подстричь волосы ножницами. Выберите нужную форму cut.",
             "feedbackByLocale": {
-              "ru": "Здесь третья форма — cut.",
-              "uk": "Тут третя форма — cut."
+              "ru": "Здесь форма после have — cut.",
+              "uk": "Тут форма після have — cut."
             }
           },
           {
@@ -1034,5 +1034,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b3938b66c0714a75419afee13c98b6a079733eaf23c7876ba736dbe386f2d250"
+  "learnerFingerprint": "c45a427a1858ed1e77c200ec355b3d371a8ff990d085ac7dd03ee1e77216a8c3"
 }

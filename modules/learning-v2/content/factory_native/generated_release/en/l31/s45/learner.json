@@ -754,7 +754,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
+      "prompt": "Подпись должна помочь Анне найти чашки. Выберите, чем связать части фразы перед Anna could find the cups.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-45:i16:r1",
@@ -771,12 +771,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
+      "accessibilityLabel": "Подпись должна помочь Анне найти чашки. Выберите, чем связать части фразы перед Anna could find the cups.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
-          "uk": "Підпис має допомогти Анні знайти чашки. Виберіть сполуку перед Anna could find the cups."
+          "ru": "Подпись должна помочь Анне найти чашки. Выберите, чем связать части фразы перед Anna could find the cups.",
+          "uk": "Підпис має допомогти Анні знайти чашки. Виберіть, чим поєднати частини фрази перед Anna could find the cups."
         },
         "gappedTargetPhrase": "I labelled the box ___ Anna could find the cups.",
         "gapOptions": [
@@ -793,12 +793,12 @@
             "text": "for"
           }
         ],
-        "testedDimension": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
+        "testedDimension": "Подпись должна помочь Анне найти чашки. Выберите, чем связать части фразы перед Anna could find the cups.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-45:i16:r2",
             "correct": false,
-            "testedDimension": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
+            "testedDimension": "Подпись должна помочь Анне найти чашки. Выберите, чем связать части фразы перед Anna could find the cups.",
             "feedbackByLocale": {
               "ru": "Перед целой частью с Anna нужно so that.",
               "uk": "Перед цілою частиною з Anna потрібне so that."
@@ -807,7 +807,7 @@
           {
             "responseId": "en:lesson-31:session-45:i16:r3",
             "correct": false,
-            "testedDimension": "Подпись должна помочь Анне найти чашки. Выберите связку перед Anna could find the cups.",
+            "testedDimension": "Подпись должна помочь Анне найти чашки. Выберите, чем связать части фразы перед Anna could find the cups.",
             "feedbackByLocale": {
               "ru": "Цель с отдельным участником вводим через so that.",
               "uk": "Мету з окремим учасником вводимо через so that."
@@ -1054,5 +1054,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7bdd8ea9739b32093fdfa5c7250a21d5088ea87964e06ad27157387ec440158d"
+  "learnerFingerprint": "864fcb00185220c1e9f5d9d8643135f93cc67a267977bc5c5ee2b3200b9a87e5"
 }

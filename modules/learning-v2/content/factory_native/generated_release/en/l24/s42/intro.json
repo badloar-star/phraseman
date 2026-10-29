@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-42",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Поклали зерно на зберігання"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о вчерашней работе на ферме: работники убрали зерно на хранение. They stored the grain yesterday — вчера они убрали зерно на хранение. После they ставим stored: к правильному глаголу store добавляем -d, поскольку он уже заканчивается на e. Yesterday задаёт законченный день, поэтому используем Past Simple, без have. The grain называет, что убрали. Собираем they + stored + the grain + yesterday.",
-        "uk": "Ви розповідаєте про вчорашню роботу на фермі: працівники поклали зерно на зберігання. They stored the grain yesterday — учора вони поклали зерно на зберігання. Після they ставимо stored: до правильного дієслова store додаємо -d, оскільки воно вже закінчується на e. Yesterday задає завершений день, тому використовуємо Past Simple, без have. The grain називає, що поклали на зберігання. Складаємо they + stored + the grain + yesterday."
+        "ru": "Вы рассказываете о вчерашней работе на ферме: работники убрали зерно на хранение. They stored the grain yesterday — вчера они убрали зерно на хранение. После they ставим stored: к правильному глаголу store добавляем -d, поскольку он уже заканчивается на e. Yesterday задаёт законченный день, поэтому используем форму прошлого, без have. The grain называет, что убрали. Собираем they + stored + the grain + yesterday.",
+        "uk": "Ви розповідаєте про вчорашню роботу на фермі: працівники поклали зерно на зберігання. They stored the grain yesterday — учора вони поклали зерно на зберігання. Після they ставимо stored: до правильного дієслова store додаємо -d, оскільки воно вже закінчується на e. Yesterday задає завершений день, тому використовуємо форму минулого, без have. The grain називає, що поклали на зберігання. Складаємо they + stored + the grain + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "853166691b440dfa7640504716e15866c71215ca2f99eddecbbbf63254038779"
+  "introFingerprint": "ad7098f1b34f03863c3dd8774b03c72a2fa3cea80405628395192e2cce015d71"
 }

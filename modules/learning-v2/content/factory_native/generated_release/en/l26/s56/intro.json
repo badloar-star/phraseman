@@ -69,8 +69,8 @@
         "uk": "Якщо прохід закритий"
       },
       "bodyByLocale": {
-        "ru": "Друг собирается пройти через знакомый проход, но вы не знаете, открыт ли он. Посоветуйте: Use the other entrance if it is closed — воспользуйся другим входом, если он закрыт. It здесь заменяет ранее обсуждаемый проход. Собираем: Use + the other entrance + if it is closed — что сделать, какой вход использовать, при каком условии. Use без подлежащего выражает совет. If означает если; с it используем is.",
-        "uk": "Друг збирається пройти через знайомий прохід, але ви не знаєте, чи він відкритий. Порадьте: Use the other entrance if it is closed — скористайся іншим входом, якщо він закритий. It тут замінює раніше обговорюваний прохід. Складаємо: Use + the other entrance + if it is closed — що зробити, який вхід використати, за якої умови. Use без підмета виражає пораду. If означає якщо; з it використовуємо is."
+        "ru": "Друг собирается пройти через знакомый проход, но вы не знаете, открыт ли он. Посоветуйте: Use the other entrance if it is closed — воспользуйся другим входом, если он закрыт. It здесь заменяет ранее обсуждаемый проход. Собираем: Use + the other entrance + if it is closed — что сделать, какой вход использовать, при каком условии. Use в начале фразы, без you, выражает совет. If означает если; с it используем is.",
+        "uk": "Друг збирається пройти через знайомий прохід, але ви не знаєте, чи він відкритий. Порадьте: Use the other entrance if it is closed — скористайся іншим входом, якщо він закритий. It тут замінює раніше обговорюваний прохід. Складаємо: Use + the other entrance + if it is closed — що зробити, який вхід використати, за якої умови. Use на початку фрази, без you, виражає пораду. If означає якщо; з it використовуємо is."
       },
       "question": {
         "interactionId": "en:lesson-26:session-56:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "61bb942f4be12cf3bb82b340c88c7bcd38d9fe2758f823cae28077d0884f7c7d"
+  "introFingerprint": "78e6f32aa1de4fea9cb039500055a1620765d05c1b58e6b17be83db4eefc2fb5"
 }

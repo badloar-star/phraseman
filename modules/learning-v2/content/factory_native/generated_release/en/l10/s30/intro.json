@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-30",
   "learningOutcomeByLocale": {
-    "ru": "I work in January; We meet in February; I travel in July; We visit our friends in August",
-    "uk": "I work in January; We meet in February; I travel in July; We visit our friends in August"
+    "ru": "сказать, в каком месяце что происходит: in January",
+    "uk": "сказати, у якому місяці що відбувається: in January"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Подорожі в липні"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, в каком месяце вы обычно путешествуете. Вы отвечаете: I travel in July — «Я путешествую в июле». Сначала I, затем привычное действие travel и время in July. С I используем travel без -s: речь о повторяющейся поездке, поэтому подходит Present Simple. Перед названием месяца ставим in; July — «июль» — пишем с большой буквы.",
-        "uk": "Друг запитує, у якому місяці ви зазвичай подорожуєте. Ви відповідаєте: I travel in July — «Я подорожую в липні». Спочатку I, потім звична дія travel і час in July. З I використовуємо travel без -s: йдеться про повторювану поїздку, тому підходить Present Simple. Перед назвою місяця ставимо in; July — «липень» — пишемо з великої літери."
+        "ru": "Друг спрашивает, в каком месяце вы обычно путешествуете. Вы отвечаете: I travel in July — «Я путешествую в июле». Сначала I, затем привычное действие travel и время in July. С I используем travel без -s: речь о повторяющейся поездке, поэтому подходит форма без -ing. Перед названием месяца ставим in; July — «июль» — пишем с большой буквы.",
+        "uk": "Друг запитує, у якому місяці ви зазвичай подорожуєте. Ви відповідаєте: I travel in July — «Я подорожую в липні». Спочатку I, потім звична дія travel і час in July. З I використовуємо travel без -s: йдеться про повторювану поїздку, тому підходить форма без -ing. Перед назвою місяця ставимо in; July — «липень» — пишемо з великої літери."
       },
       "question": {
         "interactionId": "en:lesson-10:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "49537db7d51d8479c7b3b3e33f6c11984ef6e83b48489c0992c93f48a81c7109"
+  "introFingerprint": "be197cc26f4b2759f50aab4a7e45c536953f5240b8c73c44801d02e69f68b142"
 }

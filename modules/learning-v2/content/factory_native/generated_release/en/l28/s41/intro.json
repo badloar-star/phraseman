@@ -69,8 +69,8 @@
         "uk": "Хто спік торт"
       },
       "bodyByLocale": {
-        "ru": "Вы показываете гостям торт. Они спрашивают, кто его приготовил. Ответьте: The cake was made by my aunt — торт приготовила моя тётя. Соберите The cake + was made + by + my aunt. Was made сообщает о действии над тортом; made — третья форма make. После by назовите того, кто его приготовил.",
-        "uk": "Ви показуєте гостям торт. Вони запитують, хто його приготував. Дайте відповідь: The cake was made by my aunt — торт приготувала моя тітка. Складіть The cake + was made + by + my aunt. Was made повідомляє про дію з тортом; made — третя форма make. Після by назвіть того, хто його приготував."
+        "ru": "Вы показываете гостям торт. Они спрашивают, кто его приготовил. Ответьте: The cake was made by my aunt — торт приготовила моя тётя. Соберите The cake + was made + by + my aunt. Was made сообщает о действии над тортом; made — форма make после have. После by назовите того, кто его приготовил.",
+        "uk": "Ви показуєте гостям торт. Вони запитують, хто його приготував. Дайте відповідь: The cake was made by my aunt — торт приготувала моя тітка. Складіть The cake + was made + by + my aunt. Was made повідомляє про дію з тортом; made — форма make після have. Після by назвіть того, хто його приготував."
       },
       "question": {
         "interactionId": "en:lesson-28:session-41:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Не встигли зустрітися"
       },
       "bodyByLocale": {
-        "ru": "Вы приехали на семейную встречу после ухода брата. Объясните: He had left by the time I arrived — к моему приезду он уже ушёл. Соберите He + had left + by the time + I arrived. Had left обозначает более ранний уход; left — третья форма leave. После by the time назовите более поздний приезд: I arrived.",
-        "uk": "Ви приїхали на сімейну зустріч після відходу брата. Поясніть: He had left by the time I arrived — до мого приїзду він уже пішов. Складіть He + had left + by the time + I arrived. Had left позначає раніший відхід; left — третя форма leave. Після by the time назвіть пізніший приїзд: I arrived."
+        "ru": "Вы приехали на семейную встречу после ухода брата. Объясните: He had left by the time I arrived — к моему приезду он уже ушёл. Соберите He + had left + by the time + I arrived. Had left обозначает более ранний уход; left — форма leave после have. После by the time назовите более поздний приезд: I arrived.",
+        "uk": "Ви приїхали на сімейну зустріч після відходу брата. Поясніть: He had left by the time I arrived — до мого приїзду він уже пішов. Складіть He + had left + by the time + I arrived. Had left позначає раніший відхід; left — форма leave після have. Після by the time назвіть пізніший приїзд: I arrived."
       },
       "question": {
         "interactionId": "en:lesson-28:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0c7a2aadeaf68468e127a6b65d6075444b5e2c0065c65b465b569c202282a491"
+  "introFingerprint": "feb816447a2ff85d4ff4006258193e79b5685bdaa16c2f0d073aadbf57568ba7"
 }

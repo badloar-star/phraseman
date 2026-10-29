@@ -15,8 +15,8 @@
         "uk": "Я знаю, коли починається фільм"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом пришли в кино. Вы посмотрели время на билете и говорите: I know when the film starts — я знаю, когда начинается фильм. Соберите I know + when + the film + starts. После when стоит обычный порядок the film starts; вспомогательное does не нужно.",
-        "uk": "Ви з другом прийшли в кіно. Ви подивилися час на квитку й кажете: I know when the film starts — я знаю, коли починається фільм. Складіть I know + when + the film + starts. Після when стоїть звичайний порядок the film starts; допоміжне does не потрібне."
+        "ru": "Вы с другом пришли в кино. Вы посмотрели время на билете и говорите: I know when the film starts — я знаю, когда начинается фильм. Соберите I know + when + the film + starts. После when стоит обычный порядок the film starts; does не нужно.",
+        "uk": "Ви з другом прийшли в кіно. Ви подивилися час на квитку й кажете: I know when the film starts — я знаю, коли починається фільм. Складіть I know + when + the film + starts. Після when стоїть звичайний порядок the film starts; does не потрібне."
       },
       "question": {
         "interactionId": "en:lesson-31:session-21:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "51fe26a40ff477ad10f09a5bba03232da4925e3b0e49984d67d62a96c7afa2e7"
+  "introFingerprint": "123e775663e2f02010dd5f0633da999d4133cef5196ed2f5c94c0fbaf51d3363"
 }

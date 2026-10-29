@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-52",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Отримала диплом учора"
       },
       "bodyByLocale": {
-        "ru": "Сестра вчера получила диплом, и вы рассказываете об этом другу. She received her diploma yesterday — вчера она получила диплом. Начинаем с she, затем ставим received: вчерашний день закончился, поэтому нужен Past Simple. Receive — правильный глагол, к нему добавляем -d, поскольку он уже заканчивается на e. Her diploma называет, что она получила, а yesterday в конце — когда. Has перед received здесь не ставим.",
-        "uk": "Сестра вчора отримала диплом, і ви розповідаєте про це другові. She received her diploma yesterday — учора вона отримала диплом. Починаємо з she, потім ставимо received: учорашній день завершився, тому потрібен Past Simple. Receive — правильне дієслово, до нього додаємо -d, оскільки воно вже закінчується на e. Her diploma називає, що вона отримала, а yesterday наприкінці — коли. Has перед received тут не ставимо."
+        "ru": "Сестра вчера получила диплом, и вы рассказываете об этом другу. She received her diploma yesterday — вчера она получила диплом. Начинаем с she, затем ставим received: вчерашний день закончился, поэтому нужна форма прошлого. Receive — правильный глагол, к нему добавляем -d, поскольку он уже заканчивается на e. Her diploma называет, что она получила, а yesterday в конце — когда. Has перед received здесь не ставим.",
+        "uk": "Сестра вчора отримала диплом, і ви розповідаєте про це другові. She received her diploma yesterday — учора вона отримала диплом. Починаємо з she, потім ставимо received: учорашній день завершився, тому потрібна форма минулого. Receive — правильне дієслово, до нього додаємо -d, оскільки воно вже закінчується на e. Her diploma називає, що вона отримала, а yesterday наприкінці — коли. Has перед received тут не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-24:session-52:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "997dc400802892ee07fd207b039c19daf29d8c4628b745ce752d2536e34dfe18"
+  "introFingerprint": "2eea454111aba1cb648b786431e6e69281123a6905eabbe8792c8520f5f06146"
 }

@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Уточніть адресу, яку написав Бен. Не повторюйте address займенником.",
+      "prompt": "Уточніть адресу, яку написав Бен. Не повторюйте address словом it.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-04:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Уточніть адресу, яку написав Бен. Не повторюйте address займенником.",
+      "accessibilityLabel": "Уточніть адресу, яку написав Бен. Не повторюйте address словом it.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Уточните адрес, который написал Бен. Не повторяйте address местоимением.",
-          "uk": "Уточніть адресу, яку написав Бен. Не повторюйте address займенником."
+          "ru": "Уточните адрес, который написал Бен. Не повторяйте address словом it.",
+          "uk": "Уточніть адресу, яку написав Бен. Не повторюйте address словом it."
         },
         "gappedTargetPhrase": "The address Ben ___ is wrong.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "written"
           }
         ],
-        "testedDimension": "Уточніть адресу, яку написав Бен. Не повторюйте address займенником.",
+        "testedDimension": "Уточніть адресу, яку написав Бен. Не повторюйте address словом it.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-04:i03:r2",
             "correct": false,
-            "testedDimension": "Уточніть адресу, яку написав Бен. Не повторюйте address займенником.",
+            "testedDimension": "Уточніть адресу, яку написав Бен. Не повторюйте address словом it.",
             "feedbackByLocale": {
               "ru": "Address уже названо: it после wrote не нужно.",
               "uk": "Address уже названо: it після wrote не потрібне."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-32:session-04:i03:r3",
             "correct": false,
-            "testedDimension": "Уточніть адресу, яку написав Бен. Не повторюйте address займенником.",
+            "testedDimension": "Уточніть адресу, яку написав Бен. Не повторюйте address словом it.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма wrote.",
               "uk": "Потрібна минула форма wrote."
@@ -352,7 +352,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть зв’язку.",
+      "prompt": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть форму be.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-04:i08:r1",
@@ -369,12 +369,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть зв’язку.",
+      "accessibilityLabel": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть форму be.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Номер дома не совпал с запиской Анны. Вы делаете вывод, что дом не тот. Выберите связку.",
-          "uk": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть зв’язку."
+          "ru": "Номер дома не совпал с запиской Анны. Вы делаете вывод, что дом не тот. Выберите форму be.",
+          "uk": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть форму be."
         },
         "gappedTargetPhrase": "This must ___ the wrong house.",
         "gapOptions": [
@@ -391,12 +391,12 @@
             "text": "being"
           }
         ],
-        "testedDimension": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть зв’язку.",
+        "testedDimension": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть форму be.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-04:i08:r2",
             "correct": false,
-            "testedDimension": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть зв’язку.",
+            "testedDimension": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть форму be.",
             "feedbackByLocale": {
               "ru": "После must здесь нужна форма be.",
               "uk": "Після must тут потрібна форма be."
@@ -405,7 +405,7 @@
           {
             "responseId": "en:lesson-32:session-04:i08:r3",
             "correct": false,
-            "testedDimension": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть зв’язку.",
+            "testedDimension": "Номер будинку не збігся із запискою Анни. Ви робите висновок, що будинок не той. Виберіть форму be.",
             "feedbackByLocale": {
               "ru": "Используем начальную форму be.",
               "uk": "Використовуємо початкову форму be."
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6002308d29b8efd39ffb5b222a0c9449bd872784ec6773be802caca458cb7449"
+  "learnerFingerprint": "1bca3fedecfbd3190dfce94398c83680c8307562e24d33b4b078bc9d4106a449"
 }

@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Горщик, який я купив, маленький. Скажіть без that.",
+      "prompt": "Горщик, який ви купили, маленький. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-20:i07:audio"
       ],
-      "accessibilityLabel": "Горщик, який я купив, маленький. Скажіть без that.",
+      "accessibilityLabel": "Горщик, який ви купили, маленький. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника.",
+      "prompt": "Горщик, який ви купили, маленький. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-20:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Горщик, який ви купили, маленький. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Горшок, который я купил, маленький. Уточните предмет без лишнего местоимения.",
-          "uk": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника."
+          "ru": "Горшок, который вы купили, маленький. Предмет уже назван — не повторяйте его.",
+          "uk": "Горщик, який ви купили, маленький. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The pot I ___ is small.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Горщик, який ви купили, маленький. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-20:i08:r2",
             "correct": false,
-            "testedDimension": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Горщик, який ви купили, маленький. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-20:i08:r3",
             "correct": false,
-            "testedDimension": "Горщик, який я купив, маленький. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Горщик, який ви купили, маленький. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -453,13 +453,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Анна каже, що рослина тиждень стояла на сонці без поливу. Ви робите висновок про ґрунт, ще не торкаючись його. Скажіть висновок іще раз, замінивши The soil займенником It.",
+      "prompt": "Анна каже, що рослина тиждень стояла на сонці без поливу. Ви робите висновок про ґрунт, ще не торкаючись його. Скажіть висновок іще раз, замінивши The soil словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-20:i10:audio"
       ],
-      "accessibilityLabel": "Анна каже, що рослина тиждень стояла на сонці без поливу. Ви робите висновок про ґрунт, ще не торкаючись його. Скажіть висновок іще раз, замінивши The soil займенником It.",
+      "accessibilityLabel": "Анна каже, що рослина тиждень стояла на сонці без поливу. Ви робите висновок про ґрунт, ще не торкаючись його. Скажіть висновок іще раз, замінивши The soil словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1036,5 +1036,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c5623ad8ca8a3248cc19f30e7aa642f9b14d5edd874b00e3bdfd06e65d9ea870"
+  "learnerFingerprint": "16131b6cdc5dd34c079312088e3898a31d4fd81b3ff2bf6ec573fbaa448bf474"
 }

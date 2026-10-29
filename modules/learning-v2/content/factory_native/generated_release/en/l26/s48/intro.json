@@ -69,8 +69,8 @@
         "uk": "Щойно помітили пташку"
       },
       "bodyByLocale": {
-        "ru": "Друг показывает вам птицу на ветке. Вы только что её заметили и отвечаете: I have just seen it — я только что её увидел. Собираем: I + have + just + seen + it — кто, have, только что, действие, кого увидел. Present perfect связывает недавнее событие с разговором сейчас. Just ставим между have и третьей формой seen. У see эта форма seen, не saw; it заменяет птицу.",
-        "uk": "Друг показує вам пташку на гілці. Ви щойно її помітили й відповідаєте: I have just seen it — я щойно її побачив. Складаємо: I + have + just + seen + it — хто, have, щойно, дія, кого побачив. Present perfect пов’язує недавню подію з розмовою зараз. Just ставимо між have і третьою формою seen. У see ця форма seen, не saw; it замінює пташку."
+        "ru": "Друг показывает вам птицу на ветке. Вы только что её заметили и отвечаете: I have just seen it — я только что её увидел. Собираем: I + have + just + seen + it — кто, have, только что, действие, кого увидел. Форма have / has + done связывает недавнее событие с разговором сейчас. Just ставим между have и формой после have seen. У see эта форма seen, не saw; it заменяет птицу.",
+        "uk": "Друг показує вам пташку на гілці. Ви щойно її помітили й відповідаєте: I have just seen it — я щойно її побачив. Складаємо: I + have + just + seen + it — хто, have, щойно, дія, кого побачив. Форма have / has + done пов’язує недавню подію з розмовою зараз. Just ставимо між have і формою після have seen. У see ця форма seen, не saw; it замінює пташку."
       },
       "question": {
         "interactionId": "en:lesson-26:session-48:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Кінь пішов до вашого приходу"
       },
       "bodyByLocale": {
-        "ru": "Вчера вы пришли посмотреть на лошадь, но поле уже было пустым. Объясните: The horse had left the field by the time we arrived — лошадь ушла с поля к тому времени, как мы пришли. Собираем: The horse + had left + the field + by the time we arrived — кто, что сделал раньше, откуда ушёл, к какому моменту в прошлом. Had left показывает уход до вашего прихода. После had нужна третья форма leave — left.",
-        "uk": "Учора ви прийшли подивитися на коня, але поле вже було порожнім. Поясніть: The horse had left the field by the time we arrived — кінь пішов із поля до того часу, як ми прийшли. Складаємо: The horse + had left + the field + by the time we arrived — хто, що зробив раніше, звідки пішов, до якого моменту в минулому. Had left показує вихід до вашого приходу. Після had потрібна третя форма leave — left."
+        "ru": "Вчера вы пришли посмотреть на лошадь, но поле уже было пустым. Объясните: The horse had left the field by the time we arrived — лошадь ушла с поля к тому времени, как мы пришли. Собираем: The horse + had left + the field + by the time we arrived — кто, что сделал раньше, откуда ушёл, к какому моменту в прошлом. Had left показывает уход до вашего прихода. После had нужна форма leave — left.",
+        "uk": "Учора ви прийшли подивитися на коня, але поле вже було порожнім. Поясніть: The horse had left the field by the time we arrived — кінь пішов із поля до того часу, як ми прийшли. Складаємо: The horse + had left + the field + by the time we arrived — хто, що зробив раніше, звідки пішов, до якого моменту в минулому. Had left показує вихід до вашого приходу. Після had потрібна форма leave — left."
       },
       "question": {
         "interactionId": "en:lesson-26:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "70e4ecb0e3edef8ee317f8677ba6459cac360f102761be8c917b07a3a2b25bfa"
+  "introFingerprint": "44d5cbd420133e13b4ac1849fe088b94595d1699bdd4a123e746a60085bb3fd0"
 }

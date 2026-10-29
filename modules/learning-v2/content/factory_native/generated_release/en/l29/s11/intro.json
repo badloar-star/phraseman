@@ -69,8 +69,8 @@
         "uk": "Хто зв’язав шарф"
       },
       "bodyByLocale": {
-        "ru": "Подруга спрашивает, кто связал ваш шарф. Ответьте: The scarf was made by my aunt — шарф сделала моя тётя. Соберите The scarf + was made + by my aunt. После названия вещи поставьте was made: с ней выполнили действие. Made — третья форма make. Часть by my aunt называет человека, который сделал шарф.",
-        "uk": "Подруга запитує, хто зв’язав ваш шарф. Дайте відповідь: The scarf was made by my aunt — шарф зробила моя тітка. Складіть The scarf + was made + by my aunt. Після назви речі поставте was made: з нею виконали дію. Made — третя форма make. Частина by my aunt називає людину, яка зробила шарф."
+        "ru": "Подруга спрашивает, кто связал ваш шарф. Ответьте: The scarf was made by my aunt — шарф сделала моя тётя. Соберите The scarf + was made + by my aunt. После названия вещи поставьте was made: с ней выполнили действие. Made — форма make после have. Часть by my aunt называет человека, который сделал шарф.",
+        "uk": "Подруга запитує, хто зв’язав ваш шарф. Дайте відповідь: The scarf was made by my aunt — шарф зробила моя тітка. Складіть The scarf + was made + by my aunt. Після назви речі поставте was made: з нею виконали дію. Made — форма make після have. Частина by my aunt називає людину, яка зробила шарф."
       },
       "question": {
         "interactionId": "en:lesson-29:session-11:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e0bf9546af9b20b68eba102514be70ed001a0a15e1972f3b5d1ac9cfb178d6d4"
+  "introFingerprint": "4e11498ae1bc549e52a1841dfe1fc7feb396b3549437da6e39f92611b84eeec8"
 }

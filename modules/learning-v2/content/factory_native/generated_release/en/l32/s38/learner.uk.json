@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Шолом, який я купив, новий. Скажіть без that.",
+      "prompt": "Шолом, який ви купили, новий. Скажіть без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-38:i07:audio"
       ],
-      "accessibilityLabel": "Шолом, який я купив, новий. Скажіть без that.",
+      "accessibilityLabel": "Шолом, який ви купили, новий. Скажіть без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Шолом, який я купив, новий. Уточніть предмет без зайвого займенника.",
+      "prompt": "Шолом, який ви купили, новий. Предмет уже названо — не повторюйте його.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-38:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Шолом, який я купив, новий. Уточніть предмет без зайвого займенника.",
+      "accessibilityLabel": "Шолом, який ви купили, новий. Предмет уже названо — не повторюйте його.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Шлем, который я купил, новый. Уточните предмет без лишнего местоимения.",
-          "uk": "Шолом, який я купив, новий. Уточніть предмет без зайвого займенника."
+          "ru": "Шлем, который вы купили, новый. Предмет уже назван — не повторяйте его.",
+          "uk": "Шолом, який ви купили, новий. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The helmet I ___ is new.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "buying"
           }
         ],
-        "testedDimension": "Шолом, який я купив, новий. Уточніть предмет без зайвого займенника.",
+        "testedDimension": "Шолом, який ви купили, новий. Предмет уже названо — не повторюйте його.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-38:i08:r2",
             "correct": false,
-            "testedDimension": "Шолом, який я купив, новий. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Шолом, який ви купили, новий. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-38:i08:r3",
             "correct": false,
-            "testedDimension": "Шолом, який я купив, новий. Уточніть предмет без зайвого займенника.",
+            "testedDimension": "Шолом, який ви купили, новий. Предмет уже названо — не повторюйте його.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма bought.",
               "uk": "Потрібна минула форма bought."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Дужка замка повністю закрита, і ланцюг не знімається. Анна вважала, що вже відчинила його. Скажіть висновок, замінивши The lock займенником It.",
+      "prompt": "Дужка замка повністю закрита, і ланцюг не знімається. Анна вважала, що вже відчинила його. Скажіть висновок, замінивши The lock словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-38:i10:audio"
       ],
-      "accessibilityLabel": "Дужка замка повністю закрита, і ланцюг не знімається. Анна вважала, що вже відчинила його. Скажіть висновок, замінивши The lock займенником It.",
+      "accessibilityLabel": "Дужка замка повністю закрита, і ланцюг не знімається. Анна вважала, що вже відчинила його. Скажіть висновок, замінивши The lock словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2bb52e486f64ac131b302d443cb8749e82f50688ccc3bdd16d885a5c178f6254"
+  "learnerFingerprint": "2e5a22c5d8d94edfa91bd8f7a657f787e919b60f5cf12442a8d1957287a484f7"
 }

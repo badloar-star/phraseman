@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-05:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-05:session-48:intro2:r2": {
-          "ru": "rake — одна вещь, поэтому нужно is, хотя по-русски «грабли» во множественном числе.",
-          "uk": "rake — одна річ, тому потрібно is, хоча українською «граблі» у множині."
+          "ru": "rake — одна вещь, поэтому нужно is, хотя по-русски «грабли» в форме для нескольких.",
+          "uk": "rake — одна річ, тому потрібно is, хоча українською «граблі» у формі для кількох."
         },
         "en:lesson-05:session-48:intro2:r3": {
           "ru": "on значит «на», а грабли внутри сарая: нужно in.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "7242928fa0220dc19dbf63b356b64408847166b9179c72f087f812da16d0e211"
+  "auxiliaryFingerprint": "f73bc5a5eadb3ae03f6aa10f89fbc3b934b79dd15fa8c9d9e78897524141cf56"
 }

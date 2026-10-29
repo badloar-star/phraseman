@@ -69,8 +69,8 @@
         "uk": "Дощ на вулиці"
       },
       "bodyByLocale": {
-        "ru": "На улице льёт дождь, а вы хотели побегать. Вы зашли в спортивный центр и подошли к администратору. treadmill — «беговая дорожка», лента, на которой бегут на месте. Таких дорожек в зале может быть несколько: Are there treadmills near the window? — «Есть ли беговые дорожки рядом с окном?» Начинаем с Are there, затем ставим treadmills во множественном числе и место — near the window. Перед treadmills артикль a не нужен.",
-        "uk": "На вулиці ллє дощ, а ви хотіли побігати. Ви зайшли до спортивного центру й підійшли до адміністратора. treadmill — «бігова доріжка», стрічка, на якій біжать на місці. Таких доріжок у залі може бути кілька: Are there treadmills near the window? — «Чи є бігові доріжки поруч із вікном?» Починаємо з Are there, потім ставимо treadmills у множині й місце — near the window. Перед treadmills артикль a не потрібний."
+        "ru": "На улице льёт дождь, а вы хотели побегать. Вы зашли в спортивный центр и подошли к администратору. treadmill — «беговая дорожка», лента, на которой бегут на месте. Таких дорожек в зале может быть несколько: Are there treadmills near the window? — «Есть ли беговые дорожки рядом с окном?» Начинаем с Are there, затем ставим treadmills в форме для нескольких и место — near the window. Перед treadmills a не нужен.",
+        "uk": "На вулиці ллє дощ, а ви хотіли побігати. Ви зайшли до спортивного центру й підійшли до адміністратора. treadmill — «бігова доріжка», стрічка, на якій біжать на місці. Таких доріжок у залі може бути кілька: Are there treadmills near the window? — «Чи є бігові доріжки поруч із вікном?» Починаємо з Are there, потім ставимо treadmills у формі для кількох й місце — near the window. Перед treadmills a не потрібний."
       },
       "question": {
         "interactionId": "en:lesson-04:session-15:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "54d52432e2c141e377ee01b3ffaf6192a58c6a5c7920d5065e265a9ae366ff9b"
+  "introFingerprint": "c44a48d222e1d85b667856df205c8c790f4717adab531d942b23483abb2fa7ea"
 }

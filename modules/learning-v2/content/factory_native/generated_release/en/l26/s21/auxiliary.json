@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-26:session-21:intro3:q",
       "responseFeedbackById": {
         "en:lesson-26:session-21:intro3:r2": {
-          "ru": "После have нужна третья форма told.",
-          "uk": "Після have потрібна третя форма told."
+          "ru": "После have нужна форма told.",
+          "uk": "Після have потрібна форма told."
         },
         "en:lesson-26:session-21:intro3:r3": {
           "ru": "С I используем have.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "e00c40b5bd59b441a445539ecf7bd8daf876e85353ea4ea575771e4c543173c8"
+  "auxiliaryFingerprint": "61410b6a1696477c09c04b9ca65d41f7ddbefd933b65581342ce99cc75c13682"
 }

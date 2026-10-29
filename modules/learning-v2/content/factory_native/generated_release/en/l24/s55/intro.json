@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-55",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "различать «уже сделано, результат сейчас» и «было тогда-то»",
+    "uk": "розрізняти «вже зроблено, результат зараз» і «було тоді-то»"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Пейзаж минулого тижня"
       },
       "bodyByLocale": {
-        "ru": "Вы показываете картину друга и рассказываете, когда он её написал. He painted a landscape last week — на прошлой неделе он написал пейзаж. Last week называет завершившийся период, поэтому используем Past Simple. После he ставим painted: к правильному глаголу paint добавляем -ed. A landscape называет, что он нарисовал красками, а last week в конце — когда. Have или has в этом предложении не нужны.",
-        "uk": "Ви показуєте картину друга й розповідаєте, коли він її намалював. He painted a landscape last week — минулого тижня він намалював пейзаж фарбами. Last week називає завершений період, тому використовуємо Past Simple. Після he ставимо painted: до правильного дієслова paint додаємо -ed. A landscape називає, що він намалював фарбами, а last week наприкінці — коли. Have або has у цьому реченні не потрібні."
+        "ru": "Вы показываете картину друга и рассказываете, когда он её написал. He painted a landscape last week — на прошлой неделе он написал пейзаж. Last week называет завершившийся период, поэтому используем форму прошлого. После he ставим painted: к правильному глаголу paint добавляем -ed. A landscape называет, что он нарисовал красками, а last week в конце — когда. Have или has в этом предложении не нужны.",
+        "uk": "Ви показуєте картину друга й розповідаєте, коли він її намалював. He painted a landscape last week — минулого тижня він намалював пейзаж фарбами. Last week називає завершений період, тому використовуємо форму минулого. Після he ставимо painted: до правильного дієслова paint додаємо -ed. A landscape називає, що він намалював фарбами, а last week наприкінці — коли. Have або has у цьому реченні не потрібні."
       },
       "question": {
         "interactionId": "en:lesson-24:session-55:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fb9a78060fe95be57f3617374263486f7c39526b47cf4cb8bcc2c25163b89fca"
+  "introFingerprint": "fbaa6b6e682307319550bf759f7e884d7f43cc1fed7e7c254c0cef4f6001a097"
 }

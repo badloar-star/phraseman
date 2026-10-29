@@ -317,13 +317,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "Сумка, которую я собрал, тяжёлая. Скажите без that.",
+      "prompt": "Сумка, которую вы собрали, тяжёлая. Скажите без that.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-34:i07:audio"
       ],
-      "accessibilityLabel": "Сумка, которую я собрал, тяжёлая. Скажите без that.",
+      "accessibilityLabel": "Сумка, которую вы собрали, тяжёлая. Скажите без that.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -350,7 +350,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Сумка, которую я собрал, тяжёлая. Уточните предмет без лишнего местоимения.",
+      "prompt": "Сумка, которую вы собрали, тяжёлая. Предмет уже назван — не повторяйте его.",
       "responseOptions": [
         {
           "responseId": "en:lesson-32:session-34:i08:r1",
@@ -367,12 +367,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Сумка, которую я собрал, тяжёлая. Уточните предмет без лишнего местоимения.",
+      "accessibilityLabel": "Сумка, которую вы собрали, тяжёлая. Предмет уже назван — не повторяйте его.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Сумка, которую я собрал, тяжёлая. Уточните предмет без лишнего местоимения.",
-          "uk": "Сумка, яку я зібрав, важка. Уточніть предмет без зайвого займенника."
+          "ru": "Сумка, которую вы собрали, тяжёлая. Предмет уже назван — не повторяйте его.",
+          "uk": "Сумка, яку ви зібрали, важка. Предмет уже названо — не повторюйте його."
         },
         "gappedTargetPhrase": "The bag I ___ is heavy.",
         "gapOptions": [
@@ -389,12 +389,12 @@
             "text": "packing"
           }
         ],
-        "testedDimension": "Сумка, которую я собрал, тяжёлая. Уточните предмет без лишнего местоимения.",
+        "testedDimension": "Сумка, которую вы собрали, тяжёлая. Предмет уже назван — не повторяйте его.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-32:session-34:i08:r2",
             "correct": false,
-            "testedDimension": "Сумка, которую я собрал, тяжёлая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Сумка, которую вы собрали, тяжёлая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Предмет уже назван: it не нужно.",
               "uk": "Предмет уже названо: it не потрібне."
@@ -403,7 +403,7 @@
           {
             "responseId": "en:lesson-32:session-34:i08:r3",
             "correct": false,
-            "testedDimension": "Сумка, которую я собрал, тяжёлая. Уточните предмет без лишнего местоимения.",
+            "testedDimension": "Сумка, которую вы собрали, тяжёлая. Предмет уже назван — не повторяйте его.",
             "feedbackByLocale": {
               "ru": "Нужна прошедшая форма packed.",
               "uk": "Потрібна минула форма packed."
@@ -457,13 +457,13 @@
       "purpose": "guided_practice",
       "family": "scripted_repeat_compare",
       "inputMode": "tap_record_compare",
-      "prompt": "С рукавов пальто Анны капает вода. Скажите вывод, заменив The coat местоимением It.",
+      "prompt": "С рукавов пальто Анны капает вода. Скажите вывод, заменив The coat словом It.",
       "responseOptions": [],
       "mediaIds": [],
       "audioTargetIds": [
         "en:lesson-32:session-34:i10:audio"
       ],
-      "accessibilityLabel": "С рукавов пальто Анны капает вода. Скажите вывод, заменив The coat местоимением It.",
+      "accessibilityLabel": "С рукавов пальто Анны капает вода. Скажите вывод, заменив The coat словом It.",
       "modePayload": {
         "family": "scripted_repeat_compare",
         "referenceAudio": {
@@ -1040,5 +1040,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7d36cf8b2fb7c290bb5d3eeea5fa0e409fb233897aa1c3eebb72eaa5c802d509"
+  "learnerFingerprint": "afb856becbf2275cfadd39f4a7e6892db8fff8ccffde7487ee17412b48fe03a9"
 }

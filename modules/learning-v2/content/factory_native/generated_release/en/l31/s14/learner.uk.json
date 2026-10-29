@@ -174,8 +174,8 @@
             "correct": false,
             "testedDimension": "Взуття друга мокре. Додайте заперечне уточнення.",
             "feedbackByLocale": {
-              "ru": "Множественное shoes требует aren’t.",
-              "uk": "Множина shoes потребує aren’t."
+              "ru": "Shoes (их несколько) требуют aren’t.",
+              "uk": "Shoes (їх кілька) потребують aren’t."
             }
           },
           {
@@ -803,8 +803,8 @@
             "correct": false,
             "testedDimension": "Уточніть у друга, де ваші з ним квитки.",
             "feedbackByLocale": {
-              "ru": "Множественное tickets требует are.",
-              "uk": "Множина tickets потребує are."
+              "ru": "Tickets (их несколько) требуют are.",
+              "uk": "Tickets (їх кілька) потребують are."
             }
           }
         ]
@@ -1045,5 +1045,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f4e00e315a0ea6f6ce67e133395772964a25005c13989f5b9b1ddf0379fd4e79"
+  "learnerFingerprint": "d88d72423295e4a0d7790ac62f50204a095556452cfc469b64c559db20336b2c"
 }

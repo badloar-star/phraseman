@@ -15,8 +15,8 @@
         "uk": "Якщо не станеться виняток"
       },
       "bodyByLocale": {
-        "ru": "Unless — если не, если только не. We will eat outside unless it rains — мы поедим на улице, если не пойдёт дождь. Обычный план — есть на улице; дождь — исключение, которое его меняет. Это можно передать как We will eat outside if it does not rain. После unless здесь rains: Present Simple без will и без дополнительного not. Слово unless уже содержит смысл «если не».",
-        "uk": "Unless — якщо не, якщо тільки не. We will eat outside unless it rains — ми поїмо надворі, якщо не піде дощ. Звичайний план — їсти надворі; дощ — виняток, який його змінює. Це можна передати як We will eat outside if it does not rain. Після unless тут rains: Present Simple без will і без додаткового not. Слово unless уже містить значення «якщо не»."
+        "ru": "Unless — если не, если только не. We will eat outside unless it rains — мы поедим на улице, если не пойдёт дождь. Обычный план — есть на улице; дождь — исключение, которое его меняет. Это можно передать как We will eat outside if it does not rain. После unless здесь rains: форма work / works без will и без дополнительного not. Слово unless уже содержит смысл «если не».",
+        "uk": "Unless — якщо не, якщо тільки не. We will eat outside unless it rains — ми поїмо надворі, якщо не піде дощ. Звичайний план — їсти надворі; дощ — виняток, який його змінює. Це можна передати як We will eat outside if it does not rain. Після unless тут rains: форма work / works без will і без додаткового not. Слово unless уже містить значення «якщо не»."
       },
       "question": {
         "interactionId": "en:lesson-26:session-25:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "90770c82f219a2354a4bd5fca551cd17d7f69a8e1d18e29d38f517ab581467d2"
+  "introFingerprint": "86aa1d51ee451bb63f4a758d470a1a7c6fa320e03bf329721b68ba5f774c80ee"
 }

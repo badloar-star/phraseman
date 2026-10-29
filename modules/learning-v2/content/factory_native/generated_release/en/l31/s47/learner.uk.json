@@ -753,7 +753,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Список допоможе Анні купити хліб. Виберіть сполуку перед she could buy the bread.",
+      "prompt": "Список допоможе Анні купити хліб. Виберіть, чим поєднати частини фрази перед she could buy the bread.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-47:i16:r1",
@@ -770,12 +770,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Список допоможе Анні купити хліб. Виберіть сполуку перед she could buy the bread.",
+      "accessibilityLabel": "Список допоможе Анні купити хліб. Виберіть, чим поєднати частини фрази перед she could buy the bread.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Список поможет Анне купить хлеб. Выберите связку перед she could buy the bread.",
-          "uk": "Список допоможе Анні купити хліб. Виберіть сполуку перед she could buy the bread."
+          "ru": "Список поможет Анне купить хлеб. Выберите, чем связать части фразы перед she could buy the bread.",
+          "uk": "Список допоможе Анні купити хліб. Виберіть, чим поєднати частини фрази перед she could buy the bread."
         },
         "gappedTargetPhrase": "I gave Anna the list ___ she could buy the bread.",
         "gapOptions": [
@@ -792,12 +792,12 @@
             "text": "for"
           }
         ],
-        "testedDimension": "Список допоможе Анні купити хліб. Виберіть сполуку перед she could buy the bread.",
+        "testedDimension": "Список допоможе Анні купити хліб. Виберіть, чим поєднати частини фрази перед she could buy the bread.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-47:i16:r2",
             "correct": false,
-            "testedDimension": "Список допоможе Анні купити хліб. Виберіть сполуку перед she could buy the bread.",
+            "testedDimension": "Список допоможе Анні купити хліб. Виберіть, чим поєднати частини фрази перед she could buy the bread.",
             "feedbackByLocale": {
               "ru": "Перед she could buy the bread нужно so that.",
               "uk": "Перед she could buy the bread потрібне so that."
@@ -806,7 +806,7 @@
           {
             "responseId": "en:lesson-31:session-47:i16:r3",
             "correct": false,
-            "testedDimension": "Список допоможе Анні купити хліб. Виберіть сполуку перед she could buy the bread.",
+            "testedDimension": "Список допоможе Анні купити хліб. Виберіть, чим поєднати частини фрази перед she could buy the bread.",
             "feedbackByLocale": {
               "ru": "Цель с целой частью вводим через so that.",
               "uk": "Мету з цілою частиною вводимо через so that."
@@ -1051,5 +1051,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e31c47c052d1ac97bfd9d45f90786c474a1786f86e1d865ca9bf447459db11b1"
+  "learnerFingerprint": "c10d96359d07ab3dacbab23681fc78a7f8395a21c6af1741a94fb7f17deb7306"
 }

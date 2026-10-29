@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-27:session-43:intro1:q",
       "responseFeedbackById": {
         "en:lesson-27:session-43:intro1:r2": {
-          "ru": "После have нужна третья форма bought.",
-          "uk": "Після have потрібна третя форма bought."
+          "ru": "После have нужна форма bought.",
+          "uk": "Після have потрібна форма bought."
         },
         "en:lesson-27:session-43:intro1:r3": {
           "ru": "Здесь have bought.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "4918dfb8a440bc953a5c0d1a2fa867c582d936a5fe62ceec0b67dab23bf76bc7"
+  "auxiliaryFingerprint": "9e8f36727f84c048261d2cbd2176bb39ff7f8e485a458342dce6d6bfb7dde74a"
 }

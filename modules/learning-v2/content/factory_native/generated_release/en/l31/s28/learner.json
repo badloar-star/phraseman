@@ -128,7 +128,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы вернули обувь, потому что она была мала. Выберите связку.",
+      "prompt": "Вы вернули обувь, потому что она была мала. Выберите, чем связать части фразы.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-28:i03:r1",
@@ -145,12 +145,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы вернули обувь, потому что она была мала. Выберите связку.",
+      "accessibilityLabel": "Вы вернули обувь, потому что она была мала. Выберите, чем связать части фразы.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы вернули обувь, потому что она была мала. Выберите связку.",
-          "uk": "Ви повернули взуття, бо воно було замале. Виберіть сполучник."
+          "ru": "Вы вернули обувь, потому что она была мала. Выберите, чем связать части фразы.",
+          "uk": "Ви повернули взуття, бо воно було замале. Виберіть, чим поєднати частини фрази."
         },
         "gappedTargetPhrase": "I took the shoes back ___ they were too small.",
         "gapOptions": [
@@ -167,12 +167,12 @@
             "text": "of"
           }
         ],
-        "testedDimension": "Вы вернули обувь, потому что она была мала. Выберите связку.",
+        "testedDimension": "Вы вернули обувь, потому что она была мала. Выберите, чем связать части фразы.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-28:i03:r2",
             "correct": false,
-            "testedDimension": "Вы вернули обувь, потому что она была мала. Выберите связку.",
+            "testedDimension": "Вы вернули обувь, потому что она была мала. Выберите, чем связать части фразы.",
             "feedbackByLocale": {
               "ru": "Перед целой частью they were too small нужен because.",
               "uk": "Перед цілою частиною they were too small потрібне because."
@@ -181,7 +181,7 @@
           {
             "responseId": "en:lesson-31:session-28:i03:r3",
             "correct": false,
-            "testedDimension": "Вы вернули обувь, потому что она была мала. Выберите связку.",
+            "testedDimension": "Вы вернули обувь, потому что она была мала. Выберите, чем связать части фразы.",
             "feedbackByLocale": {
               "ru": "Of не связывает эти части.",
               "uk": "Of не пов’язує ці частини."
@@ -363,8 +363,8 @@
             "correct": false,
             "testedDimension": "Вчера Анна сказала: «Обувь мала». Перескажите со сдвигом are в прошлое.",
             "feedbackByLocale": {
-              "ru": "Множественное shoes требует were.",
-              "uk": "Множина shoes потребує were."
+              "ru": "Shoes (их несколько) требуют were.",
+              "uk": "Shoes (їх кілька) потребують were."
             }
           }
         ]
@@ -988,8 +988,8 @@
             "correct": false,
             "testedDimension": "Обувь неудобная. Добавьте утвердительное уточнение о ней.",
             "feedbackByLocale": {
-              "ru": "Множественное shoes требует are.",
-              "uk": "Множина shoes потребує are."
+              "ru": "Shoes (их несколько) требуют are.",
+              "uk": "Shoes (їх кілька) потребують are."
             }
           },
           {
@@ -1045,5 +1045,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e2d13981fdb90ee3b31e151a0f9d59fdf7c4bdbbc8bccb7a1b3a96c5c730c504"
+  "learnerFingerprint": "6bb0187731ed5f4b7dcba6210f7d3c8fda0042ce97ec0cd6f3eab53b6c403b93"
 }

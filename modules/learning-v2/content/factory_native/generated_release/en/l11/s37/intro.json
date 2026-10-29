@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-37",
   "learningOutcomeByLocale": {
-    "ru": "was/were; there was/there were; yesterday / now",
-    "uk": "was/were; there was/there were; yesterday / now"
+    "ru": "рассказать, что было и что где было вчера: there was a cat, it was cold",
+    "uk": "розповісти, що було і що де було вчора: there was a cat, it was cold"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Два пакетики на столі"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете вчерашнее чаепитие: на столе лежали два чайных пакетика. Скажите: There were two tea bags on the table. Начните с there were, чтобы сообщить о нескольких предметах в определённом месте в прошлом. После этого назовите количество и предметы — two tea bags. В названии tea bag множественное число получает последнее слово: bags. Завершите фразу местом on the table — «на столе».",
-        "uk": "Ви згадуєте вчорашнє чаювання: на столі лежали два чайні пакетики. Скажіть: There were two tea bags on the table. Почніть із there were, щоб повідомити про кілька предметів у певному місці в минулому. Після цього назвіть кількість і предмети — two tea bags. У назві tea bag множини набуває останнє слово: bags. Завершіть фразу місцем on the table — «на столі»."
+        "ru": "Вы вспоминаете вчерашнее чаепитие: на столе лежали два чайных пакетика. Скажите: There were two tea bags on the table. Начните с there were, чтобы сообщить о нескольких предметах в определённом месте в прошлом. После этого назовите количество и предметы — two tea bags. В названии tea bag форма для нескольких получает последнее слово: bags. Завершите фразу местом on the table — «на столе».",
+        "uk": "Ви згадуєте вчорашнє чаювання: на столі лежали два чайні пакетики. Скажіть: There were two tea bags on the table. Почніть із there were, щоб повідомити про кілька предметів у певному місці в минулому. Після цього назвіть кількість і предмети — two tea bags. У назві tea bag форма для кількох набуває останнє слово: bags. Завершіть фразу місцем on the table — «на столі»."
       },
       "question": {
         "interactionId": "en:lesson-11:session-37:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "21dd6642407687181c066dca320e2e952aa66a7a6365ce1d44c3abe64f2d0a20"
+  "introFingerprint": "266d2bd036c6e64e604a336c29c7616a4d854ecb0cdfee36570038fb2d74ac9e"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-35",
   "learningOutcomeByLocale": {
-    "ru": "Happy birthday; The wedding is today; We celebrate at home; We are having fun",
-    "uk": "Happy birthday; The wedding is today; We celebrate at home; We are having fun"
+    "ru": "поздравить и рассказать о празднике",
+    "uk": "привітати й розповісти про свято"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Де родина зазвичай святкує"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, где ваша семья обычно отмечает дни рождения. Вы отвечаете: We celebrate at home — «Мы празднуем дома». We называет вашу семью вместе с вами, celebrate — обычное действие, at home — место. Для привычки используем Present Simple: после we глагол celebrate остаётся без -s. Am, is или are перед ним не добавляем.",
-        "uk": "Друг запитує, де ваша родина зазвичай відзначає дні народження. Ви відповідаєте: We celebrate at home — «Ми святкуємо вдома». We називає вашу родину разом із вами, celebrate — звичну дію, at home — місце. Для звички використовуємо Present Simple: після we дієслово celebrate залишається без -s. Am, is або are перед ним не додаємо."
+        "ru": "Друг спрашивает, где ваша семья обычно отмечает дни рождения. Вы отвечаете: We celebrate at home — «Мы празднуем дома». We называет вашу семью вместе с вами, celebrate — обычное действие, at home — место. Для привычки используем форму без -ing: после we глагол celebrate остаётся без -s. Am, is или are перед ним не добавляем.",
+        "uk": "Друг запитує, де ваша родина зазвичай відзначає дні народження. Ви відповідаєте: We celebrate at home — «Ми святкуємо вдома». We називає вашу родину разом із вами, celebrate — звичну дію, at home — місце. Для звички використовуємо форму без -ing: після we дієслово celebrate залишається без -s. Am, is або are перед ним не додаємо."
       },
       "question": {
         "interactionId": "en:lesson-10:session-35:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cc47732b963fb32094c470cb0e12b5c622986c6240226926ae0a68fcf39ecd00"
+  "introFingerprint": "c250b7c991c9f599c508365afff9a35fc39037106c5a3b836b811ebfa312ee1b"
 }

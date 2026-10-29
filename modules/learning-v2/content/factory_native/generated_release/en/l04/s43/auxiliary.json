@@ -10,8 +10,8 @@
           "uk": "Контейнерів кілька, тому запитання починають з Are there, а не з Is there."
         },
         "en:lesson-04:session-43:intro1:r3": {
-          "ru": "После Are there any здесь нужна форма множественного числа recycling bins.",
-          "uk": "Після Are there any тут потрібна форма множини recycling bins."
+          "ru": "После Are there any здесь нужна форма для нескольких recycling bins.",
+          "uk": "Після Are there any тут потрібна форма для кількох recycling bins."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "15fd5f3a1691c6859bf839eec5bfdfbf0e233471854cc562617442706f967b33"
+  "auxiliaryFingerprint": "ea331dbe1081b1d5dcbe4d70132898e297cb19223ac6a52beed58bfd3014ab94"
 }

@@ -123,8 +123,8 @@
         "uk": "Що входить у плани"
       },
       "bodyByLocale": {
-        "ru": "Обсуждая отпуск, вы объясняете, что собираетесь путешествовать: My plans involve travelling — «мои планы предполагают путешествия». Начните с My plans. Plans — множественное число, поэтому далее involve без -s. После involve действие принимает форму на -ing: travelling, без to перед ним. В британском написании travel перед -ing получает вторую l.",
-        "uk": "Обговорюючи відпустку, ви пояснюєте, що збираєтеся подорожувати: My plans involve travelling — «мої плани передбачають подорожі». Почніть з My plans. Plans — множина, тому далі involve без -s. Після involve дія набуває форми на -ing: travelling, без to перед ним. У британському написанні travel перед -ing отримує другу l."
+        "ru": "Обсуждая отпуск, вы объясняете, что собираетесь путешествовать: My plans involve travelling — «мои планы предполагают путешествия». Начните с My plans. Plans — форма для нескольких, поэтому далее involve без -s. После involve действие принимает форму на -ing: travelling, без to перед ним. В британском написании travel перед -ing получает вторую l.",
+        "uk": "Обговорюючи відпустку, ви пояснюєте, що збираєтеся подорожувати: My plans involve travelling — «мої плани передбачають подорожі». Почніть з My plans. Plans — форма для кількох, тому далі involve без -s. Після involve дія набуває форми на -ing: travelling, без to перед ним. У британському написанні travel перед -ing отримує другу l."
       },
       "question": {
         "interactionId": "en:lesson-21:session-19:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "580009a53595422a49bc8f629f2622d31c40a7c2f5fa27f4467c8868dbb7d534"
+  "introFingerprint": "1a302f7b465857cd3f3879b936d3a6ac72f827e48d6392fe69746e054844a1ee"
 }

@@ -752,7 +752,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Карта нужна Анне для входа. Выберите связку перед she could get in.",
+      "prompt": "Карта нужна Анне для входа. Выберите, чем связать части фразы перед she could get in.",
       "responseOptions": [
         {
           "responseId": "en:lesson-31:session-48:i16:r1",
@@ -769,12 +769,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Карта нужна Анне для входа. Выберите связку перед she could get in.",
+      "accessibilityLabel": "Карта нужна Анне для входа. Выберите, чем связать части фразы перед she could get in.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Карта нужна Анне для входа. Выберите связку перед she could get in.",
-          "uk": "Картка потрібна Анні для входу. Виберіть сполуку перед she could get in."
+          "ru": "Карта нужна Анне для входа. Выберите, чем связать части фразы перед she could get in.",
+          "uk": "Картка потрібна Анні для входу. Виберіть, чим поєднати частини фрази перед she could get in."
         },
         "gappedTargetPhrase": "I gave Anna her card ___ she could get in.",
         "gapOptions": [
@@ -791,12 +791,12 @@
             "text": "for"
           }
         ],
-        "testedDimension": "Карта нужна Анне для входа. Выберите связку перед she could get in.",
+        "testedDimension": "Карта нужна Анне для входа. Выберите, чем связать части фразы перед she could get in.",
         "choiceFeedback": [
           {
             "responseId": "en:lesson-31:session-48:i16:r2",
             "correct": false,
-            "testedDimension": "Карта нужна Анне для входа. Выберите связку перед she could get in.",
+            "testedDimension": "Карта нужна Анне для входа. Выберите, чем связать части фразы перед she could get in.",
             "feedbackByLocale": {
               "ru": "Перед she could get in нужна связка so that.",
               "uk": "Перед she could get in потрібна сполука so that."
@@ -805,7 +805,7 @@
           {
             "responseId": "en:lesson-31:session-48:i16:r3",
             "correct": false,
-            "testedDimension": "Карта нужна Анне для входа. Выберите связку перед she could get in.",
+            "testedDimension": "Карта нужна Анне для входа. Выберите, чем связать части фразы перед she could get in.",
             "feedbackByLocale": {
               "ru": "Цель с целой частью вводим через so that.",
               "uk": "Мету з цілою частиною вводимо через so that."
@@ -1052,5 +1052,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "029da20c843a367e0d039200045cc34b51d08c0782cf4b2cc888685396ac2cf9"
+  "learnerFingerprint": "0297c1b260b68c65c797f14776d6f566336512b724c7d8793551da0f85e4c796"
 }

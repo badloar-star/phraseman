@@ -119,8 +119,8 @@
       "pageId": "en:lesson-32:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Пальто, которое я постирал",
-        "uk": "Пальто, яке я виправ"
+        "ru": "Пальто, которое вы постирали",
+        "uk": "Пальто, яке ви випрали"
       },
       "bodyByLocale": {
         "ru": "Вы отделяете постиранное пальто от грязных вещей: The coat I washed is clean — пальто, которое я постирал, чистое. Соберите The coat + I washed + is clean. I washed уточняет coat. That можно опустить: в уточнении I называет того, кто постирал пальто.",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "386a9f8cc13bb7d3d1b426f9d41d0851484ceb57d6f31bf8a6a6adf43359135b"
+  "introFingerprint": "ca91eb615ebf2a80ee8522b9672677d4a61509471a831f00b6bbb33b4571c0fd"
 }

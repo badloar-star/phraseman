@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-12:session-01",
   "learningOutcomeByLocale": {
-    "ru": "Past Simple: regular verb + -ed; final -e + -d",
-    "uk": "Past Simple: regular verb + -ed; final -e + -d"
+    "ru": "рассказать о вчерашнем: добавлять к действию -ed или -d",
+    "uk": "розповісти про вчорашнє: додавати до дії -ed або -d"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Роздягнутися перед сном учора"
       },
       "bodyByLocale": {
-        "ru": "Вчера вечером вы разделись перед сном. Расскажите об этом законченном действии: I undressed before bed yesterday — я разделся перед сном вчера. Для завершённого действия в прошлом используем Past Simple. Начните с I, затем добавьте ed к правильному глаголу undress: undressed. После действия укажите before bed, а в конце yesterday. Знакомые was/were описывали состояние или местонахождение; перед undressed дополнительное was не нужно. Здесь речь об одном прошлом событии, а не о привычке.",
-        "uk": "Учора ввечері ви роздягнулися перед сном. Розкажіть про цю завершену дію: I undressed before bed yesterday — я роздягнувся перед сном учора. Для завершеної дії в минулому використовуємо Past Simple. Почніть з I, потім додайте ed до правильного дієслова undress: undressed. Після дії вкажіть before bed, а наприкінці yesterday. Знайомі was/were описували стан або місце перебування; перед undressed додаткове was не потрібне. Тут ідеться про одну минулу подію, а не про звичку."
+        "ru": "Вчера вечером вы разделись перед сном. Расскажите об этом законченном действии: I undressed before bed yesterday — я разделся перед сном вчера. Для завершённого действия в прошлом используем форму прошлого. Начните с I, затем добавьте ed к правильному глаголу undress: undressed. После действия укажите before bed, а в конце yesterday. Знакомые was/were описывали состояние или местонахождение; перед undressed дополнительное was не нужно. Здесь речь об одном прошлом событии, а не о привычке.",
+        "uk": "Учора ввечері ви роздягнулися перед сном. Розкажіть про цю завершену дію: I undressed before bed yesterday — я роздягнувся перед сном учора. Для завершеної дії в минулому використовуємо форму минулого. Почніть з I, потім додайте ed до правильного дієслова undress: undressed. Після дії вкажіть before bed, а наприкінці yesterday. Знайомі was/were описували стан або місце перебування; перед undressed додаткове was не потрібне. Тут ідеться про одну минулу подію, а не про звичку."
       },
       "question": {
         "interactionId": "en:lesson-12:session-01:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bf7a05b99418bed2a8439adeece734f06d98ae26fbf231521dc972944f8c1024"
+  "introFingerprint": "97e286829b92ce9ce3379f7c0a147f485e653686b6282a9a51cd2091ef12bc75"
 }

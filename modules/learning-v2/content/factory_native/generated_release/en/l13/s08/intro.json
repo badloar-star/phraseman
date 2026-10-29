@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-13:session-08",
   "learningOutcomeByLocale": {
-    "ru": "review: Did + subject + base verb?",
-    "uk": "review: Did + subject + base verb?"
+    "ru": "повторить: спросить о прошлом — Did you call?",
+    "uk": "повторити: запитати про минуле — Did you call?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Хліб до сніданку"
       },
       "bodyByLocale": {
-        "ru": "Друг вчера заходил в пекарню. Вы уточняете, купил ли он белый хлеб к завтраку. White bread — белый хлеб. Начните вопрос с Did you, затем поставьте buy и назовите покупку: white bread. Получится Did you buy white bread? — Ты купил белый хлеб? После Did используем buy, а не bought. Bread здесь неисчисляемое: мы не считаем буханки, поэтому a перед white bread не ставим.",
-        "uk": "Друг учора заходив до пекарні. Ви уточнюєте, чи купив він білий хліб до сніданку. White bread — білий хліб. Почніть запитання з Did you, потім поставте buy і назвіть покупку: white bread. Вийде Did you buy white bread? — Ти купив білий хліб? Після Did використовуємо buy, а не bought. Bread тут незлічуване: ми не рахуємо хлібини, тому a перед white bread не ставимо."
+        "ru": "Друг вчера заходил в пекарню. Вы уточняете, купил ли он белый хлеб к завтраку. White bread — белый хлеб. Начните вопрос с Did you, затем поставьте buy и назовите покупку: white bread. Получится Did you buy white bread? — Ты купил белый хлеб? После Did используем buy, а не bought. Bread здесь не считается поштучно: мы не считаем буханки, поэтому a перед white bread не ставим.",
+        "uk": "Друг учора заходив до пекарні. Ви уточнюєте, чи купив він білий хліб до сніданку. White bread — білий хліб. Почніть запитання з Did you, потім поставте buy і назвіть покупку: white bread. Вийде Did you buy white bread? — Ти купив білий хліб? Після Did використовуємо buy, а не bought. Bread тут не рахується поштучно: ми не рахуємо хлібини, тому a перед white bread не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-13:session-08:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9545a5b1101171df0b38eb1250fa71ff62e28ee406136bc4588e421358c86601"
+  "introFingerprint": "74cd2f392caf15ba3c5f6c49392de1e5451133ca951cc1c6a6280421b104fd76"
 }

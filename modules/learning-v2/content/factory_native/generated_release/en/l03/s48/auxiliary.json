@@ -23,8 +23,8 @@
           "uk": "Слово item починається з голосного звуку, тому an: An item is missing."
         },
         "en:lesson-03:session-48:intro2:r3": {
-          "ru": "С item в единственном числе нужно is.",
-          "uk": "З item в однині потрібне is."
+          "ru": "С item в форме для одного нужно is.",
+          "uk": "З item у формі для одного потрібне is."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "e37227759d5c8fc9fed6a495612f4cd8a55d7fcb6a0c39758ce12c80059f5f15"
+  "auxiliaryFingerprint": "d6dc7a0a115abdcd5f3c0be73adb701bd8ac115213a0979403184e0336c96119"
 }

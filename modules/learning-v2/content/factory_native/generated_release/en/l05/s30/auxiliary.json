@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-05:session-30:intro1:q",
       "responseFeedbackById": {
         "en:lesson-05:session-30:intro1:r2": {
-          "ru": "Mittens — множественное число, поэтому нужно are, а не is.",
-          "uk": "Mittens — множина, тому потрібно are, а не is."
+          "ru": "Mittens — форма для нескольких, поэтому нужно are, а не is.",
+          "uk": "Mittens — форма для кількох, тому потрібно are, а не is."
         },
         "en:lesson-05:session-30:intro1:r3": {
           "ru": "После слова tourist нужно 's: the tourist's mittens.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "9ad340934d374adc412c7370cc83e04ca788e68cab943bf67e52a58f9f4649b3"
+  "auxiliaryFingerprint": "7c7c75288392c9deb01cdb11403d96fe9ee3eb76e9730a2a683c5e688d81754a"
 }

@@ -15,8 +15,8 @@
         "uk": "Покупку вже зроблено"
       },
       "bodyByLocale": {
-        "ru": "Перед ужином сестра собирается в магазин за хлебом. Вы уже купили хлеб, и он лежит на кухне. I have already bought some bread — я уже купил хлеб. Соберите сообщение о результате сейчас: I + have + already + bought + some bread. Bought — третья форма buy; already стоит между have и bought.",
-        "uk": "Перед вечерею сестра збирається до крамниці по хліб. Ви вже купили хліб, і він лежить на кухні. I have already bought some bread — я вже купив хліб. Складіть повідомлення про результат зараз: I + have + already + bought + some bread. Bought — третя форма buy; already стоїть між have та bought."
+        "ru": "Перед ужином сестра собирается в магазин за хлебом. Вы уже купили хлеб, и он лежит на кухне. I have already bought some bread — я уже купил хлеб. Соберите сообщение о результате сейчас: I + have + already + bought + some bread. Bought — форма buy после have; already стоит между have и bought.",
+        "uk": "Перед вечерею сестра збирається до крамниці по хліб. Ви вже купили хліб, і він лежить на кухні. I have already bought some bread — я вже купив хліб. Складіть повідомлення про результат зараз: I + have + already + bought + some bread. Bought — форма buy після have; already стоїть між have та bought."
       },
       "question": {
         "interactionId": "en:lesson-27:session-55:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "53e984025b4c658ac941c65cd6c47b7a402b53e8754e9614a8280d8ef574f0a6"
+  "introFingerprint": "97af911cac9bbdf13ba394a1415c7454a90b08abe09700ac272c155fa0b20d4d"
 }

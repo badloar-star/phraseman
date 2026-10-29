@@ -2,7 +2,7 @@
 
 **Ситуація.** Уточніть, де був вхід і на якому поверсі була кімната.
 
-**Що ви опануєте:** was/were; questions and negatives; yesterday / now
+**Що ви опануєте:** запитати про вчорашнє й сказати «не було»: Were you at home? I wasn’t
 **Нові слова:** front door, back door, ground floor, first floor
 
 ## Інтро 1

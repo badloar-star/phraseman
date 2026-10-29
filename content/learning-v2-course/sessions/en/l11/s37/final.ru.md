@@ -2,7 +2,7 @@
 
 **Ситуация.** Накройте стол для чая и вспомните, где вчера стояла посуда.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** tea bag, coffee cup, sugar bowl, milk jug
 
 ## Интро 1

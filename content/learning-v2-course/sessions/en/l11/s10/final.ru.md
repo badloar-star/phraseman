@@ -2,7 +2,7 @@
 
 **Ситуация.** Опишите вчерашнее самочувствие и уточните, сильной ли была боль.
 
-**Что вы освоите:** Was it…? was not; were not; yesterday / right now
+**Что вы освоите:** спросить о вчерашнем и сказать «не было»: Was it open? It wasn’t
 **Новые слова:** fever, runny nose, stomach ache, pain
 
 ## Интро 1

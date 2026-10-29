@@ -2,7 +2,7 @@
 
 **Ситуация.** Соберите вещи для прогулки и вспомните, где они были вчера.
 
-**Что вы освоите:** there was / there were; was / were
+**Что вы освоите:** рассказать, что где было: there was a cat, there were two cups
 **Новые слова:** lunch box, water bottle, shopping list, paper bag
 
 ## Интро 1

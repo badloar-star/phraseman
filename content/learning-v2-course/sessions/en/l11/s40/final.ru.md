@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашний обед и назовите блюда.
 
-**Что вы освоите:** was/were; questions and negatives; yesterday / now
+**Что вы освоите:** спросить о вчерашнем и сказать «не было»: Were you at home? I wasn’t
 **Новые слова:** roast chicken, baked potato, chicken soup, green salad
 
 ## Интро 1

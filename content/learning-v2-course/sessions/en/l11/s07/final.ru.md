@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните с другом выходной и семейные встречи в праздничные дни.
 
-**Что вы освоите:** was/were; on Sunday; at Christmas; at Easter; at New Year
+**Что вы освоите:** рассказать, что было в праздник или в выходной: at Christmas, on Sunday
 **Новые слова:** Sunday, Christmas, Easter, New Year
 
 ## Интро 1

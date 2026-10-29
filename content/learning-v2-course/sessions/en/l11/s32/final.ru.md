@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите другу о вчерашнем приезде в гостиницу и найдите ключ от номера.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** reception desk, key card, breakfast room, double bed
 
 ## Интро 1

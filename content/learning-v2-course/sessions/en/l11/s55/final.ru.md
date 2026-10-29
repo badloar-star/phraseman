@@ -2,7 +2,7 @@
 
 **Ситуация.** Найдите вещи для стирки, посуды и кухни.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** laundry basket, clothes horse, washing-up brush, oven glove
 
 ## Интро 1

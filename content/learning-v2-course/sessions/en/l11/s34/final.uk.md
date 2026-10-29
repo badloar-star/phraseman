@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашню кімнату: де були світильники й вимикач.
 
-**Що ви опануєте:** was/were; there was/there were; yesterday / now
+**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
 **Нові слова:** table lamp, ceiling light, light switch, wall socket
 
 ## Інтро 1

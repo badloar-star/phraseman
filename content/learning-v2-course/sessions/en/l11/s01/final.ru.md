@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите другу, где вы и близкие были раньше.
 
-**Что вы освоите:** I was; you were; he/she/it was; we/they were
+**Что вы освоите:** сказать о вчерашнем: I was, you were, they were
 **Новые слова:** yesterday, last night, last week, last year
 
 ## Интро 1

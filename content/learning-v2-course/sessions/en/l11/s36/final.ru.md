@@ -2,7 +2,7 @@
 
 **Ситуация.** После уборки сравните, какими вещи в ванной были вчера и стали сейчас.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** bathroom mirror, shower curtain, toilet brush, soap dish
 
 ## Интро 1

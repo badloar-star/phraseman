@@ -2,7 +2,7 @@
 
 **Ситуация.** После покупок обсудите магазин: где были вещи и была ли примерочная свободна.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** changing room, shop window, shopping basket, price tag
 
 ## Интро 1

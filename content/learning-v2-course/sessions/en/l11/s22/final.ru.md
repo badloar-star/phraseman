@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите другу, кто вчера был дома и чем занят сейчас.
 
-**Что вы освоите:** there was / there were; was / were
+**Что вы освоите:** рассказать, что где было: there was a cat, there were two cups
 **Новые слова:** mum, dad, grandma, grandpa
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Накрийте стіл для чаю та згадайте, де вчора стояв посуд.
 
-**Що ви опануєте:** was/were; there was/there were; yesterday / now
+**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
 **Нові слова:** tea bag, coffee cup, sugar bowl, milk jug
 
 ## Інтро 1

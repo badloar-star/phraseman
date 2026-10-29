@@ -2,7 +2,7 @@
 
 **Ситуация.** После стирки найдите полотенца и постельное бельё; сравните вчерашнее состояние с нынешним.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** bath towel, hand towel, duvet cover, bedspread
 
 ## Интро 1

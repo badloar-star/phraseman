@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте візит до зоомагазину та знайдіть речі улюбленця.
 
-**Що ви опануєте:** there was / there were; was / were
+**Що ви опануєте:** розповісти, що де було: there was a cat, there were two cups
 **Нові слова:** kitten, pet shop, pet food, dog lead
 
 ## Інтро 1

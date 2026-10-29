@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашнюю поездку и расскажите, что было на станции.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** train driver, ticket office, railway, departure board
 
 ## Интро 1

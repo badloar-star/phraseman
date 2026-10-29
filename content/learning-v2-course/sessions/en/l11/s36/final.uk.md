@@ -2,7 +2,7 @@
 
 **Ситуація.** Після прибирання порівняйте, якими речі у ванній були вчора та стали зараз.
 
-**Що ви опануєте:** was/were; there was/there were; yesterday / now
+**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
 **Нові слова:** bathroom mirror, shower curtain, toilet brush, soap dish
 
 ## Інтро 1

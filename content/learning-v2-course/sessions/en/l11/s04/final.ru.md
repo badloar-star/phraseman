@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите другу о вчерашней поездке и людях, которых видели.
 
-**Что вы освоите:** was/were; yesterday; right now; please don’t
+**Что вы освоите:** различать «вчера» и «сейчас»: was / were и is / are
 **Новые слова:** train station, shopping centre, sports centre, hairdresser
 
 ## Интро 1

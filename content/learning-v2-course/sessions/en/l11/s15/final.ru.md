@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните продукты на кухне и спросите, где они были вчера.
 
-**Что вы освоите:** Was…? Were…? was not; were not
+**Что вы освоите:** спросить о прошлом и сказать «не было»: Was it cold? It wasn’t
 **Новые слова:** salad dressing, olive oil, peanut butter, maple syrup
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните, какие продукты вчера были в сумке и где они сейчас.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** loaf of bread, carton of milk, tin of tuna, bottle of water
 
 ## Интро 1

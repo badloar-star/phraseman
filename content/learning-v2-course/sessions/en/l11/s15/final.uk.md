@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте продукти на кухні та запитайте, де вони були вчора.
 
-**Що ви опануєте:** Was…? Were…? was not; were not
+**Що ви опануєте:** запитати про минуле й сказати «не було»: Was it cold? It wasn’t
 **Нові слова:** salad dressing, olive oil, peanut butter, maple syrup
 
 ## Інтро 1

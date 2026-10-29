@@ -2,7 +2,7 @@
 
 **Ситуація.** Познайомтеся, зустріньте друга, який повернувся, та побажайте одужання чи гарної подорожі.
 
-**Що ви опануєте:** polite expressions; was/were; questions
+**Що ви опануєте:** ввічливо запитати про минуле: Was it nice?
 **Нові слова:** nice to meet you, welcome back, get well soon, have a good trip
 
 ## Інтро 1

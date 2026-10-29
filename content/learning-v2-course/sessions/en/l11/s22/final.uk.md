@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть другові, хто вчора був удома та чим зайнятий зараз.
 
-**Що ви опануєте:** there was / there were; was / were
+**Що ви опануєте:** розповісти, що де було: there was a cat, there were two cups
 **Нові слова:** mum, dad, grandma, grandpa
 
 ## Інтро 1

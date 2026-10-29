@@ -2,7 +2,7 @@
 
 **Ситуація.** Після перестановки розкажіть, де стояли речі у спальні.
 
-**Що ви опануєте:** was/were; there was/there were; yesterday / now
+**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
 **Нові слова:** single bed, alarm clock, dressing table, chest of drawers
 
 ## Інтро 1

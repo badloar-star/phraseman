@@ -2,7 +2,7 @@
 
 **Ситуація.** Після прання знайдіть рушники й постільну білизну; порівняйте вчорашній стан із теперішнім.
 
-**Що ви опануєте:** was/were; there was/there were; yesterday / now
+**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
 **Нові слова:** bath towel, hand towel, duvet cover, bedspread
 
 ## Інтро 1

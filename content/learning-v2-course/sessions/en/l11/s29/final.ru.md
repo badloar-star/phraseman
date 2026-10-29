@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашнюю прогулку: какие здания и машины были на улице.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** town hall, fire station, fire engine, ambulance
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуація.** Допоможіть рідним знайти речі дитини та згадайте, де вони були вчора.
 
-**Що ви опануєте:** was/were; there was/there were; yesterday / now
+**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
 **Нові слова:** baby food, baby bottle, pram, high chair
 
 ## Інтро 1

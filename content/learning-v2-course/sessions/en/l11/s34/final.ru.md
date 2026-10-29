@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашнюю комнату: где были светильники и выключатель.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** table lamp, ceiling light, light switch, wall socket
 
 ## Интро 1

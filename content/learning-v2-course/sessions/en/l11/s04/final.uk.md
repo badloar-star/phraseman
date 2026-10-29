@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть другу про вчорашню поїздку й людей, яких бачили.
 
-**Що ви опануєте:** was/were; yesterday; right now; please don’t
+**Що ви опануєте:** розрізняти «вчора» і «зараз»: was / were та is / are
 **Нові слова:** train station, shopping centre, sports centre, hairdresser
 
 ## Інтро 1

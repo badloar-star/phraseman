@@ -2,7 +2,7 @@
 
 **Ситуація.** Знайдіть речі для прання, посуду й кухні.
 
-**Що ви опануєте:** was/were; there was/there were; yesterday / now
+**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
 **Нові слова:** laundry basket, clothes horse, washing-up brush, oven glove
 
 ## Інтро 1

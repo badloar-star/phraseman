@@ -2,7 +2,7 @@
 
 **Ситуация.** Найдите банковскую карту и уточните, где был банкомат.
 
-**Что вы освоите:** was/were; questions and negatives; yesterday / now
+**Что вы освоите:** спросить о вчерашнем и сказать «не было»: Were you at home? I wasn’t
 **Новые слова:** cash machine, bank card, debit card, credit card
 
 ## Интро 1

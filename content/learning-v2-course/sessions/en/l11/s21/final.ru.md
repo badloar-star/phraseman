@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните визит в зоомагазин и найдите вещи питомца.
 
-**Что вы освоите:** there was / there were; was / were
+**Что вы освоите:** рассказать, что где было: there was a cat, there were two cups
 **Новые слова:** kitten, pet shop, pet food, dog lead
 
 ## Интро 1

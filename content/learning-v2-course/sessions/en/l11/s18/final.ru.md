@@ -2,7 +2,7 @@
 
 **Ситуация.** Разбирая покупки, вспомните, что было в сумке и на кухне.
 
-**Что вы освоите:** there was / there were; was / were
+**Что вы освоите:** рассказать, что где было: there was a cat, there were two cups
 **Новые слова:** baked beans, brown rice, black pepper, mineral water
 
 ## Интро 1

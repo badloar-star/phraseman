@@ -2,7 +2,7 @@
 
 **Ситуация.** Найдите нужное средство ухода и вспомните, где оно лежало вчера.
 
-**Что вы освоите:** was/were; questions and negatives; yesterday / now
+**Что вы освоите:** спросить о вчерашнем и сказать «не было»: Were you at home? I wasn’t
 **Новые слова:** hand cream, lip balm, shaving foam, body lotion
 
 ## Интро 1

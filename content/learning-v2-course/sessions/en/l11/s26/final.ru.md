@@ -2,7 +2,7 @@
 
 **Ситуация.** Помогите родным найти вещи ребёнка и вспомните, где они были вчера.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** baby food, baby bottle, pram, high chair
 
 ## Интро 1

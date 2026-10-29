@@ -2,7 +2,7 @@
 
 **Ситуація.** Опишіть рукави сорочки та знайдіть одяг для школи й прогулянки.
 
-**Що ви опануєте:** was/were; descriptions; yesterday / now
+**Що ви опануєте:** описати, яким щось було вчора і яке зараз
 **Нові слова:** short-sleeved, long-sleeved, school uniform, walking shoes
 
 ## Інтро 1

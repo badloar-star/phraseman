@@ -2,7 +2,7 @@
 
 **Ситуация.** Найдите вещи после дня на пляже и расскажите о вчерашних находках.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** beach ball, beach umbrella, beach bag, seashell
 
 ## Интро 1

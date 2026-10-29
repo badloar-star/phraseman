@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашний пикник и найдите вещи после возвращения.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** picnic basket, picnic blanket, cool bag, paper plate
 
 ## Интро 1

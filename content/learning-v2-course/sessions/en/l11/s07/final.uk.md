@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте з другом вихідний і сімейні зустрічі у святкові дні.
 
-**Що ви опануєте:** was/were; on Sunday; at Christmas; at Easter; at New Year
+**Що ви опануєте:** розповісти, що було на свято чи у вихідний: at Christmas, on Sunday
 **Нові слова:** Sunday, Christmas, Easter, New Year
 
 ## Інтро 1

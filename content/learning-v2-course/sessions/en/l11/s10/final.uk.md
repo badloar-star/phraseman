@@ -2,7 +2,7 @@
 
 **Ситуація.** Опишіть учорашнє самопочуття й уточніть, чи сильним був біль.
 
-**Що ви опануєте:** Was it…? was not; were not; yesterday / right now
+**Що ви опануєте:** запитати про вчорашнє й сказати «не було»: Was it open? It wasn’t
 **Нові слова:** fever, runny nose, stomach ache, pain
 
 ## Інтро 1

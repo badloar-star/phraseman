@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте поїздки, погоду й вільний час у різні місяці.
 
-**Що ви опануєте:** was/were; in May; in September; in December; in summer
+**Що ви опануєте:** розповісти, що було в якому місяці чи сезоні: in May, in summer
 **Нові слова:** May, September, December, summer
 
 ## Інтро 1

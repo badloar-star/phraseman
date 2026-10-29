@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашню прогулянку: що було в сумці та яким був перекус.
 
-**Що ви опануєте:** was/were; there was/there were; yesterday / now
+**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
 **Нові слова:** cereal bar, orange juice, apple juice, fruit salad
 
 ## Інтро 1

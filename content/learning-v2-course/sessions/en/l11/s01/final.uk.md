@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть другу, де ви та близькі були раніше.
 
-**Що ви опануєте:** I was; you were; he/she/it was; we/they were
+**Що ви опануєте:** сказати про вчорашнє: I was, you were, they were
 **Нові слова:** yesterday, last night, last week, last year
 
 ## Інтро 1

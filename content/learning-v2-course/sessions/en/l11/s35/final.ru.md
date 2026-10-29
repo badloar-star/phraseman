@@ -2,7 +2,7 @@
 
 **Ситуация.** После перестановки расскажите, где стояли вещи в спальне.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** single bed, alarm clock, dressing table, chest of drawers
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Найдите вещи для плавания и вспомните, какие из них вчера были мокрыми.
 
-**Что вы освоите:** was/were; singular / plural; yesterday / now
+**Что вы освоите:** выбирать was или were: один или несколько, вчера или сейчас
 **Новые слова:** swimming costume, swimming trunks, swimming goggles, swimming cap
 
 ## Интро 1

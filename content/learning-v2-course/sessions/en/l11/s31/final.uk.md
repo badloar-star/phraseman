@@ -2,7 +2,7 @@
 
 **Ситуація.** Після покупок обговоріть магазин: де були речі та чи була примірювальна вільна.
 
-**Що ви опануєте:** was/were; there was/there were; yesterday / now
+**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
 **Нові слова:** changing room, shop window, shopping basket, price tag
 
 ## Інтро 1

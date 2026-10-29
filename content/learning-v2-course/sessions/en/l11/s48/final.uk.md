@@ -2,7 +2,7 @@
 
 **Ситуація.** Знайдіть речі після дня на пляжі та розкажіть про вчорашні знахідки.
 
-**Що ви опануєте:** was/were; there was/there were; yesterday / now
+**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
 **Нові слова:** beach ball, beach umbrella, beach bag, seashell
 
 ## Інтро 1

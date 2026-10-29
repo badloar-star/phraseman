@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните поездки, погоду и свободное время в разные месяцы.
 
-**Что вы освоите:** was/were; in May; in September; in December; in summer
+**Что вы освоите:** рассказать, что было в каком месяце или сезоне: in May, in summer
 **Новые слова:** May, September, December, summer
 
 ## Интро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, что было на тарелке и каким был обед.
 
-**Что вы освоите:** was/were; there was/there were; food
+**Что вы освоите:** рассказать, какая еда где была: there was soup
 **Новые слова:** bread roll, fish finger, meatball, sausage roll
 
 ## Интро 1

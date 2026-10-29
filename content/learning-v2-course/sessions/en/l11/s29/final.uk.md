@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашню прогулянку: які будівлі та машини були на вулиці.
 
-**Що ви опануєте:** was/were; there was/there were; yesterday / now
+**Що ви опануєте:** розповісти, що було і що де було вчора: there was a cat, it was cold
 **Нові слова:** town hall, fire station, fire engine, ambulance
 
 ## Інтро 1

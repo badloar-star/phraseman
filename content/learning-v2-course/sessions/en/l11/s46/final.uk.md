@@ -2,7 +2,7 @@
 
 **Ситуація.** Знайдіть потрібний засіб догляду та згадайте, де він лежав учора.
 
-**Що ви опануєте:** was/were; questions and negatives; yesterday / now
+**Що ви опануєте:** запитати про вчорашнє й сказати «не було»: Were you at home? I wasn’t
 **Нові слова:** hand cream, lip balm, shaving foam, body lotion
 
 ## Інтро 1

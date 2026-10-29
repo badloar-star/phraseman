@@ -2,7 +2,7 @@
 
 **Ситуация.** Расскажите, какими были вчерашние бутерброды и напитки.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** cheese sandwich, ham sandwich, hot chocolate, fruit juice
 
 ## Интро 1

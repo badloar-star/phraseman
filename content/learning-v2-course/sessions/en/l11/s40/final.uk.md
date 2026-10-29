@@ -2,7 +2,7 @@
 
 **Ситуація.** Згадайте вчорашній обід і назвіть страви.
 
-**Що ви опануєте:** was/were; questions and negatives; yesterday / now
+**Що ви опануєте:** запитати про вчорашнє й сказати «не було»: Were you at home? I wasn’t
 **Нові слова:** roast chicken, baked potato, chicken soup, green salad
 
 ## Інтро 1

@@ -2,7 +2,7 @@
 
 **Ситуация.** Познакомьтесь, встретьте вернувшегося друга и пожелайте выздоровления или хорошей поездки.
 
-**Что вы освоите:** polite expressions; was/were; questions
+**Что вы освоите:** вежливо спросить о прошлом: Was it nice?
 **Новые слова:** nice to meet you, welcome back, get well soon, have a good trip
 
 ## Интро 1

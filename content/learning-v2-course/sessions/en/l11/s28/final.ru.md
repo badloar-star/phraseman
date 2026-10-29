@@ -2,7 +2,7 @@
 
 **Ситуация.** Вспомните вчерашнюю прогулку: что было в сумке и каким был перекус.
 
-**Что вы освоите:** was/were; there was/there were; yesterday / now
+**Что вы освоите:** рассказать, что было и что где было вчера: there was a cat, it was cold
 **Новые слова:** cereal bar, orange juice, apple juice, fruit salad
 
 ## Интро 1

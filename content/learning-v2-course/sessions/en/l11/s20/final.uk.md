@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть другові про вчорашню поїздку: кого і що можна було побачити в місті.
 
-**Що ви опануєте:** there was / there were; was / were
+**Що ви опануєте:** розповісти, що де було: there was a cat, there were two cups
 **Нові слова:** public toilet, bus driver, taxi driver, pedestrian crossing
 
 ## Інтро 1

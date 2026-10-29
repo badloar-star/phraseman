@@ -2,7 +2,7 @@
 
 **Ситуація.** Розкажіть, що було на тарілці та яким був обід.
 
-**Що ви опануєте:** was/were; there was/there were; food
+**Що ви опануєте:** розповісти, яка їжа де була: there was soup
 **Нові слова:** bread roll, fish finger, meatball, sausage roll
 
 ## Інтро 1

@@ -381,7 +381,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для «скажи мне»",
+      "prompt": "Выберите слово для «скажи мне»",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-23:i06:r1",
@@ -398,11 +398,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для «скажи мне»",
+      "accessibilityLabel": "Выберите слово для «скажи мне»",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для «скажи мне»",
+          "ru": "Выберите слово для «скажи мне»",
           "uk": "Виберіть займенник для «скажи мені»"
         },
         "gappedTargetPhrase": "Tell ___ the truth.",
@@ -603,7 +603,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите форму advice: здесь это неисчисляемое слово",
+      "prompt": "Выберите форму advice: здесь его не считают поштучно",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-23:i09:r1",
@@ -620,11 +620,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите форму advice: здесь это неисчисляемое слово",
+      "accessibilityLabel": "Выберите форму advice: здесь его не считают поштучно",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите форму advice: здесь это неисчисляемое слово",
+          "ru": "Выберите форму advice: здесь его не считают поштучно",
           "uk": "Виберіть форму advice: тут це незлічуване слово"
         },
         "gappedTargetPhrase": "I need ___.",
@@ -649,7 +649,7 @@
             "correct": false,
             "testedDimension": "Выберите форму advice: здесь это неисчисляемое слово",
             "feedbackByLocale": {
-              "ru": "Advice здесь без неопределённого артикля.",
+              "ru": "Advice здесь без a.",
               "uk": "Advice тут без неозначеного артикля."
             }
           },
@@ -1106,5 +1106,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "f5bc853d50bd9dd06dd90edb411936b65043a5c204017125c815977e26142f0c"
+  "learnerFingerprint": "592faf29ed2ca50d81ee0f54b1307689b7233ff08fa6ebf0bf9830aeb8e48a42"
 }

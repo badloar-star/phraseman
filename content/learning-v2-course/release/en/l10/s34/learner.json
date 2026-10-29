@@ -604,7 +604,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите артикль перед teenager",
+      "prompt": "Выберите слово перед teenager",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-34:i09:r1",
@@ -621,11 +621,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите артикль перед teenager",
+      "accessibilityLabel": "Выберите слово перед teenager",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед teenager",
+          "ru": "Выберите слово перед teenager",
           "uk": "Виберіть артикль перед teenager"
         },
         "gappedTargetPhrase": "My son is ___ teenager.",
@@ -1106,5 +1106,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "9937fe0cb415763f6963b183560e84b39810b8e2dd4b4826cc5c98e00b9fcbbb"
+  "learnerFingerprint": "43cc0c7ddf0b49981186af9ab451b30510880adbd27dc47b2e033028486ce039"
 }

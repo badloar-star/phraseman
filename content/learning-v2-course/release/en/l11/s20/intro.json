@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-20",
   "learningOutcomeByLocale": {
-    "ru": "there was / there were; was / were",
-    "uk": "there was / there were; was / were"
+    "ru": "сказать, каким был человек вчера: The taxi driver was friendly.",
+    "uk": "сказати, яким був водій учора: The taxi driver was friendly."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Двоє водіїв біля станції"
       },
       "bodyByLocale": {
-        "ru": "Вчера рядом со станцией вы видели двух водителей такси. Скажите: There were two taxi drivers near the station. Начните с there were, потому что сообщаете о нескольких людях в прошлом. Затем укажите количество и людей — two taxi drivers. Окончание -s получает drivers, а taxi не меняется. Перед two артикль a не нужен. Завершите фразу местом near the station.",
-        "uk": "Учора поруч зі станцією ви бачили двох водіїв таксі. Скажіть: There were two taxi drivers near the station. Почніть із there were, бо повідомляєте про кількох людей у минулому. Потім укажіть кількість і людей — two taxi drivers. Закінчення -s отримує drivers, а taxi не змінюється. Перед two артикль a не потрібен. Завершіть фразу місцем near the station."
+        "ru": "Вчера рядом со станцией вы видели двух водителей такси. Скажите: There were two taxi drivers near the station. Начните с there were, потому что сообщаете о нескольких людях в прошлом. Затем укажите количество и людей — two taxi drivers. Окончание -s получает drivers, а taxi не меняется. Перед two a не нужен. Завершите фразу местом near the station.",
+        "uk": "Учора поруч зі станцією ви бачили двох водіїв таксі. Скажіть: There were two taxi drivers near the station. Почніть із there were, бо повідомляєте про кількох людей у минулому. Потім укажіть кількість і людей — two taxi drivers. Закінчення -s отримує drivers, а taxi не змінюється. Перед two a не потрібен. Завершіть фразу місцем near the station."
       },
       "question": {
         "interactionId": "en:lesson-11:session-20:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "cf828df547cee5563c92fcf92b6a1561c2f0634308f37d9946474c95908b53e7"
+  "introFingerprint": "cf03d3c4b6e73e32134a6c8b782807064ca0c905df15ac1f92a8bbfe5fb660e4"
 }

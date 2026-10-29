@@ -210,7 +210,7 @@
             "correct": false,
             "testedDimension": "Учора на тарілці була квасоля в соусі. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Beans — множественное число: were.",
+              "ru": "Beans — форма для нескольких: were.",
               "uk": "Beans — множина: were."
             }
           },
@@ -219,7 +219,7 @@
             "correct": false,
             "testedDimension": "Учора на тарілці була квасоля в соусі. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Прошлое, множественное число: were.",
+              "ru": "Прошлое, форма для нескольких: were.",
               "uk": "Минулий час, множина: were."
             }
           }
@@ -434,7 +434,7 @@
             "correct": false,
             "testedDimension": "У сумці був бурий рис. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым rice используем was.",
+              "ru": "Rice не считают поштучно, поэтому используем was.",
               "uk": "Із незлічуваним rice використовуємо was."
             }
           },
@@ -882,7 +882,7 @@
             "correct": false,
             "testedDimension": "У пляшці була мінеральна вода. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Вода неисчисляемая: was.",
+              "ru": "Вода не считается поштучно: was.",
               "uk": "Вода незлічувана: was."
             }
           },
@@ -1119,5 +1119,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "52ca268ae360ffdedfbd76f2c4f214b43f6b21efb06f368233aa318bb45a9b10"
+  "learnerFingerprint": "a1499832676c0e666200412024efc96f751a112c51301787f1399d771ef0fed0"
 }

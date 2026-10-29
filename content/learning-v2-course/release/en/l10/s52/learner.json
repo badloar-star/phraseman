@@ -160,7 +160,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Стук слышен сейчас. Выберите вспомогательный глагол",
+      "prompt": "Стук слышен сейчас. Выберите do или does",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-52:i03:r1",
@@ -177,11 +177,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Стук слышен сейчас. Выберите вспомогательный глагол",
+      "accessibilityLabel": "Стук слышен сейчас. Выберите do или does",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Стук слышен сейчас. Выберите вспомогательный глагол",
+          "ru": "Стук слышен сейчас. Выберите do или does",
           "uk": "Стукіт чути зараз. Виберіть допоміжне дієслово"
         },
         "gappedTargetPhrase": "Somebody ___ knocking.",
@@ -381,7 +381,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку после nobody",
+      "prompt": "Выберите форму be после nobody",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-52:i06:r1",
@@ -398,11 +398,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку после nobody",
+      "accessibilityLabel": "Выберите форму be после nobody",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку после nobody",
+          "ru": "Выберите форму be после nobody",
           "uk": "Виберіть зв’язку після nobody"
         },
         "gappedTargetPhrase": "Nobody ___ at home.",
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "95836f3fcf05b43c1b7018dcbed472b50e0f8fa14b6801ca5ff2d75fa7d46c20"
+  "learnerFingerprint": "3ef09f16e885c844dc794f548b235230e33edf6631934bebf1ae9c3f5b30bd7d"
 }

@@ -1055,7 +1055,7 @@
             "correct": false,
             "testedDimension": "Вчера друзья были рады. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Прошлое и множественное число: were.",
+              "ru": "Прошлое и форма для нескольких: were.",
               "uk": "Минулий час і множина: were."
             }
           }
@@ -1136,5 +1136,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "35b7b130b2aea99a73862b7851d257dfb4360ac44e7aaa2d6af077f405ef872c"
+  "learnerFingerprint": "96ea97bcb21be866e0cb68f5e44afd14de259e929886bcc16a697bba9bb2547a"
 }

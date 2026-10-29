@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-43",
   "learningOutcomeByLocale": {
-    "ru": "was/were; descriptions; yesterday / now",
-    "uk": "was/were; descriptions; yesterday / now"
+    "ru": "описать, какой была одежда: The shirt was long-sleeved.",
+    "uk": "описати, яким був одяг: The shirt was long-sleeved."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Форма була чистою"
       },
       "bodyByLocale": {
-        "ru": "Вчера перед школой ваша школьная форма была чистой. Скажите: The school uniform was clean yesterday — школьная форма была чистой вчера. Сначала назовите предмет: The school uniform. Затем was: uniform здесь в единственном числе, даже если комплект состоит из нескольких вещей. После was поставьте признак clean, а в конце время yesterday.",
-        "uk": "Учора перед школою ваша шкільна форма була чистою. Скажіть: The school uniform was clean yesterday — шкільна форма була чистою вчора. Спочатку назвіть предмет: The school uniform. Потім was: uniform тут в однині, навіть якщо комплект складається з кількох речей. Після was поставте ознаку clean, а наприкінці час yesterday."
+        "ru": "Вчера перед школой ваша школьная форма была чистой. Скажите: The school uniform was clean yesterday — школьная форма была чистой вчера. Сначала назовите предмет: The school uniform. Затем was: uniform здесь в форме для одного, даже если комплект состоит из нескольких вещей. После was поставьте признак clean, а в конце время yesterday.",
+        "uk": "Учора перед школою ваша шкільна форма була чистою. Скажіть: The school uniform was clean yesterday — шкільна форма була чистою вчора. Спочатку назвіть предмет: The school uniform. Потім was: uniform тут у формі для одного, навіть якщо комплект складається з кількох речей. Після was поставте ознаку clean, а наприкінці час yesterday."
       },
       "question": {
         "interactionId": "en:lesson-11:session-43:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Взуття було мокрим?"
       },
       "bodyByLocale": {
-        "ru": "Вы не помните, была ли вчера обувь для прогулок мокрой, и спрашиваете об этом брата. Скажите: Were the walking shoes wet? — обувь для прогулок была мокрой? Для вопроса поставьте Were перед названием вещей: the walking shoes. Shoes — множественное число, поэтому нужна were. После названия добавьте признак wet. Were показывает, что вы спрашиваете о прошлом.",
-        "uk": "Ви не пам'ятаєте, чи було вчора взуття для прогулянок мокрим, і запитуєте про це брата. Скажіть: Were the walking shoes wet? — взуття для прогулянок було мокрим? Для запитання поставте Were перед назвою речей: the walking shoes. Shoes — множина, тому потрібна were. Після назви додайте ознаку wet. Were показує, що ви запитуєте про минуле."
+        "ru": "Вы не помните, была ли вчера обувь для прогулок мокрой, и спрашиваете об этом брата. Скажите: Were the walking shoes wet? — обувь для прогулок была мокрой? Для вопроса поставьте Were перед названием вещей: the walking shoes. Shoes — форма для нескольких, поэтому нужна were. После названия добавьте признак wet. Were показывает, что вы спрашиваете о прошлом.",
+        "uk": "Ви не пам'ятаєте, чи було вчора взуття для прогулянок мокрим, і запитуєте про це брата. Скажіть: Were the walking shoes wet? — взуття для прогулянок було мокрим? Для запитання поставте Were перед назвою речей: the walking shoes. Shoes — форма для кількох, тому потрібна were. Після назви додайте ознаку wet. Were показує, що ви запитуєте про минуле."
       },
       "question": {
         "interactionId": "en:lesson-11:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "0f57ef4975c53cc6f60cd8d0734d61c0e57acc7cd42cb77fb67d795d7202bf30"
+  "introFingerprint": "a9c29d762458e6600564f3161048c57cb9afdde31d0096f35769358d613ebc12"
 }

@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-11:session-03:intro1:q",
       "responseFeedbackById": {
         "en:lesson-11:session-03:intro1:r2": {
-          "ru": "Powder здесь неисчисляемое: нужна was.",
-          "uk": "Powder тут незлічуване: потрібна was."
+          "ru": "Powder здесь не считается поштучно: нужна was.",
+          "uk": "Powder тут не рахується поштучно: потрібна was."
         },
         "en:lesson-11:session-03:intro1:r3": {
           "ru": "Yesterday требует прошедшего времени: was.",
@@ -23,8 +23,8 @@
           "uk": "Із gloves потрібна were."
         },
         "en:lesson-11:session-03:intro2:r3": {
-          "ru": "Is не подходит к множественному числу и прошлому времени.",
-          "uk": "Is не підходить до множини й минулого часу."
+          "ru": "Is не подходит, когда перчаток несколько и речь о прошлом.",
+          "uk": "Is не підходить, коли рукавичок кілька й ідеться про минуле."
         }
       }
     },
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "78b628f9440c1ba082be864bddbe5c8e095410f6ac415757fdf22e9e84d979cf"
+  "auxiliaryFingerprint": "aa56dae36d1af49e1dac24cf23a6848db226e77d2066159ed308d1688a6059f2"
 }

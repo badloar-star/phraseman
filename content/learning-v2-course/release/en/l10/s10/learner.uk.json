@@ -383,7 +383,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку з you",
+      "prompt": "Виберіть форму be з you",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-10:i06:r1",
@@ -400,12 +400,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку з you",
+      "accessibilityLabel": "Виберіть форму be з you",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку с you",
-          "uk": "Виберіть зв’язку з you"
+          "uk": "Виберіть форму be з you"
         },
         "gappedTargetPhrase": "I hope you ___ well.",
         "gapOptions": [
@@ -1108,5 +1108,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "22d4049f5c11200509a97f1e3200a91788f004a70223aa98832de6d5ebd1270b"
+  "learnerFingerprint": "21269ee5f78ead16b2b1cf4eaf236694d75ee9401a633f6353e361eb133c327c"
 }

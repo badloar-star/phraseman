@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-11:session-18:intro1:q",
       "responseFeedbackById": {
         "en:lesson-11:session-18:intro1:r2": {
-          "ru": "Beans — множественное число: were.",
-          "uk": "Beans — множина: were."
+          "ru": "Beans — форма для нескольких: were.",
+          "uk": "Beans — форма для кількох: were."
         },
         "en:lesson-11:session-18:intro1:r3": {
-          "ru": "Говорим о прошлом и множественном числе: were.",
-          "uk": "Говоримо про минуле та множину: were."
+          "ru": "Говорим о прошлом, и фасоли много: were.",
+          "uk": "Говоримо про минуле та форма для кількох: were."
         }
       }
     },
@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-11:session-18:intro2:q",
       "responseFeedbackById": {
         "en:lesson-11:session-18:intro2:r2": {
-          "ru": "С неисчисляемым rice нужна was.",
-          "uk": "Із незлічуваним rice потрібна was."
+          "ru": "Rice не считают поштучно, поэтому нужна was.",
+          "uk": "Rice не рахують поштучно, тому потрібна was."
         },
         "en:lesson-11:session-18:intro2:r3": {
           "ru": "Здесь rice — продукт без a.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "4ec563ee2a9deab5b0d626293034a5eb2b4edecb93ed0a9284ee40a16b9508b3"
+  "auxiliaryFingerprint": "7fec519f0723309b556afcb6de8b2c426662eec8891957ac9ae5c320d7b41ff8"
 }

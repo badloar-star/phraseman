@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-10:session-33:intro2:q",
       "responseFeedbackById": {
         "en:lesson-10:session-33:intro2:r2": {
-          "ru": "Lips — множественное число, поэтому are.",
-          "uk": "Lips — множина, тому are."
+          "ru": "Lips — форма для нескольких, поэтому are.",
+          "uk": "Lips — форма для кількох, тому are."
         },
         "en:lesson-10:session-33:intro2:r3": {
           "ru": "С lips нужна are.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "38112e209f4f99015a2478883efd045051e0db2fee170225af9d5d657fb8ec33"
+  "auxiliaryFingerprint": "feaa90bbf3b8d1e21422a1af97f009b7755a0843b083c2b658ff96edc5fd7051"
 }

@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-11:session-14:intro1:q",
       "responseFeedbackById": {
         "en:lesson-11:session-14:intro1:r2": {
-          "ru": "Crisps — множественное число: were.",
-          "uk": "Crisps — множина: were."
+          "ru": "Crisps — форма для нескольких: were.",
+          "uk": "Crisps — форма для кількох: were."
         },
         "en:lesson-11:session-14:intro1:r3": {
           "ru": "Вопрос с were строится без did.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "5a7fb9f773373ecfcfd4be0b198b2afb5bd730480b299147591fe9009dc17a91"
+  "auxiliaryFingerprint": "0fd58fe98ac6153e07f6ffeac3dce7dc4c7bbc4109e54357aa17b524e80574ee"
 }

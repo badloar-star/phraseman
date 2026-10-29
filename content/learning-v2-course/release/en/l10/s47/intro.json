@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-47",
   "learningOutcomeByLocale": {
-    "ru": "I like beetroot; The parsley is fresh; We are washing radishes",
-    "uk": "I like beetroot; The parsley is fresh; We are washing radishes"
+    "ru": "сказать, что вы делаете с овощами: We are washing radishes.",
+    "uk": "сказати, що ви робите з овочами: We are washing radishes."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Вибираю салат"
       },
       "bodyByLocale": {
-        "ru": "В кафе друг предлагает салат со свёклой. Beetroot — «свёкла». Она вам нравится: I like beetroot — «Мне нравится свёкла». Like описывает предпочтение; здесь используем Present Simple, даже если выбираем блюдо сейчас.",
-        "uk": "У кафе друг пропонує салат із буряком. Beetroot — «буряк». Він вам подобається: I like beetroot — «Мені подобається буряк». Like описує вподобання; тут використовуємо Present Simple, навіть якщо вибираємо страву зараз."
+        "ru": "В кафе друг предлагает салат со свёклой. Beetroot — «свёкла». Она вам нравится: I like beetroot — «Мне нравится свёкла». Like описывает предпочтение; здесь используем форму без -ing, даже если выбираем блюдо сейчас.",
+        "uk": "У кафе друг пропонує салат із буряком. Beetroot — «буряк». Він вам подобається: I like beetroot — «Мені подобається буряк». Like описує вподобання; тут використовуємо форму без -ing, навіть якщо вибираємо страву зараз."
       },
       "question": {
         "interactionId": "en:lesson-10:session-47:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Миємо овочі"
       },
       "bodyByLocale": {
-        "ru": "Radishes — «редис». Вы с другом сейчас моете его для салата: We are washing radishes — «Мы моем редис». Текущее действие: are + washing. В английском radishes — множественное число, хотя по-русски «редис» — единственное.",
-        "uk": "Radishes — «редиска». Ви з другом зараз миєте її для салату: We are washing radishes — «Ми миємо редиску». Поточна дія: are + washing. В англійській radishes — множина, хоча українською «редиска» — однина."
+        "ru": "Radishes — «редис». Вы с другом сейчас моете его для салата: We are washing radishes — «Мы моем редис». Текущее действие: are + washing. В английском radishes — форма для нескольких, хотя по-русски «редис» — единственное.",
+        "uk": "Radishes — «редиска». Ви з другом зараз миєте її для салату: We are washing radishes — «Ми миємо редиску». Поточна дія: are + washing. В англійській radishes — форма для кількох, хоча українською «редиска» — форма для одного."
       },
       "question": {
         "interactionId": "en:lesson-10:session-47:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "fd80fda1e4f92ec2ccc93dbe56657e4b1eece7fdfbb17887290abd8d3705974f"
+  "introFingerprint": "f1415e9ca1ab53088a3444aefdffcf280b8be77921a8efc03d53e5211ace1219"
 }

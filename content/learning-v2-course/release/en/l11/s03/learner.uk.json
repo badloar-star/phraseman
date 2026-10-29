@@ -434,7 +434,7 @@
             "correct": false,
             "testedDimension": "Тепер засіб тут: виберіть форму теперішнього часу",
             "feedbackByLocale": {
-              "ru": "Здесь единственное число: is.",
+              "ru": "Здесь форма для одного: is.",
               "uk": "Тут однина: is."
             }
           },
@@ -880,7 +880,7 @@
             "correct": false,
             "testedDimension": "Після прибирання рукавички були брудні",
             "feedbackByLocale": {
-              "ru": "Gloves — множественное число: were.",
+              "ru": "Gloves — форма для нескольких: were.",
               "uk": "Gloves — множина: were."
             }
           },
@@ -889,7 +889,7 @@
             "correct": false,
             "testedDimension": "Після прибирання рукавички були брудні",
             "feedbackByLocale": {
-              "ru": "Для множественного числа в прошлом нужна were.",
+              "ru": "Для формы для нескольких в прошлом нужна were.",
               "uk": "Для множини в минулому потрібна were."
             }
           }
@@ -1119,5 +1119,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1db8d64a93f981fb75b4852356334905e69452e12f52f351c4b11e47ca84e78a"
+  "learnerFingerprint": "ad33c55f685f0e528c5a0540aa3815737cd656bc41e29b053a1a4e662c7f8722"
 }

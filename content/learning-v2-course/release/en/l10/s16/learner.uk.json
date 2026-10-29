@@ -831,7 +831,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку: один пакет",
+      "prompt": "Виберіть форму be: один пакет",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-16:i12:r1",
@@ -848,12 +848,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку: один пакет",
+      "accessibilityLabel": "Виберіть форму be: один пакет",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку: один пакет",
-          "uk": "Виберіть зв’язку: один пакет"
+          "uk": "Виберіть форму be: один пакет"
         },
         "gappedTargetPhrase": "The bin bag ___ full.",
         "gapOptions": [
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "82f98acce7928b0f12f6a1edaf776f620c12992ed2859ae9f5318ff301cc72e9"
+  "learnerFingerprint": "12ea952365cd18b011ed5f483e4e476651f3973fbd8657252ad3e4ab6af77ef1"
 }

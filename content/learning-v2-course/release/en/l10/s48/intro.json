@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-48",
   "learningOutcomeByLocale": {
-    "ru": "I am peeling a grapefruit; We have enough bread; Breakfast is nearly ready",
-    "uk": "I am peeling a grapefruit; We have enough bread; Breakfast is nearly ready"
+    "ru": "сказать, что завтрак почти готов: Breakfast is nearly ready.",
+    "uk": "сказати, що сніданок майже готовий: Breakfast is nearly ready."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Хліба вистачає"
       },
       "bodyByLocale": {
-        "ru": "Enough — «достаточно». Вы проверили хлеб: его хватает всем. We have enough bread — «У нас достаточно хлеба». Enough стоит перед bread. Have здесь означает наличие; используем Present Simple, хотя проверяем продукты сейчас.",
-        "uk": "Enough — «достатньо». Ви перевірили хліб: його вистачає всім. We have enough bread — «У нас достатньо хліба». Enough стоїть перед bread. Have тут означає наявність; використовуємо Present Simple, хоча перевіряємо продукти зараз."
+        "ru": "Enough — «достаточно». Вы проверили хлеб: его хватает всем. We have enough bread — «У нас достаточно хлеба». Enough стоит перед bread. Have здесь означает наличие; используем форму без -ing, хотя проверяем продукты сейчас.",
+        "uk": "Enough — «достатньо». Ви перевірили хліб: його вистачає всім. We have enough bread — «У нас достатньо хліба». Enough стоїть перед bread. Have тут означає наявність; використовуємо форму без -ing, хоча перевіряємо продукти зараз."
       },
       "question": {
         "interactionId": "en:lesson-10:session-48:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Залишилося небагато"
       },
       "bodyByLocale": {
-        "ru": "Nearly — «почти». Завтрак ещё не полностью готов, но осталось немного: Breakfast is nearly ready — «Завтрак почти готов». Nearly стоит перед ready. Is описывает состояние, здесь нет формы Continuous.",
-        "uk": "Nearly — «майже». Сніданок ще не повністю готовий, але залишилося небагато: Breakfast is nearly ready — «Сніданок майже готовий». Nearly стоїть перед ready. Is описує стан, тут немає форми Continuous."
+        "ru": "Nearly — «почти». Завтрак ещё не полностью готов, но осталось немного: Breakfast is nearly ready — «Завтрак почти готов». Nearly стоит перед ready. Is описывает состояние, здесь нет формы с -ing.",
+        "uk": "Nearly — «майже». Сніданок ще не повністю готовий, але залишилося небагато: Breakfast is nearly ready — «Сніданок майже готовий». Nearly стоїть перед ready. Is описує стан, тут немає форми з -ing."
       },
       "question": {
         "interactionId": "en:lesson-10:session-48:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "be391fb9902f9fdc99186fd312db2ed99aa66a4ef316a7e14d1bac153cf13735"
+  "introFingerprint": "ae8946446653c27a3ce7f2b717a06a2a79bd8b0120f9e6b673a734556887d128"
 }

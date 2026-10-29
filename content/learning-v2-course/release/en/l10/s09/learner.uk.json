@@ -607,7 +607,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для одного напою",
+      "prompt": "Виберіть is або are: один напій",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-09:i09:r1",
@@ -624,12 +624,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для одного напою",
+      "accessibilityLabel": "Виберіть is або are: один напій",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку для одного напитка",
-          "uk": "Виберіть зв’язку для одного напою"
+          "uk": "Виберіть is або are: один напій"
         },
         "gappedTargetPhrase": "This drink ___ sugar-free.",
         "gapOptions": [
@@ -828,7 +828,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для одного пирога",
+      "prompt": "Виберіть is або are: один пиріг",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-09:i12:r1",
@@ -845,12 +845,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для одного пирога",
+      "accessibilityLabel": "Виберіть is або are: один пиріг",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку для одного пирога",
-          "uk": "Виберіть зв’язку для одного пирога"
+          "uk": "Виберіть is або are: один пиріг"
         },
         "gappedTargetPhrase": "This cake ___ dairy-free.",
         "gapOptions": [
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4af0a8f584998211af8f0bad27f9aa4f8737945adb2fe95efe9ec2908696f86b"
+  "learnerFingerprint": "81018eb78e742c35aee439c4c6912d49c9673f30960c9b822d37e3de2486a84f"
 }

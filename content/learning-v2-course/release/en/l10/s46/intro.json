@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-46",
   "learningOutcomeByLocale": {
-    "ru": "I usually buy cabbage; I am chopping garlic; We are cooking lentils",
-    "uk": "I usually buy cabbage; I am chopping garlic; We are cooking lentils"
+    "ru": "сказать, что вы готовите на ужин: We are cooking lentils.",
+    "uk": "сказати, що ви готуєте на вечерю: We are cooking lentils."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Звичайна покупка"
       },
       "bodyByLocale": {
-        "ru": "Cabbage — «капуста». Вы обычно покупаете её для супа: I usually buy cabbage — «Я обычно покупаю капусту». Это привычка: Present Simple. Usually ставим перед buy. Здесь cabbage означает продукт, поэтому a не нужен.",
-        "uk": "Cabbage — «капуста». Ви зазвичай купуєте її для супу: I usually buy cabbage — «Я зазвичай купую капусту». Це звичка: Present Simple. Usually ставимо перед buy. Тут cabbage означає продукт, тому a не потрібен."
+        "ru": "Cabbage — «капуста». Вы обычно покупаете её для супа: I usually buy cabbage — «Я обычно покупаю капусту». Это привычка: форма без -ing. Usually ставим перед buy. Здесь cabbage означает продукт, поэтому a не нужен.",
+        "uk": "Cabbage — «капуста». Ви зазвичай купуєте її для супу: I usually buy cabbage — «Я зазвичай купую капусту». Це звичка: форма без -ing. Usually ставимо перед buy. Тут cabbage означає продукт, тому a не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-10:session-46:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Що вариться на вечерю"
       },
       "bodyByLocale": {
-        "ru": "Lentils — «чечевица». Вы с другом сейчас готовите её на ужин: We are cooking lentils — «Мы готовим чечевицу». Текущее действие: are + cooking. В английском lentils — множественное число, хотя по-русски «чечевица» — единственное.",
-        "uk": "Lentils — «сочевиця». Ви з другом зараз готуєте її на вечерю: We are cooking lentils — «Ми готуємо сочевицю». Поточна дія: are + cooking. В англійській lentils — множина, хоча українською «сочевиця» — однина."
+        "ru": "Lentils — «чечевица». Вы с другом сейчас готовите её на ужин: We are cooking lentils — «Мы готовим чечевицу». Текущее действие: are + cooking. В английском lentils — форма для нескольких, хотя по-русски «чечевица» — единственное.",
+        "uk": "Lentils — «сочевиця». Ви з другом зараз готуєте її на вечерю: We are cooking lentils — «Ми готуємо сочевицю». Поточна дія: are + cooking. В англійській lentils — форма для кількох, хоча українською «сочевиця» — форма для одного."
       },
       "question": {
         "interactionId": "en:lesson-10:session-46:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "82d73d57ecae403c31b001a57157e4114e2cf371a76c394fca2e118009653911"
+  "introFingerprint": "d7fa0910dc5383d4a9f6954ebd4c3eb40d015658dd0db058ca3848fb55827e8a"
 }

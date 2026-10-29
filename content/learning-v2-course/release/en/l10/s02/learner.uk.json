@@ -829,7 +829,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку після this",
+      "prompt": "Виберіть форму be після this",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-02:i12:r1",
@@ -846,12 +846,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку після this",
+      "accessibilityLabel": "Виберіть форму be після this",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку после this",
-          "uk": "Виберіть зв’язку після this"
+          "uk": "Виберіть форму be після this"
         },
         "gappedTargetPhrase": "This ___ my hand luggage.",
         "gapOptions": [
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6d9e06cc248280ae6ffab588037dd08cd2600491092078fb082b12dd43ae6bd2"
+  "learnerFingerprint": "1a8813fbd34e1e90a8e0f36eeab92e8daa2b0744f5e92e6a1f2f6baaa6f0efc8"
 }

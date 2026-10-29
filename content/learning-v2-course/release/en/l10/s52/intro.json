@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-52",
   "learningOutcomeByLocale": {
-    "ru": "Somebody is knocking; Nobody is at home; I am looking everywhere",
-    "uk": "Somebody is knocking; Nobody is at home; I am looking everywhere"
+    "ru": "сказать, что дома никого нет: Nobody is at home.",
+    "uk": "сказати, що вдома нікого немає: Nobody is at home."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Стукіт у двері"
       },
       "bodyByLocale": {
-        "ru": "Вы слышите стук, но ещё не знаете, кто пришёл: Somebody is knocking — «Кто-то стучит». Начинаем с somebody — «кто-то», затем ставим is и knocking. Somebody обозначает неизвестного человека и требует формы единственного числа is. Действие слышно прямо сейчас, поэтому нужны обе части is knocking; одного knocking недостаточно.",
-        "uk": "Ви чуєте стукіт, але ще не знаєте, хто прийшов: Somebody is knocking — «Хтось стукає». Починаємо із somebody — «хтось», потім ставимо is і knocking. Somebody позначає невідому людину й потребує форми однини is. Дію чути просто зараз, тому потрібні обидві частини is knocking; одного knocking недостатньо."
+        "ru": "Вы слышите стук, но ещё не знаете, кто пришёл: Somebody is knocking — «Кто-то стучит». Начинаем с somebody — «кто-то», затем ставим is и knocking. Somebody обозначает неизвестного человека и требует формы формы для одного is. Действие слышно прямо сейчас, поэтому нужны обе части is knocking; одного knocking недостаточно.",
+        "uk": "Ви чуєте стукіт, але ще не знаєте, хто прийшов: Somebody is knocking — «Хтось стукає». Починаємо із somebody — «хтось», потім ставимо is і knocking. Somebody позначає невідому людину й потребує форми для одного — is. Дію чути просто зараз, тому потрібні обидві частини is knocking; одного knocking недостатньо."
       },
       "question": {
         "interactionId": "en:lesson-10:session-52:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "77ee3174f0cb5cc4a4630e36a78253bc7fbf7aef80aa3c2163bd4990e5a0940f"
+  "introFingerprint": "e80488e6062201e045276f978a633e08668928e3adf26de6a91add8ccf0c2d1e"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-38",
   "learningOutcomeByLocale": {
-    "ru": "was/were; questions and negatives; yesterday / now",
-    "uk": "was/were; questions and negatives; yesterday / now"
+    "ru": "спросить, была ли дверь открыта: Was the front door open?",
+    "uk": "запитати, чи були двері відчинені: Was the front door open?"
   },
   "pages": [
     {
@@ -16,7 +16,7 @@
       },
       "bodyByLocale": {
         "ru": "Вчера вы подошли к дому: передняя входная дверь была закрыта. Скажите: The front door was closed — передняя входная дверь была закрыта. Сначала назовите конкретную дверь — the front door. Затем поставьте was, потому что дверь одна и речь о прошлом. Завершите фразу словом closed — «закрыта»: оно сообщает состояние двери.",
-        "uk": "Учора ви підійшли до будинку: передні вхідні двері були зачинені. Скажіть: The front door was closed — передні вхідні двері були зачинені. Спочатку назвіть конкретні двері — the front door. Англійське door тут має однину, тому далі поставте was для минулого. Завершіть фразу словом closed — «зачинені»: воно повідомляє стан дверей."
+        "uk": "Учора ви підійшли до будинку: передні вхідні двері були зачинені. Скажіть: The front door was closed — передні вхідні двері були зачинені. Спочатку назвіть конкретні двері — the front door. Англійське door тут має форму для одного, тому далі поставте was для минулого. Завершіть фразу словом closed — «зачинені»: воно повідомляє стан дверей."
       },
       "question": {
         "interactionId": "en:lesson-11:session-38:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "30696314312f617b34aac0ce6b12c39025149b4570e4f0162798b742f77d27a5"
+  "introFingerprint": "96de94a9fe4fdb012d0037c712932e3df642801bd6041cbc4e3dc3b0303b38b4"
 }

@@ -442,7 +442,7 @@
             "correct": false,
             "testedDimension": "Рядом с кафе были два водителя автобуса. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Прошлое и множественное число: were.",
+              "ru": "Прошлое и форма для нескольких: were.",
               "uk": "Минулий час і множина: were."
             }
           }
@@ -1119,5 +1119,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "ed197a43ca92937e83fb6e33db1797cbfd5b9482190fd44c19419e302657acf9"
+  "learnerFingerprint": "89cbd25935bfe1f464cf7f3ec68e2b353623b7839531cc2e842676ae25314675"
 }

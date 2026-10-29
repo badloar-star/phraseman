@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-25",
   "learningOutcomeByLocale": {
-    "ru": "yesterday + was/were; now + is/are",
-    "uk": "yesterday + was/were; now + is/are"
+    "ru": "сказать, что было вчера, а что сейчас: My beach towel is dry now.",
+    "uk": "сказати, що було вчора, а що зараз: My beach towel is dry now."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Де вчора був крем"
       },
       "bodyByLocale": {
-        "ru": "Вы ищете солнцезащитный крем и вспоминаете, что вчера он был в вашей сумке. Скажите: Yesterday the sun cream was in my bag. Сначала укажите время yesterday, затем назовите конкретный крем the sun cream. Cream здесь неисчисляемое, поэтому для прошлого нужна форма was. В конце добавьте место in my bag — «в моей сумке». Was используется не только для состояния, но и для местоположения в прошлом.",
-        "uk": "Ви шукаєте сонцезахисний крем і згадуєте, що вчора він був у вашій сумці. Скажіть: Yesterday the sun cream was in my bag. Спочатку вкажіть час yesterday, потім назвіть конкретний крем the sun cream. Cream тут незлічуване, тому для минулого потрібна форма was. Наприкінці додайте місце in my bag — «у моїй сумці». Was використовується не лише для стану, а й для розташування в минулому."
+        "ru": "Вы ищете солнцезащитный крем и вспоминаете, что вчера он был в вашей сумке. Скажите: Yesterday the sun cream was in my bag. Сначала укажите время yesterday, затем назовите конкретный крем the sun cream. Cream здесь не считается поштучно, поэтому для прошлого нужна форма was. В конце добавьте место in my bag — «в моей сумке». Was используется не только для состояния, но и для местоположения в прошлом.",
+        "uk": "Ви шукаєте сонцезахисний крем і згадуєте, що вчора він був у вашій сумці. Скажіть: Yesterday the sun cream was in my bag. Спочатку вкажіть час yesterday, потім назвіть конкретний крем the sun cream. Cream тут не рахується поштучно, тому для минулого потрібна форма was. Наприкінці додайте місце in my bag — «у моїй сумці». Was використовується не лише для стану, а й для розташування в минулому."
       },
       "question": {
         "interactionId": "en:lesson-11:session-25:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Учорашній стан взуття"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете свои вьетнамки после вчерашнего пляжа: они были грязными. Скажите: Yesterday my flip-flops were dirty. Начните с yesterday, затем назовите обувь my flip-flops. Flip-flops — множественное число, поэтому дальше поставьте were. В конце добавьте состояние dirty. Для описания этой обуви сейчас нужна форма are, но yesterday указывает на прошлое: здесь выбираем were.",
-        "uk": "Ви згадуєте свої в’єтнамки після вчорашнього пляжу: вони були брудними. Скажіть: Yesterday my flip-flops were dirty. Почніть із yesterday, потім назвіть взуття my flip-flops. Flip-flops — множина, тому далі поставте were. Наприкінці додайте стан dirty. Для опису цього взуття зараз потрібна форма are, але yesterday вказує на минуле: тут обираємо were."
+        "ru": "Вы вспоминаете свои вьетнамки после вчерашнего пляжа: они были грязными. Скажите: Yesterday my flip-flops were dirty. Начните с yesterday, затем назовите обувь my flip-flops. Flip-flops — форма для нескольких, поэтому дальше поставьте were. В конце добавьте состояние dirty. Для описания этой обуви сейчас нужна форма are, но yesterday указывает на прошлое: здесь выбираем were.",
+        "uk": "Ви згадуєте свої в’єтнамки після вчорашнього пляжу: вони були брудними. Скажіть: Yesterday my flip-flops were dirty. Почніть із yesterday, потім назвіть взуття my flip-flops. Flip-flops — форма для кількох, тому далі поставте were. Наприкінці додайте стан dirty. Для опису цього взуття зараз потрібна форма are, але yesterday вказує на минуле: тут обираємо were."
       },
       "question": {
         "interactionId": "en:lesson-11:session-25:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "550a2940f7be6aa02e5ea5923bc269d6cde66e0cb4429b8fec6c11c41768eb7f"
+  "introFingerprint": "4500f0c863bb24d4a6c9939c3ce0bd0c1d280394b708d8bbc4e91c7fe7145de0"
 }

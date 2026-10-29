@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-31",
   "learningOutcomeByLocale": {
-    "ru": "Do you travel in April; We swim in June; I usually stay home in October; We visit our family in November",
-    "uk": "Do you travel in April; We swim in June; I usually stay home in October; We visit our family in November"
+    "ru": "спросить, в каком месяце человек что-то делает: Do you travel in April?",
+    "uk": "запитати, у якому місяці людина щось робить: Do you travel in April?"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Відвідувати родину в листопаді"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, когда вы обычно навещаете родных. Вы отвечаете за себя и близких: We visit our family in November — «Мы навещаем семью в ноябре». После we ставим visit без -s, затем our family — кого навещаем, и in November — когда. Речь об обычной ежегодной поездке, поэтому используем Present Simple. Перед месяцем нужен in, а November пишем с большой буквы.",
-        "uk": "Друг запитує, коли ви зазвичай відвідуєте рідних. Ви відповідаєте за себе й близьких: We visit our family in November — «Ми відвідуємо родину в листопаді». Після we ставимо visit без -s, потім our family — кого відвідуємо, та in November — коли. Йдеться про звичну щорічну поїздку, тому використовуємо Present Simple. Перед місяцем потрібен in, а November пишемо з великої літери."
+        "ru": "Друг спрашивает, когда вы обычно навещаете родных. Вы отвечаете за себя и близких: We visit our family in November — «Мы навещаем семью в ноябре». После we ставим visit без -s, затем our family — кого навещаем, и in November — когда. Речь об обычной ежегодной поездке, поэтому используем форму без -ing. Перед месяцем нужен in, а November пишем с большой буквы.",
+        "uk": "Друг запитує, коли ви зазвичай відвідуєте рідних. Ви відповідаєте за себе й близьких: We visit our family in November — «Ми відвідуємо родину в листопаді». Після we ставимо visit без -s, потім our family — кого відвідуємо, та in November — коли. Йдеться про звичну щорічну поїздку, тому використовуємо форму без -ing. Перед місяцем потрібен in, а November пишемо з великої літери."
       },
       "question": {
         "interactionId": "en:lesson-10:session-31:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "89feff9c16727e8b1f731c0a10870caf038724ec00f1ce0456f83b8be4a9636d"
+  "introFingerprint": "d808ea5ecca3ea5e43066e59ca6f7a0882e8a35f52081d075710cfad90756224"
 }

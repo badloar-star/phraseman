@@ -430,7 +430,7 @@
             "correct": false,
             "testedDimension": "В прошлом году мои родители уже были на пенсии. Выберите форму",
             "feedbackByLocale": {
-              "ru": "Parents — множественное число: were.",
+              "ru": "Parents — форма для нескольких: were.",
               "uk": "Parents — множина: were."
             }
           },
@@ -1113,5 +1113,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b6147fcea0bef668ab0c84920c680d469e8cd8fd8d775347409f31e0317a36f8"
+  "learnerFingerprint": "f7e2670fcccfa9819ab3561047ee22c1f7724cd8449d6b12b5fac3f14715c8aa"
 }

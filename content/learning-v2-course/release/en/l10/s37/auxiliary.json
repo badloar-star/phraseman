@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-10:session-37:intro1:q",
       "responseFeedbackById": {
         "en:lesson-10:session-37:intro1:r2": {
-          "ru": "Keys во множественном числе: are.",
-          "uk": "Keys у множині: are."
+          "ru": "Keys в форме для нескольких: are.",
+          "uk": "Keys у формі для кількох: are."
         },
         "en:lesson-10:session-37:intro1:r3": {
           "ru": "Перед underneath нужна связка are.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "cb9765b557992b6be9fd19e2a7640e57bc7bdb9167197e615371f4faf7ccf4db"
+  "auxiliaryFingerprint": "b56a42c482adac759ac1c6ec4de09eb9ce69f44865de829d9224437167b811b6"
 }

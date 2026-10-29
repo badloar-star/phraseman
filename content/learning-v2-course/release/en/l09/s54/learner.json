@@ -381,7 +381,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите артикль перед washer",
+      "prompt": "Выберите слово перед washer",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-54:i06:r1",
@@ -398,11 +398,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите артикль перед washer",
+      "accessibilityLabel": "Выберите слово перед washer",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите артикль перед washer",
+          "ru": "Выберите слово перед washer",
           "uk": "Виберіть артикль перед washer"
         },
         "gappedTargetPhrase": "This is ___ washer.",
@@ -436,7 +436,7 @@
             "correct": false,
             "testedDimension": "Выберите артикль перед washer",
             "feedbackByLocale": {
-              "ru": "Are не артикль, здесь нужен a.",
+              "ru": "Здесь нужно a, а не are.",
               "uk": "Are не артикль, тут потрібне a."
             }
           }
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b7a4a7beb70fbfb84d4220ed7ec2a9dc83910430d30032843279e4ca1aea1dcc"
+  "learnerFingerprint": "2323844e1a35e299a8621282ba0046dccca3084a2519d1a2556efef3bb5c9473"
 }

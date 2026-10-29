@@ -207,7 +207,7 @@
             "correct": false,
             "testedDimension": "Запитайте про кілька млинців",
             "feedbackByLocale": {
-              "ru": "Pancakes — множественное число: were.",
+              "ru": "Pancakes — форма для нескольких: were.",
               "uk": "Pancakes — множина: were."
             }
           },
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "999f4326ceade47e2b2214abc18ef3bed3ca03445b430732d1980e192fd90abe"
+  "learnerFingerprint": "c2b134dde234bcf608a9e0f9015824fca08b7a0871d2856397ccecfaa70ec82a"
 }

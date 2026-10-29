@@ -382,7 +382,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку с одним человеком, Tom",
+      "prompt": "Выберите форму be с одним человеком, Tom",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-21:i06:r1",
@@ -399,11 +399,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку с одним человеком, Tom",
+      "accessibilityLabel": "Выберите форму be с одним человеком, Tom",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку с одним человеком, Tom",
+          "ru": "Выберите форму be с одним человеком, Tom",
           "uk": "Виберіть зв’язку з однією людиною, Tom"
         },
         "gappedTargetPhrase": "Even Tom ___ here.",
@@ -824,7 +824,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку с it",
+      "prompt": "Выберите форму be с it",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-21:i12:r1",
@@ -841,11 +841,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку с it",
+      "accessibilityLabel": "Выберите форму be с it",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку с it",
+          "ru": "Выберите форму be с it",
           "uk": "Виберіть зв’язку з it"
         },
         "gappedTargetPhrase": "It ___ almost ready.",
@@ -1105,5 +1105,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d4a4bd7d136c63005dd02508ec9d20aac1dedb7e1c60d1c92319a0811781377e"
+  "learnerFingerprint": "08003d87dbc08ad2e3d3491899c01677ab418a754f223c064e931d819e7adf19"
 }

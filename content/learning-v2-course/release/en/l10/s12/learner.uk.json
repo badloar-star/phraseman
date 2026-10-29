@@ -605,7 +605,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово перед tights у множині",
+      "prompt": "Виберіть слово перед tights: їх кілька",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-12:i09:r1",
@@ -622,12 +622,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово перед tights у множині",
+      "accessibilityLabel": "Виберіть слово перед tights: їх кілька",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово перед tights во множественном числе",
-          "uk": "Виберіть слово перед tights у множині"
+          "uk": "Виберіть слово перед tights: їх кілька"
         },
         "gappedTargetPhrase": "I need ___ tights.",
         "gapOptions": [
@@ -651,7 +651,7 @@
             "correct": false,
             "testedDimension": "Виберіть слово перед tights у множині",
             "feedbackByLocale": {
-              "ru": "Tights — множественное число, a не подходит.",
+              "ru": "Tights — форма для нескольких, a не подходит.",
               "uk": "Tights — множина, a не підходить."
             }
           },
@@ -660,7 +660,7 @@
             "correct": false,
             "testedDimension": "Виберіть слово перед tights у множині",
             "feedbackByLocale": {
-              "ru": "Tights — множественное число, an не подходит.",
+              "ru": "Tights — форма для нескольких, an не подходит.",
               "uk": "Tights — множина, an не підходить."
             }
           }
@@ -1111,5 +1111,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "39491cbe16718b33dd54a971857b30c31607908fc51c22a14c2e4ce3c4708ce2"
+  "learnerFingerprint": "5fa69393169e328f542da8dfc821ac3509f257ed5ca578c359c3d89c9d575bda"
 }

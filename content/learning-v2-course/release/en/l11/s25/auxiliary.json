@@ -23,8 +23,8 @@
           "uk": "Говоримо про вчора: was."
         },
         "en:lesson-11:session-25:intro2:r3": {
-          "ru": "Sun cream здесь неисчисляемое: was.",
-          "uk": "Sun cream тут незлічуване: was."
+          "ru": "Sun cream здесь не считается поштучно: was.",
+          "uk": "Sun cream тут не рахується поштучно: was."
         }
       }
     },
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-11:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-11:session-25:intro3:r2": {
-          "ru": "Flip-flops — множественное число: were.",
-          "uk": "Flip-flops — множина: were."
+          "ru": "Flip-flops — форма для нескольких: were.",
+          "uk": "Flip-flops — форма для кількох: were."
         },
         "en:lesson-11:session-25:intro3:r3": {
           "ru": "Yesterday — прошлое, поэтому were.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "ae9118dbfa846f0dcc8884611436d4148f6362a9b322b94f5f00d92f6cdd35a1"
+  "auxiliaryFingerprint": "c4b4ec596795a14afa98999cff82fac2f59c3c02e8681cbd2712cd997e106437"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-03",
   "learningOutcomeByLocale": {
-    "ru": "was/were; yesterday и right now",
-    "uk": "was/were; yesterday і right now"
+    "ru": "сказать, какой была вещь после уборки: The cleaning cloth was wet.",
+    "uk": "сказати, якою була річ після прибирання: The cleaning cloth was wet."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Де вчора був порошок"
       },
       "bodyByLocale": {
-        "ru": "После уборки вы вспоминаете, что вчера стиральный порошок был в шкафу. Скажите: The washing powder was in the cupboard yesterday. Начните с конкретного средства the washing powder, затем поставьте was. Powder здесь неисчисляемое, поэтому для прошлого нужна was, а не were. Добавьте место in the cupboard и время yesterday. Так вы сообщаете, где средство находилось вчера.",
-        "uk": "Після прибирання ви згадуєте, що вчора пральний порошок був у шафі. Скажіть: The washing powder was in the cupboard yesterday. Почніть із конкретного засобу the washing powder, потім поставте was. Powder тут незлічуване, тому для минулого потрібне was, а не were. Додайте місце in the cupboard і час yesterday. Так ви повідомляєте, де засіб перебував учора."
+        "ru": "После уборки вы вспоминаете, что вчера стиральный порошок был в шкафу. Скажите: The washing powder was in the cupboard yesterday. Начните с конкретного средства the washing powder, затем поставьте was. Powder здесь не считается поштучно, поэтому для прошлого нужна was, а не were. Добавьте место in the cupboard и время yesterday. Так вы сообщаете, где средство находилось вчера.",
+        "uk": "Після прибирання ви згадуєте, що вчора пральний порошок був у шафі. Скажіть: The washing powder was in the cupboard yesterday. Почніть із конкретного засобу the washing powder, потім поставте was. Powder тут не рахується поштучно, тому для минулого потрібне was, а не were. Додайте місце in the cupboard і час yesterday. Так ви повідомляєте, де засіб перебував учора."
       },
       "question": {
         "interactionId": "en:lesson-11:session-03:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Мокрі рукавички після прибирання"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете резиновые перчатки после вчерашней уборки: они были мокрыми. Скажите: The rubber gloves were wet. Сначала назовите предметы the rubber gloves. Gloves — множественное число, поэтому дальше поставьте were для прошлого. Затем добавьте состояние wet — «мокрые». Даже если речь об одной паре, английское gloves требует were.",
-        "uk": "Ви згадуєте гумові рукавички після вчорашнього прибирання: вони були мокрі. Скажіть: The rubber gloves were wet. Спочатку назвіть предмети the rubber gloves. Gloves — множина, тому далі поставте were для минулого. Потім додайте стан wet — «мокрі». Навіть якщо йдеться про одну пару, англійське gloves потребує were."
+        "ru": "Вы вспоминаете резиновые перчатки после вчерашней уборки: они были мокрыми. Скажите: The rubber gloves were wet. Сначала назовите предметы the rubber gloves. Gloves — форма для нескольких, поэтому дальше поставьте were для прошлого. Затем добавьте состояние wet — «мокрые». Даже если речь об одной паре, английское gloves требует were.",
+        "uk": "Ви згадуєте гумові рукавички після вчорашнього прибирання: вони були мокрі. Скажіть: The rubber gloves were wet. Спочатку назвіть предмети the rubber gloves. Gloves — форма для кількох, тому далі поставте were для минулого. Потім додайте стан wet — «мокрі». Навіть якщо йдеться про одну пару, англійське gloves потребує were."
       },
       "question": {
         "interactionId": "en:lesson-11:session-03:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5bc1311a49a7615b3eff7bc630cd2af8c37e5033e0ef3998419447da9b471000"
+  "introFingerprint": "96ca61a81d0a6f643fefcf5aa5e83ef029fb717ba966f437c4de15536aac022d"
 }

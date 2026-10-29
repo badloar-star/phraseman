@@ -209,7 +209,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму для звичайної роботи працівника: він допомагає відвідувачам щодня",
             "feedbackByLocale": {
-              "ru": "Для the steward в Present Simple нужна helps.",
+              "ru": "Для the steward в форме без -ing нужна helps.",
               "uk": "Для the steward у Present Simple потрібна helps."
             }
           },
@@ -794,7 +794,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для we під час дії зараз",
+      "prompt": "Виберіть is або are: we, і це відбувається зараз",
       "responseOptions": [
         {
           "responseId": "en:lesson-09:session-56:i12:r1",
@@ -811,12 +811,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для we під час дії зараз",
+      "accessibilityLabel": "Виберіть is або are: we, і це відбувається зараз",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку для we при действии сейчас",
-          "uk": "Виберіть зв’язку для we під час дії зараз"
+          "uk": "Виберіть is або are: we, і це відбувається зараз"
         },
         "gappedTargetPhrase": "We ___ doing a headcount.",
         "gapOptions": [
@@ -1119,5 +1119,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "df373dbff1070d827b2231a939e672afca0ddc954d92b26f274f6c8a9820a67b"
+  "learnerFingerprint": "ac3d24ad76864f9bc65700de30db8bfca56680d16f0a419319e4ad2eaebb701c"
 }

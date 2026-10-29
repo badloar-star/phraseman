@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-11:session-21:intro2:q",
       "responseFeedbackById": {
         "en:lesson-11:session-21:intro2:r2": {
-          "ru": "С неисчисляемым food нужна was.",
-          "uk": "Із незлічуваним food потрібна was."
+          "ru": "Food не считают поштучно, поэтому нужна was.",
+          "uk": "Food не рахують поштучно, тому потрібна was."
         },
         "en:lesson-11:session-21:intro2:r3": {
           "ru": "Здесь food не требует a.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "418f2f5f2da2eac2c57d8aa090c306835f68ab88e2c63e8c6f3db0a5516f4b56"
+  "auxiliaryFingerprint": "9a57588284ee8add99316b981e26c3dc8d9e0853abc8030efadd6defee8ab630"
 }

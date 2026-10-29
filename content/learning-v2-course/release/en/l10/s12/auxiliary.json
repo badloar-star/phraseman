@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-10:session-12:intro3:q",
       "responseFeedbackById": {
         "en:lesson-10:session-12:intro3:r2": {
-          "ru": "Tights — множественное число: some tights.",
-          "uk": "Tights — множина: some tights."
+          "ru": "Tights — форма для нескольких: some tights.",
+          "uk": "Tights — форма для кількох: some tights."
         },
         "en:lesson-10:session-12:intro3:r3": {
           "ru": "С I нужна need без s.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "d41ef6a2cc844900b6bc6c3be5295ec6a4b59be184ef6dcfa8266feede46ce69"
+  "auxiliaryFingerprint": "039c7382970f7784c2b4499f328808268aee750d35113248a5fe0836e668e1e7"
 }

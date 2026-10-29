@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-12",
   "learningOutcomeByLocale": {
-    "ru": "Was…? Were…? was not; were not",
-    "uk": "Was…? Were…? was not; were not"
+    "ru": "спросить, какой была еда: Was the fried egg cold?",
+    "uk": "запитати, якою була їжа: Was the fried egg cold?"
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Температура яєчні-бовтанки"
       },
       "bodyByLocale": {
-        "ru": "Вы обсуждаете завтрак в кафе и спрашиваете о температуре яичницы-болтуньи: Were the scrambled eggs hot? Начните с were, затем назовите блюдо the scrambled eggs и добавьте hot — «горячие». В английском eggs имеет форму множественного числа, поэтому выбираем were, хотя по-русски «яичница» — единственное число. Were само образует вопрос о прошлом, без did.",
-        "uk": "Ви обговорюєте сніданок у кафе й запитуєте про температуру яєчні-бовтанки: Were the scrambled eggs hot? Почніть із were, потім назвіть страву the scrambled eggs і додайте hot — «гарячі». В англійській eggs має форму множини, тому обираємо were, хоча українською «яєчня» — однина. Were саме утворює запитання про минуле, без did."
+        "ru": "Вы обсуждаете завтрак в кафе и спрашиваете о температуре яичницы-болтуньи: Were the scrambled eggs hot? Начните с were, затем назовите блюдо the scrambled eggs и добавьте hot — «горячие». В английском eggs имеет форму для нескольких, поэтому выбираем were, хотя по-русски «яичница» — форма для одного. Were само образует вопрос о прошлом, без did.",
+        "uk": "Ви обговорюєте сніданок у кафе й запитуєте про температуру яєчні-бовтанки: Were the scrambled eggs hot? Почніть із were, потім назвіть страву the scrambled eggs і додайте hot — «гарячі». В англійській eggs має форму для кількох, тому обираємо were, хоча українською «яєчня» — форма для одного. Were саме утворює запитання про минуле, без did."
       },
       "question": {
         "interactionId": "en:lesson-11:session-12:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "40679226c392463d696318538d9b02551fb36b8f9c9015bf11bfe5587b0e7308"
+  "introFingerprint": "1002fcefc191b613942372bda87301c859ae575eba41ebcae5c99b78f0ea54f1"
 }

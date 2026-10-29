@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-11:session-42:intro2:q",
       "responseFeedbackById": {
         "en:lesson-11:session-42:intro2:r2": {
-          "ru": "Goggles — множественное число: were.",
-          "uk": "Goggles — множина: were."
+          "ru": "Goggles — форма для нескольких: were.",
+          "uk": "Goggles — форма для кількох: were."
         },
         "en:lesson-11:session-42:intro2:r3": {
           "ru": "Нужна сумка, не стол.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "ca84b0056a995848a470b22fea16f2d2d56964d562631ba26a668cb373eb5cab"
+  "auxiliaryFingerprint": "7030c185bc97f170153fd6c62dda5426b000d717c8deb8258bbaa2b8862795f4"
 }

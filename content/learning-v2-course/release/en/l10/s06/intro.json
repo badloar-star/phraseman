@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-06",
   "learningOutcomeByLocale": {
-    "ru": "I usually drink decaf coffee; I am making herbal tea; I would like some sparkling water",
-    "uk": "I usually drink decaf coffee; I am making herbal tea; I would like some sparkling water"
+    "ru": "сказать, какой напиток вы обычно пьёте: I usually drink decaf coffee.",
+    "uk": "сказати, який напій ви зазвичай п’єте: I usually drink decaf coffee."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Попросити газовану воду"
       },
       "bodyByLocale": {
-        "ru": "В гостях вас спрашивают, какую воду налить. Вы вежливо просите газированную: I would like some sparkling water — «Я бы хотел немного газированной воды». Sparkling water — «газированная вода». Начинаем с I would like, после would ставим like без -s и без -ing. Затем называем напиток: some sparkling water. Water здесь неисчисляемое; some обозначает некоторое количество воды, поэтому артикль a не нужен. Sparkling стоит перед water и уточняет вид воды.",
-        "uk": "У гостях вас запитують, яку воду налити. Ви ввічливо просите газовану: I would like some sparkling water — «Я хотів би трохи газованої води». Sparkling water — «газована вода». Починаємо з I would like, після would ставимо like без -s і без -ing. Потім називаємо напій: some sparkling water. Water тут незлічуване; some позначає певну кількість води, тому артикль a не потрібний. Sparkling стоїть перед water й уточнює вид води."
+        "ru": "В гостях вас спрашивают, какую воду налить. Вы вежливо просите газированную: I would like some sparkling water — «Я бы хотел немного газированной воды». Sparkling water — «газированная вода». Начинаем с I would like, после would ставим like без -s и без -ing. Затем называем напиток: some sparkling water. Water здесь не считается поштучно; some обозначает некоторое количество воды, поэтому a не нужен. Sparkling стоит перед water и уточняет вид воды.",
+        "uk": "У гостях вас запитують, яку воду налити. Ви ввічливо просите газовану: I would like some sparkling water — «Я хотів би трохи газованої води». Sparkling water — «газована вода». Починаємо з I would like, після would ставимо like без -s і без -ing. Потім називаємо напій: some sparkling water. Water тут не рахується поштучно; some позначає певну кількість води, тому a не потрібний. Sparkling стоїть перед water й уточнює вид води."
       },
       "question": {
         "interactionId": "en:lesson-10:session-06:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a54be0e7479f14a93ea1876575023b0c0af4a39aba1cc665bfc2c2423f1be5b6"
+  "introFingerprint": "9ea2b696f88c984e6dab4a9920c6e93911ecc3ae4ccb9fb3057ea367ccd8f81a"
 }

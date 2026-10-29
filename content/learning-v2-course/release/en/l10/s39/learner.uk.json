@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку для двох стільців",
+      "prompt": "Виберіть is або are: два стільці",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-39:i03:r1",
@@ -178,12 +178,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку для двох стільців",
+      "accessibilityLabel": "Виберіть is або are: два стільці",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку для двух стульев",
-          "uk": "Виберіть зв’язку для двох стільців"
+          "uk": "Виберіть is або are: два стільці"
         },
         "gappedTargetPhrase": "Both chairs ___ free.",
         "gapOptions": [
@@ -207,7 +207,7 @@
             "correct": false,
             "testedDimension": "Виберіть зв’язку для двох стільців",
             "feedbackByLocale": {
-              "ru": "Множественное число: are.",
+              "ru": "Форма для нескольких: are.",
               "uk": "Множина: are."
             }
           },
@@ -429,7 +429,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму have після each person",
             "feedbackByLocale": {
-              "ru": "Each person: единственное число, нужна has.",
+              "ru": "Each person: форма для одного, нужна has.",
               "uk": "Each person: однина, потрібна has."
             }
           },
@@ -605,7 +605,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку: один інший стілець",
+      "prompt": "Виберіть форму be: один інший стілець",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-39:i09:r1",
@@ -622,12 +622,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку: один інший стілець",
+      "accessibilityLabel": "Виберіть форму be: один інший стілець",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку: один другой стул",
-          "uk": "Виберіть зв’язку: один інший стілець"
+          "uk": "Виберіть форму be: один інший стілець"
         },
         "gappedTargetPhrase": "The other chair ___ free.",
         "gapOptions": [
@@ -826,7 +826,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть допоміжне дієслово перед anyone у запитанні про дію зараз",
+      "prompt": "Виберіть do або does перед anyone у запитанні про дію зараз",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-39:i12:r1",
@@ -843,12 +843,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть допоміжне дієслово перед anyone у запитанні про дію зараз",
+      "accessibilityLabel": "Виберіть do або does перед anyone у запитанні про дію зараз",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите вспомогательный глагол перед anyone в вопросе о действии сейчас",
-          "uk": "Виберіть допоміжне дієслово перед anyone у запитанні про дію зараз"
+          "uk": "Виберіть do або does перед anyone у запитанні про дію зараз"
         },
         "gappedTargetPhrase": "___ anyone sitting here?",
         "gapOptions": [
@@ -1108,5 +1108,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "81dec631caea357e87dc33791266b5dd799a841366e8be69b90e7b759d31d0db"
+  "learnerFingerprint": "814f3ffdec813dcde02465f7f6011b3bb47039233dafe5384649928a24f513e0"
 }

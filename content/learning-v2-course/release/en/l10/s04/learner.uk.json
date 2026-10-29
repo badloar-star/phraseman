@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку в there is для однієї ситуації",
+      "prompt": "Виберіть форму be в there is для однієї ситуації",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-04:i09:r1",
@@ -623,12 +623,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку в there is для однієї ситуації",
+      "accessibilityLabel": "Виберіть форму be в there is для однієї ситуації",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку в there is для одной ситуации",
-          "uk": "Виберіть зв’язку в there is для однієї ситуації"
+          "uk": "Виберіть форму be в there is для однієї ситуації"
         },
         "gappedTargetPhrase": "There ___ a power cut.",
         "gapOptions": [
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "74f31b284375308cfaea25628369481793f5b26ca8621e94add0f1dfb95e1efa"
+  "learnerFingerprint": "6d0c92382b6cfa3391326659bfd2c749caf6750517bd4b06ea0fab828d0d5c6a"
 }

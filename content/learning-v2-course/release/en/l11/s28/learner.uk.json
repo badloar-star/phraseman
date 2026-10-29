@@ -442,7 +442,7 @@
             "correct": false,
             "testedDimension": "Зараз апельсиновий сік теплий. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Juice неисчисляемое: is.",
+              "ru": "Juice не считается поштучно: is.",
               "uk": "Juice незлічуване: is."
             }
           }
@@ -1116,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "50049aac351b740b53073a47341f4c8d6ea0362e2f498ff46d1d635672bc1161"
+  "learnerFingerprint": "fea5ac1a0962be838d9a0964601fe9be6bee1f16b8f6f4aea85b96629677bab9"
 }

@@ -600,7 +600,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку з delivery у повідомленні про дату",
+      "prompt": "Виберіть форму be з delivery у повідомленні про дату",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-20:i09:r1",
@@ -617,12 +617,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку з delivery у повідомленні про дату",
+      "accessibilityLabel": "Виберіть форму be з delivery у повідомленні про дату",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку с delivery в сообщении о дате",
-          "uk": "Виберіть зв’язку з delivery у повідомленні про дату"
+          "uk": "Виберіть форму be з delivery у повідомленні про дату"
         },
         "gappedTargetPhrase": "Delivery ___ today.",
         "gapOptions": [
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8bb0e2b5cab3e367f9fe8968320312256a7c808237a179eca5990452b50fb545"
+  "learnerFingerprint": "da42a6341507d8ba00e1a079e0c222b289f3e9e9f234b924ba2260fb08c7d719"
 }

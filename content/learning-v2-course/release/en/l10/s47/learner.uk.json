@@ -382,7 +382,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Опишіть овоч. Виберіть зв’язку",
+      "prompt": "Опишіть овоч. Виберіть форму be",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-47:i06:r1",
@@ -399,12 +399,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Опишіть овоч. Виберіть зв’язку",
+      "accessibilityLabel": "Опишіть овоч. Виберіть форму be",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Опишите овощ. Выберите связку",
-          "uk": "Опишіть овоч. Виберіть зв’язку"
+          "uk": "Опишіть овоч. Виберіть форму be"
         },
         "gappedTargetPhrase": "The leek ___ fresh.",
         "gapOptions": [
@@ -824,7 +824,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть зв’язку з множиною radishes",
+      "prompt": "Виберіть форму be з radishes (їх кілька)",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-47:i12:r1",
@@ -841,12 +841,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть зв’язку з множиною radishes",
+      "accessibilityLabel": "Виберіть форму be з radishes (їх кілька)",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите связку с множественным radishes",
-          "uk": "Виберіть зв’язку з множиною radishes"
+          "uk": "Виберіть форму be з radishes (їх кілька)"
         },
         "gappedTargetPhrase": "The radishes ___ clean.",
         "gapOptions": [
@@ -870,7 +870,7 @@
             "correct": false,
             "testedDimension": "Виберіть зв’язку з множиною radishes",
             "feedbackByLocale": {
-              "ru": "Radishes — множественное число: are.",
+              "ru": "Radishes — форма для нескольких: are.",
               "uk": "Radishes — множина: are."
             }
           },
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d59af32623e50485814e8c6d64147c9fe7981bdbe48b9c3f65f35bb9d24b8fba"
+  "learnerFingerprint": "8b5708386885f44927814253b3546ddb87a663d2bb39d1ee583173d60d4572ec"
 }

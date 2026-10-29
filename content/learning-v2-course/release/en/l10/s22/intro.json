@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-10:session-22",
   "learningOutcomeByLocale": {
-    "ru": "I recognize her; I recognize her handwriting; Do you recognize the signature?",
-    "uk": "I recognize her; I recognize her handwriting; Do you recognize the signature?"
+    "ru": "сказать, что вы кого-то узнаёте: I recognize her.",
+    "uk": "сказати, що ви когось впізнаєте: I recognize her."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Упізнати знайому людину"
       },
       "bodyByLocale": {
-        "ru": "Друг показывает фотографию бывшей коллеги. Recognize — «узнавать», понимать, что вы уже видели человека или предмет раньше. I recognize her — «Я узнаю её». Здесь вы сообщаете об узнавании. Обычно используем Present Simple, даже если смотрим на фотографию сейчас.",
-        "uk": "Друг показує фотографію колишньої колеги. Recognize — «упізнавати», розуміти, що ви вже бачили людину або предмет раніше. I recognize her — «Я впізнаю її». Тут ви повідомляєте про впізнавання. Зазвичай використовуємо Present Simple, навіть якщо дивимося на фотографію зараз."
+        "ru": "Друг показывает фотографию бывшей коллеги. Recognize — «узнавать», понимать, что вы уже видели человека или предмет раньше. I recognize her — «Я узнаю её». Здесь вы сообщаете об узнавании. Обычно используем форму без -ing, даже если смотрим на фотографию сейчас.",
+        "uk": "Друг показує фотографію колишньої колеги. Recognize — «упізнавати», розуміти, що ви вже бачили людину або предмет раніше. I recognize her — «Я впізнаю її». Тут ви повідомляєте про впізнавання. Зазвичай використовуємо форму без -ing, навіть якщо дивимося на фотографію зараз."
       },
       "question": {
         "interactionId": "en:lesson-10:session-22:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Знайомі літери"
       },
       "bodyByLocale": {
-        "ru": "На столе лежит записка. Handwriting — «почерк». Вы много раз читали записки коллеги и узнаёте знакомую манеру письма. I recognize her handwriting — «Я узнаю её почерк». Handwriting здесь неисчисляемое; her указывает, чей это почерк.",
-        "uk": "На столі лежить записка. Handwriting — «почерк». Ви багато разів читали записки колеги й упізнаєте знайому манеру письма. I recognize her handwriting — «Я впізнаю її почерк». Handwriting тут незлічуване; her указує, чий це почерк."
+        "ru": "На столе лежит записка. Handwriting — «почерк». Вы много раз читали записки коллеги и узнаёте знакомую манеру письма. I recognize her handwriting — «Я узнаю её почерк». Handwriting здесь не считается поштучно; her указывает, чей это почерк.",
+        "uk": "На столі лежить записка. Handwriting — «почерк». Ви багато разів читали записки колеги й упізнаєте знайому манеру письма. I recognize her handwriting — «Я впізнаю її почерк». Handwriting тут не рахується поштучно; her указує, чий це почерк."
       },
       "question": {
         "interactionId": "en:lesson-10:session-22:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "2f34f4ba88cc1bf019a4b7c210c08c9d464501527ef8facdf370b7a5faa2b80b"
+  "introFingerprint": "3f5a034ac39f12492e23aeae7306c7ae2b3a246c2f0f1c64a4ae8987116a7dc9"
 }

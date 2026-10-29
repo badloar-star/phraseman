@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-11:session-50",
   "learningOutcomeByLocale": {
-    "ru": "was/were; past states; now / last year",
-    "uk": "was/were; past states; now / last year"
+    "ru": "рассказать о близких в прошлом году: My sister was pregnant last year.",
+    "uk": "розповісти про близьких торік: My sister was pregnant last year."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Сімейний стан тітки"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о нынешнем семейном положении тёти: она разведена. Скажите: My aunt is divorced — моя тётя разведена. Начните с My aunt, затем поставьте is: человек один, и речь о настоящем. После is добавьте состояние divorced. Это нейтральное описание семейного положения; для него здесь нужна форма is, без артикля перед divorced.",
-        "uk": "Ви розповідаєте про теперішній сімейний стан тітки: вона розлучена. Скажіть: My aunt is divorced — моя тітка розлучена. Почніть із My aunt, потім поставте is: людина одна, і йдеться про теперішнє. Після is додайте стан divorced. Це нейтральний опис сімейного стану; для нього тут потрібна форма is, без артикля перед divorced."
+        "ru": "Вы рассказываете о нынешнем семейном положении тёти: она разведена. Скажите: My aunt is divorced — моя тётя разведена. Начните с My aunt, затем поставьте is: человек один, и речь о настоящем. После is добавьте состояние divorced. Это нейтральное описание семейного положения; для него здесь нужна форма is, без a / the перед divorced.",
+        "uk": "Ви розповідаєте про теперішній сімейний стан тітки: вона розлучена. Скажіть: My aunt is divorced — моя тітка розлучена. Почніть із My aunt, потім поставте is: людина одна, і йдеться про теперішнє. Після is додайте стан divorced. Це нейтральний опис сімейного стану; для нього тут потрібна форма is, без a / the перед divorced."
       },
       "question": {
         "interactionId": "en:lesson-11:session-50:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b848048fb98a807576a72ceacd92ffa252a604e9053cc02fc4143bfd37bc6430"
+  "introFingerprint": "fa5d2d9d6e9a1891123c03d522fd4d00ed2b8868a2174b73d178052dd7d613cf"
 }

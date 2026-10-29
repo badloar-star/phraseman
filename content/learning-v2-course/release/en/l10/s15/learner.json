@@ -162,7 +162,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для одного имени",
+      "prompt": "Выберите is или are: одно имя",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-15:i03:r1",
@@ -179,11 +179,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для одного имени",
+      "accessibilityLabel": "Выберите is или are: одно имя",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для одного имени",
+          "ru": "Выберите is или are: одно имя",
           "uk": "Виберіть зв’язку для одного імені"
         },
         "gappedTargetPhrase": "What ___ your first name?",
@@ -383,7 +383,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите связку для одной фамилии",
+      "prompt": "Выберите is или are: одна фамилия",
       "responseOptions": [
         {
           "responseId": "en:lesson-10:session-15:i06:r1",
@@ -400,11 +400,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите связку для одной фамилии",
+      "accessibilityLabel": "Выберите is или are: одна фамилия",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите связку для одной фамилии",
+          "ru": "Выберите is или are: одна фамилия",
           "uk": "Виберіть зв’язку для одного прізвища"
         },
         "gappedTargetPhrase": "My surname ___ Brown.",
@@ -1112,5 +1112,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "72204ee85bcc084dc85e751a54e8e1dc8d22360ca66c39ed1d8a1adcbf61cb84"
+  "learnerFingerprint": "3421915e2eb31d8571f6528b6569d672b3d30efe0c57968e13e14dcfaa6dc4eb"
 }

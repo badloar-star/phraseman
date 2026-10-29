@@ -867,7 +867,7 @@
             "correct": false,
             "testedDimension": "Перед від’їздом згадуєте: учора квитки були в сумці. Виберіть форму",
             "feedbackByLocale": {
-              "ru": "Tickets — множественное число: were.",
+              "ru": "Tickets — форма для нескольких: were.",
               "uk": "Tickets — множина: were."
             }
           },
@@ -1106,5 +1106,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "2c0445aa9a82274551b90d403c0e1b74215c6ea9c8005a1c95d20d94e9f26d2d"
+  "learnerFingerprint": "0e3b2ea3b1183868a2d0fd5083e73462becf676d9504ede8ac21f62953fc3eb7"
 }

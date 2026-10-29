@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-22:session-06",
   "learningOutcomeByLocale": {
-    "ru": "Could I + base verb + it / them",
-    "uk": "Could I + base verb + it / them"
+    "ru": "вежливо предложить сделать что-то с вещью: Could I separate them?",
+    "uk": "ввічливо запропонувати щось зробити з річчю: Could I separate them?"
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Скласти порожні коробки"
       },
       "bodyByLocale": {
-        "ru": "После распаковки осталось несколько пустых коробок, и вы предлагаете сложить их плоско. Could I flatten them? — Можно мне их сплющить? После Could I ставим начальную форму flatten, затем them вместо boxes. Коробок несколько, поэтому выбираем them. Местоимение стоит после глагола и называет предметы действия.",
-        "uk": "Після розпакування залишилося кілька порожніх коробок, і ви пропонуєте скласти їх пласко. Could I flatten them? — Можна мені їх сплющити? Після Could I ставимо початкову форму flatten, потім them замість boxes. Коробок кілька, тому обираємо them. Займенник стоїть після дієслова й називає предмети дії."
+        "ru": "После распаковки осталось несколько пустых коробок, и вы предлагаете сложить их плоско. Could I flatten them? — Можно мне их сплющить? После Could I ставим начальную форму flatten, затем them вместо boxes. Коробок несколько, поэтому выбираем them. Слово стоит после глагола и называет предметы действия.",
+        "uk": "Після розпакування залишилося кілька порожніх коробок, і ви пропонуєте скласти їх пласко. Could I flatten them? — Можна мені їх сплющити? Після Could I ставимо початкову форму flatten, потім them замість boxes. Коробок кілька, тому обираємо them. Слово стоїть після дієслова й називає предмети дії."
       },
       "question": {
         "interactionId": "en:lesson-22:session-06:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "56a2a78446fb0362800b266447982c8bddb4d75abb55e91db80c1807183cd534"
+  "introFingerprint": "65ed587c9e9461566d2ef073f33d0ea7059c7754f349024f80c6de072eb443e2"
 }

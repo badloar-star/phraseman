@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-09",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, где вы уже побывали в путешествии: I have visited a desert.",
+    "uk": "розповісти, де ви вже побували в подорожі: I have visited a desert."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Що вже було у вашому житті"
       },
       "bodyByLocale": {
-        "ru": "Present Perfect помогает рассказать об опыте: такое уже было в моей жизни. I have visited a desert — я бывал в пустыне. Здесь неважно, когда именно. Desert — пустыня. Если называете законченное время, например last year, нужен знакомый Past Simple: I visited a desert last year.",
-        "uk": "Present Perfect допомагає розповісти про досвід: таке вже було в моєму житті. I have visited a desert — я бував у пустелі. Тут неважливо, коли саме. Desert — пустеля. Якщо називаєте завершений час, наприклад last year, потрібен знайомий Past Simple: I visited a desert last year."
+        "ru": "Форма have / has + done помогает рассказать об опыте: такое уже было в моей жизни. I have visited a desert — я бывал в пустыне. Здесь неважно, когда именно. Desert — пустыня. Если называете законченное время, например last year, нужна знакомая форма прошлого: I visited a desert last year.",
+        "uk": "Форма have / has + done допомагає розповісти про досвід: таке вже було в моєму житті. I have visited a desert — я бував у пустелі. Тут неважливо, коли саме. Desert — пустеля. Якщо називаєте завершений час, наприклад last year, потрібна знайома форма минулого: I visited a desert last year."
       },
       "question": {
         "interactionId": "en:lesson-23:session-09:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Бачила вулкан"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о подруге, которая во время путешествия видела вулкан. She has seen a volcano — она видела вулкан. Volcano означает «вулкан». Собираем: she + has + seen + a volcano. С she используем has, seen — третья форма see. После has нужна seen, а не saw. Has seen сообщает об опыте: когда именно состоялась поездка, в этой фразе не уточняем.",
-        "uk": "Ви розповідаєте про подругу, яка під час подорожі бачила вулкан. She has seen a volcano — вона бачила вулкан. Volcano означає «вулкан». Складаємо: she + has + seen + a volcano. Із she використовуємо has, seen — третя форма see. Після has потрібна seen, а не saw. Has seen повідомляє про досвід: коли саме відбулася поїздка, у цій фразі не уточнюємо."
+        "ru": "Вы рассказываете о подруге, которая во время путешествия видела вулкан. She has seen a volcano — она видела вулкан. Volcano означает «вулкан». Собираем: she + has + seen + a volcano. С she используем has, seen — форма see после have. После has нужна seen, а не saw. Has seen сообщает об опыте: когда именно состоялась поездка, в этой фразе не уточняем.",
+        "uk": "Ви розповідаєте про подругу, яка під час подорожі бачила вулкан. She has seen a volcano — вона бачила вулкан. Volcano означає «вулкан». Складаємо: she + has + seen + a volcano. Із she використовуємо has, seen — форма see після have. Після has потрібна seen, а не saw. Has seen повідомляє про досвід: коли саме відбулася поїздка, у цій фразі не уточнюємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-09:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Бував у круїзі"
       },
       "bodyByLocale": {
-        "ru": "Cruise — туристическая поездка на судне. On a cruise — в круизе. He has been on a cruise сообщает о таком опыте; это не значит, что он сейчас на корабле. Been — третья форма be.",
-        "uk": "Cruise — туристична поїздка на судні. On a cruise — у круїзі. He has been on a cruise повідомляє про такий досвід; це не означає, що він зараз на кораблі. Been — третя форма be."
+        "ru": "Cruise — туристическая поездка на судне. On a cruise — в круизе. He has been on a cruise сообщает о таком опыте; это не значит, что он сейчас на корабле. Been — форма be после have.",
+        "uk": "Cruise — туристична поїздка на судні. On a cruise — у круїзі. He has been on a cruise повідомляє про такий досвід; це не означає, що він зараз на кораблі. Been — форма be після have."
       },
       "question": {
         "interactionId": "en:lesson-23:session-09:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b8e04faffb745c52adc4d0813d844949fb107cecb09ce63a8e6bcba4f11907cd"
+  "introFingerprint": "a2deb25b2ce84ad8f28aab2eebdc6d853c07200c4adbde638eab3f3a5d2fac1d"
 }

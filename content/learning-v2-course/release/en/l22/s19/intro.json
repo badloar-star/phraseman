@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-22:session-19",
   "learningOutcomeByLocale": {
-    "ru": "subject + verb + matching reflexive pronoun",
-    "uk": "subject + verb + matching reflexive pronoun"
+    "ru": "сказать, что вы делаете с собой: I need to prepare myself.",
+    "uk": "сказати, що ви робите із собою: I need to prepare myself."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Підготуватися до виступу"
       },
       "bodyByLocale": {
-        "ru": "Завтра друг впервые выступает перед группой, и вы напоминаете ему о подготовке. You need to prepare yourself — тебе нужно подготовиться. После You need ставим to prepare, затем yourself. Yourself относится к тому же человеку, что и you: он готовит себя к выступлению. Местоимение ставим после prepare; your здесь не подходит, потому что оно обозначает принадлежность перед существительным.",
-        "uk": "Завтра друг уперше виступає перед групою, і ви нагадуєте йому про підготовку. You need to prepare yourself — тобі потрібно підготуватися. Після You need ставимо to prepare, потім yourself. Yourself стосується тієї самої людини, що й you: вона готує себе до виступу. Займенник ставимо після prepare; your тут не підходить, бо він позначає належність перед іменником."
+        "ru": "Завтра друг впервые выступает перед группой, и вы напоминаете ему о подготовке. You need to prepare yourself — тебе нужно подготовиться. После You need ставим to prepare, затем yourself. Yourself относится к тому же человеку, что и you: он готовит себя к выступлению. Слово ставим после prepare; your здесь не подходит, потому что оно обозначает принадлежность перед существительным.",
+        "uk": "Завтра друг уперше виступає перед групою, і ви нагадуєте йому про підготовку. You need to prepare yourself — тобі потрібно підготуватися. Після You need ставимо to prepare, потім yourself. Yourself стосується тієї самої людини, що й you: вона готує себе до виступу. Слово ставимо після prepare; your тут не підходить, бо він позначає належність перед іменником."
       },
       "question": {
         "interactionId": "en:lesson-22:session-19:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "63de4e2c0356297335f43c65a551ed875c7b8fc284906e51642dfcbf3e2ce6b7"
+  "introFingerprint": "050e8c463f82462a5a8aad6ce04416ff2fd32dcf8991fe60e44c8d6e1bb23000"
 }

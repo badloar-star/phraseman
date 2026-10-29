@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-26",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, каких людей вы уже встречали: I have met a clever student.",
+    "uk": "розповісти, яких людей ви вже зустрічали: I have met a clever student."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Зустріли кмітливого студента"
       },
       "bodyByLocale": {
-        "ru": "На занятии вы познакомились со студентом, который быстро решил трудную задачу. I have met a clever student — я встречал умного студента. Clever здесь означает «сообразительный». Собираем: I + have + met + a clever student. После I ставим have, met — третья форма meet. Clever описывает student и стоит перед ним. Have met сообщает об опыте знакомства.",
-        "uk": "На занятті ви познайомилися зі студентом, який швидко розв’язав складну задачу. I have met a clever student — я зустрічав розумного студента. Clever тут означає «кмітливий». Складаємо: I + have + met + a clever student. Після I ставимо have, met — третя форма meet. Clever описує student і стоїть перед ним. Have met повідомляє про досвід знайомства."
+        "ru": "На занятии вы познакомились со студентом, который быстро решил трудную задачу. I have met a clever student — я встречал умного студента. Clever здесь означает «сообразительный». Собираем: I + have + met + a clever student. После I ставим have, met — форма meet после have. Clever описывает student и стоит перед ним. Have met сообщает об опыте знакомства.",
+        "uk": "На занятті ви познайомилися зі студентом, який швидко розв’язав складну задачу. I have met a clever student — я зустрічав розумного студента. Clever тут означає «кмітливий». Складаємо: I + have + met + a clever student. Після I ставимо have, met — форма meet після have. Clever описує student і стоїть перед ним. Have met повідомляє про досвід знайомства."
       },
       "question": {
         "interactionId": "en:lesson-23:session-26:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Розповідає про неприємну зустріч"
       },
       "bodyByLocale": {
-        "ru": "Друг рассказывает о человеке, который намеренно обижал других. He has met a cruel person — он встречал жестокого человека. Cruel означает «жестокий». Собираем: he + has + met + a cruel person. С he используем has, met — третья форма meet. Прилагательное cruel стоит перед person. Has met сообщает об опыте встречи; когда она произошла, здесь не уточняем.",
-        "uk": "Друг розповідає про людину, яка навмисно кривдила інших. He has met a cruel person — він зустрічав жорстоку людину. Cruel означає «жорстокий». Складаємо: he + has + met + a cruel person. Із he використовуємо has, met — третя форма meet. Прикметник cruel стоїть перед person. Has met повідомляє про досвід зустрічі; коли вона відбулася, тут не уточнюємо."
+        "ru": "Друг рассказывает о человеке, который намеренно обижал других. He has met a cruel person — он встречал жестокого человека. Cruel означает «жестокий». Собираем: he + has + met + a cruel person. С he используем has, met — форма meet после have. Прилагательное cruel стоит перед person. Has met сообщает об опыте встречи; когда она произошла, здесь не уточняем.",
+        "uk": "Друг розповідає про людину, яка навмисно кривдила інших. He has met a cruel person — він зустрічав жорстоку людину. Cruel означає «жорстокий». Складаємо: he + has + met + a cruel person. Із he використовуємо has, met — форма meet після have. Прикметник cruel стоїть перед person. Has met повідомляє про досвід зустрічі; коли вона відбулася, тут не уточнюємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-26:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "6c77b4b5181d36e8a15aced2ded705ba3f845b6a07a806108a8a9beb39970ecb"
+  "introFingerprint": "5729186957e95d2769dbd483a5f05f17dc8cf57f2850fa41939095c676eedc2c"
 }

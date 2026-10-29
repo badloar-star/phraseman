@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-02:i03:r1",
@@ -69,12 +69,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "They have ___ the shop.",
         "gapOptions": [
@@ -98,7 +98,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "ru": "После have или has нужна особая форма: здесь это форма на -ed.",
               "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
             }
           },
@@ -107,7 +107,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "ru": "После have или has нужна особая форма: здесь это форма на -ed.",
               "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
             }
           }
@@ -274,7 +274,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-02:i06:r1",
@@ -291,12 +291,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "I have ___ the kitchen.",
         "gapOptions": [
@@ -320,7 +320,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "ru": "После have или has нужна особая форма: здесь это форма на -ed.",
               "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
             }
           },
@@ -329,7 +329,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "ru": "После have или has нужна особая форма: здесь это форма на -ed.",
               "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
             }
           }
@@ -496,7 +496,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-02:i09:r1",
@@ -513,12 +513,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "We have ___ the bedroom.",
         "gapOptions": [
@@ -542,7 +542,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "ru": "После have или has нужна особая форма: здесь это форма на -ed.",
               "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
             }
           },
@@ -551,7 +551,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "ru": "После have или has нужна особая форма: здесь это форма на -ed.",
               "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
             }
           }
@@ -718,7 +718,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-02:i12:r1",
@@ -735,12 +735,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "She has ___ the flowers.",
         "gapOptions": [
@@ -764,7 +764,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "ru": "После have или has нужна особая форма: здесь это форма на -ed.",
               "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
             }
           },
@@ -773,7 +773,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма: здесь это форма на -ed.",
+              "ru": "После have или has нужна особая форма: здесь это форма на -ed.",
               "uk": "Після have або has потрібна третя форма: тут це форма на -ed."
             }
           }
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "0da51981f1db58c06c1ecc06e778ec6857ae120656f39d9519189b410fce8da7"
+  "learnerFingerprint": "33980a86bff39bd16d03e6e4e55ca75331dc55c4276afca88c012ce23dc04627"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-11",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, какие блюда вы уже пробовали: I have tried seafood.",
+    "uk": "розповісти, які страви ви вже пробували: I have tried seafood."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Що ви куштували"
       },
       "bodyByLocale": {
-        "ru": "Seafood — общее название морской еды, включая рыбу. I have tried seafood: я пробовал такую еду, это мой опыт. Здесь seafood неисчисляемое: не ставим a. Tried — третья форма try.",
-        "uk": "Seafood — загальна назва морської їжі, зокрема риби. I have tried seafood: я куштував таку їжу, це мій досвід. Тут seafood незлічуване: не ставимо a. Tried — третя форма try."
+        "ru": "Seafood — общее название морской еды, включая рыбу. I have tried seafood: я пробовал такую еду, это мой опыт. Здесь seafood не считается поштучно: не ставим a. Tried — форма try после have.",
+        "uk": "Seafood — загальна назва морської їжі, зокрема риби. I have tried seafood: я куштував таку їжу, це мій досвід. Тут seafood не рахується поштучно: не ставимо a. Tried — форма try після have."
       },
       "question": {
         "interactionId": "en:lesson-23:session-11:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Уже готувала морепродукти"
       },
       "bodyByLocale": {
-        "ru": "Вы выбираете блюдо для ужина и рассказываете о подруге, которая уже готовила моллюсков или ракообразных. She has cooked shellfish — она готовила такие морепродукты. Shellfish — морепродукты с раковиной или панцирем. Собираем: she + has + cooked + shellfish. После she ставим has, cooked — третья форма cook. Has cooked сообщает об опыте приготовления; дату ужина здесь не называем.",
-        "uk": "Ви вибираєте страву на вечерю й розповідаєте про подругу, яка вже готувала молюсків або ракоподібних. She has cooked shellfish — вона готувала такі морепродукти. Shellfish — морепродукти з мушлею або панциром. Складаємо: she + has + cooked + shellfish. Після she ставимо has, cooked — третя форма cook. Has cooked повідомляє про досвід приготування; дату вечері тут не називаємо."
+        "ru": "Вы выбираете блюдо для ужина и рассказываете о подруге, которая уже готовила моллюсков или ракообразных. She has cooked shellfish — она готовила такие морепродукты. Shellfish — морепродукты с раковиной или панцирем. Собираем: she + has + cooked + shellfish. После she ставим has, cooked — форма cook после have. Has cooked сообщает об опыте приготовления; дату ужина здесь не называем.",
+        "uk": "Ви вибираєте страву на вечерю й розповідаєте про подругу, яка вже готувала молюсків або ракоподібних. She has cooked shellfish — вона готувала такі морепродукти. Shellfish — морепродукти з мушлею або панциром. Складаємо: she + has + cooked + shellfish. Після she ставимо has, cooked — форма cook після have. Has cooked повідомляє про досвід приготування; дату вечері тут не називаємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-11:intro2:q",
@@ -119,12 +119,12 @@
       "pageId": "en:lesson-23:session-11:intro3",
       "kind": "trap",
       "titleByLocale": {
-        "ru": "Третья форма eaten",
-        "uk": "Третя форма eaten"
+        "ru": "Форма после have eaten",
+        "uk": "Форма після have eaten"
       },
       "bodyByLocale": {
-        "ru": "У eat формы eat — ate — eaten. Для Present Perfect нужна eaten: We have eaten lobster. Ate используется в Past Simple. Мы рассказываем, что уже пробовали в жизни, без даты конкретного ужина.",
-        "uk": "У eat форми eat — ate — eaten. Для Present Perfect потрібна eaten: We have eaten lobster. Ate використовується в Past Simple. Ми розповідаємо, що вже куштували в житті, без дати конкретної вечері."
+        "ru": "У eat формы eat — ate — eaten. Для have / has + done нужна eaten: We have eaten lobster. Ate используется в форме прошлого. Мы рассказываем, что уже пробовали в жизни, без даты конкретного ужина.",
+        "uk": "У eat форми eat — ate — eaten. Для have / has + done потрібна eaten: We have eaten lobster. Ate використовується у формі минулого. Ми розповідаємо, що вже куштували в житті, без дати конкретної вечері."
       },
       "question": {
         "interactionId": "en:lesson-23:session-11:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f0390f051878126778af1e219f54345137c816100d95c7b856ef393cd90d580b"
+  "introFingerprint": "9f7c4001e10d117e04921d46cae0a119934fbb3920ed81ba29f09526c4985d74"
 }

@@ -167,7 +167,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-37:i03:r1",
@@ -184,11 +184,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I move to another town ___ make a fresh start.",
@@ -393,7 +393,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-37:i06:r1",
@@ -410,11 +410,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I check other routes ___ have a backup plan.",
@@ -619,7 +619,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-37:i09:r1",
@@ -636,11 +636,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I change my routine ___ try a different approach.",
@@ -846,7 +846,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-37:i12:r1",
@@ -863,11 +863,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I visit another town ___ get a change of scene.",
@@ -1131,5 +1131,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a48feb3531e7484f45ebcc0a567b5e0fdc7990ebdbccab84b4747c3036dae2ce"
+  "learnerFingerprint": "e2296729b7c36b06683b5691089e63faa6b31426ab641632f30aea07e9622aff"
 }

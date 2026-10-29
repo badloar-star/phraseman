@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-06:i01:r1",
@@ -69,12 +69,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "Clouds have ___.",
         "gapOptions": [
@@ -98,7 +98,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "ru": "Для результата сейчас используйте have/has и форму после have.",
               "uk": "Для результату зараз використайте have/has і третю форму."
             }
           },
@@ -107,7 +107,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "ru": "Для результата сейчас используйте have/has и форму после have.",
               "uk": "Для результату зараз використайте have/has і третю форму."
             }
           }
@@ -272,7 +272,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-06:i04:r1",
@@ -289,12 +289,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "My keys have ___.",
         "gapOptions": [
@@ -318,7 +318,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "ru": "Для результата сейчас используйте have/has и форму после have.",
               "uk": "Для результату зараз використайте have/has і третю форму."
             }
           },
@@ -327,7 +327,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "ru": "Для результата сейчас используйте have/has и форму после have.",
               "uk": "Для результату зараз використайте have/has і третю форму."
             }
           }
@@ -493,7 +493,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-06:i07:r1",
@@ -510,12 +510,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "The weather has ___.",
         "gapOptions": [
@@ -539,7 +539,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "ru": "Для результата сейчас используйте have/has и форму после have.",
               "uk": "Для результату зараз використайте have/has і третю форму."
             }
           },
@@ -548,7 +548,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "ru": "Для результата сейчас используйте have/has и форму после have.",
               "uk": "Для результату зараз використайте have/has і третю форму."
             }
           }
@@ -714,7 +714,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-06:i10:r1",
@@ -731,12 +731,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "The cut has ___.",
         "gapOptions": [
@@ -760,7 +760,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "ru": "Для результата сейчас используйте have/has и форму после have.",
               "uk": "Для результату зараз використайте have/has і третю форму."
             }
           },
@@ -769,7 +769,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "Для результата сейчас используйте have/has и третью форму.",
+              "ru": "Для результата сейчас используйте have/has и форму после have.",
               "uk": "Для результату зараз використайте have/has і третю форму."
             }
           }
@@ -1107,5 +1107,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cebe9c328820545a45a1a53c36812b0b1ff62d418016301a6be9e1e48bc288e4"
+  "learnerFingerprint": "f03028d14a933461f89be80a8b5faf310c3c26da415a23547ca57587cd724eb4"
 }

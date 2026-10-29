@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-22:session-34",
   "learningOutcomeByLocale": {
-    "ru": "another + singular noun; other + noun",
-    "uk": "another + singular noun; other + noun"
+    "ru": "сказать, что вам нужен другой вариант: We need another train service.",
+    "uk": "сказати, що вам потрібен інший варіант: We need another train service."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Обрати інший потяг"
       },
       "bodyByLocale": {
-        "ru": "Ваш поезд отменили, и вы с другом ищете другой рейс в расписании. We need another train service — нам нужен другой железнодорожный рейс. После We need ставим another train service. Another указывает на один другой вариант, поэтому service в единственном числе. Train уточняет, что рейс железнодорожный.",
-        "uk": "Ваш потяг скасували, і ви з другом шукаєте інший рейс у розкладі. We need another train service — нам потрібен інший залізничний рейс. Після We need ставимо another train service. Another вказує на один інший варіант, тому service в однині. Train уточнює, що рейс залізничний."
+        "ru": "Ваш поезд отменили, и вы с другом ищете другой рейс в расписании. We need another train service — нам нужен другой железнодорожный рейс. После We need ставим another train service. Another указывает на один другой вариант, поэтому service в форме для одного. Train уточняет, что рейс железнодорожный.",
+        "uk": "Ваш потяг скасували, і ви з другом шукаєте інший рейс у розкладі. We need another train service — нам потрібен інший залізничний рейс. Після We need ставимо another train service. Another вказує на один інший варіант, тому service у формі для одного. Train уточнює, що рейс залізничний."
       },
       "question": {
         "interactionId": "en:lesson-22:session-34:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Змінити вихід на посадку"
       },
       "bodyByLocale": {
-        "ru": "В аэропорту поменяли выход на посадку для вашего рейса. Вы объясняете спутнику, почему идёте к другому выходу. We use another departure gate — мы пользуемся другим выходом на посадку. После We use идёт another departure gate. Another относится к одному выходу — gate; departure уточняет его назначение. Дополнительный артикль a перед another не ставим.",
-        "uk": "В аеропорту змінили вихід на посадку для вашого рейсу. Ви пояснюєте супутнику, чому йдете до іншого виходу. We use another departure gate — ми користуємося іншим виходом на посадку. Після We use іде another departure gate. Another стосується одного виходу — gate; departure уточнює його призначення. Додатковий артикль a перед another не ставимо."
+        "ru": "В аэропорту поменяли выход на посадку для вашего рейса. Вы объясняете спутнику, почему идёте к другому выходу. We use another departure gate — мы пользуемся другим выходом на посадку. После We use идёт another departure gate. Another относится к одному выходу — gate; departure уточняет его назначение. Дополнительный a перед another не ставим.",
+        "uk": "В аеропорту змінили вихід на посадку для вашого рейсу. Ви пояснюєте супутнику, чому йдете до іншого виходу. We use another departure gate — ми користуємося іншим виходом на посадку. Після We use іде another departure gate. Another стосується одного виходу — gate; departure уточнює його призначення. Додатковий a перед another не ставимо."
       },
       "question": {
         "interactionId": "en:lesson-22:session-34:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "45cbf5d3ceefe472cc511bec1ec7375b1488cdcff9cd8a547405d27284ef8943"
+  "introFingerprint": "fb1c58161fbcf92e6be53710fd68e73371e016edf7d2a96b2261aa83489c21eb"
 }

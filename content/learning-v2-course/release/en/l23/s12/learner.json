@@ -162,7 +162,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму для рассказа об опыте.",
+      "prompt": "Выберите форму слова для рассказа об опыте.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-12:i03:r1",
@@ -179,11 +179,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+      "accessibilityLabel": "Выберите форму слова для рассказа об опыте.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму для рассказа об опыте.",
+          "ru": "Выберите форму слова для рассказа об опыте.",
           "uk": "Виберіть третю форму для розповіді про досвід."
         },
         "gappedTargetPhrase": "I have ___ an opera.",
@@ -208,7 +208,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для рассказа об опыте.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для рассказа об опыте.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -384,7 +384,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму для рассказа об опыте.",
+      "prompt": "Выберите форму слова для рассказа об опыте.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-12:i06:r1",
@@ -401,11 +401,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+      "accessibilityLabel": "Выберите форму слова для рассказа об опыте.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму для рассказа об опыте.",
+          "ru": "Выберите форму слова для рассказа об опыте.",
           "uk": "Виберіть третю форму для розповіді про досвід."
         },
         "gappedTargetPhrase": "She has ___ an orchestra.",
@@ -430,7 +430,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для рассказа об опыте.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -439,7 +439,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для рассказа об опыте.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -607,7 +607,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму для рассказа об опыте.",
+      "prompt": "Выберите форму слова для рассказа об опыте.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-12:i09:r1",
@@ -624,11 +624,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+      "accessibilityLabel": "Выберите форму слова для рассказа об опыте.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму для рассказа об опыте.",
+          "ru": "Выберите форму слова для рассказа об опыте.",
           "uk": "Виберіть третю форму для розповіді про досвід."
         },
         "gappedTargetPhrase": "We have ___ to a circus.",
@@ -653,7 +653,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для рассказа об опыте.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -662,7 +662,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для рассказа об опыте.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -829,7 +829,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму для рассказа об опыте.",
+      "prompt": "Выберите форму слова для рассказа об опыте.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-12:i12:r1",
@@ -846,11 +846,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму для рассказа об опыте.",
+      "accessibilityLabel": "Выберите форму слова для рассказа об опыте.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму для рассказа об опыте.",
+          "ru": "Выберите форму слова для рассказа об опыте.",
           "uk": "Виберіть третю форму для розповіді про досвід."
         },
         "gappedTargetPhrase": "He has ___ an exhibition.",
@@ -875,7 +875,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для рассказа об опыте.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           },
@@ -884,7 +884,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму для рассказа об опыте.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма.",
+              "ru": "После have или has нужна особая форма.",
               "uk": "Після have або has потрібна третя форма."
             }
           }
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8bb35deff1ea1a9f01b688375718ce9983d3cdc974566a2d44f18443b7522f13"
+  "learnerFingerprint": "94ae648041fcae6f143279e473a5576a70339c26d8c6ad7e52a873a40911c2ea"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-22:session-07",
   "learningOutcomeByLocale": {
-    "ru": "Could I + base verb + it / them",
-    "uk": "Could I + base verb + it / them"
+    "ru": "вежливо предложить сделать что-то с вещью: Could I strain it?",
+    "uk": "ввічливо запропонувати щось зробити з річчю: Could I strain it?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Зішкребти тісто"
       },
       "bodyByLocale": {
-        "ru": "На миске засохло тесто, и вы спрашиваете, можно ли его соскрести. Could I scrape it off? — Можно мне его соскрести? Начинаем с Could I, затем ставим scrape, it и off. It заменяет уже названное тесто. В выражении scrape off местоимение ставим между scrape и off; после could глагол scrape остаётся в начальной форме.",
-        "uk": "На мисці засохло тісто, і ви питаєте, чи можна його зішкребти. Could I scrape it off? — Можна мені його зішкребти? Починаємо з Could I, потім ставимо scrape, it і off. It замінює вже назване тісто. У вислові scrape off займенник ставимо між scrape та off; після could дієслово scrape залишається в початковій формі."
+        "ru": "На миске засохло тесто, и вы спрашиваете, можно ли его соскрести. Could I scrape it off? — Можно мне его соскрести? Начинаем с Could I, затем ставим scrape, it и off. It заменяет уже названное тесто. В выражении scrape off слово ставим между scrape и off; после could глагол scrape остаётся в начальной форме.",
+        "uk": "На мисці засохло тісто, і ви питаєте, чи можна його зішкребти. Could I scrape it off? — Можна мені його зішкребти? Починаємо з Could I, потім ставимо scrape, it і off. It замінює вже назване тісто. У вислові scrape off слово ставимо між scrape та off; після could дієслово scrape залишається в початковій формі."
       },
       "question": {
         "interactionId": "en:lesson-22:session-07:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Злити воду з картоплі"
       },
       "bodyByLocale": {
-        "ru": "Картофель сварился, и вы спрашиваете, можно ли слить с него воду. Could I drain them? — Можно мне слить с них воду? Сначала Could I, затем начальная форма drain и them. Them заменяет английское potatoes во множественном числе, а не воду. После глагола нужна объектная форма them, а не they.",
-        "uk": "Картопля зварилася, і ви питаєте, чи можна злити з неї воду. Could I drain them? — Можна мені злити з них воду? Спочатку Could I, потім початкова форма drain і them. Them замінює англійське potatoes у множині, а не воду. Після дієслова потрібна об’єктна форма them, а не they."
+        "ru": "Картофель сварился, и вы спрашиваете, можно ли слить с него воду. Could I drain them? — Можно мне слить с них воду? Сначала Could I, затем начальная форма drain и them. Them заменяет английское potatoes в форме для нескольких, а не воду. После глагола нужна объектная форма them, а не they.",
+        "uk": "Картопля зварилася, і ви питаєте, чи можна злити з неї воду. Could I drain them? — Можна мені злити з них воду? Спочатку Could I, потім початкова форма drain і them. Them замінює англійське potatoes у формі для кількох, а не воду. Після дієслова потрібна об’єктна форма them, а не they."
       },
       "question": {
         "interactionId": "en:lesson-22:session-07:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7d9e9d8cc6aac333e57c4020d982463eaa71bd7604b741d4397126f0ed9a9f2f"
+  "introFingerprint": "05c96d4b20f30a514fc82569dfd1af99127fa68655c9f87529616bc40ea034c7"
 }

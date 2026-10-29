@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-22:session-17",
   "learningOutcomeByLocale": {
-    "ru": "subject + verb + matching reflexive pronoun",
-    "uk": "subject + verb + matching reflexive pronoun"
+    "ru": "сказать, что вы делаете с собой: I can introduce myself.",
+    "uk": "сказати, що ви робите із собою: I can introduce myself."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Відрекомендуватися"
       },
       "bodyByLocale": {
-        "ru": "Introduce yourself — представиться, назвать себя новому знакомому. Introduce Anna — представить Анну, а introduce yourself — представить самого себя. Здесь you обращено к одному человеку. Когда действие относится к тому же человеку, который его выполняет, используем возвратное местоимение: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
-        "uk": "Introduce yourself — відрекомендуватися, назвати себе новому знайомому. Introduce Anna — відрекомендувати Анну, а introduce yourself — відрекомендувати самого себе. Тут you звернене до однієї особи. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний займенник: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
+        "ru": "Introduce yourself — представиться, назвать себя новому знакомому. Introduce Anna — представить Анну, а introduce yourself — представить самого себя. Здесь you обращено к одному человеку. Когда действие относится к тому же человеку, который его выполняет, используем возвратное слово: I — myself, you — yourself, he — himself, she — herself. Например: I introduce myself — я представляюсь. Для we — ourselves, they — themselves, нескольких you — yourselves; для it — itself.",
+        "uk": "Introduce yourself — відрекомендуватися, назвати себе новому знайомому. Introduce Anna — відрекомендувати Анну, а introduce yourself — відрекомендувати самого себе. Тут you звернене до однієї особи. Коли дія стосується тієї самої особи, яка її виконує, використовуємо зворотний слово: I — myself, you — yourself, he — himself, she — herself. Наприклад: I introduce myself — я відрекомендовуюся. Для we — ourselves, they — themselves, кількох you — yourselves; для it — itself."
       },
       "question": {
         "interactionId": "en:lesson-22:session-17:intro1:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c3e75291b2ab75d4a34cae0fc01ab23346681aa31448348da3a51d0980722d82"
+  "introFingerprint": "e1deabb7618c69d50ec83aa06366e8b713f34725d064fd7854b8dc591a5d87fa"
 }

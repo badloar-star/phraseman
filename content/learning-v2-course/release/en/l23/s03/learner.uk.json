@@ -52,7 +52,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-03:i01:r1",
@@ -69,12 +69,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "We have ___ the fridge.",
         "gapOptions": [
@@ -98,7 +98,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has используйте третью форму глагола.",
+              "ru": "После have или has используйте форму после have (done, seen).",
               "uk": "Після have або has використайте третю форму дієслова."
             }
           },
@@ -107,7 +107,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has используйте третью форму глагола.",
+              "ru": "После have или has используйте форму после have (done, seen).",
               "uk": "Після have або has використайте третю форму дієслова."
             }
           }
@@ -274,7 +274,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-03:i04:r1",
@@ -291,12 +291,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "She has ___ the table.",
         "gapOptions": [
@@ -320,7 +320,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has используйте третью форму глагола.",
+              "ru": "После have или has используйте форму после have (done, seen).",
               "uk": "Після have або has використайте третю форму дієслова."
             }
           },
@@ -329,7 +329,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has используйте третью форму глагола.",
+              "ru": "После have или has используйте форму после have (done, seen).",
               "uk": "Після have або has використайте третю форму дієслова."
             }
           }
@@ -496,7 +496,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-03:i07:r1",
@@ -513,12 +513,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "I have ___ the towels.",
         "gapOptions": [
@@ -542,7 +542,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has используйте третью форму глагола.",
+              "ru": "После have или has используйте форму после have (done, seen).",
               "uk": "Після have або has використайте третю форму дієслова."
             }
           },
@@ -551,7 +551,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has используйте третью форму глагола.",
+              "ru": "После have или has используйте форму после have (done, seen).",
               "uk": "Після have або has використайте третю форму дієслова."
             }
           }
@@ -718,7 +718,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму після have або has.",
+      "prompt": "Виберіть форму слова після have або has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-03:i10:r1",
@@ -735,12 +735,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму після have або has.",
+      "accessibilityLabel": "Виберіть форму слова після have або has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму после have или has.",
-          "uk": "Виберіть третю форму після have або has."
+          "uk": "Виберіть форму слова після have або has."
         },
         "gappedTargetPhrase": "He has ___ the shirt.",
         "gapOptions": [
@@ -764,7 +764,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has используйте третью форму глагола.",
+              "ru": "После have или has используйте форму после have (done, seen).",
               "uk": "Після have або has використайте третю форму дієслова."
             }
           },
@@ -773,7 +773,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму після have або has.",
             "feedbackByLocale": {
-              "ru": "После have или has используйте третью форму глагола.",
+              "ru": "После have или has используйте форму после have (done, seen).",
               "uk": "Після have або has використайте третю форму дієслова."
             }
           }
@@ -1110,5 +1110,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6dc9ffedb6912e7ec633b0ff9c370cf32bcaea8bf93fa71d6e9f31abcef16658"
+  "learnerFingerprint": "21c931fa506b69a5e9b46fd6161d06f6ac6b06a7f013a517e69de931872cf378"
 }

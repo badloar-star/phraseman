@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-16",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, что вы уже делали на ферме: I have ridden a horse.",
+    "uk": "розповісти, що ви вже робили на фермі: I have ridden a horse."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Бачили свиню на фермі"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом побывали на ферме и рассказываете, что видели свинью. We have seen a pig — мы видели свинью. Pig означает «свинья». Собираем: we + have + seen + a pig. С we ставим have, seen — третья форма see. Have seen сообщает об опыте: вы видели животное, но фраза не говорит, что вы его кормили.",
-        "uk": "Ви з другом побували на фермі й розповідаєте, що бачили свиню. We have seen a pig — ми бачили свиню. Pig означає «свиня». Складаємо: we + have + seen + a pig. Із we ставимо have, seen — третя форма see. Have seen повідомляє про досвід: ви бачили тварину, але фраза не каже, що ви її годували."
+        "ru": "Вы с другом побывали на ферме и рассказываете, что видели свинью. We have seen a pig — мы видели свинью. Pig означает «свинья». Собираем: we + have + seen + a pig. С we ставим have, seen — форма see после have. Have seen сообщает об опыте: вы видели животное, но фраза не говорит, что вы его кормили.",
+        "uk": "Ви з другом побували на фермі й розповідаєте, що бачили свиню. We have seen a pig — ми бачили свиню. Pig означає «свиня». Складаємо: we + have + seen + a pig. Із we ставимо have, seen — форма see після have. Have seen повідомляє про досвід: ви бачили тварину, але фраза не каже, що ви її годували."
       },
       "question": {
         "interactionId": "en:lesson-23:session-16:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Розповісти про досвід"
       },
       "bodyByLocale": {
-        "ru": "He has drawn a pony — он рисовал пони. Английское pony здесь исчисляемое, поэтому a pony, хотя русский перевод «пони» не меняется. С he используем has, с we — have.",
-        "uk": "He has drawn a pony — він малював поні. Англійське pony тут злічуване, тому a pony, хоча український переклад «поні» не змінюється. Із he використовуємо has, із we — have."
+        "ru": "He has drawn a pony — он рисовал пони. Английское pony здесь считается поштучно, поэтому a pony, хотя русский перевод «пони» не меняется. С he используем has, с we — have.",
+        "uk": "He has drawn a pony — він малював поні. Англійське pony тут рахується поштучно, тому a pony, хоча український переклад «поні» не змінюється. Із he використовуємо has, із we — have."
       },
       "question": {
         "interactionId": "en:lesson-23:session-16:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "43c7687d6bd6d3bc96fad67fb6dd62f855cc1904576b25af5c81f38c30417824"
+  "introFingerprint": "e84835e1618b7095d050edf2ded6ecfa2e595ea7121617ee50dc8b7bb735b501"
 }

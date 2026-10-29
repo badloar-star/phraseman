@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-48:i03:r1",
@@ -182,11 +182,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I fill the kettle ___ boil the water.",
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-48:i06:r1",
@@ -407,11 +407,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I use this knife ___ chop the vegetables.",
@@ -615,7 +615,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-48:i09:r1",
@@ -632,11 +632,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I heat the pan ___ fry an egg.",
@@ -841,7 +841,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите слово, которое вводит цель.",
+      "prompt": "Выберите слово, после которого идёт цель.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-48:i12:r1",
@@ -858,11 +858,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите слово, которое вводит цель.",
+      "accessibilityLabel": "Выберите слово, после которого идёт цель.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите слово, которое вводит цель.",
+          "ru": "Выберите слово, после которого идёт цель.",
           "uk": "Виберіть слово, яке вводить мету."
         },
         "gappedTargetPhrase": "I turn on the oven ___ bake a cake.",
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "3c84800a94956db3457ec37e8815fcbf400cb75f96fae5da46456a6ba2e7afda"
+  "learnerFingerprint": "73af2ae15224b92fd6d445ca1d7b09cf904bc760133ec8d9c36f149f2a4a1eff"
 }

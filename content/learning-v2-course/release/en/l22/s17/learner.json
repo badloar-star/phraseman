@@ -161,7 +161,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как сказать «сам / себя».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-17:i03:r1",
@@ -178,11 +178,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как сказать «сам / себя».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как сказать «сам / себя».",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "You can introduce ___.",
@@ -384,7 +384,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как сказать «сам / себя».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-17:i06:r1",
@@ -401,11 +401,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как сказать «сам / себя».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как сказать «сам / себя».",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "You need to look after ___.",
@@ -606,7 +606,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как сказать «сам / себя».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-17:i09:r1",
@@ -623,11 +623,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как сказать «сам / себя».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как сказать «сам / себя».",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "You can believe in ___.",
@@ -828,7 +828,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите местоимение для этой фразы.",
+      "prompt": "Выберите, как сказать «сам / себя».",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-17:i12:r1",
@@ -845,11 +845,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите местоимение для этой фразы.",
+      "accessibilityLabel": "Выберите, как сказать «сам / себя».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите местоимение для этой фразы.",
+          "ru": "Выберите, как сказать «сам / себя».",
           "uk": "Виберіть займенник для цієї фрази."
         },
         "gappedTargetPhrase": "You should not blame ___.",
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "7bd11b9676b28a2782d2dc562579535f851a25c73a74240b03657cfa2db94dec"
+  "learnerFingerprint": "7bb2d66ac0208a1152e488a6151fbc2ef341a37f7f7dcd8abe94cc0025378c39"
 }

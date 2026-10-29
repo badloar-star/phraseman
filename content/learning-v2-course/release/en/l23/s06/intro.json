@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-06",
   "learningOutcomeByLocale": {
-    "ru": "subject + have|has + past participle",
-    "uk": "subject + have|has + past participle"
+    "ru": "сказать, что уже сделано и это видно сейчас: My keys have disappeared.",
+    "uk": "сказати, що вже зроблено й це видно зараз: My keys have disappeared."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "На небі з’явилися хмари"
       },
       "bodyByLocale": {
-        "ru": "Небо было ясным, но теперь на нём видны облака. Clouds have appeared — появились облака. Appear означает «появиться». Собираем: clouds + have + appeared. Clouds во множественном числе, поэтому ставим have. Appeared — третья форма appear с окончанием -ed. Have appeared сообщает об изменении с видимым результатом: облака теперь на небе.",
-        "uk": "Небо було ясним, але тепер на ньому видно хмари. Clouds have appeared — з’явилися хмари. Appear означає «з’явитися». Складаємо: clouds + have + appeared. Clouds у множині, тому ставимо have. Appeared — третя форма appear із закінченням -ed. Have appeared повідомляє про зміну з видимим результатом: хмари тепер на небі."
+        "ru": "Небо было ясным, но теперь на нём видны облака. Clouds have appeared — появились облака. Appear означает «появиться». Собираем: clouds + have + appeared. Clouds в форме для нескольких, поэтому ставим have. Appeared — форма appear после have с окончанием -ed. Have appeared сообщает об изменении с видимым результатом: облака теперь на небе.",
+        "uk": "Небо було ясним, але тепер на ньому видно хмари. Clouds have appeared — з’явилися хмари. Appear означає «з’явитися». Складаємо: clouds + have + appeared. Clouds у формі для кількох, тому ставимо have. Appeared — форма appear після have із закінченням -ed. Have appeared повідомляє про зміну з видимим результатом: хмари тепер на небі."
       },
       "question": {
         "interactionId": "en:lesson-23:session-06:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Стало гірше"
       },
       "bodyByLocale": {
-        "ru": "Worsen — ухудшиться. The weather has worsened: погода теперь хуже, чем была. Weather — неисчисляемое существительное, здесь с ним используем has. Не добавляйте к worsen слово more: значение «хуже» уже есть в глаголе.",
-        "uk": "Worsen — погіршитися. The weather has worsened: погода тепер гірша, ніж була. Weather — незлічуваний іменник, тут із ним використовуємо has. Не додавайте до worsen слово more: значення «гірше» вже є в дієслові."
+        "ru": "Worsen — ухудшиться. The weather has worsened: погода теперь хуже, чем была. Weather — слово, которое не считают поштучно, здесь с ним используем has. Не добавляйте к worsen слово more: значение «хуже» уже есть в глаголе.",
+        "uk": "Worsen — погіршитися. The weather has worsened: погода тепер гірша, ніж була. Weather — слово, яке не рахують поштучно, тут із ним використовуємо has. Не додавайте до worsen слово more: значення «гірше» вже є в дієслові."
       },
       "question": {
         "interactionId": "en:lesson-23:session-06:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Поріз загоївся"
       },
       "bodyByLocale": {
-        "ru": "Heal — заживать. The cut has healed: порез зажил. Cut здесь существительное «порез», healed — третья форма глагола heal.",
-        "uk": "Heal — загоюватися. The cut has healed: поріз загоївся. Cut тут іменник «поріз», healed — третя форма дієслова heal."
+        "ru": "Heal — заживать. The cut has healed: порез зажил. Cut здесь существительное «порез», healed — форма после have от heal.",
+        "uk": "Heal — загоюватися. The cut has healed: поріз загоївся. Cut тут іменник «поріз», healed — форма після have від heal."
       },
       "question": {
         "interactionId": "en:lesson-23:session-06:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "e73e321cba8141d10921233366790765b878d9bd63d87a31f41b63c05f3a2d22"
+  "introFingerprint": "b539bd341593a774b7268139bc99f4e04d72cfd3c9b9bd6796b30a4752dbdebf"
 }

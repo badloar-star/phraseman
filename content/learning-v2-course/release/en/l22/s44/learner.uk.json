@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-44:i03:r1",
@@ -182,12 +182,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I go outside ___ hang out the washing.",
         "gapOptions": [
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-44:i06:r1",
@@ -407,12 +407,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I clear the bed ___ fold the clothes.",
         "gapOptions": [
@@ -616,7 +616,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-44:i09:r1",
@@ -633,12 +633,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I open the cupboard ___ put away the dishes.",
         "gapOptions": [
@@ -841,7 +841,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-44:i12:r1",
@@ -858,12 +858,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I use a cloth ___ wipe the table.",
         "gapOptions": [
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "8a404a1062b4bd5ca9b5ee762e443f2b0bc61a6bc0b1226037461105e4ee1025"
+  "learnerFingerprint": "4bf91e1e5570df4edd74c73b97cabf3b9cda167269a79ab4845c9f64201e8d3d"
 }

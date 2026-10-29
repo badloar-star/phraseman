@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-22:session-29",
   "learningOutcomeByLocale": {
-    "ru": "determiner|adjective + one|ones",
-    "uk": "determiner|adjective + one|ones"
+    "ru": "сказать, какую вещь вы выбираете: I prefer the lace-up ones.",
+    "uk": "сказати, яку річ ви обираєте: I prefer the lace-up ones."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Обрати черевики на шнурках"
       },
       "bodyByLocale": {
-        "ru": "Продавец показывает вам ботинки с молнией и на шнурках. Вы выбираете вторые. I prefer the lace-up ones — я предпочитаю те, что на шнурках. После I prefer ставим the, описание lace-up и ones. Ones заменяет уже названное boots: ботинки во множественном числе. Описание сохраняем перед ones, чтобы было понятно, какие ботинки вы выбрали.",
-        "uk": "Продавець показує вам черевики з блискавкою та на шнурках. Ви обираєте другі. I prefer the lace-up ones — я віддаю перевагу тим, що на шнурках. Після I prefer ставимо the, опис lace-up і ones. Ones замінює вже назване boots: черевики у множині. Опис зберігаємо перед ones, щоб було зрозуміло, які черевики ви обрали."
+        "ru": "Продавец показывает вам ботинки с молнией и на шнурках. Вы выбираете вторые. I prefer the lace-up ones — я предпочитаю те, что на шнурках. После I prefer ставим the, описание lace-up и ones. Ones заменяет уже названное boots: ботинки в форме для нескольких. Описание сохраняем перед ones, чтобы было понятно, какие ботинки вы выбрали.",
+        "uk": "Продавець показує вам черевики з блискавкою та на шнурках. Ви обираєте другі. I prefer the lace-up ones — я віддаю перевагу тим, що на шнурках. Після I prefer ставимо the, опис lace-up і ones. Ones замінює вже назване boots: черевики у формі для кількох. Опис зберігаємо перед ones, щоб було зрозуміло, які черевики ви обрали."
       },
       "question": {
         "interactionId": "en:lesson-22:session-29:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Обрати туфлі без застібок"
       },
       "bodyByLocale": {
-        "ru": "Вы рассматриваете туфли и выбираете модель без шнурков и застёжек. I want the slip-on ones — я хочу те, что надеваются без застёжек. Сначала I want, затем the slip-on ones. Shoes уже названо и стоит во множественном числе, поэтому заменяем его на ones. Slip-on остаётся перед ones и отличает выбранные туфли от остальных.",
-        "uk": "Ви розглядаєте туфлі й обираєте модель без шнурків та застібок. I want the slip-on ones — я хочу ті, що взуваються без застібок. Спочатку I want, потім the slip-on ones. Shoes уже назване й стоїть у множині, тому замінюємо його на ones. Slip-on залишається перед ones і відрізняє обрані туфлі від решти."
+        "ru": "Вы рассматриваете туфли и выбираете модель без шнурков и застёжек. I want the slip-on ones — я хочу те, что надеваются без застёжек. Сначала I want, затем the slip-on ones. Shoes уже названо и стоит в форме для нескольких, поэтому заменяем его на ones. Slip-on остаётся перед ones и отличает выбранные туфли от остальных.",
+        "uk": "Ви розглядаєте туфлі й обираєте модель без шнурків та застібок. I want the slip-on ones — я хочу ті, що взуваються без застібок. Спочатку I want, потім the slip-on ones. Shoes уже назване й стоїть у формі для кількох, тому замінюємо його на ones. Slip-on залишається перед ones і відрізняє обрані туфлі від решти."
       },
       "question": {
         "interactionId": "en:lesson-22:session-29:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ca406289049cbc472af60f1d295b910bd0f96cb8aab60f676c17a5da8fdce296"
+  "introFingerprint": "c6d73d0dfdccfb7c94d4830a963fd3bd4dc51109bbe0775c436c54a1ccefcff6"
 }

@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму для розповіді про досвід.",
+      "prompt": "Виберіть форму слова для розповіді про досвід.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-10:i03:r1",
@@ -180,12 +180,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+      "accessibilityLabel": "Виберіть форму слова для розповіді про досвід.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму для рассказа об опыте.",
-          "uk": "Виберіть третю форму для розповіді про досвід."
+          "uk": "Виберіть форму слова для розповіді про досвід."
         },
         "gappedTargetPhrase": "I have ___ in a canoe.",
         "gapOptions": [
@@ -209,7 +209,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму для розповіді про досвід.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           },
@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму для розповіді про досвід.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           }
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму для розповіді про досвід.",
+      "prompt": "Виберіть форму слова для розповіді про досвід.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-10:i06:r1",
@@ -403,12 +403,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+      "accessibilityLabel": "Виберіть форму слова для розповіді про досвід.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму для рассказа об опыте.",
-          "uk": "Виберіть третю форму для розповіді про досвід."
+          "uk": "Виберіть форму слова для розповіді про досвід."
         },
         "gappedTargetPhrase": "She has ___ on a safari.",
         "gapOptions": [
@@ -432,7 +432,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму для розповіді про досвід.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           },
@@ -441,7 +441,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму для розповіді про досвід.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           }
@@ -608,7 +608,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму для розповіді про досвід.",
+      "prompt": "Виберіть форму слова для розповіді про досвід.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-10:i09:r1",
@@ -625,12 +625,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+      "accessibilityLabel": "Виберіть форму слова для розповіді про досвід.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму для рассказа об опыте.",
-          "uk": "Виберіть третю форму для розповіді про досвід."
+          "uk": "Виберіть форму слова для розповіді про досвід."
         },
         "gappedTargetPhrase": "We have ___ a carnival.",
         "gapOptions": [
@@ -654,7 +654,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму для розповіді про досвід.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           },
@@ -663,7 +663,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму для розповіді про досвід.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           }
@@ -831,7 +831,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть третю форму для розповіді про досвід.",
+      "prompt": "Виберіть форму слова для розповіді про досвід.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-10:i12:r1",
@@ -848,12 +848,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть третю форму для розповіді про досвід.",
+      "accessibilityLabel": "Виберіть форму слова для розповіді про досвід.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите третью форму для рассказа об опыте.",
-          "uk": "Виберіть третю форму для розповіді про досвід."
+          "uk": "Виберіть форму слова для розповіді про досвід."
         },
         "gappedTargetPhrase": "He has ___ at a campsite.",
         "gapOptions": [
@@ -877,7 +877,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму для розповіді про досвід.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           },
@@ -886,7 +886,7 @@
             "correct": false,
             "testedDimension": "Виберіть третю форму для розповіді про досвід.",
             "feedbackByLocale": {
-              "ru": "После have или has нужна третья форма глагола.",
+              "ru": "После have или has нужна особая форма (done, seen).",
               "uk": "Після have або has потрібна третя форма дієслова."
             }
           }
@@ -1115,5 +1115,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cad9b759702610bcd879b9e26e0c7c276d922b5b20de3e6b0dcc24555d27b204"
+  "learnerFingerprint": "1a467baa2a25044fc443417eda40356361c68f6a494722637c3fcdbd3bdb2afc"
 }

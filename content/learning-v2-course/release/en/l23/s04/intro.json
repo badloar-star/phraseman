@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-04",
   "learningOutcomeByLocale": {
-    "ru": "subject + have|has + past participle",
-    "uk": "subject + have|has + past participle"
+    "ru": "сказать, что уже сделано и это видно сейчас: She has overdone it.",
+    "uk": "сказати, що вже зроблено й це видно зараз: She has overdone it."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Навантаження виявилося завеликим"
       },
       "bodyByLocale": {
-        "ru": "Overwork — работать слишком много, до переутомления. I have overworked: я слишком много работал и теперь чувствую последствия. Здесь have — помощник для Present Perfect, а не «иметь».",
-        "uk": "Overwork — працювати забагато, до перевтоми. I have overworked: я працював забагато й тепер відчуваю наслідки. Тут have — помічник для Present Perfect, а не «мати»."
+        "ru": "Overwork — работать слишком много, до переутомления. I have overworked: я слишком много работал и теперь чувствую последствия. Здесь have — помощник для have / has + done, а не «иметь».",
+        "uk": "Overwork — працювати забагато, до перевтоми. I have overworked: я працював забагато й тепер відчуваю наслідки. Тут have — помічник для have / has + done, а не «мати»."
       },
       "question": {
         "interactionId": "en:lesson-23:session-04:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Перестаралася"
       },
       "bodyByLocale": {
-        "ru": "Overdo — сделать что-то чрезмерно. Overdo it — перестараться: например, выполнить слишком много упражнений. Третья форма — overdone, как done у do. She has overdone it: она перестаралась, и теперь ей нужен отдых.",
-        "uk": "Overdo — зробити щось надмірно. Overdo it — перестаратися: наприклад, виконати забагато вправ. Третя форма — overdone, як done у do. She has overdone it: вона перестаралася, і тепер їй потрібен відпочинок."
+        "ru": "Overdo — сделать что-то чрезмерно. Overdo it — перестараться: например, выполнить слишком много упражнений. Форма после have — overdone, как done у do. She has overdone it: она перестаралась, и теперь ей нужен отдых.",
+        "uk": "Overdo — зробити щось надмірно. Overdo it — перестаратися: наприклад, виконати забагато вправ. Форма після have — overdone, як done у do. She has overdone it: вона перестаралася, і тепер їй потрібен відпочинок."
       },
       "question": {
         "interactionId": "en:lesson-23:session-04:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "52d0f7024f59c38d6d6a182bae8d9601e8ec153b16df61d189569ce17994d207"
+  "introFingerprint": "138bb7a8a749466b2c2fa0614ab17d494cc463bf410d55a8bb09a3cfefe8f6bb"
 }

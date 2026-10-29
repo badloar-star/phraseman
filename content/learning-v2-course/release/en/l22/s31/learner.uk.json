@@ -164,7 +164,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-31:i03:r1",
@@ -181,12 +181,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I practise every day ___ make progress.",
         "gapOptions": [
@@ -389,7 +389,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-31:i06:r1",
@@ -406,12 +406,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I turn off my phone ___ stay focused.",
         "gapOptions": [
@@ -616,7 +616,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-31:i09:r1",
@@ -633,12 +633,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I repeat the words ___ learn a poem by heart.",
         "gapOptions": [
@@ -841,7 +841,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Виберіть слово, яке вводить мету.",
+      "prompt": "Виберіть слово, після якого йде мета.",
       "responseOptions": [
         {
           "responseId": "en:lesson-22:session-31:i12:r1",
@@ -858,12 +858,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Виберіть слово, яке вводить мету.",
+      "accessibilityLabel": "Виберіть слово, після якого йде мета.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Выберите слово, которое вводит цель.",
-          "uk": "Виберіть слово, яке вводить мету."
+          "uk": "Виберіть слово, після якого йде мета."
         },
         "gappedTargetPhrase": "I read it again ___ check my work.",
         "gapOptions": [
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "4cf2d164d5c900f170653fe788a860d19feeef3f00da5ba288e5f927ecf89ce7"
+  "learnerFingerprint": "99bff23be483803bff190ae5215a2e34018d66301fafdaf1bd94c6bfd591eff6"
 }

@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-22:session-08",
   "learningOutcomeByLocale": {
-    "ru": "verb + it / them",
-    "uk": "verb + it / them"
+    "ru": "сказать о вещи, не называя её: I can round it down.",
+    "uk": "сказати про річ, не називаючи її: I can round it down."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Округлити число вниз"
       },
       "bodyByLocale": {
-        "ru": "В расчёте получилось 8,7, и вы предлагаете округлить это число вниз до целого — до 8. I can round it down — я могу округлить его вниз. После I can ставим round, затем it и down. It заменяет названное число. В выражении round down местоимение обязательно вставляем между round и down.",
-        "uk": "У розрахунку вийшло 8,7, і ви пропонуєте округлити це число вниз до цілого — до 8. I can round it down — я можу округлити його вниз. Після I can ставимо round, потім it і down. It замінює назване число. У вислові round down займенник обов’язково вставляємо між round і down."
+        "ru": "В расчёте получилось 8,7, и вы предлагаете округлить это число вниз до целого — до 8. I can round it down — я могу округлить его вниз. После I can ставим round, затем it и down. It заменяет названное число. В выражении round down слово обязательно вставляем между round и down.",
+        "uk": "У розрахунку вийшло 8,7, і ви пропонуєте округлити це число вниз до цілого — до 8. I can round it down — я можу округлити його вниз. Після I can ставимо round, потім it і down. It замінює назване число. У вислові round down слово обов’язково вставляємо між round і down."
       },
       "question": {
         "interactionId": "en:lesson-22:session-08:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f2ce389f6bfa4ce44d568d63a11475a32962bd9c4215cbc0ff59d581d1ddb704"
+  "introFingerprint": "35a845f6452126d5f025c4c323cdefab418a0f9dde80a85b2f5ae58f575068a0"
 }

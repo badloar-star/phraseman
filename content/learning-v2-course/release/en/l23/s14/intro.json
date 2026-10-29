@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-14",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, каких животных видели в зоопарке: I have seen a monkey.",
+    "uk": "розповісти, яких тварин бачили в зоопарку: I have seen a monkey."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Бачили мавпу"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает о животных, которых вы видели в зоопарке. I have seen a monkey — я видел обезьяну. Monkey означает «обезьяна». Собираем: I + have + seen + a monkey. С I используем have, seen — третья форма see. Have seen сообщает об опыте, без указания даты посещения.",
-        "uk": "Друг запитує про тварин, яких ви бачили в зоопарку. I have seen a monkey — я бачив мавпу. Monkey означає «мавпа». Складаємо: I + have + seen + a monkey. Із I використовуємо have, seen — третя форма see. Have seen повідомляє про досвід, без зазначення дати відвідування."
+        "ru": "Друг спрашивает о животных, которых вы видели в зоопарке. I have seen a monkey — я видел обезьяну. Monkey означает «обезьяна». Собираем: I + have + seen + a monkey. С I используем have, seen — форма see после have. Have seen сообщает об опыте, без указания даты посещения.",
+        "uk": "Друг запитує про тварин, яких ви бачили в зоопарку. I have seen a monkey — я бачив мавпу. Monkey означає «мавпа». Складаємо: I + have + seen + a monkey. Із I використовуємо have, seen — форма see після have. Have seen повідомляє про досвід, без зазначення дати відвідування."
       },
       "question": {
         "interactionId": "en:lesson-23:session-14:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Сфотографували кенгуру"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом сделали снимок кенгуру и рассказываете об этом. We have taken a photo of a kangaroo — мы сфотографировали кенгуру. Kangaroo означает «кенгуру». Собираем: we + have + taken + a photo + of a kangaroo. После have нужна taken — третья форма take. Сочетание take a photo означает «сфотографировать», а of a kangaroo называет животное на снимке.",
-        "uk": "Ви з другом зробили знімок кенгуру й розповідаєте про це. We have taken a photo of a kangaroo — ми сфотографували кенгуру. Kangaroo означає «кенгуру». Складаємо: we + have + taken + a photo + of a kangaroo. Після have потрібна taken — третя форма take. Сполучення take a photo означає «сфотографувати», а of a kangaroo називає тварину на знімку."
+        "ru": "Вы с другом сделали снимок кенгуру и рассказываете об этом. We have taken a photo of a kangaroo — мы сфотографировали кенгуру. Kangaroo означает «кенгуру». Собираем: we + have + taken + a photo + of a kangaroo. После have нужна taken — форма take после have. Сочетание take a photo означает «сфотографировать», а of a kangaroo называет животное на снимке.",
+        "uk": "Ви з другом зробили знімок кенгуру й розповідаєте про це. We have taken a photo of a kangaroo — ми сфотографували кенгуру. Kangaroo означає «кенгуру». Складаємо: we + have + taken + a photo + of a kangaroo. Після have потрібна taken — форма take після have. Сполучення take a photo означає «сфотографувати», а of a kangaroo називає тварину на знімку."
       },
       "question": {
         "interactionId": "en:lesson-23:session-14:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Малював крокодила"
       },
       "bodyByLocale": {
-        "ru": "Друг уже рисовал крокодила на занятии и рассказывает об этом опыте. He has drawn a crocodile — он рисовал крокодила. Crocodile означает «крокодил». Собираем: he + has + drawn + a crocodile. С he ставим has, drawn — третья форма draw. После has нужна drawn, а не drew. Has drawn сообщает об опыте рисования без даты.",
-        "uk": "Друг уже малював крокодила на занятті й розповідає про цей досвід. He has drawn a crocodile — він малював крокодила. Crocodile означає «крокодил». Складаємо: he + has + drawn + a crocodile. Із he ставимо has, drawn — третя форма draw. Після has потрібна drawn, а не drew. Has drawn повідомляє про досвід малювання без дати."
+        "ru": "Друг уже рисовал крокодила на занятии и рассказывает об этом опыте. He has drawn a crocodile — он рисовал крокодила. Crocodile означает «крокодил». Собираем: he + has + drawn + a crocodile. С he ставим has, drawn — форма draw после have. После has нужна drawn, а не drew. Has drawn сообщает об опыте рисования без даты.",
+        "uk": "Друг уже малював крокодила на занятті й розповідає про цей досвід. He has drawn a crocodile — він малював крокодила. Crocodile означає «крокодил». Складаємо: he + has + drawn + a crocodile. Із he ставимо has, drawn — форма draw після have. Після has потрібна drawn, а не drew. Has drawn повідомляє про досвід малювання без дати."
       },
       "question": {
         "interactionId": "en:lesson-23:session-14:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "89558758da4eed152d304843c531a21d76b438c37bec8d933fa6d71a0a643786"
+  "introFingerprint": "b79e3b26518e7f73867788e311b56858b8d2ce7ea02ed8ee5840acd8eff7ba7f"
 }

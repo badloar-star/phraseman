@@ -10,8 +10,8 @@
           "uk": "З I потрібно have."
         },
         "en:lesson-23:session-12:intro1:r3": {
-          "ru": "Нужна третья форма seen.",
-          "uk": "Потрібна третя форма seen."
+          "ru": "Нужна форма seen.",
+          "uk": "Потрібна форма seen."
         }
       }
     },
@@ -23,8 +23,8 @@
           "uk": "Із she потрібно has."
         },
         "en:lesson-23:session-12:intro2:r3": {
-          "ru": "После have или has нужна третья форма.",
-          "uk": "Після have або has потрібна третя форма."
+          "ru": "После have или has нужна особая форма.",
+          "uk": "Після have або has потрібна особлива форма."
         }
       }
     },
@@ -36,11 +36,11 @@
           "uk": "Із we потрібно have."
         },
         "en:lesson-23:session-12:intro3:r3": {
-          "ru": "Нужна третья форма been.",
-          "uk": "Потрібна третя форма been."
+          "ru": "Нужна форма been.",
+          "uk": "Потрібна форма been."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "28fa3068963e6836a021c974771d52abfab65b5b85db698cac567a256f18dbc7"
+  "auxiliaryFingerprint": "bf9ecd3968187dd3b054a7526f566cfbbaa64ce47f2060f8503a6c64ab96f6df"
 }

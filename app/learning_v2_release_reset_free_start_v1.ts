@@ -6,15 +6,20 @@
 // старт того же занятия в том же выпуске платный — «бесконечных бесплатных стартов» нет. Не прочитали или не записали отметку —
 // старт платный, как обычно (дыру не открываем). Сеть не трогаем — Firebase-нагрузки ноль. Никогда не бросает.
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { LearningV2CourseProgressTargetLanguageV1 } from '../modules/learning-v2/progress/course_local_progress_v1';
+import { learningV2EpisodeResumeKeyV1 } from './learning_v2_episode_resume_v1';
 
 const LOG = '[V2-RESUME-RESET]';
-const KEY_PREFIX = 'learning_v2_release_reset_free_start_v1';
 
 export type LearningV2ReleaseResetFreeStartReasonV1 = 'free_start' | 'already_used' | 'mark_read_failed' | 'mark_write_failed';
 export type LearningV2ReleaseResetFreeStartV1 = Readonly<{ free: boolean; reason: LearningV2ReleaseResetFreeStartReasonV1 }>;
 
-export function learningV2ReleaseResetFreeStartKeyV1(owner: string, courseSessionId: string, targetLanguage: string): string {
-  return `${KEY_PREFIX}:${targetLanguage}:${owner}:${courseSessionId}`;
+/** Ключ отметки — ключ сохранённого эпизода с хвостом: живёт и стирается вместе с ним. */
+export function learningV2ReleaseResetFreeStartKeyV1(owner: string, courseSessionId: string, targetLanguage: LearningV2CourseProgressTargetLanguageV1): string {
+  // зачем (Ревизор 29.10): в ключе uid — при выходе и удалении аккаунта отметка обязана стираться. Префикс эпизода
+  // 'learning_v2_episode_resume_v1:<владелец>:' уже стирает app/cloud_sync.ts (ACCOUNT_LOCAL_KEY_PREFIXES) на обоих языках курса
+  // (испанский — хвост ':target:es'); свой префикс потребовал бы правки списка стирания
+  return `${learningV2EpisodeResumeKeyV1(owner, courseSessionId, targetLanguage)}:release_reset_free_start`;
 }
 
 /** Чистое решение: бесплатно, если за этот выпуск (новый отпечаток) занятие ещё не стартовало бесплатно. */
@@ -28,7 +33,7 @@ const reasonOf = (error: unknown): string => (error instanceof Error ? `${error.
 export async function claimLearningV2ReleaseResetFreeStartV1(input: Readonly<{
   owner: string;
   courseSessionId: string;
-  targetLanguage: string;
+  targetLanguage: LearningV2CourseProgressTargetLanguageV1;
   newFingerprint: string;
 }>): Promise<LearningV2ReleaseResetFreeStartV1> {
   const key = learningV2ReleaseResetFreeStartKeyV1(input.owner, input.courseSessionId, input.targetLanguage);

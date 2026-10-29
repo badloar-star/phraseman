@@ -95,6 +95,16 @@ describe("[V2-RESUME-RESET] один бесплатный старт на зан
     await expect(claim({ newFingerprint: "c".repeat(64) })).resolves.toEqual({ free: true, reason: "free_start" });
   });
 
+  test("отметка — в семействе ключей эпизода: стирается с аккаунтом тем же правилом, что «продолжить» (Ревизор 29.10)", () => {
+    const en = learningV2ReleaseResetFreeStartKeyV1("stable-1", SESSION, "en");
+    const es = learningV2ReleaseResetFreeStartKeyV1("stable-1", SESSION, "es");
+    expect(en).toBe(`${learningV2EpisodeResumeKeyV1("stable-1", SESSION, "en")}:release_reset_free_start`);
+    expect(es).toBe(`${learningV2EpisodeResumeKeyV1("stable-1", SESSION, "es")}:release_reset_free_start`);
+    for (const key of [en, es]) expect(key.startsWith("learning_v2_episode_resume_v1:stable-1:")).toBe(true);
+    const cloudSync = fs.readFileSync(path.join(__dirname, "..", "app", "cloud_sync.ts"), "utf8");
+    expect(cloudSync).toContain("'learning_v2_episode_resume_v1:',");
+  });
+
   test("отметка своя у аккаунта, занятия и языка курса", async () => {
     await expect(claim()).resolves.toMatchObject({ free: true });
     await expect(claim({ owner: "stable-2" })).resolves.toMatchObject({ free: true });

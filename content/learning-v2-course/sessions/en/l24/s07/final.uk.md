@@ -2,7 +2,7 @@
 
 **Ситуація.** Ви розповідаєте про здібності та прагнення знайомих.
 
-**Що ви опануєте:** сказати, як довго щось триває і відколи: I have booked another room.
+**Що ви опануєте:** сказати, з якого часу щось триває: We have admired her creativity since May.
 **Нові слова:** creativity, intelligence, enthusiasm, ambition
 
 ## Інтро 1

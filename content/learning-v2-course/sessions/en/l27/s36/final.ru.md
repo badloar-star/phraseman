@@ -78,7 +78,7 @@
 **7 · Расскажите о прошлой поездке сюда.**
 <!-- interaction_id: en:lesson-27:session-36:i05; family: context_gap_grammar -->
 We ___ here last summer. → **stayed** · have stayed · staying
-- have stayed — *Last summer — законченное время: stayed.*
+- have stayed — *Last summer — это уже прошлое: stayed.*
 - staying — *Для этого рассказа нужна stayed.*
 
 **8 · Карточка слова — clarity**

@@ -43,7 +43,7 @@
 
 - ✅ **I wish our kitchen were bigger.**
 - ❌ I wish our kitchen is bigger. — *Після wish про бажане становище зараз використовуємо were.*
-- ❌ I wish our kitchen being bigger. — *Being тут не може стояти сама; потрібна were.*
+- ❌ I wish our kitchen being bigger. — *Being тут не може стояти окремо; потрібна were.*
 
 ---
 

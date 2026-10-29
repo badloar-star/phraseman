@@ -78,7 +78,7 @@
 **7 · Розкажіть про минулу поїздку сюди.**
 <!-- interaction_id: en:lesson-27:session-36:i05; family: context_gap_grammar -->
 We ___ here last summer. → **stayed** · have stayed · staying
-- have stayed — *Last summer — завершений час: stayed.*
+- have stayed — *Last summer — це вже минуле: stayed.*
 - staying — *Для цієї розповіді потрібна stayed.*
 
 **8 · Картка слова — clarity**

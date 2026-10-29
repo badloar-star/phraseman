@@ -63,7 +63,7 @@
 <!-- interaction_id: en:lesson-27:session-01:i02; family: context_gap_grammar -->
 If I ___ more time, I would travel. → **had** · would have · having
 - would have — *В умові тут форма минулого: had.*
-- having — *Having тут не може стояти сама.*
+- having — *Having тут не може стояти окремо.*
 
 **4 · Запитайте друга, куди він поїхав би.**
 <!-- interaction_id: en:lesson-27:session-01:i03; family: scripted_repeat_compare -->

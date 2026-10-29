@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-28",
   "learningOutcomeByLocale": {
-    "ru": "subject + have|has + past participle",
-    "uk": "subject + have|has + past participle"
+    "ru": "сказать, что уже сделано и это видно сейчас: I have washed a blouse.",
+    "uk": "сказати, що вже зроблено й це видно зараз: I have washed a blouse."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Що вже зроблено"
       },
       "bodyByLocale": {
-        "ru": "Blouse — блузка. I have washed a blouse — я постирал блузку. Washed — третья форма wash. Так можно сообщить о сделанном: блузка уже постирана. Blouse — исчисляемое существительное: здесь нужна форма a blouse.",
-        "uk": "Blouse — блузка. I have washed a blouse — я виправ блузку. Washed — третя форма wash. Так можна повідомити про зроблене: блузку вже випрано. Blouse — злічуваний іменник: тут потрібна форма a blouse."
+        "ru": "Blouse — блузка. I have washed a blouse — я постирал блузку. Washed — форма wash после have. Так можно сообщить о сделанном: блузка уже постирана. Blouse — это можно посчитать: здесь нужна форма a blouse.",
+        "uk": "Blouse — блузка. I have washed a blouse — я виправ блузку. Washed — форма wash після have. Так можна повідомити про зроблене: блузку вже випрано. Blouse — це можна порахувати: тут потрібна форма a blouse."
       },
       "question": {
         "interactionId": "en:lesson-23:session-28:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Штани вже попрасовані"
       },
       "bodyByLocale": {
-        "ru": "Друг приготовил одежду к встрече: брюки он уже погладил. He has ironed his trousers — он погладил свои брюки. Trousers означает «брюки». Собираем: he + has + ironed + his trousers. Has выбираем по he: действие выполнил один человек, хотя trousers имеет форму множественного числа. Ironed — третья форма iron. Has ironed сообщает о результате: брюки уже готовы.",
-        "uk": "Друг підготував одяг до зустрічі: штани він уже попрасував. He has ironed his trousers — він попрасував свої штани. Trousers означає «штани». Складаємо: he + has + ironed + his trousers. Has вибираємо за he: дію виконала одна людина, хоча trousers має форму множини. Ironed — третя форма iron. Has ironed повідомляє про результат: штани вже готові."
+        "ru": "Друг приготовил одежду к встрече: брюки он уже погладил. He has ironed his trousers — он погладил свои брюки. Trousers означает «брюки». Собираем: he + has + ironed + his trousers. Has выбираем по he: действие выполнил один человек, хотя trousers имеет форму для нескольких. Ironed — форма iron после have. Has ironed сообщает о результате: брюки уже готовы.",
+        "uk": "Друг підготував одяг до зустрічі: штани він уже попрасував. He has ironed his trousers — він попрасував свої штани. Trousers означає «штани». Складаємо: he + has + ironed + his trousers. Has вибираємо за he: дію виконала одна людина, хоча trousers має форму для кількох. Ironed — форма iron після have. Has ironed повідомляє про результат: штани вже готові."
       },
       "question": {
         "interactionId": "en:lesson-23:session-28:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Ще один приклад"
       },
       "bodyByLocale": {
-        "ru": "Leggings — легинсы, облегающие эластичные брюки. Это тоже форма множественного числа. I have bought new leggings — я купил новые легинсы. Bought — третья форма buy. Прилагательное new не меняется перед словом во множественном числе.",
-        "uk": "Leggings — легінси, еластичні штани, що облягають тіло. Це теж форма множини. I have bought new leggings — я купив нові легінси. Bought — третя форма buy. Прикметник new не змінюється перед словом у множині."
+        "ru": "Leggings — легинсы, облегающие эластичные брюки. Это тоже форма для нескольких. I have bought new leggings — я купил новые легинсы. Bought — форма buy после have. Прилагательное new не меняется перед словом в форме для нескольких.",
+        "uk": "Leggings — легінси, еластичні штани, що облягають тіло. Це теж форма для кількох. I have bought new leggings — я купив нові легінси. Bought — форма buy після have. Прикметник new не змінюється перед словом у формі для кількох."
       },
       "question": {
         "interactionId": "en:lesson-23:session-28:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "de7365dbe724e7bc241ff6159be10a14c4f694bd8bb7dbd17ec8c943e4ff3f81"
+  "introFingerprint": "681ba9ac928dc180568791740b1584b753f8312765b0fcba8a82d7e2fbf6defe"
 }

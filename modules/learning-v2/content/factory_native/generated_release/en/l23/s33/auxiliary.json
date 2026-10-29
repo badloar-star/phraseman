@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-23:session-33:intro1:q",
       "responseFeedbackById": {
         "en:lesson-23:session-33:intro1:r2": {
-          "ru": "Нужна третья форма met.",
-          "uk": "Потрібна третя форма met."
+          "ru": "Нужна форма met.",
+          "uk": "Потрібна форма met."
         },
         "en:lesson-23:session-33:intro1:r3": {
           "ru": "С I нужно have.",
@@ -23,8 +23,8 @@
           "uk": "Із she потрібно has."
         },
         "en:lesson-23:session-33:intro2:r3": {
-          "ru": "После has нужна третья форма met.",
-          "uk": "Після has потрібна третя форма met."
+          "ru": "После has нужна форма met.",
+          "uk": "Після has потрібна форма met."
         }
       }
     },
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-23:session-33:intro3:q",
       "responseFeedbackById": {
         "en:lesson-23:session-33:intro3:r2": {
-          "ru": "Нужна третья форма met.",
-          "uk": "Потрібна третя форма met."
+          "ru": "Нужна форма met.",
+          "uk": "Потрібна форма met."
         },
         "en:lesson-23:session-33:intro3:r3": {
           "ru": "С you нужно have.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "37ab8bd3b502559fcaed67172d7d5c2c774fa007dc1efbf814cd9e2a7114f10e"
+  "auxiliaryFingerprint": "fb7061bdeff81dcb20ee03de2fd0607115daa8848a08ef1c552cd2097c93baff"
 }

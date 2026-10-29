@@ -845,7 +845,7 @@
             "correct": false,
             "testedDimension": "Учора був один конкретний матч.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple won.",
+              "ru": "Yesterday требует формы прошлого won.",
               "uk": "Yesterday потребує Past Simple won."
             }
           },
@@ -1066,7 +1066,7 @@
             "correct": false,
             "testedDimension": "Один гравець уже готовий. Доповніть: «Інші гравці все ще чекають».",
             "feedbackByLocale": {
-              "ru": "Another ставим перед существительным в единственном числе.",
+              "ru": "Another ставим перед названием одного предмета.",
               "uk": "Another ставимо перед іменником в однині."
             }
           },
@@ -1123,5 +1123,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "66b8410c64d47d7e1386432b106b464c3d188fec0b3a0065948f60f5629d15bb"
+  "learnerFingerprint": "50834a510cdfcd33e7a110ff872cbf67b7673b466e94227433e6436353ee0c19"
 }

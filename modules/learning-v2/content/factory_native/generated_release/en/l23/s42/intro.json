@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-42",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, что вы уже делали на соревнованиях: I have entered a competition.",
+    "uk": "розповісти, що ви вже робили на змаганнях: I have entered a competition."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Розрізняємо слова"
       },
       "bodyByLocale": {
-        "ru": "Opponent — соперник, против которого вы играете или выступаете. We have spoken to an opponent — мы поговорили с соперником. Перед opponent нужен an: слово начинается с гласного звука. Spoken — третья форма speak.",
-        "uk": "Opponent — суперник, проти якого ви граєте або виступаєте. We have spoken to an opponent — ми поговорили із суперником. Перед opponent потрібен an: слово починається з голосного звука. Spoken — третя форма speak."
+        "ru": "Opponent — соперник, против которого вы играете или выступаете. We have spoken to an opponent — мы поговорили с соперником. Перед opponent нужен an: слово начинается с гласного звука. Spoken — форма speak после have.",
+        "uk": "Opponent — суперник, проти якого ви граєте або виступаєте. We have spoken to an opponent — ми поговорили із суперником. Перед opponent потрібен an: слово починається з голосного звука. Spoken — форма speak після have."
       },
       "question": {
         "interactionId": "en:lesson-23:session-42:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Ще один приклад"
       },
       "bodyByLocale": {
-        "ru": "Competitor — участник соревнования. Он может участвовать в том же турнире, даже если вы не играете друг против друга. He has helped a competitor — он помог участнику соревнования. Helped — третья форма help.",
-        "uk": "Competitor — учасник змагання. Він може брати участь у тому самому турнірі, навіть якщо ви не граєте один проти одного. He has helped a competitor — він допоміг учасникові змагання. Helped — третя форма help."
+        "ru": "Competitor — участник соревнования. Он может участвовать в том же турнире, даже если вы не играете друг против друга. He has helped a competitor — он помог участнику соревнования. Helped — форма help после have.",
+        "uk": "Competitor — учасник змагання. Він може брати участь у тому самому турнірі, навіть якщо ви не граєте один проти одного. He has helped a competitor — він допоміг учасникові змагання. Helped — форма help після have."
       },
       "question": {
         "interactionId": "en:lesson-23:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b25b4b5731692031606a216b866e53c7456d7be8646a31709afa1e87d79a7973"
+  "introFingerprint": "dc0a42538694f967518e737363fb0cd3863ef8ed6212da74127cdbb47ea137c4"
 }

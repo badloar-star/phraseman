@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-24:session-25:intro1:q",
       "responseFeedbackById": {
         "en:lesson-24:session-25:intro1:r2": {
-          "ru": "С yesterday нужен Past Simple: found без have.",
-          "uk": "Із yesterday потрібен Past Simple: found без have."
+          "ru": "С yesterday нужна форма прошлого: found без have.",
+          "uk": "Із yesterday потрібна форма минулого: found без have."
         },
         "en:lesson-24:session-25:intro1:r3": {
           "ru": "Yesterday — прошлое, поэтому found, а не find.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-24:session-25:intro3:q",
       "responseFeedbackById": {
         "en:lesson-24:session-25:intro3:r2": {
-          "ru": "Last week требует Past Simple: found без have.",
-          "uk": "Last week потребує Past Simple: found без have."
+          "ru": "Last week требует формы прошлого: found без have.",
+          "uk": "Last week потребує форма минулого: found без have."
         },
         "en:lesson-24:session-25:intro3:r3": {
           "ru": "Для прошлого нужна форма found.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "a50db3ed3128d700bfeb8d8ef0bacf80f20bf7d7bb20b9d8a2955cb07bfe1088"
+  "auxiliaryFingerprint": "8e2b0e9098375806a0b4fcdd2aba0312aaef203dccfa514b9f223166d629aa7c"
 }

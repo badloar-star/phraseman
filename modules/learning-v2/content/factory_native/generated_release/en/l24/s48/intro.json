@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-48",
   "learningOutcomeByLocale": {
-    "ru": "present perfect / past simple",
-    "uk": "present perfect / past simple"
+    "ru": "сказать, что вы уже сделали: She has cuddled the baby.",
+    "uk": "сказати, що ви вже зробили: She has cuddled the baby."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Малюка вже обійняли"
       },
       "bodyByLocale": {
-        "ru": "Малыш плакал, мама прижала его к себе, и вы сообщаете об этом сейчас. She has cuddled the baby — она ласково обняла малыша. После she выбираем has, затем ставим третью форму cuddled. У правильного глагола cuddle она образуется добавлением -d. The baby называет, кого обняли. Здесь важен результат к настоящему моменту, а законченная дата не названа: she + has + cuddled + the baby.",
-        "uk": "Малюк плакав, мама притиснула його до себе, і ви повідомляєте про це зараз. She has cuddled the baby — вона ніжно обійняла малюка. Після she вибираємо has, потім ставимо третю форму cuddled. У правильного дієслова cuddle вона утворюється додаванням -d. The baby називає, кого обійняли. Тут важливий результат на теперішній момент, а завершеної дати не названо: she + has + cuddled + the baby."
+        "ru": "Малыш плакал, мама прижала его к себе, и вы сообщаете об этом сейчас. She has cuddled the baby — она ласково обняла малыша. После she выбираем has, затем ставим форму cuddled. У правильного глагола cuddle она образуется добавлением -d. The baby называет, кого обняли. Здесь важен результат к настоящему моменту, а законченная дата не названа: she + has + cuddled + the baby.",
+        "uk": "Малюк плакав, мама притиснула його до себе, і ви повідомляєте про це зараз. She has cuddled the baby — вона ніжно обійняла малюка. Після she вибираємо has, потім ставимо форму cuddled. У правильного дієслова cuddle вона утворюється додаванням -d. The baby називає, кого обійняли. Тут важливий результат на теперішній момент, а завершеної дати не названо: she + has + cuddled + the baby."
       },
       "question": {
         "interactionId": "en:lesson-24:session-48:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Сльози після фільму"
       },
       "bodyByLocale": {
-        "ru": "Вы вспоминаете, как друг вчера расплакался после грустного фильма. He sobbed after the film yesterday — вчера он рыдал после фильма. Yesterday указывает на законченный день, поэтому после he нужен Past Simple: sobbed. В коротком глаголе sob перед -ed удваиваем конечную b. After the film уточняет, после чего он плакал; yesterday — когда. Собираем he + sobbed + after the film + yesterday.",
-        "uk": "Ви згадуєте, як друг учора розплакався після сумного фільму. He sobbed after the film yesterday — учора він ридав після фільму. Yesterday указує на завершений день, тому після he потрібен Past Simple: sobbed. У короткому дієслові sob перед -ed подвоюємо кінцеву b. After the film уточнює, після чого він плакав; yesterday — коли. Складаємо he + sobbed + after the film + yesterday."
+        "ru": "Вы вспоминаете, как друг вчера расплакался после грустного фильма. He sobbed after the film yesterday — вчера он рыдал после фильма. Yesterday указывает на законченный день, поэтому после he нужна форма прошлого: sobbed. В коротком глаголе sob перед -ed удваиваем конечную b. After the film уточняет, после чего он плакал; yesterday — когда. Собираем he + sobbed + after the film + yesterday.",
+        "uk": "Ви згадуєте, як друг учора розплакався після сумного фільму. He sobbed after the film yesterday — учора він ридав після фільму. Yesterday указує на завершений день, тому після he потрібна форма минулого: sobbed. У короткому дієслові sob перед -ed подвоюємо кінцеву b. After the film уточнює, після чого він плакав; yesterday — коли. Складаємо he + sobbed + after the film + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-48:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1108b1ac6a91a4b9d067e224607240992d286636766faf8975dda7d8bce86648"
+  "introFingerprint": "f60f2d89e81a8292b2fcb9dcf54481ede3549896900795809e0002c558b1b242"
 }

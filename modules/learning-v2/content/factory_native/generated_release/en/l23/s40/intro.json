@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-40",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, какие ещё языки вы изучали: I have studied Chinese.",
+    "uk": "розповісти, які ще мови ви вивчали: I have studied Chinese."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Розповідаєте про навчання"
       },
       "bodyByLocale": {
-        "ru": "На первом занятии преподаватель спрашивает о вашем опыте изучения китайского. I have studied Chinese — я изучал китайский язык. Chinese здесь — название языка. Собираем: I + have + studied + Chinese. С I используем have, studied — третья форма study. Have studied сообщает, что у вас уже был такой опыт; в этой фразе не называем дату начала или длительность учёбы.",
-        "uk": "На першому занятті викладач запитує про ваш досвід вивчення китайської. I have studied Chinese — я вивчав китайську мову. Chinese тут — назва мови. Складаємо: I + have + studied + Chinese. Із I використовуємо have, studied — третя форма study. Have studied повідомляє, що ви вже мали такий досвід; у цій фразі не називаємо дату початку чи тривалість навчання."
+        "ru": "На первом занятии преподаватель спрашивает о вашем опыте изучения китайского. I have studied Chinese — я изучал китайский язык. Chinese здесь — название языка. Собираем: I + have + studied + Chinese. С I используем have, studied — форма study после have. Have studied сообщает, что у вас уже был такой опыт; в этой фразе не называем дату начала или длительность учёбы.",
+        "uk": "На першому занятті викладач запитує про ваш досвід вивчення китайської. I have studied Chinese — я вивчав китайську мову. Chinese тут — назва мови. Складаємо: I + have + studied + Chinese. Із I використовуємо have, studied — форма study після have. Have studied повідомляє, що ви вже мали такий досвід; у цій фразі не називаємо дату початку чи тривалість навчання."
       },
       "question": {
         "interactionId": "en:lesson-23:session-40:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Розрізняємо слова"
       },
       "bodyByLocale": {
-        "ru": "Arabic — арабский язык. We have studied Arabic — мы изучали арабский язык. После have нужна третья форма studied. Окончание ed здесь относится к глаголу study, а название Arabic остаётся неизменным.",
-        "uk": "Arabic — арабська мова. We have studied Arabic — ми вивчали арабську мову. Після have потрібна третя форма studied. Закінчення ed тут стосується дієслова study, а назва Arabic залишається незмінною."
+        "ru": "Arabic — арабский язык. We have studied Arabic — мы изучали арабский язык. После have нужна форма studied. Окончание ed здесь относится к глаголу study, а название Arabic остаётся неизменным.",
+        "uk": "Arabic — арабська мова. We have studied Arabic — ми вивчали арабську мову. Після have потрібна форма studied. Закінчення ed тут стосується дієслова study, а назва Arabic залишається незмінною."
       },
       "question": {
         "interactionId": "en:lesson-23:session-40:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3c5f6d78d25c05ba5ab6bfe996ecbd50f40ef2004ef8f89b3a6a62fd5d6a9c97"
+  "introFingerprint": "4bd014fae7d0a44e9c6babfcc5f1cbc2c019d7eac99717fc07f6f2892ff81024"
 }

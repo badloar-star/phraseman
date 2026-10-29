@@ -162,7 +162,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-54:i03:r1",
@@ -179,11 +179,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "I have ___ the librarian.",
@@ -208,7 +208,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: asked.",
+              "ru": "Нужна форма после have: asked.",
               "uk": "Потрібна третя форма: asked."
             }
           },
@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: asked.",
+              "ru": "Нужна форма после have: asked.",
               "uk": "Потрібна третя форма: asked."
             }
           }
@@ -384,7 +384,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-54:i06:r1",
@@ -401,11 +401,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "She has ___ a translator.",
@@ -430,7 +430,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: found.",
+              "ru": "Нужна форма после have: found.",
               "uk": "Потрібна третя форма: found."
             }
           },
@@ -439,7 +439,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: found.",
+              "ru": "Нужна форма после have: found.",
               "uk": "Потрібна третя форма: found."
             }
           }
@@ -607,7 +607,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-54:i09:r1",
@@ -624,11 +624,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "We have ___ to an interpreter.",
@@ -653,7 +653,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: spoken.",
+              "ru": "Нужна форма после have: spoken.",
               "uk": "Потрібна третя форма: spoken."
             }
           },
@@ -662,7 +662,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: spoken.",
+              "ru": "Нужна форма после have: spoken.",
               "uk": "Потрібна третя форма: spoken."
             }
           }
@@ -829,7 +829,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите третью форму.",
+      "prompt": "Выберите нужную форму слова.",
       "responseOptions": [
         {
           "responseId": "en:lesson-23:session-54:i12:r1",
@@ -846,11 +846,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите третью форму.",
+      "accessibilityLabel": "Выберите нужную форму слова.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите третью форму.",
+          "ru": "Выберите нужную форму слова.",
           "uk": "Виберіть третю форму."
         },
         "gappedTargetPhrase": "He has ___ an accountant.",
@@ -875,7 +875,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: called.",
+              "ru": "Нужна форма после have: called.",
               "uk": "Потрібна третя форма: called."
             }
           },
@@ -884,7 +884,7 @@
             "correct": false,
             "testedDimension": "Выберите третью форму.",
             "feedbackByLocale": {
-              "ru": "Нужна третья форма: called.",
+              "ru": "Нужна форма после have: called.",
               "uk": "Потрібна третя форма: called."
             }
           }
@@ -1113,5 +1113,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fd839179e8c9cedf86da7a09fbab3927e150499bccb05e15689761fd87d27f53"
+  "learnerFingerprint": "4f30c1c77b8f159ceba7490d19c9e98fb17b116749e6d321451c2549d80acbbc"
 }

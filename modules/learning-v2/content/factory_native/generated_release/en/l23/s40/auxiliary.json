@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-23:session-40:intro1:q",
       "responseFeedbackById": {
         "en:lesson-23:session-40:intro1:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-40:intro1:r3": {
-          "ru": "После have или has нужна третья форма: studied.",
-          "uk": "Після have або has потрібна третя форма: studied."
+          "ru": "После have или has нужна особая форма: studied.",
+          "uk": "Після have або has потрібна особлива форма: studied."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-23:session-40:intro2:q",
       "responseFeedbackById": {
         "en:lesson-23:session-40:intro2:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-40:intro2:r3": {
-          "ru": "После have или has нужна третья форма: studied.",
-          "uk": "Після have або has потрібна третя форма: studied."
+          "ru": "После have или has нужна особая форма: studied.",
+          "uk": "Після have або has потрібна особлива форма: studied."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-23:session-40:intro3:q",
       "responseFeedbackById": {
         "en:lesson-23:session-40:intro3:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-40:intro3:r3": {
-          "ru": "После have или has нужна третья форма: studied.",
-          "uk": "Після have або has потрібна третя форма: studied."
+          "ru": "После have или has нужна особая форма: studied.",
+          "uk": "Після have або has потрібна особлива форма: studied."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "edb752c7aaa871a958264587017db470a28c256114b190501030cf8c0eae5007"
+  "auxiliaryFingerprint": "16602c2395fb822445591acede4a42354ca6309d21d8a70d9a216f57d09ec8d2"
 }

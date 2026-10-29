@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-45",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, кого из родных вы уже навещали: I have visited a relative.",
+    "uk": "розповісти, кого з рідних ви вже навідували: I have visited a relative."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Нові знайомі старші за вас"
       },
       "bodyByLocale": {
-        "ru": "На встрече в библиотеке вы с другом познакомились с людьми намного старше вас. We have met people from another generation — мы познакомились с людьми другого поколения. Generation означает «поколение». Собираем: we + have + met + people + from another generation. С we ставим have, met — третья форма meet. From another generation уточняет, к какому поколению относятся люди. Have met сообщает о состоявшемся знакомстве.",
-        "uk": "На зустрічі в бібліотеці ви з другом познайомилися з людьми набагато старшими за вас. We have met people from another generation — ми познайомилися з людьми іншого покоління. Generation означає «покоління». Складаємо: we + have + met + people + from another generation. Із we ставимо have, met — третя форма meet. From another generation уточнює, до якого покоління належать люди. Have met повідомляє про знайомство, яке вже відбулося."
+        "ru": "На встрече в библиотеке вы с другом познакомились с людьми намного старше вас. We have met people from another generation — мы познакомились с людьми другого поколения. Generation означает «поколение». Собираем: we + have + met + people + from another generation. С we ставим have, met — форма meet после have. From another generation уточняет, к какому поколению относятся люди. Have met сообщает о состоявшемся знакомстве.",
+        "uk": "На зустрічі в бібліотеці ви з другом познайомилися з людьми набагато старшими за вас. We have met people from another generation — ми познайомилися з людьми іншого покоління. Generation означає «покоління». Складаємо: we + have + met + people + from another generation. Із we ставимо have, met — форма meet після have. From another generation уточнює, до якого покоління належать люди. Have met повідомляє про знайомство, яке вже відбулося."
       },
       "question": {
         "interactionId": "en:lesson-23:session-45:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "9e92b662138c8ae547acd168666c7e863afef0713f8964a0c42b3a1216d3749c"
+  "introFingerprint": "0cee81afb7bdf281f9d13f76d71c038bef7cc9bda0e4286437ee4294295298a9"
 }

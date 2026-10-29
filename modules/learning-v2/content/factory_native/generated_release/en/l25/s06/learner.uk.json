@@ -503,7 +503,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect.",
+      "prompt": "Ви розповідаєте про результат, помітний зараз. Доповніть фразу з have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-06:i08:r1",
@@ -520,12 +520,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect.",
+      "accessibilityLabel": "Ви розповідаєте про результат, помітний зараз. Доповніть фразу з have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
-          "uk": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect."
+          "uk": "Ви розповідаєте про результат, помітний зараз. Доповніть фразу з have / has."
         },
         "gappedTargetPhrase": "My life has ___ a lot.",
         "gapOptions": [
@@ -558,7 +558,7 @@
             "correct": false,
             "testedDimension": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "Changing здесь не образует Present Perfect; нужно changed.",
+              "ru": "Changing здесь не образует have / has + done; нужно changed.",
               "uk": "Changing тут не утворює Present Perfect; потрібно changed."
             }
           }
@@ -1028,7 +1028,7 @@
             "correct": false,
             "testedDimension": "Ви говорите про один вечір минулого тижня.",
             "feedbackByLocale": {
-              "ru": "Last week — законченное время: нужен Past Simple talked.",
+              "ru": "Last week — это уже прошлое: нужна форма прошлого talked.",
               "uk": "Last week — завершений час: потрібен Past Simple talked."
             }
           },
@@ -1119,5 +1119,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "cec1a92f940ae5819de1bbec00f73a00a37512454fc4d3324330e4b071bb0188"
+  "learnerFingerprint": "fd08420e636c0aadac34ea22f90e8321a40fa2b0ef86ca978319dd2a91c97a95"
 }

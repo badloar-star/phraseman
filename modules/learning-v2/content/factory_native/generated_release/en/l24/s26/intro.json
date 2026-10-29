@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-24:session-26",
   "learningOutcomeByLocale": {
-    "ru": "Present Perfect / Past Simple",
-    "uk": "Present Perfect / Past Simple"
+    "ru": "сказать, когда что-то произошло: The dog chased me yesterday.",
+    "uk": "сказати, коли щось сталося: The dog chased me yesterday."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Що міститься в коробці"
       },
       "bodyByLocale": {
-        "ru": "Перед вами закрытая коробка, и вы спрашиваете, что в ней находится. What does this box contain? — что находится в этой коробке? Начинаем с what — того, что хотим узнать. Затем ставим does перед this box: box — единственное число. После подлежащего нужна начальная форма contain, без -s, потому что форму вопроса уже задаёт does. Порядок — what + does + this box + contain?",
-        "uk": "Перед вами закрита коробка, і ви запитуєте, що в ній міститься. What does this box contain? — що міститься в цій коробці? Починаємо з what — того, що хочемо дізнатися. Потім ставимо does перед this box: box — однина. Після підмета потрібна початкова форма contain, без -s, тому що форму запитання вже задає does. Порядок — what + does + this box + contain?"
+        "ru": "Перед вами закрытая коробка, и вы спрашиваете, что в ней находится. What does this box contain? — что находится в этой коробке? Начинаем с what — того, что хотим узнать. Затем ставим does перед this box: box — форма для одного. После this box нужна начальная форма contain, без -s, потому что форму вопроса уже задаёт does. Порядок — what + does + this box + contain?",
+        "uk": "Перед вами закрита коробка, і ви запитуєте, що в ній міститься. What does this box contain? — що міститься в цій коробці? Починаємо з what — того, що хочемо дізнатися. Потім ставимо does перед this box: box — форма для одного. Після this box потрібна початкова форма contain, без -s, тому що форму запитання вже задає does. Порядок — what + does + this box + contain?"
       },
       "question": {
         "interactionId": "en:lesson-24:session-26:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Застава торік"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете о прошлогоднем проживании в отеле: тогда он требовал залог. The hotel required a deposit last year — в прошлом году отель требовал залог. После the hotel ставим required: require заканчивается на e, поэтому для Past Simple добавляем -d. A deposit называет, что требовалось. Last year задаёт законченный период, поэтому has перед required не нужен.",
-        "uk": "Ви розповідаєте про торішнє проживання в готелі: тоді він вимагав заставу. The hotel required a deposit last year — торік готель вимагав заставу. Після the hotel ставимо required: require закінчується на e, тому для Past Simple додаємо -d. A deposit називає, що вимагалося. Last year задає завершений період, тому has перед required не потрібен."
+        "ru": "Вы рассказываете о прошлогоднем проживании в отеле: тогда он требовал залог. The hotel required a deposit last year — в прошлом году отель требовал залог. После the hotel ставим required: require заканчивается на e, поэтому для формы прошлого добавляем -d. A deposit называет, что требовалось. Last year задаёт законченный период, поэтому has перед required не нужен.",
+        "uk": "Ви розповідаєте про торішнє проживання в готелі: тоді він вимагав заставу. The hotel required a deposit last year — торік готель вимагав заставу. Після the hotel ставимо required: require закінчується на e, тому для форми минулого додаємо -d. A deposit називає, що вимагалося. Last year задає завершений період, тому has перед required не потрібен."
       },
       "question": {
         "interactionId": "en:lesson-24:session-26:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Собака гнався за мною вчора"
       },
       "bodyByLocale": {
-        "ru": "Вы рассказываете, как вчера за вами погналась собака. The dog chased me yesterday — вчера собака гналась за мной. После the dog ставим chased: к chase добавляем -d для Past Simple. Me называет того, за кем гнались; после chase не нужен предлог for. Yesterday указывает на законченный день, поэтому has не добавляем. Порядок — the dog + chased + me + yesterday.",
-        "uk": "Ви розповідаєте, як учора за вами погнався собака. The dog chased me yesterday — учора собака гнався за мною. Після the dog ставимо chased: до chase додаємо -d для Past Simple. Me називає того, за ким гналися; після chase не потрібен прийменник for. Yesterday указує на завершений день, тому has не додаємо. Порядок — the dog + chased + me + yesterday."
+        "ru": "Вы рассказываете, как вчера за вами погналась собака. The dog chased me yesterday — вчера собака гналась за мной. После the dog ставим chased: к chase добавляем -d для формы прошлого. Me называет того, за кем гнались; после chase не нужен предлог for. Yesterday указывает на законченный день, поэтому has не добавляем. Порядок — the dog + chased + me + yesterday.",
+        "uk": "Ви розповідаєте, як учора за вами погнався собака. The dog chased me yesterday — учора собака гнався за мною. Після the dog ставимо chased: до chase додаємо -d для форми минулого. Me називає того, за ким гналися; після chase не потрібен прийменник for. Yesterday указує на завершений день, тому has не додаємо. Порядок — the dog + chased + me + yesterday."
       },
       "question": {
         "interactionId": "en:lesson-24:session-26:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ee25f61580e5dbf6a78d1603d664dac3effc22bd03dcfecc855207d809eeba8a"
+  "introFingerprint": "5cdcc70ba9349eef2b892101131fe77a94860104dbf1c42fed70f7573f9118cb"
 }

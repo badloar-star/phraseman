@@ -503,7 +503,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
+      "prompt": "Вы рассказываете о результате, заметном сейчас. Дополните фразу с have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-06:i08:r1",
@@ -520,11 +520,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
+      "accessibilityLabel": "Вы рассказываете о результате, заметном сейчас. Дополните фразу с have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
+          "ru": "Вы рассказываете о результате, заметном сейчас. Дополните фразу с have / has.",
           "uk": "Ви розповідаєте про результат, помітний зараз. Доповніть Present Perfect."
         },
         "gappedTargetPhrase": "My life has ___ a lot.",
@@ -558,7 +558,7 @@
             "correct": false,
             "testedDimension": "Вы рассказываете о результате, заметном сейчас. Дополните Present Perfect.",
             "feedbackByLocale": {
-              "ru": "Changing здесь не образует Present Perfect; нужно changed.",
+              "ru": "Changing здесь не образует have / has + done; нужно changed.",
               "uk": "Changing тут не утворює Present Perfect; потрібно changed."
             }
           }
@@ -1028,7 +1028,7 @@
             "correct": false,
             "testedDimension": "Вы говорите об одном вечере на прошлой неделе.",
             "feedbackByLocale": {
-              "ru": "Last week — законченное время: нужен Past Simple talked.",
+              "ru": "Last week — это уже прошлое: нужна форма прошлого talked.",
               "uk": "Last week — завершений час: потрібен Past Simple talked."
             }
           },
@@ -1119,5 +1119,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "358ec343c155cf2d709da9d4be83dbd469c35ed7437051dd9e8caf86e79da5dd"
+  "learnerFingerprint": "978dc3d1352e56b3d21490d15251f9a4a10da074c30ea9f5a07eba92eef14582"
 }

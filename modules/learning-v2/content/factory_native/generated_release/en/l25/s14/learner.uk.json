@@ -763,7 +763,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Ви вже помили волосся; результат важливий зараз. Доповніть Present Perfect.",
+      "prompt": "Ви вже помили волосся; результат важливий зараз. Доповніть фразу з have / has.",
       "responseOptions": [
         {
           "responseId": "en:lesson-25:session-14:i11:r1",
@@ -780,12 +780,12 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Ви вже помили волосся; результат важливий зараз. Доповніть Present Perfect.",
+      "accessibilityLabel": "Ви вже помили волосся; результат важливий зараз. Доповніть фразу з have / has.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
           "ru": "Вы уже вымыли волосы; результат важен сейчас. Дополните Present Perfect.",
-          "uk": "Ви вже помили волосся; результат важливий зараз. Доповніть Present Perfect."
+          "uk": "Ви вже помили волосся; результат важливий зараз. Доповніть фразу з have / has."
         },
         "gappedTargetPhrase": "I have already ___ my hair.",
         "gapOptions": [
@@ -818,7 +818,7 @@
             "correct": false,
             "testedDimension": "Ви вже помили волосся; результат важливий зараз. Доповніть Present Perfect.",
             "feedbackByLocale": {
-              "ru": "Have washing не образует Present Perfect.",
+              "ru": "Have washing не образует have / has + done.",
               "uk": "Have washing не утворює Present Perfect."
             }
           }
@@ -1029,7 +1029,7 @@
             "correct": false,
             "testedDimension": "Учора ви сходили до перукарні один раз.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple went.",
+              "ru": "Yesterday требует формы прошлого went.",
               "uk": "Yesterday потребує Past Simple went."
             }
           },
@@ -1126,5 +1126,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "fceace3a3ec552743dd76bf44c09c1906bda497d8fd514b43914a5fc0f94160c"
+  "learnerFingerprint": "172c9de84b3bb8bc1dc4c1ae5a3d6df8765b3b3277c8b8c5dada8135538a5821"
 }

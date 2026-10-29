@@ -842,7 +842,7 @@
             "correct": false,
             "testedDimension": "Смешной рассказ вы услышали один раз вчера.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple told.",
+              "ru": "Yesterday требует формы прошлого told.",
               "uk": "Yesterday потребує Past Simple told."
             }
           },
@@ -1016,7 +1016,7 @@
             "correct": false,
             "testedDimension": "Вы хотите услышать другие истории, несколько.",
             "feedbackByLocale": {
-              "ru": "Another относится к одному предмету; stories — множественное число.",
+              "ru": "Another относится к одному предмету; stories — форма для нескольких.",
               "uk": "Another стосується одного предмета; stories — множина."
             }
           },
@@ -1116,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1ef8f53c54b615d84ae4e4c63375f29865a00ec04dc1b76af6573a03d7b5ee8e"
+  "learnerFingerprint": "4844991b633680761bf34ca30c533b78cfa50c392355cbab07522ab84da02d92"
 }

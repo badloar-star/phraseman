@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-49",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать о своих решениях и впечатлениях: I have made a wise decision.",
+    "uk": "розповісти про свої рішення та враження: I have made a wise decision."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Безглузда відмовка"
       },
       "bodyByLocale": {
-        "ru": "Опоздавший друг объяснил, что не вышел из дома, потому что кот уснул на его куртке. Вы с сестрой обсуждаете услышанное: We have heard a ridiculous excuse — мы услышали нелепую отговорку. Ridiculous означает «нелепый». Собираем: we + have + heard + a ridiculous excuse. С we используем have, heard — третья форма hear. Прилагательное ridiculous ставим перед excuse. Have heard сообщает, что вы уже услышали эту отговорку.",
-        "uk": "Друг, який запізнився, пояснив, що не вийшов із дому, бо кіт заснув на його куртці. Ви із сестрою обговорюєте почуте: We have heard a ridiculous excuse — ми почули безглузду відмовку. Ridiculous означає «безглуздий». Складаємо: we + have + heard + a ridiculous excuse. Із we використовуємо have, heard — третя форма hear. Прикметник ridiculous ставимо перед excuse. Have heard повідомляє, що ви вже почули цю відмовку."
+        "ru": "Опоздавший друг объяснил, что не вышел из дома, потому что кот уснул на его куртке. Вы с сестрой обсуждаете услышанное: We have heard a ridiculous excuse — мы услышали нелепую отговорку. Ridiculous означает «нелепый». Собираем: we + have + heard + a ridiculous excuse. С we используем have, heard — форма hear после have. Прилагательное ridiculous ставим перед excuse. Have heard сообщает, что вы уже услышали эту отговорку.",
+        "uk": "Друг, який запізнився, пояснив, що не вийшов із дому, бо кіт заснув на його куртці. Ви із сестрою обговорюєте почуте: We have heard a ridiculous excuse — ми почули безглузду відмовку. Ridiculous означає «безглуздий». Складаємо: we + have + heard + a ridiculous excuse. Із we використовуємо have, heard — форма hear після have. Прикметник ridiculous ставимо перед excuse. Have heard повідомляє, що ви вже почули цю відмовку."
       },
       "question": {
         "interactionId": "en:lesson-23:session-49:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Розповідає про знайомство"
       },
       "bodyByLocale": {
-        "ru": "Друг познакомился с человеком, который быстро разобрался в сложной задаче. He has met an intelligent person — он познакомился с умным человеком. Intelligent означает «умный». Собираем: he + has + met + an intelligent person. После he ставим has, met — третья форма meet. Intelligent описывает person и стоит перед ним; выбираем an, потому что intelligent начинается с гласного звука. Has met сообщает о состоявшемся знакомстве.",
-        "uk": "Друг познайомився з людиною, яка швидко розібралася зі складним завданням. He has met an intelligent person — він познайомився з розумною людиною. Intelligent означає «розумний». Складаємо: he + has + met + an intelligent person. Після he ставимо has, met — третя форма meet. Intelligent описує person і стоїть перед ним; вибираємо an, тому що intelligent починається з голосного звука. Has met повідомляє про знайомство, яке вже відбулося."
+        "ru": "Друг познакомился с человеком, который быстро разобрался в сложной задаче. He has met an intelligent person — он познакомился с умным человеком. Intelligent означает «умный». Собираем: he + has + met + an intelligent person. После he ставим has, met — форма meet после have. Intelligent описывает person и стоит перед ним; выбираем an, потому что intelligent начинается с гласного звука. Has met сообщает о состоявшемся знакомстве.",
+        "uk": "Друг познайомився з людиною, яка швидко розібралася зі складним завданням. He has met an intelligent person — він познайомився з розумною людиною. Intelligent означає «розумний». Складаємо: he + has + met + an intelligent person. Після he ставимо has, met — форма meet після have. Intelligent описує person і стоїть перед ним; вибираємо an, тому що intelligent починається з голосного звука. Has met повідомляє про знайомство, яке вже відбулося."
       },
       "question": {
         "interactionId": "en:lesson-23:session-49:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "02535b2cbc51e9ee721cdc3d51b636f7a7574b86c10d2e3f3db412f0076a9c62"
+  "introFingerprint": "390f1e637751bc19d447690dfee518fb2ac8019d39f3e82590002250611b84cf"
 }

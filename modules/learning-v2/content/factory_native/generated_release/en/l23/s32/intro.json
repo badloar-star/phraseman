@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-32",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, с кем из артистов вы встречались: I have met an actor.",
+    "uk": "розповісти, з ким з артистів ви зустрічалися: I have met an actor."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Зустріч з актором"
       },
       "bodyByLocale": {
-        "ru": "После спектакля вам удалось лично познакомиться с актёром. Рассказывая об этом опыте, вы говорите: I have met an actor — я встречался с актёром. Actor означает «актёр». Собираем: I + have + met + an actor. С I ставим have, met — третья форма meet. Перед actor используем an, потому что слово начинается с гласного звука. Have met сообщает о встрече без её даты.",
-        "uk": "Після вистави вам вдалося особисто познайомитися з актором. Розповідаючи про цей досвід, ви кажете: I have met an actor — я зустрічався з актором. Actor означає «актор». Складаємо: I + have + met + an actor. Із I ставимо have, met — третя форма meet. Перед actor використовуємо an, тому що слово починається з голосного звука. Have met повідомляє про зустріч без її дати."
+        "ru": "После спектакля вам удалось лично познакомиться с актёром. Рассказывая об этом опыте, вы говорите: I have met an actor — я встречался с актёром. Actor означает «актёр». Собираем: I + have + met + an actor. С I ставим have, met — форма meet после have. Перед actor используем an, потому что слово начинается с гласного звука. Have met сообщает о встрече без её даты.",
+        "uk": "Після вистави вам вдалося особисто познайомитися з актором. Розповідаючи про цей досвід, ви кажете: I have met an actor — я зустрічався з актором. Actor означає «актор». Складаємо: I + have + met + an actor. Із I ставимо have, met — форма meet після have. Перед actor використовуємо an, тому що слово починається з голосного звука. Have met повідомляє про зустріч без її дати."
       },
       "question": {
         "interactionId": "en:lesson-23:session-32:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Розрізняємо слова"
       },
       "bodyByLocale": {
-        "ru": "Dancer — танцор или танцовщица. We have met a dancer — мы встречались с танцором. Dancer называет человека, а знакомое dance — действие «танцевать». Present perfect здесь сообщает об опыте встречи, без конкретной даты.",
-        "uk": "Dancer — танцівник або танцівниця. We have met a dancer — ми зустрічалися з танцівником. Dancer називає людину, а знайоме dance — дію «танцювати». Present perfect тут повідомляє про досвід зустрічі, без конкретної дати."
+        "ru": "Dancer — танцор или танцовщица. We have met a dancer — мы встречались с танцором. Dancer называет человека, а знакомое dance — действие «танцевать». Форма have / has + done здесь сообщает об опыте встречи, без конкретной даты.",
+        "uk": "Dancer — танцівник або танцівниця. We have met a dancer — ми зустрічалися з танцівником. Dancer називає людину, а знайоме dance — дію «танцювати». Форма have / has + done тут повідомляє про досвід зустрічі, без конкретної дати."
       },
       "question": {
         "interactionId": "en:lesson-23:session-32:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f6d0c703e710df4ef6b9ffe8846f3e3813dd36af364b0a035f6062fc38950b41"
+  "introFingerprint": "cfc1a0ed5b046c2dfe000b6f34ad7d77ea0ff4cb39ef4bf2451c6621a6b9c430"
 }

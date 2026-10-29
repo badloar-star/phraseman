@@ -618,7 +618,7 @@
             "correct": false,
             "testedDimension": "Ви зустріли ще одного старого друга. Після пропуску — одна людина.",
             "feedbackByLocale": {
-              "ru": "Перед одним исчисляемым friend нужно another.",
+              "ru": "Перед friend (он один) нужно another.",
               "uk": "Перед одним злічуваним friend потрібно another."
             }
           },
@@ -956,7 +956,7 @@
             "correct": false,
             "testedDimension": "Йдеться про одну розмову минулого вечора. Виберіть форму для завершеної події.",
             "feedbackByLocale": {
-              "ru": "Last night — законченное время: нужен Past Simple called.",
+              "ru": "Last night — это уже прошлое: нужна форма прошлого called.",
               "uk": "Last night — завершений час: потрібен Past Simple called."
             }
           },
@@ -1122,5 +1122,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "c581bffbbe4fd4fc728da2a022f05be552f530e7dd1c1f8fffa2cab9e9cba63c"
+  "learnerFingerprint": "b50db165bab16c74d005dab7a6b519b029906d21f665e735f054cf48a046629d"
 }

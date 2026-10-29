@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-23:session-41:intro1:q",
       "responseFeedbackById": {
         "en:lesson-23:session-41:intro1:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-41:intro1:r3": {
-          "ru": "После have или has нужна третья форма: spoken.",
-          "uk": "Після have або has потрібна третя форма: spoken."
+          "ru": "После have или has нужна особая форма: spoken.",
+          "uk": "Після have або has потрібна особлива форма: spoken."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-23:session-41:intro2:q",
       "responseFeedbackById": {
         "en:lesson-23:session-41:intro2:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-41:intro2:r3": {
-          "ru": "После have или has нужна третья форма: helped.",
-          "uk": "Після have або has потрібна третя форма: helped."
+          "ru": "После have или has нужна особая форма: helped.",
+          "uk": "Після have або has потрібна особлива форма: helped."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-23:session-41:intro3:q",
       "responseFeedbackById": {
         "en:lesson-23:session-41:intro3:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-41:intro3:r3": {
-          "ru": "После have или has нужна третья форма: found.",
-          "uk": "Після have або has потрібна третя форма: found."
+          "ru": "После have или has нужна особая форма: found.",
+          "uk": "Після have або has потрібна особлива форма: found."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "89e85dcb77666b939640e745030531bbf995943220931ecca6bde912486b8bf2"
+  "auxiliaryFingerprint": "fcc51caa11cad1bcaf225ea84a8630336b4a6f4db972025380a78023ae550974"
 }

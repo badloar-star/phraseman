@@ -355,7 +355,7 @@
             "correct": false,
             "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple: hid.",
+              "ru": "Yesterday требует формы прошлого: hid.",
               "uk": "Yesterday потребує Past Simple: hid."
             }
           },
@@ -364,7 +364,7 @@
             "correct": false,
             "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple: hid.",
+              "ru": "Yesterday требует формы прошлого: hid.",
               "uk": "Yesterday потребує Past Simple: hid."
             }
           }
@@ -804,7 +804,7 @@
             "correct": false,
             "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple: noticed.",
+              "ru": "Yesterday требует формы прошлого: noticed.",
               "uk": "Yesterday потребує Past Simple: noticed."
             }
           },
@@ -813,7 +813,7 @@
             "correct": false,
             "testedDimension": "Доповніть розповідь.",
             "feedbackByLocale": {
-              "ru": "Yesterday требует Past Simple: noticed.",
+              "ru": "Yesterday требует формы прошлого: noticed.",
               "uk": "Yesterday потребує Past Simple: noticed."
             }
           }
@@ -1121,5 +1121,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "6d39fa6955636522f05055a18eead7b8956989fceba60c1d6ab0db52d0d2daff"
+  "learnerFingerprint": "1d5627430d2d7a9ed5baeccc5273370d3383f567c389f5cac8ddc4219bf56616"
 }

@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-23:session-36:intro1:q",
       "responseFeedbackById": {
         "en:lesson-23:session-36:intro1:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-36:intro1:r3": {
-          "ru": "После have или has нужна третья форма: read.",
-          "uk": "Після have або has потрібна третя форма: read."
+          "ru": "После have или has нужна особая форма: read.",
+          "uk": "Після have або has потрібна особлива форма: read."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-23:session-36:intro2:q",
       "responseFeedbackById": {
         "en:lesson-23:session-36:intro2:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-36:intro2:r3": {
-          "ru": "После have или has нужна третья форма: seen.",
-          "uk": "Після have або has потрібна третя форма: seen."
+          "ru": "После have или has нужна особая форма: seen.",
+          "uk": "Після have або has потрібна особлива форма: seen."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-23:session-36:intro3:q",
       "responseFeedbackById": {
         "en:lesson-23:session-36:intro3:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-36:intro3:r3": {
-          "ru": "После have или has нужна третья форма: seen.",
-          "uk": "Після have або has потрібна третя форма: seen."
+          "ru": "После have или has нужна особая форма: seen.",
+          "uk": "Після have або has потрібна особлива форма: seen."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "fc4858b7e35a0bf40ca3cfecd88e2d7cbefb9e1b716f5e8ee713fd523ecc769f"
+  "auxiliaryFingerprint": "2853fe96962899873de1bed7c3664dffe7560d1fe4c5427c4e3d4d997c0ec25a"
 }

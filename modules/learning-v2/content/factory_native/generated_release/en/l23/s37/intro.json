@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-37",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, каких зверей вы уже видели: I have seen a bear.",
+    "uk": "розповісти, яких звірів ви вже бачили: I have seen a bear."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Бачили ведмедя"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, доводилось ли вам видеть медведя. Вы видели его в зоопарке и отвечаете: I have seen a bear — я видел медведя. Bear означает «медведь». Собираем: I + have + seen + a bear. С I ставим have, seen — третья форма see. Have seen сообщает о вашем опыте; конкретный день посещения зоопарка здесь не называем.",
-        "uk": "Друг запитує, чи доводилося вам бачити ведмедя. Ви бачили його в зоопарку й відповідаєте: I have seen a bear — я бачив ведмедя. Bear означає «ведмідь». Складаємо: I + have + seen + a bear. Із I ставимо have, seen — третя форма see. Have seen повідомляє про ваш досвід; конкретного дня відвідування зоопарку тут не називаємо."
+        "ru": "Друг спрашивает, доводилось ли вам видеть медведя. Вы видели его в зоопарке и отвечаете: I have seen a bear — я видел медведя. Bear означает «медведь». Собираем: I + have + seen + a bear. С I ставим have, seen — форма see после have. Have seen сообщает о вашем опыте; конкретный день посещения зоопарка здесь не называем.",
+        "uk": "Друг запитує, чи доводилося вам бачити ведмедя. Ви бачили його в зоопарку й відповідаєте: I have seen a bear — я бачив ведмедя. Bear означає «ведмідь». Складаємо: I + have + seen + a bear. Із I ставимо have, seen — форма see після have. Have seen повідомляє про ваш досвід; конкретного дня відвідування зоопарку тут не називаємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-37:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Розрізняємо слова"
       },
       "bodyByLocale": {
-        "ru": "Rat — крыса. We have seen a rat — мы видели крысу. Это название другого животного, не знакомое mouse — мышь. С we используем have, затем третью форму seen.",
-        "uk": "Rat — щур. We have seen a rat — ми бачили щура. Це назва іншої тварини, не знайоме mouse — миша. Із we використовуємо have, потім третю форму seen."
+        "ru": "Rat — крыса. We have seen a rat — мы видели крысу. Это название другого животного, не знакомое mouse — мышь. С we используем have, затем форму seen.",
+        "uk": "Rat — щур. We have seen a rat — ми бачили щура. Це назва іншої тварини, не знайоме mouse — миша. Із we використовуємо have, потім форму seen."
       },
       "question": {
         "interactionId": "en:lesson-23:session-37:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1d923f9fe9c5ccca6e6f8d501c0fdf36d06d9494f0bacf2b9c8fd00631e48085"
+  "introFingerprint": "2460b42be0e61379098897401e559b52063fc35778b45c9dd060e6a6420aaf50"
 }

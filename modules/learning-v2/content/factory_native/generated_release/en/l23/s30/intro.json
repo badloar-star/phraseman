@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-30",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, каких насекомых вы уже видели: I have seen an ant.",
+    "uk": "розповісти, яких комах ви вже бачили: I have seen an ant."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Мураха на кухні"
       },
       "bodyByLocale": {
-        "ru": "Вы заметили муравья на кухне и сообщаете домашним: I have seen an ant — я видел муравья. Ant означает «муравей». Собираем: I + have + seen + an ant. С I используем have; seen — третья форма see. Перед ant ставим an, потому что слово начинается с гласного звука. Have seen сообщает о том, что вы уже заметили; муравей не обязательно всё ещё перед вами.",
-        "uk": "Ви помітили мураху на кухні й повідомляєте домашнім: I have seen an ant — я бачив мураху. Ant означає «мураха». Складаємо: I + have + seen + an ant. Із I використовуємо have; seen — третя форма see. Перед ant ставимо an, тому що слово починається з голосного звука. Have seen повідомляє про те, що ви вже помітили; мураха не обов’язково досі перед вами."
+        "ru": "Вы заметили муравья на кухне и сообщаете домашним: I have seen an ant — я видел муравья. Ant означает «муравей». Собираем: I + have + seen + an ant. С I используем have; seen — форма see после have. Перед ant ставим an, потому что слово начинается с гласного звука. Have seen сообщает о том, что вы уже заметили; муравей не обязательно всё ещё перед вами.",
+        "uk": "Ви помітили мураху на кухні й повідомляєте домашнім: I have seen an ant — я бачив мураху. Ant означає «мураха». Складаємо: I + have + seen + an ant. Із I використовуємо have; seen — форма see після have. Перед ant ставимо an, тому що слово починається з голосного звука. Have seen повідомляє про те, що ви вже помітили; мураха не обов’язково досі перед вами."
       },
       "question": {
         "interactionId": "en:lesson-23:session-30:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Розрізняємо слова"
       },
       "bodyByLocale": {
-        "ru": "Mosquito — комар. We have heard a mosquito — мы слышали комара: например, его писк в комнате. Heard — третья форма hear. С we нужно have.",
-        "uk": "Mosquito — комар. We have heard a mosquito — ми чули комара: наприклад, його писк у кімнаті. Heard — третя форма hear. Із we потрібно have."
+        "ru": "Mosquito — комар. We have heard a mosquito — мы слышали комара: например, его писк в комнате. Heard — форма hear после have. С we нужно have.",
+        "uk": "Mosquito — комар. We have heard a mosquito — ми чули комара: наприклад, його писк у кімнаті. Heard — форма hear після have. Із we потрібно have."
       },
       "question": {
         "interactionId": "en:lesson-23:session-30:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Ще один приклад"
       },
       "bodyByLocale": {
-        "ru": "Worm — червь, например дождевой червь в земле. He has found a worm — он нашёл червя. Found — третья форма find. С he используем has. Так можно сообщить, что человек только что заметил в саду.",
-        "uk": "Worm — черв’як, наприклад дощовий черв’як у землі. He has found a worm — він знайшов черв’яка. Found — третя форма find. Із he використовуємо has. Так можна повідомити, що людина щойно помітила в саду."
+        "ru": "Worm — червь, например дождевой червь в земле. He has found a worm — он нашёл червя. Found — форма find после have. С he используем has. Так можно сообщить, что человек только что заметил в саду.",
+        "uk": "Worm — черв’як, наприклад дощовий черв’як у землі. He has found a worm — він знайшов черв’яка. Found — форма find після have. Із he використовуємо has. Так можна повідомити, що людина щойно помітила в саду."
       },
       "question": {
         "interactionId": "en:lesson-23:session-30:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "534c44024ad6c5fac7e7d4836be8b7d48d71b817d53ec9d7449d3bb4e1bcaefc"
+  "introFingerprint": "babe9501018e01cf0b24567ac661d74f7b99c97b906f86e9250802185d417bc2"
 }

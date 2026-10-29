@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-35",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, с кем из людей разных профессий вы говорили: I have met a reporter.",
+    "uk": "розповісти, з ким із різних професій ви розмовляли: I have met a reporter."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Знайомство з репортером"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, встречались ли вы с человеком, который делает репортажи. I have met a reporter — я встречался с репортёром. Reporter означает «репортёр». Собираем: I + have + met + a reporter. После I ставим have; met — третья форма meet, а не начальная meet. Have met сообщает о вашем опыте, без даты встречи.",
-        "uk": "Друг запитує, чи зустрічалися ви з людиною, яка робить репортажі. I have met a reporter — я зустрічався з репортером. Reporter означає «репортер». Складаємо: I + have + met + a reporter. Після I ставимо have; met — третя форма meet, а не початкова meet. Have met повідомляє про ваш досвід, без дати зустрічі."
+        "ru": "Друг спрашивает, встречались ли вы с человеком, который делает репортажи. I have met a reporter — я встречался с репортёром. Reporter означает «репортёр». Собираем: I + have + met + a reporter. После I ставим have; met — форма meet после have, а не начальная meet. Have met сообщает о вашем опыте, без даты встречи.",
+        "uk": "Друг запитує, чи зустрічалися ви з людиною, яка робить репортажі. I have met a reporter — я зустрічався з репортером. Reporter означає «репортер». Складаємо: I + have + met + a reporter. Після I ставимо have; met — форма meet після have, а не початкова meet. Have met повідомляє про ваш досвід, без дати зустрічі."
       },
       "question": {
         "interactionId": "en:lesson-23:session-35:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Згадуєте зустріч"
       },
       "bodyByLocale": {
-        "ru": "Вы с другом вспоминаете, как познакомились с солдатом на семейном празднике. We have met a soldier — мы встречались с солдатом. Soldier означает «солдат». Собираем: we + have + met + a soldier. С we используем have; met — третья форма meet. После met сразу называем человека, без to. Have met сообщает об опыте встречи; её время в этой фразе не указано.",
-        "uk": "Ви з другом згадуєте, як познайомилися із солдатом на родинному святі. We have met a soldier — ми зустрічалися із солдатом. Soldier означає «солдат». Складаємо: we + have + met + a soldier. Із we використовуємо have; met — третя форма meet. Після met одразу називаємо людину, без to. Have met повідомляє про досвід зустрічі; її час у цій фразі не зазначено."
+        "ru": "Вы с другом вспоминаете, как познакомились с солдатом на семейном празднике. We have met a soldier — мы встречались с солдатом. Soldier означает «солдат». Собираем: we + have + met + a soldier. С we используем have; met — форма meet после have. После met сразу называем человека, без to. Have met сообщает об опыте встречи; её время в этой фразе не указано.",
+        "uk": "Ви з другом згадуєте, як познайомилися із солдатом на родинному святі. We have met a soldier — ми зустрічалися із солдатом. Soldier означає «солдат». Складаємо: we + have + met + a soldier. Із we використовуємо have; met — форма meet після have. Після met одразу називаємо людину, без to. Have met повідомляє про досвід зустрічі; її час у цій фразі не зазначено."
       },
       "question": {
         "interactionId": "en:lesson-23:session-35:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Ще один приклад"
       },
       "bodyByLocale": {
-        "ru": "Firefighter — пожарный: человек, который тушит пожары и участвует в спасении людей. He has spoken to a firefighter — он говорил с пожарным. После has нужна третья форма spoken, а перед названием человека — to.",
-        "uk": "Firefighter — пожежник: людина, яка гасить пожежі й бере участь у порятунку людей. He has spoken to a firefighter — він говорив із пожежником. Після has потрібна третя форма spoken, а перед назвою людини — to."
+        "ru": "Firefighter — пожарный: человек, который тушит пожары и участвует в спасении людей. He has spoken to a firefighter — он говорил с пожарным. После has нужна форма spoken, а перед названием человека — to.",
+        "uk": "Firefighter — пожежник: людина, яка гасить пожежі й бере участь у порятунку людей. He has spoken to a firefighter — він говорив із пожежником. Після has потрібна форма spoken, а перед назвою людини — to."
       },
       "question": {
         "interactionId": "en:lesson-23:session-35:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "b8a93c38d3eebde213503426c32a4a054b17c8a17cda423d56d4fbfd5e7ee0cc"
+  "introFingerprint": "f47218a1f5fb4a2774b747e986796459204170920179b2e6f96b0ac2f1e30dd9"
 }

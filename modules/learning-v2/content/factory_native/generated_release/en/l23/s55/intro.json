@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-55",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, что вы уже делали в жизни: I have had flu.",
+    "uk": "розповісти, що ви вже робили в житті: I have had flu."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Уже поставив запитання"
       },
       "bodyByLocale": {
-        "ru": "Друг хотел узнать о вакцине и уже задал вопрос врачу. He has asked about the vaccine — он спросил о вакцине. Vaccine означает «вакцина». Собираем: he + has + asked + about the vaccine. После he ставим has, затем asked — третью форму ask. About вводит тему вопроса. Has asked сообщает о совершённом действии: вопрос уже задан, но из этой фразы неизвестно, получен ли ответ.",
-        "uk": "Друг хотів дізнатися про вакцину й уже поставив запитання лікарю. He has asked about the vaccine — він запитав про вакцину. Vaccine означає «вакцина». Після he ставимо has, потім asked — третю форму ask: he + has + asked + about the vaccine. About вводить тему запитання. Has asked повідомляє про виконану дію: запитання вже поставлено, але з цієї фрази невідомо, чи отримано відповідь."
+        "ru": "Друг хотел узнать о вакцине и уже задал вопрос врачу. He has asked about the vaccine — он спросил о вакцине. Vaccine означает «вакцина». Собираем: he + has + asked + about the vaccine. После he ставим has, затем asked — форму ask. About вводит тему вопроса. Has asked сообщает о совершённом действии: вопрос уже задан, но из этой фразы неизвестно, получен ли ответ.",
+        "uk": "Друг хотів дізнатися про вакцину й уже поставив запитання лікарю. He has asked about the vaccine — він запитав про вакцину. Vaccine означає «вакцина». Після he ставимо has, потім asked — форму ask: he + has + asked + about the vaccine. About вводить тему запитання. Has asked повідомляє про виконану дію: запитання вже поставлено, але з цієї фрази невідомо, чи отримано відповідь."
       },
       "question": {
         "interactionId": "en:lesson-23:session-55:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "ecce343b7721edd5625e50d8295507da7d2a37ce9c315f31ed3de221cdb06d00"
+  "introFingerprint": "f4cd1091c989dd723eb15e470e81b1f07549c7eb3db755340bb8a9181f919699"
 }

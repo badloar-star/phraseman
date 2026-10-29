@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-51",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, что вы уже делали в жизни: I have tried karate.",
+    "uk": "розповісти, що ви вже робили в житті: I have tried karate."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Уже дивилися гімнастику"
       },
       "bodyByLocale": {
-        "ru": "Друг предлагает посмотреть гимнастику. Вы с сестрой уже видели такие выступления и отвечаете: We have watched gymnastics — мы смотрели гимнастику. Gymnastics означает «гимнастика». Собираем: we + have + watched + gymnastics. После we ставим have, watched — третья форма watch с окончанием -ed. Have watched сообщает о вашем опыте просмотра без даты.",
-        "uk": "Друг пропонує подивитися гімнастику. Ви із сестрою вже бачили такі виступи й відповідаєте: We have watched gymnastics — ми дивилися гімнастику. Gymnastics означає «гімнастика». Складаємо: we + have + watched + gymnastics. Після we ставимо have, watched — третя форма watch із закінченням -ed. Have watched повідомляє про ваш досвід перегляду без дати."
+        "ru": "Друг предлагает посмотреть гимнастику. Вы с сестрой уже видели такие выступления и отвечаете: We have watched gymnastics — мы смотрели гимнастику. Gymnastics означает «гимнастика». Собираем: we + have + watched + gymnastics. После we ставим have, watched — форма watch после have с окончанием -ed. Have watched сообщает о вашем опыте просмотра без даты.",
+        "uk": "Друг пропонує подивитися гімнастику. Ви із сестрою вже бачили такі виступи й відповідаєте: We have watched gymnastics — ми дивилися гімнастику. Gymnastics означає «гімнастика». Складаємо: we + have + watched + gymnastics. Після we ставимо have, watched — форма watch після have із закінченням -ed. Have watched повідомляє про ваш досвід перегляду без дати."
       },
       "question": {
         "interactionId": "en:lesson-23:session-51:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Знайомий зі спортивною боротьбою"
       },
       "bodyByLocale": {
-        "ru": "Обсуждая спорт, вы рассказываете о друге, который уже смотрел соревнования по борьбе. He has watched wrestling — он смотрел борьбу. Wrestling здесь — вид спорта. Собираем: he + has + watched + wrestling. С he выбираем has, затем ставим watched — третью форму watch. Has watched сообщает об опыте просмотра; конкретное соревнование и его дату здесь не называем.",
-        "uk": "Обговорюючи спорт, ви розповідаєте про друга, який уже дивився змагання з боротьби. He has watched wrestling — він дивився боротьбу. Wrestling тут — вид спорту. Складаємо: he + has + watched + wrestling. Із he вибираємо has, потім ставимо watched — третю форму watch. Has watched повідомляє про досвід перегляду; конкретне змагання та його дату тут не називаємо."
+        "ru": "Обсуждая спорт, вы рассказываете о друге, который уже смотрел соревнования по борьбе. He has watched wrestling — он смотрел борьбу. Wrestling здесь — вид спорта. Собираем: he + has + watched + wrestling. С he выбираем has, затем ставим watched — форму watch. Has watched сообщает об опыте просмотра; конкретное соревнование и его дату здесь не называем.",
+        "uk": "Обговорюючи спорт, ви розповідаєте про друга, який уже дивився змагання з боротьби. He has watched wrestling — він дивився боротьбу. Wrestling тут — вид спорту. Складаємо: he + has + watched + wrestling. Із he вибираємо has, потім ставимо watched — форму watch. Has watched повідомляє про досвід перегляду; конкретне змагання та його дату тут не називаємо."
       },
       "question": {
         "interactionId": "en:lesson-23:session-51:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "4fd69058bc0df6bdb12d9f5fefb7a6c3e2bc676085d668977345ed0153559c01"
+  "introFingerprint": "f2bd535982a42d2c43923acf08d156c87ae12a2e76b84e6c9c2d076d55aeaf89"
 }

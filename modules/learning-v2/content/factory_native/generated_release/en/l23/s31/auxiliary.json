@@ -6,12 +6,12 @@
       "interactionId": "en:lesson-23:session-31:intro1:q",
       "responseFeedbackById": {
         "en:lesson-23:session-31:intro1:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-31:intro1:r3": {
-          "ru": "После have или has нужна третья форма: cleaned.",
-          "uk": "Після have або has потрібна третя форма: cleaned."
+          "ru": "После have или has нужна особая форма: cleaned.",
+          "uk": "Після have або has потрібна особлива форма: cleaned."
         }
       }
     },
@@ -19,12 +19,12 @@
       "interactionId": "en:lesson-23:session-31:intro2:q",
       "responseFeedbackById": {
         "en:lesson-23:session-31:intro2:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-31:intro2:r3": {
-          "ru": "После have или has нужна третья форма: cleaned.",
-          "uk": "Після have або has потрібна третя форма: cleaned."
+          "ru": "После have или has нужна особая форма: cleaned.",
+          "uk": "Після have або has потрібна особлива форма: cleaned."
         }
       }
     },
@@ -32,15 +32,15 @@
       "interactionId": "en:lesson-23:session-31:intro3:q",
       "responseFeedbackById": {
         "en:lesson-23:session-31:intro3:r2": {
-          "ru": "Выберите have или has по подлежащему.",
-          "uk": "Виберіть have або has за підметом."
+          "ru": "Выберите have или has по тому, кто действует.",
+          "uk": "Виберіть have або has за тим, хто діє."
         },
         "en:lesson-23:session-31:intro3:r3": {
-          "ru": "После have или has нужна третья форма: decorated.",
-          "uk": "Після have або has потрібна третя форма: decorated."
+          "ru": "После have или has нужна особая форма: decorated.",
+          "uk": "Після have або has потрібна особлива форма: decorated."
         }
       }
     }
   ],
-  "auxiliaryFingerprint": "c6ad351db653222869cdb56dfeff0f3426a624a263efc1b784657d4260c98b96"
+  "auxiliaryFingerprint": "a8189d532abcb8de32ae9f9ededaabbedba4e08266e267f3df3aff261568ec19"
 }

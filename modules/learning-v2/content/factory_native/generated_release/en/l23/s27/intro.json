@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-27",
   "learningOutcomeByLocale": {
-    "ru": "subject + have|has + past participle",
-    "uk": "subject + have|has + past participle"
+    "ru": "сказать, что уже сделано и это видно сейчас: I have hurt my elbow.",
+    "uk": "сказати, що вже зроблено й це видно зараз: I have hurt my elbow."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Болить лікоть"
       },
       "bodyByLocale": {
-        "ru": "Вы ударились локтем, и теперь он болит. Объясняете другу: I have hurt my elbow — я повредил локоть. Elbow означает «локоть». Собираем: I + have + hurt + my elbow. С I ставим have; третья форма hurt пишется так же, как начальная. My показывает, что речь о вашем локте. Have hurt связывает случившееся с состоянием сейчас.",
-        "uk": "Ви вдарилися ліктем, і тепер він болить. Пояснюєте другу: I have hurt my elbow — я пошкодив лікоть. Elbow означає «лікоть». Складаємо: I + have + hurt + my elbow. Із I ставимо have; третя форма hurt пишеться так само, як початкова. My показує, що йдеться про ваш лікоть. Have hurt пов’язує те, що сталося, зі станом зараз."
+        "ru": "Вы ударились локтем, и теперь он болит. Объясняете другу: I have hurt my elbow — я повредил локоть. Elbow означает «локоть». Собираем: I + have + hurt + my elbow. С I ставим have; форма hurt пишется так же, как начальная. My показывает, что речь о вашем локте. Have hurt связывает случившееся с состоянием сейчас.",
+        "uk": "Ви вдарилися ліктем, і тепер він болить. Пояснюєте другу: I have hurt my elbow — я пошкодив лікоть. Elbow означає «лікоть». Складаємо: I + have + hurt + my elbow. Із I ставимо have; форма hurt пишеться так само, як початкова. My показує, що йдеться про ваш лікоть. Have hurt пов’язує те, що сталося, зі станом зараз."
       },
       "question": {
         "interactionId": "en:lesson-23:session-27:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Пояснюєте біль у шиї"
       },
       "bodyByLocale": {
-        "ru": "После неудачного движения у вас болит шея. Вы объясняете, что случилось: I have hurt my neck — я повредил шею. Neck означает «шея». Собираем: I + have + hurt + my neck. После have нужна третья форма hurt; её написание не меняется. My neck называет вашу шею. Have hurt сообщает о случившемся, последствия которого вы ощущаете сейчас.",
-        "uk": "Після невдалого руху у вас болить шия. Ви пояснюєте, що сталося: I have hurt my neck — я пошкодив шию. Neck означає «шия». Складаємо: I + have + hurt + my neck. Після have потрібна третя форма hurt; її написання не змінюється. My neck називає вашу шию. Have hurt повідомляє про те, що сталося й наслідки чого ви відчуваєте зараз."
+        "ru": "После неудачного движения у вас болит шея. Вы объясняете, что случилось: I have hurt my neck — я повредил шею. Neck означает «шея». Собираем: I + have + hurt + my neck. После have нужна форма hurt; её написание не меняется. My neck называет вашу шею. Have hurt сообщает о случившемся, последствия которого вы ощущаете сейчас.",
+        "uk": "Після невдалого руху у вас болить шия. Ви пояснюєте, що сталося: I have hurt my neck — я пошкодив шию. Neck означає «шия». Складаємо: I + have + hurt + my neck. Після have потрібна форма hurt; її написання не змінюється. My neck називає вашу шию. Have hurt повідомляє про те, що сталося й наслідки чого ви відчуваєте зараз."
       },
       "question": {
         "interactionId": "en:lesson-23:session-27:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "92ce85cd347406b6aee0b4360e371aea1ddf7b214433999db0521b280eb9e224"
+  "introFingerprint": "ff23bd93d3461f069696b786b4e0d86f46f587bdf97029a533c8b3cfc5020308"
 }

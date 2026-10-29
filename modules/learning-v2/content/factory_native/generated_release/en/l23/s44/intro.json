@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-44",
   "learningOutcomeByLocale": {
-    "ru": "subject + have|has + past participle",
-    "uk": "subject + have|has + past participle"
+    "ru": "сказать, что уже сделано и это видно сейчас: I have invented a game.",
+    "uk": "сказати, що вже зроблено й це видно зараз: I have invented a game."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Знайшли нове кафе"
       },
       "bodyByLocale": {
-        "ru": "Во время прогулки вы нашли кафе, о котором раньше не знали, и рассказываете другу: I have discovered a new cafe — я обнаружил новое кафе. Discover здесь означает «найти что-то новое для себя». Собираем: I + have + discovered + a new cafe. После I ставим have, discovered — третья форма discover с окончанием -ed. Have discovered сообщает о результате: теперь вы знаете это место.",
-        "uk": "Під час прогулянки ви знайшли кафе, про яке раніше не знали, й розповідаєте другу: I have discovered a new cafe — я знайшов нове кафе. Discover тут означає «знайти щось нове для себе». Складаємо: I + have + discovered + a new cafe. Після I ставимо have, discovered — третя форма discover із закінченням -ed. Have discovered повідомляє про результат: тепер ви знаєте це місце."
+        "ru": "Во время прогулки вы нашли кафе, о котором раньше не знали, и рассказываете другу: I have discovered a new cafe — я обнаружил новое кафе. Discover здесь означает «найти что-то новое для себя». Собираем: I + have + discovered + a new cafe. После I ставим have, discovered — форма discover после have с окончанием -ed. Have discovered сообщает о результате: теперь вы знаете это место.",
+        "uk": "Під час прогулянки ви знайшли кафе, про яке раніше не знали, й розповідаєте другу: I have discovered a new cafe — я знайшов нове кафе. Discover тут означає «знайти щось нове для себе». Складаємо: I + have + discovered + a new cafe. Після I ставимо have, discovered — форма discover після have із закінченням -ed. Have discovered повідомляє про результат: тепер ви знаєте це місце."
       },
       "question": {
         "interactionId": "en:lesson-23:session-44:intro1:q",
@@ -123,8 +123,8 @@
         "uk": "Готова робота"
       },
       "bodyByLocale": {
-        "ru": "Create — создать. He has created a picture — он создал картину. Created — третья форма create. Можно создать картину красками или из разных материалов. Фраза сообщает, что работа уже сделана.",
-        "uk": "Create — створити. He has created a picture — він створив картину. Created — третя форма create. Можна створити картину фарбами або з різних матеріалів. Фраза повідомляє, що роботу вже зроблено."
+        "ru": "Create — создать. He has created a picture — он создал картину. Created — форма create после have. Можно создать картину красками или из разных материалов. Фраза сообщает, что работа уже сделана.",
+        "uk": "Create — створити. He has created a picture — він створив картину. Created — форма create після have. Можна створити картину фарбами або з різних матеріалів. Фраза повідомляє, що роботу вже зроблено."
       },
       "question": {
         "interactionId": "en:lesson-23:session-44:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "5ac8feba69926d788f5b686cea200638e932e0648a06847b9500c61c49586273"
+  "introFingerprint": "53b4fb3fe783d324ca48ae9357901306abbe2bfd614b932c06d273672ae55a38"
 }

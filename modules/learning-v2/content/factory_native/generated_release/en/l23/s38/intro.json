@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-23:session-38",
   "learningOutcomeByLocale": {
-    "ru": "present perfect + life experience",
-    "uk": "present perfect + life experience"
+    "ru": "рассказать, какие школьные предметы вы изучали: I have studied geography.",
+    "uk": "розповісти, які шкільні предмети ви вивчали: I have studied geography."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Предмет вам знайомий"
       },
       "bodyByLocale": {
-        "ru": "Друг спрашивает, знакома ли вам география. Вы изучали её и отвечаете: I have studied geography — я изучал географию. Geography означает «география». Собираем: I + have + studied + geography. После I ставим have. Третья форма study — studied: y меняется на i перед -ed. Have studied сообщает об опыте учёбы без указания времени.",
-        "uk": "Друг запитує, чи знайома вам географія. Ви вивчали її й відповідаєте: I have studied geography — я вивчав географію. Geography означає «географія». Складаємо: I + have + studied + geography. Після I ставимо have. Третя форма study — studied: y змінюється на i перед -ed. Have studied повідомляє про досвід навчання без зазначення часу."
+        "ru": "Друг спрашивает, знакома ли вам география. Вы изучали её и отвечаете: I have studied geography — я изучал географию. Geography означает «география». Собираем: I + have + studied + geography. После I ставим have. Форма после have study — studied: y меняется на i перед -ed. Have studied сообщает об опыте учёбы без указания времени.",
+        "uk": "Друг запитує, чи знайома вам географія. Ви вивчали її й відповідаєте: I have studied geography — я вивчав географію. Geography означає «географія». Складаємо: I + have + studied + geography. Після I ставимо have. Форма після have study — studied: y змінюється на i перед -ed. Have studied повідомляє про досвід навчання без зазначення часу."
       },
       "question": {
         "interactionId": "en:lesson-23:session-38:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Розрізняємо слова"
       },
       "bodyByLocale": {
-        "ru": "Chemistry — химия: предмет о веществах и их превращениях. We have studied chemistry — мы изучали химию. Перед названием школьного предмета в этой фразе нет артикля. Мы рассказываем об опыте учёбы, а не называем дату урока.",
-        "uk": "Chemistry — хімія: предмет про речовини та їхні перетворення. We have studied chemistry — ми вивчали хімію. Перед назвою шкільного предмета в цій фразі немає артикля. Ми розповідаємо про досвід навчання, а не називаємо дату уроку."
+        "ru": "Chemistry — химия: предмет о веществах и их превращениях. We have studied chemistry — мы изучали химию. Перед названием школьного предмета в этой фразе нет ни a, ни the. Мы рассказываем об опыте учёбы, а не называем дату урока.",
+        "uk": "Chemistry — хімія: предмет про речовини та їхні перетворення. We have studied chemistry — ми вивчали хімію. Перед назвою шкільного предмета в цій фразі немає ні a, ні the. Ми розповідаємо про досвід навчання, а не називаємо дату уроку."
       },
       "question": {
         "interactionId": "en:lesson-23:session-38:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Він вивчав фізику"
       },
       "bodyByLocale": {
-        "ru": "Вы ищете человека, которому знакома физика, и вспоминаете друга, изучавшего этот предмет. He has studied physics — он изучал физику. Physics означает «физика». Собираем: he + has + studied + physics. Выбираем has, потому что о человеке сказано he. Затем ставим studied — третью форму study, а после неё название предмета. Has studied сообщает об опыте учёбы.",
-        "uk": "Ви шукаєте людину, якій знайома фізика, і згадуєте друга, що вивчав цей предмет. He has studied physics — він вивчав фізику. Physics означає «фізика». Складаємо: he + has + studied + physics. Вибираємо has, тому що про людину сказано he. Потім ставимо studied — третю форму study, а після неї назву предмета. Has studied повідомляє про досвід навчання."
+        "ru": "Вы ищете человека, которому знакома физика, и вспоминаете друга, изучавшего этот предмет. He has studied physics — он изучал физику. Physics означает «физика». Собираем: he + has + studied + physics. Выбираем has, потому что о человеке сказано he. Затем ставим studied — форму study, а после неё название предмета. Has studied сообщает об опыте учёбы.",
+        "uk": "Ви шукаєте людину, якій знайома фізика, і згадуєте друга, що вивчав цей предмет. He has studied physics — він вивчав фізику. Physics означає «фізика». Складаємо: he + has + studied + physics. Вибираємо has, тому що про людину сказано he. Потім ставимо studied — форму study, а після неї назву предмета. Has studied повідомляє про досвід навчання."
       },
       "question": {
         "interactionId": "en:lesson-23:session-38:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "a6ce52cea1f33055257ed305622cff767e1e06ea9e662f1b0eae52e240b63469"
+  "introFingerprint": "86df083a4805f3f2abe6284489a3101fb2c05b2a36c0fb68e7d52b6c4d335358"
 }

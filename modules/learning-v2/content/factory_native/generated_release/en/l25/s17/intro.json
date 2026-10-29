@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-25:session-17",
   "learningOutcomeByLocale": {
-    "ru": "had + past participle before later past event",
-    "uk": "had + past participle before later past event"
+    "ru": "сказать, что вы успели сделать до другого события: I had eaten before the meeting started.",
+    "uk": "сказати, що ви встигли зробити до іншої події: I had eaten before the meeting started."
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Спочатку вправа, потім урок"
       },
       "bodyByLocale": {
-        "ru": "Redo — переделать; третья форма — redone. She had redone the exercise before the lesson began — она переделала упражнение до начала урока. Здесь два события в прошлом: сначала переделала упражнение, потом начался урок. Для более раннего действия используем Past Perfect: had + третья форма глагола. Для более позднего — began, Past Simple. Had одинаково для I, she, we и остальных лиц.",
-        "uk": "Redo — переробити; третя форма — redone. She had redone the exercise before the lesson began — вона переробила вправу до початку уроку. Тут дві події в минулому: спочатку переробила вправу, потім почався урок. Для ранішої дії використовуємо Past Perfect: had + третя форма дієслова. Для пізнішої — began, Past Simple. Had однакове для I, she, we та решти осіб."
+        "ru": "Redo — переделать; форма после have — redone. She had redone the exercise before the lesson began — она переделала упражнение до начала урока. Здесь два события в прошлом: сначала переделала упражнение, потом начался урок. Для более раннего действия используем had + done. Для более позднего — began, форма прошлого. Had одинаково для I, she, we и остальных лиц.",
+        "uk": "Redo — переробити; форма після have — redone. She had redone the exercise before the lesson began — вона переробила вправу до початку уроку. Тут дві події в минулому: спочатку переробила вправу, потім почався урок. Для ранішої дії використовуємо had + done. Для пізнішої — began, форма минулого. Had однакове для I, she, we та решти осіб."
       },
       "question": {
         "interactionId": "en:lesson-25:session-17:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Стіна до нашого приїзду"
       },
       "bodyByLocale": {
-        "ru": "Вы приехали к знакомым и увидели уже восстановленную стену. They had rebuilt the wall before we arrived — они построили стену заново до нашего приезда. Сначала называем исполнителей they, затем ставим had + rebuilt: had и третья форма rebuild показывают, что работа закончилась раньше другого события в прошлом. The wall называет, что восстановили. После before добавляем we + arrived — кто приехал и что произошло позже. Так порядок had rebuilt … before … arrived передаёт последовательность событий в этой ситуации.",
-        "uk": "Ви приїхали до знайомих і побачили вже відновлену стіну. They had rebuilt the wall before we arrived — вони збудували стіну наново до нашого приїзду. Спочатку називаємо виконавців they, потім ставимо had + rebuilt: had і третя форма rebuild показують, що робота закінчилася раніше за іншу подію в минулому. The wall називає, що відновили. Після before додаємо we + arrived — хто приїхав і що сталося пізніше. Так порядок had rebuilt … before … arrived передає послідовність подій у цій ситуації."
+        "ru": "Вы приехали к знакомым и увидели уже восстановленную стену. They had rebuilt the wall before we arrived — они построили стену заново до нашего приезда. Сначала называем исполнителей they, затем ставим had + rebuilt: had и форма rebuild показывают, что работа закончилась раньше другого события в прошлом. The wall называет, что восстановили. После before добавляем we + arrived — кто приехал и что произошло позже. Так порядок had rebuilt … before … arrived передаёт последовательность событий в этой ситуации.",
+        "uk": "Ви приїхали до знайомих і побачили вже відновлену стіну. They had rebuilt the wall before we arrived — вони збудували стіну наново до нашого приїзду. Спочатку називаємо виконавців they, потім ставимо had + rebuilt: had і форма rebuild показують, що робота закінчилася раніше за іншу подію в минулому. The wall називає, що відновили. Після before додаємо we + arrived — хто приїхав і що сталося пізніше. Так порядок had rebuilt … before … arrived передає послідовність подій у цій ситуації."
       },
       "question": {
         "interactionId": "en:lesson-25:session-17:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Перед надсиланням"
       },
       "bodyByLocale": {
-        "ru": "Reread — перечитать. Написание третьей формы тоже reread, но её окончание звучит как red, не reed. He had reread the letter before he sent it — он перечитал письмо до того, как отправил его. Перечитал раньше, отправил позже. Для первого действия — had reread, для второго — sent. Past Perfect связывает действие с другим моментом в прошлом; это не просто замена любого Past Simple.",
-        "uk": "Reread — перечитати. Написання третьої форми теж reread, але її закінчення звучить як red, не reed. He had reread the letter before he sent it — він перечитав лист до того, як надіслав його. Перечитав раніше, надіслав пізніше. Для першої дії — had reread, для другої — sent. Past Perfect пов’язує дію з іншим моментом у минулому; це не просто заміна будь-якого Past Simple."
+        "ru": "Reread — перечитать. Написание формы после have тоже reread, но её окончание звучит как red, не reed. He had reread the letter before he sent it — он перечитал письмо до того, как отправил его. Перечитал раньше, отправил позже. Для первого действия — had reread, для второго — sent. Форма had + done связывает действие с другим моментом в прошлом; это не просто замена любой формы прошлого.",
+        "uk": "Reread — перечитати. Написання форми після have теж reread, але її закінчення звучить як red, не reed. He had reread the letter before he sent it — він перечитав лист до того, як надіслав його. Перечитав раніше, надіслав пізніше. Для першої дії — had reread, для другої — sent. Форма had + done пов’язує дію з іншим моментом у минулому; це не просто заміна будь-якої форми минулого."
       },
       "question": {
         "interactionId": "en:lesson-25:session-17:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "1e17248d9e4aaa61b043130bf9d8e73c26ce187db33054fa940d073ea3dbde21"
+  "introFingerprint": "cf7125d188a9bf54ed954df40a6cf7443362be7316e5ea62416dd42abc4d0ddd"
 }

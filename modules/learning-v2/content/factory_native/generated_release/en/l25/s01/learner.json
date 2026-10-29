@@ -819,7 +819,7 @@
             "correct": false,
             "testedDimension": "Вы рассказываете об одном походе вчера, не о прежней привычке. Выберите подходящую форму.",
             "feedbackByLocale": {
-              "ru": "После used to нельзя ставить visited; кроме того, здесь нужен Past Simple для одного события.",
+              "ru": "После used to нельзя ставить visited; кроме того, здесь нужна форма прошлого для одного события.",
               "uk": "Після used to не можна ставити visited; до того ж тут потрібен Past Simple для однієї події."
             }
           }
@@ -1124,5 +1124,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "84d6263c9d5b849d11176776dde6dd0f369139c60aa1525251afadc86bc5c60f"
+  "learnerFingerprint": "ee165440194654520f645cc96610736074fa1e64a6ffd46799c4fea79ad425fe"
 }

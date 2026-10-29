@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-33",
   "learningOutcomeByLocale": {
-    "ru": "number + unit + of + non-count noun",
-    "uk": "number + unit + of + non-count noun"
+    "ru": "назвать количество: We need two tubes of toothpaste.",
+    "uk": "назвати кількість: We need two tubes of toothpaste."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Два шматки мила"
       },
       "bodyByLocale": {
-        "ru": "Вы покупаете мыло для двух ванных комнат: по одному куску в каждую. We need two bars of soap — нам нужны два куска мыла. Соберите фразу: We need + two bars + of soap. Мыло здесь неисчисляемое, поэтому считаем отдельные куски с помощью bar. После two используем bars; soap остаётся без -s. Of связывает единицу с веществом.",
-        "uk": "Ви купуєте мило для двох ванних кімнат: по одному шматку в кожну. We need two bars of soap — нам потрібні два шматки мила. Складіть фразу: We need + two bars + of soap. Мило тут незлічуване, тому рахуємо окремі шматки за допомогою bar. Після two використовуємо bars; soap залишається без -s. Of пов'язує одиницю з речовиною."
+        "ru": "Вы покупаете мыло для двух ванных комнат: по одному куску в каждую. We need two bars of soap — нам нужны два куска мыла. Соберите фразу: We need + two bars + of soap. Мыло здесь не считается поштучно, поэтому считаем отдельные куски с помощью bar. После two используем bars; soap остаётся без -s. Of связывает единицу с веществом.",
+        "uk": "Ви купуєте мило для двох ванних кімнат: по одному шматку в кожну. We need two bars of soap — нам потрібні два шматки мила. Складіть фразу: We need + two bars + of soap. Мило тут не рахується поштучно, тому рахуємо окремі шматки за допомогою bar. Після two використовуємо bars; soap залишається без -s. Of пов'язує одиницю з речовиною."
       },
       "question": {
         "interactionId": "en:lesson-17:session-33:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Коробки для сніданків"
       },
       "bodyByLocale": {
-        "ru": "Вы записали в список покупок две коробки хлопьев для семейных завтраков. We need two boxes of cereal — нам нужны две коробки хлопьев. После We need поставьте two boxes, затем of cereal. Множественное число box — boxes: к слову на -x добавляем -es. Cereal здесь называет содержимое коробок, поэтому не меняется. Of связывает коробки с хлопьями.",
-        "uk": "Ви записали до списку покупок дві коробки пластівців для сімейних сніданків. We need two boxes of cereal — нам потрібні дві коробки пластівців. Після We need поставте two boxes, потім of cereal. Множина box — boxes: до слова на -x додаємо -es. Cereal тут називає вміст коробок, тому не змінюється. Of пов'язує коробки з пластівцями."
+        "ru": "Вы записали в список покупок две коробки хлопьев для семейных завтраков. We need two boxes of cereal — нам нужны две коробки хлопьев. После We need поставьте two boxes, затем of cereal. Форма для нескольких box — boxes: к слову на -x добавляем -es. Cereal здесь называет содержимое коробок, поэтому не меняется. Of связывает коробки с хлопьями.",
+        "uk": "Ви записали до списку покупок дві коробки пластівців для сімейних сніданків. We need two boxes of cereal — нам потрібні дві коробки пластівців. Після We need поставте two boxes, потім of cereal. Форма для кількох box — boxes: до слова на -x додаємо -es. Cereal тут називає вміст коробок, тому не змінюється. Of пов'язує коробки з пластівцями."
       },
       "question": {
         "interactionId": "en:lesson-17:session-33:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "3663ca2a4345189301b383d41890b2256ceb21ab0d9510a8ce42fe960eb9337b"
+  "introFingerprint": "eec10b1e01c5db186c6250c22357438a851c5df7cb37d90e32e59684bf011231"
 }

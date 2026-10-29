@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-41",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "выразить сильное впечатление: This short break is so welcome.",
+    "uk": "висловити сильне враження: This short break is so welcome."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Розповісти про пізній вечір"
       },
       "bodyByLocale": {
-        "ru": "Вы засиделись с друзьями и легли спать далеко за полночь. We had such a late night — мы так поздно легли. Начните с We had: had показывает, что вечер уже прошёл. После него поставьте such a late night. Здесь night — существительное с определением late, поэтому нужны such и артикль a в порядке such a late night.",
-        "uk": "Ви засиділися з друзями й лягли спати далеко за північ. We had such a late night — ми так пізно лягли. Почніть із We had: had показує, що вечір уже минув. Після нього поставте such a late night. Тут night — іменник з означенням late, тому потрібні such і артикль a в порядку such a late night."
+        "ru": "Вы засиделись с друзьями и легли спать далеко за полночь. We had such a late night — мы так поздно легли. Начните с We had: had показывает, что вечер уже прошёл. После него поставьте such a late night. Здесь night — существительное с определением late, поэтому нужны such и a в порядке such a late night.",
+        "uk": "Ви засиділися з друзями й лягли спати далеко за північ. We had such a late night — ми так пізно лягли. Почніть із We had: had показує, що вечір уже минув. Після нього поставте such a late night. Тут night — іменник з означенням late, тому потрібні such і a в порядку such a late night."
       },
       "question": {
         "interactionId": "en:lesson-18:session-41:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "7014fe44fe49ae0b779c9891beb76988aa3af534e06e6ae7adebe698d2a4e7ad"
+  "introFingerprint": "a4936ecaee8f752847db92d08e4e6b3d1c3ec64715528832b9f40b354cb3c93e"
 }

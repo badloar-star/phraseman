@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Несколько свидетельств уже скопированы. Подтвердите это. Birth certificate → birth certificates.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "В обсуждаемой папке нет ни одного такого свидетельства. Marriage certificate → marriage certificates.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -662,7 +662,7 @@
             "correct": false,
             "testedDimension": "Вы сообщаете о нескольких уже проверенных документах. Identity card → identity cards.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -885,7 +885,7 @@
             "correct": false,
             "testedDimension": "Вы не знаете, есть ли бланки. Спросите нейтрально, без ожидания ответа «да». Registration form → registration forms.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b71df5a76022e06a751e4e67e205e83ae619a432c2eb4f5f9b0db48364ad6c34"
+  "learnerFingerprint": "5038992febf96d4171a8f84ba236951f5a9a80d00f6995e1af903881a23ae18a"
 }

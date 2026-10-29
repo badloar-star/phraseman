@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-43",
   "learningOutcomeByLocale": {
-    "ru": "some / any + plural count noun or non-count noun",
-    "uk": "some / any + plural count noun or non-count noun"
+    "ru": "спросить о новых адресах: Do you have any forwarding addresses?",
+    "uk": "запитати про нові адреси: Do you have any forwarding addresses?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Повідомити про наявність"
       },
       "bodyByLocale": {
-        "ru": "delivery address — адрес доставки. Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
-        "uk": "delivery address — адреса доставки. Для замовлень родини збережено кілька адрес. Підтвердьте це. Delivery address → delivery addresses. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+        "ru": "delivery address — адрес доставки. Для заказов семьи сохранены несколько адресов. Подтвердите это. Delivery address → delivery addresses. Some ставим перед несколькими предметами или тем, что не считают поштучно, когда сообщаем о некотором количестве.",
+        "uk": "delivery address — адреса доставки. Для замовлень родини збережено кілька адрес. Підтвердьте це. Delivery address → delivery addresses. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість."
       },
       "question": {
         "interactionId": "en:lesson-17:session-43:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Потрібних адрес немає"
       },
       "bodyByLocale": {
-        "ru": "Вы с коллегой проверяете список заказов: адреса для выставления счетов в нём совсем не указаны. We don't have any billing addresses — у нас нет адресов для выставления счетов. Соберите отрицание: We don't have + any + billing addresses. Address заканчивается на -ss, поэтому во множественном числе добавляем -es: addresses. Any после don't have означает, что нет ни одного такого адреса.",
-        "uk": "Ви з колегою перевіряєте список замовлень: адреси для виставлення рахунків у ньому зовсім не вказані. We don't have any billing addresses — у нас немає адрес для виставлення рахунків. Складіть заперечення: We don't have + any + billing addresses. Address закінчується на -ss, тому в множині додаємо -es: addresses. Any після don't have означає, що немає жодної такої адреси."
+        "ru": "Вы с коллегой проверяете список заказов: адреса для выставления счетов в нём совсем не указаны. We don't have any billing addresses — у нас нет адресов для выставления счетов. Соберите отрицание: We don't have + any + billing addresses. Address заканчивается на -ss, поэтому в форме для нескольких добавляем -es: addresses. Any после don't have означает, что нет ни одного такого адреса.",
+        "uk": "Ви з колегою перевіряєте список замовлень: адреси для виставлення рахунків у ньому зовсім не вказані. We don't have any billing addresses — у нас немає адрес для виставлення рахунків. Складіть заперечення: We don't have + any + billing addresses. Address закінчується на -ss, тому у формі для кількох додаємо -es: addresses. Any після don't have означає, що немає жодної такої адреси."
       },
       "question": {
         "interactionId": "en:lesson-17:session-43:intro2:q",
@@ -123,8 +123,8 @@
         "uk": "Дізнатися нові адреси"
       },
       "bodyByLocale": {
-        "ru": "На старый адрес пришли письма для нескольких переехавших жильцов. Вы спрашиваете соседа, есть ли у него адреса для пересылки: Do you have any forwarding addresses? Сначала Do you have, затем any forwarding addresses. Address во множественном числе становится addresses. Any подходит, потому что вы не знаете, сохранились ли адреса у соседа; some могло бы выражать ожидание, что они у него есть.",
-        "uk": "На стару адресу надійшли листи для кількох мешканців, які переїхали. Ви запитуєте сусіда, чи є в нього адреси для пересилання: Do you have any forwarding addresses? Спочатку Do you have, потім any forwarding addresses. Address у множині стає addresses. Any підходить, бо ви не знаєте, чи збереглися адреси в сусіда; some могло б виражати очікування, що вони в нього є."
+        "ru": "На старый адрес пришли письма для нескольких переехавших жильцов. Вы спрашиваете соседа, есть ли у него адреса для пересылки: Do you have any forwarding addresses? Сначала Do you have, затем any forwarding addresses. Address в форме для нескольких становится addresses. Any подходит, потому что вы не знаете, сохранились ли адреса у соседа; some могло бы выражать ожидание, что они у него есть.",
+        "uk": "На стару адресу надійшли листи для кількох мешканців, які переїхали. Ви запитуєте сусіда, чи є в нього адреси для пересилання: Do you have any forwarding addresses? Спочатку Do you have, потім any forwarding addresses. Address у формі для кількох стає addresses. Any підходить, бо ви не знаєте, чи збереглися адреси в сусіда; some могло б виражати очікування, що вони в нього є."
       },
       "question": {
         "interactionId": "en:lesson-17:session-43:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "bc06b4afe6abf8acfacbdd27b4ef048ce641ab1d0fccb3b43e44d3f26fe8728a"
+  "introFingerprint": "bec9e66ecdd850ec481d194b2819b711b4501a5406f6ebb7db8e92c9fcb95dfd"
 }

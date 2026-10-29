@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-35",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "выразить сильное впечатление: The heavy rain is so loud.",
+    "uk": "висловити сильне враження: The heavy rain is so loud."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Поскаржитися на вітер"
       },
       "bodyByLocale": {
-        "ru": "Вы пытаетесь поставить палатку, но сильный ветер мешает её закрепить. The strong wind is such a problem — сильный ветер — такая проблема. После The strong wind is поставьте such a problem. Problem — существительное, поэтому выбираем such. Артикль a остаётся непосредственно перед problem, а such ставится перед a; прилагательное в этой группе не обязательно.",
-        "uk": "Ви намагаєтеся поставити намет, але сильний вітер заважає його закріпити. The strong wind is such a problem — сильний вітер — така проблема. Після The strong wind is поставте such a problem. Problem — іменник, тому обираємо such. Артикль a залишається безпосередньо перед problem, а such ставимо перед a; прикметник у цій групі не обов’язковий."
+        "ru": "Вы пытаетесь поставить палатку, но сильный ветер мешает её закрепить. The strong wind is such a problem — сильный ветер — такая проблема. После The strong wind is поставьте such a problem. Problem — существительное, поэтому выбираем such. Слово a остаётся непосредственно перед problem, а such ставится перед a; прилагательное в этой группе не обязательно.",
+        "uk": "Ви намагаєтеся поставити намет, але сильний вітер заважає його закріпити. The strong wind is such a problem — сильний вітер — така проблема. Після The strong wind is поставте such a problem. Problem — іменник, тому обираємо such. Слово a залишається безпосередньо перед problem, а such ставимо перед a; прикметник у цій групі не обов’язковий."
       },
       "question": {
         "interactionId": "en:lesson-18:session-35:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "c98e95930f522c7e3a75d9c4c5a4e4379a3d4412eeafe49b55b6f152183d5090"
+  "introFingerprint": "855f7e76e2986c15f77023843e8b321464ecd0c833b48c7f00b98068f88dc784"
 }

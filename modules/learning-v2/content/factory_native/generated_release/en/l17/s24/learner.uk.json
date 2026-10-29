@@ -217,7 +217,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що певні досягнення вже є. Achievement → achievements.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -438,7 +438,7 @@
             "correct": false,
             "testedDimension": "Ви очікували більше перешкод, але їх виявилося мало. Підкресліть малу кількість. Setback → setbacks.",
             "feedbackByLocale": {
-              "ru": "С исчисляемым во множественном числе используйте few.",
+              "ru": "С несколькими предметами, которые можно посчитать, используйте few.",
               "uk": "Із злічуваним у множині використовуйте few."
             }
           }
@@ -660,7 +660,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що хоч трохи сміливості вдалося знайти.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -881,7 +881,7 @@
             "correct": false,
             "testedDimension": "Ви сумніваєтеся у своїх силах. Підкресліть брак упевненості.",
             "feedbackByLocale": {
-              "ru": "С неисчисляемым используйте little.",
+              "ru": "С тем, что не считают поштучно, используйте little.",
               "uk": "Із незлічуваним використовуйте little."
             }
           }
@@ -1109,5 +1109,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "1bea50678d846dfd8d45f09ca07b46863cc134ad9e66e360e33244fc722b5cc8"
+  "learnerFingerprint": "18fceaa0e91e6036f821b3dba8305b725ab24fcd5b89d0b1ab19c110916f8083"
 }

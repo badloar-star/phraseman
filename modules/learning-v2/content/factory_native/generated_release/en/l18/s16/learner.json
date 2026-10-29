@@ -163,7 +163,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-16:i03:r1",
@@ -180,11 +180,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "We booked ___ home visit.",
@@ -386,7 +386,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-16:i06:r1",
@@ -403,11 +403,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "This phone appointment is ___.",
@@ -609,7 +609,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-16:i09:r1",
@@ -626,11 +626,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "We booked ___ dental appointment.",
@@ -832,7 +832,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-16:i12:r1",
@@ -849,11 +849,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "This is ___ appointment time.",
@@ -1121,5 +1121,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "a29e9a12aaa293c3f1e97a570e44f50bff866d655ae06c3a97b922a909d2ceeb"
+  "learnerFingerprint": "955b73ef8dcd4544227c52149d1bb1d6ef81abb471e9bee01551e46ef493a241"
 }

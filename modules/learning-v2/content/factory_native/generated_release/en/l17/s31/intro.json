@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-31",
   "learningOutcomeByLocale": {
-    "ru": "some / any + plural count noun or non-count noun",
-    "uk": "some / any + plural count noun or non-count noun"
+    "ru": "спросить о доставке на дом: Do you offer any home delivery?",
+    "uk": "запитати про доставку додому: Do you offer any home delivery?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Повідомити про наявність"
       },
       "bodyByLocale": {
-        "ru": "discount code — промокод на скидку. Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
-        "uk": "discount code — промокод на знижку. Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+        "ru": "discount code — промокод на скидку. Несколько промокодов есть. Подтвердите наличие. Discount code → discount codes. Some ставим перед несколькими предметами или тем, что не считают поштучно, когда сообщаем о некотором количестве.",
+        "uk": "discount code — промокод на знижку. Кілька промокодів є. Підтвердьте наявність. Discount code → discount codes. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість."
       },
       "question": {
         "interactionId": "en:lesson-17:session-31:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Ціни не підвищилися"
       },
       "bodyByLocale": {
-        "ru": "Вы сравнили старый и новый список цен магазина: ни одна цена не стала выше. There aren't any price increases — повышений цен нет. Соберите отрицание: There aren't + any + price increases. Increase можно посчитать, поэтому используем increases во множественном числе и aren't. Any подчёркивает, что повышений нет совсем, а не только у части товаров.",
-        "uk": "Ви порівняли старий і новий список цін магазину: жодна ціна не стала вищою. There aren't any price increases — підвищень цін немає. Складіть заперечення: There aren't + any + price increases. Increase можна порахувати, тому використовуємо increases у множині й aren't. Any підкреслює, що підвищень немає зовсім, а не лише для частини товарів."
+        "ru": "Вы сравнили старый и новый список цен магазина: ни одна цена не стала выше. There aren't any price increases — повышений цен нет. Соберите отрицание: There aren't + any + price increases. Increase можно посчитать, поэтому используем increases в форме для нескольких и aren't. Any подчёркивает, что повышений нет совсем, а не только у части товаров.",
+        "uk": "Ви порівняли старий і новий список цін магазину: жодна ціна не стала вищою. There aren't any price increases — підвищень цін немає. Складіть заперечення: There aren't + any + price increases. Increase можна порахувати, тому використовуємо increases у формі для кількох й aren't. Any підкреслює, що підвищень немає зовсім, а не лише для частини товарів."
       },
       "question": {
         "interactionId": "en:lesson-17:session-31:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "49694e9ae53dbec2de05e6fcf7ac2275e25e1a0fd29c2f3a3ea9aa31d7805c6f"
+  "introFingerprint": "89882c1e38ded4ea7d4e76eb6c2738458b7134d16d1af878c0a114e460d59714"
 }

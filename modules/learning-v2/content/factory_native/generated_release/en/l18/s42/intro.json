@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-42",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "выразить сильное впечатление: This light lunch is so fresh.",
+    "uk": "висловити сильне враження: This light lunch is so fresh."
   },
   "pages": [
     {
@@ -123,8 +123,8 @@
         "uk": "Похвалити гарячий напій"
       },
       "bodyByLocale": {
-        "ru": "Вы согрелись чашкой какао и хотите похвалить напиток. This is such a nice hot drink — это такой приятный горячий напиток. После This is поставьте such, затем a nice hot drink. Drink здесь обозначает одну порцию напитка, поэтому нужен a. Прилагательные nice и hot идут перед drink; such ставим перед всей группой, включая артикль.",
-        "uk": "Ви зігрілися чашкою какао й хочете похвалити напій. This is such a nice hot drink — це такий приємний гарячий напій. Після This is поставте such, потім a nice hot drink. Drink тут позначає одну порцію напою, тому потрібен a. Прикметники nice і hot стоять перед drink; such ставимо перед усією групою, включно з артиклем."
+        "ru": "Вы согрелись чашкой какао и хотите похвалить напиток. This is such a nice hot drink — это такой приятный горячий напиток. После This is поставьте such, затем a nice hot drink. Drink здесь обозначает одну порцию напитка, поэтому нужен a. Прилагательные nice и hot идут перед drink; such ставим перед всей группой, вместе с a или the.",
+        "uk": "Ви зігрілися чашкою какао й хочете похвалити напій. This is such a nice hot drink — це такий приємний гарячий напій. Після This is поставте such, потім a nice hot drink. Drink тут позначає одну порцію напою, тому потрібен a. Прикметники nice і hot стоять перед drink; such ставимо перед усією групою, включно з a чи the."
       },
       "question": {
         "interactionId": "en:lesson-18:session-42:intro3:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "390966bc78aefabf505da3792305d20bbf5f5354508364b64a23a31ee89ec3a9"
+  "introFingerprint": "d96834253233db1fee21169ca33bca650e9741f4f6495bcb4ffdff4b1fbd5884"
 }

@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите сравнительную форму.",
+      "prompt": "Выберите форму для сравнения.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-08:i03:r1",
@@ -182,11 +182,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите сравнительную форму.",
+      "accessibilityLabel": "Выберите форму для сравнения.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите сравнительную форму.",
+          "ru": "Выберите форму для сравнения.",
           "uk": "Виберіть порівняльну форму."
         },
         "gappedTargetPhrase": "The airport bus is ___ than a taxi.",
@@ -391,7 +391,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите сравнительную форму.",
+      "prompt": "Выберите форму для сравнения.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-08:i06:r1",
@@ -408,11 +408,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите сравнительную форму.",
+      "accessibilityLabel": "Выберите форму для сравнения.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите сравнительную форму.",
+          "ru": "Выберите форму для сравнения.",
           "uk": "Виберіть порівняльну форму."
         },
         "gappedTargetPhrase": "The airport train is ___ than the airport bus.",
@@ -616,7 +616,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите сравнительную форму.",
+      "prompt": "Выберите форму для сравнения.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-08:i09:r1",
@@ -633,11 +633,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите сравнительную форму.",
+      "accessibilityLabel": "Выберите форму для сравнения.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите сравнительную форму.",
+          "ru": "Выберите форму для сравнения.",
           "uk": "Виберіть порівняльну форму."
         },
         "gappedTargetPhrase": "The taxi fare is ___ than we expected.",
@@ -841,7 +841,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите сравнительную форму.",
+      "prompt": "Выберите форму для сравнения.",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-08:i12:r1",
@@ -858,11 +858,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите сравнительную форму.",
+      "accessibilityLabel": "Выберите форму для сравнения.",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите сравнительную форму.",
+          "ru": "Выберите форму для сравнения.",
           "uk": "Виберіть порівняльну форму."
         },
         "gappedTargetPhrase": "This travel pass is ___ than those tickets.",
@@ -1130,5 +1130,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5bca6f8607d61c484f48dfe687581e2b6e82865d64f5604afab015548a8fa76e"
+  "learnerFingerprint": "adcc7b450c3cfe9f1db7c3ccc454917e63b756efa2cd6557e32f1d919e28a4fc"
 }

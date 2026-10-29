@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-17:session-26",
   "learningOutcomeByLocale": {
-    "ru": "some / any + plural count noun or non-count noun",
-    "uk": "some / any + plural count noun or non-count noun"
+    "ru": "спросить, есть ли поддержка клиентов: Is there any customer service here?",
+    "uk": "запитати, чи є підтримка клієнтів: Is there any customer service here?"
   },
   "pages": [
     {
@@ -15,8 +15,8 @@
         "uk": "Повідомити про наявність"
       },
       "bodyByLocale": {
-        "ru": "delivery charge — плата за доставку. В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges. Some ставим перед исчисляемым во множественном числе или неисчисляемым, когда сообщаем о некотором количестве.",
-        "uk": "delivery charge — плата за доставку. У замовленнях є кілька доплат за доставку. Підтвердьте їхню наявність. Delivery charge → delivery charges. Some ставимо перед злічуваним у множині або незлічуваним, коли повідомляємо про певну кількість."
+        "ru": "delivery charge — плата за доставку. В заказах есть несколько доплат за доставку. Подтвердите их наличие. Delivery charge → delivery charges. Some ставим перед несколькими предметами или тем, что не считают поштучно, когда сообщаем о некотором количестве.",
+        "uk": "delivery charge — плата за доставку. У замовленнях є кілька доплат за доставку. Підтвердьте їхню наявність. Delivery charge → delivery charges. Some ставимо перед кількома предметами або тим, що не рахують поштучно, коли повідомляємо про певну кількість."
       },
       "question": {
         "interactionId": "en:lesson-17:session-26:intro1:q",
@@ -69,8 +69,8 @@
         "uk": "Доплат за обслуговування немає"
       },
       "bodyByLocale": {
-        "ru": "Вы просматриваете итоговый счёт вместе с другом: доплаты за обслуживание не включены. There aren't any service charges — доплат за обслуживание нет. Составьте отрицание: There aren't + any service charges. Charge можно посчитать, поэтому используем charges во множественном числе и aren't. Any подчёркивает, что таких доплат нет совсем, а не только некоторых.",
-        "uk": "Ви переглядаєте підсумковий рахунок разом із другом: доплати за обслуговування не включені. There aren't any service charges — доплат за обслуговування немає. Складіть заперечення: There aren't + any service charges. Charge можна порахувати, тому використовуємо charges у множині й aren't. Any підкреслює, що таких доплат немає зовсім, а не лише деяких."
+        "ru": "Вы просматриваете итоговый счёт вместе с другом: доплаты за обслуживание не включены. There aren't any service charges — доплат за обслуживание нет. Составьте отрицание: There aren't + any service charges. Charge можно посчитать, поэтому используем charges в форме для нескольких и aren't. Any подчёркивает, что таких доплат нет совсем, а не только некоторых.",
+        "uk": "Ви переглядаєте підсумковий рахунок разом із другом: доплати за обслуговування не включені. There aren't any service charges — доплат за обслуговування немає. Складіть заперечення: There aren't + any service charges. Charge можна порахувати, тому використовуємо charges у формі для кількох й aren't. Any підкреслює, що таких доплат немає зовсім, а не лише деяких."
       },
       "question": {
         "interactionId": "en:lesson-17:session-26:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "07acb283a5d9984c0dbce1588804da2a0d68ad2793155e4b46c579034b956cc7"
+  "introFingerprint": "6995cf598f9039f4501dd8e5022a3ea36d63786a6f2dc1fda94c91f0a292884f"
 }

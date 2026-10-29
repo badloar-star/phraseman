@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Підкресліть, що кілька повідомлень усе ж надійшли. Voice message → voice messages.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -440,7 +440,7 @@
             "correct": false,
             "testedDimension": "Після втрати записника у вас залишилося мало номерів. Підкресліть брак. Contact number → contact numbers.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -663,7 +663,7 @@
             "correct": false,
             "testedDimension": "Кілька контактів збережено. Підкресліть їхню наявність. Emergency contact → emergency contacts.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -885,7 +885,7 @@
             "correct": false,
             "testedDimension": "Ви майже не знаєте телефонних кодів інших міст. Підкресліть малу кількість. Area code → area codes.",
             "feedbackByLocale": {
-              "ru": "Little относится к неисчисляемому количеству.",
+              "ru": "Little относится к тому, что не считают поштучно.",
               "uk": "Little стосується незлічуваної кількості."
             }
           }
@@ -1114,5 +1114,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "d8fde9959cd08a0d5d70ccd4429000e6f8cd1153ecd8aa3eabcd0b7cde5ee1d7"
+  "learnerFingerprint": "7bc75f2a6940c3fcf34ca6c38acf77ab3b764fa8bd5404ad26dc86b26dc1391c"
 }

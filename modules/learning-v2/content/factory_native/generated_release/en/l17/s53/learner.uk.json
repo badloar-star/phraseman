@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Ви показуєте, що кілька платформ розташовано зовні будівлі. Train platform → train platforms.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -441,7 +441,7 @@
             "correct": false,
             "testedDimension": "Ви ще не знаєте жодного тарифу з обговорюваного списку. Train fare → train fares.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -663,7 +663,7 @@
             "correct": false,
             "testedDimension": "Для родини куплено кілька квитків на день. Підтвердьте це. Day ticket → day tickets.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -886,7 +886,7 @@
             "correct": false,
             "testedDimension": "Ви не знаєте, чи продаються такі квитки. Запитайте нейтрально. Weekly ticket → weekly tickets.",
             "feedbackByLocale": {
-              "ru": "A не ставится перед неисчисляемым или множественным числом.",
+              "ru": "A не ставится, если это не считают поштучно или предметов несколько.",
               "uk": "A не ставиться перед незлічуваним або множиною."
             }
           }
@@ -1116,5 +1116,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "5852db2f2af66a44213784e754f5b4b38ef9c214629cb5f64d6be724fcfdcb0b"
+  "learnerFingerprint": "16c0d8a9d8bf4216f0c647863eed96d31cf1c2168aea4b212df4b6f80ab4f421"
 }

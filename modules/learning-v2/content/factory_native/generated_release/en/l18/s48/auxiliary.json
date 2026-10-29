@@ -19,8 +19,8 @@
       "interactionId": "en:lesson-18:session-48:intro2:q",
       "responseFeedbackById": {
         "en:lesson-18:session-48:intro2:r2": {
-          "ru": "После пропуска группа с существительным: such. Перед исчисляемым в единственном числе сохраняем a/an.",
-          "uk": "Після пропуску група з іменником: such. Перед злічуваним в однині зберігаємо a/an."
+          "ru": "После пропуска группа с существительным: such. Перед одним предметом, который можно посчитать, сохраняем a/an.",
+          "uk": "Після пропуску група з іменником: such. Перед одним предметом, який можна порахувати, зберігаємо a/an."
         },
         "en:lesson-18:session-48:intro2:r3": {
           "ru": "Порядок: such a/an, не a/an such.",
@@ -32,8 +32,8 @@
       "interactionId": "en:lesson-18:session-48:intro3:q",
       "responseFeedbackById": {
         "en:lesson-18:session-48:intro3:r2": {
-          "ru": "Здесь неисчисляемое значение: such без a.",
-          "uk": "Тут незлічуване значення: such без a."
+          "ru": "Нужно such без a: noise здесь не считают поштучно.",
+          "uk": "Потрібне such без a: noise тут не рахують поштучно."
         },
         "en:lesson-18:session-48:intro3:r3": {
           "ru": "Перед существительным нужно прилагательное loud, не наречие loudly.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "a54aedd6395daf79c71721d2efd091bbb0e198639550ffbf7f47a6beb3758c1b"
+  "auxiliaryFingerprint": "ed132f6131e79b489c964fa686d1c11824f625fd3c72aff271d9a928a2984ee4"
 }

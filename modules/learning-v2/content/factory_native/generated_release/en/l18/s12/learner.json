@@ -165,7 +165,7 @@
       "purpose": "supported_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-12:i03:r1",
@@ -182,11 +182,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "The fresh fruit is ___ snack here.",
@@ -390,7 +390,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-12:i06:r1",
@@ -407,11 +407,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "The dried fruit is ___ snack here.",
@@ -615,7 +615,7 @@
       "purpose": "guided_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-12:i09:r1",
@@ -632,11 +632,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "This bag of mixed nuts is ___.",
@@ -839,7 +839,7 @@
       "purpose": "retrieval_practice",
       "family": "context_gap_grammar",
       "inputMode": "single_choice",
-      "prompt": "Выберите значение «самый» в этой группе.",
+      "prompt": "Выберите, как сказать «самый».",
       "responseOptions": [
         {
           "responseId": "en:lesson-18:session-12:i12:r1",
@@ -856,11 +856,11 @@
       ],
       "mediaIds": [],
       "audioTargetIds": [],
-      "accessibilityLabel": "Выберите значение «самый» в этой группе.",
+      "accessibilityLabel": "Выберите, как сказать «самый».",
       "modePayload": {
         "family": "context_gap_grammar",
         "localizedScene": {
-          "ru": "Выберите значение «самый» в этой группе.",
+          "ru": "Выберите, как сказать «самый».",
           "uk": "Виберіть значення «най-» у цій групі."
         },
         "gappedTargetPhrase": "The plain yoghurt is ___ option.",
@@ -1127,5 +1127,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "b0bc3ce75989a275504a956fe7e4ea94fb2fd03d4f7ab4c64d53ed46bd7591a6"
+  "learnerFingerprint": "3192c86331d14241387d78089dc04826bcf224b220b7333508fe7c2fb9ae5830"
 }

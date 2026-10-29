@@ -2,8 +2,8 @@
   "schemaVersion": "learning_v2_course_session_intro_child_v1",
   "courseSessionId": "en:lesson-18:session-36",
   "learningOutcomeByLocale": {
-    "ru": "so + adjective; such + noun phrase",
-    "uk": "so + adjective; such + noun phrase"
+    "ru": "выразить сильное впечатление: The live music is so loud.",
+    "uk": "висловити сильне враження: The live music is so loud."
   },
   "pages": [
     {
@@ -69,8 +69,8 @@
         "uk": "Поділитися враженням із концерту"
       },
       "bodyByLocale": {
-        "ru": "Вы слушаете любимую группу и пишете другу, как вам нравится концерт. We are at such a great live concert — мы на таком замечательном концерте с живым исполнением. We are at сообщает, где вы находитесь. Дальше поставьте such a great live concert: such усиливает всю группу с concert, а артикль a стоит после such, перед great.",
-        "uk": "Ви слухаєте улюблений гурт і пишете другу, як вам подобається концерт. We are at such a great live concert — ми на такому чудовому концерті з живим виконанням. We are at повідомляє, де ви перебуваєте. Далі поставте such a great live concert: such підсилює всю групу з concert, а артикль a стоїть після such, перед great."
+        "ru": "Вы слушаете любимую группу и пишете другу, как вам нравится концерт. We are at such a great live concert — мы на таком замечательном концерте с живым исполнением. We are at сообщает, где вы находитесь. Дальше поставьте such a great live concert: such усиливает всю группу с concert, а a стоит после such, перед great.",
+        "uk": "Ви слухаєте улюблений гурт і пишете другу, як вам подобається концерт. We are at such a great live concert — ми на такому чудовому концерті з живим виконанням. We are at повідомляє, де ви перебуваєте. Далі поставте such a great live concert: such підсилює всю групу з concert, а a стоїть після such, перед great."
       },
       "question": {
         "interactionId": "en:lesson-18:session-36:intro2:q",
@@ -176,5 +176,5 @@
   "answerDataPolicy": "none_server_evaluator_child_only",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "introFingerprint": "f920805748274f7cd0fe632f05276bf5cb0c59be306b2a4976c276e808185bae"
+  "introFingerprint": "d913436d3198c8c5b01b6d0c136a4088748d743df45857ec295375e150001352"
 }

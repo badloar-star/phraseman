@@ -209,7 +209,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму одиниці після two.",
             "feedbackByLocale": {
-              "ru": "После two нужна множественная форма: tubes.",
+              "ru": "После two нужна форма для нескольких: tubes.",
               "uk": "Після two потрібна форма множини: tubes."
             }
           },
@@ -218,7 +218,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму одиниці після two.",
             "feedbackByLocale": {
-              "ru": "После two не ставим a; нужна множественная форма.",
+              "ru": "После two не ставим a; нужна форма для нескольких.",
               "uk": "Після two не ставимо a; потрібна форма множини."
             }
           }
@@ -432,7 +432,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму одиниці після two.",
             "feedbackByLocale": {
-              "ru": "После two нужна множественная форма: bars.",
+              "ru": "После two нужна форма для нескольких: bars.",
               "uk": "Після two потрібна форма множини: bars."
             }
           },
@@ -441,7 +441,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму одиниці після two.",
             "feedbackByLocale": {
-              "ru": "После two не ставим a; нужна множественная форма.",
+              "ru": "После two не ставим a; нужна форма для нескольких.",
               "uk": "Після two не ставимо a; потрібна форма множини."
             }
           }
@@ -656,7 +656,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму одиниці після two.",
             "feedbackByLocale": {
-              "ru": "После two нужна множественная форма: rolls.",
+              "ru": "После two нужна форма для нескольких: rolls.",
               "uk": "Після two потрібна форма множини: rolls."
             }
           },
@@ -665,7 +665,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму одиниці після two.",
             "feedbackByLocale": {
-              "ru": "После two не ставим a; нужна множественная форма.",
+              "ru": "После two не ставим a; нужна форма для нескольких.",
               "uk": "Після two не ставимо a; потрібна форма множини."
             }
           }
@@ -879,7 +879,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму одиниці після two.",
             "feedbackByLocale": {
-              "ru": "После two нужна множественная форма: boxes.",
+              "ru": "После two нужна форма для нескольких: boxes.",
               "uk": "Після two потрібна форма множини: boxes."
             }
           },
@@ -888,7 +888,7 @@
             "correct": false,
             "testedDimension": "Виберіть форму одиниці після two.",
             "feedbackByLocale": {
-              "ru": "После two не ставим a; нужна множественная форма.",
+              "ru": "После two не ставим a; нужна форма для нескольких.",
               "uk": "Після two не ставимо a; потрібна форма множини."
             }
           }
@@ -1118,5 +1118,5 @@
   "acceptedAnswerPayload": "absent_by_exact_schema",
   "runtimeAuthority": "none_active_release_join_required",
   "releaseAuthority": false,
-  "learnerFingerprint": "e501de74b1167a9996c041bf70e6b5ac7087c1b4fc388600f016a0e88d1991d1"
+  "learnerFingerprint": "62c2b87e9436c1b57b50b5173d563d7369920c36d8e2c0f13b0b7422db8f671d"
 }

@@ -6,8 +6,8 @@
       "interactionId": "en:lesson-17:session-33:intro1:q",
       "responseFeedbackById": {
         "en:lesson-17:session-33:intro1:r2": {
-          "ru": "После two нужно tubes во множественном числе.",
-          "uk": "Після two потрібне tubes у множині."
+          "ru": "После two нужно tubes в форме для нескольких.",
+          "uk": "Після two потрібне tubes у формі для кількох."
         },
         "en:lesson-17:session-33:intro1:r3": {
           "ru": "Между упаковкой и содержимым нужно of.",
@@ -42,5 +42,5 @@
       }
     }
   ],
-  "auxiliaryFingerprint": "7f49dcea2d996b38aa99ab22f592d7b2d31dd1011a61e64a71d3d0ccca0bfb5f"
+  "auxiliaryFingerprint": "652e1b8f7099efcb47001bd78cdcab5565d31d03c1bdaa27d9abaf25419234e3"
 }
